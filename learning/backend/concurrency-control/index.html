@@ -50,33 +50,24 @@
     
             <div id="table-of-contents">
                 
-                
                 <ul id="main-navigation-list">
                         <!-- If DocSites Exist -->
-                
+                             
                         <!-- If DocSites Exist -->
-                
+                             
                         <!-- If DocSites Exist -->
-                
+                             
                         <!-- If DocSites Exist -->
-                
+                             
                         <!-- If DocSites Exist -->
-                
+                             
                         <!-- If DocSites Exist -->
-                
+                             
                         <!-- If DocSites Exist -->
-                
+                             
                         <!-- If DocSites Exist -->
-                
-                        <!-- If DocSites Exist -->
-                
-                        <!-- If DocSites Exist -->
-                
-                        <!-- If DocSites Exist -->
-                
-                        <!-- If DocSites Exist -->
-                
-                                    <span class="nav-collection-group" id="learning-nav">
+                             
+                                    <span class="nav-collection-group">
                                         <li><h3 class="table-of-contents-heading"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/learning/">Learning</a></h3></li>
                                                     <li>
                                                         <a class="toc-link table-of-contents-link " href="https://imodeljs.github.io/iModelJs-docs-output/./learning/learning/ecsql">Ecsql</a>
@@ -95,8 +86,8 @@
                                                     </li>
                                         </span>
                         <!-- If DocSites Exist -->
-                
-                                    <span class="nav-collection-group" id="backend-nav">
+                             
+                                    <span class="nav-collection-group">
                                         <li><h3 class="table-of-contents-heading"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend/">Backend</a></h3></li>
                                                     <li>
                                                         <a class="toc-link table-of-contents-link " href="https://imodeljs.github.io/iModelJs-docs-output/./learning/backend/briefcases">Briefcases</a>
@@ -115,8 +106,8 @@
                                                     </li>
                                         </span>
                         <!-- If DocSites Exist -->
-                
-                                    <span class="nav-collection-group" id="frontend-nav">
+                             
+                                    <span class="nav-collection-group">
                                         <li><h3 class="table-of-contents-heading"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend/">Frontend</a></h3></li>
                                                     <li>
                                                         <a class="toc-link table-of-contents-link " href="https://imodeljs.github.io/iModelJs-docs-output/./learning/frontend/executing-ecsql">Executing Ecsql</a>
@@ -126,10 +117,18 @@
                                                     </li>
                                         </span>
                         <!-- If DocSites Exist -->
-                
+                             
                         <!-- If DocSites Exist -->
-                
-                                    <span class="nav-collection-group" id="tools-nav">
+                             
+                        <!-- If DocSites Exist -->
+                             
+                        <!-- If DocSites Exist -->
+                             
+                        <!-- If DocSites Exist -->
+                             
+                        <!-- If DocSites Exist -->
+                             
+                                    <span class="nav-collection-group">
                                         <li><h3 class="table-of-contents-heading"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/tools/">tools</a></h3></li>
                                         </span>
                 </ul>
@@ -144,18 +143,18 @@
 <li>Pull (and merge) before pushing.</li>
 </ol>
 <p>An iModel has a concurrency control policy that specifies how multiple briefcases may modify models and elements. The policy may stipulate that locks must be used, forcing transactions to be sequential (pessimistic), or it may specify change-merging with conflict-resolution to combine the results of simultaneous transactions (optimistic).</p>
-<p>An app uses <a href="https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/imodeldb/imodeldb">IModelDb</a> and <a href="https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/concurrencycontrol/concurrencycontrol">ConcurrencyControl</a> to follow concurrency control rules.</p>
+<p>An app uses <a href="$imodeljs-backend.IModelDb">IModelDb</a> and <a href="$imodeljs-backend.ConcurrencyControl">ConcurrencyControl</a> to follow concurrency control rules.</p>
 <p>Locks and code reservations are associated with a briefcase while it is making changes and are released when it pushes.</p>
 <h2><a id="background" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Background</h2>
 <p>This article assumes that you already know that:</p>
 <ul>
 <li>An iModel is a multi-user database</li>
-<li>An app works with a <a href="../learning/Glossary.md#Briefcase">briefcase</a> using the <a href="https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/imodeldb/imodeldb">IModelDb</a> class.</li>
-<li>A briefcase has a unique identity that is issued and tracked by <a href="../../overview/overview/IModelHub.md">iModelHub</a>.</li>
-<li>Changes are captured and distributed in the form of <a href="../learning/Glossary.md#ChangeSets">ChangeSets</a>.</li>
-<li>ChangeSets are ordered in a sequence that is called the <a href="../../overview/overview/IModelHub.md#the-timeline-of-changes">timeline</a> of the iModel.</li>
+<li>An app works with a <a href="../Glossary.md#Briefcase">briefcase</a> using the <a href="$imodeljs-backend.IModelDb">IModelDb</a> class.</li>
+<li>A briefcase has a unique identity that is issued and tracked by <a href="../../overview/IModelHub.md">iModelHub</a>.</li>
+<li>Changes are captured and distributed in the form of <a href="../Glossary.md#ChangeSets">ChangeSets</a>.</li>
+<li>ChangeSets are ordered in a sequence that is called the <a href="../../overview/IModelHub.md#the-timeline-of-changes">timeline</a> of the iModel.</li>
 <li>ChangeSets are stored in iModelHub</li>
-<li>A <a href="../learning/Glossary.md#Code">Code</a> is an identifier that assigned to an element and is managed by a central Code Service.</li>
+<li>A <a href="../Glossary.md#Code">Code</a> is an identifier that assigned to an element and is managed by a central Code Service.</li>
 </ul>
 <h2><a id="glossary" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Glossary:</h2>
 <table class="table table-responsive"><tbody><tr>
@@ -164,7 +163,7 @@
 </tr>
 <tr>
 <td><strong>Base</strong></td>
-<td>ChangeSet B is based on ChangeSet A if B comes after A in the <a href="../../overview/overview/IModelHub.md#the-timeline-of-changes">timeline</a>.</td>
+<td>One ChangeSet is based on another if it occurs later in the <a href="../../overview/IModelHub.md#the-timeline-of-changes">timeline</a>.</td>
 </tr>
 <tr>
 <td><strong>Change-merging</strong></td>
@@ -180,7 +179,7 @@
 </tr>
 <tr>
 <td><strong>Concurrency Control Policy</strong></td>
-<td>The rules that apps must follow when changing models and elements. May be <a href="#optimistic-concurrency-control-concurrency-control">optimistic</a> or <a href="#pessimistic-concurrency-control">pessimistic</a>.</td>
+<td>The rules that apps must follow when changing models and elements. May be <a href="#optimistic">optimistic</a> or <a href="#pessimistic">pessimistic</a>.</td>
 </tr>
 <tr>
 <td><strong>Conflict</strong></td>
@@ -220,54 +219,51 @@
 </tr>
 <tr>
 <td><strong>Revision</strong></td>
-<td>The state of an iModel as of a specific point in its <a href="../../overview/overview/IModelHub.md#the-timeline-of-changes">timeline</a>, that is, the result of the ChangeSets up to that point.</td>
+<td>The state of an iModel as of a specific point in its <a href="../../overview/IModelHub.md#the-timeline-of-changes">timeline</a>, that is, the result of the ChangeSets up to that point.</td>
 </tr>
 <tr>
 <td><strong>Tip</strong></td>
-<td>The most recent revision of an iModel. Also, the most recent ChangeSet in the <a href="../../overview/overview/IModelHub.md#the-timeline-of-changes">timeline</a>.</td>
+<td>The most recent revision of an iModel. Also, the most recent ChangeSet in the <a href="../../overview/IModelHub.md#the-timeline-of-changes">timeline</a>.</td>
 </tr>
 <tr>
 <td><strong>Transaction</strong></td>
-<td>A set of changes that are committed or abandoned atomically, making up a unit of work. Multiple  transactions to a briefcase are combined into a <a href="../learning/Glossary.md#ChangeSets">ChangeSet</a>.</td>
+<td>A set of changes that are committed or abandoned atomically, making up a unit of work. Multiple  transactions to a briefcase are combined into a <a href="../Glossary.md#ChangeSets">ChangeSet</a>.</td>
 </tr>
 </tbody></table><h2><a id="code-reservation" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Code Reservation</h2>
 <p>An app must reserve all Codes that it plans to assign to elements during a local editing session. An app can reserve more Codes than it actually uses. For example, an app may reserve a range or block of Codes in a sequence in order to ensure that it can use them, but before it knows exactly how many it will need. When the local ChangeSet is finally pushed, the Code Service sorts out which reserved Codes were actually used and which were not. Unused Codes are returned to the pool, while used Codes are marked as used and unavailable. When an element is deleted, its Code may be returned to the pool(??).</p>
-<p>The optimistic concurrency control policy does not apply to Codes.</p>
+<p>Note that the optimistic concurrency control policy does not apply to Codes.</p>
 <h2><a id="data-write-concurrency-control-policies" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Data Write Concurrency Control Policies</h2>
 <p> Preemptive locking is always required when importing Schemas or changing or inserting CodeSpecs. The APIs for those objects take care of locking automatically, so there is nothing special for an app to do.</p>
-<p> For models and elements, there are two locking policy options: pessimistic and optimistic. The <a href="https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/concurrencycontrol/concurrencycontrol">ConcurrencyControl</a> class specifies the concurrency control policy for an iModel. The app must check the <code>iModelDb.concurrencyControl</code> property to learn the policy and then implement it.</p>
+<p> For models and elements, there are two locking policy options: pessimistic and optimistic. The <a href="$imodeljs-backend.ConcurrencyControl">ConcurrencyControl</a> class specifies the concurrency control policy for an iModel. The app must check the <code>iModelDb.concurrencyControl</code> property to learn the policy and then implement it.</p>
 <h3><a id="pessimistic-concurrency-control" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Pessimistic Concurrency Control</h3>
 <p> To set up an iModel to use the pessimistic concurrency control policy, specify the ConcurrencyControl.PessimisticPolicy, as follows:</p>
-<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">     iModel<span class="token punctuation">.</span>concurrencyControl<span class="token punctuation">.</span><span class="token function">setPolicy</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ConcurrencyControl<span class="token punctuation">.</span>PessimisticPolicy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class="language-typescript line-numbers"><code class="language-typescript">     iModel<span class="token punctuation">.</span>concurrencyControl<span class="token punctuation">.</span><span class="token function">setPolicy</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ConcurrencyControl<span class="token punctuation">.</span>PessimisticPolicy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>The pessimistic concurrency policy requires that models and elements must be locked before local changes can be pushed to iModelHub. Locking prevents concurrent changes and forces briefcase transactions affecting the same models and elements to be sequential.</p>
 <p>For reference, the pessimistic locking rules are as follows:
 |Operation|LockType|Lock Level|
-|------------|------------|--------|
+|------------|------------|--------|--------|-------|
 |Insert element|Model|Shared
 |Modify element|Element|Exclusive|
 |Delete element|Element|Exclusive|
 |Insert model|DgnDb|Shared|
 |Modify model|Model|Exclusive|
 |Delete model|Model|Exclusive|
-|     &quot;      |Elements in model|Exclusive|</p>
-<p>An app will normally implement the pessimistic policy by using high-level APIs to build lock requests based on the intended operation, as explained <a href="#acquiring-locks-and-reserving-codes">below</a>. These high-level APIs take care of both acquiring locks and reserving Codes.</p>
-<blockquote>
-<p>A briefcase must pull before it can lock and element or model if it is affected by a recently pushed ChangeSet.</p>
-</blockquote>
-<p>An app that implements the pessimistic concurrency control policy follows the pull -&gt; lock -&gt; change -&gt; push pattern.</p>
-<p> <img src="https://imodeljs.github.io/iModelJs-docs-output/PessimisticConcurrencyControl.jpg" alt="pessimistic concurrency example workflow"></p>
+|            |Elements in model|Exclusive|</p>
+<p>An app will normally implement the pessimistic policy by using high-level APIs to build lock requests based on the intended operation, as explained <a href="#acquiring-locks-and-reserving-codes">below</a>.</p>
+<p>Note that, if there are newer ChangeSets affecting a model or an element, a briefcase must pull before it can lock. That enforces a pull -&gt; lock -&gt; change -&gt; push pattern.</p>
+<p> <img src="https://imodeljs.github.io/iModelJs-docs-output/PessimisticConcurrencyControl.jpg" alt="optimistic concurrency flow"></p>
 <p>Locks are normally released when the briefcase pushes its changes, or they may be released if the briefcase abandons its changes.</p>
 <h3><a id="optimistic-concurrency-control" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Optimistic Concurrency Control</h3>
 <p> To set up an iModel to use optimistic concurrency control, specify the ConcurrencyControl.OptimisticPolicy, as follows:</p>
-<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">     iModel<span class="token punctuation">.</span>concurrencyControl<span class="token punctuation">.</span><span class="token function">setPolicy</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ConcurrencyControl<span class="token punctuation">.</span>OptimisticPolicy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class="language-typescript line-numbers"><code class="language-typescript">     iModel<span class="token punctuation">.</span>concurrencyControl<span class="token punctuation">.</span><span class="token function">setPolicy</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ConcurrencyControl<span class="token punctuation">.</span>OptimisticPolicy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p> An optimistic concurrency policy allows apps to modify elements and models in an iModel without acquiring locks. In this case, the app uses change-merging to reconcile local changes before pushing.</p>
 <p> Working without locks opens up the possibility that other apps may add ChangeSets to the timeline while the local editing session is in progress. The briefcase must then merge before it can push.</p>
 <p> Suppose, for example, that two briefcases were editing different properties of the same element at the same time. Suppose that the first briefcase pushed first, creating ChangeSet#1. Now, the second briefcase must pull and merge before it can push.</p>
-<p> <img src="https://imodeljs.github.io/iModelJs-docs-output/OptimisticConcurrencyControl.jpg" alt="optimistic concurrency example workflow"></p>
+<p> <img src="https://imodeljs.github.io/iModelJs-docs-output/OptimisticConcurrencyControl.jpg" alt="optimistic concurrency flow"></p>
 <p> Working without locks also opens up the possibility that local changes may overlap with in-coming ChangeSets. When ChangeSets are merged into the briefcase, the change-merging algorithm checks for conflicts. The algorithm merges changes and checks for conflicts at the level of individual element properties. In the example above, the two briefcases changed different properties of the same element. That is not a conflict. Likewise, it is not a conflict for two briefcases both to set a property to the same value, or for two briefcases both to delete an element. Conflicts arise if the two briefcases set the same property to different values, or if one briefcase modifies a property and the other deletes the element.</p>
-<p> If conflicts are found, the change-merging algorithm applies the conflict-resolution policy that is part of the iModel&apos;s optimistic concurrency policy. Actually, the iModel has a separate resolution policy for each combination of changes that could conflict. The ConcurrencyControl.ConflictResolutionPolicy class defines the conflict-resolution policies for an iModel.</p>
+<p> If conflicts are found, the change-merging algorithm applies the conflict-resolution policy that is part of the iModel&apos;s optimistic concurrency policy. Actually, the iModel has a separate resolution policy for each combination of changes that could conflict. The <a href="$imodeljs-backend.ConcurrencyControl.ConflictResolutionPolicy">ConcurrencyControl.ConflictResolutionPolicy</a> class defines the conflict-resolution policies for an iModel.</p>
 <p> In general, there are three options when an in-coming change conflicts with a local change, which are members of ConcurrencyControl.OnConflict:</p>
 <ul>
 <li>AcceptIncomingChange - Accept the in-coming change, replacing the local change</li>
@@ -276,7 +272,7 @@
 <p>In some cases, the accept or reject option is not available. In the case where rejection is not an option, then the policy may be to reject the in-coming ChangeSet as a whole. That allows the app to re-work the local change and try again. The briefcase must still pull and merge before it can push.</p>
 <p>The defaults conflict-resolution policies are:
 |Local Change|RemoteChange|Resolution|
-|------------|------------|--------|
+|------------|------------|--------|--------|-------|
 |update|update|ConcurrencyControl.OnConflict.RejectIncomingChange
 |update|delete|ConcurrencyControl.OnConflict.AcceptIncomingChange (reject not support)
 |delete|update|ConcurrencyControl.OnConflict.RejectIncomingChange (accept not supported)</p>
@@ -288,30 +284,24 @@
 <p>A briefcase must reserve codes before pushing a ChangeSet to iModelHub. Under a pessimistic policy, the briefcase must also acquire all needed locks before pushing. The app has two options for when and how to acquire locks and/or codes during a local transaction: before making changes (preemptively) or after making changes (bulk mode).</p>
 <h3><a id="acquiring-locks-andor-codes-preemptively" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Acquiring locks and/or codes preemptively</h3>
 <ol>
-<li><p>Call <a href="https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/model/model/#buildconcurrencycontrolrequest">Model.buildConcurrencyControlRequest</a> and <a href="https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/element/element/#buildconcurrencycontrolrequest">Element.buildConcurrencyControlRequest</a> to discover what locks and codes would be needed before making local changes.</p>
+<li><p>Call <a href="$imodeljs-backend.Model.buildConcurrencyControlRequest">Model.buildConcurrencyControlRequest</a> and <a href="$imodeljs-backend.Element.buildConcurrencyControlRequest">Element.buildConcurrencyControlRequest</a> to discover what locks and codes would be needed before making local changes.</p>
 </li>
-<li><p>Call <a href="https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/concurrencycontrol/concurrencycontrol/#request">ConcurrencyControl.request</a> to request the locks and/or codes that the planned local operations will require. This may send a request to iModelHub.</p>
-<ul>
-<li>==&gt; If the request fails, roll back the local transaction and cancel the local operation.</li>
-</ul>
+<li><p>Call <a href="$imodeljs-backend.ConcurrencyControl.request">ConcurrencyControl.request</a> to request the locks and/or codes that the planned local operations will require. This may send a request to iModelHub.
+==&gt; If the request fails, roll back the local transaction and cancel the local operation.</p>
 </li>
-<li><p>If the request succeeds, go ahead and make the planned local changes and then call <a href="https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/imodeldb/imodeldb/#savechanges">IModelDb.saveChanges</a>.</p>
+<li><p>If the request succeeds, go ahead and make the planned local changes and then call <a href="$imodeljs-backend.IModelDb.saveChanges">IModelDb.saveChanges</a>.</p>
 <p>This approach is the safest way to avoid conflicts. It requires that the app must plan ahead before making local changes.</p>
-<blockquote>
-<p>Sending a request to iModelHub is a relative expensive operation. Therefore to batch up requests for locks and/or Codes.</p>
-</blockquote>
+<p>Note that sending a request to iModelHub is a relative expensive operation. Therefore to batch up requests for locks and/or Codes.</p>
 </li>
 </ol>
 <h3><a id="acquiring-locks-andor-codes-in-bulk-mode" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Acquiring locks and/or codes in bulk mode</h3>
 <ol>
 <li><p>Insert or update models and elements.</p>
 </li>
-<li><p>Call <a href="https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/concurrencycontrol/concurrencycontrol/#request">ConcurrencyControl.request</a> to request the locks and codes that those local operations require.</p>
-<ul>
-<li>==&gt; If the request fails, call IModelDb.cancelChanges to roll back the local transaction.</li>
-</ul>
+<li><p>Call <a href="$imodeljs-backend.ConcurrencyControl.request">ConcurrencyControl.request</a> to request the locks and codes that those local operations require.
+==&gt; If the request fails, call <a href="$imodeljs-backend.IModelDb.cancelChanges">IModelDb.cancelChanges</a> to roll back the local transaction.</p>
 </li>
-<li><p>If the request succeeds, call <a href="https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/imodeldb/imodeldb/#savechanges">IModelDb.saveChanges</a> to commit the local transaction.</p>
+<li><p>If the request succeeds, call <a href="$imodeljs-backend.IModelDb.saveChanges">IModelDb.saveChanges</a> to commit the local transaction.</p>
 <p>Using bulk mode is simpler than using the preemptive approach, but it carries the risk that you must abandon all of your changes in case of a locking or code-reservation conflict. Use this approach only if you know that your changes are isolated such that conflicts are unlikely.</p>
 </li>
 </ol>
@@ -327,7 +317,7 @@
 <p><a href="http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/public/learning/backend/change-sets">&#xAB; Change Sets</a> | <a href="http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/public/learning/backend/executing-ecsql">Executing Ecsql &#xBB;</a></p>
 
                     <p class="last-updated">Last Updated: 
-                        <span class="date-updated">18 April, 2018 @ 06:16:01 pm +00:00</span>
+                        <span class="date-updated">18 April, 2018 @ 01:02:04 pm +00:00</span>
                     </p>
     
                    

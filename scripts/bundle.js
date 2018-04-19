@@ -57,7 +57,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "E:\\Agents\\PRG01\\_work\\746\\tempDocsBuild";
+/******/ 	__webpack_require__.p = "E:\\Agents\\PRG01\\_work\\1301\\tempDocsBuild";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 111);
@@ -27975,7 +27975,7 @@ Prism.languages.powershell={comment:[{pattern:/(^|[^`])<#[\s\S]*?#>/,lookbehind:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {function toggle_visibility(id) {
-    var e = $(`#${id}`)[0]; 
+    var e = $('#' + id)[0];
 
     if (e.style.display === 'none') {
         sessionStorage.setItem(id.toString(), "flex");
@@ -27991,7 +27991,7 @@ Prism.languages.powershell={comment:[{pattern:/(^|[^`])<#[\s\S]*?#>/,lookbehind:
 
 $('.package-filter-checkbox').on('click', function (event) {
     var id = $(this).attr('id').replace('-visibility', '-nav');
-    var target = $(`#${id}`);
+    var target = $('#' + id);
     if (target[0].style.display === 'none') {
         sessionStorage.setItem(id.toString(), "flex");
         target[0].style.display = 'flex';
@@ -28009,33 +28009,32 @@ $('i.collapse-arrow').on('click', function (event) {
         $(this).toggleClass('is-expanded');
     }
 
-    if(target.is("i")){
+    if (target.is("i")) {
         $('.bwc-expandable-blocks-block').toggleClass('is-collapsed');
-        $('.bwc-expandable-blocks-block').toggleClass('is-expanded'); 
+        $('.bwc-expandable-blocks-block').toggleClass('is-expanded');
     }
 });
 
-$('a.toc-link').on('click', function(event){
+$('a.toc-link').on('click', function (event) {
     var tocDiv = $('#table-of-contents')[0];
-    console.log('Saving scroll pos to:', tocDiv.scrollTop);
     sessionStorage.setItem('TOCscrollYPos', tocDiv.scrollTop);
 });
 
 window.onload = function () {
     for (var i = 0; i < sessionStorage.length; i++) {
         var keyName = sessionStorage.key(i);
-        if(keyName === 'TOCscrollYPos'){
+        if (keyName === 'TOCscrollYPos') {
             var tocDiv = $('#table-of-contents')[0];
             tocDiv.scrollTop = sessionStorage.getItem(keyName);
         }
 
-        var e = $(`#${keyName}`)[0];
+        var e = $('#' + keyName)[0];
         if (e) {
             var disp = sessionStorage.getItem(sessionStorage.key(i));
             var chkBoxId = sessionStorage.key(i).replace('-nav', '-visibility');
             e.style.display = sessionStorage.getItem(sessionStorage.key(i));
             var checked = e.style.display === 'flex' ? true : false;
-            $(`#${chkBoxId}`).prop('checked', checked);
+            $('#' + chkBoxId).prop('checked', checked);
         }
     }
 }
@@ -28596,7 +28595,7 @@ function determineType(elementType, $parentElement) {
     return type;
 }
 
-function getHighlight(searchLink, queryTokens, foundResults) {
+function getHighlight(siteRoot, searchRef, queryTokens, foundResults) {
 
     var defer = _jquery2.default.Deferred();
     var searchDescription = "";
@@ -28604,7 +28603,7 @@ function getHighlight(searchLink, queryTokens, foundResults) {
     // $.ajax instead of $.get to detect aborts.
     _jquery2.default.ajax({
         type: "GET",
-        url: "\\" + searchLink,
+        url: siteRoot + searchRef,
         success: function success(data) {
             var pageContent = _jquery2.default.parseHTML(data);
             var pageContentElement = (0, _jquery2.default)(pageContent).find(".documentation-main");
@@ -28673,7 +28672,7 @@ function getHighlight(searchLink, queryTokens, foundResults) {
                 type = "no-highlight";
             }
             // Filtered results.
-            pushResults(foundResults, searchLink, searchDescription, type.toLowerCase());
+            pushResults(foundResults, searchRef, searchDescription, type.toLowerCase());
             defer.resolve();
         },
         error: function error(_error) {
@@ -28833,7 +28832,7 @@ var SiteSearch = function (_React$Component) {
                         pendingResults.push({ searchRef: searchRef });
                         continue;
                     }
-                    deferredSearch.push(getHighlight(searchRef, queryTokens, foundResults));
+                    deferredSearch.push(getHighlight(this.props.siteRoot, searchRef, queryTokens, foundResults));
                 }
 
                 _jquery2.default.when.apply(_jquery2.default, deferredSearch).done(function () {
@@ -28866,13 +28865,13 @@ var SiteSearch = function (_React$Component) {
             if (bottom && e.target.scrollHeight === e.currentTarget.scrollHeight) {
                 var remainingResults = [].concat(_toConsumableArray(pendingResults));
                 for (var i = 0, len = pendingResults.length; i < len; ++i) {
-                    var searchLink = pendingResults[i].searchRef;
+                    var searchRef = pendingResults[i].searchRef;
 
                     if (i >= RESULT_LIMIT) {
                         break;
                     }
 
-                    deferredSearch.push(getHighlight(searchLink, queryTokens, foundResults));
+                    deferredSearch.push(getHighlight(this.props.siteRoot, searchRef, queryTokens, foundResults));
                     remainingResults.shift();
                 }
 
