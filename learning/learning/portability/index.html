@@ -99,6 +99,27 @@
                                                     <li>
                                                         <a class='toc-link table-of-contents-link active' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/learning/portability">Portability</a>
                                                     </li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/learning/ecsqlparametertypes">Ecsql Parameter Types</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link active' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/learning/portability">Portability</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/learning/leftnav">Left Nav</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/learning/glossary">Glossary</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/learning/faq">FAQ</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/learning/ecsqlrowformat">Ecsql Row Format</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/learning/ecsql">Ecsql</a>
+                                                    </li>
                                         </span>
                         <!-- If DocSites Exist -->
                 
@@ -133,6 +154,26 @@
                                         </span>
                         <!-- If DocSites Exist -->
                 
+                                    <span class='nav-collection-group' id='guidelines-nav'>
+                                        <li><h3 class='table-of-contents-heading'><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/learning/guidelines/'>Guidelines and Tips</a></h3></li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/guidelines/markdown-intro">Markdown Intro</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/guidelines/npm-scripts-guidelines">Npm Scripts Guidelines</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/guidelines/semantic-versioning-guidelines">Semantic Versioning Guidelines</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/guidelines/tips-for-converting-c">Tips For Converting C</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/guidelines/typescript-coding-guidelines">Typescript Coding Guidelines</a>
+                                                    </li>
+                                        </span>
+                        <!-- If DocSites Exist -->
+                
                         <!-- If DocSites Exist -->
                 
                         <!-- If DocSites Exist -->
@@ -143,6 +184,9 @@
                 
                                     <span class='nav-collection-group' id='tools-nav'>
                                         <li><h3 class='table-of-contents-heading'><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/learning/tools/'>tools</a></h3></li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/tools/tools">Tools</a>
+                                                    </li>
                                         </span>
                 </ul>
             </div>
@@ -150,62 +194,18 @@
                 <article id="main" name="main-content">
                     <h1 id="portability">Portability</h1>
 <p>The technology used by iModelJs makes it possible to write an app once and then deploy it to run on many platforms without modification.</p>
-<p>iModelJs-based agents and services can run anywhere that nodejs is found, and that is just about everywhere.</p>
-<p>An iModelJs-based interactive app that follows the iModelJs app architecture can be configured to run as a web app with a supporting web server, a desktop app, or a mobile app. That is, the same app can take all three forms without modifying the code or the user interface definition. You can also <a href="#making-apps-fit-the-platform">tailor an app to fit each configuration</a> without rewriting or substantially changing it.</p>
 <h2><a id="cross-platform-technologies" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Cross-Platform Technologies</h2>
 <p>The key technology that makes an app portable is JavaScript. JavaScript engines are available on many operating systems and Web browsers. TypeScript compiles to JavaScript.</p>
-<p><a href=".././Glossary.md#Node.js">Nodejs</a> is an execution environment for agents, services, and servers. Nodejs runs JavaScript programs. Nodejs itself runs on many platforms, including Windows and Linux. Nodejs is also widely supported by cloud infrastructures and deployment mechanisms.</p>
+<p><a href=".././glossary#node.js">Nodejs</a> is an execution environment for agents, services, and servers. Nodejs runs JavaScript programs. Nodejs itself runs on many platforms, including Windows and Linux. Nodejs is also widely supported by cloud infrastructures and deployment mechanisms.</p>
 <p>Web UI technology, including HTML and CSS, makes it possible to write a cross-platform user interface that looks and behaves the same everywhere, in every configuration. Web UI technology is supported by Web browsers and Web view renderers on many platforms.</p>
-<p><a href=".././Glossary.md#Electron">Electron</a> combines a Web view client and a nodejs-based server into a single desktop product, without requiring any modification of the code or the UI. Electron runs on many desktop platforms.</p>
-<h2><a id="cross-platform-interactive-app-architecture" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Cross-Platform Interactive App Architecture</h2>
-<p>To write a cross-platform interactive app, follow two basic guidelines:</p>
-<ol>
-<li>Write the UI as if it were always going to be a Web page,</li>
-<li>Follow the normal principles of good design to keep data access logic separate from UI logic.</li>
-</ol>
-<p>The separation between UI and data access is a key architectural principle. The following sections explain the role of each part and how they relate to each other.</p>
-<h3><a id="ui-frontend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>UI Frontend</h3>
-<p>The UI-specific part of an app is called the <a href="https://en.wikipedia.org/wiki/Front_and_back_ends">frontend</a>. The frontend should be concerned only with display and user interaction.</p>
-<p>The frontend must be written using Web technologies only, including HTML, CSS, and JavaScript. You can use whatever Web app framework you like. The frontend should use <code>@bentley/imodeljs-frontend</code> for accessing iModels.</p>
-<p>When an app is configured as a Web app, the frontend takes the form of a set of HTML pages and supporting .js files, served out by a Web server and rendered in a Web browser.</p>
-<p>When an app is configured as a Electron desktop app or as a Mobile app, the frontend&apos;s HTML and other assets are bundled as data resources of the overall app. In both desktop and mobile apps, the UI is rendered in a Chromium-based process in an Electron app and in an embedded Web viewer in a mobile app.</p>
-<h3><a id="data-access-backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Data Access Backend</h3>
-<p>The data-access part of an app is called the <a href="https://en.wikipedia.org/wiki/Front_and_back_ends">backend</a>. The backend must contain all code that accesses iModels. The backend can also contain the app&apos;s middle tier or business logic.</p>
-<p>The backend of an app must be written entirely in TypeScript and/or JavaScript. The backend uses <code>@bentley/imodeljs-backend</code> for accessing iModels. imodeljs-backend also contains a portable classes for working with geometry and other kinds of data. The backend can also use other portable JavaScript packages.</p>
-<p>When an app is configured as a Web app, the backend takes the form of a nodejs-based Web server that is deployed to the cloud.</p>
-<p>When an app is configured as a Electron desktop app or as a mobile app, the backend&apos;s JavaScript and other assets are bundled as data resources of the overall app. The backend script is executed in a nodejs process by Electron and in an embedded JavaScript engine in a mobile app.</p>
-<blockquote>
-<p>The backend does not always run in nodejs and should not be node-specific. See <a href="#avoiding-node-dependencies">below</a>.</p>
-</blockquote>
-<h4><a id="backend-main" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Backend main</h4>
-<p>To be precise, a few lines of the backend&apos;s main entry point must be different, depending on whether it is configured as a mobile app or not.</p>
-<h3><a id="frontend--backend-gateways" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Frontend -&gt; Backend Gateways</h3>
-<p>The backend implements services that may be used by the frontend. Following good design principles, the frontend (UI) may call the backend (data access and business logic), but not the other way around.</p>
-<p>Backend services are expressed as a normal TypeScript interface with static methods. So, when frontend code makes a request on the backend, it just calls a method on an object that implements the interface. Similarly, when the backend implements a set of services, it just implements normal TypeScript methods. Parameters and return values are normal TypeScript objects.</p>
-<p>A class that represents a set of services offered by a backend is called a <em>gateway</em>. A gateway is in fact a pair of classes: a proxy that is used by the frontend and an implementation that is supplied by the backend. iModelJs supplies transport mechanisms to marshall calls between them.</p>
-<p>When the app is configured as a Web app, transport is an HTTP request with associated request-handling in the backend Web server. In an Electron desktop app, transport is inter-process communication. And, in a mobile app, transport marshalls calls across threads. These are implementation details of the transport mechanism that do not affect frontend or backend code.</p>
-<h3><a id="frontend-backend-gateways-and-portability" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Frontend, Backend, Gateways and Portability</h3>
-<p>With this lengthy introduction, it should be clear that the separation of an interactive app into frontend and backend portions and the use of gateways between them is the key to portability across configurations. The separation is both good design and allows the app to be configured either as a two-part client-server Web app or as a one-part desktop or mobile app. The gateway encapsulates and shields the app from the details of how frontend and backend communicate, allowing the app&apos;s logic to be the same in all configurations.</p>
-<h2><a id="making-apps-fit-the-platform" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Making Apps Fit the Platform</h2>
-<p>You will often want to tailor the UI and function of an app for each platform and configuration. For example, a mobile app will usually have a simpler UI than a desktop app, and a mobile app will offer mobile-specific features such as camera and geo-location. Tailoring is relatively easy, because of the highly factored architecture of an iModelJs app. As a result, you can:</p>
-<ul>
-<li>Change the GUI</li>
-<li>Use tailored gateways</li>
-<li>Use platform-specific modules</li>
-</ul>
-<p>Some of these adaptations involve swapping in different resources, such as HTML pages, at packaging time, while some merely require run-time checks. Run-time checks may be based on the <code>Platform.platformName</code> property.</p>
-<h3><a id="change-the-gui" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Change the GUI</h3>
-<p>An app&apos;s UI is contained within its frontend. And, the look and feel of the GUI is contained within its HTML and CSS resources. Swapping in a different GUI can be a simple as swapping in a different style sheet or HTML page, leaving the supporting JavaScript the same. You can develop and test the various version of the GUI in a single development environment. You can also write the code-behind to tailor the GUI at run time.</p>
-<h3><a id="tailored-gateways" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Tailored Gateways</h3>
-<p>Following the <a href="https://samnewman.io/patterns/architectural/bff/">backends-for-frontends pattern</a>, an app would ideally use different backend services for different configurations, rather than trying to rely on a one-size-fits-all backend service. The iModelJs gateway architecture encourages and supports the BFF pattern. Since a gateway is just a TypeScript class, it&apos;s easy for an app to implement a set of services. And, it&apos;s easy for an app to choose a different mix of gateways at runtime, depending on its configuration.</p>
-<h3><a id="platform-specific-modules" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Platform-specific Modules</h3>
-<p>A portable interactive app can use platform-specific modules that are supplied by the host platform in JavaScript. Mobile platforms such as iOS and Android, provide JavaScript classes for services that are specific to mobile apps. The Electron desktop platform provides all of the features of nodejs.</p>
-<h2><a id="avoiding-node-dependencies" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Avoiding node dependencies</h2>
-<p>The backend of an interactive app should not assume that it is running in nodejs.</p>
-<blockquote>
-<p>The backend must not depend on ny node-specific package, including any package that is based on native code. (fs-extra -&gt; see IModelJsFs)</p>
-</blockquote>
-<p>A backend can use node builtins in guarded code.</p>
+<p><a href=".././glossary#electron">Electron</a> combines a Web view client and a nodejs-based server into a single desktop product, without requiring any modification of the code or the UI. Electron runs on many desktop platforms.</p>
+<h2><a id="frontend-portability" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Frontend Portability</h2>
+<p>Since an iModelJs app <a href="../../../overview/overview/app#app-frontend">frontend</a> is written using Web UI technologies, it is inherently portable.</p>
+<h2><a id="backend-portability" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Backend Portability</h2>
+<p>Services and agents always run in nodejs. And, they always use server technology.</p>
+<p>App-specific backends do not always run in nodejs and do not always user server technology. This section describes how to make them portable and adaptable to multiple app configurations.</p>
+<p>A few lines of an app-specific backend&apos;s main entry point must be different, depending on whether it is configured as a mobile app or not. For the mobile case, a special gateway request processor should be imported and initialized. For the non-mobile case, normal Web server packages should be imported and initialized.</p>
+<p>A backend can use node builtins, but only in guarded code.</p>
 <p>A backend can use the following portable imodeljs-backend classes to avoid unnecessary node dependencies:</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Node builtin</th>
@@ -239,13 +239,17 @@
 <td>path</td>
 <td>path</td>
 </tr>
-</tbody></table><p>In most cases, the imodeljs-backend substitutes do <em>not</em> provide all of the properties of the node global. That is by design, as not all of the features offered by node are portable.</p>
-<p>A partial implementation of <code>path</code> is provided on non-nodejs platforms.</p>
-<p>All other node modules and globals are <em>not</em> portable and must not be used in un-guarded code.</p>
-<p><a href="http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/public/learning/learning/glossary">&#xAB; Glossary</a></p>
+</tbody></table><p>In most cases, the imodeljs-backend substitutes do <em>not</em> provide all of the properties of the node global. That is by design, as not all of the features offered by node are portable. Only a partial implementation of <code>path</code> is provided on non-nodejs platforms.</p>
+<p>An app backend must not <em>never</em> depend on node-specific packages, including any package that is based on native code. (For fs-extra, use IModelJsFs)</p>
+<h2><a id="gateway-portability" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Gateway Portability</h2>
+<p>Since frontends talk to backends via a <a href="../../../overview/overview/app#gateways">gateways</a> and gateways are TypeScript classes, and since gateway transport configuration does not affect the frontend or the backend code, frontend-backend communication is inherently portable.</p>
+<p>That said, the initialization logic of both frontend and backend must choose the correct gateway configurations, based on the app&apos;s configuration.</p>
+<h2><a id="platform-specific-modules" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Platform-specific Modules</h2>
+<p>A portable interactive app can use platform-specific modules that are supplied by the host platform in JavaScript. These should be used in guarded code.</p>
+<p><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/learning/glossary">&#xAB; Glossary</a> | <a href="https://imodeljs.github.io/iModelJs-docs-output/learning/learning/ecsqlparametertypes">ECSQLParameterTypes &#xBB;</a></p>
 
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>19 April, 2018 @ 06:19:55 pm +00:00</span>
+                        <span class='date-updated'>20 April, 2018 @ 07:14:40 pm +00:00</span>
                     </p>
     
                    
@@ -270,52 +274,16 @@
                         <a class='title solo-title menu-text' href="https://imodeljs.github.io/iModelJs-docs-output/learning/learning/portability/#cross-platform-technologies">Cross-Platform Technologies</a>
                 </li>
                    <li class='nav-item item '>
-                        <a data-target="#inner-nav-cross-platform-interactive-app-architecture" class='title' href="https://imodeljs.github.io/iModelJs-docs-output/learning/learning/portability/#cross-platform-interactive-app-architecture"/>
-                        <b class='dropdown-menu-title menu-text'>Cross-Platform Interactive App Architecture</b>
-                        <i class='dropdown icon'></i>
-                        </a>
-                        <ul id="inner-nav-cross-platform-interactive-app-architecture" class='inner-nav'>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="https://imodeljs.github.io/iModelJs-docs-output/learning/learning/portability/#ui-frontend">UI Frontend</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a data-target="#inner-nav-data-access-backend" class='title' href="https://imodeljs.github.io/iModelJs-docs-output/learning/learning/portability/#data-access-backend"/>
-                                    <b class='dropdown-menu-title menu-text'>Data Access Backend</b>
-                                    <i class='dropdown icon'></i>
-                                    </a>
-                                    <ul id="inner-nav-data-access-backend" class='inner-nav'>
-                                        <li class='nav-item item '>
-                                                <a class='title solo-title menu-text' href="https://imodeljs.github.io/iModelJs-docs-output/learning/learning/portability/#backend-main">Backend main</a>
-                                        </li>
-                                    </ul>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="https://imodeljs.github.io/iModelJs-docs-output/learning/learning/portability/#frontend--backend-gateways">Frontend -&gt; Backend Gateways</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="https://imodeljs.github.io/iModelJs-docs-output/learning/learning/portability/#frontend-backend-gateways-and-portability">Frontend, Backend, Gateways and Portability</a>
-                            </li>
-                        </ul>
+                        <a class='title solo-title menu-text' href="https://imodeljs.github.io/iModelJs-docs-output/learning/learning/portability/#frontend-portability">Frontend Portability</a>
                 </li>
                    <li class='nav-item item '>
-                        <a data-target="#inner-nav-making-apps-fit-the-platform" class='title' href="https://imodeljs.github.io/iModelJs-docs-output/learning/learning/portability/#making-apps-fit-the-platform"/>
-                        <b class='dropdown-menu-title menu-text'>Making Apps Fit the Platform</b>
-                        <i class='dropdown icon'></i>
-                        </a>
-                        <ul id="inner-nav-making-apps-fit-the-platform" class='inner-nav'>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="https://imodeljs.github.io/iModelJs-docs-output/learning/learning/portability/#change-the-gui">Change the GUI</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="https://imodeljs.github.io/iModelJs-docs-output/learning/learning/portability/#tailored-gateways">Tailored Gateways</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="https://imodeljs.github.io/iModelJs-docs-output/learning/learning/portability/#platform-specific-modules">Platform-specific Modules</a>
-                            </li>
-                        </ul>
+                        <a class='title solo-title menu-text' href="https://imodeljs.github.io/iModelJs-docs-output/learning/learning/portability/#backend-portability">Backend Portability</a>
                 </li>
                    <li class='nav-item item '>
-                        <a class='title solo-title menu-text' href="https://imodeljs.github.io/iModelJs-docs-output/learning/learning/portability/#avoiding-node-dependencies">Avoiding node dependencies</a>
+                        <a class='title solo-title menu-text' href="https://imodeljs.github.io/iModelJs-docs-output/learning/learning/portability/#gateway-portability">Gateway Portability</a>
+                </li>
+                   <li class='nav-item item '>
+                        <a class='title solo-title menu-text' href="https://imodeljs.github.io/iModelJs-docs-output/learning/learning/portability/#platform-specific-modules">Platform-specific Modules</a>
                 </li>
                  
                       </ul>
@@ -330,7 +298,7 @@
        
         <footer id='main-footer'>
             <div id='footer-content-container'>
-                   <h1 class='footer-title'><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/'>Bentley Docs</a></h1><ul id='footer-nav'><li class="footer-nav-item footer-home-link "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/">Home</a></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a><ul class='collection-list'><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/overview/overview'>Overview</a></li></ul></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a><ul class='collection-list'><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/getting-started/ninezone-react-components'>ninezone-react-components</a></li></ul></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/tutorials">Tutorials</a><ul class='collection-list'><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/tutorials/tutorials'>Tutorials</a></li></ul></li><li class="footer-nav-item active"><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a><ul class='collection-list'><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/learning/learning'>Learning</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/learning/backend'>Backend</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/learning/frontend'>Frontend</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/learning/tools'>tools</a></li></ul></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference Documentation</a><ul class='collection-list'><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/bentleyjs-core'>bentleyjs-core</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/geometry-core'>geometry-core</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/imodeljs-common'>imodeljs-common</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/imodeljs-backend'>imodeljs-backend</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/imodeljs-frontend'>imodeljs-frontend</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/imodeljs-clients'>imodeljs-clients</a></li></ul></li></ul>
+                   <h1 class='footer-title'><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/'>Bentley Docs</a></h1><ul id='footer-nav'><li class="footer-nav-item footer-home-link "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/">Home</a></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a><ul class='collection-list'><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/overview/overview'>Overview</a></li></ul></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a><ul class='collection-list'><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/getting-started/ninezone-react-components'>ninezone-react-components</a></li></ul></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/tutorials">Tutorials</a><ul class='collection-list'><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/tutorials/tutorials'>Tutorials</a></li></ul></li><li class="footer-nav-item active"><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a><ul class='collection-list'><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/learning/learning'>Learning</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/learning/backend'>Backend</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/learning/frontend'>Frontend</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/learning/guidelines'>Guidelines and Tips</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/learning/tools'>tools</a></li></ul></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference Documentation</a><ul class='collection-list'><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/bentleyjs-core'>bentleyjs-core</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/geometry-core'>geometry-core</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/imodeljs-common'>imodeljs-common</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/imodeljs-backend'>imodeljs-backend</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/imodeljs-frontend'>imodeljs-frontend</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/imodeljs-clients'>imodeljs-clients</a></li></ul></li></ul>
     
                <div class='footer-footer'>
                    <p>Copyright 2018 Bentley Systems, Incorporated</p>

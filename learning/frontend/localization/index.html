@@ -99,6 +99,27 @@
                                                     <li>
                                                         <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/learning/portability">Portability</a>
                                                     </li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/learning/ecsqlparametertypes">Ecsql Parameter Types</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/learning/portability">Portability</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/learning/leftnav">Left Nav</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/learning/glossary">Glossary</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/learning/faq">FAQ</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/learning/ecsqlrowformat">Ecsql Row Format</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/learning/ecsql">Ecsql</a>
+                                                    </li>
                                         </span>
                         <!-- If DocSites Exist -->
                 
@@ -133,6 +154,26 @@
                                         </span>
                         <!-- If DocSites Exist -->
                 
+                                    <span class='nav-collection-group' id='guidelines-nav'>
+                                        <li><h3 class='table-of-contents-heading'><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/learning/guidelines/'>Guidelines and Tips</a></h3></li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/guidelines/markdown-intro">Markdown Intro</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/guidelines/npm-scripts-guidelines">Npm Scripts Guidelines</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/guidelines/semantic-versioning-guidelines">Semantic Versioning Guidelines</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/guidelines/tips-for-converting-c">Tips For Converting C</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/guidelines/typescript-coding-guidelines">Typescript Coding Guidelines</a>
+                                                    </li>
+                                        </span>
+                        <!-- If DocSites Exist -->
+                
                         <!-- If DocSites Exist -->
                 
                         <!-- If DocSites Exist -->
@@ -143,6 +184,9 @@
                 
                                     <span class='nav-collection-group' id='tools-nav'>
                                         <li><h3 class='table-of-contents-heading'><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/learning/tools/'>tools</a></h3></li>
+                                                    <li>
+                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./learning/tools/tools">Tools</a>
+                                                    </li>
                                         </span>
                 </ul>
             </div>
@@ -186,7 +230,7 @@
 <p>Behind the scenes, iModelJs uses the <a href="http://www.i18next.com">i18Next</a> JavaScript package. It has many other sophisticated internationalization capabilities, including formatting, plurals, and nesting, as well as the interpolation example above. iModelJs initializes i18next with a set of options that are usually fine for all applications. If you want different options, you can use i18next directly from your application, or instantiate an instance of iModelJs&apos; I18N class, which provides some convenience methods for waiting for the read to finish, etc.</p>
 <p>If you are using React for user interface development, please note that you should not put HTML markup in your localized strings for inclusion as text in your React controls. Such strings are not processed by the React transpiler, and thus the HTML tags will display verbatim rather than being processed as HTML.</p>
 <h2><a id="tool-localization" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Tool Localization</h2>
-<p>The primary way of initiating actions in iModelJs applications is by authoring a subclass of the <a href=".././Tool#ToolClass">Tool</a> class. Each such Tool subclass is registered with the system by calling the register method on its class object. The register method takes an optional <em>nameSpace</em> argument that specifies the I18NNamespace that contains the localization strings for the tool, including its keyin, flyover, and description properties. The Tool&apos;s keyin property is used by the command parser to allow the user to type in the tool name to execute it. The flyover property is displayed when the cursor hovers over the Tool icon, and the description property is displayed in various contexts.</p>
+<p>The primary way of initiating actions in iModelJs applications is by authoring a subclass of the <a href=".././tool#toolclass">Tool</a> class. Each such Tool subclass is registered with the system by calling the register method on its class object. The register method takes an optional <em>nameSpace</em> argument that specifies the I18NNamespace that contains the localization strings for the tool, including its keyin, flyover, and description properties. The Tool&apos;s keyin property is used by the command parser to allow the user to type in the tool name to execute it. The flyover property is displayed when the cursor hovers over the Tool icon, and the description property is displayed in various contexts.</p>
 <p>The keys for each of those properties are synthesized from the Tool&apos;s namespace and toolId. For example, the translation key for the keyin property is \&lt;Namespace&gt;:tools.\&lt;toolId&gt;.keyin. Now suppose you author a PlaceSprinkler command in the Irrigation application. Your Tool class might look like this:</p>
 <pre class="language-typescript line-numbers"><code class="language-typescript"><span class="token keyword">class</span> <span class="token class-name">PlaceSprinkler</span> <span class="token keyword">extends</span> <span class="token class-name">InteractiveTool</span> <span class="token punctuation">{</span>
   <span class="token keyword">public</span> <span class="token keyword">static</span> toolId <span class="token operator">=</span> <span class="token string">&quot;Place.Sprinkler&quot;</span><span class="token punctuation">;</span>
@@ -218,10 +262,10 @@ PlaceSprinkler<span class="token punctuation">.</span><span class="token functio
 <pre class="language-typescript line-numbers"><code class="language-typescript"> <span class="token keyword">const</span> firstPrompt<span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> IModelApp<span class="token punctuation">.</span><span class="token constant">I18N</span><span class="token punctuation">.</span><span class="token function">translate</span> <span class="token punctuation">(</span><span class="token string">&quot;IrrigationTools:Place.Sprinkler.prompt1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Since your code retrieves those localized strings, they do not have to be subkeys of &quot;tools.Place.Sprinkler&quot;. They could be separate keys in the same JSON file, or could even be in a different JSON file (in which case the use namespace would be different). The convention demonstrated in the example above has the advantage of keeping the localizable strings associated with a particular tool all together, but the disadvantage that prompts or messages that might be usable for multiple tools would be duplicated in each tool.</p>
-<p><a href="http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/public/learning/frontend/executingecsql">&#xAB; ExecutingECSQL</a></p>
+<p><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend/executingecsql">&#xAB; ExecutingECSQL</a></p>
 
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>19 April, 2018 @ 06:19:55 pm +00:00</span>
+                        <span class='date-updated'>20 April, 2018 @ 07:14:40 pm +00:00</span>
                     </p>
     
                    
@@ -261,7 +305,7 @@ PlaceSprinkler<span class="token punctuation">.</span><span class="token functio
        
         <footer id='main-footer'>
             <div id='footer-content-container'>
-                   <h1 class='footer-title'><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/'>Bentley Docs</a></h1><ul id='footer-nav'><li class="footer-nav-item footer-home-link "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/">Home</a></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a><ul class='collection-list'><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/overview/overview'>Overview</a></li></ul></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a><ul class='collection-list'><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/getting-started/ninezone-react-components'>ninezone-react-components</a></li></ul></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/tutorials">Tutorials</a><ul class='collection-list'><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/tutorials/tutorials'>Tutorials</a></li></ul></li><li class="footer-nav-item active"><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a><ul class='collection-list'><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/learning/learning'>Learning</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/learning/backend'>Backend</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/learning/frontend'>Frontend</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/learning/tools'>tools</a></li></ul></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference Documentation</a><ul class='collection-list'><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/bentleyjs-core'>bentleyjs-core</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/geometry-core'>geometry-core</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/imodeljs-common'>imodeljs-common</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/imodeljs-backend'>imodeljs-backend</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/imodeljs-frontend'>imodeljs-frontend</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/imodeljs-clients'>imodeljs-clients</a></li></ul></li></ul>
+                   <h1 class='footer-title'><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/'>Bentley Docs</a></h1><ul id='footer-nav'><li class="footer-nav-item footer-home-link "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/">Home</a></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a><ul class='collection-list'><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/overview/overview'>Overview</a></li></ul></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a><ul class='collection-list'><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/getting-started/ninezone-react-components'>ninezone-react-components</a></li></ul></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/tutorials">Tutorials</a><ul class='collection-list'><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/tutorials/tutorials'>Tutorials</a></li></ul></li><li class="footer-nav-item active"><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a><ul class='collection-list'><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/learning/learning'>Learning</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/learning/backend'>Backend</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/learning/frontend'>Frontend</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/learning/guidelines'>Guidelines and Tips</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/learning/tools'>tools</a></li></ul></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference Documentation</a><ul class='collection-list'><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/bentleyjs-core'>bentleyjs-core</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/geometry-core'>geometry-core</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/imodeljs-common'>imodeljs-common</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/imodeljs-backend'>imodeljs-backend</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/imodeljs-frontend'>imodeljs-frontend</a></li><li><a href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/public/reference/imodeljs-clients'>imodeljs-clients</a></li></ul></li></ul>
     
                <div class='footer-footer'>
                    <p>Copyright 2018 Bentley Systems, Incorporated</p>
