@@ -44,7 +44,7 @@
                         </div>
                         <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
                             <nav class="navbar navbar-expand-md navbar-light">
-                                 <ul class="bwc-tabs-horizontal green"><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/tutorials">Tutorials</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
+                                 <ul class="bwc-tabs-horizontal green"><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
                             </nav>
                         </div>                        <div id='search-container'>
                         </div>                </nav>
@@ -61,6 +61,8 @@
                 
                 
                 <ul id='main-navigation-list'>
+                        <!-- If DocSites Exist -->
+                
                         <!-- If DocSites Exist -->
                 
                                     <span class='nav-collection-group' id='overview-nav'>
@@ -96,31 +98,9 @@
                                                         <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./overview/overview/webapps">Web Apps</a>
                                                     </li>
                                                     <li>
-                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./overview/overview/backends">Backends</a>
-                                                    </li>
-                                                    <li>
                                                         <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./overview/overview/leftnav">Left Nav</a>
                                                     </li>
-                                                    <li>
-                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./overview/overview/imodels">I Models</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./overview/overview/imodelhub">I Model Hub</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./overview/overview/communityresources">Community Resources</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class='toc-link table-of-contents-link ' href="https://imodeljs.github.io/iModelJs-docs-output/./overview/overview/bis">Bis</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class='toc-link table-of-contents-link active' href="https://imodeljs.github.io/iModelJs-docs-output/./overview/overview/app">App</a>
-                                                    </li>
                                         </span>
-                        <!-- If DocSites Exist -->
-                
-                        <!-- If DocSites Exist -->
-                
                         <!-- If DocSites Exist -->
                 
                         <!-- If DocSites Exist -->
@@ -163,7 +143,8 @@
 </ul>
 <h2><a id="agents-and-services" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Agents and Services</h2>
 <p>iModel agents and services are apps that have no interactive user interface. They are generally deployed on servers, often in the cloud using containers (e.g. Docker) and managed using a cloud orchestration framework (e.g. Kubernetes.) Agents and services are always hosted by nodejs. (App backends are not.)</p>
-<p>Agents and services are <a href="../../../learning/learning/glossary#backend">backend</a> code. Their main concern is to access and process the content of iModels. They use <a href="../../../learning/learning/glossary#briefcase">briefcases</a> to access iModels. Agents and services depend on the <code>@bentley/imodeljs-backend</code> package. They frequently also use third-party JavaScript packages, as well as the services built into nodejs.</p>
+<p>Agents and services are <a href="../../../learning/glossary#backend">backend</a> code. Their main concern is to access and process the content of iModels. They use <a href="../../../learning/glossary#briefcase">briefcases</a> to access iModels.</p>
+<p>Agents and services are written in TypeScript/JavaScript and depend on the <code>@bentley/imodeljs-backend</code> package. They may also depend on common packages such as imodeljs-common, bentlejs-core, or geometry-core. They frequently also use third-party JavaScript packages, as well as the services built into nodejs.</p>
 <h3><a id="imodel-agents" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModel Agents</h3>
 <p>An <em>iModel Agent</em> is a program that performs an unattended action upon being invoked by an event from iModelHub.</p>
 <p>As an example, consider an iModelJs Agent that receives notifications from iModelHub for every ChangeSet to a specific iModel. The Agent could inspect every changeset using the <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/imodels/changesummarymanager'>ChangeSummary</a> API to ensure all changes to its iModel are in compliance with company standards. A separate instance of the Agent would be deployed for each iModel of interest.</p>
@@ -178,35 +159,44 @@
 <h3><a id="app-backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>App Backend</h3>
 <p>The data-access part of an app is called the <a href="https://en.wikipedia.org/wiki/Front_and_back_ends">backend</a> of the app.</p>
 <p>An app can use a pre-existing or general-purpose <a href="#imodel-services">service</a> as its backend. For example, a family of viewing apps can use a general-purpose service that handles requests for data from a given iModel.</p>
-<p>An app may require data-access services that are specific to and intrinsically part of the app. One reason is performance. An analysis that must make many related queries on iModel content, perhaps based on knowledge of a domain schema, in order to produce a single, combined result should be done close to the data. Another reason for app-specific backends is the <a href="#backends-for-frontends">backends-for-frontends pattern</a>. App-specific backends are easy to write using gateways and are encouraged. See <a href="../../../learning/learning/portability#backend-portability">backend portability</a>.</p>
+<p>An app may require data-access services that are specific to and intrinsically part of the app. One reason is performance. An analysis that must make many related queries on iModel content, perhaps based on knowledge of a domain schema, in order to produce a single, combined result should be done close to the data. Another reason for app-specific backends is the <a href="#backends-for-frontends">backends-for-frontends pattern</a>. App-specific backends are easy to write using <a href="#gateways">gateways</a> and are encouraged.</p>
+<p>App-specific backends are written in TypeScript/JavaScript and depend on <code>@bentley/imodeljs-backend</code>. A backend may also depend on common packages such as imodeljs-common, bentlejs-core, or geometry-core. See <a href="../../../learning/learning/portability#backend-portability">backend portability</a>.</p>
 <p>An app can use many services, both general-purpose and app-specific.</p>
+<h4><a id="backends-for-frontends" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Backends for Frontends</h4>
+<p>Following the <a href="https://samnewman.io/patterns/architectural/bff/">backends-for-frontends pattern</a>, an app would ideally use different backend services for different configurations, rather than trying to rely on a one-size-fits-all backend service. The iModelJs gateway architecture encourages and supports the BFF pattern. Since a gateway is just a TypeScript class, it&apos;s easy for an app to implement its own services. And, it is easy for an app to choose a different mix of gateways at runtime, depending on its configuration.</p>
 <h3><a id="app-frontend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>App Frontend</h3>
 <p>The UI-specific part of an app is called the <a href="https://en.wikipedia.org/wiki/Front_and_back_ends">frontend</a>. The frontend should be concerned only with display and user interaction.</p>
-<p>The frontend should be written using Web technologies only, including HTML, CSS, and JavaScript. You can use whatever Web app framework you like. The frontend should use <code>@bentley/imodeljs-frontend</code> for accessing iModels.</p>
-<p>The frontend makes requests on backend services in order to access iModel content using gateways, as explained below.</p>
+<p>The frontend must be written in TypeScript or JavaScript. The frontend should use Web technologies only, including HTML, CSS, and JavaScript. The frontend can use any Web app framework, such as React or Angular.</p>
+<p>The frontend makes requests on backend services in order to access iModel content using gateways, as explained below. The frontend must use <a href="#gateways">gateways</a> to communicate with the app&apos;s backend(s). The frontend should depend on <code>@bentley/imodeljs-frontend</code>. The frontend may also depend on common packages such as imodeljs-common, bentlejs-core, or geometry-core. It may also depend on Web-specific packages. The frontend must not depend on anything that requires native code or is dependent on nodejs.</p>
 <h3><a id="gateways" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Gateways</h3>
-<p>A service is exposed as a normal TypeScript class that is called a <em>gateway</em>. The static methods of the gateway class are the operations offered by the service. The parameters and result of each operation are the parameters and return type of the method. To make a request on a service, a client simply calls a method on its Gateway class. As far as both client <em>and</em> service are concerned, a service operation is just another TypeScript method call.</p>
-<blockquote>
-<p>A gateway is one way. It allows a client to make a request on a service and get a return value. Services never send requests to clients.</p>
+<p>A <em>gateway</em> is a channel of communication between a client and a service. To the iModelJs app programmer, a gateway is a TypeScript class, and using a gateway is a method call. Client and service must both be implemented in TypeScript/JavaScript. iModelJs services support only compliant script clients, and iModelJs clients use gateways exclusively when communicating with iModelJs services.</p>
+<p>In operational terms, a gateway is composed of four things:</p>
+<ul>
+<li>A TypeScript interface that declares a set of requests that are provided by a service, including their parameters.</li>
+<li>A proxy class that allows the client to make requests.</li>
+<li>An implementation class that allows the service to handle the requests.</li>
+<li>A <a href="#gateway-configurations">configuration</a> that marshalls the requests.</li>
+</ul>
+<p>The static methods of the gateway interface are the requests offered by the service. The parameters and return type of the methods are the parameters and results of the requests. Note that the service is declared and exposed in TypeScript. There is no separate definition of the service. A client sends a request to a service by obtaining the proxy for the appropriate gateway and calling the appropriate method on it. A service exposes its API by defining and registering a class that is derived from the gateway interface. As far as both client and service are concerned, service requests are TypeScript method calls. The section on <a href="#gateway-configurations">gateway configurations</a> below described how these calls are marshalled and dispatched.</p>
+<p>A gateway is unidirectional. It allows a client to make a request on a service and get a return value. Services never send requests to clients.</p>
+<p>Gateway methods are static. Services should be stateless.</p>
 <p>Gateway methods must be &quot;chunky&quot; and not &quot;chatty&quot;. In the case where a service or app backend is accessed over the Internet, both bandwidth and latency can vary widely. Therefore, care must be taken to limit number and size of round-trips between clients and services.</p>
-</blockquote>
 <h3><a id="gateway-configurations" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Gateway Configurations</h3>
-<p>A gateway is actually a pair of classes: a proxy that is located in and used by clients (frontend) and an implementation that is located in and executed by the service (backend). iModelJs supplies transport mechanisms to marshall calls between client and service. These mechanisms are called <em>gateway configurations</em>. Configurations are applied to gateways at runtime. Available configurations include:</p>
+<p>A gateway defines a frontend-backend interface in a way that is independent of how the call will be made. The call is marshalled differently, depending on how the app itself is configured. iModelJs supplies transport mechanisms to marshall calls between client and service. These mechanisms are called <em>gateway configurations</em>. Configurations are applied to gateways at runtime. Available configurations include: cloud, desktop, and in-process.</p>
 <h4><a id="cloud-gateway-configuration" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Cloud gateway configuration</h4>
-<p>Transforms client calls on the gateway into HTTP requests. Provides endpoint-processing into the service backend process.</p>
+<p>Transforms client calls on the gateway into HTTP requests. Provides endpoint-processing and call dispatching in the service process.</p>
 <p>The iModelJs cloud gateway configuration is highly parameterized and can be adapted for use in many environments. This configuration is designed to cooperate with routing and authentication infrastructure.</p>
 <h4><a id="desktop-gateway-configuration" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Desktop gateway configuration</h4>
-<p>Marshalls calls on the gateway through high-bandwidth, low-latency pipes between cooperating processes on the same computer.</p>
+<p>Marshalls calls on the gateway through high-bandwidth, low-latency pipes between cooperating processes on the same computer. Provides endpoint-processing and call dispatching in the service backend process.</p>
+<p>The iModelJs desktop gateway configuration is specific to Electron.</p>
 <h4><a id="in-process-gateway-configuration" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>In-process gateway configuration</h4>
-<p>Marshalls calls on the gateway across threads within a single process. Provides handling in the backend thread.</p>
-<h3><a id="app-gateway-configuration" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>App Gateway Configuration</h3>
+<p>Marshalls calls on the gateway across threads within a single process. Provides call dispatching in the backend thread.</p>
+<h3><a id="app-runtime-gateway-configuration" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>App Runtime Gateway Configuration</h3>
 <p>An app chooses the appropriate configuration for each gateway that it uses. For example, while an app accesses both true services and app-specific backends through gateways, the app must configure the gateways differently: a cloud configuration for services and a configuration based on its own app configuration for an app-specific backend.</p>
-<h3><a id="backends-for-frontends" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Backends for Frontends</h3>
-<p>Following the <a href="https://samnewman.io/patterns/architectural/bff/">backends-for-frontends pattern</a>, an app would ideally use different backend services for different configurations, rather than trying to rely on a one-size-fits-all backend service. The iModelJs gateway architecture encourages and supports the BFF pattern. Since a gateway is just a TypeScript class, it&apos;s easy for an app to implement a set of services. And, it is easy for an app to choose a different mix of gateways at runtime, depending on its configuration.</p>
 <h2><a id="interactive-app-configurations" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Interactive App Configurations</h2>
 <p>An iModelJs-based interactive app can be configured to run as a web app with a supporting web server, a desktop app, or a mobile app.</p>
-<p>The frontend UI will be written using HTML, CSS, and JavaScript and will be rendered in a Web view in all configurations. So, you could write it to work equally well everywhere. You can also <a href="#making-apps-fit-the-platform">swap in a different GUI</a> to suit each configuration, perhaps using the same frontend JavaScript. In some configurations, the Web view will be embedded in an app.</p>
-<p>The backend of the app can be the same in all configurations. You can also employ the <a href="#backends-for-frontends">backends for frontends</a> pattern to tailor your app to different configurations.  And, you can use <a href="#making-apps-fit-the-platform">platform-specific APIs</a>.</p>
+<p>In all configurations, the frontend UI must be written using Web technologies, including HTML, CSS, and JavaScript, as it will be rendered in a Web view in all configurations. (In some configurations, the Web view will be embedded in an app.) That allows an app developer to write a UI that works equally well everywhere. The developer can also <a href="#making-apps-fit-the-platform">swap in a different GUI</a> to suit each configuration, perhaps using the same frontend JavaScript.</p>
+<p>The backend of the app can be the same in all configurations. An app developer can also employ the <a href="#backends-for-frontends">backends for frontends</a> pattern to tailor the app to different configurations.  And, an app can use <a href="#making-apps-fit-the-platform">platform-specific APIs</a>.</p>
 <h3><a id="web-apps" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Web Apps</h3>
 <p>When configured as a Web app, the <a href="#app-frontend">frontend</a> will run in a Web browser and the <a href="#app-backend">backend</a> will run on a server. The frontend&apos;s assets (HTML pages and js files) will be served out by a server (generally different from the backend). The frontend and backend will use the <a href="#cloud-gateway-configuration">cloud configuration</a> for all gateways. As noted, gateway requests will run through whatever router infrastructure surrounds each service.</p>
 <h3><a id="desktop-apps" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Desktop Apps</h3>
@@ -224,11 +214,11 @@
 <h3><a id="change-the-gui" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Change the GUI</h3>
 <p>An app&apos;s UI is contained within its frontend. And, the look and feel of the GUI is largely contained within its HTML and CSS resources. Swapping in a different GUI can be a simple as swapping in a different style sheet or HTML page, leaving the supporting JavaScript the same. You can develop and test the various version of the GUI in a single development environment. You can also write the frontend JavaScript to tailor the GUI at run time.</p>
 <h3><a id="platform-specific-modules" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Platform-specific Modules</h3>
-<p>An interactive app can use platform-specific modules that are supplied by the host platform in JavaScript. Mobile platforms such as iOS and Android, provide JavaScript classes for services that are specific to mobile apps. The Electron desktop platform provides all of the features of nodejs. Platform-specific modules must be used in <a href="../../../learning/learning/portability">guarded code</a>.</p>
+<p>An interactive app can use platform-specific modules that are supplied by the host platform in JavaScript. Mobile platforms such as iOS and Android, provide JavaScript classes for services that are specific to mobile apps. The Electron desktop platform provides all of the features of nodejs. Platform-specific modules must be used in <a href="../../../learning/portability">guarded code</a>.</p>
 <p><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/overview/agents">&#xAB; Agents</a> | <a href="https://imodeljs.github.io/iModelJs-docs-output/overview/overview/backends">Backends &#xBB;</a></p>
 
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>20 April, 2018 @ 07:14:12 pm +00:00</span>
+                        <span class='date-updated'>24 April, 2018 @ 08:22:22 pm +00:00</span>
                     </p>
     
                    
@@ -270,7 +260,15 @@
                         </a>
                         <ul id="inner-nav-interactive-apps" class='inner-nav'>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="https://imodeljs.github.io/iModelJs-docs-output/overview/overview/app/#app-backend">App Backend</a>
+                                    <a data-target="#inner-nav-app-backend" class='title' href="https://imodeljs.github.io/iModelJs-docs-output/overview/overview/app/#app-backend"/>
+                                    <b class='dropdown-menu-title menu-text'>App Backend</b>
+                                    <i class='dropdown icon'></i>
+                                    </a>
+                                    <ul id="inner-nav-app-backend" class='inner-nav'>
+                                        <li class='nav-item item '>
+                                                <a class='title solo-title menu-text' href="https://imodeljs.github.io/iModelJs-docs-output/overview/overview/app/#backends-for-frontends">Backends for Frontends</a>
+                                        </li>
+                                    </ul>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="https://imodeljs.github.io/iModelJs-docs-output/overview/overview/app/#app-frontend">App Frontend</a>
@@ -296,10 +294,7 @@
                                     </ul>
                             </li>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="https://imodeljs.github.io/iModelJs-docs-output/overview/overview/app/#app-gateway-configuration">App Gateway Configuration</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="https://imodeljs.github.io/iModelJs-docs-output/overview/overview/app/#backends-for-frontends">Backends for Frontends</a>
+                                    <a class='title solo-title menu-text' href="https://imodeljs.github.io/iModelJs-docs-output/overview/overview/app/#app-runtime-gateway-configuration">App Runtime Gateway Configuration</a>
                             </li>
                         </ul>
                 </li>
@@ -342,7 +337,7 @@
        
         <footer id='main-footer'>
             <div id='footer-content-container'>
-                   <h1 class='footer-title'><a href='https://imodeljs.github.io/iModelJs-docs-output/'>Bentley Docs</a></h1><ul id='footer-nav'><li class="footer-nav-item footer-home-link "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/">Home</a></li><li class="footer-nav-item active"><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a><ul class='collection-list'><li><a href='https://imodeljs.github.io/iModelJs-docs-output/overview/overview'>Overview</a></li></ul></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a><ul class='collection-list'><li><a href='https://imodeljs.github.io/iModelJs-docs-output/getting-started/ninezone-react-components'>ninezone-react-components</a></li></ul></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/tutorials">Tutorials</a><ul class='collection-list'><li><a href='https://imodeljs.github.io/iModelJs-docs-output/tutorials/tutorials'>Tutorials</a></li></ul></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a><ul class='collection-list'><li><a href='https://imodeljs.github.io/iModelJs-docs-output/learning/learning'>Learning</a></li><li><a href='https://imodeljs.github.io/iModelJs-docs-output/learning/backend'>Backend</a></li><li><a href='https://imodeljs.github.io/iModelJs-docs-output/learning/frontend'>Frontend</a></li><li><a href='https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines'>Guidelines and Tips</a></li><li><a href='https://imodeljs.github.io/iModelJs-docs-output/learning/tools'>tools</a></li></ul></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference Documentation</a><ul class='collection-list'><li><a href='https://imodeljs.github.io/iModelJs-docs-output/reference/bentleyjs-core'>bentleyjs-core</a></li><li><a href='https://imodeljs.github.io/iModelJs-docs-output/reference/geometry-core'>geometry-core</a></li><li><a href='https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-common'>imodeljs-common</a></li><li><a href='https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-backend'>imodeljs-backend</a></li><li><a href='https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-frontend'>imodeljs-frontend</a></li><li><a href='https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-clients'>imodeljs-clients</a></li></ul></li></ul>
+                   <h1 class='footer-title'><a href='https://imodeljs.github.io/iModelJs-docs-output/'>Bentley Docs</a></h1><ul id='footer-nav'><li class="footer-nav-item footer-home-link "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/">Home</a></li><li class="footer-nav-item active"><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a><ul class='collection-list'><li><a href='https://imodeljs.github.io/iModelJs-docs-output/overview/overview'>Overview</a></li></ul></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a><ul class='collection-list'><li><a href='https://imodeljs.github.io/iModelJs-docs-output/getting-started/getting-started'>Getting Started</a></li></ul></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a><ul class='collection-list'><li><a href='https://imodeljs.github.io/iModelJs-docs-output/learning/learning'>Learning</a></li><li><a href='https://imodeljs.github.io/iModelJs-docs-output/learning/backend'>Backend</a></li><li><a href='https://imodeljs.github.io/iModelJs-docs-output/learning/frontend'>Frontend</a></li><li><a href='https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines'>Guidelines and Tips</a></li><li><a href='https://imodeljs.github.io/iModelJs-docs-output/learning/tools'>tools</a></li></ul></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a><ul class='collection-list'><li><a href='https://imodeljs.github.io/iModelJs-docs-output/bis/intro'>Introduction to BIS</a></li><li><a href='https://imodeljs.github.io/iModelJs-docs-output/bis/naming-guidelines'>BIS Naming Guidelines</a></li><li><a href='https://imodeljs.github.io/iModelJs-docs-output/bis/bis'>bis</a></li></ul></li><li class="footer-nav-item "><a class="footer-nav-link" href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference Documentation</a><ul class='collection-list'><li><a href='https://imodeljs.github.io/iModelJs-docs-output/reference/bentleyjs-core'>bentleyjs-core</a></li><li><a href='https://imodeljs.github.io/iModelJs-docs-output/reference/geometry-core'>geometry-core</a></li><li><a href='https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-common'>imodeljs-common</a></li><li><a href='https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-backend'>imodeljs-backend</a></li><li><a href='https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-frontend'>imodeljs-frontend</a></li><li><a href='https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-clients'>imodeljs-clients</a></li></ul></li></ul>
     
                <div class='footer-footer'>
                    <p>Copyright 2018 Bentley Systems, Incorporated</p>
