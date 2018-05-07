@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bentley Docs</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="***REMOVED***/2018.5.7.8/styles/bundle.css">
+    <link rel="stylesheet" type="text/css" href="***REMOVED***/2018.5.7.8/styles/prism.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+</head>
+
+<body data-site-root=***REMOVED***/2018.5.7.8/ class='indexSeg'>
+    <span id="contentLoader"><p>Woah!  This page has a great deal of content...  Give us a second to load it.</p></span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+    <header id="main-header">
+        <div class='row no-gutters nav-container'>
+            <!-- <div class="col-12"> -->
+            
+                <nav id='main-navbar' class="navbar navbar-expand-md navbar-light">
+                    
+                    <button class="navbar-toggler navbar-toggler-left custom-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon">
+                            <i class='icon icon-menu'></i>
+                        </span>
+                    </button>
+                        <div class="col-sm-6 col-md-3 nav-title-container">
+                            
+                            <a class="navbar-brand segregated" href="***REMOVED***/2018.5.7.8/reference" class="col-md-3">
+                                <h1 id='site-title'><i class='icon icon-document'></i>Reference Documentation</h1>                                
+                            </a>
+
+                        </div>
+                        <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
+                            <nav class="navbar navbar-expand-md navbar-light">
+                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="***REMOVED***/2018.5.7.8/overview">Overview</a></li><li class=""><a href="***REMOVED***/2018.5.7.8/getting-started">Getting Started</a></li><li class=""><a href="***REMOVED***/2018.5.7.8/bis">BIS</a></li><li class=""><a href="***REMOVED***/2018.5.7.8/learning">Learning</a></li><li class="active"><a href="***REMOVED***/2018.5.7.8/reference">Reference</a></li></ul> 
+                            </nav>
+                        </div>                </nav>
+            
+        </div>
+        <!-- </div> -->
+
+    </header>
+
+
+    <div id='main-wrapper'>
+    
+            <div id='table-of-contents'>
+                <span class='search-bar'>
+                  <li>
+                    <div id='search-container'>
+                    </div>
+                  </li>
+                </span>
+                
+                
+            </div>
+            <div class='row documentation-main'>
+                <article id="main" name="main-content">
+                    <p> <section class ="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static" > </p>
+<h2><a id="request" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>request <span class="badge badge-pill badge-primary">Public</span></h2>
+<p>Try to acquire locks and/or reserve codes from iModelHub.
+This function may fulfill some requests and fail to fulfill others. This function returns a rejection of type RequestError if some or all requests could not be fulfilled.
+The error object will identify the locks and/or codes that are unavailable.</p>
+<p></p><p><em>Example:</em></p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">    <span class="token comment">// Now acquire all locks and reserve all codes needed.</span>
+    <span class="token comment">// This is a *prequisite* to saving local changes.</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+      <span class="token keyword">await</span> iModel<span class="token punctuation">.</span>concurrencyControl<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span>accessToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// If we can&apos;t get *all* of the locks and codes that are needed,</span>
+      <span class="token comment">// then we can&apos;t go on with this transaction as is.</span>
+      <span class="token comment">// We could possibly make additional changes to remove the need</span>
+      <span class="token comment">// for the resources that are unavailable. In this case,</span>
+      <span class="token comment">// we will just bail out and print a message.</span>
+      iModel<span class="token punctuation">.</span><span class="token function">abandonChanges</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// report error ...</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// Now we can commit the local changes to a local transaction in the</span>
+    <span class="token comment">// IModelDb.</span>
+</code></pre>
+<p><code>request(accessToken: AccessToken, req: ConcurrencyControl.Request): Promise</code></p>
+<p> <span class="badge badge-pill badge-primary">throws</span> <a href='***REMOVED***/2018.5.7.8/./reference/imodeljs-backend/imodels/requesterror'>RequestError</a> if some or all of the request could not be fulfilled by iModelHub.</p>
+<p> <span class="badge badge-pill badge-primary">throws</span> <a href='***REMOVED***/2018.5.7.8/./reference/imodeljs-common/errors/imodelerror'>IModelError</a> if the IModelDb is not open or is not connected to an iModel.</p>
+<table class="table table-responsive"><tbody><tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description </th>
+</tr>
+<tr>
+<td>accessToken</td>
+<td>AccessToken</td>
+<td>The user&apos;s iModelHub access token</td>
+</tr>
+<tr>
+<td>req</td>
+<td>ConcurrencyControl.Request</td>
+<td>The requests to be sent to iModelHub. If undefined, all pending requests are sent to iModelHub.</td>
+</tr>
+</tbody></table><p><strong>Returns: Promise</strong> </section> </p>
+
+                    <p class='last-updated'>Last Updated: 
+                        <span class='date-updated'>07 May, 2018 @ 03:34:57 pm +00:00</span>
+                    </p>
+    
+                   
+                   <script type="text/javascript">
+                   
+                   </script>                </article>
+            </div>
+            <div id='inner-table-of-contents'>
+                <!-- 
+                    - If the page is active
+                    - Get all headings and subheadings and list them
+                 -->
+                
+                
+                
+                
+                  <div id='sticky-container'>
+                    <h4 class='heading'>Overview</h4>
+                    <div id="overview-container" class="clusterize-scroll">
+                      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+                          <li class='nav-item item active typeDocHeader'>
+                        <a class='title solo-title menu-text' href="#request">request</a>
+                </li>
+                 
+                      </ul>
+                    </div>
+                  </div>
+                
+            </div>
+        
+    </div>
+    
+
+    
+        <footer id='main-footer'>
+            <div id='footer-content-container'>
+               <div class='footer-footer'>
+                   <p>Copyright 2018 Bentley Systems, Incorporated</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+        <a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+        <script src="***REMOVED***/2018.5.7.8/scripts/bundle.js" ></script>
+    </body>
+    
+    </html>
