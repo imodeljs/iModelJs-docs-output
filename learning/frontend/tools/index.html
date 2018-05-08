@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bentley Docs</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output/styles/bundle.css">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output/styles/prism.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output/ class='indexSeg'>
+    <span id="contentLoader"><p>Woah!  This page has a great deal of content...  Give us a second to load it.</p></span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+    <header id="main-header">
+        <div class='row no-gutters nav-container'>
+            <!-- <div class="col-12"> -->
+            
+                <nav id='main-navbar' class="navbar navbar-expand-md navbar-light">
+                    
+                    <button class="navbar-toggler navbar-toggler-left custom-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon">
+                            <i class='icon icon-menu'></i>
+                        </span>
+                    </button>
+                        <div class="col-sm-6 col-md-3 nav-title-container">
+                            
+                            <a class="navbar-brand segregated" href="https://imodeljs.github.io/iModelJs-docs-output/learning" class="col-md-3">
+                                <h1 id='site-title'><i class='icon icon-document'></i>Learning</h1>                                
+                            </a>
+
+                        </div>
+                        <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
+                            <nav class="navbar navbar-expand-md navbar-light">
+                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
+                            </nav>
+                        </div>                </nav>
+            
+        </div>
+        <!-- </div> -->
+
+    </header>
+
+
+    <div id='main-wrapper'>
+    
+            <div id='table-of-contents'>
+                <span class='search-bar'>
+                  <li>
+                    <div id='search-container'>
+                    </div>
+                  </li>
+                </span>
+                
+                <h1 id="the imodeljs library"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">The iModelJs Library</a></h1>
+                <h2><a id="frontend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend">Frontend</a></h2>
+                <h2><a id="backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend">Backend</a></h2>
+                <h2><a id="common" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common">Common</a></h2>
+                <h1 id="helpful links">Helpful links</h1>
+                <h2><a id="ecsql" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/ecsql">ECSQL</a></h2>
+                <h2><a id="frequently-asked-questions" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/faq">Frequently asked Questions</a></h2>
+                <h2><a id="guidelines-and-tips" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines">Guidelines and Tips</a></h2>
+                <h2><a id="imodeljs-glossary" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/glossary">iModelJs Glossary</a></h2>
+                
+            </div>
+            <div class='row documentation-main'>
+                <article id="main" name="main-content">
+                    <h1 id="imodeljs tools">iModelJs Tools</h1>
+<p>A <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/tool/tool'>Tool</a> is a JavaScript class that performs an action on behalf of a user. There are several Tool types, all of which are implemented by subclassing various classes in the Tool class hierarchy.</p>
+<ul>
+<li>Immediate Tools execute their assigned tasks immediately without affecting the active tool, and are implemented as subclasses of ImmediateTool.</li>
+<li>Viewing Tools (such as zoom, pan, and view rotation) pause the active tool while they are executing and resume the active tool when finished. They are implemented as subclasses of ViewTool.</li>
+<li>Interactive Tools are used for graphical interactions with the IModel. When invoked, they become the active tool, reacting to user input such as data points, mouse movements, gestures, keystrokes, and resets. Interactive Tools are the most flexible Tool type, but they are also the most challenging to implement. iModelJS provides some specializations of Interactive Tool that are easier to implement.</li>
+<li>Primitive Tools are simplified Interactive Tools that are used to place elements in the design when there is no need locate existing elements. They are implemented as subclass of PrimitiveTool.</li>
+</ul>
+<p>The iModelJs core package provides a comprehensive set of Viewing Tools, so most iModelJs applications do not need to implement their own.</p>
+<p>iModelJS also provides a Select Tool, which allows users to select existing elements and interact with them through EditorManipulators that are provided by the element handlers. Providing a capable EditorManipulator for an element often eliminates the need for  modification tools specific to that element type.</p>
+<p>It is important to make user actions that result in changes to your application state happen through Tool invocation (ImmediateTools are very handy for this), because Tool invocations can be recorded for testing, or for playback through macros.</p>
+<h2><a id="tool-invocation" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Tool Invocation</h2>
+<p>Users generally invoke Tools by clicking on their associated icons, or occasionally by using the Command Parser. Tools can be invoked programmatically using the ToolRegistry.run method, which takes the toolId as its first argument and then allows optional arguments that are passed both to the Tools constructor and to its run method.</p>
+<h2><a id="tooladmin" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>ToolAdmin</h2>
+<p>The ToolAdmin class supervises the collection of low-level input from the view windows (button events, raw motion events, and gestures in screen coordinates, timer events, keystrokes, etc.); interprets those inputs into high-level events that Tools can readily process (data points, motion events, etc., in iModelJs coordinates, with the appropriate locks and Accudraw corrections applied); and routes those inputs to the appropriate Tool.</p>
+<p>Routing of the interpreted, high-level events is as follows:</p>
+<ul>
+<li>If there is an active tool, the events are directed to it. The active tool can either handle a particular event or ignore it.</li>
+<li>If the active tool does not handle a particular event, it is directed to the IdleTool. The standard iModelJs IdleTool looks for inputs that initiate viewing tools. For desktop computers, pressing the middle button starts the pan operation, rolling the wheel starts a zoom in or out, shift-middle button starts the rotate command, and a double click on the middle button fits the current view. On touch devices, pinch is used to zoom, a two-finger drag pans the view, a single finger drag rotates the view, and a double tap fits the current view.</li>
+</ul>
+<p>As mentioned above a ViewTool can temporarily interrupt an InteractiveTool. The ToolAdmin handles that sequence transparently such that the InteractiveTool does not have to be aware of the interruption.</p>
+
+                    <p class='last-updated'>Last Updated: 
+                        <span class='date-updated'>08 May, 2018 @ 02:20:00 pm -04:00</span>
+                    </p>
+    
+                   
+                   <script type="text/javascript">
+                   
+                   </script>                </article>
+            </div>
+            <div id='inner-table-of-contents'>
+                <!-- 
+                    - If the page is active
+                    - Get all headings and subheadings and list them
+                 -->
+                
+                
+                
+                
+                  <div id='sticky-container'>
+                    <h4 class='heading'>Overview</h4>
+                    <div id="overview-container" class="clusterize-scroll">
+                      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+                          <li class='nav-item item '>
+                        <a class='title solo-title menu-text' href="#tool-invocation">Tool Invocation</a>
+                </li>
+                   <li class='nav-item item '>
+                        <a class='title solo-title menu-text' href="#tooladmin">ToolAdmin</a>
+                </li>
+                 
+                      </ul>
+                    </div>
+                  </div>
+                
+            </div>
+        
+    </div>
+    
+
+    
+        <footer id='main-footer'>
+            <div id='footer-content-container'>
+               <div class='footer-footer'>
+                   <p>Copyright 2018 Bentley Systems, Incorporated</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+        <a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+        <script src="https://imodeljs.github.io/iModelJs-docs-output/scripts/bundle.js" ></script>
+    </body>
+    
+    </html>

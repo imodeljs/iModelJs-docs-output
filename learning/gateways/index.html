@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bentley Docs</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output/styles/bundle.css">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output/styles/prism.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output/ class='indexSeg'>
+    <span id="contentLoader"><p>Woah!  This page has a great deal of content...  Give us a second to load it.</p></span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+    <header id="main-header">
+        <div class='row no-gutters nav-container'>
+            <!-- <div class="col-12"> -->
+            
+                <nav id='main-navbar' class="navbar navbar-expand-md navbar-light">
+                    
+                    <button class="navbar-toggler navbar-toggler-left custom-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon">
+                            <i class='icon icon-menu'></i>
+                        </span>
+                    </button>
+                        <div class="col-sm-6 col-md-3 nav-title-container">
+                            
+                            <a class="navbar-brand segregated" href="https://imodeljs.github.io/iModelJs-docs-output/learning" class="col-md-3">
+                                <h1 id='site-title'><i class='icon icon-document'></i>Learning</h1>                                
+                            </a>
+
+                        </div>
+                        <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
+                            <nav class="navbar navbar-expand-md navbar-light">
+                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
+                            </nav>
+                        </div>                </nav>
+            
+        </div>
+        <!-- </div> -->
+
+    </header>
+
+
+    <div id='main-wrapper'>
+    
+            <div id='table-of-contents'>
+                <span class='search-bar'>
+                  <li>
+                    <div id='search-container'>
+                    </div>
+                  </li>
+                </span>
+                
+                <h1 id="the imodeljs library"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">The iModelJs Library</a></h1>
+                <h2><a id="frontend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend">Frontend</a></h2>
+                <h2><a id="backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend">Backend</a></h2>
+                <h2><a id="common" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common">Common</a></h2>
+                <h1 id="helpful links">Helpful links</h1>
+                <h2><a id="ecsql" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/ecsql">ECSQL</a></h2>
+                <h2><a id="frequently-asked-questions" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/faq">Frequently asked Questions</a></h2>
+                <h2><a id="guidelines-and-tips" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines">Guidelines and Tips</a></h2>
+                <h2><a id="imodeljs-glossary" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/glossary">iModelJs Glossary</a></h2>
+                
+            </div>
+            <div class='row documentation-main'>
+                <article id="main" name="main-content">
+                    <h1 id="gateways">Gateways</h1>
+<p>A gateway is a set of operations exposed by a service that a client can call, using configurable protocols, in a platform-independent way.</p>
+<p>A gateway consists of:</p>
+<ul>
+<li>A TypeScript class that <em>defines</em> the gateway.</li>
+<li>The proxy class for clients to use.</li>
+<li>A TypeScript class that implements the gateway in <a href=".././glossary#backend">backend code</a>.</li>
+<li>Configurations that specify how calls on the gateway are to be marshalled.</li>
+</ul>
+<p>The key concept is that API definition, API implementation, and call marshalling are all distinct concepts. Marshalling is factored out, so that clients and services can be written in a way that is independent of transport details, while transport can be configured at runtime to suit the requirements of the app&apos;s configuration.</p>
+<p>In this article, the term <em>client</em> is used to denote the code that calls gateway methods. A client could be the frontend of an app, the backend of an app, a service, or an agent. The term <em>service</em> is used to denote the code that implements and exposes a gateway to clients. A service could be a deployed, stand-alone service, or the backend of an app, or a package that used by backend code. The main point is that it is <a href=".././glossary#backend">backend code</a>.</p>
+<p>Gateway methods are always asynchronous. That is because the gateway implementation and the client that calls it are never in the same JavaScript context. This follows from the <a href="../../overview/app#interactive-apps">iModelJs app architecture</a>.</p>
+<p>For more information on the purpose of gateways and their role in app architecture, see <a href="../../overview/app#gateways">Gateways</a>.</p>
+<h3><a id="defining-gateways" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Defining Gateways</h3>
+<p>A gateway <em>definition</em> is an abstract TypeScript class that extends <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/gateway/gateway'>Gateway</a>.</p>
+<p>The definition class must define a static, asynchronous method for each operation that is to be exposed by the service. That defines the gateway API. Each API method in the definition class does double duty: it both declares an operation and it contains the implementation of the client-side proxy. In practice, all proxy implementations are the same generic one-liner.</p>
+<p>A gateway definition class must also define:</p>
+<ul>
+<li><code>public static types</code>. This declares what classes are used in the methods in the gateway API,
+so that the gateway system can prepare to marshall them correctly. Gateway methods are not restricted to primitive types.</li>
+<li>? version ?</li>
+</ul>
+<p>Gateway definition classes must be in a directory or package that is accessible to both frontend and backend code. Note that the Gateway base class is defined in <code>@bentley/imodeljs-common</code>.</p>
+<p><em>Example:</em></p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Gateway<span class="token punctuation">,</span> IModelToken <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/imodeljs-common&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Id64 <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/bentleyjs-core&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Point3d<span class="token punctuation">,</span> Angle <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/geometry-core&quot;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// RobotWorldEngine Gateway Definitions</span>
+<span class="token comment">// These classes are common to RobotWorldEngine and its clients.</span>
+<span class="token comment">// If these are app-specific gateways, then they would be defined in a directory</span>
+<span class="token comment">// in the app&apos;s source tree that is common to both frontend and backend.</span>
+<span class="token comment">// If these are service gateways, then they would be defined in a gateway</span>
+<span class="token comment">// definition package that is accessible by both the</span>
+<span class="token comment">// service implementation and the clients that use the service.</span>
+
+<span class="token comment">// The &quot;write&quot; gateway that may be exposed by the RobotWorldEngine.</span>
+<span class="token keyword">export</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">RobotWorldWriteGateway</span> <span class="token keyword">extends</span> <span class="token class-name">Gateway</span> <span class="token punctuation">{</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> version <span class="token operator">=</span> <span class="token string">&quot;1.0.0&quot;</span><span class="token punctuation">;</span> <span class="token comment">// The API version of the gateway</span>
+
+  <span class="token comment">/** The types that used by the gateway and must be marshalled. */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token function-variable function">types</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">[</span>IModelToken<span class="token punctuation">,</span> Id64<span class="token punctuation">,</span> Point3d<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// The gateway operations:</span>
+  <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">insertRobot</span><span class="token punctuation">(</span>_iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> _modelId<span class="token punctuation">:</span> Id64<span class="token punctuation">,</span> _name<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> _location<span class="token punctuation">:</span> Point3d<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span>Id64<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>forward<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">moveRobot</span><span class="token punctuation">(</span>_iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> _id<span class="token punctuation">:</span> Id64<span class="token punctuation">,</span> _location<span class="token punctuation">:</span> Point3d<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>forward<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">fuseRobots</span><span class="token punctuation">(</span>_iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> _r1<span class="token punctuation">:</span> Id64<span class="token punctuation">,</span> _r2<span class="token punctuation">:</span> Id64<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>forward<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">insertBarrier</span><span class="token punctuation">(</span>_iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> _modelId<span class="token punctuation">:</span> Id64<span class="token punctuation">,</span> _location<span class="token punctuation">:</span> Point3d<span class="token punctuation">,</span> _angle<span class="token punctuation">:</span> Angle<span class="token punctuation">,</span> _length<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span>Id64<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>forward<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// The &quot;read&quot; gateway that may be exposed by the RobotWorldEngine.</span>
+<span class="token keyword">export</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">RobotWorldReadGateway</span> <span class="token keyword">extends</span> <span class="token class-name">Gateway</span> <span class="token punctuation">{</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> version <span class="token operator">=</span> <span class="token string">&quot;1.0.0&quot;</span><span class="token punctuation">;</span>  <span class="token comment">// The API version of the gateway</span>
+
+  <span class="token comment">/** The types that can be marshaled by the gateway. */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token function-variable function">types</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">[</span>IModelToken<span class="token punctuation">,</span> Id64<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// The gateway operations:</span>
+  <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">countRobotsInArray</span><span class="token punctuation">(</span>_iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> _elemIds<span class="token punctuation">:</span> Id64<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>forward<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">countRobots</span><span class="token punctuation">(</span>_iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>forward<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">queryObstaclesHitByRobot</span><span class="token punctuation">(</span>_iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> _rid<span class="token punctuation">:</span> Id64<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span>Id64<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>forward<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h3><a id="implementing-gateways" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Implementing Gateways</h3>
+<p>A gateway <em>implementation</em> is a TypeScript class that implements a particular gateway definition and extends <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/gateway/gateway'>Gateway</a>.</p>
+<p>The implementation class must override each API method defined by the gateway definition, that is, it must actually implement the operations. A best practice is that a gateway implementation should simply forward the calls, so that each method is a one-liner. The called methods should be in the service class, not in the gateway, and should be completely free of gateway details.</p>
+<p>A gateway definition class is always defined in backend code and is not exposed directly to clients.</p>
+<p><em>Example:</em></p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Gateway<span class="token punctuation">,</span> IModelToken<span class="token punctuation">,</span> GatewayDefinition<span class="token punctuation">,</span> IModelReadGateway<span class="token punctuation">,</span> IModelWriteGateway<span class="token punctuation">,</span> BentleyCloudGatewayConfiguration<span class="token punctuation">,</span> GatewayElectronConfiguration <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/imodeljs-common&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Id64 <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/bentleyjs-core&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> assert <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/bentleyjs-core/lib/Assert&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Platform<span class="token punctuation">,</span> IModelDb <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/imodeljs-backend&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> RobotWorldEngine <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./RobotWorldEngine&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> RobotWorldReadGateway<span class="token punctuation">,</span> RobotWorldWriteGateway <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../common/RobotWorldGatewayDefinition&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Point3d<span class="token punctuation">,</span> Angle <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/geometry-core&quot;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// RobotWorldEngine Gateway Implementations</span>
+
+<span class="token comment">// Definitions must be defined in the service (backend code).</span>
+
+<span class="token comment">// The implementations &apos;implement&apos; the definition. The definitions are common</span>
+<span class="token comment">// to clients and this implementation. They definitions could be defined in a location</span>
+<span class="token comment">// in the app&apos;s source tree that is common to both frontend and backend.</span>
+<span class="token comment">// If these are service gateways, then they would have to be defined in package.</span>
+<span class="token comment">// import { ROWriteGateway, ROReadGateway } from &quot;@my-domain/ROGateway&quot;;</span>
+
+<span class="token comment">// Implement ROWriteGateway</span>
+<span class="token keyword">class</span> <span class="token class-name">RobotWorldWriteGatewayImpl</span> <span class="token keyword">extends</span> <span class="token class-name">Gateway</span> <span class="token keyword">implements</span> <span class="token class-name">RobotWorldWriteGateway</span> <span class="token punctuation">{</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token function">register</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Gateway<span class="token punctuation">.</span><span class="token function">registerImplementation</span><span class="token punctuation">(</span>RobotWorldWriteGateway<span class="token punctuation">,</span> RobotWorldWriteGatewayImpl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">insertRobot</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> modelId<span class="token punctuation">:</span> Id64<span class="token punctuation">,</span> name<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> location<span class="token punctuation">:</span> Point3d<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span>Id64<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> RobotWorldEngine<span class="token punctuation">.</span><span class="token function">insertRobot</span><span class="token punctuation">(</span>IModelDb<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">)</span><span class="token punctuation">,</span> modelId<span class="token punctuation">,</span> name<span class="token punctuation">,</span> location<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">moveRobot</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> id<span class="token punctuation">:</span> Id64<span class="token punctuation">,</span> location<span class="token punctuation">:</span> Point3d<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    RobotWorldEngine<span class="token punctuation">.</span><span class="token function">moveRobot</span><span class="token punctuation">(</span>IModelDb<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">)</span><span class="token punctuation">,</span> id<span class="token punctuation">,</span> location<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">fuseRobots</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> r1<span class="token punctuation">:</span> Id64<span class="token punctuation">,</span> r2<span class="token punctuation">:</span> Id64<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    RobotWorldEngine<span class="token punctuation">.</span><span class="token function">fuseRobots</span><span class="token punctuation">(</span>IModelDb<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">)</span><span class="token punctuation">,</span> r1<span class="token punctuation">,</span> r2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">insertBarrier</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> modelId<span class="token punctuation">:</span> Id64<span class="token punctuation">,</span> location<span class="token punctuation">:</span> Point3d<span class="token punctuation">,</span> angle<span class="token punctuation">:</span> Angle<span class="token punctuation">,</span> length<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span>Id64<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> RobotWorldEngine<span class="token punctuation">.</span><span class="token function">insertBarrier</span><span class="token punctuation">(</span>IModelDb<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">)</span><span class="token punctuation">,</span> modelId<span class="token punctuation">,</span> location<span class="token punctuation">,</span> angle<span class="token punctuation">,</span> length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Implement ROReadGateway</span>
+<span class="token keyword">class</span> <span class="token class-name">RobotWorldReadGatewayImpl</span> <span class="token keyword">extends</span> <span class="token class-name">Gateway</span> <span class="token keyword">implements</span> <span class="token class-name">RobotWorldReadGateway</span> <span class="token punctuation">{</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token function">register</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">countRobotsInArray</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> elemIds<span class="token punctuation">:</span> Id64<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> iModelDb<span class="token punctuation">:</span> IModelDb <span class="token operator">=</span> IModelDb<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> RobotWorldEngine<span class="token punctuation">.</span><span class="token function">countRobotsInArray</span><span class="token punctuation">(</span>iModelDb<span class="token punctuation">,</span> elemIds<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">countRobots</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> iModelDb<span class="token punctuation">:</span> IModelDb <span class="token operator">=</span> IModelDb<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> RobotWorldEngine<span class="token punctuation">.</span><span class="token function">countRobots</span><span class="token punctuation">(</span>iModelDb<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">queryObstaclesHitByRobot</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> rid<span class="token punctuation">:</span> Id64<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span>Id64<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> iModelDb<span class="token punctuation">:</span> IModelDb <span class="token operator">=</span> IModelDb<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> RobotWorldEngine<span class="token punctuation">.</span><span class="token function">queryObstaclesHitByRobot</span><span class="token punctuation">(</span>iModelDb<span class="token punctuation">,</span> rid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h3><a id="configuring-gateways-service-side" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Configuring Gateways (Service side)</h3>
+<p>A service must expose the gateways that it implements or imports, so that clients can use them.</p>
+<p>First, the service must call <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/gateway/gateway/registerimplementation'>Gateway.registerImplementation</a> to register the gateways that it implements, if any.</p>
+<p>Next, the service must use a <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/gateway/gatewayconfiguration'>GatewayConfiguration</a> to configure the gateways that it wants to expose. It must choose the gateway configuration to use, based on how the service itself is configured. Choices include ....</p>
+<p>A service can expose multiple gateways. A service can expose both its own implementations, if any, and imported implementations. The service can decide at run time which gateways to expose, perhaps based on deployment parameters.</p>
+<p><em>Example:</em></p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript"><span class="token comment">/* Configure the gateways exposed by this service. */</span>
+<span class="token keyword">function</span> <span class="token function">configureGateways</span><span class="token punctuation">(</span>gateways<span class="token punctuation">:</span> GatewayDefinition<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> uriPrefix<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>Platform<span class="token punctuation">.</span><span class="token function">isMobile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">assert</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">&quot;TBD: mobile gateway config&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>Platform<span class="token punctuation">.</span>electron <span class="token operator">!==</span> undefined<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    GatewayElectronConfiguration<span class="token punctuation">.</span><span class="token function">initialize</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> gateways<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    BentleyCloudGatewayConfiguration<span class="token punctuation">.</span><span class="token function">initialize</span><span class="token punctuation">(</span><span class="token punctuation">{</span> info<span class="token punctuation">:</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">&quot;RobotWorldEngine&quot;</span><span class="token punctuation">,</span> version<span class="token punctuation">:</span> <span class="token string">&quot;v1.0&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> uriPrefix <span class="token punctuation">}</span><span class="token punctuation">,</span> gateways<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Expose the gateways that are implemented by this service */</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">initializeGateways</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Register my own gateways</span>
+  Gateway<span class="token punctuation">.</span><span class="token function">registerImplementation</span><span class="token punctuation">(</span>RobotWorldWriteGateway<span class="token punctuation">,</span> RobotWorldWriteGatewayImpl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  Gateway<span class="token punctuation">.</span><span class="token function">registerImplementation</span><span class="token punctuation">(</span>RobotWorldReadGateway<span class="token punctuation">,</span> RobotWorldReadGatewayImpl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Decide which gateways this service will expose.</span>
+
+  <span class="token comment">// Start with the gateways that we know that we want to expose.</span>
+  <span class="token comment">// Note that this is an example of exposing more than one gateway from a single service.</span>
+  <span class="token comment">// It&apos;s also an example of exposing both a gateway that is implemented by an imported package</span>
+  <span class="token comment">// and a gateway that is implemented by the service.</span>
+  <span class="token keyword">const</span> gateways<span class="token punctuation">:</span> GatewayDefinition<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>IModelReadGateway<span class="token punctuation">,</span> RobotWorldReadGateway<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// This is an example of using a FeatureGate to decide at runtime if the</span>
+  <span class="token comment">// service should expose one or more gateways.</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>RobotWorldEngine<span class="token punctuation">.</span>features<span class="token punctuation">.</span><span class="token function">check</span><span class="token punctuation">(</span><span class="token string">&quot;readwrite&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    gateways<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>IModelWriteGateway<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    gateways<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>RobotWorldWriteGateway<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Expose the gateways using the appropriate configuration.</span>
+  <span class="token function">configureGateways</span><span class="token punctuation">(</span>gateways<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+</code></pre>
+<p>This example shows how a service could configure and expose more than one gateway, including imported gateways.
+It also shows how to choose the appropriate configuration.
+It also shows how a service could use <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/app/featuregates'>FeatureGates</a> to decide which gateways to expose.</p>
+<h3><a id="serving-gateways-service-side" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Serving Gateways (Service side)</h3>
+<p>A service must serve out its gateways, so that in-coming client calls/requests on the gateway are forwarded to the gateway implementations.</p>
+<h4><a id="web-server" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Web Server</h4>
+<p>When a service is configured as a Web service, it can use any Web server technology you like. A single function call is required to integrate all configured Gateways with the Web server. For example, if you use express, do this:</p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript"><span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token function">express</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">...</span>
+app<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">&quot;*&quot;</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>req<span class="token punctuation">,</span> res<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> gatewaysConfig<span class="token punctuation">.</span>protocol<span class="token punctuation">.</span><span class="token function">handleOperationPostRequest</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span> res<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h4><a id="electron-desktop-app" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Electron Desktop App</h4>
+<p>When a service is the backend of an Electron desktop app, no additional code is required to serve out gateways, beyond calling GatewayElectronConfiguration to configure them.</p>
+<h4><a id="mobile-app" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Mobile App</h4>
+<p>When a service is the backend of a mobile app, <em>TBD...&lt;/em.</em></p>
+<h3><a id="configuring-and-calling-gateways-client-side" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Configuring and Calling Gateways (Client side)</h3>
+<p>A client (e.g., an app frontend) must configure the gateways that it intends to use.
+It must use the appropriate <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/gateway/gatewayconfiguration'>GatewayConfiguration</a> for each gateway, depending on how the client itself it configured and how the service that implements the gateway is deployed.
+... TBD more details on this ...
+... TBD code sample ...</p>
+<p>A client makes calls on a gateway&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/gateway/gateway/getproxyforgateway'>proxy</a>. Each method in the proxy forwards the call to the implementation. The call signature for the proxy methods is the same as given in the definition.</p>
+<h3><a id="gateway-performance" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Gateway Performance</h3>
+<p>In some configurations, client and service may be in separate processes. Some configurations marshall calls over the Internet, where both bandwidth and latency can vary widely. Therefore, care must be taken to limit the number and size of round-trips between clients and services. In other words, a gateway&apos;s methods must be &quot;chunky&quot; and not &quot;chatty&quot;.</p>
+
+                    <p class='last-updated'>Last Updated: 
+                        <span class='date-updated'>08 May, 2018 @ 02:20:00 pm -04:00</span>
+                    </p>
+    
+                   
+                   <script type="text/javascript">
+                   
+                   </script>                </article>
+            </div>
+            <div id='inner-table-of-contents'>
+                <!-- 
+                    - If the page is active
+                    - Get all headings and subheadings and list them
+                 -->
+                
+                
+                
+                
+                
+            </div>
+        
+    </div>
+    
+
+    
+        <footer id='main-footer'>
+            <div id='footer-content-container'>
+               <div class='footer-footer'>
+                   <p>Copyright 2018 Bentley Systems, Incorporated</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+        <a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+        <script src="https://imodeljs.github.io/iModelJs-docs-output/scripts/bundle.js" ></script>
+    </body>
+    
+    </html>
