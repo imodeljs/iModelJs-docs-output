@@ -43,7 +43,7 @@
                         </div>
                         <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
                             <nav class="navbar navbar-expand-md navbar-light">
-                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
+                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
                             </nav>
                         </div>                </nav>
             
@@ -74,7 +74,7 @@
                 <h2><a id="model-fundamentals" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/bis/intro/model-fundamentals">Model Fundamentals</a></h2>
                 <h2><a id="relationship-fundamentals" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/bis/intro/relationship-fundamentals">Relationship Fundamentals</a></h2>
                 <h2><a id="schemas-domains" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/bis/intro/schemas-domains">Schemas (&#x201C;Domains&#x201D;)</a></h2>
-                <h2><a id="model-hierarchy" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/bis/intro/model-hierarchy">Model Hierarchy</a></h2>
+                <h2><a id="information-hierarchy" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/bis/intro/information-hierarchy">Information Hierarchy</a></h2>
                 <h2><a id="physical-models-and-elements" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/bis/intro/physical-models-and-elements">Physical Models and Elements</a></h2>
                 <h2><a id="functional-models-and-elements" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/bis/intro/functional-models-and-elements">Functional Models and Elements</a></h2>
                 <h2><a id="information-models-and-elements" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/bis/intro/information-models-and-elements">Information Models and Elements</a></h2>
@@ -157,11 +157,12 @@ A <code>CodeValue</code> should be a human-understandable string, <em>not</em> a
 <h3><a id="federationguid" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>FederationGuid</h3>
 <p>Every BIS <code>Element</code> has an optional 128 bit <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">Globally Unique Identifier</a> called <code>FederationGuid</code>. Generally it is intended that FederationGuid are assigned by external systems to <em>federate</em> Elements to their external meaning.</p>
 <h3><a id="userlabel" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>UserLabel</h3>
-<p>Every BIS <code>Element</code> has an optional <code>UserLabel</code> property, to provide an <em>alias</em> familiar to the user.</p>
-<p>The UserLabel is always left for the user to enter and is not programmatically generated.</p>
-<p>The UserLabel may serve an alternate &#x201C;friendlier&#x201D; name in a GUI, e.g. the Room with <code>CodeValue</code>=&quot;R-134&quot; might have <code>UserLabel</code>=&#x201D;The Big Kitchen&#x201D; or <code>UserLabel</code>=&#x201D;John&#x2019;s Office&#x201D;</p>
+<p>Every BIS <code>Element</code> has an optional <code>UserLabel</code> property, to provide an <em>alias</em> familiar to the user.
+The UserLabel may serve an alternate &#x201C;friendlier&#x201D; name in a GUI, e.g. the Room with <code>CodeValue</code>=&quot;R-134&quot; might have <code>UserLabel</code>=&#x201D;The Big Kitchen&#x201D; or <code>UserLabel</code>=&#x201D;John&#x2019;s Office&#x201D;.
+There is no uniqueness constraint placed on the <code>UserLabel</code>.</p>
+<p>With the exception of data conversion programs, the UserLabel is always left for the user to enter and is not programmatically generated.</p>
 <h3><a id="jsonproperties" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>JsonProperties</h3>
-<p>The <code>JsonProperties</code> member holds <em>ad hoc</em> data on an Element in JSON format. It is a dictionary of key-value pairs, where the key is a <em>namespace</em> (see below) and the value is a JSON object. In this manner the <code>JsonProperties</code> member can hold any form and complexity of externally-defined (i.e. outside of BIS) data on any element.</p>
+<p>The <code>JsonProperties</code> member holds instance-specific <em>ad hoc</em> data on an Element in JSON format. It is a dictionary of key-value pairs, where the key is a <em>namespace</em> (see below) and the value is a JSON object. In this manner the <code>JsonProperties</code> member can hold any form and complexity of externally-defined (i.e. outside of BIS) data on any element.</p>
 <p>To avoid conflicts in naming values, the top-level names for members of <code>JsonProperties</code> are reserved for <em>namespaces</em>. There is no registry for namespaces, so they should be chosen to be long and unique enough to avoid the possibility of collision (at least 8 characters.) By convention,</p>
 <blockquote>
 <p>Note: all JSON property names, and therefore namespaces, are <em>case sensitive</em>.</p>
@@ -201,13 +202,13 @@ A <code>CodeValue</code> should be a human-understandable string, <em>not</em> a
 ### JsonProperties and ECSQL
 -->
 <h2><a id="elements-and-models" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Elements and Models</h2>
-<p>Each Element <em>lives in</em> a single Model. The Model <em>owns</em> the Element and Models cannot be deleted unless all of their Elements are first deleted. Models provide context and scope for their Elements.</p>
-<p>Every <code>Model</code> models some <code>Element</code>. This is a <a href="../model-hierarchy">key principle of BIS</a> to support modeling of reality from multiple perspectives and multiple granularities in a single Repository. It also results in a coherent and predictable structure in every BIS Repository, where all information is traceable to a single <em>root Subject</em> for the entire BIS Repository.</p>
-<p>There is one exception to the &#x201C;Every Model models an Element&#x201D; rule: There is exactly one RepositoryModel in every BIS Repository which does not Model another Element (at least not another Element in the same BIS Repository). This RepositoryModel is at the top of the Model/Element hierarchy.</p>
+<p>Each Element <em>lives in</em> a single Model. That Model <em>contains</em> and <em>owns</em> the Element. Models cannot be deleted unless all of their Elements are first deleted. Models provide context and scope for their Elements.</p>
+<p>Every <code>Model</code> models (breaks down or describes) some <code>Element</code>. This is the basic building block of the <a href=".././information-hierarchy">Information Hierarchy</a>, which is a key principle of BIS and supports modeling of reality from multiple perspectives and multiple granularities in a single Repository. It also results in a coherent and predictable structure in every BIS Repository, where all information is traceable to a single <a href=".././glossary#root-subject">Root Subject</a> for the entire BIS Repository.</p>
+<p>There is one exception to the &#x201C;Every Model models an Element&#x201D; rule: There is exactly one RepositoryModel in every BIS Repository which does not Model another Element (at least not another Element in the same BIS Repository). This RepositoryModel is at the top of the Model/Element <a href=".././information-hierarchy">Information Hierarchy</a>.</p>
 <h2><a id="elementids-in-imodels" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>ElementIds in iModels</h2>
-<p>When stored in an iModel, Elements also have a unique 64-bit identifier, called an ElementId. ElementId is generated when new Elements are created by storing the BriefcaseId in the high 24 bits, with the next-available sequence number in the lower 40 bits. This allows new Elements to be created in any Briefcase without fear of ElementId collision.</p>
+<p>When stored in an iModel, Elements also have a unique 64-bit <em>local</em> identifier, called an ElementId. ElementId is generated when new Elements are created by storing the BriefcaseId in the high 24 bits, with the next-available sequence number in the lower 40 bits. This allows new Elements to be created in any Briefcase without fear of ElementId collision.</p>
 <h2><a id="elements-and-child-elements" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Elements and Child Elements</h2>
-<p>An Element may have child Elements. Both the parent and the children must live in the same Model. The parent-child relationship implies ownership and cascading deletes. This is discussed more in the Section Assemblies and Groups.</p>
+<p>An Element may have child Elements. Both the parent and the children must live in the same Model. The parent-child relationship implies ownership and cascading deletes. This is discussed more in the <a href="#assemblies">Assemblies</a> section below.</p>
 <h2><a id="core-element-types" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Core Element Types</h2>
 <p>These are subclasses of Element defined in the BIS core from which all other Element types must descend:</p>
 <ul>
@@ -217,36 +218,36 @@ A <code>CodeValue</code> should be a human-understandable string, <em>not</em> a
 </ul>
 <p><img src=".././media/core-element-types.png" alt="Core Element Types"></p>
 <h3><a id="geometricelement" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>GeometricElement</h3>
-<p>GeometricElement represents any real world entity that we chose to model as inherently being geometric, such that it can be displayed graphically.
-This includes physical entities (such as electrical panels, beams and pumps) as well as drawing graphics (lines, arcs, circles, and annotations like text, plots, etc) in geometric context).
-Merely having a geometric property is not necessarily enough to merit an entity being represented by a GeometricElement; for example, a steel section shape is an DefinitionElement, not a GeometricElement.</p>
+<p><code>GeometricElement</code> represents any real world entity that we chose to model as inherently being geometric, such that it can be displayed graphically.
+This includes physical entities (such as electrical panels, beams and pumps) as well as drawing graphics (lines, arcs, circles, and annotations like text, plots, etc) in geometric context.
+Merely having a geometric property is not necessarily enough to merit an entity being represented by a <code>GeometricElement</code>; for example, a steel section shape is an <code>DefinitionElement</code>, not a <code>GeometricElement</code>.</p>
 <p><img src=".././media/geometric-element.png" alt="Geometric Element"></p>
-<p>The GeometricElement hierarchy defined in the BIS Core is broken down as shown in the figure above.</p>
+<p>The <code>GeometricElement</code> hierarchy defined in the <code>BisCore</code> schema is broken down as shown in the figure above.</p>
 <p>Brief descriptions for the classes in the 2d branch are:</p>
 <ul>
-<li><p><code>GeometricElement2d</code> &#x2013; An Element that is inherently 2D in nature.</p>
-</li>
-<li><p><code>GraphicalElement2d</code> &#x2013; <em><strong>xxxxxxxxxx</strong></em>.</p>
-</li>
-<li><p><code>DrawingGraphic</code> &#x2013; A GraphicalElement2d that is intended to be placed on a Drawing.</p>
-</li>
+<li><code>GeometricElement2d</code> &#x2013; An Element that is inherently 2D in nature.</li>
+<li><code>GraphicalElement2d</code> &#x2013; A 2D Element that holds graphical information rather than geometry that has business meaning.</li>
+<li><code>DrawingGraphic</code> &#x2013; A 2D graphical Element that is intended to be placed on a Drawing.</li>
 </ul>
 <p>Brief descriptions for the classes in the 3D branch are:</p>
 <ul>
-<li><p><code>GeometricElement3d</code> &#x2013; An Element whose representation is inherently 3D in nature.</p>
-</li>
-<li><p><code>GraphicalElement3d</code> &#x2013; A 3D Element that is not relevant to real-world 3D space, such as a 3D bar chart. These Elements could be positioned in real-world 3D space (in a heads-up display, for example).</p>
-</li>
-<li><p><code>SpatialElement</code> &#x2013; An Element representing an entity that exists in and is relevant to real-world 3D space.</p>
-</li>
-<li><p><code>PhysicalElement</code> &#x2013; A SpatialElement representing a real physical entity, i.e. one that has mass.</p>
-</li>
-<li><p><code>SpatialLocationElement</code> &#x2013; A SpatialElement representing some defined point, curve, surface, or volume in the real world. Spatial locations are not physical, and have no mass. Examples include a property line, a zoning envelope, an alignment, or a gridline.</p>
-</li>
+<li><code>GeometricElement3d</code> &#x2013; An Element that is inherently 3D in nature.</li>
+<li><code>GraphicalElement3d</code> &#x2013; A 3D Element that holds graphical information rather than geometry that has business meaning. Examples include text annotations or 3D bar charts. Instances of <code>GraphicalElement3d</code> are typically positioned for <em>whitespace</em> reasons since they are not tied to real-world 3D space.</li>
+<li><code>SpatialElement</code> &#x2013; An Element representing an entity that exists in and is relevant to real-world 3D space.</li>
+<li><code>PhysicalElement</code> &#x2013; A SpatialElement representing a real physical entity, i.e. one that has mass.</li>
+<li><code>SpatialLocationElement</code> &#x2013; A SpatialElement representing some defined point, curve, surface, or volume in the real world. Spatial locations are not physical, and have no mass. Examples include a property line, a zoning envelope, an alignment, or a gridline.</li>
 </ul>
 <h3><a id="informationcontentelement" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>InformationContentElement</h3>
-<p><strong><em>TODO: update required!</em></strong></p>
-<p>An <code>InformationContentElement</code> doesn&#x2019;t just &#x201C;represent&#x201D; some real-world entity, it is an actual &#x201C;carrier&#x201D; of the information of some real-world information entity. For example a &#x201C;requirement&#x201D; is an information entity in the real world, and a Requirement Element in BIS can &#x201C;carry&#x201D; the information of that requirement (and may in fact be the only carrier of that information, if there are no paper copies or carriers in other systems.)</p>
+<!-- TODO: More needed here... -->
+<p>An <code>InformationContentElement</code> is an Element that exists to carry and track information.  Information Elements are inherently non-geometric and cannot be graphically displayed, but can contain geometric properties (for definition or specification purposes).</p>
+<p>Examples include:</p>
+<ul>
+<li>A document</li>
+<li>A shared definition</li>
+<li>A requirement</li>
+<li>A specification</li>
+<li>An information record</li>
+</ul>
 <p><img src=".././media/information-element.png" alt="Information Element"></p>
 <h3><a id="roleelement" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>RoleElement</h3>
 <p>Roles play a vital role (pun intended) in the ability of BIS to break down application-specific domain silos into pieces that allow common information to be shared and leveraged.</p>
@@ -256,77 +257,75 @@ Merely having a geometric property is not necessarily enough to merit an entity 
 <p><img src=".././media/person-lawyer-father-son-2.png" alt="Person Lawyer Father Son Example 2"></p>
 <p><img src=".././media/pollution-risk-example.png" alt="Pollution Risk Example"></p>
 <p>Roles are linked to each other through the PhysicalElement.</p>
-<p>Each role may include some redundant information, but should generally share the physical form and properties of the PhysicalElement.</p>
+<p>Each role may include some redundant information, but should generally share the physical form and properties of the <code>PhysicalElement</code>.</p>
 <p>In our virtual world, roles can get &#x201C;out of sync&#x201D; with the PhysicalElements, and can even exist without the corresponding PhysicalElement existing. These out of sync cases often represent incomplete work (the P&amp;ID has changed, but the 3D model has not yet been updated to reflect the changes), but sometimes reflect a long-term condition (the vehicle role is modeled in the asset management system, but there is no need to create the physical model of the truck).</p>
 <h3><a id="example-of-element-type-usage" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Example of Element Type Usage</h3>
 <p><img src=".././media/element-type-usage.png" alt="Element Type Usage Example"></p>
 <h2><a id="assemblies" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Assemblies</h2>
 <p>An Element can optionally have a <em>parent</em> Element. Parent Elements must be in the same Model as their children. A hierarchy of Elements can be created through these parent-child relationships (note: all the Elements in a hierarchy will reside in the same Model.) An Element that is a parent, can be considered to <em>assemble</em> its children, and collectively they are termed an <em>Assembly</em>. Assemblies can nest. Circular networks of parent-child relationship are not allowed.</p>
 <p>Assemblies imply ownership and cascading deletes. When a parent Element is deleted, all of its children are deleted as well.</p>
-<p>Assemblies tend to follow 4 patterns:</p>
-<ul>
-<li><p>The assembly is purely an aggregation; the primary role of the parent is to group the children together (example: a rebar cage collects various reinforcing bars together)</p>
-</li>
-<li><p>The assembly is an elaboration; properties (or other information) in the parent allow the children to be generated (example: a pipe support generates a pipe clamp, a beam clamp and a threaded rod)</p>
-</li>
-<li><p>The assembly is an item with modifications; the parent defines a base that the children modify (example: a BeamCope modifies a Beam).</p>
-</li>
-<li><p>The children in an assembly are</p>
-</li>
-</ul>
-<p>As an Element can only have a single parent, it is important that domains and applications coordinate to ensure there is no conflict over which parent an Element should have. The best general rule to coordinate parenthood is that the domain author determines which Elements (if any) can be parents of it&#x2019;s Elements.</p>
-<p>Elements classes will generally fall into 4 categories:</p>
-<ul>
+<p>Assemblies tend to follow three patterns:</p>
+<ol>
+<li>The assembly is purely an aggregation; the primary role of the parent is to group the children together (example: a rebar cage collects various reinforcing bars together)</li>
+<li>The assembly is an elaboration; properties (or other information) in the parent allow the children to be generated (example: a pipe support generates a pipe clamp, a beam clamp and a threaded rod)</li>
+<li>The assembly is an item with modifications; the parent defines a base that the children modify (example: a BeamCope modifies a Beam).</li>
+</ol>
+<p>As an Element can only have a single parent, it is important that domains and applications coordinate to ensure there is no conflict over which parent an Element should have. The best general rule to coordinate parenthood is that the domain author determines which Elements (if any) can be parents of its Elements.</p>
+<p>Elements classes will generally fall into four categories:</p>
+<ol>
 <li>The Element can have any or no parents (example: Bolt).</li>
 <li>The Element cannot have a parent</li>
 <li>The Element can only have a parent of a particular class.</li>
 <li>The Element always has a parent, but there is little restraint on the class of the parent (example: Hole)</li>
-</ul>
+</ol>
 <p>When designing assemblies, care must be taken to avoid double-counting.</p>
 <p>See also the IParentElement and ISubModeledElement section below.</p>
 <h2><a id="iparentelement-and-isubmodeledelement" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>IParentElement and ISubModeledElement</h2>
-<p>This section tries not to repeat the material in <a href=".././model-fundamentals">Model Fundamentals</a> and <a href=".././model-hierarchy">Information Hierarchy</a>.
-If you have questions about how Elements breakdown into Models, you may want to skim those chapters.</p>
+<p>This section tries not to repeat the material in <a href=".././model-fundamentals">Model Fundamentals</a> and <a href=".././information-hierarchy">Information Hierarchy</a>.
+If you have questions about how Elements breakdown into Models, you may want to skim those articles.</p>
 <p>There are two mixins that declare and define key behaviors of an Element:</p>
 <ul>
-<li><p>IParentElement &#x2013; this Element can be a parent Element</p>
-</li>
-<li><p>ISubModeledElement &#x2013; this Element can have an associated breakdown Model</p>
-</li>
+<li><code>IParentElement</code> &#x2013; this Element can be a parent Element</li>
+<li><code>ISubModeledElement</code> &#x2013; this Element can have an associated breakdown Model</li>
 </ul>
-<p>The Element class does not include either of these interfaces, so by default no Element can have children or can be broken down into a Model. Many Elements have no need for child Elements or breakdown Models and will therefore use neither of these interfaces; a Bolt class is a example of a class that requires neither.</p>
-<p>These mixins are expected to be mutually-exclusive. No class that implements IParentElement will also implement ISubModeledElement. The reason these two interfaces are considered mutually-exclusive is that the two concepts (having children and having a model) are both means of breaking down something into more detail; using two different breakdown methods simultaneously could result in confusion and double-counting.</p>
+<p>The Element class does not include either of these interfaces, so by default no Element can have children or can be broken down into a Model. Many Elements have no need for child Elements or breakdown Models and will therefore use neither of these interfaces. A Bolt class is a example of a class that requires neither.</p>
+<p>These mixins are expected to be mutually-exclusive. No class that implements <code>IParentElement</code> will also implement <code>ISubModeledElement</code>. The reason these two interfaces are considered mutually-exclusive is that the two concepts (having children and having a model) are both means of breaking down something into more detail; using two different breakdown methods simultaneously could result in confusion and double-counting.</p>
 <!--
 TODO: Confirm if below is needed!
 It should be noted that these mixins can be added to a class in a minor schema update that will not break generation compatibility, so there is no need to implement them until they are needed.
 -->
 <h2><a id="parent-child-relationships" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Parent-Child Relationships</h2>
-<p>All Element parent-child relationships descend from ElementOwnsChildElements, which is abstract and cannot be used directly. There are four abstract specializations of this relationship that are frequently (but not always) used to clarify the relationship of the parent and child:</p>
+<p>All Element parent-child relationships descend from <code>ElementOwnsChildElements</code>, which should not be used directly.
+There are specializations (subclasses) of the <code>ElementOwnsChildElements</code> relationship that clarify the relationship of the parent and child.
+Examples include:</p>
 <ul>
 <li><code>PhysicalElementEAssemblesElements</code> &#x2013; used to indicate that the child Elements are aggregated into the parent Element, whose geometry is entirely an aggregation.</li>
-<li><code>ElementEncapsulatesChildElements</code> &#x2013; used when the child Elements represent internal data that is not typically exposed to user or useful outside of the parent Element&#x2019;s context</li>
+<li><code>ElementEncapsulatesChildElements</code> &#x2013; used when the child Elements represent internal data that is not typically exposed to user or useful outside of the parent Element&#x2019;s context.</li>
+<li><code>SubjectOwnsSubjects</code>, <code>SubjectOwnsPartitionElements</code> - these relationships are used to constrain the set of Elements that are valid <em>children</em> of a <code>Subject</code> Element.</li>
 </ul>
 <h2><a id="groups" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Groups</h2>
-<!-- TODO: Fix this section. There are bis:GroupInformationElements and the ElementGroupsMembers relationship. Also, 1:N relationships are a form of grouping. -->
-<p>There is no formal &#x201C;group&#x201D; concept in BIS. Groups are discussed here to illustrate how they are different from assemblies. While assemblies are comprised of a strict parent &#x2013; child hierarchy of Elements, other Element-to-Element relationships may defined groups of Elements, which may or may not be in the same model. The term &#x201C;group&#x201D; would generally not be used for an assembly.</p>
+<p>While parent-child relationships are of <em>embedding</em> strength and imply exclusive ownership, grouping relationships are of <em>referencing</em> strength and imply non-exclusive membership.</p>
+<p>The grouping technique will vary depending on whether grouping a collection of member Elements is:</p>
+<ol>
+<li>The primary role of the Element or</li>
+<li>A secondary role of the Element.</li>
+</ol>
+<p>In the first case, the <code>ElementGroupsMembers</code> relationship is used to relate group members to a <code>GroupInformationElement</code> that stands in for the group overall.
+A <code>GroupInformationElement</code> has no other reason to exist other than for grouping.</p>
+<p>In the second case, a standard 1:N relationship can be used and grouping is implied.
+The grouping Element in this case would be valuable and exist whether or not it has members.</p>
 <!-- TODO?
 ## Core Element Relationships
-
 Must descend from one of the main relationship sub-types
-
 Model Contains Elements
-
 Element->Model (few variations)
-
 Element owns child Elements
-
 Element->ElementAspect
-
 (other)
 -->
 
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>08 May, 2018 @ 02:20:00 pm -04:00</span>
+                        <span class='date-updated'>09 May, 2018 @ 04:23:16 pm +00:00</span>
                     </p>
     
                    

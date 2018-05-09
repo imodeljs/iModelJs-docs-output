@@ -43,7 +43,7 @@
                         </div>
                         <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
                             <nav class="navbar navbar-expand-md navbar-light">
-                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
+                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
                             </nav>
                         </div>                </nav>
             
@@ -74,7 +74,7 @@
                 <h2><a id="model-fundamentals" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/bis/intro/model-fundamentals">Model Fundamentals</a></h2>
                 <h2><a id="relationship-fundamentals" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/bis/intro/relationship-fundamentals">Relationship Fundamentals</a></h2>
                 <h2><a id="schemas-domains" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/bis/intro/schemas-domains">Schemas (&#x201C;Domains&#x201D;)</a></h2>
-                <h2><a id="model-hierarchy" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/bis/intro/model-hierarchy">Model Hierarchy</a></h2>
+                <h2><a id="information-hierarchy" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/bis/intro/information-hierarchy">Information Hierarchy</a></h2>
                 <h2><a id="physical-models-and-elements" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/bis/intro/physical-models-and-elements">Physical Models and Elements</a></h2>
                 <h2><a id="functional-models-and-elements" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/bis/intro/functional-models-and-elements">Functional Models and Elements</a></h2>
                 <h2><a id="information-models-and-elements" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/bis/intro/information-models-and-elements">Information Models and Elements</a></h2>
@@ -162,13 +162,13 @@ QUESTION: *IN PRACTICE, DOES THIS MEAN THAT IF I WANT TO CHANGE A PUMP FROM BIGC
 <h2><a id="data-imported-from-other-databases-including-via-imodel-bridges" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Data Imported from Other Databases (including via iModel Bridges)</h2>
 <p>The technology (often iModel bridges) that converts data from other databases into BIS data will usually need to convert from the class structure in the native database to a BIS class structure. It is rare that a BIS schema will work &quot;out of the box&quot;. Typically a dynamic schema will need to be defined by the converter and then the data converted from the native DB into instance of the new dynamic schema&apos;s classes (likely along with some instances of standard BIS classes).</p>
 <h2><a id="dynamic-schema-minor-change-considerations" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Dynamic Schema Minor Change Considerations</h2>
-<p>As dynamic schemas are extensions of BIS schemas, they must follow the rules of BIS schemas to prevent upgrade problems. These rules are defined in <a href="schema-versioning-and-generations">Schema Versioning and Generations</a>. The most notable of these rules is that classes and properties cannot be removed or significantly redefined. In general, only additions to schemas are allowed.</p>
+<p>As dynamic schemas are extensions of BIS schemas, they must follow the rules of BIS schemas to prevent upgrade problems. These rules are defined in <a href=".././schema-versioning-and-generations">Schema Versioning and Generations</a>. The most notable of these rules is that classes and properties cannot be removed or significantly redefined. In general, only additions to schemas are allowed.</p>
 <h2><a id="minor-bis-schema-upgrade-considerations" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Minor (BIS) Schema Upgrade Considerations</h2>
-<p>As defined in <a href="schema-versioning-and-generations">Schema Versioning and Generations</a>, BIS schemas may be upgraded at almost any time within a generation. The classes in dynamic schemas always subclass from BIS classes, so they may be affected by these minor upgrades at almost anytime.</p>
+<p>As defined in <a href=".././schema-versioning-and-generations">Schema Versioning and Generations</a>, BIS schemas may be upgraded at almost any time within a generation. The classes in dynamic schemas always subclass from BIS classes, so they may be affected by these minor upgrades at almost anytime.</p>
 <p>The biggest danger from these minor schema upgrades is that a BIS class may add a property that has the same name as a property in a dynamic subclass. This class will cause ????????????? when the upgraded schema is imported into a BIS repository.</p>
-<p>Class name conflicts (a class being added in BIS that has the same name as a class in a dynamic schema) is not a techical problem as the classes are scoped by the name of the schema that contains them. The duplicate class names can cause user confusion, however.</p>
+<p>Class name conflicts (a class being added in BIS that has the same name as a class in a dynamic schema) is not a technical problem as the classes are scoped by the name of the schema that contains them. The duplicate class names can cause user confusion, however.</p>
 <h2><a id="generational-bis-schema-upgrade-considerations" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Generational (BIS) Schema Upgrade Considerations</h2>
-<p>As defined in <a href="schema-versioning-and-generations">Schema Versioning and Generations</a>, generational changes allow radical changes to schemas and must be accompanied by code that understands how to map data (Elements and Models) from one generation of schemas to another. The generational mapping code can potentially be very complex; for example, it may include:</p>
+<p>As defined in <a href=".././schema-versioning-and-generations">Schema Versioning and Generations</a>, generational changes allow radical changes to schemas and must be accompanied by code that understands how to map data (Elements and Models) from one generation of schemas to another. The generational mapping code can potentially be very complex; for example, it may include:</p>
 <ul>
 <li>1:1, 1:N, N:1, N:N instance mapping</li>
 <li>1:1, 1:N, N:1, N:N property mapping</li>
@@ -178,7 +178,7 @@ QUESTION: *IN PRACTICE, DOES THIS MEAN THAT IF I WANT TO CHANGE A PUMP FROM BIGC
 <p>There needs to be a default strategy for converting the dynamic schemas to descent from the new BIS schemas, and for the conversion of dynamic data. We cannot rely on custom code to perform the upgrade; the entity that created the custom schemas may not even be in business any more.</p>
 
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>08 May, 2018 @ 02:20:00 pm -04:00</span>
+                        <span class='date-updated'>09 May, 2018 @ 04:23:16 pm +00:00</span>
                     </p>
     
                    

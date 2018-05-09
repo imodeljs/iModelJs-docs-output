@@ -43,7 +43,7 @@
                         </div>
                         <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
                             <nav class="navbar navbar-expand-md navbar-light">
-                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
+                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
                             </nav>
                         </div>                </nav>
             
@@ -79,7 +79,58 @@
                 <article id="main" name="main-content">
                     <p> <section class ="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static" ></p>
 <h2><a id="queryelementidbycode" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>queryElementIdByCode <span class="badge badge-pill badge-primary">Public</span></h2>
-<p>Query for the DgnElementId of the element that has the specified code</p>
+<p>Query for the DgnElementId of the element that has the specified code.
+This method is for the case where you know the element&apos;s Code.
+If you only know the code <em>value</em>, then in the simplest case, you can query on that
+and filter the results.
+In the simplest case, call <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/imodels/imodeldb/queryentityids'>IModelDb.queryEntityIds</a>, specifying the code value in where clause of the query params.
+For a more complex lookup, you can execute an ECSQL select statement.
+<em>Example:</em></p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">    <span class="token comment">// A Model does not have a code. The element that it models might. So, we first</span>
+    <span class="token comment">// look up the modeled element.</span>
+
+    <span class="token comment">// Suppose we have the following breakdown structure:</span>
+    <span class="token comment">// * The root subject</span>
+    <span class="token comment">// * * Subject with CodeValue=&quot;Subject1&quot;</span>
+    <span class="token comment">// * * * PhysicalPartition with CodeValue =&quot;Physical&quot;</span>
+
+    <span class="token comment">// Suppose we want to look up the PhysicalPartition whose code value is &quot;Physical&quot;.</span>
+    <span class="token comment">// We could write the following query, to find this partition as a child of the</span>
+    <span class="token comment">// &quot;Subject1&quot; subject element. Note that we specify the BisCore class names</span>
+    <span class="token comment">// of both the parent subject and the child partition. That makes the query very</span>
+    <span class="token comment">// specific. It&apos;s unlikely that it will turn up any but the element that we want.</span>
+    <span class="token keyword">const</span> partitionIds<span class="token punctuation">:</span> Id64Set <span class="token operator">=</span> iModel<span class="token punctuation">.</span><span class="token function">withPreparedStatement</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`
+      select
+        partition.ecinstanceid
+      from
+        bis.PhysicalPartition as partition,
+        (select ecinstanceid from bis.Subject where CodeValue=:parentName) as parent
+      where
+        partition.codevalue=:partitionName and partition.parent.id = parent.ecinstanceid;
+    `</span></span><span class="token punctuation">,</span> <span class="token punctuation">(</span>stmt<span class="token punctuation">:</span> ECSqlStatement<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        stmt<span class="token punctuation">.</span><span class="token function">bindString</span><span class="token punctuation">(</span><span class="token string">&quot;parentName&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Subject1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        stmt<span class="token punctuation">.</span><span class="token function">bindString</span><span class="token punctuation">(</span><span class="token string">&quot;partitionName&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Physical&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> ids<span class="token punctuation">:</span> Id64Set <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>stmt<span class="token punctuation">.</span><span class="token function">step</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> DbResult<span class="token punctuation">.</span><span class="token constant">BE_SQLITE_ROW</span><span class="token punctuation">)</span>
+          ids<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>stmt<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> ids<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    assert<span class="token punctuation">.</span><span class="token function">isNotEmpty</span><span class="token punctuation">(</span>partitionIds<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    assert<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span>partitionIds<span class="token punctuation">.</span>size<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> eidStr <span class="token keyword">of</span> partitionIds<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      assert<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span>iModel<span class="token punctuation">.</span>elements<span class="token punctuation">.</span><span class="token function">getElement</span><span class="token punctuation">(</span>eidStr<span class="token punctuation">)</span><span class="token punctuation">.</span>code<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;Physical&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// If we are sure that the name of the PhysicalPartition is unique within the</span>
+    <span class="token comment">// iModel or if we have some way of filtering results, we could do a direct query</span>
+    <span class="token comment">// for just its code value using the IModelDb.queryEntityIds convenience method.</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> eidStr <span class="token keyword">of</span> iModel<span class="token punctuation">.</span><span class="token function">queryEntityIds</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token keyword">from</span><span class="token punctuation">:</span> PhysicalPartition<span class="token punctuation">.</span>classFullName<span class="token punctuation">,</span> where<span class="token punctuation">:</span> <span class="token string">&quot;CodeValue=&apos;Physical&apos;&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Once we have the modeled element, we ask for its submodel -- that is that model.</span>
+      <span class="token keyword">const</span> itsModel<span class="token punctuation">:</span> Model <span class="token operator">=</span> iModel<span class="token punctuation">.</span>models<span class="token punctuation">.</span><span class="token function">getSubModel</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Id64</span><span class="token punctuation">(</span>eidStr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">reportModel</span><span class="token punctuation">(</span>itsModel<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre>
 <p><code>queryElementIdByCode ( code: Code ): Id64|undefined</code></p>
 <p> <span class="badge badge-pill badge-primary">throws</span> IModelError if the code is invalid</p>
 <table class="table table-responsive"><tbody><tr>
@@ -96,7 +147,7 @@
  </section></p>
 
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>08 May, 2018 @ 02:19:32 pm -04:00</span>
+                        <span class='date-updated'>09 May, 2018 @ 04:22:47 pm +00:00</span>
                     </p>
     
                    

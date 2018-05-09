@@ -43,7 +43,7 @@
                         </div>
                         <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
                             <nav class="navbar navbar-expand-md navbar-light">
-                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
+                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
                             </nav>
                         </div>                </nav>
             
@@ -79,37 +79,37 @@
                 <article id="main" name="main-content">
                     <h2><a id="beevent" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>BeEvent <span class="badge badge-pill badge-primary">Class</span></h2>
 <p> <section class="tsd-panel tsd-comment">
-A generic utility class for managing subscribers for a particular event.
+A generic class for managing a set of <em>listeners</em> for a particular event.
 This class is usually instantiated inside of a container class and
-exposed as a property for others to subscribe to. </section></p>
+exposed as a property for others to <em>subscribe</em> via <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/events/beevent/addlistener'>BeEvent.addListener</a>. </section></p>
 <h3><a id="methods" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Methods</h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
 <th>Description</th>
 </tr>
 <tr>
-<td><a href="addListener">addListener</a> ( listener: T, scope: any ): object <span class="badge badge-pill badge-primary">Public</span></td>
-<td>Registers a callback function to be executed whenever the event is raised.</td>
+<td><a href="addlistener">addListener</a> ( listener: T, scope: any ): object <span class="badge badge-pill badge-primary">Public</span></td>
+<td>Registers a Listener to be executed whenever the event is raised.</td>
 </tr>
 <tr>
-<td><a href="addOnce">addOnce</a> ( listener: T, scope: any ): object <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="addonce">addOnce</a> ( listener: T, scope: any ): object <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Registers a callback function to be executed <em>only once</em> when the event is raised.</td>
 </tr>
 <tr>
 <td><a href="clear">clear</a> ( ): void <span class="badge badge-pill badge-primary">Public</span></td>
-<td></td>
+<td>Clear all Listeners from this BeEvent.</td>
 </tr>
 <tr>
 <td><a href="has">has</a> ( listener: T, scope: any ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
-<td></td>
+<td>Determine whether this BeEvent has a listener registered.</td>
 </tr>
 <tr>
-<td><a href="raiseEvent">raiseEvent</a> ( _args: any[] ): void <span class="badge badge-pill badge-primary">Public</span></td>
-<td>Raises the event by calling each registered listener with all supplied arguments.</td>
+<td><a href="raiseevent">raiseEvent</a> ( _args: any[] ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td>Raises the event by calling each registered listener with the supplied arguments.</td>
 </tr>
 <tr>
-<td><a href="removeListener">removeListener</a> ( listener: T, scope: any ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
-<td>Un-registers a previously registered callback.</td>
+<td><a href="removelistener">removeListener</a> ( listener: T, scope: any ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
+<td>Un-register a previously registered listener.</td>
 </tr>
 </tbody></table><h3><a id="accessors" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Accessors</h3>
 <table class="table table-responsive"><tbody><tr>
@@ -122,7 +122,7 @@ exposed as a property for others to subscribe to. </section></p>
 </tr>
 </tbody></table>
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>08 May, 2018 @ 02:18:59 pm -04:00</span>
+                        <span class='date-updated'>09 May, 2018 @ 04:22:39 pm +00:00</span>
                     </p>
     
                    

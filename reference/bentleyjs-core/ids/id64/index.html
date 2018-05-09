@@ -43,7 +43,7 @@
                         </div>
                         <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
                             <nav class="navbar navbar-expand-md navbar-light">
-                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
+                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
                             </nav>
                         </div>                </nav>
             
@@ -79,7 +79,7 @@
                 <article id="main" name="main-content">
                     <h2><a id="id64" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Id64 <span class="badge badge-pill badge-primary">Class</span></h2>
 <p> <section class="tsd-panel tsd-comment">
-A 64 bit id, stored as a hex string. If invalid, value will be &quot;0&quot; </section></p>
+A 64 bit Id, stored as a hex string. This is necessary since JavaScript does not intrinsically support 64-bit integers. </section></p>
 <h3><a id="methods" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Methods</h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -87,42 +87,43 @@ A 64 bit id, stored as a hex string. If invalid, value will be &quot;0&quot; </s
 </tr>
 <tr>
 <td><a href="constructor">Id64</a> ( prop: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/ids/id64props'>Id64Props</a>|number[] ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/ids/id64'>Id64</a></td>
-<td>constructor for Id64</td>
+<td>Constructor for Id64</td>
 </tr>
 <tr>
 <td><a href="equals">equals</a> ( other: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/ids/id64'>Id64</a> ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
-<td>Test whether two Ids are the same</td>
+<td>Test whether two Id64s are the same</td>
 </tr>
 <tr>
-<td><a href="getHigh">getHigh</a> ( ): number <span class="badge badge-pill badge-primary">Public</span></td>
-<td>get the &quot;high&quot; part of this Id64.</td>
+<td><a href="gethigh">getHigh</a> ( ): number <span class="badge badge-pill badge-primary">Public</span></td>
+<td>Get the &quot;high&quot; part of this Id64.</td>
 </tr>
 <tr>
-<td><a href="getLow">getLow</a> ( ): number <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="getlow">getLow</a> ( ): number <span class="badge badge-pill badge-primary">Public</span></td>
 <td>get the &quot;low&quot; part of this Id64.</td>
 </tr>
 <tr>
-<td><a href="isValid">isValid</a> ( ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
-<td>Determine whether this Id is valid</td>
+<td><a href="isvalid">isValid</a> ( ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
+<td>Determine whether this Id64 is valid.</td>
 </tr>
 <tr>
-<td><a href="toJSON">toJSON</a> ( ): string <span class="badge badge-pill badge-primary">Protected</span></td>
+<td><a href="tojson">toJSON</a> ( ): string <span class="badge badge-pill badge-primary">Protected</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="toString">toString</a> ( ): string <span class="badge badge-pill badge-primary">Public</span></td>
-<td>convert this Id to a string</td>
+<td><a href="tostring">toString</a> ( ): string <span class="badge badge-pill badge-primary">Public</span></td>
+<td>Convert this Id64 to a string</td>
 </tr>
 <tr>
-<td><a href="areEqual">areEqual</a> ( a: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/ids/id64'>Id64</a>, b: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/ids/id64'>Id64</a> ): boolean <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
-<td></td>
+<td><a href="areequal">areEqual</a> ( a: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/ids/id64'>Id64</a>, b: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/ids/id64'>Id64</a> ): boolean <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td>Compare two (potentially undefined) Id64 values.</td>
 </tr>
 <tr>
-<td><a href="fromJSON">fromJSON</a> ( val: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/ids/id64props'>Id64Props</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/ids/id64'>Id64</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
-<td>create an Id64 from a json object.</td>
+<td><a href="fromjson">fromJSON</a> ( val: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/ids/id64props'>Id64Props</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/ids/id64'>Id64</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td>Create an Id64 from a json object.</td>
 </tr>
 <tr>
-<td><a href="toIdSet">toIdSet</a> ( arg: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/ids/id64arg'>Id64Arg</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/ids/id64set'>Id64Set</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="toidset">toIdSet</a> ( arg: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/ids/id64arg'>Id64Arg</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/ids/id64set'>Id64Set</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td>Convert an Id64Arg into an Id64Set.</td>
 </tr>
 </tbody></table><h3><a id="properties" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Properties</h3>
 <p> <section class ="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static" ></p>
@@ -135,7 +136,7 @@ A 64 bit id, stored as a hex string. If invalid, value will be &quot;0&quot; </s
 <p> </section></p>
 
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>08 May, 2018 @ 02:19:00 pm -04:00</span>
+                        <span class='date-updated'>09 May, 2018 @ 04:22:39 pm +00:00</span>
                     </p>
     
                    

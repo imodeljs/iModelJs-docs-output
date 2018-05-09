@@ -43,7 +43,7 @@
                         </div>
                         <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
                             <nav class="navbar navbar-expand-md navbar-light">
-                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
+                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
                             </nav>
                         </div>                </nav>
             
@@ -78,6 +78,10 @@
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
                     <h2><a id="betimepoint" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>BeTimePoint <span class="badge badge-pill badge-primary">Class</span></h2>
+<p> <section class="tsd-panel tsd-comment">
+A specific point in time relative to the current time.
+BeTimePoints are used for timing operations. They are created from a BeDuration relative to the &quot;now&quot;.
+BeTimePoints are immutable. </section></p>
 <h3><a id="methods" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Methods</h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -85,42 +89,39 @@
 </tr>
 <tr>
 <td><a href="after">after</a> ( other: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/utils/betimepoint'>BeTimePoint</a> ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
-<td></td>
+<td>Determine whether this BeTimePoint happens after another one.</td>
 </tr>
 <tr>
 <td><a href="before">before</a> ( other: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/utils/betimepoint'>BeTimePoint</a> ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
-<td></td>
+<td>Determine whether this BeTimePoint happens before another one.</td>
 </tr>
 <tr>
-<td><a href="isInFuture">isInFuture</a> ( ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
-<td>return true if this BeTimePoint is a valid time in the future from the time this method is called (it calls now()!)</td>
+<td><a href="isinfuture">isInFuture</a> ( ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
+<td>Determine whether this BeTimePoint is a time in the future from the time this method is called (it calls now()!)</td>
 </tr>
 <tr>
-<td><a href="isInPast">isInPast</a> ( ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
-<td>return true if this BeTimePoint was a valid time that has past before the time this method is called (it calls now()!)</td>
-</tr>
-<tr>
-<td><a href="isValid">isValid</a> ( ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
-<td>Determine whether this BeTimePoint is valid (non-zero)</td>
+<td><a href="isinpast">isInPast</a> ( ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
+<td>Determine whether this BeTimePoint is a time that has already passed before the time this method is called (it calls now()!)</td>
 </tr>
 <tr>
 <td><a href="minus">minus</a> ( duration: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/utils/beduration'>BeDuration</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/utils/betimepoint'>BeTimePoint</a> <span class="badge badge-pill badge-primary">Public</span></td>
-<td></td>
+<td>Subtract a BeDuration from this BeTimePoint, returning a new BeTimePoint.</td>
 </tr>
 <tr>
 <td><a href="plus">plus</a> ( duration: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/utils/beduration'>BeDuration</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/utils/betimepoint'>BeTimePoint</a> <span class="badge badge-pill badge-primary">Public</span></td>
-<td></td>
+<td>Subtract a BeDuration from this BeTimePoint, returning a new BeTimePoint.</td>
 </tr>
 <tr>
-<td><a href="beforeNow">beforeNow</a> ( val: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/utils/beduration'>BeDuration</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/utils/betimepoint'>BeTimePoint</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
-<td>Get a BeTimePoint at a specified duration in the past before now</td>
+<td><a href="beforenow">beforeNow</a> ( val: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/utils/beduration'>BeDuration</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/utils/betimepoint'>BeTimePoint</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td>Create a BeTimePoint at a specified duration in the past before now</td>
 </tr>
 <tr>
-<td><a href="fromNow">fromNow</a> ( val: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/utils/beduration'>BeDuration</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/utils/betimepoint'>BeTimePoint</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
-<td>Get a BeTimePoint at a specified duration in the future from now</td>
+<td><a href="fromnow">fromNow</a> ( val: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/utils/beduration'>BeDuration</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/utils/betimepoint'>BeTimePoint</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td>Create a BeTimePoint at a specified duration in the future from now</td>
 </tr>
 <tr>
 <td><a href="now">now</a> ( ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/utils/betimepoint'>BeTimePoint</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td>Create a BeTimePoint from Date.now()</td>
 </tr>
 </tbody></table><h3><a id="accessors" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Accessors</h3>
 <table class="table table-responsive"><tbody><tr>
@@ -129,10 +130,11 @@
 </tr>
 <tr>
 <td>milliseconds: number <span class="badge badge-pill badge-primary">Public</span></td>
+<td>the time in milliseconds, of this BeTimePoint (relative to January 1, 1970 00:00:00 UTC.)</td>
 </tr>
 </tbody></table>
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>08 May, 2018 @ 02:19:00 pm -04:00</span>
+                        <span class='date-updated'>09 May, 2018 @ 04:22:39 pm +00:00</span>
                     </p>
     
                    

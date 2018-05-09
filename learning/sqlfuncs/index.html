@@ -43,7 +43,7 @@
                         </div>
                         <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
                             <nav class="navbar navbar-expand-md navbar-light">
-                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
+                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
                             </nav>
                         </div>                </nav>
             
@@ -258,7 +258,32 @@ iModel_bbox bbox;      // Element-aligned bounding box
 <td>a iModel_angles object</td>
 </tr>
 </tbody></table><p><em>Example:</em></p>
-<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript"><span class="token punctuation">[</span><span class="token punctuation">[</span>File not found<span class="token punctuation">:</span> EcsqlGeometryFunctions<span class="token punctuation">.</span>iModel_bbox_union<span class="token punctuation">]</span><span class="token punctuation">]</span>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">    <span class="token comment">// This is an example of accumlating the union of bounding boxes.</span>
+    <span class="token keyword">const</span> bboxUnionStmtECSQL <span class="token operator">=</span> <span class="token template-string"><span class="token string">`
+      SELECT
+        iModel_bbox_union(
+          iModel_placement_aabb(
+            iModel_placement(
+              iModel_point(g.Origin.X, g.Origin.Y, g.Origin.Z),
+              iModel_angles(g.Yaw, g.Pitch, g.Roll),
+              iModel_bbox(g.BBoxLow.X, g.BBoxLow.Y, g.BBoxLow.Z, g.BBoxHigh.X, g.BBoxHigh.Y, g.BBoxHigh.Z)
+            )
+          )
+        )
+      FROM </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>Element<span class="token punctuation">.</span>classFullName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> AS e, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>GeometricElement3d<span class="token punctuation">.</span>classFullName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> AS g
+        WHERE e.model.id=? AND e.ecinstanceid=g.ecinstanceid
+    `</span></span><span class="token punctuation">;</span>
+
+    <span class="token keyword">const</span> rangeSum<span class="token punctuation">:</span> Range3dProps <span class="token operator">=</span> iModel<span class="token punctuation">.</span><span class="token function">withPreparedStatement</span><span class="token punctuation">(</span>bboxUnionStmtECSQL<span class="token punctuation">,</span>
+      <span class="token punctuation">(</span>stmt<span class="token punctuation">:</span> ECSqlStatement<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        stmt<span class="token punctuation">.</span><span class="token function">bindId</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> modelId<span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>stmt<span class="token punctuation">.</span><span class="token function">step</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!==</span> DbResult<span class="token punctuation">.</span><span class="token constant">BE_SQLITE_ROW</span><span class="token punctuation">)</span>
+          <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token keyword">as</span> Range3dProps<span class="token punctuation">;</span>
+        <span class="token comment">// Note that the the ECSQL value is a blob. Its data must be extracted and interpreted as a Range3d.</span>
+        <span class="token keyword">return</span> Range3d<span class="token punctuation">.</span><span class="token function">fromArrayBuffer</span><span class="token punctuation">(</span>stmt<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBlob</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">reportRange</span><span class="token punctuation">(</span>rangeSum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
 </code></pre>
 <hr>
 <h2><a id="imodel_angles_value" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModel_angles_value</h2>
@@ -362,7 +387,32 @@ iModel_bbox bbox;      // Element-aligned bounding box
 <td>a iModel_bbox object</td>
 </tr>
 </tbody></table><p><em>Example:</em></p>
-<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript"><span class="token punctuation">[</span><span class="token punctuation">[</span>File not found<span class="token punctuation">:</span> EcsqlGeometryFunctions<span class="token punctuation">.</span>iModel_bbox_union<span class="token punctuation">]</span><span class="token punctuation">]</span>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">    <span class="token comment">// This is an example of accumlating the union of bounding boxes.</span>
+    <span class="token keyword">const</span> bboxUnionStmtECSQL <span class="token operator">=</span> <span class="token template-string"><span class="token string">`
+      SELECT
+        iModel_bbox_union(
+          iModel_placement_aabb(
+            iModel_placement(
+              iModel_point(g.Origin.X, g.Origin.Y, g.Origin.Z),
+              iModel_angles(g.Yaw, g.Pitch, g.Roll),
+              iModel_bbox(g.BBoxLow.X, g.BBoxLow.Y, g.BBoxLow.Z, g.BBoxHigh.X, g.BBoxHigh.Y, g.BBoxHigh.Z)
+            )
+          )
+        )
+      FROM </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>Element<span class="token punctuation">.</span>classFullName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> AS e, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>GeometricElement3d<span class="token punctuation">.</span>classFullName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> AS g
+        WHERE e.model.id=? AND e.ecinstanceid=g.ecinstanceid
+    `</span></span><span class="token punctuation">;</span>
+
+    <span class="token keyword">const</span> rangeSum<span class="token punctuation">:</span> Range3dProps <span class="token operator">=</span> iModel<span class="token punctuation">.</span><span class="token function">withPreparedStatement</span><span class="token punctuation">(</span>bboxUnionStmtECSQL<span class="token punctuation">,</span>
+      <span class="token punctuation">(</span>stmt<span class="token punctuation">:</span> ECSqlStatement<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        stmt<span class="token punctuation">.</span><span class="token function">bindId</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> modelId<span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>stmt<span class="token punctuation">.</span><span class="token function">step</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!==</span> DbResult<span class="token punctuation">.</span><span class="token constant">BE_SQLITE_ROW</span><span class="token punctuation">)</span>
+          <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token keyword">as</span> Range3dProps<span class="token punctuation">;</span>
+        <span class="token comment">// Note that the the ECSQL value is a blob. Its data must be extracted and interpreted as a Range3d.</span>
+        <span class="token keyword">return</span> Range3d<span class="token punctuation">.</span><span class="token function">fromArrayBuffer</span><span class="token punctuation">(</span>stmt<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBlob</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">reportRange</span><span class="token punctuation">(</span>rangeSum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
 </code></pre>
 <hr>
 <h2><a id="imodel_bbox_width" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModel_bbox_width</h2>
@@ -479,7 +529,31 @@ iModel_bbox bbox;      // Element-aligned bounding box
 </tr>
 </tbody></table><p>@see  <a href="#iModel_bbox_volume">iModel_bbox_volume</a>,  <a href="#iModel_bbox_depth">iModel_bbox_depth</a>, <a href="#iModel_bbox_width">iModel_bbox_width</a></p>
 <p><em>Example:</em></p>
-<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript"><span class="token punctuation">[</span><span class="token punctuation">[</span>File not found<span class="token punctuation">:</span> EcsqlGeometryFunctions<span class="token punctuation">.</span>iModel_bbox_areaxy<span class="token punctuation">]</span><span class="token punctuation">]</span>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">    <span class="token comment">// Compute the largest element area in the X-Y plane.</span>
+    <span class="token keyword">let</span> maxArea<span class="token punctuation">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    iModel<span class="token punctuation">.</span><span class="token function">withPreparedStatement</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`SELECT iModel_bbox_areaxy(iModel_bbox(BBoxLow.X,BBoxLow.Y,BBoxLow.Z,BBoxHigh.X,BBoxHigh.Y,BBoxHigh.Z)) FROM </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>GeometricElement3d<span class="token punctuation">.</span>classFullName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">,</span>
+      <span class="token punctuation">(</span>stmt<span class="token punctuation">:</span> ECSqlStatement<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>stmt<span class="token punctuation">.</span><span class="token function">step</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> DbResult<span class="token punctuation">.</span><span class="token constant">BE_SQLITE_ROW</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">const</span> thisArea<span class="token punctuation">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> stmt<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDouble</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>thisArea <span class="token operator">&gt;</span> maxArea<span class="token punctuation">)</span>
+            maxArea <span class="token operator">=</span> thisArea<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Report the result</span>
+    <span class="token function">reportArea</span><span class="token punctuation">(</span>maxArea<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Use the standard SUM operator to accumulate the results of the iModel_bbox_areaxy function. This shows that</span>
+    <span class="token comment">// ECSQL treats the built-in geometry functions as normal expressions.</span>
+    <span class="token keyword">const</span> areaSum<span class="token punctuation">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> iModel<span class="token punctuation">.</span><span class="token function">withPreparedStatement</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`SELECT SUM(iModel_bbox_areaxy(iModel_bbox(BBoxLow.X,BBoxLow.Y,BBoxLow.Z,BBoxHigh.X,BBoxHigh.Y,BBoxHigh.Z))) FROM </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>GeometricElement3d<span class="token punctuation">.</span>classFullName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">,</span>
+      <span class="token punctuation">(</span>stmt<span class="token punctuation">:</span> ECSqlStatement<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>stmt<span class="token punctuation">.</span><span class="token function">step</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!==</span> DbResult<span class="token punctuation">.</span><span class="token constant">BE_SQLITE_ROW</span><span class="token punctuation">)</span>
+          <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// ?</span>
+        <span class="token keyword">return</span> stmt<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDouble</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Report the result</span>
+    <span class="token function">reportArea</span><span class="token punctuation">(</span>areaSum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
 </code></pre>
 <hr>
 <h2><a id="imodel_bbox_overlaps" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModel_bbox_overlaps</h2>
@@ -586,7 +660,32 @@ iModel_bbox bbox;      // Element-aligned bounding box
 <td>a bounding box that contains the aggregated range.</td>
 </tr>
 </tbody></table><p><em>Example:</em></p>
-<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript"><span class="token punctuation">[</span><span class="token punctuation">[</span>File not found<span class="token punctuation">:</span> EcsqlGeometryFunctions<span class="token punctuation">.</span>iModel_bbox_union<span class="token punctuation">]</span><span class="token punctuation">]</span>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">    <span class="token comment">// This is an example of accumlating the union of bounding boxes.</span>
+    <span class="token keyword">const</span> bboxUnionStmtECSQL <span class="token operator">=</span> <span class="token template-string"><span class="token string">`
+      SELECT
+        iModel_bbox_union(
+          iModel_placement_aabb(
+            iModel_placement(
+              iModel_point(g.Origin.X, g.Origin.Y, g.Origin.Z),
+              iModel_angles(g.Yaw, g.Pitch, g.Roll),
+              iModel_bbox(g.BBoxLow.X, g.BBoxLow.Y, g.BBoxLow.Z, g.BBoxHigh.X, g.BBoxHigh.Y, g.BBoxHigh.Z)
+            )
+          )
+        )
+      FROM </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>Element<span class="token punctuation">.</span>classFullName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> AS e, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>GeometricElement3d<span class="token punctuation">.</span>classFullName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> AS g
+        WHERE e.model.id=? AND e.ecinstanceid=g.ecinstanceid
+    `</span></span><span class="token punctuation">;</span>
+
+    <span class="token keyword">const</span> rangeSum<span class="token punctuation">:</span> Range3dProps <span class="token operator">=</span> iModel<span class="token punctuation">.</span><span class="token function">withPreparedStatement</span><span class="token punctuation">(</span>bboxUnionStmtECSQL<span class="token punctuation">,</span>
+      <span class="token punctuation">(</span>stmt<span class="token punctuation">:</span> ECSqlStatement<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        stmt<span class="token punctuation">.</span><span class="token function">bindId</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> modelId<span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>stmt<span class="token punctuation">.</span><span class="token function">step</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!==</span> DbResult<span class="token punctuation">.</span><span class="token constant">BE_SQLITE_ROW</span><span class="token punctuation">)</span>
+          <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token keyword">as</span> Range3dProps<span class="token punctuation">;</span>
+        <span class="token comment">// Note that the the ECSQL value is a blob. Its data must be extracted and interpreted as a Range3d.</span>
+        <span class="token keyword">return</span> Range3d<span class="token punctuation">.</span><span class="token function">fromArrayBuffer</span><span class="token punctuation">(</span>stmt<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBlob</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">reportRange</span><span class="token punctuation">(</span>rangeSum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
 </code></pre>
 <hr>
 <h2><a id="imodel_point_distance" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModel_point_distance</h2>
@@ -703,7 +802,7 @@ iModel_bbox bbox;      // Element-aligned bounding box
 </code></pre>
 
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>08 May, 2018 @ 02:20:00 pm -04:00</span>
+                        <span class='date-updated'>09 May, 2018 @ 04:23:16 pm +00:00</span>
                     </p>
     
                    

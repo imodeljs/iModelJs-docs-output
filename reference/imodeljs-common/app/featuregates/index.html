@@ -43,7 +43,7 @@
                         </div>
                         <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
                             <nav class="navbar navbar-expand-md navbar-light">
-                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
+                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
                             </nav>
                         </div>                </nav>
             
@@ -114,7 +114,7 @@ That allows a deployment mechanism to supply the values for configuration parame
 the service.</p>
 <p>A service then checks its feature gates in its methods.</p>
 <p></p><p><em>Example:</em></p>
-<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">  <span class="token comment">// An experimental method. It&apos;s in the release build, but only turned on in some deployments.</span>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">  <span class="token comment">// An experimental method. It is in the release build, but only turned on in some deployments.</span>
   <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token function">fuseRobots</span><span class="token punctuation">(</span>iModelDb<span class="token punctuation">:</span> IModelDb<span class="token punctuation">,</span> r1Id<span class="token punctuation">:</span> Id64<span class="token punctuation">,</span> r2Id<span class="token punctuation">:</span> Id64<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>RobotWorldEngine<span class="token punctuation">.</span>features<span class="token punctuation">.</span><span class="token function">check</span><span class="token punctuation">(</span><span class="token string">&quot;experimentalMethods&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
       <span class="token keyword">return</span><span class="token punctuation">;</span>
@@ -122,10 +122,10 @@ the service.</p>
     <span class="token comment">// Create an assembly with r1 and r2 as the children and a new (hidden) element as the head.</span>
     <span class="token keyword">const</span> r1 <span class="token operator">=</span> iModelDb<span class="token punctuation">.</span>elements<span class="token punctuation">.</span><span class="token function">getElement</span><span class="token punctuation">(</span>r1Id<span class="token punctuation">)</span> <span class="token keyword">as</span> Robot<span class="token punctuation">;</span>
     <span class="token keyword">const</span> r2 <span class="token operator">=</span> iModelDb<span class="token punctuation">.</span>elements<span class="token punctuation">.</span><span class="token function">getElement</span><span class="token punctuation">(</span>r2Id<span class="token punctuation">)</span> <span class="token keyword">as</span> Robot<span class="token punctuation">;</span>
-    <span class="token keyword">const</span> parent <span class="token operator">=</span> iModelDb<span class="token punctuation">.</span>elements<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token punctuation">{</span>classFullName<span class="token punctuation">:</span> InformationRecordElement<span class="token punctuation">.</span>classFullName<span class="token punctuation">,</span> model<span class="token punctuation">:</span> r1<span class="token punctuation">.</span>model<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> parent <span class="token operator">=</span> iModelDb<span class="token punctuation">.</span>elements<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token punctuation">{</span> classFullName<span class="token punctuation">:</span> InformationRecordElement<span class="token punctuation">.</span>classFullName<span class="token punctuation">,</span> model<span class="token punctuation">:</span> r1<span class="token punctuation">.</span>model <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">const</span> parentId <span class="token operator">=</span> iModelDb<span class="token punctuation">.</span>elements<span class="token punctuation">.</span><span class="token function">insertElement</span><span class="token punctuation">(</span>parent<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    r1<span class="token punctuation">.</span>parent <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RelatedElement</span><span class="token punctuation">(</span><span class="token punctuation">{</span>id<span class="token punctuation">:</span> parentId<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    r2<span class="token punctuation">.</span>parent <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RelatedElement</span><span class="token punctuation">(</span><span class="token punctuation">{</span>id<span class="token punctuation">:</span> parentId<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    r1<span class="token punctuation">.</span>parent <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RelatedElement</span><span class="token punctuation">(</span><span class="token punctuation">{</span> id<span class="token punctuation">:</span> parentId <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    r2<span class="token punctuation">.</span>parent <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RelatedElement</span><span class="token punctuation">(</span><span class="token punctuation">{</span> id<span class="token punctuation">:</span> parentId <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     iModelDb<span class="token punctuation">.</span>elements<span class="token punctuation">.</span><span class="token function">updateElement</span><span class="token punctuation">(</span>r1<span class="token punctuation">)</span><span class="token punctuation">;</span>
     iModelDb<span class="token punctuation">.</span>elements<span class="token punctuation">.</span><span class="token function">updateElement</span><span class="token punctuation">(</span>r2<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
@@ -141,12 +141,12 @@ the service.</p>
 <td>Get the value of a potentially gated feature.</td>
 </tr>
 <tr>
-<td><a href="setGate">setGate</a> ( feature: string, val: any ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="setgate">setGate</a> ( feature: string, val: any ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Gate access to a feature.</td>
 </tr>
 </tbody></table>
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>08 May, 2018 @ 02:19:32 pm -04:00</span>
+                        <span class='date-updated'>09 May, 2018 @ 04:23:08 pm +00:00</span>
                     </p>
     
                    

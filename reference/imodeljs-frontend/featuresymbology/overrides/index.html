@@ -43,7 +43,7 @@
                         </div>
                         <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
                             <nav class="navbar navbar-expand-md navbar-light">
-                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
+                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
                             </nav>
                         </div>                </nav>
             
@@ -88,61 +88,161 @@
 <td></td>
 </tr>
 <tr>
-<td><a href="initFromView">initFromView</a> ( view: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewstate/viewstate'>ViewState</a> ): Promise <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="clearalwaysdrawn">clearAlwaysDrawn</a> ( id: Id64 ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="setDefaultOverrides">setDefaultOverrides</a> ( appearance: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/featuresymbology/appearance'>Appearance</a>, replaceExisting: boolean = true ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="clearelementoverrides">clearElementOverrides</a> ( id: Id64 ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="updateFromIModel">updateFromIModel</a> ( _iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a> ): Promise <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="clearmodeloverrides">clearModelOverrides</a> ( id: Id64 ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="clearneverdrawn">clearNeverDrawn</a> ( id: Id64 ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="clearsubcategoryoverrides">clearSubCategoryOverrides</a> ( id: Id64 ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="clearvisiblesubcategory">clearVisibleSubCategory</a> ( id: Id64 ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="copyalwaysdrawn">copyAlwaysDrawn</a> ( always: Id64Set ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="copyneverdrawn">copyNeverDrawn</a> ( never: Id64Set ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="getappearance">getAppearance</a> ( app: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/featuresymbology/appearance'>Appearance</a>, feature: Feature, id: Id64 ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
+<td>Returns false if the feature is invisible.</td>
+</tr>
+<tr>
+<td><a href="getelementoverrides">getElementOverrides</a> ( id: Id64 ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/featuresymbology/appearance'>Appearance</a>|undefined <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="getmodeloverrides">getModelOverrides</a> ( id: Id64 ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/featuresymbology/appearance'>Appearance</a>|undefined <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="getsubcategoryoverrides">getSubCategoryOverrides</a> ( id: Id64 ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/featuresymbology/appearance'>Appearance</a>|undefined <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="initfromview">initFromView</a> ( view: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewstate/viewstate'>ViewState</a> ): Promise <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="isalwaysdrawn">isAlwaysDrawn</a> ( id: Id64 ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="isclassvisible">isClassVisible</a> ( geomClass: GeometryClass ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="isfeaturevisible">isFeatureVisible</a> ( feature: Feature ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="isneverdrawn">isNeverDrawn</a> ( id: Id64 ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="issubcategoryvisible">isSubCategoryVisible</a> ( id: Id64 ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="overrideelement">overrideElement</a> ( id: Id64, app: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/featuresymbology/appearance'>Appearance</a>, replaceExisting: boolean = true ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="overridemodel">overrideModel</a> ( id: Id64, app: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/featuresymbology/appearance'>Appearance</a>, replaceExisting: boolean = true ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="overridesubcategory">overrideSubCategory</a> ( id: Id64, app: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/featuresymbology/appearance'>Appearance</a>, replaceExisting: boolean = true ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="setalwaysdrawn">setAlwaysDrawn</a> ( id: Id64 ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="setalwaysdrawnexclusive">setAlwaysDrawnExclusive</a> ( exclusive: boolean = true ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="setdefaultoverrides">setDefaultOverrides</a> ( appearance: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/featuresymbology/appearance'>Appearance</a>, replaceExisting: boolean = true ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="setelementoverrides">setElementOverrides</a> ( id: Id64, app: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/featuresymbology/appearance'>Appearance</a> ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="setmodeloverrides">setModelOverrides</a> ( id: Id64, app: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/featuresymbology/appearance'>Appearance</a> ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="setneverdrawn">setNeverDrawn</a> ( id: Id64 ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="setsubcategoryoverrides">setSubCategoryOverrides</a> ( id: Id64, app: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/featuresymbology/appearance'>Appearance</a> ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="setvisiblesubcategory">setVisibleSubCategory</a> ( id: Id64 ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="updatefromimodel">updateFromIModel</a> ( _iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a> ): Promise <span class="badge badge-pill badge-primary">Public</span></td>
 <td>#TODO</td>
+</tr>
+</tbody></table><h3><a id="accessors" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Accessors</h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>alwaysDrawn: Id64Set <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td>defaultOverrides: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/featuresymbology/appearance'>Appearance</a> <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td>isAlwaysDrawnExclusive: boolean <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td>lineWeights: boolean <span class="badge badge-pill badge-primary">Public</span></td>
+<td></td>
+</tr>
+<tr>
+<td>neverDrawn: Id64Set <span class="badge badge-pill badge-primary">Public</span></td>
 </tr>
 </tbody></table><h3><a id="properties" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Properties</h3>
 <p> <section class ="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static" ></p>
-<h4><a id="alwaysdrawn" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>alwaysDrawn</h4>
-<p>alwaysDrawn: Id64Set</p>
-<p> </section>
- <section class ="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static" ></p>
-<h4><a id="alwaysdrawnexclusive" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>alwaysDrawnExclusive</h4>
-<p>alwaysDrawnExclusive: boolean = false</p>
-<p> </section>
- <section class ="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static" ></p>
-<h4><a id="constructions" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>constructions</h4>
-<p>constructions: boolean = false</p>
-<p> </section>
- <section class ="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static" ></p>
-<h4><a id="defaultoverrides" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>defaultOverrides</h4>
-<p>defaultOverrides: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/featuresymbology/appearance'>Appearance</a> =  new Appearance()</p>
-<p> </section>
- <section class ="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static" ></p>
-<h4><a id="dimensions" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>dimensions</h4>
-<p>dimensions: boolean = false</p>
-<p> </section>
- <section class ="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static" ></p>
 <h4><a id="elementoverrides" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>elementOverrides</h4>
 <p>elementOverrides: Map =  new Map&lt;string, Appearance&gt;()</p>
-<p> </section>
- <section class ="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static" ></p>
-<h4><a id="lineweights" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>lineWeights</h4>
-<p>lineWeights: boolean = true</p>
 <p> </section>
  <section class ="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static" ></p>
 <h4><a id="modeloverrides" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>modelOverrides</h4>
 <p>modelOverrides: Map =  new Map&lt;string, Appearance&gt;()</p>
 <p> </section>
  <section class ="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static" ></p>
-<h4><a id="neverdrawn" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>neverDrawn</h4>
-<p>neverDrawn: Id64Set</p>
-<p> </section>
- <section class ="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static" ></p>
-<h4><a id="patterns" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>patterns</h4>
-<p>patterns: boolean = false</p>
-<p> </section>
- <section class ="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static" ></p>
-<h4><a id="subcategoryoverrides" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>subcategoryOverrides</h4>
-<p>subcategoryOverrides: Map =  new Map&lt;string, Appearance&gt;()</p>
+<h4><a id="subcategoryoverrides" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>subCategoryOverrides</h4>
+<p>subCategoryOverrides: Map =  new Map&lt;string, Appearance&gt;()</p>
 <p> </section>
  <section class ="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static" ></p>
 <h4><a id="visiblesubcategories" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>visibleSubCategories</h4>
@@ -150,7 +250,7 @@
 <p> </section></p>
 
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>08 May, 2018 @ 02:19:47 pm -04:00</span>
+                        <span class='date-updated'>09 May, 2018 @ 04:22:53 pm +00:00</span>
                     </p>
     
                    
@@ -181,43 +281,22 @@
                                     <a class='title solo-title menu-text' href="#methods">Methods</a>
                             </li>
                             <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#accessors">Accessors</a>
+                            </li>
+                            <li class='nav-item item '>
                                     <a data-target="#inner-nav-properties" class='title' href="#properties"/>
                                     <b class='dropdown-menu-title menu-text'>Properties</b>
                                     <i class='dropdown icon'></i>
                                     </a>
                                     <ul id="inner-nav-properties" class='inner-nav'>
                                         <li class='nav-item item '>
-                                                <a class='title solo-title menu-text' href="#alwaysdrawn">alwaysDrawn</a>
-                                        </li>
-                                        <li class='nav-item item '>
-                                                <a class='title solo-title menu-text' href="#alwaysdrawnexclusive">alwaysDrawnExclusive</a>
-                                        </li>
-                                        <li class='nav-item item '>
-                                                <a class='title solo-title menu-text' href="#constructions">constructions</a>
-                                        </li>
-                                        <li class='nav-item item '>
-                                                <a class='title solo-title menu-text' href="#defaultoverrides">defaultOverrides</a>
-                                        </li>
-                                        <li class='nav-item item '>
-                                                <a class='title solo-title menu-text' href="#dimensions">dimensions</a>
-                                        </li>
-                                        <li class='nav-item item '>
                                                 <a class='title solo-title menu-text' href="#elementoverrides">elementOverrides</a>
-                                        </li>
-                                        <li class='nav-item item '>
-                                                <a class='title solo-title menu-text' href="#lineweights">lineWeights</a>
                                         </li>
                                         <li class='nav-item item '>
                                                 <a class='title solo-title menu-text' href="#modeloverrides">modelOverrides</a>
                                         </li>
                                         <li class='nav-item item '>
-                                                <a class='title solo-title menu-text' href="#neverdrawn">neverDrawn</a>
-                                        </li>
-                                        <li class='nav-item item '>
-                                                <a class='title solo-title menu-text' href="#patterns">patterns</a>
-                                        </li>
-                                        <li class='nav-item item '>
-                                                <a class='title solo-title menu-text' href="#subcategoryoverrides">subcategoryOverrides</a>
+                                                <a class='title solo-title menu-text' href="#subcategoryoverrides">subCategoryOverrides</a>
                                         </li>
                                         <li class='nav-item item '>
                                                 <a class='title solo-title menu-text' href="#visiblesubcategories">visibleSubCategories</a>

@@ -43,7 +43,7 @@
                         </div>
                         <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
                             <nav class="navbar navbar-expand-md navbar-light">
-                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
+                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
                             </nav>
                         </div>                </nav>
             
@@ -78,97 +78,30 @@
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
                     <h1 id="logging">Logging</h1>
-<p>Logging allows packages and apps to report potentially useful information about operations, and it allows apps and users to control
-how or if the logged information is displayed or collected. Logging information is primarily used to diagnose problems after the fact.
-Logging may also be used to monitor on overally application health.</p>
-<p>Packages and apps use the <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/logger'>Logger</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/loglevel'>LogLevel</a> classes to report logging messages. <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/errors/bentleyerror'>BentleyError</a> is also integrated with logging.</p>
-<p>Apps can configure logging at run time to filter out unwanted logging messages, in order to produce only the information that is needed.
-<a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/logger/setlevel'>Logger.setLevel</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/logger/configurelevels'>Logger.configureLevels</a> are used for this configuration.
-Apps also direct logging output to desired outlets, such as files and log servers.
-<a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/logger/initialize'>Logger.initialize</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/bunyanloggerconfig'>BunyanLoggerConfig</a>, and <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/seqloggerconfig'>SeqLoggerConfig</a> are used to direct logging output.</p>
-<p>Logging is typically used by services and agents, which have no user interface. Logging allows the service operations
-to be monitored from outside of the process. A service typically initializes and configures logging in its startup logic.</p>
-<p>Configuration can be based on the configuration parameters of the service, which may be set by the deployment mechanism.</p>
-<p></p><p><em>Example:</em></p>
-<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Logger<span class="token punctuation">,</span> LoggerLevelsConfig<span class="token punctuation">,</span> EnvMacroSubst<span class="token punctuation">,</span> BentleyError<span class="token punctuation">,</span> IModelStatus <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/bentleyjs-core&quot;</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> BunyanLoggerConfig <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/bentleyjs-core/lib/BunyanLoggerConfig&quot;</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> SeqLoggerConfig<span class="token punctuation">,</span> SeqConfig <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/bentleyjs-core/lib/SeqLoggerConfig&quot;</span><span class="token punctuation">;</span>
-
-<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">initializeLogging</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
-  <span class="token comment">// Read the configuration parameters for my service. Some config</span>
-  <span class="token comment">// params might be specified as envvars.</span>
-  <span class="token keyword">const</span> config <span class="token operator">=</span> <span class="token keyword">require</span><span class="token punctuation">(</span><span class="token string">&quot;./MyService.config.json&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token keyword">const</span> defaultConfigValues<span class="token punctuation">:</span> <span class="token builtin">any</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
-    <span class="token string">&quot;RobotWorld-DEFAULT-LOG-LEVEL&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;Error&quot;</span><span class="token punctuation">,</span>
-    <span class="token string">&quot;RobotWorld-SEQ-URL&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;http://localhost&quot;</span><span class="token punctuation">,</span>
-    <span class="token string">&quot;RobotWorld-SEQ-PORT&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;5341&quot;</span><span class="token punctuation">,</span>
-  <span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-  EnvMacroSubst<span class="token punctuation">.</span><span class="token function">replaceInProperties</span><span class="token punctuation">(</span>config<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> defaultConfigValues<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>EnvMacroSubst<span class="token punctuation">.</span><span class="token function">anyPropertyContainsEnvvars</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>seq<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">BentleyError</span><span class="token punctuation">(</span>IModelStatus<span class="token punctuation">.</span>NotFound<span class="token punctuation">,</span> <span class="token string">&quot;Unmatched environment variables in configuration.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-
-  <span class="token comment">// Set up to log to the seq service</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">&quot;seq&quot;</span> <span class="token keyword">in</span> config<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>SeqLoggerConfig<span class="token punctuation">.</span><span class="token function">validateProps</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>seq<span class="token punctuation">)</span><span class="token punctuation">)</span>
-      BunyanLoggerConfig<span class="token punctuation">.</span><span class="token function">logToBunyan</span><span class="token punctuation">(</span>SeqLoggerConfig<span class="token punctuation">.</span><span class="token function">createBunyanSeqLogger</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>seq <span class="token keyword">as</span> SeqConfig<span class="token punctuation">,</span> <span class="token string">&quot;RobotWorld&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-
-  <span class="token comment">// Configure log levels by category</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">&quot;loggerConfig&quot;</span> <span class="token keyword">in</span> config<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>Logger<span class="token punctuation">.</span><span class="token function">validateProps</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>loggerConfig<span class="token punctuation">)</span><span class="token punctuation">)</span>
-      Logger<span class="token punctuation">.</span><span class="token function">configureLevels</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>loggerConfig <span class="token keyword">as</span> LoggerLevelsConfig<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>An example of the logging portion of a configuration .json file that is deployed with a service might be:</p>
-<pre class="no-line-numbers language-json line-numbers"><code class="language-json"><span class="token punctuation">{</span>
-<span class="token property">&quot;loggerConfig&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-<span class="token property">&quot;defaultLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;${ROBOT-WORLD-DEFAULT-LOG-LEVEL}&quot;</span><span class="token punctuation">,</span>
-<span class="token property">&quot;categoryLevels&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-<span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ROBOT-WORLD&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Trace&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;imodeljs-gateway.BentleyCloudGatewayProtocol&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Trace&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;imodeljs-gateway.GatewayHttpProtocol&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Trace&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;imodeljs-gateway&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Trace&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;imodeljs-backend.AutoPush&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Trace&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ECPresentation&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;None&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Diagnostics.ECSqlStatement&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;None&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ECObjectsNative&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;None&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;UnitsNative&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;None&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BeSQLite&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;None&quot;</span><span class="token punctuation">}</span>
-<span class="token punctuation">]</span>
-<span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token property">&quot;seq&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-<span class="token property">&quot;hostURL&quot;</span><span class="token operator">:</span> <span class="token string">&quot;${ROBOT-WORLD-SEQ-URL}&quot;</span><span class="token punctuation">,</span>
-<span class="token property">&quot;port&quot;</span><span class="token operator">:</span> <span class="token string">&quot;${ROBOT-WORLD-SEQ-PORT}&quot;</span>
-<span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<p>Classes for configuring and logging diagnostic messages. For more information, see <a href='https://imodeljs.github.io/iModelJs-docs-output/./learning/logging'>Logging</a></p>
 <h2><a id="classes" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Classes</h2>
 <table class="table table-responsive"><tbody><tr>
 <th>Title</th>
 <th>Description</th>
 </tr>
 <tr>
-<td><a href="BunyanLoggerConfig">BunyanLoggerConfig</a></td>
+<td><a href="bunyanloggerconfig">BunyanLoggerConfig</a></td>
 <td>Helps to configure the bentleyjs-core Logger to use bunyan.</td>
 </tr>
 <tr>
-<td><a href="EnvMacroSubst">EnvMacroSubst</a></td>
+<td><a href="envmacrosubst">EnvMacroSubst</a></td>
 <td>Helps with macro-substitution</td>
 </tr>
 <tr>
-<td><a href="Logger">Logger</a></td>
+<td><a href="logger">Logger</a></td>
 <td>Logger allows packages and apps to report potentially useful information about operations, and it allows apps and users to control</td>
 </tr>
 <tr>
-<td><a href="PerfLogger">PerfLogger</a></td>
+<td><a href="perflogger">PerfLogger</a></td>
 <td>Simple performance diagnostics utility.</td>
 </tr>
 <tr>
-<td><a href="SeqLoggerConfig">SeqLoggerConfig</a></td>
+<td><a href="seqloggerconfig">SeqLoggerConfig</a></td>
 <td>Helps to configure the bentleyjs-core Logger to use bunyan and seq.</td>
 </tr>
 </tbody></table><h2><a id="enumerations" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Enumerations</h2>
@@ -177,7 +110,7 @@ to be monitored from outside of the process. A service typically initializes and
 <th>Description</th>
 </tr>
 <tr>
-<td><a href="LogLevel">LogLevel</a></td>
+<td><a href="loglevel">LogLevel</a></td>
 </tr>
 </tbody></table><h2><a id="interfaces" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Interfaces</h2>
 <table class="table table-responsive"><tbody><tr>
@@ -185,15 +118,15 @@ to be monitored from outside of the process. A service typically initializes and
 <th>Description</th>
 </tr>
 <tr>
-<td><a href="LoggerCategoryAndLevel">LoggerCategoryAndLevel</a></td>
+<td><a href="loggercategoryandlevel">LoggerCategoryAndLevel</a></td>
 <td>Identifies a logging category and the LogLevel that should be used for it.</td>
 </tr>
 <tr>
-<td><a href="LoggerLevelsConfig">LoggerLevelsConfig</a></td>
+<td><a href="loggerlevelsconfig">LoggerLevelsConfig</a></td>
 <td>Specifies logging levels, including the default logging level and a set of categories and levels for them.</td>
 </tr>
 <tr>
-<td><a href="SeqConfig">SeqConfig</a></td>
+<td><a href="seqconfig">SeqConfig</a></td>
 <td>seq logging server configuration.</td>
 </tr>
 </tbody></table><h2><a id="type-aliases" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Type Aliases</h2>
@@ -202,12 +135,12 @@ to be monitored from outside of the process. A service typically initializes and
 <th>Description</th>
 </tr>
 <tr>
-<td><a href="LogFunction">LogFunction</a></td>
+<td><a href="logfunction">LogFunction</a></td>
 <td>Defines the <em>signature</em> for a log function.</td>
 </tr>
 </tbody></table>
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>08 May, 2018 @ 02:19:00 pm -04:00</span>
+                        <span class='date-updated'>09 May, 2018 @ 04:22:39 pm +00:00</span>
                     </p>
     
                    
