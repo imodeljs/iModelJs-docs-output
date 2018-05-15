@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bentley Docs</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output/styles/bundle.css">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output/styles/prism.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output/ class='indexSeg'>
+    <span id="contentLoader"><p>Woah!  This page has a great deal of content...  Give us a second to load it.</p></span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+    <header id="main-header">
+        <div class='row no-gutters nav-container'>
+            <!-- <div class="col-12"> -->
+            
+                <nav id='main-navbar' class="navbar navbar-expand-md navbar-light">
+                    
+                    <button class="navbar-toggler navbar-toggler-left custom-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon">
+                            <i class='icon icon-menu'></i>
+                        </span>
+                    </button>
+                        <div class="col-sm-6 col-md-3 nav-title-container">
+                            
+                            <a class="navbar-brand segregated" href="https://imodeljs.github.io/iModelJs-docs-output/learning" class="col-md-3">
+                                <h1 id='site-title'><i class='icon icon-document'></i>Learning</h1>                                
+                            </a>
+
+                        </div>
+                        <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
+                            <nav class="navbar navbar-expand-md navbar-light">
+                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
+                            </nav>
+                        </div>                </nav>
+            
+        </div>
+        <!-- </div> -->
+
+    </header>
+
+
+    <div id='main-wrapper'>
+    
+            <div id='table-of-contents'>
+                <span class='search-bar'>
+                  <li>
+                    <div id='search-container'>
+                    </div>
+                  </li>
+                </span>
+                
+                <h3><a id="the-imodeljs-library" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">The iModelJs Library</a></h3>
+                <ul>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend">Frontend</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend">Backend</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common">Common</a></li>
+                </ul>
+                <p>&#xA0;</p>
+                <h3><a id="helpful-links" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
+                <ul>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/ecsql">ECSQL</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/featuregates">FeatureGates</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/rpcinterface">RpcInterface</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/logging">Logging</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/wireformat">Wire Format</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/faq">Frequently asked Questions</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines">Guidelines and Tips</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/glossary">iModelJs Glossary</a></li>
+                </ul>
+                
+            </div>
+            <div class='row documentation-main'>
+                <article id="main" name="main-content">
+                    <div><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/learning//"></a> > rpcinterface</div>
+                    <h1 id="rpcinterface">RpcInterface</h1>
+<p>An <code>RpcInterface</code> is a set of operations exposed by a server that a client can call, using configurable protocols, in a platform-independent way.</p>
+<p>This article uses the terms <em>client</em> and <em>server</em> to identify the two roles in an <code>RpcInterface</code>:</p>
+<ul>
+<li><em>client</em> -- the code that uses an RpcInterface and calls its methods. A client could be the frontend of an app, the backend of an app, a service, or an agent. It could be <a href=".././glossary#frontend">frontend code</a> <em>or</em> <a href=".././glossary#backend">backend code</a>.</li>
+<li><em>server</em> -- the code that implements and exposes an RpcInterface to clients. A server could be a deployed, stand-alone service, or the backend of an app. It is always <a href=".././glossary#backend">backend code</a>.</li>
+</ul>
+<p>See <a href="../../overview/app#rpcinterface">the RpcInterface overview</a> for more information on <a href="../../overview/app">app architecture</a> and the purpose of RpcInterfaces.</p>
+<p>An RpcInterface is made up of three TypeScript classes:</p>
+<ul>
+<li>The <a href="#defining-the-interface">definition</a> - An abstract TypeScript class containing abstract methods.</li>
+<li>The <a href="#client-stub">client stub</a> - A concrete TypeScript class for clients to use. This class implements each method in the interface as an RPC.</li>
+<li>The <a href="#server-implementation">server-side implementation</a> - A concrete TypeScript class that implements each method to handle the corresponding request.</li>
+</ul>
+<p>All three classes extend <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/rpcinterface/'>RpcInterface</a>. The client stub and server-side implementations also <em>implement</em> the interface definition. This is explained in detail below.</p>
+<p>The client-server RPC mechanism is implemented in RpcConfigurations. This allows clients and servers to be written in a way that is independent of transport details, while allowing transport to be configured at runtime to suit the requirements of the app&apos;s configuration. See <a href="#server-side-configuration">server-side configuration</a> and <a href="#client-side-configuration">client-side configuration</a> below for details.</p>
+<p>RpcInterface methods are always <em>asynchronous</em>. That is because the RpcInterface implementation and the client that calls it are never in the same JavaScript context, as explained in <a href="../../overview/app#interactive-apps">the app architecture overview</a>.</p>
+<h2><a id="parameter-and-return-types" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Parameter and Return Types</h2>
+<p>RpcInterface methods can take and return just about any type. Most JavaScript primitive types are supported, such as number, string, bool, and any. A few primitive types cannot be used, including Set and Map.</p>
+<p>RpcInterfaces can also use TypeScript/JavaScript classes as parameter and return types. The <a href="#defining-the-interface">interface definition</a> just has to declare the classes that it uses, so that the configurations can marshall them correctly. That is the purpose of the <code>types</code> property.</p>
+<p>RpcInterfaces are restricted to using types that are common to both frontends and backends. For example, the <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/imodels/imodeltoken'>IModelToken</a> type must be used to specify an iModel. The client that makes a call on the interface must obtain the token from the IModelConnection or IModelDb that it has, and the server that implements the interface must translate the token into an IModelDb when it handles the call.</p>
+<h2><a id="defining-the-interface" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Defining the Interface</h2>
+<p>To define an interface, write an abstract TypeScript class that extends <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/rpcinterface/'>RpcInterface</a>. This class should declare an abstract method for each operation that is to be exposed by the server. Each method must return a <code>Promise</code>.</p>
+<p>The definition class must also define two static properties:</p>
+<ul>
+<li><code>types</code>. Specifies any non-primitive types used in the methods of interface.</li>
+<li><code>version</code>. The interface version number.</li>
+</ul>
+<p>The definition class must be in a directory or package that is accessible to both frontend and backend code. Note that the RpcInterface base class is defined in <code>@bentley/imodeljs-common</code>.</p>
+<p><em>Example:</em></p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> RpcInterface<span class="token punctuation">,</span> IModelToken <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/imodeljs-common&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Id64 <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/bentleyjs-core&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Point3d<span class="token punctuation">,</span> Angle <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/geometry-core&quot;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// The &quot;write&quot; RPC interface that may be exposed by the RobotWorldEngine.</span>
+<span class="token keyword">export</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">RobotWorldWriteRpcInterface</span> <span class="token keyword">extends</span> <span class="token class-name">RpcInterface</span> <span class="token punctuation">{</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> version <span class="token operator">=</span> <span class="token string">&quot;1.0.0&quot;</span><span class="token punctuation">;</span> <span class="token comment">// The API version of the interface</span>
+
+  <span class="token comment">/** The types that are used by the interfaces and must be marshalled. */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token function-variable function">types</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">[</span>IModelToken<span class="token punctuation">,</span> Id64<span class="token punctuation">,</span> Point3d<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// The interface operations:</span>
+  <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token function">insertRobot</span><span class="token punctuation">(</span>_iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> _modelId<span class="token punctuation">:</span> Id64<span class="token punctuation">,</span> _name<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> _location<span class="token punctuation">:</span> Point3d<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span>Id64<span class="token operator">&gt;</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token function">moveRobot</span><span class="token punctuation">(</span>_iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> _id<span class="token punctuation">:</span> Id64<span class="token punctuation">,</span> _location<span class="token punctuation">:</span> Point3d<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token function">fuseRobots</span><span class="token punctuation">(</span>_iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> _r1<span class="token punctuation">:</span> Id64<span class="token punctuation">,</span> _r2<span class="token punctuation">:</span> Id64<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token function">insertBarrier</span><span class="token punctuation">(</span>_iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> _modelId<span class="token punctuation">:</span> Id64<span class="token punctuation">,</span> _location<span class="token punctuation">:</span> Point3d<span class="token punctuation">,</span> _angle<span class="token punctuation">:</span> Angle<span class="token punctuation">,</span> _length<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span>Id64<span class="token operator">&gt;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// The &quot;read&quot; RPC interface that may be exposed by the RobotWorldEngine.</span>
+<span class="token keyword">export</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">RobotWorldReadRpcInterface</span> <span class="token keyword">extends</span> <span class="token class-name">RpcInterface</span> <span class="token punctuation">{</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> version <span class="token operator">=</span> <span class="token string">&quot;1.0.0&quot;</span><span class="token punctuation">;</span>  <span class="token comment">// The API version of the interface</span>
+
+  <span class="token comment">/** The types that can be marshaled by the interface. */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token function-variable function">types</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">[</span>IModelToken<span class="token punctuation">,</span> Id64<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// The interface operations:</span>
+  <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token function">countRobotsInArray</span><span class="token punctuation">(</span>_iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> _elemIds<span class="token punctuation">:</span> Id64<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token function">countRobots</span><span class="token punctuation">(</span>_iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token function">queryObstaclesHitByRobot</span><span class="token punctuation">(</span>_iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> _rid<span class="token punctuation">:</span> Id64<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span>Id64<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h2><a id="client-stub" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Client Stub</h2>
+<p>The client stub is a TypeScript class that implements the interface, defining each method as an RPC. Usually, all of the methods of a client contain exactly the same single line of code: <code>return this.forward.apply(this, arguments);</code> The forward property is implemented by the base class, and its forward method sends the call and its arguments through the configured RPC mechanism to the server. The client stub could be customized in some way if necessary.</p>
+<p><em>Example:</em></p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">
+<span class="token keyword">export</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">RobotWorldWriteRpcClient</span> <span class="token keyword">extends</span> <span class="token class-name">RpcInterface</span> <span class="token keyword">implements</span> <span class="token class-name">RobotWorldWriteRpcInterface</span> <span class="token punctuation">{</span>
+  <span class="token keyword">public</span> <span class="token function">insertRobot</span><span class="token punctuation">(</span>_iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> _modelId<span class="token punctuation">:</span> Id64<span class="token punctuation">,</span> _name<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> _location<span class="token punctuation">:</span> Point3d<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span>Id64<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>forward<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token function">moveRobot</span><span class="token punctuation">(</span>_iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> _id<span class="token punctuation">:</span> Id64<span class="token punctuation">,</span> _location<span class="token punctuation">:</span> Point3d<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>forward<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token function">fuseRobots</span><span class="token punctuation">(</span>_iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> _r1<span class="token punctuation">:</span> Id64<span class="token punctuation">,</span> _r2<span class="token punctuation">:</span> Id64<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>forward<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token function">insertBarrier</span><span class="token punctuation">(</span>_iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> _modelId<span class="token punctuation">:</span> Id64<span class="token punctuation">,</span> _location<span class="token punctuation">:</span> Point3d<span class="token punctuation">,</span> _angle<span class="token punctuation">:</span> Angle<span class="token punctuation">,</span> _length<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span>Id64<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>forward<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// The &quot;read&quot; RPC interface that may be exposed by the RobotWorldEngine.</span>
+<span class="token keyword">export</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">RobotWorldReadRpcClient</span> <span class="token keyword">extends</span> <span class="token class-name">RpcInterface</span> <span class="token keyword">implements</span> <span class="token class-name">RobotWorldReadRpcInterface</span> <span class="token punctuation">{</span>
+  <span class="token keyword">public</span> <span class="token function">countRobotsInArray</span><span class="token punctuation">(</span>_iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> _elemIds<span class="token punctuation">:</span> Id64<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>forward<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token function">countRobots</span><span class="token punctuation">(</span>_iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>forward<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token function">queryObstaclesHitByRobot</span><span class="token punctuation">(</span>_iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> _rid<span class="token punctuation">:</span> Id64<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span>Id64<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>forward<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h2><a id="server-implementation" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Server Implementation</h2>
+<p>The server-side implementation of an RpcInterface is a TypeScript class that implements the interface and extends <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/rpcinterface/'>RpcInterface</a>. The server-side implementation is also known as the &quot;impl&quot;. An impl is always <a href=".././glossary#backend">backend code</a>.</p>
+<p>The impl must override each method in the interface by performing the intended operation. Each method must return a Promise.</p>
+<p>As noted above, the methods in the impl may have to transform certain argument types, such as IModelTokens, before they can be used.</p>
+<p>A best practice is that an impl should be a thin layer on top of normal classes in the service. Ideally, each method of an impl should be a one-line forwarding call. The impl wrapper should be concerned only with transforming types, not with functionality. The normal service class methods should be concerned only with functionality. The service class methods should be static.</p>
+<p><em>Example:</em></p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> RpcInterface<span class="token punctuation">,</span> RpcInterfaceDefinition<span class="token punctuation">,</span> RpcManager<span class="token punctuation">,</span> IModelToken<span class="token punctuation">,</span> IModelReadRpcInterface<span class="token punctuation">,</span> IModelWriteRpcInterface<span class="token punctuation">,</span> BentleyCloudRpcManager<span class="token punctuation">,</span> ElectronRpcManager <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/imodeljs-common&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Id64 <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/bentleyjs-core&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> assert <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/bentleyjs-core/lib/Assert&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Platform<span class="token punctuation">,</span> IModelDb <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/imodeljs-backend&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> RobotWorldEngine <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./RobotWorldEngine&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> RobotWorldReadRpcInterface<span class="token punctuation">,</span> RobotWorldWriteRpcInterface <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../common/RobotWorldRpcInterface&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Point3d<span class="token punctuation">,</span> Angle <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/geometry-core&quot;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Implement ROWriteRpcInterface</span>
+<span class="token keyword">class</span> <span class="token class-name">RobotWorldWriteRpcImpl</span> <span class="token keyword">extends</span> <span class="token class-name">RpcInterface</span> <span class="token keyword">implements</span> <span class="token class-name">RobotWorldWriteRpcInterface</span> <span class="token punctuation">{</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token function">register</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    RpcManager<span class="token punctuation">.</span><span class="token function">registerImpl</span><span class="token punctuation">(</span>RobotWorldWriteRpcInterface<span class="token punctuation">,</span> RobotWorldWriteRpcImpl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">insertRobot</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> modelId<span class="token punctuation">:</span> Id64<span class="token punctuation">,</span> name<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> location<span class="token punctuation">:</span> Point3d<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span>Id64<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> RobotWorldEngine<span class="token punctuation">.</span><span class="token function">insertRobot</span><span class="token punctuation">(</span>IModelDb<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">)</span><span class="token punctuation">,</span> modelId<span class="token punctuation">,</span> name<span class="token punctuation">,</span> location<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">moveRobot</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> id<span class="token punctuation">:</span> Id64<span class="token punctuation">,</span> location<span class="token punctuation">:</span> Point3d<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    RobotWorldEngine<span class="token punctuation">.</span><span class="token function">moveRobot</span><span class="token punctuation">(</span>IModelDb<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">)</span><span class="token punctuation">,</span> id<span class="token punctuation">,</span> location<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">fuseRobots</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> r1<span class="token punctuation">:</span> Id64<span class="token punctuation">,</span> r2<span class="token punctuation">:</span> Id64<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    RobotWorldEngine<span class="token punctuation">.</span><span class="token function">fuseRobots</span><span class="token punctuation">(</span>IModelDb<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">)</span><span class="token punctuation">,</span> r1<span class="token punctuation">,</span> r2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">insertBarrier</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> modelId<span class="token punctuation">:</span> Id64<span class="token punctuation">,</span> location<span class="token punctuation">:</span> Point3d<span class="token punctuation">,</span> angle<span class="token punctuation">:</span> Angle<span class="token punctuation">,</span> length<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span>Id64<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> RobotWorldEngine<span class="token punctuation">.</span><span class="token function">insertBarrier</span><span class="token punctuation">(</span>IModelDb<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">)</span><span class="token punctuation">,</span> modelId<span class="token punctuation">,</span> location<span class="token punctuation">,</span> angle<span class="token punctuation">,</span> length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Implement ROReadRpcInterface</span>
+<span class="token keyword">class</span> <span class="token class-name">RobotWorldReadRpcImpl</span> <span class="token keyword">extends</span> <span class="token class-name">RpcInterface</span> <span class="token keyword">implements</span> <span class="token class-name">RobotWorldReadRpcInterface</span> <span class="token punctuation">{</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token function">register</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    RpcManager<span class="token punctuation">.</span><span class="token function">registerImpl</span><span class="token punctuation">(</span>RobotWorldReadRpcInterface<span class="token punctuation">,</span> RobotWorldReadRpcImpl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">countRobotsInArray</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> elemIds<span class="token punctuation">:</span> Id64<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> iModelDb<span class="token punctuation">:</span> IModelDb <span class="token operator">=</span> IModelDb<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> RobotWorldEngine<span class="token punctuation">.</span><span class="token function">countRobotsInArray</span><span class="token punctuation">(</span>iModelDb<span class="token punctuation">,</span> elemIds<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">countRobots</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> iModelDb<span class="token punctuation">:</span> IModelDb <span class="token operator">=</span> IModelDb<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> RobotWorldEngine<span class="token punctuation">.</span><span class="token function">countRobots</span><span class="token punctuation">(</span>iModelDb<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">queryObstaclesHitByRobot</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">:</span> IModelToken<span class="token punctuation">,</span> rid<span class="token punctuation">:</span> Id64<span class="token punctuation">)</span><span class="token punctuation">:</span> Promise<span class="token operator">&lt;</span>Id64<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> iModelDb<span class="token punctuation">:</span> IModelDb <span class="token operator">=</span> IModelDb<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>iModelToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> RobotWorldEngine<span class="token punctuation">.</span><span class="token function">queryObstaclesHitByRobot</span><span class="token punctuation">(</span>iModelDb<span class="token punctuation">,</span> rid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h2><a id="server-side-configuration" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Server-side Configuration</h2>
+<p>A server must expose the RpcInterfaces that it implements or imports, so that clients can use them.</p>
+<p>First, the server must call <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/rpcinterface/rpcmanager/registerimpl'>RpcManager.registerImpl</a> to register the interfaces that it implements, if any.</p>
+<p>Next, the server must decide which interfaces it wants to expose. A service can expose multiple interfaces. A service can expose both its own implementations, if any, and imported implementations. The service can decide at run time which interfaces to expose, perhaps based on deployment parameters.</p>
+<p>Finally, the server must choose the appropriate RPC configuration for the interfaces. The choice of RPC configuration is simple and is based on how the server itself is configured, as shown in the example.</p>
+<p><em>Example:</em></p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript"><span class="token comment">/* Configures the RPC implementations that are implemented by this service */</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">initializeRpcImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Register my own interfaces</span>
+  RpcManager<span class="token punctuation">.</span><span class="token function">registerImpl</span><span class="token punctuation">(</span>RobotWorldWriteRpcInterface<span class="token punctuation">,</span> RobotWorldWriteRpcImpl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  RpcManager<span class="token punctuation">.</span><span class="token function">registerImpl</span><span class="token punctuation">(</span>RobotWorldReadRpcInterface<span class="token punctuation">,</span> RobotWorldReadRpcImpl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Decide which interfaces this service will expose.</span>
+
+  <span class="token comment">// Start with the interfaces that we know that we want to expose.</span>
+  <span class="token comment">// Note that this is an example of exposing more than one interface from a single service.</span>
+  <span class="token comment">// It is also an example of exposing both a interface that is implemented by an imported package</span>
+  <span class="token comment">// and a interface that is implemented by the service.</span>
+  <span class="token keyword">const</span> interfaces<span class="token punctuation">:</span> RpcInterfaceDefinition<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>IModelReadRpcInterface<span class="token punctuation">,</span> RobotWorldReadRpcInterface<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// This is an example of using a FeatureGate to decide at runtime if the</span>
+  <span class="token comment">// service should expose one or more interfaces.</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>RobotWorldEngine<span class="token punctuation">.</span>features<span class="token punctuation">.</span><span class="token function">check</span><span class="token punctuation">(</span><span class="token string">&quot;readwrite&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    interfaces<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>IModelWriteRpcInterface<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    interfaces<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>RobotWorldWriteRpcInterface<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Expose the RpcInterfaces using the appropriate configuration.</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>Platform<span class="token punctuation">.</span><span class="token function">isMobile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">assert</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">&quot;TBD: mobile RPC config&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>Platform<span class="token punctuation">.</span>electron <span class="token operator">!==</span> undefined<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ElectronRpcManager<span class="token punctuation">.</span><span class="token function">initializeImpl</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> interfaces<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    BentleyCloudRpcManager<span class="token punctuation">.</span><span class="token function">initializeImpl</span><span class="token punctuation">(</span><span class="token punctuation">{</span> info<span class="token punctuation">:</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">&quot;RobotWorldEngine&quot;</span><span class="token punctuation">,</span> version<span class="token punctuation">:</span> <span class="token string">&quot;v1.0&quot;</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> interfaces<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+
+</code></pre>
+<p>This example shows how a service could configure and expose more than one interface, including imported interfaces. It also shows how to choose the appropriate configuration. It also shows how a service could use <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/app/featuregates'>FeatureGates</a> to decide which interfaces to expose.</p>
+<h2><a id="serving-rpcinterfaces" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Serving RpcInterfaces</h2>
+<p>A server must serve out its interfaces, so that in-coming client requests are forwarded to the implementations.</p>
+<h3><a id="web-server" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Web Server</h3>
+<p>When a server is configured as a Web service, it can use any Web server technology. A single function call is all that is required to integrate all configured interfaces with the Web server.</p>
+<p>For example, if a Web server uses express, it would serve its RpcInterfaces like this:</p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript"><span class="token keyword">const</span> webServer <span class="token operator">=</span> <span class="token function">express</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">...</span>
+webServer<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">&quot;*&quot;</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  rpcConfiguration<span class="token punctuation">.</span>protocol<span class="token punctuation">.</span><span class="token function">handleOperationPostRequest</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3><a id="electron-desktop-app" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Electron Desktop App</h3>
+<p>When a server is the backend of an Electron desktop app, no additional code is required to serve out its interfaces, beyond calling ElectronRpcManager to configure them.</p>
+<!-- TODO:
+### Mobile App
+When a server is the backend of a mobile app, TBD....
+-->
+<h2><a id="client-side-configuration" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Client-side Configuration</h2>
+<p>A client (e.g., an app frontend) must configure the interfaces that it intends to use. And, it must specify the appropriate configuration for each interface, depending on the configuration of the app itself and relationship between the client and the server.</p>
+<table class="table table-responsive"><tbody><tr>
+<th>Type of server</th>
+<th>Type of app</th>
+<th>Configuration to use</th>
+</tr>
+<tr>
+<td>App-specific backend</td>
+<td>Mobile app</td>
+<td><a href="../../overview/app#in-process-rpc-configuration">in-process RPC configuration</a>.</td>
+</tr>
+<tr>
+<td>&quot;</td>
+<td>Desktop app</td>
+<td><a href="../../overview/app#desktop-rpc-configuration">desktop RPC configuration</a>.</td>
+</tr>
+<tr>
+<td>&quot;</td>
+<td>Web app</td>
+<td><a href="../../overview/app#cloud-rpc-configuration">cloud PRC configuration</a>.</td>
+</tr>
+<tr>
+<td>External service</td>
+<td>*</td>
+<td>The client will always use the <a href="../../overview/app#cloud-rpc-configuration">cloud RPC configuration</a> for services.</td>
+</tr>
+</tbody></table><p>Here is a simple example of an app frontend registering to access interfaces that are exposed by its own app backend server:</p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript"><span class="token comment">/* Initialize the RPC clients used by this service. */</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">initializeRpcClient</span><span class="token punctuation">(</span>interfaces<span class="token punctuation">:</span> RpcInterfaceDefinition<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> uriPrefix<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>Platform<span class="token punctuation">.</span><span class="token function">isMobile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">assert</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">&quot;TBD: mobile RPC config&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>Platform<span class="token punctuation">.</span>electron <span class="token operator">!==</span> undefined<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ElectronRpcManager<span class="token punctuation">.</span><span class="token function">initializeClient</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> interfaces<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    BentleyCloudRpcManager<span class="token punctuation">.</span><span class="token function">initializeClient</span><span class="token punctuation">(</span><span class="token punctuation">{</span> info<span class="token punctuation">:</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">&quot;RobotWorldEngine&quot;</span><span class="token punctuation">,</span> version<span class="token punctuation">:</span> <span class="token string">&quot;v1.0&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> uriPrefix <span class="token punctuation">}</span><span class="token punctuation">,</span> interfaces<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h2><a id="rpcinterface-performance" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>RpcInterface Performance</h2>
+<p>In some configurations, client and server may be in separate processes. Some configurations marshall calls over the Internet, where both bandwidth and latency can vary widely. Therefore, care must be taken to limit the number and size of round-trips between clients and servers. In other words, an interface&apos;s methods must be &quot;chunky&quot; and not &quot;chatty&quot;.</p>
+
+                    <p class='last-updated'>Last Updated: 
+                        <span class='date-updated'>15 May, 2018 @ 08:04:15 pm +00:00</span>
+                    </p>
+    
+                   
+                   <script type="text/javascript">
+                   
+                   </script>                </article>
+            </div>
+            <div id='inner-table-of-contents'>
+                <!-- 
+                    - If the page is active
+                    - Get all headings and subheadings and list them
+                 -->
+                
+                
+                
+                
+                  <div id='sticky-container'>
+                    <h4 class='heading'>Overview</h4>
+                    <div id="overview-container" class="clusterize-scroll">
+                      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+                          <li class='nav-item item '>
+                        <a class='title solo-title menu-text' href="#parameter-and-return-types">Parameter and Return Types</a>
+                </li>
+                   <li class='nav-item item '>
+                        <a class='title solo-title menu-text' href="#defining-the-interface">Defining the Interface</a>
+                </li>
+                   <li class='nav-item item '>
+                        <a class='title solo-title menu-text' href="#client-stub">Client Stub</a>
+                </li>
+                   <li class='nav-item item '>
+                        <a class='title solo-title menu-text' href="#server-implementation">Server Implementation</a>
+                </li>
+                   <li class='nav-item item '>
+                        <a class='title solo-title menu-text' href="#server-side-configuration">Server-side Configuration</a>
+                </li>
+                   <li class='nav-item item '>
+                        <a data-target="#inner-nav-serving-rpcinterfaces" class='title' href="#serving-rpcinterfaces"/>
+                        <b class='dropdown-menu-title menu-text'>Serving RpcInterfaces</b>
+                        <i class='dropdown icon'></i>
+                        </a>
+                        <ul id="inner-nav-serving-rpcinterfaces" class='inner-nav'>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#web-server">Web Server</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#electron-desktop-app">Electron Desktop App</a>
+                            </li>
+                        </ul>
+                </li>
+                   <li class='nav-item item '>
+                        <a class='title solo-title menu-text' href="#client-side-configuration">Client-side Configuration</a>
+                </li>
+                   <li class='nav-item item '>
+                        <a class='title solo-title menu-text' href="#rpcinterface-performance">RpcInterface Performance</a>
+                </li>
+                 
+                      </ul>
+                    </div>
+                  </div>
+                
+            </div>
+        
+    </div>
+    
+
+    
+        <footer id='main-footer'>
+            <div id='footer-content-container'>
+               <div class='footer-footer'>
+                   <p>Copyright 2018 Bentley Systems, Incorporated</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+        <a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+        <script src="https://imodeljs.github.io/iModelJs-docs-output/scripts/bundle.js" ></script>
+    </body>
+    
+    </html>

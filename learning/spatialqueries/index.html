@@ -63,22 +63,32 @@
                   </li>
                 </span>
                 
-                <h1 id="the imodeljs library"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">The iModelJs Library</a></h1>
-                <h2><a id="frontend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend">Frontend</a></h2>
-                <h2><a id="backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend">Backend</a></h2>
-                <h2><a id="common" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common">Common</a></h2>
-                <h1 id="helpful links">Helpful links</h1>
-                <h2><a id="ecsql" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/ecsql">ECSQL</a></h2>
-                <h2><a id="frequently-asked-questions" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/faq">Frequently asked Questions</a></h2>
-                <h2><a id="guidelines-and-tips" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines">Guidelines and Tips</a></h2>
-                <h2><a id="imodeljs-glossary" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/glossary">iModelJs Glossary</a></h2>
+                <h3><a id="the-imodeljs-library" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">The iModelJs Library</a></h3>
+                <ul>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend">Frontend</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend">Backend</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common">Common</a></li>
+                </ul>
+                <p>&#xA0;</p>
+                <h3><a id="helpful-links" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
+                <ul>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/ecsql">ECSQL</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/featuregates">FeatureGates</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/rpcinterface">RpcInterface</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/logging">Logging</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/wireformat">Wire Format</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/faq">Frequently asked Questions</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines">Guidelines and Tips</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/glossary">iModelJs Glossary</a></li>
+                </ul>
                 
             </div>
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
+                    <div><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/learning//"></a> > spatialqueries</div>
                     <h1 id="spatial queries">Spatial Queries</h1>
-<p>ECSQL allows you to use the BisCore.SpatialIndex to include spatial criteria when selecting <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/biscore/spatialelement'>spatial elements</a>. There are also <a href=".././sqlfuncs">functions</a> that allow you to include an element&apos;s geometric properties in a where clause.</p>
-<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/biscore/spatialelement'>spatial elements</a> in an iModel are index by a <a href="https://sqlite.org/rtree.html">spatial index</a>. This indexes elements by area. Each node in the spatial index is conceptually a bounding box, plus the ECInstanceId of an element that is enclosed by it.</p>
+<p>ECSQL allows you to use the BisCore.SpatialIndex to include spatial criteria when selecting <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/biscore/spatialelement'>SpatialElement</a>. There are also <a href=".././sqlfuncs">functions</a> that allow you to include an element&apos;s geometric properties in a where clause.</p>
+<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/biscore/spatialelement'>SpatialElement</a> in an iModel are index by a <a href="https://sqlite.org/rtree.html">spatial index</a>. This indexes elements by area. Each node in the spatial index is conceptually a bounding box, plus the ECInstanceId of an element that is enclosed by it.</p>
 <p>ECSQL identifies the spatial index using the name <code>BisCore.SpatialIndex</code>. You can using this name to include the spatial index in ECSQL select statements, to help filter results using spatial criteria. Conceptually, each node has the following properties: ECInstanceId, MinX, MaxX, MinY, MaxY, MinZ, and MaxZ. The nodes in the spatial index can be selected by testing their properties directly. Here is an example that is adapted from the <a href="https://sqlite.org/rtree.html">SQLite docs</a>:</p>
 <p><code>SELECT ECInstanceId FROM BisCore.SpatialIndex WHERE minX&gt;=-81.08 AND maxX&lt;=-80.58 AND minY&gt;=35.00  AND maxY&lt;=35.44</code></p>
 <p>Nodes in the spatial index can also be selected using the special <code>MATCH</code> keyword and the special builtin spatial index matching function. The MATCH clause acts like a sub-selection that generates a set of ECInstanceIds, which it gathers from the nodes that match the specified criteria.The matching function is:</p>
@@ -111,7 +121,7 @@
 <p>The <a href=".././sqlfuncs">ECSQL built-in geometry functions</a> are sometimes used along with spatial queries as additional WHERE criteria.</p>
 
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>09 May, 2018 @ 04:23:16 pm +00:00</span>
+                        <span class='date-updated'>15 May, 2018 @ 08:04:15 pm +00:00</span>
                     </p>
     
                    

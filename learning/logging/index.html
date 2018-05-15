@@ -63,21 +63,31 @@
                   </li>
                 </span>
                 
-                <h1 id="the imodeljs library"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">The iModelJs Library</a></h1>
-                <h2><a id="frontend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend">Frontend</a></h2>
-                <h2><a id="backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend">Backend</a></h2>
-                <h2><a id="common" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common">Common</a></h2>
-                <h1 id="helpful links">Helpful links</h1>
-                <h2><a id="ecsql" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/ecsql">ECSQL</a></h2>
-                <h2><a id="frequently-asked-questions" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/faq">Frequently asked Questions</a></h2>
-                <h2><a id="guidelines-and-tips" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines">Guidelines and Tips</a></h2>
-                <h2><a id="imodeljs-glossary" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/glossary">iModelJs Glossary</a></h2>
+                <h3><a id="the-imodeljs-library" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">The iModelJs Library</a></h3>
+                <ul>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend">Frontend</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend">Backend</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common">Common</a></li>
+                </ul>
+                <p>&#xA0;</p>
+                <h3><a id="helpful-links" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
+                <ul>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/ecsql">ECSQL</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/featuregates">FeatureGates</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/rpcinterface">RpcInterface</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/logging">Logging</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/wireformat">Wire Format</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/faq">Frequently asked Questions</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines">Guidelines and Tips</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/glossary">iModelJs Glossary</a></li>
+                </ul>
                 
             </div>
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
+                    <div><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/learning//"></a> > logging</div>
                     <h1 id="logging">Logging</h1>
-<p>Logging allows libraries and apps to report potentially useful information about operations, and it allows apps and users to control how or if the logged information is displayed or collected. Logging information is primarily used to diagnose problems after the fact. Logging may also be used to monitor on overally application health.</p>
+<p>Logging allows libraries and apps to report potentially useful information about operations, and it allows apps and users to control how or if the logged information is displayed or collected. Logging information is primarily used to diagnose problems after the fact. Logging may also be used to monitor application health.</p>
 <p>Libraries and apps use the <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/logger'>Logger</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/loglevel'>LogLevel</a> classes to report logging messages. <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/errors/bentleyerror'>BentleyError</a> is also integrated with logging.</p>
 <p>Apps can configure logging at run time to filter out unwanted logging messages, in order to produce only the information that is needed. <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/logger/setlevel'>Logger.setLevel</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/logger/configurelevels'>Logger.configureLevels</a> are used for this configuration. Apps also direct logging output to desired outlets, such as files and log servers. <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/logger/initialize'>Logger.initialize</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/bunyanloggerconfig'>BunyanLoggerConfig</a>, and <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/seqloggerconfig'>SeqLoggerConfig</a> are used to direct logging output.</p>
 <p>Logging is typically used by services and agents, which have no user interface. Logging allows the service operations
@@ -124,9 +134,7 @@ to be monitored from outside of the process. A service typically initializes and
      <span class="token property">&quot;defaultLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;${ROBOT-WORLD-DEFAULT-LOG-LEVEL}&quot;</span><span class="token punctuation">,</span>
      <span class="token property">&quot;categoryLevels&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
          <span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ROBOT-WORLD&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Trace&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-         <span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;imodeljs-gateway.BentleyCloudGatewayProtocol&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Trace&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-         <span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;imodeljs-gateway.GatewayHttpProtocol&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Trace&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-         <span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;imodeljs-gateway&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Trace&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+         <span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;imodeljs-rpc&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Trace&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
          <span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;imodeljs-backend.AutoPush&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Trace&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
          <span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ECPresentation&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;None&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
          <span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Diagnostics.ECSqlStatement&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;None&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -143,7 +151,7 @@ to be monitored from outside of the process. A service typically initializes and
 </code></pre>
 
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>09 May, 2018 @ 04:23:16 pm +00:00</span>
+                        <span class='date-updated'>15 May, 2018 @ 08:04:15 pm +00:00</span>
                     </p>
     
                    

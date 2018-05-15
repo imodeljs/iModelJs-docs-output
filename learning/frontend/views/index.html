@@ -63,25 +63,35 @@
                   </li>
                 </span>
                 
-                <h1 id="the imodeljs library"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">The iModelJs Library</a></h1>
-                <h2><a id="frontend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend">Frontend</a></h2>
-                <h2><a id="backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend">Backend</a></h2>
-                <h2><a id="common" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common">Common</a></h2>
-                <h1 id="helpful links">Helpful links</h1>
-                <h2><a id="ecsql" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/ecsql">ECSQL</a></h2>
-                <h2><a id="frequently-asked-questions" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/faq">Frequently asked Questions</a></h2>
-                <h2><a id="guidelines-and-tips" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines">Guidelines and Tips</a></h2>
-                <h2><a id="imodeljs-glossary" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/glossary">iModelJs Glossary</a></h2>
+                <h3><a id="the-imodeljs-library" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">The iModelJs Library</a></h3>
+                <ul>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend">Frontend</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend">Backend</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common">Common</a></li>
+                </ul>
+                <p>&#xA0;</p>
+                <h3><a id="helpful-links" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
+                <ul>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/ecsql">ECSQL</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/featuregates">FeatureGates</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/rpcinterface">RpcInterface</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/logging">Logging</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/wireformat">Wire Format</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/faq">Frequently asked Questions</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines">Guidelines and Tips</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/glossary">iModelJs Glossary</a></li>
+                </ul>
                 
             </div>
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
+                    <div><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend/">frontend</a> > views</div>
                     <h1 id="using views in imodeljs">Using Views in iModelJs</h1>
 <p>A <em>View</em> shows geometry from one or more <code>Models</code> of an iModel in a web browser. iModelJs applications can embed and interact with Views anywhere on a web page via <code>HTMLCanvas</code> elements.</p>
 <p>Multiple Views may be simultaneously visible on the same web page, and are coordinated via the <a href="#ViewManager">ViewManager</a>.</p>
 <h2><a id="viewdefinition-elements" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>ViewDefinition Elements</h2>
-<p>A <em>View</em> is saved in an iModel via elements of the <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/views/viewdefinition'>ViewDefinition</a> class. <code>ViewDefinition</code>s hold the information necessary to show the same content across sessions.</p>
-<p>Views are opened by loading a ViewDefinition into memory via the <a href="#the-viewstate-class">ViewState</a> class. They begin showing the content as it was saved in the iModel, but users may modify what they&apos;re seeing using <a href="#viewing-tools">Viewing tools</a>. These changes are only temporary (in-memory) unless they are saved back to the iModel via IModelDb.updateElement.
+<p>A <em>View</em> is saved in an iModel via elements of the backend/ViewDefinition class. <code>ViewDefinition</code>s hold the information necessary to show the same content across sessions.</p>
+<p>Views are opened by loading a ViewDefinition into memory via the <a href="#the-viewstate-class">ViewState</a> class. They begin showing the content as it was saved in the iModel, but users may modify what they&apos;re seeing using <a href="#viewing-tools">Viewing tools</a>. These changes are only temporary (in-memory) unless they are saved back to the iModel via updateElement.
 P#</p>
 <h3><a id="types-of-viewdefinitions" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Types of ViewDefinitions</h3>
 <p>There are subclasses of ViewDefinition to show different types of <code>Models</code> in various ways. Here are several important subclasses:</p>
@@ -96,7 +106,7 @@ P#</p>
 <h2><a id="the-viewstate-class" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>The ViewState Class</h2>
 <h2><a id="using-viewports" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Using Viewports</h2>
 <blockquote>
-<p>Note: before creating a <code>Viewport</code>, be sure to call <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/imodelapp/imodelapp/startup'>IModelApp.startup</a>. See <a href=".././imodelapp">IModelApp</a>.</p>
+<p>Note: before creating a <code>Viewport</code>, be sure to call startup. See <a href=".././imodelapp">IModelApp</a>.</p>
 </blockquote>
 <h2><a id="viewing-tools" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Viewing Tools</h2>
 <p>The iModelJs library supplies controls for allowing users to modify their</p>
@@ -109,7 +119,7 @@ P#</p>
 <h2><a id="view-thumbnails" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>View Thumbnails</h2>
 
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>09 May, 2018 @ 04:23:16 pm +00:00</span>
+                        <span class='date-updated'>15 May, 2018 @ 08:04:15 pm +00:00</span>
                     </p>
     
                    

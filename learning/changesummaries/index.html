@@ -63,27 +63,37 @@
                   </li>
                 </span>
                 
-                <h1 id="the imodeljs library"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">The iModelJs Library</a></h1>
-                <h2><a id="frontend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend">Frontend</a></h2>
-                <h2><a id="backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend">Backend</a></h2>
-                <h2><a id="common" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common">Common</a></h2>
-                <h1 id="helpful links">Helpful links</h1>
-                <h2><a id="ecsql" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/ecsql">ECSQL</a></h2>
-                <h2><a id="frequently-asked-questions" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/faq">Frequently asked Questions</a></h2>
-                <h2><a id="guidelines-and-tips" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines">Guidelines and Tips</a></h2>
-                <h2><a id="imodeljs-glossary" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/glossary">iModelJs Glossary</a></h2>
+                <h3><a id="the-imodeljs-library" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">The iModelJs Library</a></h3>
+                <ul>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend">Frontend</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend">Backend</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common">Common</a></li>
+                </ul>
+                <p>&#xA0;</p>
+                <h3><a id="helpful-links" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
+                <ul>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/ecsql">ECSQL</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/featuregates">FeatureGates</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/rpcinterface">RpcInterface</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/logging">Logging</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/wireformat">Wire Format</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/faq">Frequently asked Questions</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines">Guidelines and Tips</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/glossary">iModelJs Glossary</a></li>
+                </ul>
                 
             </div>
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
+                    <div><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/learning//"></a> > changesummaries</div>
                     <h1 id="change summaries">Change Summaries</h1>
 <p><em>Change Summaries</em> are summaries of changes of ECInstances in an <em>iModel Changeset</em>.</p>
 <h2><a id="generating-change-summaries" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Generating Change Summaries</h2>
 <p>Change Summaries are generated per changeset. Every generated Change Summary is therefore uniquely associated
 to the Changeset it was generated from.</p>
-<p>iModelJs persists the generated Change Summaries in a local ECDb file called <strong>Changes Cache File</strong> next to the briefcase it belongs to.</p>
+<p>iModelJs persists the generated Change Summaries in a local ECDb file called <strong>Change Cache File</strong> next to the briefcase it belongs to.</p>
 <blockquote>
-<p>Change Summaries can only be generated from the iModelJs backend. See the <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/imodels/changesummarymanager'>ChangeSummaryManager</a> API for how to do it.</p>
+<p>Change Summaries can only be generated from the iModelJs backend. See the ChangeSummaryManager API for how to do it.</p>
 </blockquote>
 <h2><a id="working-with-change-summaries" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Working with Change Summaries</h2>
 <p>Working with Change Summaries really means to unleash the power of ECSQL. Change Summaries by itself are just ECInstances of the built-in ECSchemas <strong>ECDbChange</strong> and <strong>IModelChange</strong>. That means you can simply use <a href=".././ecsql">ECSQL</a> and all its flexibility to retrieve just that information from the Change Summaries which you are interested in.</p>
@@ -126,7 +136,7 @@ the Change Cache file. If the schema and class name combination is unambiguous, 
 <p><code>SELECT ... FROM MySchema.MyClass.Changes(ChangeSummaryId, ChangedValueState) ...</code></p>
 <ul>
 <li><code>ChangeSummaryId</code>: The ECInstanceId of the Change Summary.</li>
-<li><p><code>ChangedValueState</code>: corresponds to the values of the enum <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/ecsql/changedvaluestate'>ChangedValueState</a>.</p>
+<li><p><code>ChangedValueState</code>: corresponds to the values of the enum ChangedValueState.</p>
 <blockquote>
 <p>You can format the <em>ChangedValueState</em> in the ECSQL either by the enum&apos;s integral values or by the enum value&apos;s name.
 The following two ECSQL statements are equivalent:</p>
@@ -136,7 +146,7 @@ The following two ECSQL statements are equivalent:</p>
 <p><code>SELECT ... FROM MySchema.MyClass.Changes(12, 1)</code></p>
 <p><code>SELECT ... FROM MySchema.MyClass.Changes(12, &apos;AfterInsert&apos;)</code></p>
 <blockquote>
-<p>Notes when specifying ChangedValueState.BeforeUpdate or ChangedValueState.AfterUpdate:</p>
+<p>Notes when specifying BeforeUpdate.ChangedValueState or AfterUpdate.ChangedValueState:</p>
 <p>For any property in the ECSQL select clause the value of which has not changed in the specified change summary,
 the <strong>value of the current state of the file</strong> is returned. The function does <strong>NOT</strong> return the value it was at the
 revision the change summary referred to.</p>
@@ -238,7 +248,7 @@ for the unchanged values.</p>
 </tbody></table><blockquote>
 <ul>
 <li><code>ChangedInstance.Id</code> is the ECInstanceId of the changed instance, i.e. the changed <code>Person</code> instance in this example.</li>
-<li>The <code>OpCode</code> values refer to the <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/ecsql/changeopcode'>OpCode</a> enumeration as defined in the <strong>ECDbChange</strong> ECSchema.</li>
+<li>The <code>OpCode</code> values refer to the OpCode enumeration as defined in the <strong>ECDbChange</strong> ECSchema.</li>
 </ul>
 </blockquote>
 <h4><a id="example-1" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Example</h4>
@@ -410,7 +420,7 @@ state of the iModel, i.e. at the tip of all changes:</p>
 </tr>
 </tbody></table>
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>09 May, 2018 @ 04:23:16 pm +00:00</span>
+                        <span class='date-updated'>15 May, 2018 @ 08:04:15 pm +00:00</span>
                     </p>
     
                    

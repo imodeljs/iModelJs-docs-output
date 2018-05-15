@@ -63,19 +63,29 @@
                   </li>
                 </span>
                 
-                <h1 id="the imodeljs library"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">The iModelJs Library</a></h1>
-                <h2><a id="frontend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend">Frontend</a></h2>
-                <h2><a id="backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend">Backend</a></h2>
-                <h2><a id="common" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common">Common</a></h2>
-                <h1 id="helpful links">Helpful links</h1>
-                <h2><a id="ecsql" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/ecsql">ECSQL</a></h2>
-                <h2><a id="frequently-asked-questions" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/faq">Frequently asked Questions</a></h2>
-                <h2><a id="guidelines-and-tips" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines">Guidelines and Tips</a></h2>
-                <h2><a id="imodeljs-glossary" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/glossary">iModelJs Glossary</a></h2>
+                <h3><a id="the-imodeljs-library" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">The iModelJs Library</a></h3>
+                <ul>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend">Frontend</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend">Backend</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common">Common</a></li>
+                </ul>
+                <p>&#xA0;</p>
+                <h3><a id="helpful-links" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
+                <ul>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/ecsql">ECSQL</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/featuregates">FeatureGates</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/rpcinterface">RpcInterface</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/logging">Logging</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/wireformat">Wire Format</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/faq">Frequently asked Questions</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines">Guidelines and Tips</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/glossary">iModelJs Glossary</a></li>
+                </ul>
                 
             </div>
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
+                    <div><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend/">backend</a> > concurrencycontrol</div>
                     <h1 id="concurrency control">Concurrency Control</h1>
 <p>Concurrency control is a way to coordinate simultaneous transactions (briefcases) while preserving data integrity. Concurrency control is implemented in the code of an app and is based on the identity of a briefcase. Concurrency control should not to be confused with user access control. To make coordinated changes, and app must follow 3 basic rules:</p>
 <ol>
@@ -84,7 +94,7 @@
 <li>Pull (and merge) before pushing.</li>
 </ol>
 <p>An iModel has a concurrency control policy that specifies how multiple briefcases may modify models and elements. The policy may stipulate that locks must be used, forcing transactions to be sequential (pessimistic), or it may specify change-merging with conflict-resolution to combine the results of simultaneous transactions (optimistic).</p>
-<p>An app uses <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/imodels/concurrencycontrol'>ConcurrencyControl</a> to follow concurrency control rules.</p>
+<p>An app uses IModelDb and <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/imodels/concurrencycontrol'>ConcurrencyControl</a> to follow concurrency control rules.</p>
 <p>Locks and code reservations are associated with a briefcase while it is making changes and are released when it pushes.</p>
 <h2><a id="background" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Background</h2>
 <p>This article assumes that you already know that:</p>
@@ -239,7 +249,7 @@
 <p> <img src=".././optimisticconcurrencycontrol.jpg" alt="optimistic concurrency example workflow"></p>
 <h4><a id="conflicts" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Conflicts</h4>
 <p> Working without locks also opens up the possibility that local changes may overlap with in-coming ChangeSets. When ChangeSets are merged into the briefcase, the change-merging algorithm checks for conflicts. The algorithm merges changes and checks for conflicts at the level of individual element properties. In the example above, the two briefcases changed different properties of the same element. That is not a conflict. Likewise, it is not a conflict for two briefcases both to set a property to the same value, or for two briefcases both to delete an element. Conflicts arise if the two briefcases set the same property to different values, or if one briefcase modifies a property and the other deletes the element.</p>
-<p> If conflicts are found, the change-merging algorithm applies the iModel&apos;s conflict-resolution policy. This can be accessed using the IModelDb.concurrencyControl property. The policy object includes a <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/imodels/conflictresolutionpolicy'>ConcurrencyControl.ConflictResolutionPolicy</a> that specifies a conflict-handling policy for each combination of changes that could conflict. The handling operations are defined by <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/imodels/onconflict'>ConcurrencyControl.OnConflict</a>. The default conflict-resolution policies are:</p>
+<p> If conflicts are found, the change-merging algorithm applies the iModel&apos;s conflict-resolution policy. This can be accessed using the IModelDb.concurrencyControl property. The policy object includes a ConcurrencyControl.ConflictResolutionPolicy that specifies a conflict-handling policy for each combination of changes that could conflict. The handling operations are defined by ConcurrencyControl.OnConflict. The default conflict-resolution policies are:</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Local Change</th>
 <th>RemoteChange</th>
@@ -299,7 +309,7 @@
 <p>After applying a schema ChangeSet, the IModelDb must be closed and reopened.</p>
 
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>09 May, 2018 @ 04:23:16 pm +00:00</span>
+                        <span class='date-updated'>15 May, 2018 @ 08:04:15 pm +00:00</span>
                     </p>
     
                    

@@ -63,19 +63,29 @@
                   </li>
                 </span>
                 
-                <h1 id="the imodeljs library"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">The iModelJs Library</a></h1>
-                <h2><a id="frontend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend">Frontend</a></h2>
-                <h2><a id="backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend">Backend</a></h2>
-                <h2><a id="common" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common">Common</a></h2>
-                <h1 id="helpful links">Helpful links</h1>
-                <h2><a id="ecsql" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/ecsql">ECSQL</a></h2>
-                <h2><a id="frequently-asked-questions" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/faq">Frequently asked Questions</a></h2>
-                <h2><a id="guidelines-and-tips" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines">Guidelines and Tips</a></h2>
-                <h2><a id="imodeljs-glossary" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/glossary">iModelJs Glossary</a></h2>
+                <h3><a id="the-imodeljs-library" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">The iModelJs Library</a></h3>
+                <ul>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend">Frontend</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend">Backend</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common">Common</a></li>
+                </ul>
+                <p>&#xA0;</p>
+                <h3><a id="helpful-links" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
+                <ul>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/ecsql">ECSQL</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/featuregates">FeatureGates</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/rpcinterface">RpcInterface</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/logging">Logging</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/wireformat">Wire Format</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/faq">Frequently asked Questions</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines">Guidelines and Tips</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/glossary">iModelJs Glossary</a></li>
+                </ul>
                 
             </div>
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
+                    <div><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/learning//"></a> > portability</div>
                     <h1 id="portability">Portability</h1>
 <p>This article describes the technologies and best practices that make iModelJs apps portable. An well-written iModelJs app will run on many platforms without modification.</p>
 <p>In addition, a well-written interactive app can be configured to run as a Web abb, a desktop app, and a mobile app, with a few simple runtime checks and no other code changes. Configurability does not mean that an iModelJs app must be the same in all configurations. In fact, the iModelJs architecture makes it easy to <a href="../../overview/app#making-interactive-apps-fit-the-platform">make the app fit the platform</a>.</p>
@@ -87,27 +97,81 @@
 <p><a href=".././glossary#electron">Electron</a> combines a Web view client and a nodejs-based server into a single desktop product, without requiring any modification of the code or the UI. Electron runs on many desktop platforms.</p>
 <h2><a id="frontend-portability" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Frontend Portability</h2>
 <p>Since an iModelJs app <a href="../../overview/app#app-frontend">frontend</a> is written using Web UI technologies, it is inherently portable.</p>
-<p>The frontend&apos;s main script must check the app&apos;s configuration to decide what gateway configuration to use for its app-specific backend(s):</p>
+<p>The frontend&apos;s main script must check the app&apos;s configuration to decide what RpcInterface configuration to use for its app-specific backend(s):</p>
 <ul>
-<li>Mobile app - <a href="../../overview/app#in-process-gateway-configuration">in-process gateway configuration</a>.</li>
-<li>Desktop app - <a href="../../overview/app#desktop-gateway-configuration">desktop gateway configuration</a>.</li>
-<li>Web app - <a href="../../overview/app#cloud-gateway-configuration">cloud gateway configuration</a>.</li>
+<li>Mobile app - <a href="../../overview/app#in-process-rpc-configuration">in-process RPC configuration</a>.</li>
+<li>Desktop app - <a href="../../overview/app#desktop-rpc-configuration">desktop RPC configuration</a>.</li>
+<li>Web app - <a href="../../overview/app#cloud-rpc-configuration">cloud PRC configuration</a>.</li>
 </ul>
-<p>The frontend will always use the <a href="../../overview/app#cloud-gateway-configuration">cloud gateway configuration</a> for gateways to services.</p>
+<p>The frontend will always use the <a href="../../overview/app#cloud-rpc-configuration">cloud RPC configuration</a> for services.</p>
+<h3><a id="using-plaform-specfic-modules-in-the-frontend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Using Plaform-specfic Modules in the Frontend</h3>
+<p>In some cases, the Web view environment will provide platform-specific globals and modules. The frontend can use these modules in guarded code. To detect the platform of the frontend:</p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript"><span class="token keyword">const</span> isIos<span class="token punctuation">:</span> bool <span class="token operator">=</span> <span class="token regex">/iphone|ipod|ipad/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>navigator<span class="token punctuation">.</span>userAgent<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// ... other mobile platforms ...</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>isIos<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ... use iOS-specific modules, such as camera ...</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <h2><a id="backend-portability" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Backend Portability</h2>
 <h3><a id="services-and-agents" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Services and Agents</h3>
-<p>Services and agents are easy to make portable, since they always run in nodejs and they always run on a server. Services always run a Web server and always use the <a href="../../overview/app#cloud-gateway-configuration">cloud gateway configuration</a>. Note that an iModelJs service or agent does not deal directly with issues such as deployment, routing, or scaling. Those are the concerns of the cloud infrastructure. As nodejs apps, iModelJs services and agents are cloud-neutral and run on many cloud infrastructures.</p>
+<p>True services and agents are easy to make portable, since they always run in nodejs and they always run on a server. Services always run a Web server and always use the <a href="../../overview/app#cloud-rpc-configuration">cloud RPC configuration</a>. Note that an iModelJs service or agent does not deal directly with issues such as deployment, routing, or scaling. Those are the concerns of the cloud infrastructure. As nodejs apps, iModelJs services and agents are cloud-neutral and run on many cloud infrastructures.</p>
 <h3><a id="app-backends" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>App Backends</h3>
 <p>App-specific backends do not always run in nodejs, and they do not always run on a server. This section describes how to make an app-specific backend portable and adaptable to multiple app configurations.</p>
 <p>An app-specific backend&apos;s main script must check the app&apos;s configuration to decide how it should initialize and run:</p>
 <ul>
-<li>Mobile app - the backend should run the in-process gateway request processor and use the <a href="../../overview/app#in-process-gateway-configuration">in-process gateway configuration</a>.</li>
-<li>Desktop app - the backend should run a Web server and use the <a href="../../overview/app#desktop-gateway-configuration">desktop gateway configuration</a>.</li>
-<li>Web app - the backend should run a Web server and use the <a href="../../overview/app#cloud-gateway-configuration">cloud gateway configuration</a>.</li>
+<li>Mobile app - the backend should run the in-process RPC request processor and use the <a href="../../overview/app#in-process-rpc-configuration">in-process RPC configuration</a>.</li>
+<li>Desktop app - the backend should run a Web server and use the <a href="../../overview/app#desktop-rpc-configuration">desktop RPC configuration</a>.</li>
+<li>Web app - the backend should run a Web server and use the <a href="../../overview/app#cloud-rpc-configuration">cloud RPC configuration</a>.</li>
 </ul>
-<p><em>TBD: Sample Code</em></p>
-<p>A backend can use node builtins, but only in guarded code.</p>
-<p><em>TBD: Sample Code</em></p>
+<p><em>Example:</em></p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript"><span class="token comment">/* Configures the RPC implementations that are implemented by this service */</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">initializeRpcImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Register my own interfaces</span>
+  RpcManager<span class="token punctuation">.</span><span class="token function">registerImpl</span><span class="token punctuation">(</span>RobotWorldWriteRpcInterface<span class="token punctuation">,</span> RobotWorldWriteRpcImpl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  RpcManager<span class="token punctuation">.</span><span class="token function">registerImpl</span><span class="token punctuation">(</span>RobotWorldReadRpcInterface<span class="token punctuation">,</span> RobotWorldReadRpcImpl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Decide which interfaces this service will expose.</span>
+
+  <span class="token comment">// Start with the interfaces that we know that we want to expose.</span>
+  <span class="token comment">// Note that this is an example of exposing more than one interface from a single service.</span>
+  <span class="token comment">// It is also an example of exposing both a interface that is implemented by an imported package</span>
+  <span class="token comment">// and a interface that is implemented by the service.</span>
+  <span class="token keyword">const</span> interfaces<span class="token punctuation">:</span> RpcInterfaceDefinition<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>IModelReadRpcInterface<span class="token punctuation">,</span> RobotWorldReadRpcInterface<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// This is an example of using a FeatureGate to decide at runtime if the</span>
+  <span class="token comment">// service should expose one or more interfaces.</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>RobotWorldEngine<span class="token punctuation">.</span>features<span class="token punctuation">.</span><span class="token function">check</span><span class="token punctuation">(</span><span class="token string">&quot;readwrite&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    interfaces<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>IModelWriteRpcInterface<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    interfaces<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>RobotWorldWriteRpcInterface<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Expose the RpcInterfaces using the appropriate configuration.</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>Platform<span class="token punctuation">.</span><span class="token function">isMobile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">assert</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">&quot;TBD: mobile RPC config&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>Platform<span class="token punctuation">.</span>electron <span class="token operator">!==</span> undefined<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ElectronRpcManager<span class="token punctuation">.</span><span class="token function">initializeImpl</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> interfaces<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    BentleyCloudRpcManager<span class="token punctuation">.</span><span class="token function">initializeImpl</span><span class="token punctuation">(</span><span class="token punctuation">{</span> info<span class="token punctuation">:</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">&quot;RobotWorldEngine&quot;</span><span class="token punctuation">,</span> version<span class="token punctuation">:</span> <span class="token string">&quot;v1.0&quot;</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> interfaces<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+
+</code></pre>
+<h4><a id="using-platform-specific-modules-in-the-backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Using Platform-specific Modules in the Backend</h4>
+<p>A backend can use platform-specific globals and modules, but only in guarded code. See <a href="#backend">Platform</a> for methods to detect the platform.</p>
+<p>For example, a backend can use node builtins in guarded code, like this:</p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">  <span class="token keyword">import</span> <span class="token punctuation">{</span> Platform <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/imodeljs-backend&quot;</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>Platform<span class="token punctuation">.</span><span class="token function">isNodeJs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// access nodejs-specific modules and/or globals</span>
+    __dirname<span class="token punctuation">;</span>
+    process<span class="token punctuation">.</span>env<span class="token punctuation">;</span>
+    <span class="token keyword">require</span><span class="token punctuation">(</span><span class="token string">&quot;fs&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// ...</span>
+  <span class="token punctuation">}</span>
+</code></pre>
+<h3><a id="avoiding-nodejs-dependencies" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Avoiding Nodejs dependencies</h3>
 <p>A backend can use the following portable imodeljs-backend classes to avoid unnecessary node dependencies:</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Node builtin</th>
@@ -115,23 +179,23 @@
 </tr>
 <tr>
 <td>fs</td>
-<td>IModelJsFs</td>
+<td><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/portability/imodeljsfs'>IModelJsFs</a></td>
 </tr>
 <tr>
 <td>os</td>
-<td>Platform</td>
+<td><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/portability/platform'>Platform</a></td>
 </tr>
 <tr>
 <td>process</td>
-<td>Platform</td>
+<td><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/portability/platform'>Platform</a></td>
 </tr>
 <tr>
 <td>__dirname</td>
-<td>KnownLocations</td>
+<td><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/portability/knownlocations'>KnownLocations</a></td>
 </tr>
 <tr>
 <td>__filename</td>
-<td>KnownLocations</td>
+<td><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/portability/knownlocations'>KnownLocations</a></td>
 </tr>
 <tr>
 <td>console</td>
@@ -139,18 +203,18 @@
 </tr>
 <tr>
 <td>path</td>
-<td>path</td>
+<td><a href="#path">path</a></td>
 </tr>
-</tbody></table><p>In most cases, the imodeljs-backend substitutes do <em>not</em> provide all of the properties of the node global. That is by design, as not all of the features offered by node are portable. Only a partial implementation of <code>path</code> is provided on non-nodejs platforms.</p>
-<p>An app backend must not <em>never</em> depend on node-specific packages, including any package that is based on native code. (For fs-extra, use IModelJsFs)</p>
-<h2><a id="gateway-portability" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Gateway Portability</h2>
-<p>Since frontends talk to backends via a <a href="../../../overview/app#gateways">gateways</a> and gateways are TypeScript classes, and since gateway transport configuration does not affect the frontend or the backend code, frontend-backend communication is inherently portable.</p>
-<p>That said, the initialization logic of both frontend and backend must choose the correct gateway configurations, based on the app&apos;s configuration.</p>
-<h2><a id="platform-specific-modules" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Platform-specific Modules</h2>
-<p>A portable interactive app can use platform-specific modules that are supplied by the host platform in JavaScript. These should be used in guarded code.</p>
+</tbody></table><p>In most cases, the imodeljs-backend substitutes do <em>not</em> provide all of the properties of the node global. That is by design, as not all of the features offered by node are portable.</p>
+<h4><a id="path" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>path</h4>
+<p>A partial implementation of <code>path</code> is provided on non-nodejs platforms. The methods that are available everywhere are:
+posix, win32, sep, delimiter, basename, dirname, extname, normalize, join, isAbsolute.</p>
+<p>Use only these methods in unguarded code.</p>
+<h4><a id="unsupported" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Unsupported</h4>
+<p>An app backend must not <em>never</em> depend on node-specific <em>packages</em>, including any package that is based on native code. (For fs-extra, use IModelJsFs)</p>
 
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>09 May, 2018 @ 04:23:16 pm +00:00</span>
+                        <span class='date-updated'>15 May, 2018 @ 08:04:15 pm +00:00</span>
                     </p>
     
                    
@@ -175,7 +239,15 @@
                         <a class='title solo-title menu-text' href="#cross-platform-technologies">Cross-Platform Technologies</a>
                 </li>
                    <li class='nav-item item '>
-                        <a class='title solo-title menu-text' href="#frontend-portability">Frontend Portability</a>
+                        <a data-target="#inner-nav-frontend-portability" class='title' href="#frontend-portability"/>
+                        <b class='dropdown-menu-title menu-text'>Frontend Portability</b>
+                        <i class='dropdown icon'></i>
+                        </a>
+                        <ul id="inner-nav-frontend-portability" class='inner-nav'>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#using-plaform-specfic-modules-in-the-frontend">Using Plaform-specfic Modules in the Frontend</a>
+                            </li>
+                        </ul>
                 </li>
                    <li class='nav-item item '>
                         <a data-target="#inner-nav-backend-portability" class='title' href="#backend-portability"/>
@@ -187,15 +259,31 @@
                                     <a class='title solo-title menu-text' href="#services-and-agents">Services and Agents</a>
                             </li>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#app-backends">App Backends</a>
+                                    <a data-target="#inner-nav-app-backends" class='title' href="#app-backends"/>
+                                    <b class='dropdown-menu-title menu-text'>App Backends</b>
+                                    <i class='dropdown icon'></i>
+                                    </a>
+                                    <ul id="inner-nav-app-backends" class='inner-nav'>
+                                        <li class='nav-item item '>
+                                                <a class='title solo-title menu-text' href="#using-platform-specific-modules-in-the-backend">Using Platform-specific Modules in the Backend</a>
+                                        </li>
+                                    </ul>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a data-target="#inner-nav-avoiding-nodejs-dependencies" class='title' href="#avoiding-nodejs-dependencies"/>
+                                    <b class='dropdown-menu-title menu-text'>Avoiding Nodejs dependencies</b>
+                                    <i class='dropdown icon'></i>
+                                    </a>
+                                    <ul id="inner-nav-avoiding-nodejs-dependencies" class='inner-nav'>
+                                        <li class='nav-item item '>
+                                                <a class='title solo-title menu-text' href="#path">path</a>
+                                        </li>
+                                        <li class='nav-item item '>
+                                                <a class='title solo-title menu-text' href="#unsupported">Unsupported</a>
+                                        </li>
+                                    </ul>
                             </li>
                         </ul>
-                </li>
-                   <li class='nav-item item '>
-                        <a class='title solo-title menu-text' href="#gateway-portability">Gateway Portability</a>
-                </li>
-                   <li class='nav-item item '>
-                        <a class='title solo-title menu-text' href="#platform-specific-modules">Platform-specific Modules</a>
                 </li>
                  
                       </ul>

@@ -63,28 +63,99 @@
                   </li>
                 </span>
                 
-                <h1 id="the imodeljs library"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">The iModelJs Library</a></h1>
-                <h2><a id="frontend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend">Frontend</a></h2>
-                <h2><a id="backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend">Backend</a></h2>
-                <h2><a id="common" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common">Common</a></h2>
-                <h1 id="helpful links">Helpful links</h1>
-                <h2><a id="ecsql" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/ecsql">ECSQL</a></h2>
-                <h2><a id="frequently-asked-questions" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/faq">Frequently asked Questions</a></h2>
-                <h2><a id="guidelines-and-tips" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines">Guidelines and Tips</a></h2>
-                <h2><a id="imodeljs-glossary" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/glossary">iModelJs Glossary</a></h2>
+                <h3><a id="the-imodeljs-library" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">The iModelJs Library</a></h3>
+                <ul>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend">Frontend</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend">Backend</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common">Common</a></li>
+                </ul>
+                <p>&#xA0;</p>
+                <h3><a id="helpful-links" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
+                <ul>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/ecsql">ECSQL</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/featuregates">FeatureGates</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/rpcinterface">RpcInterface</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/logging">Logging</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/wireformat">Wire Format</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/faq">Frequently asked Questions</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines">Guidelines and Tips</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/glossary">iModelJs Glossary</a></li>
+                </ul>
                 
             </div>
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
+                    <div><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend/">backend</a> > ecsql-queries</div>
                     <h1 id="useful ecsql queries">Useful ECSQL Queries</h1>
 <p>The following ECSQL select statements are examples of useful queries that an app backend or a service might want to perform. They are written in a form that can be executed in backend code.</p>
-<h2><a id="look-up-element-by-code-value" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Look up element by code <em>value</em></h2>
-<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript"><span class="token punctuation">[</span><span class="token punctuation">[</span>File not found<span class="token punctuation">:</span> <span class="token constant">ECSQL</span><span class="token operator">-</span>backend<span class="token operator">-</span>queries<span class="token punctuation">.</span>select<span class="token operator">-</span>element<span class="token operator">-</span>by<span class="token operator">-</span>code<span class="token operator">-</span>value<span class="token punctuation">]</span><span class="token punctuation">]</span>
+<h2><a id="select-elements-in-a-particular-model" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Select Elements in a particular Model</h2>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">    <span class="token keyword">const</span> modelId<span class="token punctuation">:</span> Id64 <span class="token operator">=</span> IModelDb<span class="token punctuation">.</span>repositoryModelId<span class="token punctuation">;</span>
+    iModel<span class="token punctuation">.</span><span class="token function">withPreparedStatement</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`SELECT ECInstanceId AS id FROM </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>Element<span class="token punctuation">.</span>classFullName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> WHERE Model.Id=:modelId`</span></span><span class="token punctuation">,</span> <span class="token punctuation">(</span>statement<span class="token punctuation">:</span> ECSqlStatement<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      statement<span class="token punctuation">.</span><span class="token function">bindId</span><span class="token punctuation">(</span><span class="token string">&quot;modelId&quot;</span><span class="token punctuation">,</span> modelId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">while</span> <span class="token punctuation">(</span>DbResult<span class="token punctuation">.</span><span class="token constant">BE_SQLITE_ROW</span> <span class="token operator">===</span> statement<span class="token punctuation">.</span><span class="token function">step</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// do something with each row</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
 </code></pre>
-<p>As an alternative, you can use the <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/'>IModelDb.queryEntityIds</a> convenience method for simple cases.</p>
+<h2><a id="select-top-level-elements-in-a-particular-model" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Select Top-Level Elements in a particular Model</h2>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">    <span class="token keyword">const</span> modelId<span class="token punctuation">:</span> Id64 <span class="token operator">=</span> IModelDb<span class="token punctuation">.</span>repositoryModelId<span class="token punctuation">;</span>
+    iModel<span class="token punctuation">.</span><span class="token function">withPreparedStatement</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`SELECT ECInstanceId AS id FROM </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>Element<span class="token punctuation">.</span>classFullName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> WHERE Model.Id=:modelId AND Parent.Id IS NULL`</span></span><span class="token punctuation">,</span> <span class="token punctuation">(</span>statement<span class="token punctuation">:</span> ECSqlStatement<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      statement<span class="token punctuation">.</span><span class="token function">bindId</span><span class="token punctuation">(</span><span class="token string">&quot;modelId&quot;</span><span class="token punctuation">,</span> modelId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">while</span> <span class="token punctuation">(</span>DbResult<span class="token punctuation">.</span><span class="token constant">BE_SQLITE_ROW</span> <span class="token operator">===</span> statement<span class="token punctuation">.</span><span class="token function">step</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// do something with each row</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre>
+<h2><a id="select-child-elements" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Select Child Elements</h2>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">    <span class="token keyword">const</span> parentId<span class="token punctuation">:</span> Id64 <span class="token operator">=</span> IModelDb<span class="token punctuation">.</span>rootSubjectId<span class="token punctuation">;</span>
+    iModel<span class="token punctuation">.</span><span class="token function">withPreparedStatement</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`SELECT ECInstanceId AS id FROM </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>Element<span class="token punctuation">.</span>classFullName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> WHERE Parent.Id=:parentId`</span></span><span class="token punctuation">,</span> <span class="token punctuation">(</span>statement<span class="token punctuation">:</span> ECSqlStatement<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      statement<span class="token punctuation">.</span><span class="token function">bindId</span><span class="token punctuation">(</span><span class="token string">&quot;parentId&quot;</span><span class="token punctuation">,</span> parentId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">while</span> <span class="token punctuation">(</span>DbResult<span class="token punctuation">.</span><span class="token constant">BE_SQLITE_ROW</span> <span class="token operator">===</span> statement<span class="token punctuation">.</span><span class="token function">step</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// do something with each row</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre>
+<h2><a id="look-up-element-by-code-value" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Look up element by code value</h2>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">    <span class="token comment">// Suppose an iModel has the following breakdown structure:</span>
+    <span class="token comment">// * The root subject</span>
+    <span class="token comment">// * * Subject with CodeValue=&quot;Subject1&quot;</span>
+    <span class="token comment">// * * * PhysicalPartition with CodeValue=&quot;Physical&quot;</span>
+
+    <span class="token comment">// Suppose you want to look up the PhysicalPartition whose code value is &quot;Physical&quot;.</span>
+    <span class="token comment">// You could write the following query to find it. This query specifies that the</span>
+    <span class="token comment">// element you want is a PhysicalPartition, it has a code value of &quot;Physical&quot;,</span>
+    <span class="token comment">// and it is a child of a Subject named &quot;Subject1&quot;.</span>
+    <span class="token keyword">const</span> partitionIds<span class="token punctuation">:</span> Id64Set <span class="token operator">=</span> iModel<span class="token punctuation">.</span><span class="token function">withPreparedStatement</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`
+      select
+        partition.ecinstanceid
+      from
+        </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>PhysicalPartition<span class="token punctuation">.</span>classFullName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> as partition,
+        (select ecinstanceid from </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>Subject<span class="token punctuation">.</span>classFullName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> where CodeValue=:parentName) as parent
+      where
+        partition.codevalue=:partitionName and partition.parent.id = parent.ecinstanceid;
+    `</span></span><span class="token punctuation">,</span> <span class="token punctuation">(</span>stmt<span class="token punctuation">:</span> ECSqlStatement<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        stmt<span class="token punctuation">.</span><span class="token function">bindString</span><span class="token punctuation">(</span><span class="token string">&quot;parentName&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Subject1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        stmt<span class="token punctuation">.</span><span class="token function">bindString</span><span class="token punctuation">(</span><span class="token string">&quot;partitionName&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Physical&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> ids<span class="token punctuation">:</span> Id64Set <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>stmt<span class="token punctuation">.</span><span class="token function">step</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> DbResult<span class="token punctuation">.</span><span class="token constant">BE_SQLITE_ROW</span><span class="token punctuation">)</span>
+          ids<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>stmt<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> ids<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    assert<span class="token punctuation">.</span><span class="token function">isNotEmpty</span><span class="token punctuation">(</span>partitionIds<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    assert<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span>partitionIds<span class="token punctuation">.</span>size<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> eidStr <span class="token keyword">of</span> partitionIds<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      assert<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span>iModel<span class="token punctuation">.</span>elements<span class="token punctuation">.</span><span class="token function">getElement</span><span class="token punctuation">(</span>eidStr<span class="token punctuation">)</span><span class="token punctuation">.</span>code<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;Physical&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+</code></pre>
+<p>As an alternative, you can use the <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/imodels/imodeldb/queryentityids'>IModelDb.queryEntityIds</a> convenience method for simple cases.</p>
 
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>09 May, 2018 @ 04:23:16 pm +00:00</span>
+                        <span class='date-updated'>15 May, 2018 @ 08:04:15 pm +00:00</span>
                     </p>
     
                    
@@ -106,6 +177,15 @@
                     <div id="overview-container" class="clusterize-scroll">
                       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
                           <li class='nav-item item '>
+                        <a class='title solo-title menu-text' href="#select-elements-in-a-particular-model">Select Elements in a particular Model</a>
+                </li>
+                   <li class='nav-item item '>
+                        <a class='title solo-title menu-text' href="#select-top-level-elements-in-a-particular-model">Select Top-Level Elements in a particular Model</a>
+                </li>
+                   <li class='nav-item item '>
+                        <a class='title solo-title menu-text' href="#select-child-elements">Select Child Elements</a>
+                </li>
+                   <li class='nav-item item '>
                         <a class='title solo-title menu-text' href="#look-up-element-by-code-value">Look up element by code value</a>
                 </li>
                  

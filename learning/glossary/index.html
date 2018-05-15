@@ -63,19 +63,29 @@
                   </li>
                 </span>
                 
-                <h1 id="the imodeljs library"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">The iModelJs Library</a></h1>
-                <h2><a id="frontend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend">Frontend</a></h2>
-                <h2><a id="backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend">Backend</a></h2>
-                <h2><a id="common" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common">Common</a></h2>
-                <h1 id="helpful links">Helpful links</h1>
-                <h2><a id="ecsql" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/ecsql">ECSQL</a></h2>
-                <h2><a id="frequently-asked-questions" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/faq">Frequently asked Questions</a></h2>
-                <h2><a id="guidelines-and-tips" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines">Guidelines and Tips</a></h2>
-                <h2><a id="imodeljs-glossary" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/glossary">iModelJs Glossary</a></h2>
+                <h3><a id="the-imodeljs-library" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">The iModelJs Library</a></h3>
+                <ul>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend">Frontend</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend">Backend</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common">Common</a></li>
+                </ul>
+                <p>&#xA0;</p>
+                <h3><a id="helpful-links" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
+                <ul>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/ecsql">ECSQL</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/featuregates">FeatureGates</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/rpcinterface">RpcInterface</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/logging">Logging</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/wireformat">Wire Format</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/faq">Frequently asked Questions</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines">Guidelines and Tips</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/glossary">iModelJs Glossary</a></li>
+                </ul>
                 
             </div>
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
+                    <div><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/learning//"></a> > glossary</div>
                     <h1 id="frequently used terms in imodeljs">Frequently used terms in iModelJs</h1>
 <table class="table table-responsive"><tbody><tr>
 <th>Term</th>
@@ -219,7 +229,7 @@
 </tr>
 <tr>
 <td><strong>FeatureGate</strong></td>
-<td>A technique for controlling the behavior of an iModelJs program at runtime. FeatureGates are created in JSON and may be tested at runtime to <em>gate off</em> access to a feature.</td>
+<td>A technique for controlling the behavior of an iModelJs program at runtime. FeatureGates are created in JSON and may be tested at runtime to <em>gate off</em> access to a feature. See <a href=".././featuregates">learning about FeatureGates</a>.</td>
 </tr>
 <tr>
 <td><strong>FederationGuid</strong></td>
@@ -236,10 +246,6 @@
 <tr>
 <td><strong>Frustum</strong></td>
 <td>An 8-point <a href="https://en.wikipedia.org/wiki/Viewing_frustum">truncated pyramid</a> that defines the volume of space visible in a View. The front and back planes must be parallel and their centers must align at right angles.</td>
-</tr>
-<tr>
-<td><strong>Gateway</strong></td>
-<td>A set of operations exposed by a service that a client can call. To the iModelJs app programmer, a gateway is just a TypeScript class, and using a gateway is just a method call. Call marshalling mechanisms vary, depending on app configuration. For example, gateways run over HTTP in Web apps but use pipes in desktop apps. See <a href="../../overview/app#gateways">gateways</a> for more information.</td>
 </tr>
 <tr>
 <td><strong>GeometricElement</strong></td>
@@ -330,6 +336,14 @@
 <td>An Element in the iModel that describes (in text) the asset modeled by an iModel. There is always one and only one RootSubject. All information in an iModel will have some relationship to the RootSubject, making it the root of a <em>table of contents</em>.</td>
 </tr>
 <tr>
+<td><strong>RPC</strong></td>
+<td>Remote procedure call. Allows a client to invoke an operation in a service. Web apps use HTTP to implement RPC calls, while desktop apps use pipes.</td>
+</tr>
+<tr>
+<td><strong>RpcInterface</strong></td>
+<td>An interface exposed by a service and callable by clients via RPC. See  <a href="../../overview/app#rpcinterface">RpcInterface</a> for more information.</td>
+</tr>
+<tr>
 <td><strong>Rush</strong></td>
 <td>A tool for <a href="http://rushjs.io/">managing multiple NPM packages</a> within a single git repository.</td>
 </tr>
@@ -411,7 +425,7 @@
 </tr>
 </tbody></table>
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>09 May, 2018 @ 04:23:16 pm +00:00</span>
+                        <span class='date-updated'>15 May, 2018 @ 08:04:15 pm +00:00</span>
                     </p>
     
                    

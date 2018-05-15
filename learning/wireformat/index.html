@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bentley Docs</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output/styles/bundle.css">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output/styles/prism.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output/ class='indexSeg'>
+    <span id="contentLoader"><p>Woah!  This page has a great deal of content...  Give us a second to load it.</p></span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+    <header id="main-header">
+        <div class='row no-gutters nav-container'>
+            <!-- <div class="col-12"> -->
+            
+                <nav id='main-navbar' class="navbar navbar-expand-md navbar-light">
+                    
+                    <button class="navbar-toggler navbar-toggler-left custom-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon">
+                            <i class='icon icon-menu'></i>
+                        </span>
+                    </button>
+                        <div class="col-sm-6 col-md-3 nav-title-container">
+                            
+                            <a class="navbar-brand segregated" href="https://imodeljs.github.io/iModelJs-docs-output/learning" class="col-md-3">
+                                <h1 id='site-title'><i class='icon icon-document'></i>Learning</h1>                                
+                            </a>
+
+                        </div>
+                        <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
+                            <nav class="navbar navbar-expand-md navbar-light">
+                                 <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">Reference</a></li></ul> 
+                            </nav>
+                        </div>                </nav>
+            
+        </div>
+        <!-- </div> -->
+
+    </header>
+
+
+    <div id='main-wrapper'>
+    
+            <div id='table-of-contents'>
+                <span class='search-bar'>
+                  <li>
+                    <div id='search-container'>
+                    </div>
+                  </li>
+                </span>
+                
+                <h3><a id="the-imodeljs-library" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">The iModelJs Library</a></h3>
+                <ul>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend">Frontend</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend">Backend</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common">Common</a></li>
+                </ul>
+                <p>&#xA0;</p>
+                <h3><a id="helpful-links" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
+                <ul>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/ecsql">ECSQL</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/featuregates">FeatureGates</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/rpcinterface">RpcInterface</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/logging">Logging</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/wireformat">Wire Format</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/faq">Frequently asked Questions</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines">Guidelines and Tips</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/glossary">iModelJs Glossary</a></li>
+                </ul>
+                
+            </div>
+            <div class='row documentation-main'>
+                <article id="main" name="main-content">
+                    <div><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/learning//"></a> > wireformat</div>
+                    <h1 id="wire format">Wire Format</h1>
+<p>Below are examples of how different entities are serialized to JSON which is the basis of the <em>wire format</em>.</p>
+<h2><a id="root-subject" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Root Subject</h2>
+<p>The following code:</p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">    <span class="token keyword">const</span> elementProps<span class="token punctuation">:</span> ElementProps <span class="token operator">=</span> iModel<span class="token punctuation">.</span>elements<span class="token punctuation">.</span><span class="token function">getElementProps</span><span class="token punctuation">(</span>IModel<span class="token punctuation">.</span>rootSubjectId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> json<span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>elementProps<span class="token punctuation">,</span> undefined<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre>
+<p>Produces the following result:</p>
+<pre class="no-line-numbers language-json line-numbers"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">&quot;classFullName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BisCore:Subject&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;scope&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0x1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;spec&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0x1f&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;DgnDbTestUtils&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0x1&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;model&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0x1&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h2><a id="repositorymodel" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>RepositoryModel</h2>
+<p>The following code:</p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">    <span class="token keyword">const</span> modelProps<span class="token punctuation">:</span> ModelProps <span class="token operator">=</span> iModel<span class="token punctuation">.</span>models<span class="token punctuation">.</span><span class="token function">getModel</span><span class="token punctuation">(</span>IModel<span class="token punctuation">.</span>repositoryModelId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> json<span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>modelProps<span class="token punctuation">,</span> undefined<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre>
+<p>Produces the following result:</p>
+<pre class="no-line-numbers language-json line-numbers"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">&quot;classFullName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BisCore:RepositoryModel&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;isPrivate&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;isTemplate&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;jsonProperties&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;modeledElement&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0x1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;relClassName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BisCore:ModelModelsElement&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;parentModel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0x1&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0x1&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;DgnDbTestUtils&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h2><a id="geometricelement3d" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>GeometricElement3d</h2>
+<p>The following code produces JSON at various stages on the way to creating a <code>GeometricElement3d</code>:</p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">    <span class="token comment">// Construct an Arc3d (local coordinates)</span>
+    <span class="token keyword">const</span> center <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Point3d</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> radius <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> sweep<span class="token punctuation">:</span> AngleSweep <span class="token operator">=</span> AngleSweep<span class="token punctuation">.</span><span class="token function">createStartEnd</span><span class="token punctuation">(</span>Angle<span class="token punctuation">.</span><span class="token function">createDegrees</span><span class="token punctuation">(</span><span class="token number">90</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Angle<span class="token punctuation">.</span><span class="token function">createDegrees</span><span class="token punctuation">(</span><span class="token number">180</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> arc<span class="token punctuation">:</span> Arc3d <span class="token operator">=</span> Arc3d<span class="token punctuation">.</span><span class="token function">createXY</span><span class="token punctuation">(</span>center<span class="token punctuation">,</span> radius<span class="token punctuation">,</span> sweep<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> arcJson<span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>arc<span class="token punctuation">,</span> undefined<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Construct a LineString3d (local coordinates)</span>
+    <span class="token keyword">const</span> points<span class="token punctuation">:</span> Point3d<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+      <span class="token keyword">new</span> <span class="token class-name">Point3d</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">Point3d</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">Point3d</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> lineString<span class="token punctuation">:</span> LineString3d <span class="token operator">=</span> LineString3d<span class="token punctuation">.</span><span class="token function">createPoints</span><span class="token punctuation">(</span>points<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> lineStringJson<span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>lineString<span class="token punctuation">,</span> undefined<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Construct a GeometryStream containing the Arc3d and LineString3d created above (local coordinates)</span>
+    <span class="token keyword">const</span> builder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GeometryStreamBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    builder<span class="token punctuation">.</span><span class="token function">appendGeometryQuery</span><span class="token punctuation">(</span>arc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    builder<span class="token punctuation">.</span><span class="token function">appendGeometryQuery</span><span class="token punctuation">(</span>lineString<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> geometryStreamJson<span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>builder<span class="token punctuation">.</span>geometryStream<span class="token punctuation">,</span> undefined<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Construct a Placement (world coordinates)</span>
+    <span class="token keyword">const</span> origin <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Point3d</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> angles <span class="token operator">=</span> YawPitchRollAngles<span class="token punctuation">.</span><span class="token function">createDegrees</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">90</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> placement<span class="token punctuation">:</span> Placement3dProps <span class="token operator">=</span> <span class="token punctuation">{</span> origin<span class="token punctuation">,</span> angles <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> placementJson<span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>placement<span class="token punctuation">,</span> undefined<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Construct a GeometricElement3d using the GeometryStream and Placement created above</span>
+    <span class="token keyword">const</span> elementProps<span class="token punctuation">:</span> GeometricElement3dProps <span class="token operator">=</span> <span class="token punctuation">{</span>
+      classFullName<span class="token punctuation">:</span> <span class="token string">&quot;Generic:PhysicalObject&quot;</span><span class="token punctuation">,</span>
+      model<span class="token punctuation">:</span> modelId<span class="token punctuation">,</span>
+      category<span class="token punctuation">:</span> categoryId<span class="token punctuation">,</span>
+      placement<span class="token punctuation">,</span>
+      geom<span class="token punctuation">:</span> builder<span class="token punctuation">.</span>geometryStream<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> elementPropsJson<span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>elementProps<span class="token punctuation">,</span> undefined<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+</code></pre>
+<h3><a id="arc3d-json" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Arc3d JSON</h3>
+<p>Below is the JSON from the <code>Arc3d</code>:</p>
+<pre class="no-line-numbers language-json line-numbers"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">&quot;center&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token number">0</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;sweep&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token number">90</span><span class="token punctuation">,</span>
+    <span class="token number">180</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;vector0&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token number">0</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;vector90&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token number">0</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3><a id="linestring3d-json" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>LineString3d JSON</h3>
+<p>Below is the JSON from the <code>LineString3d</code>:</p>
+<pre class="no-line-numbers language-json line-numbers"><code class="language-json"><span class="token punctuation">[</span>
+  <span class="token punctuation">[</span>
+    <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token number">0</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span>
+    <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token number">2</span><span class="token punctuation">,</span>
+    <span class="token number">0</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span>
+    <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token number">2</span><span class="token punctuation">,</span>
+    <span class="token number">4</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">]</span>
+</code></pre>
+<h3><a id="geometrystream-json" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>GeometryStream JSON</h3>
+<p>Below is the JSON from the <code>GeometryStream</code> that contains the <code>Arc3d</code> and <code>LineString3d</code> that were previously created.
+This shows that a <code>GeometryStream</code> is just an array of entries:</p>
+<pre class="no-line-numbers language-json line-numbers"><code class="language-json"><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;arc&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;center&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token number">0</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;vectorX&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token number">0</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;vectorY&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token number">0</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;sweepStartEnd&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token number">90</span><span class="token punctuation">,</span>
+        <span class="token number">180</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;lineString&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">[</span>
+        <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token number">0</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">[</span>
+        <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token number">2</span><span class="token punctuation">,</span>
+        <span class="token number">0</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">[</span>
+        <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token number">2</span><span class="token punctuation">,</span>
+        <span class="token number">4</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre>
+<h3><a id="placement3d-json" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Placement3d JSON</h3>
+<p>Below is the JSON from the <code>Placement3d</code> that will be used to place the <code>GeometryStream</code> in world coordinates:</p>
+<pre class="no-line-numbers language-json line-numbers"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">&quot;origin&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token number">100</span><span class="token punctuation">,</span>
+    <span class="token number">100</span><span class="token punctuation">,</span>
+    <span class="token number">0</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;angles&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;pitch&quot;</span><span class="token operator">:</span> <span class="token number">90</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3><a id="geometricelement3d-json" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>GeometricElement3d JSON</h3>
+<p>Below is the JSON from the <code>GeometricElement3d</code>.
+This shows how the JSON from the <code>GeometricElement3d</code> contains the JSON from the objects used to create it:</p>
+<pre class="no-line-numbers language-json line-numbers"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">&quot;classFullName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Generic:PhysicalObject&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;model&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;placement&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;origin&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token number">100</span><span class="token punctuation">,</span>
+      <span class="token number">100</span><span class="token punctuation">,</span>
+      <span class="token number">0</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;angles&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;pitch&quot;</span><span class="token operator">:</span> <span class="token number">90</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;geom&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;arc&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;center&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token number">0</span><span class="token punctuation">,</span>
+          <span class="token number">0</span><span class="token punctuation">,</span>
+          <span class="token number">0</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;vectorX&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token number">1</span><span class="token punctuation">,</span>
+          <span class="token number">0</span><span class="token punctuation">,</span>
+          <span class="token number">0</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;vectorY&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token number">0</span><span class="token punctuation">,</span>
+          <span class="token number">1</span><span class="token punctuation">,</span>
+          <span class="token number">0</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;sweepStartEnd&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token number">90</span><span class="token punctuation">,</span>
+          <span class="token number">180</span>
+        <span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;lineString&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">[</span>
+          <span class="token number">0</span><span class="token punctuation">,</span>
+          <span class="token number">0</span><span class="token punctuation">,</span>
+          <span class="token number">0</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">[</span>
+          <span class="token number">1</span><span class="token punctuation">,</span>
+          <span class="token number">2</span><span class="token punctuation">,</span>
+          <span class="token number">0</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">[</span>
+          <span class="token number">1</span><span class="token punctuation">,</span>
+          <span class="token number">2</span><span class="token punctuation">,</span>
+          <span class="token number">4</span>
+        <span class="token punctuation">]</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+
+                    <p class='last-updated'>Last Updated: 
+                        <span class='date-updated'>15 May, 2018 @ 08:04:15 pm +00:00</span>
+                    </p>
+    
+                   
+                   <script type="text/javascript">
+                   
+                   </script>                </article>
+            </div>
+            <div id='inner-table-of-contents'>
+                <!-- 
+                    - If the page is active
+                    - Get all headings and subheadings and list them
+                 -->
+                
+                
+                
+                
+                  <div id='sticky-container'>
+                    <h4 class='heading'>Overview</h4>
+                    <div id="overview-container" class="clusterize-scroll">
+                      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+                          <li class='nav-item item '>
+                        <a class='title solo-title menu-text' href="#root-subject">Root Subject</a>
+                </li>
+                   <li class='nav-item item '>
+                        <a class='title solo-title menu-text' href="#repositorymodel">RepositoryModel</a>
+                </li>
+                   <li class='nav-item item '>
+                        <a data-target="#inner-nav-geometricelement3d" class='title' href="#geometricelement3d"/>
+                        <b class='dropdown-menu-title menu-text'>GeometricElement3d</b>
+                        <i class='dropdown icon'></i>
+                        </a>
+                        <ul id="inner-nav-geometricelement3d" class='inner-nav'>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#arc3d-json">Arc3d JSON</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#linestring3d-json">LineString3d JSON</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#geometrystream-json">GeometryStream JSON</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#placement3d-json">Placement3d JSON</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#geometricelement3d-json">GeometricElement3d JSON</a>
+                            </li>
+                        </ul>
+                </li>
+                 
+                      </ul>
+                    </div>
+                  </div>
+                
+            </div>
+        
+    </div>
+    
+
+    
+        <footer id='main-footer'>
+            <div id='footer-content-container'>
+               <div class='footer-footer'>
+                   <p>Copyright 2018 Bentley Systems, Incorporated</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+        <a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+        <script src="https://imodeljs.github.io/iModelJs-docs-output/scripts/bundle.js" ></script>
+    </body>
+    
+    </html>

@@ -63,25 +63,48 @@
                   </li>
                 </span>
                 
-                <h1 id="the imodeljs library"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">The iModelJs Library</a></h1>
-                <h2><a id="frontend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend">Frontend</a></h2>
-                <h2><a id="backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend">Backend</a></h2>
-                <h2><a id="common" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common">Common</a></h2>
-                <h1 id="helpful links">Helpful links</h1>
-                <h2><a id="ecsql" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/ecsql">ECSQL</a></h2>
-                <h2><a id="frequently-asked-questions" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/faq">Frequently asked Questions</a></h2>
-                <h2><a id="guidelines-and-tips" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines">Guidelines and Tips</a></h2>
-                <h2><a id="imodeljs-glossary" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/glossary">iModelJs Glossary</a></h2>
+                <h3><a id="the-imodeljs-library" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">The iModelJs Library</a></h3>
+                <ul>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend">Frontend</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend">Backend</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common">Common</a></li>
+                </ul>
+                <p>&#xA0;</p>
+                <h3><a id="helpful-links" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
+                <ul>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/ecsql">ECSQL</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/featuregates">FeatureGates</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/rpcinterface">RpcInterface</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/logging">Logging</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/wireformat">Wire Format</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/faq">Frequently asked Questions</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines">Guidelines and Tips</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/glossary">iModelJs Glossary</a></li>
+                </ul>
                 
             </div>
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
+                    <div><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/learning//"></a> > sqlfuncs</div>
                     <h1 id="ecsql built-in geometry functions">ECSQL Built-in Geometry Functions</h1>
+<p>ECSQL statements can use builtin functions to query and analyze element geometry.
+These functions can be used in SELECT and WHERE clauses. The functions
+that return primtive types can be in expressions with other values.</p>
 <p>Types: 
 <a href="#iModel_spatial_overlap_aabb">iModel_placement</a>, <a href="#iModel_spatial_overlap_aabb">iModel_bbox</a>, <a href="#iModel_spatial_overlap_aabb">iModel_angles</a>, <a href="#iModel_spatial_overlap_aabb">iModel_point</a></p>
 <p>Functions: 
 <a href="#iModel_angles">iModel_angles</a>, <a href="#iModel_angles_maxdiff">iModel_angles_maxdiff</a>, <a href="#iModel_angles_value">iModel_angles_value</a>, <a href="#iModel_bbox">iModel_bbox</a>, <a href="#iModel_bbox_areaxy">iModel_bbox_areaxy</a>, <a href="#iModel_bbox_contains">iModel_bbox_contains</a>, <a href="#iModel_bbox_depth">iModel_bbox_depth</a>, <a href="#iModel_bbox_height">iModel_bbox_height</a>, <a href="#iModel_bbox_overlaps">iModel_bbox_overlaps</a>, <a href="#iModel_bbox_union">iModel_bbox_union</a>, <a href="#iModel_bbox_value">iModel_bbox_value</a>, <a href="#iModel_bbox_volume">iModel_bbox_volume</a>, <a href="#iModel_bbox_width">iModel_bbox_width</a>, <a href="#iModel_placement_aabb">iModel_placement_aabb</a>, <a href="#iModel_placement_angles">iModel_placement_angles</a>, <a href="#iModel_placement_eabb">iModel_placement_eabb</a>, <a href="#iModel_placement_origin">iModel_placement_origin</a>, <a href="#iModel_point_distance">iModel_point_distance</a>, <a href="#iModel_point_min_distance_to_bbox">iModel_point_min_distance_to_bbox</a>, <a href="#iModel_point_value">iModel_point_value</a>, <a href="#iModel_spatial_overlap_aabb">iModel_spatial_overlap_aabb</a></p>
 <h1 id="types">Types</h1>
+<p>The geometry builtin functions work with custom data types, such as bounding boxes,
+points, angles, and placements, allowing you to work with the structured data
+that appears in the spatial index and in element geometry.</p>
+<p>These custom data types are described here in a conceptual way. You do not
+work directly with them. Instead, in ECSQL, you use builtin functions to
+create, analyze, and extract or compute primitive values from them.
+If you return a structured data type value from an ECSQL statement, it will have the
+type of ArrayBuffer in script.
+You will normally have to convert a returned anArrayBuffer to the appropriate geometry
+type before you can work with it in script. See, for example, <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/range3d/fromarraybuffer'>Range3d.fromArrayBuffer</a>.</p>
 <hr>
 <h2><a id="imodel_point" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModel_point</h2>
 <p>A point in the iModel&apos;s Cartesian coordinate system. All coordinates are in meters. If the point represents a location in a 2D model, then the z-coordinate will be zero.
@@ -137,6 +160,14 @@ iModel_angles angles;  // Angles
 iModel_bbox bbox;      // Element-aligned bounding box
 };
 </code></pre><h1 id="functions">Functions</h1>
+<p>The builtin geometry functions include functions to extract geometric information
+from elements, as well as functions to create, analyze, and extract or compute primitive values from
+the custom structured data types.</p>
+<p>Most of the builtin functions just perform a function and return a result.</p>
+<h3><a id="aggregate" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Aggregate</h3>
+<p>Some of the builtin geometry functions are <em>aggregate</em> functions. They accumulate results,
+reducing all of the values passed to them by the statement to a single resultant value.
+See <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functions</a></p>
 <hr>
 <h2><a id="imodel_placement_aabb" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModel_placement_aabb</h2>
 <pre><code>iModel_placement_aabb(placement)
@@ -641,7 +672,7 @@ iModel_bbox bbox;      // Element-aligned bounding box
 </tbody></table><hr>
 <h2><a id="imodel_bbox_union" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModel_bbox_union</h2>
 <pre><code>iModel_bbox_union(X1)
-</code></pre><p> Aggregate function that computes the union of a series of bounding boxes</p>
+</code></pre><p> <a href="#aggregate">Aggregate</a> function that computes the union of a series of bounding boxes</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
 <th>Type</th>
@@ -802,7 +833,7 @@ iModel_bbox bbox;      // Element-aligned bounding box
 </code></pre>
 
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>09 May, 2018 @ 04:23:16 pm +00:00</span>
+                        <span class='date-updated'>15 May, 2018 @ 08:04:15 pm +00:00</span>
                     </p>
     
                    
@@ -833,7 +864,15 @@ iModel_bbox bbox;      // Element-aligned bounding box
                         <a class='title solo-title menu-text' href="#imodel_bbox">iModel_bbox</a>
                 </li>
                    <li class='nav-item item '>
-                        <a class='title solo-title menu-text' href="#imodel_placement">iModel_placement</a>
+                        <a data-target="#inner-nav-imodel_placement" class='title' href="#imodel_placement"/>
+                        <b class='dropdown-menu-title menu-text'>iModel_placement</b>
+                        <i class='dropdown icon'></i>
+                        </a>
+                        <ul id="inner-nav-imodel_placement" class='inner-nav'>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#aggregate">Aggregate</a>
+                            </li>
+                        </ul>
                 </li>
                    <li class='nav-item item '>
                         <a class='title solo-title menu-text' href="#imodel_placement_aabb">iModel_placement_aabb</a>
