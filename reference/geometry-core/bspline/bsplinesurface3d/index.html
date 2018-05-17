@@ -63,7 +63,8 @@
                   </li>
                 </span>
                 
-                <h2><a id="imodeljs-packages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModelJs Packages</h2>
+                <ul id='main-navigation-list'>
+                    <h2><a id="imodeljs-packages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModelJs Packages</h2>
                 <hr>
                 <h3><a id="backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/'>imodeljs-backend</a></h3>
                 <ul>
@@ -124,7 +125,7 @@
                 <li><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/topology/'>Topology</a></li>
                 </ul>
                 
-            </div>
+                </ul>            </div>
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
                     <div><a href="https://imodeljs.github.io/iModelJs-docs-output/reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/reference/geometry-core/">geometry-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/reference/geometry-core/bspline/">bspline</a> > bsplinesurface3d</div>
@@ -139,6 +140,14 @@ BSplineSurface3d is a parametric surface in xyz space.</p>
 | create | flat array of [x,y,z] | arguments numPolesU, numPolesV |
 | createGrid | array of array of [x,y,z ] | There are no <code>numPolesU</code> or <code>numPolesV</code> args. The counts are conveyed by the deep arrays |
  </section></p>
+<h3><a id="extends" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Extends</h3>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/bspline/bspline2dnd'>BSpline2dNd</a></li>
+</ul>
+<h3><a id="implements" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Implements</h3>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/bspline/bsplinesurface3dquery'>BSplineSurface3dQuery</a></li>
+</ul>
 <h3><a id="methods" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Methods</h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -177,15 +186,15 @@ BSplineSurface3d is a parametric surface in xyz space.</p>
 <td></td>
 </tr>
 <tr>
-<td><a href="extendrange">extendRange</a> ( rangeToExtend: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a>, transform: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="extendrange">extendRange</a> ( rangeToExtend: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a>, transform?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="extendrangexyz">extendRangeXYZ</a> ( rangeToExtend: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a>, transform: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="extendrangexyz">extendRangeXYZ</a> ( rangeToExtend: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a>, transform?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td>extend a range, treating each block as simple XYZ</td>
 </tr>
 <tr>
-<td><a href="extendrangexyzh">extendRangeXYZH</a> ( rangeToExtend: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a>, transform: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="extendrangexyzh">extendRangeXYZH</a> ( rangeToExtend: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a>, transform?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td>extend a range, treating each block as homogeneous xyzw, with weight at offset 3</td>
 </tr>
 <tr>
@@ -193,19 +202,19 @@ BSplineSurface3d is a parametric surface in xyz space.</p>
 <td>Evalute at a position given by fractional coordinte in each direction.</td>
 </tr>
 <tr>
-<td><a href="fractiontopointandderivatives">fractionToPointAndDerivatives</a> ( fractionU: number, fractionV: number, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/plane3dbyoriginandvectors'>Plane3dByOriginAndVectors</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/plane3dbyoriginandvectors'>Plane3dByOriginAndVectors</a> <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="fractiontopointandderivatives">fractionToPointAndDerivatives</a> ( fractionU: number, fractionV: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/plane3dbyoriginandvectors'>Plane3dByOriginAndVectors</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/plane3dbyoriginandvectors'>Plane3dByOriginAndVectors</a> <span class="badge badge-pill badge-primary">Public</span></td>
 <td>evaluate the surface at u and v fractions.</td>
 </tr>
 <tr>
-<td><a href="fractiontorigidframe">fractionToRigidFrame</a> ( fractionU: number, fractionV: number, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> | undefined <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="fractiontorigidframe">fractionToRigidFrame</a> ( fractionU: number, fractionV: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> | undefined <span class="badge badge-pill badge-primary">Public</span></td>
 <td>evaluate the surface at u and v fractions.</td>
 </tr>
 <tr>
-<td><a href="getpoint3dpole">getPoint3dPole</a> ( i: number, j: number, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> | undefined <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="getpoint3dpole">getPoint3dPole</a> ( i: number, j: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> | undefined <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="getpoint3dpolexyzw">getPoint3dPoleXYZW</a> ( i: number, j: number, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> | undefined <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="getpoint3dpolexyzw">getPoint3dPoleXYZW</a> ( i: number, j: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> | undefined <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
@@ -217,7 +226,7 @@ BSplineSurface3d is a parametric surface in xyz space.</p>
 <td>Return control points json arrays.</td>
 </tr>
 <tr>
-<td><a href="getpole">getPole</a> ( i: number, j: number, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> | undefined <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="getpole">getPole</a> ( i: number, j: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> | undefined <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
@@ -241,7 +250,7 @@ BSplineSurface3d is a parametric surface in xyz space.</p>
 <td>Evaluate at a position given by u and v coordinates in knot space.</td>
 </tr>
 <tr>
-<td><a href="knottopointandderivatives">knotToPointAndDerivatives</a> ( u: number, v: number, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/plane3dbyoriginandvectors'>Plane3dByOriginAndVectors</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/plane3dbyoriginandvectors'>Plane3dByOriginAndVectors</a> <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="knottopointandderivatives">knotToPointAndDerivatives</a> ( u: number, v: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/plane3dbyoriginandvectors'>Plane3dByOriginAndVectors</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/plane3dbyoriginandvectors'>Plane3dByOriginAndVectors</a> <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Evaluate at a position given by a knot value.</td>
 </tr>
 <tr>
@@ -269,7 +278,7 @@ BSplineSurface3d is a parametric surface in xyz space.</p>
 <td></td>
 </tr>
 <tr>
-<td><a href="range">range</a> ( transform: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a> <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="range">range</a> ( transform?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a> <span class="badge badge-pill badge-primary">Public</span></td>
 <td>return the range of the entire (tree) GeometryQuery</td>
 </tr>
 <tr>
@@ -285,7 +294,7 @@ BSplineSurface3d is a parametric surface in xyz space.</p>
 <td>Map a position, specified as (uv direction, bezier span, fraction within the bezier), to an overal knot value.</td>
 </tr>
 <tr>
-<td><a href="spanfractionstobasisfunctions">spanFractionsToBasisFunctions</a> ( select: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/bspline/uvselect'>UVSelect</a>, spanIndex: number, spanFraction: number, f: Float64Array, df: Float64Array ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="spanfractionstobasisfunctions">spanFractionsToBasisFunctions</a> ( select: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/bspline/uvselect'>UVSelect</a>, spanIndex: number, spanFraction: number, f: Float64Array, df?: Float64Array ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
@@ -367,7 +376,7 @@ BSplineSurface3d is a parametric surface in xyz space.</p>
 </tr>
 </tbody></table>
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>15 May, 2018 @ 08:03:22 pm +00:00</span>
+                        <span class='date-updated'>17 May, 2018 @ 12:08:54 pm -04:00</span>
                     </p>
     
                    
@@ -394,6 +403,18 @@ BSplineSurface3d is a parametric surface in xyz space.</p>
                         <i class='dropdown icon'></i>
                         </a>
                         <ul id="inner-nav-bsplinesurface3d" class='inner-nav'>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#extends">Extends</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#bspline2dnd">BSpline2dNd</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#implements">Implements</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#bsplinesurface3dquery">BSplineSurface3dQuery</a>
+                            </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#methods">Methods</a>
                             </li>

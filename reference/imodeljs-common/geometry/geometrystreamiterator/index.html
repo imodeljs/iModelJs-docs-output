@@ -63,7 +63,8 @@
                   </li>
                 </span>
                 
-                <h2><a id="imodeljs-packages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModelJs Packages</h2>
+                <ul id='main-navigation-list'>
+                    <h2><a id="imodeljs-packages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModelJs Packages</h2>
                 <hr>
                 <h3><a id="backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/'>imodeljs-backend</a></h3>
                 <ul>
@@ -124,20 +125,24 @@
                 <li><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/topology/'>Topology</a></li>
                 </ul>
                 
-            </div>
+                </ul>            </div>
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
                     <div><a href="https://imodeljs.github.io/iModelJs-docs-output/reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-common/">imodeljs-common</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-common/geometry/">geometry</a> > geometrystreamiterator</div>
                     <h2><a id="geometrystreamiterator" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>GeometryStreamIterator <span class="badge badge-pill badge-primary">Class</span></h2>
 <p> <section class="tsd-panel tsd-comment">
 GeometryStreamIterator is a helper class for iterating a GeometryStreamProps </section></p>
+<h3><a id="implements" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Implements</h3>
+<ul>
+<li>IterableIterator&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/geometry/geometrystreamiteratorentry'>GeometryStreamIteratorEntry</a>&gt;</li>
+</ul>
 <h3><a id="methods" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Methods</h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
 <th>Description</th>
 </tr>
 <tr>
-<td><a href="constructor">GeometryStreamIterator</a> ( geometryStream: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/geometry/geometrystreamprops'>GeometryStreamProps</a>, category: Id64Props ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/geometry/geometrystreamiterator'>GeometryStreamIterator</a> <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="constructor">GeometryStreamIterator</a> ( geometryStream: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/geometry/geometrystreamprops'>GeometryStreamProps</a>, category?: Id64Props ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/geometry/geometrystreamiterator'>GeometryStreamIterator</a> <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Construct a new GeometryStreamIterator given a GeometryStreamProps from either a GeometricElement3d, GeometricElement3d, or GeometryPart.</td>
 </tr>
 <tr>
@@ -153,7 +158,7 @@ GeometryStreamIterator is a helper class for iterating a GeometryStreamProps </s
 <td>Get the transform that if applied to a GeometryPart&apos;s GeometryStream entries that would return them in world coordinates.</td>
 </tr>
 <tr>
-<td><a href="setlocaltoworld">setLocalToWorld</a> ( localToWorld: Transform ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="setlocaltoworld">setLocalToWorld</a> ( localToWorld?: Transform ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Supply optional local to world transform.</td>
 </tr>
 <tr>
@@ -173,7 +178,7 @@ GeometryStreamIterator is a helper class for iterating a GeometryStreamProps </s
 <td>Create a new GeometryStream iterator for a GeometricElement3d.</td>
 </tr>
 <tr>
-<td><a href="fromgeometrypart">fromGeometryPart</a> ( geomPart: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/biscore/geometrypartprops'>GeometryPartProps</a>, geomParams: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/views/geometryparams'>GeometryParams</a>, partTransform: Transform ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/geometry/geometrystreamiterator'>GeometryStreamIterator</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="fromgeometrypart">fromGeometryPart</a> ( geomPart: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/biscore/geometrypartprops'>GeometryPartProps</a>, geomParams?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/views/geometryparams'>GeometryParams</a>, partTransform?: Transform ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/geometry/geometrystreamiterator'>GeometryStreamIterator</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td>Create a new GeometryStream iterator for a GeometryPart.</td>
 </tr>
 </tbody></table><h3><a id="properties" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Properties</h3>
@@ -194,7 +199,7 @@ GeometryStreamIterator is a helper class for iterating a GeometryStreamProps </s
 </tr>
 </tbody></table>
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>15 May, 2018 @ 08:03:50 pm +00:00</span>
+                        <span class='date-updated'>17 May, 2018 @ 12:09:27 pm -04:00</span>
                     </p>
     
                    
@@ -222,6 +227,12 @@ GeometryStreamIterator is a helper class for iterating a GeometryStreamProps </s
                         </a>
                         <ul id="inner-nav-geometrystreamiterator" class='inner-nav'>
                             <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#implements">Implements</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#geometrystreamiteratorentry">GeometryStreamIteratorEntry</a>
+                            </li>
+                            <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#methods">Methods</a>
                             </li>
                             <li class='nav-item item '>
@@ -237,13 +248,13 @@ GeometryStreamIterator is a helper class for iterating a GeometryStreamProps </s
                                     <a class='title solo-title menu-text' href="#__iterator">__@iterator</a>
                             </li>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#geometrystreamiteratorentry">GeometryStreamIteratorEntry</a>
+                                    <a class='title solo-title menu-text' href="#geometrystreamiteratorentry-1">GeometryStreamIteratorEntry</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#next">next</a>
                             </li>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#geometrystreamiteratorentry-1">GeometryStreamIteratorEntry</a>
+                                    <a class='title solo-title menu-text' href="#geometrystreamiteratorentry-2">GeometryStreamIteratorEntry</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#geometryparams">GeometryParams</a>
@@ -297,7 +308,7 @@ GeometryStreamIterator is a helper class for iterating a GeometryStreamProps </s
                                     <a class='title solo-title menu-text' href="#entry"></a>
                             </li>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#geometrystreamiteratorentry-2">GeometryStreamIteratorEntry</a>
+                                    <a class='title solo-title menu-text' href="#geometrystreamiteratorentry-3">GeometryStreamIteratorEntry</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#geometrystream"></a>

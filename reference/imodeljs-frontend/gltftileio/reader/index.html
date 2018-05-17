@@ -63,7 +63,8 @@
                   </li>
                 </span>
                 
-                <h2><a id="imodeljs-packages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModelJs Packages</h2>
+                <ul id='main-navigation-list'>
+                    <h2><a id="imodeljs-packages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModelJs Packages</h2>
                 <hr>
                 <h3><a id="backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/'>imodeljs-backend</a></h3>
                 <ul>
@@ -124,11 +125,13 @@
                 <li><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/topology/'>Topology</a></li>
                 </ul>
                 
-            </div>
+                </ul>            </div>
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
                     <div><a href="https://imodeljs.github.io/iModelJs-docs-output/reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-frontend/gltftileio/">gltftileio</a> > reader</div>
                     <h2><a id="reader" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Reader <span class="badge badge-pill badge-primary">Class</span></h2>
+<p> <section class="tsd-panel tsd-comment">
+Deserializes glTF tile data. </section></p>
 <h3><a id="methods" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Methods</h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -159,19 +162,71 @@
 <td></td>
 </tr>
 <tr>
-<td><a href="readcolortable">readColorTable</a> ( _json: any ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/colormap/colormap'>ColorMap</a> | undefined <span class="badge badge-pill badge-primary">Protected</span></td>
+<td><a href="readbufferdata8">readBufferData8</a> ( json: any, accessorName: string ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/handle/bufferdata'>BufferData</a> | undefined <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="readfeatures">readFeatures</a> ( _json: any ): Uint32Array | undefined <span class="badge badge-pill badge-primary">Protected</span></td>
+<td><a href="readbufferdatafloat">readBufferDataFloat</a> ( json: any, accessorName: string ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/handle/bufferdata'>BufferData</a> | undefined <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="readgltf">readGltf</a> ( _geometry: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/tileio/geometrycollection'>GeometryCollection</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/tileio/readstatus'>ReadStatus</a> <span class="badge badge-pill badge-primary">Protected</span></td>
+<td><a href="readcolorindices">readColorIndices</a> ( json: any ): Uint16Array | undefined <span class="badge badge-pill badge-primary">Protected</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="readcolortable">readColorTable</a> ( _colorTable: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/colormap/colormap'>ColorMap</a>, _json: any ): boolean | undefined <span class="badge badge-pill badge-primary">Protected</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="readfeatureindices">readFeatureIndices</a> ( _json: any ): number[] | undefined <span class="badge badge-pill badge-primary">Protected</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="readfeatures">readFeatures</a> ( features: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/mesh/features'>Features</a>, json: any ): boolean <span class="badge badge-pill badge-primary">Protected</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="readgltf">readGltf</a> ( geometry: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/tileio/geometrycollection'>GeometryCollection</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/tileio/readstatus'>ReadStatus</a> <span class="badge badge-pill badge-primary">Protected</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="readindices">readIndices</a> ( json: any, accessorName: string ): number[] | undefined <span class="badge badge-pill badge-primary">Protected</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="readmeshindices">readMeshIndices</a> ( mesh: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/mesh/mesh'>Mesh</a>, json: any ): boolean <span class="badge badge-pill badge-primary">Protected</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="readmeshprimitive">readMeshPrimitive</a> ( primitive: any, featureTable?: FeatureTable ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/mesh/mesh'>Mesh</a> | undefined <span class="badge badge-pill badge-primary">Protected</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="readnormals">readNormals</a> ( normals: OctEncodedNormal[], json: any, accessorName: string ): boolean <span class="badge badge-pill badge-primary">Protected</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="readuvparams">readUVParams</a> ( params: Point2d[], json: any, accessorName: string ): boolean <span class="badge badge-pill badge-primary">Protected</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="readvertices">readVertices</a> ( positions: QPoint3dList, primitive: any ): boolean <span class="badge badge-pill badge-primary">Protected</span></td>
 <td></td>
 </tr>
 <tr>
 <td><a href="creategltfreader">createGltfReader</a> ( buffer: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/tileio/streambuffer'>StreamBuffer</a>, model: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/modelstate/modelstate'>ModelState</a>, system: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/system/rendersystem'>RenderSystem</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/gltftileio/reader'>Reader</a> | undefined <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+</tr>
+</tbody></table><h3><a id="accessors" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Accessors</h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Access</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>modelId</td>
+<td>Id64</td>
+<td>readOnly</td>
 </tr>
 </tbody></table><h3><a id="properties" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Properties</h3>
 <table class="table table-responsive"><tbody><tr>
@@ -240,7 +295,7 @@
 </tr>
 </tbody></table>
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>15 May, 2018 @ 08:04:09 pm +00:00</span>
+                        <span class='date-updated'>17 May, 2018 @ 12:09:47 pm -04:00</span>
                     </p>
     
                    
@@ -319,13 +374,34 @@
                                     <a class='title solo-title menu-text' href="#bufferdata-2">BufferData</a>
                             </li>
                             <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#readbufferdata8">readBufferData8</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#bufferdata-3">BufferData</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#readbufferdatafloat">readBufferDataFloat</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#bufferdata-4">BufferData</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#readcolorindices">readColorIndices</a>
+                            </li>
+                            <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#readcolortable">readColorTable</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#colormap">ColorMap</a>
                             </li>
                             <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#readfeatureindices">readFeatureIndices</a>
+                            </li>
+                            <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#readfeatures">readFeatures</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#features">Features</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#readgltf">readGltf</a>
@@ -335,6 +411,30 @@
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#readstatus">ReadStatus</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#readindices">readIndices</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#readmeshindices">readMeshIndices</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#mesh">Mesh</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#readmeshprimitive">readMeshPrimitive</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#mesh-1">Mesh</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#readnormals">readNormals</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#readuvparams">readUVParams</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#readvertices">readVertices</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#creategltfreader">createGltfReader</a>
@@ -352,10 +452,13 @@
                                     <a class='title solo-title menu-text' href="#reader-3">Reader</a>
                             </li>
                             <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#accessors">Accessors</a>
+                            </li>
+                            <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#properties">Properties</a>
                             </li>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#accessors"></a>
+                                    <a class='title solo-title menu-text' href="#accessors-1"></a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#batchdata"></a>

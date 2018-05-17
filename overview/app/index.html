@@ -63,26 +63,27 @@
                   </li>
                 </span>
                 
-                <h3><a id="using-imodeljs" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Using iModelJs</h3>
+                <ul id='main-navigation-list'>
+                    <h3><a id="using-imodeljs" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Using iModelJs</h3>
                 <ul>
-                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/app">App Architecture</a></li>
-                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/app/#agents-and-services">Agents and Services</a></li>
-                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/app/#web-apps">Web Apps</a></li>
-                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/app/#desktop-apps">Desktop Apps</a></li>
-                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/app/#mobile-apps">Mobile Apps</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/softwarearchitecture">App Architecture</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/softwarearchitecture/#web">Agents and Services</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/softwarearchitecture/#web">Web Apps</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/softwarearchitecture/#desktop">Desktop Apps</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/softwarearchitecture/#mobile">Mobile Apps</a></li>
                 </ul>
                 <p>&#xA0;</p>
                 <h3><a id="helpful-background-information" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Helpful Background Information</h3>
                 <ul>
                 <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/imodels">iModels</a></li>
                 <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/imodelhub">IModelHub</a></li>
-                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/imodelbridges">iModel Bridges</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/imodel-bridges">iModel Bridges</a></li>
                 <li><a href="https://imodeljs.github.io/iModelJs-docs-output/bis/intro/introduction">BIS Introduction</a></li>
                 <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/softwarearchitecture">iModelJs Architecture</a></li>
                 <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/./#imodeljs-organization">iModelJs Packages</a></li>
                 </ul>
                 
-            </div>
+                </ul>            </div>
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
                     <div><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/">overview</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/overview//"></a> > app</div>
@@ -109,6 +110,7 @@
 <p>Agents and services are <a href="../../learning/glossary#backend">backend</a> code. Their main concern is to access and process the content of iModels. They use <a href="../../learning/glossary#briefcase">briefcases</a> to access iModels.</p>
 <p>Agents and services are written in TypeScript/JavaScript and depend on the <code>@bentley/imodeljs-backend</code> package. They may also depend on common packages such as imodeljs-common, bentleyjs-core, or geometry-core. They frequently also use third-party JavaScript packages, as well as the services built into nodejs.</p>
 <p>Agents and Services use <a href="../../learning/logging">logging</a> to enable users to monitor their operations and to help with diagnosing problems.</p>
+<p>See the <a href=".././softwarearchitecture#web">diagram of a Web agent</a> for an overview of the software components found in agents and services.</p>
 <h3><a id="imodel-agents" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModel Agents</h3>
 <p>An <em>iModel Agent</em> is a program that performs an unattended action upon being invoked by an event from iModelHub.</p>
 <p>As an example, consider an iModelJs Agent that receives notifications from iModelHub for every ChangeSet to a specific iModel. The Agent could inspect every changeset using the <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/imodels/changesummarymanager'>ChangeSummaryManager</a> API to ensure all changes to its iModel are in compliance with company standards. A separate instance of the Agent would be deployed for each iModel of interest.</p>
@@ -120,6 +122,7 @@
 <h2><a id="interactive-apps" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Interactive Apps</h2>
 <p>An interactive app has two parts: a <em>frontend</em> containing its UI and a <em>backend</em> containing its data-access logic. Frontends and backends have very different concerns and must be kept strictly separate. They are sometimes bundled together in a single install set or program, and they are sometimes deployed separately to different machines or processes.</p>
 <p>The backend implements operations that are used by the frontend. Following good design principles, the frontend may call the backend, but not the other way around. The frontend uses <a href="#rpcinterface">RpcInterfaces</a> to call the backend.</p>
+<p>See the <a href=".././softwarearchitecture#comparison">diagram of a interactive app architecture</a> for an overview of the software components found in interactive apps and for basic app architecture.</p>
 <h3><a id="app-backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>App Backend</h3>
 <p>The data-access part of an app is called the <a href="https://en.wikipedia.org/wiki/Front_and_back_ends">backend</a> of the app.</p>
 <p>An app can use a pre-existing or general-purpose <a href="#imodel-services">service</a> as its backend. For example, a family of viewing apps can use a general-purpose service that handles requests for data from a given iModel.</p>
@@ -132,38 +135,20 @@
 <h3><a id="app-frontend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>App Frontend</h3>
 <p>The UI-specific part of an app is called the <a href="https://en.wikipedia.org/wiki/Front_and_back_ends">frontend</a>. The frontend should be concerned only with display and user interaction.</p>
 <p>The frontend must be written in TypeScript or JavaScript. The frontend should use Web technologies only, including HTML, CSS, and JavaScript. The frontend can use any Web app framework, such as React or Angular.</p>
-<p>The frontend makes requests on backend services in order to access iModel content. The frontend uses <a href="#RpcInterface">RpcInterfaces</a> to communicate with the app&apos;s backend(s) and other services. The frontend should depend on <code>@bentley/imodeljs-frontend</code>. The frontend may also depend on common packages such as imodeljs-common, bentleyjs-core, or geometry-core. It may also depend on Web-specific packages. The frontend must not depend on anything that requires native code or is dependent on nodejs.</p>
-<h3><a id="rpcinterface" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>RpcInterface</h3>
-<p>An <em>interface</em> is the boundary between two components, allowing them to communicate in a clearly defined way. A service implements an interface in order to make its operations available, and a client makes calls on a service&apos;s interface it in order to request operations. Since client and service do not run in the same JavaScript context and may not even be on the same machine, a call across the interface is always a <a href="../../learning/glossary#rpc">remote procedure call</a>. That is why the interfaces implemented by services and called by clients are called <em>RpcInterfaces</em>.</p>
-<p>In iModelJs, an RpcInterface is a normal TypeScript class. Clients make calls using ordinary TypeScript method-calling syntax, and they pass parameters and get results as ordinary TypeScript types. Services implement an RpcInterface by writing a normal TypeScript classes. The details of the RPC mechanism are factored out into <a href="#rpc-configurations">RPC configurations</a>. That allows client and service code to focus entirely on the functionality of the interface.</p>
-<p>See <a href="../../learning/rpcinterface">learning RpcInterfaces</a> for information on how to write and use RpcInterfaces.</p>
-<p>See <a href="#rpc-configurations">RPC configurations</a> below for more on how interface calls are marshalled.</p>
-<p>RpcInterface method calls are always from a client to a service. Services never send requests to clients.</p>
-<p>RpcInterface methods must be &quot;chunky&quot; and not &quot;chatty&quot;. In the case where a service or app backend is accessed over the Internet, both bandwidth and latency can vary widely. Therefore, care must be taken to limit number and size of round-trips between clients and services.</p>
-<h3><a id="rpc-configurations" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>RPC Configurations</h3>
-<p>iModelJs supplies transport mechanisms to marshall calls between client and service. These mechanisms are called <em>RPC configurations</em>. Configurations are applied to RpcInterfaces at runtime. Available configurations include: cloud, desktop, and in-process.</p>
-<h4><a id="cloud-rpc-configuration" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Cloud RPC configuration</h4>
-<p>Transforms client calls on an RpcInterface into HTTP requests. Provides endpoint-processing and call dispatching in the service process.</p>
-<p>The iModelJs cloud RPC configuration is highly parameterized and can be adapted for use in many environments. This configuration is designed to cooperate with routing and authentication infrastructure.</p>
-<p>See <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/rpcinterface/bentleycloudrpcmanager'>BentleyCloudRpcManager</a>.</p>
-<h4><a id="desktop-rpc-configuration" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Desktop RPC configuration</h4>
-<p>Marshalls calls on an RpcInterface through high-bandwidth, low-latency pipes between cooperating processes on the same computer. Provides endpoint-processing and call dispatching in the service backend process.</p>
-<p>The iModelJs desktop RPC configuration is specific to Electron.</p>
-<p>See <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/rpcinterface/electronrpcmanager'>ElectronRpcManager</a>.</p>
-<h4><a id="in-process-rpc-configuration" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>In-process RPC configuration</h4>
-<p>Marshalls calls on an RpcInterface across threads within a single process. Provides call dispatching in the backend thread.</p>
-<h3><a id="configuring-rpcinterfaces-at-runtime" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Configuring RpcInterfaces at Runtime</h3>
-<p>An app chooses the appropriate configuration for each RpcInterface that it uses. For example, while an app accesses both true services and app-specific backends through RpcInterfaces, the app must configure the RpcInterfaces differently: a cloud configuration is always uses for services and a configuration based on its own app configuration must be use for an app-specific backend.</p>
+<p>The frontend makes requests on backend services in order to access iModel content. The frontend uses <a href="#RpcInterface">RpcInterfaces</a> to communicate with the app&apos;s backend(s) and other services. The frontend should depend on <code>@bentley/imodeljs-frontend</code>. The frontend may also depend on common packages such as imodeljs-common, bentleyjs-core, or geometry-core. It may also depend on Web-specific packages. The frontend must not depend on anything that requires native code or is dependent on Node.js.</p>
 <h2><a id="interactive-app-configurations" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Interactive App Configurations</h2>
 <p>An iModelJs-based interactive app can be configured to run as a web app with a supporting web server, a desktop app, or a mobile app.</p>
 <p>In all configurations, the frontend UI must be written using Web technologies, including HTML, CSS, and JavaScript, as it will be rendered in a Web view in all configurations. (In some configurations, the Web view will be embedded in an app.) That allows an app developer to write a UI that works equally well everywhere. The developer can also <a href="#making-interactive-apps-fit-the-platform">swap in a different GUI</a> to suit each configuration, perhaps using the same frontend JavaScript.</p>
 <p>The backend of the app can be the same in all configurations. An app developer can also employ the <a href="#backends-for-frontends">backends for frontends</a> pattern to tailor the app to different configurations.  And, an app can use <a href="#making-apps-fit-the-platform">platform-specific APIs</a>.</p>
 <h3><a id="web-apps" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Web Apps</h3>
 <p>When configured as a Web app, the <a href="#app-frontend">frontend</a> will run in a Web browser and the <a href="#app-backend">backend</a> will run on a server. The frontend&apos;s assets (HTML pages and js files) will be served out by a server (generally different from the backend). The frontend and backend will use the <a href="#cloud-rpc-configuration">cloud configuration</a> for all RpcInterfaces. As noted, RPCS will run through whatever router infrastructure surrounds each service.</p>
+<p>See the <a href=".././softwarearchitecture#web">diagram of a Web app</a> for an overview.</p>
 <h3><a id="desktop-apps" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Desktop Apps</h3>
 <p><a href="https://electronjs.org/">Electron</a> is used to package an iModelJs app as a desktop app. In this case, the <a href="#app-frontend">frontend</a> and <a href="#app-backend">backend</a> will be in the same install set. There are still two processes, one for the backend and one for the frontend, but they physically reside on the same computer. The app will use the <a href="#desktop-rpc-configuration">desktop configuration</a> for efficient local calls on app-specific RpcInterfaces and <a href="#cloud-rpc-configuration">cloud configuration</a> for remote services.</p>
+<p>See the <a href=".././softwarearchitecture#desktop">diagram of a desktop app</a> for an overview.</p>
 <h3><a id="mobile-apps" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Mobile Apps</h3>
 <p>When configured as a mobile app, the <a href="#app-frontend">frontend</a> and <a href="#app-backend">backend</a> will be bundled into a single app. The app will run as a single process, with frontend and backend in separate threads. The app will use the <a href="#in-process-rpc-configuration">in-process configuration</a> for efficient in-process calls on app-specific RpcInterfaces and <a href="#cloud-rpc-configuration">cloud configuration</a> for remote services.</p>
+<p>See the <a href=".././softwarearchitecture#mobile">diagram of a mobile app</a> for an overview.</p>
 <h3><a id="making-interactive-apps-fit-the-platform" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Making Interactive Apps Fit the Platform</h3>
 <p>You may want to tailor the UI and function of an app for each configuration. For example, a mobile app will usually have a simpler UI than a desktop app, and a mobile app might offer mobile-specific features such as camera or GPS. Tailoring is relatively easy, because of the highly factored architecture of an iModelJs app. As a result, you can:</p>
 <ul>
@@ -176,9 +161,25 @@
 <p>An app&apos;s UI is contained within its frontend. And, the look and feel of the GUI is largely contained within its HTML and CSS resources. Swapping in a different GUI can be a simple as swapping in a different style sheet or HTML page, leaving the supporting JavaScript the same. You can develop and test the various version of the GUI in a single development environment. You can also write the frontend JavaScript to tailor the GUI at run time.</p>
 <h3><a id="platform-specific-modules" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Platform-specific Modules</h3>
 <p>An interactive app can use platform-specific modules that are supplied by the host platform in JavaScript. Mobile platforms such as iOS and Android, provide JavaScript classes for services that are specific to mobile apps. The Electron desktop platform provides all of the features of nodejs. Platform-specific modules must be used in <a href="../../learning/portability">guarded code</a>.</p>
+<h3><a id="rpcinterface" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>RpcInterface</h3>
+<p>An <em>interface</em> is the boundary between two components, allowing them to communicate in a clearly defined way. A service implements an interface in order to make its operations available, and a client makes calls on a service&apos;s interface it in order to request operations. Since client and service do not run in the same JavaScript context and may not even be on the same machine, a call across the interface is always a <a href="../../learning/glossary#rpc">remote procedure call</a>. That is why the interfaces implemented by services and called by clients are called <em>RpcInterfaces</em>.</p>
+<p>In iModelJs, an RpcInterface is a normal TypeScript class. Clients make calls using ordinary TypeScript method-calling syntax, and they pass parameters and get results as ordinary TypeScript types. Services implement an RpcInterface by writing a normal TypeScript classes. The details of the RPC mechanism are factored out into <a href="#rpc-configurations">RPC configurations</a>. That allows client and service code to focus entirely on the functionality of the interface.</p>
+<p>See <a href="../../learning/rpcinterface">learning RpcInterfaces</a> for information on how to write and use RpcInterfaces.</p>
+<p>See <a href="#rpc-configurations">RPC configurations</a> below for more on how interface calls are marshalled.</p>
+<p>RpcInterface method calls are always from a client to a service. Services never send requests to clients.</p>
+<p>RpcInterface methods must be &quot;chunky&quot; and not &quot;chatty&quot;. In the case where a service or app backend is accessed over the Internet, both bandwidth and latency can vary widely. Therefore, care must be taken to limit number and size of round-trips between clients and services.</p>
+<h3><a id="rpc-configurations" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>RPC Configurations</h3>
+<p>iModelJs supplies transport mechanisms to marshall calls between client and service. These mechanisms are called <em>RPC configurations</em>. Configurations are applied to <a href="#RpcInterface">RpcInterface</a> at runtime. Available configurations include: cloud, desktop, and in-process. An app chooses the appropriate configuration for each RpcInterface that it uses.</p>
+<p>See <a href="../../learning/rpcinterface">learning RpcInterfaces</a> for information on how to configure RPCs.</p>
+<h4><a id="cloud-rpc-configuration" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Cloud RPC configuration</h4>
+<p>Transforms client calls on an <a href="#RpcInterface">RpcInterface</a> into HTTP requests. Provides endpoint-processing and call dispatching in the service process. The iModelJs cloud RPC configuration is highly parameterized and can be adapted for use in many environments. This configuration is designed to cooperate with routing and authentication infrastructure.</p>
+<h4><a id="desktop-rpc-configuration" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Desktop RPC configuration</h4>
+<p>Marshalls calls on an <a href="#RpcInterface">RpcInterface</a> through high-bandwidth, low-latency pipes between cooperating processes on the same computer. Provides endpoint-processing and call dispatching in the service backend process. The iModelJs desktop RPC configuration is specific to the Electron framework.</p>
+<h4><a id="in-process-rpc-configuration" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>In-process RPC configuration</h4>
+<p>Marshalls calls on an <a href="#RpcInterface">RpcInterface</a> across threads within a single process. Provides call dispatching in the backend thread.</p>
 
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>15 May, 2018 @ 08:03:20 pm +00:00</span>
+                        <span class='date-updated'>17 May, 2018 @ 12:08:50 pm -04:00</span>
                     </p>
     
                    
@@ -233,29 +234,6 @@
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#app-frontend">App Frontend</a>
                             </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#rpcinterface">RpcInterface</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a data-target="#inner-nav-rpc-configurations" class='title' href="#rpc-configurations"/>
-                                    <b class='dropdown-menu-title menu-text'>RPC Configurations</b>
-                                    <i class='dropdown icon'></i>
-                                    </a>
-                                    <ul id="inner-nav-rpc-configurations" class='inner-nav'>
-                                        <li class='nav-item item '>
-                                                <a class='title solo-title menu-text' href="#cloud-rpc-configuration">Cloud RPC configuration</a>
-                                        </li>
-                                        <li class='nav-item item '>
-                                                <a class='title solo-title menu-text' href="#desktop-rpc-configuration">Desktop RPC configuration</a>
-                                        </li>
-                                        <li class='nav-item item '>
-                                                <a class='title solo-title menu-text' href="#in-process-rpc-configuration">In-process RPC configuration</a>
-                                        </li>
-                                    </ul>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#configuring-rpcinterfaces-at-runtime">Configuring RpcInterfaces at Runtime</a>
-                            </li>
                         </ul>
                 </li>
                    <li class='nav-item item '>
@@ -281,6 +259,26 @@
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#platform-specific-modules">Platform-specific Modules</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#rpcinterface">RpcInterface</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a data-target="#inner-nav-rpc-configurations" class='title' href="#rpc-configurations"/>
+                                    <b class='dropdown-menu-title menu-text'>RPC Configurations</b>
+                                    <i class='dropdown icon'></i>
+                                    </a>
+                                    <ul id="inner-nav-rpc-configurations" class='inner-nav'>
+                                        <li class='nav-item item '>
+                                                <a class='title solo-title menu-text' href="#cloud-rpc-configuration">Cloud RPC configuration</a>
+                                        </li>
+                                        <li class='nav-item item '>
+                                                <a class='title solo-title menu-text' href="#desktop-rpc-configuration">Desktop RPC configuration</a>
+                                        </li>
+                                        <li class='nav-item item '>
+                                                <a class='title solo-title menu-text' href="#in-process-rpc-configuration">In-process RPC configuration</a>
+                                        </li>
+                                    </ul>
                             </li>
                         </ul>
                 </li>

@@ -63,26 +63,27 @@
                   </li>
                 </span>
                 
-                <h3><a id="using-imodeljs" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Using iModelJs</h3>
+                <ul id='main-navigation-list'>
+                    <h3><a id="using-imodeljs" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Using iModelJs</h3>
                 <ul>
-                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/app">App Architecture</a></li>
-                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/app/#agents-and-services">Agents and Services</a></li>
-                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/app/#web-apps">Web Apps</a></li>
-                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/app/#desktop-apps">Desktop Apps</a></li>
-                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/app/#mobile-apps">Mobile Apps</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/softwarearchitecture">App Architecture</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/softwarearchitecture/#web">Agents and Services</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/softwarearchitecture/#web">Web Apps</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/softwarearchitecture/#desktop">Desktop Apps</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/softwarearchitecture/#mobile">Mobile Apps</a></li>
                 </ul>
                 <p>&#xA0;</p>
                 <h3><a id="helpful-background-information" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Helpful Background Information</h3>
                 <ul>
                 <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/imodels">iModels</a></li>
                 <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/imodelhub">IModelHub</a></li>
-                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/imodelbridges">iModel Bridges</a></li>
+                <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/imodel-bridges">iModel Bridges</a></li>
                 <li><a href="https://imodeljs.github.io/iModelJs-docs-output/bis/intro/introduction">BIS Introduction</a></li>
                 <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/softwarearchitecture">iModelJs Architecture</a></li>
                 <li><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/./#imodeljs-organization">iModelJs Packages</a></li>
                 </ul>
                 
-            </div>
+                </ul>            </div>
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
                     <div><a href="https://imodeljs.github.io/iModelJs-docs-output/overview/">overview</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/overview//"></a> > softwarearchitecture</div>
@@ -101,6 +102,7 @@
 <li>JavaScript Runtime with C++ Interoperability</li>
 <li>Bentley Native Libraries (C++)</li>
 </ul>
+<p>See <a href=".././app#agents-and-services">the agents overview</a> for more information in agents and <a href=".././app#app-backend">the app backend overview</a> for more information on interactive app backends.</p>
 <p>Frontend Architecture Layers:</p>
 <ul>
 <li>Application Frontend (TypeScript)</li>
@@ -108,31 +110,35 @@
 <li>HTML GUI</li>
 <li>Web Browser</li>
 </ul>
+<p>See <a href=".././app#app-frontend">the interactive app frontend overview</a> for more information on frontends.</p>
 <h2><a id="web" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Web</h2>
 <p>iModelJs Web App backends are <a href="http://www.nodejs.org">Node.js</a> applications.
 Node.js provides the <a href="https://developers.google.com/v8/">V8 JavaScript Engine</a> and the <a href="https://github.com/nodejs/abi-stable-node">N-API</a> for writing Node Addons in C++.
 This is how the Bentley Native Libraries are exposed to the iModelJs backend framework.
 Portable application logic is written in TypeScript and calls TypeScript APIs exposed from the <code>@bentley/imodeljs-backend</code> package.</p>
 <p>Notice that the backend architecture is identical between Agents and interactive Web Applications.</p>
-<p>Web App frontends run in a web browser and use HTML GUI for presentation and APIs exposed from the <code>@bentley/imodeljs-frontend</code> package for <em>Remote Procedure Calls</em> (RPC) into functionality implemented on the backend.</p>
-<p>The frontend --&gt; backend communication is over HTTPS for interactive web applications.</p>
+<p>Web App frontends run in a web browser and use HTML GUI for presentation and APIs exposed from the <code>@bentley/imodeljs-frontend</code> package for <em>Remote Procedure Calls</em> (RPC) into functionality implemented on the backend. See <a href=".././app#rpcinterface">the RpcInterface overview</a> for more information.</p>
+<p>The frontend --&gt; backend communication is over HTTPS for interactive web applications. See <a href=".././app#cloud-rpc-configuration">the cloud RPC configuration overview</a> for more information.</p>
 <p><img src=".././softwarearchitecture-web.png" alt="SoftwareArchitecture-Web"></p>
+<p>See <a href=".././app#agents-and-services">the agents overview</a> and <a href=".././app#web-apps">the Web app overview</a> for more information on Web app architecture.</p>
 <h2><a id="desktop" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Desktop</h2>
 <p>iModelJs desktop applications use the <a href="https://electronjs.org/">Electron</a> Framework.
 The backend architecture is the same as with iModelJs Web Apps because Electron also uses Node.js.
 The only difference in the frontend architecture is that an embedded <a href="https://www.chromium.org/Home">Chromium Browser</a> replaces a standalone Web Browser.</p>
-<p>The frontend --&gt; backend communication is over <em>Inter Process Communication</em> (IPC) as provided by Electron.</p>
+<p>The frontend --&gt; backend communication is over <em>Inter Process Communication</em> (IPC) as provided by Electron. See <a href=".././app#desktop-rpc-configuration">the desktop RPC configuration overview</a> for more information.</p>
 <p><img src=".././softwarearchitecture-desktop.png" alt="SoftwareArchitecture-Desktop"></p>
+<p>See <a href=".././app#desktop-apps">the desktop app overview</a> for more information on desktop app architecture.</p>
 <h2><a id="mobile" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Mobile</h2>
 <p>iModelJs mobile applications use the JavaScript Engine and Web Browser GUI controls built into the Android SDK and iOS SDK.</p>
-<p>The frontend --&gt; backend communication is over function calls and messages between two separate JavaScript contexts.</p>
+<p>The frontend --&gt; backend communication is over function calls and messages between two separate JavaScript contexts. See <a href=".././app#in-process-rpc-configuration">the mobile RPC configuration overview</a> for more information.</p>
 <p><img src=".././softwarearchitecture-mobile.png" alt="SoftwareArchitecture-Mobile"></p>
+<p>See <a href=".././app#mobile-apps">the mobile app overview</a> for more information on mobile app architecture.</p>
 <h2><a id="comparison" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Comparison</h2>
 <p>The following diagram compares the architecture of web, desktop, and mobile applications and shows how the goals of portability and reuse are accomplished.</p>
 <p><img src=".././softwarearchitecture-comparison.png" alt="SoftwareArchitecture-Comparison"></p>
 
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>15 May, 2018 @ 08:03:20 pm +00:00</span>
+                        <span class='date-updated'>17 May, 2018 @ 12:08:52 pm -04:00</span>
                     </p>
     
                    

@@ -63,7 +63,8 @@
                   </li>
                 </span>
                 
-                <h2><a id="imodeljs-packages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModelJs Packages</h2>
+                <ul id='main-navigation-list'>
+                    <h2><a id="imodeljs-packages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModelJs Packages</h2>
                 <hr>
                 <h3><a id="backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/'>imodeljs-backend</a></h3>
                 <ul>
@@ -124,7 +125,7 @@
                 <li><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/topology/'>Topology</a></li>
                 </ul>
                 
-            </div>
+                </ul>            </div>
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
                     <div><a href="https://imodeljs.github.io/iModelJs-docs-output/reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/reference/geometry-core/">geometry-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/reference/geometry-core/cartesiangeometry/">cartesiangeometry</a> > anglesweep</div>
@@ -142,6 +143,10 @@ An AngleSweep is a pair of angles at start and end of an interval.</p>
 <p><strong>  (350,370) covers the same unit angles as (-10,10).
 </strong>  (370,350) covers the same unit angles as (10,-10).
  </section></p>
+<h3><a id="implements" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Implements</h3>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/bejsonfunctions'>BeJSONFunctions</a></li>
+</ul>
 <h3><a id="methods" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Methods</h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -236,7 +241,7 @@ An AngleSweep is a pair of angles at start and end of an interval.</p>
 <td>copy from other AngleSweep.</td>
 </tr>
 <tr>
-<td><a href="setfromjson">setFromJSON</a> ( json: any ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="setfromjson">setFromJSON</a> ( json?: any ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td>set this AngleSweep from various sources:</td>
 </tr>
 <tr>
@@ -252,7 +257,7 @@ An AngleSweep is a pair of angles at start and end of an interval.</p>
 <td>Convert an AngleSweep to a JSON object.</td>
 </tr>
 <tr>
-<td><a href="create360">create360</a> ( startRadians: undefined | number ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="create360">create360</a> ( startRadians?: undefined | number ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td>create a full circle sweep (CCW).</td>
 </tr>
 <tr>
@@ -260,31 +265,31 @@ An AngleSweep is a pair of angles at start and end of an interval.</p>
 <td>create a sweep from the south pole to the north pole.</td>
 </tr>
 <tr>
-<td><a href="createstartend">createStartEnd</a> ( startAngle: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/angle'>Angle</a>, endAngle: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/angle'>Angle</a>, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="createstartend">createStartEnd</a> ( startAngle: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/angle'>Angle</a>, endAngle: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/angle'>Angle</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td>create an angle sweep from strongly typed start and end angles</td>
 </tr>
 <tr>
-<td><a href="createstartenddegrees">createStartEndDegrees</a> ( startDegrees: number = 0, endDegrees: number = 360, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="createstartenddegrees">createStartEndDegrees</a> ( startDegrees: number = 0, endDegrees: number = 360, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td>create an AngleSweep from start and end angles given in degrees.</td>
 </tr>
 <tr>
-<td><a href="createstartendradians">createStartEndRadians</a> ( startRadians: number = 0, endRadians: number =  2.0 * Math.PI, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="createstartendradians">createStartEndRadians</a> ( startRadians: number = 0, endRadians: number =  2.0 * Math.PI, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td>create an AngleSweep from start and end angles given in radians.</td>
 </tr>
 <tr>
-<td><a href="createstartsweep">createStartSweep</a> ( startAngle: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/angle'>Angle</a>, sweepAngle: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/angle'>Angle</a>, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="createstartsweep">createStartSweep</a> ( startAngle: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/angle'>Angle</a>, sweepAngle: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/angle'>Angle</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td>Create an angle sweep with limits given as (strongly typed) angles for start and sweep</td>
 </tr>
 <tr>
-<td><a href="createstartsweepdegrees">createStartSweepDegrees</a> ( startDegrees: number = 0, sweepDegrees: number = 360, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="createstartsweepdegrees">createStartSweepDegrees</a> ( startDegrees: number = 0, sweepDegrees: number = 360, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td>create an AngleSweep from start and sweep given in degrees.</td>
 </tr>
 <tr>
-<td><a href="createstartsweepradians">createStartSweepRadians</a> ( startRadians: number = 0, sweepRadians: number =  Math.PI, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="createstartsweepradians">createStartSweepRadians</a> ( startRadians: number = 0, sweepRadians: number =  Math.PI, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td>create an AngleSweep from start and end angles given in radians.</td>
 </tr>
 <tr>
-<td><a href="fromjson">fromJSON</a> ( json: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweepprops'>AngleSweepProps</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="fromjson">fromJSON</a> ( json?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweepprops'>AngleSweepProps</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td>create an AngleSweep from a json object.</td>
 </tr>
 </tbody></table><h3><a id="accessors" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Accessors</h3>
@@ -344,7 +349,7 @@ An AngleSweep is a pair of angles at start and end of an interval.</p>
 </tr>
 </tbody></table>
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>15 May, 2018 @ 08:03:23 pm +00:00</span>
+                        <span class='date-updated'>17 May, 2018 @ 12:08:55 pm -04:00</span>
                     </p>
     
                    
@@ -371,6 +376,12 @@ An AngleSweep is a pair of angles at start and end of an interval.</p>
                         <i class='dropdown icon'></i>
                         </a>
                         <ul id="inner-nav-anglesweep" class='inner-nav'>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#implements">Implements</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#bejsonfunctions">BeJSONFunctions</a>
+                            </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#methods">Methods</a>
                             </li>

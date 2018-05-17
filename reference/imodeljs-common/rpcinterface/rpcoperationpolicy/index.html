@@ -63,7 +63,8 @@
                   </li>
                 </span>
                 
-                <h2><a id="imodeljs-packages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModelJs Packages</h2>
+                <ul id='main-navigation-list'>
+                    <h2><a id="imodeljs-packages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModelJs Packages</h2>
                 <hr>
                 <h3><a id="backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/'>imodeljs-backend</a></h3>
                 <ul>
@@ -124,7 +125,7 @@
                 <li><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/topology/'>Topology</a></li>
                 </ul>
                 
-            </div>
+                </ul>            </div>
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
                     <div><a href="https://imodeljs.github.io/iModelJs-docs-output/reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-common/">imodeljs-common</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-common/rpcinterface/">rpcinterface</a> > rpcoperationpolicy</div>
@@ -137,8 +138,20 @@ The policy for an RPC operation. </section></p>
 <th>Description</th>
 </tr>
 <tr>
+<td><a href="invocationcallback">invocationCallback</a> ( _invocation: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/rpcinterface/rpcinvocation'>RpcInvocation</a> ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td>Called for every operation invocation on the backend.</td>
+</tr>
+<tr>
+<td><a href="requestcallback">requestCallback</a> ( _request: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/rpcinterface/rpcrequest'>RpcRequest</a>&lt;any&gt; ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td>Called for every operation request on the frontend.</td>
+</tr>
+<tr>
 <td><a href="requestid">requestId</a> ( _request: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/rpcinterface/rpcrequest'>RpcRequest</a>&lt;any&gt; ): string <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Supplies the unique identifier for an operation request.</td>
+</tr>
+<tr>
+<td><a href="retryinterval">retryInterval</a> ( configuration: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/rpcinterface/rpcconfiguration'>RpcConfiguration</a> ): number <span class="badge badge-pill badge-primary">Public</span></td>
+<td>Supplies the initial retry interval for an operation request.</td>
 </tr>
 <tr>
 <td><a href="token">token</a> ( request: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/rpcinterface/rpcrequest'>RpcRequest</a>&lt;any&gt; ): undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/imodels/imodeltoken'>IModelToken</a> <span class="badge badge-pill badge-primary">Public</span></td>
@@ -157,7 +170,7 @@ The policy for an RPC operation. </section></p>
 </tr>
 </tbody></table>
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>15 May, 2018 @ 08:03:52 pm +00:00</span>
+                        <span class='date-updated'>17 May, 2018 @ 12:09:28 pm -04:00</span>
                     </p>
     
                    
@@ -188,16 +201,34 @@ The policy for an RPC operation. </section></p>
                                     <a class='title solo-title menu-text' href="#methods">Methods</a>
                             </li>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#requestid">requestId</a>
+                                    <a class='title solo-title menu-text' href="#invocationcallback">invocationCallback</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#rpcinvocation">RpcInvocation</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#requestcallback">requestCallback</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#rpcrequest">RpcRequest</a>
                             </li>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#token">token</a>
+                                    <a class='title solo-title menu-text' href="#requestid">requestId</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#rpcrequest-1">RpcRequest</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#retryinterval">retryInterval</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#rpcconfiguration">RpcConfiguration</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#token">token</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#rpcrequest-2">RpcRequest</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#imodeltoken">IModelToken</a>

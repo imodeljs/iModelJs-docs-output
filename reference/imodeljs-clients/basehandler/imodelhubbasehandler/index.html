@@ -63,7 +63,8 @@
                   </li>
                 </span>
                 
-                <h2><a id="imodeljs-packages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModelJs Packages</h2>
+                <ul id='main-navigation-list'>
+                    <h2><a id="imodeljs-packages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModelJs Packages</h2>
                 <hr>
                 <h3><a id="backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/'>imodeljs-backend</a></h3>
                 <ul>
@@ -124,13 +125,17 @@
                 <li><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/topology/'>Topology</a></li>
                 </ul>
                 
-            </div>
+                </ul>            </div>
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
                     <div><a href="https://imodeljs.github.io/iModelJs-docs-output/reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-clients/">imodeljs-clients</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-clients/basehandler/">basehandler</a> > imodelhubbasehandler</div>
                     <h2><a id="imodelhubbasehandler" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>IModelHubBaseHandler <span class="badge badge-pill badge-primary">Class</span></h2>
 <p> <section class="tsd-panel tsd-comment">
 This class acts as the WsgClient for other iModel Hub Handlers. </section></p>
+<h3><a id="extends" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Extends</h3>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/wsgclient/wsgclient'>WsgClient</a></li>
+</ul>
 <h3><a id="methods" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Methods</h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -145,7 +150,7 @@ This class acts as the WsgClient for other iModel Hub Handlers. </section></p>
 <td>Used by clients to send delete requests without body.</td>
 </tr>
 <tr>
-<td><a href="deleteinstance">deleteInstance</a>&lt;T extends <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/ecjsontypemap/wsginstance'>WsgInstance</a>&gt; ( token: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/token/accesstoken'>AccessToken</a>, relativeUrlPath: string, instance: T ): Promise&lt;void&gt; <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="deleteinstance">deleteInstance</a>&lt;T extends <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/ecjsontypemap/wsginstance'>WsgInstance</a>&gt; ( token: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/token/accesstoken'>AccessToken</a>, relativeUrlPath: string, instance?: T ): Promise&lt;void&gt; <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Used by clients to delete strongly typed instances through the standard WSG REST API</td>
 </tr>
 <tr>
@@ -157,7 +162,7 @@ This class acts as the WsgClient for other iModel Hub Handlers. </section></p>
 <td>Gets the default URL for the service.</td>
 </tr>
 <tr>
-<td><a href="getinstances">getInstances</a>&lt;T extends <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/ecjsontypemap/wsginstance'>WsgInstance</a>&gt; ( typedConstructor: object, token: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/token/accesstoken'>AccessToken</a>, relativeUrlPath: string, queryOptions: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/request/requestqueryoptions'>RequestQueryOptions</a> ): Promise&lt;T extends <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/ecjsontypemap/wsginstance'>WsgInstance</a>[]&gt; <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="getinstances">getInstances</a>&lt;T extends <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/ecjsontypemap/wsginstance'>WsgInstance</a>&gt; ( typedConstructor: object, token: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/token/accesstoken'>AccessToken</a>, relativeUrlPath: string, queryOptions?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/request/requestqueryoptions'>RequestQueryOptions</a> ): Promise&lt;T extends <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/ecjsontypemap/wsginstance'>WsgInstance</a>[]&gt; <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Used by clients to get strongly typed instances from standard WSG REST queries that return EC JSON instances.</td>
 </tr>
 <tr>
@@ -169,11 +174,11 @@ This class acts as the WsgClient for other iModel Hub Handlers. </section></p>
 <td>Gets name/key to query the service URLs from the URL Discovery Service (&quot;Buddi&quot;)</td>
 </tr>
 <tr>
-<td><a href="postinstance">postInstance</a>&lt;T extends <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/ecjsontypemap/wsginstance'>WsgInstance</a>&gt; ( typedConstructor: object, token: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/token/accesstoken'>AccessToken</a>, relativeUrlPath: string, instance: T extends <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/ecjsontypemap/wsginstance'>WsgInstance</a>, requestOptions: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/wsgclient/wsgrequestoptions'>WsgRequestOptions</a> ): Promise&lt;T extends <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/ecjsontypemap/wsginstance'>WsgInstance</a>&gt; <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="postinstance">postInstance</a>&lt;T extends <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/ecjsontypemap/wsginstance'>WsgInstance</a>&gt; ( typedConstructor: object, token: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/token/accesstoken'>AccessToken</a>, relativeUrlPath: string, instance: T extends <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/ecjsontypemap/wsginstance'>WsgInstance</a>, requestOptions?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/wsgclient/wsgrequestoptions'>WsgRequestOptions</a> ): Promise&lt;T extends <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/ecjsontypemap/wsginstance'>WsgInstance</a>&gt; <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Used by clients to post strongly typed instances through standard WSG REST API</td>
 </tr>
 <tr>
-<td><a href="postinstances">postInstances</a>&lt;T extends <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/ecjsontypemap/wsginstance'>WsgInstance</a>&gt; ( typedConstructor: object, token: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/token/accesstoken'>AccessToken</a>, relativeUrlPath: string, instances: T extends <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/ecjsontypemap/wsginstance'>WsgInstance</a>[], requestOptions: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/wsgclient/wsgrequestoptions'>WsgRequestOptions</a> ): Promise&lt;T extends <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/ecjsontypemap/wsginstance'>WsgInstance</a>[]&gt; <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="postinstances">postInstances</a>&lt;T extends <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/ecjsontypemap/wsginstance'>WsgInstance</a>&gt; ( typedConstructor: object, token: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/token/accesstoken'>AccessToken</a>, relativeUrlPath: string, instances: T extends <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/ecjsontypemap/wsginstance'>WsgInstance</a>[], requestOptions?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/wsgclient/wsgrequestoptions'>WsgRequestOptions</a> ): Promise&lt;T extends <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-clients/ecjsontypemap/wsginstance'>WsgInstance</a>[]&gt; <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Used by clients to post multiple strongly typed instances through standard WSG REST API</td>
 </tr>
 <tr>
@@ -212,7 +217,7 @@ This class acts as the WsgClient for other iModel Hub Handlers. </section></p>
 </tr>
 </tbody></table>
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>15 May, 2018 @ 08:03:47 pm +00:00</span>
+                        <span class='date-updated'>17 May, 2018 @ 12:09:13 pm -04:00</span>
                     </p>
     
                    
@@ -239,6 +244,12 @@ This class acts as the WsgClient for other iModel Hub Handlers. </section></p>
                         <i class='dropdown icon'></i>
                         </a>
                         <ul id="inner-nav-imodelhubbasehandler" class='inner-nav'>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#extends">Extends</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#wsgclient">WsgClient</a>
+                            </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#methods">Methods</a>
                             </li>

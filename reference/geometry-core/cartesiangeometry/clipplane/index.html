@@ -63,7 +63,8 @@
                   </li>
                 </span>
                 
-                <h2><a id="imodeljs-packages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModelJs Packages</h2>
+                <ul id='main-navigation-list'>
+                    <h2><a id="imodeljs-packages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModelJs Packages</h2>
                 <hr>
                 <h3><a id="backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/'>imodeljs-backend</a></h3>
                 <ul>
@@ -124,7 +125,7 @@
                 <li><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/topology/'>Topology</a></li>
                 </ul>
                 
-            </div>
+                </ul>            </div>
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
                     <div><a href="https://imodeljs.github.io/iModelJs-docs-output/reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/reference/geometry-core/">geometry-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/reference/geometry-core/cartesiangeometry/">cartesiangeometry</a> > clipplane</div>
@@ -141,8 +142,12 @@ A ClipPlane is a single plane represented as</p>
 <li>POSITIVE values of the halfspace function are &quot;inside&quot;</li>
 <li>ZERO value of the halfspace function is &quot;on&quot;</li>
 <li>NEGATIVE value of the halfspace function is &quot;outside&quot;</li>
-<li>A representative point on the plane is (signedDistance<em>u, signedDistance </em> v, signedDistance *w)
-</section></li>
+<li><p>A representative point on the plane is (signedDistance<em>u, signedDistance </em> v, signedDistance *w)
+</section></p>
+<h3><a id="implements" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Implements</h3>
+</li>
+<li><p><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clippermethods'>ClipperMethods</a></p>
+</li>
 </ul>
 <h3><a id="methods" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Methods</h3>
 <table class="table table-responsive"><tbody><tr>
@@ -150,11 +155,11 @@ A ClipPlane is a single plane represented as</p>
 <th>Description</th>
 </tr>
 <tr>
-<td><a href="announceclippedarcintervals">announceClippedArcIntervals</a> ( arc: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/curve/arc3d'>Arc3d</a>, announce: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/curve/announcenumbernumbercurveprimitive'>AnnounceNumberNumberCurvePrimitive</a> ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="announceclippedarcintervals">announceClippedArcIntervals</a> ( arc: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/curve/arc3d'>Arc3d</a>, announce?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/curve/announcenumbernumbercurveprimitive'>AnnounceNumberNumberCurvePrimitive</a> ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="announceclippedsegmentintervals">announceClippedSegmentIntervals</a> ( f0: number, f1: number, pointA: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, pointB: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, announce: undefined | ( fraction0: number, fraction1: number ) =&gt; void ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="announceclippedsegmentintervals">announceClippedSegmentIntervals</a> ( f0: number, f1: number, pointA: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, pointB: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, announce?: undefined | ( fraction0: number, fraction1: number ) =&gt; void ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
 <td>announce the interval (if any) where a line is within the clip plane half space.</td>
 </tr>
 <tr>
@@ -206,7 +211,7 @@ A ClipPlane is a single plane represented as</p>
 <td></td>
 </tr>
 <tr>
-<td><a href="ispointinside">isPointInside</a> ( point: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, tolerance: undefined | number ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="ispointinside">isPointInside</a> ( point: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, tolerance?: undefined | number ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
@@ -214,7 +219,7 @@ A ClipPlane is a single plane represented as</p>
 <td></td>
 </tr>
 <tr>
-<td><a href="ispointonorinside">isPointOnOrInside</a> ( point: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, tolerance: undefined | number ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="ispointonorinside">isPointOnOrInside</a> ( point: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, tolerance?: undefined | number ): boolean <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
@@ -254,19 +259,19 @@ A ClipPlane is a single plane represented as</p>
 <td></td>
 </tr>
 <tr>
-<td><a href="createedgeandupvector">createEdgeAndUpVector</a> ( point0: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, point1: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, upVector: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a>, tiltAngle: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/angle'>Angle</a>, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> | undefined <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="createedgeandupvector">createEdgeAndUpVector</a> ( point0: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, point1: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, upVector: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a>, tiltAngle: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/angle'>Angle</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> | undefined <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="createedgexy">createEdgeXY</a> ( point0: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, point1: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> | undefined <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="createedgexy">createEdgeXY</a> ( point0: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, point1: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> | undefined <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="createnormalanddistance">createNormalAndDistance</a> ( normal: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a>, distance: number, invisible: boolean = false, interior: boolean = false, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> | undefined <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="createnormalanddistance">createNormalAndDistance</a> ( normal: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a>, distance: number, invisible: boolean = false, interior: boolean = false, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> | undefined <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td>* Create a ClipPlane with direct normal and signedDistance.</td>
 </tr>
 <tr>
-<td><a href="createnormalandpoint">createNormalAndPoint</a> ( normal: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a>, point: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, invisible: boolean = false, interior: boolean = false, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> | undefined <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="createnormalandpoint">createNormalAndPoint</a> ( normal: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a>, point: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, invisible: boolean = false, interior: boolean = false, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> | undefined <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td>Create a ClipPlane</td>
 </tr>
 <tr>
@@ -274,11 +279,11 @@ A ClipPlane is a single plane represented as</p>
 <td>Create a ClipPlane</td>
 </tr>
 <tr>
-<td><a href="createplane">createPlane</a> ( plane: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/plane3dbyoriginandunitnormal'>Plane3dByOriginAndUnitNormal</a>, invisible: boolean = false, interior: boolean = false, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="createplane">createPlane</a> ( plane: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/plane3dbyoriginandunitnormal'>Plane3dByOriginAndUnitNormal</a>, invisible: boolean = false, interior: boolean = false, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td>Create a ClipPlane from Plane3dByOriginAndUnitNormal.</td>
 </tr>
 <tr>
-<td><a href="fromjson">fromJSON</a> ( json: any, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> | undefined <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="fromjson">fromJSON</a> ( json: any, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a> | undefined <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 </tr>
 </tbody></table><h3><a id="accessors" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Accessors</h3>
 <table class="table table-responsive"><tbody><tr>
@@ -322,7 +327,7 @@ A ClipPlane is a single plane represented as</p>
 </tr>
 </tbody></table>
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>15 May, 2018 @ 08:03:24 pm +00:00</span>
+                        <span class='date-updated'>17 May, 2018 @ 12:08:55 pm -04:00</span>
                     </p>
     
                    
@@ -349,6 +354,12 @@ A ClipPlane is a single plane represented as</p>
                         <i class='dropdown icon'></i>
                         </a>
                         <ul id="inner-nav-clipplane" class='inner-nav'>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#implements">Implements</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#clippermethods">ClipperMethods</a>
+                            </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#methods">Methods</a>
                             </li>

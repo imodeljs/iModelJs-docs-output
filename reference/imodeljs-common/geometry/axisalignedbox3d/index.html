@@ -63,7 +63,8 @@
                   </li>
                 </span>
                 
-                <h2><a id="imodeljs-packages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModelJs Packages</h2>
+                <ul id='main-navigation-list'>
+                    <h2><a id="imodeljs-packages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModelJs Packages</h2>
                 <hr>
                 <h3><a id="backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/'>imodeljs-backend</a></h3>
                 <ul>
@@ -124,24 +125,33 @@
                 <li><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/topology/'>Topology</a></li>
                 </ul>
                 
-            </div>
+                </ul>            </div>
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
                     <div><a href="https://imodeljs.github.io/iModelJs-docs-output/reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-common/">imodeljs-common</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-common/geometry/">geometry</a> > axisalignedbox3d</div>
                     <h2><a id="axisalignedbox3d" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>AxisAlignedBox3d <span class="badge badge-pill badge-primary">Class</span></h2>
 <p> <section class="tsd-panel tsd-comment">
 A Range3d that is aligned with the axes of a coordinate space. </section></p>
+<h3><a id="extends" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Extends</h3>
+<ul>
+<li>Range3d</li>
+</ul>
+<h3><a id="implements" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Implements</h3>
+<ul>
+<li>object</li>
+<li>BeJSONFunctions</li>
+</ul>
 <h3><a id="methods" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Methods</h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
 <th>Description</th>
 </tr>
 <tr>
-<td><a href="constructor">AxisAlignedBox3d</a> ( low: XYAndZ, high: XYAndZ ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/geometry/axisalignedbox3d'>AxisAlignedBox3d</a></td>
+<td><a href="constructor">AxisAlignedBox3d</a> ( low?: XYAndZ, high?: XYAndZ ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/geometry/axisalignedbox3d'>AxisAlignedBox3d</a></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="clone">clone</a> ( result: Range3d ): Range3d</td>
+<td><a href="clone">clone</a> ( result?: Range3d ): Range3d</td>
 <td></td>
 </tr>
 <tr>
@@ -165,11 +175,11 @@ A Range3d that is aligned with the axes of a coordinate space. </section></p>
 <td></td>
 </tr>
 <tr>
-<td><a href="diagonal">diagonal</a> ( result: Vector3d ): Vector3d</td>
+<td><a href="diagonal">diagonal</a> ( result?: Vector3d ): Vector3d</td>
 <td>return the diagonal vector.</td>
 </tr>
 <tr>
-<td><a href="diagonalfractiontopoint">diagonalFractionToPoint</a> ( fraction: number, result: Point3d ): Point3d</td>
+<td><a href="diagonalfractiontopoint">diagonalFractionToPoint</a> ( fraction: number, result?: Point3d ): Point3d</td>
 <td></td>
 </tr>
 <tr>
@@ -189,7 +199,7 @@ A Range3d that is aligned with the axes of a coordinate space. </section></p>
 <td>Extend (modify in place) so that the range is large enough to include the supplied points.</td>
 </tr>
 <tr>
-<td><a href="extendarray">extendArray</a> ( points: Point3d[] | GrowableXYZArray, transform: Transform ): void</td>
+<td><a href="extendarray">extendArray</a> ( points: Point3d[] | GrowableXYZArray, transform?: Transform ): void</td>
 <td>extend a range around an array of points (optionally transformed)</td>
 </tr>
 <tr>
@@ -229,7 +239,7 @@ A Range3d that is aligned with the axes of a coordinate space. </section></p>
 <td></td>
 </tr>
 <tr>
-<td><a href="fractiontopoint">fractionToPoint</a> ( fractionX: number, fractionY: number, fractionZ: number, result: Point3d ): Point3d</td>
+<td><a href="fractiontopoint">fractionToPoint</a> ( fractionX: number, fractionY: number, fractionZ: number, result?: Point3d ): Point3d</td>
 <td></td>
 </tr>
 <tr>
@@ -237,7 +247,7 @@ A Range3d that is aligned with the axes of a coordinate space. </section></p>
 <td></td>
 </tr>
 <tr>
-<td><a href="intersect">intersect</a> ( other: Range3d, result: Range3d ): Range3d</td>
+<td><a href="intersect">intersect</a> ( other: Range3d, result?: Range3d ): Range3d</td>
 <td>Return the intersection of ranges.</td>
 </tr>
 <tr>
@@ -269,7 +279,7 @@ A Range3d that is aligned with the axes of a coordinate space. </section></p>
 <td>Test of the range contains a single point.</td>
 </tr>
 <tr>
-<td><a href="localtoworld">localToWorld</a> ( xyz: XYAndZ, result: Point3d ): Point3d | undefined</td>
+<td><a href="localtoworld">localToWorld</a> ( xyz: XYAndZ, result?: Point3d ): Point3d | undefined</td>
 <td></td>
 </tr>
 <tr>
@@ -277,7 +287,7 @@ A Range3d that is aligned with the axes of a coordinate space. </section></p>
 <td>Replace fractional coordinates by world coordinates.</td>
 </tr>
 <tr>
-<td><a href="localxyztoworld">localXYZToWorld</a> ( fractionX: number, fractionY: number, fractionZ: number, result: Point3d ): Point3d | undefined</td>
+<td><a href="localxyztoworld">localXYZToWorld</a> ( fractionX: number, fractionY: number, fractionZ: number, result?: Point3d ): Point3d | undefined</td>
 <td></td>
 </tr>
 <tr>
@@ -297,7 +307,7 @@ A Range3d that is aligned with the axes of a coordinate space. </section></p>
 <td>copy low and high values from other.</td>
 </tr>
 <tr>
-<td><a href="setfromjson">setFromJSON</a> ( json: Range3dProps ): void</td>
+<td><a href="setfromjson">setFromJSON</a> ( json?: Range3dProps ): void</td>
 <td></td>
 </tr>
 <tr>
@@ -317,11 +327,11 @@ A Range3d that is aligned with the axes of a coordinate space. </section></p>
 <td>Return a JSON object</td>
 </tr>
 <tr>
-<td><a href="union">union</a> ( other: Range3d, result: Range3d ): Range3d</td>
+<td><a href="union">union</a> ( other: Range3d, result?: Range3d ): Range3d</td>
 <td>Return the union of ranges.</td>
 </tr>
 <tr>
-<td><a href="worldtolocal">worldToLocal</a> ( point: Point3d, result: Point3d ): Point3d | undefined</td>
+<td><a href="worldtolocal">worldToLocal</a> ( point: Point3d, result?: Point3d ): Point3d | undefined</td>
 <td>Return fractional coordinates of point within the range.</td>
 </tr>
 <tr>
@@ -349,11 +359,11 @@ A Range3d that is aligned with the axes of a coordinate space. </section></p>
 <td>Return a range large enough to include the supplied points.</td>
 </tr>
 <tr>
-<td><a href="createarray">createArray</a> ( points: Point3d[], result: Range3d ): Range3d <span class="badge badge-pill badge-primary">Static</span></td>
+<td><a href="createarray">createArray</a> ( points: Point3d[], result?: Range3d ): Range3d <span class="badge badge-pill badge-primary">Static</span></td>
 <td>Create a range around an array of points.</td>
 </tr>
 <tr>
-<td><a href="createfrom">createFrom</a> ( other: Range3d, result: Range3d ): Range3d <span class="badge badge-pill badge-primary">Static</span></td>
+<td><a href="createfrom">createFrom</a> ( other: Range3d, result?: Range3d ): Range3d <span class="badge badge-pill badge-primary">Static</span></td>
 <td></td>
 </tr>
 <tr>
@@ -361,11 +371,11 @@ A Range3d that is aligned with the axes of a coordinate space. </section></p>
 <td>create a Range3d enclosing the points after inverse transform.</td>
 </tr>
 <tr>
-<td><a href="createnull">createNull</a> ( result: Range3d ): Range3d <span class="badge badge-pill badge-primary">Static</span></td>
+<td><a href="createnull">createNull</a> ( result?: Range3d ): Range3d <span class="badge badge-pill badge-primary">Static</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="createrange2d">createRange2d</a> ( range: Range2d, z: undefined | number, result: Range3d ): Range3d <span class="badge badge-pill badge-primary">Static</span></td>
+<td><a href="createrange2d">createRange2d</a> ( range: Range2d, z?: undefined | number, result?: Range3d ): Range3d <span class="badge badge-pill badge-primary">Static</span></td>
 <td>Creates a 3d range from a 2d range&apos;s low and high members, setting the corresponding z values to the value given.</td>
 </tr>
 <tr>
@@ -377,15 +387,15 @@ A Range3d that is aligned with the axes of a coordinate space. </section></p>
 <td>create a Range3d enclosing the transformed points.</td>
 </tr>
 <tr>
-<td><a href="createxyz">createXYZ</a> ( x: number, y: number, z: number, result: Range3d ): Range3d <span class="badge badge-pill badge-primary">Static</span></td>
+<td><a href="createxyz">createXYZ</a> ( x: number, y: number, z: number, result?: Range3d ): Range3d <span class="badge badge-pill badge-primary">Static</span></td>
 <td>Create a single point range</td>
 </tr>
 <tr>
-<td><a href="createxyzxyz">createXYZXYZ</a> ( xA: number, yA: number, zA: number, xB: number, yB: number, zB: number, result: Range3d ): Range3d <span class="badge badge-pill badge-primary">Static</span></td>
+<td><a href="createxyzxyz">createXYZXYZ</a> ( xA: number, yA: number, zA: number, xB: number, yB: number, zB: number, result?: Range3d ): Range3d <span class="badge badge-pill badge-primary">Static</span></td>
 <td>Create a box with 2 pairs of xyz candidates.</td>
 </tr>
 <tr>
-<td><a href="createxyzxyzorcorrecttonull">createXYZXYZOrCorrectToNull</a> ( xA: number, yA: number, zA: number, xB: number, yB: number, zB: number, result: Range3d ): Range3d <span class="badge badge-pill badge-primary">Static</span></td>
+<td><a href="createxyzxyzorcorrecttonull">createXYZXYZOrCorrectToNull</a> ( xA: number, yA: number, zA: number, xB: number, yB: number, zB: number, result?: Range3d ): Range3d <span class="badge badge-pill badge-primary">Static</span></td>
 <td>Create a box with 2 pairs of xyz candidates.</td>
 </tr>
 <tr>
@@ -458,7 +468,7 @@ A Range3d that is aligned with the axes of a coordinate space. </section></p>
 </tr>
 </tbody></table>
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>15 May, 2018 @ 08:03:49 pm +00:00</span>
+                        <span class='date-updated'>17 May, 2018 @ 12:09:26 pm -04:00</span>
                     </p>
     
                    
@@ -485,6 +495,12 @@ A Range3d that is aligned with the axes of a coordinate space. </section></p>
                         <i class='dropdown icon'></i>
                         </a>
                         <ul id="inner-nav-axisalignedbox3d" class='inner-nav'>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#extends">Extends</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#implements">Implements</a>
+                            </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#methods">Methods</a>
                             </li>

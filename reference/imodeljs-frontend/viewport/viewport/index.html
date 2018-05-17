@@ -63,7 +63,8 @@
                   </li>
                 </span>
                 
-                <h2><a id="imodeljs-packages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModelJs Packages</h2>
+                <ul id='main-navigation-list'>
+                    <h2><a id="imodeljs-packages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModelJs Packages</h2>
                 <hr>
                 <h3><a id="backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/'>imodeljs-backend</a></h3>
                 <ul>
@@ -124,7 +125,7 @@
                 <li><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/topology/'>Topology</a></li>
                 </ul>
                 
-            </div>
+                </ul>            </div>
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
                     <div><a href="https://imodeljs.github.io/iModelJs-docs-output/reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-frontend/viewport/">viewport</a> > viewport</div>
@@ -138,7 +139,7 @@ the viewing parameters. </section></p>
 <th>Description</th>
 </tr>
 <tr>
-<td><a href="constructor">Viewport</a> ( canvas: HTMLCanvasElement, viewState: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewstate/viewstate'>ViewState</a>, _target: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/system/rendertarget'>RenderTarget</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewport/viewport'>Viewport</a></td>
+<td><a href="constructor">Viewport</a> ( canvas: HTMLCanvasElement, viewState: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewstate/viewstate'>ViewState</a>, _target?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/system/rendertarget'>RenderTarget</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewport/viewport'>Viewport</a></td>
 <td>construct a new ViewPort</td>
 </tr>
 <tr>
@@ -146,11 +147,11 @@ the viewing parameters. </section></p>
 <td></td>
 </tr>
 <tr>
-<td><a href="animatefrustumchange">animateFrustumChange</a> ( start: Frustum, end: Frustum, animationTime: BeDuration ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="animatefrustumchange">animateFrustumChange</a> ( start: Frustum, end: Frustum, animationTime?: BeDuration ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="applyviewstate">applyViewState</a> ( val: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewstate/viewstate'>ViewState</a>, animationTime: BeDuration ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="applyviewstate">applyViewState</a> ( val: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewstate/viewstate'>ViewState</a>, animationTime?: BeDuration ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
@@ -174,31 +175,31 @@ the viewing parameters. </section></p>
 <td></td>
 </tr>
 <tr>
-<td><a href="determinedefaultrotatepoint">determineDefaultRotatePoint</a> ( result: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="determinedefaultrotatepoint">determineDefaultRotatePoint</a> ( result?: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="determinevisibledepthnpc">determineVisibleDepthNpc</a> ( subRectNpc: Range3d, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewport/depthrangenpc'>DepthRangeNpc</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewport/depthrangenpc'>DepthRangeNpc</a> | undefined <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="determinevisibledepthnpc">determineVisibleDepthNpc</a> ( subRectNpc?: Range3d, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewport/depthrangenpc'>DepthRangeNpc</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewport/depthrangenpc'>DepthRangeNpc</a> | undefined <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="doredo">doRedo</a> ( animationTime: BeDuration ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="doredo">doRedo</a> ( animationTime?: BeDuration ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Re-applies the most recently un-done change to the Viewport from the redo stack</td>
 </tr>
 <tr>
-<td><a href="doundo">doUndo</a> ( animationTime: BeDuration ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="doundo">doUndo</a> ( animationTime?: BeDuration ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Reverses the most recent change to the Viewport from the undo stack.</td>
 </tr>
 <tr>
-<td><a href="fromview">fromView</a> ( from: XYZ, to: XYZ ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="fromview">fromView</a> ( from: XYZ, to?: XYZ ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="getauxcoordorigin">getAuxCoordOrigin</a> ( result: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="getauxcoordorigin">getAuxCoordOrigin</a> ( result?: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="getauxcoordrotation">getAuxCoordRotation</a> ( result: RotMatrix ): RotMatrix <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="getauxcoordrotation">getAuxCoordRotation</a> ( result?: RotMatrix ): RotMatrix <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
@@ -214,19 +215,19 @@ the viewing parameters. </section></p>
 <td></td>
 </tr>
 <tr>
-<td><a href="getfrustum">getFrustum</a> ( sys: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewport/coordsystem'>CoordSystem</a> =  CoordSystem.World, adjustedBox: boolean = true, box: Frustum ): Frustum <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="getfrustum">getFrustum</a> ( sys: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewport/coordsystem'>CoordSystem</a> =  CoordSystem.World, adjustedBox: boolean = true, box?: Frustum ): Frustum <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Get an 8-point frustum corresponding to the 8 corners of the Viewport in the specified coordinate system.</td>
 </tr>
 <tr>
-<td><a href="getpixelsizeatpoint">getPixelSizeAtPoint</a> ( point: Point3d, coordSys: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewport/coordsystem'>CoordSystem</a> =  CoordSystem.World ): number <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="getpixelsizeatpoint">getPixelSizeAtPoint</a> ( point?: Point3d, coordSys: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewport/coordsystem'>CoordSystem</a> =  CoordSystem.World ): number <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="getworldfrustum">getWorldFrustum</a> ( box: Frustum ): Frustum <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="getworldfrustum">getWorldFrustum</a> ( box?: Frustum ): Frustum <span class="badge badge-pill badge-primary">Public</span></td>
 <td>get a copy of the current (adjusted) frustum of this viewport, in world coordinates.</td>
 </tr>
 <tr>
-<td><a href="getzoomcenter">getZoomCenter</a> ( ev: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/tool/bebuttonevent'>BeButtonEvent</a>, result: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="getzoomcenter">getZoomCenter</a> ( ev: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/tool/bebuttonevent'>BeButtonEvent</a>, result?: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Get the anchor point for a Zoom operation, based on a button event.</td>
 </tr>
 <tr>
@@ -250,7 +251,7 @@ the viewing parameters. </section></p>
 <td></td>
 </tr>
 <tr>
-<td><a href="npctoview">npcToView</a> ( pt: Point3d, out: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="npctoview">npcToView</a> ( pt: Point3d, out?: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Convert a point from CoordSystem.Npc to CoordSystem.View</td>
 </tr>
 <tr>
@@ -258,7 +259,7 @@ the viewing parameters. </section></p>
 <td>Convert an array of points from CoordSystem.Npc to CoordSystem.View</td>
 </tr>
 <tr>
-<td><a href="npctoworld">npcToWorld</a> ( pt: Point3d, out: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="npctoworld">npcToWorld</a> ( pt: Point3d, out?: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Convert a point from CoordSystem.Npc to CoordSystem.World</td>
 </tr>
 <tr>
@@ -266,15 +267,15 @@ the viewing parameters. </section></p>
 <td>Convert an array of points from CoordSystem.Npc to CoordSystem.World</td>
 </tr>
 <tr>
-<td><a href="pickdepthbuffer">pickDepthBuffer</a> ( _mousePos: Point3d, _result: Point3d, _enforceGeometryPicks: undefined | true | false ): Point3d | undefined <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="pickdepthbuffer">pickDepthBuffer</a> ( _mousePos: Point3d, _result?: Point3d, _enforceGeometryPicks?: undefined | true | false ): Point3d | undefined <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Converts an {x,y} position in screen coordinates to world coordinates by picking against</td>
 </tr>
 <tr>
-<td><a href="pickentity">pickEntity</a> ( _mousePos: Point3d, _radius: number, _result: Point3d ): Point3d | undefined <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="pickentity">pickEntity</a> ( _mousePos: Point3d, _radius: number, _result?: Point3d ): Point3d | undefined <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="pickrange">pickRange</a> ( _rect: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewport/viewrect'>ViewRect</a>, _result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewport/depthrangenpc'>DepthRangeNpc</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewport/depthrangenpc'>DepthRangeNpc</a> | undefined <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="pickrange">pickRange</a> ( _rect: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewport/viewrect'>ViewRect</a>, _result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewport/depthrangenpc'>DepthRangeNpc</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewport/depthrangenpc'>DepthRangeNpc</a> | undefined <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Computes the range of depth values for a region of the screen</td>
 </tr>
 <tr>
@@ -334,15 +335,15 @@ the viewing parameters. </section></p>
 <td>Call setupFrom view on this Viewport.</td>
 </tr>
 <tr>
-<td><a href="toview">toView</a> ( from: XYZ, to: XYZ ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="toview">toView</a> ( from: XYZ, to?: XYZ ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="turncameraon">turnCameraOn</a> ( lensAngle: Angle ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewstate/viewstatus'>ViewStatus</a> <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="turncameraon">turnCameraOn</a> ( lensAngle?: Angle ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewstate/viewstatus'>ViewStatus</a> <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="view4dtoworld">view4dToWorld</a> ( input: Point4d, out: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="view4dtoworld">view4dToWorld</a> ( input: Point4d, out?: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Convert a point from CoordSystem.View as a Point4d to CoordSystem.View</td>
 </tr>
 <tr>
@@ -350,7 +351,7 @@ the viewing parameters. </section></p>
 <td>Convert an array of points from CoordSystem.View as Point4ds to CoordSystem.World</td>
 </tr>
 <tr>
-<td><a href="viewtonpc">viewToNpc</a> ( pt: Point3d, out: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="viewtonpc">viewToNpc</a> ( pt: Point3d, out?: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Convert a point from CoordSystem.View to CoordSystem.Npc</td>
 </tr>
 <tr>
@@ -358,7 +359,7 @@ the viewing parameters. </section></p>
 <td>Convert an array of points from CoordSystem.View to CoordSystem.Npc</td>
 </tr>
 <tr>
-<td><a href="viewtoworld">viewToWorld</a> ( input: Point3d, out: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="viewtoworld">viewToWorld</a> ( input: Point3d, out?: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Convert a point from CoordSystem.View to CoordSystem.World</td>
 </tr>
 <tr>
@@ -366,7 +367,7 @@ the viewing parameters. </section></p>
 <td>Convert an array of points from CoordSystem.View to CoordSystem.World</td>
 </tr>
 <tr>
-<td><a href="worldtonpc">worldToNpc</a> ( pt: Point3d, out: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="worldtonpc">worldToNpc</a> ( pt: Point3d, out?: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Convert a point from CoordSystem.World to CoordSystem.Npc</td>
 </tr>
 <tr>
@@ -374,11 +375,11 @@ the viewing parameters. </section></p>
 <td>Convert an array of points from CoordSystem.World to CoordSystem.Npc</td>
 </tr>
 <tr>
-<td><a href="worldtoview">worldToView</a> ( input: Point3d, out: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="worldtoview">worldToView</a> ( input: Point3d, out?: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Convert a point from CoordSystem.World to CoordSystem.View</td>
 </tr>
 <tr>
-<td><a href="worldtoview4d">worldToView4d</a> ( input: Point3d, out: Point4d ): Point4d <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="worldtoview4d">worldToView4d</a> ( input: Point3d, out?: Point4d ): Point4d <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Convert a point from CoordSystem.World to CoordSystem.View as Point4d</td>
 </tr>
 <tr>
@@ -394,11 +395,11 @@ the viewing parameters. </section></p>
 <td>Zoom the view by a scale factor, placing the new center at the projection of the given point (world coordinates)</td>
 </tr>
 <tr>
-<td><a href="zoomtoelements">zoomToElements</a> ( placements: Placement3dProps[] | Placement2dProps[] | Placement2dProps | Placement3dProps, margin: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewstate/marginpercent'>MarginPercent</a> ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="zoomtoelements">zoomToElements</a> ( placements: Placement3dProps[] | Placement2dProps[] | Placement2dProps | Placement3dProps, margin?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewstate/marginpercent'>MarginPercent</a> ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Zoom the view to a show the tightest box around a given set of elements.</td>
 </tr>
 <tr>
-<td><a href="zoomtovolume">zoomToVolume</a> ( volume: LowAndHighXYZ | LowAndHighXY, margin: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewstate/marginpercent'>MarginPercent</a> ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="zoomtovolume">zoomToVolume</a> ( volume: LowAndHighXYZ | LowAndHighXY, margin?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewstate/marginpercent'>MarginPercent</a> ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Zoom the view to a volume of space, in world coordinates.</td>
 </tr>
 </tbody></table><h3><a id="accessors" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Accessors</h3>
@@ -584,7 +585,7 @@ the viewing parameters. </section></p>
 </tr>
 </tbody></table>
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>15 May, 2018 @ 08:04:01 pm +00:00</span>
+                        <span class='date-updated'>17 May, 2018 @ 12:09:39 pm -04:00</span>
                     </p>
     
                    

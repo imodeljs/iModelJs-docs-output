@@ -63,7 +63,8 @@
                   </li>
                 </span>
                 
-                <h2><a id="imodeljs-packages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModelJs Packages</h2>
+                <ul id='main-navigation-list'>
+                    <h2><a id="imodeljs-packages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModelJs Packages</h2>
                 <hr>
                 <h3><a id="backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/'>imodeljs-backend</a></h3>
                 <ul>
@@ -124,13 +125,23 @@
                 <li><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/topology/'>Topology</a></li>
                 </ul>
                 
-            </div>
+                </ul>            </div>
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
                     <div><a href="https://imodeljs.github.io/iModelJs-docs-output/reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-frontend/viewstate/">viewstate</a> > drawingviewstate</div>
                     <h2><a id="drawingviewstate" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>DrawingViewState <span class="badge badge-pill badge-primary">Class</span></h2>
 <p> <section class="tsd-panel tsd-comment">
 a view of a DrawingModel </section></p>
+<h3><a id="extends" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Extends</h3>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewstate/viewstate2d'>ViewState2d</a></li>
+</ul>
+<h3><a id="implements" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Implements</h3>
+<ul>
+<li>EntityProps</li>
+<li>ElementProps</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewstate/drawnelementsets'>DrawnElementSets</a></li>
+</ul>
 <h3><a id="methods" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Methods</h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -149,11 +160,11 @@ a view of a DrawingModel </section></p>
 <td></td>
 </tr>
 <tr>
-<td><a href="clearalwaysdrawn">clearAlwaysDrawn</a> ( id: Id64 ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="clearalwaysdrawn">clearAlwaysDrawn</a> ( id?: Id64 ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="clearneverdrawn">clearNeverDrawn</a> ( id: Id64 ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="clearneverdrawn">clearNeverDrawn</a> ( id?: Id64 ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
@@ -193,7 +204,7 @@ a view of a DrawingModel </section></p>
 <td>Get the AuxiliaryCoordinateSystem for this ViewDefinition</td>
 </tr>
 <tr>
-<td><a href="getcenter">getCenter</a> ( result: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="getcenter">getCenter</a> ( result?: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Get the point at the geometric center of the view.</td>
 </tr>
 <tr>
@@ -233,7 +244,7 @@ a view of a DrawingModel </section></p>
 <td></td>
 </tr>
 <tr>
-<td><a href="gettargetpoint">getTargetPoint</a> ( result: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="gettargetpoint">getTargetPoint</a> ( result?: Point3d ): Point3d <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Get the target point of the view.</td>
 </tr>
 <tr>
@@ -245,15 +256,15 @@ a view of a DrawingModel </section></p>
 <td></td>
 </tr>
 <tr>
-<td><a href="getxvector">getXVector</a> ( result: Vector3d ): Vector3d <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="getxvector">getXVector</a> ( result?: Vector3d ): Vector3d <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Get the unit vector that points in the view X (left-to-right) direction.</td>
 </tr>
 <tr>
-<td><a href="getyvector">getYVector</a> ( result: Vector3d ): Vector3d <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="getyvector">getYVector</a> ( result?: Vector3d ): Vector3d <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Get the unit vector that points in the view Y (bottom-to-top) direction.</td>
 </tr>
 <tr>
-<td><a href="getzvector">getZVector</a> ( result: Vector3d ): Vector3d <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="getzvector">getZVector</a> ( result?: Vector3d ): Vector3d <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Get the unit vector that points in the view Z (front-to-back) direction.</td>
 </tr>
 <tr>
@@ -281,11 +292,11 @@ a view of a DrawingModel </section></p>
 <td></td>
 </tr>
 <tr>
-<td><a href="lookatviewalignedvolume">lookAtViewAlignedVolume</a> ( volume: Range3d, aspect: undefined | number, margin: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewstate/marginpercent'>MarginPercent</a> ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="lookatviewalignedvolume">lookAtViewAlignedVolume</a> ( volume: Range3d, aspect?: undefined | number, margin?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewstate/marginpercent'>MarginPercent</a> ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td>look at a volume of space defined by a range in view local coordinates, keeping its current rotation.</td>
 </tr>
 <tr>
-<td><a href="lookatvolume">lookAtVolume</a> ( volume: Range3d, aspect: undefined | number, margin: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewstate/marginpercent'>MarginPercent</a> ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="lookatvolume">lookAtVolume</a> ( volume: Range3d, aspect?: undefined | number, margin?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewstate/marginpercent'>MarginPercent</a> ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Change the volume that this view displays, keeping its current rotation.</td>
 </tr>
 <tr>
@@ -301,7 +312,7 @@ a view of a DrawingModel </section></p>
 <td>Remove a view detail.</td>
 </tr>
 <tr>
-<td><a href="setalwaysdrawn">setAlwaysDrawn</a> ( id: Id64 | Id64Set, exclusive: undefined | true | false ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="setalwaysdrawn">setAlwaysDrawn</a> ( id: Id64 | Id64Set, exclusive?: undefined | true | false ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
@@ -309,7 +320,7 @@ a view of a DrawingModel </section></p>
 <td>Set the aspect ratio skew (x/y) for this view.</td>
 </tr>
 <tr>
-<td><a href="setauxiliarycoordinatesystem">setAuxiliaryCoordinateSystem</a> ( acs: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/auxcoordsys/auxcoordsystemstate'>AuxCoordSystemState</a> ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="setauxiliarycoordinatesystem">setAuxiliaryCoordinateSystem</a> ( acs?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/auxcoordsys/auxcoordsystemstate'>AuxCoordSystemState</a> ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Set or clear the AuxiliaryCoordinateSystem for this view.</td>
 </tr>
 <tr>
@@ -357,7 +368,7 @@ a view of a DrawingModel </section></p>
 <td></td>
 </tr>
 <tr>
-<td><a href="setviewclip">setViewClip</a> ( clip: ClipVector ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="setviewclip">setViewClip</a> ( clip?: ClipVector ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Set or clear the clipping volume for this view.</td>
 </tr>
 <tr>
@@ -369,7 +380,7 @@ a view of a DrawingModel </section></p>
 <td></td>
 </tr>
 <tr>
-<td><a href="validateviewdelta">validateViewDelta</a> ( delta: Vector3d, messageNeeded: undefined | true | false ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewstate/viewstatus'>ViewStatus</a> <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="validateviewdelta">validateViewDelta</a> ( delta: Vector3d, messageNeeded?: undefined | true | false ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-frontend/viewstate/viewstatus'>ViewStatus</a> <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
@@ -583,7 +594,7 @@ a view of a DrawingModel </section></p>
 </tr>
 </tbody></table>
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>15 May, 2018 @ 08:03:58 pm +00:00</span>
+                        <span class='date-updated'>17 May, 2018 @ 12:09:35 pm -04:00</span>
                     </p>
     
                    
@@ -610,6 +621,18 @@ a view of a DrawingModel </section></p>
                         <i class='dropdown icon'></i>
                         </a>
                         <ul id="inner-nav-drawingviewstate" class='inner-nav'>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#extends">Extends</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#viewstate2d">ViewState2d</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#implements">Implements</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#drawnelementsets">DrawnElementSets</a>
+                            </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#methods">Methods</a>
                             </li>

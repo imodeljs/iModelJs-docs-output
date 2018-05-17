@@ -63,7 +63,8 @@
                   </li>
                 </span>
                 
-                <h2><a id="imodeljs-packages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModelJs Packages</h2>
+                <ul id='main-navigation-list'>
+                    <h2><a id="imodeljs-packages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>iModelJs Packages</h2>
                 <hr>
                 <h3><a id="backend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/'>imodeljs-backend</a></h3>
                 <ul>
@@ -124,7 +125,7 @@
                 <li><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/topology/'>Topology</a></li>
                 </ul>
                 
-            </div>
+                </ul>            </div>
             <div class='row documentation-main'>
                 <article id="main" name="main-content">
                     <div><a href="https://imodeljs.github.io/iModelJs-docs-output/reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/reference/geometry-core/">geometry-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/reference/geometry-core/cartesiangeometry/">cartesiangeometry</a> > transform</div>
@@ -135,12 +136,16 @@ A transform is an origin and a RotMatrix.</p>
 <li>This describes a coordinate frame with
 this origin, with the columns of the RotMatrix being the
 local x,y,z axis directions.</li>
-<li>Beware that for common transformations (e.g. scale about point,
+<li><p>Beware that for common transformations (e.g. scale about point,
 rotate around line, mirror across a plane) the &quot;fixed point&quot; that is used
 when describing the transform is NOT the &quot;origin&quot; stored in the transform.
 Setup methods (e.g createFixedPointAndMatrix, createScaleAboutPoint)
 take care of determining the appropriate origin coordinates.
-</section></li>
+</section></p>
+<h3><a id="implements" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Implements</h3>
+</li>
+<li><p><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/bejsonfunctions'>BeJSONFunctions</a></p>
+</li>
 </ul>
 <h3><a id="methods" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Methods</h3>
 <table class="table table-responsive"><tbody><tr>
@@ -148,7 +153,7 @@ take care of determining the appropriate origin coordinates.
 <th>Description</th>
 </tr>
 <tr>
-<td><a href="clone">clone</a> ( result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="clone">clone</a> ( result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Copy the contents of this transform into a new Transform (or to the result, if specified).</td>
 </tr>
 <tr>
@@ -176,11 +181,11 @@ take care of determining the appropriate origin coordinates.
 <td>test if the transform has 000 origin and identity RotMatrix</td>
 </tr>
 <tr>
-<td><a href="multiplyinversepoint3d">multiplyInversePoint3d</a> ( point: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> | undefined <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="multiplyinversepoint3d">multiplyInversePoint3d</a> ( point: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> | undefined <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="multiplyinversepoint3darray">multiplyInversePoint3dArray</a> ( source: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>[], result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>[] ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>[] | undefined <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="multiplyinversepoint3darray">multiplyInversePoint3dArray</a> ( source: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>[], result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>[] ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>[] | undefined <span class="badge badge-pill badge-primary">Public</span></td>
 <td><em>  for each point:   multiply    transform </em> point</td>
 </tr>
 <tr>
@@ -188,15 +193,15 @@ take care of determining the appropriate origin coordinates.
 <td><em>  for each point:   multiply    transform </em> point</td>
 </tr>
 <tr>
-<td><a href="multiplypoint">multiplyPoint</a> ( point: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="multiplypoint">multiplyPoint</a> ( point: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Transform the input point.</td>
 </tr>
 <tr>
-<td><a href="multiplypoint2darray">multiplyPoint2dArray</a> ( source: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a>[], result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a>[] ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a>[] <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="multiplypoint2darray">multiplyPoint2dArray</a> ( source: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a>[], result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a>[] ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a>[] <span class="badge badge-pill badge-primary">Public</span></td>
 <td><em>  for each point:   multiply    transform </em> point</td>
 </tr>
 <tr>
-<td><a href="multiplypoint3darray">multiplyPoint3dArray</a> ( source: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>[], result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>[] ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>[] <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="multiplypoint3darray">multiplyPoint3dArray</a> ( source: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>[], result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>[] ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>[] <span class="badge badge-pill badge-primary">Public</span></td>
 <td><em>  for each point:   multiply    transform </em> point</td>
 </tr>
 <tr>
@@ -204,31 +209,31 @@ take care of determining the appropriate origin coordinates.
 <td>for each point:  replace point by Transform*point</td>
 </tr>
 <tr>
-<td><a href="multiplyrange">multiplyRange</a> ( range: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a>, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a> <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="multiplyrange">multiplyRange</a> ( range: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a> <span class="badge badge-pill badge-primary">Public</span></td>
 <td>transform each of the 8 corners of a range.</td>
 </tr>
 <tr>
-<td><a href="multiplytransformrotmatrix">multiplyTransformRotMatrix</a> ( other: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a>, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="multiplytransformrotmatrix">multiplyTransformRotMatrix</a> ( other: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Public</span></td>
 <td>multiply this Transform times other RotMatrix, with other considered to be a Transform with 0 translation.</td>
 </tr>
 <tr>
-<td><a href="multiplytransformtransform">multiplyTransformTransform</a> ( other: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="multiplytransformtransform">multiplyTransformTransform</a> ( other: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Public</span></td>
 <td>multiply this Transform times other Transform.</td>
 </tr>
 <tr>
-<td><a href="multiplyvector">multiplyVector</a> ( vector: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a>, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a> <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="multiplyvector">multiplyVector</a> ( vector: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a> <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Multiply the vector by the RotMatrix part of the transform.</td>
 </tr>
 <tr>
-<td><a href="multiplyvectorxyz">multiplyVectorXYZ</a> ( x: number, y: number, z: number, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a> <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="multiplyvectorxyz">multiplyVectorXYZ</a> ( x: number, y: number, z: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a> <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Multiply the vector (x,y,z) by the RotMatrix part of the transform.</td>
 </tr>
 <tr>
-<td><a href="multiplyxyz">multiplyXYZ</a> ( x: number, y: number, z: number, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="multiplyxyz">multiplyXYZ</a> ( x: number, y: number, z: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Transform the input point.</td>
 </tr>
 <tr>
-<td><a href="multiplyxyzw">multiplyXYZW</a> ( x: number, y: number, z: number, w: number, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/numerics/point4d'>Point4d</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/numerics/point4d'>Point4d</a> <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="multiplyxyzw">multiplyXYZW</a> ( x: number, y: number, z: number, w: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/numerics/point4d'>Point4d</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/numerics/point4d'>Point4d</a> <span class="badge badge-pill badge-primary">Public</span></td>
 <td>Transform the input homogeneous point.</td>
 </tr>
 <tr>
@@ -236,7 +241,7 @@ take care of determining the appropriate origin coordinates.
 <td></td>
 </tr>
 <tr>
-<td><a href="setfromjson">setFromJSON</a> ( json: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transformprops'>TransformProps</a> ): void <span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="setfromjson">setFromJSON</a> ( json?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transformprops'>TransformProps</a> ): void <span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
@@ -256,43 +261,43 @@ take care of determining the appropriate origin coordinates.
 <td></td>
 </tr>
 <tr>
-<td><a href="createfixedpointandmatrix">createFixedPointAndMatrix</a> ( fixedPoint: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a>, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="createfixedpointandmatrix">createFixedPointAndMatrix</a> ( fixedPoint: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td>Create a transform with the specified matrix.</td>
 </tr>
 <tr>
-<td><a href="createidentity">createIdentity</a> ( result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="createidentity">createIdentity</a> ( result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td>Return an identity transform, optionally filling existing transform.</td>
 </tr>
 <tr>
-<td><a href="createoriginandmatrix">createOriginAndMatrix</a> ( origin: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/xyz'>XYZ</a> | undefined, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a> | undefined, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="createoriginandmatrix">createOriginAndMatrix</a> ( origin: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/xyz'>XYZ</a> | undefined, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a> | undefined, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td>Create by directly installing origin and matrix</td>
 </tr>
 <tr>
-<td><a href="createoriginandmatrixcolumns">createOriginAndMatrixColumns</a> ( origin: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/xyz'>XYZ</a>, vectorX: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a>, vectorY: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a>, vectorZ: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a>, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="createoriginandmatrixcolumns">createOriginAndMatrixColumns</a> ( origin: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/xyz'>XYZ</a>, vectorX: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a>, vectorY: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a>, vectorZ: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td>Create by directly installing origin and columns of the matrix</td>
 </tr>
 <tr>
-<td><a href="createrefs">createRefs</a> ( origin: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/xyz'>XYZ</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a>, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="createrefs">createRefs</a> ( origin: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/xyz'>XYZ</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td>Create a copy with the given origin and matrix captured as the Transform origin and RotMatrix.</td>
 </tr>
 <tr>
-<td><a href="createscaleaboutpoint">createScaleAboutPoint</a> ( fixedPoint: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, scale: number, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="createscaleaboutpoint">createScaleAboutPoint</a> ( fixedPoint: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, scale: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td>Create a Transform which leaves the fixedPoint unchanged and</td>
 </tr>
 <tr>
-<td><a href="createtranslation">createTranslation</a> ( translation: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/xyz'>XYZ</a>, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="createtranslation">createTranslation</a> ( translation: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/xyz'>XYZ</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td>Create a matrix with specified translation part.</td>
 </tr>
 <tr>
-<td><a href="createtranslationxyz">createTranslationXYZ</a> ( x: number = 0, y: number = 0, z: number = 0, result: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="createtranslationxyz">createTranslationXYZ</a> ( x: number = 0, y: number = 0, z: number = 0, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td>create a Transform with translation provided by x,y,z parts.</td>
 </tr>
 <tr>
-<td><a href="fromjson">fromJSON</a> ( json: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transformprops'>TransformProps</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="fromjson">fromJSON</a> ( json?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transformprops'>TransformProps</a> ): <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="initfromrange">initFromRange</a> ( min: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, max: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, npcToGlobal: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, globalToNpc: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): void <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
+<td><a href="initfromrange">initFromRange</a> ( min: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, max: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, npcToGlobal?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, globalToNpc?: <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/geometry-core/cartesiangeometry/transform'>Transform</a> ): void <span class="badge badge-pill badge-primary">Static</span><span class="badge badge-pill badge-primary">Public</span></td>
 <td>Initialize transforms that map each direction of a box (axis aligned) to <code>[0,1]</code>.</td>
 </tr>
 <tr>
@@ -319,7 +324,7 @@ take care of determining the appropriate origin coordinates.
 </tr>
 </tbody></table>
                     <p class='last-updated'>Last Updated: 
-                        <span class='date-updated'>15 May, 2018 @ 08:03:27 pm +00:00</span>
+                        <span class='date-updated'>17 May, 2018 @ 12:08:59 pm -04:00</span>
                     </p>
     
                    
@@ -346,6 +351,12 @@ take care of determining the appropriate origin coordinates.
                         <i class='dropdown icon'></i>
                         </a>
                         <ul id="inner-nav-transform" class='inner-nav'>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#implements">Implements</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#bejsonfunctions">BeJSONFunctions</a>
+                            </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#methods">Methods</a>
                             </li>
