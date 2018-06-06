@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Feature Gates - iModelJs</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output/styles/bundle.css">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output/styles/prism.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output/overview/imodeljs.ico' />
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output/ class='layout-index '>
+    <span id="contentLoader"><p>Woah!  This page has a great deal of content...  Give us a second to load it.</p></span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+    <header id="main-header">
+        <div class='row nav-container'>
+            <nav id='main-navbar' class="navbar navbar-expand-md navbar-light">
+                    
+                        <button class="navbar-toggler navbar-toggler-left custom-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon">
+                                <i class='icon icon-menu'></i>
+                            </span>
+                        </button>
+                    <div class="nav-title-container">
+                        <a class="navbar-brand " href="https://imodeljs.github.io/iModelJs-docs-output/" class="col-md-3">
+                                <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output/overview/imodeljs.ico" />
+                            <h1 id="site-title">iModelJs</h1>
+                        </a>
+                    </div>
+                    <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
+                        <nav class="navbar navbar-expand-md navbar-light">
+                             <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">API Reference</a></li></ul> 
+                        </nav>
+                    </div>            </nav>
+        </div>
+
+    </header>
+
+<div id='main-wrapper'>
+    <div id='table-of-contents'>
+        <span class='search-bar'>
+          <li>
+            <div id='search-container'>
+            </div>
+          </li>
+        </span>
+        
+        <ul id='main-navigation-list'>
+            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/" class="table-of-contents-link">The iModelJs Library</a></h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend/" class="table-of-contents-link">Frontend</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend/" class="table-of-contents-link">Backend</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common/" class="table-of-contents-link">Common</a></li>
+        </ul>
+        <hr>
+        <p>&#xA0;</p>
+        <h3 class="h-helpful-links"><a id="helpful-links" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/./learning/glossary" class="table-of-contents-link">iModelJs Glossary</a></li>
+        </ul>
+        </body></html>
+        </ul>    </div>
+    <div class='row documentation-main'>
+        <article id="main" name="main-content">
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common/">common</a> > featuregates</div>
+            <h1 id="feature gates">Feature Gates</h1>
+<p>A &quot;feature gate&quot; is a parameter that an app or service can check to enable or disable features at runtime. A gate can be any type, e.g. boolean, string, number or even object. Generally they are established at startup, but may be changed at runtime based, for example, on user credentials or server-based priorities, etc.</p>
+<p>A service typically gets its feature gates from its deployment parameters.
+<em>Example:</em></p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">  <span class="token keyword">public</span> <span class="token keyword">static</span> readonly features <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FeatureGates</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token function">readFeatureGates</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">// Read the configuration parameters for my service.</span>
+    <span class="token comment">// Some config params might be specified as envvars. Substitute actual values.</span>
+    <span class="token keyword">const</span> config <span class="token operator">=</span> <span class="token keyword">require</span><span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>IModelHost<span class="token punctuation">.</span>appAssetsDir<span class="token operator">!</span><span class="token punctuation">,</span> <span class="token string">&quot;RobotWorldEngine.config.json&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    EnvMacroSubst<span class="token punctuation">.</span><span class="token function">replaceInProperties</span><span class="token punctuation">(</span>config<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> defaultsCfg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Define the feature gates that were passed in the config parameters.</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">&quot;features&quot;</span> <span class="token keyword">in</span> config<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>features<span class="token punctuation">.</span><span class="token function">setGate</span><span class="token punctuation">(</span><span class="token string">&quot;imodel&quot;</span><span class="token punctuation">,</span> config<span class="token punctuation">.</span>features<span class="token punctuation">.</span>imodel<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>features<span class="token punctuation">.</span><span class="token function">setGate</span><span class="token punctuation">(</span><span class="token string">&quot;experimental&quot;</span><span class="token punctuation">,</span> config<span class="token punctuation">.</span>features<span class="token punctuation">.</span>experimental<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+</code></pre>
+<p>An example of the feature gate portion of a configuration .json file that is deployed with a service might be:</p>
+<pre class="no-line-numbers language-json line-numbers"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">&quot;features&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;imodel&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;readwrite&quot;</span><span class="token operator">:</span> <span class="token string">&quot;${ROBOT-WORLD-FEATURE-READWRITE}&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;experimental&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;methods&quot;</span><span class="token operator">:</span> <span class="token string">&quot;${ROBOT-WORLD-FEATURE-EXPERIMENTAL-METHODS}&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Note how the values of the configuration properties are defined by placeholders, which are delimited by ${}. Such placeholders will be replaced by EnvMacroSubst with the values of like-named environment variables. That allows a deployment mechanism to supply the values for configuration parameters and inject them into the service.</p>
+<p>A service then checks its feature gates in its methods.
+<em>Example:</em></p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">  <span class="token comment">// An experimental method. It is in the release build, but only turned on in some deployments.</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token function">fuseRobots</span><span class="token punctuation">(</span>iModelDb<span class="token punctuation">:</span> IModelDb<span class="token punctuation">,</span> r1Id<span class="token punctuation">:</span> Id64Props<span class="token punctuation">,</span> r2Id<span class="token punctuation">:</span> Id64Props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>features<span class="token punctuation">.</span><span class="token function">check</span><span class="token punctuation">(</span><span class="token string">&quot;experimental.methods&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// The gate is open. Go ahead and perform the function.</span>
+    <span class="token comment">// ...</span>
+
+</code></pre>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>06 June, 2018 @ 01:01:45 pm -04:00</span>
+            </p>
+
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div id='inner-table-of-contents'>
+        <!--
+            - If the page is active
+            - Get all headings and subheadings and list them
+         -->
+        
+        
+        
+        
+        
+    </div>
+</div>
+
+
+    <footer id='main-footer'>
+        <div id='footer-content-container'>
+           <div class='footer-footer'>
+               <p>Copyright 2018 Bentley Systems, Incorporated</p>
+            </div>
+        </div>
+    </footer>
+</div>
+    <a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+    <script src="https://imodeljs.github.io/iModelJs-docs-output/scripts/bundle.js" ></script>
+</body>
+
+</html>

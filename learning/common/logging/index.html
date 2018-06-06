@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Logging - iModelJs</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output/styles/bundle.css">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output/styles/prism.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output/overview/imodeljs.ico' />
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output/ class='layout-index '>
+    <span id="contentLoader"><p>Woah!  This page has a great deal of content...  Give us a second to load it.</p></span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+    <header id="main-header">
+        <div class='row nav-container'>
+            <nav id='main-navbar' class="navbar navbar-expand-md navbar-light">
+                    
+                        <button class="navbar-toggler navbar-toggler-left custom-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon">
+                                <i class='icon icon-menu'></i>
+                            </span>
+                        </button>
+                    <div class="nav-title-container">
+                        <a class="navbar-brand " href="https://imodeljs.github.io/iModelJs-docs-output/" class="col-md-3">
+                                <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output/overview/imodeljs.ico" />
+                            <h1 id="site-title">iModelJs</h1>
+                        </a>
+                    </div>
+                    <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
+                        <nav class="navbar navbar-expand-md navbar-light">
+                             <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">API Reference</a></li></ul> 
+                        </nav>
+                    </div>            </nav>
+        </div>
+
+    </header>
+
+<div id='main-wrapper'>
+    <div id='table-of-contents'>
+        <span class='search-bar'>
+          <li>
+            <div id='search-container'>
+            </div>
+          </li>
+        </span>
+        
+        <ul id='main-navigation-list'>
+            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/" class="table-of-contents-link">The iModelJs Library</a></h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend/" class="table-of-contents-link">Frontend</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend/" class="table-of-contents-link">Backend</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common/" class="table-of-contents-link">Common</a></li>
+        </ul>
+        <hr>
+        <p>&#xA0;</p>
+        <h3 class="h-helpful-links"><a id="helpful-links" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/./learning/glossary" class="table-of-contents-link">iModelJs Glossary</a></li>
+        </ul>
+        </body></html>
+        </ul>    </div>
+    <div class='row documentation-main'>
+        <article id="main" name="main-content">
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common/">common</a> > logging</div>
+            <h1 id="logging">Logging</h1>
+<p>Logging allows libraries and apps to report potentially useful information about operations, and it allows apps and users to control how or if the logged information is displayed or collected. Logging information is primarily used to diagnose problems after the fact. Logging may also be used to monitor application health.</p>
+<p>To log a message, call <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/logger/logerror'>Logger.logError</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/logger/logwarning'>Logger.logWarning</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/logger/loginfo'>Logger.logInfo</a>, or <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/logger/logtrace'>Logger.logTrace</a>, depending on the level of importance of the message.</p>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/errors/bentleyerror'>BentleyError</a> is integrated with logging.</p>
+<h2 class="h-loglevels"><a id="loglevels" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>LogLevels</h2>
+<p>Each of the logging output functions assigns a <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/loglevel'>LogLevel</a> to the specified message. LogLevel is like a property of a logging message. The app that produces logging messages can control output by filtering on LogLevel. And the dashboards that consume logging messages can filter and organize logging messages by LogLevels.</p>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/loglevel'>LogLevel</a> is a pre-defined enum that is chosen by the app that generates logging messages. The app must choose the appropriate level for each message, so that the purpose of a message is clear and so that the most important messages stand out.</p>
+<h2 class="h-categories"><a id="categories" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Categories</h2>
+<p>Each of the logging output functions takes the <em>category</em> of the message as its first argument and associates this string with the specified message. Category is like a property of a logging message. The app that produces logging messages can control output by filtering on category. And the dashboards that consume logging messages can filter and organize logging messages by categories.</p>
+<p>Categories are freeform strings that are made up by the app that generates logging messages. A well-chosen category string make messages useful and manageable. In some cases, the category will be used to identify the source of the message. For example, when logging messages from many different services are streamed to a single file or dashboard, users will rely on the category of a message to identify its source. The category will also be used to group messages. For example, all logging messages that pertain to a certain module should have the same category.</p>
+<p>Parent/child category naming is often useful for achieving uniqueness and grouping.</p>
+<h3 class="h-parent-and-child-categories"><a id="parent-and-child-categories" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Parent and Child Categories</h3>
+<p>If a category name has a &quot;.&quot; in it, then the part to the left is interpreted as the parent category and the part to the right is the child. If you pass a parent category to <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/logger/setlevel'>Logger.setLevel</a>, then the specified level filter will be applied to all children of that level. If you call <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/logger/setlevel'>Logger.setLevel</a> on a specific child category, then the level you specify will apply to that child, while the parent&apos;s level will apply to all other children. Children can be nested.</p>
+<h2 class="h-controlling-the-destination-of-logging-messages"><a id="controlling-the-destination-of-logging-messages" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Controlling the Destination of Logging Messages</h2>
+<p>The app controls how to handle log messages by supplying to <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/logger/initialize'>Logger.initialize</a> the functions that handle messages for each log level. These functions are called &quot;streams&quot;. See the convenience method <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/logger/initializetoconsole'>Logger.initializeToConsole</a> for a simple way to direct logging output to the console.
+<a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/bunyanloggerconfig'>BunyanLoggerConfig</a> will direct logging to the Bunyan logging system.
+<a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/seqloggerconfig'>SeqLoggerConfig</a> will direct logging to the seq logging server.</p>
+<h2 class="h-controlling-what-is-logged"><a id="controlling-what-is-logged" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Controlling What is Logged</h2>
+<p>The app that produces logging output can apply filters at runtime to control which messages are actually sent to the destination.</p>
+<p>The simplest way to turn off logging at a particular log level is for the app simply not to supply a stream for that level. Or, the app can supply a stream that does its own internal filtering.</p>
+<h3 class="h-filtering-messages-by-level-and-category"><a id="filtering-messages-by-level-and-category" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Filtering messages by level and category</h3>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/logger/setlevel'>Logger.setLevel</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/logger/configurelevels'>Logger.configureLevels</a> can be used to control logging output by level and category.</p>
+<p>There are two filtering strategies.</p>
+<h4 class="h-1-opt-out"><a id="1-opt-out" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>1. Opt out.</h4>
+<p>In this strategy, you start by turning all categories on at a certain level by default and then setting the levels of specific categories to other levels.</p>
+<p><em>Example:</em></p>
+<pre><code>Logger.initializeToConsole();
+Logger.setLevelDefault(LogLevel.Error);
+Logger.setLevel(&quot;Diagnostics&quot;, LogLevel.None);
+</code></pre><p>This approach is mainly useful when you are just trying to find out what is happening. For example, to debug a problem when you do not know where to start looking, you might turn all categories &quot;on&quot; by default at some level. This can produce a lot of logging output. After reviewing the outpout, you might then turn &quot;off&quot; the categories that are not relevant to your search by setting their levels to None. You might also turn &quot;up&quot; the categories that seem to be of interest.</p>
+<h4 class="h-2-opt-in"><a id="2-opt-in" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>2. Opt in</h4>
+<p>In this strategy, you leave most categories off by default and then turn on the ones you do want.</p>
+<p><em>Example:</em></p>
+<pre><code>Logger.initializeToConsole();
+Logger.setLevel(&quot;MyCategory&quot;, LogLevel.Info);
+</code></pre><p>This approach is useful when you want to monitor the activity in a small number of known modules, where you already know the names of the categories that they use.</p>
+<h2 class="h-configuration-files"><a id="configuration-files" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Configuration Files</h2>
+<p>A service typically initializes and configures logging in its startup logic. Configuration can be based on the configuration parameters of the service, which may be set by the deployment mechanism. The simplest way to do this is to use <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/loggerlevelsconfig'>LoggerLevelsConfig</a>. This is normally used in conjunction with a stream config, for example, a <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/seqconfig'>SeqConfig</a>. Both are normally stored in a config file that is deployed with the service. Finally, some specific configuration parameters are normally set at runtime, based on deployment parameters using <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/bentleyjs-core/logging/envmacrosubst'>EnvMacroSubst</a> to do macro substitution.</p>
+<p><em>Example:</em></p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Logger<span class="token punctuation">,</span> LoggerLevelsConfig<span class="token punctuation">,</span> EnvMacroSubst<span class="token punctuation">,</span> BentleyError<span class="token punctuation">,</span> IModelStatus <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/bentleyjs-core&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> BunyanLoggerConfig <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/bentleyjs-core/lib/BunyanLoggerConfig&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> SeqLoggerConfig<span class="token punctuation">,</span> SeqConfig <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@bentley/bentleyjs-core/lib/SeqLoggerConfig&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">initializeLogging</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Read the configuration parameters for my service. Some config</span>
+  <span class="token comment">// params might be specified as envvars.</span>
+  <span class="token keyword">const</span> config <span class="token operator">=</span> <span class="token keyword">require</span><span class="token punctuation">(</span><span class="token string">&quot;./MyService.config.json&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> defaultConfigValues<span class="token punctuation">:</span> <span class="token builtin">any</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;ROBOT-WORLD-DEFAULT-LOG-LEVEL&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;Error&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;ROBOT-WORLD-SEQ-URL&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;http://localhost&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;ROBOT-WORLD-SEQ-PORT&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;5341&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  EnvMacroSubst<span class="token punctuation">.</span><span class="token function">replaceInProperties</span><span class="token punctuation">(</span>config<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> defaultConfigValues<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>EnvMacroSubst<span class="token punctuation">.</span><span class="token function">anyPropertyContainsEnvvars</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>seq<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">BentleyError</span><span class="token punctuation">(</span>IModelStatus<span class="token punctuation">.</span>NotFound<span class="token punctuation">,</span> <span class="token string">&quot;Unmatched environment variables in configuration.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Set up to log to the seq service</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">&quot;seq&quot;</span> <span class="token keyword">in</span> config<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    SeqLoggerConfig<span class="token punctuation">.</span><span class="token function">validateProps</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>seq<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    BunyanLoggerConfig<span class="token punctuation">.</span><span class="token function">logToBunyan</span><span class="token punctuation">(</span>SeqLoggerConfig<span class="token punctuation">.</span><span class="token function">createBunyanSeqLogger</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>seq <span class="token keyword">as</span> SeqConfig<span class="token punctuation">,</span> <span class="token string">&quot;RobotWorld&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Configure log levels by category</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">&quot;loggerConfig&quot;</span> <span class="token keyword">in</span> config<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Logger<span class="token punctuation">.</span><span class="token function">validateProps</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>loggerConfig<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Logger<span class="token punctuation">.</span><span class="token function">configureLevels</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>loggerConfig <span class="token keyword">as</span> LoggerLevelsConfig<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<p>An example of the logging-related sections of a configuration .json file that is deployed with a service might be:</p>
+<pre class="no-line-numbers language-json line-numbers"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">&quot;loggerConfig&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+     <span class="token property">&quot;defaultLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;${ROBOT-WORLD-DEFAULT-LOG-LEVEL}&quot;</span><span class="token punctuation">,</span>
+     <span class="token property">&quot;categoryLevels&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+         <span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ROBOT-WORLD&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Trace&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+         <span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;imodeljs-rpc&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Trace&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+         <span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;imodeljs-backend.AutoPush&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Trace&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+         <span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ECPresentation&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;None&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+         <span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Diagnostics.ECSqlStatement&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;None&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+         <span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ECObjectsNative&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;None&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+         <span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;UnitsNative&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;None&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+         <span class="token punctuation">{</span><span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BeSQLite&quot;</span><span class="token punctuation">,</span> <span class="token property">&quot;logLevel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;None&quot;</span><span class="token punctuation">}</span>
+     <span class="token punctuation">]</span>
+   <span class="token punctuation">}</span><span class="token punctuation">,</span>
+   <span class="token property">&quot;seq&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+     <span class="token property">&quot;hostURL&quot;</span><span class="token operator">:</span> <span class="token string">&quot;${ROBOT-WORLD-SEQ-URL}&quot;</span><span class="token punctuation">,</span>
+     <span class="token property">&quot;port&quot;</span><span class="token operator">:</span> <span class="token string">&quot;${ROBOT-WORLD-SEQ-PORT}&quot;</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>06 June, 2018 @ 01:01:45 pm -04:00</span>
+            </p>
+
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div id='inner-table-of-contents'>
+        <!--
+            - If the page is active
+            - Get all headings and subheadings and list them
+         -->
+        
+        
+        
+        
+          <div id='sticky-container'>
+            <h4 class='heading'>On this page</h4>
+            <div id="overview-container" class="clusterize-scroll">
+              <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+                      <li class='nav-item item '>
+                    <a class='title solo-title menu-text' href="#loglevels">LogLevels</a>
+            </li>
+               <li class='nav-item item '>
+                    <a data-target="#inner-nav-categories" class='title' href="#categories"/>
+                    <b class='dropdown-menu-title menu-text'>Categories</b>
+                    <i class='dropdown icon'></i>
+                    </a>
+                    <ul id="inner-nav-categories" class='inner-nav'>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#parent-and-child-categories">Parent and Child Categories</a>
+                            </li>
+                    </ul>
+            </li>
+               <li class='nav-item item '>
+                    <a class='title solo-title menu-text' href="#controlling-the-destination-of-logging-messages">Controlling the Destination of Logging Messages</a>
+            </li>
+               <li class='nav-item item '>
+                    <a data-target="#inner-nav-controlling-what-is-logged" class='title' href="#controlling-what-is-logged"/>
+                    <b class='dropdown-menu-title menu-text'>Controlling What is Logged</b>
+                    <i class='dropdown icon'></i>
+                    </a>
+                    <ul id="inner-nav-controlling-what-is-logged" class='inner-nav'>
+                            <li class='nav-item item '>
+                                    <a data-target="#inner-nav-filtering-messages-by-level-and-category" class='title' href="#filtering-messages-by-level-and-category"/>
+                                    <b class='dropdown-menu-title menu-text'>Filtering messages by level and category</b>
+                                    <i class='dropdown icon'></i>
+                                    </a>
+                                    <ul id="inner-nav-filtering-messages-by-level-and-category" class='inner-nav'>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#1-opt-out">1. Opt out.</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#2-opt-in">2. Opt in</a>
+                                            </li>
+                                    </ul>
+                            </li>
+                    </ul>
+            </li>
+               <li class='nav-item item '>
+                    <a class='title solo-title menu-text' href="#configuration-files">Configuration Files</a>
+            </li>
+         
+              </ul>
+            </div>
+          </div>
+        
+    </div>
+</div>
+
+
+    <footer id='main-footer'>
+        <div id='footer-content-container'>
+           <div class='footer-footer'>
+               <p>Copyright 2018 Bentley Systems, Incorporated</p>
+            </div>
+        </div>
+    </footer>
+</div>
+    <a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+    <script src="https://imodeljs.github.io/iModelJs-docs-output/scripts/bundle.js" ></script>
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Creating Elements - iModelJs</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output/styles/bundle.css">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output/styles/prism.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output/overview/imodeljs.ico' />
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output/ class='layout-index '>
+    <span id="contentLoader"><p>Woah!  This page has a great deal of content...  Give us a second to load it.</p></span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+    <header id="main-header">
+        <div class='row nav-container'>
+            <nav id='main-navbar' class="navbar navbar-expand-md navbar-light">
+                    
+                        <button class="navbar-toggler navbar-toggler-left custom-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon">
+                                <i class='icon icon-menu'></i>
+                            </span>
+                        </button>
+                    <div class="nav-title-container">
+                        <a class="navbar-brand " href="https://imodeljs.github.io/iModelJs-docs-output/" class="col-md-3">
+                                <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output/overview/imodeljs.ico" />
+                            <h1 id="site-title">iModelJs</h1>
+                        </a>
+                    </div>
+                    <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
+                        <nav class="navbar navbar-expand-md navbar-light">
+                             <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">API Reference</a></li></ul> 
+                        </nav>
+                    </div>            </nav>
+        </div>
+
+    </header>
+
+<div id='main-wrapper'>
+    <div id='table-of-contents'>
+        <span class='search-bar'>
+          <li>
+            <div id='search-container'>
+            </div>
+          </li>
+        </span>
+        
+        <ul id='main-navigation-list'>
+            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/" class="table-of-contents-link">The iModelJs Library</a></h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend/" class="table-of-contents-link">Frontend</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend/" class="table-of-contents-link">Backend</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common/" class="table-of-contents-link">Common</a></li>
+        </ul>
+        <hr>
+        <p>&#xA0;</p>
+        <h3 class="h-helpful-links"><a id="helpful-links" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/./learning/glossary" class="table-of-contents-link">iModelJs Glossary</a></li>
+        </ul>
+        </body></html>
+        </ul>    </div>
+    <div class='row documentation-main'>
+        <article id="main" name="main-content">
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend/">backend</a> > createelements</div>
+            <h1 id="creating elements">Creating Elements</h1>
+<p>Use <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/imodels/imodeldbelements/insertelement'>Elements.insertElement</a> to insert a new element into an IModelDb. This method takes as its input an <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/elementprops/elementprops'>ElementProps</a> or a subclass of it, which defines the class and all required properties of the new element.</p>
+<p><em>Example:</em></p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token function">insertRobot</span><span class="token punctuation">(</span>iModelDb<span class="token punctuation">:</span> IModelDb<span class="token punctuation">,</span> modelId<span class="token punctuation">:</span> Id64Props<span class="token punctuation">,</span> name<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> location<span class="token punctuation">:</span> Point3d<span class="token punctuation">)</span><span class="token punctuation">:</span> Id64Props <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> props<span class="token punctuation">:</span> GeometricElement3dProps <span class="token operator">=</span> <span class="token punctuation">{</span>      <span class="token comment">// I know what class and category to use.</span>
+      model<span class="token punctuation">:</span> modelId<span class="token punctuation">,</span>
+      classFullName<span class="token punctuation">:</span> RobotWorld<span class="token punctuation">.</span>Class<span class="token punctuation">.</span>Robot<span class="token punctuation">,</span>
+      category<span class="token punctuation">:</span> Robot<span class="token punctuation">.</span><span class="token function">getCategory</span><span class="token punctuation">(</span>iModelDb<span class="token punctuation">)</span><span class="token punctuation">.</span>id<span class="token punctuation">,</span>
+      geom<span class="token punctuation">:</span> Robot<span class="token punctuation">.</span><span class="token function">generateGeometry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      placement<span class="token punctuation">:</span> <span class="token punctuation">{</span> origin<span class="token punctuation">:</span> location<span class="token punctuation">,</span> angles<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">YawPitchRollAngles</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      userLabel<span class="token punctuation">:</span> name<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> iModelDb<span class="token punctuation">.</span>elements<span class="token punctuation">.</span><span class="token function">insertElement</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+</code></pre>
+<p>The above example shows the use of the <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-common/elementprops/geometricelement3dprops'>GeometricElement3dProps</a> subclass of ElementProps.</p>
+<p>Some classes provide <code>create</code> helper functions.</p>
+<p><em>Example:</em></p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">      <span class="token keyword">const</span> cat<span class="token punctuation">:</span> SpatialCategory <span class="token operator">=</span> SpatialCategory<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>dictionary<span class="token punctuation">,</span> _schemaNames<span class="token punctuation">.</span>Class<span class="token punctuation">.</span>Robot<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      cat<span class="token punctuation">.</span>id <span class="token operator">=</span> iModelDb<span class="token punctuation">.</span>elements<span class="token punctuation">.</span><span class="token function">insertElement</span><span class="token punctuation">(</span>cat<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      cat<span class="token punctuation">.</span><span class="token function">setDefaultAppearance</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Appearance</span><span class="token punctuation">(</span><span class="token punctuation">{</span> color<span class="token punctuation">:</span> ColorByName<span class="token punctuation">.</span>silver <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      iModelDb<span class="token punctuation">.</span>elements<span class="token punctuation">.</span><span class="token function">updateElement</span><span class="token punctuation">(</span>cat<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre>
+<p>The above example shows the use of the <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/categories/spatialcategory/create'>SpatialCategory.create</a> helper function to create the props object. It also illustrates how <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/imodels/imodeldbelements/updateelement'>Elements.updateElement</a> is used.</p>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>06 June, 2018 @ 01:01:45 pm -04:00</span>
+            </p>
+
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div id='inner-table-of-contents'>
+        <!--
+            - If the page is active
+            - Get all headings and subheadings and list them
+         -->
+        
+        
+        
+        
+        
+    </div>
+</div>
+
+
+    <footer id='main-footer'>
+        <div id='footer-content-container'>
+           <div class='footer-footer'>
+               <p>Copyright 2018 Bentley Systems, Incorporated</p>
+            </div>
+        </div>
+    </footer>
+</div>
+    <a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+    <script src="https://imodeljs.github.io/iModelJs-docs-output/scripts/bundle.js" ></script>
+</body>
+
+</html>

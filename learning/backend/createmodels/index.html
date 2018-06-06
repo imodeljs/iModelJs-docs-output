@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Creating Models - iModelJs</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output/styles/bundle.css">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output/styles/prism.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output/overview/imodeljs.ico' />
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output/ class='layout-index '>
+    <span id="contentLoader"><p>Woah!  This page has a great deal of content...  Give us a second to load it.</p></span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+    <header id="main-header">
+        <div class='row nav-container'>
+            <nav id='main-navbar' class="navbar navbar-expand-md navbar-light">
+                    
+                        <button class="navbar-toggler navbar-toggler-left custom-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon">
+                                <i class='icon icon-menu'></i>
+                            </span>
+                        </button>
+                    <div class="nav-title-container">
+                        <a class="navbar-brand " href="https://imodeljs.github.io/iModelJs-docs-output/" class="col-md-3">
+                                <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output/overview/imodeljs.ico" />
+                            <h1 id="site-title">iModelJs</h1>
+                        </a>
+                    </div>
+                    <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
+                        <nav class="navbar navbar-expand-md navbar-light">
+                             <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/bis">BIS</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output/learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output/reference">API Reference</a></li></ul> 
+                        </nav>
+                    </div>            </nav>
+        </div>
+
+    </header>
+
+<div id='main-wrapper'>
+    <div id='table-of-contents'>
+        <span class='search-bar'>
+          <li>
+            <div id='search-container'>
+            </div>
+          </li>
+        </span>
+        
+        <ul id='main-navigation-list'>
+            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/" class="table-of-contents-link">The iModelJs Library</a></h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/frontend/" class="table-of-contents-link">Frontend</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend/" class="table-of-contents-link">Backend</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/common/" class="table-of-contents-link">Common</a></li>
+        </ul>
+        <hr>
+        <p>&#xA0;</p>
+        <h3 class="h-helpful-links"><a id="helpful-links" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output/./learning/glossary" class="table-of-contents-link">iModelJs Glossary</a></li>
+        </ul>
+        </body></html>
+        </ul>    </div>
+    <div class='row documentation-main'>
+        <article id="main" name="main-content">
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output/learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output/learning/backend/">backend</a> > createmodels</div>
+            <h1 id="creating models">Creating Models</h1>
+<p>To insert a new <a href='https://imodeljs.github.io/iModelJs-docs-output/./reference/imodeljs-backend/models/model'>Model</a> into an iModelDb,</p>
+<ol>
+<li>Create and insert the modeled element.</li>
+<li>Create and insert the model, refering to the modeled element.</li>
+</ol>
+<p><em>Example:</em></p>
+<pre class="no-line-numbers language-typescript line-numbers"><code class="language-typescript">  <span class="token keyword">function</span> <span class="token function">createNewModel</span><span class="token punctuation">(</span>parentElement<span class="token punctuation">:</span> Element<span class="token punctuation">,</span> modelName<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> isModelPrivate<span class="token punctuation">:</span> <span class="token builtin">boolean</span><span class="token punctuation">)</span><span class="token punctuation">:</span> Id64 <span class="token punctuation">{</span>
+
+    <span class="token keyword">const</span> outputImodel <span class="token operator">=</span> parentElement<span class="token punctuation">.</span>iModel<span class="token punctuation">;</span>
+
+    <span class="token comment">// The modeled element&apos;s code</span>
+    <span class="token keyword">const</span> modelCode <span class="token operator">=</span> InformationPartitionElement<span class="token punctuation">.</span><span class="token function">createCode</span><span class="token punctuation">(</span>outputImodel<span class="token punctuation">,</span> parentElement<span class="token punctuation">.</span>id<span class="token punctuation">,</span> modelName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">//  The modeled element</span>
+    <span class="token keyword">const</span> modeledElementProps<span class="token punctuation">:</span> ElementProps <span class="token operator">=</span> <span class="token punctuation">{</span>
+      classFullName<span class="token punctuation">:</span> <span class="token string">&quot;BisCore:PhysicalPartition&quot;</span><span class="token punctuation">,</span>
+      iModel<span class="token punctuation">:</span> outputImodel<span class="token punctuation">,</span>
+      parent<span class="token punctuation">:</span> <span class="token punctuation">{</span> id<span class="token punctuation">:</span> parentElement<span class="token punctuation">.</span>id<span class="token punctuation">,</span> relClassName<span class="token punctuation">:</span> <span class="token string">&quot;BisCore:SubjectOwnsPartitionElements&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      model<span class="token punctuation">:</span> IModel<span class="token punctuation">.</span>repositoryModelId<span class="token punctuation">,</span>
+      code<span class="token punctuation">:</span> modelCode<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> modeledElement<span class="token punctuation">:</span> Element <span class="token operator">=</span> outputImodel<span class="token punctuation">.</span>elements<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span>modeledElementProps<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> modeledElementId<span class="token punctuation">:</span> Id64 <span class="token operator">=</span> outputImodel<span class="token punctuation">.</span>elements<span class="token punctuation">.</span><span class="token function">insertElement</span><span class="token punctuation">(</span>modeledElement<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">const</span> modeledElementRef <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RelatedElement</span><span class="token punctuation">(</span><span class="token punctuation">{</span> id<span class="token punctuation">:</span> modeledElementId <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// The model</span>
+    <span class="token keyword">const</span> newModel <span class="token operator">=</span> outputImodel<span class="token punctuation">.</span>models<span class="token punctuation">.</span><span class="token function">createModel</span><span class="token punctuation">(</span><span class="token punctuation">{</span> modeledElement<span class="token punctuation">:</span> modeledElementRef<span class="token punctuation">,</span> classFullName<span class="token punctuation">:</span> <span class="token string">&quot;BisCore:PhysicalModel&quot;</span><span class="token punctuation">,</span> isPrivate<span class="token punctuation">:</span> isModelPrivate <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> newModelId <span class="token operator">=</span> outputImodel<span class="token punctuation">.</span>models<span class="token punctuation">.</span><span class="token function">insertModel</span><span class="token punctuation">(</span>newModel<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    assert<span class="token punctuation">.</span><span class="token function">isTrue</span><span class="token punctuation">(</span>newModelId<span class="token punctuation">.</span><span class="token function">isValid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> modeledElementId<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+</code></pre>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>06 June, 2018 @ 01:01:45 pm -04:00</span>
+            </p>
+
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div id='inner-table-of-contents'>
+        <!--
+            - If the page is active
+            - Get all headings and subheadings and list them
+         -->
+        
+        
+        
+        
+        
+    </div>
+</div>
+
+
+    <footer id='main-footer'>
+        <div id='footer-content-container'>
+           <div class='footer-footer'>
+               <p>Copyright 2018 Bentley Systems, Incorporated</p>
+            </div>
+        </div>
+    </footer>
+</div>
+    <a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+    <script src="https://imodeljs.github.io/iModelJs-docs-output/scripts/bundle.js" ></script>
+</body>
+
+</html>
