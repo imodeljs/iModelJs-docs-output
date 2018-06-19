@@ -464,44 +464,7 @@ url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pi
 .icon-zoom-out-2:before { content: "\F2BB"; }
 .icon-zoom-out:before { content: "\F2BC"; }
 .icon-zoom:before { content: "\F2BD"; }
-/* max-height - the only parameter in this file that needs to be edited.
- * Change it to suit your needs. The rest is recommended to leave as is.
- */
-.clusterize-scroll{
-  max-height: 200px;
-  overflow: auto;
-}
-
-/**
- * Avoid vertical margins for extra tags
- * Necessary for correct calculations when rows have nonzero vertical margins
- */
-.clusterize-extra-row{
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-}
-
-/* By default extra tag .clusterize-keep-parity added to keep parity of rows.
- * Useful when used :nth-child(even/odd)
- */
-.clusterize-extra-row.clusterize-keep-parity{
-  display: none;
-}
-
-/* During initialization clusterize adds tabindex to force the browser to keep focus
- * on the scrolling list, see issue #11
- * Outline removes default browser's borders for focused elements.
- */
-.clusterize-content{
-  outline: 0;
-  counter-reset: clusterize-counter;
-}
-
-/* Centering message that appears when no data provided
- */
-.clusterize-no-data td{
-  text-align: center;
-}/*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
+/*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
 /**
@@ -905,11 +868,11 @@ code {
 
 a {
   text-decoration: none;
+  font-family: inherit;
   color: #56aa1c; }
 
 a:hover {
-  color: #1e4106;
-  text-decoration: none; }
+  text-decoration: underline; }
 
 .navbar-brand {
   display: flex;
@@ -960,6 +923,15 @@ blockquote {
 
 .badge-class {
   background-color: #D9EEFB; }
+
+.badge-classes {
+  background-color: #D9EEFB; }
+
+.badge-method {
+  background-color: #FAE5E5; }
+
+.badge-methods {
+  background-color: #FAE5E5; }
 
 .alert {
   position: relative;
@@ -1089,7 +1061,7 @@ div#main-wrapper {
     min-width: 0; }
   div#main-wrapper #table-of-contents {
     -ms-grid-column: 1;
-    height: 100vh;
+    max-height: 84vh;
     overflow-y: auto; }
   div#main-wrapper .documentation-main {
     -ms-grid-column: 2; }
@@ -1392,6 +1364,9 @@ header#main-header {
 #main-navbar .row {
   width: 100%; }
 
+.is-sticky #main-header {
+  z-index: 99999 !important; }
+
 h1#site-title {
   margin: 0px;
   float: none;
@@ -1498,10 +1473,6 @@ a.navbar-brand {
 
 .nav-tabs-container {
   -ms-grid-column: 2; }
-
-#search-container {
-  flex: 2;
-  -ms-grid-column: 3; }
 
 .navbar-brand.fullScreen {
   width: auto;
@@ -1737,6 +1708,30 @@ h5, .h5, h5 a, .h5 a {
 article#main h1 {
   margin-bottom: 50px; }
 
+article#main .method-name {
+  font-family: consolas; }
+
+article#main .method-parenthesis {
+  font-family: consolas;
+  color: #A6AFB7; }
+
+article#main .method-parameters {
+  font-family: consolas;
+  color: #B23609; }
+
+article#main .method-output {
+  font-family: consolas;
+  color: #AF57E5; }
+
+article#main .type-parameter-bracket {
+  font-family: consolas; }
+
+article#main .type-parameters {
+  font-family: consolas; }
+
+article#main .h-properties + table {
+  font-family: consolas; }
+
 article#main h2 {
   margin-top: 70px;
   clear: both; }
@@ -1946,7 +1941,7 @@ li.search-result-item {
   margin-bottom: 10px; }
 
 li.search-result-item span.highlight {
-  background: yellow; }
+  background: #FFFD9F; }
 
 a.search-result-link {
   text-decoration: none; }
@@ -1956,6 +1951,101 @@ a.search-result-link {
 span.search-result-description {
   display: block;
   font-variant: italic; }
+
+#table-of-contents #search-container {
+  flex: 2;
+  -ms-grid-column: 3; }
+
+#table-of-contents .search-container-base {
+  display: block;
+  width: auto;
+  max-width: 420px;
+  padding: 0;
+  border: 0;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  will-change: transform; }
+
+#table-of-contents .search-container-active {
+  width: auto;
+  opacity: 1.0;
+  z-index: 15;
+  position: fixed; }
+  @media screen and (max-width: 767px) {
+    #table-of-contents .search-container-active {
+      max-width: 300px; } }
+
+#table-of-contents .search-container-inactive {
+  width: auto;
+  opacity: 0.5;
+  z-index: 15; }
+  @media screen and (max-width: 767px) {
+    #table-of-contents .search-container-inactive {
+      max-width: 300px; } }
+
+#table-of-contents .search-results-base {
+  width: 700px;
+  top: 157px;
+  overflow-y: auto;
+  position: fixed;
+  transition-property: opacity;
+  transition-duration: 100ms;
+  transition-timing-function: ease-in-out;
+  will-change: transform;
+  padding: 20px;
+  border: 1px solid #cccccc;
+  box-shadow: 5px 10px 18px #888888;
+  z-index: 0;
+  display: inline; }
+
+#table-of-contents .search-active {
+  background: white;
+  height: 80vh;
+  z-index: 11;
+  opacity: 1; }
+
+#table-of-contents .search-inactive {
+  height: 0vh;
+  opacity: 0;
+  z-index: 0;
+  display: none; }
+
+#table-of-contents .result-list-item {
+  padding: 0px 10px 5px 10px;
+  max-width: 750px;
+  width: 100%; }
+  #table-of-contents .result-list-item:hover {
+    background: rgba(204, 204, 204, 0.1); }
+
+#table-of-contents .result-heading {
+  font-weight: 400;
+  color: #8BC34A;
+  width: auto;
+  display: inline-block;
+  padding-bottom: 0px;
+  margin-top: 0px;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  line-height: 2;
+  color: #2A2F34; }
+  #table-of-contents .result-heading a {
+    color: #2A2F34; }
+
+#table-of-contents .search-form {
+  width: 200px; }
+
+#table-of-contents .search-input {
+  box-shadow: none;
+  padding: 7px 20px 7px 5px;
+  width: 92%;
+  height: 36px;
+  position: relative;
+  display: inline-block;
+  top: 15px; }
+
+#table-of-contents .number-of-results {
+  font-size: 10px; }
 
 * {
   font-family: 'Segoe UI', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -2217,7 +2307,8 @@ body.mobile-nav-visible {
 i.collapse-arrow {
   cursor: pointer;
   float: right;
-  padding-right: 5px; }
+  padding-right: 5px;
+  padding-top: 5px; }
 
 div.bwc-expandable-blocks-block {
   margin-right: 5px;
