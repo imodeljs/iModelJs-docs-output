@@ -58,21 +58,21 @@
         </span>
         
         <ul id='main-navigation-list'>
-            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModelJs Library</a></h3>
+            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">Learning</a></h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">frontend learning articles</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">backends</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common classes</a></li>
         </ul>
         <hr>
         <p>&#xA0;</p>
         <h3 class="h-helpful-links"><a id="helpful-links" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlparametertypes" class="table-of-contents-link">ECSQL</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModelJs Glossary</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">Glossary</a></li>
         </ul>
         </body></html>
         </ul>    </div>
@@ -82,21 +82,69 @@
             <h1 id="useful ecsql queries">Useful ECSQL Queries</h1>
 <p>The following ECSQL select statements are examples of useful queries that an app backend or a service might want to perform. They are written in a form that can be executed in backend code.</p>
 <h2 class="h-select-elements-in-a-particular-model"><a id="select-elements-in-a-particular-model" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Select Elements in a particular Model</h2>
-<pre class="no-line-numbers"><code class="language-typescript">    const modelId: Id64 = IModelDb.repositoryModelId;    iModel.withPreparedStatement(`SELECT ECInstanceId AS id FROM ${Element.classFullName} WHERE Model.Id=:modelId`, (statement: ECSqlStatement) =&gt; {      statement.bindId(&quot;modelId&quot;, modelId);      while (DbResult.BE_SQLITE_ROW === statement.step()) {        // do something with each row      }    });
+<pre class="no-line-numbers"><code class="language-typescript">    const modelId: Id64 = IModelDb.repositoryModelId;
+    iModel.withPreparedStatement(`SELECT ECInstanceId AS id FROM ${Element.classFullName} WHERE Model.Id=:modelId`, (statement: ECSqlStatement) =&gt; {
+      statement.bindId(&quot;modelId&quot;, modelId);
+      while (DbResult.BE_SQLITE_ROW === statement.step()) {
+        // do something with each row
+      }
+    });
 </code></pre>
 <h2 class="h-select-top-level-elements-in-a-particular-model"><a id="select-top-level-elements-in-a-particular-model" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Select Top-Level Elements in a particular Model</h2>
-<pre class="no-line-numbers"><code class="language-typescript">    const modelId: Id64 = IModelDb.repositoryModelId;    iModel.withPreparedStatement(`SELECT ECInstanceId AS id FROM ${Element.classFullName} WHERE Model.Id=:modelId AND Parent.Id IS NULL`, (statement: ECSqlStatement) =&gt; {      statement.bindId(&quot;modelId&quot;, modelId);      while (DbResult.BE_SQLITE_ROW === statement.step()) {        // do something with each row      }    });
+<pre class="no-line-numbers"><code class="language-typescript">    const modelId: Id64 = IModelDb.repositoryModelId;
+    iModel.withPreparedStatement(`SELECT ECInstanceId AS id FROM ${Element.classFullName} WHERE Model.Id=:modelId AND Parent.Id IS NULL`, (statement: ECSqlStatement) =&gt; {
+      statement.bindId(&quot;modelId&quot;, modelId);
+      while (DbResult.BE_SQLITE_ROW === statement.step()) {
+        // do something with each row
+      }
+    });
 </code></pre>
 <h2 class="h-select-child-elements"><a id="select-child-elements" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Select Child Elements</h2>
-<pre class="no-line-numbers"><code class="language-typescript">    const parentId: Id64 = IModelDb.rootSubjectId;    iModel.withPreparedStatement(`SELECT ECInstanceId AS id FROM ${Element.classFullName} WHERE Parent.Id=:parentId`, (statement: ECSqlStatement) =&gt; {      statement.bindId(&quot;parentId&quot;, parentId);      while (DbResult.BE_SQLITE_ROW === statement.step()) {        // do something with each row      }    });
+<pre class="no-line-numbers"><code class="language-typescript">    const parentId: Id64 = IModelDb.rootSubjectId;
+    iModel.withPreparedStatement(`SELECT ECInstanceId AS id FROM ${Element.classFullName} WHERE Parent.Id=:parentId`, (statement: ECSqlStatement) =&gt; {
+      statement.bindId(&quot;parentId&quot;, parentId);
+      while (DbResult.BE_SQLITE_ROW === statement.step()) {
+        // do something with each row
+      }
+    });
 </code></pre>
 <h2 class="h-look-up-element-by-code-value"><a id="look-up-element-by-code-value" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Look up element by code value</h2>
-<pre class="no-line-numbers"><code class="language-typescript">    // Suppose an iModel has the following breakdown structure:    // * The root subject    // * * Subject with CodeValue=&quot;Subject1&quot;    // * * * PhysicalPartition with CodeValue=&quot;Physical&quot;    // Suppose you want to look up the PhysicalPartition whose code value is &quot;Physical&quot;.    // You could write the following query to find it. This query specifies that the    // element you want is a PhysicalPartition, it has a code value of &quot;Physical&quot;,    // and it is a child of a Subject named &quot;Subject1&quot;.    const partitionIds: Id64Set = iModel.withPreparedStatement(`      select        partition.ecinstanceid      from        ${PhysicalPartition.classFullName} as partition,        (select ecinstanceid from ${Subject.classFullName} where CodeValue=:parentName) as parent      where        partition.codevalue=:partitionName and partition.parent.id = parent.ecinstanceid;    `, (stmt: ECSqlStatement) =&gt; {        stmt.bindString(&quot;parentName&quot;, &quot;Subject1&quot;);        stmt.bindString(&quot;partitionName&quot;, &quot;Physical&quot;);        const ids: Id64Set = new Set&lt;string&gt;();        while (stmt.step() === DbResult.BE_SQLITE_ROW)          ids.add(stmt.getValue(0).getId());        return ids;      });    assert.isNotEmpty(partitionIds);    assert.equal(partitionIds.size, 1);    for (const eidStr of partitionIds) {      assert.equal(iModel.elements.getElement(eidStr).code.getValue(), &quot;Physical&quot;);    }
+<pre class="no-line-numbers"><code class="language-typescript">    // Suppose an iModel has the following breakdown structure:
+    // * The root subject
+    // * * Subject with CodeValue=&quot;Subject1&quot;
+    // * * * PhysicalPartition with CodeValue=&quot;Physical&quot;
+
+    // Suppose you want to look up the PhysicalPartition whose code value is &quot;Physical&quot;.
+    // You could write the following query to find it. This query specifies that the
+    // element you want is a PhysicalPartition, it has a code value of &quot;Physical&quot;,
+    // and it is a child of a Subject named &quot;Subject1&quot;.
+    const partitionIds: Id64Set = iModel.withPreparedStatement(`
+      select
+        partition.ecinstanceid
+      from
+        ${PhysicalPartition.classFullName} as partition,
+        (select ecinstanceid from ${Subject.classFullName} where CodeValue=:parentName) as parent
+      where
+        partition.codevalue=:partitionName and partition.parent.id = parent.ecinstanceid;
+    `, (stmt: ECSqlStatement) =&gt; {
+        stmt.bindString(&quot;parentName&quot;, &quot;Subject1&quot;);
+        stmt.bindString(&quot;partitionName&quot;, &quot;Physical&quot;);
+        const ids: Id64Set = new Set&lt;string&gt;();
+        while (stmt.step() === DbResult.BE_SQLITE_ROW)
+          ids.add(stmt.getValue(0).getId());
+        return ids;
+      });
+
+    assert.isNotEmpty(partitionIds);
+    assert.equal(partitionIds.size, 1);
+    for (const eidStr of partitionIds) {
+      assert.equal(iModel.elements.getElement(eidStr).code.getValue(), &quot;Physical&quot;);
+    }
 </code></pre>
 <p>As an alternative, you can use the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/queryentityids'>IModelDb.queryEntityIds</a> convenience method for simple cases.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 June, 2018 @ 02:53:08 pm +00:00</span>
+                <span class='date-updated'>26 June, 2018 @ 11:22:24 am +00:00</span>
             </p>
 
             

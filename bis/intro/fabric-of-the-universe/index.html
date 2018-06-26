@@ -60,17 +60,17 @@
         <ul id='main-navigation-list'>
             <html><head></head><body><h3 class="h-bis"><a id="bis" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a>BIS</h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/" class="table-of-contents-link">Introduction</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/" class="table-of-contents-link">BIS</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-with-bis" class="table-of-contents-link">Modeling with BIS</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/bis-organization" class="table-of-contents-link">BIS Organization</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/bis-ecosystem" class="table-of-contents-link">BIS Ecosystem</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/fabric-of-the-universe" class="table-of-contents-link">Fabric of the Universe</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals" class="table-of-contents-link">Element Fundamentals</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals" class="table-of-contents-link">Elements</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/codes" class="table-of-contents-link">Codes</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/elementaspect-fundamentals" class="table-of-contents-link">ElementAspect Fundamentals</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/model-fundamentals" class="table-of-contents-link">Model Fundamentals</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/model-fundamentals" class="table-of-contents-link">Models</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/relationship-fundamentals" class="table-of-contents-link">Relationship Fundamentals</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schemas-domains" class="table-of-contents-link">Schemas (&#x201C;Domains&#x201D;)</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schemas-domains" class="table-of-contents-link">domain-specific</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/information-hierarchy" class="table-of-contents-link">Information Hierarchy</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/physical-models-and-elements" class="table-of-contents-link">Physical Models and Elements</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/functional-models-and-elements" class="table-of-contents-link">Functional Models and Elements</a></li>
@@ -78,7 +78,7 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/categories" class="table-of-contents-link">Categories</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-customization" class="table-of-contents-link">Schema Customization</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/appendix-a-data-evolution-across-time" class="table-of-contents-link">Data Evolution Across Time</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-versioning-and-generations" class="table-of-contents-link">Schema Versioning</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-versioning-and-generations" class="table-of-contents-link">Schema Versioning and Generations</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary" class="table-of-contents-link">BIS Glossary</a></li>
         </ul>
         <!-- TODO: The following are not linked in...?
@@ -117,13 +117,13 @@
 <p>Most of the concepts below are defined as ECClasses in the &#x201C;BisCore&#x201D; domain schema, which has the alias &#x201C;bis&#x201D;, and thus we write &#x201C;{ClassName}&#x201D; to denote an ECClass defined in BisCore.</p>
 <h2 class="h-elements"><a id="elements" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Elements</h2>
 <p>An <code>Element</code> is an object in the virtual world that represents some entity in the real world, e.g. pumps, beams, contracts, companies, etc.). Elements are contained in Models. Elements are defined through ECProperties. Elements are the finest-grained object in BIS that can be individually identified and locked.</p>
-<p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals'>Element Fundamentals</a> for a more detailed discussion.</p>
+<p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals'>Elements</a> for a more detailed discussion.</p>
 <h2 class="h-elementaspects"><a id="elementaspects" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>ElementAspects</h2>
 <p>An <code>ElementAspect</code> is a set of ECProperties that &#x201C;belong&#x201D; to a particular Element, but which have an independent lifecycle (they may come and go over the lifetime of the Element). ElementAspect instances are <em>owned</em> a single Element; ElementAspects are never shared by more than one Element. An ElementAspect is considered part of the Element and therefore can not be the target of any &#x201C;incoming&#x201D; relationships (other than from the single Element that owns it.) There are ElementUniqueAspects that have a maximum of one instance per Element and ElementMultiAspects that may potentially have many instances per Element.</p>
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/elementaspect-fundamentals'>ElementAspect Fundamentals</a> for a more detailed discussion of ElementAspects.</p>
 <h2 class="h-models"><a id="models" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Models</h2>
 <p>A <code>Model</code> is a &#x201C;container&#x201D; of Elements that provides a context (and a Modeling Perspective) for the contained Elements.</p>
-<p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/model-fundamentals'>Model Fundamentals</a> for a more detailed discussion of Models.</p>
+<p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/model-fundamentals'>Models</a> for a more detailed discussion of Models.</p>
 <h2 class="h-relationships"><a id="relationships" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Relationships</h2>
 <p>Various ECRelationship classes are defined in BisCore to relate Models, Elements and ElementAspects. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/relationship-fundamentals'>Relationship Fundamentals</a> for a more detailed discussion of Relationships.</p>
 <h2 class="h-no-other-data-types"><a id="no-other-data-types" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>No other Data Types</h2>
@@ -133,7 +133,7 @@
 </blockquote>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 June, 2018 @ 02:53:08 pm +00:00</span>
+                <span class='date-updated'>26 June, 2018 @ 11:22:24 am +00:00</span>
             </p>
 
             

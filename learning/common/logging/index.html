@@ -58,21 +58,21 @@
         </span>
         
         <ul id='main-navigation-list'>
-            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModelJs Library</a></h3>
+            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">Learning</a></h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">frontend learning articles</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">backends</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common classes</a></li>
         </ul>
         <hr>
         <p>&#xA0;</p>
         <h3 class="h-helpful-links"><a id="helpful-links" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlparametertypes" class="table-of-contents-link">ECSQL</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModelJs Glossary</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">Glossary</a></li>
         </ul>
         </body></html>
         </ul>    </div>
@@ -118,7 +118,38 @@ Logger.setLevel(&quot;MyCategory&quot;, LogLevel.Info);
 <h2 class="h-configuration-files"><a id="configuration-files" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Configuration Files</h2>
 <p>A service typically initializes and configures logging in its startup logic. Configuration can be based on the configuration parameters of the service, which may be set by the deployment mechanism. The simplest way to do this is to use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/loggerlevelsconfig'>LoggerLevelsConfig</a>. This is normally used in conjunction with a stream config, for example, a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/seqconfig'>SeqConfig</a>. Both are normally stored in a config file that is deployed with the service. Finally, some specific configuration parameters are normally set at runtime, based on deployment parameters using <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/envmacrosubst'>EnvMacroSubst</a> to do macro substitution.</p>
 <p><em>Example:</em></p>
-<pre class="no-line-numbers"><code class="language-typescript">import { Logger, LoggerLevelsConfig, EnvMacroSubst, BentleyError, IModelStatus } from &quot;@bentley/bentleyjs-core&quot;;import { BunyanLoggerConfig } from &quot;@bentley/bentleyjs-core/lib/BunyanLoggerConfig&quot;;import { SeqLoggerConfig, SeqConfig } from &quot;@bentley/bentleyjs-core/lib/SeqLoggerConfig&quot;;export function initializeLogging(): void {  // Read the configuration parameters for my service. Some config  // params might be specified as envvars.  const config = require(&quot;./MyService.config.json&quot;);  const defaultConfigValues: any = {    &quot;ROBOT-WORLD-DEFAULT-LOG-LEVEL&quot;: &quot;Error&quot;,    &quot;ROBOT-WORLD-SEQ-URL&quot;: &quot;http://localhost&quot;,    &quot;ROBOT-WORLD-SEQ-PORT&quot;: &quot;5341&quot;,  };  EnvMacroSubst.replaceInProperties(config, true, defaultConfigValues);  if (EnvMacroSubst.anyPropertyContainsEnvvars(config.seq, true)) {    throw new BentleyError(IModelStatus.NotFound, &quot;Unmatched environment variables in configuration.&quot;);  }  // Set up to log to the seq service  if (&quot;seq&quot; in config) {    SeqLoggerConfig.validateProps(config.seq);    BunyanLoggerConfig.logToBunyan(SeqLoggerConfig.createBunyanSeqLogger(config.seq as SeqConfig, &quot;RobotWorld&quot;));  }  // Configure log levels by category  if (&quot;loggerConfig&quot; in config) {    Logger.validateProps(config.loggerConfig);    Logger.configureLevels(config.loggerConfig as LoggerLevelsConfig);  }}
+<pre class="no-line-numbers"><code class="language-typescript">import { Logger, LoggerLevelsConfig, EnvMacroSubst, BentleyError, IModelStatus } from &quot;@bentley/bentleyjs-core&quot;;
+import { BunyanLoggerConfig } from &quot;@bentley/bentleyjs-core/lib/BunyanLoggerConfig&quot;;
+import { SeqLoggerConfig, SeqConfig } from &quot;@bentley/bentleyjs-core/lib/SeqLoggerConfig&quot;;
+
+export function initializeLogging(): void {
+  // Read the configuration parameters for my service. Some config
+  // params might be specified as envvars.
+  const config = require(&quot;./MyService.config.json&quot;);
+
+  const defaultConfigValues: any = {
+    &quot;ROBOT-WORLD-DEFAULT-LOG-LEVEL&quot;: &quot;Error&quot;,
+    &quot;ROBOT-WORLD-SEQ-URL&quot;: &quot;http://localhost&quot;,
+    &quot;ROBOT-WORLD-SEQ-PORT&quot;: &quot;5341&quot;,
+  };
+
+  EnvMacroSubst.replaceInProperties(config, true, defaultConfigValues);
+  if (EnvMacroSubst.anyPropertyContainsEnvvars(config.seq, true)) {
+    throw new BentleyError(IModelStatus.NotFound, &quot;Unmatched environment variables in configuration.&quot;);
+  }
+
+  // Set up to log to the seq service
+  if (&quot;seq&quot; in config) {
+    SeqLoggerConfig.validateProps(config.seq);
+    BunyanLoggerConfig.logToBunyan(SeqLoggerConfig.createBunyanSeqLogger(config.seq as SeqConfig, &quot;RobotWorld&quot;));
+  }
+
+  // Configure log levels by category
+  if (&quot;loggerConfig&quot; in config) {
+    Logger.validateProps(config.loggerConfig);
+    Logger.configureLevels(config.loggerConfig as LoggerLevelsConfig);
+  }
+}
 </code></pre>
 <p>An example of the logging-related sections of a configuration .json file that is deployed with a service might be:</p>
 <pre class="no-line-numbers"><code class="language-json">{
@@ -143,7 +174,7 @@ Logger.setLevel(&quot;MyCategory&quot;, LogLevel.Info);
 </code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 June, 2018 @ 02:53:08 pm +00:00</span>
+                <span class='date-updated'>26 June, 2018 @ 11:22:24 am +00:00</span>
             </p>
 
             

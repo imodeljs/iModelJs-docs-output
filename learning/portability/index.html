@@ -58,21 +58,21 @@
         </span>
         
         <ul id='main-navigation-list'>
-            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModelJs Library</a></h3>
+            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">Learning</a></h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">frontend learning articles</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">backends</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common classes</a></li>
         </ul>
         <hr>
         <p>&#xA0;</p>
         <h3 class="h-helpful-links"><a id="helpful-links" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlparametertypes" class="table-of-contents-link">ECSQL</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModelJs Glossary</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">Glossary</a></li>
         </ul>
         </body></html>
         </ul>    </div>
@@ -81,7 +81,7 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > Portability</div>
             <h1 id="portability">Portability</h1>
 <p>This article describes the technologies and best practices that make iModelJs apps portable. An well-written iModelJs app will run on many platforms without modification.</p>
-<p>In addition, a well-written interactive app can be configured to run as a Web abb, a desktop app, and a mobile app, with a few simple runtime checks and no other code changes. Configurability does not mean that an iModelJs app must be the same in all configurations. In fact, the iModelJs architecture makes it easy to <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/apptailoring'>make the app fit the platform</a>.</p>
+<p>In addition, a well-written interactive app can be configured to run as a Web abb, a desktop app, and a mobile app, with a few simple runtime checks and no other code changes. Configurability does not mean that an iModelJs app must be the same in all configurations. In fact, the iModelJs architecture makes it easy to <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/apptailoring'>app tailoring</a>.</p>
 <p>This degree of portability and configurability is possible because of the technologies used by iModelJs apps and the iModelJs app architecture.</p>
 <h2 class="h-cross-platform-technologies"><a id="cross-platform-technologies" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Cross-Platform Technologies</h2>
 <p>The key technology that makes an app portable is JavaScript. JavaScript engines are available on many operating systems and Web browsers. TypeScript compiles to JavaScript.</p>
@@ -89,7 +89,7 @@
 <p>Web UI technology, including HTML and CSS, makes it possible to write a cross-platform user interface that looks and behaves the same everywhere, in every configuration. Web UI technology is supported by Web browsers and Web view renderers on many platforms. Web UI technology also simplifies the task of reconfiguring or even swapping out an app&apos;s GUI.</p>
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#electron'>Electron</a> combines a Web view client and a nodejs-based server into a single desktop product, without requiring any modification of the code or the UI. Electron runs on many desktop platforms.</p>
 <h2 class="h-frontend-portability"><a id="frontend-portability" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Frontend Portability</h2>
-<p>Since an iModelJs app <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/app/#app-frontend'>frontend</a> is written using Web UI technologies, it is inherently portable.</p>
+<p>Since an iModelJs app <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/app/#app-frontend'>frontend of an app</a> is written using Web UI technologies, it is inherently portable.</p>
 <h3 class="h-using-plaform-specfic-modules-in-the-frontend"><a id="using-plaform-specfic-modules-in-the-frontend" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Using Plaform-specfic Modules in the Frontend</h3>
 <p>In some cases, the Web view environment will provide platform-specific globals and modules. The frontend can use these modules in guarded code. To detect the platform of the frontend:</p>
 <pre class="no-line-numbers"><code class="language-typescript">const isIos: bool = /iphone|ipod|ipad/.test(window.navigator.userAgent.toLowerCase());
@@ -160,7 +160,7 @@ posix, win32, sep, delimiter, basename, dirname, extname, normalize, join, isAbs
 <p>An app backend must not <em>never</em> depend on node-specific <em>packages</em>, including any package that is based on native code. (For fs-extra, use IModelJsFs)</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 June, 2018 @ 02:53:08 pm +00:00</span>
+                <span class='date-updated'>26 June, 2018 @ 11:22:24 am +00:00</span>
             </p>
 
             

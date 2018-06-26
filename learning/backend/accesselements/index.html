@@ -58,21 +58,21 @@
         </span>
         
         <ul id='main-navigation-list'>
-            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModelJs Library</a></h3>
+            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">Learning</a></h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">frontend learning articles</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">backends</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common classes</a></li>
         </ul>
         <hr>
         <p>&#xA0;</p>
         <h3 class="h-helpful-links"><a id="helpful-links" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlparametertypes" class="table-of-contents-link">ECSQL</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModelJs Glossary</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">Glossary</a></li>
         </ul>
         </body></html>
         </ul>    </div>
@@ -80,7 +80,7 @@
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/">backend</a> > AccessElements</div>
             <h1 id="accessing elements in an imodeldb">Accessing Elements in an IModelDb</h1>
-<p>An iModelJs <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a> is an in-memory representation of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals'>BIS Element</a>. An Element object provides easy access to a set of properties and <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#elementaspect'>Aspects</a>.</p>
+<p>An iModelJs <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a> is an in-memory representation of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals'>Elements</a>. An Element object provides easy access to a set of properties and <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#elementaspect'>Aspects</a>.</p>
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/#elements'>IModelDb.elements</a> represents the collection of Elements in an iModel.</p>
 <p>Every iModel contains a single &quot;root&quot; element that is the parent of all partitions. It is accessed by a special function:</p>
 <p><em>Example:</em></p>
@@ -88,12 +88,17 @@
 </code></pre>
 <p>You can look up all other elements in various ways. As described in BIS Element Fundamentals, an element is identified by a unique ID and may also have a Code and/or a FederationGuid. If you know one of these identifiers, you can look up an element very efficiently. The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb.elements/getelement'>Elements.getElement</a> method makes that easy.</p>
 <p><em>Example:</em></p>
-<pre class="no-line-numbers"><code class="language-typescript">    const el = iModel.elements.getElement(root.id);    assert.deepEqual(el.id, root.id);    const el2 = iModel.elements.getElement(root.code);    assert.deepEqual(el2.id, root.id);    assert.deepEqual(el2.code, root.code);
+<pre class="no-line-numbers"><code class="language-typescript">    const el = iModel.elements.getElement(root.id);
+    assert.deepEqual(el.id, root.id);
+
+    const el2 = iModel.elements.getElement(root.code);
+    assert.deepEqual(el2.id, root.id);
+    assert.deepEqual(el2.code, root.code);
 </code></pre>
-<p>You can discover an element&apos;s ID by <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/executingecsql'>using ECSQL</a> to query other properties or even using <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/spatialqueries'>spatial queries</a></p>
+<p>You can discover an element&apos;s ID by <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/executingecsql'>Execute ECSQL queries</a> to query other properties or even using <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/spatialqueries'>spatial queries</a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 June, 2018 @ 02:53:08 pm +00:00</span>
+                <span class='date-updated'>26 June, 2018 @ 11:22:24 am +00:00</span>
             </p>
 
             

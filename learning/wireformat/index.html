@@ -58,21 +58,21 @@
         </span>
         
         <ul id='main-navigation-list'>
-            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModelJs Library</a></h3>
+            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">Learning</a></h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">frontend learning articles</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">backends</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common classes</a></li>
         </ul>
         <hr>
         <p>&#xA0;</p>
         <h3 class="h-helpful-links"><a id="helpful-links" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlparametertypes" class="table-of-contents-link">ECSQL</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModelJs Glossary</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">Glossary</a></li>
         </ul>
         </body></html>
         </ul>    </div>
@@ -84,10 +84,12 @@
 <p>Below are examples of wire formats for .</p>
 <h2 class="h-root-subject"><a id="root-subject" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Root Subject</h2>
 <p>The following code:</p>
-<pre class="no-line-numbers"><code class="language-typescript">    const elementProps: ElementProps = iModel.elements.getElementProps(IModel.rootSubjectId);    const json: string = JSON.stringify(elementProps, undefined, 2);
+<pre class="no-line-numbers"><code class="language-typescript">    const elementProps: ElementProps = iModel.elements.getElementProps(IModel.rootSubjectId);
+    const json: string = JSON.stringify(elementProps, undefined, 2);
 </code></pre>
 <p>Produces the following result:</p>
 <pre class="no-line-numbers"><code class="language-json">{
+  &quot;bisBaseClass&quot;: &quot;Subject&quot;,
   &quot;classFullName&quot;: &quot;BisCore:Subject&quot;,
   &quot;code&quot;: {
     &quot;scope&quot;: &quot;0x1&quot;,
@@ -102,7 +104,8 @@
 <hr>
 <h2 class="h-repositorymodel"><a id="repositorymodel" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>RepositoryModel</h2>
 <p>The following code:</p>
-<pre class="no-line-numbers"><code class="language-typescript">    const modelProps: ModelProps = iModel.models.getModel(IModel.repositoryModelId);    const json: string = JSON.stringify(modelProps, undefined, 2);
+<pre class="no-line-numbers"><code class="language-typescript">    const modelProps: ModelProps = iModel.models.getModel(IModel.repositoryModelId);
+    const json: string = JSON.stringify(modelProps, undefined, 2);
 </code></pre>
 <p>Produces the following result:</p>
 <pre class="no-line-numbers"><code class="language-json">{
@@ -122,7 +125,44 @@
 <hr>
 <h2 class="h-geometricelement3d"><a id="geometricelement3d" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>GeometricElement3d</h2>
 <p>The following code produces JSON at various stages on the way to creating a <code>GeometricElement3d</code>:</p>
-<pre class="no-line-numbers"><code class="language-typescript">    // Construct an Arc3d (local coordinates)    const center = new Point3d(0, 0, 0);    const radius = 1;    const sweep: AngleSweep = AngleSweep.createStartEnd(Angle.createDegrees(90), Angle.createDegrees(180));    const arc: Arc3d = Arc3d.createXY(center, radius, sweep);    const arcJson: string = JSON.stringify(arc, undefined, 2);    // Construct a LineString3d (local coordinates)    const points: Point3d[] = [      new Point3d(0, 0, 0),      new Point3d(1, 2, 0),      new Point3d(1, 2, 4),    ];    const lineString: LineString3d = LineString3d.createPoints(points);    const lineStringJson: string = JSON.stringify(lineString, undefined, 2);    // Construct a GeometryStream containing the Arc3d and LineString3d created above (local coordinates)    const builder = new GeometryStreamBuilder();    builder.appendGeometry(arc);    builder.appendGeometry(lineString);    const geometryStreamJson: string = JSON.stringify(builder.geometryStream, undefined, 2);    // Construct a Placement (world coordinates)    const origin = new Point3d(100, 100, 0);    const angles = YawPitchRollAngles.createDegrees(0, 90, 0);    const placement: Placement3dProps = { origin, angles };    const placementJson: string = JSON.stringify(placement, undefined, 2);    // Construct a GeometricElement3d using the GeometryStream and Placement created above    const elementProps: GeometricElement3dProps = {      classFullName: &quot;Generic:PhysicalObject&quot;,      model: modelId,      category: categoryId,      placement,      geom: builder.geometryStream,    };    const elementPropsJson: string = JSON.stringify(elementProps, undefined, 2);
+<pre class="no-line-numbers"><code class="language-typescript">    // Construct an Arc3d (local coordinates)
+    const center = new Point3d(0, 0, 0);
+    const radius = 1;
+    const sweep: AngleSweep = AngleSweep.createStartEnd(Angle.createDegrees(90), Angle.createDegrees(180));
+    const arc: Arc3d = Arc3d.createXY(center, radius, sweep);
+    const arcJson: string = JSON.stringify(arc, undefined, 2);
+
+    // Construct a LineString3d (local coordinates)
+    const points: Point3d[] = [
+      new Point3d(0, 0, 0),
+      new Point3d(1, 2, 0),
+      new Point3d(1, 2, 4),
+    ];
+    const lineString: LineString3d = LineString3d.createPoints(points);
+    const lineStringJson: string = JSON.stringify(lineString, undefined, 2);
+
+    // Construct a GeometryStream containing the Arc3d and LineString3d created above (local coordinates)
+    const builder = new GeometryStreamBuilder();
+    builder.appendGeometry(arc);
+    builder.appendGeometry(lineString);
+    const geometryStreamJson: string = JSON.stringify(builder.geometryStream, undefined, 2);
+
+    // Construct a Placement (world coordinates)
+    const origin = new Point3d(100, 100, 0);
+    const angles = YawPitchRollAngles.createDegrees(0, 90, 0);
+    const placement: Placement3dProps = { origin, angles };
+    const placementJson: string = JSON.stringify(placement, undefined, 2);
+
+    // Construct a GeometricElement3d using the GeometryStream and Placement created above
+    const elementProps: GeometricElement3dProps = {
+      classFullName: &quot;Generic:PhysicalObject&quot;,
+      model: modelId,
+      category: categoryId,
+      placement,
+      geom: builder.geometryStream,
+    };
+    const elementPropsJson: string = JSON.stringify(elementProps, undefined, 2);
+
 </code></pre>
 <h3 class="h-arc3d-json"><a id="arc3d-json" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Arc3d JSON</h3>
 <p>Below is the JSON from the <code>Arc3d</code>:</p>
@@ -295,7 +335,7 @@ This shows that the JSON from the <code>GeometricElement3d</code> contains the J
 <hr>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 June, 2018 @ 02:53:08 pm +00:00</span>
+                <span class='date-updated'>26 June, 2018 @ 11:22:24 am +00:00</span>
             </p>
 
             

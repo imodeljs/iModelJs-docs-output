@@ -58,21 +58,21 @@
         </span>
         
         <ul id='main-navigation-list'>
-            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModelJs Library</a></h3>
+            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">Learning</a></h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">frontend learning articles</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">backends</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common classes</a></li>
         </ul>
         <hr>
         <p>&#xA0;</p>
         <h3 class="h-helpful-links"><a id="helpful-links" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlparametertypes" class="table-of-contents-link">ECSQL</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModelJs Glossary</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">Glossary</a></li>
         </ul>
         </body></html>
         </ul>    </div>
@@ -84,19 +84,26 @@
 <p>See section &quot;<a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlparametertypes'>ECSQL parameter types in iModelJs</a>&quot; to learn which types to use for the parameters when binding all
 parameters at once.</p>
 <h3 class="h-positional-parameters"><a id="positional-parameters" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Positional parameters</h3>
-<pre class="no-line-numbers"><code class="language-typescript">  const rows: any[] = await iModel.executeQuery(&quot;SELECT ECInstanceId,ECClassId,Parent,LastMod FROM bis.Element WHERE CodeValue=? AND LastMod&gt;=?&quot;,                  [&quot;MyCode&quot;, {type: ECSqlStringType.DateTime, value: &quot;2018-01-01T12:00:00&quot;}]);  // ...
+<pre class="no-line-numbers"><code class="language-typescript">  const rows: any[] = await iModel.executeQuery(&quot;SELECT ECInstanceId,ECClassId,Parent,LastMod FROM bis.Element WHERE CodeValue=? AND LastMod&gt;=?&quot;,
+                  [&quot;MyCode&quot;, {type: ECSqlStringType.DateTime, value: &quot;2018-01-01T12:00:00&quot;}]);
+  // ...
 </code></pre>
 <h3 class="h-named-parameters"><a id="named-parameters" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Named parameters</h3>
-<pre class="no-line-numbers"><code class="language-typescript">  const rows: any[] = await iModel.executeQuery(&quot;SELECT ECInstanceId,ECClassId,Parent,LastMod FROM bis.Element WHERE CodeValue=:code AND LastMod&gt;=:lastmod&quot;,                  {code: &quot;MyCode&quot;, lastmod: {type: ECSqlStringType.DateTime, value: &quot;2018-01-01T12:00:00&quot;}});  // ...
+<pre class="no-line-numbers"><code class="language-typescript">  const rows: any[] = await iModel.executeQuery(&quot;SELECT ECInstanceId,ECClassId,Parent,LastMod FROM bis.Element WHERE CodeValue=:code AND LastMod&gt;=:lastmod&quot;,
+                  {code: &quot;MyCode&quot;, lastmod: {type: ECSqlStringType.DateTime, value: &quot;2018-01-01T12:00:00&quot;}});
+
+  // ...
 </code></pre>
 <h3 class="h-navigation-properties"><a id="navigation-properties" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Navigation properties</h3>
-<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql/#navigation-properties'>Navigation properties</a> are structs made up of the Id of the related instance and the backing
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql/#navigation-properties'>Id</a> are structs made up of the Id of the related instance and the backing
 ECRelationshipClass. The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/navigationbindingvalue'>NavigationBindingValue</a> interface is used to bind values to navigation property parameters.</p>
-<pre class="no-line-numbers"><code class="language-typescript">  const rows: any[] = await iModel.executeQuery(&quot;SELECT ECInstanceId FROM bis.Element WHERE Parent=?&quot;, [{id: &quot;0x132&quot; }]);  // ...
+<pre class="no-line-numbers"><code class="language-typescript">  const rows: any[] = await iModel.executeQuery(&quot;SELECT ECInstanceId FROM bis.Element WHERE Parent=?&quot;, [{id: &quot;0x132&quot; }]);
+  // ...
 </code></pre>
 <p>Because of the struct nature of navigation properties, you can also use its members in the ECSQL. The following example illustrates
 this by specifying the <strong>Id</strong> member of a navigation property.</p>
-<pre class="no-line-numbers"><code class="language-typescript">  const rows: any[] = await iModel.executeQuery(&quot;SELECT ECInstanceId FROM bis.Element WHERE Parent.Id=?&quot;, [new Id64(&quot;0x132&quot;)]);  // ...
+<pre class="no-line-numbers"><code class="language-typescript">  const rows: any[] = await iModel.executeQuery(&quot;SELECT ECInstanceId FROM bis.Element WHERE Parent.Id=?&quot;, [new Id64(&quot;0x132&quot;)]);
+  // ...
 </code></pre>
 <h3 class="h-struct-properties"><a id="struct-properties" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Struct properties</h3>
 <p>You can either parameterize a struct property as a whole or parameterize individual members of the struct. See &quot;<a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql/#structs'>Struct properties in ECSQL</a>&quot; for the ECSQL background.</p>
@@ -104,10 +111,12 @@ this by specifying the <strong>Id</strong> member of a navigation property.</p>
 <p>The ECSQL examples used in this section refer to the sample ECSchema in &quot;<a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql/#structs'>Struct properties in ECSQL</a>&quot;.</p>
 </blockquote>
 <h4 class="h-binding-structs-as-a-whole"><a id="binding-structs-as-a-whole" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Binding structs as a whole</h4>
-<pre class="no-line-numbers"><code class="language-typescript">  const rows: any[] = await iModel.executeQuery(&quot;SELECT Name FROM myschema.Company WHERE Location=?&quot;, [{street: &quot;7123 Main Street&quot;, zip: 30211 }]);  // ...
+<pre class="no-line-numbers"><code class="language-typescript">  const rows: any[] = await iModel.executeQuery(&quot;SELECT Name FROM myschema.Company WHERE Location=?&quot;, [{street: &quot;7123 Main Street&quot;, zip: 30211 }]);
+  // ...
 </code></pre>
 <h4 class="h-binding-to-individual-struct-members"><a id="binding-to-individual-struct-members" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Binding to individual struct members</h4>
-<pre class="no-line-numbers"><code class="language-typescript">  const rows: any[] = await iModel.executeQuery(&quot;SELECT Name FROM myschema.Company WHERE Location.Street=? AND Location.Zip=?&quot;, [&quot;7123 Main Street&quot;, 32443]);  // ...
+<pre class="no-line-numbers"><code class="language-typescript">  const rows: any[] = await iModel.executeQuery(&quot;SELECT Name FROM myschema.Company WHERE Location.Street=? AND Location.Zip=?&quot;, [&quot;7123 Main Street&quot;, 32443]);
+  // ...
 </code></pre>
 <blockquote>
 <p>The two ECSQL examples used in this section amount to the same results.</p>
@@ -117,13 +126,17 @@ this by specifying the <strong>Id</strong> member of a navigation property.</p>
 <blockquote>
 <p>The ECSQL examples used in this section refer to the sample ECSchema in &quot;<a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql/#arrays'>Array properties in ECSQL</a>&quot;.</p>
 </blockquote>
-<pre class="no-line-numbers"><code class="language-typescript">  const rows: any[] = await iModel.executeQuery(&quot;SELECT Name FROM myschema.Company WHERE PhoneNumbers=?&quot;, [[&quot;+16134584201&quot;, &quot;+16134584202&quot;, &quot;+16134584222&quot;]]);  // ...
+<pre class="no-line-numbers"><code class="language-typescript">  const rows: any[] = await iModel.executeQuery(&quot;SELECT Name FROM myschema.Company WHERE PhoneNumbers=?&quot;, [[&quot;+16134584201&quot;, &quot;+16134584202&quot;, &quot;+16134584222&quot;]]);
+  // ...
 </code></pre>
 <h2 class="h-working-with-the-query-result"><a id="working-with-the-query-result" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Working with the query result</h2>
 <p>ECSQL query results are returned as array of JavaScript literals, where each literal represents an ECSQL row in the
 <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlrowformat'>ECSQL row format</a>).</p>
 <p>The following example is intended to illustrate the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlrowformat'>ECSQL row format</a>:</p>
-<pre class="no-line-numbers"><code class="language-typescript">  const rows: any[] = await iModel.executeQuery(&quot;SELECT ECInstanceId,ECClassId,Parent,LastMod FROM bis.Element WHERE Model.Id=?&quot;, [new Id64(&quot;0x113&quot;)]);  for (const row of rows) {    console.log(JSON.stringify(row));  }
+<pre class="no-line-numbers"><code class="language-typescript">  const rows: any[] = await iModel.executeQuery(&quot;SELECT ECInstanceId,ECClassId,Parent,LastMod FROM bis.Element WHERE Model.Id=?&quot;, [new Id64(&quot;0x113&quot;)]);
+  for (const row of rows) {
+    console.log(JSON.stringify(row));
+  }
 </code></pre>
 <h3 class="h-output"><a id="output" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Output</h3>
 <pre class="no-line-numbers"><code class="language-json">{id: &quot;0x312&quot;, className: &quot;StructuralPhysical.Slab&quot;, parent: {id: &quot;0x433&quot;, relClassName: &quot;BisCore.PhysicalElementAssemblesElements&quot;}, lastMod: &quot;2018-02-03T13:43:22Z&quot;}
@@ -137,7 +150,16 @@ this by specifying the <strong>Id</strong> member of a navigation property.</p>
 transformed according to the rules described in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlrowformat/#property-names'>ECSQL row format</a>.</p>
 </blockquote>
 <p>The following example illustrates how to work with the ECSQL row JavaScript literal:</p>
-<pre class="no-line-numbers"><code class="language-typescript">  const rows: any[] = await iModel.executeQuery(&quot;SELECT ECInstanceId,ECClassId,Parent,LastMod FROM bis.Element WHERE Model.Id=?&quot;, [new Id64(&quot;0x113&quot;)]);  console.log(&quot;ECInstanceId | ClassName | Parent Id | Parent RelClassName | LastMod&quot;);  for (const row of rows) {    const id: string = row.id;    const className: string = row.className;    const parent: NavigationValue = row.parent;    const lastMod: string = row.lastMod;    console.log(id + &quot;|&quot; + className + &quot;|&quot; + parent.id + &quot;|&quot; + parent.relClassName + &quot;|&quot; + lastMod);  }
+<pre class="no-line-numbers"><code class="language-typescript">  const rows: any[] = await iModel.executeQuery(&quot;SELECT ECInstanceId,ECClassId,Parent,LastMod FROM bis.Element WHERE Model.Id=?&quot;, [new Id64(&quot;0x113&quot;)]);
+  console.log(&quot;ECInstanceId | ClassName | Parent Id | Parent RelClassName | LastMod&quot;);
+  for (const row of rows) {
+    const id: string = row.id;
+    const className: string = row.className;
+    const parent: NavigationValue = row.parent;
+    const lastMod: string = row.lastMod;
+
+    console.log(id + &quot;|&quot; + className + &quot;|&quot; + parent.id + &quot;|&quot; + parent.relClassName + &quot;|&quot; + lastMod);
+  }
 </code></pre>
 <h3 class="h-output-1"><a id="output-1" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Output</h3>
 <pre class="no-line-numbers"><code class="language-markup">ECInstanceId | ClassName               | Parent Id | Parent RelClassName                      | LastMod
@@ -147,7 +169,7 @@ transformed according to the rules described in the <a href='https://imodeljs.gi
 </code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 June, 2018 @ 02:53:08 pm +00:00</span>
+                <span class='date-updated'>26 June, 2018 @ 11:22:24 am +00:00</span>
             </p>
 
             

@@ -58,21 +58,21 @@
         </span>
         
         <ul id='main-navigation-list'>
-            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModelJs Library</a></h3>
+            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">Learning</a></h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">frontend learning articles</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">backends</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common classes</a></li>
         </ul>
         <hr>
         <p>&#xA0;</p>
         <h3 class="h-helpful-links"><a id="helpful-links" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlparametertypes" class="table-of-contents-link">ECSQL</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModelJs Glossary</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">Glossary</a></li>
         </ul>
         </body></html>
         </ul>    </div>
@@ -84,7 +84,7 @@
 <ol>
 <li><a href="#code-reservation">Reserve Codes</a> before using them.</li>
 <li>Optionally lock models and elements before modifying them, depending on the iModel&apos;s <a href="#concurrency-control-policies">concurrency control policy</a></li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/imodeldbsync'>Pull and merge</a> before pushing.</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/imodeldbsync'>Synchronize with iModelHub</a> before pushing.</li>
 </ol>
 <p>An iModel has a concurrency control policy that specifies how multiple briefcases may modify models and elements. The policy may stipulate that locks must be used, forcing transactions to be sequential (pessimistic), or it may specify change-merging with conflict-resolution to combine the results of simultaneous transactions (optimistic).</p>
 <p>An app uses <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/concurrencycontrol'>ConcurrencyControl</a> to follow concurrency control rules.</p>
@@ -93,7 +93,7 @@
 <p>This article assumes that you already know that:</p>
 <ul>
 <li>An iModel is a multi-user database</li>
-<li>An app works with a <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#briefcase'>briefcase</a> using the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a> class.</li>
+<li>An app works with a <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#briefcase'>briefcases</a> using the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a> class.</li>
 <li>A briefcase has a unique identity that is issued and tracked by <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/imodelhub'>iModelHub</a>.</li>
 <li>Changes are captured and distributed in the form of <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#changeset'>ChangeSets</a>.</li>
 <li>ChangeSets are ordered in a sequence that is called the <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/imodelhub/#the-timeline-of-changes-to-an-imodel'>timeline</a> of the iModel.</li>
@@ -155,7 +155,7 @@
 </tr>
 <tr>
 <td><strong>Pull</strong></td>
-<td>Download a ChangeSet from iModelHub. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/imodeldbsync'>IModelDb synchronization</a></td>
+<td>Download a ChangeSet from iModelHub. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/imodeldbsync'>Synchronize with iModelHub</a></td>
 </tr>
 <tr>
 <td><strong>Rebase</strong></td>
@@ -171,7 +171,7 @@
 </tr>
 <tr>
 <td><strong>Transaction</strong></td>
-<td>A set of changes that are committed or abandoned atomically, making up a unit of work. Multiple transactions to a briefcase are combined into a <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#changeset'>ChangeSet</a>.</td>
+<td>A set of changes that are committed or abandoned atomically, making up a unit of work. Multiple transactions to a briefcase are combined into a <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#changeset'>ChangeSets</a>.</td>
 </tr>
 </tbody></table><h2 class="h-code-reservation"><a id="code-reservation" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Code Reservation</h2>
 <p>An app must reserve all Codes that it plans to assign to elements during a local editing session. An app can reserve more Codes than it actually uses. For example, an app may reserve a range or block of Codes in a sequence to ensure that it can use them, but before it knows exactly how many it will need. When the local ChangeSet is finally pushed, the Code Service sorts out which reserved Codes were actually used and which were not. Unused Codes are returned to the pool, while used Codes are marked as used and unavailable. When an element is deleted, its Code may be returned to the pool.</p>
@@ -302,7 +302,7 @@
 <p>After applying a schema ChangeSet, the IModelDb must be closed and reopened.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 June, 2018 @ 02:53:08 pm +00:00</span>
+                <span class='date-updated'>26 June, 2018 @ 11:22:24 am +00:00</span>
             </p>
 
             

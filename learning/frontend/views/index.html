@@ -58,21 +58,21 @@
         </span>
         
         <ul id='main-navigation-list'>
-            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModelJs Library</a></h3>
+            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">Learning</a></h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">frontend learning articles</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">backends</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common classes</a></li>
         </ul>
         <hr>
         <p>&#xA0;</p>
         <h3 class="h-helpful-links"><a id="helpful-links" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlparametertypes" class="table-of-contents-link">ECSQL</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModelJs Glossary</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">Glossary</a></li>
         </ul>
         </body></html>
         </ul>    </div>
@@ -88,7 +88,7 @@ can embed and interact with Views anywhere on a web page via an <code>HTMLCanvas
 This includes the camera position, the model(s) displayed, the CategorySelector, the DisplayStyle to use, plus any additional view-specific settings.</p>
 <h2 class="h-the-viewstate-class"><a id="the-viewstate-class" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>The ViewState Class</h2>
 <p>The <code>ViewDefinition</code> classes (in fact all <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a> classes) exist only on the backend, because their purpose is to read and write those elements to/from the iModel.
-On the frontend, access to the elements needed to display views is provided by the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/elementstate/'>ElementState</a> classes. The ElementState classes only hold the <em>state</em> of elements, not
+On the frontend, access to the elements needed to display views is provided by the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/elementstate/elementstate'>ElementState</a> classes. The ElementState classes only hold the <em>state</em> of elements, not
 the methods to read and write elements from the database.</p>
 <p>Views are opened by loading a ViewDefinition into a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a> object. They begin showing the content as it was saved in the iModel, but users may
 modify what they&apos;re seeing using <a href="#viewing-tools">Viewing tools</a>. These changes are only temporary (in-memory) unless they are saved back to the iModel
@@ -202,9 +202,70 @@ you can create <code>RealityDataModel</code>s that hold the URL of the Reality D
 <p>These models are subclasses of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/models/spatialmodel'>SpatialModel</a>, and can therefore be included in a <code>ModelSelector</code> and can easily be made visible in any SpatialView.</p>
 <h2 class="h-view-thumbnails"><a id="view-thumbnails" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>View Thumbnails</h2>
 <p>Every view may have a thumbnail that shows an approximation of what it contains. This can be helpful for user interfaces that offer a choice of Views.</p>
+<h2 class="h-viewstate-parameters"><a id="viewstate-parameters" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>ViewState Parameters</h2>
+<p> This is what the parameters to the camera methods, and the values stored by <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/viewdefinition3d'>ViewDefinition3d</a> mean.</p>
+<pre class="no-line-numbers"><code class="language-bash">                 v-- {origin}
+            -----+-------------------------------------- -   [back plane]
+            ^\   .                                    /  ^
+            | \  .                                   /   |        P
+          d |  \ .                                  /    |        o
+          e |   \.         {targetPoint}           /     |        s
+          l |    |---------------+----------------|      |        i    [focus plane]
+          t |     \  ^delta.x    ^               /     b |        t
+          a |      \             |              /      a |        i
+          . |       \            |             /       c |        v
+          z |        \           | f          /        k |        e
+            |         \          | o         /         D |        Z
+            |          \         | c        /          i |        |
+            |           \        | u       /           s |        v
+            v            \       | s      /            t |
+            -     -       -----  | D -----               |   [front plane]
+                  ^              | i                     |
+                  |              | s                     |
+      frontDist -&gt;|              | t                     |
+                  |              |                       |
+                  v           \  v  / &lt;- lens angle      v
+                  -              + {eyePoint}            -     positiveX -&gt;
+</code></pre>
+<h3 class="h-notes"><a id="notes" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Notes</h3>
+<ul>
+<li><p>Up vector (positiveY) points out of the screen towards you in this diagram. Likewise delta.y.</p>
+</li>
+<li><p>The view origin is in world coordinates. It is the point at the lower left of the rectangle at the focus plane, projected onto the back plane.</p>
+</li>
+<li><p><code>[delta.x,delta.y]</code> are on the focus plane and <code>delta.z</code> is from the back plane to the front plane.</p>
+</li>
+<li><p>The three view vectors come from:</p>
+<pre class="no-line-numbers"><code class="language-bash">{vector from eyePoint-&gt;targetPoint} : -Z (positive view Z points towards negative world Z)
+{the up vector}                     : +Y
+{Z cross Y}                         : +X
+</code></pre>
+<p>these three vectors form the rows of the view&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a></p>
+</li>
+<li><p>Objects in space in front of the front plane or behind the back plane are not displayed.</p>
+</li>
+<li><p>The focus plane is not necessarily centered between the front plane and back plane (though it often is).
+It should generally be between the front plane and the back plane.</p>
+</li>
+<li><p>targetPoint is not stored in the view parameters. Instead it may be derived from <code>{origin},{eyePoint},[RotMatrix]</code> and <code>focusDist</code>.</p>
+</li>
+<li><p>The view volume is completely specified by: <code>{origin}&lt;delta&gt;[RotMatrix]</code></p>
+</li>
+<li><p>Perspective is determined by <code>{eyePoint}</code>, which is independent of the view volume. Sometimes the eyepoint is not
+on the rectangle on the focus plane (that is, a vector from the eyepoint along the viewZ does not hit the view
+center.) This creates a 1-point perspective, which can be disconcerting. It is usually best to keep the camera centered.</p>
+</li>
+<li><p>Cameras hold a &quot;lens angle&quot; value which is defines the field-of-view for the camera in radians.
+The lens angle value is not used to compute the perspective transform for a view.
+Instead, the lens angle value can be used to reposition <code>{eyePoint}</code> when the view volume or target changes.</p>
+</li>
+<li><p>View volumes where one dimension is very small or large relative to the other dimensions (e.g. &quot;long skinny telescope&quot;
+views, or &quot;wide and shallow slices&quot;, etc.) are problematic and disallowed based on ratio limits.</p>
+</li>
+</ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 June, 2018 @ 02:53:08 pm +00:00</span>
+                <span class='date-updated'>26 June, 2018 @ 11:22:24 am +00:00</span>
             </p>
 
             
@@ -263,6 +324,17 @@ you can create <code>RealityDataModel</code>s that hold the URL of the Reality D
             </li>
                <li class='nav-item item '>
                     <a class='title solo-title menu-text' href="#view-thumbnails">View Thumbnails</a>
+            </li>
+               <li class='nav-item item '>
+                    <a data-target="#inner-nav-viewstate-parameters" class='title' href="#viewstate-parameters"/>
+                    <b class='dropdown-menu-title menu-text'>ViewState Parameters</b>
+                    <i class='dropdown icon'></i>
+                    </a>
+                    <ul id="inner-nav-viewstate-parameters" class='inner-nav'>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#notes">Notes</a>
+                            </li>
+                    </ul>
             </li>
          
               </ul>

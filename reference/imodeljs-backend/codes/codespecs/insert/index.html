@@ -76,6 +76,7 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/ecdb/" class="table-of-contents-link">ECDb</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/ecsql/" class="table-of-contents-link">ECSQL</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/portability/" class="table-of-contents-link">Portability</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/all/" class="table-of-contents-link">All</a></li>
         </ul>
         <hr>
         <h3 class="h-frontend"><a id="frontend" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/" class="table-of-contents-link">imodeljs-frontend</a></h3>
@@ -93,6 +94,7 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/" class="table-of-contents-link">Rendering</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tile/" class="table-of-contents-link">Tile</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/" class="table-of-contents-link">WebGL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/all/" class="table-of-contents-link">All</a></li>
         </ul>
         <hr>
         <h3 class="h-common"><a id="common" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/" class="table-of-contents-link">imodeljs-common</a></h3>
@@ -107,6 +109,7 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/" class="table-of-contents-link">RPC Interface</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/" class="table-of-contents-link">ECSQL</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/" class="table-of-contents-link">Feature Gates</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/all/" class="table-of-contents-link">All</a></li>
         </ul>
         <p>&#xA0;</p>
         <h2 class="h-support-packages"><a id="support-packages" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a>Support Packages</h2>
@@ -119,6 +122,7 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/" class="table-of-contents-link">Ids</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/" class="table-of-contents-link">Logging</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/" class="table-of-contents-link">Utils</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/all/" class="table-of-contents-link">All</a></li>
         </ul>
         <hr>
         <h3 class="h-geometry-core"><a id="geometry-core" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/" class="table-of-contents-link">geometry-core</a></h3>
@@ -132,6 +136,7 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/serialization/" class="table-of-contents-link">Serialization</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/solid/" class="table-of-contents-link">Solid</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/" class="table-of-contents-link">Topology</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/all/" class="table-of-contents-link">All</a></li>
         </ul>
         </body></html>
         </ul>    </div>
@@ -141,9 +146,28 @@
             <h2 class="h-insert"><a id="insert" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>insert <span class="badge badge-pill badge-primary badge-method">Method</span></h2>
 <p>Add a new CodeSpec to the IModelDb.</p>
 <p></p><p><em>Example:</em></p>
-<pre class="no-line-numbers"><code class="language-typescript">    // Create and insert a new CodeSpec with the name &quot;CodeSpec1&quot;. In this example, we choose to make a model-scoped CodeSpec.    const codeSpec: CodeSpec = new CodeSpec(testImodel, new Id64(), &quot;CodeSpec1&quot;, CodeScopeSpec.Type.Model);    const codeSpecId: Id64 = testImodel.codeSpecs.insert(codeSpec);    assert.deepEqual(codeSpecId, codeSpec.id);    // Should not be able to insert a duplicate.    try {      const codeSpecDup: CodeSpec = new CodeSpec(testImodel, new Id64(), &quot;CodeSpec1&quot;, CodeScopeSpec.Type.Model);      testImodel.codeSpecs.insert(codeSpecDup); // throws in case of error      assert.fail();    } catch (err) {      // We expect this to fail.    }    // We should be able to insert another CodeSpec with a different name.    const codeSpec2: CodeSpec = new CodeSpec(testImodel, new Id64(), &quot;CodeSpec2&quot;, CodeScopeSpec.Type.Model, CodeScopeSpec.ScopeRequirement.FederationGuid);    const codeSpec2Id: Id64 = testImodel.codeSpecs.insert(codeSpec2);    assert.deepEqual(codeSpec2Id, codeSpec2.id);    assert.notDeepEqual(codeSpec2Id, codeSpecId);
+<pre class="no-line-numbers"><code class="language-typescript">    // Create and insert a new CodeSpec with the name &quot;CodeSpec1&quot;. In this example, we choose to make a model-scoped CodeSpec.
+    const codeSpec: CodeSpec = new CodeSpec(testImodel, new Id64(), &quot;CodeSpec1&quot;, CodeScopeSpec.Type.Model);
+    const codeSpecId: Id64 = testImodel.codeSpecs.insert(codeSpec);
+    assert.deepEqual(codeSpecId, codeSpec.id);
+
+    // Should not be able to insert a duplicate.
+    try {
+      const codeSpecDup: CodeSpec = new CodeSpec(testImodel, new Id64(), &quot;CodeSpec1&quot;, CodeScopeSpec.Type.Model);
+      testImodel.codeSpecs.insert(codeSpecDup); // throws in case of error
+      assert.fail();
+    } catch (err) {
+      // We expect this to fail.
+    }
+
+    // We should be able to insert another CodeSpec with a different name.
+    const codeSpec2: CodeSpec = new CodeSpec(testImodel, new Id64(), &quot;CodeSpec2&quot;, CodeScopeSpec.Type.Model, CodeScopeSpec.ScopeRequirement.FederationGuid);
+    const codeSpec2Id: Id64 = testImodel.codeSpecs.insert(codeSpec2);
+    assert.deepEqual(codeSpec2Id, codeSpec2.id);
+    assert.notDeepEqual(codeSpec2Id, codeSpecId);
 </code></pre>
-<p><span class="method-name">insert</span><span class="method-parenthesis">(</span><span class="method-parameters">codeSpec: CodeSpec</span><span class="method-parenthesis">):</span><span class="method-output"> Id64</span></p>
+<p><span class="method-name">insert</span><span class="method-parenthesis">(</span><span class="method-parameters">codeSpec: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/codespec'>CodeSpec</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span></p>
+<p><span class="badge badge-pill badge-primary badge-note">note</span> If successful, this method will assign a valid CodeSpecId to the supplied CodeSpec</p>
 <p><span class="badge badge-pill badge-primary badge-throws">throws</span> IModelError if the insertion fails</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -152,14 +176,17 @@
 </tr>
 <tr>
 <td class="h-codespec"><a id="codespec" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>codeSpec</td>
-<td>CodeSpec</td>
+<td><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/codespec'>CodeSpec</a></td>
 <td>The new entry to add.</td>
 </tr>
-</tbody></table><p><strong>Returns</strong> - The id of the persistent CodeSpec.
-<em>note:</em> If successful, this method will assign a valid CodeSpecId to the supplied CodeSpec</p>
+</tbody></table><p><strong>Returns</strong> - The id of the persistent CodeSpec.</p>
+<h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Defined in</h3>
+<ul>
+<li>CodeSpecs.ts</li>
+</ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 June, 2018 @ 02:52:57 pm +00:00</span>
+                <span class='date-updated'>26 June, 2018 @ 11:22:15 am +00:00</span>
             </p>
 
             

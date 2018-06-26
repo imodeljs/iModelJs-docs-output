@@ -58,21 +58,21 @@
         </span>
         
         <ul id='main-navigation-list'>
-            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModelJs Library</a></h3>
+            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">Learning</a></h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">frontend learning articles</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">backends</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common classes</a></li>
         </ul>
         <hr>
         <p>&#xA0;</p>
         <h3 class="h-helpful-links"><a id="helpful-links" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlparametertypes" class="table-of-contents-link">ECSQL</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModelJs Glossary</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">Glossary</a></li>
         </ul>
         </body></html>
         </ul>    </div>
@@ -89,11 +89,10 @@ to the Changeset it was generated from.</p>
 <p>Change Summaries can only be generated from the iModelJs backend. See the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/changesummarymanager'>ChangeSummaryManager</a> API for how to do it.</p>
 </blockquote>
 <h2 class="h-working-with-change-summaries"><a id="working-with-change-summaries" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Working with Change Summaries</h2>
-<p>Working with Change Summaries really means to unleash the power of ECSQL. Change Summaries by itself are just ECInstances of the built-in ECSchemas <strong>ECDbChange</strong> and <strong>IModelChange</strong>. That means you can simply use <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql'>ECSQL</a> and all its flexibility to retrieve just that information from the Change Summaries which you are interested in.</p>
+<p>Working with Change Summaries really means to unleash the power of ECSQL. Change Summaries by itself are just ECInstances of the built-in ECSchemas <strong>ECDbChange</strong> and <strong>IModelChange</strong>. That means you can simply use <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlparametertypes'>ECSQL</a> and all its flexibility to retrieve just that information from the Change Summaries which you are interested in.</p>
 <h3 class="h-attaching-the-change-cache-file-to-the-local-briefcase"><a id="attaching-the-change-cache-file-to-the-local-briefcase" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Attaching the Change Cache file to the local briefcase</h3>
-<p>As the Change Summaries are not persisted in the iModel itself but in the <em>Change Cache file</em>, you need to attach the <em>Change Cache file</em>
-to the local briefcase of the iModel first.</p>
-<p>Once done, the Change Summaries can be accessed by ECSQL from the iModel as if they were persisted in the iModel itself. It is visible from ECSQL under the table space <strong>ecchange</strong>.</p>
+<p>As the Change Summaries are not persisted in the iModel itself but in the <em>Change Cache file</em>, you need to attach the <em>Change Cache file</em> to the local briefcase of the iModel first.</p>
+<p>Once done, the Change Summaries can be accessed by ECSQL from the iModel as if they were persisted in the iModel itself. The <em>Change Cache file</em> is visible from ECSQL under the table space <strong>ecchange</strong>.</p>
 <blockquote>
 <p>The table space of the attached <em>Change Cache file</em> is needed to disambiguate between equally named schemas and classes in the iModel and
 the Change Cache file. If the schema and class name combination is unambiguous, the table space does not need to be specified in the ECSQL.</p>
@@ -105,10 +104,10 @@ the Change Cache file. If the schema and class name combination is unambiguous, 
 <li>Find out <strong>how</strong> property values of certain instances have changed</li>
 </ol>
 <h3 class="h-find-out-what-has-changed"><a id="find-out-what-has-changed" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Find out <em>what</em> has changed</h3>
-<p>This is achieved by executing ECSQL queries against the <strong>ECDbChange</strong> and <strong>IModelChange</strong> ECSchemas:</p>
+<p>This is achieved by executing ECSQL queries against the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbchange.ecschema'>ECDbChange</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/imodelchange.ecschema'>IModelChange</a> ECSchemas:</p>
 <ul>
-<li>The <strong>ECDbChange</strong> ECSchema contains the Change Summaries</li>
-<li>The <strong>IModelChange</strong> ECSchema contains information about the Changesets from which each ChangeSummary was generated from</li>
+<li>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbchange.ecschema'>ECDbChange</a> ECSchema contains the Change Summaries</li>
+<li>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/imodelchange.ecschema'>IModelChange</a> ECSchema contains information about the Changesets from which each ChangeSummary was generated from</li>
 </ul>
 <h4 class="h-examples"><a id="examples" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Examples</h4>
 <table class="table table-responsive"><tbody><tr>
@@ -116,8 +115,8 @@ the Change Cache file. If the schema and class name combination is unambiguous, 
 <th>Description</th>
 </tr>
 <tr>
-<td><code>SELECT Summary.Id,ParentWsgId,PushDate,Author FROM ecchange.imodelchange.ChangeSet WHERE WsgId=?</code></td>
-<td>For the specified Changeset (the WsgId of the Changeset) the ECInstanceId of the corresponding ChangeSummary is returned along with the id of the parent changeset, the date when the changeset was pushed and by who</td>
+<td><code>SELECT Summary.Id,ParentWsgId,Description,PushDate,Author FROM ecchange.imodelchange.ChangeSet WHERE WsgId=?</code></td>
+<td>For the specified Changeset (the WsgId of the Changeset) the ECInstanceId of the corresponding ChangeSummary is returned along with the id of the parent changeset, the description, the date when the changeset was pushed and by who</td>
 </tr>
 <tr>
 <td><code>SELECT ChangedInstance.Id, OpCode FROM ecchange.change.InstanceChange WHERE Summary.Id=?</code></td>
@@ -241,7 +240,7 @@ for the unchanged values.</p>
 </tbody></table><blockquote>
 <ul>
 <li><code>ChangedInstance.Id</code> is the ECInstanceId of the changed instance, i.e. the changed <code>Person</code> instance in this example.</li>
-<li>The <code>OpCode</code> values refer to the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/changeopcode'>ChangeOpCode</a> enumeration as defined in the <strong>ECDbChange</strong> ECSchema.</li>
+<li>The <code>OpCode</code> values refer to the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/changeopcode'>ChangeOpCode</a> enumeration as defined in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbchange.ecschema'>ECDbChange</a> ECSchema.</li>
 </ul>
 </blockquote>
 <h4 class="h-example-1"><a id="example-1" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Example</h4>
@@ -427,7 +426,7 @@ state of the iModel, i.e. at the tip of all changes:</p>
 </tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 June, 2018 @ 02:53:08 pm +00:00</span>
+                <span class='date-updated'>26 June, 2018 @ 11:22:24 am +00:00</span>
             </p>
 
             

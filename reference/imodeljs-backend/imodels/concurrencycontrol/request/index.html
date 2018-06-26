@@ -76,6 +76,7 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/ecdb/" class="table-of-contents-link">ECDb</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/ecsql/" class="table-of-contents-link">ECSQL</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/portability/" class="table-of-contents-link">Portability</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/all/" class="table-of-contents-link">All</a></li>
         </ul>
         <hr>
         <h3 class="h-frontend"><a id="frontend" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/" class="table-of-contents-link">imodeljs-frontend</a></h3>
@@ -93,6 +94,7 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/" class="table-of-contents-link">Rendering</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tile/" class="table-of-contents-link">Tile</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/" class="table-of-contents-link">WebGL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/all/" class="table-of-contents-link">All</a></li>
         </ul>
         <hr>
         <h3 class="h-common"><a id="common" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/" class="table-of-contents-link">imodeljs-common</a></h3>
@@ -107,6 +109,7 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/" class="table-of-contents-link">RPC Interface</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/" class="table-of-contents-link">ECSQL</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/" class="table-of-contents-link">Feature Gates</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/all/" class="table-of-contents-link">All</a></li>
         </ul>
         <p>&#xA0;</p>
         <h2 class="h-support-packages"><a id="support-packages" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a>Support Packages</h2>
@@ -119,6 +122,7 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/" class="table-of-contents-link">Ids</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/" class="table-of-contents-link">Logging</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/" class="table-of-contents-link">Utils</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/all/" class="table-of-contents-link">All</a></li>
         </ul>
         <hr>
         <h3 class="h-geometry-core"><a id="geometry-core" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/" class="table-of-contents-link">geometry-core</a></h3>
@@ -132,6 +136,7 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/serialization/" class="table-of-contents-link">Serialization</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/solid/" class="table-of-contents-link">Solid</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/" class="table-of-contents-link">Topology</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/all/" class="table-of-contents-link">All</a></li>
         </ul>
         </body></html>
         </ul>    </div>
@@ -143,9 +148,23 @@
 This function may fulfill some requests and fail to fulfill others. This function returns a rejection of type RequestError if some or all requests could not be fulfilled.
 The error object will identify the locks and/or codes that are unavailable.</p>
 <p></p><p><em>Example:</em></p>
-<pre class="no-line-numbers"><code class="language-typescript">    // Now acquire all locks and reserve all codes needed.    // This is a *prequisite* to saving local changes.    try {      await iModel.concurrencyControl.request(accessToken);    } catch (err) {      // If we can&apos;t get *all* of the locks and codes that are needed,      // then we can&apos;t go on with this transaction as is.      // We could possibly make additional changes to remove the need      // for the resources that are unavailable. In this case,      // we will just bail out and print a message.      iModel.abandonChanges();      // report error ...    }    // Now we can commit the local changes to a local transaction in the    // IModelDb.
+<pre class="no-line-numbers"><code class="language-typescript">    // Now acquire all locks and reserve all codes needed.
+    // This is a *prequisite* to saving local changes.
+    try {
+      await iModel.concurrencyControl.request(accessToken);
+    } catch (err) {
+      // If we can&apos;t get *all* of the locks and codes that are needed,
+      // then we can&apos;t go on with this transaction as is.
+      // We could possibly make additional changes to remove the need
+      // for the resources that are unavailable. In this case,
+      // we will just bail out and print a message.
+      iModel.abandonChanges();
+      // report error ...
+    }
+    // Now we can commit the local changes to a local transaction in the
+    // IModelDb.
 </code></pre>
-<p><span class="method-name">request</span><span class="method-parenthesis">(</span><span class="method-parameters">accessToken: AccessToken, req?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/concurrencycontrol'>ConcurrencyControl.Request</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span></p>
+<p><span class="method-name">request</span><span class="method-parenthesis">(</span><span class="method-parameters">accessToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/token/accesstoken'>AccessToken</a>, req?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/concurrencycontrol/#request'>ConcurrencyControl.Request</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span></p>
 <p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/concurrencycontrol.requesterror'>ConcurrencyControl.RequestError</a> if some or all of the request could not be fulfilled by iModelHub.</p>
 <p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodelerror'>IModelError</a> if the IModelDb is not open or is not connected to an iModel.</p>
 <table class="table table-responsive"><tbody><tr>
@@ -155,17 +174,21 @@ The error object will identify the locks and/or codes that are unavailable.</p>
 </tr>
 <tr>
 <td class="h-accesstoken"><a id="accesstoken" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>accessToken</td>
-<td>AccessToken</td>
+<td><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/token/accesstoken'>AccessToken</a></td>
 <td>The user&apos;s iModelHub access token</td>
 </tr>
 <tr>
 <td class="h-req"><a id="req" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>req</td>
-<td><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/concurrencycontrol'>ConcurrencyControl.Request</a></td>
+<td><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/concurrencycontrol/#request'>ConcurrencyControl.Request</a></td>
 <td>The requests to be sent to iModelHub. If undefined, all pending requests are sent to iModelHub.</td>
 </tr>
-</tbody></table>
+</tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"><span>&#x1F517;</span></a>Defined in</h3>
+<ul>
+<li>ConcurrencyControl.ts</li>
+</ul>
+
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 June, 2018 @ 02:52:58 pm +00:00</span>
+                <span class='date-updated'>26 June, 2018 @ 11:22:16 am +00:00</span>
             </p>
 
             

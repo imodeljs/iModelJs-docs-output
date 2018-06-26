@@ -58,21 +58,21 @@
         </span>
         
         <ul id='main-navigation-list'>
-            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModelJs Library</a></h3>
+            <html><head></head><body><h3 class="h-the-imodeljs-library"><a id="the-imodeljs-library" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">Learning</a></h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">frontend learning articles</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">backends</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common classes</a></li>
         </ul>
         <hr>
         <p>&#xA0;</p>
         <h3 class="h-helpful-links"><a id="helpful-links" class="heading-anchor table-of-contents-link" href="#%s"><span>&#x1F517;</span></a>Helpful links</h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlparametertypes" class="table-of-contents-link">ECSQL</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModelJs Glossary</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">Glossary</a></li>
         </ul>
         </body></html>
         </ul>    </div>
@@ -80,7 +80,7 @@
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > SpatialQueries</div>
             <h1 id="spatial queries">Spatial Queries</h1>
-<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql'>ECSQL</a> allows you to use the BisCore.SpatialIndex to include spatial criteria when selecting <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/spatialelement'>SpatialElement</a>. There are also <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/geometrysqlfuncs'>functions</a> that allow you to include an element&apos;s geometric properties in a where clause.</p>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlparametertypes'>ECSQL</a> allows you to use the BisCore.SpatialIndex to include spatial criteria when selecting <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/spatialelement'>SpatialElement</a>. There are also <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/geometrysqlfuncs'>built-in geometry functions</a> that allow you to include an element&apos;s geometric properties in a where clause.</p>
 <p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/spatialelement'>SpatialElement</a> in an iModel are indexed by a <a href="https://sqlite.org/rtree.html">spatial index</a>. This indexes elements by area. Each node in the spatial index is conceptually a bounding box, plus the ECInstanceId of an element that is enclosed by it.</p>
 <p>ECSQL identifies the spatial index using the name <code>BisCore.SpatialIndex</code>. You can use this name to include the spatial index in ECSQL select statements, to help filter results using spatial criteria. Conceptually, each node has the following properties: ECInstanceId, MinX, MaxX, MinY, MaxY, MinZ, and MaxZ. The nodes in the spatial index can be selected by testing their properties directly. Here is an example that is adapted from the <a href="https://sqlite.org/rtree.html">SQLite docs</a>:</p>
 <p><code>SELECT ECInstanceId FROM BisCore.SpatialIndex WHERE minX&gt;=-81.08 AND maxX&lt;=-80.58 AND minY&gt;=35.00  AND maxY&lt;=35.44</code></p>
@@ -89,17 +89,32 @@
 </code></pre>
 <p>which selects all nodes that overlap a specified axis-aligned <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/geometrysqlfuncs/#imodel_bbox'>bounding box</a>. Here is an example:</p>
 <p><code>SELECT rt.ECInstanceId FROM BisCore.SpatialIndex rt WHERE (rt.ECInstanceId MATCH iModel_spatial_overlap_aabb(:bbox))</code></p>
-<p>The caller would bind the <code>bbox</code> parameter in this example to an <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/geometrysqlfuncs/#imodel_bbox'>iModel_bbox</a> value. For example:</p>
-<pre class="no-line-numbers"><code class="language-typescript">  public static queryBarriersHitByRobot(iModelDb: IModelDb, rid: Id64Props): Id64Props[] {    const robot1 = iModelDb.elements.getElement(rid) as Robot;    const selStmt =      `SELECT rt.ECInstanceId FROM BisCore.SpatialIndex rt WHERE rt.ECInstanceId MATCH iModel_spatial_overlap_aabb(:bbox) AND rt.ECInstanceId &lt;&gt; :thisRobot`;    return iModelDb.withPreparedStatement(selStmt, (stmt: ECSqlStatement) =&gt; {      stmt.bindRange3d(&quot;bbox&quot;, robot1.placement.calculateRange());      stmt.bindId(&quot;thisRobot&quot;, rid);      const hits: Id64Props[] = [];      while (stmt.step() === DbResult.BE_SQLITE_ROW) {        hits.push(stmt.getValue(0).getId());      }      return hits;    });  }
+<p>The caller would bind the <code>bbox</code> parameter in this example to an <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/geometrysqlfuncs/#imodel_bbox'>bounding box</a> value. For example:</p>
+<pre class="no-line-numbers"><code class="language-typescript">  public static queryBarriersHitByRobot(iModelDb: IModelDb, rid: Id64Props): Id64Props[] {
+    const robot1 = iModelDb.elements.getElement(rid) as Robot;
+
+    const selStmt =
+      `SELECT rt.ECInstanceId FROM BisCore.SpatialIndex rt WHERE rt.ECInstanceId MATCH iModel_spatial_overlap_aabb(:bbox) AND rt.ECInstanceId &lt;&gt; :thisRobot`;
+
+    return iModelDb.withPreparedStatement(selStmt, (stmt: ECSqlStatement) =&gt; {
+      stmt.bindRange3d(&quot;bbox&quot;, robot1.placement.calculateRange());
+      stmt.bindId(&quot;thisRobot&quot;, rid);
+      const hits: Id64Props[] = [];
+      while (stmt.step() === DbResult.BE_SQLITE_ROW) {
+        hits.push(stmt.getValue(0).getId());
+      }
+      return hits;
+    });
+  }
 </code></pre>
 <p>This example shows how to find all elements with ranges that (may) overlap the range of some seed element. Note how the bbox parameter is bound to the range of the seed element. The additional test in the WHERE filters out the seed element, so that only other overlapping elements are found.</p>
 <p>Often, a spatial query will combine a test on the spatial index with additional filtering criteria in the WHERE clause. As noted in the <a href="https://sqlite.org/rtree.html">SQLite docs</a>, &quot;An R*Tree index does not normally provide the exact answer but merely reduces the set of potential answers from millions to dozens.&quot; The additional filtering criteria are used to refine the answer after the spatial filter has narrowed the possibilities. For example, to select only elements in the specified range that are also in a specified Category:</p>
 <p><code>SELECT rt.ECInstanceId FROM BisCore.SpatialIndex rt, BisCore.SpatialElement el WHERE (rt.ECInstanceId MATCH iModel_spatial_overlap_aabb(:bbox)) AND (el.ECInstanceId=rt.ECInstanceId) AND (el.Category = :categoryId)</code></p>
 <p><em>Tip:</em> The OR operator should not be used in a WHERE clause that contains a spatial index MATCH.</p>
-<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/geometrysqlfuncs'>ECSQL built-in geometry functions</a> are sometimes used along with spatial queries as additional WHERE criteria.</p>
+<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/geometrysqlfuncs'>built-in geometry functions</a> are sometimes used along with spatial queries as additional WHERE criteria.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 June, 2018 @ 02:53:08 pm +00:00</span>
+                <span class='date-updated'>26 June, 2018 @ 11:22:24 am +00:00</span>
             </p>
 
             
