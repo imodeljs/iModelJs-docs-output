@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Meta Queries - Querying ECSchemas - iModelJs</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//overview/imodeljs.ico' /> 
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
+    <span id="contentLoader">
+        <p>Woah! This page has a great deal of content... Give us a second to load it.</p>
+    </span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+        <header id="main-header">
+            <div class='row nav-container'>
+                <nav id='main-navbar' class="navbar navbar-expand-md navbar-light">
+                    
+                    <button class="navbar-toggler navbar-toggler-left custom-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon">
+                            <i class='icon icon-menu'></i>
+                        </span>
+                    </button>
+                    <div class="nav-title-container">
+                        <a class="navbar-brand " href="https://imodeljs.github.io/iModelJs-docs-output//" class="col-md-3">
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//overview/imodeljs.ico" />
+                            <h1 id="site-title">iModelJs</h1>
+                        </a>
+                    </div>
+                    <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
+                        <nav class="navbar navbar-expand-md navbar-light">
+                             <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li></ul> 
+                        </nav>
+                    </div>                </nav>
+            </div>
+
+        </header>
+        
+<div id='main-wrapper'>
+    <div id='table-of-contents'>
+        <span class='search-bar'>
+          <li>
+            <div id='search-container'>
+            </div>
+          </li>
+        </span>
+        
+        <ul id='main-navigation-list'>
+            <html><head></head><body><h3 id="the imodeljs library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModelJs Library</a></h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+        </ul>
+        <hr>
+        <p>&#xA0;</p>
+        <h3 id="helpful links">Helpful links</h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModelJs Glossary</a></li>
+        </ul>
+        </body></html>
+        </ul>    </div>
+    <div class='row documentation-main'>
+        <article id="main" name="main-content">
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ecsqltutorial/">ecsqltutorial</a> > MetaQueries</div>
+            <h1 id="meta queries -querying ecschemas">Meta Queries - Querying ECSchemas</h1>
+<p>Every iModel includes the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbmeta.ecschema'>ECDbMeta</a> ECSchema. It exposes the content of all schemas that the iModel contains. You can therefore use ECSQL against that schema to query for schemas, classes, properties etc.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return the name, alias and version of all <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbmeta.ecschema/#ecschemadef'>schemas</a> in the iModel</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT Name, Alias, VersionMajor, VersionWrite, VersionMinor FROM meta.ECSchemaDef ORDER BY Name
+</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Alias</th>
+<th>VersionMajor</th>
+<th>VersionWrite</th>
+<th>VersionMinor</th>
+</tr>
+<tr>
+<td>BisCore</td>
+<td>bis</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>CoreCustomAttributes</td>
+<td>CoreCA</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>ECDbFileInfo</td>
+<td>ecdbf</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>ECDbMap</td>
+<td>ecdbmap</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>ECDbMeta</td>
+<td>meta</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>ECDbSchemaPolicies</td>
+<td>ecdbpol</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>ECDbSystem</td>
+<td>ecdbsys</td>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Generic</td>
+<td>generic</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>MyDomain</td>
+<td>mydomain</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody></table></blockquote>
+<hr>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return the properties and their types for the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#element'>Element</a> class</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT p.Name from meta.ECPropertyDef p JOIN meta.ECClassDef c ON c.ECInstanceId=p.Class.Id WHERE c.Name=&apos;Element&apos; ORDER BY p.Ordinal
+</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+</tr>
+<tr>
+<td>Model</td>
+<td></td>
+</tr>
+<tr>
+<td>LastMod</td>
+<td></td>
+</tr>
+<tr>
+<td>CodeSpec</td>
+<td></td>
+</tr>
+<tr>
+<td>CodeScope</td>
+<td></td>
+</tr>
+<tr>
+<td>CodeValue</td>
+<td></td>
+</tr>
+<tr>
+<td>UserLabel</td>
+<td></td>
+</tr>
+<tr>
+<td>Parent</td>
+<td></td>
+</tr>
+<tr>
+<td>FederationGuid</td>
+<td></td>
+</tr>
+<tr>
+<td>JsonProperties</td>
+<td></td>
+</tr>
+</tbody></table></blockquote>
+<p>Note the <code>ORDER BY</code> clause in the previous example. The property <code>Ordinal</code> of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbmeta.ecschema/#ecpropertydef'>ECPropertyDef</a> class contains the position of the property in the class as it was originally defined.</p>
+<p>Another advantage of accessing the schemas via ECSQL is that you can combine that with ordinary ECSQL queries. The next examples shows how you can do that.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return only <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a>s in the iModel which are of the subclass <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#building'>Building</a> or <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#story'>Story</a>.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT class.Name ClassName, element.ECInstanceId ElementId, element.CodeValue FROM bis.SpatialElement element JOIN meta.ECClassDef class ON element.ECClassId=class.ECInstanceId WHERE class.Name IN (&apos;Building&apos;,&apos;Story&apos;)
+</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>ClassName</th>
+<th>ElementId</th>
+<th>CodeValue</th>
+</tr>
+<tr>
+<td>Building</td>
+<td>0x10000000012</td>
+<td>Building A</td>
+</tr>
+<tr>
+<td>Story</td>
+<td>0x10000000013</td>
+<td>A-G</td>
+</tr>
+<tr>
+<td>Story</td>
+<td>0x10000000016</td>
+<td>A-1</td>
+</tr>
+<tr>
+<td>Story</td>
+<td>0x10000000018</td>
+<td>A-2</td>
+</tr>
+</tbody></table></blockquote>
+<p>Of course, the ECSQL is not precise yet because the class names are only unique within a schema. If there
+were a <code>Building</code> subclass in another schema, those instances would also be returned. This requires to bring in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbmeta.ecschema/#ecschemadef'>ECSchemaDef</a> class again.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return only <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a>s in the iModel which are of the subclass <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#building'>Building</a> or <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#story'>Story</a> from the schema <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema'>MyDomain</a>.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT class.Name ClassName, element.ECInstanceId ElementId, element.CodeValue FROM bis.SpatialElement element JOIN meta.ECClassDef class ON element.ECClassId=class.ECInstanceId JOIN meta.ECSchemaDef schema ON schema.ECInstanceId=class.Schema.Id WHERE schema.Name=&apos;MyDomain&apos; AND class.Name IN (&apos;Building&apos;,&apos;Story&apos;)
+</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>ClassName</th>
+<th>ElementId</th>
+<th>CodeValue</th>
+</tr>
+<tr>
+<td>Building</td>
+<td>0x10000000012</td>
+<td>Building A</td>
+</tr>
+<tr>
+<td>Story</td>
+<td>0x10000000013</td>
+<td>A-G</td>
+</tr>
+<tr>
+<td>Story</td>
+<td>0x10000000016</td>
+<td>A-1</td>
+</tr>
+<tr>
+<td>Story</td>
+<td>0x10000000018</td>
+<td>A-2</td>
+</tr>
+</tbody></table></blockquote>
+<hr>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/spatialqueries'><strong>&lt; Previous</strong></a> &#xA0; | &#xA0; <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/changesummaryqueries'><strong>Next &gt;</strong></a></p>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>09 July, 2018 @ 12:08:51 am +00:00</span>
+            </p>
+
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div id='inner-table-of-contents'>
+        <!--
+            - If the page is active
+            - Get all headings and subheadings and list them
+         -->
+        
+        
+        
+        
+        
+    </div>
+</div>
+
+
+    <footer id='main-footer'>
+        <div id='footer-content-container'>
+           <div class='footer-footer'>
+               <p>Copyright 2018 Bentley Systems, Incorporated</p>
+            </div>
+        </div>
+    </footer>
+</div>
+    <a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+    <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js" ></script>
+</body>
+
+</html>

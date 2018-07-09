@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ECSQL Data Types - iModelJs</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//overview/imodeljs.ico' /> 
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
+    <span id="contentLoader">
+        <p>Woah! This page has a great deal of content... Give us a second to load it.</p>
+    </span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+        <header id="main-header">
+            <div class='row nav-container'>
+                <nav id='main-navbar' class="navbar navbar-expand-md navbar-light">
+                    
+                    <button class="navbar-toggler navbar-toggler-left custom-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon">
+                            <i class='icon icon-menu'></i>
+                        </span>
+                    </button>
+                    <div class="nav-title-container">
+                        <a class="navbar-brand " href="https://imodeljs.github.io/iModelJs-docs-output//" class="col-md-3">
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//overview/imodeljs.ico" />
+                            <h1 id="site-title">iModelJs</h1>
+                        </a>
+                    </div>
+                    <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
+                        <nav class="navbar navbar-expand-md navbar-light">
+                             <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li></ul> 
+                        </nav>
+                    </div>                </nav>
+            </div>
+
+        </header>
+        
+<div id='main-wrapper'>
+    <div id='table-of-contents'>
+        <span class='search-bar'>
+          <li>
+            <div id='search-container'>
+            </div>
+          </li>
+        </span>
+        
+        <ul id='main-navigation-list'>
+            <html><head></head><body><h3 id="the imodeljs library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModelJs Library</a></h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+        </ul>
+        <hr>
+        <p>&#xA0;</p>
+        <h3 id="helpful links">Helpful links</h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModelJs Glossary</a></li>
+        </ul>
+        </body></html>
+        </ul>    </div>
+    <div class='row documentation-main'>
+        <article id="main" name="main-content">
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ecsqltutorial/">ecsqltutorial</a> > ECSQLDataTypes</div>
+            <h1 id="ecsql data types">ECSQL Data Types</h1>
+<h2 class="h-ecinstanceid-and-ecclassid"><a id="ecinstanceid-and-ecclassid" class="heading-anchor" href="#%s"></a>ECInstanceId and ECClassId</h2>
+<p>ECSQL defines a set of built-in system properties. They don&apos;t have to be defined in the ECSchemas (see also <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql/#ecinstanceid-and-ecclassid'>ECSQL reference</a>).</p>
+<table class="table table-responsive"><tbody><tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>ECInstanceId</td>
+<td>Is the unique identifier for an ECInstance.</td>
+</tr>
+<tr>
+<td>ECClassId</td>
+<td>Refers to the ECClassId of an ECClass. It uniquely identifies an ECClass in the iModel.</td>
+</tr>
+</tbody></table><blockquote>
+<p>In iModelJs the <em>ECClassId</em> is formatted as fully qualified class name when used in the SELECT clause.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return the actual Element subclass of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>Element</a> with id 0x10000000021.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECClassId, CodeValue FROM bis.Element WHERE ECInstanceId=0x10000000021
+</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>ECClassId</th>
+<th>CodeValue</th>
+</tr>
+<tr>
+<td>MyDomain.Device</td>
+<td>DEV-A-G-1</td>
+</tr>
+</tbody></table></blockquote>
+<h2 class="h-primitive-data-types"><a id="primitive-data-types" class="heading-anchor" href="#%s"></a>Primitive Data Types</h2>
+<p>ECSQL supports all primitive types built into the EC system. This means that in addition to the basic numeric and string data types in SQL-92, ECSQL also supports boolean, BLOBs, date-time and point types.</p>
+<h2 class="h-boolean"><a id="boolean" class="heading-anchor" href="#%s"></a>Boolean</h2>
+<p>For Boolean types ECSQL supports the literals <code>True</code> and <code>False</code>.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Find out which <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#model'>Model</a> are private or not.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, ECClassId, IsPrivate FROM bis.Model
+</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>ECInstanceId</th>
+<th>ECClassId</th>
+<th>IsPrivate</th>
+</tr>
+<tr>
+<td>0x1</td>
+<td>BisCore.RepositoryModel</td>
+<td>false</td>
+</tr>
+<tr>
+<td>0xe</td>
+<td>BisCore.LinkModel</td>
+<td>true</td>
+</tr>
+<tr>
+<td>0x10</td>
+<td>BisCore.DictionaryModel</td>
+<td>true</td>
+</tr>
+<tr>
+<td>0x10000000011</td>
+<td>BisCore.PhysicalModel</td>
+<td>false</td>
+</tr>
+<tr>
+<td>0x10000000030</td>
+<td>BisCore.DocumentListModel</td>
+<td>false</td>
+</tr>
+<tr>
+<td>0x10000000031</td>
+<td>BisCore.DrawingModel</td>
+<td>false</td>
+</tr>
+<tr>
+<td>0x10000000039</td>
+<td>BisCore.DrawingModel</td>
+<td>false</td>
+</tr>
+<tr>
+<td>0x10000000040</td>
+<td>BisCore.DrawingModel</td>
+<td>false</td>
+</tr>
+</tbody></table></blockquote>
+<p>Boolean properties or expressions do not need to be compared to <code>True</code> and <code>False</code> as they return a
+boolean value already.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Find private <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#model'>Model</a>s.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,ECClassId FROM bis.Model WHERE IsPrivate = True
+</code></pre>
+<p>and</p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,ECClassId FROM bis.Model WHERE IsPrivate
+</code></pre>
+<p>are equivalent.</p>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>ECInstanceId</th>
+<th>ECClassId</th>
+</tr>
+<tr>
+<td>0xe</td>
+<td>BisCore.LinkModel</td>
+</tr>
+<tr>
+<td>0x10</td>
+<td>BisCore.DictionaryModel</td>
+</tr>
+</tbody></table></blockquote>
+<p>And the same example with <code>False</code>:</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Find non-private <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#model'>Model</a>s.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,ECClassId FROM bis.Model WHERE IsPrivate = False
+</code></pre>
+<p>and</p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,ECClassId FROM bis.Model WHERE NOT IsPrivate
+</code></pre>
+<p>are equivalent.</p>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>ECInstanceId</th>
+<th>ECClassId</th>
+</tr>
+<tr>
+<td>0x1</td>
+<td>BisCore.RepositoryModel</td>
+</tr>
+<tr>
+<td>0x10000000011</td>
+<td>BisCore.PhysicalModel</td>
+</tr>
+<tr>
+<td>0x10000000030</td>
+<td>BisCore.DocumentListModel</td>
+</tr>
+<tr>
+<td>0x10000000031</td>
+<td>BisCore.DrawingModel</td>
+</tr>
+<tr>
+<td>0x10000000039</td>
+<td>BisCore.DrawingModel</td>
+</tr>
+<tr>
+<td>0x10000000040</td>
+<td>BisCore.DrawingModel</td>
+</tr>
+</tbody></table></blockquote>
+<h2 class="h-datetime"><a id="datetime" class="heading-anchor" href="#%s"></a>DateTime</h2>
+<p>ECSQL supports both dates without time (<code>DATE</code>) and dates with time (<code>TIMESTAMP</code>).</p>
+<blockquote>
+<p>ECSQL does not support time zone conversions. Time zone conversions are to be handled by the application.</p>
+</blockquote>
+<p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql/#datetime'>ECSQL Reference</a> for details.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Find all <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a>s which were modified before June, 1st, 2018.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT CodeValue,LastMod FROM MyDomain.Device WHERE LastMod &lt; DATE &apos;2018-06-01&apos;
+</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>CodeValue</th>
+<th>LastMod</th>
+</tr>
+<tr>
+<td>DEV-A-G-1</td>
+<td>2018-05-29T13:43:42.185Z</td>
+</tr>
+<tr>
+<td>DEV-A-G-2</td>
+<td>2018-05-29T13:43:42.186Z</td>
+</tr>
+<tr>
+<td>DEV-A-1-1</td>
+<td>2018-05-29T19:00:00.029Z</td>
+</tr>
+<tr>
+<td>DEV-A-2-1</td>
+<td>2018-05-29T19:00:00.029Z</td>
+</tr>
+</tbody></table></blockquote>
+<hr>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Find all <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a>s which were modified between 8am and 6pm UTC on May, 29th 2018.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT CodeValue,LastMod FROM bis.Element WHERE LastMod BETWEEN TIMESTAMP &apos;2018-05-29T08:00:00Z&apos; AND TIMESTAMP &apos;2018-05-29T18:00:00Z&apos;
+</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>CodeValue</th>
+<th>LastMod</th>
+</tr>
+<tr>
+<td>DEV-A-G-1</td>
+<td>2018-05-29T13:43:42.185Z</td>
+</tr>
+<tr>
+<td>DEV-A-G-2</td>
+<td>2018-05-29T13:43:42.186Z</td>
+</tr>
+</tbody></table></blockquote>
+<h2 class="h-points"><a id="points" class="heading-anchor" href="#%s"></a>Points</h2>
+<p>Points are a built-in primitive type of ECSchemas and are therefore supported in ECSQL.</p>
+<p>In the context of ECSQL Point ECProperties are interpreted as structs made up of the
+following system properties (See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql/#points'>ECSQL Reference</a> for details):</p>
+<table class="table table-responsive"><tbody><tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><code>X</code></td>
+<td>X coordinate of the Point2d or Point3d</td>
+</tr>
+<tr>
+<td><code>Y</code></td>
+<td>Y coordinate of the Point2d or Point3d</td>
+</tr>
+<tr>
+<td><code>Z</code></td>
+<td>Z coordinate of the Point3d</td>
+</tr>
+</tbody></table><blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Find all <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a>s whose origin lies within the cube with the
+lower corner point (50, 30, 10) and the upper corner point (70, 40, 20).</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT CodeValue, Origin FROM MyDomain.Device
+WHERE Origin.X BETWEEN 50 AND 70 AND
+Origin.Y BETWEEN 30 AND 40 AND Origin.Z BETWEEN 10 AND 20
+</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>CodeValue</th>
+<th>Origin</th>
+</tr>
+<tr>
+<td>DEV-A-2-6</td>
+<td>{&quot;x&quot;:55,&quot;y&quot;:35,&quot;z&quot;:11}</td>
+</tr>
+<tr>
+<td>DEV-A-2-7</td>
+<td>{&quot;x&quot;:65,&quot;y&quot;:35,&quot;z&quot;:11}</td>
+</tr>
+</tbody></table></blockquote>
+<h2 class="h-navigation-properties"><a id="navigation-properties" class="heading-anchor" href="#%s"></a>Navigation Properties</h2>
+<p>Navigation properties are ECProperties that point to a related object. They are always backed by an ECRelationshipClass.</p>
+<p>In the context of ECSQL navigation properties are interpreted as structs made up of the
+following system properties (See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql/#navigation-properties'>ECSQL Reference</a> for details):</p>
+<table class="table table-responsive"><tbody><tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><code>Id</code></td>
+<td>ECInstanceId of the related instance</td>
+</tr>
+<tr>
+<td><code>RelECClassId</code></td>
+<td>ECClassId of the ECRelationshipClass backing the navigation property. It is mainly relevant when the ECRelationshipClass has subclasses.</td>
+</tr>
+</tbody></table><blockquote>
+<p>In iModelJs the <em>RelECClassId</em> is formatted as fully qualified class name when used in the SELECT clause.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return the parent <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#element'>Element</a> for the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#space'>Space</a> with code value <em>A-G-2</em>.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT Parent FROM MyDomain.Space WHERE CodeValue=&apos;A-G-2&apos;
+</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>Parent</th>
+</tr>
+<tr>
+<td>{&quot;id&quot;:&quot;0x10000000013&quot;,&quot;relClassName&quot;:&quot;BisCore.ElementOwnsChildElements&quot;}</td>
+<td></td>
+</tr>
+</tbody></table></blockquote>
+<hr>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return the id of the parent <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#element'>Element</a> for the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#space'>Space</a> with code value <em>A-G-2</em>.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT Parent.Id FROM MyDomain.Space WHERE CodeValue=&apos;A-G-2&apos;
+</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>Parent.Id</th>
+</tr>
+<tr>
+<td>0x10000000013</td>
+<td></td>
+</tr>
+</tbody></table></blockquote>
+<hr>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return the id and RelECClassId of the parent <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#element'>Element</a> separately for the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#space'>Space</a> with code value <em>A-G-2</em>.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT Parent.Id, Parent.RelECClassId FROM MyDomain.Space WHERE CodeValue=&apos;A-G-2&apos;
+</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>Parent.Id</th>
+<th>Parent.RelECClassId</th>
+</tr>
+<tr>
+<td>0x10000000013</td>
+<td>BisCore.ElementOwnsChildElements</td>
+</tr>
+</tbody></table></blockquote>
+<p>Find more examples in the lesson about <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/joins/#examples'>Joins and ECRelationshipClasses</a>.</p>
+<h2 class="h-structs"><a id="structs" class="heading-anchor" href="#%s"></a>Structs</h2>
+<p>In ECSQL you can refer to a struct ECProperty either as a whole or by just referring to some of its members.
+The operator for referencing members of structs in an ECSQL is the &apos;.&apos;.</p>
+<blockquote>
+<p>As there are no struct properties in the sample iModel (structs are generally rarely used), you cannot try that out with this
+tutorial. However, you will find ECSQL examples in the respective section of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql/#structs'>ECSQL Reference</a>.</p>
+</blockquote>
+<h2 class="h-arrays"><a id="arrays" class="heading-anchor" href="#%s"></a>Arrays</h2>
+<p>In ECSQL you can refer to Array ECProperties only as a whole.</p>
+<blockquote>
+<p>The sample iModel does not use array properties for its data. However, arrays are used when querying ECSchemas.
+That topic is covered as advanced lesson: <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/metaqueries'>Querying ECSchemas (Meta queries)</a>
+You will also find ECSQL examples in the respective section of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql/#arrays'>ECSQL Reference</a>.</p>
+</blockquote>
+<hr>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/firstexamples'><strong>&lt; Previous</strong></a> &#xA0; | &#xA0; <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/joins'><strong>Next &gt;</strong></a></p>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>09 July, 2018 @ 12:08:51 am +00:00</span>
+            </p>
+
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div id='inner-table-of-contents'>
+        <!--
+            - If the page is active
+            - Get all headings and subheadings and list them
+         -->
+        
+        
+        
+        
+          <div id='sticky-container'>
+            <h4 class='heading'>On this page</h4>
+            <div id="overview-container" class="clusterize-scroll">
+              <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+                      <li class='nav-item item '>
+                    <a class='title solo-title menu-text' href="#ecinstanceid-and-ecclassid">ECInstanceId and ECClassId</a>
+            </li>
+               <li class='nav-item item '>
+                    <a class='title solo-title menu-text' href="#primitive-data-types">Primitive Data Types</a>
+            </li>
+               <li class='nav-item item '>
+                    <a class='title solo-title menu-text' href="#boolean">Boolean</a>
+            </li>
+               <li class='nav-item item '>
+                    <a class='title solo-title menu-text' href="#datetime">DateTime</a>
+            </li>
+               <li class='nav-item item '>
+                    <a class='title solo-title menu-text' href="#points">Points</a>
+            </li>
+               <li class='nav-item item '>
+                    <a class='title solo-title menu-text' href="#navigation-properties">Navigation Properties</a>
+            </li>
+               <li class='nav-item item '>
+                    <a class='title solo-title menu-text' href="#structs">Structs</a>
+            </li>
+               <li class='nav-item item '>
+                    <a class='title solo-title menu-text' href="#arrays">Arrays</a>
+            </li>
+         
+              </ul>
+            </div>
+          </div>
+        
+    </div>
+</div>
+
+
+    <footer id='main-footer'>
+        <div id='footer-content-container'>
+           <div class='footer-footer'>
+               <p>Copyright 2018 Bentley Systems, Incorporated</p>
+            </div>
+        </div>
+    </footer>
+</div>
+    <a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+    <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js" ></script>
+</body>
+
+</html>

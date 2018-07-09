@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Polymorphic Queries - iModelJs</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//overview/imodeljs.ico' /> 
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
+    <span id="contentLoader">
+        <p>Woah! This page has a great deal of content... Give us a second to load it.</p>
+    </span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+        <header id="main-header">
+            <div class='row nav-container'>
+                <nav id='main-navbar' class="navbar navbar-expand-md navbar-light">
+                    
+                    <button class="navbar-toggler navbar-toggler-left custom-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon">
+                            <i class='icon icon-menu'></i>
+                        </span>
+                    </button>
+                    <div class="nav-title-container">
+                        <a class="navbar-brand " href="https://imodeljs.github.io/iModelJs-docs-output//" class="col-md-3">
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//overview/imodeljs.ico" />
+                            <h1 id="site-title">iModelJs</h1>
+                        </a>
+                    </div>
+                    <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
+                        <nav class="navbar navbar-expand-md navbar-light">
+                             <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li></ul> 
+                        </nav>
+                    </div>                </nav>
+            </div>
+
+        </header>
+        
+<div id='main-wrapper'>
+    <div id='table-of-contents'>
+        <span class='search-bar'>
+          <li>
+            <div id='search-container'>
+            </div>
+          </li>
+        </span>
+        
+        <ul id='main-navigation-list'>
+            <html><head></head><body><h3 id="the imodeljs library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModelJs Library</a></h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+        </ul>
+        <hr>
+        <p>&#xA0;</p>
+        <h3 id="helpful links">Helpful links</h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModelJs Glossary</a></li>
+        </ul>
+        </body></html>
+        </ul>    </div>
+    <div class='row documentation-main'>
+        <article id="main" name="main-content">
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ecsqltutorial/">ecsqltutorial</a> > PolymorphicQueries</div>
+            <h1 id="polymorphic queries">Polymorphic Queries</h1>
+<p>By default, any ECClass in the FROM or JOIN clause of an ECSQL is treated polymorphically. That means all the subclasses of the specified class are considered as well. If an ECClass should be treated non-polymorphically, i.e. only the class itself and not its subclasses should be considered, add the <code>ONLY</code> keyword in front of it.</p>
+<p>We begin the lesson by using a simple ECSQL similar to the ones used at the beginning of the tutorial.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return the id and class id of all <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a>s.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, ECClassId FROM bis.SpatialElement
+</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>ECInstanceId</th>
+<th>ECClassId</th>
+</tr>
+<tr>
+<td>0x10000000012</td>
+<td>MyDomain.Building</td>
+</tr>
+<tr>
+<td>0x10000000021</td>
+<td>MyDomain.Device</td>
+</tr>
+<tr>
+<td>0x10000000022</td>
+<td>MyDomain.Device</td>
+</tr>
+<tr>
+<td>0x10000000023</td>
+<td>MyDomain.Device</td>
+</tr>
+<tr>
+<td>0x10000000024</td>
+<td>MyDomain.Device</td>
+</tr>
+<tr>
+<td>0x10000000025</td>
+<td>MyDomain.Device</td>
+</tr>
+<tr>
+<td>0x10000000026</td>
+<td>MyDomain.Device</td>
+</tr>
+<tr>
+<td>0x10000000027</td>
+<td>MyDomain.Device</td>
+</tr>
+<tr>
+<td>0x10000000028</td>
+<td>MyDomain.Device</td>
+</tr>
+<tr>
+<td>0x10000000029</td>
+<td>MyDomain.Device</td>
+</tr>
+<tr>
+<td>0x1000000002a</td>
+<td>MyDomain.Device</td>
+</tr>
+<tr>
+<td>0x1000000002b</td>
+<td>MyDomain.Device</td>
+</tr>
+<tr>
+<td>0x10000000014</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>0x10000000015</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>0x10000000017</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>0x10000000019</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>0x1000000001a</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>0x1000000001b</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>0x1000000001c</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>0x1000000001d</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>0x1000000001e</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>0x1000000001f</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>0x10000000020</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>0x10000000013</td>
+<td>MyDomain.Story</td>
+</tr>
+<tr>
+<td>0x10000000016</td>
+<td>MyDomain.Story</td>
+</tr>
+<tr>
+<td>0x10000000018</td>
+<td>MyDomain.Story</td>
+</tr>
+</tbody></table></blockquote>
+<p>This example illustrates that polymorphism is pretty obvious. All examples throughout the tutorial up to here were polymorphic queries, and we did not have to mention or even explain it. It has worked intuitively. If we now take a closer look at what the ECSQL does, you can notice this:</p>
+<ul>
+<li>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a> ECClass is an abstract class, i.e. it cannot have any instances. However you can query against it, and because of polymorphism the query intuitively returns instances of all subclasses of <code>SpatialElement</code>.</li>
+<li>Returning the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/ecsqldatatypes/#ecinstanceid-and-ecclassid'>ECClassId</a> in the query only makes sense because of polymorphism. If the query was not polymorphic, the returned ECClassId would always be the same.</li>
+<li>Consequently, the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/ecsqldatatypes/#ecinstanceid-and-ecclassid'>ECClassId</a> is key when you need to know about the subclasses of a polymorphic query.</li>
+</ul>
+<p>Now let&apos;s turn the query into a non-polymorphic one.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return the id and class id of instances of only the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a> class</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, ECClassId FROM ONLY bis.SpatialElement
+</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>ECInstanceId</th>
+<th>ECClassId</th>
+</tr>
+<tr>
+<td>no rows</td>
+<td></td>
+</tr>
+</tbody></table></blockquote>
+<p>As expected the query does not return anything, because <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a> is an abstract class, and hence cannot have any instances. It is more meaningful to query against a non-abstract class.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return the code of instances of only the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> class (which is a subclass of <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a>)</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, CodeValue FROM ONLY MyDomain.Device
+</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>ECInstanceId</th>
+<th>CodeValue</th>
+</tr>
+<tr>
+<td>0x10000000021</td>
+<td>DEV-A-G-1</td>
+</tr>
+<tr>
+<td>0x10000000022</td>
+<td>DEV-A-G-2</td>
+</tr>
+<tr>
+<td>0x10000000023</td>
+<td>DEV-A-1-1</td>
+</tr>
+<tr>
+<td>0x10000000024</td>
+<td>DEV-A-2-1</td>
+</tr>
+<tr>
+<td>0x10000000025</td>
+<td>DEV-A-2-2</td>
+</tr>
+<tr>
+<td>0x10000000026</td>
+<td>DEV-A-2-3</td>
+</tr>
+<tr>
+<td>0x10000000027</td>
+<td>DEV-A-2-4</td>
+</tr>
+<tr>
+<td>0x10000000028</td>
+<td>DEV-A-2-5</td>
+</tr>
+<tr>
+<td>0x10000000029</td>
+<td>DEV-A-2-6</td>
+</tr>
+<tr>
+<td>0x1000000002a</td>
+<td>DEV-A-2-7</td>
+</tr>
+<tr>
+<td>0x1000000002b</td>
+<td>DEV-A-2-8</td>
+</tr>
+</tbody></table></blockquote>
+<p>Let&apos;s go back to explore more how to work with the ECClassId to tell between subclasses of a polymorphic query.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return the code and class id of all <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a>s that are either <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#space'>Space</a> (ECClassId 244) or <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#story'>Story</a> (ECClassId 245) classes.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT CodeValue, ECClassId FROM bis.SpatialElement WHERE ECClassId IN (244,245)
+</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>CodeValue</th>
+<th>ECClassId</th>
+</tr>
+<tr>
+<td>A-G-1</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>A-G-2</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>A-1-1</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>A-2-1</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>A-2-2</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>A-2-3</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>A-2-4</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>A-2-5</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>A-2-6</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>A-2-7</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>A-2-8</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>A-G</td>
+<td>MyDomain.Story</td>
+</tr>
+<tr>
+<td>A-1</td>
+<td>MyDomain.Story</td>
+</tr>
+<tr>
+<td>A-2</td>
+<td>MyDomain.Story</td>
+</tr>
+</tbody></table></blockquote>
+<p>As usually the class ids are not known, you need to look them up first. You can do so by joining to the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbmeta.ecschema'>ECDbMeta ECSchema</a>. This allows you to specify the subclasses by name rather than by id. The <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbmeta.ecschema'>ECDbMeta ECSchema</a> is covered in more detail in the advanced lesson about <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/metaqueries'>Meta queries</a>.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return the code and class id of all <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a>s that are either <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#space'>Space</a> or <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#story'>Story</a> classes.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT SpatialElement.CodeValue, SpatialElement.ECClassId FROM bis.SpatialElement JOIN meta.ECClassDef ON SpatialElement.ECClassId=ECClassDef.ECInstanceId WHERE ECClassDef.Name IN (&apos;Space&apos;,&apos;Story&apos;)
+</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>CodeValue</th>
+<th>ECClassId</th>
+</tr>
+<tr>
+<td>A-G-1</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>A-G-2</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>A-1-1</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>A-2-1</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>A-2-2</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>A-2-3</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>A-2-4</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>A-2-5</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>A-2-6</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>A-2-7</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>A-2-8</td>
+<td>MyDomain.Space</td>
+</tr>
+<tr>
+<td>A-G</td>
+<td>MyDomain.Story</td>
+</tr>
+<tr>
+<td>A-1</td>
+<td>MyDomain.Story</td>
+</tr>
+<tr>
+<td>A-2</td>
+<td>MyDomain.Story</td>
+</tr>
+</tbody></table></blockquote>
+<p>The following shows how you can perform simple statistics on the distribution of instances across the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a> subclasses.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return Element count per <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a> subclass for all <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a>s in the iModel.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECClassId, count(*) ElementCount FROM bis.SpatialElement GROUP BY ECClassId
+</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>ECClassId</th>
+<th>ElementCount</th>
+</tr>
+<tr>
+<td>MyDomain.Building</td>
+<td>1</td>
+</tr>
+<tr>
+<td>MyDomain.Device</td>
+<td>11</td>
+</tr>
+<tr>
+<td>MyDomain.Space</td>
+<td>11</td>
+</tr>
+<tr>
+<td>MyDomain.Story</td>
+<td>3</td>
+</tr>
+</tbody></table></blockquote>
+<hr>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/joins'><strong>&lt; Previous</strong></a> &#xA0; | &#xA0; <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/spatialqueries'><strong>Next &gt;</strong></a></p>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>09 July, 2018 @ 12:08:51 am +00:00</span>
+            </p>
+
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div id='inner-table-of-contents'>
+        <!--
+            - If the page is active
+            - Get all headings and subheadings and list them
+         -->
+        
+        
+        
+        
+        
+    </div>
+</div>
+
+
+    <footer id='main-footer'>
+        <div id='footer-content-container'>
+           <div class='footer-footer'>
+               <p>Copyright 2018 Bentley Systems, Incorporated</p>
+            </div>
+        </div>
+    </footer>
+</div>
+    <a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+    <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js" ></script>
+</body>
+
+</html>

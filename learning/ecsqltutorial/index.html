@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Learning ECSQL - iModelJs</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//overview/imodeljs.ico' /> 
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
+    <span id="contentLoader">
+        <p>Woah! This page has a great deal of content... Give us a second to load it.</p>
+    </span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+        <header id="main-header">
+            <div class='row nav-container'>
+                <nav id='main-navbar' class="navbar navbar-expand-md navbar-light">
+                    
+                    <button class="navbar-toggler navbar-toggler-left custom-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon">
+                            <i class='icon icon-menu'></i>
+                        </span>
+                    </button>
+                    <div class="nav-title-container">
+                        <a class="navbar-brand " href="https://imodeljs.github.io/iModelJs-docs-output//" class="col-md-3">
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//overview/imodeljs.ico" />
+                            <h1 id="site-title">iModelJs</h1>
+                        </a>
+                    </div>
+                    <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
+                        <nav class="navbar navbar-expand-md navbar-light">
+                             <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li></ul> 
+                        </nav>
+                    </div>                </nav>
+            </div>
+
+        </header>
+        
+<div id='main-wrapper'>
+    <div id='table-of-contents'>
+        <span class='search-bar'>
+          <li>
+            <div id='search-container'>
+            </div>
+          </li>
+        </span>
+        
+        <ul id='main-navigation-list'>
+            <html><head></head><body><h3 id="the imodeljs library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModelJs Library</a></h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+        </ul>
+        <hr>
+        <p>&#xA0;</p>
+        <h3 id="helpful links">Helpful links</h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModelJs Glossary</a></li>
+        </ul>
+        </body></html>
+        </ul>    </div>
+    <div class='row documentation-main'>
+        <article id="main" name="main-content">
+            <div class='bread-crumb-label'>ecsqltutorial</div>
+            <h1 id="learning ecsql">Learning ECSQL</h1>
+<blockquote>
+<p>The tutorial is still a <strong>work in progress</strong>. The iModelConsole and the sample iModel used in the tutorial are not yet publicly available. However, you can still use the tutorial and learn ECSQL. You won&apos;t be able to run and experiment with the examples though.</p>
+</blockquote>
+<p>This tutorial allows you to learn how to use ECSQL to read and query the business data in your iModels.</p>
+<p>ECSQL is an implementation of SQL &#x2014; a proven, well-adopted text-based command language. It sticks to
+standard SQL (SQL-92 and SQL-99) wherever possible.</p>
+<h2 class="h-prerequisites"><a id="prerequisites" class="heading-anchor" href="#%s"></a>Prerequisites</h2>
+<h3 class="h-sql"><a id="sql" class="heading-anchor" href="#%s"></a>SQL</h3>
+<p>In the course of the tutorial you will notice how similar ECSQL and SQL are. To not reinvent the wheel, this tutorial therefore expects you to be familiar with the basics of SQL. <strong>If you are new to SQL, please take a class on the SQL basics first.</strong></p>
+<h3 class="h-imodelconsole"><a id="imodelconsole" class="heading-anchor" href="#%s"></a>iModelConsole</h3>
+<p><strong>WIP</strong>
+You will also need to use the <strong>iModelConsole</strong> to try out the ECSQL examples in the tutorial yourself and to experiment with your own ECSQL statements. You can download it from here XXX. Follow the instructions on XXX for how to install and run it.</p>
+<blockquote>
+<p>In the iModelConsole run the <code>.help</code> command to see all available commands.</p>
+</blockquote>
+<h3 class="h-sample-imodel"><a id="sample-imodel" class="heading-anchor" href="#%s"></a>Sample iModel</h3>
+<p><strong>WIP</strong>
+The ECSQL examples in the tutorial work with the sample iModel which you can download from here: XXX</p>
+<h3 class="h-bis"><a id="bis" class="heading-anchor" href="#%s"></a>BIS</h3>
+<p>The schemas for iModels are based on <a href='https://imodeljs.github.io/iModelJs-docs-output//bis/'>BIS</a>. Therefore, the examples throughout the tutorial use the BIS schemas. While not required to learn ECSQL, familiarity with BIS is a good idea to get more from this tutorial.</p>
+<h2 class="h-scope"><a id="scope" class="heading-anchor" href="#%s"></a>Scope</h2>
+<p>The data in iModels can only be modified via the respective APIs. ECSQL is used to query the data from iModels. Therefore the tutorial only covers the query portion of ECSQL, i.e. <strong>ECSQL SELECT</strong> statements.</p>
+<h2 class="h-how-to-use-the-tutorial"><a id="how-to-use-the-tutorial" class="heading-anchor" href="#%s"></a>How to use the tutorial</h2>
+<p>The tutorial looks at typical questions and finds the respective ECSQL answer to it. The goal of the tutorial is that you can try out all ECSQL statements used in the lessons yourself. The tool to run the ECSQL statements is the <a href="#imodelconsole">iModelConsole</a> with the tutorial&apos;s <a href="#sample-imodel">Sample iModel</a>.</p>
+<p>This also enables you to experiment more with ECSQL by modifying the tutorial&apos;s ECSQL statements or by trying out your own ECSQL statements.</p>
+<h3 class="h-step-1--start-the-imodelconsole"><a id="step-1--start-the-imodelconsole" class="heading-anchor" href="#%s"></a>Step 1 - Start the iModelConsole</h3>
+<ol>
+<li>Launch the console (TBD)</li>
+<li>Authenticate with your CONNECT credentials.</li>
+</ol>
+<h3 class="h-step-2--open-the-sample-imodel"><a id="step-2--open-the-sample-imodel" class="heading-anchor" href="#%s"></a>Step 2 - Open the sample iModel</h3>
+<p>Run this command:</p>
+<blockquote>
+<p><code>.open -path:&lt;path to sample imodel&gt;</code></p>
+</blockquote>
+<h3 class="h-step-3--run-an-ecsql-in-the-imodelconsole"><a id="step-3--run-an-ecsql-in-the-imodelconsole" class="heading-anchor" href="#%s"></a>Step 3 - Run an ECSQL in the iModelConsole</h3>
+<p>Once you opened the iModel just type in the ECSQL (without a leading .) and hit <em>Enter</em> to execute it.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT count(*) ElementCount FROM bis.Element
+</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>ElementCount</th>
+</tr>
+<tr>
+<td>80</td>
+<td></td>
+</tr>
+</tbody></table></blockquote>
+<h2 class="h-tutorial-overview"><a id="tutorial-overview" class="heading-anchor" href="#%s"></a>Tutorial Overview</h2>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/keytoecsql'>Lesson 1: Key to ECSQL</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/firstexamples'>Lesson 2: The first examples</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/ecsqldatatypes'>Lesson 3: ECSQL Data Types</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/joins'>Lesson 4: Relationships and Joins</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/polymorphicqueries'>Lesson 5: Class Polymorphism</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/spatialqueries'>Lesson 6: Spatial Queries</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/metaqueries'>Lesson 7: Meta Queries - Querying ECSchemas</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/changesummaryqueries'>Lesson 8: Querying Change Summaries</a></li>
+</ul>
+<hr>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/keytoecsql'><strong>Next &gt;</strong></a></p>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>09 July, 2018 @ 12:08:51 am +00:00</span>
+            </p>
+
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div id='inner-table-of-contents'>
+        <!--
+            - If the page is active
+            - Get all headings and subheadings and list them
+         -->
+        
+        
+        
+        
+          <div id='sticky-container'>
+            <h4 class='heading'>On this page</h4>
+            <div id="overview-container" class="clusterize-scroll">
+              <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+                      <li class='nav-item item '>
+                    <a data-target="#inner-nav-prerequisites" class='title' href="#prerequisites"/>
+                    <b class='dropdown-menu-title menu-text'>Prerequisites</b>
+                    <i class='dropdown icon'></i>
+                    </a>
+                    <ul id="inner-nav-prerequisites" class='inner-nav'>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#sql">SQL</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#imodelconsole">iModelConsole</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#sample-imodel">Sample iModel</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#bis">BIS</a>
+                            </li>
+                    </ul>
+            </li>
+               <li class='nav-item item '>
+                    <a class='title solo-title menu-text' href="#scope">Scope</a>
+            </li>
+               <li class='nav-item item '>
+                    <a data-target="#inner-nav-how-to-use-the-tutorial" class='title' href="#how-to-use-the-tutorial"/>
+                    <b class='dropdown-menu-title menu-text'>How to use the tutorial</b>
+                    <i class='dropdown icon'></i>
+                    </a>
+                    <ul id="inner-nav-how-to-use-the-tutorial" class='inner-nav'>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#step-1--start-the-imodelconsole">Step 1 - Start the iModelConsole</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#step-2--open-the-sample-imodel">Step 2 - Open the sample iModel</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#step-3--run-an-ecsql-in-the-imodelconsole">Step 3 - Run an ECSQL in the iModelConsole</a>
+                            </li>
+                    </ul>
+            </li>
+               <li class='nav-item item '>
+                    <a class='title solo-title menu-text' href="#tutorial-overview">Tutorial Overview</a>
+            </li>
+         
+              </ul>
+            </div>
+          </div>
+        
+    </div>
+</div>
+
+
+    <footer id='main-footer'>
+        <div id='footer-content-container'>
+           <div class='footer-footer'>
+               <p>Copyright 2018 Bentley Systems, Incorporated</p>
+            </div>
+        </div>
+    </footer>
+</div>
+    <a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+    <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js" ></script>
+</body>
+
+</html>

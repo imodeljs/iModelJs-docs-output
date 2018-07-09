@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Spatial Queries - iModelJs</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//overview/imodeljs.ico' /> 
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
+    <span id="contentLoader">
+        <p>Woah! This page has a great deal of content... Give us a second to load it.</p>
+    </span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+        <header id="main-header">
+            <div class='row nav-container'>
+                <nav id='main-navbar' class="navbar navbar-expand-md navbar-light">
+                    
+                    <button class="navbar-toggler navbar-toggler-left custom-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon">
+                            <i class='icon icon-menu'></i>
+                        </span>
+                    </button>
+                    <div class="nav-title-container">
+                        <a class="navbar-brand " href="https://imodeljs.github.io/iModelJs-docs-output//" class="col-md-3">
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//overview/imodeljs.ico" />
+                            <h1 id="site-title">iModelJs</h1>
+                        </a>
+                    </div>
+                    <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
+                        <nav class="navbar navbar-expand-md navbar-light">
+                             <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li></ul> 
+                        </nav>
+                    </div>                </nav>
+            </div>
+
+        </header>
+        
+<div id='main-wrapper'>
+    <div id='table-of-contents'>
+        <span class='search-bar'>
+          <li>
+            <div id='search-container'>
+            </div>
+          </li>
+        </span>
+        
+        <ul id='main-navigation-list'>
+            <html><head></head><body><h3 id="the imodeljs library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModelJs Library</a></h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+        </ul>
+        <hr>
+        <p>&#xA0;</p>
+        <h3 id="helpful links">Helpful links</h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModelJs Glossary</a></li>
+        </ul>
+        </body></html>
+        </ul>    </div>
+    <div class='row documentation-main'>
+        <article id="main" name="main-content">
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ecsqltutorial/">ecsqltutorial</a> > SpatialQueries</div>
+            <h1 id="spatial queries">Spatial Queries</h1>
+<p>Every instance of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a> ECClass in an iModel is spatially indexed. The spatial index allows fast look-ups by spatial criteria. Each row in the spatial index is conceptually a bounding cube, plus the ECInstanceId of an element that is enclosed by it.</p>
+<p>The index is exposed to ECSQL via the ECClass <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialindex'>BisCore.SpatialIndex</a>. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/spatialqueries'>ECSQL Reference</a> for details.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return all <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a>s that are contained or overlap a cube defined by the minimum coordinate (0|0|0) and maximum coordinate (10|10|10).</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT e.ECInstanceId, e.CodeValue FROM bis.SpatialElement e JOIN bis.SpatialIndex i ON e.ECInstanceId=i.ECInstanceId WHERE i.MinX&lt;=10 AND i.MinY&lt;=10 AND i.MinZ&lt;=10 AND i.MaxX&gt;=0 AND i.MaxY&gt;=0 AND i.MaxZ&gt;=0
+</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>ECInstanceId</th>
+<th>CodeValue</th>
+</tr>
+<tr>
+<td>0x10000000012</td>
+<td>Building A</td>
+</tr>
+<tr>
+<td>0x10000000021</td>
+<td>DEV-A-G-1</td>
+</tr>
+<tr>
+<td>0x10000000022</td>
+<td>DEV-A-G-2</td>
+</tr>
+<tr>
+<td>0x10000000023</td>
+<td>DEV-A-1-1</td>
+</tr>
+<tr>
+<td>0x10000000014</td>
+<td>A-G-1</td>
+</tr>
+<tr>
+<td>0x10000000015</td>
+<td>A-G-2</td>
+</tr>
+<tr>
+<td>0x10000000017</td>
+<td>A-1-1</td>
+</tr>
+<tr>
+<td>0x10000000013</td>
+<td>A-G</td>
+</tr>
+<tr>
+<td>0x10000000016</td>
+<td>A-1</td>
+</tr>
+</tbody></table></blockquote>
+<p>For more complex spatial criteria the <code>MATCH</code> keyword together with the special built-in spatial index matching function <code>iModel_spatial_overlap_aabb</code> is used. The MATCH clause acts like a sub-selection that generates a set of ECInstanceIds, which it gathers from the spatial index rows that match the specified criteria.
+The function <code>iModel_spatial_overlap_aabb</code> selects all nodes that overlap a specified axis-aligned <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/geometrysqlfuncs/#imodel_bbox'>bounding box</a>.</p>
+<p>See also other <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/geometrysqlfuncs'>ECSQL built-in geometry functions</a> which can be used along with spatial queries as additional WHERE criteria.</p>
+<blockquote>
+<p><strong>Try it yourself</strong>
+The argument to the match function can only be passed via an ECSQL parameter. As the iModelConsole does not support parameter values, the following example cannot be tried out with the iModelConsole. You would have to put the sample code into your own playground.</p>
+<p><em>Goal:</em> Return all <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a>s which overlap the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#space'>Space</a> with id 0x10000000017 and which are in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#category'>Category</a> with id 0x10000000003.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT e.ECInstanceId, e.CodeValue FROM bis.SpatialElement e JOIN bis.SpatialIndex i ON e.ECInstanceId=i.ECInstanceId WHERE i.ECInstanceId MATCH iModel_spatial_overlap_aabb(?) AND e.Category.Id=0x10000000003
+</code></pre>
+<p><em>Sample code</em></p>
+<pre class="no-line-numbers"><code class="language-typescript">const spaceElement: SpatialElement = iModelDb.elements.getElement(&quot;0x10000000017&quot;) as SpatialElement;
+
+iModelDb.withPreparedStatement(&quot;SELECT e.ECInstanceId, e.ECClassId, e.CodeValue FROM bis.SpatialElement e JOIN bis.SpatialIndex i ON e.ECInstanceId=i.ECInstanceId WHERE i.ECInstanceId MATCH iModel_spatial_overlap_aabb(?) AND e.Category.Id=0x10000000003&quot;,
+   (stmt: ECSqlStatement) =&gt; {
+     stmt.bindRange3d(1, spaceElement.placement.calculateRange());
+     while (stmt.step() === DbResult.BE_SQLITE_ROW) {
+        const row: any = stmt.getRow();
+        console.log(row);
+     }
+   });
+</code></pre>
+<p><em>Result</em></p>
+<pre class="no-line-numbers"><code class="language-typescript">{ id : &quot;0x10000000013&quot;, className: &quot;MyDomain.Story&quot;, codeValue: &quot;A-G&quot; }
+{ id : &quot;0x10000000016&quot;, className: &quot;MyDomain.Story&quot;, codeValue: &quot;A-1&quot; }
+</code></pre>
+</blockquote>
+<hr>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/polymorphicqueries'><strong>&lt; Previous</strong></a> &#xA0; | &#xA0; <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/metaqueries'><strong>Next &gt;</strong></a></p>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>09 July, 2018 @ 12:08:51 am +00:00</span>
+            </p>
+
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div id='inner-table-of-contents'>
+        <!--
+            - If the page is active
+            - Get all headings and subheadings and list them
+         -->
+        
+        
+        
+        
+        
+    </div>
+</div>
+
+
+    <footer id='main-footer'>
+        <div id='footer-content-container'>
+           <div class='footer-footer'>
+               <p>Copyright 2018 Bentley Systems, Incorporated</p>
+            </div>
+        </div>
+    </footer>
+</div>
+    <a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+    <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js" ></script>
+</body>
+
+</html>
