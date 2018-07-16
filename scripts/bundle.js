@@ -23681,7 +23681,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('a').each(function () {
-        if($(this).css('font-family') === 'consolas'){
+        if ($(this).css('font-family') === 'consolas' || this.href.match(/\/reference\/\S*\/\S*\/\S/gm)) {
             $(this).addClass('livepreview');
         }
     });
@@ -23775,11 +23775,28 @@ See: https://github.com/alanphoon/jquery-live-preview
                     toppos = pos.top + (height / 2) + currentOffset;
                 }
 
+                //Shift up or down if the preview will be off the screen
+                var bottomMostVisiblePos = $(window).height() + $(window).scrollTop();
+                var bottomOfWindow = toppos + options.viewHeight;
+                var arrowPos = (options.viewHeight / 1.96);
+                if (bottomOfWindow > bottomMostVisiblePos) {
+                    arrowPos += bottomOfWindow - bottomMostVisiblePos;
+                    toppos = toppos - (bottomOfWindow - bottomMostVisiblePos);
+                }
+
+                var topmostVisiblePos = $(window).scrollTop() + $('#main-header').height();
+                if (toppos < topmostVisiblePos) {
+                    arrowPos -= (topmostVisiblePos - toppos) + 5;
+                    toppos = toppos + (topmostVisiblePos - toppos) + 5;
+                    arrowPos = arrowPos > 26 ? arrowPos : 26;
+                }
+
                 //hover on 
-                $('body').append('<div id="livepreview_dialog" class="' + currentPos + '" style="display:none; padding:0px; left: ' + leftpos + 'px; top:' + toppos + 'px; width: ' + options.viewWidth + 'px; height: ' + options.viewHeight + 'px"><div class="livepreview-container" style="overflow:hidden; width: ' + (options.viewWidth - 10) + 'px; height: ' + (options.viewHeight - 10) + 'px"><iframe id="livepreview_iframe" src="' + href + '" style="height:' + options.targetHeight + 'px; width:' + options.targetWidth + 'px;-moz-transform: scale(' + s + ');-moz-transform-origin: 0 0;-o-transform: scale(' + s + ');-o-transform-origin: 0 0;-webkit-transform: scale(' + s + ');-webkit-transform-origin: ' + options.iframeOffsetX + '% ' + options.iframeOffsetY + '%;" sandbox=""></iframe></div></div>');
-                $('#' + preview_id).fadeIn(800);
-                $('#livepreview_iframe').on('load', function(){
-                    $(this).css({'background-image': 'none'});
+                $('body').append('<div id="livepreview_dialog" class="' + currentPos + '" style="display:none; padding:0px; left: ' + leftpos + 'px; top:' + toppos + 'px; width: ' + options.viewWidth + 'px; height: ' + options.viewHeight + 'px"><i class="livepreview_arrow" style="top:' + arrowPos + 'px"></i><i class="livepreview_arrow_cover" style="top:' + arrowPos + 'px"></i><div class="livepreview-container" style="overflow:hidden; width: ' + (options.viewWidth - 10) + 'px; height: ' + (options.viewHeight - 10) + 'px"><div class="bwc-loader-large" id="livepreview_loader"><i></i><i></i><i></i><i></i><i></i><i></i></div><iframe id="livepreview_iframe" src="' + href + '" style="height:' + options.targetHeight + 'px; width:' + options.targetWidth + 'px;-ms-transform: scale(' + s + ');-moz-transform: scale(' + s + ');-moz-transform-origin: ' + options.iframeOffsetX + '% ' + options.iframeOffsetY + '%;-ms-transform-origin: ' + options.iframeOffsetX + '% ' + options.iframeOffsetY + '%;-o-transform: scale(' + s + ');-o-transform-origin: ' + options.iframeOffsetX + '% ' + options.iframeOffsetY + '%;-webkit-transform: scale(' + s + ');-webkit-transform-origin: ' + options.iframeOffsetX + '% ' + options.iframeOffsetY + '%;" referrerpolicy="origin" sandbox="allow-same-origin"></iframe></div></div>');
+                $('#' + preview_id).delay(500).fadeIn(800);
+                $('#livepreview_iframe').on('load', function () {
+                    $(this).css({ 'display': 'inline' });
+                    $('#livepreview_loader').css({ 'display': 'none' });
                 });
             };
 
