@@ -164,6 +164,10 @@
 <td>Attaches the <em>Change Cache file</em> to this iModel if it hasn&apos;t been attached yet.</td>
 </tr>
 <tr>
+<td class="h-cancelsnap"><a id="cancelsnap" class="heading-anchor" href="#%s"></a><span class="method-name">cancelSnap</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span></td>
+<td></td>
+</tr>
+<tr>
 <td class="h-close"><a id="close" class="heading-anchor" href="#%s"></a><span class="method-name">close</span><span class="method-parenthesis">(</span><span class="method-parameters">accessToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/token/accesstoken'>AccessToken</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span></td>
 <td>Close this IModelConnection</td>
 </tr>
@@ -177,7 +181,7 @@
 </tr>
 <tr>
 <td class="h-executequery"><a id="executequery" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="executequery">executeQuery</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ecsql: string, bindings?: any[] | any</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;any[]&gt;</span></td>
-<td>Execute a query against the iModel.</td>
+<td>Execute an ECSQL query against the iModel.</td>
 </tr>
 <tr>
 <td class="h-ischangecacheattached"><a id="ischangecacheattached" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="ischangecacheattached">isChangeCacheAttached</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;boolean&gt;</span></td>
@@ -185,7 +189,7 @@
 </tr>
 <tr>
 <td class="h-isreadonly"><a id="isreadonly" class="heading-anchor" href="#%s"></a><span class="method-name">isReadonly</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
-<td>Check if this iModel has been opened read-only or not.</td>
+<td>Check the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection/#openmode'>IModelConnection.openMode</a> of this IModelConnection to see if it was opened read-only.</td>
 </tr>
 <tr>
 <td class="h-loadfontmap"><a id="loadfontmap" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="loadfontmap">loadFontMap</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/fontmap'>FontMap</a>&gt;</span></td>
@@ -194,6 +198,10 @@
 <tr>
 <td class="h-queryentityids"><a id="queryentityids" class="heading-anchor" href="#%s"></a><span class="method-name">queryEntityIds</span><span class="method-parenthesis">(</span><span class="method-parameters">params: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/entityqueryparams'>EntityQueryParams</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64set'>Id64Set</a>&gt;</span></td>
 <td>query for a set of ids that satisfy the supplied query params</td>
+</tr>
+<tr>
+<td class="h-requestsnap"><a id="requestsnap" class="heading-anchor" href="#%s"></a><span class="method-name">requestSnap</span><span class="method-parenthesis">(</span><span class="method-parameters">props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/snaprequestprops'>SnapRequestProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/snapresponseprops'>SnapResponseProps</a>&gt;</span></td>
+<td></td>
 </tr>
 <tr>
 <td class="h-savechanges"><a id="savechanges" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="savechanges">saveChanges</a></span><span class="method-parenthesis">(</span><span class="method-parameters">description?: string</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span></td>
@@ -220,12 +228,17 @@
 <tr>
 <td class="h-codespecs"><a id="codespecs" class="heading-anchor" href="#%s"></a><span class="property-name">codeSpecs</span></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection/#codespecs'>IModelConnection.CodeSpecs</a></span></td>
-<td></td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/codespec'>CodeSpec</a>s in this IModelConnection.</td>
+</tr>
+<tr>
+<td class="h-connectionid"><a id="connectionid" class="heading-anchor" href="#%s"></a><span class="property-name">connectionId</span></td>
+<td><span class="method-output">string</span></td>
+<td>A unique Id of this IModelConnection.</td>
 </tr>
 <tr>
 <td class="h-elements"><a id="elements" class="heading-anchor" href="#%s"></a><span class="property-name">elements</span></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection/#elements'>IModelConnection.Elements</a></span></td>
-<td></td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/elementstate/elementstate'>ElementState</a>s in this IModelConnection.</td>
 </tr>
 <tr>
 <td class="h-fontmap"><a id="fontmap" class="heading-anchor" href="#%s"></a><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection/fontmap'>fontMap</a></span></td>
@@ -235,12 +248,12 @@
 <tr>
 <td class="h-hilited"><a id="hilited" class="heading-anchor" href="#%s"></a><span class="property-name">hilited</span></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/selectionset/hilitedset'>HilitedSet</a></span></td>
-<td></td>
+<td>The set of currently hilited elements for this IModelConnection.</td>
 </tr>
 <tr>
 <td class="h-models"><a id="models" class="heading-anchor" href="#%s"></a><span class="property-name">models</span></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection/#models'>IModelConnection.Models</a></span></td>
-<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/models/model'>Model</a>s in this IModel</td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/modelstate'>ModelState</a>s in this IModelConnection.</td>
 </tr>
 <tr>
 <td class="h-onclose"><a id="onclose" class="heading-anchor" href="#%s"></a><span class="property-name">onClose</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
@@ -250,26 +263,27 @@
 <tr>
 <td class="h-openmode"><a id="openmode" class="heading-anchor" href="#%s"></a><span class="property-name">openMode</span></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/besqlite/openmode'>OpenMode</a></span></td>
-<td></td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/besqlite/openmode'>OpenMode</a> used for this IModelConnection.</td>
 </tr>
 <tr>
 <td class="h-selectionset"><a id="selectionset" class="heading-anchor" href="#%s"></a><span class="property-name">selectionSet</span></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/selectionset/selectionset'>SelectionSet</a></span></td>
-<td></td>
+<td>The set of currently selected elements for this IModelConnection.</td>
 </tr>
 <tr>
 <td class="h-tiles"><a id="tiles" class="heading-anchor" href="#%s"></a><span class="property-name">tiles</span></td>
 <td><span class="method-output">Tiles</span></td>
-<td></td>
+<td>The set of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tile/tile'>Tile</a>s for this IModelConnection.</td>
 </tr>
 <tr>
 <td class="h-transientids"><a id="transientids" class="heading-anchor" href="#%s"></a><span class="property-name">transientIds</span></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/transientidsequence'>TransientIdSequence</a></span></td>
-<td></td>
+<td>Generator for unique Ids of transient graphics for this IModelConnection.</td>
 </tr>
 <tr>
 <td class="h-views"><a id="views" class="heading-anchor" href="#%s"></a><span class="property-name">views</span></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection/#views'>IModelConnection.Views</a></span></td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a>s in this IModelConnection.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
@@ -277,7 +291,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>09 July, 2018 @ 12:08:48 am +00:00</span>
+                <span class='date-updated'>16 July, 2018 @ 08:07:28 pm -04:00</span>
             </p>
 
             
@@ -294,8 +308,8 @@
         
         
         
-          <div id='sticky-container'>
-            <h4 class='heading'>On this page</h4>
+        <div id='sticky-container' style="top: 76px; position: fixed;">
+          <h4 class='heading'>On this page</h4>
             <div id="overview-container" class="clusterize-scroll">
               <ul id='nav' class='right-nav nav flex-column clusterize-content'>
                       <li class='nav-item item active typeDocHeader'>
@@ -318,6 +332,9 @@
                                     <ul id="inner-nav-methods" class='inner-nav'>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#attachchangecache">attachChangeCache</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#cancelsnap">cancelSnap</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#close">close</a>
@@ -344,6 +361,9 @@
                                                     <a class='title solo-title menu-text' href="#queryentityids">queryEntityIds</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#requestsnap">requestSnap</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#savechanges">saveChanges</a>
                                             </li>
                                             <li class='nav-item item '>
@@ -365,6 +385,9 @@
                                     <ul id="inner-nav-properties" class='inner-nav'>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#codespecs">codeSpecs</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#connectionid">connectionId</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#elements">elements</a>

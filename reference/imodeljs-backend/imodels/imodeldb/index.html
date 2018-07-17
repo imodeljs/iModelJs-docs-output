@@ -166,6 +166,14 @@
 <td>Abandon pending changes in this iModel</td>
 </tr>
 <tr>
+<td class="h-cancelsnap"><a id="cancelsnap" class="heading-anchor" href="#%s"></a><span class="method-name">cancelSnap</span><span class="method-parenthesis">(</span><span class="method-parameters">connectionId: string</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-clearsqlitestatementcache"><a id="clearsqlitestatementcache" class="heading-anchor" href="#%s"></a><span class="method-name">clearSqliteStatementCache</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
+<td>Empty the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/sqlite/sqlitestatementcache'>SqliteStatementCache</a> for this iModel.</td>
+</tr>
+<tr>
 <td class="h-clearstatementcache"><a id="clearstatementcache" class="heading-anchor" href="#%s"></a><span class="method-name">clearStatementCache</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
 <td>Empty the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/ecsql/ecsqlstatementcache'>ECSqlStatementCache</a> for this iModel.</td>
 </tr>
@@ -222,6 +230,10 @@
 <td>Check if this iModel has been opened read-only or not.</td>
 </tr>
 <tr>
+<td class="h-preparesqlitestatement"><a id="preparesqlitestatement" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="preparesqlitestatement">prepareSqliteStatement</a></span><span class="method-parenthesis">(</span><span class="method-parameters">sql: string</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/sqlite/sqlitestatement'>SqliteStatement</a></span></td>
+<td>Prepare an SQLite SQL statement.</td>
+</tr>
+<tr>
 <td class="h-preparestatement"><a id="preparestatement" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="preparestatement">prepareStatement</a></span><span class="method-parenthesis">(</span><span class="method-parameters">sql: string</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/ecsql/ecsqlstatement'>ECSqlStatement</a></span></td>
 <td>Prepare an ECSQL statement.</td>
 </tr>
@@ -258,6 +270,10 @@
 <td>Reinstate a previously reversed set of changes</td>
 </tr>
 <tr>
+<td class="h-requestsnap"><a id="requestsnap" class="heading-anchor" href="#%s"></a><span class="method-name">requestSnap</span><span class="method-parenthesis">(</span><span class="method-parameters">connectionId: string, props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/snaprequestprops'>SnapRequestProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/snapresponseprops'>SnapResponseProps</a>&gt;</span></td>
+<td></td>
+</tr>
+<tr>
 <td class="h-reversechanges"><a id="reversechanges" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="reversechanges">reverseChanges</a></span><span class="method-parenthesis">(</span><span class="method-parameters">accessToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/token/accesstoken'>AccessToken</a>, version: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodelversion'>IModelVersion</a> = IModelVersion.latest()</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span></td>
 <td>Reverse a previously merged set of changes</td>
 </tr>
@@ -288,6 +304,10 @@
 <tr>
 <td class="h-updateprojectextents"><a id="updateprojectextents" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="updateprojectextents">updateProjectExtents</a></span><span class="method-parenthesis">(</span><span class="method-parameters">newExtents: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/axisalignedbox3d'>AxisAlignedBox3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
 <td>Update the project extents for this iModel.</td>
+</tr>
+<tr>
+<td class="h-withpreparedsqlitestatementt"><a id="withpreparedsqlitestatementt" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="withpreparedsqlitestatement">withPreparedSqliteStatement</a></span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T</span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">sql: string, callback: (stmt: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/sqlite/sqlitestatement'>SqliteStatement</a>) =&gt; T</span><span class="method-parenthesis">):</span><span class="method-output"> T</span></td>
+<td>Use a prepared SQLite SQL statement.</td>
 </tr>
 <tr>
 <td class="h-withpreparedstatementt"><a id="withpreparedstatementt" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="withpreparedstatement">withPreparedStatement</a></span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T</span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">ecsql: string, callback: (stmt: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/ecsql/ecsqlstatement'>ECSqlStatement</a>) =&gt; T</span><span class="method-parenthesis">):</span><span class="method-output"> T</span></td>
@@ -374,7 +394,7 @@
 </tr>
 <tr>
 <td class="h-nativedb"><a id="nativedb" class="heading-anchor" href="#%s"></a><span class="property-name">nativeDb</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
-<td><span class="method-output"> any</span></td>
+<td><span class="method-output"> NativeDgnDb</span></td>
 <td>Get the in-memory handle of the native Db</td>
 </tr>
 <tr>
@@ -432,7 +452,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>09 July, 2018 @ 12:08:46 am +00:00</span>
+                <span class='date-updated'>16 July, 2018 @ 08:07:34 pm -04:00</span>
             </p>
 
             
@@ -449,8 +469,8 @@
         
         
         
-          <div id='sticky-container'>
-            <h4 class='heading'>On this page</h4>
+        <div id='sticky-container' style="top: 76px; position: fixed;">
+          <h4 class='heading'>On this page</h4>
             <div id="overview-container" class="clusterize-scroll">
               <ul id='nav' class='right-nav nav flex-column clusterize-content'>
                       <li class='nav-item item active typeDocHeader'>
@@ -473,6 +493,12 @@
                                     <ul id="inner-nav-methods" class='inner-nav'>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#abandonchanges">abandonChanges</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#cancelsnap">cancelSnap</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#clearsqlitestatementcache">clearSqliteStatementCache</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#clearstatementcache">clearStatementCache</a>
@@ -517,6 +543,9 @@
                                                     <a class='title solo-title menu-text' href="#isreadonly">isReadonly</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#preparesqlitestatement">prepareSqliteStatement</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#preparestatement">prepareStatement</a>
                                             </li>
                                             <li class='nav-item item '>
@@ -544,6 +573,9 @@
                                                     <a class='title solo-title menu-text' href="#reinstatechanges">reinstateChanges</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#requestsnap">requestSnap</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#reversechanges">reverseChanges</a>
                                             </li>
                                             <li class='nav-item item '>
@@ -566,6 +598,9 @@
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#updateprojectextents">updateProjectExtents</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#withpreparedsqlitestatement">withPreparedSqliteStatement</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#withpreparedstatement">withPreparedStatement</a>

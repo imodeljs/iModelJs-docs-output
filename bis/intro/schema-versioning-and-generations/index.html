@@ -191,6 +191,18 @@ change that does not qualify as minor is major. Some examples of changes that tr
 <li>Cannot modify any values that were in schema 1 because they will likely set <em>Overall GPA</em> incorrectly.</li>
 </ul>
 <p>Updating data for a schema update with a <em>write</em> version change usually requires some custom logic. This should not be surprising as the previous data was written by applications that are not write-compatible with the newer schema.</p>
+<h4 class="h-examples-of-write-incompatible-changes"><a id="examples-of-write-incompatible-changes" class="heading-anchor" href="#%s"></a>Examples of Write incompatible changes</h4>
+<ul>
+<li>Adding a <em>Not Null</em> or <em>Unique</em> constraint on a new property in an existing class</li>
+<li>Adding a new <em>Navigation Property</em> with a <em>Foreign Key</em> constraint to an existing class</li>
+</ul>
+<p>There are other examples of write incompatible changes which, however, are prohibited by the software because they
+would modify how EC content is mapped to the database (which is generally not allowed):</p>
+<ul>
+<li>Adding a <em>Not Null</em> or <em>Unique</em> constraint to an existing property</li>
+<li>Adding a new unique index to an existing class</li>
+<li>Adding a <em>Foreign Key</em> constraint to an existing <em>Navigation Property</em></li>
+</ul>
 <h3 class="h-application-schema-compatibility-logic"><a id="application-schema-compatibility-logic" class="heading-anchor" href="#%s"></a>Application Schema Compatibility Logic</h3>
 <p>The general logic for an application written for a particular version of a schema working with a repository that potentially
 has a different version of the schema would be:</p>
@@ -338,7 +350,7 @@ Generally, the Custom Attributes from the ECDbMap ECSchema cannot be added, dele
 -->
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>09 July, 2018 @ 12:08:51 am +00:00</span>
+                <span class='date-updated'>16 July, 2018 @ 08:07:36 pm -04:00</span>
             </p>
 
             
@@ -355,8 +367,8 @@ Generally, the Custom Attributes from the ECDbMap ECSchema cannot be added, dele
         
         
         
-          <div id='sticky-container'>
-            <h4 class='heading'>On this page</h4>
+        <div id='sticky-container' style="top: 76px; position: fixed;">
+          <h4 class='heading'>On this page</h4>
             <div id="overview-container" class="clusterize-scroll">
               <ul id='nav' class='right-nav nav flex-column clusterize-content'>
                       <li class='nav-item item '>
@@ -381,7 +393,15 @@ Generally, the Custom Attributes from the ECDbMap ECSchema cannot be added, dele
                                     <a class='title solo-title menu-text' href="#schema-version-numbers">Schema Version Numbers</a>
                             </li>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#the-middle-version-number">The Middle Version Number</a>
+                                    <a data-target="#inner-nav-the-middle-version-number" class='title' href="#the-middle-version-number"/>
+                                    <b class='dropdown-menu-title menu-text'>The Middle Version Number</b>
+                                    <i class='dropdown icon'></i>
+                                    </a>
+                                    <ul id="inner-nav-the-middle-version-number" class='inner-nav'>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#examples-of-write-incompatible-changes">Examples of Write incompatible changes</a>
+                                            </li>
+                                    </ul>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#application-schema-compatibility-logic">Application Schema Compatibility Logic</a>
