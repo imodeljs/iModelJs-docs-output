@@ -23889,10 +23889,10 @@ See: https://github.com/alanphoon/jquery-live-preview
             function formAbsolute(urlString) {
                 var isAbsolute = new RegExp('^([a-z]+://|//)', 'i');
                 if (!isAbsolute.test(urlString)) {
-                    urlString = window.location.href + urlString + '/';
+                    urlString = window.location.href + urlString 
 				}
-				console.log(urlString);
-                return urlString;
+				console.log(urlString + '/';);
+                return urlString + '/';;
             }
 
             return this.each(function () {
