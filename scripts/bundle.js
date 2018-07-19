@@ -23891,7 +23891,7 @@ See: https://github.com/alanphoon/jquery-live-preview
                 if (!isAbsolute.test(urlString)) {
                     urlString = window.location.href + urlString 
 				}
-				console.log(urlString + '/';);
+				console.log(urlString + '/');
                 return urlString + '/';;
             }
 
