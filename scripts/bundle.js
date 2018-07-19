@@ -23890,8 +23890,8 @@ See: https://github.com/alanphoon/jquery-live-preview
                 var isAbsolute = new RegExp('^([a-z]+://|//)', 'i');
                 if (!isAbsolute.test(urlString)) {
                     urlString = window.location.href + urlString;
-                    console.log(urlString);
-                }
+				}
+				console.log(urlString);
                 return urlString;
             }
 
