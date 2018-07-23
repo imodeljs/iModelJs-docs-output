@@ -80,6 +80,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > ChangeSummaries</div>
+            <div class="edit-link">***REMOVED***</div>
             <h1 id="change summaries">Change Summaries</h1>
 <p><em>Change Summaries</em> are summaries of changes of ECInstances in an <em>iModel Changeset</em>.</p>
 <h2 class="h-generating-change-summaries"><a id="generating-change-summaries" class="heading-anchor" href="#%s"></a>Generating Change Summaries</h2>
@@ -126,8 +127,7 @@ the Change Cache file. If the schema and class name combination is unambiguous, 
 </tbody></table><h3 class="h-find-out-how-values-have-changed"><a id="find-out-how-values-have-changed" class="heading-anchor" href="#%s"></a>Find out <em>how</em> values have changed</h3>
 <p>Querying for the changed values is done with the ECSQL function <strong>Changes</strong>.</p>
 <h4 class="h-syntax"><a id="syntax" class="heading-anchor" href="#%s"></a>Syntax</h4>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ... FROM MySchema.MyClass.Changes(ChangeSummaryId, ChangedValueState) ...
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ... FROM MySchema.MyClass.Changes(ChangeSummaryId, ChangedValueState) ...</code></pre>
 <ul>
 <li><code>ChangeSummaryId</code>: The ECInstanceId of the Change Summary.</li>
 <li><p><code>ChangedValueState</code>: corresponds to the values of the enum <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/changedvaluestate'>ChangedValueState</a>.</p>
@@ -137,10 +137,8 @@ The following two ECSQL statements are equivalent:</p>
 </blockquote>
 </li>
 </ul>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ... FROM MySchema.MyClass.Changes(12, 1)
-</code></pre>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ... FROM MySchema.MyClass.Changes(12, &apos;AfterInsert&apos;)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ... FROM MySchema.MyClass.Changes(12, 1)</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ... FROM MySchema.MyClass.Changes(12, &apos;AfterInsert&apos;)</code></pre>
 <blockquote>
 <p>Notes when specifying <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/changedvaluestate/#beforeupdate'>ChangedValueState.BeforeUpdate</a> or <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/changedvaluestate/#afterupdate'>ChangedValueState.AfterUpdate</a>:</p>
 <p>For any property in the ECSQL select clause the value of which has not changed in the specified change summary,
@@ -156,8 +154,7 @@ for the unchanged values.</p>
     &lt;ECProperty propertyName=&quot;Name&quot; typeName=&quot;string&quot;/&gt;
     &lt;ECProperty propertyName=&quot;Age&quot; typeName=&quot;int&quot;/&gt;
   &lt;/ECEntityClass&gt;
-&lt;/ECSchema&gt;
-</code></pre>
+&lt;/ECSchema&gt;</code></pre>
 <h3 class="h-changeset-1"><a id="changeset-1" class="heading-anchor" href="#%s"></a>Changeset 1</h3>
 <h5 id="operations">Operations</h5>
 <ul>
@@ -216,8 +213,7 @@ for the unchanged values.</p>
 <p>After having extracting Change Summaries for each of the three Changesets the following ECSQL examples would return the following results.</p>
 <blockquote>
 <p><strong>Example</strong></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT Summary.Id,ChangedInstance.Id,OpCode FROM change.InstanceChange
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT Summary.Id,ChangedInstance.Id,OpCode FROM change.InstanceChange</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th><code>Summary.Id</code></th>
@@ -254,8 +250,7 @@ for the unchanged values.</p>
 <p><strong>Example</strong></p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT i.ChangedInstance.Id, p.AccessString, i.OpCode FROM change.PropertyValueChange p
     JOIN change.InstanceChange i USING change.InstanceChangeOwnsPropertyValueChanges
-    WHERE i.Summary.Id=2
-</code></pre>
+    WHERE i.Summary.Id=2</code></pre>
 <p><em>Result</em>
 <code>ChangedInstance.Id</code> | <code>AccessString</code> | <code>OpCode</code>
 -------------------- | -------------- | -------
@@ -272,8 +267,7 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
 </blockquote>
 <p>The following illustrates examples to find out how values have changed. We start by looking at the Persons in the current state of the iModel, i.e. at the tip of all changes:</p>
 <blockquote>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th><code>ECInstanceId</code></th>
@@ -290,8 +284,7 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
 <p>The following examples illustrate how to go back in history using the ECSQL function <strong>Changes</strong>.</p>
 <h5 id="changes in change summary 1">Changes in Change Summary 1</h5>
 <blockquote>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(1,&apos;AfterInsert&apos;)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(1,&apos;AfterInsert&apos;)</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th><code>ECInstanceId</code></th>
@@ -306,8 +299,7 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
 </tbody></table></blockquote>
 <hr>
 <blockquote>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(1,&apos;BeforeUpdate&apos;)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(1,&apos;BeforeUpdate&apos;)</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th><code>ECInstanceId</code></th>
@@ -322,8 +314,7 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
 </tbody></table></blockquote>
 <hr>
 <blockquote>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(1,&apos;AfterUpdate&apos;)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(1,&apos;AfterUpdate&apos;)</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th><code>ECInstanceId</code></th>
@@ -338,8 +329,7 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
 </tbody></table></blockquote>
 <hr>
 <blockquote>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(1,&apos;BeforeDelete&apos;)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(1,&apos;BeforeDelete&apos;)</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th><code>ECInstanceId</code></th>
@@ -354,8 +344,7 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
 </tbody></table></blockquote>
 <h5 id="changes in change summary 2">Changes in Change Summary 2</h5>
 <blockquote>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(2,&apos;AfterInsert&apos;)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(2,&apos;AfterInsert&apos;)</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th><code>ECInstanceId</code></th>
@@ -370,8 +359,7 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
 </tbody></table></blockquote>
 <hr>
 <blockquote>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(2,&apos;BeforeUpdate&apos;)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(2,&apos;BeforeUpdate&apos;)</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th><code>ECInstanceId</code></th>
@@ -386,8 +374,7 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
 </tbody></table></blockquote>
 <hr>
 <blockquote>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(2,&apos;AfterUpdate&apos;)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(2,&apos;AfterUpdate&apos;)</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th><code>ECInstanceId</code></th>
@@ -402,8 +389,7 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
 </tbody></table></blockquote>
 <hr>
 <blockquote>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(2,&apos;BeforeDelete&apos;)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(2,&apos;BeforeDelete&apos;)</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th><code>ECInstanceId</code></th>
@@ -418,8 +404,7 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
 </tbody></table></blockquote>
 <h5 id="changes in change summary 3">Changes in Change Summary 3</h5>
 <blockquote>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(3,&apos;AfterInsert&apos;)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(3,&apos;AfterInsert&apos;)</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th><code>ECInstanceId</code></th>
@@ -434,8 +419,7 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
 </tbody></table></blockquote>
 <hr>
 <blockquote>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(3,&apos;BeforeUpdate&apos;)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(3,&apos;BeforeUpdate&apos;)</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th><code>ECInstanceId</code></th>
@@ -450,8 +434,7 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
 </tbody></table></blockquote>
 <hr>
 <blockquote>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(3,&apos;AfterUpdate&apos;)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(3,&apos;AfterUpdate&apos;)</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th><code>ECInstanceId</code></th>
@@ -466,8 +449,7 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
 </tbody></table></blockquote>
 <hr>
 <blockquote>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(3,&apos;BeforeDelete&apos;)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Name, Age FROM acme.Person.Changes(3,&apos;BeforeDelete&apos;)</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th><code>ECInstanceId</code></th>
@@ -482,7 +464,7 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
 </tbody></table></blockquote>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:35 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:56 pm +00:00</span>
             </p>
 
             

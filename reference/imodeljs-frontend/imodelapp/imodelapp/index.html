@@ -144,6 +144,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/imodelapp/">IModelApp</a> > IModelApp</div>
+            
             <h2 class="h-imodelapp"><a id="imodelapp" class="heading-anchor" href="#%s"></a>IModelApp <span class="badge badge-pill badge-primary badge-class">Class</span></h2>
 <p>An instance of IModelApp is the frontend administrator for applications that read, write, or display an iModel in a browser.
 It connects the user interface with the iModelJs services. There can be only one IModelApp active in a session.</p>
@@ -168,7 +169,7 @@ implementations of them.</p>
 <td>Should be called before the application exits to release any held resources.</td>
 </tr>
 <tr>
-<td class="h-startup"><a id="startup" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="startup">startup</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td class="h-startup"><a id="startup" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="startup">startup</a></span><span class="method-parenthesis">(</span><span class="method-parameters">imodelClient?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelclient/imodelclient'>IModelClient</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
 <td>This method must be called before any iModelJs frontend services are used.</td>
 </tr>
 <tr>
@@ -186,8 +187,8 @@ implementations of them.</p>
 <th>Description</th>
 </tr>
 <tr>
-<td class="h-_imodelhubclient"><a id="_imodelhubclient" class="heading-anchor" href="#%s"></a><span class="property-name">_iModelHubClient</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-protected">Protected</span></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/client/imodelhubclient'>IModelHubClient</a></span></td>
+<td class="h-_imodelclient"><a id="_imodelclient" class="heading-anchor" href="#%s"></a><span class="property-name">_imodelClient</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-protected">Protected</span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelclient/imodelclient'>IModelClient</a></span></td>
 <td></td>
 </tr>
 <tr>
@@ -226,9 +227,9 @@ implementations of them.</p>
 <td></td>
 </tr>
 <tr>
-<td class="h-imodelhubclient"><a id="imodelhubclient" class="heading-anchor" href="#%s"></a><span class="property-name">iModelHubClient</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/client/imodelhubclient'>IModelHubClient</a></span></td>
-<td></td>
+<td class="h-imodelclient"><a id="imodelclient" class="heading-anchor" href="#%s"></a><span class="property-name">iModelClient</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelclient/imodelclient'>IModelClient</a></span></td>
+<td>IModel Server Client to be used for all frontend operations</td>
 </tr>
 <tr>
 <td class="h-initialized"><a id="initialized" class="heading-anchor" href="#%s"></a><span class="property-name">initialized</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
@@ -271,11 +272,11 @@ implementations of them.</p>
 </tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
-<li>IModelApp.ts</li>
+<li><span class="defined-in"><a href="***REMOVED***/tfs/ProductLine/Platform%20Technology/ECTech/_git/imodeljs-core?path=%2Fcore%2Ffrontend%2Fsrc%2FIModelApp.ts">IModelApp.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:28 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:52 pm +00:00</span>
             </p>
 
             
@@ -335,7 +336,7 @@ implementations of them.</p>
                                     </a>
                                     <ul id="inner-nav-properties" class='inner-nav'>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#_imodelhubclient">_iModelHubClient</a>
+                                                    <a class='title solo-title menu-text' href="#_imodelclient">_imodelClient</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#_initialized">_initialized</a>
@@ -359,7 +360,7 @@ implementations of them.</p>
                                                     <a class='title solo-title menu-text' href="#i18n">i18n</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#imodelhubclient">iModelHubClient</a>
+                                                    <a class='title solo-title menu-text' href="#imodelclient">iModelClient</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#initialized">initialized</a>

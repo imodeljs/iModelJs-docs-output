@@ -144,10 +144,14 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/">imodeljs-backend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/imodels/">iModels</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/imodels/imodeldb/">IModelDb</a> > importSchema</div>
+            
             <h2 class="h-importschema"><a id="importschema" class="heading-anchor" href="#%s"></a>importSchema <span class="badge badge-pill badge-primary badge-method">Method</span></h2>
 <p>Import an ECSchema. On success, the schema definition is stored in the iModel.
+This method is asynchronous (must be awaited) because, in the case where this IModelId is a briefcase,
+this method must first obtain the schema lock from the IModel server.
 You must import a schema into an iModel before you can insert instances of the classes in that schema. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a></p>
-<p><span class="method-name">importSchema</span><span class="method-parenthesis">(</span><span class="method-parameters">schemaFileName: string</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></p>
+<p><span class="method-name">importSchema</span><span class="method-parenthesis">(</span><span class="method-parameters">schemaFileName: string</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span></p>
+<p><span class="badge badge-pill badge-primary badge-throws">throws</span> IModelError if the schema lock cannot be obtained.</p>
 <p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/containsclass'>IModelDb.containsClass</a></p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -161,11 +165,11 @@ You must import a schema into an iModel before you can insert instances of the c
 </tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
-<li>IModelDb.ts</li>
+<li><span class="defined-in"><a href="***REMOVED***/tfs/ProductLine/Platform%20Technology/ECTech/_git/imodeljs-core?path=%2Fcore%2Fbackend%2Fsrc%2FIModelDb.ts">IModelDb.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:34 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:45 pm +00:00</span>
             </p>
 
             

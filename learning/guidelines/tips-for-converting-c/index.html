@@ -80,6 +80,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/">guidelines</a> > tips-for-converting-c</div>
+            <div class="edit-link">***REMOVED***</div>
             <h1 id="tips for converting from c+-to typescript">Tips for Converting from C++ to TypeScript</h1>
 <p>If you are converting existing C++ code to TypeScript, the following advice may be helpful.</p>
 <h2 class="h-naming"><a id="naming" class="heading-anchor" href="#%s"></a>Naming</h2>
@@ -103,13 +104,11 @@ public:
     MyValue(int val=0) {m_val=val;}
     int GetValue() {return m_val;}
     void SetValue(int val) {m_val = val;}
-};
-</code></pre>
+};</code></pre>
 <p>in TypeScript, can become:</p>
 <pre class="no-line-numbers"><code class="language-typescript">class MyValue {
   public constructor(public value = 0) { }
-}
-</code></pre>
+}</code></pre>
 <h2 class="h-constructors--destructors"><a id="constructors--destructors" class="heading-anchor" href="#%s"></a>Constructors / Destructors</h2>
 <p>TypeScript does not support:</p>
 <ul>
@@ -140,8 +139,7 @@ private:
 public:
     ViewPlacement(TransformCR placement, DgnViewportP vp) : m_placement(placement), m_viewport(vp) {}
     void SetPlacement(TransformCR placement) {m_placement = placement;}
-};
-</code></pre>
+};</code></pre>
 <p>A natural straightforward conversion might look like:</p>
 <pre class="no-line-numbers"><code class="language-typescript">// WRONG!!
 export class ViewPlacement {
@@ -152,8 +150,7 @@ export class ViewPlacement {
     this._viewport = vp;
   }
   public setPlacement(placement: Transform): void { this._placement = placement; }
-}
-</code></pre>
+}</code></pre>
 <p>The problem is that the <code>_placement</code> member holds a <em>reference</em> to, not a copy of, the constructor argument. If the caller changes the value of that Transform after calling the constructor, the ViewPlacement structure will see the changed version, not the original value. This can cause subtle and hard-to-find bugs. Note also that the C++ SetPlacement method actually silently invokes Transform&apos;s copy constructor.</p>
 <p> A correct solution would be:</p>
 <pre class="no-line-numbers"><code class="language-typescript">// Correct!!
@@ -163,8 +160,7 @@ export class ViewPlacement {
     this._placement = placement.clone();
   }
   public setPlacement(placement: Transform): void { this._placement.setFrom(placement); }
-}
-</code></pre>
+}</code></pre>
 <p>If you had forgot to use &quot;.setFrom&quot; in the setPlacement method, it would generate a compiler error.</p>
 <p>Here&apos;s another example:</p>
 <pre class="no-line-numbers"><code class="language-c">struct SomeParams : RefCountedBase
@@ -178,8 +174,7 @@ private:
     uint32_t m_weight;
     bvector&lt;LineType&gt; m_lines;
 . . .
-};
-</code></pre>
+};</code></pre>
 <p>can become:</p>
 <pre class="no-line-numbers"><code class="language-typescript">export class SomeParams {
   public readonly origin = new Point3d();
@@ -190,8 +185,7 @@ private:
   private _weight = 0;
   public readonly lines: LineType[] = [];
 . . .
-}
-</code></pre>
+}</code></pre>
 <p>Notes:</p>
 <ul>
 <li>in TypeScript everything is garbage collected, so <code>RefCountBase</code> is irrelevant.</li>
@@ -206,12 +200,10 @@ private:
 <p>In C++ we have a class for a 64-bit integer Id called <code>BeSQLite::BeBriefcaseBasedId</code>. We often make subclasses of it to differentiate the various types of things that can have a 64-bit Id. JavaScript does not have a native datatype for 64-bit integers. Therefore, we represent 64-bit Ids using hex-encoded strings. There is a class called <code>Id64</code> in <code>@bentleyjs-core/Id</code>. We do not make subclasses of <code>Id64</code>.</p>
 <p>An important limitation of JavaScript is that the <code>Set</code> and <code>Map</code> classes do not allow any key types other than the native JavaScript types (vs. C++&apos;s ability to have user-defined key types.) This means that for the very common case of a collection of <code>Id64</code>s we can only use strings for the keys. There are <a href="https://www.typescriptlang.org/docs/handbook/advanced-types.html">type aliases</a> in <code>Id.ts</code> to help indicate that the strings are meant to be <code>Id64</code> strings.:</p>
 <pre class="no-line-numbers"><code class="language-typescript">export type Id64Set = Set&lt;string&gt;;
-export type Id64Array = string[];
-</code></pre>
+export type Id64Array = string[];</code></pre>
 <p>Note that unfortunately these are only aliases, the compiler does not enforce anything about the content of the string.</p>
 <p>A common pattern in TypeScript is to write a single function that can accept <em>one or more</em> <code>Id64</code> values. Again, we have a type alias in <code>Id.ts</code>:</p>
-<pre class="no-line-numbers"><code class="language-typescript">export type Id64Arg = Id64[] | Id64 | Id64Set | Id64Array | string;
-</code></pre>
+<pre class="no-line-numbers"><code class="language-typescript">export type Id64Arg = Id64[] | Id64 | Id64Set | Id64Array | string;</code></pre>
 <p>This says that an argument of type <code>Id64Arg</code> can be:</p>
 <ol>
 <li>an array of Id64 objects</li>
@@ -222,16 +214,14 @@ export type Id64Array = string[];
 </ol>
 <p>From a C++ perspective, this doesn&apos;t seem very type-safe, since <code>string</code> doesn&apos;t necessarily have to be a properly formatted Id64 value. While that is true, ignore that fact - in practice it doesn&apos;t hurt much.</p>
 <p>To implement a function that takes an <code>Id64Arg</code>, use the static method:</p>
-<pre class="no-line-numbers"><code class="language-typescript">  Id64.toIdSet(arg: Id64Arg): Id64Set;
-</code></pre>
+<pre class="no-line-numbers"><code class="language-typescript">  Id64.toIdSet(arg: Id64Arg): Id64Set;</code></pre>
 <p>That method converts any of the <code>Id64Arg</code> types into an <code>Id64Set</code>. This is a very convenient type, since it removes duplicate entries. For example:</p>
 <pre class="no-line-numbers"><code class="language-typescript">export class FoundElements {
   public found = new Set&lt;string&gt;();
   public addElements(elements: Id64Arg) { Id64.toIdSet(elements).forEach((id) =&gt; this.found.add(id)); }
   public dropElements(elements: Id64Arg) { Id64.toIdSet(elements).forEach((id) =&gt; this.found.delete(id)); }
   . . .
-}
-</code></pre>
+}</code></pre>
 <h2 class="h-other-64-bit-integers"><a id="other-64-bit-integers" class="heading-anchor" href="#%s"></a>Other 64-bit integers</h2>
 <p>The largest integer representable in variable of type <code>number</code> in JavaScript is defined as <code>Number.MAX_SAFE_INTEGER</code>, which is 2<sup>53</sup>-1.</p>
 <p>If you just happen to <em>know</em> that an <code>int64</code> type in C++ will never be larger than that, you can use a <code>number</code> [N.B. that is not entirely equivalent since nothing will enforce integer-ness. Though that problem exists for 32-bit integers as well]. Otherwise, things get much more complicated. One possibility is to use an ArrayBuffer, but that is somewhat complicated and rarely worthwhile. There are 64-bit JavaScript libraries, but they generally use conversion to strings to hold values, and are very inefficient compared to <code>number</code>.</p>
@@ -242,7 +232,7 @@ export type Id64Array = string[];
 <p>JavaScript does not support the C++ <code>friend</code> class concept. This leads to more public member and methods in TypeScript. All you can do is &quot;hide&quot; a member/method in the documentation using the <code>@hidden</code> documentation keyword.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:35 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:56 pm +00:00</span>
             </p>
 
             

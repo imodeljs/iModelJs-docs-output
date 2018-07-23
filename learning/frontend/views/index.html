@@ -80,6 +80,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/">frontend</a> > Views</div>
+            <div class="edit-link">***REMOVED***</div>
             <h1 id="using views in imodeljs">Using Views in iModelJs</h1>
 <p>A <em>View</em> renders geometry from one or more <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/model-fundamentals'>Models</a> of an iModel in a web browser. iModelJs applications
 can embed and interact with Views anywhere on a web page via an <code>HTMLCanvas</code> element.</p>
@@ -117,9 +118,7 @@ format for User Interfaces. This can be used to present a list of possible views
 <pre class="no-line-numbers"><code class="language-typescript">  /** Get the list of Spatial views from the robot iModel. */
   public static async getSpatialViews(): Promise&lt;IModelConnection.ViewSpec[]&gt; {
     return await this._robotIModel.views.getViewList({ from: SpatialViewDefinition.classFullName, wantPrivate: false });
-  }
-
-</code></pre>
+  }</code></pre>
 <p>Once a view is selected from the list, it may be loaded with:</p>
 <pre class="no-line-numbers"><code class="language-typescript">  /** Stub for a real UI that would present the user with the list and choose one entry */
   public static async pickView(views: IModelConnection.ViewSpec[]): Promise&lt;string&gt; {
@@ -140,9 +139,7 @@ format for User Interfaces. This can be used to present a list of possible views
 
     // return a promise for the ViewState of the selected view. Note that caller will have to await this method
     return this._robotIModel.views.load(viewId);
-  }
-
-</code></pre>
+  }</code></pre>
 <blockquote>
 <p>Note that in the examples above, <code>getSpatialViews</code> and <code>loadOneView</code> are <code>async</code>, and you must <code>await</code> them.</p>
 </blockquote>
@@ -163,9 +160,7 @@ to modify the View itself, or to interact with its contents.</p>
     const viewState = await this.loadOneView();
     const viewPort = new Viewport(canvas, viewState);
     this.viewManager.addViewport(viewPort);
-  }
-
-</code></pre>
+  }</code></pre>
 <p>After the viewport is added to the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager'>ViewManager</a>, all HTML events for its canvas are directed to the active <code>Tool</code> class by the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/tooladmin'>ToolAdmin</a>.</p>
 <p>If there is more than one Viewport visible, the ViewManager keeps track of the <em>Selected Viewport</em> and treats it specially.</p>
 <h2 class="h-viewing-tools"><a id="viewing-tools" class="heading-anchor" href="#%s"></a>Viewing Tools</h2>
@@ -226,8 +221,7 @@ you can create <code>RealityDataModel</code>s that hold the URL of the Reality D
       frontDist -&gt;|              | t                     |
                   |              |                       |
                   v           \  v  / &lt;- lens angle      v
-                  -              + {eyePoint}            -     positiveX -&gt;
-</code></pre>
+                  -              + {eyePoint}            -     positiveX -&gt;</code></pre>
 <h3 class="h-notes"><a id="notes" class="heading-anchor" href="#%s"></a>Notes</h3>
 <ul>
 <li><p>Up vector (positiveY) points out of the screen towards you in this diagram. Likewise delta.y.</p>
@@ -239,8 +233,7 @@ you can create <code>RealityDataModel</code>s that hold the URL of the Reality D
 <li><p>The three view vectors come from:</p>
 <pre class="no-line-numbers"><code class="language-bash">{vector from eyePoint-&gt;targetPoint} : -Z (positive view Z points towards negative world Z)
 {the up vector}                     : +Y
-{Z cross Y}                         : +X
-</code></pre>
+{Z cross Y}                         : +X</code></pre>
 <p>these three vectors form the rows of the view&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a></p>
 </li>
 <li><p>Objects in space in front of the front plane or behind the back plane are not displayed.</p>
@@ -266,7 +259,7 @@ views, or &quot;wide and shallow slices&quot;, etc.) are problematic and disallo
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:35 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:57 pm +00:00</span>
             </p>
 
             

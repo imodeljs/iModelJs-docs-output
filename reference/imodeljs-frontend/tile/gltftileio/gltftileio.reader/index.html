@@ -144,6 +144,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/tile/">Tile</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/tile/gltftileio/">GltfTileIO</a> > GltfTileIO.Reader</div>
+            
             <h2 class="h-gltftileioreader"><a id="gltftileioreader" class="heading-anchor" href="#%s"></a>GltfTileIO.Reader <span class="badge badge-pill badge-primary badge-class">Class</span></h2>
 <p>Deserializes glTF tile data.</p>
 <h3 class="h-extended-by"><a id="extended-by" class="heading-anchor" href="#%s"></a>Extended by</h3>
@@ -157,7 +158,7 @@
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-constructor"><a id="constructor" class="heading-anchor" href="#%s"></a><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tile/gltftileio/gltftileio.readerprops'>GltfTileIO.ReaderProps</a>, model: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/geometricmodelstate'>GeometricModelState</a>, system: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendersystem'>RenderSystem</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tile/gltftileio/gltftileio.reader'>GltfTileIO.Reader</a></span> <span class="badge badge-pill badge-primary badge-protected">Protected</span></td>
+<td class="h-constructor"><a id="constructor" class="heading-anchor" href="#%s"></a><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tile/gltftileio/gltftileio.readerprops'>GltfTileIO.ReaderProps</a>, model: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/geometricmodelstate'>GeometricModelState</a>, system: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendersystem'>RenderSystem</a>, isCanceled?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tile/gltftileio/gltftileio.iscanceled'>GltfTileIO.IsCanceled</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tile/gltftileio/gltftileio.reader'>GltfTileIO.Reader</a></span> <span class="badge badge-pill badge-primary badge-protected">Protected</span></td>
 <td></td>
 </tr>
 <tr>
@@ -169,11 +170,27 @@
 <td></td>
 </tr>
 <tr>
+<td class="h-findtexturemapping"><a id="findtexturemapping" class="heading-anchor" href="#%s"></a><span class="method-name">findTextureMapping</span><span class="method-parenthesis">(</span><span class="method-parameters">textureId: string</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/texturemapping'>TextureMapping</a> | undefined</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span></td>
+<td></td>
+</tr>
+<tr>
 <td class="h-getbufferview"><a id="getbufferview" class="heading-anchor" href="#%s"></a><span class="method-name">getBufferView</span><span class="method-parenthesis">(</span><span class="method-parameters">json: any, accessorName: string</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tile/gltftileio/gltftileio.bufferview'>GltfTileIO.BufferView</a> | undefined</span></td>
 <td></td>
 </tr>
 <tr>
-<td class="h-read"><a id="read" class="heading-anchor" href="#%s"></a><span class="method-name">read</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tile/gltftileio/gltftileio.readerresult'>GltfTileIO.ReaderResult</a></span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span></td>
+<td class="h-loadtexture"><a id="loadtexture" class="heading-anchor" href="#%s"></a><span class="method-name">loadTexture</span><span class="method-parenthesis">(</span><span class="method-parameters">textureId: string</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-loadtextureimage"><a id="loadtextureimage" class="heading-anchor" href="#%s"></a><span class="method-name">loadTextureImage</span><span class="method-parenthesis">(</span><span class="method-parameters">imageJson: any</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendertexture'>RenderTexture</a> | undefined&gt;</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-loadtextures"><a id="loadtextures" class="heading-anchor" href="#%s"></a><span class="method-name">loadTextures</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-read"><a id="read" class="heading-anchor" href="#%s"></a><span class="method-name">read</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tile/gltftileio/gltftileio.readerresult'>GltfTileIO.ReaderResult</a>&gt;</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span></td>
 <td></td>
 </tr>
 <tr>
@@ -221,7 +238,7 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-readgltfandcreategraphics"><a id="readgltfandcreategraphics" class="heading-anchor" href="#%s"></a><span class="method-name">readGltfAndCreateGraphics</span><span class="method-parenthesis">(</span><span class="method-parameters">isLeaf: boolean, isCurved: boolean, isComplete: boolean, featureTable: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/featuretable'>FeatureTable</a>, contentRange: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/elementalignedbox3d'>ElementAlignedBox3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tile/gltftileio/gltftileio.readerresult'>GltfTileIO.ReaderResult</a></span></td>
+<td class="h-readgltfandcreategraphics"><a id="readgltfandcreategraphics" class="heading-anchor" href="#%s"></a><span class="method-name">readGltfAndCreateGraphics</span><span class="method-parenthesis">(</span><span class="method-parameters">isLeaf: boolean, isCurved: boolean, isComplete: boolean, featureTable: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/featuretable'>FeatureTable</a>, contentRange: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/elementalignedbox3d'>ElementAlignedBox3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tile/gltftileio/gltftileio.readerresult'>GltfTileIO.ReaderResult</a></span> <span class="badge badge-pill badge-primary badge-protected">Protected</span></td>
 <td></td>
 </tr>
 <tr>
@@ -250,14 +267,6 @@
 </tr>
 <tr>
 <td class="h-readpolylines"><a id="readpolylines" class="heading-anchor" href="#%s"></a><span class="method-name">readPolylines</span><span class="method-parenthesis">(</span><span class="method-parameters">polylines: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/meshpolylinelist'>MeshPolylineList</a>, json: any, accessorName: string, disjoint: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-readtexture"><a id="readtexture" class="heading-anchor" href="#%s"></a><span class="method-name">readTexture</span><span class="method-parenthesis">(</span><span class="method-parameters">textureId: string</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/texturemapping'>TextureMapping</a> | undefined</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-readtextureimage"><a id="readtextureimage" class="heading-anchor" href="#%s"></a><span class="method-name">readTextureImage</span><span class="method-parenthesis">(</span><span class="method-parameters">imageJson: any</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendertexture'>RenderTexture</a> | undefined</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span></td>
 <td></td>
 </tr>
 <tr>
@@ -301,6 +310,11 @@
 <tr>
 <td class="h-images"><a id="images" class="heading-anchor" href="#%s"></a><span class="property-name">images</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span></td>
 <td><span class="method-output">any</span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-iscanceled"><a id="iscanceled" class="heading-anchor" href="#%s"></a><span class="property-name">isCanceled</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> boolean</span></td>
 <td></td>
 </tr>
 <tr>
@@ -354,11 +368,11 @@
 </tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
-<li>tile/GltfTileIO.ts</li>
+<li><span class="defined-in"><a href="***REMOVED***/tfs/ProductLine/Platform%20Technology/ECTech/_git/imodeljs-core?path=%2Fcore%2Ffrontend%2Fsrc%2Ftile%2FGltfTileIO.ts">tile/GltfTileIO.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:29 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:53 pm +00:00</span>
             </p>
 
             
@@ -404,7 +418,19 @@
                                                     <a class='title solo-title menu-text' href="#extractreturntocenter">extractReturnToCenter</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#findtexturemapping">findTextureMapping</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#getbufferview">getBufferView</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#loadtexture">loadTexture</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#loadtextureimage">loadTextureImage</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#loadtextures">loadTextures</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#read">read</a>
@@ -467,12 +493,6 @@
                                                     <a class='title solo-title menu-text' href="#readpolylines">readPolylines</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#readtexture">readTexture</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#readtextureimage">readTextureImage</a>
-                                            </li>
-                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#readuvparams">readUVParams</a>
                                             </li>
                                             <li class='nav-item item '>
@@ -503,6 +523,9 @@
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#images">images</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#iscanceled">isCanceled</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#materialvalues">materialValues</a>

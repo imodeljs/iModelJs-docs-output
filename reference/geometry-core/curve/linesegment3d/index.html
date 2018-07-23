@@ -144,6 +144,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/">geometry-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/curve/">Curve</a> > LineSegment3d</div>
+            
             <h2 class="h-linesegment3d"><a id="linesegment3d" class="heading-anchor" href="#%s"></a>LineSegment3d <span class="badge badge-pill badge-primary badge-class">Class</span></h2>
 <p>A LineSegment3d is:</p>
 <ul>
@@ -168,7 +169,11 @@ parameterized with fraction 0 at the start and fraction 1 at the end, i.e. eithe
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-announceclipintervals"><a id="announceclipintervals" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="announceclipintervals">announceClipIntervals</a></span><span class="method-parenthesis">(</span><span class="method-parameters">clipper: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clippermethods'>ClipperMethods</a>, announce?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/announcenumbernumbercurveprimitive'>AnnounceNumberNumberCurvePrimitive</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
+<td class="h-constructor"><a id="constructor" class="heading-anchor" href="#%s"></a><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/linesegment3d'>LineSegment3d</a></span> <span class="badge badge-pill badge-primary badge-protected">Protected</span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-announceclipintervals"><a id="announceclipintervals" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="announceclipintervals">announceClipIntervals</a></span><span class="method-parenthesis">(</span><span class="method-parameters">clipper: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cliputils/clipper'>Clipper</a>, announce?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/announcenumbernumbercurveprimitive'>AnnounceNumberNumberCurvePrimitive</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
 <td>Find intervals of this curveprimitve that are interior to a clipper</td>
 </tr>
 <tr>
@@ -286,6 +291,32 @@ parameterized with fraction 0 at the start and fraction 1 at the end, i.e. eithe
 <tr>
 <td class="h-fromjson"><a id="fromjson" class="heading-anchor" href="#%s"></a><span class="method-name">fromJSON</span><span class="method-parenthesis">(</span><span class="method-parameters">json?: any</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/linesegment3d'>LineSegment3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
 </tr>
+</tbody></table><h3 class="h-inherited-methods"><a id="inherited-methods" class="heading-anchor" href="#%s"></a><i class="icon collapse-section icon-chevron-down"></i>Inherited methods</h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Inherited from</th>
+<th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
+</tr>
+<tr>
+<td class="h-fractiontofrenetframe"><a id="fractiontofrenetframe" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive/fractiontofrenetframe'>fractionToFrenetFrame</a></span><span class="method-parenthesis">(</span><span class="method-parameters">fraction: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a> | undefined</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive'>CurvePrimitive</a></span></td>
+<td>Construct a frenet frame:<br><em> origin at the point on the curve<br></em> x axis is unit vector along the curve (tangent)<br>* y axis is perpendicular and in the plane of the osculating circle.</td>
+</tr>
+<tr>
+<td class="h-fractiontopointandunittangent"><a id="fractiontopointandunittangent" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive/fractiontopointandunittangent'>fractionToPointAndUnitTangent</a></span><span class="method-parenthesis">(</span><span class="method-parameters">fraction: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/ray3d'>Ray3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/ray3d'>Ray3d</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive'>CurvePrimitive</a></span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-range"><a id="range" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/geometryquery/#range'>range</a></span><span class="method-parenthesis">(</span><span class="method-parameters">transform?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/geometryquery'>GeometryQuery</a></span></td>
+<td>return the range of the entire (tree) GeometryQuery</td>
+</tr>
+<tr>
+<td class="h-trytranslateinplace"><a id="trytranslateinplace" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/geometryquery/#trytranslateinplace'>tryTranslateInPlace</a></span><span class="method-parenthesis">(</span><span class="method-parameters">dx: number, dy: number = 0, dz: number = 0</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/geometryquery'>GeometryQuery</a></span></td>
+<td>try to move the geometry by dx,dy,dz</td>
+</tr>
 </tbody></table><h3 class="h-properties"><a id="properties" class="heading-anchor" href="#%s"></a>Properties</h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -301,13 +332,26 @@ parameterized with fraction 0 at the start and fraction 1 at the end, i.e. eithe
 <td class="h-point1ref"><a id="point1ref" class="heading-anchor" href="#%s"></a><span class="property-name">point1Ref</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span></td>
 </tr>
+</tbody></table><h3 class="h-inherited-properties"><a id="inherited-properties" class="heading-anchor" href="#%s"></a><i class="icon collapse-section icon-chevron-down"></i>Inherited properties</h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Inherited from</th>
+<th>Description</th>
+</tr>
+<tr>
+<td class="h-children"><a id="children" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/geometryquery/#children'>children</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/geometryquery'>GeometryQuery</a>[] | undefined</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/geometryquery'>GeometryQuery</a></span></td>
+<td>return GeometryQuery children for recursive queries.<br><br>* leaf classes do not need to implement.</td>
+</tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
-<li>curve/LineSegment3d.ts</li>
+<li><span class="defined-in"><a href="***REMOVED***/tfs/ProductLine/Platform%20Technology/ECTech/_git/imodeljs-core?path=%2Fcore%2Fgeometry%2Fsrc%2Fcurve%2FLineSegment3d.ts">curve/LineSegment3d.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:27 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:50 pm +00:00</span>
             </p>
 
             
@@ -346,6 +390,9 @@ parameterized with fraction 0 at the start and fraction 1 at the end, i.e. eithe
                                     <i class='dropdown icon'></i>
                                     </a>
                                     <ul id="inner-nav-methods" class='inner-nav'>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#constructor">constructor</a>
+                                            </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#announceclipintervals">announceClipIntervals</a>
                                             </li>
@@ -439,6 +486,26 @@ parameterized with fraction 0 at the start and fraction 1 at the end, i.e. eithe
                                     </ul>
                             </li>
                             <li class='nav-item item '>
+                                    <a data-target="#inner-nav-inherited-methods" class='title' href="#inherited-methods"/>
+                                    <b class='dropdown-menu-title menu-text'>Inherited methods</b>
+                                    <i class='dropdown icon'></i>
+                                    </a>
+                                    <ul id="inner-nav-inherited-methods" class='inner-nav'>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#fractiontofrenetframe">fractionToFrenetFrame</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#fractiontopointandunittangent">fractionToPointAndUnitTangent</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#range">range</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#trytranslateinplace">tryTranslateInPlace</a>
+                                            </li>
+                                    </ul>
+                            </li>
+                            <li class='nav-item item '>
                                     <a data-target="#inner-nav-properties" class='title' href="#properties"/>
                                     <b class='dropdown-menu-title menu-text'>Properties</b>
                                     <i class='dropdown icon'></i>
@@ -449,6 +516,17 @@ parameterized with fraction 0 at the start and fraction 1 at the end, i.e. eithe
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#point1ref">point1Ref</a>
+                                            </li>
+                                    </ul>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a data-target="#inner-nav-inherited-properties" class='title' href="#inherited-properties"/>
+                                    <b class='dropdown-menu-title menu-text'>Inherited properties</b>
+                                    <i class='dropdown icon'></i>
+                                    </a>
+                                    <ul id="inner-nav-inherited-properties" class='inner-nav'>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#children">children</a>
                                             </li>
                                     </ul>
                             </li>

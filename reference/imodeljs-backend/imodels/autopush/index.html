@@ -144,6 +144,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/">imodeljs-backend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/imodels/">iModels</a> > AutoPush</div>
+            
             <h2 class="h-autopush"><a id="autopush" class="heading-anchor" href="#%s"></a>AutoPush <span class="badge badge-pill badge-primary badge-class">Class</span></h2>
 <p>Use AutoPush to automatically push local changes to a specified IModel. To do this,
 create an AutoPush object, specifying the IModelDb that should be monitored.
@@ -160,8 +161,7 @@ Example:</p>
     // Starting AutoPush is an example of something you might do in an onOpened event handler.
     // Note that AutoPush registers itself with IModelDb. That keeps it alive while the DB is open and releases it when the DB closes.
     new AutoPush(iModel, readConfigParams());
-  });
-</code></pre>
+  });</code></pre>
 <p>A service or agent would normally get its <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/autopushparams'>AutoPushParams</a> parameters from data provided
 at deployment time. For example, a service might read configuration data from a .json file
 that is deployed with the service.</p>
@@ -171,8 +171,7 @@ that is deployed with the service.</p>
      &quot;pushIntervalSecondsMax&quot;: ${MYSERVICE-AUTOPUSH-INTERVAL-MAX},
      &quot;autoSchedule&quot;: true
    },
-}
-</code></pre>
+}</code></pre>
 <p>Note that the values of some of the configuration
 property values are defined by placeholders denoted by <code>${some-macro-name}</code>. These placeholders
 are to be replaced by EnvMacroSubst.replaceInProperties with the values of environment
@@ -192,8 +191,7 @@ mechanism from deployment parameters.</p>
   EnvMacroSubst.replaceInProperties(config, true, defaultConfigValues);
 
   return config;
-}
-</code></pre>
+}</code></pre>
 <h3 class="h-methods"><a id="methods" class="heading-anchor" href="#%s"></a>Methods</h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -246,7 +244,7 @@ mechanism from deployment parameters.</p>
 </tr>
 <tr>
 <td class="h-event"><a id="event" class="heading-anchor" href="#%s"></a><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/autopush/event'>event</a></span></td>
-<td><span class="method-output">BeEvent&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/autopusheventhandler'>AutoPushEventHandler</a>&gt;</span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/beevent'>BeEvent</a>&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/autopusheventhandler'>AutoPushEventHandler</a>&gt;</span></td>
 <td>Events raised by AutoPush.</td>
 </tr>
 <tr>
@@ -266,11 +264,11 @@ mechanism from deployment parameters.</p>
 </tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
-<li>AutoPush.ts</li>
+<li><span class="defined-in"><a href="***REMOVED***/tfs/ProductLine/Platform%20Technology/ECTech/_git/imodeljs-core?path=%2Fcore%2Fbackend%2Fsrc%2FAutoPush.ts">AutoPush.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:34 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:45 pm +00:00</span>
             </p>
 
             

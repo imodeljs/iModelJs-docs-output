@@ -144,6 +144,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/">imodeljs-backend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/imodels/">iModels</a> > BriefcaseManager</div>
+            
             <h2 class="h-briefcasemanager"><a id="briefcasemanager" class="heading-anchor" href="#%s"></a>BriefcaseManager <span class="badge badge-pill badge-primary badge-class">Class</span></h2>
 <p>Utility to manage briefcases</p>
 <h3 class="h-methods"><a id="methods" class="heading-anchor" href="#%s"></a>Methods</h3>
@@ -192,7 +193,7 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-open"><a id="open" class="heading-anchor" href="#%s"></a><span class="method-name">open</span><span class="method-parenthesis">(</span><span class="method-parameters">accessToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/token/accesstoken'>AccessToken</a>, projectId: string, iModelId: string, openParams: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/openparams'>OpenParams</a>, version: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodelversion'>IModelVersion</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/briefcaseentry'>BriefcaseEntry</a>&gt;</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td class="h-open"><a id="open" class="heading-anchor" href="#%s"></a><span class="method-name">open</span><span class="method-parenthesis">(</span><span class="method-parameters">accessToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/token/accesstoken'>AccessToken</a>, contextId: string, iModelId: string, openParams: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/openparams'>OpenParams</a>, version: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodelversion'>IModelVersion</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/briefcaseentry'>BriefcaseEntry</a>&gt;</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
 <td>Open a briefcase</td>
 </tr>
 <tr>
@@ -212,7 +213,7 @@
 <td>Purge closed briefcases</td>
 </tr>
 <tr>
-<td class="h-pushchanges"><a id="pushchanges" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="pushchanges">pushChanges</a></span><span class="method-parenthesis">(</span><span class="method-parameters">accessToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/token/accesstoken'>AccessToken</a>, briefcase: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/briefcaseentry'>BriefcaseEntry</a>, description: string, relinquishCodesLocks?: true | false</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td class="h-pushchanges"><a id="pushchanges" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="pushchanges">pushChanges</a></span><span class="method-parenthesis">(</span><span class="method-parameters">accessToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/token/accesstoken'>AccessToken</a>, briefcase: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/briefcaseentry'>BriefcaseEntry</a>, description: string, relinquishCodesLocks: boolean = true</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
 <td>Push local changes to the hub</td>
 </tr>
 <tr>
@@ -221,6 +222,15 @@
 </tr>
 <tr>
 <td class="h-reversechanges"><a id="reversechanges" class="heading-anchor" href="#%s"></a><span class="method-name">reverseChanges</span><span class="method-parenthesis">(</span><span class="method-parameters">accessToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/token/accesstoken'>AccessToken</a>, briefcase: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/briefcaseentry'>BriefcaseEntry</a>, reverseToVersion: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodelversion'>IModelVersion</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-setclientforbriefcase"><a id="setclientforbriefcase" class="heading-anchor" href="#%s"></a><span class="method-name">setClientForBriefcase</span><span class="method-parenthesis">(</span><span class="method-parameters">briefcase: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/briefcaseentry'>BriefcaseEntry</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td>Make sure that BriefcaseManager is configured to access the specified iModel in the appropriate context.</td>
+</tr>
+<tr>
+<td class="h-setclientfromimodeltokencontext"><a id="setclientfromimodeltokencontext" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="setclientfromimodeltokencontext">setClientFromIModelTokenContext</a></span><span class="method-parenthesis">(</span><span class="method-parameters">contextId: string | undefined</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td>Make sure that BriefcaseManager is configured to access iModels in the specified context.</td>
 </tr>
 </tbody></table><h3 class="h-properties"><a id="properties" class="heading-anchor" href="#%s"></a>Properties</h3>
 <table class="table table-responsive"><tbody><tr>
@@ -239,17 +249,17 @@
 <td>Connect client to be used for all briefcase operations</td>
 </tr>
 <tr>
-<td class="h-hubclient"><a id="hubclient" class="heading-anchor" href="#%s"></a><span class="property-name">hubClient</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/client/imodelhubclient'>IModelHubClient</a></span></td>
-<td>IModelHub Client to be used for all briefcase operations</td>
+<td class="h-imodelclient"><a id="imodelclient" class="heading-anchor" href="#%s"></a><span class="property-name">imodelClient</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelclient/imodelclient'>IModelClient</a></span></td>
+<td>IModel Server Client to be used for all briefcase operations</td>
 </tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
-<li>BriefcaseManager.ts</li>
+<li><span class="defined-in"><a href="***REMOVED***/tfs/ProductLine/Platform%20Technology/ECTech/_git/imodeljs-core?path=%2Fcore%2Fbackend%2Fsrc%2FBriefcaseManager.ts">BriefcaseManager.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:34 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:45 pm +00:00</span>
             </p>
 
             
@@ -336,6 +346,12 @@
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#reversechanges">reverseChanges</a>
                                             </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#setclientforbriefcase">setClientForBriefcase</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#setclientfromimodeltokencontext">setClientFromIModelTokenContext</a>
+                                            </li>
                                     </ul>
                             </li>
                             <li class='nav-item item '>
@@ -351,7 +367,7 @@
                                                     <a class='title solo-title menu-text' href="#connectclient">connectClient</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#hubclient">hubClient</a>
+                                                    <a class='title solo-title menu-text' href="#imodelclient">imodelClient</a>
                                             </li>
                                     </ul>
                             </li>

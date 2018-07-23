@@ -144,9 +144,9 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/rendering/">Rendering</a> > RenderSystem</div>
+            
             <h2 class="h-rendersystem"><a id="rendersystem" class="heading-anchor" href="#%s"></a>RenderSystem <span class="badge badge-pill badge-primary badge-class">Class</span></h2>
-<p>A RenderSystem is the renderer-specific factory for creating Render::Graphics, Render::Textures, and Render::Materials.</p>
-<p><span class="badge badge-pill badge-primary badge-note">note</span> The methods of this class may be called from any thread.</p>
+<p>A RenderSystem is the renderer-specific factory for creating RenderGraphics, RenderTexture, and RenderMaterials.</p>
 <h3 class="h-extended-by"><a id="extended-by" class="heading-anchor" href="#%s"></a>Extended by</h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/system'>System</a></li>
@@ -171,11 +171,11 @@
 </tr>
 <tr>
 <td class="h-createbatch"><a id="createbatch" class="heading-anchor" href="#%s"></a><span class="method-name">createBatch</span><span class="method-parenthesis">(</span><span class="method-parameters">graphic: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a>, features: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/featuretable'>FeatureTable</a>, range: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/elementalignedbox3d'>ElementAlignedBox3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a></span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span></td>
-<td>Create a Graphic consisting of batched Features.</td>
+<td>Create a RenderGraphic consisting of batched Features.</td>
 </tr>
 <tr>
-<td class="h-createbranch"><a id="createbranch" class="heading-anchor" href="#%s"></a><span class="method-name">createBranch</span><span class="method-parenthesis">(</span><span class="method-parameters">branch: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbranch'>GraphicBranch</a>, transform: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, clips?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a></span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span></td>
-<td>Create a Graphic consisting of a list of Graphics, with optional transform, clip, and view flag overrides applied to the list</td>
+<td class="h-createbranch"><a id="createbranch" class="heading-anchor" href="#%s"></a><span class="method-name">createBranch</span><span class="method-parenthesis">(</span><span class="method-parameters">branch: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbranch'>GraphicBranch</a>, transform: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, clips?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/renderclipvolume'>RenderClipVolume</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a></span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span></td>
+<td>Create a RenderGraphic consisting of a list of Graphics, with optional transform, clip, and view flag overrides applied to the list</td>
 </tr>
 <tr>
 <td class="h-creategraphic"><a id="creategraphic" class="heading-anchor" href="#%s"></a><span class="method-name">createGraphic</span><span class="method-parenthesis">(</span><span class="method-parameters">params: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuildercreateparams'>GraphicBuilderCreateParams</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuilder'>GraphicBuilder</a></span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span></td>
@@ -183,7 +183,7 @@
 </tr>
 <tr>
 <td class="h-creategraphiclist"><a id="creategraphiclist" class="heading-anchor" href="#%s"></a><span class="method-name">createGraphicList</span><span class="method-parenthesis">(</span><span class="method-parameters">primitives: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a></span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span></td>
-<td>Create a Graphic consisting of a list of Graphics</td>
+<td>Create a RenderGraphic consisting of a list of Graphics</td>
 </tr>
 <tr>
 <td class="h-createindexedpolylines"><a id="createindexedpolylines" class="heading-anchor" href="#%s"></a><span class="method-name">createIndexedPolylines</span><span class="method-parenthesis">(</span><span class="method-parameters">_args: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/polylineargs'>PolylineArgs</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a> | undefined</span></td>
@@ -191,22 +191,34 @@
 </tr>
 <tr>
 <td class="h-creatematerial"><a id="creatematerial" class="heading-anchor" href="#%s"></a><span class="method-name">createMaterial</span><span class="method-parenthesis">(</span><span class="method-parameters">_params: Params, _imodel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendermaterial'>RenderMaterial</a> | undefined</span></td>
-<td>Create a Material from parameters</td>
+<td>Create a RenderMaterial from parameters</td>
 </tr>
 <tr>
 <td class="h-createoffscreentarget"><a id="createoffscreentarget" class="heading-anchor" href="#%s"></a><span class="method-name">createOffscreenTarget</span><span class="method-parenthesis">(</span><span class="method-parameters">rect: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendertarget'>RenderTarget</a></span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span></td>
 <td>Create an offscreen render target.</td>
 </tr>
 <tr>
+<td class="h-createpointcloud"><a id="createpointcloud" class="heading-anchor" href="#%s"></a><span class="method-name">createPointCloud</span><span class="method-parenthesis">(</span><span class="method-parameters">_args: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/pointcloudargs'>PointCloudArgs</a>, _imodel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a> | undefined</span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-createskybox"><a id="createskybox" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="createskybox">createSkyBox</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_params: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/skyboxcreateparams'>SkyBoxCreateParams</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a> | undefined</span></td>
+<td>Create a Graphic for a sky box which encompasses the entire scene, rotating with the camera.</td>
+</tr>
+<tr>
 <td class="h-createtarget"><a id="createtarget" class="heading-anchor" href="#%s"></a><span class="method-name">createTarget</span><span class="method-parenthesis">(</span><span class="method-parameters">canvas: HTMLCanvasElement</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendertarget'>RenderTarget</a></span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span></td>
 <td>Create a render target which will render to the supplied canvas element.</td>
+</tr>
+<tr>
+<td class="h-createtexturefromimage"><a id="createtexturefromimage" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="createtexturefromimage">createTextureFromImage</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_image: HTMLImageElement, _hasAlpha: boolean, _imodel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a> | undefined, _params: Params</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendertexture'>RenderTexture</a> | undefined</span></td>
+<td>Create a new Texture from an HTML image.</td>
 </tr>
 <tr>
 <td class="h-createtexturefromimagebuffer"><a id="createtexturefromimagebuffer" class="heading-anchor" href="#%s"></a><span class="method-name">createTextureFromImageBuffer</span><span class="method-parenthesis">(</span><span class="method-parameters">_image: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/imagebuffer'>ImageBuffer</a>, _imodel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a>, _params: Params</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendertexture'>RenderTexture</a> | undefined</span></td>
 <td>Create a new Texture from an ImageBuffer.</td>
 </tr>
 <tr>
-<td class="h-createtexturefromimagesource"><a id="createtexturefromimagesource" class="heading-anchor" href="#%s"></a><span class="method-name">createTextureFromImageSource</span><span class="method-parenthesis">(</span><span class="method-parameters">_source: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/imagesource'>ImageSource</a>, _width: number, _height: number, _imodel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a>, _params: Params</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendertexture'>RenderTexture</a> | undefined</span></td>
+<td class="h-createtexturefromimagesource"><a id="createtexturefromimagesource" class="heading-anchor" href="#%s"></a><span class="method-name">createTextureFromImageSource</span><span class="method-parenthesis">(</span><span class="method-parameters">source: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/imagesource'>ImageSource</a>, imodel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a> | undefined, params: Params</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendertexture'>RenderTexture</a> | undefined&gt;</span></td>
 <td>Create a new Texture from an ImageSource.</td>
 </tr>
 <tr>
@@ -230,12 +242,12 @@
 <td>Get or create a Texture from a RenderTexture element.</td>
 </tr>
 <tr>
-<td class="h-getgradienttexture"><a id="getgradienttexture" class="heading-anchor" href="#%s"></a><span class="method-name">getGradientTexture</span><span class="method-parenthesis">(</span><span class="method-parameters">_symb: Symb, _imodel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendertexture'>RenderTexture</a> | undefined</span></td>
-<td>Create a new Texture from gradient symbology.</td>
+<td class="h-getclipvolume"><a id="getclipvolume" class="heading-anchor" href="#%s"></a><span class="method-name">getClipVolume</span><span class="method-parenthesis">(</span><span class="method-parameters">_clipVector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a>, _imodel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/renderclipvolume'>RenderClipVolume</a> | undefined</span></td>
+<td>Attempt to create a clipping volume for the given iModel using a clip vector.</td>
 </tr>
 <tr>
-<td class="h-idle"><a id="idle" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="idle">idle</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
-<td>Perform some small unit of work (or do nothing) during an idle frame.</td>
+<td class="h-getgradienttexture"><a id="getgradienttexture" class="heading-anchor" href="#%s"></a><span class="method-name">getGradientTexture</span><span class="method-parenthesis">(</span><span class="method-parameters">_symb: Symb, _imodel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendertexture'>RenderTexture</a> | undefined</span></td>
+<td>Create a new Texture from gradient symbology.</td>
 </tr>
 <tr>
 <td class="h-isvalid"><a id="isvalid" class="heading-anchor" href="#%s"></a><span class="method-name">isValid</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
@@ -274,11 +286,11 @@
 </tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
-<li>render/System.ts</li>
+<li><span class="defined-in"><a href="***REMOVED***/tfs/ProductLine/Platform%20Technology/ECTech/_git/imodeljs-core?path=%2Fcore%2Ffrontend%2Fsrc%2Frender%2FSystem.ts">render/System.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:29 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:53 pm +00:00</span>
             </p>
 
             
@@ -345,7 +357,16 @@
                                                     <a class='title solo-title menu-text' href="#createoffscreentarget">createOffscreenTarget</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#createpointcloud">createPointCloud</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#createskybox">createSkyBox</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#createtarget">createTarget</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#createtexturefromimage">createTextureFromImage</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#createtexturefromimagebuffer">createTextureFromImageBuffer</a>
@@ -369,10 +390,10 @@
                                                     <a class='title solo-title menu-text' href="#findtexture">findTexture</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#getgradienttexture">getGradientTexture</a>
+                                                    <a class='title solo-title menu-text' href="#getclipvolume">getClipVolume</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#idle">idle</a>
+                                                    <a class='title solo-title menu-text' href="#getgradienttexture">getGradientTexture</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#isvalid">isValid</a>

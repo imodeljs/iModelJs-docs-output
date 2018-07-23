@@ -80,14 +80,14 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ecsqltutorial/">ecsqltutorial</a> > MetaQueries</div>
+            <div class="edit-link">***REMOVED***</div>
             <h1 id="meta queries -querying ecschemas">Meta Queries - Querying ECSchemas</h1>
 <p>Every iModel includes the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbmeta.ecschema'>ECDbMeta</a> ECSchema. It exposes the content of all schemas that the iModel contains. You can therefore use ECSQL against that schema to query for schemas, classes, properties etc.</p>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Return the name, alias and version of all <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbmeta.ecschema/#ecschemadef'>schemas</a> in the iModel</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT Name, Alias, VersionMajor, VersionWrite, VersionMinor FROM meta.ECSchemaDef ORDER BY Name
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT Name, Alias, VersionMajor, VersionWrite, VersionMinor FROM meta.ECSchemaDef ORDER BY Name</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -165,8 +165,7 @@
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Return the properties and their types for the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#element'>Element</a> class</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT p.Name from meta.ECPropertyDef p JOIN meta.ECClassDef c ON c.ECInstanceId=p.Class.Id WHERE c.Name=&apos;Element&apos; ORDER BY p.Ordinal
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT p.Name from meta.ECPropertyDef p JOIN meta.ECClassDef c ON c.ECInstanceId=p.Class.Id WHERE c.Name=&apos;Element&apos; ORDER BY p.Ordinal</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -214,8 +213,7 @@
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Return only <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a>s in the iModel which are of the subclass <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#building'>Building</a> or <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#story'>Story</a>.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT class.Name ClassName, element.ECInstanceId ElementId, element.CodeValue FROM bis.SpatialElement element JOIN meta.ECClassDef class ON element.ECClassId=class.ECInstanceId WHERE class.Name IN (&apos;Building&apos;,&apos;Story&apos;)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT class.Name ClassName, element.ECInstanceId ElementId, element.CodeValue FROM bis.SpatialElement element JOIN meta.ECClassDef class ON element.ECClassId=class.ECInstanceId WHERE class.Name IN (&apos;Building&apos;,&apos;Story&apos;)</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>ClassName</th>
@@ -249,8 +247,7 @@ were a <code>Building</code> subclass in another schema, those instances would a
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Return only <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a>s in the iModel which are of the subclass <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#building'>Building</a> or <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#story'>Story</a> from the schema <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema'>MyDomain</a>.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT class.Name ClassName, element.ECInstanceId ElementId, element.CodeValue FROM bis.SpatialElement element JOIN meta.ECClassDef class ON element.ECClassId=class.ECInstanceId JOIN meta.ECSchemaDef schema ON schema.ECInstanceId=class.Schema.Id WHERE schema.Name=&apos;MyDomain&apos; AND class.Name IN (&apos;Building&apos;,&apos;Story&apos;)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT class.Name ClassName, element.ECInstanceId ElementId, element.CodeValue FROM bis.SpatialElement element JOIN meta.ECClassDef class ON element.ECClassId=class.ECInstanceId JOIN meta.ECSchemaDef schema ON schema.ECInstanceId=class.Schema.Id WHERE schema.Name=&apos;MyDomain&apos; AND class.Name IN (&apos;Building&apos;,&apos;Story&apos;)</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>ClassName</th>
@@ -282,7 +279,7 @@ were a <code>Building</code> subclass in another schema, those instances would a
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/spatialqueries'><strong>&lt; Previous</strong></a> &#xA0; | &#xA0; <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/changesummaryqueries'><strong>Next &gt;</strong></a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:35 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:57 pm +00:00</span>
             </p>
 
             

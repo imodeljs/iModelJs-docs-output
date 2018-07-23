@@ -80,6 +80,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/">backend</a> > CreateElements</div>
+            <div class="edit-link">***REMOVED***</div>
             <h1 id="creating elements">Creating Elements</h1>
 <p>Use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb.elements/insertelement'>IModelDb.Elements.insertElement</a> to insert a new element into an IModelDb. This method takes as its input an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a> or a subclass of it, which defines the class and all required properties of the new element.</p>
 <p><em>Example:</em></p>
@@ -93,20 +94,18 @@
       userLabel: name,
     };
     return iModelDb.elements.insertElement(props);
-  }
-</code></pre>
+  }</code></pre>
 <p>The above example shows the use of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/geometricelement3dprops'>GeometricElement3dProps</a> subclass of ElementProps.</p>
 <p>Some classes provide <code>create</code> helper functions.</p>
 <p><em>Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">      const cat: SpatialCategory = SpatialCategory.create(dictionary, _schemaNames.Class.Robot);
       cat.id = iModelDb.elements.insertElement(cat);
       cat.setDefaultAppearance(new SubCategoryAppearance({ color: ColorByName.silver }));
-      iModelDb.elements.updateElement(cat);
-</code></pre>
+      iModelDb.elements.updateElement(cat);</code></pre>
 <p>The above example shows the use of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/spatialcategory/create'>SpatialCategory.create</a> helper function to create the props object. It also illustrates how <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb.elements/updateelement'>IModelDb.Elements.updateElement</a> is used.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:35 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:56 pm +00:00</span>
             </p>
 
             

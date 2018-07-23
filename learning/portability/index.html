@@ -80,6 +80,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > Portability</div>
+            <div class="edit-link">***REMOVED***</div>
             <h1 id="portability">Portability</h1>
 <p>This article describes the technologies and best practices that make iModelJs apps portable. An well-written iModelJs app will run on many platforms without modification.</p>
 <p>In addition, a well-written interactive app can be configured to run as a Web abb, a desktop app, and a mobile app, with a few simple runtime checks and no other code changes. Configurability does not mean that an iModelJs app must be the same in all configurations. In fact, the iModelJs architecture makes it easy to <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/apptailoring'>make the app fit the platform</a>.</p>
@@ -98,8 +99,7 @@
 
 if (isIos) {
   // ... use iOS-specific modules, such as camera ...
-}
-</code></pre>
+}</code></pre>
 <h2 class="h-backend-portability"><a id="backend-portability" class="heading-anchor" href="#%s"></a>Backend Portability</h2>
 <h3 class="h-services-and-agents"><a id="services-and-agents" class="heading-anchor" href="#%s"></a>Services and Agents</h3>
 <p>True services and agents are easy to make portable, since they always run in nodejs and they always run on a server. Services always run a Web server and always use <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/rpcinterface/#web-rpc-configuration'>Web RPC configuration</a>. Note that an iModelJs service or agent does not deal directly with issues such as deployment, routing, or scaling. Those are the concerns of the cloud infrastructure. As nodejs apps, iModelJs services and agents are cloud-neutral and run on many cloud infrastructures.</p>
@@ -116,8 +116,7 @@ if (isIos) {
     process.env;
     require(&quot;fs&quot;);
     // ...
-  }
-</code></pre>
+  }</code></pre>
 <h3 class="h-avoiding-nodejs-dependencies"><a id="avoiding-nodejs-dependencies" class="heading-anchor" href="#%s"></a>Avoiding Nodejs dependencies</h3>
 <p>A backend can use the following portable imodeljs-backend classes to avoid unnecessary node dependencies:</p>
 <table class="table table-responsive"><tbody><tr>
@@ -161,7 +160,7 @@ posix, win32, sep, delimiter, basename, dirname, extname, normalize, join, isAbs
 <p>An app backend must not <em>never</em> depend on node-specific <em>packages</em>, including any package that is based on native code. (For fs-extra, use IModelJsFs)</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:35 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:56 pm +00:00</span>
             </p>
 
             

@@ -144,11 +144,12 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/rendering/">Rendering</a> > RenderTarget</div>
+            
             <h2 class="h-rendertarget"><a id="rendertarget" class="heading-anchor" href="#%s"></a>RenderTarget <span class="badge badge-pill badge-primary badge-class">Class</span></h2>
 <p>A RenderTarget holds the current scene, the current set of dynamic RenderGraphics, and the current decorators.
-When frames are composed, all of those RenderGraphics are rendered, as appropriate.
-A RenderTarget holds a reference to a Render::Device, and a RenderSystem
-Every DgnViewport holds a reference to a RenderTarget.</p>
+When frames are composed, all of those RenderGraphics are rendered, as appropriate.</p>
+<p>A RenderTarget holds a reference to a RenderSystem.</p>
+<p>Every Viewport holds a reference to a RenderTarget.</p>
 <h3 class="h-extended-by"><a id="extended-by" class="heading-anchor" href="#%s"></a>Extended by</h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/target'>Target</a></li>
@@ -225,6 +226,10 @@ Every DgnViewport holds a reference to a RenderTarget.</p>
 </tr>
 <tr>
 <td class="h-updateviewrect"><a id="updateviewrect" class="heading-anchor" href="#%s"></a><span class="method-name">updateViewRect</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-depthfromdisplaypriority"><a id="depthfromdisplaypriority" class="heading-anchor" href="#%s"></a><span class="method-name">depthFromDisplayPriority</span><span class="method-parenthesis">(</span><span class="method-parameters">priority: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
 </tr>
 </tbody></table><h3 class="h-properties"><a id="properties" class="heading-anchor" href="#%s"></a>Properties</h3>
 <table class="table table-responsive"><tbody><tr>
@@ -238,7 +243,17 @@ Every DgnViewport holds a reference to a RenderTarget.</p>
 <td></td>
 </tr>
 <tr>
+<td class="h-displaypriorityfactor"><a id="displaypriorityfactor" class="heading-anchor" href="#%s"></a><span class="property-name">displayPriorityFactor</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> number</span></td>
+<td></td>
+</tr>
+<tr>
 <td class="h-frustumdepth2d"><a id="frustumdepth2d" class="heading-anchor" href="#%s"></a><span class="property-name">frustumDepth2d</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> number</span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-maxdisplaypriority"><a id="maxdisplaypriority" class="heading-anchor" href="#%s"></a><span class="property-name">maxDisplayPriority</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
 <td><span class="method-output"> number</span></td>
 <td></td>
 </tr>
@@ -258,11 +273,11 @@ Every DgnViewport holds a reference to a RenderTarget.</p>
 </tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
-<li>render/System.ts</li>
+<li><span class="defined-in"><a href="***REMOVED***/tfs/ProductLine/Platform%20Technology/ECTech/_git/imodeljs-core?path=%2Fcore%2Ffrontend%2Fsrc%2Frender%2FSystem.ts">render/System.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:29 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:53 pm +00:00</span>
             </p>
 
             
@@ -349,6 +364,9 @@ Every DgnViewport holds a reference to a RenderTarget.</p>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#updateviewrect">updateViewRect</a>
                                             </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#depthfromdisplaypriority">depthFromDisplayPriority</a>
+                                            </li>
                                     </ul>
                             </li>
                             <li class='nav-item item '>
@@ -361,7 +379,13 @@ Every DgnViewport holds a reference to a RenderTarget.</p>
                                                     <a class='title solo-title menu-text' href="#camerafrustumnearscalelimit">cameraFrustumNearScaleLimit</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#displaypriorityfactor">displayPriorityFactor</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#frustumdepth2d">frustumDepth2d</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#maxdisplaypriority">maxDisplayPriority</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#rendersystem">renderSystem</a>

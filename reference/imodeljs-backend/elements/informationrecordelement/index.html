@@ -144,6 +144,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/">imodeljs-backend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/elements/">Elements</a> > InformationRecordElement</div>
+            
             <h2 class="h-informationrecordelement"><a id="informationrecordelement" class="heading-anchor" href="#%s"></a>InformationRecordElement <span class="badge badge-pill badge-primary badge-class">Class</span></h2>
 <p>Information Record Element is an abstract base class for modeling information records. Information Record
 Element is the default choice if no other subclass of Information Content Element makes sense.</p>
@@ -164,13 +165,154 @@ Element is the default choice if no other subclass of Information Content Elemen
 <tr>
 <td class="h-constructor"><a id="constructor" class="heading-anchor" href="#%s"></a><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a>, iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/informationrecordelement'>InformationRecordElement</a></span></td>
 </tr>
+</tbody></table><h3 class="h-inherited-methods"><a id="inherited-methods" class="heading-anchor" href="#%s"></a><i class="icon collapse-section icon-chevron-down"></i>Inherited methods</h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Inherited from</th>
+<th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
+</tr>
+<tr>
+<td class="h-buildconcurrencycontrolrequest"><a id="buildconcurrencycontrolrequest" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element/buildconcurrencycontrolrequest'>buildConcurrencyControlRequest</a></span><span class="method-parenthesis">(</span><span class="method-parameters">opcode: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/besqlite/dbopcode'>DbOpcode</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a></span></td>
+<td>Add a request for locks, code reservations, and anything else that would be needed to carry out the specified operation.</td>
+</tr>
+<tr>
+<td class="h-clonet-extends-entity"><a id="clonet-extends-entity" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity/#clone'>clone</a></span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity'>Entity</a></span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity'>Entity</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity'>Entity</a></span></td>
+<td>Make a deep copy of this Entity</td>
+</tr>
+<tr>
+<td class="h-foreachproperty"><a id="foreachproperty" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity/foreachproperty'>forEachProperty</a></span><span class="method-parenthesis">(</span><span class="method-parameters">func: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/propertycallback'>PropertyCallback</a>, includeCustom: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity'>Entity</a></span></td>
+<td>Call a function for each property of this Entity.</td>
+</tr>
+<tr>
+<td class="h-getclassmetadata"><a id="getclassmetadata" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element/#getclassmetadata'>getClassMetaData</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/entitymetadata'>EntityMetaData</a> | undefined</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a></span></td>
+<td>Get the class metadata for this element.</td>
+</tr>
+<tr>
+<td class="h-getjsonproperty"><a id="getjsonproperty" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element/#getjsonproperty'>getJsonProperty</a></span><span class="method-parenthesis">(</span><span class="method-parameters">name: string</span><span class="method-parenthesis">):</span><span class="method-output"> any</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a></span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-getuserproperties"><a id="getuserproperties" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element/#getuserproperties'>getUserProperties</a></span><span class="method-parenthesis">(</span><span class="method-parameters">namespace: string</span><span class="method-parenthesis">):</span><span class="method-output"> any</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a></span></td>
+<td>Get a set of JSON user properties by namespace</td>
+</tr>
+<tr>
+<td class="h-removeuserproperties"><a id="removeuserproperties" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element/#removeuserproperties'>removeUserProperties</a></span><span class="method-parenthesis">(</span><span class="method-parameters">nameSpace: string</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a></span></td>
+<td>Remove a set of JSON user properties, specified by namespace, from this Element</td>
+</tr>
+<tr>
+<td class="h-setjsonproperty"><a id="setjsonproperty" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element/#setjsonproperty'>setJsonProperty</a></span><span class="method-parenthesis">(</span><span class="method-parameters">name: string, value: any</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a></span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-setuserproperties"><a id="setuserproperties" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element/#setuserproperties'>setUserProperties</a></span><span class="method-parenthesis">(</span><span class="method-parameters">nameSpace: string, value: any</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a></span></td>
+<td>Change a set of user JSON properties of this Element by namespace.</td>
+</tr>
+<tr>
+<td class="h-tojson"><a id="tojson" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element/#tojson'>toJSON</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a></span></td>
+<td>Add this Element&apos;s properties to an object for serializing to JSON.</td>
+</tr>
+</tbody></table><h3 class="h-inherited-properties"><a id="inherited-properties" class="heading-anchor" href="#%s"></a><i class="icon collapse-section icon-chevron-down"></i>Inherited properties</h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Inherited from</th>
+<th>Description</th>
+</tr>
+<tr>
+<td class="h-classfullname"><a id="classfullname" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity/#classfullname'>classFullName</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> string</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity'>Entity</a></span></td>
+<td>Get full class name of this Entity in the form &quot;schema:class&quot;.</td>
+</tr>
+<tr>
+<td class="h-classfullname-1"><a id="classfullname-1" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity/#classfullname'>classFullName</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> string</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity'>Entity</a></span></td>
+<td>Get the full name of this class, in the form &quot;schema:class&quot;</td>
+</tr>
+<tr>
+<td class="h-classname"><a id="classname" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity/#classname'>className</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> string</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity'>Entity</a></span></td>
+<td>Get the name of this class</td>
+</tr>
+<tr>
+<td class="h-code"><a id="code" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element/#code'>code</a></span></td>
+<td><span class="method-output">Code</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a></span></td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/codes'>Code</a> for this element</td>
+</tr>
+<tr>
+<td class="h-federationguid"><a id="federationguid" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element/#federationguid'>federationGuid</a></span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guid'>Guid</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a></span></td>
+<td>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals/#federationguid'>FederationGuid</a> assigned to this element by some other federated database</td>
+</tr>
+<tr>
+<td class="h-id"><a id="id" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity/id'>id</a></span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity'>Entity</a></span></td>
+<td>The Id of this Entity.</td>
+</tr>
+<tr>
+<td class="h-imodel"><a id="imodel" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity/#imodel'>iModel</a></span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity'>Entity</a></span></td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a> that contains this Entity</td>
+</tr>
+<tr>
+<td class="h-jsonproperties"><a id="jsonproperties" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element/#jsonproperties'>jsonProperties</a></span></td>
+<td><span class="method-output">any</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a></span></td>
+<td>Optional <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals/#jsonproperties'>json properties</a> of this element.</td>
+</tr>
+<tr>
+<td class="h-model"><a id="model" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element/#model'>model</a></span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a></span></td>
+<td>The ModelId of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/model-fundamentals'>Model</a> containing this element</td>
+</tr>
+<tr>
+<td class="h-parent"><a id="parent" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element/#parent'>parent</a></span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/relatedelement'>RelatedElement</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a></span></td>
+<td>The parent element, if present, of this element.</td>
+</tr>
+<tr>
+<td class="h-schema"><a id="schema" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity/#schema'>schema</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/schema'>Schema</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity'>Entity</a></span></td>
+<td>The schema that defines this class.</td>
+</tr>
+<tr>
+<td class="h-schemaname"><a id="schemaname" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity/#schemaname'>schemaName</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> string</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity'>Entity</a></span></td>
+<td>Get the name of the schema that defines this class</td>
+</tr>
+<tr>
+<td class="h-userlabel"><a id="userlabel" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element/#userlabel'>userLabel</a></span></td>
+<td><span class="method-output">undefined | string</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a></span></td>
+<td>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals/#userlabel'>user-assigned label</a> for this element.</td>
+</tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
-<li>Element.ts</li>
+<li><span class="defined-in"><a href="***REMOVED***/tfs/ProductLine/Platform%20Technology/ECTech/_git/imodeljs-core?path=%2Fcore%2Fbackend%2Fsrc%2FElement.ts">Element.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:33 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:44 pm +00:00</span>
             </p>
 
             
@@ -211,6 +353,91 @@ Element is the default choice if no other subclass of Information Content Elemen
                                     <ul id="inner-nav-methods" class='inner-nav'>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#constructor">constructor</a>
+                                            </li>
+                                    </ul>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a data-target="#inner-nav-inherited-methods" class='title' href="#inherited-methods"/>
+                                    <b class='dropdown-menu-title menu-text'>Inherited methods</b>
+                                    <i class='dropdown icon'></i>
+                                    </a>
+                                    <ul id="inner-nav-inherited-methods" class='inner-nav'>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#buildconcurrencycontrolrequest">buildConcurrencyControlRequest</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#clone">clone</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#foreachproperty">forEachProperty</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#getclassmetadata">getClassMetaData</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#getjsonproperty">getJsonProperty</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#getuserproperties">getUserProperties</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#removeuserproperties">removeUserProperties</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#setjsonproperty">setJsonProperty</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#setuserproperties">setUserProperties</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#tojson">toJSON</a>
+                                            </li>
+                                    </ul>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a data-target="#inner-nav-inherited-properties" class='title' href="#inherited-properties"/>
+                                    <b class='dropdown-menu-title menu-text'>Inherited properties</b>
+                                    <i class='dropdown icon'></i>
+                                    </a>
+                                    <ul id="inner-nav-inherited-properties" class='inner-nav'>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#classfullname">classFullName</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#classfullname-1">classFullName</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#classname">className</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#code">code</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#federationguid">federationGuid</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#id">id</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#imodel">iModel</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#jsonproperties">jsonProperties</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#model">model</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#parent">parent</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#schema">schema</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#schemaname">schemaName</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#userlabel">userLabel</a>
                                             </li>
                                     </ul>
                             </li>

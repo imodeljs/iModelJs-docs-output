@@ -80,6 +80,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/">common</a> > FeatureGates</div>
+            <div class="edit-link">***REMOVED***</div>
             <h1 id="feature gates">Feature Gates</h1>
 <p>A &quot;feature gate&quot; is a parameter that an app or service can check to enable or disable features at runtime. A gate can be any type, e.g. boolean, string, number or even object. Generally they are established at startup, but may be changed at runtime based, for example, on user credentials or server-based priorities, etc.</p>
 <p>A service typically gets its feature gates from its deployment parameters.
@@ -94,8 +95,7 @@
 
     // Define the feature gates that were passed in the config parameters on IModelHost, using &quot;robot&quot; as the key.
     IModelHost.features.setGate(&quot;robot&quot;, config.features);
-  }
-</code></pre>
+  }</code></pre>
 <p>An example of the feature gate portion of a configuration .json file that is deployed with a service might be:</p>
 <pre class="no-line-numbers"><code class="language-json">{
   &quot;features&quot;: {
@@ -106,8 +106,7 @@
       &quot;methods&quot;: &quot;${ROBOT-WORLD-FEATURE-EXPERIMENTAL-METHODS}&quot;
     }
   }
-}
-</code></pre>
+}</code></pre>
 <p>Note how the values of the configuration properties are defined by placeholders, which are delimited by ${}. Such placeholders will be replaced by EnvMacroSubst with the values of like-named environment variables. That allows a deployment mechanism to supply the values for configuration parameters and inject them into the service.</p>
 <p>A service then checks its feature gates in its methods.
 <em>Example:</em></p>
@@ -117,11 +116,10 @@
       return;
 
     // The gate is open. Go ahead and perform the function.
-    // ...
-</code></pre>
+    // ...</code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:35 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:57 pm +00:00</span>
             </p>
 
             

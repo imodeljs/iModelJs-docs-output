@@ -80,6 +80,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ecsqltutorial/">ecsqltutorial</a> > FirstExamples</div>
+            <div class="edit-link">***REMOVED***</div>
             <h1 id="first examples">First Examples</h1>
 <p>We will start off the tutorial by a simple ECSQL example:</p>
 <h2 class="h-first-ecsql"><a id="first-ecsql" class="heading-anchor" href="#%s"></a>First ECSQL</h2>
@@ -87,8 +88,7 @@
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Return id, subclass and code of all <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatiallocationelement'>SpatialLocationElement</a>s in the iModel.</p>
 <p><em>ECSQL:</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, ECClassId, CodeValue FROM bis.SpatialLocationElement
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, ECClassId, CodeValue FROM bis.SpatialLocationElement</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>ECInstanceId</th>
@@ -180,8 +180,7 @@
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Return id, subclass and code of all <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatiallocationelement'>SpatialLocationElement</a>s in the iModel.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, ECClassId, CodeValue FROM BisCore.SpatialLocationElement
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, ECClassId, CodeValue FROM BisCore.SpatialLocationElement</code></pre>
 <p><em>Result:</em> As in <a href="#first-ecsql">First ECSQL</a></p>
 <table class="table table-responsive"><tbody><tr>
 <th>ECInstanceId</th>
@@ -269,8 +268,7 @@
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Return id, subclass and code of all <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatiallocationelement'>SpatialLocationElement</a>s in the iModel.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, ECClassId, CodeValue FROM SpatialLocationElement
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, ECClassId, CodeValue FROM SpatialLocationElement</code></pre>
 <p><em>Result</em></p>
 <p><code>Failed to execute the ECSQL: Invalid ECSQL class expression: Valid syntax: [&lt;table space&gt;.]&lt;schema name or alias&gt;.&lt;class name&gt;</code></p>
 </blockquote>
@@ -280,8 +278,7 @@
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Find out how many <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#element'>Element</a>s there are in the iModel.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT count(*) FROM bis.Element
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT count(*) FROM bis.Element</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>count(*)</th>
@@ -296,8 +293,7 @@
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Find out how many <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a>s there are in the iModel.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT count(*) FROM bis.SpatialElement
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT count(*) FROM bis.SpatialElement</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>count(*)</th>
@@ -312,8 +308,7 @@
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Find out how many <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a>s there are in the iModel per actual element type.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECClassId, count(*) ElementCount FROM bis.SpatialElement GROUP BY ECClassId ORDER BY ECClassId
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECClassId, count(*) ElementCount FROM bis.SpatialElement GROUP BY ECClassId ORDER BY ECClassId</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>ECClassId</th>
@@ -343,8 +338,7 @@
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Return the first 5 <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatiallocationelement'>SpatialLocationElement</a>s only.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, ECClassId, CodeValue FROM bis.SpatialLocationElement LIMIT 5
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, ECClassId, CodeValue FROM bis.SpatialLocationElement LIMIT 5</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>ECInstanceId</th>
@@ -382,8 +376,7 @@
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Return the 11th through 15th <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatiallocationelement'>SpatialLocationElement</a> only.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, ECClassId, CodeValue FROM bis.SpatialLocationElement LIMIT 5 OFFSET 5
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, ECClassId, CodeValue FROM bis.SpatialLocationElement LIMIT 5 OFFSET 5</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>ECInstanceId</th>
@@ -422,8 +415,7 @@
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Find out how many <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a>s there are in the iModel and give the resulting column the more meaningful name <em>Element Count</em>.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT count(*) ElementCount FROM bis.SpatialElement
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT count(*) ElementCount FROM bis.SpatialElement</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>ElementCount</th>
@@ -438,8 +430,7 @@
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Return id and code of all <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#element'>Element</a>s in the iModel and give the id column the name <em>ElementId</em> and the code value column the name <em>Code</em>.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId ElementId, ECClassId, CodeValue Code FROM bis.Element LIMIT 3
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId ElementId, ECClassId, CodeValue Code FROM bis.Element LIMIT 3</code></pre>
 <p><em>Result</em></p>
 <p>ElementId | ECClassId | Code
 0x1 | BisCore.Subject | My Campus
@@ -452,8 +443,7 @@ some class, you can let ECSQL do calculations. The following example uses ECSQL 
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Compute the perimeter and area of a circle with a radius of 10 cm.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT 10 Radius, (2 * 3.1415 * 10) Perimeter, (3.1415 * 10 * 10) Area FROM bis.Element LIMIT 1
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT 10 Radius, (2 * 3.1415 * 10) Perimeter, (3.1415 * 10 * 10) Area FROM bis.Element LIMIT 1</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>Radius</th>
@@ -469,22 +459,18 @@ some class, you can let ECSQL do calculations. The following example uses ECSQL 
 <p>Using <strong>aliases</strong> is also helpful when working with the iModelJs API. The API returns query results as JavaScript object literals where
 each expression of the SELECT clause becomes the member of the object.</p>
 <p>If you, for example, used the <a href="#element-count">Element Count example</a> with the iModeljs API, you would get this JavaScript object literal:</p>
-<pre class="no-line-numbers"><code class="language-typescript"> { &quot;count(*)&quot; : 26 }
-</code></pre>
+<pre class="no-line-numbers"><code class="language-typescript"> { &quot;count(*)&quot; : 26 }</code></pre>
 <p>The power of JavaScript object literals is lost here, because <code>count(*)</code> is not a valid member name. If you applied an alias to
 the count expression though so that the ECSQL would look like this:</p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT count(*) elementCount FROM bis.SpatialElement
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT count(*) elementCount FROM bis.SpatialElement</code></pre>
 <p>the JavaScript object would now look like this:</p>
-<pre class="no-line-numbers"><code class="language-typescript"> { elementCount : 26 }
-</code></pre>
+<pre class="no-line-numbers"><code class="language-typescript"> { elementCount : 26 }</code></pre>
 <p>Now the result can be consumed in TypeScript as desired:</p>
 <pre class="no-line-numbers"><code class="language-typescript"> iModelDb.withPreparedStatement(&quot;SELECT count(*) elementCount FROM bis.SpatialElement&quot;, (stmt: ECSqlStatement) =&gt; {
     stmt.step();
     const row: any = stmt.getRow();
     console.log(&quot;Element count: &quot; + row.elementCount);
-    });
-</code></pre>
+    });</code></pre>
 <h2 class="h-parametrizing-the-ecsql"><a id="parametrizing-the-ecsql" class="heading-anchor" href="#%s"></a>Parametrizing the ECSQL</h2>
 <p>To reuse the same ECSQL statement with different values, parameters can be used. Reusing ECSQL statements should always be considered because preparing an ECSQL statement can be costly. See the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql/#ecsql-parameters'>ECSQL Reference</a> for details and some examples. Values for the parameters are bound to the statement via the iModelJs API.</p>
 <p><strong>Not binding a value to a parameter is like binding NULL to it.</strong></p>
@@ -492,8 +478,7 @@ the count expression though so that the ECSQL would look like this:</p>
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Return all <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a>s that do not have a user label.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,ECClassId FROM bis.SpatialElement WHERE UserLabel=? LIMIT 5
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,ECClassId FROM bis.SpatialElement WHERE UserLabel=? LIMIT 5</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>ECInstanceId</th>
@@ -525,8 +510,7 @@ the count expression though so that the ECSQL would look like this:</p>
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Return all <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a>s that do not have a user label.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,ECClassId FROM bis.SpatialElement WHERE UserLabel IS NULL LIMIT 5
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,ECClassId FROM bis.SpatialElement WHERE UserLabel IS NULL LIMIT 5</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>ECInstanceId</th>
@@ -559,8 +543,7 @@ the count expression though so that the ECSQL would look like this:</p>
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> For all <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a>s whose code contains the string &apos;DEV&apos; return a more human-readable form of the code by replacing &apos;DEV&apos; by &apos;Device&apos;.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, CodeValue, replace(CodeValue,&apos;DEV&apos;,&apos;Device&apos;) ReadableCode FROM bis.SpatialElement WHERE instr(CodeValue,&apos;DEV&apos;) LIMIT 5
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, CodeValue, replace(CodeValue,&apos;DEV&apos;,&apos;Device&apos;) ReadableCode FROM bis.SpatialElement WHERE instr(CodeValue,&apos;DEV&apos;) LIMIT 5</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>ECInstanceId</th>
@@ -600,8 +583,7 @@ the count expression though so that the ECSQL would look like this:</p>
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> For all <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>SpatialElement</a>s whose code contains the string &apos;DEV&apos; return a more human-readable form of the code by replacing &apos;DEV&apos; by &apos;Device&apos;.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, CodeValue, replace(CodeValue,&apos;DEV&apos;,&apos;Device&apos;) ReadableCode FROM bis.SpatialElement WHERE CodeValue LIKE &apos;%DEV%&apos; LIMIT 5
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, CodeValue, replace(CodeValue,&apos;DEV&apos;,&apos;Device&apos;) ReadableCode FROM bis.SpatialElement WHERE CodeValue LIKE &apos;%DEV%&apos; LIMIT 5</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>ECInstanceId</th>
@@ -638,7 +620,7 @@ the count expression though so that the ECSQL would look like this:</p>
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/keytoecsql'><strong>&lt; Previous</strong></a>  &#xA0; | &#xA0; <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/ecsqldatatypes'><strong>Next &gt;</strong></a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:35 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:57 pm +00:00</span>
             </p>
 
             

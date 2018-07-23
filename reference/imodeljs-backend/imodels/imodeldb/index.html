@@ -144,6 +144,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/">imodeljs-backend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/imodels/">iModels</a> > IModelDb</div>
+            
             <h2 class="h-imodeldb"><a id="imodeldb" class="heading-anchor" href="#%s"></a>IModelDb <span class="badge badge-pill badge-primary badge-class">Class</span></h2>
 <p>Represents a physical copy (a briefcase) of an iModel that can be accessed as a file on the local computer.</p>
 <p>IModelDb raises a set of events to allow apps and subsystems to track IModelDb object life cycle, including <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/onopen'>IModelDb.onOpen</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/#onopened'>IModelDb.onOpened</a>.</p>
@@ -167,7 +168,7 @@
 </tr>
 <tr>
 <td class="h-cancelsnap"><a id="cancelsnap" class="heading-anchor" href="#%s"></a><span class="method-name">cancelSnap</span><span class="method-parenthesis">(</span><span class="method-parameters">connectionId: string</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
-<td></td>
+<td>Cancel a previously requested snap.</td>
 </tr>
 <tr>
 <td class="h-clearsqlitestatementcache"><a id="clearsqlitestatementcache" class="heading-anchor" href="#%s"></a><span class="method-name">clearSqliteStatementCache</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
@@ -218,11 +219,11 @@
 <td>Get the GUID of this iModel.</td>
 </tr>
 <tr>
-<td class="h-getmetadata"><a id="getmetadata" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="getmetadata">getMetaData</a></span><span class="method-parenthesis">(</span><span class="method-parameters">classFullName: string</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entitymetadata'>EntityMetaData</a></span></td>
+<td class="h-getmetadata"><a id="getmetadata" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="getmetadata">getMetaData</a></span><span class="method-parenthesis">(</span><span class="method-parameters">classFullName: string</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/entitymetadata'>EntityMetaData</a></span></td>
 <td>Get metadata for a class.</td>
 </tr>
 <tr>
-<td class="h-importschema"><a id="importschema" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="importschema">importSchema</a></span><span class="method-parenthesis">(</span><span class="method-parameters">schemaFileName: string</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
+<td class="h-importschema"><a id="importschema" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="importschema">importSchema</a></span><span class="method-parenthesis">(</span><span class="method-parameters">schemaFileName: string</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span></td>
 <td>Import an ECSchema.</td>
 </tr>
 <tr>
@@ -251,15 +252,15 @@
 </tr>
 <tr>
 <td class="h-queryfilepropertyblob"><a id="queryfilepropertyblob" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="queryfilepropertyblob">queryFilePropertyBlob</a></span><span class="method-parenthesis">(</span><span class="method-parameters">prop: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/filepropertyprops'>FilePropertyProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> ArrayBuffer | undefined</span></td>
-<td>query a &quot;file property&quot; from this iModel, as a blob.</td>
+<td>Query a &quot;file property&quot; from this iModel, as a blob.</td>
 </tr>
 <tr>
 <td class="h-queryfilepropertystring"><a id="queryfilepropertystring" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="queryfilepropertystring">queryFilePropertyString</a></span><span class="method-parenthesis">(</span><span class="method-parameters">prop: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/filepropertyprops'>FilePropertyProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> string | undefined</span></td>
-<td>query a &quot;file property&quot; from this iModel, as a string.</td>
+<td>Query a &quot;file property&quot; from this iModel, as a string.</td>
 </tr>
 <tr>
 <td class="h-querynextavailablefileproperty"><a id="querynextavailablefileproperty" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="querynextavailablefileproperty">queryNextAvailableFileProperty</a></span><span class="method-parenthesis">(</span><span class="method-parameters">prop: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/filepropertyprops'>FilePropertyProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span></td>
-<td>query for the next available major id for a &quot;file property&quot; from this iModel.</td>
+<td>Query for the next available major id for a &quot;file property&quot; from this iModel.</td>
 </tr>
 <tr>
 <td class="h-readfontjson"><a id="readfontjson" class="heading-anchor" href="#%s"></a><span class="method-name">readFontJson</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> string</span></td>
@@ -283,7 +284,7 @@
 </tr>
 <tr>
 <td class="h-savefileproperty"><a id="savefileproperty" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="savefileproperty">saveFileProperty</a></span><span class="method-parenthesis">(</span><span class="method-parameters">prop: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/filepropertyprops'>FilePropertyProps</a>, value: string | ArrayBuffer</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/besqlite/dbresult'>DbResult</a></span></td>
-<td>save a &quot;file property&quot; to this iModel</td>
+<td>Save a &quot;file property&quot; to this iModel</td>
 </tr>
 <tr>
 <td class="h-setasmaster"><a id="setasmaster" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="setasmaster">setAsMaster</a></span><span class="method-parenthesis">(</span><span class="method-parameters">guid?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guid'>Guid</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
@@ -326,8 +327,16 @@
 <td>Find an already open IModelDb.</td>
 </tr>
 <tr>
+<td class="h-foreachmetadata"><a id="foreachmetadata" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="foreachmetadata">forEachMetaData</a></span><span class="method-parenthesis">(</span><span class="method-parameters">iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a>, classFullName: string, wantSuper: boolean, func: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/propertycallback'>PropertyCallback</a>, includeCustom: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td>Invoke a callback on each property of the specified class, optionally including superclass properties.</td>
+</tr>
+<tr>
 <td class="h-getaccesstoken"><a id="getaccesstoken" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="getaccesstoken">getAccessToken</a></span><span class="method-parenthesis">(</span><span class="method-parameters">iModelId: string</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/token/accesstoken'>AccessToken</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
 <td>Get the AccessToken that is considered to be the owner of a local IModelDb.</td>
+</tr>
+<tr>
+<td class="h-loadnativeasset"><a id="loadnativeasset" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="loadnativeasset">loadNativeAsset</a></span><span class="method-parenthesis">(</span><span class="method-parameters">assetName: string</span><span class="method-parenthesis">):</span><span class="method-output"> string</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td>Load a file from the <em>Assets</em> directory of imodeljs-native</td>
 </tr>
 <tr>
 <td class="h-open"><a id="open" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="open">open</a></span><span class="method-parenthesis">(</span><span class="method-parameters">accessToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/token/accesstoken'>AccessToken</a>, contextId: string, iModelId: string, openParams: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/openparams'>OpenParams</a> = OpenParams.pullAndPush(), version: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodelversion'>IModelVersion</a> = IModelVersion.latest()</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a>&gt;</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
@@ -340,6 +349,47 @@
 <tr>
 <td class="h-updateaccesstoken"><a id="updateaccesstoken" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="updateaccesstoken">updateAccessToken</a></span><span class="method-parenthesis">(</span><span class="method-parameters">iModelId: string, accessToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/token/accesstoken'>AccessToken</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
 <td>Change the AccessToken that should be considered the owner of the local IModelDb.</td>
+</tr>
+</tbody></table><h3 class="h-inherited-methods"><a id="inherited-methods" class="heading-anchor" href="#%s"></a><i class="icon collapse-section icon-chevron-down"></i>Inherited methods</h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Inherited from</th>
+<th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
+</tr>
+<tr>
+<td class="h-cartographictospatial"><a id="cartographictospatial" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/cartographictospatial'>cartographicToSpatial</a></span><span class="method-parenthesis">(</span><span class="method-parameters">cartographic: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/cartographic'>Cartographic</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
+<td>Convert a ($Cartographic$refLinkSource=imodeljs-backend/E:/Agents/a/383/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@157) to a point in this iModel&apos;s Spatial coordinates using its <a href="$IModel$refLinkSource=imodeljs-backend/E:/Agents/a/383/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@157">ecefLocation</a>.</td>
+</tr>
+<tr>
+<td class="h-eceftospatial"><a id="eceftospatial" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/eceftospatial'>ecefToSpatial</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ecef: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
+<td>Convert a point in ECEF coordinates to a point in this iModel&apos;s Spatial coordinates using its <a href="$IModel$refLinkSource=imodeljs-backend/E:/Agents/a/383/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@140">ecefLocation</a>.</td>
+</tr>
+<tr>
+<td class="h-geteceftransform"><a id="geteceftransform" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/geteceftransform'>getEcefTransform</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
+<td>Get the Transform from this iModel&apos;s Spatial coordinates to ECEF coordinates using its <a href="$IModel$refLinkSource=imodeljs-backend/E:/Agents/a/383/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@123">ecefLocation</a>.</td>
+</tr>
+<tr>
+<td class="h-seteceflocation"><a id="seteceflocation" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/#seteceflocation'>setEcefLocation</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ecef: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/eceflocationprops'>EcefLocationProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
+<td>Set the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#eceflocation'>EcefLocation</a> for this iModel.</td>
+</tr>
+<tr>
+<td class="h-spatialtocartographic"><a id="spatialtocartographic" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/spatialtocartographic'>spatialToCartographic</a></span><span class="method-parenthesis">(</span><span class="method-parameters">spatial: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/cartographic'>Cartographic</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/cartographic'>Cartographic</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
+<td>Convert a point in this iModel&apos;s Spatial coordinates to a ($Cartographic$refLinkSource=imodeljs-backend/E:/Agents/a/383/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@148)  using its <a href="$IModel$refLinkSource=imodeljs-backend/E:/Agents/a/383/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@148">ecefLocation</a>.</td>
+</tr>
+<tr>
+<td class="h-spatialtoecef"><a id="spatialtoecef" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/spatialtoecef'>spatialToEcef</a></span><span class="method-parenthesis">(</span><span class="method-parameters">spatial: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
+<td>Convert a point in this iModel&apos;s Spatial coordinates to an ECEF point using its <a href="$IModel$refLinkSource=imodeljs-backend/E:/Agents/a/383/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@131">ecefLocation</a>.</td>
+</tr>
+<tr>
+<td class="h-getdefaultsubcategoryid"><a id="getdefaultsubcategoryid" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/#getdefaultsubcategoryid'>getDefaultSubCategoryId</a></span><span class="method-parenthesis">(</span><span class="method-parameters">categoryId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
+<td>Get the default subCategoryId for the supplied categoryId</td>
 </tr>
 </tbody></table><h3 class="h-properties"><a id="properties" class="heading-anchor" href="#%s"></a>Properties</h3>
 <table class="table table-responsive"><tbody><tr>
@@ -399,32 +449,32 @@
 </tr>
 <tr>
 <td class="h-onbeforeclose"><a id="onbeforeclose" class="heading-anchor" href="#%s"></a><span class="property-name">onBeforeClose</span></td>
-<td><span class="method-output">BeEvent&lt;() =&gt; void&gt;</span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/beevent'>BeEvent</a>&lt;() =&gt; void&gt;</span></td>
 <td>Event called when the iModel is about to be closed</td>
 </tr>
 <tr>
 <td class="h-onchangesetapplied"><a id="onchangesetapplied" class="heading-anchor" href="#%s"></a><span class="property-name">onChangesetApplied</span></td>
-<td><span class="method-output">BeEvent&lt;() =&gt; void&gt;</span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/beevent'>BeEvent</a>&lt;() =&gt; void&gt;</span></td>
 <td>Event called after a changeset is applied to this IModelDb.</td>
 </tr>
 <tr>
 <td class="h-oncreate"><a id="oncreate" class="heading-anchor" href="#%s"></a><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/oncreate'>onCreate</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
-<td><span class="method-output">BeEvent&lt;(_accessToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/token/accesstoken'>AccessToken</a>, _contextId: string, _args: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/createimodelprops'>CreateIModelProps</a>) =&gt; void&gt;</span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/beevent'>BeEvent</a>&lt;(_accessToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/token/accesstoken'>AccessToken</a>, _contextId: string, _args: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/createimodelprops'>CreateIModelProps</a>) =&gt; void&gt;</span></td>
 <td>Event raised just before an IModelDb is created in iModelHub.</td>
 </tr>
 <tr>
 <td class="h-oncreated"><a id="oncreated" class="heading-anchor" href="#%s"></a><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/oncreated'>onCreated</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
-<td><span class="method-output">BeEvent&lt;(_imodelDb: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a>) =&gt; void&gt;</span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/beevent'>BeEvent</a>&lt;(_imodelDb: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a>) =&gt; void&gt;</span></td>
 <td>Event raised just after an IModelDb is created in iModelHub.</td>
 </tr>
 <tr>
 <td class="h-onopen"><a id="onopen" class="heading-anchor" href="#%s"></a><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/onopen'>onOpen</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
-<td><span class="method-output">BeEvent&lt;(_accessToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/token/accesstoken'>AccessToken</a>, _contextId: string, _iModelId: string, _openParams: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/openparams'>OpenParams</a>, _version: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodelversion'>IModelVersion</a>) =&gt; void&gt;</span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/beevent'>BeEvent</a>&lt;(_accessToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/token/accesstoken'>AccessToken</a>, _contextId: string, _iModelId: string, _openParams: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/openparams'>OpenParams</a>, _version: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodelversion'>IModelVersion</a>) =&gt; void&gt;</span></td>
 <td>Event raised just before an IModelDb is opened.</td>
 </tr>
 <tr>
 <td class="h-onopened"><a id="onopened" class="heading-anchor" href="#%s"></a><span class="property-name">onOpened</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
-<td><span class="method-output">BeEvent&lt;(_imodelDb: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a>) =&gt; void&gt;</span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/beevent'>BeEvent</a>&lt;(_imodelDb: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a>) =&gt; void&gt;</span></td>
 <td>Event raised just after an IModelDb is opened.</td>
 </tr>
 <tr>
@@ -446,13 +496,80 @@
 <td class="h-views"><a id="views" class="heading-anchor" href="#%s"></a><span class="property-name">views</span></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/#views'>IModelDb.Views</a></span></td>
 </tr>
+</tbody></table><h3 class="h-inherited-properties"><a id="inherited-properties" class="heading-anchor" href="#%s"></a><i class="icon collapse-section icon-chevron-down"></i>Inherited properties</h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Inherited from</th>
+<th>Description</th>
+</tr>
+<tr>
+<td class="h-dictionaryid"><a id="dictionaryid" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/#dictionaryid'>dictionaryId</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
+<td>The Id of the dictionary model.</td>
+</tr>
+<tr>
+<td class="h-eceflocation"><a id="eceflocation" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/#eceflocation'>ecefLocation</a></span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/eceflocation'>EcefLocation</a> | undefined</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#eceflocation'>EcefLocation</a> of the iModel in Earth Centered Earth Fixed coordinates.</td>
+</tr>
+<tr>
+<td class="h-globalorigin"><a id="globalorigin" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/#globalorigin'>globalOrigin</a></span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
+<td>An offset to be applied to all spatial coordinates.</td>
+</tr>
+<tr>
+<td class="h-imodeltoken"><a id="imodeltoken" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/#imodeltoken'>iModelToken</a></span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodeltoken'>IModelToken</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
+<td>The token that can be used to find this iModel instance.</td>
+</tr>
+<tr>
+<td class="h-isgeolocated"><a id="isgeolocated" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/#isgeolocated'>isGeoLocated</a></span></td>
+<td><span class="method-output">boolean</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
+<td>True if this iModel has an <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#eceflocation'>EcefLocation</a>.</td>
+</tr>
+<tr>
+<td class="h-name"><a id="name" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/#name'>name</a></span></td>
+<td><span class="method-output">string</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
+<td>Name of the iModel</td>
+</tr>
+<tr>
+<td class="h-projectextents"><a id="projectextents" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/#projectextents'>projectExtents</a></span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/axisalignedbox3d'>AxisAlignedBox3d</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
+<td>The volume, in spatial coordinates, inside which the entire project is contained.</td>
+</tr>
+<tr>
+<td class="h-repositorymodelid"><a id="repositorymodelid" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/#repositorymodelid'>repositoryModelId</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
+<td>The Id of the repository model.</td>
+</tr>
+<tr>
+<td class="h-rootsubject"><a id="rootsubject" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/#rootsubject'>rootSubject</a></span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/rootsubjectprops'>RootSubjectProps</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
+<td>The name and description of the root subject of this iModel</td>
+</tr>
+<tr>
+<td class="h-rootsubjectid"><a id="rootsubjectid" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/#rootsubjectid'>rootSubjectId</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
+<td>The Id of the root subject element.</td>
+</tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
-<li>IModelDb.ts</li>
+<li><span class="defined-in"><a href="***REMOVED***/tfs/ProductLine/Platform%20Technology/ECTech/_git/imodeljs-core?path=%2Fcore%2Fbackend%2Fsrc%2FIModelDb.ts">IModelDb.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:34 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:45 pm +00:00</span>
             </p>
 
             
@@ -615,7 +732,13 @@
                                                     <a class='title solo-title menu-text' href="#find">find</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#foreachmetadata">forEachMetaData</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#getaccesstoken">getAccessToken</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#loadnativeasset">loadNativeAsset</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#open">open</a>
@@ -625,6 +748,35 @@
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#updateaccesstoken">updateAccessToken</a>
+                                            </li>
+                                    </ul>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a data-target="#inner-nav-inherited-methods" class='title' href="#inherited-methods"/>
+                                    <b class='dropdown-menu-title menu-text'>Inherited methods</b>
+                                    <i class='dropdown icon'></i>
+                                    </a>
+                                    <ul id="inner-nav-inherited-methods" class='inner-nav'>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#cartographictospatial">cartographicToSpatial</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#eceftospatial">ecefToSpatial</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#geteceftransform">getEcefTransform</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#seteceflocation">setEcefLocation</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#spatialtocartographic">spatialToCartographic</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#spatialtoecef">spatialToEcef</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#getdefaultsubcategoryid">getDefaultSubCategoryId</a>
                                             </li>
                                     </ul>
                             </li>
@@ -693,6 +845,44 @@
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#views">views</a>
+                                            </li>
+                                    </ul>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a data-target="#inner-nav-inherited-properties" class='title' href="#inherited-properties"/>
+                                    <b class='dropdown-menu-title menu-text'>Inherited properties</b>
+                                    <i class='dropdown icon'></i>
+                                    </a>
+                                    <ul id="inner-nav-inherited-properties" class='inner-nav'>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#dictionaryid">dictionaryId</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#eceflocation">ecefLocation</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#globalorigin">globalOrigin</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#imodeltoken">iModelToken</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#isgeolocated">isGeoLocated</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#name">name</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#projectextents">projectExtents</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#repositorymodelid">repositoryModelId</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#rootsubject">rootSubject</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#rootsubjectid">rootSubjectId</a>
                                             </li>
                                     </ul>
                             </li>

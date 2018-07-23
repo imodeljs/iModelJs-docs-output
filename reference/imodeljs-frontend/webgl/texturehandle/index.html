@@ -144,8 +144,14 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/webgl/">WebGL</a> > TextureHandle</div>
+            
             <h2 class="h-texturehandle"><a id="texturehandle" class="heading-anchor" href="#%s"></a>TextureHandle <span class="badge badge-pill badge-primary badge-class">Class</span></h2>
 <p>Wraps a WebGLTextureHandle</p>
+<h3 class="h-extended-by"><a id="extended-by" class="heading-anchor" href="#%s"></a>Extended by</h3>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/texture2dhandle'>Texture2DHandle</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/texturecubehandle'>TextureCubeHandle</a></li>
+</ul>
 <h3 class="h-implements"><a id="implements" class="heading-anchor" href="#%s"></a>Implements</h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/idisposable'>IDisposable</a></li>
@@ -156,12 +162,16 @@
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-bind"><a id="bind" class="heading-anchor" href="#%s"></a><span class="method-name">bind</span><span class="method-parenthesis">(</span><span class="method-parameters">texUnit: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/textureunit'>TextureUnit</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
-<td>Binds texture handle (if available) associated with an instantiation of this class to specified texture unit.</td>
+<td class="h-constructor"><a id="constructor" class="heading-anchor" href="#%s"></a><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">glTexture: WebGLTexture</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/texturehandle'>TextureHandle</a></span> <span class="badge badge-pill badge-primary badge-protected">Protected</span></td>
+<td></td>
 </tr>
 <tr>
-<td class="h-bindsampler"><a id="bindsampler" class="heading-anchor" href="#%s"></a><span class="method-name">bindSampler</span><span class="method-parenthesis">(</span><span class="method-parameters">uniform: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/uniformhandle'>UniformHandle</a>, unit: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/textureunit'>TextureUnit</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
-<td>Binds this texture to a uniform sampler2D</td>
+<td class="h-bind"><a id="bind" class="heading-anchor" href="#%s"></a><span class="method-name">bind</span><span class="method-parenthesis">(</span><span class="method-parameters">_texUnit: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/textureunit'>TextureUnit</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span></td>
+<td>Bind texture handle (if available) associated with an instantiation of this class to specified texture unit.</td>
+</tr>
+<tr>
+<td class="h-bindsampler"><a id="bindsampler" class="heading-anchor" href="#%s"></a><span class="method-name">bindSampler</span><span class="method-parenthesis">(</span><span class="method-parameters">_uniform: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/uniformhandle'>UniformHandle</a>, _unit: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/textureunit'>TextureUnit</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span></td>
+<td>Bind this texture to a uniform sampler.</td>
 </tr>
 <tr>
 <td class="h-dispose"><a id="dispose" class="heading-anchor" href="#%s"></a><span class="method-name">dispose</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
@@ -169,35 +179,27 @@
 </tr>
 <tr>
 <td class="h-gethandle"><a id="gethandle" class="heading-anchor" href="#%s"></a><span class="method-name">getHandle</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> WebGLTexture | undefined</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-update"><a id="update" class="heading-anchor" href="#%s"></a><span class="method-name">update</span><span class="method-parenthesis">(</span><span class="method-parameters">updater: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/texturedataupdater'>TextureDataUpdater</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-bindsampler-1"><a id="bindsampler-1" class="heading-anchor" href="#%s"></a><span class="method-name">bindSampler</span><span class="method-parenthesis">(</span><span class="method-parameters">uniform: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/uniformhandle'>UniformHandle</a>, tex: WebGLTexture, unit: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/textureunit'>TextureUnit</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
-<td>Binds the specified texture to a uniform sampler2D</td>
-</tr>
-<tr>
-<td class="h-bindtexture"><a id="bindtexture" class="heading-anchor" href="#%s"></a><span class="method-name">bindTexture</span><span class="method-parenthesis">(</span><span class="method-parameters">texUnit: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/textureunit'>TextureUnit</a>, glTex: WebGLTexture | undefined</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
-<td>Binds specified texture handle to specified texture unit.</td>
+<td>Get the WebGLTexture for this TextureHandle.</td>
 </tr>
 <tr>
 <td class="h-createforattachment"><a id="createforattachment" class="heading-anchor" href="#%s"></a><span class="method-name">createForAttachment</span><span class="method-parenthesis">(</span><span class="method-parameters">width: number, height: number, format: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/gl/gl.texture/gl.texture.format'>GL.Texture.Format</a>, dataType: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/gl/gl.texture/gl.texture.datatype'>GL.Texture.DataType</a></span><span class="method-parenthesis">):</span><span class="method-output"> undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/texturehandle'>TextureHandle</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
-<td>Create a texture for use as a color attachment for rendering</td>
+<td>Create a 2D texture for use as a color attachment for rendering</td>
+</tr>
+<tr>
+<td class="h-createforcubeimages"><a id="createforcubeimages" class="heading-anchor" href="#%s"></a><span class="method-name">createForCubeImages</span><span class="method-parenthesis">(</span><span class="method-parameters">posX: HTMLImageElement, negX: HTMLImageElement, posY: HTMLImageElement, negY: HTMLImageElement, posZ: HTMLImageElement, negZ: HTMLImageElement</span><span class="method-parenthesis">):</span><span class="method-output"> undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/texturehandle'>TextureHandle</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td>Create a cube map texture from six HTMLImageElement objects.</td>
 </tr>
 <tr>
 <td class="h-createfordata"><a id="createfordata" class="heading-anchor" href="#%s"></a><span class="method-name">createForData</span><span class="method-parenthesis">(</span><span class="method-parameters">width: number, height: number, data: Uint8Array, wantPreserveData: boolean = false, wrapMode: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/gl/gl.texture/gl.texture.wrapmode'>GL.Texture.WrapMode</a> = GL.Texture.WrapMode.ClampToEdge, format: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/gl/gl.texture/gl.texture.format'>GL.Texture.Format</a> = GL.Texture.Format.Rgba</span><span class="method-parenthesis">):</span><span class="method-output"> undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/texturehandle'>TextureHandle</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
-<td>Create a texture to hold non-image data</td>
+<td>Create a 2D texture to hold non-image data</td>
 </tr>
 <tr>
-<td class="h-createforimagebuffer"><a id="createforimagebuffer" class="heading-anchor" href="#%s"></a><span class="method-name">createForImageBuffer</span><span class="method-parenthesis">(</span><span class="method-parameters">image: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/imagebuffer'>ImageBuffer</a>, type: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/imagetexturetype'>ImageTextureType</a> = ImageTextureType.Normal</span><span class="method-parenthesis">):</span><span class="method-output"> undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/texturehandle'>TextureHandle</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
-<td>Create a texture from a bitmap</td>
+<td class="h-createforimage"><a id="createforimage" class="heading-anchor" href="#%s"></a><span class="method-name">createForImage</span><span class="method-parenthesis">(</span><span class="method-parameters">image: HTMLImageElement, hasAlpha: boolean, type: Type</span><span class="method-parenthesis">):</span><span class="method-output"> undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/texturehandle'>TextureHandle</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td>Create a 2D texture from an HTMLImageElement.</td>
 </tr>
 <tr>
-<td class="h-createforimagesource"><a id="createforimagesource" class="heading-anchor" href="#%s"></a><span class="method-name">createForImageSource</span><span class="method-parenthesis">(</span><span class="method-parameters">width: number, height: number, source: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/imagesource'>ImageSource</a>, type: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/imagetexturetype'>ImageTextureType</a> = ImageTextureType.Normal, loadCallback?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/textureloadcallback'>TextureLoadCallback</a></span><span class="method-parenthesis">):</span><span class="method-output"> undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/texturehandle'>TextureHandle</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
-<td>Create a texture from a jpeg or png</td>
+<td class="h-createforimagebuffer"><a id="createforimagebuffer" class="heading-anchor" href="#%s"></a><span class="method-name">createForImageBuffer</span><span class="method-parenthesis">(</span><span class="method-parameters">image: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/imagebuffer'>ImageBuffer</a>, type: Type</span><span class="method-parenthesis">):</span><span class="method-output"> undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/texturehandle'>TextureHandle</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td>Create a 2D texture from a bitmap</td>
 </tr>
 </tbody></table><h3 class="h-properties"><a id="properties" class="heading-anchor" href="#%s"></a>Properties</h3>
 <table class="table table-responsive"><tbody><tr>
@@ -206,23 +208,28 @@
 <th>Description</th>
 </tr>
 <tr>
-<td class="h-databytes"><a id="databytes" class="heading-anchor" href="#%s"></a><span class="property-name">dataBytes</span></td>
-<td><span class="method-output">Uint8Array</span></td>
+<td class="h-_gltexture"><a id="_gltexture" class="heading-anchor" href="#%s"></a><span class="property-name">_glTexture</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span></td>
+<td><span class="method-output">WebGLTexture</span></td>
 <td></td>
 </tr>
 <tr>
-<td class="h-datatype"><a id="datatype" class="heading-anchor" href="#%s"></a><span class="property-name">dataType</span></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/gl/gl.texture/gl.texture.datatype'>GL.Texture.DataType</a></span></td>
+<td class="h-databytes"><a id="databytes" class="heading-anchor" href="#%s"></a><span class="property-name">dataBytes</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> Uint8Array | undefined</span></td>
 <td></td>
 </tr>
 <tr>
-<td class="h-format"><a id="format" class="heading-anchor" href="#%s"></a><span class="property-name">format</span></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/gl/gl.texture/gl.texture.format'>GL.Texture.Format</a></span></td>
+<td class="h-datatype"><a id="datatype" class="heading-anchor" href="#%s"></a><span class="property-name">dataType</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/gl/gl.texture/gl.texture.datatype'>GL.Texture.DataType</a></span></td>
 <td></td>
 </tr>
 <tr>
-<td class="h-height"><a id="height" class="heading-anchor" href="#%s"></a><span class="property-name">height</span></td>
-<td><span class="method-output">number</span></td>
+<td class="h-format"><a id="format" class="heading-anchor" href="#%s"></a><span class="property-name">format</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/gl/gl.texture/gl.texture.format'>GL.Texture.Format</a></span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-height"><a id="height" class="heading-anchor" href="#%s"></a><span class="property-name">height</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> number</span></td>
 <td></td>
 </tr>
 <tr>
@@ -236,16 +243,16 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-width"><a id="width" class="heading-anchor" href="#%s"></a><span class="property-name">width</span></td>
-<td><span class="method-output">number</span></td>
+<td class="h-width"><a id="width" class="heading-anchor" href="#%s"></a><span class="property-name">width</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> number</span></td>
 </tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
-<li>render/webgl/Texture.ts</li>
+<li><span class="defined-in"><a href="***REMOVED***/tfs/ProductLine/Platform%20Technology/ECTech/_git/imodeljs-core?path=%2Fcore%2Ffrontend%2Fsrc%2Frender%2Fwebgl%2FTexture.ts">render/webgl/Texture.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:31 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:56 pm +00:00</span>
             </p>
 
             
@@ -273,6 +280,9 @@
                     </a>
                     <ul id="inner-nav-texturehandle" class='inner-nav'>
                             <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#extended-by">Extended by</a>
+                            </li>
+                            <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#implements">Implements</a>
                             </li>
                             <li class='nav-item item '>
@@ -281,6 +291,9 @@
                                     <i class='dropdown icon'></i>
                                     </a>
                                     <ul id="inner-nav-methods" class='inner-nav'>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#constructor">constructor</a>
+                                            </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#bind">bind</a>
                                             </li>
@@ -294,25 +307,19 @@
                                                     <a class='title solo-title menu-text' href="#gethandle">getHandle</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#update">update</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#bindsampler-1">bindSampler</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#bindtexture">bindTexture</a>
-                                            </li>
-                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#createforattachment">createForAttachment</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#createforcubeimages">createForCubeImages</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#createfordata">createForData</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#createforimagebuffer">createForImageBuffer</a>
+                                                    <a class='title solo-title menu-text' href="#createforimage">createForImage</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#createforimagesource">createForImageSource</a>
+                                                    <a class='title solo-title menu-text' href="#createforimagebuffer">createForImageBuffer</a>
                                             </li>
                                     </ul>
                             </li>
@@ -322,6 +329,9 @@
                                     <i class='dropdown icon'></i>
                                     </a>
                                     <ul id="inner-nav-properties" class='inner-nav'>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#_gltexture">_glTexture</a>
+                                            </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#databytes">dataBytes</a>
                                             </li>

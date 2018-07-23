@@ -144,11 +144,12 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/rendering/">Rendering</a> > SpriteLocation</div>
+            
             <h2 class="h-spritelocation"><a id="spritelocation" class="heading-anchor" href="#%s"></a>SpriteLocation <span class="badge badge-pill badge-primary badge-class">Class</span></h2>
 <p>A Sprite Location. Sprites generally move around on the screen and this object holds the current location
-and current Sprite Definition for an image of a sprite within a Viewport. SpriteLocations can be either
+and current Sprite for an image of a sprite within a Viewport. SpriteLocations can be either
 inactive (not visible) or active.</p>
-<p>A SpriteLocation can also specify that a Sprite Definition should be drawn partially transparent so that
+<p>A SpriteLocation can also specify that a Sprite should be drawn partially transparent so that
 you can &quot;see through&quot; the Sprite.</p>
 <h3 class="h-methods"><a id="methods" class="heading-anchor" href="#%s"></a>Methods</h3>
 <table class="table table-responsive"><tbody><tr>
@@ -157,18 +158,19 @@ you can &quot;see through&quot; the Sprite.</p>
 </tr>
 <tr>
 <td class="h-activate"><a id="activate" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="activate">activate</a></span><span class="method-parenthesis">(</span><span class="method-parameters">sprite: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/sprite'>Sprite</a>, viewport: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>, location: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, transparency: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
-<td>Activate this Sprite to show a specific Sprite Definition at a specific location in a Viewport.</td>
+<td>Activate this SpriteLocation to show a Sprite at a location in a Viewport.</td>
 </tr>
 <tr>
 <td class="h-deactivate"><a id="deactivate" class="heading-anchor" href="#%s"></a><span class="method-name">deactivate</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
-<td></td>
+<td>Turn this SpriteLocation off so it will no longer show in its Viewport.</td>
 </tr>
 <tr>
 <td class="h-decorate"><a id="decorate" class="heading-anchor" href="#%s"></a><span class="method-name">decorate</span><span class="method-parenthesis">(</span><span class="method-parameters">context: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/decoratecontext'>DecorateContext</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
-<td></td>
+<td>If this SpriteLocation is active and the supplied DecorateContext is for its Viewport, add the Sprite to the context at the current location.</td>
 </tr>
 <tr>
-<td class="h-isactive"><a id="isactive" class="heading-anchor" href="#%s"></a><span class="method-name">isActive</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
+<td class="h-setlocationworld"><a id="setlocationworld" class="heading-anchor" href="#%s"></a><span class="method-name">setLocationWorld</span><span class="method-parenthesis">(</span><span class="method-parameters">location: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
+<td>Change the location of this SpriteLocation from a point in <em>world</em> coordinates.</td>
 </tr>
 </tbody></table><h3 class="h-properties"><a id="properties" class="heading-anchor" href="#%s"></a>Properties</h3>
 <table class="table table-responsive"><tbody><tr>
@@ -177,31 +179,22 @@ you can &quot;see through&quot; the Sprite.</p>
 <th>Description</th>
 </tr>
 <tr>
-<td class="h-location"><a id="location" class="heading-anchor" href="#%s"></a><span class="property-name">location</span></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span></td>
+<td class="h-isactive"><a id="isactive" class="heading-anchor" href="#%s"></a><span class="property-name">isActive</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> boolean</span></td>
 <td></td>
 </tr>
 <tr>
 <td class="h-sprite"><a id="sprite" class="heading-anchor" href="#%s"></a><span class="property-name">sprite</span></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/sprite'>Sprite</a></span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-transparency"><a id="transparency" class="heading-anchor" href="#%s"></a><span class="property-name">transparency</span></td>
-<td><span class="method-output">number</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-viewport"><a id="viewport" class="heading-anchor" href="#%s"></a><span class="property-name">viewport</span></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
+<td>The Sprite shown by this SpriteLocation.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
-<li>Sprites.ts</li>
+<li><span class="defined-in"><a href="***REMOVED***/tfs/ProductLine/Platform%20Technology/ECTech/_git/imodeljs-core?path=%2Fcore%2Ffrontend%2Fsrc%2FSprites.ts">Sprites.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:29 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:53 pm +00:00</span>
             </p>
 
             
@@ -244,7 +237,7 @@ you can &quot;see through&quot; the Sprite.</p>
                                                     <a class='title solo-title menu-text' href="#decorate">decorate</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#isactive">isActive</a>
+                                                    <a class='title solo-title menu-text' href="#setlocationworld">setLocationWorld</a>
                                             </li>
                                     </ul>
                             </li>
@@ -255,16 +248,10 @@ you can &quot;see through&quot; the Sprite.</p>
                                     </a>
                                     <ul id="inner-nav-properties" class='inner-nav'>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#location">location</a>
+                                                    <a class='title solo-title menu-text' href="#isactive">isActive</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#sprite">sprite</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#transparency">transparency</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#viewport">viewport</a>
                                             </li>
                                     </ul>
                             </li>

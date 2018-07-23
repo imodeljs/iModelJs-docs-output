@@ -80,6 +80,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/">backend</a> > SchemasAndElementsInTypeScript</div>
+            <div class="edit-link">***REMOVED***</div>
             <h1 id="schemas and elements in typescript">Schemas and Elements in TypeScript</h1>
 <p>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/schema'>Schema</a> represents an ECSchema in TypeScript. It is a collection of Entity-based classes. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-with-bis'>the BIS overview</a> for how ECSchemas are used to model information. ECSchemas define classes for models, elements, and aspects, as well as ECRelationships.</p>
 <p>An <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a> object represents an <em>instance</em> if a bis:Element class when it is read from an iModel. The Element object has properties that correspond to the bis class definition in the schema. An <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elementaspects/elementaspect'>ElementAspect</a>  object represents an instance of a bis:Aspect in memory.</p>
@@ -105,16 +106,14 @@
     // This is the right time to create definitions, such as Categories, that will
     // be used with the classes in this schema.
     RobotWorld.bootStrapDefinitions(iModelDb);
-  }
-</code></pre>
+  }</code></pre>
 <p>ECSchema.xml files must be in the app backend&apos;s install set, as part of its assets.</p>
 <p>The app can ensure that the underlying schema is imported by registering an onOpened event handler:</p>
 <p><em>Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">    // Make sure the RobotWorld schema is in the iModel.
     IModelDb.onOpened.addListener((iModel: IModelDb) =&gt; {
       RobotWorld.importSchema(iModel);
-    });
-</code></pre>
+    });</code></pre>
 <p>where the schema is:</p>
 <pre class="no-line-numbers"><code class="language-xml">&#xFEFF;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;ECSchema schemaName=&quot;RobotWorld&quot; alias=&quot;RobotWorld&quot; version=&quot;01.00.00&quot; xmlns=&quot;http://www.bentley.com/schemas/Bentley.ECXML.3.1&quot;&gt;
@@ -143,7 +142,6 @@
     &lt;/ECEntityClass&gt;
 
 &lt;/ECSchema&gt;
-
 </code></pre>
 <h2 class="h-typescript-and-ecschemas-and-ecclasses"><a id="typescript-and-ecschemas-and-ecclasses" class="heading-anchor" href="#%s"></a>TypeScript and ECSchemas and ECClasses</h2>
 <p>Once an ECSchema has been imported into an iModel, you can work with Elements, Models, and ElementAspects from that schema without writing TypeScript classes to represent them. A JavaScript class will be generated dynamically to represent each ECClass that you access, if there is no pre-registered TypeScript class to represent it.</p>
@@ -185,16 +183,14 @@ export class Robot extends SpatialLocationElement {
       // ... do something ...
     }
   }
-}
-</code></pre>
+}</code></pre>
 <p>Note that the pre-written TypeScript class does not have to define accessors for the properties of the ECClass. The Element base class takes care of that automatically.</p>
 <p>Note that you still have to import the underlying ECSchema before attempting to create instances of the ECClasses that it defines.</p>
 <h2 class="h-schema-registration"><a id="schema-registration" class="heading-anchor" href="#%s"></a>Schema Registration</h2>
 <p>If an app backend wants to use a pre-written TypeScript Schema class, it must register the pre-written schema first.</p>
 <p><em>Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">    // Register the TypeScript schema classes that I intend to use.
-    RobotWorld.registerSchema();
-</code></pre>
+    RobotWorld.registerSchema();</code></pre>
 <p>The TypeScript Schema class itself must register all of the classes that it defines. The best practice is for the Schema class to do that in its constructor.</p>
 <p><em>Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">
@@ -230,11 +226,10 @@ export class RobotWorld extends Schema {
   }
 
   // ...
-
 </code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:35 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:57 pm +00:00</span>
             </p>
 
             

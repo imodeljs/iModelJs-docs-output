@@ -144,6 +144,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/">geometry-core</a> > CartesianGeometry</div>
+            
             <h1 id="cartesiangeometry">CartesianGeometry</h1>
 <p>Points, Vectors, Planes, and Transformations for x,y,z geometry.</p>
 <ul>
@@ -259,20 +260,12 @@
 <td>A ClipPlane is a single plane represented as</td>
 </tr>
 <tr>
-<td class="h-clipplaneset"><a id="clipplaneset" class="heading-anchor" href="#%s"></a><a href="clipplaneset">ClipPlaneSet</a></td>
-<td>A collection of ConvexClipPlaneSets.</td>
-</tr>
-<tr>
 <td class="h-clipprimitive"><a id="clipprimitive" class="heading-anchor" href="#%s"></a><a href="clipprimitive">ClipPrimitive</a></td>
 <td>Base class for clipping implementations that use</td>
 </tr>
 <tr>
 <td class="h-clipshape"><a id="clipshape" class="heading-anchor" href="#%s"></a><a href="clipshape">ClipShape</a></td>
 <td>A clipping volume defined by a shape (an array of 3d points using only x and y dimensions).</td>
-</tr>
-<tr>
-<td class="h-cliputilities"><a id="cliputilities" class="heading-anchor" href="#%s"></a><a href="cliputilities">ClipUtilities</a></td>
-<td>ClipUtilities is a static class whose various methods are useful helpers for clipping.</td>
 </tr>
 <tr>
 <td class="h-clipvector"><a id="clipvector" class="heading-anchor" href="#%s"></a><a href="clipvector">ClipVector</a></td>
@@ -375,6 +368,10 @@
 <td>A transform is an origin and a RotMatrix.</td>
 </tr>
 <tr>
+<td class="h-unionofconvexclipplanesets"><a id="unionofconvexclipplanesets" class="heading-anchor" href="#%s"></a><a href="unionofconvexclipplanesets">UnionOfConvexClipPlaneSets</a></td>
+<td>A collection of ConvexClipPlaneSets.</td>
+</tr>
+<tr>
 <td class="h-vector2d"><a id="vector2d" class="heading-anchor" href="#%s"></a><a href="vector2d">Vector2d</a></td>
 <td>3D vector with x,y properties</td>
 </tr>
@@ -420,10 +417,6 @@
 <td>Bit mask type for easily keeping track of defined vs undefined values and which parts of a clipping shape</td>
 </tr>
 <tr>
-<td class="h-clipplanecontainment"><a id="clipplanecontainment" class="heading-anchor" href="#%s"></a><a href="clipplanecontainment">ClipPlaneContainment</a></td>
-<td>Helper enumerated type of defining coordinates as they relate to clip plane sets</td>
-</tr>
-<tr>
 <td class="h-inversematrixstate"><a id="inversematrixstate" class="heading-anchor" href="#%s"></a><a href="inversematrixstate">InverseMatrixState</a></td>
 <td>A RotMatrix is tagged indicating one of the following states:</td>
 </tr>
@@ -434,10 +427,6 @@
 </tr>
 <tr>
 <td class="h-bejsonfunctions"><a id="bejsonfunctions" class="heading-anchor" href="#%s"></a><a href="bejsonfunctions">BeJSONFunctions</a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-clippermethods"><a id="clippermethods" class="heading-anchor" href="#%s"></a><a href="clippermethods">ClipperMethods</a></td>
 <td></td>
 </tr>
 <tr>
@@ -535,7 +524,7 @@
 </tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:28 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:52 pm +00:00</span>
             </p>
 
             
@@ -581,16 +570,10 @@
                                     <a class='title solo-title menu-text' href="#clipplane">ClipPlane</a>
                             </li>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#clipplaneset">ClipPlaneSet</a>
-                            </li>
-                            <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#clipprimitive">ClipPrimitive</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#clipshape">ClipShape</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#cliputilities">ClipUtilities</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#clipvector">ClipVector</a>
@@ -668,6 +651,9 @@
                                     <a class='title solo-title menu-text' href="#transform">Transform</a>
                             </li>
                             <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#unionofconvexclipplanesets">UnionOfConvexClipPlaneSets</a>
+                            </li>
+                            <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#vector2d">Vector2d</a>
                             </li>
                             <li class='nav-item item '>
@@ -706,9 +692,6 @@
                                     <a class='title solo-title menu-text' href="#clipmask">ClipMask</a>
                             </li>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#clipplanecontainment">ClipPlaneContainment</a>
-                            </li>
-                            <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#inversematrixstate">InverseMatrixState</a>
                             </li>
                     </ul>
@@ -721,9 +704,6 @@
                     <ul id="inner-nav-interfaces" class='inner-nav'>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#bejsonfunctions">BeJSONFunctions</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#clippermethods">ClipperMethods</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#isnullcheck">IsNullCheck</a>

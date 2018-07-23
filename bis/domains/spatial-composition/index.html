@@ -111,11 +111,11 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">bis</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/domains/">domains</a> > spatial-composition</div>
+            <div class="edit-link">***REMOVED***</div>
             <h1 id="schema -spatial composition (alias spcomp)">Schema : Spatial Composition (alias spcomp)</h1>
 <p>This schema describes the breakdown of <code>SpatialLocationElement</code>. It is intended to be used across disciplines. For instance, it is meant to allow making a single hierarchy that composes instances of <code>buildingspatial:BuildableVolume</code> into a <code>site:Site</code>. The composition relationship can be applied in a recursive manner, i.e. a composed element can be composed into another composition. Cyclic references are prevented by rules in the <code>domain handler</code>. Semantically, composition means that composer and composed elements describe the same volume of space and therefore sharing a geometric location is not a conflict, it is actually expected. Compositions imply a dependency, i.e. the definition of the whole depends on the definition of the parts and the parts depend on the existence of the whole. The behavior that is implied by the dependency is established and maintained inside applications.</p>
 <pre class="no-line-numbers"><code class="language-xml">&lt;ECSchema schemaName=&quot;SpatialComposition&quot; alias=&quot;spcomp&quot; version=&quot;01.00&quot; xmlns=&quot;http://www.bentley.com/schemas/Bentley.ECXML.3.1&quot;&gt;
-    &lt;ECSchemaReference name=&quot;BisCore&quot; version=&quot;01.00&quot; alias=&quot;bis&quot;/&gt;
-</code></pre>
+    &lt;ECSchemaReference name=&quot;BisCore&quot; version=&quot;01.00&quot; alias=&quot;bis&quot;/&gt;</code></pre>
 <p><img src=".././media/composite-element.png" alt="SpatialComposition"></p>
 <h2 class="h-design-considerations"><a id="design-considerations" class="heading-anchor" href="#%s"></a>Design considerations</h2>
 <ul>
@@ -142,8 +142,7 @@
         &lt;BaseClass&gt;bis:SpatialLocationElement&lt;/BaseClass&gt;
         &lt;BaseClass&gt;bis:IParentElement&lt;/BaseClass&gt;
         &lt;ECNavigationProperty propertyName=&quot;ComposingElement&quot; relationshipName=&quot;CompositeComposesSubComposites&quot; direction=&quot;Backward&quot; description=&quot;The Composite Element&quot; /&gt;
-    &lt;/ECEntityClass&gt;
-</code></pre>
+    &lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-compositeboundary"><a id="compositeboundary" class="heading-anchor" href="#%s"></a>CompositeBoundary</h3>
 <p>A CompositeElement that is delimited by a curve on a terrain.</p>
 <p>Naming :
@@ -153,8 +152,7 @@
 2 - Local Coordinates : z points away from the center of the earth.</p>
 <pre class="no-line-numbers"><code class="language-xml">    &lt;ECEntityClass typeName=&quot;CompositeBoundary&quot; modifier=&quot;Abstract&quot;&gt;
         &lt;BaseClass&gt;CompositeElement&lt;/BaseClass&gt;
-    &lt;/ECEntityClass&gt;
-</code></pre>
+    &lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-compositevolume"><a id="compositevolume" class="heading-anchor" href="#%s"></a>CompositeVolume</h3>
 <p>A CompositeElement that is delimited by a volume</p>
 <p>Geometry Use:
@@ -164,8 +162,7 @@
 1 - Volume indicates a 3d solid object to delimit the spatial location.</p>
 <pre class="no-line-numbers"><code class="language-xml">    &lt;ECEntityClass typeName=&quot;CompositeVolume&quot; modifier=&quot;Abstract&quot;&gt;
         &lt;BaseClass&gt;CompositeElement&lt;/BaseClass&gt;
-    &lt;/ECEntityClass&gt;
-</code></pre>
+    &lt;/ECEntityClass&gt;</code></pre>
 <h2 class="h-relationships"><a id="relationships" class="heading-anchor" href="#%s"></a>Relationships</h2>
 <h3 class="h-compositecomposessubcomposites"><a id="compositecomposessubcomposites" class="heading-anchor" href="#%s"></a>CompositeComposesSubComposites</h3>
 <p><em>TODO derive from <code>BIS</code> equivalent of <code>IElementOwnsChildElements</code>.</em></p>
@@ -180,8 +177,7 @@
       &lt;Target multiplicity=&quot;(0..*)&quot; roleLabel=&quot;is part of&quot; polymorphic=&quot;true&quot;&gt;
         &lt;Class class=&quot;CompositeElement&quot;/&gt;
       &lt;/Target&gt;
-    &lt;/ECRelationshipClass&gt;
-</code></pre>
+    &lt;/ECRelationshipClass&gt;</code></pre>
 <h3 class="h-compositeoverlapsspatialelements"><a id="compositeoverlapsspatialelements" class="heading-anchor" href="#%s"></a>CompositeOverlapsSpatialElements</h3>
 <p>CompositeOverlapsSpatialElements is a relationship to mark that an element is (at least partially) overlapping with a <code>CompositeVolume</code>. If an overlap is established between a <code>CompositeVolume</code> and a <code>SpatialElement</code> like for instance a room containing a chair, this also suggests overlap with the room&apos;s <code>Story</code> therefore overlaps should not be repeated on different levels of composition (<code>Space</code>, <code>Story</code>, <code>Building</code>, <code>Site</code>).</p>
 <p>Naming :
@@ -195,8 +191,7 @@
         &lt;Target multiplicity=&quot;(0..*)&quot; roleLabel=&quot;is contained by&quot; polymorphic=&quot;true&quot;&gt;
             &lt;Class class=&quot;bis:SpatialElement&quot;/&gt;
         &lt;/Target&gt;
-    &lt;/ECRelationshipClass&gt;
-</code></pre>
+    &lt;/ECRelationshipClass&gt;</code></pre>
 <h2 class="h-code"><a id="code" class="heading-anchor" href="#%s"></a>Code</h2>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -219,7 +214,7 @@
 <h2 class="h-domain-standardization-of-spatialcategories"><a id="domain-standardization-of-spatialcategories" class="heading-anchor" href="#%s"></a>Domain Standardization of SpatialCategories</h2>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:36 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:57 pm +00:00</span>
             </p>
 
             

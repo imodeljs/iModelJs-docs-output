@@ -111,13 +111,13 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">bis</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/domains/">domains</a> > classification-systems</div>
+            <div class="edit-link">***REMOVED***</div>
             <h1 id="schema -classificationsystems">Schema : ClassificationSystems</h1>
 <p>This schema contains class definitions for Classifications.</p>
 <p>These are used to classify elements as conforming to certain classifications like ASHRAE/CIBSE/OmniClass/MasterFormat and other.</p>
 <p><u>Schema:</u></p>
 <pre class="no-line-numbers"><code class="language-xml">&lt;ECSchema schemaName=&quot;ClassificationSystems&quot; alias=&quot;clsf&quot; version=&quot;01.00.00&quot; xmlns=&quot;http://www.bentley.com/schemas/Bentley.ECXML.3.1&quot;&gt;
-    &lt;ECSchemaReference name=&quot;BisCore&quot; version=&quot;01.00.00&quot; alias=&quot;bis&quot; /&gt;
-</code></pre>
+    &lt;ECSchemaReference name=&quot;BisCore&quot; version=&quot;01.00.00&quot; alias=&quot;bis&quot; /&gt;</code></pre>
 <p><img src=".././media/classification-systems.png" alt="Classifications"></p>
 <h2 class="h-pending-work"><a id="pending-work" class="heading-anchor" href="#%s"></a>Pending work</h2>
 <ul>
@@ -148,8 +148,7 @@
                 &lt;AppliesToEntityClass&gt;bis:Element&lt;/AppliesToEntityClass&gt;
             &lt;/IsMixin&gt;
         &lt;/ECCustomAttributes&gt;
-    &lt;/ECEntityClass&gt;
-</code></pre>
+    &lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-classificationsystem"><a id="classificationsystem" class="heading-anchor" href="#%s"></a>ClassificationSystem</h3>
 <hr>
 <p>An element which holds individual instances of <code>Classification</code> in the submodel. An Example of <code>ClassificationSystem</code> could be ASHRAE or OmniClass</p>
@@ -164,8 +163,7 @@
         &lt;ECCustomAttributes&gt;
           &lt;ClassHasHandler xmlns=&quot;BisCore.1.0&quot;/&gt;
         &lt;/ECCustomAttributes&gt;
-    &lt;/ECEntityClass&gt;
-</code></pre>
+    &lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-classification"><a id="classification" class="heading-anchor" href="#%s"></a>Classification</h3>
 <hr>
 <p>An element which holds a specific classification. i.e. ASHRAE62.1:Coffee stations</p>
@@ -190,8 +188,7 @@
         &lt;ECProperty propertyName=&quot;Description&quot; typeName=&quot;string&quot; displayLabel=&quot;Description&quot;/&gt;
         &lt;ECNavigationProperty propertyName=&quot;Group&quot; relationshipName=&quot;ClassificationIsInClassificationGroup&quot; direction=&quot;Forward&quot; description=&quot;Group this definition belong to&quot; /&gt;
         &lt;ECNavigationProperty propertyName=&quot;Specialization&quot; relationshipName=&quot;ClassificationSpecializesClassification&quot; direction=&quot;Forward&quot; description=&quot;Classification this Specializes in&quot; /&gt;
-    &lt;/ECEntityClass&gt;
-</code></pre>
+    &lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-classificationgroup"><a id="classificationgroup" class="heading-anchor" href="#%s"></a>ClassificationGroup</h3>
 <hr>
 <p>An element used to group multiple classifications together. intended to be used for groups as defined in original classification systems.</p>
@@ -209,8 +206,7 @@
         &lt;ECCustomAttributes&gt;
             &lt;ClassHasHandler xmlns=&quot;BisCore.1.0&quot;/&gt;
         &lt;/ECCustomAttributes&gt;
-    &lt;/ECEntityClass&gt;
-</code></pre>
+    &lt;/ECEntityClass&gt;</code></pre>
 <h2 class="h-relationships"><a id="relationships" class="heading-anchor" href="#%s"></a>Relationships</h2>
 <hr>
 <hr>
@@ -230,8 +226,7 @@
         &lt;Target multiplicity=&quot;(0..*)&quot; roleLabel=&quot;classifies&quot; polymorphic=&quot;true&quot;&gt;
             &lt;Class class=&quot;Classification&quot;/&gt;
         &lt;/Target&gt;
-    &lt;/ECRelationshipClass&gt;
-</code></pre>
+    &lt;/ECRelationshipClass&gt;</code></pre>
 <h3 class="h-classificationisinclassificationgroup"><a id="classificationisinclassificationgroup" class="heading-anchor" href="#%s"></a>ClassificationIsInClassificationGroup</h3>
 <hr>
 <p>a relationship to map instances of <code>Classification</code> to their groups (<code>ClassificationGroup</code>)</p>
@@ -247,8 +242,7 @@
         &lt;Target multiplicity=&quot;(1..1)&quot; roleLabel=&quot;groups&quot; polymorphic=&quot;true&quot;&gt;
             &lt;Class class=&quot;ClassificationGroup&quot;/&gt;
         &lt;/Target&gt;
-    &lt;/ECRelationshipClass&gt;
-</code></pre>
+    &lt;/ECRelationshipClass&gt;</code></pre>
 <h3 class="h-classificationspecializesclassification"><a id="classificationspecializesclassification" class="heading-anchor" href="#%s"></a>ClassificationSpecializesClassification</h3>
 <hr>
 <p>a relationship to map instances of <code>Classification</code> to other Classifications they specialize</p>
@@ -264,15 +258,14 @@
         &lt;Target multiplicity=&quot;(1..1)&quot; roleLabel=&quot;is specialized&quot; polymorphic=&quot;true&quot;&gt;
             &lt;Class class=&quot;Classification&quot;/&gt;
          &lt;/Target&gt;
-    &lt;/ECRelationshipClass&gt;
-</code></pre>
+    &lt;/ECRelationshipClass&gt;</code></pre>
 <h2 class="h-domain-standardization-of-spatialcategories"><a id="domain-standardization-of-spatialcategories" class="heading-anchor" href="#%s"></a>Domain Standardization of SpatialCategories</h2>
 <h2 class="h-user-control-of-drawingcategories"><a id="user-control-of-drawingcategories" class="heading-anchor" href="#%s"></a>User Control of DrawingCategories</h2>
 <h2 class="h-imodel-bridges-using-classificationsystems"><a id="imodel-bridges-using-classificationsystems" class="heading-anchor" href="#%s"></a>iModel Bridges using ClassificationSystems</h2>
 <p>Bridges that do not store <code>SpatialComposition</code> relationships natively, may compute and maintain those in their bridge. In the long run it is not sure if the tradeoff of storing and maintaining the persistance of relationships outweighs the performance loss of computing them each time. However a future domain handler API may elect to compute them (as bim software grows more mature).</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:36 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:57 pm +00:00</span>
             </p>
 
             

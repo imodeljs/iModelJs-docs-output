@@ -144,6 +144,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/">imodeljs-common</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/rpcinterface/">RpcInterface</a> > ElectronRpcProtocol</div>
+            
             <h2 class="h-electronrpcprotocol"><a id="electronrpcprotocol" class="heading-anchor" href="#%s"></a>ElectronRpcProtocol <span class="badge badge-pill badge-primary badge-class">Class</span></h2>
 <p>RPC interface protocol for an Electron-based application.</p>
 <h3 class="h-extends"><a id="extends" class="heading-anchor" href="#%s"></a>Extends</h3>
@@ -159,6 +160,52 @@
 <td class="h-constructor"><a id="constructor" class="heading-anchor" href="#%s"></a><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">configuration: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/electronrpcconfiguration'>ElectronRpcConfiguration</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/electronrpcprotocol'>ElectronRpcProtocol</a></span></td>
 <td>Constructs an Electron protocol.</td>
 </tr>
+</tbody></table><h3 class="h-inherited-methods"><a id="inherited-methods" class="heading-anchor" href="#%s"></a><i class="icon collapse-section icon-chevron-down"></i>Inherited methods</h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Inherited from</th>
+<th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
+</tr>
+<tr>
+<td class="h-fulfill"><a id="fulfill" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol/#fulfill'>fulfill</a></span><span class="method-parenthesis">(</span><span class="method-parameters">request: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/serializedrpcrequest'>SerializedRpcRequest</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcrequestfulfillment'>RpcRequestFulfillment</a>&gt;</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol'>RpcProtocol</a></span></td>
+<td>Obtains the implementation result on the backend for an RPC operation request.</td>
+</tr>
+<tr>
+<td class="h-getcode"><a id="getcode" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol/#getcode'>getCode</a></span><span class="method-parenthesis">(</span><span class="method-parameters">status: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcrequeststatus'>RpcRequestStatus</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol'>RpcProtocol</a></span></td>
+<td>Override to supply the protocol-specific code corresponding to a status value.</td>
+</tr>
+<tr>
+<td class="h-getoperationfrompath"><a id="getoperationfrompath" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol/#getoperationfrompath'>getOperationFromPath</a></span><span class="method-parenthesis">(</span><span class="method-parameters">path: string</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/serializedrpcoperation'>SerializedRpcOperation</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol'>RpcProtocol</a></span></td>
+<td>Override to supply the operation for a protocol-specific path value.</td>
+</tr>
+<tr>
+<td class="h-getstatus"><a id="getstatus" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol/#getstatus'>getStatus</a></span><span class="method-parenthesis">(</span><span class="method-parameters">code: number</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcrequeststatus'>RpcRequestStatus</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol'>RpcProtocol</a></span></td>
+<td>Override to supply the status corresponding to a protocol-specific code value.</td>
+</tr>
+<tr>
+<td class="h-serialize"><a id="serialize" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol/#serialize'>serialize</a></span><span class="method-parenthesis">(</span><span class="method-parameters">request: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcrequest'>RpcRequest</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/serializedrpcrequest'>SerializedRpcRequest</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol'>RpcProtocol</a></span></td>
+<td>Serializes a request.</td>
+</tr>
+<tr>
+<td class="h-supplyerrorforevent"><a id="supplyerrorforevent" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol/#supplyerrorforevent'>supplyErrorForEvent</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_event: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocolevent'>RpcProtocolEvent</a>, _object: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcrequest'>RpcRequest</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcinvocation'>RpcInvocation</a></span><span class="method-parenthesis">):</span><span class="method-output"> Error</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol'>RpcProtocol</a></span></td>
+<td>Override to supply error objects for protocol events.</td>
+</tr>
+<tr>
+<td class="h-supplymethodforoperation"><a id="supplymethodforoperation" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol/#supplymethodforoperation'>supplyMethodForOperation</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_operation: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcoperation'>RpcOperation</a></span><span class="method-parenthesis">):</span><span class="method-output"> string</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol'>RpcProtocol</a></span></td>
+<td>Override to supply the protocol-specific method value for an RPC operation.</td>
+</tr>
+<tr>
+<td class="h-supplypathforoperation"><a id="supplypathforoperation" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol/#supplypathforoperation'>supplyPathForOperation</a></span><span class="method-parenthesis">(</span><span class="method-parameters">operation: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcoperation'>RpcOperation</a>, _request: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcrequest'>RpcRequest</a> | undefined</span><span class="method-parenthesis">):</span><span class="method-output"> string</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol'>RpcProtocol</a></span></td>
+<td>Override to supply the protocol-specific path value for an RPC operation.</td>
+</tr>
 </tbody></table><h3 class="h-properties"><a id="properties" class="heading-anchor" href="#%s"></a>Properties</h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -170,13 +217,56 @@
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/electronrpcrequest'>ElectronRpcRequest</a></span></td>
 <td>The RPC request class for this protocol.</td>
 </tr>
+</tbody></table><h3 class="h-inherited-properties"><a id="inherited-properties" class="heading-anchor" href="#%s"></a><i class="icon collapse-section icon-chevron-down"></i>Inherited properties</h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Inherited from</th>
+<th>Description</th>
+</tr>
+<tr>
+<td class="h-authorizationheadername"><a id="authorizationheadername" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol/#authorizationheadername'>authorizationHeaderName</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> string</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol'>RpcProtocol</a></span></td>
+<td>The name of the authorization header.</td>
+</tr>
+<tr>
+<td class="h-configuration"><a id="configuration" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol/#configuration'>configuration</a></span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcconfiguration'>RpcConfiguration</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol'>RpcProtocol</a></span></td>
+<td>The configuration for the protocol.</td>
+</tr>
+<tr>
+<td class="h-events"><a id="events" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol/events'>events</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/beevent'>BeEvent</a>&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocoleventhandler'>RpcProtocolEventHandler</a>&gt;</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol'>RpcProtocol</a></span></td>
+<td>Events raised by all protocols.</td>
+</tr>
+<tr>
+<td class="h-events-1"><a id="events-1" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol/events'>events</a></span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/beevent'>BeEvent</a>&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocoleventhandler'>RpcProtocolEventHandler</a>&gt;</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol'>RpcProtocol</a></span></td>
+<td>Events raised by the protocol.</td>
+</tr>
+<tr>
+<td class="h-invocationtype"><a id="invocationtype" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol/#invocationtype'>invocationType</a></span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcinvocation'>RpcInvocation</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol'>RpcProtocol</a></span></td>
+<td>The RPC invocation class for this protocol.</td>
+</tr>
+<tr>
+<td class="h-requestidheadername"><a id="requestidheadername" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol/#requestidheadername'>requestIdHeaderName</a></span></td>
+<td><span class="method-output">string</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcprotocol'>RpcProtocol</a></span></td>
+<td>The name of the request id header.</td>
+</tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
-<li>rpc/electron/ElectronRpcProtocol.ts</li>
+<li><span class="defined-in"><a href="***REMOVED***/tfs/ProductLine/Platform%20Technology/ECTech/_git/imodeljs-core?path=%2Fcore%2Fcommon%2Fsrc%2Frpc%2Felectron%2FElectronRpcProtocol.ts">rpc/electron/ElectronRpcProtocol.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:32 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:46 pm +00:00</span>
             </p>
 
             
@@ -218,6 +308,38 @@
                                     </ul>
                             </li>
                             <li class='nav-item item '>
+                                    <a data-target="#inner-nav-inherited-methods" class='title' href="#inherited-methods"/>
+                                    <b class='dropdown-menu-title menu-text'>Inherited methods</b>
+                                    <i class='dropdown icon'></i>
+                                    </a>
+                                    <ul id="inner-nav-inherited-methods" class='inner-nav'>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#fulfill">fulfill</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#getcode">getCode</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#getoperationfrompath">getOperationFromPath</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#getstatus">getStatus</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#serialize">serialize</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#supplyerrorforevent">supplyErrorForEvent</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#supplymethodforoperation">supplyMethodForOperation</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#supplypathforoperation">supplyPathForOperation</a>
+                                            </li>
+                                    </ul>
+                            </li>
+                            <li class='nav-item item '>
                                     <a data-target="#inner-nav-properties" class='title' href="#properties"/>
                                     <b class='dropdown-menu-title menu-text'>Properties</b>
                                     <i class='dropdown icon'></i>
@@ -225,6 +347,32 @@
                                     <ul id="inner-nav-properties" class='inner-nav'>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#requesttype">requestType</a>
+                                            </li>
+                                    </ul>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a data-target="#inner-nav-inherited-properties" class='title' href="#inherited-properties"/>
+                                    <b class='dropdown-menu-title menu-text'>Inherited properties</b>
+                                    <i class='dropdown icon'></i>
+                                    </a>
+                                    <ul id="inner-nav-inherited-properties" class='inner-nav'>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#authorizationheadername">authorizationHeaderName</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#configuration">configuration</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#events">events</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#events-1">events</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#invocationtype">invocationType</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#requestidheadername">requestIdHeaderName</a>
                                             </li>
                                     </ul>
                             </li>

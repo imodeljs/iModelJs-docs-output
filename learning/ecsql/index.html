@@ -80,6 +80,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > ECSQL</div>
+            <div class="edit-link">***REMOVED***</div>
             <h1 id="ecsql">ECSQL</h1>
 <blockquote>
 <p>Make sure to check out the <a href='https://imodeljs.github.io/iModelJs-docs-output//learning/ecsqltutorial/'>ECSQL Tutorial</a> as well!</p>
@@ -119,11 +120,9 @@ Standard SQL refers to SQL-92 (aka SQL 2), and to SQL-99 (aka SQL 3) whenever SQ
 </blockquote>
 <h3 class="h-example"><a id="example" class="heading-anchor" href="#%s"></a>Example</h3>
 <p>The following examples are equivalent. This one uses the schema name:</p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT Model, CodeValue, Parent FROM BisCore.Element
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT Model, CodeValue, Parent FROM BisCore.Element</code></pre>
 <p>And this one uses the schema alias:</p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT Model, CodeValue, Parent FROM bis.Element
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT Model, CodeValue, Parent FROM bis.Element</code></pre>
 <h2 class="h-ecsql-parameters"><a id="ecsql-parameters" class="heading-anchor" href="#%s"></a>ECSQL Parameters</h2>
 <p>To bind values to an ECSQL statement after preparation, the following parameter placeholders are
 supported.</p>
@@ -140,10 +139,8 @@ supported.</p>
 <td>Named parameter. This allows to bind the same value to more than one placeholder.</td>
 </tr>
 </tbody></table><h3 class="h-example-1"><a id="example-1" class="heading-anchor" href="#%s"></a>Example</h3>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId FROM bis.GeometricElement3d WHERE Model=? AND LastMod&gt;=?
-</code></pre>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId FROM bis.GeometricElement3d LIMIT :pagesize OFFSET (:pageno * :pagesize)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId FROM bis.GeometricElement3d WHERE Model=? AND LastMod&gt;=?</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId FROM bis.GeometricElement3d LIMIT :pagesize OFFSET (:pageno * :pagesize)</code></pre>
 <p>See also sections <a href="#ecinstanceid-and-ecclassid">ECInstanceId and ECClassId</a> and <a href="#limit-and-offset">LIMIT and OFFSET</a>.</p>
 <h2 class="h-ecinstanceid-and-ecclassid"><a id="ecinstanceid-and-ecclassid" class="heading-anchor" href="#%s"></a>ECInstanceId and ECClassId</h2>
 <p>ECSQL defines a set of built-in system properties. They don&apos;t have to be defined in the ECSchemas.</p>
@@ -163,23 +160,18 @@ supported.</p>
 <p>In iModelJs the <em>ECClassId</em> is formatted as fully qualified class name when used in the SELECT clause.</p>
 </blockquote>
 <h3 class="h-example-2"><a id="example-2" class="heading-anchor" href="#%s"></a>Example</h3>
-<pre class="no-line-numbers"><code class="language-sql">SELECT Parent, ECClassId FROM bis.Element WHERE ECInstanceId=123
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT Parent, ECClassId FROM bis.Element WHERE ECInstanceId=123</code></pre>
 <h2 class="h-basic-data-types-in-ecsql"><a id="basic-data-types-in-ecsql" class="heading-anchor" href="#%s"></a>Basic data types in ECSQL</h2>
 <p>ECSQL supports all primitive types built into EC. This means that in addition to the basic numeric and string data types in SQL-92, ECSQL also supports boolean, BLOBs, date-times and points.</p>
 <h3 class="h-boolean"><a id="boolean" class="heading-anchor" href="#%s"></a>Boolean</h3>
 <p>For Boolean types ECSQL supports the literals <code>True</code> and <code>False</code>.</p>
 <h4 class="h-examples"><a id="examples" class="heading-anchor" href="#%s"></a>Examples</h4>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Model, CodeValue FROM bis.ViewDefinition3d WHERE IsCameraOn = True
-</code></pre>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Model, CodeValue FROM bis.ViewDefinition3d WHERE IsCameraOn = False
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Model, CodeValue FROM bis.ViewDefinition3d WHERE IsCameraOn = True</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Model, CodeValue FROM bis.ViewDefinition3d WHERE IsCameraOn = False</code></pre>
 <p>Boolean properties or expressions do not need to be compared to <code>True</code> and <code>False</code> as they return a
 boolean value already. So the above examples can also be written like this:</p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Model, CodeValue FROM bis.ViewDefinition3d WHERE IsCameraOn
-</code></pre>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Model, CodeValue FROM bis.ViewDefinition3d WHERE NOT IsCameraOn
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Model, CodeValue FROM bis.ViewDefinition3d WHERE IsCameraOn</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Model, CodeValue FROM bis.ViewDefinition3d WHERE NOT IsCameraOn</code></pre>
 <h3 class="h-datetime"><a id="datetime" class="heading-anchor" href="#%s"></a>DateTime</h3>
 <p>ECSQL supports both dates without time (<code>DATE</code>) and dates with time (<code>TIMESTAMP</code>).</p>
 <blockquote>
@@ -203,12 +195,9 @@ boolean value already. So the above examples can also be written like this:</p>
 <td>returns the current timestamp in UTC.</td>
 </tr>
 </tbody></table><h4 class="h-example-3"><a id="example-3" class="heading-anchor" href="#%s"></a>Example</h4>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Model, CodeValue FROM bis.Element WHERE LastMod &gt; DATE &apos;2018-01-01&apos;
-</code></pre>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Model, CodeValue FROM bis.Element WHERE LastMod &lt; TIMESTAMP &apos;2017-07-15T12:00:00.000Z&apos;`
-</code></pre>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Model, CodeValue FROM bis.Element WHERE LastMod BETWEEN :startperiod AND :endperiod`
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Model, CodeValue FROM bis.Element WHERE LastMod &gt; DATE &apos;2018-01-01&apos;</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Model, CodeValue FROM bis.Element WHERE LastMod &lt; TIMESTAMP &apos;2017-07-15T12:00:00.000Z&apos;`</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Model, CodeValue FROM bis.Element WHERE LastMod BETWEEN :startperiod AND :endperiod`</code></pre>
 <h3 class="h-points"><a id="points" class="heading-anchor" href="#%s"></a>Points</h3>
 <p>Points are a built-in primitive type in ECSchemas and are therefore supported in ECSQL.</p>
 <p>In the context of ECSQL Point ECProperties are interpreted as structs made up of the
@@ -233,8 +222,7 @@ following system properties:</p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, Model, CodeValue FROM bis.GeometricElement3d
 WHERE Origin.X BETWEEN 3500000.0 AND 3500500.0 AND
 Origin.Y BETWEEN 5700000.0 AND 5710000.0 AND
-Origin.Z BETWEEN 0 AND 100.0
-</code></pre>
+Origin.Z BETWEEN 0 AND 100.0</code></pre>
 <h2 class="h-structs"><a id="structs" class="heading-anchor" href="#%s"></a>Structs</h2>
 <p>In ECSQL you can refer to a struct ECProperty either as a whole or by just referring to some of its members.
 The operator for referencing members of structs in an ECSQL is the &apos;.&apos;.</p>
@@ -268,8 +256,7 @@ The operator for referencing members of structs in an ECSQL is the &apos;.&apos;
 &lt;ECEntityClass typeName=&quot;Company&quot;&gt;
   &lt;ECProperty propertyName=&quot;Name&quot; typeName=&quot;string&quot; /&gt;
   &lt;ECArrayProperty propertyName=&quot;Location&quot; typeName=&quot;Address&quot; /&gt;
-&lt;/ECEntityClass&gt;
-</code></pre>
+&lt;/ECEntityClass&gt;</code></pre>
 <h2 class="h-arrays"><a id="arrays" class="heading-anchor" href="#%s"></a>Arrays</h2>
 <p>In ECSQL you can refer to Array ECProperties only as a whole.</p>
 <h3 class="h-examples-2"><a id="examples-2" class="heading-anchor" href="#%s"></a>Examples</h3>
@@ -289,8 +276,7 @@ The operator for referencing members of structs in an ECSQL is the &apos;.&apos;
 <pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;Company&quot;&gt;
   &lt;ECProperty propertyName=&quot;Name&quot; typeName=&quot;string&quot; /&gt;
   &lt;ECArrayProperty propertyName=&quot;PhoneNumbers&quot; typeName=&quot;string&quot; /&gt;
-&lt;/ECEntityClass&gt;
-</code></pre>
+&lt;/ECEntityClass&gt;</code></pre>
 <h2 class="h-navigation-properties"><a id="navigation-properties" class="heading-anchor" href="#%s"></a>Navigation Properties</h2>
 <p>Navigation properties are ECProperties that point to a related object. They are always backed by an ECRelationshipClass.</p>
 <p>In the context of ECSQL navigation properties are interpreted as structs made up of the
@@ -372,15 +358,12 @@ following system properties:</p>
 <p>If <a href="#navigation-properties">navigation properties</a> are defined for the ECRelationship class, use the navigation property instead of a join.</p>
 <h4 class="h-examples-5"><a id="examples-5" class="heading-anchor" href="#%s"></a>Examples</h4>
 <p>Without navigation property (2 JOINs needed):</p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT e.CodeValue,e.UserLabel FROM bis.Element driver JOIN bis.ElementDrivesElement ede ON driver.ECInstanceId=ede.SourceECInstanceId JOIN bis.Element driven ON driven.ECInstanceId=ede.TargetECInstanceId WHERE driven.ECInstanceId=? AND ede.Status=?
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT e.CodeValue,e.UserLabel FROM bis.Element driver JOIN bis.ElementDrivesElement ede ON driver.ECInstanceId=ede.SourceECInstanceId JOIN bis.Element driven ON driven.ECInstanceId=ede.TargetECInstanceId WHERE driven.ECInstanceId=? AND ede.Status=?</code></pre>
 <p>With navigation property (Element.Model):</p>
 <p>Return the CodeValue and UserLabel of all Elements in the Model with the specified condition (1 JOIN needed):</p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT e.CodeValue,e.UserLabel FROM bis.Element e JOIN bis.Model m ON e.Model.Id=m.ECInstanceId WHERE m.Name=?
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT e.CodeValue,e.UserLabel FROM bis.Element e JOIN bis.Model m ON e.Model.Id=m.ECInstanceId WHERE m.Name=?</code></pre>
 <p>Return the Model for an Element with the specified condition (No join needed):</p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT Model FROM bis.Element WHERE ECInstanceId=?
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT Model FROM bis.Element WHERE ECInstanceId=?</code></pre>
 <h2 class="h-polymorphic-queries"><a id="polymorphic-queries" class="heading-anchor" href="#%s"></a>Polymorphic Queries</h2>
 <p>By default, any ECClass in the FROM clause of an ECSQL is treated polymorphically, i.e. all its subclasses are considered as well. If an ECClass should be treated non-polymorphically, i.e. only the class itself and not its subclasses should be considered, add the <code>ONLY</code> keyword in front of it.</p>
 <blockquote>
@@ -410,25 +393,21 @@ together with <code>OFFSET</code> allows specifying a range of rows to be return
 returned.</p>
 <h3 class="h-examples-7"><a id="examples-7" class="heading-anchor" href="#%s"></a>Examples</h3>
 <p>Return only the first 50 matching Elements:</p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,CodeValue,Parent FROM BisCore.Element WHERE Model=? LIMIT 50
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,CodeValue,Parent FROM BisCore.Element WHERE Model=? LIMIT 50</code></pre>
 <p>Return the 201st through 250th matching Element:</p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,CodeValue,Parent FROM BisCore.Element WHERE Model=? LIMIT 50 OFFSET 200
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,CodeValue,Parent FROM BisCore.Element WHERE Model=? LIMIT 50 OFFSET 200</code></pre>
 <h2 class="h-sql-functions"><a id="sql-functions" class="heading-anchor" href="#%s"></a>SQL Functions</h2>
 <p>SQL functions, either built into SQLite or custom SQL functions, can be used in ECSQL.</p>
 <h3 class="h-examples-8"><a id="examples-8" class="heading-anchor" href="#%s"></a>Examples</h3>
-<pre class="no-line-numbers"><code class="language-sql">SELECT substr(CodeValue,1,5) FROM bis.Element WHERE Model=?`
-</code></pre>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId FROM bis.Element WHERE lower(UserLabel)=?`
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT substr(CodeValue,1,5) FROM bis.Element WHERE Model=?`</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId FROM bis.Element WHERE lower(UserLabel)=?`</code></pre>
 <p>See also <a href="https://www.sqlite.org/lang_corefunc.html">SQLite Functions overview</a>.</p>
 <h2 class="h-spatial-queries-and-geometry-functions"><a id="spatial-queries-and-geometry-functions" class="heading-anchor" href="#%s"></a>Spatial Queries and Geometry Functions</h2>
 <p>ECSQL can perform <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/spatialqueries'>spatial queries</a>.</p>
 <p>ECSQL has a number of <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/geometrysqlfuncs'>built-in geometry functions</a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:35 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:56 pm +00:00</span>
             </p>
 
             

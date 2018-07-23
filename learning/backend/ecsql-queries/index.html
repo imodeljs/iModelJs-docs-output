@@ -80,6 +80,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/">backend</a> > ECSQL-queries</div>
+            <div class="edit-link">***REMOVED***</div>
             <h1 id="useful ecsql queries">Useful ECSQL Queries</h1>
 <p>The following ECSQL select statements are examples of useful queries that an app backend or a service might want to perform. They are written in a form that can be executed in backend code.</p>
 <h2 class="h-select-elements-in-a-particular-model"><a id="select-elements-in-a-particular-model" class="heading-anchor" href="#%s"></a>Select Elements in a particular Model</h2>
@@ -89,8 +90,7 @@
       while (DbResult.BE_SQLITE_ROW === statement.step()) {
         // do something with each row
       }
-    });
-</code></pre>
+    });</code></pre>
 <h2 class="h-select-top-level-elements-in-a-particular-model"><a id="select-top-level-elements-in-a-particular-model" class="heading-anchor" href="#%s"></a>Select Top-Level Elements in a particular Model</h2>
 <pre class="no-line-numbers"><code class="language-typescript">    const modelId: Id64 = IModelDb.repositoryModelId;
     iModel.withPreparedStatement(`SELECT ECInstanceId AS id FROM ${Element.classFullName} WHERE Model.Id=:modelId AND Parent.Id IS NULL`, (statement: ECSqlStatement) =&gt; {
@@ -98,8 +98,7 @@
       while (DbResult.BE_SQLITE_ROW === statement.step()) {
         // do something with each row
       }
-    });
-</code></pre>
+    });</code></pre>
 <h2 class="h-select-child-elements"><a id="select-child-elements" class="heading-anchor" href="#%s"></a>Select Child Elements</h2>
 <pre class="no-line-numbers"><code class="language-typescript">    const parentId: Id64 = IModelDb.rootSubjectId;
     iModel.withPreparedStatement(`SELECT ECInstanceId AS id FROM ${Element.classFullName} WHERE Parent.Id=:parentId`, (statement: ECSqlStatement) =&gt; {
@@ -107,8 +106,7 @@
       while (DbResult.BE_SQLITE_ROW === statement.step()) {
         // do something with each row
       }
-    });
-</code></pre>
+    });</code></pre>
 <h2 class="h-look-up-element-by-code-value"><a id="look-up-element-by-code-value" class="heading-anchor" href="#%s"></a>Look up element by code value</h2>
 <pre class="no-line-numbers"><code class="language-typescript">    // Suppose an iModel has the following breakdown structure:
     // * The root subject
@@ -140,12 +138,11 @@
     assert.equal(partitionIds.size, 1);
     for (const eidStr of partitionIds) {
       assert.equal(iModel.elements.getElement(eidStr).code.getValue(), &quot;Physical&quot;);
-    }
-</code></pre>
+    }</code></pre>
 <p>As an alternative, you can use the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/queryentityids'>IModelDb.queryEntityIds</a> convenience method for simple cases.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:35 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:56 pm +00:00</span>
             </p>
 
             

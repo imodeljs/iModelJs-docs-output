@@ -80,6 +80,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/">frontend</a> > Localization</div>
+            <div class="edit-link">***REMOVED***</div>
             <h1 id="localization in imodeljs">Localization in iModelJs</h1>
 <p>An important consideration in every program is presenting information to the user in their preferred locale: language, date and time formatting, number formatting, etc. iModelJs provides localization capabilities for applications through the IModelApp.I18N object.</p>
 <h2 class="h-language-translation"><a id="language-translation" class="heading-anchor" href="#%s"></a>Language translation</h2>
@@ -103,8 +104,7 @@
      &quot;loginIncorrect&quot;: &quot;The username / password combination is not valid.&quot;,
      &quot;offline&quot;: &quot;Network connection not available.&quot;
    }
- }
-</code></pre>
+ }</code></pre>
 <p>The messages can now be accessed by first registering the namespace, and then using the translate method:</p>
 <pre class="no-line-numbers"><code class="language-typescript">messageNS: I18NNamespace = IModelApp.registerNamespace (&quot;IrrigationMessages&quot;);
 await messageNS.readFinished;
@@ -112,8 +112,7 @@ if (this.notLoggedIn) {
   console.log (IModelApp.I18N.translate(&quot;IrrigationMessages:info.login.loggedIn&quot;)
 } else {
   console.log (IModelApp.I18N.translate(&quot;IrrigationMessages:info.login.notLoggedIn&quot;, {userName: this.loginName});
-}
-</code></pre>
+}</code></pre>
 <p>In the example above, we start by registering the namespace with IModelApp. That starts the process of retrieving IrrigationMessages.json file corresponding to the current locale (in this case, &quot;en&quot;) from the server. Since that might take a little while, before the first use of a namespace, we await on the readFinished property of the I18NNamespace, which is a Promise that is fulfilled when the file is retrieved and ready to be accessed from the translate method. If not logged in, we use the simple form of the translate method to display the string &quot;You are not currently logged in to Bentley Connect.&quot; to the console. If the user is logged in, the message &quot;You are logged in to Bentley Connect as xxx.&quot;, is displayed on the console, where xxx is replaced by this.loginName. This uses a second argument to the translate method that substitutes the properties of the object for the corresponding variables specified in the {{ }} formulas in the translation string, which is called &quot;interpolation&quot; in internationalization terminology.</p>
 <p>Behind the scenes, iModelJs uses the <a href="http://www.i18next.com">i18Next</a> JavaScript package. It has many other sophisticated internationalization capabilities, including formatting, plurals, and nesting, as well as the interpolation example above. iModelJs initializes i18next with a set of options that are usually fine for all applications. If you want different options, you can use i18next directly from your application, or instantiate an instance of iModelJs&apos; I18N class, which provides some convenience methods for waiting for the read to finish, etc.</p>
 <p>If you are using React for user interface development, please note that you should not put HTML markup in your localized strings for inclusion as text in your React controls. Such strings are not processed by the React transpiler, and thus the HTML tags will display verbatim rather than being processed as HTML.</p>
@@ -127,8 +126,7 @@ if (this.notLoggedIn) {
 
 // register the PlaceSprinkler class.
 const toyToolsNS: I18NNamespace = IModelApp.registerNamespace (&quot;IrrigationTools&quot;);
-PlaceSprinkler.register(toyToolsNS);
-</code></pre>
+PlaceSprinkler.register(toyToolsNS);</code></pre>
 <p>Then the appropriate entry in the english version of IrrigationTools.json file might look like this:</p>
 <pre class="no-line-numbers"><code class="language-json"> {
    &quot;tools&quot;: {
@@ -143,16 +141,14 @@ PlaceSprinkler.register(toyToolsNS);
        }
      }
    }
- }
-</code></pre>
+ }</code></pre>
 <p>If you omit the &quot;flyover&quot; key, the keyin property is used for the flyover text. Similarly, if &quot;description&quot; key is not found, the fallback is the value of the flyover property.</p>
 <p>In this example, the prompt1 and prompt2 keys are not used by the system - they could be used by your application during the operation of the Place Sprinkler command. They would be retrieved using this code:</p>
-<pre class="no-line-numbers"><code class="language-typescript"> const firstPrompt: string = IModelApp.I18N.translate (&quot;IrrigationTools:Place.Sprinkler.prompt1&quot;);
-</code></pre>
+<pre class="no-line-numbers"><code class="language-typescript"> const firstPrompt: string = IModelApp.I18N.translate (&quot;IrrigationTools:Place.Sprinkler.prompt1&quot;);</code></pre>
 <p>Since your code retrieves those localized strings, they do not have to be subkeys of &quot;tools.Place.Sprinkler&quot;. They could be separate keys in the same JSON file, or could even be in a different JSON file (in which case the use namespace would be different). The convention demonstrated in the example above has the advantage of keeping the localizable strings associated with a particular tool all together, but the disadvantage that prompts or messages that might be usable for multiple tools would be duplicated in each tool.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:35 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:57 pm +00:00</span>
             </p>
 
             

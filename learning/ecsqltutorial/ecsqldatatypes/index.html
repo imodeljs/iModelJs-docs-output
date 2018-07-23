@@ -80,6 +80,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ecsqltutorial/">ecsqltutorial</a> > ECSQLDataTypes</div>
+            <div class="edit-link">***REMOVED***</div>
             <h1 id="ecsql data types">ECSQL Data Types</h1>
 <h2 class="h-ecinstanceid-and-ecclassid"><a id="ecinstanceid-and-ecclassid" class="heading-anchor" href="#%s"></a>ECInstanceId and ECClassId</h2>
 <p>ECSQL defines a set of built-in system properties. They don&apos;t have to be defined in the ECSchemas (see also <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql/#ecinstanceid-and-ecclassid'>ECSQL reference</a>).</p>
@@ -103,8 +104,7 @@
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Return the actual Element subclass of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#spatialelement'>Element</a> with id 0x10000000021.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECClassId, CodeValue FROM bis.Element WHERE ECInstanceId=0x10000000021
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECClassId, CodeValue FROM bis.Element WHERE ECInstanceId=0x10000000021</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>ECClassId</th>
@@ -123,8 +123,7 @@
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Find out which <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#model'>Model</a> are private or not.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, ECClassId, IsPrivate FROM bis.Model
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, ECClassId, IsPrivate FROM bis.Model</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>ECInstanceId</th>
@@ -178,11 +177,9 @@ boolean value already.</p>
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Find private <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#model'>Model</a>s.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,ECClassId FROM bis.Model WHERE IsPrivate = True
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,ECClassId FROM bis.Model WHERE IsPrivate = True</code></pre>
 <p>and</p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,ECClassId FROM bis.Model WHERE IsPrivate
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,ECClassId FROM bis.Model WHERE IsPrivate</code></pre>
 <p>are equivalent.</p>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
@@ -203,11 +200,9 @@ boolean value already.</p>
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Find non-private <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#model'>Model</a>s.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,ECClassId FROM bis.Model WHERE IsPrivate = False
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,ECClassId FROM bis.Model WHERE IsPrivate = False</code></pre>
 <p>and</p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,ECClassId FROM bis.Model WHERE NOT IsPrivate
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,ECClassId FROM bis.Model WHERE NOT IsPrivate</code></pre>
 <p>are equivalent.</p>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
@@ -249,8 +244,7 @@ boolean value already.</p>
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Find all <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a>s which were modified before June, 1st, 2018.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT CodeValue,LastMod FROM MyDomain.Device WHERE LastMod &lt; DATE &apos;2018-06-01&apos;
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT CodeValue,LastMod FROM MyDomain.Device WHERE LastMod &lt; DATE &apos;2018-06-01&apos;</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>CodeValue</th>
@@ -278,8 +272,7 @@ boolean value already.</p>
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Find all <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a>s which were modified between 8am and 6pm UTC on May, 29th 2018.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT CodeValue,LastMod FROM bis.Element WHERE LastMod BETWEEN TIMESTAMP &apos;2018-05-29T08:00:00Z&apos; AND TIMESTAMP &apos;2018-05-29T18:00:00Z&apos;
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT CodeValue,LastMod FROM bis.Element WHERE LastMod BETWEEN TIMESTAMP &apos;2018-05-29T08:00:00Z&apos; AND TIMESTAMP &apos;2018-05-29T18:00:00Z&apos;</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>CodeValue</th>
@@ -321,8 +314,7 @@ lower corner point (50, 30, 10) and the upper corner point (70, 40, 20).</p>
 <p><em>ECSQL</em></p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT CodeValue, Origin FROM MyDomain.Device
 WHERE Origin.X BETWEEN 50 AND 70 AND
-Origin.Y BETWEEN 30 AND 40 AND Origin.Z BETWEEN 10 AND 20
-</code></pre>
+Origin.Y BETWEEN 30 AND 40 AND Origin.Z BETWEEN 10 AND 20</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>CodeValue</th>
@@ -361,8 +353,7 @@ following system properties (See <a href='https://imodeljs.github.io/iModelJs-do
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Return the parent <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#element'>Element</a> for the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#space'>Space</a> with code value <em>A-G-2</em>.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT Parent FROM MyDomain.Space WHERE CodeValue=&apos;A-G-2&apos;
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT Parent FROM MyDomain.Space WHERE CodeValue=&apos;A-G-2&apos;</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parent</th>
@@ -377,8 +368,7 @@ following system properties (See <a href='https://imodeljs.github.io/iModelJs-do
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Return the id of the parent <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#element'>Element</a> for the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#space'>Space</a> with code value <em>A-G-2</em>.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT Parent.Id FROM MyDomain.Space WHERE CodeValue=&apos;A-G-2&apos;
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT Parent.Id FROM MyDomain.Space WHERE CodeValue=&apos;A-G-2&apos;</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parent.Id</th>
@@ -393,8 +383,7 @@ following system properties (See <a href='https://imodeljs.github.io/iModelJs-do
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> Return the id and RelECClassId of the parent <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#element'>Element</a> separately for the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#space'>Space</a> with code value <em>A-G-2</em>.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT Parent.Id, Parent.RelECClassId FROM MyDomain.Space WHERE CodeValue=&apos;A-G-2&apos;
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT Parent.Id, Parent.RelECClassId FROM MyDomain.Space WHERE CodeValue=&apos;A-G-2&apos;</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parent.Id</th>
@@ -424,7 +413,7 @@ You will also find ECSQL examples in the respective section of the <a href='http
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/firstexamples'><strong>&lt; Previous</strong></a> &#xA0; | &#xA0; <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/joins'><strong>Next &gt;</strong></a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:35 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:57 pm +00:00</span>
             </p>
 
             

@@ -144,6 +144,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/notifications/">Notifications</a> > NotificationManager</div>
+            
             <h2 class="h-notificationmanager"><a id="notificationmanager" class="heading-anchor" href="#%s"></a>NotificationManager <span class="badge badge-pill badge-primary badge-class">Class</span></h2>
 <p>The NotificationManager controls the interaction with the user for prompts, error messages, and alert dialogs.
 Implementations of the NotificationManager may present the information in different ways. For example, in
@@ -154,8 +155,16 @@ non-interactive sessions, these messages may be saved to a log file or simply di
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
+<td class="h-cleartooltip"><a id="cleartooltip" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="cleartooltip">clearToolTip</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
+<td>Clear the ToolTip if it is current open.</td>
+</tr>
+<tr>
 <td class="h-endactivitymessage"><a id="endactivitymessage" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="endactivitymessage">endActivityMessage</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_reason: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/notifications/activitymessageendreason'>ActivityMessageEndReason</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
 <td>End an activity message.</td>
+</tr>
+<tr>
+<td class="h-istooltipopen"><a id="istooltipopen" class="heading-anchor" href="#%s"></a><span class="method-name">isToolTipOpen</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
+<td>Return true if the ToolTip is current open.</td>
 </tr>
 <tr>
 <td class="h-openmessagebox"><a id="openmessagebox" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="openmessagebox">openMessageBox</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_mbType: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/notifications/messageboxtype'>MessageBoxType</a>, _message: string, _icon: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/notifications/messageboxicontype'>MessageBoxIconType</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/notifications/messageboxvalue'>MessageBoxValue</a>&gt;</span></td>
@@ -171,7 +180,7 @@ non-interactive sessions, these messages may be saved to a log file or simply di
 </tr>
 <tr>
 <td class="h-outputprompt"><a id="outputprompt" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="outputprompt">outputPrompt</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_prompt: string</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
-<td>Output a prompt to the user.</td>
+<td>Output a localized prompt to the user.</td>
 </tr>
 <tr>
 <td class="h-outputpromptbykey"><a id="outputpromptbykey" class="heading-anchor" href="#%s"></a><span class="method-name">outputPromptByKey</span><span class="method-parenthesis">(</span><span class="method-parameters">key: string</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
@@ -181,13 +190,17 @@ non-interactive sessions, these messages may be saved to a log file or simply di
 <td class="h-setupactivitymessage"><a id="setupactivitymessage" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="setupactivitymessage">setupActivityMessage</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_details: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/notifications/activitymessagedetails'>ActivityMessageDetails</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
 <td>Set up for activity messages.</td>
 </tr>
+<tr>
+<td class="h-showtooltip"><a id="showtooltip" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="showtooltip">showToolTip</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_htmlElement: HTMLElement, _message: string, _pt?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xandy'>XAndY</a>, _options?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/notifications/tooltipoptions'>ToolTipOptions</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
+<td>Show a ToolTip window.</td>
+</tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
-<li>NotificationManager.ts</li>
+<li><span class="defined-in"><a href="***REMOVED***/tfs/ProductLine/Platform%20Technology/ECTech/_git/imodeljs-core?path=%2Fcore%2Ffrontend%2Fsrc%2FNotificationManager.ts">NotificationManager.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:28 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:53 pm +00:00</span>
             </p>
 
             
@@ -221,7 +234,13 @@ non-interactive sessions, these messages may be saved to a log file or simply di
                                     </a>
                                     <ul id="inner-nav-methods" class='inner-nav'>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#cleartooltip">clearToolTip</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#endactivitymessage">endActivityMessage</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#istooltipopen">isToolTipOpen</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#openmessagebox">openMessageBox</a>
@@ -240,6 +259,9 @@ non-interactive sessions, these messages may be saved to a log file or simply di
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#setupactivitymessage">setupActivityMessage</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#showtooltip">showToolTip</a>
                                             </li>
                                     </ul>
                             </li>

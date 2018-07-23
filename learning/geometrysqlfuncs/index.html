@@ -80,6 +80,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > GeometrySqlFuncs</div>
+            <div class="edit-link">***REMOVED***</div>
             <h1 id="ecsql built-in geometry functions">ECSQL Built-in Geometry Functions</h1>
 <p>ECSQL statements can use builtin functions to query and analyze element geometry.
 These functions can be used in SELECT and WHERE clauses. The functions
@@ -103,8 +104,7 @@ type before you can work with it in script. See, for example, <a href='https://i
 double x;   // The x-coordinate
 double y;   // The y-coordinate
 double z;   // The z-coordinate
-};
-</code></pre>
+};</code></pre>
 <h3 class="h-imodel_angles"><a id="imodel_angles" class="heading-anchor" href="#%s"></a>iModel_angles</h3>
 <p>An object that contains Yaw, Pitch, and Roll angles in degrees. If this object represents a rotation in a 2D model, then the pitch and roll members will be zero.
 @see <a href="#iModel_angles_value">iModel_angles_value</a>, <a href="#iModel_angles_maxdiff">iModel_angles_maxdiff</a></p>
@@ -113,8 +113,7 @@ double z;   // The z-coordinate
 double yaw;  // The Yaw angle in degrees
 double pitch;// The Yaw angle in degrees
 double roll; // The Yaw angle in degrees
-};
-</code></pre>
+};</code></pre>
 <h3 class="h-imodel_bbox"><a id="imodel_bbox" class="heading-anchor" href="#%s"></a>iModel_bbox</h3>
 <p>An object that defines a range.
 If the box represents a range in a 3-D model, then the box will have 8 corners and will have width(X), depth(Y), and height(Z).
@@ -129,8 +128,7 @@ double Zlow;  // The low Z coordinate of the bounding box
 double XHigh; // The high X coordinate of the bounding box
 double YHigh; // The high Y coordinate of the bounding box
 double ZHigh; // The high Z coordinate of the bounding box
-};
-</code></pre>
+};</code></pre>
 <h3 class="h-imodel_placement"><a id="imodel_placement" class="heading-anchor" href="#%s"></a>iModel_placement</h3>
 <p>An object that contains an origin and rotation angles, plus a bounding box.
 You can obtain an element&apos;s placement by selecting the placement column of the ElementGeom table.
@@ -140,8 +138,7 @@ You can obtain an element&apos;s placement by selecting the placement column of 
 iModel_point origin;   // Origin
 iModel_angles angles;  // Angles
 iModel_bbox bbox;      // Element-aligned bounding box
-};
-</code></pre>
+};</code></pre>
 <h2 class="h-functions"><a id="functions" class="heading-anchor" href="#%s"></a>Functions</h2>
 <p>The builtin geometry functions include functions to extract geometric information
 from elements, as well as functions to create, analyze, and extract or compute primitive values from
@@ -152,8 +149,7 @@ the custom structured data types.</p>
 reducing all of the values passed to them by the statement to a single resultant value.
 Also see <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functions</a>.</p>
 <h3 class="h-imodel_placement_aabb"><a id="imodel_placement_aabb" class="heading-anchor" href="#%s"></a>iModel_placement_aabb</h3>
-<pre class="no-line-numbers"><code class="language-sql">iModel_placement_aabb(placement)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">iModel_placement_aabb(placement)</code></pre>
 <p>Get the axis-aligned bounding box from a placement</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -174,8 +170,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functio
 <td>the bounding box</td>
 </tr>
 </tbody></table><h3 class="h-imodel_placement_eabb"><a id="imodel_placement_eabb" class="heading-anchor" href="#%s"></a>iModel_placement_eabb</h3>
-<pre class="no-line-numbers"><code class="language-sql">iModel_placement_eabb(placement)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">iModel_placement_eabb(placement)</code></pre>
 <p>Get the element-aligned bounding box from a placement</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -196,8 +191,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functio
 <td>the bounding box</td>
 </tr>
 </tbody></table><h3 class="h-imodel_placement_origin"><a id="imodel_placement_origin" class="heading-anchor" href="#%s"></a>iModel_placement_origin</h3>
-<pre class="no-line-numbers"><code class="language-sql">iModel_placement_origin(placement)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">iModel_placement_origin(placement)</code></pre>
 <p>Get the placement origin</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -218,8 +212,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functio
 <td>the origin in world coordinates</td>
 </tr>
 </tbody></table><h3 class="h-imodel_placement_angles"><a id="imodel_placement_angles" class="heading-anchor" href="#%s"></a>iModel_placement_angles</h3>
-<pre class="no-line-numbers"><code class="language-sql">iModel_placement_angles(placement)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">iModel_placement_angles(placement)</code></pre>
 <p>Get the placement angles</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -240,8 +233,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functio
 <td>the placement angles</td>
 </tr>
 </tbody></table><h3 class="h-imodel_angles-1"><a id="imodel_angles-1" class="heading-anchor" href="#%s"></a>iModel_angles</h3>
-<pre class="no-line-numbers"><code class="language-sql">iModel_angles(yaw,pitch,roll)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">iModel_angles(yaw,pitch,roll)</code></pre>
 <p>Construct a iModel_angles from 3 values</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -296,11 +288,9 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functio
         // Note that the the ECSQL value is a blob. Its data must be extracted and interpreted as a Range3d.
         return Range3d.fromArrayBuffer(stmt.getValue(0).getBlob());
       });
-    reportRange(rangeSum);
-</code></pre>
+    reportRange(rangeSum);</code></pre>
 <h3 class="h-imodel_angles_value"><a id="imodel_angles_value" class="heading-anchor" href="#%s"></a>iModel_angles_value</h3>
-<pre class="no-line-numbers"><code class="language-sql">iModel_angles_value(angles,member)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">iModel_angles_value(angles,member)</code></pre>
 <p>Get a member of a iModel_angles object</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -326,8 +316,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functio
 <td>the selected angle (in degrees); or an error if member is out of range or if  angles is not a iModel_angles object</td>
 </tr>
 </tbody></table><h3 class="h-imodel_angles_maxdiff"><a id="imodel_angles_maxdiff" class="heading-anchor" href="#%s"></a>iModel_angles_maxdiff</h3>
-<pre class="no-line-numbers"><code class="language-sql">iModel_angles_maxdiff(angle1,angle2)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">iModel_angles_maxdiff(angle1,angle2)</code></pre>
 <p>Return the maximum absolute difference among the angles in degrees.</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -353,8 +342,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functio
 <td>the maximum absolute difference among the angles in degrees.</td>
 </tr>
 </tbody></table><h3 class="h-imodel_bbox-1"><a id="imodel_bbox-1" class="heading-anchor" href="#%s"></a>iModel_bbox</h3>
-<pre class="no-line-numbers"><code class="language-sql">iModel_bbox(XLow,YLow,Zlow,XHigh,YHigh,ZHigh)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">iModel_bbox(XLow,YLow,Zlow,XHigh,YHigh,ZHigh)</code></pre>
 <p>Create a bounding box from 6 valuesAll coordinates are in meters.</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -424,11 +412,9 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functio
         // Note that the the ECSQL value is a blob. Its data must be extracted and interpreted as a Range3d.
         return Range3d.fromArrayBuffer(stmt.getValue(0).getBlob());
       });
-    reportRange(rangeSum);
-</code></pre>
+    reportRange(rangeSum);</code></pre>
 <h3 class="h-imodel_bbox_width"><a id="imodel_bbox_width" class="heading-anchor" href="#%s"></a>iModel_bbox_width</h3>
-<pre class="no-line-numbers"><code class="language-sql">iModel_bbox_width(bb)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">iModel_bbox_width(bb)</code></pre>
 <p>Compute the &quot;width&quot; of a bounding box</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -450,8 +436,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functio
 </tr>
 </tbody></table><p>@see  <a href="#iModel_bbox_areaxy">iModel_bbox_areaxy</a></p>
 <h3 class="h-imodel_bbox_height"><a id="imodel_bbox_height" class="heading-anchor" href="#%s"></a>iModel_bbox_height</h3>
-<pre class="no-line-numbers"><code class="language-sql">iModel_bbox_height(bb)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">iModel_bbox_height(bb)</code></pre>
 <p>Compute the &quot;height&quot; of a bounding box</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -472,8 +457,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functio
 <td>the difference between the high and low Z coordinates of the box, in meters.</td>
 </tr>
 </tbody></table><h3 class="h-imodel_bbox_depth"><a id="imodel_bbox_depth" class="heading-anchor" href="#%s"></a>iModel_bbox_depth</h3>
-<pre class="no-line-numbers"><code class="language-sql">iModel_bbox_depth(bb)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">iModel_bbox_depth(bb)</code></pre>
 <p>Compute the &quot;depth&quot; of a bounding box</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -495,8 +479,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functio
 </tr>
 </tbody></table><p>@see  <a href="#iModel_bbox_areaxy">iModel_bbox_areaxy</a></p>
 <h3 class="h-imodel_bbox_volume"><a id="imodel_bbox_volume" class="heading-anchor" href="#%s"></a>iModel_bbox_volume</h3>
-<pre class="no-line-numbers"><code class="language-sql">iModel_bbox_volume(bb)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">iModel_bbox_volume(bb)</code></pre>
 <p>Compute the volume of the bounding box</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -518,8 +501,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functio
 </tr>
 </tbody></table><p>@see  <a href="#iModel_bbox_areaxy">iModel_bbox_areaxy</a></p>
 <h3 class="h-imodel_bbox_areaxy"><a id="imodel_bbox_areaxy" class="heading-anchor" href="#%s"></a>iModel_bbox_areaxy</h3>
-<pre class="no-line-numbers"><code class="language-sql">iModel_bbox_areaxy(bb)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">iModel_bbox_areaxy(bb)</code></pre>
 <p>Compute the depth times the width of a bounding box</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -564,11 +546,9 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functio
       });
     // Report the result
     reportArea(areaSum);
-
 </code></pre>
 <h3 class="h-imodel_bbox_overlaps"><a id="imodel_bbox_overlaps" class="heading-anchor" href="#%s"></a>iModel_bbox_overlaps</h3>
-<pre class="no-line-numbers"><code class="language-sql">iModel_bbox_overlaps(bb1,bb2)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">iModel_bbox_overlaps(bb1,bb2)</code></pre>
 <p>Determine if the areas enclosed by two 3-D bounding boxes overlap</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -595,8 +575,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functio
 </tr>
 </tbody></table><p>@see  <a href="#iModel_bbox_contains">iModel_bbox_contains</a></p>
 <h3 class="h-imodel_bbox_contains"><a id="imodel_bbox_contains" class="heading-anchor" href="#%s"></a>iModel_bbox_contains</h3>
-<pre class="no-line-numbers"><code class="language-sql">iModel_bbox_contains(bb_outer,bb_inner)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">iModel_bbox_contains(bb_outer,bb_inner)</code></pre>
 <p>Determine of the first bounding box contains the second bounding box</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -623,8 +602,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functio
 </tr>
 </tbody></table><p>@see  <a href="#iModel_bbox_overlaps">iModel_bbox_overlaps</a></p>
 <h3 class="h-imodel_bbox_value"><a id="imodel_bbox_value" class="heading-anchor" href="#%s"></a>iModel_bbox_value</h3>
-<pre class="no-line-numbers"><code class="language-sql">iModel_bbox_value(bb,member)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">iModel_bbox_value(bb,member)</code></pre>
 <p>Get a member of a iModel_bbox object</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -650,8 +628,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functio
 <td>the requested member of the bounding box; or an error if member is out of range or bb is not a iModel_bbox object.</td>
 </tr>
 </tbody></table><h3 class="h-imodel_bbox_union"><a id="imodel_bbox_union" class="heading-anchor" href="#%s"></a>iModel_bbox_union</h3>
-<pre class="no-line-numbers"><code class="language-sql">iModel_bbox_union(X1)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">iModel_bbox_union(X1)</code></pre>
 <p> <a href="#aggregate">Aggregate</a> function that computes the union of a series of bounding boxes</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -695,11 +672,9 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functio
         // Note that the the ECSQL value is a blob. Its data must be extracted and interpreted as a Range3d.
         return Range3d.fromArrayBuffer(stmt.getValue(0).getBlob());
       });
-    reportRange(rangeSum);
-</code></pre>
+    reportRange(rangeSum);</code></pre>
 <h3 class="h-imodel_point_distance"><a id="imodel_point_distance" class="heading-anchor" href="#%s"></a>iModel_point_distance</h3>
-<pre class="no-line-numbers"><code class="language-sql">iModel_point_distance(point1,point2)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">iModel_point_distance(point1,point2)</code></pre>
 <p>Compute the distance between two iModel_Points, in meters.</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -725,8 +700,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functio
 <td>the distance between the two points; or an error if either input is not a iModel_point object</td>
 </tr>
 </tbody></table><h3 class="h-imodel_point_min_distance_to_bbox"><a id="imodel_point_min_distance_to_bbox" class="heading-anchor" href="#%s"></a>iModel_point_min_distance_to_bbox</h3>
-<pre class="no-line-numbers"><code class="language-sql">iModel_point_min_distance_to_bbox(point,bbox)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">iModel_point_min_distance_to_bbox(point,bbox)</code></pre>
 <p>Compute the minimum distance from a point to a bounding box, in meters.</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -752,8 +726,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functio
 <td>the distance from  point to the closest point on  bbox; or an error if either input is of the wrong type.</td>
 </tr>
 </tbody></table><h3 class="h-imodel_point_value"><a id="imodel_point_value" class="heading-anchor" href="#%s"></a>iModel_point_value</h3>
-<pre class="no-line-numbers"><code class="language-sql">iModel_point_value(point,member)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">iModel_point_value(point,member)</code></pre>
 <p>Get a member of a iModel_Point object.</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -779,8 +752,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functio
 <td>a coordindate of the point in meters; or an error if  member is out of range or  point is not a point object</td>
 </tr>
 </tbody></table><h3 class="h-imodel_spatial_overlap_aabb"><a id="imodel_spatial_overlap_aabb" class="heading-anchor" href="#%s"></a>iModel_spatial_overlap_aabb</h3>
-<pre class="no-line-numbers"><code class="language-sql">iModel_spatial_overlap_aabb(X1)
-</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">iModel_spatial_overlap_aabb(X1)</code></pre>
 <p>An rtree MATCH function that only accepts objects from the spatial index whose range overlap an aabb (axis-aligned bounding box).</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -807,11 +779,10 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html">SQLite Aggregate Functio
       }
       return hits;
     });
-  }
-</code></pre>
+  }</code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:35 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:56 pm +00:00</span>
             </p>
 
             

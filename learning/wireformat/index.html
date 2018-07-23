@@ -80,14 +80,14 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > WireFormat</div>
+            <div class="edit-link">***REMOVED***</div>
             <h1 id="wire format">Wire Format</h1>
 <p>The <em>wire format</em> describes is the way entities are serialized to JSON.</p>
 <p>Below are examples of wire formats for .</p>
 <h2 class="h-root-subject"><a id="root-subject" class="heading-anchor" href="#%s"></a>Root Subject</h2>
 <p>The following code:</p>
 <pre class="no-line-numbers"><code class="language-typescript">    const elementProps: ElementProps = iModel.elements.getElementProps(IModel.rootSubjectId);
-    const json: string = JSON.stringify(elementProps, undefined, 2);
-</code></pre>
+    const json: string = JSON.stringify(elementProps, undefined, 2);</code></pre>
 <p>Produces the following result:</p>
 <pre class="no-line-numbers"><code class="language-json">{
   &quot;bisBaseClass&quot;: &quot;Subject&quot;,
@@ -100,14 +100,12 @@
   &quot;description&quot;: &quot;&quot;,
   &quot;id&quot;: &quot;0x1&quot;,
   &quot;model&quot;: &quot;0x1&quot;
-}
-</code></pre>
+}</code></pre>
 <hr>
 <h2 class="h-repositorymodel"><a id="repositorymodel" class="heading-anchor" href="#%s"></a>RepositoryModel</h2>
 <p>The following code:</p>
 <pre class="no-line-numbers"><code class="language-typescript">    const modelProps: ModelProps = iModel.models.getModel(IModel.repositoryModelId);
-    const json: string = JSON.stringify(modelProps, undefined, 2);
-</code></pre>
+    const json: string = JSON.stringify(modelProps, undefined, 2);</code></pre>
 <p>Produces the following result:</p>
 <pre class="no-line-numbers"><code class="language-json">{
   &quot;classFullName&quot;: &quot;BisCore:RepositoryModel&quot;,
@@ -121,8 +119,7 @@
   &quot;parentModel&quot;: &quot;0x1&quot;,
   &quot;id&quot;: &quot;0x1&quot;,
   &quot;name&quot;: &quot;DgnDbTestUtils&quot;
-}
-</code></pre>
+}</code></pre>
 <hr>
 <h2 class="h-geometricelement3d"><a id="geometricelement3d" class="heading-anchor" href="#%s"></a>GeometricElement3d</h2>
 <p>The following code produces JSON at various stages on the way to creating a <code>GeometricElement3d</code>:</p>
@@ -163,7 +160,6 @@
       geom: builder.geometryStream,
     };
     const elementPropsJson: string = JSON.stringify(elementProps, undefined, 2);
-
 </code></pre>
 <h3 class="h-arc3d-json"><a id="arc3d-json" class="heading-anchor" href="#%s"></a>Arc3d JSON</h3>
 <p>Below is the JSON from the <code>Arc3d</code>:</p>
@@ -187,8 +183,7 @@
     1,
     0
   ]
-}
-</code></pre>
+}</code></pre>
 <h3 class="h-linestring3d-json"><a id="linestring3d-json" class="heading-anchor" href="#%s"></a>LineString3d JSON</h3>
 <p>Below is the JSON from the <code>LineString3d</code>:</p>
 <pre class="no-line-numbers"><code class="language-json">[
@@ -207,8 +202,7 @@
     2,
     4
   ]
-]
-</code></pre>
+]</code></pre>
 <h3 class="h-geometrystream-json"><a id="geometrystream-json" class="heading-anchor" href="#%s"></a>GeometryStream JSON</h3>
 <p>Below is the JSON from the <code>GeometryStream</code> that contains the <code>Arc3d</code> and <code>LineString3d</code> that were previously created.
 This shows that a <code>GeometryStream</code> is just an array of entries:</p>
@@ -255,8 +249,7 @@ This shows that a <code>GeometryStream</code> is just an array of entries:</p>
       ]
     ]
   }
-]
-</code></pre>
+]</code></pre>
 <h3 class="h-placement3d-json"><a id="placement3d-json" class="heading-anchor" href="#%s"></a>Placement3d JSON</h3>
 <p>Below is the JSON from the <code>Placement3d</code> that will be used to place the <code>GeometryStream</code> in world coordinates:</p>
 <pre class="no-line-numbers"><code class="language-json">{
@@ -268,8 +261,7 @@ This shows that a <code>GeometryStream</code> is just an array of entries:</p>
   &quot;angles&quot;: {
     &quot;pitch&quot;: 90
   }
-}
-</code></pre>
+}</code></pre>
 <h3 class="h-geometricelement3d-json"><a id="geometricelement3d-json" class="heading-anchor" href="#%s"></a>GeometricElement3d JSON</h3>
 <p>Below is the JSON from the <code>GeometricElement3d</code>.
 This shows that the JSON from the <code>GeometricElement3d</code> contains the JSON from the objects used to create it:</p>
@@ -331,12 +323,11 @@ This shows that the JSON from the <code>GeometricElement3d</code> contains the J
       ]
     }
   ]
-}
-</code></pre>
+}</code></pre>
 <hr>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:35 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:56 pm +00:00</span>
             </p>
 
             

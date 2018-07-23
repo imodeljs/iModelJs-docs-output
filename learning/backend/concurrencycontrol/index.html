@@ -80,6 +80,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/">backend</a> > ConcurrencyControl</div>
+            <div class="edit-link">***REMOVED***</div>
             <h1 id="concurrency control">Concurrency Control</h1>
 <p>Concurrency control is a way to coordinate simultaneous transactions (briefcases) while preserving data integrity. Concurrency control is implemented in the code of an app and is based on the identity of a briefcase. Concurrency control should not to be confused with user access control. To make coordinated changes, and app must follow 3 basic rules:</p>
 <ol>
@@ -184,8 +185,7 @@
 <p>For models and elements, there are two locking policy options: pessimistic and optimistic. The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/concurrencycontrol'>ConcurrencyControl</a> class specifies the concurrency control policy for an iModel. The app must check the <code>iModelDb.concurrencyControl</code> property to learn the policy and then implement it.</p>
 <h3 class="h-pessimistic-concurrency-control"><a id="pessimistic-concurrency-control" class="heading-anchor" href="#%s"></a>Pessimistic Concurrency Control</h3>
 <p> To set up an iModel to use the pessimistic concurrency control policy, specify the ConcurrencyControl.PessimisticPolicy, as follows:</p>
-<pre class="no-line-numbers"><code class="language-typescript">     iModel.concurrencyControl.setPolicy(new ConcurrencyControl.PessimisticPolicy());
-</code></pre>
+<pre class="no-line-numbers"><code class="language-typescript">     iModel.concurrencyControl.setPolicy(new ConcurrencyControl.PessimisticPolicy());</code></pre>
 <p>The pessimistic concurrency policy requires that models and elements must be locked before local changes can be pushed to iModelHub. Locking prevents concurrent changes and forces briefcase transactions affecting the same models and elements to be sequential.</p>
 <p>For reference, the pessimistic locking rules are as follows:</p>
 <table class="table table-responsive"><tbody><tr>
@@ -235,8 +235,7 @@
 <p>Locks are normally released when the briefcase pushes its changes, or they may be released if the briefcase abandons its changes.</p>
 <h3 class="h-optimistic-concurrency-control"><a id="optimistic-concurrency-control" class="heading-anchor" href="#%s"></a>Optimistic Concurrency Control</h3>
 <p> To set up an iModel to use optimistic concurrency control, specify the ConcurrencyControl.OptimisticPolicy, as follows:</p>
-<pre class="no-line-numbers"><code class="language-typescript">     iModel.concurrencyControl.setPolicy(new ConcurrencyControl.OptimisticPolicy());
-</code></pre>
+<pre class="no-line-numbers"><code class="language-typescript">     iModel.concurrencyControl.setPolicy(new ConcurrencyControl.OptimisticPolicy());</code></pre>
 <p> An optimistic concurrency policy allows apps to modify elements and models in an iModel without acquiring locks. In this case, the app uses change-merging to reconcile local changes before pushing.</p>
 <p> Working without locks opens up the possibility that other apps may add ChangeSets to the timeline while the local editing session is in progress. The briefcase must then merge before it can push.</p>
 <p> Suppose, for example, that two briefcases were editing different properties of the same element at the same time. Suppose that the first briefcase pushed first, creating ChangeSet#1. Now, the second briefcase must pull and merge before it can push.</p>
@@ -303,7 +302,7 @@
 <p>After applying a schema ChangeSet, the IModelDb must be closed and reopened.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:35 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:56 pm +00:00</span>
             </p>
 
             

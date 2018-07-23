@@ -144,6 +144,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/locatingelements/">LocatingElements</a> > AccuSnap</div>
+            
             <h2 class="h-accusnap"><a id="accusnap" class="heading-anchor" href="#%s"></a>AccuSnap <span class="badge badge-pill badge-primary badge-class">Class</span></h2>
 <p>AccuSnap is an aide for snapping to interesting points on elements as the cursor moves over them.</p>
 <h3 class="h-methods"><a id="methods" class="heading-anchor" href="#%s"></a>Methods</h3>
@@ -154,10 +155,6 @@
 <tr>
 <td class="h-adjustpointifhot"><a id="adjustpointifhot" class="heading-anchor" href="#%s"></a><span class="method-name">adjustPointIfHot</span><span class="method-parenthesis">(</span><span class="method-parameters">pt: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, view: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
 <td></td>
-</tr>
-<tr>
-<td class="h-cancelmotion"><a id="cancelmotion" class="heading-anchor" href="#%s"></a><span class="method-name">cancelMotion</span><span class="method-parenthesis">(</span><span class="method-parameters">ev: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/bebuttonevent'>BeButtonEvent</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span></td>
-<td>Cancel any pending motion processing requests outstanding.</td>
 </tr>
 <tr>
 <td class="h-checkstoplocate"><a id="checkstoplocate" class="heading-anchor" href="#%s"></a><span class="method-name">checkStopLocate</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
@@ -200,6 +197,10 @@
 <td></td>
 </tr>
 <tr>
+<td class="h-getactivesnapmodes"><a id="getactivesnapmodes" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="getactivesnapmodes">getActiveSnapModes</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/snapmode'>SnapMode</a>[]</span></td>
+<td>Get the current active SnapModes.</td>
+</tr>
+<tr>
 <td class="h-getcurrsnapdetail"><a id="getcurrsnapdetail" class="heading-anchor" href="#%s"></a><span class="method-name">getCurrSnapDetail</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/snapdetail'>SnapDetail</a> | undefined</span></td>
 <td></td>
 </tr>
@@ -208,8 +209,12 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-getsnapmode"><a id="getsnapmode" class="heading-anchor" href="#%s"></a><span class="method-name">getSnapMode</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/snapmode'>SnapMode</a></span></td>
-<td></td>
+<td class="h-getkeypointdivisor"><a id="getkeypointdivisor" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="getkeypointdivisor">getKeypointDivisor</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span></td>
+<td>Get the current snap divisor to use to use for SnapMode.NearestKeypoint.</td>
+</tr>
+<tr>
+<td class="h-getsnapmode"><a id="getsnapmode" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="getsnapmode">getSnapMode</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/snapmode'>SnapMode</a></span></td>
+<td>Get the SnapMode that was used to generate the SnapDetail.</td>
 </tr>
 <tr>
 <td class="h-isactive"><a id="isactive" class="heading-anchor" href="#%s"></a><span class="method-name">isActive</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
@@ -276,6 +281,10 @@
 <td></td>
 </tr>
 <tr>
+<td class="h-synchsnapmode"><a id="synchsnapmode" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="synchsnapmode">synchSnapMode</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
+<td>Can be used by a subclass of AccuSnap to implement a SnapMode override that applies only to the next point.</td>
+</tr>
+<tr>
 <td class="h-userwantssnaps"><a id="userwantssnaps" class="heading-anchor" href="#%s"></a><span class="method-name">userWantsSnaps</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
 </tr>
 </tbody></table><h3 class="h-properties"><a id="properties" class="heading-anchor" href="#%s"></a>Properties</h3>
@@ -335,11 +344,11 @@
 </tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
-<li>AccuSnap.ts</li>
+<li><span class="defined-in"><a href="***REMOVED***/tfs/ProductLine/Platform%20Technology/ECTech/_git/imodeljs-core?path=%2Fcore%2Ffrontend%2Fsrc%2FAccuSnap.ts">AccuSnap.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:28 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:52 pm +00:00</span>
             </p>
 
             
@@ -376,9 +385,6 @@
                                                     <a class='title solo-title menu-text' href="#adjustpointifhot">adjustPointIfHot</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#cancelmotion">cancelMotion</a>
-                                            </li>
-                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#checkstoplocate">checkStopLocate</a>
                                             </li>
                                             <li class='nav-item item '>
@@ -409,10 +415,16 @@
                                                     <a class='title solo-title menu-text' href="#erase">erase</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#getactivesnapmodes">getActiveSnapModes</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#getcurrsnapdetail">getCurrSnapDetail</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#gethitandlist">getHitAndList</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#getkeypointdivisor">getKeypointDivisor</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#getsnapmode">getSnapMode</a>
@@ -464,6 +476,9 @@
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#suspend">suspend</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#synchsnapmode">synchSnapMode</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#userwantssnaps">userWantsSnaps</a>

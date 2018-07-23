@@ -80,6 +80,7 @@
     <div class='row documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/">guidelines</a> > typescript-coding-guidelines</div>
+            <div class="edit-link">***REMOVED***</div>
             <h1 id="imodeljs typescript coding guidelines">iModelJs TypeScript Coding Guidelines</h1>
 <p>These are the TypeScript coding guidelines that we expect all iModelJs contributors to follow.
 Where possible, these guidelines are enforced through our TSLint configuration file (tslint.json).</p>
@@ -137,11 +138,9 @@ Where possible, these guidelines are enforced through our TSLint configuration f
 <pre class="no-line-numbers"><code class="language-typescript">  // WRONG !!!
   public middle(): number {
      return this.minimum + ((this.maximum - this.minimum) / 2.0);
-  }
-</code></pre>
+  }</code></pre>
 <pre class="no-line-numbers"><code class="language-typescript">  // Correct (1 line vs 3) !!!
-  public middle(): number { return this.minimum + ((this.maximum - this.minimum) / 2.0); }
-</code></pre>
+  public middle(): number { return this.minimum + ((this.maximum - this.minimum) / 2.0); }</code></pre>
 <h2 class="h-style"><a id="style" class="heading-anchor" href="#%s"></a>Style</h2>
 <ol>
 <li>Use arrow functions over anonymous function expressions.</li>
@@ -161,8 +160,7 @@ Where possible, these guidelines are enforced through our TSLint configuration f
 <p>If a return statement has a value you should not use parenthesis () around the value.</p>
 <pre class="no-line-numbers"><code class="language-typescript">return (&quot;Hello World!&quot;); // bad
 
-return &quot;Hello World!&quot;; // good
-</code></pre>
+return &quot;Hello World!&quot;; // good</code></pre>
 <p>Certain schools of programming advice hold that every method should have only one return statement. This could not be more misguided. <em>Always</em> return as soon as you know there&apos;s <em>no reason to proceed</em>.</p>
 <pre class="no-line-numbers"><code class="language-typescript">// bad!!
 public getFirstUser(): Person | undefined {
@@ -194,8 +192,7 @@ public getFirstUser(): Person | undefined {
 public getFirstUser(): Person | undefined {
   const userInvalid = !this.hasUsers() || (!this.usersValidated() &amp;&amp; !this.validateUsers());
   return userInvalid ? undefined : this.getUser(0);
-}
-</code></pre>
+}</code></pre>
 <p>Always explicitly define a return type for methods that are more than one line. This can help TypeScript validate that you are always returning something that matches the correct type.</p>
 <pre class="no-line-numbers"><code class="language-typescript">// bad!! No return type specified
 public getOwner(name: string) {
@@ -211,31 +208,26 @@ public getOwner(name: string): Person {
     return this.widget.getOwner(); // if this is not a Person, compile error
   ...
   return new Person(name);
-}
-</code></pre>
+}</code></pre>
 <p>for methods that are one line and for which the return type is obvious, it is not necessary to include the return type:</p>
 <pre class="no-line-numbers"><code class="language-typescript">// fine, return type is obvious
-public getCorner() { return new Point3d(this.x, this.y); }
-</code></pre>
+public getCorner() { return new Point3d(this.x, this.y); }</code></pre>
 <p>When calling methods, the best practice would be to explicitly specify the return type. In the case of async methods calls, these calls almost always involve awaiting the results, and this practice guards against omitting the await keyword - a frequent cause of hard to debug race conditions.</p>
 <pre class="no-line-numbers"><code class="language-typescript">// bad!! no return type specified for async call, and missing await is not caught by the compiler
 const iModels = iModelHub.getIModels(projectId);
 
 // good!! omitting the await would be caught by the compiler as a type mismatch
-const iModel: IModel[] = await iModelHub.getIModels(projectId);
-</code></pre>
+const iModel: IModel[] = await iModelHub.getIModels(projectId);</code></pre>
 <h2 class="h-getters-and-setters"><a id="getters-and-setters" class="heading-anchor" href="#%s"></a>Getters and Setters</h2>
 <p>A common pattern is to have a <code>private</code> member that is read/write privately within the class, but read-only to the public API. This can be a good use for a getter. For example:</p>
 <pre class="no-line-numbers"><code class="language-typescript">class Person {
   private _name: string;
   public get name(): string { return _name; } // read-only to public API, so no setter provided
-}
-</code></pre>
+}</code></pre>
 <p>Note, however, if the value supplied by the getter is established in the constructor and <em>can never be changed</em>, the following may be preferable:</p>
 <pre class="no-line-numbers"><code class="language-typescript">class Person {
    constructor(public readonly name: string) { }
-}
-</code></pre>
+}</code></pre>
 <p>Another valid use of getters and setters is when you want to give the appearance of having a public member but you don&apos;t actually store the data that way. For example:</p>
 <pre class="no-line-numbers"><code class="language-typescript">class PersonName {
   constructor (public firstName: string, public lastName: string) { }
@@ -245,27 +237,23 @@ const iModel: IModel[] = await iModelHub.getIModels(projectId);
     this.firstName = names[0] || &quot;&quot;;
     this.lastName = names[1] || &quot;&quot;;
   }
-}
-</code></pre>
+}</code></pre>
 <p>It is also good to use getters and setters if data validation is required (which isn&apos;t possible in the case of a direct assignment to a public member).</p>
 <p>There are cases where getters and setters would be overkill. For example:</p>
 <pre class="no-line-numbers"><code class="language-typescript">// This is fine!
 class Corner {
   constructor(public x: number, public y: number, public z: number) { }
-}
-</code></pre>
+}</code></pre>
 <h2 class="h-use--syntax-vs---undefined"><a id="use--syntax-vs---undefined" class="heading-anchor" href="#%s"></a>use &quot;?:&quot; syntax vs. &quot; | undefined&quot;</h2>
 <p>When declaring member variables or function arguments, use the TypeScript &quot;?:&quot; syntax vs. adding &quot; | undefined&quot; for variables that can be undefined. For example</p>
 <pre class="no-line-numbers"><code class="language-typescript">class Role {
   public name: string;
   public description: string | undefined; // Wrong !!
-}
-</code></pre>
+}</code></pre>
 <pre class="no-line-numbers"><code class="language-typescript">class Role {
   public name: string;
   public description?: string; // Correct !!
-}
-</code></pre>
+}</code></pre>
 <h2 class="h-dont-repeat-type-names-unnecessarily"><a id="dont-repeat-type-names-unnecessarily" class="heading-anchor" href="#%s"></a>Don&apos;t repeat type names unnecessarily</h2>
 <p>TypeScript is all about adding types to JavaScript. However, the compiler automatically infers type by context, and it is therefore not necessary to decorate every member or variable declaration with its type, if it is obvious. That only adds clutter and obscures the real code. For example,</p>
 <pre class="no-line-numbers"><code class="language-typescript">  let width: number = 7.3; // useless type declaration
@@ -275,8 +263,7 @@ class Corner {
   let width = 7.3; // correct
   public isReady = false; // correct
   public readonly origin = new Point3d(); // correct
-  const upVector: Vector3d = rMatrix.getRow(1); // fine, helps readability. Not strictly necessary.
-</code></pre>
+  const upVector: Vector3d = rMatrix.getRow(1); // fine, helps readability. Not strictly necessary.</code></pre>
 <p>However, as stated above, it is a good idea to always include the return type of a function if it is more than one line, to make sure no return path has an unexpected type.</p>
 <h2 class="h-error-handling"><a id="error-handling" class="heading-anchor" href="#%s"></a>Error Handling</h2>
 <p>For public-facing APIs we have decided to prefer exceptions (<code>throw new Error</code>) and rejecting promises (<code>Promise.reject</code>) over returning status codes. The reasons include:</p>
@@ -345,7 +332,6 @@ public myMethod1(): void { }
  * @throws [[NameOfErrorClass]] when the parameter is invalid.
  */
 public myMethod2(param1: string): number { /* ... */ }
-
 </code></pre>
 <h2 class="h-defining-json-wire-formats"><a id="defining-json-wire-formats" class="heading-anchor" href="#%s"></a>Defining JSON &apos;Wire Formats&apos;</h2>
 <p>A common pattern in JavaScript is to transfer information from one context to another by serializing/deserializing to strings.</p>
@@ -368,8 +354,7 @@ export class Angle {
   . . .
   public static fromJSON(json?: AngleProps): Angle {. . .}
   public toJSON(asRadians?: boolean): AngleProps { return asRadians ? { radians: this.radians } : { degrees: this.degrees }; }
-}
-</code></pre>
+}</code></pre>
 <p>From this we can tell that an Angle may be serialized to/from JSON as either:</p>
 <ol>
 <li>a <code>number</code>, in which case it will be a value in degrees</li>
@@ -382,8 +367,7 @@ export class Angle {
  * If an array, its values are [x,y,z].
  * @note Any undefined values are 0.
  */
-export type XYZProps = { x?: number; y?: number; z?: number } | number[];
-</code></pre>
+export type XYZProps = { x?: number; y?: number; z?: number } | number[];</code></pre>
 <p>That tells you that a value of type XYZ (either Point3d or a Vector3d) may be serialized to/from JSON as:</p>
 <ol>
 <li>an object with optional members <code>x</code>, <code>y</code>, and <code>z</code> of type <code>number</code>, or</li>
@@ -395,8 +379,7 @@ export type XYZProps = { x?: number; y?: number; z?: number } | number[];
 <p>Every .ts file should have this notice as its <strong>first 3 lines</strong>:</p>
 <pre class="no-line-numbers"><code class="language-typescript">/*---------------------------------------------------------------------------------------------
 | $Copyright: (c) 20xx Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
-</code></pre>
+ *--------------------------------------------------------------------------------------------*/</code></pre>
 <p>verbatim, with the xx replaced with the current year.</p>
 <h2 class="h-source-code-editor"><a id="source-code-editor" class="heading-anchor" href="#%s"></a>Source Code Editor</h2>
 <ol>
@@ -404,7 +387,7 @@ export type XYZProps = { x?: number; y?: number; z?: number } | number[];
 </ol>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 July, 2018 @ 08:07:35 pm -04:00</span>
+                <span class='date-updated'>23 July, 2018 @ 02:55:56 pm +00:00</span>
             </p>
 
             
