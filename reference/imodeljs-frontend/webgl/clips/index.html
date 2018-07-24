@@ -146,22 +146,18 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/webgl/">WebGL</a> > Clips</div>
             
             <h2 class="h-clips"><a id="clips" class="heading-anchor" href="#%s"></a>Clips <span class="badge badge-pill badge-primary badge-class">Class</span></h2>
-<p>Interface for GPU clipping. Max of 6 planes of clipping; no nesting</p>
+<p>Interface for 3d GPU clipping.</p>
 <h3 class="h-methods"><a id="methods" class="heading-anchor" href="#%s"></a>Methods</h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-constructor"><a id="constructor" class="heading-anchor" href="#%s"></a><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/clips'>Clips</a></span></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-clear"><a id="clear" class="heading-anchor" href="#%s"></a><span class="method-name">clear</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
 <td></td>
 </tr>
 <tr>
-<td class="h-setfrom"><a id="setfrom" class="heading-anchor" href="#%s"></a><span class="method-name">setFrom</span><span class="method-parenthesis">(</span><span class="method-parameters">planes: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipplane'>ClipPlane</a>[], viewMatrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
+<td class="h-set"><a id="set" class="heading-anchor" href="#%s"></a><span class="method-name">set</span><span class="method-parenthesis">(</span><span class="method-parameters">numPlanes: number, texture: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/texturehandle'>TextureHandle</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
 </tr>
 </tbody></table><h3 class="h-properties"><a id="properties" class="heading-anchor" href="#%s"></a>Properties</h3>
 <table class="table table-responsive"><tbody><tr>
@@ -170,8 +166,8 @@
 <th>Description</th>
 </tr>
 <tr>
-<td class="h-clips-1"><a id="clips-1" class="heading-anchor" href="#%s"></a><span class="property-name">clips</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
-<td><span class="method-output"> Float32Array</span></td>
+<td class="h-count"><a id="count" class="heading-anchor" href="#%s"></a><span class="property-name">count</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> number</span></td>
 <td></td>
 </tr>
 <tr>
@@ -180,8 +176,8 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-length"><a id="length" class="heading-anchor" href="#%s"></a><span class="property-name">length</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
-<td><span class="method-output"> number</span></td>
+<td class="h-texture"><a id="texture" class="heading-anchor" href="#%s"></a><span class="property-name">texture</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/texturehandle'>TextureHandle</a> | undefined</span></td>
 </tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
@@ -189,7 +185,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>23 July, 2018 @ 02:55:55 pm +00:00</span>
+                <span class='date-updated'>23 July, 2018 @ 08:06:47 pm -04:00</span>
             </p>
 
             
@@ -223,13 +219,10 @@
                                     </a>
                                     <ul id="inner-nav-methods" class='inner-nav'>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#constructor">constructor</a>
-                                            </li>
-                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#clear">clear</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#setfrom">setFrom</a>
+                                                    <a class='title solo-title menu-text' href="#set">set</a>
                                             </li>
                                     </ul>
                             </li>
@@ -240,13 +233,13 @@
                                     </a>
                                     <ul id="inner-nav-properties" class='inner-nav'>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#clips-1">clips</a>
+                                                    <a class='title solo-title menu-text' href="#count">count</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#isvalid">isValid</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#length">length</a>
+                                                    <a class='title solo-title menu-text' href="#texture">texture</a>
                                             </li>
                                     </ul>
                             </li>

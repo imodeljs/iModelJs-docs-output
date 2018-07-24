@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>WithClipVolume - imodeljs-frontend</title>
+    <title>ClippingShaders - imodeljs-frontend</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -143,31 +143,49 @@
         </ul>    </div>
     <div class='row documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/webgl/">WebGL</a> > WithClipVolume</div>
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/webgl/">WebGL</a> > ClippingShaders</div>
             
-            <h2 class="h-withclipvolume"><a id="withclipvolume" class="heading-anchor" href="#%s"></a>WithClipVolume <span class="badge badge-pill badge-primary badge-enumeration">Enumeration</span></h2>
-<h3 class="h-members"><a id="members" class="heading-anchor" href="#%s"></a>Members</h3>
+            <h2 class="h-clippingshaders"><a id="clippingshaders" class="heading-anchor" href="#%s"></a>ClippingShaders <span class="badge badge-pill badge-primary badge-class">Class</span></h2>
+<p>A collection of shader programs with clipping that vary based on the max number of clipping planes each supports.</p>
+<h3 class="h-methods"><a id="methods" class="heading-anchor" href="#%s"></a>Methods</h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
-<th>Value</th>
+<th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
+</tr>
+<tr>
+<td class="h-constructor"><a id="constructor" class="heading-anchor" href="#%s"></a><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">prog: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/programbuilder'>ProgramBuilder</a>, context: WebGLRenderingContext</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/clippingshaders'>ClippingShaders</a></span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-getprogram"><a id="getprogram" class="heading-anchor" href="#%s"></a><span class="method-name">getProgram</span><span class="method-parenthesis">(</span><span class="method-parameters">clipDef: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/clipdef'>ClipDef</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/shaderprogram'>ShaderProgram</a> | undefined</span></td>
+</tr>
+</tbody></table><h3 class="h-properties"><a id="properties" class="heading-anchor" href="#%s"></a>Properties</h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 <tr>
-<td class="h-no"><a id="no" class="heading-anchor" href="#%s"></a>No</td>
-<td></td>
+<td class="h-builder"><a id="builder" class="heading-anchor" href="#%s"></a><span class="property-name">builder</span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/programbuilder'>ProgramBuilder</a></span></td>
 <td></td>
 </tr>
 <tr>
-<td class="h-yes"><a id="yes" class="heading-anchor" href="#%s"></a>Yes</td>
+<td class="h-maskshader"><a id="maskshader" class="heading-anchor" href="#%s"></a><span class="property-name">maskShader</span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/shaderprogram'>ShaderProgram</a></span></td>
 <td></td>
+</tr>
+<tr>
+<td class="h-shaders"><a id="shaders" class="heading-anchor" href="#%s"></a><span class="property-name">shaders</span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/shaderprogram'>ShaderProgram</a>[]</span></td>
 </tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
-<li><span class="defined-in"><a href="***REMOVED***/tfs/ProductLine/Platform%20Technology/ECTech/_git/imodeljs-core?path=%2Fcore%2Ffrontend%2Fsrc%2Frender%2Fwebgl%2FTechniqueFlags.ts">render/webgl/TechniqueFlags.ts</a></span></li>
+<li><span class="defined-in"><a href="***REMOVED***/tfs/ProductLine/Platform%20Technology/ECTech/_git/imodeljs-core?path=%2Fcore%2Ffrontend%2Fsrc%2Frender%2Fwebgl%2FShaderBuilder.ts">render/webgl/ShaderBuilder.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>23 July, 2018 @ 02:55:55 pm +00:00</span>
+                <span class='date-updated'>23 July, 2018 @ 08:06:47 pm -04:00</span>
             </p>
 
             
@@ -189,22 +207,39 @@
             <div id="overview-container" class="clusterize-scroll">
               <ul id='nav' class='right-nav nav flex-column clusterize-content'>
                       <li class='nav-item item active typeDocHeader'>
-                    <a data-target="#inner-nav-withclipvolume" class='title' href="#withclipvolume"/>
-                    <b class='dropdown-menu-title menu-text'>WithClipVolume</b>
+                    <a data-target="#inner-nav-clippingshaders" class='title' href="#clippingshaders"/>
+                    <b class='dropdown-menu-title menu-text'>ClippingShaders</b>
                     <i class='dropdown icon'></i>
                     </a>
-                    <ul id="inner-nav-withclipvolume" class='inner-nav'>
+                    <ul id="inner-nav-clippingshaders" class='inner-nav'>
                             <li class='nav-item item '>
-                                    <a data-target="#inner-nav-members" class='title' href="#members"/>
-                                    <b class='dropdown-menu-title menu-text'>Members</b>
+                                    <a data-target="#inner-nav-methods" class='title' href="#methods"/>
+                                    <b class='dropdown-menu-title menu-text'>Methods</b>
                                     <i class='dropdown icon'></i>
                                     </a>
-                                    <ul id="inner-nav-members" class='inner-nav'>
+                                    <ul id="inner-nav-methods" class='inner-nav'>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#no">No</a>
+                                                    <a class='title solo-title menu-text' href="#constructor">constructor</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#yes">Yes</a>
+                                                    <a class='title solo-title menu-text' href="#getprogram">getProgram</a>
+                                            </li>
+                                    </ul>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a data-target="#inner-nav-properties" class='title' href="#properties"/>
+                                    <b class='dropdown-menu-title menu-text'>Properties</b>
+                                    <i class='dropdown icon'></i>
+                                    </a>
+                                    <ul id="inner-nav-properties" class='inner-nav'>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#builder">builder</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#maskshader">maskShader</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#shaders">shaders</a>
                                             </li>
                                     </ul>
                             </li>

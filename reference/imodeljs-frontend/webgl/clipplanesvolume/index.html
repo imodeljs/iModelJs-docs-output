@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ClipVolumePlanes - imodeljs-frontend</title>
+    <title>ClipPlanesVolume - imodeljs-frontend</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -143,10 +143,10 @@
         </ul>    </div>
     <div class='row documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/webgl/">WebGL</a> > ClipVolumePlanes</div>
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/webgl/">WebGL</a> > ClipPlanesVolume</div>
             
-            <h2 class="h-clipvolumeplanes"><a id="clipvolumeplanes" class="heading-anchor" href="#%s"></a>ClipVolumePlanes <span class="badge badge-pill badge-primary badge-class">Class</span></h2>
-<p>A 3D clip volume defined by up to 6 planes.</p>
+            <h2 class="h-clipplanesvolume"><a id="clipplanesvolume" class="heading-anchor" href="#%s"></a>ClipPlanesVolume <span class="badge badge-pill badge-primary badge-class">Class</span></h2>
+<p>A 3D clip volume defined as a texture derived from a set of planes.</p>
 <h3 class="h-extends"><a id="extends" class="heading-anchor" href="#%s"></a>Extends</h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/renderclipvolume'>RenderClipVolume</a></li>
@@ -161,10 +161,6 @@
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-apply"><a id="apply" class="heading-anchor" href="#%s"></a><span class="method-name">apply</span><span class="method-parenthesis">(</span><span class="method-parameters">clips: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/clips'>Clips</a>, viewMatrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-dispose"><a id="dispose" class="heading-anchor" href="#%s"></a><span class="method-name">dispose</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
 <td></td>
 </tr>
@@ -173,11 +169,12 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-push"><a id="push" class="heading-anchor" href="#%s"></a><span class="method-name">push</span><span class="method-parenthesis">(</span><span class="method-parameters">exec: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/shaderprogramexecutor'>ShaderProgramExecutor</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
+<td class="h-push"><a id="push" class="heading-anchor" href="#%s"></a><span class="method-name">push</span><span class="method-parenthesis">(</span><span class="method-parameters">shader: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/shaderprogramexecutor'>ShaderProgramExecutor</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
 <td></td>
 </tr>
 <tr>
-<td class="h-create"><a id="create" class="heading-anchor" href="#%s"></a><span class="method-name">create</span><span class="method-parenthesis">(</span><span class="method-parameters">clipVec: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/clipvolumeplanes'>ClipVolumePlanes</a> | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td class="h-create"><a id="create" class="heading-anchor" href="#%s"></a><span class="method-name">create</span><span class="method-parenthesis">(</span><span class="method-parameters">clipVec: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/clipplanesvolume'>ClipPlanesVolume</a> | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td>Create a new ClipPlanesVolume from a ClipVector.</td>
 </tr>
 </tbody></table><h3 class="h-properties"><a id="properties" class="heading-anchor" href="#%s"></a>Properties</h3>
 <table class="table table-responsive"><tbody><tr>
@@ -186,13 +183,8 @@
 <th>Description</th>
 </tr>
 <tr>
-<td class="h-isempty"><a id="isempty" class="heading-anchor" href="#%s"></a><span class="property-name">isEmpty</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
-<td><span class="method-output"> boolean</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-length"><a id="length" class="heading-anchor" href="#%s"></a><span class="property-name">length</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
-<td><span class="method-output"> number</span></td>
+<td class="h-texture"><a id="texture" class="heading-anchor" href="#%s"></a><span class="property-name">texture</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/texturehandle'>TextureHandle</a> | undefined</span></td>
 </tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
@@ -200,7 +192,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>23 July, 2018 @ 02:55:55 pm +00:00</span>
+                <span class='date-updated'>23 July, 2018 @ 08:06:47 pm -04:00</span>
             </p>
 
             
@@ -222,11 +214,11 @@
             <div id="overview-container" class="clusterize-scroll">
               <ul id='nav' class='right-nav nav flex-column clusterize-content'>
                       <li class='nav-item item active typeDocHeader'>
-                    <a data-target="#inner-nav-clipvolumeplanes" class='title' href="#clipvolumeplanes"/>
-                    <b class='dropdown-menu-title menu-text'>ClipVolumePlanes</b>
+                    <a data-target="#inner-nav-clipplanesvolume" class='title' href="#clipplanesvolume"/>
+                    <b class='dropdown-menu-title menu-text'>ClipPlanesVolume</b>
                     <i class='dropdown icon'></i>
                     </a>
-                    <ul id="inner-nav-clipvolumeplanes" class='inner-nav'>
+                    <ul id="inner-nav-clipplanesvolume" class='inner-nav'>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#extends">Extends</a>
                             </li>
@@ -239,9 +231,6 @@
                                     <i class='dropdown icon'></i>
                                     </a>
                                     <ul id="inner-nav-methods" class='inner-nav'>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#apply">apply</a>
-                                            </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#dispose">dispose</a>
                                             </li>
@@ -263,10 +252,7 @@
                                     </a>
                                     <ul id="inner-nav-properties" class='inner-nav'>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#isempty">isEmpty</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#length">length</a>
+                                                    <a class='title solo-title menu-text' href="#texture">texture</a>
                                             </li>
                                     </ul>
                             </li>

@@ -189,20 +189,28 @@
 <td>Describes the rendering capabilities of the host system.</td>
 </tr>
 <tr>
+<td class="h-clipdef"><a id="clipdef" class="heading-anchor" href="#%s"></a><a href="clipdef">ClipDef</a></td>
+<td>Meta data for what type of clip volume is being stored (mask or planes).</td>
+</tr>
+<tr>
 <td class="h-clipmaskgeometry"><a id="clipmaskgeometry" class="heading-anchor" href="#%s"></a><a href="clipmaskgeometry">ClipMaskGeometry</a></td>
 <td>A geometric primitive representative of a set of clipping planes to clip a volume of space.</td>
 </tr>
 <tr>
 <td class="h-clipmaskvolume"><a id="clipmaskvolume" class="heading-anchor" href="#%s"></a><a href="clipmaskvolume">ClipMaskVolume</a></td>
-<td>A 2D clip volume defined by any number of planes.</td>
+<td>A 2D clip volume defined as a texture derived from a masked set of planes.</td>
+</tr>
+<tr>
+<td class="h-clippingshaders"><a id="clippingshaders" class="heading-anchor" href="#%s"></a><a href="clippingshaders">ClippingShaders</a></td>
+<td>A collection of shader programs with clipping that vary based on the max number of clipping planes each supports.</td>
+</tr>
+<tr>
+<td class="h-clipplanesvolume"><a id="clipplanesvolume" class="heading-anchor" href="#%s"></a><a href="clipplanesvolume">ClipPlanesVolume</a></td>
+<td>A 3D clip volume defined as a texture derived from a set of planes.</td>
 </tr>
 <tr>
 <td class="h-clips"><a id="clips" class="heading-anchor" href="#%s"></a><a href="clips">Clips</a></td>
-<td>Interface for GPU clipping.</td>
-</tr>
-<tr>
-<td class="h-clipvolumeplanes"><a id="clipvolumeplanes" class="heading-anchor" href="#%s"></a><a href="clipvolumeplanes">ClipVolumePlanes</a></td>
-<td>A 3D clip volume defined by up to 6 planes.</td>
+<td>Interface for 3d GPU clipping.</td>
 </tr>
 <tr>
 <td class="h-colorinfo"><a id="colorinfo" class="heading-anchor" href="#%s"></a><a href="colorinfo">ColorInfo</a></td>
@@ -637,6 +645,10 @@
 <th>Description</th>
 </tr>
 <tr>
+<td class="h-clipvolumetype"><a id="clipvolumetype" class="heading-anchor" href="#%s"></a><a href="clipvolumetype">ClipVolumeType</a></td>
+<td></td>
+</tr>
+<tr>
 <td class="h-compilestatus"><a id="compilestatus" class="heading-anchor" href="#%s"></a><a href="compilestatus">CompileStatus</a></td>
 <td>Describes the compilation status of a shader program.</td>
 </tr>
@@ -758,10 +770,6 @@
 </tr>
 <tr>
 <td class="h-vertexshadercomponent"><a id="vertexshadercomponent" class="heading-anchor" href="#%s"></a><a href="vertexshadercomponent">VertexShaderComponent</a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-withclipvolume"><a id="withclipvolume" class="heading-anchor" href="#%s"></a><a href="withclipvolume">WithClipVolume</a></td>
 </tr>
 </tbody></table><h2 class="h-global-functions"><a id="global-functions" class="heading-anchor" href="#%s"></a>Global Functions</h2>
 <table class="table table-responsive"><tbody><tr>
@@ -851,6 +859,10 @@
 <tr>
 <td class="h-addrenderpass"><a id="addrenderpass" class="heading-anchor" href="#%s"></a><a href="addrenderpass">addRenderPass</a></td>
 <td>Adds a uniform holding the current render pass and a set of kRenderPass_* constants</td>
+</tr>
+<tr>
+<td class="h-addrendertargetindex"><a id="addrendertargetindex" class="heading-anchor" href="#%s"></a><a href="addrendertargetindex">addRenderTargetIndex</a></td>
+<td></td>
 </tr>
 <tr>
 <td class="h-addshaderflags"><a id="addshaderflags" class="heading-anchor" href="#%s"></a><a href="addshaderflags">addShaderFlags</a></td>
@@ -1086,7 +1098,7 @@
 </tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>23 July, 2018 @ 02:55:56 pm +00:00</span>
+                <span class='date-updated'>23 July, 2018 @ 08:06:47 pm -04:00</span>
             </p>
 
             
@@ -1141,16 +1153,22 @@
                                     <a class='title solo-title menu-text' href="#capabilities">Capabilities</a>
                             </li>
                             <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#clipdef">ClipDef</a>
+                            </li>
+                            <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#clipmaskgeometry">ClipMaskGeometry</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#clipmaskvolume">ClipMaskVolume</a>
                             </li>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#clips">Clips</a>
+                                    <a class='title solo-title menu-text' href="#clippingshaders">ClippingShaders</a>
                             </li>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#clipvolumeplanes">ClipVolumePlanes</a>
+                                    <a class='title solo-title menu-text' href="#clipplanesvolume">ClipPlanesVolume</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#clips">Clips</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#colorinfo">ColorInfo</a>
@@ -1487,6 +1505,9 @@
                     </a>
                     <ul id="inner-nav-enumerations" class='inner-nav'>
                             <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#clipvolumetype">ClipVolumeType</a>
+                            </li>
+                            <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#compilestatus">CompileStatus</a>
                             </li>
                             <li class='nav-item item '>
@@ -1579,9 +1600,6 @@
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#vertexshadercomponent">VertexShaderComponent</a>
                             </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#withclipvolume">WithClipVolume</a>
-                            </li>
                     </ul>
             </li>
                <li class='nav-item item '>
@@ -1652,6 +1670,9 @@
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#addrenderpass">addRenderPass</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#addrendertargetindex">addRenderTargetIndex</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#addshaderflags">addShaderFlags</a>

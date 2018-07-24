@@ -256,20 +256,28 @@
 <td>A list of Categories to be displayed in a view.</td>
 </tr>
 <tr>
+<td class="h-clipdef"><a id="clipdef" class="heading-anchor" href="#%s"></a><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/clipdef'>ClipDef</a></td>
+<td>Meta data for what type of clip volume is being stored (mask or planes).</td>
+</tr>
+<tr>
 <td class="h-clipmaskgeometry"><a id="clipmaskgeometry" class="heading-anchor" href="#%s"></a><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/clipmaskgeometry'>ClipMaskGeometry</a></td>
 <td>A geometric primitive representative of a set of clipping planes to clip a volume of space.</td>
 </tr>
 <tr>
 <td class="h-clipmaskvolume"><a id="clipmaskvolume" class="heading-anchor" href="#%s"></a><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/clipmaskvolume'>ClipMaskVolume</a></td>
-<td>A 2D clip volume defined by any number of planes.</td>
+<td>A 2D clip volume defined as a texture derived from a masked set of planes.</td>
+</tr>
+<tr>
+<td class="h-clippingshaders"><a id="clippingshaders" class="heading-anchor" href="#%s"></a><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/clippingshaders'>ClippingShaders</a></td>
+<td>A collection of shader programs with clipping that vary based on the max number of clipping planes each supports.</td>
+</tr>
+<tr>
+<td class="h-clipplanesvolume"><a id="clipplanesvolume" class="heading-anchor" href="#%s"></a><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/clipplanesvolume'>ClipPlanesVolume</a></td>
+<td>A 3D clip volume defined as a texture derived from a set of planes.</td>
 </tr>
 <tr>
 <td class="h-clips"><a id="clips" class="heading-anchor" href="#%s"></a><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/clips'>Clips</a></td>
-<td>Interface for GPU clipping.</td>
-</tr>
-<tr>
-<td class="h-clipvolumeplanes"><a id="clipvolumeplanes" class="heading-anchor" href="#%s"></a><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/clipvolumeplanes'>ClipVolumePlanes</a></td>
-<td>A 3D clip volume defined by up to 6 planes.</td>
+<td>Interface for 3d GPU clipping.</td>
 </tr>
 <tr>
 <td class="h-colorinfo"><a id="colorinfo" class="heading-anchor" href="#%s"></a><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/colorinfo'>ColorInfo</a></td>
@@ -1420,6 +1428,10 @@
 <td>Helps determine the action ModifyAgenda will take on the agenda elements after calling doFenceClip.</td>
 </tr>
 <tr>
+<td class="h-clipvolumetype"><a id="clipvolumetype" class="heading-anchor" href="#%s"></a><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/clipvolumetype'>ClipVolumeType</a></td>
+<td></td>
+</tr>
+<tr>
 <td class="h-compassmode"><a id="compassmode" class="heading-anchor" href="#%s"></a><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/accudraw/compassmode'>CompassMode</a></td>
 <td></td>
 </tr>
@@ -1797,10 +1809,6 @@
 </tr>
 <tr>
 <td class="h-viewstatus"><a id="viewstatus" class="heading-anchor" href="#%s"></a><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstatus'>ViewStatus</a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-withclipvolume"><a id="withclipvolume" class="heading-anchor" href="#%s"></a><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/withclipvolume'>WithClipVolume</a></td>
 </tr>
 </tbody></table><h2 class="h-global-functions"><a id="global-functions" class="heading-anchor" href="#%s"></a>Global Functions</h2>
 <table class="table table-responsive"><tbody><tr>
@@ -1894,6 +1902,10 @@
 <tr>
 <td class="h-addrenderpass"><a id="addrenderpass" class="heading-anchor" href="#%s"></a><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/addrenderpass'>addRenderPass</a></td>
 <td>Adds a uniform holding the current render pass and a set of kRenderPass_* constants</td>
+</tr>
+<tr>
+<td class="h-addrendertargetindex"><a id="addrendertargetindex" class="heading-anchor" href="#%s"></a><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/addrendertarget'>addRenderTargetIndex</a></td>
+<td></td>
 </tr>
 <tr>
 <td class="h-addshaderflags"><a id="addshaderflags" class="heading-anchor" href="#%s"></a><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/webgl/addshaderflags'>addShaderFlags</a></td>
@@ -2233,7 +2245,7 @@
 </tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>23 July, 2018 @ 02:55:56 pm +00:00</span>
+                <span class='date-updated'>23 July, 2018 @ 08:06:47 pm -04:00</span>
             </p>
 
             
@@ -2339,16 +2351,22 @@
                                     <a class='title solo-title menu-text' href="#categoryselectorstate">CategorySelectorState</a>
                             </li>
                             <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#clipdef">ClipDef</a>
+                            </li>
+                            <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#clipmaskgeometry">ClipMaskGeometry</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#clipmaskvolume">ClipMaskVolume</a>
                             </li>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#clips">Clips</a>
+                                    <a class='title solo-title menu-text' href="#clippingshaders">ClippingShaders</a>
                             </li>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#clipvolumeplanes">ClipVolumePlanes</a>
+                                    <a class='title solo-title menu-text' href="#clipplanesvolume">ClipPlanesVolume</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#clips">Clips</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#colorinfo">ColorInfo</a>
@@ -3222,6 +3240,9 @@
                                     <a class='title solo-title menu-text' href="#clipresult">ClipResult</a>
                             </li>
                             <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#clipvolumetype">ClipVolumeType</a>
+                            </li>
+                            <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#compassmode">CompassMode</a>
                             </li>
                             <li class='nav-item item '>
@@ -3506,9 +3527,6 @@
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#viewstatus">ViewStatus</a>
                             </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#withclipvolume">WithClipVolume</a>
-                            </li>
                     </ul>
             </li>
                <li class='nav-item item '>
@@ -3582,6 +3600,9 @@
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#addrenderpass">addRenderPass</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#addrendertargetindex">addRenderTargetIndex</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#addshaderflags">addShaderFlags</a>
