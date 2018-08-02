@@ -1726,6 +1726,9 @@ article#main h1 {
 article#main .method-name, article#main .inherited-method-name {
   font-family: consolas; }
 
+article#main h3.h-inherited-methods + table {
+  display: none; }
+
 article#main .method-parenthesis {
   font-family: consolas;
   color: #A6AFB7; }
@@ -1746,6 +1749,9 @@ article#main :not(h2) .type-parameters {
 
 article#main .property-name, article#main .inherited-property-name {
   font-family: consolas; }
+
+article#main h3.h-inherited-properties + table {
+  display: none; }
 
 article#main .inherited-from {
   font-family: consolas; }
@@ -1985,77 +1991,20 @@ article#main .h-classes + table td:nth-child(1), article#main .h-interfaces + ta
   margin-top: -20px;
   right: 100%; }
 
-.bwc-loader-large {
-  display: inline-block;
-  position: relative;
-  vertical-align: middle;
-  width: 48px;
-  height: 48px;
-  margin: 0;
-  text-indent: 999em;
-  overflow: hidden;
-  background: transparent;
-  margin-left: 45%;
-  top: 220px; }
-
-@keyframes bwc-loaders-animate-opacity {
+@keyframes spin {
   0% {
-    opacity: 0.85; }
-  50% {
-    opacity: 0.25; }
+    transform: rotate(0deg); }
   100% {
-    opacity: 0.25; } }
-  .bwc-loader-large > *::before,
-  .bwc-loader-large > *::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 22px;
-    width: 4px;
-    height: 12px;
-    border-radius: 3px;
-    background: #2a2f34;
-    transform-origin: 2px 24px;
-    animation: bwc-loaders-animate-opacity 1s linear infinite; }
-  .bwc-loader-large.white > *::before,
-  .bwc-loader-large.white > *::after {
-    background: #fff; }
-  .bwc-loader-large > *:nth-child(1)::before {
-    transform: rotate(0deg);
-    animation-delay: 0s; }
-  .bwc-loader-large > *:nth-child(1)::after {
-    transform: rotate(-180deg);
-    animation-delay: -0.5s; }
-  .bwc-loader-large > *:nth-child(2)::before {
-    transform: rotate(-30deg);
-    animation-delay: -0.08333s; }
-  .bwc-loader-large > *:nth-child(2)::after {
-    transform: rotate(-210deg);
-    animation-delay: -0.58333s; }
-  .bwc-loader-large > *:nth-child(3)::before {
-    transform: rotate(-60deg);
-    animation-delay: -0.16667s; }
-  .bwc-loader-large > *:nth-child(3)::after {
-    transform: rotate(-240deg);
-    animation-delay: -0.66667s; }
-  .bwc-loader-large > *:nth-child(4)::before {
-    transform: rotate(-90deg);
-    animation-delay: -0.25s; }
-  .bwc-loader-large > *:nth-child(4)::after {
-    transform: rotate(-270deg);
-    animation-delay: -0.75s; }
-  .bwc-loader-large > *:nth-child(5)::before {
-    transform: rotate(-120deg);
-    animation-delay: -0.33333s; }
-  .bwc-loader-large > *:nth-child(5)::after {
-    transform: rotate(-300deg);
-    animation-delay: -0.83333s; }
-  .bwc-loader-large > *:nth-child(6)::before {
-    transform: rotate(-150deg);
-    animation-delay: -0.41667s; }
-  .bwc-loader-large > *:nth-child(6)::after {
-    transform: rotate(-330deg);
-    animation-delay: -0.91667s; }
+    transform: rotate(360deg); } }
+
+.livepreview_loader {
+  border-radius: 50%;
+  width: 4em;
+  height: 4em;
+  border: .25rem solid #C7CCD1;
+  border-top-color: #4D575F;
+  animation: spin 0.7s infinite linear;
+  margin: 13.5em 15em; }
 
 * {
   font-family: 'Segoe UI', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -2139,7 +2088,8 @@ span.search-result-description {
 
 #table-of-contents .search-active {
   background: white;
-  height: 80vh;
+  max-height: 70vh;
+  height: 70vh;
   z-index: 11;
   opacity: 1; }
 
@@ -2148,6 +2098,28 @@ span.search-result-description {
   opacity: 0;
   z-index: 0;
   display: none; }
+
+#table-of-contents .search-google-active {
+  font-family: 'Segoe UI';
+  background: white;
+  margin-top: 70vh;
+  z-index: 11;
+  opacity: 1;
+  padding: 10px 10px 10px 30px;
+  line-height: 2; }
+
+#table-of-contents .search-google-inactive {
+  height: 0vh;
+  opacity: 0;
+  z-index: 0;
+  display: none; }
+
+#table-of-contents .inner-google {
+  line-height: 2;
+  color: #56aa1c;
+  cursor: pointer; }
+  #table-of-contents .inner-google:hover {
+    background: rgba(204, 204, 204, 0.1); }
 
 #table-of-contents .result-list-item {
   padding: 0px 10px 5px 10px;
@@ -2184,6 +2156,40 @@ span.search-result-description {
 
 #table-of-contents .number-of-results {
   font-size: 10px; }
+
+#___gcse_0 {
+  position: absolute;
+  width: 20%;
+  right: 1%;
+  top: 35%; }
+  #___gcse_0 div.gsc-control-cse.gsc-control-cse-en {
+    padding: 0; }
+  #___gcse_0 div.gsc-adBlock {
+    display: none; }
+  #___gcse_0 div.gsc-above-wrapper-area {
+    display: none; }
+  #___gcse_0 table.gsc-resultsHeader {
+    display: none; }
+  #___gcse_0 div.gsc-results-wrapper-overlay {
+    top: 100px; }
+  #___gcse_0 div.gs-title {
+    height: 1.4em; }
+  #___gcse_0 table {
+    padding: 0px;
+    overflow-x: visible;
+    margin-bottom: 0px; }
+  #___gcse_0 a.gsst_a {
+    padding-top: 0px; }
+  #___gcse_0 span#gs_cb50 {
+    font: 22px/13px arial, sans-serif;
+    color: #98A5AE; }
+  #___gcse_0 td {
+    padding: 0px; }
+  #___gcse_0 input#gsc-i-id1 {
+    height: 30px !important;
+    padding: 0px 0px 0px 5px !important; }
+  #___gcse_0 table.gsc-table-result {
+    padding-left: 8px; }
 
 * {
   font-family: 'Segoe UI', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -2722,6 +2728,50 @@ table td, table th {
 
 i.collapse-column {
   cursor: pointer; }
+
+.ts-playgrounds .container-wrapper {
+  width: 757px;
+  height: 674px;
+  border: 1.5px solid gray;
+  background: whitesmoke;
+  /*overflow: hidden; /* will contain if #first is longer than #second */ }
+
+.ts-playgrounds button {
+  font-weight: bold;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 15%;
+  height: 49px;
+  background-color: transparent;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  color: #559C47;
+  font-size: 15px;
+  cursor: pointer !important;
+  outline: none; }
+
+.ts-playgrounds .playground-container {
+  width: 750px;
+  height: 400px; }
+
+.ts-playgrounds .output {
+  width: 750px;
+  height: 200px;
+  background-color: black;
+  font-color: white; }
+
+.ts-playgrounds button:hover {
+  background: #E8E8E8;
+  color: #559C47; }
+
+.ts-playgrounds .border {
+  padding: 10px;
+  border: 1px black; }
+
+.ts-playgrounds .problem {
+  color: red;
+  font-size: 12px; }
 
 * {
   font-family: 'Segoe UI', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;

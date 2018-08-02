@@ -44,11 +44,11 @@
                         <nav class="navbar navbar-expand-md navbar-light">
                              <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li></ul> 
                         </nav>
-                    </div>                </nav>
-            </div>
-
+                    </div>            </nav>
+        </div>
         </header>
         
+
 <div id='main-wrapper'>
     <div id='table-of-contents'>
         <span class='search-bar'>
@@ -56,6 +56,18 @@
             <div id='search-container'>
             </div>
           </li>
+          <script>
+            (function() {
+              var cx = '000629069474334212860:yxwzhn4umym';
+              var gcse = document.createElement('script');
+              gcse.type = 'text/javascript';
+              gcse.async = true;
+              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+              var s = document.getElementsByTagName('script')[0];
+              s.parentNode.insertBefore(gcse, s);
+            })();
+          </script>
+          <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
         </span>
         
         <ul id='main-navigation-list'>
@@ -114,8 +126,9 @@
             <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
             <h1 id="physicalmodel hierarchy">PhysicalModel Hierarchy</h1>
 <!-- Responsible for this page: Allan Bommer -->
+<p><img src=".././media/preliminary-documentation-see-discussion.png" alt="Preliminary Documentation Warning"></p>
 <h2 class="h-introduction"><a id="introduction" class="heading-anchor" href="#%s"></a>Introduction</h2>
-<p>Each <code>Subject</code> in a BIS Repository can have a <code>PhysicalPartition</code> child Element, under which the <code>PhysicalModel</code>s pertaining to the <code>Subject</code> will be organized using mechanisms described in <a href="../model-hierarchy">Model Hierarchy</a>. The Model Hierarchy is constrained by <a href="../modeling-perspective">Modeling Perspective</a>, but within the Physical Perspective, it is desirable to further organize Models according to Sites, Facilities, Systems, and Components in order to make the hierarchy of Models understandable by software and users. This section describes &#x201C;Model Affinity&#x201D; (a way of specifying &#x201C;constraints&#x201D; on the <code>ModelContainsElements</code> relationship) and the best-practice for using them to organize the Physical Model Hierarchy.</p>
+<p>Each <code>Subject</code> in a BIS Repository can have one <code>PhysicalPartition</code> child Element, under which the <code>PhysicalModel</code>s pertaining to the <code>Subject</code> will be organized using mechanisms described in <a href="../model-hierarchy">Model Hierarchy</a>. The Model Hierarchy is constrained by <a href="../modeling-perspective">Modeling Perspective</a>, but within the Physical Perspective, it is desirable to further organize Models according to Sites, Facilities, Systems, and Components in order to make the hierarchy of Models understandable by software and users. This section describes &#x201C;Model Affinity&#x201D; (a way of specifying &#x201C;constraints&#x201D; on the <code>ModelContainsElements</code> relationship) and the best-practice for using them to organize the Physical Model Hierarchy.</p>
 <p><img src=".././media/physical-hierarchy-organization-top-of-the-world.png" alt="Top of the PhysicalModel Hierarchy"></p>
 <h2 class="h-organization-strategy"><a id="organization-strategy" class="heading-anchor" href="#%s"></a>Organization Strategy</h2>
 <h3 class="h-motivations"><a id="motivations" class="heading-anchor" href="#%s"></a>Motivations</h3>
@@ -196,9 +209,14 @@
   &lt;ECArrayProperty propertyName=&quot;BreakdownModels&quot; typeName=&quot;string&quot; description=&quot;List of Element subclasses whose breakdown Models are appropriate containers for the class that this custom attribute is applied to. Use format &apos;[SchemaName]:[ClassName]&apos;, e.g. &apos;Fruit:Banana&apos;&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;unbounded&quot;/&gt;
 &lt;/ECCustomAttributeClass&gt;</code></pre><h3 class="h-mixin-classes"><a id="mixin-classes" class="heading-anchor" href="#%s"></a>Mixin Classes</h3>
 <p><code>ModelAffinity</code> custom attribute instances can <em>refer</em> to mixin classes, but cannot be <em>applied</em> to mixin classes.</p>
-<p>The mixin classes <code>IFacility</code> and <code>ISystem</code> are used in the <code>ModelAffinity</code> custom attribute for many key <code>PhysicalModel</code> hierarchy classes.</p>
+<p>The mixin classes <code>ISite</code>, <code>IFacility</code> and <code>ISystem</code> are used in the <code>ModelAffinity</code> custom attribute for many key <code>PhysicalModel</code> hierarchy classes.</p>
+<h2 class="h-top-physicalmodel"><a id="top-physicalmodel" class="heading-anchor" href="#%s"></a>Top PhysicalModel</h2>
+<p>The top <code>PhysicalModel</code> (the one directly owned by the <code>PhysicalPartition</code>) should contain a single <code>PhysicalElement</code> that corresponds to the <code>Subject</code> (that owns the <code>PhysicalPartition</code>). As Subjects define their subject in text only, the subject may be vague (<em>Is &quot;Burj Khalifa&quot; only the building, or is it the building and the surrounding site?&quot;</em>). This vagueness is clarified by the PhysicalElement that is in the top <code>PhysicalModel</code>.</p>
+<p>The top <code>PhysicalModel</code> most often contains an <code>ISite</code>, <code>IFacility</code>, or <code>ISystem</code> <code>PhysicalElement</code>.</p>
+<h3 class="h-top-physicalmodels-with-more-than-one-physicalelement"><a id="top-physicalmodels-with-more-than-one-physicalelement" class="heading-anchor" href="#%s"></a>Top PhysicalModels with More than One PhysicalElement</h3>
+<p>There is no strict requirement limiting the top <code>PhysicalModel</code> to contain only a single <code>PhysicalElement</code>. iModels that are generated from other repositories will sometimes have top <code>PhysicalModel</code>s with multiple <code>PhysicalElement</code>s as that best matches the organization of the source data. Legacy data may also have a non-standard organization.</p>
 <h2 class="h-physicalmodel-hierarchy-strategy"><a id="physicalmodel-hierarchy-strategy" class="heading-anchor" href="#%s"></a>PhysicalModel Hierarchy Strategy</h2>
-<p>While <code>ModelAffinity</code> provides a mechanism to declare and enforce a PhysicalModel hierarchy, it does does not define a coordinated strategy. The strategy for organizing the hierarchy relies on classifying PhysicalElements into five types:</p>
+<p>While <code>ModelAffinity</code> provides a mechanism to declare and enforce a PhysicalModel hierarchy, it does not define a coordinated strategy. The strategy for organizing the hierarchy relies on classifying PhysicalElements into five types:</p>
 <ul>
 <li><em>Site</em> - An area of land and its contents.</li>
 <li><em>Facility</em> - A cross-disciplinary Entity such as a building, bridge, tunnel, wharf, etc.</li>
@@ -213,23 +231,23 @@
 <th>Example Classes</th>
 </tr>
 <tr>
-<td>Site</td>
-<td>PhysicalPartition, Site</td>
+<td>ISite</td>
+<td>ISite <em>(declared in implementing classes)</em></td>
 <td>Site</td>
 </tr>
 <tr>
 <td>IFacility</td>
-<td>PhysicalPartition, Site, IFacility, ISystem  <em>(declared in implementing classes)</em></td>
+<td>ISite, IFacility, ISystem  <em>(declared in implementing classes)</em></td>
 <td>Building, Bridge, Tunnel</td>
 </tr>
 <tr>
 <td>ISystem</td>
-<td>PhysicalPartition, Site, IFacility, ISystem <em>(declared in implementing classes)</em></td>
+<td>ISite, IFacility, ISystem <em>(declared in implementing classes)</em></td>
 <td>SewerSystem, StructuralSystem, etc.</td>
 </tr>
 <tr>
 <td>*System</td>
-<td>PhysicalPartition, Site, IFacility, ISystem</td>
+<td>ISite, IFacility, ISystem</td>
 <td>SewerSystem, StructuralSystem</td>
 </tr>
 <tr>
@@ -243,25 +261,25 @@
 <td>Bolt, Chair</td>
 </tr>
 </tbody></table><p>These types and their behaviors are explained below, along with the behaviors of their breakdown <code>PhysicalModel</code>s if they have breakdown <code>Model</code>s.</p>
-<h3 class="h-site"><a id="site" class="heading-anchor" href="#%s"></a>Site</h3>
-<p><code>Site</code> is a <code>PhysicalElement</code> subclass that represents a region of land and all that is contained on, above and below that land.</p>
-<!-- Should Site be Sealed? -->
-<p>In conversation (and writing) the <code>Model</code>s that break down <code>Site</code> <code>Element</code>s are referred to as <code>Site</code> <code>Model</code>s, even thought there is not a strongly-typed <code>SiteModel</code> class. By convention, the top-most <code>Model</code> in a <code>PhysicalModel</code> hierarchy is considered a Site <code>Model</code>, even though it breaks down <code>PhysicalPartition</code>. The top <code>Model</code> is considered as a <code>Site</code> <code>Model</code> as nearly all infrastructure that is modeled with BIS can benefit from having a site context.</p>
-<p><code>Site</code> <code>Model</code>s typically contain <code>Site</code>, <code>IFacility</code>, <code>ISystem</code> and General-Use <code>PhysicalElement</code>s.</p>
-<p><code>Site</code> <code>Elements</code> should only be placed in <code>Site</code> <code>Model</code>s (and <code>PhysicalPartition</code> <code>Model</code>s). <code>Site</code> <code>Elements</code> placed in any other <code>Model</code> will generate validation warnings.</p>
+<h3 class="h-isite"><a id="isite" class="heading-anchor" href="#%s"></a>ISite</h3>
+<p><code>ISite</code> is mixin class that represents an region of land and all that is contained on, above and below that land. The <code>ISite</code> mixin applies only to <code>PhysicalElement</code> classes.</p>
+<p>In conversation (and writing) the <code>Model</code>s that break down <code>Site</code> <code>Element</code>s are referred to as <code>Site</code> <code>Model</code>s, even thought there is not a strongly-typed <code>SiteModel</code> class. By convention, the top-most <code>Model</code> in a <code>PhysicalModel</code> hierarchy is considered a Site <code>Model</code>, even though it breaks down <code>PhysicalPartition</code>.</p>
+<p><code>ISite</code> <code>Model</code>s typically contain <code>ISite</code>, <code>IFacility</code>, <code>ISystem</code> and General-Use <code>PhysicalElement</code>s.</p>
+<p><code>ISite</code> <code>Elements</code> should only be placed in <code>ISite</code> <code>Model</code>s (and the top <code>PhysicalModel</code>). <code>ISite</code> <code>Elements</code> placed in any other <code>Model</code> will generate validation warnings.</p>
+<p><em>To implement this behavior every class that includes the <code>ISite</code> mixin must include a <code>ModelAffinity</code> custom attribute that indicates a &quot;Recommended&quot; affinity to <code>PhysicalPartition</code> and <code>ISite</code>.</em></p>
 <h3 class="h-ifacility"><a id="ifacility" class="heading-anchor" href="#%s"></a>IFacility</h3>
 <p><code>IFacility</code> is a mixin class that represents a significant multi-disciplinary infrastructure Entity that corresponds well to user concepts. Buildings, bridges, tunnels, wharves, and towers are all examples of multi-discipline Entities that are modeled with a <code>PhysicalElement</code> subclass that includes the <code>IFacility</code> mixin.</p>
 <p>In conversation (and writing) the <code>Model</code>s that break down <code>IFacility</code> <code>Element</code>s are referred to as <code>Facility</code> <code>Model</code>s, even thought there is not a strongly-typed <code>IFacilityModel</code> class. These <code>Model</code>s are usually referred to by their more-specific <code>Element</code> types (e.g. <code>Building</code> <code>Model</code>s are <code>Model</code>s that break down <code>Building</code> <code>Element</code>s.)</p>
 <p><code>IFacility</code> <code>Model</code>s typically contain <code>IFacility</code>, <code>ISystem</code> and <code>General-Use</code> <code>PhysicalElement</code>s.</p>
-<p><code>IFacility</code> <code>Elements</code> may be placed in <code>Site</code>, <code>IFacility</code> and <code>ISystem</code> <code>Model</code>s. <code>IFacility</code> <code>Element</code>s placed in any other <code>Model</code> will generate validation warnings.</p>
-<p><em>To implement this behavior every class that includes the <code>IFacility</code> mixin must include a <code>ModelAffinity</code> custom attribute that indicates a &quot;Recommended&quot; affinity to <code>PhysicalPartition</code>, <code>Site</code>, <code>IFacility</code> and <code>ISystem</code>.</em></p>
+<p><code>IFacility</code> <code>Elements</code> may be placed in <code>ISite</code>, <code>IFacility</code> and <code>ISystem</code> <code>Model</code>s. <code>IFacility</code> <code>Element</code>s placed in any other <code>Model</code> will generate validation warnings.</p>
+<p><em>To implement this behavior every class that includes the <code>IFacility</code> mixin must include a <code>ModelAffinity</code> custom attribute that indicates a &quot;Recommended&quot; affinity to <code>PhysicalPartition</code>, <code>ISite</code>, <code>IFacility</code> and <code>ISystem</code>.</em></p>
 <h3 class="h-isystem"><a id="isystem" class="heading-anchor" href="#%s"></a>ISystem</h3>
 <p><code>ISystem</code> is a mixin class that represents a significant discipline-specific arrangement of Entities intended to fulfill one or more functions. Sewers, roadways, HVAC and fire-suppression systems are all examples of real-world Entities that are modeled with <code>ISystem</code> subclasses. <code>ISystem</code> subclasses tend to be suffixed with &apos;System&apos; (e.g. StructuralSystem, SewerSystem); &apos;Network&apos; is another commonly used suffix for these classes (e.g. RoadNetwork).</p>
 <p>Architecture is also considered an <code>ISystem</code>, as it is discipline-specific and has the same general behaviors at the other <code>ISystem</code>s.</p>
 <p>In conversation (and writing) the <code>Model</code>s that break down <code>ISystem</code> <code>Element</code>s are referred to as <code>System</code> <code>Model</code>s, even thought there is not a strongly-typed <code>ISystemModel</code> class. These <code>Model</code>s are usually referred to by their more-specific <code>Element</code> types (e.g. <code>SewerSystem</code> <code>Model</code>s are <code>Model</code>s that break down <code>SewerSystem</code> <code>PhysicalElements</code>.)</p>
 <p><code>ISystem</code> <code>Model</code>s may contain <code>IFacility</code>, <code>ISystem</code> and General-Use <code>PhysicalElement</code>s, as well as components specific to the particular <code>ISystem</code> (e.g. <code>SewerPipe</code> in <code>SewerSystem</code>)</p>
-<p><code>ISystem</code> <code>Elements</code> may be placed in <code>Site</code>, <code>IFacility</code> and <code>ISystem</code> <code>Model</code>s. <code>ISystem</code> <code>Element</code>s placed in any other <code>Model</code> will generate validation warnings.</p>
-<p><em>To implement this behavior every class that includes the <code>ISystem</code> mixin must include a <code>ModelAffinity</code> custom attribute that indicates a &quot;Recommended&quot; affinity to <code>PhysicalPartition</code>, <code>Site</code>, <code>IFacility</code> and <code>ISystem</code>.</em></p>
+<p><code>ISystem</code> <code>Elements</code> may be placed in <code>ISite</code>, <code>IFacility</code> and <code>ISystem</code> <code>Model</code>s. <code>ISystem</code> <code>Element</code>s placed in any other <code>Model</code> will generate validation warnings.</p>
+<p><em>To implement this behavior every class that includes the <code>ISystem</code> mixin must include a <code>ModelAffinity</code> custom attribute that indicates a &quot;Recommended&quot; affinity to <code>PhysicalPartition</code>, <code>ISite</code>, <code>IFacility</code> and <code>ISystem</code>.</em></p>
 <h3 class="h-system-components"><a id="system-components" class="heading-anchor" href="#%s"></a>System Components</h3>
 <p>System Component represents an Entity that is part of a specific <code>ISystem</code> and generally does not makes sense outside of the specific system (e.g. sewer pipe outside of sewer system). System Component is not a BIS class, nor mixin.</p>
 <p>System Components are identified by their <code>ModelAffinity</code> with a specific <code>ISystem</code> subclass.</p>
@@ -276,9 +294,27 @@
 <h2 class="h-example"><a id="example" class="heading-anchor" href="#%s"></a>Example</h2>
 <p>The following diagram illustrates all variations of the PhysicalModel hierarchy breakdown that will <em>not</em> generate warnings or errors.</p>
 <p><img src=".././media/physical-hierarchy-organization-example.png" alt="Example Organization"></p>
+<hr>
+<hr>
+<hr>
+<h1 id="discussion">Discussion</h1>
+<p>This section is for discussion of both the content of the documentation and the BIS strategies and policies that back that content.</p>
+<h2 class="h-changes-since-june-22-2018"><a id="changes-since-june-22-2018" class="heading-anchor" href="#%s"></a>Changes Since June 22 2018</h2>
+<p>Site has been changed to ISite. Resulting in moderated changes (including one image change).</p>
+<p>The top PhysicalModel has been given its own behavior, recommended use and clarified relationship to its Subject.</p>
+<h2 class="h-site-class"><a id="site-class" class="heading-anchor" href="#%s"></a>Site Class</h2>
+<p>We need a Site class that implements ISite. Should it be Sealed?</p>
+<h2 class="h-implementation-tasks"><a id="implementation-tasks" class="heading-anchor" href="#%s"></a>Implementation Tasks</h2>
+<ol>
+<li>Create ModelAffinity Custom Attribute</li>
+<li>Create schema that defines ISite, IFacility and ISystem.</li>
+<li>Create Site class</li>
+<li>Provide validation of ModelAffinity usage?</li>
+<li>Provide validation code/capability that uses ModelAffinity data.</li>
+</ol>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>24 July, 2018 @ 08:50:23 am -04:00</span>
+                <span class='date-updated'>01 August, 2018 @ 08:09:47 pm -04:00</span>
             </p>
 
             
@@ -340,13 +376,24 @@
                     </ul>
             </li>
                <li class='nav-item item '>
+                    <a data-target="#inner-nav-top-physicalmodel" class='title' href="#top-physicalmodel"/>
+                    <b class='dropdown-menu-title menu-text'>Top PhysicalModel</b>
+                    <i class='dropdown icon'></i>
+                    </a>
+                    <ul id="inner-nav-top-physicalmodel" class='inner-nav'>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#top-physicalmodels-with-more-than-one-physicalelement">Top PhysicalModels with More than One PhysicalElement</a>
+                            </li>
+                    </ul>
+            </li>
+               <li class='nav-item item '>
                     <a data-target="#inner-nav-physicalmodel-hierarchy-strategy" class='title' href="#physicalmodel-hierarchy-strategy"/>
                     <b class='dropdown-menu-title menu-text'>PhysicalModel Hierarchy Strategy</b>
                     <i class='dropdown icon'></i>
                     </a>
                     <ul id="inner-nav-physicalmodel-hierarchy-strategy" class='inner-nav'>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#site">Site</a>
+                                    <a class='title solo-title menu-text' href="#isite">ISite</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#ifacility">IFacility</a>
@@ -364,6 +411,15 @@
             </li>
                <li class='nav-item item '>
                     <a class='title solo-title menu-text' href="#example">Example</a>
+            </li>
+               <li class='nav-item item '>
+                    <a class='title solo-title menu-text' href="#changes-since-june-22-2018">Changes Since June 22 2018</a>
+            </li>
+               <li class='nav-item item '>
+                    <a class='title solo-title menu-text' href="#site-class">Site Class</a>
+            </li>
+               <li class='nav-item item '>
+                    <a class='title solo-title menu-text' href="#implementation-tasks">Implementation Tasks</a>
             </li>
          
               </ul>
@@ -386,4 +442,5 @@
     <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js" ></script>
 </body>
 
-</html>
+</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>
