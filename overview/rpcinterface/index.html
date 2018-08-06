@@ -86,7 +86,7 @@
             <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
             <h1 id="rpcinterface">RpcInterface</h1>
 <p>As described in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/softwarearchitecture'>software architecture overview</a>, the functionality of an iModelJs app is typically implemented in separate components, which run in different threads, processes, and/or machines. These components communicate through interfaces, which are called <em>RpcInterfaces</em> because they use remote procedure calls, or <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#rpc'>RPC</a>.</p>
-<p><img src=".././SoftwareArchitecture-RPC1.png" alt="SoftwareArchitecture-Rpc"></p>
+<p><img src=".././SoftwareArchitecture-Rpc1.png" alt="SoftwareArchitecture-Rpc"></p>
 <p>The diagram above shows an app frontend requesting operations from some backend. The frontend in this case is the client and the backend is the server. In general, the terms <em>client</em> and <em>server</em> specify the two <em>roles</em> in an RpcInterface:</p>
 <ul>
 <li><p><em>client</em> -- the code that uses an RpcInterface and calls its methods. A client could be the <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/app/#app-frontend'>frontend of an app</a>, the <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/app/#app-backend'>backend of an app</a>, a <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/app/#imodel-services'>service</a>, or an <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/app/#imodel-agents'>agent</a>. A client could be <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#frontend'>frontend code</a> or <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#backend'>backend code</a>.</p>
@@ -96,12 +96,12 @@
 </ul>
 <p>As shown, client and server work with the <em>RpcManager</em> to use an RpcInterface. RpcManager exposes a client &quot;stub&quot; on the client side. This stub forwards the request. On the other end, RpcManager uses a server dispatch mechanism to rely the request to the implementation in the server. In between the two is a transport mechanism that marshalls calls from the client to the server over an appropriate communications channel. The transport mechanism is encapsulated in a <em>configuration</em> that is applied at runtime.</p>
 <p>A typical app frontend will use more than one remote component. Likewise, a server can contain and expose more than one component. For example, the app frontend might need two interfaces, Interface 1 and Interface 2. In this example, both are implemented in Backend A.</p>
-<p><img src=".././softwarearchitecture-rpc2.png" alt="SoftwareArchitecture-Rpc"></p>
+<p><img src=".././SoftwareArchitecture-Rpc2.png" alt="SoftwareArchitecture-Rpc"></p>
 <p>An app frontend can just as easily work with multiple backends to obtain the services that it needs. One of the configuration parameters for an RpcInterface is the identity of the backend that provides it. For example, suppose that the frontend also needs to use Interface 3, which is is served out by Backend B.</p>
-<p><img src=".././softwarearchitecture-rpc3.png" alt="SoftwareArchitecture-Rpc"></p>
+<p><img src=".././SoftwareArchitecture-Rpc3.png" alt="SoftwareArchitecture-Rpc"></p>
 <p>The RPC transport configuration that the frontend uses for Backend B can be different from the configuration it uses for Backend A. In fact, that is the common case. If Backend A is the app&apos;s own backend and Backend B is a remote service, then the app will use an RPC configuration that matches its own configuration for A, while it uses a Web configuration for B.</p>
 <p>As noted above, the client of an RPC interface can be frontend or backend code. That means that backends can call on the services of other backends. In other words, a backend can be a server and a client at the same time. A backend configures the RpcInterfaces that it <em>implements</em> by calling the initializeImpl method on RpcManager, and it configures the RpcInterfaces that it <em>consumes</em> by calling initializeClient. For example, suppose Backend B needs the services of Backend C.</p>
-<p><img src=".././softwarearchitecture-rpc4.png" alt="SoftwareArchitecture-Rpc"></p>
+<p><img src=".././SoftwareArchitecture-Rpc4.png" alt="SoftwareArchitecture-Rpc"></p>
 <h2 class="h-rpcinterfaces-are-typescript-classes"><a id="rpcinterfaces-are-typescript-classes" class="heading-anchor" href="#%s"></a>RpcInterfaces are TypeScript Classes</h2>
 <p>An RpcInterface is a normal TypeScript class. A client requests a server operation by calling an ordinary TypeScript method, passing parameters and getting a result as ordinary TypeScript objects. The client gets the TypeScript interface object from the RpcManager. As noted above, the client  does not deal with communication</p>
 <p>Likewise, a server implements and expose operations by writing normal TypeScript classes. A server registers its implementation objects with RcpManager. And, RpcManager dispatches in-coming requests from clients to those implementation objects.</p>
@@ -119,7 +119,7 @@
 <p>Apps must be designed with remote communication in mind. In the case where a server or app backend is accessed over the Internet, both bandwidth and latency can vary widely. Therefore, care must be taken to limit number and size of round-trips between clients and servers. RpcInterface methods must be &quot;chunky&quot; and not &quot;chatty&quot;.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>01 August, 2018 @ 08:09:34 pm -04:00</span>
+                <span class='date-updated'>06 August, 2018 @ 06:15:23 pm +00:00</span>
             </p>
 
             

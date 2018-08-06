@@ -20,6 +20,15 @@ document.addEventListener('DOMContentLoaded', function() {
         typeRoots: ["node_modules/@types"]
       });
 
+      // Invisibly import print.
+      fetch(siteRoot + '/scripts/playground-scripts/PlaygroundHelper.d.ts')
+      .then(function(response) {
+        return response.text();
+      })
+      .then(function(text) {
+        monaco.languages.typescript.typescriptDefaults.addExtraLib('function print(x:any):void{}', 'playgroundhelper.ts');
+      });
+
       let imports = {};
       for(let i = 0, len = playgrounds.length; i < len; ++i) {
 
@@ -106,19 +115,9 @@ document.addEventListener('DOMContentLoaded', function() {
           `
           document.body.style.backgroundColor = "black";
           document.body.style.color = "whitesmoke";
+          import {print} from "playground-scripts/PlaygroundHelper";
 
         `;
-
-        /* Omit for now.
-           import {Canvas} from "geometry-core/Canvas";\n let System = new Canvas(document.body);
-           function print(x: any){
-           System.print(x);
-           }
-
-           function print2(...data:any[]){
-           return System.print2(data);
-           }
-           */
 
         function transpileAndRun() {
           let editorValue = canvasImport + monEditor.getValue();
