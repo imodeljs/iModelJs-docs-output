@@ -175,16 +175,7 @@
             <h2 class="h-onrestarttool"><a id="onrestarttool" class="heading-anchor" href="#%s"></a>onRestartTool <span class="badge badge-pill badge-primary badge-method">Method</span><span class="badge badge-pill badge-primary badge-abstract">Abstract</span></h2>
 <p>Called when an external event may invalidate the current tool&apos;s state.
 Examples are undo, which may invalidate any references to elements, or an incompatible active view change.
-The active tool is expected to call installTool with a new instance, or exitTool to start the default tool.
- @note You <em>MUST</em> check the status of installTool and call exitTool if it fails!</p>
-<pre class="no-line-numbers"><code class="language-typescript">MyTool.oOnRestartTool() {
-const newTool = new MyTool();
-if (BentleyStatus.SUCCESS !== newTool.installTool())
-  this.exitTool(); // Tool exits to default tool if new tool instance could not be installed.
-}
-MyTool.onRestartTool() {
-_this.exitTool(); // Tool always exits to default tool.
-}</code></pre>
+The active tool is expected to call installTool with a new instance, or exitTool to start the default tool.</p>
 <p><span class="method-name">onRestartTool</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></p>
 <h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
@@ -192,7 +183,7 @@ _this.exitTool(); // Tool always exits to default tool.
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>06 August, 2018 @ 06:15:33 pm +00:00</span>
+                <span class='date-updated'>07 August, 2018 @ 04:35:53 pm -04:00</span>
             </p>
 
             

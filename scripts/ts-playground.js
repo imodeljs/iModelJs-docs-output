@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
         typeRoots: ["node_modules/@types"]
       });
 
-      // Invisibly import print.
       fetch(siteRoot + '/scripts/playground-scripts/PlaygroundHelper.d.ts')
       .then(function(response) {
         return response.text();
@@ -30,54 +29,42 @@ document.addEventListener('DOMContentLoaded', function() {
       });
 
       let imports = {};
-      for(let i = 0, len = playgrounds.length; i < len; ++i) {
 
-        let lines = playgrounds[i].innerText.split("\n");
-        for(let i = 0; i < lines.length; ++i) {
-          if(lines[i].includes("import") && lines[i].includes("from")) {
+      function dynamicImports(module) {
 
-            // Last word is imported from _module_.
-            let module = lines[i].split(" ").splice(-1)[0].replace(/['";]+/g, '');
-            if(imports[module]) {
-              continue;
-            }
-            else {
-              imports[module] = true;
-              fetch(siteRoot + '/scripts/' + module + '.d.ts')
-                .then(function(response) {
-                  return response.text();
-                })
-              .then(function(text) {
-                try {
-                  monaco.languages.typescript.typescriptDefaults.addExtraLib(text, 'node_modules/@types/' + module + '.d.ts');
-                }
-                catch(e) {
-                  console.log(e);
-                }
-              });
-            }
-          }
+        if(imports[module]) {
+          return;
         }
 
-        /* Canvas omit for now.
-           fetch('')
-           .then(function(response) {
-           return response.text();
-           })
-           .then(function(text) {
-           monaco.languages.typescript.typescriptDefaults.addExtraLib(`function print(x:any):void{} function print2(...data: any[]):void{}`, 'print.ts');
-           });
-           */
+        fetch(siteRoot + '/scripts/' + module + '.d.ts')
+          .then(function(response) {
+            status = response.status;
+            return response.text();
+          })
+        .then(function(text) {
+          try {
+            if(status === "200") {
+              monaco.languages.typescript.typescriptDefaults.addExtraLib(text, 'node_modules/@types/' + module + '.d.ts');
+              imports[module] = true;
+            }
+          }
+          catch(e) {
+            console.log(e);
+          }
+        });
 
+      }
+
+      for(let i = 0, len = playgrounds.length; i < len; ++i) {
         let jsCode = playgrounds[i].innerText;
-
         playgrounds[i].parentNode.innerHTML = `
           <div class="ts-playgrounds">
-            <div class="problem" style="color:white;"> problem </div>
+          <div class="challenge">  </div>
+            <div class="problem" style="color:white;"> problem  </div>
             <div class="container-wrapper"> 
             <div class="border">
             <button class="runButton">Run</button>
-            <button class="restart"> Restart </button>
+            <button class="restart"> Restore Code</button>
             </div>
             <div class="playground-container" ></div>
             <iframe class="output" > </iframe>
@@ -94,33 +81,33 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         });
 
-
-        function isError(decorations){
-          if(decorations.options.className === "squiggly-error"){
-            var msg = JSON.stringify(monaco.editor.getModelMarkers({}));
-            var nonJSON = monaco.editor.getModelMarkers({});
-            document.getElementsByClassName("problem")[i].innerHTML = `<span style='color:#FF0000; font-size: 12px'> ${nonJSON[0].message} </span>`;
-            return decorations.options.className === "squiggly-error";
-          }
-          document.getElementsByClassName("problem")[i].innerHTML = "<span style='color:#ffffff; font-size: 12px'> ` </span>";
-        }
-
-        monEditor.model.onDidChangeContent((event) => {
-          temp = monEditor.getSelection();
+        monEditor.model.onDidChangeDecorations((event) => {
           let decorations = monEditor.getModel().getAllDecorations();
-          let error = decorations.filter(isError).map( e => e);
+
+          let firstError = "";
+          let error = decorations.filter(decoration => decoration.options.className === "squiggly-error").map(error => {
+            let errorValue = error.options.hoverMessage.value.replace(/[`]/g, '');
+            if(errorValue.includes('Cannot find module')) {
+              let module = errorValue.match(/Cannot find module (.*)/)[1].replace(/['";.]+/g, '');
+              dynamicImports(module);
+
+            }
+            if(firstError === "") {
+              firstError = errorValue;
+            }
+          });
+          document.getElementsByClassName("problem")[i].innerHTML = `<span style='color:#FF0000; font-size: 12px'> ${firstError} </span>`;
         });
 
-        let canvasImport = 
-          `
-          document.body.style.backgroundColor = "black";
-          document.body.style.color = "whitesmoke";
-          import {print} from "playground-scripts/PlaygroundHelper";
-
+        let canvasImport = `document.body.style.backgroundColor = "black";
+                document.body.style.color = "whitesmoke";
+                import {print} from "playground-scripts/PlaygroundHelper";
         `;
 
+
         function transpileAndRun() {
-          let editorValue = canvasImport + monEditor.getValue();
+          editorValue = canvasImport + monEditor.getValue();
+          
           let transpiled = ts.transpileModule(editorValue, { compilerOptions: {}});
           let base_tpl =
             "<!doctype html>\n" +
@@ -146,15 +133,18 @@ document.addEventListener('DOMContentLoaded', function() {
           iframe_doc.close();
         }
 
-
+        window.addEventListener("resize", function(){
+           monEditor.layout();
+        });
+    
         document.getElementsByClassName("runButton")[i].onclick = function fun() {
           transpileAndRun();
         };
 
-
         document.getElementsByClassName("restart")[i].onclick = function restart() {
-          monEditor.setValue(jsCode);
+          monEditor.setValue(" ");
           transpileAndRun();
+          monEditor.setValue(jsCode);
         };
       }
     });

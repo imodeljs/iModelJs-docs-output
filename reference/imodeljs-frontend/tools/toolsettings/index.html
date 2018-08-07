@@ -191,9 +191,14 @@
 <td>Two clicks must be within this period to be a double click.</td>
 </tr>
 <tr>
-<td class="h-doubleclicktolerance"><a id="doubleclicktolerance" class="heading-anchor" href="#%s"></a><span class="property-name">doubleClickTolerance</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td class="h-doubleclicktoleranceinches"><a id="doubleclicktoleranceinches" class="heading-anchor" href="#%s"></a><span class="property-name">doubleClickToleranceInches</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
 <td><span class="method-output">number</span></td>
-<td>Number of pixels of movement allowed between clicks to still qualify as a double-click.</td>
+<td>Number of screen inches of movement allowed between clicks to still qualify as a double-click.</td>
+</tr>
+<tr>
+<td class="h-doubletaptimeout"><a id="doubletaptimeout" class="heading-anchor" href="#%s"></a><span class="property-name">doubleTapTimeout</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/beduration'>BeDuration</a></span></td>
+<td>Two tap must be within this period to be a double tap.</td>
 </tr>
 <tr>
 <td class="h-nomotiontimeout"><a id="nomotiontimeout" class="heading-anchor" href="#%s"></a><span class="property-name">noMotionTimeout</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
@@ -211,14 +216,24 @@
 <td>Delay with the mouse down before a drag operation begins.</td>
 </tr>
 <tr>
-<td class="h-startdragdistance"><a id="startdragdistance" class="heading-anchor" href="#%s"></a><span class="property-name">startDragDistance</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td class="h-startdragdistanceinches"><a id="startdragdistanceinches" class="heading-anchor" href="#%s"></a><span class="property-name">startDragDistanceInches</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
 <td><span class="method-output">number</span></td>
-<td>Distance in pixels the cursor must move before a drag operation begins.</td>
+<td>Distance in screen inches the cursor must move before a drag operation begins.</td>
 </tr>
 <tr>
-<td class="h-viewtoolpickradius"><a id="viewtoolpickradius" class="heading-anchor" href="#%s"></a><span class="property-name">viewToolPickRadius</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td class="h-touchmovedelay"><a id="touchmovedelay" class="heading-anchor" href="#%s"></a><span class="property-name">touchMoveDelay</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/beduration'>BeDuration</a></span></td>
+<td>Delay with a touch on the surface before a move operation begins.</td>
+</tr>
+<tr>
+<td class="h-touchmovedistanceinches"><a id="touchmovedistanceinches" class="heading-anchor" href="#%s"></a><span class="property-name">touchMoveDistanceInches</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
 <td><span class="method-output">number</span></td>
-<td>Radius in pixels to search for elements that anchor viewing operations.</td>
+<td>Distance in screen inches a touch point must move before being considered motion.</td>
+</tr>
+<tr>
+<td class="h-viewtoolpickradiusinches"><a id="viewtoolpickradiusinches" class="heading-anchor" href="#%s"></a><span class="property-name">viewToolPickRadiusInches</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td><span class="method-output">number</span></td>
+<td>Radius in screen inches to search for elements that anchor viewing operations.</td>
 </tr>
 <tr>
 <td class="h-walkcameraangle"><a id="walkcameraangle" class="heading-anchor" href="#%s"></a><span class="property-name">walkCameraAngle</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
@@ -261,7 +276,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>06 August, 2018 @ 06:15:33 pm +00:00</span>
+                <span class='date-updated'>07 August, 2018 @ 04:35:53 pm -04:00</span>
             </p>
 
             
@@ -301,7 +316,10 @@
                                                     <a class='title solo-title menu-text' href="#doubleclicktimeout">doubleClickTimeout</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#doubleclicktolerance">doubleClickTolerance</a>
+                                                    <a class='title solo-title menu-text' href="#doubleclicktoleranceinches">doubleClickToleranceInches</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#doubletaptimeout">doubleTapTimeout</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#nomotiontimeout">noMotionTimeout</a>
@@ -313,10 +331,16 @@
                                                     <a class='title solo-title menu-text' href="#startdragdelay">startDragDelay</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#startdragdistance">startDragDistance</a>
+                                                    <a class='title solo-title menu-text' href="#startdragdistanceinches">startDragDistanceInches</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#viewtoolpickradius">viewToolPickRadius</a>
+                                                    <a class='title solo-title menu-text' href="#touchmovedelay">touchMoveDelay</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#touchmovedistanceinches">touchMoveDistanceInches</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#viewtoolpickradiusinches">viewToolPickRadiusInches</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#walkcameraangle">walkCameraAngle</a>

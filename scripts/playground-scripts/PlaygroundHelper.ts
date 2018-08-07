@@ -2,9 +2,7 @@
 
 
 export function print(x:any):void{
-	//$(document.body).append(x + "<br>");
 	var text = document.body.innerText;
-	console.log(text);
 	document.body.innerHTML += x + "<br />";
 }
 

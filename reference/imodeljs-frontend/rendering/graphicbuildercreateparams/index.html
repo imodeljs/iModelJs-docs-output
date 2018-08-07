@@ -180,7 +180,7 @@
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-constructor"><a id="constructor" class="heading-anchor" href="#%s"></a><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">placement: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a> = identityTransform, type: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphictype'>GraphicType</a>, viewport: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuildercreateparams'>GraphicBuilderCreateParams</a></span></td>
+<td class="h-constructor"><a id="constructor" class="heading-anchor" href="#%s"></a><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">placement: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a> = identityTransform, type: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphictype'>GraphicType</a>, viewport: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>, pickableId?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuildercreateparams'>GraphicBuilderCreateParams</a></span></td>
 <td></td>
 </tr>
 <tr>
@@ -189,11 +189,15 @@
 </tr>
 <tr>
 <td class="h-create"><a id="create" class="heading-anchor" href="#%s"></a><span class="method-name">create</span><span class="method-parenthesis">(</span><span class="method-parameters">type: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphictype'>GraphicType</a>, vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>, placement?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuildercreateparams'>GraphicBuilderCreateParams</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
-<td>consolidates viewport and imodel parameters, as we would always want to use the imodel of the viewport if the viewport was passed</td>
+<td></td>
 </tr>
 <tr>
-<td class="h-scene"><a id="scene" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="scene">scene</a></span><span class="method-parenthesis">(</span><span class="method-parameters">vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>, placement?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuildercreateparams'>GraphicBuilderCreateParams</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
-<td>Create params for a graphic in world coordinates, not necessarily associated with any viewport.</td>
+<td class="h-pickabledecoration"><a id="pickabledecoration" class="heading-anchor" href="#%s"></a><span class="method-name">pickableDecoration</span><span class="method-parenthesis">(</span><span class="method-parameters">vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>, id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a>, isOverlay: boolean, placement?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuildercreateparams'>GraphicBuilderCreateParams</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td>Create params for a pickable decoration defined in world coordinates.</td>
+</tr>
+<tr>
+<td class="h-scene"><a id="scene" class="heading-anchor" href="#%s"></a><span class="method-name">scene</span><span class="method-parenthesis">(</span><span class="method-parameters">vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>, placement?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuildercreateparams'>GraphicBuilderCreateParams</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td>Create params for a graphic in world coordinates to be displayed within the specified Viewport</td>
 </tr>
 <tr>
 <td class="h-viewoverlay"><a id="viewoverlay" class="heading-anchor" href="#%s"></a><span class="method-name">viewOverlay</span><span class="method-parenthesis">(</span><span class="method-parameters">vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>, placement?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuildercreateparams'>GraphicBuilderCreateParams</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
@@ -244,6 +248,11 @@
 <td></td>
 </tr>
 <tr>
+<td class="h-pickableid"><a id="pickableid" class="heading-anchor" href="#%s"></a><span class="property-name">pickableId</span></td>
+<td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span></td>
+<td></td>
+</tr>
+<tr>
 <td class="h-placement"><a id="placement" class="heading-anchor" href="#%s"></a><span class="property-name">placement</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span></td>
 <td></td>
@@ -263,7 +272,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>06 August, 2018 @ 06:15:32 pm +00:00</span>
+                <span class='date-updated'>07 August, 2018 @ 04:35:52 pm -04:00</span>
             </p>
 
             
@@ -306,6 +315,9 @@
                                                     <a class='title solo-title menu-text' href="#create">create</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#pickabledecoration">pickableDecoration</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#scene">scene</a>
                                             </li>
                                             <li class='nav-item item '>
@@ -342,6 +354,9 @@
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#isworldcoordinates">isWorldCoordinates</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#pickableid">pickableId</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#placement">placement</a>
