@@ -174,7 +174,7 @@
             
             <h2 class="h-get"><a id="get" class="heading-anchor" href="#%s"></a>get <span class="badge badge-pill badge-primary badge-method">Method</span></h2>
 <p>Get IModels</p>
-<p><span class="method-name">get</span><span class="method-parenthesis">(</span><span class="method-parameters">token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, projectId: string, query: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/imodelquery'>IModelQuery</a> = new IModelQuery()</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/imodelrepository'>IModelRepository</a>[]&gt;</span></p>
+<p><span class="method-name">get</span><span class="method-parenthesis">(</span><span class="method-parameters">token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, contextId: string, query: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/imodelquery'>IModelQuery</a> = new IModelQuery()</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/imodelrepository'>IModelRepository</a>[]&gt;</span></p>
 <p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/wsgerror'>WsgError</a> with <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/wsstatus/#instancenotfound'>WSStatus.InstanceNotFound</a> if <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/instanceidquery/byid'>InstanceIdQuery.byId</a> is used and an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a> with the specified id could not be found.</p>
 <p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/imodelhub/commonerrors'>Common iModel Hub errors</a></p>
 <table class="table table-responsive"><tbody><tr>
@@ -188,9 +188,9 @@
 <td>Delegation token of the authorized user.</td>
 </tr>
 <tr>
-<td class="h-projectid"><a id="projectid" class="heading-anchor" href="#%s"></a>projectId</td>
+<td class="h-contextid"><a id="contextid" class="heading-anchor" href="#%s"></a>contextId</td>
 <td>string</td>
-<td>Id of the connect project.</td>
+<td>is a token of some sort that relates an imodel to the correct client (hub or a specific bank).</td>
 </tr>
 <tr>
 <td class="h-query"><a id="query" class="heading-anchor" href="#%s"></a>query</td>
@@ -203,7 +203,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 August, 2018 @ 04:35:51 pm -04:00</span>
+                <span class='date-updated'>15 August, 2018 @ 08:10:24 pm -04:00</span>
             </p>
 
             
@@ -234,7 +234,7 @@
                                     <a class='title solo-title menu-text' href="#token">token</a>
                             </li>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#projectid">projectId</a>
+                                    <a class='title solo-title menu-text' href="#contextid">contextId</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#query">query</a>

@@ -59,23 +59,36 @@ document.addEventListener('DOMContentLoaded', function() {
         let jsCode = playgrounds[i].innerText;
         playgrounds[i].parentNode.innerHTML = `
           <div class="ts-playgrounds">
-          <div class="challenge">  </div>
+            <div class="challenge">  </div>
             <div class="problem" style="color:white;"> problem  </div>
             <div class="container-wrapper"> 
-            <div class="border">
-            <button class="runButton">Run</button>
-            <button class="restart"> Restore Code</button>
-            </div>
-            <div class="playground-container" ></div>
-            <iframe class="output" > </iframe>
+              <div class="border">
+                <button class="runButton">Run</button>
+                <button class="restart"> Restore Code</button>
+                <div class="dropdownWrapper">
+                  <button class="theme"> Theme </button>
+                    <div class="themeDropDown dropdown-content">
+                      <a onclick="monaco.editor.setTheme('vs')">vs</a>
+                      <a onclick="monaco.editor.setTheme('vs-dark')">vs-dark</a>
+                      <a onclick="monaco.editor.setTheme('hc-black')">hc-black</a>
+                    </div>
+                </div>
+              </div>
+              <div class="playground-container" ></div>
+              <iframe class="output" > </iframe>
             </div>
           </div>
           `;
 
+        document.getElementsByClassName("theme")[i].onclick = function() {
+          document.getElementsByClassName("themeDropDown")[i].classList.toggle("show");
+        };
+
         let monEditor = monaco.editor.create(document.getElementsByClassName("playground-container")[i], {
           model: monaco.editor.createModel(jsCode,"typescript", new monaco.Uri("ts-main-" + i + ".ts")), 
-          wordWrap: "bounded",
+          wordWrap: "on",
           language: "typescript",
+          theme: "vs-dark",
           minimap: {
             enabled: false
           }

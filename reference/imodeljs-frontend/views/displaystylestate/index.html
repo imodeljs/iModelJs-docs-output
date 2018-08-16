@@ -187,6 +187,7 @@
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/entityprops'>EntityProps</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/displaystyleprops'>DisplayStyleProps</a></li>
 </ul>
 <h3 class="h-methods"><a id="methods" class="heading-anchor" href="#%s"></a>Methods</h3>
 <table class="table table-responsive"><tbody><tr>
@@ -194,7 +195,7 @@
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-constructor"><a id="constructor" class="heading-anchor" href="#%s"></a><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a>, iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/displaystylestate'>DisplayStyleState</a></span></td>
+<td class="h-constructor"><a id="constructor" class="heading-anchor" href="#%s"></a><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/displaystyleprops'>DisplayStyleProps</a>, iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/displaystylestate'>DisplayStyleState</a></span></td>
 <td></td>
 </tr>
 <tr>
@@ -206,15 +207,7 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-getmonochromecolor"><a id="getmonochromecolor" class="heading-anchor" href="#%s"></a><span class="method-name">getMonochromeColor</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/colordef'>ColorDef</a></span></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-getstyle"><a id="getstyle" class="heading-anchor" href="#%s"></a><span class="method-name">getStyle</span><span class="method-parenthesis">(</span><span class="method-parameters">name: string</span><span class="method-parenthesis">):</span><span class="method-output"> any</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-getstyles"><a id="getstyles" class="heading-anchor" href="#%s"></a><span class="method-name">getStyles</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> any</span></td>
 <td></td>
 </tr>
 <tr>
@@ -232,10 +225,6 @@
 <tr>
 <td class="h-removestyle"><a id="removestyle" class="heading-anchor" href="#%s"></a><span class="method-name">removeStyle</span><span class="method-parenthesis">(</span><span class="method-parameters">name: string</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
 <td>Remove a Style from this DisplayStyle.</td>
-</tr>
-<tr>
-<td class="h-setmonochromecolor"><a id="setmonochromecolor" class="heading-anchor" href="#%s"></a><span class="method-name">setMonochromeColor</span><span class="method-parenthesis">(</span><span class="method-parameters">val: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/colordef'>ColorDef</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
-<td></td>
 </tr>
 <tr>
 <td class="h-setstyle"><a id="setstyle" class="heading-anchor" href="#%s"></a><span class="method-name">setStyle</span><span class="method-parenthesis">(</span><span class="method-parameters">name: string, value: any</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
@@ -275,8 +264,18 @@
 </tr>
 <tr>
 <td class="h-backgroundcolor"><a id="backgroundcolor" class="heading-anchor" href="#%s"></a><span class="property-name">backgroundColor</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/colordef'>ColorDef</a></span></td>
+<td><span class="method-output"> ColorDef</span></td>
 <td>Get the background color for this DisplayStyle</td>
+</tr>
+<tr>
+<td class="h-backgroundmap"><a id="backgroundmap" class="heading-anchor" href="#%s"></a><span class="property-name">backgroundMap</span></td>
+<td><span class="method-output">BackgroundMapState</span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-backgroundmapplane"><a id="backgroundmapplane" class="heading-anchor" href="#%s"></a><span class="property-name">backgroundMapPlane</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/plane3dbyoriginandunitnormal'>Plane3dByOriginAndUnitNormal</a> | undefined</span></td>
+<td></td>
 </tr>
 <tr>
 <td class="h-hassubcategoryoverride"><a id="hassubcategoryoverride" class="heading-anchor" href="#%s"></a><span class="property-name">hasSubCategoryOverride</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
@@ -284,9 +283,19 @@
 <td></td>
 </tr>
 <tr>
+<td class="h-monochromecolor"><a id="monochromecolor" class="heading-anchor" href="#%s"></a><span class="property-name">monochromeColor</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span></td>
+<td><span class="method-output"> ColorDef</span></td>
+<td></td>
+</tr>
+<tr>
 <td class="h-name"><a id="name" class="heading-anchor" href="#%s"></a><span class="property-name">name</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
 <td><span class="method-output"> string</span></td>
 <td>Get the name of this DisplayStyle</td>
+</tr>
+<tr>
+<td class="h-styles"><a id="styles" class="heading-anchor" href="#%s"></a><span class="property-name">styles</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> any</span></td>
+<td></td>
 </tr>
 <tr>
 <td class="h-viewflags"><a id="viewflags" class="heading-anchor" href="#%s"></a><span class="property-name">viewFlags</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span></td>
@@ -376,7 +385,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 August, 2018 @ 04:35:54 pm -04:00</span>
+                <span class='date-updated'>15 August, 2018 @ 08:10:29 pm -04:00</span>
             </p>
 
             
@@ -428,13 +437,7 @@
                                                     <a class='title solo-title menu-text' href="#equalstate">equalState</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#getmonochromecolor">getMonochromeColor</a>
-                                            </li>
-                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#getstyle">getStyle</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#getstyles">getStyles</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#getsubcategoryoverride">getSubCategoryOverride</a>
@@ -447,9 +450,6 @@
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#removestyle">removeStyle</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#setmonochromecolor">setMonochromeColor</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#setstyle">setStyle</a>
@@ -486,10 +486,22 @@
                                                     <a class='title solo-title menu-text' href="#backgroundcolor">backgroundColor</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#backgroundmap">backgroundMap</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#backgroundmapplane">backgroundMapPlane</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#hassubcategoryoverride">hasSubCategoryOverride</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#monochromecolor">monochromeColor</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#name">name</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#styles">styles</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#viewflags">viewFlags</a>

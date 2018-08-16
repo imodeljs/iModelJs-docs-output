@@ -180,11 +180,13 @@
 </ul>
 <h3 class="h-extended-by"><a id="extended-by" class="heading-anchor" href="#%s"></a>Extended by</h3>
 <ul>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/pantool'>PanTool</a></li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/rotatetool'>RotateTool</a></li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/viewwalktool'>ViewWalkTool</a></li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/viewlooktool'>ViewLookTool</a></li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/viewscrolltool'>ViewScrollTool</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/panviewtool'>PanViewTool</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/rotateviewtool'>RotateViewTool</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/lookviewtool'>LookViewTool</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/scrollviewtool'>ScrollViewTool</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/zoomviewtool'>ZoomViewTool</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/walkviewtool'>WalkViewTool</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/flyviewtool'>FlyViewTool</a></li>
 </ul>
 <h3 class="h-methods"><a id="methods" class="heading-anchor" href="#%s"></a>Methods</h3>
 <table class="table table-responsive"><tbody><tr>
@@ -192,7 +194,7 @@
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-constructor"><a id="constructor" class="heading-anchor" href="#%s"></a><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">viewport: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a> | undefined, handleMask: number, isOneShot: boolean, scrollOnNoMotion: boolean, isDragOperationRequired: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/viewmanip'>ViewManip</a></span></td>
+<td class="h-constructor"><a id="constructor" class="heading-anchor" href="#%s"></a><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">viewport: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a> | undefined, handleMask: number, oneShot: boolean, isDraggingRequired: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/viewmanip'>ViewManip</a></span></td>
 <td></td>
 </tr>
 <tr>
@@ -201,10 +203,6 @@
 </tr>
 <tr>
 <td class="h-decorate"><a id="decorate" class="heading-anchor" href="#%s"></a><span class="method-name">decorate</span><span class="method-parenthesis">(</span><span class="method-parameters">context: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/decoratecontext'>DecorateContext</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-doupdate"><a id="doupdate" class="heading-anchor" href="#%s"></a><span class="method-name">doUpdate</span><span class="method-parenthesis">(</span><span class="method-parameters">_abortOnButton: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
 <td></td>
 </tr>
 <tr>
@@ -296,7 +294,7 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-fitview"><a id="fitview" class="heading-anchor" href="#%s"></a><span class="method-name">fitView</span><span class="method-parenthesis">(</span><span class="method-parameters">viewport: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>, doUpdate: boolean, marginPercent?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/marginpercent'>MarginPercent</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td class="h-fitview"><a id="fitview" class="heading-anchor" href="#%s"></a><span class="method-name">fitView</span><span class="method-parenthesis">(</span><span class="method-parameters">viewport: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>, doAnimate: boolean, marginPercent?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/marginpercent'>MarginPercent</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
 <td></td>
 </tr>
 <tr>
@@ -346,10 +344,10 @@
 <tr>
 <td class="h-gettooltip"><a id="gettooltip" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/gettooltip'>getToolTip</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_hit: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/hitdetail'>HitDetail</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;string&gt;</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool'>InteractiveTool</a></span></td>
-<td>Invoked just before the locate tooltip is displayed to retrieve the info text.</td>
+<td>Invoked before the locate tooltip is displayed to retrieve the information about the located element.</td>
 </tr>
 <tr>
-<td class="h-iscompatibleviewport"><a id="iscompatibleviewport" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/#iscompatibleviewport'>isCompatibleViewport</a></span><span class="method-parenthesis">(</span><span class="method-parameters">vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>, _isSelectedViewChange: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
+<td class="h-iscompatibleviewport"><a id="iscompatibleviewport" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/#iscompatibleviewport'>isCompatibleViewport</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>, _isSelectedViewChange: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool'>InteractiveTool</a></span></td>
 <td></td>
 </tr>
@@ -376,7 +374,7 @@
 <tr>
 <td class="h-onkeytransition"><a id="onkeytransition" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/onkeytransition'>onKeyTransition</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_wentDown: boolean, _keyEvent: KeyboardEvent</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/eventhandled'>EventHandled</a>&gt;</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool'>InteractiveTool</a></span></td>
-<td>Called when keys are pressed or released.</td>
+<td>Called when any key is pressed or released.</td>
 </tr>
 <tr>
 <td class="h-onmiddlebuttondown"><a id="onmiddlebuttondown" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/onmiddlebuttondown'>onMiddleButtonDown</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_ev: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/bebuttonevent'>BeButtonEvent</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/eventhandled'>EventHandled</a>&gt;</span></td>
@@ -389,9 +387,9 @@
 <td>Invoked when the middle mouse button is released.</td>
 </tr>
 <tr>
-<td class="h-onmodifierkeytransition"><a id="onmodifierkeytransition" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/onmodifierkeytransition'>onModifierKeyTransition</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_wentDown: boolean, _modifier: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/bemodifierkeys'>BeModifierKeys</a>, _event: KeyboardEvent</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;boolean&gt;</span></td>
+<td class="h-onmodifierkeytransition"><a id="onmodifierkeytransition" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/onmodifierkeytransition'>onModifierKeyTransition</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_wentDown: boolean, _modifier: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/bemodifierkeys'>BeModifierKeys</a>, _event: KeyboardEvent</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/eventhandled'>EventHandled</a>&gt;</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool'>InteractiveTool</a></span></td>
-<td>Called when Control, Shift, or Alt qualifier keys are pressed or released.</td>
+<td>Called when Control, Shift, or Alt modifier keys are pressed or released.</td>
 </tr>
 <tr>
 <td class="h-onresetbuttondown"><a id="onresetbuttondown" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/onresetbuttondown'>onResetButtonDown</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_ev: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/bebuttonevent'>BeButtonEvent</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/eventhandled'>EventHandled</a>&gt;</span></td>
@@ -451,7 +449,7 @@
 <tr>
 <td class="h-onunsuspend"><a id="onunsuspend" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/onunsuspend'>onUnsuspend</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool'>InteractiveTool</a></span></td>
-<td>Notification of a vViewTool or InputCollector exiting and this tool is being unsuspended.</td>
+<td>Notification of a ViewTool or InputCollector exiting and this tool is being unsuspended.</td>
 </tr>
 <tr>
 <td class="h-run"><a id="run" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/viewtool/#run'>run</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
@@ -475,11 +473,6 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-alwaysleavelastview"><a id="alwaysleavelastview" class="heading-anchor" href="#%s"></a><span class="property-name">alwaysLeaveLastView</span></td>
-<td><span class="method-output">boolean</span></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-forcedhandle"><a id="forcedhandle" class="heading-anchor" href="#%s"></a><span class="property-name">forcedHandle</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/viewhandletype'>ViewHandleType</a></span></td>
 <td></td>
@@ -495,22 +488,17 @@
 <td></td>
 </tr>
 <tr>
+<td class="h-inhandlemodify"><a id="inhandlemodify" class="heading-anchor" href="#%s"></a><span class="property-name">inHandleModify</span></td>
+<td><span class="method-output">boolean</span></td>
+<td></td>
+</tr>
+<tr>
 <td class="h-isdragging"><a id="isdragging" class="heading-anchor" href="#%s"></a><span class="property-name">isDragging</span></td>
 <td><span class="method-output">boolean</span></td>
 <td></td>
 </tr>
 <tr>
-<td class="h-isdragoperation"><a id="isdragoperation" class="heading-anchor" href="#%s"></a><span class="property-name">isDragOperation</span></td>
-<td><span class="method-output">boolean</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-isdragoperationrequired"><a id="isdragoperationrequired" class="heading-anchor" href="#%s"></a><span class="property-name">isDragOperationRequired</span> <span class="badge badge-pill badge-primary badge-constructorproperty">ConstructorProperty</span></td>
-<td><span class="method-output">boolean</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-isoneshot"><a id="isoneshot" class="heading-anchor" href="#%s"></a><span class="property-name">isOneShot</span> <span class="badge badge-pill badge-primary badge-constructorproperty">ConstructorProperty</span></td>
+<td class="h-isdraggingrequired"><a id="isdraggingrequired" class="heading-anchor" href="#%s"></a><span class="property-name">isDraggingRequired</span> <span class="badge badge-pill badge-primary badge-constructorproperty">ConstructorProperty</span></td>
 <td><span class="method-output">boolean</span></td>
 <td></td>
 </tr>
@@ -525,7 +513,7 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-scrollonnomotion"><a id="scrollonnomotion" class="heading-anchor" href="#%s"></a><span class="property-name">scrollOnNoMotion</span> <span class="badge badge-pill badge-primary badge-constructorproperty">ConstructorProperty</span></td>
+<td class="h-oneshot"><a id="oneshot" class="heading-anchor" href="#%s"></a><span class="property-name">oneShot</span> <span class="badge badge-pill badge-primary badge-constructorproperty">ConstructorProperty</span></td>
 <td><span class="method-output">boolean</span></td>
 <td></td>
 </tr>
@@ -614,10 +602,10 @@
 <td>Get the localized keyin string for this Tool class. This returns the value of &quot;tools.&quot; + this.toolId + &quot;.keyin&quot; from the<br>.json file for the current locale of its registered Namespace (e.g. &quot;en/MyApp.json&quot;)</td>
 </tr>
 <tr>
-<td class="h-namespace"><a id="namespace" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/tool/#namespace'>namespace</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td class="h-namespace"><a id="namespace" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/tool/namespace'>namespace</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-i18n/appadministration/i18nnamespace'>I18NNamespace</a></span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/tool'>Tool</a></span></td>
-<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-i18n/appadministration/i18nnamespace'>I18NNamespace</a> that provides localized strings for this Tool</td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-i18n/appadministration/i18nnamespace'>I18NNamespace</a> that provides localized strings for this Tool.</td>
 </tr>
 <tr>
 <td class="h-receiveddownevent"><a id="receiveddownevent" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/#receiveddownevent'>receivedDownEvent</a></span></td>
@@ -643,7 +631,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 August, 2018 @ 04:35:53 pm -04:00</span>
+                <span class='date-updated'>15 August, 2018 @ 08:10:28 pm -04:00</span>
             </p>
 
             
@@ -690,9 +678,6 @@
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#decorate">decorate</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#doupdate">doUpdate</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#enforcezup">enforceZUp</a>
@@ -879,9 +864,6 @@
                                                     <a class='title solo-title menu-text' href="#_useviewalignedvolume">_useViewAlignedVolume</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#alwaysleavelastview">alwaysLeaveLastView</a>
-                                            </li>
-                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#forcedhandle">forcedHandle</a>
                                             </li>
                                             <li class='nav-item item '>
@@ -891,16 +873,13 @@
                                                     <a class='title solo-title menu-text' href="#handlemask">handleMask</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#inhandlemodify">inHandleModify</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#isdragging">isDragging</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#isdragoperation">isDragOperation</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#isdragoperationrequired">isDragOperationRequired</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#isoneshot">isOneShot</a>
+                                                    <a class='title solo-title menu-text' href="#isdraggingrequired">isDraggingRequired</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#lastfrustum">lastFrustum</a>
@@ -909,7 +888,7 @@
                                                     <a class='title solo-title menu-text' href="#npts">nPts</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#scrollonnomotion">scrollOnNoMotion</a>
+                                                    <a class='title solo-title menu-text' href="#oneshot">oneShot</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#stoppedoverhandle">stoppedOverHandle</a>

@@ -232,30 +232,6 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-getkeypointdivisor"><a id="getkeypointdivisor" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="getkeypointdivisor">getKeypointDivisor</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span></td>
-<td>Get the current snap divisor to use to use for SnapMode.NearestKeypoint.</td>
-</tr>
-<tr>
-<td class="h-getsnapmode"><a id="getsnapmode" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="getsnapmode">getSnapMode</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/snapmode'>SnapMode</a></span></td>
-<td>Get the SnapMode that was used to generate the SnapDetail.</td>
-</tr>
-<tr>
-<td class="h-isactive"><a id="isactive" class="heading-anchor" href="#%s"></a><span class="method-name">isActive</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
-<td>Check to see whether its appropriate to generate an AccuSnap point, given the current user<br>and command settings, and whether a tentative point is currently active.</td>
-</tr>
-<tr>
-<td class="h-ishot"><a id="ishot" class="heading-anchor" href="#%s"></a><span class="method-name">isHot</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-islocateenabled"><a id="islocateenabled" class="heading-anchor" href="#%s"></a><span class="method-name">isLocateEnabled</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-issnapenabled"><a id="issnapenabled" class="heading-anchor" href="#%s"></a><span class="method-name">isSnapEnabled</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-onenabledstatechange"><a id="onenabledstatechange" class="heading-anchor" href="#%s"></a><span class="method-name">onEnabledStateChange</span><span class="method-parenthesis">(</span><span class="method-parameters">_isEnabled: boolean, _wasEnabled: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
 <td>Implemented by sub-classes to update ui to show current enabled state.</td>
 </tr>
@@ -311,9 +287,6 @@
 <td class="h-synchsnapmode"><a id="synchsnapmode" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="synchsnapmode">synchSnapMode</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
 <td>Can be used by a subclass of AccuSnap to implement a SnapMode override that applies only to the next point.</td>
 </tr>
-<tr>
-<td class="h-userwantssnaps"><a id="userwantssnaps" class="heading-anchor" href="#%s"></a><span class="method-name">userWantsSnaps</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
-</tr>
 </tbody></table><h3 class="h-properties"><a id="properties" class="heading-anchor" href="#%s"></a>Properties</h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -361,6 +334,36 @@
 <td>The icon that indicates what type of snap is active</td>
 </tr>
 <tr>
+<td class="h-isactive"><a id="isactive" class="heading-anchor" href="#%s"></a><span class="property-name">isActive</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> boolean</span></td>
+<td>Check to see whether its appropriate to generate an AccuSnap point, given the current user<br>and command settings, and whether a tentative point is currently active.</td>
+</tr>
+<tr>
+<td class="h-ishot"><a id="ishot" class="heading-anchor" href="#%s"></a><span class="property-name">isHot</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> boolean</span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-islocateenabled"><a id="islocateenabled" class="heading-anchor" href="#%s"></a><span class="property-name">isLocateEnabled</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> boolean</span></td>
+<td>Whether locate of elements under the cursor is enabled by the current InteractiveTool.</td>
+</tr>
+<tr>
+<td class="h-issnapenabled"><a id="issnapenabled" class="heading-anchor" href="#%s"></a><span class="property-name">isSnapEnabled</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> boolean</span></td>
+<td>Whether snapping to elements under the cursor is enabled by the current InteractiveTool.</td>
+</tr>
+<tr>
+<td class="h-issnapenabledbyuser"><a id="issnapenabledbyuser" class="heading-anchor" href="#%s"></a><span class="property-name">isSnapEnabledByUser</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> boolean</span></td>
+<td>Whether the user setting for snapping is enabled. Snappping is done only when both the user and current InteractiveTool have enabled it.</td>
+</tr>
+<tr>
+<td class="h-keypointdivisor"><a id="keypointdivisor" class="heading-anchor" href="#%s"></a><span class="property-name">keypointDivisor</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> number</span></td>
+<td>Get the current snap divisor to use to use for SnapMode.NearestKeypoint.<br>A subclass of IModelApp can implement onStartup to return a subclass of AccuSnap that implements this method to provide a snap divisor ui component.</td>
+</tr>
+<tr>
 <td class="h-needflash"><a id="needflash" class="heading-anchor" href="#%s"></a><span class="property-name">needFlash</span></td>
 <td><span class="method-output">Set&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>&gt;</span></td>
 <td>Views that need to be flashed</td>
@@ -369,6 +372,11 @@
 <td class="h-settings"><a id="settings" class="heading-anchor" href="#%s"></a><span class="property-name">settings</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/accusnap/#settings'>AccuSnap.Settings</a></span></td>
 <td></td>
+</tr>
+<tr>
+<td class="h-snapmode"><a id="snapmode" class="heading-anchor" href="#%s"></a><span class="property-name">snapMode</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/snapmode'>SnapMode</a></span></td>
+<td>Get the SnapMode that was used to generate the SnapDetail. Since getActiveSnapModes can return multiple SnapMode values, candidateSnapMode holds<br>the SnapMode that was chosen.</td>
 </tr>
 <tr>
 <td class="h-toolstate"><a id="toolstate" class="heading-anchor" href="#%s"></a><span class="property-name">toolState</span></td>
@@ -380,7 +388,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 August, 2018 @ 04:35:52 pm -04:00</span>
+                <span class='date-updated'>15 August, 2018 @ 08:10:27 pm -04:00</span>
             </p>
 
             
@@ -453,24 +461,6 @@
                                                     <a class='title solo-title menu-text' href="#gethitandlist">getHitAndList</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#getkeypointdivisor">getKeypointDivisor</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#getsnapmode">getSnapMode</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#isactive">isActive</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#ishot">isHot</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#islocateenabled">isLocateEnabled</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#issnapenabled">isSnapEnabled</a>
-                                            </li>
-                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#onenabledstatechange">onEnabledStateChange</a>
                                             </li>
                                             <li class='nav-item item '>
@@ -512,9 +502,6 @@
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#synchsnapmode">synchSnapMode</a>
                                             </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#userwantssnaps">userWantsSnaps</a>
-                                            </li>
                                     </ul>
                             </li>
                             <li class='nav-item item '>
@@ -548,10 +535,31 @@
                                                     <a class='title solo-title menu-text' href="#icon">icon</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#isactive">isActive</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#ishot">isHot</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#islocateenabled">isLocateEnabled</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#issnapenabled">isSnapEnabled</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#issnapenabledbyuser">isSnapEnabledByUser</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#keypointdivisor">keypointDivisor</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#needflash">needFlash</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#settings">settings</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#snapmode">snapMode</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#toolstate">toolState</a>

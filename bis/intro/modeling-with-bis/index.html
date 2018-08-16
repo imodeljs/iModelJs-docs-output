@@ -81,13 +81,16 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals" class="table-of-contents-link">Element Fundamentals</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/codes" class="table-of-contents-link">Codes</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/elementaspect-fundamentals" class="table-of-contents-link">ElementAspect Fundamentals</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/mixins" class="table-of-contents-link">Mixins</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/model-fundamentals" class="table-of-contents-link">Model Fundamentals</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/relationship-fundamentals" class="table-of-contents-link">Relationship Fundamentals</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schemas-domains" class="table-of-contents-link">Schemas (&#x201C;Domains&#x201D;)</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/information-hierarchy" class="table-of-contents-link">Information Hierarchy</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/physical-models-and-elements" class="table-of-contents-link">Physical Models and Elements</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/functional-models-and-elements" class="table-of-contents-link">Functional Models and Elements</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/analysis-models-and-elements" class="table-of-contents-link">Analysis Models and Elements</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/information-models-and-elements" class="table-of-contents-link">Information Models and Elements</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/physical-hierarchy-organization" class="table-of-contents-link">PhysicalModel Hierarchy</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/categories" class="table-of-contents-link">Categories</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-customization" class="table-of-contents-link">Schema Customization</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/appendix-a-data-evolution-across-time" class="table-of-contents-link">Data Evolution Across Time</a></li>
@@ -96,15 +99,11 @@
         </ul>
         <!-- TODO: The following are not linked in...?
         ./domains/*
-        ./intro/analysis-models-and-elements.md
         ./intro/appendix-c-bis-domain-design-fundamentals.md
         ./intro/bis-schema-validation.md
         ./intro/documents.md
         ./intro/dynamic-data.md
         ./intro/forms-profiles-and-features.md
-        ./intro/functional-models-and-elements.md
-        ./intro/information-models-and-elements.md
-        ./intro/mixins.md
         ./intro/requirements.md
         ./intro/types-instances-and-catalogs.md
         ./intro/units.md
@@ -168,27 +167,19 @@ An Element in a different Model (see &quot;P-0&quot; below) models the car-as-a-
 <p>These two rules imply that a given class of Element cannot be both sub-modeled <strong>and</strong> a parent. The schema author must choose one or the other (or choose to make the Element &quot;strictly atomic&quot;, meaning it can neither be sub-modeled nor have children.)</p>
 <h3 class="h-elementaspect"><a id="elementaspect" class="heading-anchor" href="#%s"></a>ElementAspect</h3>
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#elementaspect'>ElementAspects</a> are a flexible way to augment the properties of an Element. They are sets of properties that typically hold information needed only in certain contexts, e.g. during the construction phase or when we have a link to information about the modeled Entity in a different repository. ElementAspects are not individually identifiable (thus relationships cannot point to them), but they may be the &quot;source&quot; of a relationship pointing to an Element.</p>
-<h3 class="h-element-identity"><a id="element-identity" class="heading-anchor" href="#%s"></a>Element Identity</h3>
-<p>Elements have three primary identifiers: <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#elementid'>ElementId</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#code'>Code</a>, and <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#federationguid'>FederationGuid</a>.</p>
-<p>The ElementId is a 64-bit integer that must be unique within the BIS Repository. Different implementations of BIS Repository manage this identifier differently.</p>
-<p>The Code is a human-readable identifier that en<strong>code</strong>s some business meaning. Elements have three properties supporting the Code:</p>
-<ul>
-<li><p>A CodeScope NavigationProperty pointing to an Element that defines the scope within which the Code must be unique</p>
-</li>
-<li><p>A CodeSpec NavigationProperty pointing to a CodeSpecification Element. The CodeSpecification defines how a Code is encoded and decoded, i.e. how it is formatted from business data (including managed alphanumeric sequences)</p>
-</li>
-<li><p>A CodeValue containing the actual human-readable string identifier</p>
-</li>
-</ul>
-<p>The Code is often used to identify Entities on drawings and in GUIs and may be used in many different software systems.</p>
-<p>The FederationGuid is optional but can be used to precisely identify an Entity that is represented in many different systems, including those that do not use BIS.</p>
-<p>UserLabel is an optional property of an Element that can be used as an informal name in the GUI, but it does not have to be unique. In some GUIs, if the UserLabel is null, the CodeValue will be used as a display label.</p>
+<h3 class="h-identifiers"><a id="identifiers" class="heading-anchor" href="#%s"></a>Identifiers</h3>
+<p>Elements have one primary identifier (<a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#elementid'>ElementId</a>) and hold two identifiers of the real-world <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#entity'>Entity</a> that the Element models: <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/codes'>Code</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#federationguid'>FederationGuid</a>.</p>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#elementid'><strong>ElementId</strong></a> is a 64-bit integer property that is the Element&apos;s primary identifier and must be unique within the BIS Repository. Different implementations of BIS Repository manage this identifier differently.</p>
+<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/codes'><strong>Code</strong></a> is a human-readable string identifier of the represented Entity. The Code en<strong>code</strong>s some business meaning.
+There are three Element properties related to the Code: <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#codevalue-property'>CodeValue</a> holds the Code, <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#codespec-property'>CodeSpec</a> governs its encoding/decoding, and <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#codescope-property'>CodeScope</a> defines the scope within which it is unique. The combination of the three code-related properties must be unique within the BIS repository and could be considered a secondary identifier of the Element.</p>
+<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#federationguid'><strong>FederationGuid</strong></a> is optional but can be used to identify an Entity that is represented in many different repositories (BIS or otherwise).</p>
+<p><strong>UserLabel</strong> is an optional property of an Element that can be used as an informal name in the GUI, but it does not have to be unique. In some GUIs, if the UserLabel is null, the CodeValue will be used as a display label.</p>
 <blockquote>
 <p>Next: <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/bis-organization'>BIS Organization</a></p>
 </blockquote>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 August, 2018 @ 04:35:56 pm -04:00</span>
+                <span class='date-updated'>15 August, 2018 @ 08:10:35 pm -04:00</span>
             </p>
 
             
@@ -231,7 +222,7 @@ An Element in a different Model (see &quot;P-0&quot; below) models the car-as-a-
                                     <a class='title solo-title menu-text' href="#elementaspect">ElementAspect</a>
                             </li>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#element-identity">Element Identity</a>
+                                    <a class='title solo-title menu-text' href="#identifiers">Identifiers</a>
                             </li>
                     </ul>
             </li>

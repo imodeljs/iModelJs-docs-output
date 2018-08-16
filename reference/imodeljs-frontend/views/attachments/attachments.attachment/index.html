@@ -201,8 +201,8 @@
 <td>Returns a clone of the current clipping if it is defined and not null.</td>
 </tr>
 <tr>
-<td class="h-load"><a id="load" class="heading-anchor" href="#%s"></a><span class="method-name">load</span><span class="method-parenthesis">(</span><span class="method-parameters">sheetView: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/sheetviewstate'>SheetViewState</a>, sceneContext: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/scenecontext'>SceneContext</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span></td>
-<td>Load the tile tree for this attachment, updating the attachment&apos;s load status.</td>
+<td class="h-load"><a id="load" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="load">load</a></span><span class="method-parenthesis">(</span><span class="method-parameters">sheetView: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/sheetviewstate'>SheetViewState</a>, sceneContext: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/scenecontext'>SceneContext</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/attachments/attachments.state'>Attachments.State</a></span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span></td>
+<td>Load the tile tree for this attachment.</td>
 </tr>
 </tbody></table><h3 class="h-properties"><a id="properties" class="heading-anchor" href="#%s"></a>Properties</h3>
 <table class="table table-responsive"><tbody><tr>
@@ -222,7 +222,7 @@
 </tr>
 <tr>
 <td class="h-debug_bounding_box_color"><a id="debug_bounding_box_color" class="heading-anchor" href="#%s"></a><span class="property-name">DEBUG_BOUNDING_BOX_COLOR</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/colordef'>ColorDef</a></span></td>
+<td><span class="method-output">ColorDef</span></td>
 <td>DEBUG ONLY - The color of the attachment bounding box if drawn.</td>
 </tr>
 <tr>
@@ -241,9 +241,9 @@
 <td>Returns true if this attachment is a 2d view attachment.</td>
 </tr>
 <tr>
-<td class="h-is3d"><a id="is3d" class="heading-anchor" href="#%s"></a><span class="property-name">is3d</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td class="h-isready"><a id="isready" class="heading-anchor" href="#%s"></a><span class="property-name">isReady</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
 <td><span class="method-output"> boolean</span></td>
-<td>Returns true if this attachment is a 3d view attachment.</td>
+<td>Returns true if this attachment has a defined tile tree and is ready to be drawn.</td>
 </tr>
 <tr>
 <td class="h-placement"><a id="placement" class="heading-anchor" href="#%s"></a><span class="property-name">placement</span></td>
@@ -256,11 +256,6 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-state"><a id="state" class="heading-anchor" href="#%s"></a><span class="property-name">state</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/attachments/attachments.state'>Attachments.State</a></span></td>
-<td>Returns true if this attachment is ready to be drawn.</td>
-</tr>
-<tr>
 <td class="h-view"><a id="view" class="heading-anchor" href="#%s"></a><span class="property-name">view</span></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a></span></td>
 </tr>
@@ -270,7 +265,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 August, 2018 @ 04:35:53 pm -04:00</span>
+                <span class='date-updated'>15 August, 2018 @ 08:10:29 pm -04:00</span>
             </p>
 
             
@@ -348,16 +343,13 @@
                                                     <a class='title solo-title menu-text' href="#is2d">is2d</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#is3d">is3d</a>
+                                                    <a class='title solo-title menu-text' href="#isready">isReady</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#placement">placement</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#scale">scale</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#state">state</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#view">view</a>

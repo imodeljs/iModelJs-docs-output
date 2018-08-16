@@ -278,7 +278,7 @@
 <td>Query for a set of entity ids, given an EntityQueryParams</td>
 </tr>
 <tr>
-<td class="h-queryfilepropertyblob"><a id="queryfilepropertyblob" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="queryfilepropertyblob">queryFilePropertyBlob</a></span><span class="method-parenthesis">(</span><span class="method-parameters">prop: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/filepropertyprops'>FilePropertyProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> ArrayBuffer | undefined</span></td>
+<td class="h-queryfilepropertyblob"><a id="queryfilepropertyblob" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="queryfilepropertyblob">queryFilePropertyBlob</a></span><span class="method-parenthesis">(</span><span class="method-parameters">prop: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/filepropertyprops'>FilePropertyProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> Uint8Array | undefined</span></td>
 <td>Query a &quot;file property&quot; from this iModel, as a blob.</td>
 </tr>
 <tr>
@@ -310,7 +310,7 @@
 <td>Commit pending changes to this iModel.</td>
 </tr>
 <tr>
-<td class="h-savefileproperty"><a id="savefileproperty" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="savefileproperty">saveFileProperty</a></span><span class="method-parenthesis">(</span><span class="method-parameters">prop: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/filepropertyprops'>FilePropertyProps</a>, value: string | ArrayBuffer</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/besqlite/dbresult'>DbResult</a></span></td>
+<td class="h-savefileproperty"><a id="savefileproperty" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="savefileproperty">saveFileProperty</a></span><span class="method-parenthesis">(</span><span class="method-parameters">prop: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/filepropertyprops'>FilePropertyProps</a>, strValue: string | undefined, blobVal?: Uint8Array</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/besqlite/dbresult'>DbResult</a></span></td>
 <td>Save a &quot;file property&quot; to this iModel</td>
 </tr>
 <tr>
@@ -362,7 +362,7 @@
 <td>Get the AccessToken that is considered to be the owner of a local IModelDb.</td>
 </tr>
 <tr>
-<td class="h-loadnativeasset"><a id="loadnativeasset" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="loadnativeasset">loadNativeAsset</a></span><span class="method-parenthesis">(</span><span class="method-parameters">assetName: string</span><span class="method-parenthesis">):</span><span class="method-output"> string</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td class="h-loadnativeasset"><a id="loadnativeasset" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="loadnativeasset">loadNativeAsset</a></span><span class="method-parenthesis">(</span><span class="method-parameters">assetName: string</span><span class="method-parenthesis">):</span><span class="method-output"> Uint8Array</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
 <td>Load a file from the <em>Assets</em> directory of imodeljs-native</td>
 </tr>
 <tr>
@@ -386,17 +386,17 @@
 <tr>
 <td class="h-cartographictospatial"><a id="cartographictospatial" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/cartographictospatial'>cartographicToSpatial</a></span><span class="method-parenthesis">(</span><span class="method-parameters">cartographic: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/cartographic'>Cartographic</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
-<td>Convert a ($Cartographic$refLinkSource=imodeljs-backend/E:/Agents/c/1243/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@157) to a point in this iModel&apos;s Spatial coordinates using its <a href="$IModel$refLinkSource=imodeljs-backend/E:/Agents/c/1243/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@157">ecefLocation</a>.</td>
+<td>Convert a ($Cartographic$refLinkSource=imodeljs-backend/D:/tfs_agent_a/3/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@157) to a point in this iModel&apos;s Spatial coordinates using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/tfs_agent_a/3/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@157">ecefLocation</a>.</td>
 </tr>
 <tr>
 <td class="h-eceftospatial"><a id="eceftospatial" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/eceftospatial'>ecefToSpatial</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ecef: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
-<td>Convert a point in ECEF coordinates to a point in this iModel&apos;s Spatial coordinates using its <a href="$IModel$refLinkSource=imodeljs-backend/E:/Agents/c/1243/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@140">ecefLocation</a>.</td>
+<td>Convert a point in ECEF coordinates to a point in this iModel&apos;s Spatial coordinates using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/tfs_agent_a/3/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@140">ecefLocation</a>.</td>
 </tr>
 <tr>
 <td class="h-geteceftransform"><a id="geteceftransform" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/geteceftransform'>getEcefTransform</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
-<td>Get the Transform from this iModel&apos;s Spatial coordinates to ECEF coordinates using its <a href="$IModel$refLinkSource=imodeljs-backend/E:/Agents/c/1243/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@123">ecefLocation</a>.</td>
+<td>Get the Transform from this iModel&apos;s Spatial coordinates to ECEF coordinates using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/tfs_agent_a/3/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@123">ecefLocation</a>.</td>
 </tr>
 <tr>
 <td class="h-seteceflocation"><a id="seteceflocation" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/#seteceflocation'>setEcefLocation</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ecef: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/eceflocationprops'>EcefLocationProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
@@ -406,12 +406,12 @@
 <tr>
 <td class="h-spatialtocartographic"><a id="spatialtocartographic" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/spatialtocartographic'>spatialToCartographic</a></span><span class="method-parenthesis">(</span><span class="method-parameters">spatial: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/cartographic'>Cartographic</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/cartographic'>Cartographic</a></span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
-<td>Convert a point in this iModel&apos;s Spatial coordinates to a ($Cartographic$refLinkSource=imodeljs-backend/E:/Agents/c/1243/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@148)  using its <a href="$IModel$refLinkSource=imodeljs-backend/E:/Agents/c/1243/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@148">ecefLocation</a>.</td>
+<td>Convert a point in this iModel&apos;s Spatial coordinates to a ($Cartographic$refLinkSource=imodeljs-backend/D:/tfs_agent_a/3/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@148)  using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/tfs_agent_a/3/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@148">ecefLocation</a>.</td>
 </tr>
 <tr>
 <td class="h-spatialtoecef"><a id="spatialtoecef" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/spatialtoecef'>spatialToEcef</a></span><span class="method-parenthesis">(</span><span class="method-parameters">spatial: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
-<td>Convert a point in this iModel&apos;s Spatial coordinates to an ECEF point using its <a href="$IModel$refLinkSource=imodeljs-backend/E:/Agents/c/1243/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@131">ecefLocation</a>.</td>
+<td>Convert a point in this iModel&apos;s Spatial coordinates to an ECEF point using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/tfs_agent_a/3/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@131">ecefLocation</a>.</td>
 </tr>
 <tr>
 <td class="h-getdefaultsubcategoryid"><a id="getdefaultsubcategoryid" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/#getdefaultsubcategoryid'>getDefaultSubCategoryId</a></span><span class="method-parenthesis">(</span><span class="method-parameters">categoryId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
@@ -596,7 +596,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 August, 2018 @ 04:35:50 pm -04:00</span>
+                <span class='date-updated'>15 August, 2018 @ 08:10:23 pm -04:00</span>
             </p>
 
             

@@ -81,13 +81,16 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals" class="table-of-contents-link">Element Fundamentals</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/codes" class="table-of-contents-link">Codes</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/elementaspect-fundamentals" class="table-of-contents-link">ElementAspect Fundamentals</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/mixins" class="table-of-contents-link">Mixins</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/model-fundamentals" class="table-of-contents-link">Model Fundamentals</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/relationship-fundamentals" class="table-of-contents-link">Relationship Fundamentals</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schemas-domains" class="table-of-contents-link">Schemas (&#x201C;Domains&#x201D;)</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/information-hierarchy" class="table-of-contents-link">Information Hierarchy</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/physical-models-and-elements" class="table-of-contents-link">Physical Models and Elements</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/functional-models-and-elements" class="table-of-contents-link">Functional Models and Elements</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/analysis-models-and-elements" class="table-of-contents-link">Analysis Models and Elements</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/information-models-and-elements" class="table-of-contents-link">Information Models and Elements</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/physical-hierarchy-organization" class="table-of-contents-link">PhysicalModel Hierarchy</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/categories" class="table-of-contents-link">Categories</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-customization" class="table-of-contents-link">Schema Customization</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/appendix-a-data-evolution-across-time" class="table-of-contents-link">Data Evolution Across Time</a></li>
@@ -96,15 +99,11 @@
         </ul>
         <!-- TODO: The following are not linked in...?
         ./domains/*
-        ./intro/analysis-models-and-elements.md
         ./intro/appendix-c-bis-domain-design-fundamentals.md
         ./intro/bis-schema-validation.md
         ./intro/documents.md
         ./intro/dynamic-data.md
         ./intro/forms-profiles-and-features.md
-        ./intro/functional-models-and-elements.md
-        ./intro/information-models-and-elements.md
-        ./intro/mixins.md
         ./intro/requirements.md
         ./intro/types-instances-and-catalogs.md
         ./intro/units.md
@@ -151,23 +150,27 @@
 </tr>
 <tr>
 <td class="h-class"><a id="class" class="heading-anchor" href="#%s"></a><strong>Class</strong></td>
-<td>See <a href="#ec-class">ECClass</a>.</td>
+<td>See <a href="#ecclass">ECClass</a>.</td>
 </tr>
 <tr>
 <td class="h-code"><a id="code" class="heading-anchor" href="#%s"></a><strong>Code</strong></td>
-<td>An optional three part <em>human readable</em> identifier for an Element. A code consists of a CodeSpec, CodeScope, and CodeValue. If any of the three parts is defined, the combination of all three parts must be unique within an iModel.</td>
+<td>A synonym for <a href="#code-value-property">CodeValue</a>. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/codes'>Codes</a>.</td>
 </tr>
 <tr>
-<td class="h-codescope"><a id="codescope" class="heading-anchor" href="#%s"></a><strong>CodeScope</strong></td>
-<td>A Code Scope determines a <em>scope for uniqueness</em> for the CodeValue. For example, a scope may specify the whole repository, only within a certain Model, within an assembly, etc. For a given CodeSpec and CodeScope, all CodeValues must be unique.</td>
+<td class="h-codescope-property"><a id="codescope-property" class="heading-anchor" href="#%s"></a><strong>CodeScope Property</strong></td>
+<td>A navigation property of Element that points to an Element that indicates the <em>scope for uniqueness</em> for the CodeValue. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/codes'>Codes</a>.</td>
 </tr>
 <tr>
 <td class="h-codespec"><a id="codespec" class="heading-anchor" href="#%s"></a><strong>CodeSpec</strong></td>
-<td>A CodeSpec defines the <em>specification</em> (i.e. type) of a code. Often the specification is defined by some external system that enforces conventions, consistency, and validation. A CodeSpec captures the rules for encoding and decoding significant business information into and from a CodeValue. iModels hold a table of the known CodeSpecs, defined by the CodeSpec ECClass, and Elements refer to one of them by Id.</td>
+<td>A &quot;Code Specification&quot; that specifies how a Code is encoded and decoded. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/codes'>Codes</a>.</td>
 </tr>
 <tr>
-<td class="h-codevalue"><a id="codevalue" class="heading-anchor" href="#%s"></a><strong>CodeValue</strong></td>
-<td>A human-readable string with the <em>name</em> of an Element. CodeValues are formatted according to the rules of its CodeSpec.</td>
+<td class="h-codespec-property"><a id="codespec-property" class="heading-anchor" href="#%s"></a><strong>CodeSpec Property</strong></td>
+<td>A navigation property of Element that points to a <a href="#code-spec">CodeSpec</a> that specifies how the Code is encoded and decoded. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/codes'>Codes</a>.</td>
+</tr>
+<tr>
+<td class="h-codevalue-property"><a id="codevalue-property" class="heading-anchor" href="#%s"></a><strong>CodeValue Property</strong></td>
+<td>A nullable string property of Element that holds a human-readable identifier of the <a href="#entity">Entity</a> that the Element represents. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/codes'>Codes</a>.</td>
 </tr>
 <tr>
 <td class="h-definitionelement"><a id="definitionelement" class="heading-anchor" href="#%s"></a><strong>DefinitionElement</strong></td>
@@ -219,7 +222,7 @@
 </tr>
 <tr>
 <td class="h-elementownschildelements"><a id="elementownschildelements" class="heading-anchor" href="#%s"></a><strong>ElementOwnsChildElements</strong></td>
-<td>Relates an Element to <em>child</em> Elements which represent <em>parts</em> of the Entity modeled by the parent Element. Element subclasses can either allow the use child Elements to model its parts, or allow use of the ModelModelsElement relationship with another Model to express a detailed model of the parts, but not both.</td>
+<td>Relates an Element to <em>child</em> Elements which represent <em>parts</em> of the <a href="#entity">Entity</a> modeled by the parent Element. Element subclasses can either allow the use of child Elements to model its parts, or allow use of the ModelModelsElement relationship with another Model to express a detailed model of the parts, but not both.</td>
 </tr>
 <tr>
 <td class="h-entity"><a id="entity" class="heading-anchor" href="#%s"></a><strong>Entity</strong></td>
@@ -227,7 +230,7 @@
 </tr>
 <tr>
 <td class="h-federationguid"><a id="federationguid" class="heading-anchor" href="#%s"></a><strong>FederationGuid</strong></td>
-<td>An optional 128 bit <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">Globally Unique Identifier</a> for an Element. Generally it is intended that FederationGuids are assigned by external systems and are used to <em>federate</em> Elements to their external meaning. Within a BIS Repository, FederationGuids must be unique.</td>
+<td>An optional 128 bit <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">Globally Unique Identifier</a> for the <a href="#entity">Entity</a> that an Element models. Generally it is intended that FederationGuids are assigned by external systems and are used to <em>federate</em> Elements to their external meaning. Within a BIS Repository, FederationGuids must be unique, and thus can be used as secondary identifiers for an Element (when they are present).</td>
 </tr>
 <tr>
 <td class="h-geometricelement"><a id="geometricelement" class="heading-anchor" href="#%s"></a><strong>GeometricElement</strong></td>
@@ -291,7 +294,7 @@
 </tr>
 <tr>
 <td class="h-relationship"><a id="relationship" class="heading-anchor" href="#%s"></a><strong>Relationship</strong></td>
-<td>See <a href="#ec-relationship">ECRelationship</a>.</td>
+<td>See <a href="#ecrelationship">ECRelationship</a>.</td>
 </tr>
 <tr>
 <td class="h-repositorymodel"><a id="repositorymodel" class="heading-anchor" href="#%s"></a><strong>RepositoryModel</strong></td>
@@ -299,7 +302,7 @@
 </tr>
 <tr>
 <td class="h-schema"><a id="schema" class="heading-anchor" href="#%s"></a><strong>Schema</strong></td>
-<td>See <a href="#ec-schema">ECSchema</a>.</td>
+<td>See <a href="#ecschema">ECSchema</a>.</td>
 </tr>
 <tr>
 <td class="h-sheetmodel"><a id="sheetmodel" class="heading-anchor" href="#%s"></a><strong>SheetModel</strong></td>
@@ -335,7 +338,7 @@
 </tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 August, 2018 @ 04:35:56 pm -04:00</span>
+                <span class='date-updated'>15 August, 2018 @ 08:10:35 pm -04:00</span>
             </p>
 
             
@@ -375,13 +378,16 @@
                     <a class='title solo-title menu-text' href="#code">Code</a>
             </li>
                <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#codescope">CodeScope</a>
+                    <a class='title solo-title menu-text' href="#codescope-property">CodeScope Property</a>
             </li>
                <li class='nav-item item '>
                     <a class='title solo-title menu-text' href="#codespec">CodeSpec</a>
             </li>
                <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#codevalue">CodeValue</a>
+                    <a class='title solo-title menu-text' href="#codespec-property">CodeSpec Property</a>
+            </li>
+               <li class='nav-item item '>
+                    <a class='title solo-title menu-text' href="#codevalue-property">CodeValue Property</a>
             </li>
                <li class='nav-item item '>
                     <a class='title solo-title menu-text' href="#definitionelement">DefinitionElement</a>

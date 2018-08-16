@@ -176,6 +176,16 @@
 <p>The definition element for a view. ViewDefinitions specify the area/volume that is viewed, the Ids of a DisplayStyle and a CategorySelector,
 plus additional view-specific parameters in their <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element/#jsonproperties'>Element.jsonProperties</a>.</p>
 <p>Subclasses of ViewDefinition determine which model(s) are viewed.</p>
+<p><strong>Example: Obtaining the background color for a view</strong></p>
+<pre class="no-line-numbers"><code class="language-typescript">/** Given a ViewDefinition, return its background color.
+ * @param view The ViewDefinition of interest.
+ * @return The background color for the view.
+ * @note This is a convenience function intended to demonstrate the API. The background color is defined on the ViewDefinition&apos;s DisplayStyle. If multiple properties of the DisplayStyle are of interest, it would be more efficient to obtain the DisplayStyle via ViewDefinition.loadDisplayStyle() directly.
+ */
+function getViewBackgroundColor(view: ViewDefinition): ColorDef {
+  const displayStyle: DisplayStyle = view.loadDisplayStyle(); // Load the view&apos;s display style from the IModelDb.
+  return displayStyle.backgroundColor; // Extract the background color.
+}</code></pre>
 <p><span class="badge badge-pill badge-primary badge-note">note</span> ViewDefinition is only available in the backend. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a> for usage in the frontend.</p>
 <h3 class="h-extends"><a id="extends" class="heading-anchor" href="#%s"></a>Extends</h3>
 <ul>
@@ -203,12 +213,28 @@ plus additional view-specific parameters in their <a href='https://imodeljs.gith
 <td></td>
 </tr>
 <tr>
+<td class="h-isdrawingview"><a id="isdrawingview" class="heading-anchor" href="#%s"></a><span class="method-name">isDrawingView</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
+<td>Type guard for &apos;instanceof DrawingViewDefinition&apos;</td>
+</tr>
+<tr>
 <td class="h-isspatialview"><a id="isspatialview" class="heading-anchor" href="#%s"></a><span class="method-name">isSpatialView</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
 <td>Type guard for <code>instanceof SpatialViewDefinition</code></td>
 </tr>
 <tr>
+<td class="h-isview2d"><a id="isview2d" class="heading-anchor" href="#%s"></a><span class="method-name">isView2d</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
+<td>Type guard for &apos;instanceof ViewDefinition2d`</td>
+</tr>
+<tr>
 <td class="h-isview3d"><a id="isview3d" class="heading-anchor" href="#%s"></a><span class="method-name">isView3d</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
 <td>Type guard for <code>instanceof ViewDefinition3d</code></td>
+</tr>
+<tr>
+<td class="h-loadcategoryselector"><a id="loadcategoryselector" class="heading-anchor" href="#%s"></a><span class="method-name">loadCategorySelector</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/categoryselector'>CategorySelector</a></span></td>
+<td>Load this view&apos;s CategorySelector from the IModelDb.</td>
+</tr>
+<tr>
+<td class="h-loaddisplaystyle"><a id="loaddisplaystyle" class="heading-anchor" href="#%s"></a><span class="method-name">loadDisplayStyle</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/displaystyle'>DisplayStyle</a></span></td>
+<td>Load this view&apos;s DisplayStyle from the IModelDb.</td>
 </tr>
 <tr>
 <td class="h-tojson"><a id="tojson" class="heading-anchor" href="#%s"></a><span class="method-name">toJSON</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/viewdefinitionprops'>ViewDefinitionProps</a></span></td>
@@ -392,7 +418,7 @@ plus additional view-specific parameters in their <a href='https://imodeljs.gith
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 August, 2018 @ 04:35:49 pm -04:00</span>
+                <span class='date-updated'>15 August, 2018 @ 08:10:23 pm -04:00</span>
             </p>
 
             
@@ -438,10 +464,22 @@ plus additional view-specific parameters in their <a href='https://imodeljs.gith
                                                     <a class='title solo-title menu-text' href="#constructor">constructor</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#isdrawingview">isDrawingView</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#isspatialview">isSpatialView</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#isview2d">isView2d</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#isview3d">isView3d</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#loadcategoryselector">loadCategorySelector</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#loaddisplaystyle">loadDisplayStyle</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#tojson">toJSON</a>

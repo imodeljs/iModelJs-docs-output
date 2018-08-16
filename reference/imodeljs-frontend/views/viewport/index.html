@@ -193,10 +193,6 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>Construct a new Viewport</td>
 </tr>
 <tr>
-<td class="h-adjustaspectratio"><a id="adjustaspectratio" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="adjustaspectratio">adjustAspectRatio</a></span><span class="method-parenthesis">(</span><span class="method-parameters">origin: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, delta: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span></td>
-<td>adjust the aspect ratio of the view volume to match the aspect ratio of the window of this Viewport.</td>
-</tr>
-<tr>
 <td class="h-changeview"><a id="changeview" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="changeview">changeView</a></span><span class="method-parenthesis">(</span><span class="method-parameters">view: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
 <td>Change the ViewState of this Viewport</td>
 </tr>
@@ -229,7 +225,7 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>Get the ClientRect of the canvas for this Viewport.</td>
 </tr>
 <tr>
-<td class="h-getcontrasttobackgroundcolor"><a id="getcontrasttobackgroundcolor" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="getcontrasttobackgroundcolor">getContrastToBackgroundColor</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/colordef'>ColorDef</a></span></td>
+<td class="h-getcontrasttobackgroundcolor"><a id="getcontrasttobackgroundcolor" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="getcontrasttobackgroundcolor">getContrastToBackgroundColor</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> ColorDef</span></td>
 <td>Get a color that will contrast to the current background color of this Viewport.</td>
 </tr>
 <tr>
@@ -404,6 +400,11 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td></td>
 </tr>
 <tr>
+<td class="h-backgroundmapplane"><a id="backgroundmapplane" class="heading-anchor" href="#%s"></a><span class="property-name">backgroundMapPlane</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/plane3dbyoriginandunitnormal'>Plane3dByOriginAndUnitNormal</a></span></td>
+<td></td>
+</tr>
+<tr>
 <td class="h-canvas"><a id="canvas" class="heading-anchor" href="#%s"></a><span class="property-name">canvas</span> <span class="badge badge-pill badge-primary badge-constructorproperty">ConstructorProperty</span></td>
 <td><span class="method-output">HTMLCanvasElement</span></td>
 <td>The HTMLCanvasElement for the new Viewport</td>
@@ -429,14 +430,24 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>Time the current flash started</td>
 </tr>
 <tr>
+<td class="h-frustfraction"><a id="frustfraction" class="heading-anchor" href="#%s"></a><span class="property-name">frustFraction</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> number</span></td>
+<td></td>
+</tr>
+<tr>
 <td class="h-hilite"><a id="hilite" class="heading-anchor" href="#%s"></a><span class="property-name">hilite</span></td>
-<td><span class="method-output">Settings</span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-ninezone/toolsettings/settings'>Settings</a></span></td>
 <td>The settings that control how elements are hilited in this Viewport.</td>
 </tr>
 <tr>
 <td class="h-imodel"><a id="imodel" class="heading-anchor" href="#%s"></a><span class="property-name">iModel</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span></td>
 <td>The iModel of this Viewport</td>
+</tr>
+<tr>
+<td class="h-isaspectratiolocked"><a id="isaspectratiolocked" class="heading-anchor" href="#%s"></a><span class="property-name">isAspectRatioLocked</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> boolean</span></td>
+<td></td>
 </tr>
 <tr>
 <td class="h-isgridon"><a id="isgridon" class="heading-anchor" href="#%s"></a><span class="property-name">isGridOn</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
@@ -474,9 +485,9 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>Event called whenever this viewport is synchronized with its ViewState.</td>
 </tr>
 <tr>
-<td class="h-rotmatrix"><a id="rotmatrix" class="heading-anchor" href="#%s"></a><span class="property-name">rotMatrix</span></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a></span></td>
-<td>View rotation matrix (copied from ViewState)</td>
+<td class="h-rotmatrix"><a id="rotmatrix" class="heading-anchor" href="#%s"></a><span class="property-name">rotMatrix</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a></span></td>
+<td></td>
 </tr>
 <tr>
 <td class="h-undodelay"><a id="undodelay" class="heading-anchor" href="#%s"></a><span class="property-name">undoDelay</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
@@ -494,14 +505,9 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td></td>
 </tr>
 <tr>
-<td class="h-viewdelta"><a id="viewdelta" class="heading-anchor" href="#%s"></a><span class="property-name">viewDelta</span></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a></span></td>
-<td>View delta, potentially expanded</td>
-</tr>
-<tr>
-<td class="h-viewdeltaunexpanded"><a id="viewdeltaunexpanded" class="heading-anchor" href="#%s"></a><span class="property-name">viewDeltaUnexpanded</span></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a></span></td>
-<td>View delta (from ViewState, unexpanded)</td>
+<td class="h-viewdelta"><a id="viewdelta" class="heading-anchor" href="#%s"></a><span class="property-name">viewDelta</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a></span></td>
+<td></td>
 </tr>
 <tr>
 <td class="h-viewflags"><a id="viewflags" class="heading-anchor" href="#%s"></a><span class="property-name">viewFlags</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
@@ -509,19 +515,18 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a> that determine how this Viewport is rendered.</td>
 </tr>
 <tr>
-<td class="h-vieworigin"><a id="vieworigin" class="heading-anchor" href="#%s"></a><span class="property-name">viewOrigin</span></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span></td>
-<td>View origin, potentially expanded</td>
-</tr>
-<tr>
-<td class="h-vieworiginunexpanded"><a id="vieworiginunexpanded" class="heading-anchor" href="#%s"></a><span class="property-name">viewOriginUnexpanded</span></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span></td>
-<td>View origin (from ViewState, unexpanded)</td>
+<td class="h-viewfrustum"><a id="viewfrustum" class="heading-anchor" href="#%s"></a><span class="property-name">viewFrustum</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewfrustum'>ViewFrustum</a></span></td>
+<td></td>
 </tr>
 <tr>
 <td class="h-viewrect"><a id="viewrect" class="heading-anchor" href="#%s"></a><span class="property-name">viewRect</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a></span></td>
 <td>Get the rectangle of this Viewport in ViewCoordinates.</td>
+</tr>
+<tr>
+<td class="h-worldtoviewmap"><a id="worldtoviewmap" class="heading-anchor" href="#%s"></a><span class="property-name">worldToViewMap</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/map4d'>Map4d</a></span></td>
 </tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
@@ -529,7 +534,7 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 August, 2018 @ 04:35:54 pm -04:00</span>
+                <span class='date-updated'>15 August, 2018 @ 08:10:29 pm -04:00</span>
             </p>
 
             
@@ -567,9 +572,6 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
                                     <ul id="inner-nav-methods" class='inner-nav'>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#constructor">constructor</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#adjustaspectratio">adjustAspectRatio</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#changeview">changeView</a>
@@ -730,6 +732,9 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
                                                     <a class='title solo-title menu-text' href="#auxcoordsystem">auxCoordSystem</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#backgroundmapplane">backgroundMapPlane</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#canvas">canvas</a>
                                             </li>
                                             <li class='nav-item item '>
@@ -745,10 +750,16 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
                                                     <a class='title solo-title menu-text' href="#flashupdatetime">flashUpdateTime</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#frustfraction">frustFraction</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#hilite">hilite</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#imodel">iModel</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#isaspectratiolocked">isAspectRatioLocked</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#isgridon">isGridOn</a>
@@ -787,19 +798,16 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
                                                     <a class='title solo-title menu-text' href="#viewdelta">viewDelta</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#viewdeltaunexpanded">viewDeltaUnexpanded</a>
-                                            </li>
-                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#viewflags">viewFlags</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#vieworigin">viewOrigin</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#vieworiginunexpanded">viewOriginUnexpanded</a>
+                                                    <a class='title solo-title menu-text' href="#viewfrustum">viewFrustum</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#viewrect">viewRect</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#worldtoviewmap">worldToViewMap</a>
                                             </li>
                                     </ul>
                             </li>

@@ -129,7 +129,7 @@ format for User Interfaces. This can be used to present a list of possible views
 <p>For example:</p>
 <pre class="no-line-numbers"><code class="language-typescript">  /** Get the list of Spatial views from the robot iModel. */
   public static async getSpatialViews(): Promise&lt;IModelConnection.ViewSpec[]&gt; {
-    return await this._robotIModel.views.getViewList({ from: SpatialViewDefinition.classFullName, wantPrivate: false });
+    return this._robotIModel.views.getViewList({ from: SpatialViewState.sqlName });
   }</code></pre>
 <p>Once a view is selected from the list, it may be loaded with:</p>
 <pre class="no-line-numbers"><code class="language-typescript">  /** Stub for a real UI that would present the user with the list and choose one entry */
@@ -177,7 +177,7 @@ to modify the View itself, or to interact with its contents.</p>
 <p>If there is more than one Viewport visible, the ViewManager keeps track of the <em>Selected Viewport</em> and treats it specially.</p>
 <h2 class="h-viewing-tools"><a id="viewing-tools" class="heading-anchor" href="#%s"></a>Viewing Tools</h2>
 <p>The iModelJs library supplies controls that allow users to modify what is shown in Views via the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/viewtool'>ViewTool</a> classes. You can create instances of the
-supplied classes (e.g. <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/windowareatool'>WindowAreaTool</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/fitviewtool'>FitViewTool</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/viewwalktool'>ViewWalkTool</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/rotatetool'>RotateTool</a>, etc.) or create your own subclasses for
+supplied classes (e.g. <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/windowareatool'>WindowAreaTool</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/fitviewtool'>FitViewTool</a>, ViewWalkTool, RotateTool, etc.) or create your own subclasses for
 special viewing operations.</p>
 <h2 class="h-displaystyles"><a id="displaystyles" class="heading-anchor" href="#%s"></a>DisplayStyles</h2>
 <p>DisplayStyles describe the <em>styling</em> that should be applied to the contents of a View.</p>
@@ -271,7 +271,7 @@ views, or &quot;wide and shallow slices&quot;, etc.) are problematic and disallo
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 August, 2018 @ 04:35:56 pm -04:00</span>
+                <span class='date-updated'>15 August, 2018 @ 08:10:35 pm -04:00</span>
             </p>
 
             

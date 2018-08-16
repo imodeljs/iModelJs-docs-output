@@ -81,13 +81,16 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals" class="table-of-contents-link">Element Fundamentals</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/codes" class="table-of-contents-link">Codes</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/elementaspect-fundamentals" class="table-of-contents-link">ElementAspect Fundamentals</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/mixins" class="table-of-contents-link">Mixins</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/model-fundamentals" class="table-of-contents-link">Model Fundamentals</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/relationship-fundamentals" class="table-of-contents-link">Relationship Fundamentals</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schemas-domains" class="table-of-contents-link">Schemas (&#x201C;Domains&#x201D;)</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/information-hierarchy" class="table-of-contents-link">Information Hierarchy</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/physical-models-and-elements" class="table-of-contents-link">Physical Models and Elements</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/functional-models-and-elements" class="table-of-contents-link">Functional Models and Elements</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/analysis-models-and-elements" class="table-of-contents-link">Analysis Models and Elements</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/information-models-and-elements" class="table-of-contents-link">Information Models and Elements</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/physical-hierarchy-organization" class="table-of-contents-link">PhysicalModel Hierarchy</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/categories" class="table-of-contents-link">Categories</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-customization" class="table-of-contents-link">Schema Customization</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/appendix-a-data-evolution-across-time" class="table-of-contents-link">Data Evolution Across Time</a></li>
@@ -96,15 +99,11 @@
         </ul>
         <!-- TODO: The following are not linked in...?
         ./domains/*
-        ./intro/analysis-models-and-elements.md
         ./intro/appendix-c-bis-domain-design-fundamentals.md
         ./intro/bis-schema-validation.md
         ./intro/documents.md
         ./intro/dynamic-data.md
         ./intro/forms-profiles-and-features.md
-        ./intro/functional-models-and-elements.md
-        ./intro/information-models-and-elements.md
-        ./intro/mixins.md
         ./intro/requirements.md
         ./intro/types-instances-and-catalogs.md
         ./intro/units.md
@@ -125,12 +124,12 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">bis</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/intro/">intro</a> > codes</div>
             <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
             <h1 id="element codes">Element Codes</h1>
-<p>Every BIS <code>Element</code> has a <em>Code</em> that represents its formal identifier in the real world.
-A Code holds a human-readable string that is used to uniquely identify something.</p>
-<p>Codes are enforced to be unique within a BIS repository.</p>
-<p>A Code conveys information to people and programs that understand the structure of the string and are therefore able to <em>decode</em> it.
-Different domains and organizations have different ways of <em>encoding</em> business information.</p>
-<p>Every Element has a Code. For some subclasses of Element, a Code is required and for other subclasses of Element, Code is optional (i.e., it may be <code>null</code>.)</p>
+<p>A <em>Code</em> is a human-readable string identifier of the real-world entity that an Element represents.</p>
+<p>A Code conveys information to people and programs that understand the structure of the string and are therefore able to <em>decode</em> it.</p>
+<p>Different domains and organizations have different ways of <em>encoding</em> business information into the <em>Code</em>, which they can express as <a href="#codespec">Code Specifications</a>.</p>
+<h2 class="h-codevalue-property"><a id="codevalue-property" class="heading-anchor" href="#%s"></a>CodeValue Property</h2>
+<p>Each <code>Element</code> has a (nullable) <code>CodeValue</code> string property that holds its <em>Code</em>.</p>
+<p>When present, a <code>CodeValue</code> should be a human-understandable string, <em>not</em> a Guid--<code>FederationGuid</code> fulfills that purpose.</p>
 <p>Examples uses for Code include:</p>
 <ul>
 <li>Asset Tracking Number</li>
@@ -142,30 +141,34 @@ Different domains and organizations have different ways of <em>encoding</em> bus
 <li>Contract Number</li>
 <li>Project Number</li>
 <li>RFID</li>
+<li>Door Number</li>
+<li>Room Number</li>
 <li>Etc.</li>
 </ul>
-<p>When the identified entity is physical in nature, it will often have its <em>code</em> physically affixed to it (as in the VIN Number on a car or the Manufacturer&#x2019;s Serial Number on an instrument).</p>
-<p><strong>Code</strong> is a three-part identifier that consists of a <code>CodeSpec</code>, a <code>CodeScope</code> and a <code>CodeValue</code>.</p>
+<p>When the identified entity is physical in nature, it will often have its <em>code</em> physically affixed to it (as in the VIN Number on a car or the Manufacturer&#x2019;s Serial Number on an instrument).
+When the identified entity is non-physical, it may have its <em>code</em> semi-permanently attached to a related physical entity.
+For example, a physical valve will have its serial number permanently affixed to it. The &quot;Tag Number&quot; of the &quot;function&quot; that the valve is performing in the process is stamped onto a &quot;Tag&quot; attached to the valve with a wire. If the valve is replaced with a new one (with a new serial number) the Tag holding function&apos;s &quot;Tag Number&quot; will be moved to the new valve.</p>
 <h2 class="h-codespec"><a id="codespec" class="heading-anchor" href="#%s"></a>CodeSpec</h2>
 <p>A <code>CodeSpec</code> (aka <strong>Code Specification</strong>) captures the rules for encoding and decoding significant business information into and from a Code.
-A Code Specification is used to generate and validate Codes.</p>
-<p>A single BIS Repository (e.g. an iModel) may use many Code Specifications, because different classes of Elements can have different coding conventions.</p>
-<p>Each <code>Element</code> has a relationship to the <code>CodeSpec</code> that should be used to encode or decode the Code for that instance.</p>
-<h2 class="h-codescope"><a id="codescope" class="heading-anchor" href="#%s"></a>CodeScope</h2>
-<p>Each <code>Element</code> has a relationship to another Element that provides the <strong>uniqueness scope for its Code</strong>.
-For example, a Floor Code (like &quot;1&quot; or &quot;2&quot;) must be unique within a Building, but is not unique across Buildings.
+A <code>CodeSpec</code> is associated to an Element subclass via configuration of the system that edits the BIS Repository, such as the iModelJs library, which can collaborate with a shared service (e.g. by an &apos;Identification Code Service&apos;) to generate and validate Codes.</p>
+<p>The CodeSpec can also dictate that Codes for instances of the Element class should be null. This is appropriate when the modeled real-world entities don&#x2019;t have a meaningful real-world identifier (e.g. a piece of baseboard, a pile of dirt, an average bolt).</p>
+<h2 class="h-codespec-property"><a id="codespec-property" class="heading-anchor" href="#%s"></a>CodeSpec Property</h2>
+<p>Each <code>Element</code> has a <code>CodeSpec</code> navigation property relating it to a <code>CodeSpec</code>  that governs its Code.
+A single BIS Repository (e.g. an iModel) may use many Code Specifications--different classes of Elements can have different coding conventions.</p>
+<h2 class="h-codescope-property"><a id="codescope-property" class="heading-anchor" href="#%s"></a>CodeScope Property</h2>
+<p>Each <code>Element</code> has a <code>CodeScope</code> navigation property that points to another Element that provides the uniqueness scope for its Code.
+The &apos;scoping&apos; Element can represent the repository as a whole, a model, an assembly, etc.
+The &apos;scoping&apos; Element could also represent some entity with a scope that is greater than the current BIS Repository. In this case, uniqueness within that scope can only be enforced by an external &apos;Identification Code Service&apos;.</p>
+<p>For example, a Floor Code (like &quot;1&quot; or &quot;2&quot;) must be unique within a Building, but is not unique across Buildings.
 In this example, the Building instance is providing the CodeScope for the Floor.</p>
-<h2 class="h-codevalue"><a id="codevalue" class="heading-anchor" href="#%s"></a>CodeValue</h2>
-<p>Each <code>Element</code> stores a <code>CodeValue</code> that is a text string.
-In many contexts, CodeValue is colloquially referred to as the <em>Element&apos;s Code</em>.</p>
-<p>Elements representing real-world entities that don&#x2019;t have a meaningful real-world identifier, e.g. a piece of baseboard, a pile of dirt, an average bolt, will have <code>null</code> for its <code>CodeValue</code>.</p>
-<p>A <code>CodeValue</code> should be a human-understandable string, <em>not</em> a Guid. <code>FederationGuid</code> fulfills that purpose.</p>
+<h2 class="h-uniqueness-within-a-bis-repository"><a id="uniqueness-within-a-bis-repository" class="heading-anchor" href="#%s"></a>Uniqueness within a BIS Repository</h2>
+<p>For a given Element, the combination of it <code>CodeSpec</code>, <code>CodeScope</code>, and <code>CodeValue</code> properties must be unique within the BIS repository. All <code>null</code> values are considered to be unique.</p>
 <blockquote>
 <p>Next: <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/elementaspect-fundamentals'>ElementAspect Fundamentals</a></p>
 </blockquote>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 August, 2018 @ 04:35:56 pm -04:00</span>
+                <span class='date-updated'>15 August, 2018 @ 08:10:35 pm -04:00</span>
             </p>
 
             
@@ -187,13 +190,19 @@ In many contexts, CodeValue is colloquially referred to as the <em>Element&apos;
             <div id="overview-container" class="clusterize-scroll">
               <ul id='nav' class='right-nav nav flex-column clusterize-content'>
                       <li class='nav-item item '>
+                    <a class='title solo-title menu-text' href="#codevalue-property">CodeValue Property</a>
+            </li>
+               <li class='nav-item item '>
                     <a class='title solo-title menu-text' href="#codespec">CodeSpec</a>
             </li>
                <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#codescope">CodeScope</a>
+                    <a class='title solo-title menu-text' href="#codespec-property">CodeSpec Property</a>
             </li>
                <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#codevalue">CodeValue</a>
+                    <a class='title solo-title menu-text' href="#codescope-property">CodeScope Property</a>
+            </li>
+               <li class='nav-item item '>
+                    <a class='title solo-title menu-text' href="#uniqueness-within-a-bis-repository">Uniqueness within a BIS Repository</a>
             </li>
          
               </ul>

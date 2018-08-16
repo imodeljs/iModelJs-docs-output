@@ -183,6 +183,7 @@
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/entityprops'>EntityProps</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/definitionelementprops'>DefinitionElementProps</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/displaystyleprops'>DisplayStyleProps</a></li>
 </ul>
 <h3 class="h-methods"><a id="methods" class="heading-anchor" href="#%s"></a>Methods</h3>
 <table class="table table-responsive"><tbody><tr>
@@ -190,7 +191,7 @@
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-constructor"><a id="constructor" class="heading-anchor" href="#%s"></a><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a>, iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/displaystyle2d'>DisplayStyle2d</a></span></td>
+<td class="h-constructor"><a id="constructor" class="heading-anchor" href="#%s"></a><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/displaystyleprops'>DisplayStyleProps</a>, iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/displaystyle2d'>DisplayStyle2d</a></span></td>
 </tr>
 </tbody></table><h3 class="h-inherited-methods"><a id="inherited-methods" class="heading-anchor" href="#%s"></a><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited methods</h3>
 <table class="table table-responsive"><tbody><tr>
@@ -229,6 +230,11 @@
 <td>Get a JSON property of this element, by namespace</td>
 </tr>
 <tr>
+<td class="h-getstyle"><a id="getstyle" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/displaystyle/#getstyle'>getStyle</a></span><span class="method-parenthesis">(</span><span class="method-parameters">name: string</span><span class="method-parenthesis">):</span><span class="method-output"> any</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/displaystyle'>DisplayStyle</a></span></td>
+<td>Get a named style from the dictionary.</td>
+</tr>
+<tr>
 <td class="h-gettooltipmessage"><a id="gettooltipmessage" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element/gettooltipmessage'>getToolTipMessage</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> string[]</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a></span></td>
 <td>Get a list of HTML strings that describe this Element for the tooltip.</td>
@@ -239,6 +245,11 @@
 <td>Get a set of JSON user properties by namespace</td>
 </tr>
 <tr>
+<td class="h-removestyle"><a id="removestyle" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/displaystyle/#removestyle'>removeStyle</a></span><span class="method-parenthesis">(</span><span class="method-parameters">name: string</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/displaystyle'>DisplayStyle</a></span></td>
+<td>Remove a style from this DisplayStyle.</td>
+</tr>
+<tr>
 <td class="h-removeuserproperties"><a id="removeuserproperties" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element/#removeuserproperties'>removeUserProperties</a></span><span class="method-parenthesis">(</span><span class="method-parameters">nameSpace: string</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a></span></td>
 <td>Remove a set of JSON user properties, specified by namespace, from this Element</td>
@@ -247,6 +258,11 @@
 <td class="h-setjsonproperty"><a id="setjsonproperty" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element/#setjsonproperty'>setJsonProperty</a></span><span class="method-parenthesis">(</span><span class="method-parameters">nameSpace: string, value: any</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a></span></td>
 <td></td>
+</tr>
+<tr>
+<td class="h-setstyle"><a id="setstyle" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/displaystyle/#setstyle'>setStyle</a></span><span class="method-parenthesis">(</span><span class="method-parameters">name: string, value: any</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/displaystyle'>DisplayStyle</a></span></td>
+<td>change the value of a named style on this DisplayStyle</td>
 </tr>
 <tr>
 <td class="h-setuserproperties"><a id="setuserproperties" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element/#setuserproperties'>setUserProperties</a></span><span class="method-parenthesis">(</span><span class="method-parameters">nameSpace: string, value: any</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
@@ -269,6 +285,12 @@
 <th>Type</th>
 <th>Inherited from</th>
 <th>Description</th>
+</tr>
+<tr>
+<td class="h-backgroundcolor"><a id="backgroundcolor" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/displaystyle/#backgroundcolor'>backgroundColor</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span></td>
+<td><span class="method-output"> ColorDef</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/displaystyle'>DisplayStyle</a></span></td>
+<td>Get the background color for this DisplayStyle</td>
 </tr>
 <tr>
 <td class="h-classfullname"><a id="classfullname" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity/#classfullname'>classFullName</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
@@ -331,6 +353,12 @@
 <td>The ModelId of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/model-fundamentals'>Model</a> containing this element</td>
 </tr>
 <tr>
+<td class="h-monochromecolor"><a id="monochromecolor" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/displaystyle/#monochromecolor'>monochromeColor</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span></td>
+<td><span class="method-output"> ColorDef</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/displaystyle'>DisplayStyle</a></span></td>
+<td>Get the color with which graphics are rendered by this DisplayStyle when the monochrome view flag is enabled.</td>
+</tr>
+<tr>
 <td class="h-parent"><a id="parent" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element/#parent'>parent</a></span></td>
 <td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/relatedelement'>RelatedElement</a></span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a></span></td>
@@ -349,10 +377,22 @@
 <td>Get the name of the schema that defines this class</td>
 </tr>
 <tr>
+<td class="h-styles"><a id="styles" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/displaystyle/#styles'>styles</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> any</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/displaystyle'>DisplayStyle</a></span></td>
+<td>Get the dictionary of named styles.</td>
+</tr>
+<tr>
 <td class="h-userlabel"><a id="userlabel" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element/#userlabel'>userLabel</a></span></td>
 <td><span class="method-output">undefined | string</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a></span></td>
 <td>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals/#userlabel'>user-assigned label</a> for this element.</td>
+</tr>
+<tr>
+<td class="h-viewflags"><a id="viewflags" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/displaystyle/#viewflags'>viewFlags</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/displaystyle'>DisplayStyle</a></span></td>
+<td>Get the flags controlling how aspects of graphics are rendered using this display style.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
@@ -360,7 +400,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 August, 2018 @ 04:35:49 pm -04:00</span>
+                <span class='date-updated'>15 August, 2018 @ 08:10:22 pm -04:00</span>
             </p>
 
             
@@ -429,16 +469,25 @@
                                                     <a class='title solo-title menu-text' href="#getjsonproperty">getJsonProperty</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#getstyle">getStyle</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#gettooltipmessage">getToolTipMessage</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#getuserproperties">getUserProperties</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#removestyle">removeStyle</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#removeuserproperties">removeUserProperties</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#setjsonproperty">setJsonProperty</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#setstyle">setStyle</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#setuserproperties">setUserProperties</a>
@@ -457,6 +506,9 @@
                                     <i class='dropdown icon'></i>
                                     </a>
                                     <ul id="inner-nav-inherited-properties" class='inner-nav'>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#backgroundcolor">backgroundColor</a>
+                                            </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#classfullname">classFullName</a>
                                             </li>
@@ -488,6 +540,9 @@
                                                     <a class='title solo-title menu-text' href="#model">model</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#monochromecolor">monochromeColor</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#parent">parent</a>
                                             </li>
                                             <li class='nav-item item '>
@@ -497,7 +552,13 @@
                                                     <a class='title solo-title menu-text' href="#schemaname">schemaName</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#styles">styles</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#userlabel">userLabel</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#viewflags">viewFlags</a>
                                             </li>
                                     </ul>
                             </li>

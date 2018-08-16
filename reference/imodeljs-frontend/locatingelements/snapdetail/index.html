@@ -209,18 +209,6 @@ it holds the <em>exact</em> point on the element from the snapping logic, plus a
 <td>Get the snap point if this SnapDetail is <em>hot</em>, the pick point otherwise.</td>
 </tr>
 <tr>
-<td class="h-ishot"><a id="ishot" class="heading-anchor" href="#%s"></a><span class="method-name">isHot</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
-<td>Return true if the pick point was closer than <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/snaprequestprops/#snapaperture'>SnapRequestProps.snapAperture</a> from the generated snap point.</td>
-</tr>
-<tr>
-<td class="h-ispointadjusted"><a id="ispointadjusted" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="ispointadjusted">isPointAdjusted</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
-<td>Determine whether the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/snapdetail/#adjustedpoint'>SnapDetail.adjustedPoint</a> is different than the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/snapdetail/#snappoint'>SnapDetail.snapPoint</a>.</td>
-</tr>
-<tr>
-<td class="h-issnapdetail"><a id="issnapdetail" class="heading-anchor" href="#%s"></a><span class="method-name">isSnapDetail</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
-<td>Type guard for SnapDetail.</td>
-</tr>
-<tr>
 <td class="h-setcurveprimitive"><a id="setcurveprimitive" class="heading-anchor" href="#%s"></a><span class="method-name">setCurvePrimitive</span><span class="method-parenthesis">(</span><span class="method-parameters">primitive?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive'>CurvePrimitive</a>, localToWorld?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, geomType?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/hitgeomtype'>HitGeomType</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
 <td>Set curve primitive and HitGeometryType for this SnapDetail.</td>
 </tr>
@@ -264,6 +252,16 @@ it holds the <em>exact</em> point on the element from the snapping logic, plus a
 <td class="h-heat"><a id="heat" class="heading-anchor" href="#%s"></a><span class="property-name">heat</span> <span class="badge badge-pill badge-primary badge-constructorproperty">ConstructorProperty</span></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/snapheat'>SnapHeat</a></span></td>
 <td>The SnapHeat of this SnapDetail</td>
+</tr>
+<tr>
+<td class="h-ishot"><a id="ishot" class="heading-anchor" href="#%s"></a><span class="property-name">isHot</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> boolean</span></td>
+<td>Return true if the pick point was closer than <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/snaprequestprops/#snapaperture'>SnapRequestProps.snapAperture</a> from the generated snap point.</td>
+</tr>
+<tr>
+<td class="h-ispointadjusted"><a id="ispointadjusted" class="heading-anchor" href="#%s"></a><span class="property-name">isPointAdjusted</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> boolean</span></td>
+<td>Determine whether the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/snapdetail/#adjustedpoint'>SnapDetail.adjustedPoint</a> is different than the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/snapdetail/#snappoint'>SnapDetail.snapPoint</a>. This happens, for example, when points are adjusted for grids, acs plane snap, and AccuDraw.</td>
 </tr>
 <tr>
 <td class="h-normal"><a id="normal" class="heading-anchor" href="#%s"></a><span class="property-name">normal</span></td>
@@ -357,7 +355,7 @@ it holds the <em>exact</em> point on the element from the snapping logic, plus a
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 August, 2018 @ 04:35:52 pm -04:00</span>
+                <span class='date-updated'>15 August, 2018 @ 08:10:27 pm -04:00</span>
             </p>
 
             
@@ -412,15 +410,6 @@ it holds the <em>exact</em> point on the element from the snapping logic, plus a
                                                     <a class='title solo-title menu-text' href="#getpoint">getPoint</a>
                                             </li>
                                             <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#ishot">isHot</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#ispointadjusted">isPointAdjusted</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#issnapdetail">isSnapDetail</a>
-                                            </li>
-                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#setcurveprimitive">setCurvePrimitive</a>
                                             </li>
                                             <li class='nav-item item '>
@@ -456,6 +445,12 @@ it holds the <em>exact</em> point on the element from the snapping logic, plus a
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#heat">heat</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#ishot">isHot</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#ispointadjusted">isPointAdjusted</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#normal">normal</a>

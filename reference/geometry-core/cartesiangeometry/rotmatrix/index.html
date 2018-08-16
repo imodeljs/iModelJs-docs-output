@@ -643,6 +643,14 @@ also hold scaling and skewing.</li>
 <td>* return a vector that is perpendicular to the input direction.</td>
 </tr>
 <tr>
+<td class="h-createrigidviewaxesztowardseye"><a id="createrigidviewaxesztowardseye" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="createrigidviewaxesztowardseye">createRigidViewAxesZTowardsEye</a></span><span class="method-parenthesis">(</span><span class="method-parameters">x: number, y: number, z: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td>create a rigid coordinate frame with:<br><em> column z points from origin to x,y,z<br></em> column x is perpendicular and in the xy plane<br>* column y is perpendicular to both.</td>
+</tr>
+<tr>
+<td class="h-createrotationaroundaxisindex"><a id="createrotationaroundaxisindex" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="createrotationaroundaxisindex">createRotationAroundAxisIndex</a></span><span class="method-parenthesis">(</span><span class="method-parameters">axisIndex: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/axis'>AxisIndex</a>, angle: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/angle'>Angle</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td></td>
+</tr>
+<tr>
 <td class="h-createrotationaroundvector"><a id="createrotationaroundvector" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="createrotationaroundvector">createRotationAroundVector</a></span><span class="method-parenthesis">(</span><span class="method-parameters">axis: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a>, angle: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/angle'>Angle</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a> | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
 <td></td>
 </tr>
@@ -667,8 +675,16 @@ also hold scaling and skewing.</li>
 <td>Create a matrix from column vectors, shuffled into place per AxisTriple</td>
 </tr>
 <tr>
+<td class="h-createstandardworldtoview"><a id="createstandardworldtoview" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="createstandardworldtoview">createStandardWorldToView</a></span><span class="method-parenthesis">(</span><span class="method-parameters">index: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/standardview'>StandardViewIndex</a>, invert: boolean = false, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td>Create a rotation matrix for one of the 8 standard views.</td>
+</tr>
+<tr>
 <td class="h-createuniformscale"><a id="createuniformscale" class="heading-anchor" href="#%s"></a><span class="method-name">createUniformScale</span><span class="method-parenthesis">(</span><span class="method-parameters">scaleFactor: number</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
 <td>Create a matrix with uniform scale factors</td>
+</tr>
+<tr>
+<td class="h-createviewedaxes"><a id="createviewedaxes" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="createviewedaxes">createViewedAxes</a></span><span class="method-parenthesis">(</span><span class="method-parameters">rightVector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a>, upVector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a>, leftNoneRight: number = 0, topNoneBottom: number = 0</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a> | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td>Create a matrix with<br><em> ColumnX points in the rightVector direction<br></em> ColumnY points in in the upVectorDirection<br>* ColumnZ is a unit cross product.</td>
 </tr>
 <tr>
 <td class="h-createzero"><a id="createzero" class="heading-anchor" href="#%s"></a><span class="method-name">createZero</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
@@ -688,14 +704,19 @@ also hold scaling and skewing.</li>
 <th>Description</th>
 </tr>
 <tr>
+<td class="h-_identity"><a id="_identity" class="heading-anchor" href="#%s"></a><span class="property-name">_identity</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a></span></td>
+<td></td>
+</tr>
+<tr>
 <td class="h-coffs"><a id="coffs" class="heading-anchor" href="#%s"></a><span class="property-name">coffs</span></td>
 <td><span class="method-output">Float64Array</span></td>
 <td></td>
 </tr>
 <tr>
-<td class="h-identity"><a id="identity" class="heading-anchor" href="#%s"></a><span class="property-name">identity</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a></span></td>
-<td></td>
+<td class="h-identity"><a id="identity" class="heading-anchor" href="#%s"></a><span class="property-name">identity</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a></span></td>
+<td>The identity RotMatrix. Value is frozen and cannot be modified.</td>
 </tr>
 <tr>
 <td class="h-inversecoffs"><a id="inversecoffs" class="heading-anchor" href="#%s"></a><span class="property-name">inverseCoffs</span></td>
@@ -727,7 +748,7 @@ also hold scaling and skewing.</li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 August, 2018 @ 04:35:45 pm -04:00</span>
+                <span class='date-updated'>15 August, 2018 @ 08:10:17 pm -04:00</span>
             </p>
 
             
@@ -1097,6 +1118,12 @@ also hold scaling and skewing.</li>
                                                     <a class='title solo-title menu-text' href="#createrigidheadsupfavorxyplane">createRigidHeadsUpFavorXYPlane</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#createrigidviewaxesztowardseye">createRigidViewAxesZTowardsEye</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#createrotationaroundaxisindex">createRotationAroundAxisIndex</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#createrotationaroundvector">createRotationAroundVector</a>
                                             </li>
                                             <li class='nav-item item '>
@@ -1115,7 +1142,13 @@ also hold scaling and skewing.</li>
                                                     <a class='title solo-title menu-text' href="#createshuffledcolumns">createShuffledColumns</a>
                                             </li>
                                             <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#createstandardworldtoview">createStandardWorldToView</a>
+                                            </li>
+                                            <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#createuniformscale">createUniformScale</a>
+                                            </li>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#createviewedaxes">createViewedAxes</a>
                                             </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#createzero">createZero</a>
@@ -1134,6 +1167,9 @@ also hold scaling and skewing.</li>
                                     <i class='dropdown icon'></i>
                                     </a>
                                     <ul id="inner-nav-properties" class='inner-nav'>
+                                            <li class='nav-item item '>
+                                                    <a class='title solo-title menu-text' href="#_identity">_identity</a>
+                                            </li>
                                             <li class='nav-item item '>
                                                     <a class='title solo-title menu-text' href="#coffs">coffs</a>
                                             </li>

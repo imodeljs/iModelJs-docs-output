@@ -206,7 +206,7 @@ and touch gestures into view navigation operations like pan, zoom, rotate, and f
 <td></td>
 </tr>
 <tr>
-<td class="h-ontouchmovestart"><a id="ontouchmovestart" class="heading-anchor" href="#%s"></a><span class="method-name">onTouchMoveStart</span><span class="method-parenthesis">(</span><span class="method-parameters">_ev: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/betouchevent'>BeTouchEvent</a>, startEv: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/betouchevent'>BeTouchEvent</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/eventhandled'>EventHandled</a>&gt;</span></td>
+<td class="h-ontouchmovestart"><a id="ontouchmovestart" class="heading-anchor" href="#%s"></a><span class="method-name">onTouchMoveStart</span><span class="method-parenthesis">(</span><span class="method-parameters">ev: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/betouchevent'>BeTouchEvent</a>, startEv: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/betouchevent'>BeTouchEvent</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/eventhandled'>EventHandled</a>&gt;</span></td>
 <td></td>
 </tr>
 <tr>
@@ -250,10 +250,10 @@ and touch gestures into view navigation operations like pan, zoom, rotate, and f
 <tr>
 <td class="h-gettooltip"><a id="gettooltip" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/gettooltip'>getToolTip</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_hit: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/hitdetail'>HitDetail</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;string&gt;</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool'>InteractiveTool</a></span></td>
-<td>Invoked just before the locate tooltip is displayed to retrieve the info text.</td>
+<td>Invoked before the locate tooltip is displayed to retrieve the information about the located element.</td>
 </tr>
 <tr>
-<td class="h-iscompatibleviewport"><a id="iscompatibleviewport" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/#iscompatibleviewport'>isCompatibleViewport</a></span><span class="method-parenthesis">(</span><span class="method-parameters">vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>, _isSelectedViewChange: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
+<td class="h-iscompatibleviewport"><a id="iscompatibleviewport" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/#iscompatibleviewport'>isCompatibleViewport</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>, _isSelectedViewChange: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool'>InteractiveTool</a></span></td>
 <td></td>
 </tr>
@@ -295,7 +295,7 @@ and touch gestures into view navigation operations like pan, zoom, rotate, and f
 <tr>
 <td class="h-onkeytransition"><a id="onkeytransition" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/onkeytransition'>onKeyTransition</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_wentDown: boolean, _keyEvent: KeyboardEvent</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/eventhandled'>EventHandled</a>&gt;</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool'>InteractiveTool</a></span></td>
-<td>Called when keys are pressed or released.</td>
+<td>Called when any key is pressed or released.</td>
 </tr>
 <tr>
 <td class="h-onmiddlebuttondown"><a id="onmiddlebuttondown" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/onmiddlebuttondown'>onMiddleButtonDown</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_ev: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/bebuttonevent'>BeButtonEvent</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/eventhandled'>EventHandled</a>&gt;</span></td>
@@ -303,9 +303,9 @@ and touch gestures into view navigation operations like pan, zoom, rotate, and f
 <td>Invoked when the middle mouse button is pressed.</td>
 </tr>
 <tr>
-<td class="h-onmodifierkeytransition"><a id="onmodifierkeytransition" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/onmodifierkeytransition'>onModifierKeyTransition</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_wentDown: boolean, _modifier: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/bemodifierkeys'>BeModifierKeys</a>, _event: KeyboardEvent</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;boolean&gt;</span></td>
+<td class="h-onmodifierkeytransition"><a id="onmodifierkeytransition" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/onmodifierkeytransition'>onModifierKeyTransition</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_wentDown: boolean, _modifier: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/bemodifierkeys'>BeModifierKeys</a>, _event: KeyboardEvent</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/eventhandled'>EventHandled</a>&gt;</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool'>InteractiveTool</a></span></td>
-<td>Called when Control, Shift, or Alt qualifier keys are pressed or released.</td>
+<td>Called when Control, Shift, or Alt modifier keys are pressed or released.</td>
 </tr>
 <tr>
 <td class="h-onmouseenddrag"><a id="onmouseenddrag" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/onmouseenddrag'>onMouseEndDrag</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ev: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/bebuttonevent'>BeButtonEvent</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/eventhandled'>EventHandled</a>&gt;</span></td>
@@ -385,7 +385,7 @@ and touch gestures into view navigation operations like pan, zoom, rotate, and f
 <tr>
 <td class="h-onunsuspend"><a id="onunsuspend" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/onunsuspend'>onUnsuspend</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool'>InteractiveTool</a></span></td>
-<td>Notification of a vViewTool or InputCollector exiting and this tool is being unsuspended.</td>
+<td>Notification of a ViewTool or InputCollector exiting and this tool is being unsuspended.</td>
 </tr>
 <tr>
 <td class="h-register"><a id="register" class="heading-anchor" href="#%s"></a><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/tool/register'>register</a></span><span class="method-parenthesis">(</span><span class="method-parameters">namespace?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-i18n/appadministration/i18nnamespace'>I18NNamespace</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
@@ -451,10 +451,10 @@ and touch gestures into view navigation operations like pan, zoom, rotate, and f
 <td>Get the localized keyin string for this Tool class. This returns the value of &quot;tools.&quot; + this.toolId + &quot;.keyin&quot; from the<br>.json file for the current locale of its registered Namespace (e.g. &quot;en/MyApp.json&quot;)</td>
 </tr>
 <tr>
-<td class="h-namespace"><a id="namespace" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/tool/#namespace'>namespace</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td class="h-namespace"><a id="namespace" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/tool/namespace'>namespace</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-i18n/appadministration/i18nnamespace'>I18NNamespace</a></span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/tool'>Tool</a></span></td>
-<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-i18n/appadministration/i18nnamespace'>I18NNamespace</a> that provides localized strings for this Tool</td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-i18n/appadministration/i18nnamespace'>I18NNamespace</a> that provides localized strings for this Tool.</td>
 </tr>
 <tr>
 <td class="h-receiveddownevent"><a id="receiveddownevent" class="heading-anchor" href="#%s"></a><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/#receiveddownevent'>receivedDownEvent</a></span></td>
@@ -474,7 +474,7 @@ and touch gestures into view navigation operations like pan, zoom, rotate, and f
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 August, 2018 @ 04:35:53 pm -04:00</span>
+                <span class='date-updated'>15 August, 2018 @ 08:10:28 pm -04:00</span>
             </p>
 
             

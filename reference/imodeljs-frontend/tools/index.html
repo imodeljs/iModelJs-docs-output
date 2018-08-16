@@ -216,6 +216,10 @@
 <td>The tool that performs a fit view</td>
 </tr>
 <tr>
+<td class="h-flyviewtool"><a id="flyviewtool" class="heading-anchor" href="#%s"></a><a href="flyviewtool">FlyViewTool</a></td>
+<td>tool that performs the fly operation</td>
+</tr>
+<tr>
 <td class="h-fuzzysearch"><a id="fuzzysearch" class="heading-anchor" href="#%s"></a><a href="fuzzysearch">FuzzySearch</a></td>
 <td></td>
 </tr>
@@ -232,7 +236,11 @@
 <td>A Tool that may be installed, via <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/tooladmin'>ToolAdmin</a>, to handle user input.</td>
 </tr>
 <tr>
-<td class="h-pantool"><a id="pantool" class="heading-anchor" href="#%s"></a><a href="pantool">PanTool</a></td>
+<td class="h-lookviewtool"><a id="lookviewtool" class="heading-anchor" href="#%s"></a><a href="lookviewtool">LookViewTool</a></td>
+<td>tool that performs the look operation</td>
+</tr>
+<tr>
+<td class="h-panviewtool"><a id="panviewtool" class="heading-anchor" href="#%s"></a><a href="panviewtool">PanViewTool</a></td>
 <td>The tool that performs a Pan view operation</td>
 </tr>
 <tr>
@@ -240,8 +248,12 @@
 <td>The PrimitiveTool class can be used to implement a primitive command.</td>
 </tr>
 <tr>
-<td class="h-rotatetool"><a id="rotatetool" class="heading-anchor" href="#%s"></a><a href="rotatetool">RotateTool</a></td>
+<td class="h-rotateviewtool"><a id="rotateviewtool" class="heading-anchor" href="#%s"></a><a href="rotateviewtool">RotateViewTool</a></td>
 <td>tool that performs a Rotate view operation</td>
+</tr>
+<tr>
+<td class="h-scrollviewtool"><a id="scrollviewtool" class="heading-anchor" href="#%s"></a><a href="scrollviewtool">ScrollViewTool</a></td>
+<td>tool that performs the scroll operation</td>
 </tr>
 <tr>
 <td class="h-tool"><a id="tool" class="heading-anchor" href="#%s"></a><a href="tool">Tool</a></td>
@@ -260,28 +272,16 @@
 <td>Settings that control the behavior of built-in tools.</td>
 </tr>
 <tr>
-<td class="h-viewchangerendermodetool"><a id="viewchangerendermodetool" class="heading-anchor" href="#%s"></a><a href="viewchangerendermodetool">ViewChangeRenderModeTool</a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-viewlooktool"><a id="viewlooktool" class="heading-anchor" href="#%s"></a><a href="viewlooktool">ViewLookTool</a></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-viewmanip"><a id="viewmanip" class="heading-anchor" href="#%s"></a><a href="viewmanip">ViewManip</a></td>
 <td>Base class for tools that manipulate the frustum of a Viewport.</td>
 </tr>
 <tr>
 <td class="h-viewredotool"><a id="viewredotool" class="heading-anchor" href="#%s"></a><a href="viewredotool">ViewRedoTool</a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-viewscrolltool"><a id="viewscrolltool" class="heading-anchor" href="#%s"></a><a href="viewscrolltool">ViewScrollTool</a></td>
-<td></td>
+<td>tool that performs view redo operation.</td>
 </tr>
 <tr>
 <td class="h-viewtogglecameratool"><a id="viewtogglecameratool" class="heading-anchor" href="#%s"></a><a href="viewtogglecameratool">ViewToggleCameraTool</a></td>
-<td></td>
+<td>tool that toggles the camera on/off in a spatial view</td>
 </tr>
 <tr>
 <td class="h-viewtool"><a id="viewtool" class="heading-anchor" href="#%s"></a><a href="viewtool">ViewTool</a></td>
@@ -289,15 +289,19 @@
 </tr>
 <tr>
 <td class="h-viewundotool"><a id="viewundotool" class="heading-anchor" href="#%s"></a><a href="viewundotool">ViewUndoTool</a></td>
-<td></td>
+<td>tool that performs view undo operation.</td>
 </tr>
 <tr>
-<td class="h-viewwalktool"><a id="viewwalktool" class="heading-anchor" href="#%s"></a><a href="viewwalktool">ViewWalkTool</a></td>
+<td class="h-walkviewtool"><a id="walkviewtool" class="heading-anchor" href="#%s"></a><a href="walkviewtool">WalkViewTool</a></td>
 <td>tool that performs the walk operation</td>
 </tr>
 <tr>
 <td class="h-windowareatool"><a id="windowareatool" class="heading-anchor" href="#%s"></a><a href="windowareatool">WindowAreaTool</a></td>
 <td>tool that performs a Window-area view operation</td>
+</tr>
+<tr>
+<td class="h-zoomviewtool"><a id="zoomviewtool" class="heading-anchor" href="#%s"></a><a href="zoomviewtool">ZoomViewTool</a></td>
+<td>tool that performs the zoom operation</td>
 </tr>
 </tbody></table><h2 class="h-enumerations"><a id="enumerations" class="heading-anchor" href="#%s"></a>Enumerations</h2>
 <table class="table table-responsive"><tbody><tr>
@@ -326,7 +330,7 @@
 </tr>
 <tr>
 <td class="h-coordsource"><a id="coordsource" class="heading-anchor" href="#%s"></a><a href="coordsource">CoordSource</a></td>
-<td>The <em>source</em> that generated a point.</td>
+<td>The <em>source</em> that generated a coordinate.</td>
 </tr>
 <tr>
 <td class="h-elemmethod"><a id="elemmethod" class="heading-anchor" href="#%s"></a><a href="elemmethod">ElemMethod</a></td>
@@ -419,7 +423,7 @@
 </tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 August, 2018 @ 04:35:56 pm -04:00</span>
+                <span class='date-updated'>15 August, 2018 @ 08:10:31 pm -04:00</span>
             </p>
 
             
@@ -474,6 +478,9 @@
                                     <a class='title solo-title menu-text' href="#fitviewtool">FitViewTool</a>
                             </li>
                             <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#flyviewtool">FlyViewTool</a>
+                            </li>
+                            <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#fuzzysearch">FuzzySearch</a>
                             </li>
                             <li class='nav-item item '>
@@ -486,13 +493,19 @@
                                     <a class='title solo-title menu-text' href="#interactivetool">InteractiveTool</a>
                             </li>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#pantool">PanTool</a>
+                                    <a class='title solo-title menu-text' href="#lookviewtool">LookViewTool</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#panviewtool">PanViewTool</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#primitivetool">PrimitiveTool</a>
                             </li>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#rotatetool">RotateTool</a>
+                                    <a class='title solo-title menu-text' href="#rotateviewtool">RotateViewTool</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#scrollviewtool">ScrollViewTool</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#tool">Tool</a>
@@ -507,19 +520,10 @@
                                     <a class='title solo-title menu-text' href="#toolsettings">ToolSettings</a>
                             </li>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#viewchangerendermodetool">ViewChangeRenderModeTool</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#viewlooktool">ViewLookTool</a>
-                            </li>
-                            <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#viewmanip">ViewManip</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#viewredotool">ViewRedoTool</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#viewscrolltool">ViewScrollTool</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#viewtogglecameratool">ViewToggleCameraTool</a>
@@ -531,10 +535,13 @@
                                     <a class='title solo-title menu-text' href="#viewundotool">ViewUndoTool</a>
                             </li>
                             <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#viewwalktool">ViewWalkTool</a>
+                                    <a class='title solo-title menu-text' href="#walkviewtool">WalkViewTool</a>
                             </li>
                             <li class='nav-item item '>
                                     <a class='title solo-title menu-text' href="#windowareatool">WindowAreaTool</a>
+                            </li>
+                            <li class='nav-item item '>
+                                    <a class='title solo-title menu-text' href="#zoomviewtool">ZoomViewTool</a>
                             </li>
                     </ul>
             </li>
