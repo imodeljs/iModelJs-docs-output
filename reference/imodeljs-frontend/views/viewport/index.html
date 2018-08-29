@@ -110,19 +110,19 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/all/" class="table-of-contents-link">All</a></li>
         </ul>
         <hr>
-        <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/&apos;&gt;imodeljs-common&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/" class="table-of-contents-link">imodeljs-common</a></h3>
+        <h3 id="imodeljs-common">imodeljs-common</h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/" class="table-of-contents-link">Wire Formats</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/" class="table-of-contents-link">Codes</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/" class="table-of-contents-link">Geometry</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/" class="table-of-contents-link">Views</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/" class="table-of-contents-link">Symbology</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/" class="table-of-contents-link">Rendering</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/" class="table-of-contents-link">iModels</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/" class="table-of-contents-link">RPC Interface</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/" class="table-of-contents-link">ECSQL</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/" class="table-of-contents-link">Feature Gates</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/all/" class="table-of-contents-link">All</a></li>
+        <li>Wire Formats</li>
+        <li>Codes</li>
+        <li>Geometry</li>
+        <li>Views</li>
+        <li>Symbology</li>
+        <li>Rendering</li>
+        <li>iModels</li>
+        <li>RPC Interface</li>
+        <li>ECSQL</li>
+        <li>Feature Gates</li>
+        <li>All</li>
         </ul>
         <hr>
         <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/&apos;&gt;imodeljs-clients&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/" class="table-of-contents-link">imodeljs-clients</a></h3>
@@ -181,7 +181,7 @@ modify the ViewState object. Changes to the ViewState are only reflected in a Vi
 for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing tools.</p>
 <h3 class="h-extended-by"><a id="extended-by" class="heading-anchor" href="#%s"></a>Extended by</h3>
 <ul>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/offscreenviewport'>OffScreenViewport</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport'>ScreenViewport</a></li>
 </ul>
 <h3 class="h-methods"><a id="methods" class="heading-anchor" href="#%s"></a>Methods</h3>
 <table class="table table-responsive"><tbody><tr>
@@ -189,7 +189,7 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-constructor"><a id="constructor" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="constructor">constructor</a></span><span class="method-parenthesis">(</span><span class="method-parameters">canvas: HTMLCanvasElement, viewState: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a>, target?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendertarget'>RenderTarget</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
+<td class="h-constructor"><a id="constructor" class="heading-anchor" href="#%s"></a><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">target: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendertarget'>RenderTarget</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span> <span class="badge badge-pill badge-primary badge-protected">Protected</span></td>
 <td>Construct a new Viewport</td>
 </tr>
 <tr>
@@ -197,39 +197,23 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>Change the ViewState of this Viewport</td>
 </tr>
 <tr>
-<td class="h-clearundo"><a id="clearundo" class="heading-anchor" href="#%s"></a><span class="method-name">clearUndo</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
-<td>Clear the view undo buffers of this Viewport.</td>
-</tr>
-<tr>
 <td class="h-determinevisibledepthrange"><a id="determinevisibledepthrange" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="determinevisibledepthrange">determineVisibleDepthRange</a></span><span class="method-parenthesis">(</span><span class="method-parameters">rect?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/depthrangenpc'>DepthRangeNpc</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/depthrangenpc'>DepthRangeNpc</a> | undefined</span></td>
 <td>Computes the range of npc depth values for a region of the screen</td>
-</tr>
-<tr>
-<td class="h-doredo"><a id="doredo" class="heading-anchor" href="#%s"></a><span class="method-name">doRedo</span><span class="method-parenthesis">(</span><span class="method-parameters">animationTime?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/beduration'>BeDuration</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
-<td>Re-applies the most recently un-done change to the Viewport from the redo stack.</td>
-</tr>
-<tr>
-<td class="h-doundo"><a id="doundo" class="heading-anchor" href="#%s"></a><span class="method-name">doUndo</span><span class="method-parenthesis">(</span><span class="method-parameters">animationTime?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/beduration'>BeDuration</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
-<td>Reverses the most recent change to the Viewport from the undo stack.</td>
 </tr>
 <tr>
 <td class="h-getauxcoordorigin"><a id="getauxcoordorigin" class="heading-anchor" href="#%s"></a><span class="method-name">getAuxCoordOrigin</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span></td>
 <td></td>
 </tr>
 <tr>
-<td class="h-getauxcoordrotation"><a id="getauxcoordrotation" class="heading-anchor" href="#%s"></a><span class="method-name">getAuxCoordRotation</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a></span></td>
+<td class="h-getauxcoordrotation"><a id="getauxcoordrotation" class="heading-anchor" href="#%s"></a><span class="method-name">getAuxCoordRotation</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/matrix3d'>Matrix3d</a></span></td>
 <td></td>
-</tr>
-<tr>
-<td class="h-getclientrect"><a id="getclientrect" class="heading-anchor" href="#%s"></a><span class="method-name">getClientRect</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> ClientRect</span></td>
-<td>Get the ClientRect of the canvas for this Viewport.</td>
 </tr>
 <tr>
 <td class="h-getcontrasttobackgroundcolor"><a id="getcontrasttobackgroundcolor" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="getcontrasttobackgroundcolor">getContrastToBackgroundColor</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> ColorDef</span></td>
 <td>Get a color that will contrast to the current background color of this Viewport.</td>
 </tr>
 <tr>
-<td class="h-getfrustum"><a id="getfrustum" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="getfrustum">getFrustum</a></span><span class="method-parenthesis">(</span><span class="method-parameters">sys: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/coordsystem'>CoordSystem</a> = CoordSystem.World, adjustedBox: boolean = true, box?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/frustum'>Frustum</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/frustum'>Frustum</a></span></td>
+<td class="h-getfrustum"><a id="getfrustum" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="getfrustum">getFrustum</a></span><span class="method-parenthesis">(</span><span class="method-parameters">sys: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/coordsystem'>CoordSystem</a> = CoordSystem.World, adjustedBox: boolean = true, box?: Frustum</span><span class="method-parenthesis">):</span><span class="method-output"> Frustum</span></td>
 <td>Get an 8-point Frustum corresponding to the 8 corners of the Viewport in the specified coordinate system.</td>
 </tr>
 <tr>
@@ -245,12 +229,8 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>Get the width of a pixel (a unit vector in the x direction in view coordinates) at a given point in world coordinates, returning the result in meters (world units).</td>
 </tr>
 <tr>
-<td class="h-getworldfrustum"><a id="getworldfrustum" class="heading-anchor" href="#%s"></a><span class="method-name">getWorldFrustum</span><span class="method-parenthesis">(</span><span class="method-parameters">box?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/frustum'>Frustum</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/frustum'>Frustum</a></span></td>
+<td class="h-getworldfrustum"><a id="getworldfrustum" class="heading-anchor" href="#%s"></a><span class="method-name">getWorldFrustum</span><span class="method-parenthesis">(</span><span class="method-parameters">box?: Frustum</span><span class="method-parenthesis">):</span><span class="method-output"> Frustum</span></td>
 <td>Get a copy of the current (adjusted) frustum of this viewport, in world coordinates.</td>
-</tr>
-<tr>
-<td class="h-iscameraon"><a id="iscameraon" class="heading-anchor" href="#%s"></a><span class="method-name">isCameraOn</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
-<td>True if this is a 3d view with the camera turned on.</td>
 </tr>
 <tr>
 <td class="h-npctoview"><a id="npctoview" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="npctoview">npcToView</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pt: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span></td>
@@ -269,15 +249,11 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>Convert an array of points from CoordSystem.Npc to CoordSystem.World</td>
 </tr>
 <tr>
-<td class="h-picknearestvisiblegeometry"><a id="picknearestvisiblegeometry" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="picknearestvisiblegeometry">pickNearestVisibleGeometry</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pickPoint: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, radius: number, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> | undefined</span></td>
-<td>Find a point on geometry visible in this Viewport, within a radius of supplied pick point.</td>
-</tr>
-<tr>
 <td class="h-pixelsfrominches"><a id="pixelsfrominches" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="pixelsfrominches">pixelsFromInches</a></span><span class="method-parenthesis">(</span><span class="method-parameters">inches: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span></td>
 <td>Converts inches to pixels based on screen DPI.</td>
 </tr>
 <tr>
-<td class="h-readimage"><a id="readimage" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="readimage">readImage</a></span><span class="method-parenthesis">(</span><span class="method-parameters">rect: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a> = new ViewRect(0, 0, -1, -1), targetSize: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a> = Point2d.createZero()</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/imagebuffer'>ImageBuffer</a> | undefined</span></td>
+<td class="h-readimage"><a id="readimage" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="readimage">readImage</a></span><span class="method-parenthesis">(</span><span class="method-parameters">rect: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a> = new ViewRect(0, 0, -1, -1), targetSize: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a> = Point2d.createZero()</span><span class="method-parenthesis">):</span><span class="method-output"> ImageBuffer | undefined</span></td>
 <td>Read the current image from this viewport from the rendering system.</td>
 </tr>
 <tr>
@@ -285,24 +261,8 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>Read selected data about each pixel within a rectangular region of this Viewport.</td>
 </tr>
 <tr>
-<td class="h-resetundo"><a id="resetundo" class="heading-anchor" href="#%s"></a><span class="method-name">resetUndo</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
-<td>Clear the view undo buffer and establish the current ViewState as the new baseline.</td>
-</tr>
-<tr>
-<td class="h-saveviewundo"><a id="saveviewundo" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="saveviewundo">saveViewUndo</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
-<td>Check whether the ViewState of this Viewport has changed since the last call to this function.</td>
-</tr>
-<tr>
 <td class="h-scroll"><a id="scroll" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="scroll">scroll</a></span><span class="method-parenthesis">(</span><span class="method-parameters">screenDist: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstatus'>ViewStatus</a></span></td>
 <td>Scroll the view by a given number of pixels.</td>
-</tr>
-<tr>
-<td class="h-setcursor"><a id="setcursor" class="heading-anchor" href="#%s"></a><span class="method-name">setCursor</span><span class="method-parenthesis">(</span><span class="method-parameters">cursor: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/becursor'>BeCursor</a> = BeCursor.Default</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
-<td>Change the cursor for this Viewport</td>
-</tr>
-<tr>
-<td class="h-seteventcontroller"><a id="seteventcontroller" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="seteventcontroller">setEventController</a></span><span class="method-parenthesis">(</span><span class="method-parameters">controller: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/eventcontroller'>EventController</a> | undefined</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
-<td>Set the event controller for this Viewport.</td>
 </tr>
 <tr>
 <td class="h-setflashed"><a id="setflashed" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="setflashed">setFlashed</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: string | undefined, duration: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
@@ -317,11 +277,11 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>Establish the parameters of this Viewport from the current information in its ViewState</td>
 </tr>
 <tr>
-<td class="h-setupviewfromfrustum"><a id="setupviewfromfrustum" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="setupviewfromfrustum">setupViewFromFrustum</a></span><span class="method-parenthesis">(</span><span class="method-parameters">inFrustum: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/frustum'>Frustum</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
+<td class="h-setupviewfromfrustum"><a id="setupviewfromfrustum" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="setupviewfromfrustum">setupViewFromFrustum</a></span><span class="method-parenthesis">(</span><span class="method-parameters">inFrustum: Frustum</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
 <td>Shortcut to call view.setupFromFrustum and then <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#setupfromview'>Viewport.setupFromView</a></td>
 </tr>
 <tr>
-<td class="h-synchwithview"><a id="synchwithview" class="heading-anchor" href="#%s"></a><span class="method-name">synchWithView</span><span class="method-parenthesis">(</span><span class="method-parameters">saveInUndo: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
+<td class="h-synchwithview"><a id="synchwithview" class="heading-anchor" href="#%s"></a><span class="method-name">synchWithView</span><span class="method-parenthesis">(</span><span class="method-parameters">_saveInUndo: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
 <td>Call <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#setupfromview'>Viewport.setupFromView</a> on this Viewport and save previous state in view undo stack</td>
 </tr>
 <tr>
@@ -381,7 +341,7 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>Zoom the view by a scale factor, placing the new center at the projection of the given point (world coordinates)<br>on the focal plane.</td>
 </tr>
 <tr>
-<td class="h-zoomtoelements"><a id="zoomtoelements" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="zoomtoelements">zoomToElements</a></span><span class="method-parenthesis">(</span><span class="method-parameters">placements: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/placement3dprops'>Placement3dProps</a>[] | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/placement2dprops'>Placement2dProps</a>[] | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/placement2dprops'>Placement2dProps</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/placement3dprops'>Placement3dProps</a>, margin?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/marginpercent'>MarginPercent</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
+<td class="h-zoomtoelements"><a id="zoomtoelements" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="zoomtoelements">zoomToElements</a></span><span class="method-parenthesis">(</span><span class="method-parameters">placements: Placement3dProps[] | Placement2dProps[] | Placement2dProps | Placement3dProps, margin?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/marginpercent'>MarginPercent</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
 <td>Zoom the view to a show the tightest box around a given set of elements.</td>
 </tr>
 <tr>
@@ -395,6 +355,11 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <th>Description</th>
 </tr>
 <tr>
+<td class="h-_viewrange"><a id="_viewrange" class="heading-anchor" href="#%s"></a><span class="property-name">_viewRange</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a></span></td>
+<td></td>
+</tr>
+<tr>
 <td class="h-auxcoordsystem"><a id="auxcoordsystem" class="heading-anchor" href="#%s"></a><span class="property-name">auxCoordSystem</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/auxcoordsystemstate'>AuxCoordSystemState</a></span></td>
 <td></td>
@@ -403,11 +368,6 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td class="h-backgroundmapplane"><a id="backgroundmapplane" class="heading-anchor" href="#%s"></a><span class="property-name">backgroundMapPlane</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
 <td><span class="method-output"> undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/plane3dbyoriginandunitnormal'>Plane3dByOriginAndUnitNormal</a></span></td>
 <td></td>
-</tr>
-<tr>
-<td class="h-canvas"><a id="canvas" class="heading-anchor" href="#%s"></a><span class="property-name">canvas</span> <span class="badge badge-pill badge-primary badge-constructorproperty">ConstructorProperty</span></td>
-<td><span class="method-output">HTMLCanvasElement</span></td>
-<td>The HTMLCanvasElement for the new Viewport</td>
 </tr>
 <tr>
 <td class="h-continuousrendering"><a id="continuousrendering" class="heading-anchor" href="#%s"></a><span class="property-name">continuousRendering</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span></td>
@@ -436,7 +396,7 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 </tr>
 <tr>
 <td class="h-hilite"><a id="hilite" class="heading-anchor" href="#%s"></a><span class="property-name">hilite</span></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-ninezone/toolsettings/settings'>Settings</a></span></td>
+<td><span class="method-output">Settings</span></td>
 <td>The settings that control how elements are hilited in this Viewport.</td>
 </tr>
 <tr>
@@ -450,29 +410,19 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td></td>
 </tr>
 <tr>
+<td class="h-iscameraon"><a id="iscameraon" class="heading-anchor" href="#%s"></a><span class="property-name">isCameraOn</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> boolean</span></td>
+<td>True if this is a 3d view with the camera turned on.</td>
+</tr>
+<tr>
 <td class="h-isgridon"><a id="isgridon" class="heading-anchor" href="#%s"></a><span class="property-name">isGridOn</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
 <td><span class="method-output"> boolean</span></td>
 <td>Determine whether the Grid display is currently enabled in this Viewport.</td>
 </tr>
 <tr>
-<td class="h-isredopossible"><a id="isredopossible" class="heading-anchor" href="#%s"></a><span class="property-name">isRedoPossible</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
-<td><span class="method-output"> boolean</span></td>
-<td>True if an redoable viewing operation exists on the stack</td>
-</tr>
-<tr>
-<td class="h-isundopossible"><a id="isundopossible" class="heading-anchor" href="#%s"></a><span class="property-name">isUndoPossible</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
-<td><span class="method-output"> boolean</span></td>
-<td>True if an undoable viewing operation exists on the stack</td>
-</tr>
-<tr>
 <td class="h-lastflashedelem"><a id="lastflashedelem" class="heading-anchor" href="#%s"></a><span class="property-name">lastFlashedElem</span></td>
 <td><span class="method-output">undefined | string</span></td>
 <td>Id of last flashed element</td>
-</tr>
-<tr>
-<td class="h-maxundosteps"><a id="maxundosteps" class="heading-anchor" href="#%s"></a><span class="property-name">maxUndoSteps</span></td>
-<td><span class="method-output">number</span></td>
-<td>The number of entries in the view undo/redo buffer.</td>
 </tr>
 <tr>
 <td class="h-nearscale24"><a id="nearscale24" class="heading-anchor" href="#%s"></a><span class="property-name">nearScale24</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
@@ -486,7 +436,7 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 </tr>
 <tr>
 <td class="h-rotmatrix"><a id="rotmatrix" class="heading-anchor" href="#%s"></a><span class="property-name">rotMatrix</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a></span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/matrix3d'>Matrix3d</a></span></td>
 <td></td>
 </tr>
 <tr>
@@ -500,19 +450,14 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>The ViewState for this Viewport</td>
 </tr>
 <tr>
-<td class="h-viewcmdtargetcenter"><a id="viewcmdtargetcenter" class="heading-anchor" href="#%s"></a><span class="property-name">viewCmdTargetCenter</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> | undefined</span></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-viewdelta"><a id="viewdelta" class="heading-anchor" href="#%s"></a><span class="property-name">viewDelta</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a></span></td>
 <td></td>
 </tr>
 <tr>
 <td class="h-viewflags"><a id="viewflags" class="heading-anchor" href="#%s"></a><span class="property-name">viewFlags</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a></span></td>
-<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a> that determine how this Viewport is rendered.</td>
+<td><span class="method-output"> ViewFlags</span></td>
+<td>The ViewFlags that determine how this Viewport is rendered.</td>
 </tr>
 <tr>
 <td class="h-viewfrustum"><a id="viewfrustum" class="heading-anchor" href="#%s"></a><span class="property-name">viewFrustum</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
@@ -534,7 +479,7 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 August, 2018 @ 08:10:29 pm -04:00</span>
+                <span class='date-updated'>28 August, 2018 @ 08:10:07 pm -04:00</span>
             </p>
 
             
@@ -543,284 +488,238 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
             </script>        </article>
     </div>
     <div id='inner-table-of-contents'>
-        <!--
-            - If the page is active
-            - Get all headings and subheadings and list them
-         -->
-        
-        
-        
-        
-        <div id='sticky-container' style="top: 76px; position: fixed;">
-          <h4 class='heading'>On this page</h4>
-            <div id="overview-container" class="clusterize-scroll">
-              <ul id='nav' class='right-nav nav flex-column clusterize-content'>
-                      <li class='nav-item item active typeDocHeader'>
-                    <a data-target="#inner-nav-viewport" class='title' href="#viewport"/>
-                    <b class='dropdown-menu-title menu-text'>Viewport</b>
-                    <i class='dropdown icon'></i>
-                    </a>
-                    <ul id="inner-nav-viewport" class='inner-nav'>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#extended-by">Extended by</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a data-target="#inner-nav-methods" class='title' href="#methods"/>
-                                    <b class='dropdown-menu-title menu-text'>Methods</b>
-                                    <i class='dropdown icon'></i>
-                                    </a>
-                                    <ul id="inner-nav-methods" class='inner-nav'>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#constructor">constructor</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#changeview">changeView</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#clearundo">clearUndo</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#determinevisibledepthrange">determineVisibleDepthRange</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#doredo">doRedo</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#doundo">doUndo</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#getauxcoordorigin">getAuxCoordOrigin</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#getauxcoordrotation">getAuxCoordRotation</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#getclientrect">getClientRect</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#getcontrasttobackgroundcolor">getContrastToBackgroundColor</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#getfrustum">getFrustum</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#getpixeldatanpcpoint">getPixelDataNpcPoint</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#getpixeldataworldpoint">getPixelDataWorldPoint</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#getpixelsizeatpoint">getPixelSizeAtPoint</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#getworldfrustum">getWorldFrustum</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#iscameraon">isCameraOn</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#npctoview">npcToView</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#npctoviewarray">npcToViewArray</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#npctoworld">npcToWorld</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#npctoworldarray">npcToWorldArray</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#picknearestvisiblegeometry">pickNearestVisibleGeometry</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#pixelsfrominches">pixelsFromInches</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#readimage">readImage</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#readpixels">readPixels</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#resetundo">resetUndo</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#saveviewundo">saveViewUndo</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#scroll">scroll</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#setcursor">setCursor</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#seteventcontroller">setEventController</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#setflashed">setFlashed</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#setstandardrotation">setStandardRotation</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#setupfromview">setupFromView</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#setupviewfromfrustum">setupViewFromFrustum</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#synchwithview">synchWithView</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#turncameraon">turnCameraOn</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#view4dtoworld">view4dToWorld</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#view4dtoworldarray">view4dToWorldArray</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#viewtonpc">viewToNpc</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#viewtonpcarray">viewToNpcArray</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#viewtoworld">viewToWorld</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#viewtoworldarray">viewToWorldArray</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#worldtonpc">worldToNpc</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#worldtonpcarray">worldToNpcArray</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#worldtoview">worldToView</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#worldtoview4d">worldToView4d</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#worldtoview4darray">worldToView4dArray</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#worldtoviewarray">worldToViewArray</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#zoom">zoom</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#zoomtoelements">zoomToElements</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#zoomtovolume">zoomToVolume</a>
-                                            </li>
-                                    </ul>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a data-target="#inner-nav-properties" class='title' href="#properties"/>
-                                    <b class='dropdown-menu-title menu-text'>Properties</b>
-                                    <i class='dropdown icon'></i>
-                                    </a>
-                                    <ul id="inner-nav-properties" class='inner-nav'>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#auxcoordsystem">auxCoordSystem</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#backgroundmapplane">backgroundMapPlane</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#canvas">canvas</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#continuousrendering">continuousRendering</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#flashduration">flashDuration</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#flashintensity">flashIntensity</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#flashupdatetime">flashUpdateTime</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#frustfraction">frustFraction</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#hilite">hilite</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#imodel">iModel</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#isaspectratiolocked">isAspectRatioLocked</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#isgridon">isGridOn</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#isredopossible">isRedoPossible</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#isundopossible">isUndoPossible</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#lastflashedelem">lastFlashedElem</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#maxundosteps">maxUndoSteps</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#nearscale24">nearScale24</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#onviewchanged">onViewChanged</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#rotmatrix">rotMatrix</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#undodelay">undoDelay</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#view">view</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#viewcmdtargetcenter">viewCmdTargetCenter</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#viewdelta">viewDelta</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#viewflags">viewFlags</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#viewfrustum">viewFrustum</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#viewrect">viewRect</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#worldtoviewmap">worldToViewMap</a>
-                                            </li>
-                                    </ul>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#defined-in">Defined in</a>
-                            </li>
-                    </ul>
-            </li>
-         
-              </ul>
-            </div>
-          </div>
-        
+       <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item active typeDocHeader'>
+            <a data-target="#inner-nav-viewport" class='title' href="#viewport"/>
+            <b class='dropdown-menu-title menu-text'>Viewport</b>
+            <i class='dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-viewport" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#extended-by">Extended by</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-methods" class='title' href="#methods"/>
+                            <b class='dropdown-menu-title menu-text'>Methods</b>
+                            <i class='dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-methods" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constructor">constructor</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#changeview">changeView</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#determinevisibledepthrange">determineVisibleDepthRange</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getauxcoordorigin">getAuxCoordOrigin</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getauxcoordrotation">getAuxCoordRotation</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getcontrasttobackgroundcolor">getContrastToBackgroundColor</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getfrustum">getFrustum</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getpixeldatanpcpoint">getPixelDataNpcPoint</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getpixeldataworldpoint">getPixelDataWorldPoint</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getpixelsizeatpoint">getPixelSizeAtPoint</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getworldfrustum">getWorldFrustum</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#npctoview">npcToView</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#npctoviewarray">npcToViewArray</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#npctoworld">npcToWorld</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#npctoworldarray">npcToWorldArray</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#pixelsfrominches">pixelsFromInches</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#readimage">readImage</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#readpixels">readPixels</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#scroll">scroll</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setflashed">setFlashed</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setstandardrotation">setStandardRotation</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setupfromview">setupFromView</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setupviewfromfrustum">setupViewFromFrustum</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#synchwithview">synchWithView</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#turncameraon">turnCameraOn</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#view4dtoworld">view4dToWorld</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#view4dtoworldarray">view4dToWorldArray</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#viewtonpc">viewToNpc</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#viewtonpcarray">viewToNpcArray</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#viewtoworld">viewToWorld</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#viewtoworldarray">viewToWorldArray</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#worldtonpc">worldToNpc</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#worldtonpcarray">worldToNpcArray</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#worldtoview">worldToView</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#worldtoview4d">worldToView4d</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#worldtoview4darray">worldToView4dArray</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#worldtoviewarray">worldToViewArray</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#zoom">zoom</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#zoomtoelements">zoomToElements</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#zoomtovolume">zoomToVolume</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-properties" class='title' href="#properties"/>
+                            <b class='dropdown-menu-title menu-text'>Properties</b>
+                            <i class='dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-properties" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#_viewrange">_viewRange</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#auxcoordsystem">auxCoordSystem</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#backgroundmapplane">backgroundMapPlane</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#continuousrendering">continuousRendering</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#flashduration">flashDuration</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#flashintensity">flashIntensity</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#flashupdatetime">flashUpdateTime</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#frustfraction">frustFraction</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#hilite">hilite</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#imodel">iModel</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isaspectratiolocked">isAspectRatioLocked</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#iscameraon">isCameraOn</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isgridon">isGridOn</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#lastflashedelem">lastFlashedElem</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#nearscale24">nearScale24</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#onviewchanged">onViewChanged</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#rotmatrix">rotMatrix</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#undodelay">undoDelay</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#view">view</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#viewdelta">viewDelta</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#viewflags">viewFlags</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#viewfrustum">viewFrustum</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#viewrect">viewRect</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#worldtoviewmap">worldToViewMap</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#defined-in">Defined in</a>
+                    </li>
+            </ul>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
     </div>
 </div>
 

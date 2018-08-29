@@ -76,6 +76,7 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
         </ul>
         <hr>
         <p>&#xA0;</p>
@@ -265,6 +266,9 @@ class Corner {
   public name: string;
   public description?: string; // Correct !!
 }</code></pre>
+<h2 class="h-enforcing-getters-for-certain-function-names"><a id="enforcing-getters-for-certain-function-names" class="heading-anchor" href="#%s"></a>Enforcing getters for certain function names</h2>
+<p>If a public method takes no parameters and its name begins with a keyword such as &quot;is&quot;, &quot;has&quot;, or &quot;want&quot;, the method should be a getter (specified by using the &quot;get&quot; modifier in front of the method name). By doing this, the method may be accessed as a property of the object rather than as a function. This avoids confusion over whether it is necessary to include parenthesis when using the method to gain access to the value.</p>
+<p>This rule will be enforced by the Typescript linter. If the value being returned is expensive to compute, consider using a different name for the method to reflect this. Possible examples may include prefixing the name with words such as &quot;compute&quot; or &quot;calculate&quot;.</p>
 <h2 class="h-dont-repeat-type-names-unnecessarily"><a id="dont-repeat-type-names-unnecessarily" class="heading-anchor" href="#%s"></a>Don&apos;t repeat type names unnecessarily</h2>
 <p>TypeScript is all about adding types to JavaScript. However, the compiler automatically infers type by context, and it is therefore not necessary to decorate every member or variable declaration with its type, if it is obvious. That only adds clutter and obscures the real code. For example,</p>
 <pre class="no-line-numbers"><code class="language-typescript">  let width: number = 7.3; // useless type declaration
@@ -398,7 +402,7 @@ export type XYZProps = { x?: number; y?: number; z?: number } | number[];</code>
 </ol>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 August, 2018 @ 08:10:35 pm -04:00</span>
+                <span class='date-updated'>28 August, 2018 @ 08:10:09 pm -04:00</span>
             </p>
 
             
@@ -407,80 +411,76 @@ export type XYZProps = { x?: number; y?: number; z?: number } | number[];</code>
             </script>        </article>
     </div>
     <div id='inner-table-of-contents'>
-        <!--
-            - If the page is active
-            - Get all headings and subheadings and list them
-         -->
-        
-        
-        
-        
-        <div id='sticky-container' style="top: 76px; position: fixed;">
-          <h4 class='heading'>On this page</h4>
-            <div id="overview-container" class="clusterize-scroll">
-              <ul id='nav' class='right-nav nav flex-column clusterize-content'>
-                      <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#names">Names</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#files">Files</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#types">Types</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#do-not-use-null">Do not use null</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#-and--operators">=== and !== Operators</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#strings">Strings</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#general-constructs">General Constructs</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#preserve-vertical-screen-space">Preserve vertical screen space</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#style">Style</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#return">Return</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#getters-and-setters">Getters and Setters</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#use--syntax-vs---undefined">use &quot;?:&quot; syntax vs. &quot; | undefined&quot;</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#dont-repeat-type-names-unnecessarily">Don't repeat type names unnecessarily</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#error-handling">Error Handling</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#asynchronous-programming">Asynchronous Programming</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#reference-documentation-comments">Reference Documentation Comments</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#defining-json-wire-formats">Defining JSON 'Wire Formats'</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#copyright-notice">Copyright notice</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#source-code-editor">Source Code Editor</a>
-            </li>
-         
-              </ul>
-            </div>
-          </div>
-        
+       <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#names">Names</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#files">Files</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#types">Types</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#do-not-use-null">Do not use null</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#-and--operators">=== and !== Operators</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#strings">Strings</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#general-constructs">General Constructs</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#preserve-vertical-screen-space">Preserve vertical screen space</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#style">Style</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#return">Return</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#getters-and-setters">Getters and Setters</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#use--syntax-vs---undefined">use &quot;?:&quot; syntax vs. &quot; | undefined&quot;</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#enforcing-getters-for-certain-function-names">Enforcing getters for certain function names</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#dont-repeat-type-names-unnecessarily">Don't repeat type names unnecessarily</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#error-handling">Error Handling</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#asynchronous-programming">Asynchronous Programming</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#reference-documentation-comments">Reference Documentation Comments</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#defining-json-wire-formats">Defining JSON 'Wire Formats'</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#copyright-notice">Copyright notice</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#source-code-editor">Source Code Editor</a>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
     </div>
 </div>
 

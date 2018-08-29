@@ -163,8 +163,19 @@
 <li>If any aspect (ECClass which derives from <strong>ElementMultiAspect</strong>) exists, there must be a relationship that derives from the <strong>ElementOwnsMultiAspects</strong> relationship with this class supported as a target constraint.</li>
 <li>If any aspect (ECClass which derives from <strong>ElementUniqueAspect</strong>) exists, there must be a relationship that derives from the <strong>ElementOwnsUniqueAspect</strong> relationship with this class supported as a target constraint.</li>
 <li>Entity classes cannot implement both <strong>bis:IParentElement</strong> and <strong>bis:ISubModeledElement</strong>.</li>
-<li>Entity classes cannot subclass <strong>bis:PhysicalModel</strong>.</li>
-<li>Entity classes cannot subclass <strong>bis:SpatialLocationModel</strong>.</li>
+<li>Entity classes cannot subclass the following classes:<ul>
+<li><strong>bis:PhysicalModel</strong></li>
+<li><strong>bis:SpatialLocationModel</strong></li>
+<li><strong>bis:GroupInformationModel</strong></li>
+<li><strong>bis:InformationRecordModel</strong></li>
+<li><strong>bis:DefinitionModel</strong><ul>
+<li><strong>bis:DictionaryModel</strong> and <strong>bis:RepositoryModel</strong> are the only classes allowed to subclass <strong>bis:DefinitionModel</strong></li>
+</ul>
+</li>
+<li><strong>bis:DocumentListModel</strong></li>
+<li><strong>bis:LinkModel</strong></li>
+</ul>
+</li>
 <li>Property overrides cannot change the persistence unit.</li>
 </ul>
 <h3 class="h-relationship-classes"><a id="relationship-classes" class="heading-anchor" href="#%s"></a>Relationship Classes</h3>
@@ -194,7 +205,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 August, 2018 @ 08:10:35 pm -04:00</span>
+                <span class='date-updated'>28 August, 2018 @ 08:10:08 pm -04:00</span>
             </p>
 
             
@@ -203,58 +214,51 @@
             </script>        </article>
     </div>
     <div id='inner-table-of-contents'>
-        <!--
-            - If the page is active
-            - Get all headings and subheadings and list them
-         -->
-        
-        
-        
-        
-        <div id='sticky-container' style="top: 76px; position: fixed;">
-          <h4 class='heading'>On this page</h4>
-            <div id="overview-container" class="clusterize-scroll">
-              <ul id='nav' class='right-nav nav flex-column clusterize-content'>
-                      <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#bis-uses-ec-v3">BIS uses EC v3</a>
-            </li>
-               <li class='nav-item item '>
-                    <a data-target="#inner-nav-validation-rules" class='title' href="#validation-rules"/>
-                    <b class='dropdown-menu-title menu-text'>Validation Rules</b>
-                    <i class='dropdown icon'></i>
-                    </a>
-                    <ul id="inner-nav-validation-rules" class='inner-nav'>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#general-schema-rules">General (Schema) Rules</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#mixin-rules">Mixin Rules</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#entity-classes">Entity Classes</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#relationship-classes">Relationship Classes</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#struct-classes">Struct Classes</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#custom-attribute-classes">Custom Attribute Classes</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#kindofquantities">KindOfQuantities</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#properties">Properties</a>
-                            </li>
-                    </ul>
-            </li>
-         
-              </ul>
-            </div>
-          </div>
-        
+       <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#bis-uses-ec-v3">BIS uses EC v3</a>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-validation-rules" class='title' href="#validation-rules"/>
+            <b class='dropdown-menu-title menu-text'>Validation Rules</b>
+            <i class='dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-validation-rules" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#general-schema-rules">General (Schema) Rules</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#mixin-rules">Mixin Rules</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#entity-classes">Entity Classes</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#relationship-classes">Relationship Classes</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#struct-classes">Struct Classes</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#custom-attribute-classes">Custom Attribute Classes</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#kindofquantities">KindOfQuantities</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#properties">Properties</a>
+                    </li>
+            </ul>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
     </div>
 </div>
 

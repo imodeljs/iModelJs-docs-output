@@ -76,6 +76,7 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
         </ul>
         <hr>
         <p>&#xA0;</p>
@@ -94,7 +95,7 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/">backend</a> > CreateElements</div>
             <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
             <h1 id="creating elements">Creating Elements</h1>
-<p>Use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb.elements/insertelement'>IModelDb.Elements.insertElement</a> to insert a new element into an IModelDb. This method takes as its input an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a> or a subclass of it, which defines the class and all required properties of the new element.</p>
+<p>Use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb.elements/insertelement'>IModelDb.Elements.insertElement</a> to insert a new element into an IModelDb. This method takes as its input an ElementProps or a subclass of it, which defines the class and all required properties of the new element.</p>
 <p><em>Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">  public static insertRobot(iModelDb: IModelDb, modelId: Id64Props, name: string, location: Point3d): Id64Props {
     const props: GeometricElement3dProps = {      // I know what class and category to use.
@@ -107,7 +108,7 @@
     };
     return iModelDb.elements.insertElement(props);
   }</code></pre>
-<p>The above example shows the use of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/geometricelement3dprops'>GeometricElement3dProps</a> subclass of ElementProps.</p>
+<p>The above example shows the use of the GeometricElement3dProps subclass of ElementProps.</p>
 <p>Some classes provide <code>create</code> helper functions.</p>
 <p><em>Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">      const cat: SpatialCategory = SpatialCategory.create(dictionary, _schemaNames.Class.Robot);
@@ -117,7 +118,7 @@
 <p>The above example shows the use of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/spatialcategory/create'>SpatialCategory.create</a> helper function to create the props object. It also illustrates how <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb.elements/updateelement'>IModelDb.Elements.updateElement</a> is used.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 August, 2018 @ 08:10:35 pm -04:00</span>
+                <span class='date-updated'>28 August, 2018 @ 08:10:09 pm -04:00</span>
             </p>
 
             
@@ -126,15 +127,8 @@
             </script>        </article>
     </div>
     <div id='inner-table-of-contents'>
-        <!--
-            - If the page is active
-            - Get all headings and subheadings and list them
-         -->
-        
-        
-        
-        
-        
+       <!--  
+ -->
     </div>
 </div>
 

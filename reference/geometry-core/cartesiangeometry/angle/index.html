@@ -110,19 +110,19 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/all/" class="table-of-contents-link">All</a></li>
         </ul>
         <hr>
-        <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/&apos;&gt;imodeljs-common&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/" class="table-of-contents-link">imodeljs-common</a></h3>
+        <h3 id="imodeljs-common">imodeljs-common</h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/" class="table-of-contents-link">Wire Formats</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/" class="table-of-contents-link">Codes</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/" class="table-of-contents-link">Geometry</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/" class="table-of-contents-link">Views</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/" class="table-of-contents-link">Symbology</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/" class="table-of-contents-link">Rendering</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/" class="table-of-contents-link">iModels</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/" class="table-of-contents-link">RPC Interface</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/" class="table-of-contents-link">ECSQL</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/" class="table-of-contents-link">Feature Gates</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/all/" class="table-of-contents-link">All</a></li>
+        <li>Wire Formats</li>
+        <li>Codes</li>
+        <li>Geometry</li>
+        <li>Views</li>
+        <li>Symbology</li>
+        <li>Rendering</li>
+        <li>iModels</li>
+        <li>RPC Interface</li>
+        <li>ECSQL</li>
+        <li>Feature Gates</li>
+        <li>All</li>
         </ul>
         <hr>
         <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/&apos;&gt;imodeljs-clients&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/" class="table-of-contents-link">imodeljs-clients</a></h3>
@@ -204,18 +204,6 @@
 <td>Test if two this angle and other are almost equal, NOT allowing shift by full circle multiples of 360 degrees.</td>
 </tr>
 <tr>
-<td class="h-isalmostzero"><a id="isalmostzero" class="heading-anchor" href="#%s"></a><span class="method-name">isAlmostZero</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-isexactzero"><a id="isexactzero" class="heading-anchor" href="#%s"></a><span class="method-name">isExactZero</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-isfullcircle"><a id="isfullcircle" class="heading-anchor" href="#%s"></a><span class="method-name">isFullCircle</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-setdegrees"><a id="setdegrees" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="setdegrees">setDegrees</a></span><span class="method-parenthesis">(</span><span class="method-parameters">degrees: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
 <td>Set this angle to a value given in degrees.</td>
 </tr>
@@ -262,6 +250,10 @@
 <tr>
 <td class="h-adjustradiansminuspipluspi"><a id="adjustradiansminuspipluspi" class="heading-anchor" href="#%s"></a><span class="method-name">adjustRadiansMinusPiPlusPi</span><span class="method-parenthesis">(</span><span class="method-parameters">radians: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
 <td>Adjust a radians value so it is positive in -PI..PI</td>
+</tr>
+<tr>
+<td class="h-cleanuptrigvalue"><a id="cleanuptrigvalue" class="heading-anchor" href="#%s"></a><span class="method-name">cleanupTrigValue</span><span class="method-parenthesis">(</span><span class="method-parameters">value: number, tolerance: number = 1e-15</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td>If value is close to -1, -0.5, 0, 0.5, 1, adjust it to the exact value.</td>
 </tr>
 <tr>
 <td class="h-create360"><a id="create360" class="heading-anchor" href="#%s"></a><span class="method-name">create360</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/angle'>Angle</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
@@ -343,6 +335,21 @@
 <td></td>
 </tr>
 <tr>
+<td class="h-isalmostzero"><a id="isalmostzero" class="heading-anchor" href="#%s"></a><span class="property-name">isAlmostZero</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> boolean</span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-isexactzero"><a id="isexactzero" class="heading-anchor" href="#%s"></a><span class="property-name">isExactZero</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> boolean</span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-isfullcircle"><a id="isfullcircle" class="heading-anchor" href="#%s"></a><span class="property-name">isFullCircle</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> boolean</span></td>
+<td></td>
+</tr>
+<tr>
 <td class="h-pi2radians"><a id="pi2radians" class="heading-anchor" href="#%s"></a><span class="property-name">pi2Radians</span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
 <td><span class="method-output">6.283185307179586</span></td>
 <td></td>
@@ -382,7 +389,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 August, 2018 @ 08:10:16 pm -04:00</span>
+                <span class='date-updated'>28 August, 2018 @ 08:09:56 pm -04:00</span>
             </p>
 
             
@@ -391,185 +398,181 @@
             </script>        </article>
     </div>
     <div id='inner-table-of-contents'>
-        <!--
-            - If the page is active
-            - Get all headings and subheadings and list them
-         -->
-        
-        
-        
-        
-        <div id='sticky-container' style="top: 76px; position: fixed;">
-          <h4 class='heading'>On this page</h4>
-            <div id="overview-container" class="clusterize-scroll">
-              <ul id='nav' class='right-nav nav flex-column clusterize-content'>
-                      <li class='nav-item item active typeDocHeader'>
-                    <a data-target="#inner-nav-angle" class='title' href="#angle"/>
-                    <b class='dropdown-menu-title menu-text'>Angle</b>
-                    <i class='dropdown icon'></i>
-                    </a>
-                    <ul id="inner-nav-angle" class='inner-nav'>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#implements">Implements</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a data-target="#inner-nav-methods" class='title' href="#methods"/>
-                                    <b class='dropdown-menu-title menu-text'>Methods</b>
-                                    <i class='dropdown icon'></i>
-                                    </a>
-                                    <ul id="inner-nav-methods" class='inner-nav'>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#clone">clone</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#cos">cos</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#isalmostequalallowperiodshift">isAlmostEqualAllowPeriodShift</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#isalmostequalnoperiodshift">isAlmostEqualNoPeriodShift</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#isalmostzero">isAlmostZero</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#isexactzero">isExactZero</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#isfullcircle">isFullCircle</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#setdegrees">setDegrees</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#setfrom">setFrom</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#setfromjson">setFromJSON</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#setradians">setRadians</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#sin">sin</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#tan">tan</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#tojson">toJSON</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#tojsonradians">toJSONRadians</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#adjustdegrees0to360">adjustDegrees0To360</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#adjustdegreessigned180">adjustDegreesSigned180</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#adjustradians0to2pi">adjustRadians0To2Pi</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#adjustradiansminuspipluspi">adjustRadiansMinusPiPlusPi</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#create360">create360</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#createatan2">createAtan2</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#createdegrees">createDegrees</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#createdegreesadjustpositive">createDegreesAdjustPositive</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#createdegreesadjustsigned180">createDegreesAdjustSigned180</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#createradians">createRadians</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#degreestoradians">degreesToRadians</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#dotproductstohalfangletrigvalues">dotProductsToHalfAngleTrigValues</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#fromjson">fromJSON</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#isalmostequalradiansallowperiodshift">isAlmostEqualRadiansAllowPeriodShift</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#isalmostequalradiansnoperiodshift">isAlmostEqualRadiansNoPeriodShift</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#isfullcircleradians">isFullCircleRadians</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#isperpendiculardotset">isPerpendicularDotSet</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#radianstodegrees">radiansToDegrees</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#trigvaluestohalfangletrigvalues">trigValuesToHalfAngleTrigValues</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#zero">zero</a>
-                                            </li>
-                                    </ul>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a data-target="#inner-nav-properties" class='title' href="#properties"/>
-                                    <b class='dropdown-menu-title menu-text'>Properties</b>
-                                    <i class='dropdown icon'></i>
-                                    </a>
-                                    <ul id="inner-nav-properties" class='inner-nav'>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#degrees">degrees</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#degreesperradian">degreesPerRadian</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#pi2radians">pi2Radians</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#piover12radians">piOver12Radians</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#piover2radians">piOver2Radians</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#piover4radians">piOver4Radians</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#piradians">piRadians</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#radians">radians</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#radiansperdegree">radiansPerDegree</a>
-                                            </li>
-                                    </ul>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#defined-in">Defined in</a>
-                            </li>
-                    </ul>
-            </li>
-         
-              </ul>
-            </div>
-          </div>
-        
+       <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item active typeDocHeader'>
+            <a data-target="#inner-nav-angle" class='title' href="#angle"/>
+            <b class='dropdown-menu-title menu-text'>Angle</b>
+            <i class='dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-angle" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#implements">Implements</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-methods" class='title' href="#methods"/>
+                            <b class='dropdown-menu-title menu-text'>Methods</b>
+                            <i class='dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-methods" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#clone">clone</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#cos">cos</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isalmostequalallowperiodshift">isAlmostEqualAllowPeriodShift</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isalmostequalnoperiodshift">isAlmostEqualNoPeriodShift</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setdegrees">setDegrees</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setfrom">setFrom</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setfromjson">setFromJSON</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setradians">setRadians</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#sin">sin</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#tan">tan</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#tojson">toJSON</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#tojsonradians">toJSONRadians</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#adjustdegrees0to360">adjustDegrees0To360</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#adjustdegreessigned180">adjustDegreesSigned180</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#adjustradians0to2pi">adjustRadians0To2Pi</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#adjustradiansminuspipluspi">adjustRadiansMinusPiPlusPi</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#cleanuptrigvalue">cleanupTrigValue</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#create360">create360</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createatan2">createAtan2</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createdegrees">createDegrees</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createdegreesadjustpositive">createDegreesAdjustPositive</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createdegreesadjustsigned180">createDegreesAdjustSigned180</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createradians">createRadians</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#degreestoradians">degreesToRadians</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#dotproductstohalfangletrigvalues">dotProductsToHalfAngleTrigValues</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#fromjson">fromJSON</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isalmostequalradiansallowperiodshift">isAlmostEqualRadiansAllowPeriodShift</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isalmostequalradiansnoperiodshift">isAlmostEqualRadiansNoPeriodShift</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isfullcircleradians">isFullCircleRadians</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isperpendiculardotset">isPerpendicularDotSet</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#radianstodegrees">radiansToDegrees</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#trigvaluestohalfangletrigvalues">trigValuesToHalfAngleTrigValues</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#zero">zero</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-properties" class='title' href="#properties"/>
+                            <b class='dropdown-menu-title menu-text'>Properties</b>
+                            <i class='dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-properties" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#degrees">degrees</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#degreesperradian">degreesPerRadian</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isalmostzero">isAlmostZero</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isexactzero">isExactZero</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isfullcircle">isFullCircle</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#pi2radians">pi2Radians</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#piover12radians">piOver12Radians</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#piover2radians">piOver2Radians</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#piover4radians">piOver4Radians</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#piradians">piRadians</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#radians">radians</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#radiansperdegree">radiansPerDegree</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#defined-in">Defined in</a>
+                    </li>
+            </ul>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
     </div>
 </div>
 

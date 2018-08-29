@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Transform and Matrix3d operations - iModelJs</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//overview/imodeljs.ico' /> 
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
+    <span id="contentLoader">
+        <p>Woah! This page has a great deal of content... Give us a second to load it.</p>
+    </span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+        <header id="main-header">
+            <div class='row nav-container'>
+                <nav id='main-navbar' class="navbar navbar-expand-md navbar-light">
+                    
+                    <button class="navbar-toggler navbar-toggler-left custom-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon">
+                            <i class='icon icon-menu'></i>
+                        </span>
+                    </button>
+                    <div class="nav-title-container">
+                        <a class="navbar-brand " href="https://imodeljs.github.io/iModelJs-docs-output//" class="col-md-3">
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//overview/imodeljs.ico" />
+                            <h1 id="site-title">iModelJs</h1>
+                        </a>
+                    </div>
+                    <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
+                        <nav class="navbar navbar-expand-md navbar-light">
+                             <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li></ul> 
+                        </nav>
+                    </div>            </nav>
+        </div>
+        </header>
+        
+
+<div id='main-wrapper'>
+    <div id='table-of-contents'>
+        <span class='search-bar'>
+          <li>
+            <div id='search-container'>
+            </div>
+          </li>
+          <script>
+            (function() {
+              var cx = '000629069474334212860:yxwzhn4umym';
+              var gcse = document.createElement('script');
+              gcse.type = 'text/javascript';
+              gcse.async = true;
+              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+              var s = document.getElementsByTagName('script')[0];
+              s.parentNode.insertBefore(gcse, s);
+            })();
+          </script>
+          <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+        </span>
+        
+        <ul id='main-navigation-list'>
+            <html><head></head><body><h3 id="the imodeljs library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModelJs Library</a></h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
+        </ul>
+        <hr>
+        <p>&#xA0;</p>
+        <h3 id="helpful links">Helpful links</h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModelJs Glossary</a></li>
+        </ul>
+        </body></html>
+        </ul>    </div>
+    <div class='row documentation-main'>
+        <article id="main" name="main-content">
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/">geometry</a> > Transform</div>
+            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
+            <h1 id="transform and matrix3d operations">Transform and Matrix3d operations</h1>
+<h2 class="h-types"><a id="types" class="heading-anchor" href="#%s"></a>Types</h2>
+<ul>
+<li>A <code>Matrix3d</code> is a 3x3 matrix.    It can be used for 3D rotation and scaling.<ul>
+<li>A matrix <em>alone</em> acts on xyz data, but always leaves the origin in place.</li>
+<li>A matrix must be bundled into a transform (which carries an additional origin/translation term) to cause scaling and rotation around a point other than the origin.</li>
+</ul>
+</li>
+<li>A <code>Transform</code> is a 3x3 matrix with an additional point which is variously called &quot;origin&quot; or &quot;translation&quot;.</li>
+</ul>
+<h2 class="h-notation"><a id="notation" class="heading-anchor" href="#%s"></a>Notation</h2>
+<table class="table table-responsive"><tbody><tr>
+<th></th>
+<th></th>
+</tr>
+<tr>
+<td>Indexing for entries in 3x3 matrix</td>
+<td><img src=".././figs/Equations/3x3Matrixqxx.png" alt="&gt;"></td>
+</tr>
+<tr>
+<td>Indexing for matrix, translation parts of transform</td>
+<td><img src=".././figs/Equations/3x4Transformqxx.png" alt="&gt;"></td>
+</tr>
+<tr>
+<td>Typical (column) vector names</td>
+<td><code>U,V,W</code></td>
+</tr>
+<tr>
+<td>Typical (row) vector names.  (<code>T</code> denotes transpose, which changes the named column to a row)</td>
+<td><code>UT, VT, WT</code></td>
+</tr>
+<tr>
+<td>Typical point names</td>
+<td><code>A,B,C</code></td>
+</tr>
+</tbody></table><h2 class="h-remarks-on-the-entries-in-a-matrix3d"><a id="remarks-on-the-entries-in-a-matrix3d" class="heading-anchor" href="#%s"></a>Remarks on the entries in a Matrix3d</h2>
+<ul>
+<li>Some common uses of Matrix3d are for:<ul>
+<li>Pure rotation: the matrix &quot;picks something up&quot; and spins it.   In the final position, there is not change of distance between any two points marked on the original geometry.<ul>
+<li>the relation of the 9 numbers in the matrix with  intuitive description of the rotation is tricky.</li>
+<li>You cannot pull just a few numbers from the matrix and directly map them to what rotation happened.</li>
+</ul>
+</li>
+<li>Uniform scaling: the matrix expands or contracts everything uniformly about the origin.<ul>
+<li>This matrix structure is simple:  the scale factor appears on the diagonal:</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="h-constructor-and-full-update-methods"><a id="constructor-and-full-update-methods" class="heading-anchor" href="#%s"></a>Constructor and full update methods</h2>
+<table class="table table-responsive"><tbody><tr>
+<th>category</th>
+<th>Matrix3d</th>
+<th></th>
+<th>Transform</th>
+<th></th>
+</tr>
+<tr>
+<td>create identity</td>
+<td>newMatrix = Matrix3d.createIdentity ()</td>
+<td></td>
+<td>newTransform = Transform.createIdentity ()</td>
+</tr>
+<tr>
+<td></td>
+<td>matrix.setIdentity ()</td>
+<td></td>
+<td>transform.setIdentity ()</td>
+</tr>
+<tr>
+<td>all zero</td>
+<td>newMatrix = Matrix3d.createZero ()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>matrix.setZero ()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>create new with entries copied from another</td>
+<td>newMatrix = other.clone ()</td>
+<td></td>
+<td>newTransform = other.clone ()</td>
+<td></td>
+</tr>
+<tr>
+<td>copy values from another existing</td>
+<td>matrix.setFrom(other)</td>
+<td></td>
+<td>transform.setFrom (other)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+</tr>
+<tr>
+<td>create by direct list of numeric entries</td>
+<td>newMatrix = Matrix3d.createRowValues (qxx, qxy, qxz, qyx, qyy, qyz, qzx, qxy, qzz)</td>
+<td><img src=".././figs/Equations/3x3Matrixqxx.png" alt="&gt;"></td>
+<td>newMatrix = Transform.createRowValues (qxx, qxy, qxz, ax, qyx, qyy, qyz, ay, qzx, qxy, qzz, az)</td>
+<td><img src=".././figs/Equations/3x4Transformqxx.png" alt="&gt;"></td>
+</tr>
+<tr>
+<td>Create by rows</td>
+<td>newMatrix = Matrix3d.createRows (U, V, W)</td>
+<td><img src=".././figs/Equations/3x3MatrixRowsUVW.png" alt="&gt;"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Create by columns</td>
+<td>newMatrix = Matrix3d.createColumns (U, V, W)</td>
+<td><img src=".././figs/Equations/3x3MatrixColumnsUVW.png" alt="&gt;"></td>
+<td>newTransform = Transform.createOriginAndMatrixColumns(A,U,V,W)</td>
+<td><img src=".././figs/Equations/3x4TransformUVWA.png" alt="&gt;"></td>
+</tr>
+<tr>
+<td>Create with columns ordered by an <code>AxisOrder</code> enumeration</td>
+<td>newMatrix = Matrix3d.createColumnsInAxisOrder (axisOrder, U, V, W)</td>
+<td>Sample <code>AxisOrder.ZXY</code> places U,V,W as <img src=".././figs/Equations/AxisOrderZXYwithUVW.png" alt="&gt;"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>set columns</td>
+<td>matrix.setColumns (U, V, W)</td>
+<td></td>
+<td>transform.setOriginAndMatrixColumns(A,U,V,W)</td>
+<td></td>
+</tr>
+<tr>
+<td>create by origin and matrix.</td>
+<td></td>
+<td></td>
+<td>newTransform = Transform.createOriginAndMatrix (A, Q)</td>
+<td><img src=".././figs/Equations/createOriginAndMatrix.png" alt="&gt;"></td>
+</tr>
+<tr>
+<td>create by origin and fixed point.</td>
+<td></td>
+<td></td>
+<td>newTransform = Transform.createFixedPointAndMatrix (A, Q)</td>
+<td><img src=".././figs/Equations/createFixedPointAndMatrix.png" alt="&gt;"></td>
+</tr>
+<tr>
+<td>uniform scaling in all directions</td>
+<td>newMatrix = Matrix3d.createUniformScale (s)</td>
+<td><img src=".././figs/Equations/DiagonalScale.png" alt="&gt;"></td>
+<td>Transform.createScaleAboutPoint (fixedPoint, s)</td>
+<td></td>
+</tr>
+<tr>
+<td>scaling along a single direction</td>
+<td>newMatrix = Matrix3d.createDirectionalScale (directionVector, scale)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>scaling with different factors along each of the 3 axes</td>
+<td>newMatrix = Matrix3d.createScale (sx, sy, sz)</td>
+<td><img src=".././figs/Equations/DiagonalScale.png" alt="&gt;"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>rotation around a principal axis</td>
+<td>newMatrix = Matrix3d.createRotationAxis (axisIndex:AxisIndex, angle)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>90 degree rotation around a principal axis</td>
+<td>newMatrix = Matrix3d.create90DegreeRotationAroundAxis (axisIndex:AxisIndex)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>rotation around any vector</td>
+<td>newMatrix = Matrix3d.createRotationAroundVector (axisVector, angle)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>most direct rotation that moves vectorA to vectorB</td>
+<td>newMatrix = Matrix3d.createRotationVectorToVector (vectorA, vectorB)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>rotation that moves vectorA a fraction of the shortest rotation towards vectorB</td>
+<td>newMatrix = Matrix3d.createPartialRotationVectorToVector (vectorA, fraction, vectorB)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table><h1 id="simple queries">Simple Queries</h1>
+<table class="table table-responsive"><tbody><tr>
+<th>category</th>
+<th>Matrix3d</th>
+<th></th>
+<th>Transform</th>
+<th></th>
+</tr>
+<tr>
+<td>clone individual columns</td>
+<td>vector = matrix.columnX ()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>vector = matrix.columnY ()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>vector = matrix.columnZ ()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>individual column magnitude</td>
+<td>a : number = matrix.columnXMagnitude ()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>a : number = matrix.columnYMagnitude ()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>vector = matrix.columnXMagnitude ()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>individual column magnitude squared</td>
+<td>a : number = matrix.columnXMagnitudeSquared ()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>a : number = matrix.columnYMagnitudeSquared ()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>a : number = matrix.columnXMagnitudeSquared ()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dot a vector with a specific column</td>
+<td>a : number = matrix.dotColumnX (vector)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>a : number = matrix.dotColumnY (vector)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>a : number = matrix.dotColumnZ (vector)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clone individual rows</td>
+<td>vector = matrix.rowX ()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>vector = matrix.rowY ()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>vector = matrix.rowZ ()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>individual row magnitude</td>
+<td>a : number = matrix.rowXMagnitude ()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>a : number = matrix.rowYMagnitude ()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>a : number = matrix.rowXMagnitude ()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>individual row magnitude squared</td>
+<td>a : number = matrix.rowXMagnitudeSquared ()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>a : number = matrix.rowYMagnitudeSquared ()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>a : number = matrix.rowXMagnitudeSquared ()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dot a vector with a specific row</td>
+<td>a : number = matrix.dotRowX (vector)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>a : number = matrix.dotRowY (vector)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>a : number = matrix.dotRowZ (vector)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table><h1 id="rigid matrix constructions">Rigid Matrix constructions</h1>
+<p>These methods return individual vectors with special perpendicular conditions related to the input vector and the global axes.  These constructions are central to constructing a rigid axis matrix that has a &quot;heads up&quot; sense.</p>
+<table class="table table-responsive"><tbody><tr>
+<th>category</th>
+<th>Matrix3d</th>
+<th></th>
+</tr>
+<tr>
+<td>return vector perpendicular to input.  If input is <em>not</em> near z, the returned vector is in the xy plane</td>
+<td>newVector = RotMatrix.createPerpendicularVectorFavorXYPlane (zVector)</td>
+</tr>
+<tr>
+<td>return a &quot;heads up&quot; vector perpendicular to input.</td>
+<td>newVector = RotMatrix.createPerpendicularVectorFavorXYPlane (zVector)</td>
+</tr>
+</tbody></table><h1 id="complex queries">Complex queries</h1>
+<table class="table table-responsive"><tbody><tr>
+<th>query</th>
+<th>Input requirements</th>
+<th>Method</th>
+<th></th>
+</tr>
+<tr>
+<td>extract axis of rotation</td>
+<td>Rigit axis matrix</td>
+<td>rigidMatrix-&gt;getAxisAndAngleOfRotation () : {axis: Vector3d, angle: Angle, ok: boolean}</td>
+</tr>
+</tbody></table>
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>28 August, 2018 @ 08:10:09 pm -04:00</span>
+            </p>
+
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div id='inner-table-of-contents'>
+       <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#types">Types</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#notation">Notation</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#remarks-on-the-entries-in-a-matrix3d">Remarks on the entries in a Matrix3d</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#constructor-and-full-update-methods">Constructor and full update methods</a>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
+    </div>
+</div>
+
+
+    <footer id='main-footer'>
+        <div id='footer-content-container'>
+           <div class='footer-footer'>
+               <p>Copyright 2018 Bentley Systems, Incorporated</p>
+            </div>
+        </div>
+    </footer>
+</div>
+    <a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+    <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js" ></script>
+</body>
+
+</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

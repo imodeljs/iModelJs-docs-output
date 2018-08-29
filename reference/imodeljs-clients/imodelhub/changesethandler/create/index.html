@@ -110,19 +110,19 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/all/" class="table-of-contents-link">All</a></li>
         </ul>
         <hr>
-        <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/&apos;&gt;imodeljs-common&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/" class="table-of-contents-link">imodeljs-common</a></h3>
+        <h3 id="imodeljs-common">imodeljs-common</h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/" class="table-of-contents-link">Wire Formats</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/" class="table-of-contents-link">Codes</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/" class="table-of-contents-link">Geometry</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/" class="table-of-contents-link">Views</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/" class="table-of-contents-link">Symbology</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/" class="table-of-contents-link">Rendering</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/" class="table-of-contents-link">iModels</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/" class="table-of-contents-link">RPC Interface</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/" class="table-of-contents-link">ECSQL</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/" class="table-of-contents-link">Feature Gates</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/all/" class="table-of-contents-link">All</a></li>
+        <li>Wire Formats</li>
+        <li>Codes</li>
+        <li>Geometry</li>
+        <li>Views</li>
+        <li>Symbology</li>
+        <li>Rendering</li>
+        <li>iModels</li>
+        <li>RPC Interface</li>
+        <li>ECSQL</li>
+        <li>Feature Gates</li>
+        <li>All</li>
         </ul>
         <hr>
         <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/&apos;&gt;imodeljs-clients&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/" class="table-of-contents-link">imodeljs-clients</a></h3>
@@ -173,14 +173,15 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/">imodeljs-clients</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/imodelhub/">iModelHub</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/imodelhub/changesethandler/">ChangeSetHandler</a> > create</div>
             
             <h2 class="h-create"><a id="create" class="heading-anchor" href="#%s"></a>create <span class="badge badge-pill badge-primary badge-method">Method</span></h2>
-<p>Uploads a ChangeSet</p>
+<p>Upload a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a> file. If you want to push your changes to iModelHub, use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/pushchanges'>IModelDb.pushChanges</a> instead. This method is only a part of that workflow.</p>
+<p>ChangeSets have to be uploaded in a linear order. If another user is uploading, or changeSet.parentId does not point to the latest ChangeSet on iModelHub, this method will fail. User will have to download all of the newer ChangeSets, merge them into their <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/briefcase'>Briefcase</a> and calculate a new ChangeSet id.</p>
 <p><span class="method-name">create</span><span class="method-parenthesis">(</span><span class="method-parameters">token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, imodelId: string, changeSet: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a>, changeSetPathname: string, progressCallback?: (progress: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/progressinfo'>ProgressInfo</a>) =&gt; void</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a>&gt;</span></p>
-<p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelhubstatus/#briefcasedoesnotbelongtouser'>IModelHubStatus.BriefcaseDoesNotBelongToUser</a> if <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/briefcase'>Briefcase</a> specified by changeSet.briefcaseId belongs to another user.</p>
-<p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelhubstatus/#anotheruserpushing'>IModelHubStatus.AnotherUserPushing</a> if another user is currently uploading a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a>.</p>
-<p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelhubstatus/#pullisrequired'>IModelHubStatus.PullIsRequired</a> if there are newer <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a>s on iModel Hub, that need to be downloaded and merged, before upload is possible.</p>
-<p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelhubstatus/#changesetalreadyexists'>IModelHubStatus.ChangeSetAlreadyExists</a> if a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a> with this id already exists. This usually happens if previous upload attempt has succeeded.</p>
-<p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelhubstatus/#changesetpointstobadseed'>IModelHubStatus.ChangeSetPointsToBadSeed</a> if changeSet.seedFileId isn&apos;t set to the correct file id. That file id should match to the value written to the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/briefcase'>Briefcase</a> file.</p>
-<p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/imodelhub/commonerrors'>Common iModel Hub errors</a></p>
+<p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelhubstatus/#briefcasedoesnotbelongtouser'>IModelHubStatus.BriefcaseDoesNotBelongToUser</a> if Briefcase specified by changeSet.briefcaseId belongs to another user.</p>
+<p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelhubstatus/#anotheruserpushing'>IModelHubStatus.AnotherUserPushing</a> if another user is currently uploading a ChangeSet.</p>
+<p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelhubstatus/#pullisrequired'>IModelHubStatus.PullIsRequired</a> if there are newer ChangeSets on iModelHub, that need to be downloaded and merged, before upload is possible.</p>
+<p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelhubstatus/#changesetalreadyexists'>IModelHubStatus.ChangeSetAlreadyExists</a> if a ChangeSet with this id already exists. This usually happens if previous upload attempt has succeeded.</p>
+<p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelhubstatus/#changesetpointstobadseed'>IModelHubStatus.ChangeSetPointsToBadSeed</a> if changeSet.seedFileId is not set to the correct file id. That file id should match to the value written to the Briefcase file. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/#setguid'>IModelDb.setGuid</a>.</p>
+<p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/imodelhub/commonerrors'>Common iModelHub errors</a></p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
 <th>Type</th>
@@ -194,7 +195,7 @@
 <tr>
 <td class="h-imodelid"><a id="imodelid" class="heading-anchor" href="#%s"></a>imodelId</td>
 <td>string</td>
-<td>Id of the iModel</td>
+<td>Id of the iModel. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/imodelrepository'>IModelRepository</a>.</td>
 </tr>
 <tr>
 <td class="h-changeset"><a id="changeset" class="heading-anchor" href="#%s"></a>changeSet</td>
@@ -204,12 +205,12 @@
 <tr>
 <td class="h-changesetpathname"><a id="changesetpathname" class="heading-anchor" href="#%s"></a>changeSetPathname</td>
 <td>string</td>
-<td>Pathname of the ChangeSet to be uploaded.</td>
+<td>Pathname of the ChangeSet file to be uploaded.</td>
 </tr>
 <tr>
 <td class="h-progresscallback"><a id="progresscallback" class="heading-anchor" href="#%s"></a>progressCallback</td>
 <td>(progress: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/progressinfo'>ProgressInfo</a>) =&gt; void</td>
-<td>Callback for tracking progress.</td>
+<td>Callback for tracking upload progress.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
@@ -217,7 +218,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 August, 2018 @ 08:10:24 pm -04:00</span>
+                <span class='date-updated'>28 August, 2018 @ 08:10:04 pm -04:00</span>
             </p>
 
             
@@ -226,49 +227,42 @@
             </script>        </article>
     </div>
     <div id='inner-table-of-contents'>
-        <!--
-            - If the page is active
-            - Get all headings and subheadings and list them
-         -->
-        
-        
-        
-        
-        <div id='sticky-container' style="top: 76px; position: fixed;">
-          <h4 class='heading'>On this page</h4>
-            <div id="overview-container" class="clusterize-scroll">
-              <ul id='nav' class='right-nav nav flex-column clusterize-content'>
-                      <li class='nav-item item active typeDocHeader'>
-                    <a data-target="#inner-nav-create" class='title' href="#create"/>
-                    <b class='dropdown-menu-title menu-text'>create</b>
-                    <i class='dropdown icon'></i>
-                    </a>
-                    <ul id="inner-nav-create" class='inner-nav'>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#token">token</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#imodelid">imodelId</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#changeset">changeSet</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#changesetpathname">changeSetPathname</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#progresscallback">progressCallback</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#defined-in">Defined in</a>
-                            </li>
-                    </ul>
-            </li>
-         
-              </ul>
-            </div>
-          </div>
-        
+       <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item active typeDocHeader'>
+            <a data-target="#inner-nav-create" class='title' href="#create"/>
+            <b class='dropdown-menu-title menu-text'>create</b>
+            <i class='dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-create" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#token">token</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#imodelid">imodelId</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#changeset">changeSet</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#changesetpathname">changeSetPathname</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#progresscallback">progressCallback</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#defined-in">Defined in</a>
+                    </li>
+            </ul>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
     </div>
 </div>
 

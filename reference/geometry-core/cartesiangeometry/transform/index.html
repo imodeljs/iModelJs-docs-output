@@ -110,19 +110,19 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/all/" class="table-of-contents-link">All</a></li>
         </ul>
         <hr>
-        <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/&apos;&gt;imodeljs-common&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/" class="table-of-contents-link">imodeljs-common</a></h3>
+        <h3 id="imodeljs-common">imodeljs-common</h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/" class="table-of-contents-link">Wire Formats</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/" class="table-of-contents-link">Codes</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/" class="table-of-contents-link">Geometry</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/" class="table-of-contents-link">Views</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/" class="table-of-contents-link">Symbology</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/" class="table-of-contents-link">Rendering</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/" class="table-of-contents-link">iModels</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/" class="table-of-contents-link">RPC Interface</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/" class="table-of-contents-link">ECSQL</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/" class="table-of-contents-link">Feature Gates</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/all/" class="table-of-contents-link">All</a></li>
+        <li>Wire Formats</li>
+        <li>Codes</li>
+        <li>Geometry</li>
+        <li>Views</li>
+        <li>Symbology</li>
+        <li>Rendering</li>
+        <li>iModels</li>
+        <li>RPC Interface</li>
+        <li>ECSQL</li>
+        <li>Feature Gates</li>
+        <li>All</li>
         </ul>
         <hr>
         <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/&apos;&gt;imodeljs-clients&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/" class="table-of-contents-link">imodeljs-clients</a></h3>
@@ -173,10 +173,10 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/">geometry-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/cartesiangeometry/">CartesianGeometry</a> > Transform</div>
             
             <h2 class="h-transform"><a id="transform" class="heading-anchor" href="#%s"></a>Transform <span class="badge badge-pill badge-primary badge-class">Class</span></h2>
-<p>A transform is an origin and a RotMatrix.</p>
+<p>A transform is an origin and a Matrix3d.</p>
 <ul>
 <li>This describes a coordinate frame with
-this origin, with the columns of the RotMatrix being the
+this origin, with the columns of the Matrix3d being the
 local x,y,z axis directions.</li>
 <li>Beware that for common transformations (e.g. scale about point,
 rotate around line, mirror across a plane) the &quot;fixed point&quot; that is used
@@ -222,10 +222,6 @@ take care of determining the appropriate origin coordinates.</li>
 <td>Test for near equality with other Transform.</td>
 </tr>
 <tr>
-<td class="h-isidentity"><a id="isidentity" class="heading-anchor" href="#%s"></a><span class="method-name">isIdentity</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></td>
-<td>test if the transform has 000 origin and identity RotMatrix</td>
-</tr>
-<tr>
 <td class="h-multiplyinversepoint3d"><a id="multiplyinversepoint3d" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="multiplyinversepoint3d">multiplyInversePoint3d</a></span><span class="method-parenthesis">(</span><span class="method-parameters">point: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a> | undefined</span></td>
 <td></td>
 </tr>
@@ -262,8 +258,8 @@ take care of determining the appropriate origin coordinates.</li>
 <td>transform each of the 8 corners of a range.</td>
 </tr>
 <tr>
-<td class="h-multiplytransformrotmatrix"><a id="multiplytransformrotmatrix" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="multiplytransformrotmatrix">multiplyTransformRotMatrix</a></span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span></td>
-<td>multiply this Transform times other RotMatrix, with other considered to be a Transform with 0 translation.</td>
+<td class="h-multiplytransformmatrix3d"><a id="multiplytransformmatrix3d" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="multiplytransformmatrix3d">multiplyTransformMatrix3d</a></span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/matrix3d'>Matrix3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span></td>
+<td>multiply this Transform times other Matrix3d, with other considered to be a Transform with 0 translation.</td>
 </tr>
 <tr>
 <td class="h-multiplytransformtransform"><a id="multiplytransformtransform" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="multiplytransformtransform">multiplyTransformTransform</a></span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span></td>
@@ -271,11 +267,11 @@ take care of determining the appropriate origin coordinates.</li>
 </tr>
 <tr>
 <td class="h-multiplyvector"><a id="multiplyvector" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="multiplyvector">multiplyVector</a></span><span class="method-parenthesis">(</span><span class="method-parameters">vector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a></span></td>
-<td>Multiply the vector by the RotMatrix part of the transform.</td>
+<td>Multiply the vector by the Matrix3d part of the transform.</td>
 </tr>
 <tr>
 <td class="h-multiplyvectorxyz"><a id="multiplyvectorxyz" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="multiplyvectorxyz">multiplyVectorXYZ</a></span><span class="method-parenthesis">(</span><span class="method-parameters">x: number, y: number, z: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a></span></td>
-<td>Multiply the vector (x,y,z) by the RotMatrix part of the transform.</td>
+<td>Multiply the vector (x,y,z) by the Matrix3d part of the transform.</td>
 </tr>
 <tr>
 <td class="h-multiplyxyz"><a id="multiplyxyz" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="multiplyxyz">multiplyXYZ</a></span><span class="method-parenthesis">(</span><span class="method-parameters">x: number, y: number, z: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span></td>
@@ -310,7 +306,7 @@ take care of determining the appropriate origin coordinates.</li>
 <td></td>
 </tr>
 <tr>
-<td class="h-createfixedpointandmatrix"><a id="createfixedpointandmatrix" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="createfixedpointandmatrix">createFixedPointAndMatrix</a></span><span class="method-parenthesis">(</span><span class="method-parameters">fixedPoint: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td class="h-createfixedpointandmatrix"><a id="createfixedpointandmatrix" class="heading-anchor" href="#%s"></a><span class="method-name"><a href="createfixedpointandmatrix">createFixedPointAndMatrix</a></span><span class="method-parenthesis">(</span><span class="method-parameters">fixedPoint: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/matrix3d'>Matrix3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
 <td>Create a transform with the specified matrix.</td>
 </tr>
 <tr>
@@ -318,7 +314,7 @@ take care of determining the appropriate origin coordinates.</li>
 <td>Return an identity transform, optionally filling existing transform.</td>
 </tr>
 <tr>
-<td class="h-createoriginandmatrix"><a id="createoriginandmatrix" class="heading-anchor" href="#%s"></a><span class="method-name">createOriginAndMatrix</span><span class="method-parenthesis">(</span><span class="method-parameters">origin: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyz'>XYZ</a> | undefined, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a> | undefined, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td class="h-createoriginandmatrix"><a id="createoriginandmatrix" class="heading-anchor" href="#%s"></a><span class="method-name">createOriginAndMatrix</span><span class="method-parenthesis">(</span><span class="method-parameters">origin: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyz'>XYZ</a> | undefined, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/matrix3d'>Matrix3d</a> | undefined, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
 <td>Create by directly installing origin and matrix<br>this is a the appropriate construction when the columns of the matrix are coordinate axes of a local-to-global mapping<br>Note there is a closely related createFixedPointAndMatrix whose point input is the fixed point of the global-to-global transformation.</td>
 </tr>
 <tr>
@@ -326,8 +322,12 @@ take care of determining the appropriate origin coordinates.</li>
 <td>Create by directly installing origin and columns of the matrix</td>
 </tr>
 <tr>
-<td class="h-createrefs"><a id="createrefs" class="heading-anchor" href="#%s"></a><span class="method-name">createRefs</span><span class="method-parenthesis">(</span><span class="method-parameters">origin: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyz'>XYZ</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
-<td>Create a copy with the given origin and matrix captured as the Transform origin and RotMatrix.</td>
+<td class="h-createrefs"><a id="createrefs" class="heading-anchor" href="#%s"></a><span class="method-name">createRefs</span><span class="method-parenthesis">(</span><span class="method-parameters">origin: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyz'>XYZ</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/matrix3d'>Matrix3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td>Create a copy with the given origin and matrix captured as the Transform origin and Matrix3d.</td>
+</tr>
+<tr>
+<td class="h-createrowvalues"><a id="createrowvalues" class="heading-anchor" href="#%s"></a><span class="method-name">createRowValues</span><span class="method-parenthesis">(</span><span class="method-parameters">qxx: number, qxy: number, qxz: number, ax: number, qyx: number, qyy: number, qyz: number, ay: number, qzx: number, qzy: number, qzz: number, az: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
+<td>Create a transform with complete contents given</td>
 </tr>
 <tr>
 <td class="h-createscaleaboutpoint"><a id="createscaleaboutpoint" class="heading-anchor" href="#%s"></a><span class="method-name">createScaleAboutPoint</span><span class="method-parenthesis">(</span><span class="method-parameters">fixedPoint: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, scale: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span></td>
@@ -364,8 +364,13 @@ take care of determining the appropriate origin coordinates.</li>
 <td>The identity Transform. Value is frozen and cannot be modified.</td>
 </tr>
 <tr>
+<td class="h-isidentity"><a id="isidentity" class="heading-anchor" href="#%s"></a><span class="property-name">isIdentity</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
+<td><span class="method-output"> boolean</span></td>
+<td>test if the transform has 000 origin and identity Matrix3d</td>
+</tr>
+<tr>
 <td class="h-matrix"><a id="matrix" class="heading-anchor" href="#%s"></a><span class="property-name">matrix</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a></span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/matrix3d'>Matrix3d</a></span></td>
 <td>Return a reference to the matrix within the transform.  (NOT a copy)</td>
 </tr>
 <tr>
@@ -379,7 +384,7 @@ take care of determining the appropriate origin coordinates.</li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 August, 2018 @ 08:10:17 pm -04:00</span>
+                <span class='date-updated'>28 August, 2018 @ 08:09:58 pm -04:00</span>
             </p>
 
             
@@ -388,182 +393,178 @@ take care of determining the appropriate origin coordinates.</li>
             </script>        </article>
     </div>
     <div id='inner-table-of-contents'>
-        <!--
-            - If the page is active
-            - Get all headings and subheadings and list them
-         -->
-        
-        
-        
-        
-        <div id='sticky-container' style="top: 76px; position: fixed;">
-          <h4 class='heading'>On this page</h4>
-            <div id="overview-container" class="clusterize-scroll">
-              <ul id='nav' class='right-nav nav flex-column clusterize-content'>
-                      <li class='nav-item item active typeDocHeader'>
-                    <a data-target="#inner-nav-transform" class='title' href="#transform"/>
-                    <b class='dropdown-menu-title menu-text'>Transform</b>
-                    <i class='dropdown icon'></i>
-                    </a>
-                    <ul id="inner-nav-transform" class='inner-nav'>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#implements">Implements</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a data-target="#inner-nav-methods" class='title' href="#methods"/>
-                                    <b class='dropdown-menu-title menu-text'>Methods</b>
-                                    <i class='dropdown icon'></i>
-                                    </a>
-                                    <ul id="inner-nav-methods" class='inner-nav'>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#clone">clone</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#clonerigid">cloneRigid</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#freeze">freeze</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#getorigin">getOrigin</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#gettranslation">getTranslation</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#inverse">inverse</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#isalmostequal">isAlmostEqual</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#isidentity">isIdentity</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#multiplyinversepoint3d">multiplyInversePoint3d</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#multiplyinversepoint3darray">multiplyInversePoint3dArray</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#multiplyinversepoint3darrayinplace">multiplyInversePoint3dArrayInPlace</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#multiplypoint2d">multiplyPoint2d</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#multiplypoint2darray">multiplyPoint2dArray</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#multiplypoint3d">multiplyPoint3d</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#multiplypoint3darray">multiplyPoint3dArray</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#multiplypoint3darrayinplace">multiplyPoint3dArrayInPlace</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#multiplyrange">multiplyRange</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#multiplytransformrotmatrix">multiplyTransformRotMatrix</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#multiplytransformtransform">multiplyTransformTransform</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#multiplyvector">multiplyVector</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#multiplyvectorxyz">multiplyVectorXYZ</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#multiplyxyz">multiplyXYZ</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#multiplyxyzw">multiplyXYZW</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#setfrom">setFrom</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#setfromjson">setFromJSON</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#setidentity">setIdentity</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#setmultiplytransformtransform">setMultiplyTransformTransform</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#setoriginandmatrixcolumns">setOriginAndMatrixColumns</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#tojson">toJSON</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#createfixedpointandmatrix">createFixedPointAndMatrix</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#createidentity">createIdentity</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#createoriginandmatrix">createOriginAndMatrix</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#createoriginandmatrixcolumns">createOriginAndMatrixColumns</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#createrefs">createRefs</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#createscaleaboutpoint">createScaleAboutPoint</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#createtranslation">createTranslation</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#createtranslationxyz">createTranslationXYZ</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#fromjson">fromJSON</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#initfromrange">initFromRange</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#matcharraylengths">matchArrayLengths</a>
-                                            </li>
-                                    </ul>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a data-target="#inner-nav-properties" class='title' href="#properties"/>
-                                    <b class='dropdown-menu-title menu-text'>Properties</b>
-                                    <i class='dropdown icon'></i>
-                                    </a>
-                                    <ul id="inner-nav-properties" class='inner-nav'>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#identity">identity</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#matrix">matrix</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#origin">origin</a>
-                                            </li>
-                                    </ul>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#defined-in">Defined in</a>
-                            </li>
-                    </ul>
-            </li>
-         
-              </ul>
-            </div>
-          </div>
-        
+       <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item active typeDocHeader'>
+            <a data-target="#inner-nav-transform" class='title' href="#transform"/>
+            <b class='dropdown-menu-title menu-text'>Transform</b>
+            <i class='dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-transform" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#implements">Implements</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-methods" class='title' href="#methods"/>
+                            <b class='dropdown-menu-title menu-text'>Methods</b>
+                            <i class='dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-methods" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#clone">clone</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#clonerigid">cloneRigid</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#freeze">freeze</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getorigin">getOrigin</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#gettranslation">getTranslation</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#inverse">inverse</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isalmostequal">isAlmostEqual</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplyinversepoint3d">multiplyInversePoint3d</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplyinversepoint3darray">multiplyInversePoint3dArray</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplyinversepoint3darrayinplace">multiplyInversePoint3dArrayInPlace</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplypoint2d">multiplyPoint2d</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplypoint2darray">multiplyPoint2dArray</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplypoint3d">multiplyPoint3d</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplypoint3darray">multiplyPoint3dArray</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplypoint3darrayinplace">multiplyPoint3dArrayInPlace</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplyrange">multiplyRange</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplytransformmatrix3d">multiplyTransformMatrix3d</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplytransformtransform">multiplyTransformTransform</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplyvector">multiplyVector</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplyvectorxyz">multiplyVectorXYZ</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplyxyz">multiplyXYZ</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplyxyzw">multiplyXYZW</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setfrom">setFrom</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setfromjson">setFromJSON</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setidentity">setIdentity</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setmultiplytransformtransform">setMultiplyTransformTransform</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setoriginandmatrixcolumns">setOriginAndMatrixColumns</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#tojson">toJSON</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createfixedpointandmatrix">createFixedPointAndMatrix</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createidentity">createIdentity</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createoriginandmatrix">createOriginAndMatrix</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createoriginandmatrixcolumns">createOriginAndMatrixColumns</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createrefs">createRefs</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createrowvalues">createRowValues</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createscaleaboutpoint">createScaleAboutPoint</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createtranslation">createTranslation</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createtranslationxyz">createTranslationXYZ</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#fromjson">fromJSON</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#initfromrange">initFromRange</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#matcharraylengths">matchArrayLengths</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-properties" class='title' href="#properties"/>
+                            <b class='dropdown-menu-title menu-text'>Properties</b>
+                            <i class='dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-properties" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#identity">identity</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isidentity">isIdentity</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#matrix">matrix</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#origin">origin</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#defined-in">Defined in</a>
+                    </li>
+            </ul>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
     </div>
 </div>
 

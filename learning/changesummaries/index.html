@@ -76,6 +76,7 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
         </ul>
         <hr>
         <p>&#xA0;</p>
@@ -134,7 +135,7 @@ the Change Cache file. If the schema and class name combination is unambiguous, 
 </tr>
 <tr>
 <td><code>SELECT ChangedInstance.Id, OpCode FROM ecchange.change.InstanceChange WHERE Summary.Id=?</code></td>
-<td>Returns the Ids of all changed instances in the specified Change Summary, plus the instance change&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/changeopcode'>ChangeOpCode</a> (e.g. whether the instance was inserted, updated or deleted)</td>
+<td>Returns the Ids of all changed instances in the specified Change Summary, plus the instance change&apos;s ChangeOpCode (e.g. whether the instance was inserted, updated or deleted)</td>
 </tr>
 </tbody></table><h3 class="h-find-out-how-values-have-changed"><a id="find-out-how-values-have-changed" class="heading-anchor" href="#%s"></a>Find out <em>how</em> values have changed</h3>
 <p>Querying for the changed values is done with the ECSQL function <strong>Changes</strong>.</p>
@@ -142,7 +143,7 @@ the Change Cache file. If the schema and class name combination is unambiguous, 
 <pre class="no-line-numbers"><code class="language-sql">SELECT ... FROM MySchema.MyClass.Changes(ChangeSummaryId, ChangedValueState) ...</code></pre>
 <ul>
 <li><code>ChangeSummaryId</code>: The ECInstanceId of the Change Summary.</li>
-<li><p><code>ChangedValueState</code>: corresponds to the values of the enum <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/changedvaluestate'>ChangedValueState</a>.</p>
+<li><p><code>ChangedValueState</code>: corresponds to the values of the enum ChangedValueState.</p>
 <blockquote>
 <p>You can format the <em>ChangedValueState</em> in the ECSQL either by the enum&apos;s integral values or by the enum value&apos;s name.
 The following two ECSQL statements are equivalent:</p>
@@ -152,7 +153,7 @@ The following two ECSQL statements are equivalent:</p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT ... FROM MySchema.MyClass.Changes(12, 1)</code></pre>
 <pre class="no-line-numbers"><code class="language-sql">SELECT ... FROM MySchema.MyClass.Changes(12, &apos;AfterInsert&apos;)</code></pre>
 <blockquote>
-<p>Notes when specifying <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/changedvaluestate/#beforeupdate'>ChangedValueState.BeforeUpdate</a> or <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/changedvaluestate/#afterupdate'>ChangedValueState.AfterUpdate</a>:</p>
+<p>Notes when specifying ChangedValueState.BeforeUpdate or ChangedValueState.AfterUpdate:</p>
 <p>For any property in the ECSQL select clause the value of which has not changed in the specified change summary,
 the <strong>value of the current state of the file</strong> is returned. The function does <strong>NOT</strong> return the value it was at the
 revision the change summary referred to.</p>
@@ -254,7 +255,7 @@ for the unchanged values.</p>
 </tr>
 </tbody></table><ul>
 <li><code>ChangedInstance.Id</code> is the ECInstanceId of the changed instance, i.e. the changed <code>Person</code> instance in this example.</li>
-<li>The <code>OpCode</code> values refer to the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/changeopcode'>ChangeOpCode</a> enumeration as defined in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbchange.ecschema'>ECDbChange</a> ECSchema.</li>
+<li>The <code>OpCode</code> values refer to the ChangeOpCode enumeration as defined in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbchange.ecschema'>ECDbChange</a> ECSchema.</li>
 </ul>
 </blockquote>
 <hr>
@@ -476,7 +477,7 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
 </tbody></table></blockquote>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 August, 2018 @ 08:10:35 pm -04:00</span>
+                <span class='date-updated'>28 August, 2018 @ 08:10:08 pm -04:00</span>
             </p>
 
             
@@ -485,90 +486,83 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
             </script>        </article>
     </div>
     <div id='inner-table-of-contents'>
-        <!--
-            - If the page is active
-            - Get all headings and subheadings and list them
-         -->
-        
-        
-        
-        
-        <div id='sticky-container' style="top: 76px; position: fixed;">
-          <h4 class='heading'>On this page</h4>
-            <div id="overview-container" class="clusterize-scroll">
-              <ul id='nav' class='right-nav nav flex-column clusterize-content'>
-                      <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#generating-change-summaries">Generating Change Summaries</a>
-            </li>
-               <li class='nav-item item '>
-                    <a data-target="#inner-nav-working-with-change-summaries" class='title' href="#working-with-change-summaries"/>
-                    <b class='dropdown-menu-title menu-text'>Working with Change Summaries</b>
-                    <i class='dropdown icon'></i>
-                    </a>
-                    <ul id="inner-nav-working-with-change-summaries" class='inner-nav'>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#attaching-the-change-cache-file-to-the-local-briefcase">Attaching the Change Cache file to the local briefcase</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#leveraging-change-summary-information">Leveraging Change Summary information</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a data-target="#inner-nav-find-out-what-has-changed" class='title' href="#find-out-what-has-changed"/>
-                                    <b class='dropdown-menu-title menu-text'>Find out what has changed</b>
-                                    <i class='dropdown icon'></i>
-                                    </a>
-                                    <ul id="inner-nav-find-out-what-has-changed" class='inner-nav'>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#examples">Examples</a>
-                                            </li>
-                                    </ul>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a data-target="#inner-nav-find-out-how-values-have-changed" class='title' href="#find-out-how-values-have-changed"/>
-                                    <b class='dropdown-menu-title menu-text'>Find out how values have changed</b>
-                                    <i class='dropdown icon'></i>
-                                    </a>
-                                    <ul id="inner-nav-find-out-how-values-have-changed" class='inner-nav'>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#syntax">Syntax</a>
-                                            </li>
-                                    </ul>
-                            </li>
-                    </ul>
-            </li>
-               <li class='nav-item item '>
-                    <a data-target="#inner-nav-example-scenario" class='title' href="#example-scenario"/>
-                    <b class='dropdown-menu-title menu-text'>Example Scenario</b>
-                    <i class='dropdown icon'></i>
-                    </a>
-                    <ul id="inner-nav-example-scenario" class='inner-nav'>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#changeset-1">Changeset 1</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#changeset-2">Changeset 2</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#changeset-3">Changeset 3</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a data-target="#inner-nav-ecsql-examples" class='title' href="#ecsql-examples"/>
-                                    <b class='dropdown-menu-title menu-text'>ECSQL Examples</b>
-                                    <i class='dropdown icon'></i>
-                                    </a>
-                                    <ul id="inner-nav-ecsql-examples" class='inner-nav'>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#ecsql-function-changes">ECSQL function Changes</a>
-                                            </li>
-                                    </ul>
-                            </li>
-                    </ul>
-            </li>
-         
-              </ul>
-            </div>
-          </div>
-        
+       <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#generating-change-summaries">Generating Change Summaries</a>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-working-with-change-summaries" class='title' href="#working-with-change-summaries"/>
+            <b class='dropdown-menu-title menu-text'>Working with Change Summaries</b>
+            <i class='dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-working-with-change-summaries" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#attaching-the-change-cache-file-to-the-local-briefcase">Attaching the Change Cache file to the local briefcase</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#leveraging-change-summary-information">Leveraging Change Summary information</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-find-out-what-has-changed" class='title' href="#find-out-what-has-changed"/>
+                            <b class='dropdown-menu-title menu-text'>Find out what has changed</b>
+                            <i class='dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-find-out-what-has-changed" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#examples">Examples</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-find-out-how-values-have-changed" class='title' href="#find-out-how-values-have-changed"/>
+                            <b class='dropdown-menu-title menu-text'>Find out how values have changed</b>
+                            <i class='dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-find-out-how-values-have-changed" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#syntax">Syntax</a>
+                                    </li>
+                            </ul>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-example-scenario" class='title' href="#example-scenario"/>
+            <b class='dropdown-menu-title menu-text'>Example Scenario</b>
+            <i class='dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-example-scenario" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#changeset-1">Changeset 1</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#changeset-2">Changeset 2</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#changeset-3">Changeset 3</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-ecsql-examples" class='title' href="#ecsql-examples"/>
+                            <b class='dropdown-menu-title menu-text'>ECSQL Examples</b>
+                            <i class='dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-ecsql-examples" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#ecsql-function-changes">ECSQL function Changes</a>
+                                    </li>
+                            </ul>
+                    </li>
+            </ul>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
     </div>
 </div>
 

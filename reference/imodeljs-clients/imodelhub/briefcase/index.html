@@ -110,19 +110,19 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/all/" class="table-of-contents-link">All</a></li>
         </ul>
         <hr>
-        <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/&apos;&gt;imodeljs-common&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/" class="table-of-contents-link">imodeljs-common</a></h3>
+        <h3 id="imodeljs-common">imodeljs-common</h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/" class="table-of-contents-link">Wire Formats</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/" class="table-of-contents-link">Codes</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/" class="table-of-contents-link">Geometry</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/" class="table-of-contents-link">Views</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/" class="table-of-contents-link">Symbology</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/" class="table-of-contents-link">Rendering</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/" class="table-of-contents-link">iModels</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/" class="table-of-contents-link">RPC Interface</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/" class="table-of-contents-link">ECSQL</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/" class="table-of-contents-link">Feature Gates</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/all/" class="table-of-contents-link">All</a></li>
+        <li>Wire Formats</li>
+        <li>Codes</li>
+        <li>Geometry</li>
+        <li>Views</li>
+        <li>Symbology</li>
+        <li>Rendering</li>
+        <li>iModels</li>
+        <li>RPC Interface</li>
+        <li>ECSQL</li>
+        <li>Feature Gates</li>
+        <li>All</li>
         </ul>
         <hr>
         <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/&apos;&gt;imodeljs-clients&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/" class="table-of-contents-link">imodeljs-clients</a></h3>
@@ -173,7 +173,9 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/">imodeljs-clients</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/imodelhub/">iModelHub</a> > Briefcase</div>
             
             <h2 class="h-briefcase"><a id="briefcase" class="heading-anchor" href="#%s"></a>Briefcase <span class="badge badge-pill badge-primary badge-class">Class</span></h2>
-<p>Briefcase</p>
+<p>Briefcase is a copy of the master file, that user acquires to work with the iModel. Briefcase instance represents metadata about a copy of iModel&apos;s master file.</p>
+<p>File properties describe the file that would be downloaded through downloadUrl. It is the most recently updated copy of master file that is stored on iModelHub. These copies do not necessarily have the latest <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a> applied to them.</p>
+<p>briefcaseId is the id that user needs to write into the local copy of master file and use for other iModelHub requests. briefcaseId ranges from 2 to 16777215, see <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/briefcaseid'>BriefcaseId</a>.</p>
 <h3 class="h-extends"><a id="extends" class="heading-anchor" href="#%s"></a>Extends</h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/wsginstance'>WsgInstance</a></li>
@@ -192,37 +194,37 @@
 <tr>
 <td class="h-acquireddate"><a id="acquireddate" class="heading-anchor" href="#%s"></a><span class="property-name">acquiredDate</span></td>
 <td><span class="method-output">undefined | string</span></td>
-<td></td>
+<td>Date when this briefcase was acquired.</td>
 </tr>
 <tr>
-<td class="h-briefcaseid"><a id="briefcaseid" class="heading-anchor" href="#%s"></a><span class="property-name">briefcaseId</span></td>
+<td class="h-briefcaseid"><a id="briefcaseid" class="heading-anchor" href="#%s"></a><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/briefcase/briefcaseid'>briefcaseId</a></span></td>
 <td><span class="method-output">undefined | number</span></td>
-<td></td>
+<td>Id of the briefcase.</td>
 </tr>
 <tr>
-<td class="h-downloadurl"><a id="downloadurl" class="heading-anchor" href="#%s"></a><span class="property-name">downloadUrl</span></td>
+<td class="h-downloadurl"><a id="downloadurl" class="heading-anchor" href="#%s"></a><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/briefcase/downloadurl'>downloadUrl</a></span></td>
 <td><span class="method-output">undefined | string</span></td>
-<td></td>
+<td>URL that can be used to download the latest copy of master file from iModelHub.</td>
 </tr>
 <tr>
 <td class="h-filedescription"><a id="filedescription" class="heading-anchor" href="#%s"></a><span class="property-name">fileDescription</span></td>
 <td><span class="method-output">undefined | string</span></td>
-<td></td>
+<td>Description of the master file.</td>
 </tr>
 <tr>
-<td class="h-fileid"><a id="fileid" class="heading-anchor" href="#%s"></a><span class="property-name">fileId</span></td>
+<td class="h-fileid"><a id="fileid" class="heading-anchor" href="#%s"></a><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/briefcase/fileid'>fileId</a></span></td>
 <td><span class="method-output">undefined | string</span></td>
-<td></td>
+<td>FileId of the master file.</td>
 </tr>
 <tr>
 <td class="h-filename"><a id="filename" class="heading-anchor" href="#%s"></a><span class="property-name">fileName</span></td>
 <td><span class="method-output">undefined | string</span></td>
-<td></td>
+<td>File name of the master file.</td>
 </tr>
 <tr>
 <td class="h-filesize"><a id="filesize" class="heading-anchor" href="#%s"></a><span class="property-name">fileSize</span></td>
 <td><span class="method-output">undefined | string</span></td>
-<td></td>
+<td>Size of the latest copy of the master file in iModelHub.</td>
 </tr>
 <tr>
 <td class="h-imodelid"><a id="imodelid" class="heading-anchor" href="#%s"></a><span class="property-name">iModelId</span></td>
@@ -232,7 +234,7 @@
 <tr>
 <td class="h-isreadonly"><a id="isreadonly" class="heading-anchor" href="#%s"></a><span class="property-name">isReadOnly</span></td>
 <td><span class="method-output">undefined | true | false</span></td>
-<td></td>
+<td>Shows whether the user who acquired this briefcase can perform write operations.</td>
 </tr>
 <tr>
 <td class="h-lastaccessedat"><a id="lastaccessedat" class="heading-anchor" href="#%s"></a><span class="property-name">lastAccessedAt</span></td>
@@ -247,11 +249,12 @@
 <tr>
 <td class="h-mergedchangesetid"><a id="mergedchangesetid" class="heading-anchor" href="#%s"></a><span class="property-name">mergedChangeSetId</span></td>
 <td><span class="method-output">undefined | string</span></td>
-<td></td>
+<td>Id of the last <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a> that was merged into the latest copy of master file on iModelHub.</td>
 </tr>
 <tr>
 <td class="h-userid"><a id="userid" class="heading-anchor" href="#%s"></a><span class="property-name">userId</span></td>
 <td><span class="method-output">undefined | string</span></td>
+<td>Id of the user that acquired this briefcase.</td>
 </tr>
 </tbody></table><h3 class="h-inherited-properties"><a id="inherited-properties" class="heading-anchor" href="#%s"></a><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited properties</h3>
 <table class="table table-responsive"><tbody><tr>
@@ -289,7 +292,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 August, 2018 @ 08:10:24 pm -04:00</span>
+                <span class='date-updated'>28 August, 2018 @ 08:10:04 pm -04:00</span>
             </p>
 
             
@@ -298,107 +301,100 @@
             </script>        </article>
     </div>
     <div id='inner-table-of-contents'>
-        <!--
-            - If the page is active
-            - Get all headings and subheadings and list them
-         -->
-        
-        
-        
-        
-        <div id='sticky-container' style="top: 76px; position: fixed;">
-          <h4 class='heading'>On this page</h4>
-            <div id="overview-container" class="clusterize-scroll">
-              <ul id='nav' class='right-nav nav flex-column clusterize-content'>
-                      <li class='nav-item item active typeDocHeader'>
-                    <a data-target="#inner-nav-briefcase" class='title' href="#briefcase"/>
-                    <b class='dropdown-menu-title menu-text'>Briefcase</b>
-                    <i class='dropdown icon'></i>
-                    </a>
-                    <ul id="inner-nav-briefcase" class='inner-nav'>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#extends">Extends</a>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a data-target="#inner-nav-properties" class='title' href="#properties"/>
-                                    <b class='dropdown-menu-title menu-text'>Properties</b>
-                                    <i class='dropdown icon'></i>
-                                    </a>
-                                    <ul id="inner-nav-properties" class='inner-nav'>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#accessmode">accessMode</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#acquireddate">acquiredDate</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#briefcaseid">briefcaseId</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#downloadurl">downloadUrl</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#filedescription">fileDescription</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#fileid">fileId</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#filename">fileName</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#filesize">fileSize</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#imodelid">iModelId</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#isreadonly">isReadOnly</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#lastaccessedat">lastAccessedAt</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#localpathname">localPathname</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#mergedchangesetid">mergedChangeSetId</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#userid">userId</a>
-                                            </li>
-                                    </ul>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a data-target="#inner-nav-inherited-properties" class='title' href="#inherited-properties"/>
-                                    <b class='dropdown-menu-title menu-text'>Inherited properties</b>
-                                    <i class='dropdown icon'></i>
-                                    </a>
-                                    <ul id="inner-nav-inherited-properties" class='inner-nav'>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#changestate">changeState</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#ecid">ecId</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#etag">eTag</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#wsgid">wsgId</a>
-                                            </li>
-                                    </ul>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#defined-in">Defined in</a>
-                            </li>
-                    </ul>
-            </li>
-         
-              </ul>
-            </div>
-          </div>
-        
+       <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item active typeDocHeader'>
+            <a data-target="#inner-nav-briefcase" class='title' href="#briefcase"/>
+            <b class='dropdown-menu-title menu-text'>Briefcase</b>
+            <i class='dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-briefcase" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#extends">Extends</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-properties" class='title' href="#properties"/>
+                            <b class='dropdown-menu-title menu-text'>Properties</b>
+                            <i class='dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-properties" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#accessmode">accessMode</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#acquireddate">acquiredDate</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#briefcaseid">briefcaseId</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#downloadurl">downloadUrl</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#filedescription">fileDescription</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#fileid">fileId</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#filename">fileName</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#filesize">fileSize</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#imodelid">iModelId</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isreadonly">isReadOnly</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#lastaccessedat">lastAccessedAt</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#localpathname">localPathname</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#mergedchangesetid">mergedChangeSetId</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#userid">userId</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-inherited-properties" class='title' href="#inherited-properties"/>
+                            <b class='dropdown-menu-title menu-text'>Inherited properties</b>
+                            <i class='dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-inherited-properties" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#changestate">changeState</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#ecid">ecId</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#etag">eTag</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#wsgid">wsgId</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#defined-in">Defined in</a>
+                    </li>
+            </ul>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
     </div>
 </div>
 

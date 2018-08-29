@@ -76,6 +76,7 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
         </ul>
         <hr>
         <p>&#xA0;</p>
@@ -105,19 +106,21 @@
     const config = require(path.join(IModelHost.appAssetsDir!, &quot;RobotWorldEngine.config.json&quot;));
     EnvMacroSubst.replaceInProperties(config, true, defaultsCfg);
 
-    // Define the feature gates that were passed in the config parameters on IModelHost, using &quot;robot&quot; as the key.
-    IModelHost.features.setGate(&quot;robot&quot;, config.features);
+    // Define the feature gates that were passed in the config parameters on IModelHost, using &quot;robot.&quot; as a prefix
+    config.features.forEach((gate: { name: string, val: any }) =&gt; IModelHost.features.setGate(&quot;robot.&quot; + gate.name, gate.val));
   }</code></pre>
 <p>An example of the feature gate portion of a configuration .json file that is deployed with a service might be:</p>
 <pre class="no-line-numbers"><code class="language-json">{
-  &quot;features&quot;: {
-    &quot;imodel&quot;: {
-      &quot;readwrite&quot;: &quot;${ROBOT-WORLD-FEATURE-READWRITE}&quot;
+  &quot;features&quot;: [
+    {
+      &quot;name&quot;: &quot;imodel.readwrite&quot;,
+      &quot;val&quot;: &quot;${ROBOT-WORLD-FEATURE-READWRITE}&quot;
     },
-    &quot;experimental&quot;: {
-      &quot;methods&quot;: &quot;${ROBOT-WORLD-FEATURE-EXPERIMENTAL-METHODS}&quot;
+    {
+      &quot;name&quot;: &quot;experimental.methods&quot;,
+      &quot;val&quot;: &quot;${ROBOT-WORLD-FEATURE-EXPERIMENTAL-METHODS}&quot;
     }
-  }
+  ]
 }</code></pre>
 <p>Note how the values of the configuration properties are defined by placeholders, which are delimited by ${}. Such placeholders will be replaced by EnvMacroSubst with the values of like-named environment variables. That allows a deployment mechanism to supply the values for configuration parameters and inject them into the service.</p>
 <p>A service then checks its feature gates in its methods.
@@ -131,7 +134,7 @@
     // ...</code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 August, 2018 @ 08:10:35 pm -04:00</span>
+                <span class='date-updated'>28 August, 2018 @ 08:10:08 pm -04:00</span>
             </p>
 
             
@@ -140,15 +143,8 @@
             </script>        </article>
     </div>
     <div id='inner-table-of-contents'>
-        <!--
-            - If the page is active
-            - Get all headings and subheadings and list them
-         -->
-        
-        
-        
-        
-        
+       <!--  
+ -->
     </div>
 </div>
 

@@ -110,19 +110,19 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/all/" class="table-of-contents-link">All</a></li>
         </ul>
         <hr>
-        <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/&apos;&gt;imodeljs-common&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/" class="table-of-contents-link">imodeljs-common</a></h3>
+        <h3 id="imodeljs-common">imodeljs-common</h3>
         <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/" class="table-of-contents-link">Wire Formats</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/" class="table-of-contents-link">Codes</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/" class="table-of-contents-link">Geometry</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/" class="table-of-contents-link">Views</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/" class="table-of-contents-link">Symbology</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/" class="table-of-contents-link">Rendering</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/" class="table-of-contents-link">iModels</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/" class="table-of-contents-link">RPC Interface</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/" class="table-of-contents-link">ECSQL</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/" class="table-of-contents-link">Feature Gates</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/all/" class="table-of-contents-link">All</a></li>
+        <li>Wire Formats</li>
+        <li>Codes</li>
+        <li>Geometry</li>
+        <li>Views</li>
+        <li>Symbology</li>
+        <li>Rendering</li>
+        <li>iModels</li>
+        <li>RPC Interface</li>
+        <li>ECSQL</li>
+        <li>Feature Gates</li>
+        <li>All</li>
         </ul>
         <hr>
         <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/&apos;&gt;imodeljs-clients&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/" class="table-of-contents-link">imodeljs-clients</a></h3>
@@ -173,7 +173,7 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/">imodeljs-clients</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/imodelhub/">iModelHub</a> > CodeState</div>
             
             <h2 class="h-codestate"><a id="codestate" class="heading-anchor" href="#%s"></a>CodeState <span class="badge badge-pill badge-primary badge-enumeration">Enumeration</span></h2>
-<p>Code State enumeration</p>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/code'>Code</a> state describes whether the code is currently in use or owned by a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/briefcase'>Briefcase</a>.</p>
 <h3 class="h-members"><a id="members" class="heading-anchor" href="#%s"></a>Members</h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -183,22 +183,22 @@
 <tr>
 <td class="h-available"><a id="available" class="heading-anchor" href="#%s"></a>Available</td>
 <td><code>0</code></td>
-<td>Code with this state is not persisted in the database. Code that is updated to &apos;Available&apos; state is deleted from the database</td>
+<td>Code with this state is not persisted in iModelHub. Code that is updated to &apos;Available&apos; state is deleted from the iModelHub.</td>
 </tr>
 <tr>
 <td class="h-reserved"><a id="reserved" class="heading-anchor" href="#%s"></a>Reserved</td>
 <td><code>1</code></td>
-<td>Code is reserved by the briefcase, no one else is allowed to change its state</td>
+<td>Code is reserved by the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/briefcase'>Briefcase</a>, no one else is allowed to change its state.</td>
 </tr>
 <tr>
 <td class="h-used"><a id="used" class="heading-anchor" href="#%s"></a>Used</td>
 <td><code>2</code></td>
-<td>Code is used in the changeSet committed to the server</td>
+<td>Code is used in a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a> committed to the iModelHub.</td>
 </tr>
 <tr>
 <td class="h-retired"><a id="retired" class="heading-anchor" href="#%s"></a>Retired</td>
 <td><code>3</code></td>
-<td>Retired code can&apos;t be reserved or used. It can only be deleted and then reserved again</td>
+<td>Retired Code can not be reserved or used. It can only be deleted and then reserved again</td>
 </tr>
 </tbody></table><h3 class="h-defined-in"><a id="defined-in" class="heading-anchor" href="#%s"></a>Defined in</h3>
 <ul>
@@ -206,7 +206,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 August, 2018 @ 08:10:24 pm -04:00</span>
+                <span class='date-updated'>28 August, 2018 @ 08:10:04 pm -04:00</span>
             </p>
 
             
@@ -215,54 +215,47 @@
             </script>        </article>
     </div>
     <div id='inner-table-of-contents'>
-        <!--
-            - If the page is active
-            - Get all headings and subheadings and list them
-         -->
-        
-        
-        
-        
-        <div id='sticky-container' style="top: 76px; position: fixed;">
-          <h4 class='heading'>On this page</h4>
-            <div id="overview-container" class="clusterize-scroll">
-              <ul id='nav' class='right-nav nav flex-column clusterize-content'>
-                      <li class='nav-item item active typeDocHeader'>
-                    <a data-target="#inner-nav-codestate" class='title' href="#codestate"/>
-                    <b class='dropdown-menu-title menu-text'>CodeState</b>
-                    <i class='dropdown icon'></i>
-                    </a>
-                    <ul id="inner-nav-codestate" class='inner-nav'>
-                            <li class='nav-item item '>
-                                    <a data-target="#inner-nav-members" class='title' href="#members"/>
-                                    <b class='dropdown-menu-title menu-text'>Members</b>
-                                    <i class='dropdown icon'></i>
-                                    </a>
-                                    <ul id="inner-nav-members" class='inner-nav'>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#available">Available</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#reserved">Reserved</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#used">Used</a>
-                                            </li>
-                                            <li class='nav-item item '>
-                                                    <a class='title solo-title menu-text' href="#retired">Retired</a>
-                                            </li>
-                                    </ul>
-                            </li>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#defined-in">Defined in</a>
-                            </li>
-                    </ul>
-            </li>
-         
-              </ul>
-            </div>
-          </div>
-        
+       <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item active typeDocHeader'>
+            <a data-target="#inner-nav-codestate" class='title' href="#codestate"/>
+            <b class='dropdown-menu-title menu-text'>CodeState</b>
+            <i class='dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-codestate" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-members" class='title' href="#members"/>
+                            <b class='dropdown-menu-title menu-text'>Members</b>
+                            <i class='dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-members" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#available">Available</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#reserved">Reserved</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#used">Used</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#retired">Retired</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#defined-in">Defined in</a>
+                    </li>
+            </ul>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
     </div>
 </div>
 

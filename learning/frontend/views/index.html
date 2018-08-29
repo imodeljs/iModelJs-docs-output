@@ -76,6 +76,7 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
         </ul>
         <hr>
         <p>&#xA0;</p>
@@ -159,7 +160,7 @@ format for User Interfaces. This can be used to present a list of possible views
 <p><code>ViewState</code> objects hold the state of a <code>ViewDefinition</code> (<em>what</em> is shown in a View) in the frontend.</p>
 <p>To connect a ViewState to a rectangular region on a web page, you create instances of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a> class. The constructor of Viewport takes an <code>HTMLCanvasElement</code> and a
 (fully loaded) ViewState. In this manner, Viewports form the connection between a rectangular region on your web page and a set of
-Element and Models in the iModel, a display <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/frustum'>Frustum</a>, a DisplayStyle, and the iModelJs rendering system.</p>
+Element and Models in the iModel, a display Frustum, a DisplayStyle, and the iModelJs rendering system.</p>
 <blockquote>
 <p>Note: before creating a Viewport, be sure to call <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/startup'>IModelApp.startup</a>.</p>
 </blockquote>
@@ -167,10 +168,10 @@ Element and Models in the iModel, a display <a href='https://imodeljs.github.io/
 <p>The Viewport class is responsible for displaying a View, as defined by its ViewState. However, typically the objective of showing a View is to allow users
 to modify the View itself, or to interact with its contents.</p>
 <p>To facilitate that, we need to connect the event system of the browser with Viewports via <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/#viewmanager'>IModelApp.viewManager</a>.</p>
-<pre class="no-line-numbers"><code class="language-typescript">  /** Open a Viewport on the supplied canvas. */
-  public static async openView(canvas: HTMLCanvasElement) {
+<pre class="no-line-numbers"><code class="language-typescript">  /** Open a Viewport on the supplied div element. */
+  public static async openView(viewDiv: HTMLDivElement) {
     const viewState = await this.loadOneView();
-    const viewPort = new Viewport(canvas, viewState);
+    const viewPort = ScreenViewport.create(viewDiv, viewState);
     this.viewManager.addViewport(viewPort);
   }</code></pre>
 <p>After the viewport is added to the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager'>ViewManager</a>, all HTML events for its canvas are directed to the active <code>Tool</code> class by the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/tooladmin'>ToolAdmin</a>.</p>
@@ -183,12 +184,12 @@ special viewing operations.</p>
 <p>DisplayStyles describe the <em>styling</em> that should be applied to the contents of a View.</p>
 <p>This includes the :</p>
 <ul>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a></li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryappearance'>SubCategoryAppearance</a> visibility and overrides</li>
+<li>ViewFlags</li>
+<li>SubCategoryAppearance visibility and overrides</li>
 <li>Background color</li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendermode'>RenderMode</a></li>
+<li>RenderMode</li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/environment'>Environment</a></li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/light'>Light</a>s</li>
+<li>Lights</li>
 <li>Other view-specific parameters</li>
 </ul>
 <p>They are loaded in memory in the frontend with the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/displaystylestate'>DisplayStyleState</a> class.</p>
@@ -246,7 +247,7 @@ you can create <code>RealityDataModel</code>s that hold the URL of the Reality D
 <pre class="no-line-numbers"><code class="language-bash">{vector from eyePoint-&gt;targetPoint} : -Z (positive view Z points towards negative world Z)
 {the up vector}                     : +Y
 {Z cross Y}                         : +X</code></pre>
-<p>these three vectors form the rows of the view&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/rotmatrix'>RotMatrix</a></p>
+<p>these three vectors form the rows of the view&apos;s RotMatrix</p>
 </li>
 <li><p>Objects in space in front of the front plane or behind the back plane are not displayed.</p>
 </li>
@@ -271,7 +272,7 @@ views, or &quot;wide and shallow slices&quot;, etc.) are problematic and disallo
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 August, 2018 @ 08:10:35 pm -04:00</span>
+                <span class='date-updated'>28 August, 2018 @ 08:10:08 pm -04:00</span>
             </p>
 
             
@@ -280,73 +281,66 @@ views, or &quot;wide and shallow slices&quot;, etc.) are problematic and disallo
             </script>        </article>
     </div>
     <div id='inner-table-of-contents'>
-        <!--
-            - If the page is active
-            - Get all headings and subheadings and list them
-         -->
-        
-        
-        
-        
-        <div id='sticky-container' style="top: 76px; position: fixed;">
-          <h4 class='heading'>On this page</h4>
-            <div id="overview-container" class="clusterize-scroll">
-              <ul id='nav' class='right-nav nav flex-column clusterize-content'>
-                      <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#viewdefinition-elements">ViewDefinition Elements</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#the-viewstate-class">The ViewState Class</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#types-of-viewdefinitions">Types of ViewDefinitions</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#loading-views-from-an-imodel">Loading Views from an iModel</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#using-viewports">Using Viewports</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#viewmanager">ViewManager</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#viewing-tools">Viewing Tools</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#displaystyles">DisplayStyles</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#modelselectors">ModelSelectors</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#categoryselectors">CategorySelectors</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#auxiliary-coordinate-systems">Auxiliary Coordinate Systems</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#reality-data">Reality Data</a>
-            </li>
-               <li class='nav-item item '>
-                    <a class='title solo-title menu-text' href="#view-thumbnails">View Thumbnails</a>
-            </li>
-               <li class='nav-item item '>
-                    <a data-target="#inner-nav-viewstate-parameters" class='title' href="#viewstate-parameters"/>
-                    <b class='dropdown-menu-title menu-text'>ViewState Parameters</b>
-                    <i class='dropdown icon'></i>
-                    </a>
-                    <ul id="inner-nav-viewstate-parameters" class='inner-nav'>
-                            <li class='nav-item item '>
-                                    <a class='title solo-title menu-text' href="#notes">Notes</a>
-                            </li>
-                    </ul>
-            </li>
-         
-              </ul>
-            </div>
-          </div>
-        
+       <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#viewdefinition-elements">ViewDefinition Elements</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#the-viewstate-class">The ViewState Class</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#types-of-viewdefinitions">Types of ViewDefinitions</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#loading-views-from-an-imodel">Loading Views from an iModel</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#using-viewports">Using Viewports</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#viewmanager">ViewManager</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#viewing-tools">Viewing Tools</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#displaystyles">DisplayStyles</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#modelselectors">ModelSelectors</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#categoryselectors">CategorySelectors</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#auxiliary-coordinate-systems">Auxiliary Coordinate Systems</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#reality-data">Reality Data</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#view-thumbnails">View Thumbnails</a>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-viewstate-parameters" class='title' href="#viewstate-parameters"/>
+            <b class='dropdown-menu-title menu-text'>ViewState Parameters</b>
+            <i class='dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-viewstate-parameters" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#notes">Notes</a>
+                    </li>
+            </ul>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
     </div>
 </div>
 
