@@ -135,7 +135,7 @@ the Change Cache file. If the schema and class name combination is unambiguous, 
 </tr>
 <tr>
 <td><code>SELECT ChangedInstance.Id, OpCode FROM ecchange.change.InstanceChange WHERE Summary.Id=?</code></td>
-<td>Returns the Ids of all changed instances in the specified Change Summary, plus the instance change&apos;s ChangeOpCode (e.g. whether the instance was inserted, updated or deleted)</td>
+<td>Returns the Ids of all changed instances in the specified Change Summary, plus the instance change&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/changeopcode'>ChangeOpCode</a> (e.g. whether the instance was inserted, updated or deleted)</td>
 </tr>
 </tbody></table><h3 class="h-find-out-how-values-have-changed"><a id="find-out-how-values-have-changed" class="heading-anchor" href="#%s"></a>Find out <em>how</em> values have changed</h3>
 <p>Querying for the changed values is done with the ECSQL function <strong>Changes</strong>.</p>
@@ -143,7 +143,7 @@ the Change Cache file. If the schema and class name combination is unambiguous, 
 <pre class="no-line-numbers"><code class="language-sql">SELECT ... FROM MySchema.MyClass.Changes(ChangeSummaryId, ChangedValueState) ...</code></pre>
 <ul>
 <li><code>ChangeSummaryId</code>: The ECInstanceId of the Change Summary.</li>
-<li><p><code>ChangedValueState</code>: corresponds to the values of the enum ChangedValueState.</p>
+<li><p><code>ChangedValueState</code>: corresponds to the values of the enum <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/changedvaluestate'>ChangedValueState</a>.</p>
 <blockquote>
 <p>You can format the <em>ChangedValueState</em> in the ECSQL either by the enum&apos;s integral values or by the enum value&apos;s name.
 The following two ECSQL statements are equivalent:</p>
@@ -153,7 +153,7 @@ The following two ECSQL statements are equivalent:</p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT ... FROM MySchema.MyClass.Changes(12, 1)</code></pre>
 <pre class="no-line-numbers"><code class="language-sql">SELECT ... FROM MySchema.MyClass.Changes(12, &apos;AfterInsert&apos;)</code></pre>
 <blockquote>
-<p>Notes when specifying ChangedValueState.BeforeUpdate or ChangedValueState.AfterUpdate:</p>
+<p>Notes when specifying <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/changedvaluestate/#beforeupdate'>ChangedValueState.BeforeUpdate</a> or <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/changedvaluestate/#afterupdate'>ChangedValueState.AfterUpdate</a>:</p>
 <p>For any property in the ECSQL select clause the value of which has not changed in the specified change summary,
 the <strong>value of the current state of the file</strong> is returned. The function does <strong>NOT</strong> return the value it was at the
 revision the change summary referred to.</p>
@@ -255,7 +255,7 @@ for the unchanged values.</p>
 </tr>
 </tbody></table><ul>
 <li><code>ChangedInstance.Id</code> is the ECInstanceId of the changed instance, i.e. the changed <code>Person</code> instance in this example.</li>
-<li>The <code>OpCode</code> values refer to the ChangeOpCode enumeration as defined in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbchange.ecschema'>ECDbChange</a> ECSchema.</li>
+<li>The <code>OpCode</code> values refer to the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/changeopcode'>ChangeOpCode</a> enumeration as defined in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbchange.ecschema'>ECDbChange</a> ECSchema.</li>
 </ul>
 </blockquote>
 <hr>
@@ -477,7 +477,7 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
 </tbody></table></blockquote>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>28 August, 2018 @ 08:10:08 pm -04:00</span>
+                <span class='date-updated'>05 September, 2018 @ 12:09:02 am +00:00</span>
             </p>
 
             

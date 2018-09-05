@@ -114,9 +114,9 @@
 <h2 class="h-parameter-and-return-types"><a id="parameter-and-return-types" class="heading-anchor" href="#%s"></a>Parameter and Return Types</h2>
 <p>RpcInterface methods can take and return just about any type. Most JavaScript primitive types are supported, such as number, string, bool, and any.</p>
 <p>RpcInterfaces can also use TypeScript/JavaScript classes as parameter and return types. The <a href="#defining-the-interface">interface definition</a> just has to declare the classes that it uses, so that the configurations can marshall them correctly. That is the purpose of the <code>types</code> property.</p>
-<p>RpcInterfaces are restricted to using types that are common to both frontends and backends. For example, the IModelToken type must be used to specify an iModel. The client that makes a call on the interface must obtain the token from the IModelConnection or IModelDb that it has, and the server that implements the interface must translate the token into an IModelDb when it handles the call.</p>
+<p>RpcInterfaces are restricted to using types that are common to both frontends and backends. For example, the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodeltoken'>IModelToken</a> type must be used to specify an iModel. The client that makes a call on the interface must obtain the token from the IModelConnection or IModelDb that it has, and the server that implements the interface must translate the token into an IModelDb when it handles the call.</p>
 <h2 class="h-defining-the-interface"><a id="defining-the-interface" class="heading-anchor" href="#%s"></a>Defining the Interface</h2>
-<p>To define an interface, write a TypeScript class that extends RpcInterface.</p>
+<p>To define an interface, write a TypeScript class that extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcinterface'>RpcInterface</a>.</p>
 <p>The interface definition class should define a method for each operation that is to be exposed by the server. Each method signature should include the names and types of the input parameters. Each method must return a <code>Promise</code> of the appropriate type. These methods and their signatures define the interface.</p>
 <p>The definition class must also define two static properties as interface metadata:</p>
 <ul>
@@ -143,7 +143,7 @@ export abstract class RobotWorldReadRpcInterface extends RpcInterface {
 <p>The client stub is an implementation of the interface that forwards method calls to the RPC mechanism. Each method in the client stub is exactly the same single line of code: <code>return this.forward.apply(this, arguments);</code> The forward property is implemented by the base class, and its forward method sends the call and its arguments through the configured RPC mechanism to the server. As shown in the previous example, the client stub code is incorporated into the interface definition class.</p>
 <h2 class="h-server-implementation"><a id="server-implementation" class="heading-anchor" href="#%s"></a>Server Implementation</h2>
 <p>The server-side implementation is also known as the &quot;impl&quot;. An impl is always <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#backend'>backend code</a>.</p>
-<p>To write an impl, write a concrete TypeScript class that extends RpcInterface and also implements the interface definition class.</p>
+<p>To write an impl, write a concrete TypeScript class that extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcinterface'>RpcInterface</a> and also implements the interface definition class.</p>
 <p>The impl must override each method in the interface definition class. Each override must perform the intended operation.</p>
 <p>Each impl method must return the operation&apos;s result as a Promise.</p>
 <p>As noted above, the methods in the impl may have to transform certain argument types, such as IModelTokens, before they can be used.</p>
@@ -176,11 +176,11 @@ export class RobotWorldReadRpcImpl extends RpcInterface implements RobotWorldRea
 <h2 class="h-server-side-configuration"><a id="server-side-configuration" class="heading-anchor" href="#%s"></a>Server-side Configuration</h2>
 <p>A server must expose the RpcInterfaces that it implements or imports, so that clients can use them.</p>
 <h3 class="h-1-register-impls"><a id="1-register-impls" class="heading-anchor" href="#%s"></a>1. Register Impls</h3>
-<p>The server must call RpcManager.registerImpl to register the impl classes for the interfaces that it implements, if any.</p>
+<p>The server must call <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcmanager/#registerimpl'>RpcManager.registerImpl</a> to register the impl classes for the interfaces that it implements, if any.</p>
 <p><em>Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">    RpcManager.registerImpl(RobotWorldReadRpcInterface, RobotWorldReadRpcImpl);</code></pre>
 <h3 class="h-2-choose-interfaces"><a id="2-choose-interfaces" class="heading-anchor" href="#%s"></a>2. Choose Interfaces</h3>
-<p>The server must decide which interfaces it wants to expose. A server can expose multiple interfaces. A server can expose both its own implementations, if any, and imported implementations. The server can decide at run time which interfaces to expose, perhaps based on deployment parameters. A server will often use FeatureGates to decide which interfaces to expose.</p>
+<p>The server must decide which interfaces it wants to expose. A server can expose multiple interfaces. A server can expose both its own implementations, if any, and imported implementations. The server can decide at run time which interfaces to expose, perhaps based on deployment parameters. A server will often use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/featuregates'>FeatureGates</a> to decide which interfaces to expose.</p>
 <p><em>Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">  private static chooseInterfacesToExpose(): RpcInterfaceDefinition[] {
     const interfaces: RpcInterfaceDefinition[] = [IModelReadRpcInterface, RobotWorldReadRpcInterface];
@@ -257,7 +257,7 @@ export function initializeRpcClientDesktop(interfaces: RpcInterfaceDefinition[])
 <p>The interface between a client and a server is intrinsically asynchronous. That is because the client and server are never in the same JavaScript context, as explained in <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/app/#interactive-apps'>the app architecture overview</a>. Since a requested operation is carried out in a different thread of execution, it is asynchronous from the client&apos;s point of view, and so the client must treat the result as a Promise. As a result, the impl wrapper methods must also return Promises. Nevertheless, the static methods in the backend that actually perform the requested operations should not be async, unless the operation itself requires it. The purpose of a backend is to do the work, not pass the buck. It is the client that must wait, not the server.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>28 August, 2018 @ 08:10:08 pm -04:00</span>
+                <span class='date-updated'>05 September, 2018 @ 12:09:02 am +00:00</span>
             </p>
 
             
