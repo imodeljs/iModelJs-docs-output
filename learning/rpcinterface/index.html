@@ -9,13 +9,24 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Remote Procedure Call (RPC) Interface - iModelJs</title>
+    <title>RpcInterface - iModelJs</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
+
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
-        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//overview/imodeljs.ico' /> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -24,54 +35,50 @@
     </span>
     <span id="contentLoaderBackground"></span>
     <div id="flex-wrapper">
-        <header id="main-header">
-            <div class='row nav-container'>
-                <nav id='main-navbar' class="navbar navbar-expand-md navbar-light">
-                    
-                    <button class="navbar-toggler navbar-toggler-left custom-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon">
-                            <i class='icon icon-menu'></i>
-                        </span>
-                    </button>
-                    <div class="nav-title-container">
-                        <a class="navbar-brand " href="https://imodeljs.github.io/iModelJs-docs-output//" class="col-md-3">
-                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//overview/imodeljs.ico" />
-                            <h1 id="site-title">iModelJs</h1>
-                        </a>
-                    </div>
-                    <div id='header-tabs' class='col-sm-6 col-md-3 nav-tabs-container'>
-                        <nav class="navbar navbar-expand-md navbar-light">
-                             <ul class="bwc-tabs-horizontal green"><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//overview">Overview</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="active"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class=""><a href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li></ul> 
-                        </nav>
-                    </div>            </nav>
-        </div>
-        </header>
-        
 
+
+
+        <header id="main-header">
+            <div class='nav-header-container'>
+                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                    <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+                        <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar5">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
+                        <ul class="navbar-nav mb-0" id="doc-site-tabs">
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li>
+                        </ul>
+                        <ul class="navbar-nav ml-auto">
+                            <span class='search-bar'>
+                              <li>
+                                <div id='search-container'>
+                                </div>
+                              </li>
+                              <script>
+                                (function() {
+                                  var cx = '000629069474334212860:yxwzhn4umym';
+                                  var gcse = document.createElement('script');
+                                  gcse.type = 'text/javascript';
+                                  gcse.async = true;
+                                  gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                                  var s = document.getElementsByTagName('script')[0];
+                                  s.parentNode.insertBefore(gcse, s);
+                                })();
+                              </script>
+                              <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+                            </span>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
 <div id='main-wrapper'>
     <div id='table-of-contents'>
-        <span class='search-bar'>
-          <li>
-            <div id='search-container'>
-            </div>
-          </li>
-          <script>
-            (function() {
-              var cx = '000629069474334212860:yxwzhn4umym';
-              var gcse = document.createElement('script');
-              gcse.type = 'text/javascript';
-              gcse.async = true;
-              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-              var s = document.getElementsByTagName('script')[0];
-              s.parentNode.insertBefore(gcse, s);
-            })();
-          </script>
-          <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
-        </span>
-        
         <ul id='main-navigation-list'>
-            <html><head></head><body><h3 id="the imodeljs library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModelJs Library</a></h3>
+            <html><head></head><body><h3 id="the imodel.js library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModel.js Library</a></h3>
         <ul>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
@@ -86,36 +93,65 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModelJs Glossary</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
         </ul>
         </body></html>
         </ul>    </div>
-    <div class='row documentation-main'>
+    <div class='documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > RpcInterface</div>
-            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
-            <h1 id="remote procedure call (rpc-interface">Remote Procedure Call (RPC) Interface</h1>
-<p>An <code>RpcInterface</code> is a set of operations exposed by a server that a client can call, using configurable protocols, in a platform-independent way.</p>
-<p>This article uses the terms <em>client</em> and <em>server</em> to identify the two roles in an <code>RpcInterface</code>:</p>
+            <div class="edit-link"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fdocs%2Fcore%2Flearning%2FRpcInterface.md" target="_blank">Edit this page</a></div>
+            <h1 id="rpcinterface">RpcInterface</h1>
+<p>Table of Contents:</p>
 <ul>
-<li><em>client</em> -- the code that uses an RpcInterface and calls its methods. A client could be the frontend of an app, the backend of an app, a service, or an agent. It could be <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#frontend'>frontend code</a> or <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#backend'>backend code</a>.</li>
-<li><em>server</em> -- the code that implements and exposes an RpcInterface to clients. A server could be a deployed, stand-alone service, or the backend of an app. It is always <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#backend'>backend code</a>.</li>
+<li><a href="#Overview">Overview</a></li>
+<li>Implementing RpcInterfaces<ul>
+<li><a href="#rpcinterfaces-are-typescript-classes">RpcInterfaces are Typescript Classes</a></li>
+<li><a href="#rpcinterface-performance">RpcInterface Performance</a></li>
+<li><a href="#define-the-interface">Define the Interface</a></li>
+<li><a href="#client-stub">Client Stub</a></li>
+<li><a href="#server-implementation">Server Implementation</a></li>
 </ul>
-<p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/rpcinterface'>the RpcInterface overview</a> for more information on the purpose of RpcInterfaces in the context of overall <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/softwarearchitecture'>app architecture</a>.</p>
-<p>An RpcInterface is defined and implemented in TypeScript. Conceptually, the interface has three parts:</p>
+</li>
+<li>Configuring RpcInterfaces<ul>
+<li><a href="#server-side-configuration">Server-side Configuration</a></li>
+<li><a href="#client-side-configuration">Client-side Configuration</a></li>
+</ul>
+</li>
+<li><a href="#serve-the-interfaces">Serve the Interfaces</a></li>
+<li><a href="#asynchronous-nature-of-rpcinterfaces">Asynchronous Nature of RpcInterfaces</a></li>
+<li><a href="#logging-and-activityids">Logging and ActivityIds</a></li>
+</ul>
+<h2 class="h-overview">Overview<a id="overview" class="heading-anchor" href="#overview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>As described in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/softwarearchitecture'>software architecture overview</a>, the functionality of an iModel.js app is typically implemented in separate components that run in different threads, processes, and/or machines. These components communicate through interfaces, which are called <em>RpcInterfaces</em> because they use remote procedure calls, or <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#rpc'>RPC</a>.</p>
+<p><img src=".././SoftwareArchitecture-RPC1.png" alt="SoftwareArchitecture-Rpc"></p>
+<p>The diagram above shows an app frontend requesting operations from some backend. The frontend in this case is the client and the backend is the server. In general, the terms <em>client</em> and <em>server</em> specify the two <em>roles</em> in an RpcInterface:</p>
 <ul>
-<li>The <a href="#defining-the-interface">definition</a> - The TypeScript method declarations that represent the operations, along with the types of their arguments.</li>
-<li>The <a href="#client-stub">client stub</a> - The client-side implementation that forwards requests to the server and passes back the results.</li>
-<li>The <a href="#server-implementation">impl</a> - The server-side implementation that performs the operations and returns the results.</li>
+<li><p><em>client</em> -- the code that uses an RpcInterface and calls its methods. A client could be the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/app/#app-frontend'>frontend of an app</a>, the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/app/#app-backend'>backend of an app</a>, a <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/app/#imodel-services'>service</a>, or an <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/app/#imodel-agents'>agent</a>. A client could be <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#frontend'>frontend code</a> or <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#backend'>backend code</a>.</p>
+</li>
+<li><p><em>server</em> -- the code that implements and exposes an RpcInterface to clients. A server could the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/app/#app-backend'>backend of an app</a> or a <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/app/#imodel-services'>service</a>. A server is always <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#backend'>backend code</a>.</p>
+</li>
 </ul>
-<p>In practice, two TypeScript classes are needed, as explained below.</p>
-<p>Communication between a client and the server is via <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#rpc'>RPC</a>. Several RPC mechanisms are <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/rpcinterface/#rpc-configuration'>available</a>. Each RPC mechanism is encapsulated in an RpcConfiguration. RpcManager is used by clients and servers to apply configurations to RpcInterfaces, as described below.</p>
-<p>RpcInterface methods are always <a href="#asynchronous-nature-of-rpcInterfaces">asynchronous</a>.</p>
-<h2 class="h-parameter-and-return-types"><a id="parameter-and-return-types" class="heading-anchor" href="#%s"></a>Parameter and Return Types</h2>
+<p>An <code>RpcInterface</code> is defined as a set of operations exposed by a server that a client can call, using configurable protocols, in a platform-independent way.</p>
+<p>As shown, client and server work with the <em>RpcManager</em> to use an RpcInterface. RpcManager exposes a client &quot;stub&quot; on the client side. This stub forwards the request. On the other end, RpcManager uses a server dispatch mechanism to rely the request to the implementation in the server. In between the two is a transport mechanism that marshalls calls from the client to the server over an appropriate communications channel. The transport mechanism is encapsulated in a <em>configuration</em> that is applied at runtime.</p>
+<p>A typical app frontend will use more than one remote component. Likewise, a server can contain and expose more than one component. For example, the app frontend might need two interfaces, Interface 1 and Interface 2. In this example, both are implemented in Backend A.</p>
+<p><img src=".././SoftwareArchitecture-RPC2.png" alt="SoftwareArchitecture-Rpc"></p>
+<p>An app frontend can just as easily work with multiple backends to obtain the services that it needs. One of the configuration parameters for an RpcInterface is the identity of the backend that provides it. For example, suppose that the frontend also needs to use Interface 3, which is is served out by Backend B.</p>
+<p><img src=".././SoftwareArchitecture-RPC3.png" alt="SoftwareArchitecture-Rpc"></p>
+<p>The RPC transport configuration that the frontend uses for Backend B can be different from the configuration it uses for Backend A. In fact, that is the common case. If Backend A is the app&apos;s own backend and Backend B is a remote service, then the app will use an <a href="#rpc-configuration">RPC configuration</a> that matches its own configuration for A, while it uses a Web configuration for B.</p>
+<p>As noted above, the client of an RPC interface can be frontend or backend code. That means that backends can call on the services of other backends. In other words, a backend can be a server and a client at the same time. A backend configures the RpcInterfaces that it <em>implements</em> by calling the initializeImpl method on RpcManager, and it configures the RpcInterfaces that it <em>consumes</em> by calling initializeClient. For example, suppose Backend B needs the services of Backend C.</p>
+<p><img src=".././SoftwareArchitecture-RPC4.png" alt="SoftwareArchitecture-Rpc"></p>
+<h1 id="implementing an rpcinterface">Implementing an RpcInterface</h1>
+<h2 class="h-rpcinterfaces-are-typescript-classes">RpcInterfaces are TypeScript Classes<a id="rpcinterfaces-are-typescript-classes" class="heading-anchor" href="#rpcinterfaces-are-typescript-classes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>An RpcInterface is a normal TypeScript class. A client requests a server operation by calling an ordinary TypeScript method, passing parameters and getting a result as ordinary TypeScript objects. The client gets the TypeScript interface object from the RpcManager. As noted above, the client  does not deal with communication</p>
+<p>Likewise, a server implements and exposes operations by writing normal TypeScript classes. A server registers its implementation objects with RcpManager. And, RpcManager dispatches in-coming requests from clients to those implementation objects.</p>
+<h2 class="h-parameter-and-return-types">Parameter and Return Types<a id="parameter-and-return-types" class="heading-anchor" href="#parameter-and-return-types"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>RpcInterface methods can take and return just about any type. Most JavaScript primitive types are supported, such as number, string, bool, and any.</p>
-<p>RpcInterfaces can also use TypeScript/JavaScript classes as parameter and return types. The <a href="#defining-the-interface">interface definition</a> just has to declare the classes that it uses, so that the configurations can marshall them correctly. That is the purpose of the <code>types</code> property.</p>
+<p>RpcInterfaces can also use TypeScript/JavaScript classes as parameter and return types. The interface definition just has to declare the classes that it uses, so that the configurations can marshall them correctly. That is the purpose of the <code>types</code> property.</p>
 <p>RpcInterfaces are restricted to using types that are common to both frontends and backends. For example, the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodeltoken'>IModelToken</a> type must be used to specify an iModel. The client that makes a call on the interface must obtain the token from the IModelConnection or IModelDb that it has, and the server that implements the interface must translate the token into an IModelDb when it handles the call.</p>
-<h2 class="h-defining-the-interface"><a id="defining-the-interface" class="heading-anchor" href="#%s"></a>Defining the Interface</h2>
+<h2 class="h-rpcinterface-performance">RpcInterface Performance<a id="rpcinterface-performance" class="heading-anchor" href="#rpcinterface-performance"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Apps must be designed with remote communication in mind. In the case where a server or app backend is accessed over the Internet, both bandwidth and latency can vary widely. Therefore, care must be taken to limit number and size of round-trips between clients and servers. RpcInterface methods must be &quot;chunky&quot; and not &quot;chatty&quot;.</p>
+<h2 class="h-define-the-interface">Define the Interface<a id="define-the-interface" class="heading-anchor" href="#define-the-interface"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>To define an interface, write a TypeScript class that extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcinterface'>RpcInterface</a>.</p>
 <p>The interface definition class should define a method for each operation that is to be exposed by the server. Each method signature should include the names and types of the input parameters. Each method must return a <code>Promise</code> of the appropriate type. These methods and their signatures define the interface.</p>
 <p>The definition class must also define two static properties as interface metadata:</p>
@@ -139,59 +175,72 @@ export abstract class RobotWorldReadRpcInterface extends RpcInterface {
   public queryObstaclesHitByRobot(_iModelToken: IModelToken, _rid: Id64Props): Promise&lt;Id64Props[]&gt; { return this.forward.apply(this, arguments); }
 }</code></pre>
 <p>In a real interface definition class, each method and parameter should be commented, in order to provide documentation to client app developers that will try to use the interface.</p>
-<h2 class="h-client-stub"><a id="client-stub" class="heading-anchor" href="#%s"></a>Client Stub</h2>
+<h2 class="h-client-stub">Client Stub<a id="client-stub" class="heading-anchor" href="#client-stub"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The client stub is an implementation of the interface that forwards method calls to the RPC mechanism. Each method in the client stub is exactly the same single line of code: <code>return this.forward.apply(this, arguments);</code> The forward property is implemented by the base class, and its forward method sends the call and its arguments through the configured RPC mechanism to the server. As shown in the previous example, the client stub code is incorporated into the interface definition class.</p>
-<h2 class="h-server-implementation"><a id="server-implementation" class="heading-anchor" href="#%s"></a>Server Implementation</h2>
+<h2 class="h-server-implementation">Server Implementation<a id="server-implementation" class="heading-anchor" href="#server-implementation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The server-side implementation is also known as the &quot;impl&quot;. An impl is always <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#backend'>backend code</a>.</p>
 <p>To write an impl, write a concrete TypeScript class that extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcinterface'>RpcInterface</a> and also implements the interface definition class.</p>
 <p>The impl must override each method in the interface definition class. Each override must perform the intended operation.</p>
 <p>Each impl method must return the operation&apos;s result as a Promise.</p>
+<p>The impl method must obtain the ActivityLoggingContext by calling <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext/#current'>ActivityLoggingContext.current</a>. It must then follow the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/managingactivityloggingcontext'>rules of managing the ActivityLoggingContext</a>.</p>
 <p>As noted above, the methods in the impl may have to transform certain argument types, such as IModelTokens, before they can be used.</p>
 <p>A best practice is that an impl should be a thin layer on top of normal classes in the server. Ideally, each method of an impl should be a one-line forwarding call that uses the public backend API of the server. The impl wrapper should be concerned only with transforming types, not with functionality, while backend operation methods should be concerned only with functionality. Backend operation methods should be static, since a server should be stateless. Preferrably, backend operation methods should be <a href="#asynchronous-nature-of-rpcInterfaces">synchronous if possible</a>.</p>
 <p><em>Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">import { RpcInterface, IModelToken, RpcInterfaceDefinition } from &quot;@bentley/imodeljs-common&quot;;
-import { Id64Props } from &quot;@bentley/bentleyjs-core&quot;;
+import { Id64Props, ActivityLoggingContext } from &quot;@bentley/bentleyjs-core&quot;;
 import { IModelDb } from &quot;@bentley/imodeljs-backend&quot;;
 import { RobotWorldEngine } from &quot;./RobotWorldEngine&quot;;
 import { RobotWorldReadRpcInterface } from &quot;../common/RobotWorldRpcInterface&quot;;
 
 // Implement RobotWorldReadRpcInterface
 export class RobotWorldReadRpcImpl extends RpcInterface implements RobotWorldReadRpcInterface {
-  public async countRobotsInArray(iModelToken: IModelToken, elemIds: Id64Props[]): Promise&lt;number&gt; {
-    const iModelDb: IModelDb = IModelDb.find(iModelToken);
-    return RobotWorldEngine.countRobotsInArray(iModelDb, elemIds);
-  }
-
-  public async countRobots(iModelToken: IModelToken): Promise&lt;number&gt; {
-    const iModelDb: IModelDb = IModelDb.find(iModelToken);
-    return RobotWorldEngine.countRobots(iModelDb);
-  }
-
-  public async queryObstaclesHitByRobot(iModelToken: IModelToken, rid: Id64Props): Promise&lt;Id64Props[]&gt; {
-    const iModelDb: IModelDb = IModelDb.find(iModelToken);
-    return RobotWorldEngine.queryObstaclesHitByRobot(iModelDb, rid);
-  }
-}</code></pre>
-<p>Impls must be registered at runtime, as explained next.</p>
-<h2 class="h-server-side-configuration"><a id="server-side-configuration" class="heading-anchor" href="#%s"></a>Server-side Configuration</h2>
-<p>A server must expose the RpcInterfaces that it implements or imports, so that clients can use them.</p>
-<h3 class="h-1-register-impls"><a id="1-register-impls" class="heading-anchor" href="#%s"></a>1. Register Impls</h3>
-<p>The server must call <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcmanager/#registerimpl'>RpcManager.registerImpl</a> to register the impl classes for the interfaces that it implements, if any.</p>
-<p><em>Example:</em></p>
-<pre class="no-line-numbers"><code class="language-typescript">    RpcManager.registerImpl(RobotWorldReadRpcInterface, RobotWorldReadRpcImpl);</code></pre>
-<h3 class="h-2-choose-interfaces"><a id="2-choose-interfaces" class="heading-anchor" href="#%s"></a>2. Choose Interfaces</h3>
-<p>The server must decide which interfaces it wants to expose. A server can expose multiple interfaces. A server can expose both its own implementations, if any, and imported implementations. The server can decide at run time which interfaces to expose, perhaps based on deployment parameters. A server will often use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/featuregates'>FeatureGates</a> to decide which interfaces to expose.</p>
-<p><em>Example:</em></p>
-<pre class="no-line-numbers"><code class="language-typescript">  private static chooseInterfacesToExpose(): RpcInterfaceDefinition[] {
-    const interfaces: RpcInterfaceDefinition[] = [IModelReadRpcInterface, RobotWorldReadRpcInterface];
-
-    if (IModelHost.features.check(&quot;robot.imodel.readwrite&quot;)) {
-      interfaces.push(RobotWorldWriteRpcInterface);
+    public async countRobotsInArray(iModelToken: IModelToken, elemIds: Id64Props[]): Promise&lt;number&gt; {
+        const activityContext = ActivityLoggingContext.current; activityContext.enter();
+        const iModelDb: IModelDb = IModelDb.find(iModelToken);
+        return RobotWorldEngine.countRobotsInArray(iModelDb, elemIds);
     }
 
-    return interfaces;
-  }</code></pre>
-<h3 class="h-3-configure-interfaces"><a id="3-configure-interfaces" class="heading-anchor" href="#%s"></a>3. Configure Interfaces</h3>
+    public async countRobots(iModelToken: IModelToken): Promise&lt;number&gt; {
+        const activityContext = ActivityLoggingContext.current; activityContext.enter();
+        const iModelDb: IModelDb = IModelDb.find(iModelToken);
+        return RobotWorldEngine.countRobots(iModelDb);
+    }
+
+    public async queryObstaclesHitByRobot(iModelToken: IModelToken, rid: Id64Props): Promise&lt;Id64Props[]&gt; {
+        const activityContext = ActivityLoggingContext.current; activityContext.enter();
+        const iModelDb: IModelDb = IModelDb.find(iModelToken);
+        return RobotWorldEngine.queryObstaclesHitByRobot(iModelDb, rid);
+    }
+}</code></pre>
+<p>Impls must be registered at runtime, as explained next.</p>
+<h1 id="rpc configuration">RPC Configuration</h1>
+<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/softwarearchitecture/#comparison'>architecture comparison</a> diagram shows the role of RpcInterfaces in supporting portable, resuable app components. A different <em>transport mechanism</em> is used in each configuration. RpcManager is used by clients and servers to apply configurations to RpcInterfaces.</p>
+<h3 class="h-web-rpc-configuration">Web RPC configuration<a id="web-rpc-configuration" class="heading-anchor" href="#web-rpc-configuration"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>The Web RPC configuration transforms client calls on an RpcInterface into HTTP requests. Provides endpoint-processing and call dispatching in the server process. The iModel.js cloud RPC configuration is highly parameterized and can be adapted for use in many environments. This configuration is designed to cooperate with routing and authentication infrastructure. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/softwarearchitecture/#web'>Web architecture</a>.</p>
+<p>iModel.js comes with an implementation of a Web RPC configuration that works with the Bentley Cloud infrastructure. It is relatively straightforward for developers to write custom Web RPC configurations that works with other infrastructures.</p>
+<h3 class="h-desktop-rpc-configuration">Desktop RPC configuration<a id="desktop-rpc-configuration" class="heading-anchor" href="#desktop-rpc-configuration"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>The iModel.js desktop RPC configuration is specific to the Electron framework. It marshalls calls on an RpcInterface through high-bandwidth, low-latency pipes between cooperating processes on the same computer. It provides endpoint-processing and call dispatching in thebackend process. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/softwarearchitecture/#desktop'>Desktop architecture</a>.</p>
+<h3 class="h-in-process-rpc-configuration">In-process RPC configuration<a id="in-process-rpc-configuration" class="heading-anchor" href="#in-process-rpc-configuration"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>The in-process RPC configuration marshalls calls on an RpcInterface across threads within a single process. It also provides call dispatching in the backend thread. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/softwarearchitecture/#mobile'>Mobile architecture</a>.</p>
+<h2 class="h-server-side-configuration">Server-side Configuration<a id="server-side-configuration" class="heading-anchor" href="#server-side-configuration"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>A server must expose the RpcInterfaces that it implements or imports, so that clients can use them. To do that, the server must: register its impls, choose the interfaces that it wants to expose, configure those interfaces, and finally serve those interfaces.</p>
+<h3 class="h-register-impls">Register Impls<a id="register-impls" class="heading-anchor" href="#register-impls"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>The server must call <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcmanager/#registerimpl'>RpcManager.registerImpl</a> to register the impl classes for the interfaces that it implements, if any.</p>
+<p><em>Example:</em></p>
+<pre class="no-line-numbers"><code class="language-typescript">        RpcManager.registerImpl(RobotWorldReadRpcInterface, RobotWorldReadRpcImpl);</code></pre>
+<h3 class="h-choose-interfaces">Choose Interfaces<a id="choose-interfaces" class="heading-anchor" href="#choose-interfaces"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>The server must decide which interfaces it wants to expose. A server can expose multiple interfaces. A server can expose both its own implementations, if any, and imported implementations. The server can decide at run time which interfaces to expose, perhaps based on deployment parameters. A server will often use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/featuregates'>FeatureGates</a> to decide which interfaces to expose.</p>
+<p><em>Example:</em></p>
+<pre class="no-line-numbers"><code class="language-typescript">    private static chooseInterfacesToExpose(): RpcInterfaceDefinition[] {
+        const interfaces: RpcInterfaceDefinition[] = [IModelReadRpcInterface, RobotWorldReadRpcInterface];
+
+        if (IModelHost.features.check(&quot;robot.imodel.readwrite&quot;)) {
+            interfaces.push(RobotWorldWriteRpcInterface);
+        }
+
+        return interfaces;
+    }</code></pre>
+<h3 class="h-configure-interfaces">Configure Interfaces<a id="configure-interfaces" class="heading-anchor" href="#configure-interfaces"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>The server must choose the appropriate RPC configuration for the interfaces that it exposes to clients. If the server is an app backend, the RPC configuration must correspond to the app configuration.</p>
 <table class="table table-responsive"><tbody><tr>
 <th>App Configuration</th>
@@ -199,43 +248,43 @@ export class RobotWorldReadRpcImpl extends RpcInterface implements RobotWorldRea
 </tr>
 <tr>
 <td>Mobile app</td>
-<td><a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/rpcinterface/#in-process-rpc-configuration'>in-process RPC configuration</a></td>
+<td><a href="#in-process-rpc-configuration">in-process RPC configuration</a></td>
 </tr>
 <tr>
 <td>Desktop app</td>
-<td><a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/rpcinterface/#desktop-rpc-configuration'>desktop RPC configuration</a></td>
+<td><a href="#desktop-rpc-configuration">desktop RPC configuration</a></td>
 </tr>
 <tr>
 <td>Web app</td>
-<td>a <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/rpcinterface/#web-rpc-configuration'>Web PRC configuration</a></td>
+<td>a <a href="#web-rpc-configuration">Web PRC configuration</a></td>
 </tr>
-</tbody></table><p>A backend should configure its RpcInterfaces in its <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/apptailoring/#configuration-specific-main'>configuration-specific main</a>.</p>
-<p>If the server is a <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/app/#imodel-services'>service</a>, it must always use a <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/rpcinterface/#web-rpc-configuration'>Web RPC configuration</a> for its interfaces. Each client must use the same configuration.</p>
+</tbody></table><p>A backend should configure its RpcInterfaces in its <a href="..AppTailoring.md#configuration-specific-main">configuration-specific main</a>.</p>
+<p>If the server is a <a href="..App.md#imodel-services">service</a>, it must always use a <a href="#web-rpc-configuration">Web RPC configuration</a> for its interfaces. Each client must use the same configuration.</p>
 <p><em>Web Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">import { BentleyCloudRpcManager, BentleyCloudRpcParams } from &quot;@bentley/imodeljs-common&quot;;
 
 export function initializeRpcImplBentleyCloud(interfaces: RpcInterfaceDefinition[]) {
-  const cloudParams: BentleyCloudRpcParams = { info: { title: &quot;RobotWorldEngine&quot;, version: &quot;v1.0&quot; } };
-  BentleyCloudRpcManager.initializeImpl(cloudParams, interfaces);
+    const cloudParams: BentleyCloudRpcParams = { info: { title: &quot;RobotWorldEngine&quot;, version: &quot;v1.0&quot; } };
+    BentleyCloudRpcManager.initializeImpl(cloudParams, interfaces);
 }</code></pre>
 <p><em>Desktop Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">import { ElectronRpcManager } from &quot;@bentley/imodeljs-common&quot;;
 
 export function initializeRpcImplDesktop(interfaces: RpcInterfaceDefinition[]) {
-  ElectronRpcManager.initializeImpl({}, interfaces);
+    ElectronRpcManager.initializeImpl({}, interfaces);
 }</code></pre>
-<h2 class="h-4-serve-the-interfaces"><a id="4-serve-the-interfaces" class="heading-anchor" href="#%s"></a>4. Serve the Interfaces</h2>
-<p>When a backend is configured as a Web app, it must implement a Web server to serve out its interfaces, so that in-coming client requests are forwarded to the implementations. This is always true of all <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/app/#imodel-services'>services</a>. Any Web server technology can be used. Normally, a single function call is all that is required to integrate all configured interfaces with the Web server. For example, if a Web server uses express, it would serve its RpcInterfaces like this:</p>
+<h3 class="h-serve-the-interfaces">Serve the Interfaces<a id="serve-the-interfaces" class="heading-anchor" href="#serve-the-interfaces"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>When a backend is configured as a Web app, it must implement a Web server to serve out its interfaces, so that in-coming client requests are forwarded to the implementations. This is always true of all <a href="..App.md#imodel-services">services</a>. Any Web server technology can be used. Normally, a single function call is all that is required to integrate all configured interfaces with the Web server. For example, if a Web server uses express, it would serve its RpcInterfaces like this:</p>
 <pre class="no-line-numbers"><code class="language-typescript">const webServer = express();
 ...
 webServer.post(&quot;*&quot;, async (request, response) =&gt; {
   rpcConfiguration.protocol.handleOperationPostRequest(request, response);
 });</code></pre>
 <p>It is this simple because the server should be concerned <em>only</em> with serving its RpcInterfaces and not with static resources or any other kind of API.</p>
-<h2 class="h-client-side-configuration"><a id="client-side-configuration" class="heading-anchor" href="#%s"></a>Client-side Configuration</h2>
+<h2 class="h-client-side-configuration">Client-side Configuration<a id="client-side-configuration" class="heading-anchor" href="#client-side-configuration"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The client must choose the interfaces that it plans to use.</p>
-<p>The client then configures each interface with the correct RPC mechanism. For all interfaces served by the app backend, the RPC configuration must corresponds to the app configuration. A frontend should configure its RpcInterfaces in its <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/apptailoring/#configuration-specific-main'>configuration-specific main</a>.</p>
-<p>Clients must always use a <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/rpcinterface/#web-rpc-configuration'>Web RPC configuration</a> for RpcInterfaces provided by a <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/app/#imodel-services'>remote service</a>. Client and server must use the same configuration.</p>
+<p>The client then configures each interface with the correct RPC mechanism. For all interfaces served by the app backend, the RPC configuration must corresponds to the app configuration. A frontend should configure its RpcInterfaces in its <a href="..AppTailoring.md#configuration-specific-main">configuration-specific main</a>.</p>
+<p>Clients must always use a <a href="#web-rpc-configuration">Web RPC configuration</a> for RpcInterfaces provided by a <a href="..App.md#imodel-services">remote service</a>. Client and server must use the same configuration.</p>
 <p><em>Web Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">import { BentleyCloudRpcManager, BentleyCloudRpcParams, RpcInterfaceDefinition } from &quot;@bentley/imodeljs-common&quot;;
 
@@ -251,13 +300,35 @@ export function initializeRpcClientDesktop(interfaces: RpcInterfaceDefinition[])
   ElectronRpcManager.initializeClient({}, interfaces);
 }</code></pre>
 <p>For a desktop or mobile configuration, the connection is local and so no URL or authorization token is necessary.</p>
-<h2 class="h-rpcinterface-performance"><a id="rpcinterface-performance" class="heading-anchor" href="#%s"></a>RpcInterface Performance</h2>
-<p>In some configurations, client and server may be in separate processes. Some configurations marshall calls over the Internet, where both bandwidth and latency can vary widely. Therefore, care must be taken to limit the number and size of round-trips between clients and servers. In other words, an interface&apos;s methods must be &quot;chunky&quot; and not &quot;chatty&quot;.</p>
-<h2 class="h-asynchronous-nature-of-rpcinterfaces"><a id="asynchronous-nature-of-rpcinterfaces" class="heading-anchor" href="#%s"></a>Asynchronous Nature of RpcInterfaces</h2>
-<p>The interface between a client and a server is intrinsically asynchronous. That is because the client and server are never in the same JavaScript context, as explained in <a href='https://imodeljs.github.io/iModelJs-docs-output//./overview/app/#interactive-apps'>the app architecture overview</a>. Since a requested operation is carried out in a different thread of execution, it is asynchronous from the client&apos;s point of view, and so the client must treat the result as a Promise. As a result, the impl wrapper methods must also return Promises. Nevertheless, the static methods in the backend that actually perform the requested operations should not be async, unless the operation itself requires it. The purpose of a backend is to do the work, not pass the buck. It is the client that must wait, not the server.</p>
+<h2 class="h-asynchronous-nature-of-rpcinterfaces">Asynchronous Nature of RpcInterfaces<a id="asynchronous-nature-of-rpcinterfaces" class="heading-anchor" href="#asynchronous-nature-of-rpcinterfaces"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The interface between a client and a server is intrinsically asynchronous. That is because the client and server are never in the same JavaScript context, as explained in <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/app/#interactive-apps'>the app architecture overview</a>. Since a requested operation is carried out in a different thread of execution, it is asynchronous from the client&apos;s point of view, and so the client must treat the result as a Promise. As a result, the impl wrapper methods must also return Promises. Nevertheless, the static methods in the backend that actually perform the requested operations should not be async, unless the operation itself requires it. The purpose of a backend is to do the work, not pass the buck. It is the client that must wait, not the server.</p>
+<h2 class="h-logging-and-activityids">Logging and ActivityIds<a id="logging-and-activityids" class="heading-anchor" href="#logging-and-activityids"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>A request may pass through many communication tiers. A request will generally be carried out by backends running on other machines. Finally, the backends that carry out a request may run asynchronously. Yet, all of those steps make up a single &quot;activity&quot;. To make it possible to understand and troubleshoot such distributed and asynchronous activities, RpcInterface associates a unique &quot;ActivityId&quot; with every client request that goes out over the wire. The ActivityId that was assigned to the original request then appears in logging messages emitted by downstream communications and backend methods that handle the request. That allows a log browser to correlate all of the operations with the original request, no matter where or when they were carried out.</p>
+<p>Frontend methods may also optionally log additional messages that are tagged with the same ActivityId, to provide useful information about the purpose of the activity.</p>
+<p>Frontend methods that invoke imodeljs-clients methods directly are responsible for generating or forwarding an ActivityId to them.</p>
+<p>A backend method that turns around an invokes another backend&apos;s method via RpcInterfaces will propagate the current ActivityId to it.</p>
+<p>Briefly, here is how it works:</p>
+<ul>
+<li>Frontend/client<ul>
+<li>iModel.js on the frontend assigns a unique ActivityId value to an RpcIntereface call.</li>
+<li>It puts this value in the <a href="https://en.wikipedia.org/wiki/List_of_HTTP_header_fields">X-Correlation-ID</a> HTTP header field, to ensure that it stays with the request as it passes through communication layers.</li>
+</ul>
+</li>
+<li>Backend<ul>
+<li>iModel.js on the backend gets the ActivityId from the HTTP header.</li>
+<li>The RpcInterface mechanism and all the async methods in the backend work together to make the ActivityId part of the context in which backend methods are called.</li>
+<li>Calls to the Logging manager also occur in this context, and so the Logging manager gets the ActivityId from the context and adds to the logging messages as metadata using a Bentley-standard &quot;ActivityId&quot; property id.</li>
+</ul>
+</li>
+<li>Log Browsers<ul>
+<li>Can filter on the Bentley-standard &quot;ActivityId&quot; property to correlate all messages related to the same request.</li>
+</ul>
+</li>
+</ul>
+<p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/managingactivityloggingcontext'>managing the ActivityLoggingContext</a> for details.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>05 September, 2018 @ 12:09:02 am +00:00</span>
+                <span class='date-updated'>21 September, 2018</span>
             </p>
 
             
@@ -271,16 +342,39 @@ export function initializeRpcClientDesktop(interfaces: RpcInterfaceDefinition[])
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
               <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#overview">Overview</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#rpcinterfaces-are-typescript-classes">RpcInterfaces are TypeScript Classes</a>
+    </li>
+       <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#parameter-and-return-types">Parameter and Return Types</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#defining-the-interface">Defining the Interface</a>
+            <a class='title solo-title menu-text' href="#rpcinterface-performance">RpcInterface Performance</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#define-the-interface">Define the Interface</a>
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#client-stub">Client Stub</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#server-implementation">Server Implementation</a>
+            <a data-target="#inner-nav-server-implementation" class='title' href="#server-implementation"/>
+            <b class='dropdown-menu-title menu-text'>Server Implementation</b>
+            <i class='dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-server-implementation" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#web-rpc-configuration">Web RPC configuration</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#desktop-rpc-configuration">Desktop RPC configuration</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#in-process-rpc-configuration">In-process RPC configuration</a>
+                    </li>
+            </ul>
     </li>
        <li class='nav-item item '>
             <a data-target="#inner-nav-server-side-configuration" class='title' href="#server-side-configuration"/>
@@ -289,27 +383,27 @@ export function initializeRpcClientDesktop(interfaces: RpcInterfaceDefinition[])
             </a>
             <ul id="inner-nav-server-side-configuration" class='inner-nav'>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#1-register-impls">1. Register Impls</a>
+                            <a class='title solo-title menu-text' href="#register-impls">Register Impls</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#2-choose-interfaces">2. Choose Interfaces</a>
+                            <a class='title solo-title menu-text' href="#choose-interfaces">Choose Interfaces</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#3-configure-interfaces">3. Configure Interfaces</a>
+                            <a class='title solo-title menu-text' href="#configure-interfaces">Configure Interfaces</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#serve-the-interfaces">Serve the Interfaces</a>
                     </li>
             </ul>
-    </li>
-       <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#4-serve-the-interfaces">4. Serve the Interfaces</a>
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#client-side-configuration">Client-side Configuration</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#rpcinterface-performance">RpcInterface Performance</a>
+            <a class='title solo-title menu-text' href="#asynchronous-nature-of-rpcinterfaces">Asynchronous Nature of RpcInterfaces</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#asynchronous-nature-of-rpcinterfaces">Asynchronous Nature of RpcInterfaces</a>
+            <a class='title solo-title menu-text' href="#logging-and-activityids">Logging and ActivityIds</a>
     </li>
  
       </ul>
@@ -320,17 +414,69 @@ export function initializeRpcClientDesktop(interfaces: RpcInterfaceDefinition[])
     </div>
 </div>
 
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color pt-1 pb-3">
+  <!-- Footer Links Container -->
+  <div class="container text-center text-md-left">
 
-    <footer id='main-footer'>
-        <div id='footer-content-container'>
-           <div class='footer-footer'>
-               <p>Copyright 2018 Bentley Systems, Incorporated</p>
-            </div>
+    <!-- Grid row -->
+    <div class="row d-flex align-items-center mt-2">
+
+      <!-- Grid column -->
+      <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
+
+        <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+        </a>
+        <small style="color: white; margin-right: 7px;"> powered by </small>
+        <a href="https://www.bentley.com">
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
+        </a>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-5 col-lg-4 ml-lg-0">
+
+        <!-- Social buttons -->
+        <div class="text-center text-md-right">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://twitter.com/imodeljs" target="_blank">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://github.com/imodeljs" target="_blank">
+                <i class="fa fa-github"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://stackoverflow.com/tags/imodeljs"
+                target="_blank">
+                <i class="fa fa-stack-overflow"></i>
+              </a>
+            </li>
+          </ul>
         </div>
-    </footer>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links Container -->
+
+</footer>
+<!-- Footer -->
+
 </div>
-    <a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
-    <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js" ></script>
+<a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
 </html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
