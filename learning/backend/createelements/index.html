@@ -102,8 +102,40 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/">backend</a> > CreateElements</div>
             <div class="edit-link"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fdocs%2Fcore%2Flearning%2Fbackend%2FCreateElements.md" target="_blank">Edit this page</a></div>
             <h1 id="creating elements">Creating Elements</h1>
-<p>Use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb.elements/insertelement'>IModelDb.Elements.insertElement</a> to insert a new element into an IModelDb. This method takes as its input an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a> or a subclass of it, which defines the class and all required properties of the new element.</p>
+<p>Use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb.elements/insertelement'>IModelDb.Elements.insertElement</a> to insert a new element into an IModelDb. This method takes as its input an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a> or a subclass of it, which defines the class and all required properties of the new element. The pattern is:</p>
+<pre class="no-line-numbers"><code class="language-typescript">const elementProps: SomeBisClassProps = {
+  classFullName: bisFullClassName
+  ... other required props ...
+};
+const newElementId: Id64 = iModel.elements.insertElement(elementProps);</code></pre>
+<p>The type of the &quot;props&quot; object is chosen as appropriate for the particular Element subclass that is to be instanced. There are <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/informationpartitionelementprops'>InformationPartitionElementProps</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/subjectprops'>SubjectProps</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/geometricelement3dprops'>GeometricElement3dProps</a>, and many more. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/'>Wire Formats</a> for the complete list of props interfaces defined in iModel.js. Domains may define their own &quot;props&quot; subclasses.</p>
+<p>Why &quot;props&quot;?</p>
+<p>As explained in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/schemasandelementsintypescript'>article on elements and schemas</a>, an element is always an instance of a class in the BIS hierarchy. The BIS class of an element defines what the element is, so that it accurately represents an entity in the real world, according to a well thought out classification scheme that is appropriate to the modeling problem at hand. To that end, domains define many subclasses of Element. These BIS classes support strong modeling semantics. At the same time, it is very convenient to work with BIS classes in iModel.js apps. In particular, there is no need to write a TypeScript class for every BIS class that you may work with.</p>
+<p>The IModelDb.Elements.insertElement API is a good example of the way iModel.js combines strong data-modeling semantics with programming convenience. When creating a new element, the app only needs to specify the required properties of the element, including its BIS class. These defining properties are called &quot;props&quot;. Often there will be no pre-defined TypeScript or JavaScript class corresponding to a given BIS class at compile time. That&apos;s no obstacle. All that matters is that the BIS class is defined in the BIS schema, and the app just needs to supply its name, along with its other required props.</p>
+<p>Once an element has been inserted into the iModel, it is understood by iModel.js to be an instance of the specified BIS class. When an app <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/accesselements'>gets the element from the iModel</a>, it will see an instance of a JavaScript class that corresponds exactly to the BIS class definition for that element. All defined properties will be there and will be accessible as properties in a natural, JavaScript way.</p>
+<p>That is why the IModelDb.Elements.insertElement API takes a &quot;props&quot; object and why many BIS subclasses can share the same props JavaScript class without confusion.</p>
+<h2 class="h-examples">Examples<a id="examples" class="heading-anchor" href="#examples"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Here are examples of creating various specific types of elements:</p>
+<h2 class="h-informationpartitionelement">InformationPartitionElement<a id="informationpartitionelement" class="heading-anchor" href="#informationpartitionelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<pre class="no-line-numbers"><code class="language-typescript">export function insertDefinitionModel(parentSubject: Subject, modelName: string): Id64 {
+  const iModelDb = parentSubject.iModel;
+  const partitionProps: InformationPartitionElementProps = {
+    classFullName: DefinitionPartition.classFullName,
+    model: IModel.repositoryModelId,
+    parent: {
+      id: parentSubject.id,
+      relClassName: &quot;BisCore:SubjectOwnsPartitionElements&quot;,
+    },
+    code: DefinitionPartition.createCode(iModelDb, parentSubject.id, modelName),
+  };
+  const partitionId: Id64 = iModelDb.elements.insertElement(partitionProps);
+  const model: DefinitionModel = iModelDb.models.createModel({
+    classFullName: DefinitionModel.classFullName,
+    modeledElement: { id: partitionId },
+  }) as DefinitionModel;
+  return iModelDb.models.insertModel(model);
+}</code></pre>
+<p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/informationpartitionelementprops'>InformationPartitionElementProps</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/code'>Code</a>, and <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/createmodels'>creating models</a></p>
 <h2 class="h-subject">Subject<a id="subject" class="heading-anchor" href="#subject"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <pre class="no-line-numbers"><code class="language-typescript">export function insertSubject(parentElement: Subject, name: string): Subject {
   const codeSpec: CodeSpec = parentElement.iModel.codeSpecs.getByName(BisCodeSpec.subject);
@@ -116,6 +148,7 @@
   const id = parentElement.iModel.elements.insertElement(subjectProps);
   return parentElement.iModel.elements.getElement(id) as Subject;
 }</code></pre>
+<p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/subjectprops'>SubjectProps</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/code'>Code</a></p>
 <h2 class="h-geometricelement3d">GeometricElement3d<a id="geometricelement3d" class="heading-anchor" href="#geometricelement3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <pre class="no-line-numbers"><code class="language-typescript">    public static insertRobot(iModelDb: IModelDb, modelId: Id64Props, name: string, location: Point3d): Id64Props {
         const props: GeometricElement3dProps = {
@@ -231,6 +264,12 @@ export function generateGeometry(radius: number = 0.1): GeometryStreamProps {
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
               <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#examples">Examples</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#informationpartitionelement">InformationPartitionElement</a>
+    </li>
+       <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#subject">Subject</a>
     </li>
        <li class='nav-item item '>
