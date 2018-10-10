@@ -182,8 +182,8 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/views/">Views</a> > ViewState</div>
             
             <h2 class="h-viewstate">ViewState <span class="badge badge-pill badge-primary badge-class">Class</span><a id="viewstate" class="heading-anchor" href="#viewstate"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>The state of a ViewDefinition element. ViewDefinitions specify the area/volume that is viewed, and points to a DisplayStyle and a CategorySelector.
-Subclasses of ViewDefinition determine which model(s) are viewed.</p>
+<p>The front-end state of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/viewdefinition'>ViewDefinition</a> element.
+A ViewState is typically associated with a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a> to display the contents of the view on the screen.</p>
 <ul>
 <li>See: <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/frontend/views'>Views</a></li>
 </ul>
@@ -207,76 +207,40 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/viewdefinitionprops'>ViewDefinitionProps</a>, iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a>, categorySelector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/categoryselectorstate'>CategorySelectorState</a>, displayStyle: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/displaystylestate'>DisplayStyleState</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a></span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-adjustaspectratio"><span class="method-name">adjustAspectRatio</span><span class="method-parenthesis">(</span><span class="method-parameters">windowAspect: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="adjustaspectratio" class="heading-anchor" href="#adjustaspectratio"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-allow3dmanipulations"><span class="method-name">allow3dManipulations</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="allow3dmanipulations" class="heading-anchor" href="#allow3dmanipulations"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>Returns true if <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/viewtool'>ViewTool</a>s are allowed to operate in three dimensions on this view.</td>
 </tr>
 <tr>
 <td class="h-calculatefrustum"><span class="method-name"><a href="calculatefrustum">calculateFrustum</a></span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/frustum'>Frustum</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/frustum'>Frustum</a> | undefined</span><a id="calculatefrustum" class="heading-anchor" href="#calculatefrustum"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Calculate the world coordinate Frustum from the parameters of this ViewState.</td>
 </tr>
 <tr>
-<td class="h-cancelalltileloads"><span class="method-name">cancelAllTileLoads</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="cancelalltileloads" class="heading-anchor" href="#cancelalltileloads"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-changecategorydisplay"><span class="method-name"><a href="changecategorydisplay">changeCategoryDisplay</a></span><span class="method-parenthesis">(</span><span class="method-parameters">categories: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64arg'>Id64Arg</a>, display: boolean, enableAllSubCategories: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="changecategorydisplay" class="heading-anchor" href="#changecategorydisplay"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Enable or disable display of elements belonging to a set of categories specified by ID.</td>
 </tr>
 <tr>
-<td class="h-clearalwaysdrawn"><span class="method-name">clearAlwaysDrawn</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="clearalwaysdrawn" class="heading-anchor" href="#clearalwaysdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td class="h-clearalwaysdrawn"><span class="method-name"><a href="clearalwaysdrawn">clearAlwaysDrawn</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="clearalwaysdrawn" class="heading-anchor" href="#clearalwaysdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Clear the set of always-drawn elements.</td>
 </tr>
 <tr>
-<td class="h-clearneverdrawn"><span class="method-name">clearNeverDrawn</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="clearneverdrawn" class="heading-anchor" href="#clearneverdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td class="h-clearneverdrawn"><span class="method-name"><a href="clearneverdrawn">clearNeverDrawn</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="clearneverdrawn" class="heading-anchor" href="#clearneverdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Clear the set of never-drawn elements.</td>
 </tr>
 <tr>
-<td class="h-computefitrange"><span class="method-name">computeFitRange</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="computefitrange" class="heading-anchor" href="#computefitrange"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td class="h-computefitrange"><span class="method-name"><a href="computefitrange">computeFitRange</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="computefitrange" class="heading-anchor" href="#computefitrange"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Compute a range in <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/coordsystem/#world'>CoordSystem.World</a> coordinates that tightly encloses the contents of this view.</td>
 </tr>
 <tr>
-<td class="h-createauxcoordsystem"><span class="method-name">createAuxCoordSystem</span><span class="method-parenthesis">(</span><span class="method-parameters">acsName: string</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/auxcoordsystemstate'>AuxCoordSystemState</a></span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="createauxcoordsystem" class="heading-anchor" href="#createauxcoordsystem"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td class="h-dropsubcategoryoverride"><span class="method-name"><a href="dropsubcategoryoverride">dropSubCategoryOverride</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="dropsubcategoryoverride" class="heading-anchor" href="#dropsubcategoryoverride"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Remove any <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryoverride'>SubCategoryOverride</a> for the specified subcategory.</td>
 </tr>
 <tr>
-<td class="h-createclassification"><span class="method-name">createClassification</span><span class="method-parenthesis">(</span><span class="method-parameters">context: SceneContext</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="createclassification" class="heading-anchor" href="#createclassification"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td class="h-equalstate"><span class="method-name"><a href="equalstate">equalState</a></span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="equalstate" class="heading-anchor" href="#equalstate"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Determine whether this ViewState is equivalent to another for the purposes of display.</td>
 </tr>
 <tr>
-<td class="h-createscene"><span class="method-name">createScene</span><span class="method-parenthesis">(</span><span class="method-parameters">context: SceneContext</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="createscene" class="heading-anchor" href="#createscene"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-createterrain"><span class="method-name">createTerrain</span><span class="method-parenthesis">(</span><span class="method-parameters">context: SceneContext</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="createterrain" class="heading-anchor" href="#createterrain"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-decorate"><span class="method-name"><a href="decorate">decorate</a></span><span class="method-parenthesis">(</span><span class="method-parameters">context: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/decoratecontext'>DecorateContext</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="decorate" class="heading-anchor" href="#decorate"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Add view-specific decorations.</td>
-</tr>
-<tr>
-<td class="h-drawgrid"><span class="method-name">drawGrid</span><span class="method-parenthesis">(</span><span class="method-parameters">context: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/decoratecontext'>DecorateContext</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="drawgrid" class="heading-anchor" href="#drawgrid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-dropsubcategoryoverride"><span class="method-name">dropSubCategoryOverride</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="dropsubcategoryoverride" class="heading-anchor" href="#dropsubcategoryoverride"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-equalstate"><span class="method-name">equalState</span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="equalstate" class="heading-anchor" href="#equalstate"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Determine whether this ViewState matches another for the purpose of visually matching another view state (not exact equality)</td>
-</tr>
-<tr>
-<td class="h-equals"><span class="method-name">equals</span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="equals" class="heading-anchor" href="#equals"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Determine whether this ViewState exactly matches another</td>
+<td class="h-equals"><span class="method-name"><a href="equals">equals</a></span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="equals" class="heading-anchor" href="#equals"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Determine whether this ViewState exactly matches another.</td>
 </tr>
 <tr>
 <td class="h-foreachmodel"><span class="method-name">forEachModel</span><span class="method-parenthesis">(</span><span class="method-parameters">func: (model: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/geometricmodelstate'>GeometricModelState</a>) =&gt; void</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="foreachmodel" class="heading-anchor" href="#foreachmodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -292,15 +256,11 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
 </tr>
 <tr>
 <td class="h-getauxiliarycoordinatesystemid"><span class="method-name">getAuxiliaryCoordinateSystemId</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span><a id="getauxiliarycoordinatesystemid" class="heading-anchor" href="#getauxiliarycoordinatesystemid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Get the AuxiliaryCoordinateSystem for this ViewDefinition</td>
+<td>Get the ID of the auxiliary coordinate system for this ViewState</td>
 </tr>
 <tr>
 <td class="h-getcenter"><span class="method-name">getCenter</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="getcenter" class="heading-anchor" href="#getcenter"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Get the point at the geometric center of the view.</td>
-</tr>
-<tr>
-<td class="h-getdetail"><span class="method-name"><a href="getdetail">getDetail</a></span><span class="method-parenthesis">(</span><span class="method-parameters">name: string</span><span class="method-parenthesis">):</span><span class="method-output"> any</span><a id="getdetail" class="heading-anchor" href="#getdetail"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Get the current value of a view detail.</td>
 </tr>
 <tr>
 <td class="h-getdetails"><span class="method-name">getDetails</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> any</span><a id="getdetails" class="heading-anchor" href="#getdetails"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -312,7 +272,7 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
 </tr>
 <tr>
 <td class="h-getextents"><span class="method-name">getExtents</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="getextents" class="heading-anchor" href="#getextents"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Get the extents of this view</td>
+<td>Get the extents of this view in <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/coordsystem/#world'>CoordSystem.World</a> coordinates.</td>
 </tr>
 <tr>
 <td class="h-getgridorientation"><span class="method-name">getGridOrientation</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/gridorientationtype'>GridOrientationType</a></span><a id="getgridorientation" class="heading-anchor" href="#getgridorientation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -332,19 +292,19 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
 </tr>
 <tr>
 <td class="h-getorigin"><span class="method-name">getOrigin</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="getorigin" class="heading-anchor" href="#getorigin"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Get the origin of this view</td>
+<td>Get the origin of this view in <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/coordsystem/#world'>CoordSystem.World</a> coordinates.</td>
 </tr>
 <tr>
 <td class="h-getrotation"><span class="method-name">getRotation</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="getrotation" class="heading-anchor" href="#getrotation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Get the 3x3 ortho-normal Matrix3d for this view.</td>
 </tr>
 <tr>
-<td class="h-getsubcategoryappearance"><span class="method-name">getSubCategoryAppearance</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryappearance'>SubCategoryAppearance</a></span><a id="getsubcategoryappearance" class="heading-anchor" href="#getsubcategoryappearance"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Returns the appearance of the subcategory with the specified Id within this view, possibly as overridden by the display style.</td>
+<td class="h-getsubcategoryappearance"><span class="method-name"><a href="getsubcategoryappearance">getSubCategoryAppearance</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryappearance'>SubCategoryAppearance</a></span><a id="getsubcategoryappearance" class="heading-anchor" href="#getsubcategoryappearance"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Query the symbology with which geometry belonging to a specific subcategory is rendered within this view.</td>
 </tr>
 <tr>
-<td class="h-getsubcategoryoverride"><span class="method-name">getSubCategoryOverride</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryoverride'>SubCategoryOverride</a> | undefined</span><a id="getsubcategoryoverride" class="heading-anchor" href="#getsubcategoryoverride"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td class="h-getsubcategoryoverride"><span class="method-name"><a href="getsubcategoryoverride">getSubCategoryOverride</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryoverride'>SubCategoryOverride</a> | undefined</span><a id="getsubcategoryoverride" class="heading-anchor" href="#getsubcategoryoverride"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Query the symbology overrides applied to geometry belonging to a specific subcategory when rendered within this view.</td>
 </tr>
 <tr>
 <td class="h-gettargetpoint"><span class="method-name"><a href="gettargetpoint">getTargetPoint</a></span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="gettargetpoint" class="heading-anchor" href="#gettargetpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -356,7 +316,7 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
 </tr>
 <tr>
 <td class="h-getviewedextents"><span class="method-name">getViewedExtents</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/axisalignedbox3d'>AxisAlignedBox3d</a></span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="getviewedextents" class="heading-anchor" href="#getviewedextents"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>Get the extents of this view in <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/coordsystem/#world'>CoordSystem.World</a> coordinates.</td>
 </tr>
 <tr>
 <td class="h-getxvector"><span class="method-name"><a href="getxvector">getXVector</a></span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><a id="getxvector" class="heading-anchor" href="#getxvector"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -379,10 +339,6 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
 <td></td>
 </tr>
 <tr>
-<td class="h-issubcategoryvisible"><span class="method-name">isSubCategoryVisible</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="issubcategoryvisible" class="heading-anchor" href="#issubcategoryvisible"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-load"><span class="method-name"><a href="load">load</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span><a id="load" class="heading-anchor" href="#load"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Asynchronously load any required data for this ViewState from the backend.</td>
 </tr>
@@ -395,24 +351,12 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
 <td>Change the volume that this view displays, keeping its current rotation.</td>
 </tr>
 <tr>
-<td class="h-onrenderframe"><span class="method-name">onRenderFrame</span><span class="method-parenthesis">(</span><span class="method-parameters">_viewport: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="onrenderframe" class="heading-anchor" href="#onrenderframe"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Override this if you want to perform some logic on each iteration of the render loop.</td>
+<td class="h-overridesubcategory"><span class="method-name"><a href="overridesubcategory">overrideSubCategory</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, ovr: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryoverride'>SubCategoryOverride</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="overridesubcategory" class="heading-anchor" href="#overridesubcategory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Override the symbology of geometry belonging to a specific subcategory when rendered within this view.</td>
 </tr>
 <tr>
-<td class="h-overridesubcategory"><span class="method-name">overrideSubCategory</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, ovr: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryoverride'>SubCategoryOverride</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="overridesubcategory" class="heading-anchor" href="#overridesubcategory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-peekdetail"><span class="method-name"><a href="peekdetail">peekDetail</a></span><span class="method-parenthesis">(</span><span class="method-parameters">name: string</span><span class="method-parenthesis">):</span><span class="method-output"> any</span><a id="peekdetail" class="heading-anchor" href="#peekdetail"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Peek to see if a view detail is defined.</td>
-</tr>
-<tr>
-<td class="h-removedetail"><span class="method-name">removeDetail</span><span class="method-parenthesis">(</span><span class="method-parameters">name: string</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="removedetail" class="heading-anchor" href="#removedetail"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Remove a view detail.</td>
-</tr>
-<tr>
-<td class="h-setalwaysdrawn"><span class="method-name">setAlwaysDrawn</span><span class="method-parenthesis">(</span><span class="method-parameters">ids: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64set'>Id64Set</a>, exclusive: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setalwaysdrawn" class="heading-anchor" href="#setalwaysdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td class="h-setalwaysdrawn"><span class="method-name"><a href="setalwaysdrawn">setAlwaysDrawn</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ids: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64set'>Id64Set</a>, exclusive: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setalwaysdrawn" class="heading-anchor" href="#setalwaysdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Specify the IDs of a set of elements which should always be rendered within this view, regardless of category and subcategory visibility.</td>
 </tr>
 <tr>
 <td class="h-setaspectratioskew"><span class="method-name"><a href="setaspectratioskew">setAspectRatioSkew</a></span><span class="method-parenthesis">(</span><span class="method-parameters">val: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setaspectratioskew" class="heading-anchor" href="#setaspectratioskew"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -427,32 +371,28 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
 <td>Set the CategorySelector for this view.</td>
 </tr>
 <tr>
-<td class="h-setdetail"><span class="method-name">setDetail</span><span class="method-parenthesis">(</span><span class="method-parameters">name: string, value: any</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setdetail" class="heading-anchor" href="#setdetail"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Change the value of a view detail.</td>
-</tr>
-<tr>
 <td class="h-setdisplaystyle"><span class="method-name">setDisplayStyle</span><span class="method-parenthesis">(</span><span class="method-parameters">style: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/displaystylestate'>DisplayStyleState</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setdisplaystyle" class="heading-anchor" href="#setdisplaystyle"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
 <tr>
 <td class="h-setextents"><span class="method-name">setExtents</span><span class="method-parenthesis">(</span><span class="method-parameters">viewDelta: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="setextents" class="heading-anchor" href="#setextents"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Set the extents of this view</td>
+<td>Set the extents of this view in <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/coordsystem/#world'>CoordSystem.World</a> coordinates.</td>
 </tr>
 <tr>
-<td class="h-setfeatureoverridesdirty"><span class="method-name">setFeatureOverridesDirty</span><span class="method-parenthesis">(</span><span class="method-parameters">dirty: boolean = true</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setfeatureoverridesdirty" class="heading-anchor" href="#setfeatureoverridesdirty"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td class="h-setfeatureoverridesdirty"><span class="method-name"><a href="setfeatureoverridesdirty">setFeatureOverridesDirty</a></span><span class="method-parenthesis">(</span><span class="method-parameters">dirty: boolean = true</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setfeatureoverridesdirty" class="heading-anchor" href="#setfeatureoverridesdirty"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Mark the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.overrides'>FeatureSymbology.Overrides</a> associated with this view as &quot;dirty&quot;.</td>
 </tr>
 <tr>
 <td class="h-setgridsettings"><span class="method-name">setGridSettings</span><span class="method-parenthesis">(</span><span class="method-parameters">orientation: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/gridorientationtype'>GridOrientationType</a>, spacing: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a>, gridsPerRef: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setgridsettings" class="heading-anchor" href="#setgridsettings"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Set the grid settings for this view</td>
 </tr>
 <tr>
-<td class="h-setneverdrawn"><span class="method-name">setNeverDrawn</span><span class="method-parenthesis">(</span><span class="method-parameters">ids: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64set'>Id64Set</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setneverdrawn" class="heading-anchor" href="#setneverdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td class="h-setneverdrawn"><span class="method-name"><a href="setneverdrawn">setNeverDrawn</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ids: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64set'>Id64Set</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setneverdrawn" class="heading-anchor" href="#setneverdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Specify the IDs of a set of elements which should never be rendered within this view.</td>
 </tr>
 <tr>
 <td class="h-setorigin"><span class="method-name">setOrigin</span><span class="method-parenthesis">(</span><span class="method-parameters">viewOrg: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="setorigin" class="heading-anchor" href="#setorigin"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Set the origin of this view</td>
+<td>Set the origin of this view in <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/coordsystem/#world'>CoordSystem.World</a> coordinates.</td>
 </tr>
 <tr>
 <td class="h-setrotation"><span class="method-name"><a href="setrotation">setRotation</a></span><span class="method-parenthesis">(</span><span class="method-parameters">viewRot: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="setrotation" class="heading-anchor" href="#setrotation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -463,31 +403,19 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
 <td>Set the rotation of this ViewState to the supplied rotation, by rotating it about a point.</td>
 </tr>
 <tr>
-<td class="h-setselectionsetdirty"><span class="method-name">setSelectionSetDirty</span><span class="method-parenthesis">(</span><span class="method-parameters">dirty: boolean = true</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setselectionsetdirty" class="heading-anchor" href="#setselectionsetdirty"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-setstandardrotation"><span class="method-name">setStandardRotation</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/standardviewid'>StandardViewId</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setstandardrotation" class="heading-anchor" href="#setstandardrotation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>Orient this view to one of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/standardview'>StandardView</a> rotations.</td>
 </tr>
 <tr>
 <td class="h-setviewclip"><span class="method-name"><a href="setviewclip">setViewClip</a></span><span class="method-parenthesis">(</span><span class="method-parameters">clip?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setviewclip" class="heading-anchor" href="#setviewclip"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Set or clear the clipping volume for this view.</td>
 </tr>
 <tr>
-<td class="h-setupfromfrustum"><span class="method-name">setupFromFrustum</span><span class="method-parenthesis">(</span><span class="method-parameters">inFrustum: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/frustum'>Frustum</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstatus'>ViewStatus</a></span><a id="setupfromfrustum" class="heading-anchor" href="#setupfromfrustum"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Initialize the origin, extents, and rotation from an existing Frustum</td>
-</tr>
-<tr>
-<td class="h-showfrustumerrormessage"><span class="method-name">showFrustumErrorMessage</span><span class="method-parenthesis">(</span><span class="method-parameters">status: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstatus'>ViewStatus</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="showfrustumerrormessage" class="heading-anchor" href="#showfrustumerrormessage"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td class="h-setupfromfrustum"><span class="method-name"><a href="setupfromfrustum">setupFromFrustum</a></span><span class="method-parenthesis">(</span><span class="method-parameters">inFrustum: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/frustum'>Frustum</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstatus'>ViewStatus</a></span><a id="setupfromfrustum" class="heading-anchor" href="#setupfromfrustum"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Initialize the origin, extents, and rotation from an existing Frustum<br>This function is commonly used in the implementation of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/viewtool'>ViewTool</a>s as follows:<br> 1.</td>
 </tr>
 <tr>
 <td class="h-tojson"><span class="method-name">toJSON</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/viewdefinitionprops'>ViewDefinitionProps</a></span><a id="tojson" class="heading-anchor" href="#tojson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-validateviewdelta"><span class="method-name">validateViewDelta</span><span class="method-parenthesis">(</span><span class="method-parameters">delta: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, messageNeeded?: true | false</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstatus'>ViewStatus</a></span><a id="validateviewdelta" class="heading-anchor" href="#validateviewdelta"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
 <tr>
@@ -496,14 +424,7 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
 </tr>
 <tr>
 <td class="h-viewsmodel"><span class="method-name">viewsModel</span><span class="method-parenthesis">(</span><span class="method-parameters">modelId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="viewsmodel" class="heading-anchor" href="#viewsmodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Determine whether this ViewDefinition views a given model</td>
-</tr>
-<tr>
-<td class="h-createfromstatedata"><span class="method-name">createFromStateData</span><span class="method-parenthesis">(</span><span class="method-parameters">_viewStateData: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/viewstatedata'>ViewStateData</a>, _cat: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/categoryselectorstate'>CategorySelectorState</a>, _iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a> | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createfromstatedata" class="heading-anchor" href="#createfromstatedata"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-getstandardviewmatrix"><span class="method-name">getStandardViewMatrix</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/standardviewid'>StandardViewId</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="getstandardviewmatrix" class="heading-anchor" href="#getstandardviewmatrix"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Returns true if this view displays the contents of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/models/model'>Model</a> specified by ID.</td>
 </tr>
 </tbody></table><h3 class="h-inherited-methods"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited methods<a id="inherited-methods" class="heading-anchor" href="#inherited-methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -538,14 +459,9 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
 <td></td>
 </tr>
 <tr>
-<td class="h-alwaysdrawn"><span class="property-name">alwaysDrawn</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="alwaysdrawn" class="heading-anchor" href="#alwaysdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-alwaysdrawn"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate/alwaysdrawn'>alwaysDrawn</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="alwaysdrawn" class="heading-anchor" href="#alwaysdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64set'>Id64Set</a> | undefined</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-arealltiletreesloaded"><span class="property-name">areAllTileTreesLoaded</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="arealltiletreesloaded" class="heading-anchor" href="#arealltiletreesloaded"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> boolean</span></td>
-<td>Returns true if all the tile trees for this view are loaded.</td>
+<td>IDs of a set of elements which should always be rendered within this view, regardless of category and subcategory visibility.</td>
 </tr>
 <tr>
 <td class="h-arefeatureoverridesdirty"><span class="property-name">areFeatureOverridesDirty</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="arefeatureoverridesdirty" class="heading-anchor" href="#arefeatureoverridesdirty"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -555,12 +471,12 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
 <tr>
 <td class="h-auxiliarycoordinatesystem"><span class="property-name">auxiliaryCoordinateSystem</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="auxiliarycoordinatesystem" class="heading-anchor" href="#auxiliarycoordinatesystem"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/auxcoordsystemstate'>AuxCoordSystemState</a></span></td>
-<td>get the auxiliary coordinate system state object for this ViewState, if present</td>
+<td>get the auxiliary coordinate system state object for this ViewState.</td>
 </tr>
 <tr>
 <td class="h-backgroundcolor"><span class="property-name">backgroundColor</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="backgroundcolor" class="heading-anchor" href="#backgroundcolor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/colordef'>ColorDef</a></span></td>
-<td>Get the background color</td>
+<td>Get this view&apos;s background color.</td>
 </tr>
 <tr>
 <td class="h-categoryselector"><span class="property-name">categorySelector</span> <span class="badge badge-pill badge-primary badge-constructorproperty">ConstructorProperty</span><a id="categoryselector" class="heading-anchor" href="#categoryselector"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -585,7 +501,7 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
 <tr>
 <td class="h-isalwaysdrawnexclusive"><span class="property-name">isAlwaysDrawnExclusive</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isalwaysdrawnexclusive" class="heading-anchor" href="#isalwaysdrawnexclusive"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> boolean</span></td>
-<td>Returns true if the set of elements returned by getAlwaysDrawn() are the <em>only</em> elements rendered by this view controller</td>
+<td>Returns true if the set of elements in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate/alwaysdrawn'>ViewState.alwaysDrawn</a> set are the <em>only</em> elements rendered within this view.</td>
 </tr>
 <tr>
 <td class="h-isprivate"><span class="property-name">isPrivate</span><a id="isprivate" class="heading-anchor" href="#isprivate"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -593,24 +509,19 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
 <td></td>
 </tr>
 <tr>
-<td class="h-isselectionsetdirty"><span class="property-name">isSelectionSetDirty</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isselectionsetdirty" class="heading-anchor" href="#isselectionsetdirty"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> boolean</span></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-name"><span class="property-name">name</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="name" class="heading-anchor" href="#name"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> string</span></td>
-<td>Get the name of the ViewDefinition of this ViewState</td>
+<td>Get the name of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/viewdefinition'>ViewDefinition</a> from which this ViewState originated.</td>
 </tr>
 <tr>
-<td class="h-neverdrawn"><span class="property-name">neverDrawn</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="neverdrawn" class="heading-anchor" href="#neverdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-neverdrawn"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate/neverdrawn'>neverDrawn</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="neverdrawn" class="heading-anchor" href="#neverdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64set'>Id64Set</a> | undefined</span></td>
-<td></td>
+<td>IDs of a set of elements which should not be rendered within this view.</td>
 </tr>
 <tr>
-<td class="h-subcategories"><span class="property-name">subCategories</span><a id="subcategories" class="heading-anchor" href="#subcategories"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-subcategories"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate/subcategories'>subCategories</a></span><a id="subcategories" class="heading-anchor" href="#subcategories"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewsubcategories'>ViewSubCategories</a></span></td>
-<td></td>
+<td>A cache of information about subcategories belonging to categories present in this view&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/categoryselectorstate'>CategorySelectorState</a>.</td>
 </tr>
 <tr>
 <td class="h-undotime"><span class="property-name">undoTime</span><a id="undotime" class="heading-anchor" href="#undotime"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -618,9 +529,9 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
 <td>Time this ViewState was saved in view undo.</td>
 </tr>
 <tr>
-<td class="h-viewflags"><span class="property-name">viewFlags</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="viewflags" class="heading-anchor" href="#viewflags"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-viewflags"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate/viewflags'>viewFlags</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="viewflags" class="heading-anchor" href="#viewflags"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a></span></td>
-<td>Get the ViewFlags from the displayStyle of this ViewState.</td>
+<td>Get the ViewFlags from the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/displaystylestate'>DisplayStyleState</a> of this ViewState.</td>
 </tr>
 </tbody></table><h3 class="h-inherited-properties"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited properties<a id="inherited-properties" class="heading-anchor" href="#inherited-properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -735,19 +646,10 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#constructor">constructor</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#adjustaspectratio">adjustAspectRatio</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#allow3dmanipulations">allow3dManipulations</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#calculatefrustum">calculateFrustum</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#cancelalltileloads">cancelAllTileLoads</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#changecategorydisplay">changeCategoryDisplay</a>
@@ -760,24 +662,6 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#computefitrange">computeFitRange</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#createauxcoordsystem">createAuxCoordSystem</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#createclassification">createClassification</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#createscene">createScene</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#createterrain">createTerrain</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#decorate">decorate</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#drawgrid">drawGrid</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#dropsubcategoryoverride">dropSubCategoryOverride</a>
@@ -802,9 +686,6 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#getcenter">getCenter</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#getdetail">getDetail</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#getdetails">getDetails</a>
@@ -864,9 +745,6 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
                                             <a class='title solo-title menu-text' href="#isspatialview">isSpatialView</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#issubcategoryvisible">isSubCategoryVisible</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#load">load</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -876,16 +754,7 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
                                             <a class='title solo-title menu-text' href="#lookatvolume">lookAtVolume</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#onrenderframe">onRenderFrame</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#overridesubcategory">overrideSubCategory</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#peekdetail">peekDetail</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#removedetail">removeDetail</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#setalwaysdrawn">setAlwaysDrawn</a>
@@ -898,9 +767,6 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#setcategoryselector">setCategorySelector</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#setdetail">setDetail</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#setdisplaystyle">setDisplayStyle</a>
@@ -927,9 +793,6 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
                                             <a class='title solo-title menu-text' href="#setrotationaboutpoint">setRotationAboutPoint</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#setselectionsetdirty">setSelectionSetDirty</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#setstandardrotation">setStandardRotation</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -939,25 +802,13 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
                                             <a class='title solo-title menu-text' href="#setupfromfrustum">setupFromFrustum</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#showfrustumerrormessage">showFrustumErrorMessage</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#tojson">toJSON</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#validateviewdelta">validateViewDelta</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#viewscategory">viewsCategory</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#viewsmodel">viewsModel</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#createfromstatedata">createFromStateData</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#getstandardviewmatrix">getStandardViewMatrix</a>
                                     </li>
                             </ul>
                     </li>
@@ -991,9 +842,6 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
                                             <a class='title solo-title menu-text' href="#alwaysdrawn">alwaysDrawn</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#arealltiletreesloaded">areAllTileTreesLoaded</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#arefeatureoverridesdirty">areFeatureOverridesDirty</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -1019,9 +867,6 @@ Subclasses of ViewDefinition determine which model(s) are viewed.</p>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#isprivate">isPrivate</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#isselectionsetdirty">isSelectionSetDirty</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#name">name</a>

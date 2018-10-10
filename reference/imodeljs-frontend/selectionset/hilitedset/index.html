@@ -182,7 +182,11 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/selectionset/">SelectionSet</a> > HilitedSet</div>
             
             <h2 class="h-hilitedset">HilitedSet <span class="badge badge-pill badge-primary badge-class">Class</span><a id="hilitedset" class="heading-anchor" href="#hilitedset"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>A set of <em>hilited</em> elements for an IModelConnection, by element id.</p>
+<p>A set of <em>hilited</em> elements for an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a>, by element id.
+Hilited elements are displayed with a customizable hilite effect within a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>.</p>
+<p><span class="badge badge-pill badge-primary badge-note">note</span> Typically, elements are hilited by virtue of their presence in the IModelConnection&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/selectionset/selectionset'>SelectionSet</a>. The HilitedSet allows additional
+elements to be displayed with the hilite effect without adding them to the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/selectionset/selectionset'>SelectionSet</a>.</p>
+<p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/hilite/hilite.settings'>Hilite.Settings</a> for customization of the hilite effect.</p>
 <h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -194,18 +198,19 @@
 </tr>
 <tr>
 <td class="h-clearall"><span class="method-name">clearAll</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="clearall" class="heading-anchor" href="#clearall"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>Remove all elements from the hilited set.</td>
 </tr>
 <tr>
 <td class="h-has"><span class="method-name">has</span><span class="method-parenthesis">(</span><span class="method-parameters">id: string</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="has" class="heading-anchor" href="#has"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>Returns true if the specified element ID is contained in the hilite set.</td>
 </tr>
 <tr>
 <td class="h-ishilited"><span class="method-name">isHilited</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="ishilited" class="heading-anchor" href="#ishilited"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>Returns true if the specified element ID is contained in the hilite set.</td>
 </tr>
 <tr>
-<td class="h-sethilite"><span class="method-name">setHilite</span><span class="method-parenthesis">(</span><span class="method-parameters">arg: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64arg'>Id64Arg</a>, onOff: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="sethilite" class="heading-anchor" href="#sethilite"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-sethilite"><span class="method-name"><a href="sethilite">setHilite</a></span><span class="method-parenthesis">(</span><span class="method-parameters">arg: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64arg'>Id64Arg</a>, onOff: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="sethilite" class="heading-anchor" href="#sethilite"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Toggle the hilited state of one or more elements.</td>
 </tr>
 </tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -216,7 +221,7 @@
 <tr>
 <td class="h-elements"><span class="property-name">elements</span><a id="elements" class="heading-anchor" href="#elements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">Set&lt;string&gt;</span></td>
-<td></td>
+<td>The IDs of the hilited elements.</td>
 </tr>
 <tr>
 <td class="h-imodel"><span class="property-name">iModel</span> <span class="badge badge-pill badge-primary badge-constructorproperty">ConstructorProperty</span><a id="imodel" class="heading-anchor" href="#imodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -226,6 +231,7 @@
 <tr>
 <td class="h-size"><span class="property-name">size</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="size" class="heading-anchor" href="#size"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> number</span></td>
+<td>Returns the number of elements in the hilited set.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>

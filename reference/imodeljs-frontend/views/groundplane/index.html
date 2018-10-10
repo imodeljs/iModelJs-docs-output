@@ -182,7 +182,7 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/views/">Views</a> > GroundPlane</div>
             
             <h2 class="h-groundplane">GroundPlane <span class="badge badge-pill badge-primary badge-class">Class</span><a id="groundplane" class="heading-anchor" href="#groundplane"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>A circle drawn at a Z elevation, whose diameter is the the XY diagonal of the project extents</p>
+<p>A circle drawn at a Z elevation, whose diameter is the the XY diagonal of the project extents, used to represent the ground as a reference point within a spatial view.</p>
 <h3 class="h-implements">Implements<a id="implements" class="heading-anchor" href="#implements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/groundplaneprops'>GroundPlaneProps</a></li>
@@ -194,11 +194,6 @@
 </tr>
 <tr>
 <td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">ground?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/groundplaneprops'>GroundPlaneProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/groundplane'>GroundPlane</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-getgroundplanegradient"><span class="method-name"><a href="getgroundplanegradient">getGroundPlaneGradient</a></span><span class="method-parenthesis">(</span><span class="method-parameters">aboveGround: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> Symb</span><a id="getgroundplanegradient" class="heading-anchor" href="#getgroundplanegradient"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Returns and locally stores gradient symbology for the ground plane texture depending on whether we are looking from above or below.</td>
 </tr>
 </tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -209,21 +204,22 @@
 <tr>
 <td class="h-abovecolor"><span class="property-name">aboveColor</span><a id="abovecolor" class="heading-anchor" href="#abovecolor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/colordef'>ColorDef</a></span></td>
-<td></td>
+<td>The color in which to draw the ground plane when viewed from above.</td>
 </tr>
 <tr>
 <td class="h-belowcolor"><span class="property-name">belowColor</span><a id="belowcolor" class="heading-anchor" href="#belowcolor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/colordef'>ColorDef</a></span></td>
-<td></td>
+<td>The color in which to draw the ground plane when viewed from below.</td>
 </tr>
 <tr>
 <td class="h-display"><span class="property-name">display</span><a id="display" class="heading-anchor" href="#display"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">boolean</span></td>
-<td></td>
+<td>Whether the ground plane should be displayed.</td>
 </tr>
 <tr>
 <td class="h-elevation"><span class="property-name">elevation</span><a id="elevation" class="heading-anchor" href="#elevation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">number</span></td>
+<td>The Z height at which to draw the plane.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -261,9 +257,6 @@
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#constructor">constructor</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#getgroundplanegradient">getGroundPlaneGradient</a>
                                     </li>
                             </ul>
                     </li>

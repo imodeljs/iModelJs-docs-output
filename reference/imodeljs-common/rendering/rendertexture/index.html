@@ -182,7 +182,12 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/">imodeljs-common</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/rendering/">Rendering</a> > RenderTexture</div>
             
             <h2 class="h-rendertexture">RenderTexture <span class="badge badge-pill badge-primary badge-class">Class</span><a id="rendertexture" class="heading-anchor" href="#rendertexture"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>A Texture for rendering</p>
+<p>Represents a texture image applied to a surface during rendering.
+A RenderTexture is typically - but not always - associated with a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendermaterial'>RenderMaterial</a>.
+Represents a texture image applied to a surface during rendering.
+A RenderTexture is typically - but not always - associated with a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendermaterial'>RenderMaterial</a>.</p>
+<p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendersystem'>RenderSystem</a> for functions used to create RenderTextures.</p>
+<p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendersystem'>RenderSystem</a> for functions used to create RenderTextures.</p>
 <h3 class="h-implements">Implements<a id="implements" class="heading-anchor" href="#implements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/idisposable'>IDisposable</a></li>
@@ -197,7 +202,8 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-dispose"><span class="method-name">dispose</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="dispose" class="heading-anchor" href="#dispose"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-dispose"><span class="method-name"><a href="dispose">dispose</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="dispose" class="heading-anchor" href="#dispose"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Releases any WebGL resources owned by this texture.</td>
 </tr>
 </tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -211,9 +217,9 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-isowned"><span class="property-name">isOwned</span><a id="isowned" class="heading-anchor" href="#isowned"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-isowned"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendertexture/isowned'>isOwned</a></span><a id="isowned" class="heading-anchor" href="#isowned"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">boolean</span></td>
-<td></td>
+<td>Indicates that some object is managing the lifetime of this texture and will take care of calling its dispose function appropriately.</td>
 </tr>
 <tr>
 <td class="h-isskybox"><span class="property-name">isSkyBox</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isskybox" class="heading-anchor" href="#isskybox"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -226,13 +232,14 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-key"><span class="property-name">key</span><a id="key" class="heading-anchor" href="#key"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-key"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendertexture/key'>key</a></span><a id="key" class="heading-anchor" href="#key"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">string | undefined</span></td>
-<td></td>
+<td>A string uniquely identifying this texture within the context of an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a>.</td>
 </tr>
 <tr>
 <td class="h-type"><span class="property-name">type</span><a id="type" class="heading-anchor" href="#type"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendertexture.type'>RenderTexture.Type</a></span></td>
+<td>Indicates the type of texture.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>

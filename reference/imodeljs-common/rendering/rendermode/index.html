@@ -182,6 +182,17 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/">imodeljs-common</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/rendering/">Rendering</a> > RenderMode</div>
             
             <h2 class="h-rendermode">RenderMode <span class="badge badge-pill badge-primary badge-enumeration">Enumeration</span><a id="rendermode" class="heading-anchor" href="#rendermode"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Enumerates the available rendering modes. The rendering mode chiefly controls whether and how surfaces and their edges are drawn.
+Generally speaking,</p>
+<ul>
+<li>Wireframe draws only edges.</li>
+<li>SmoothShade draws only surfaces.</li>
+<li>HiddenLine and SolidFill draw both surfaces and edges.</li>
+<li>Lighting is only applied in SmoothShade mode.</li>
+</ul>
+<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/fillflags'>FillFlags</a> associated with planar regions controls whether and how the region&apos;s interior area is displayed in Wireframe mode.
+<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a> has options for enabling display of visible and/or hidden edges in SmoothShade mode.
+<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/hiddenline/hiddenline.settings'>HiddenLine.Settings</a> allow aspects of edge and surface symbology to be overridden within a view.</p>
 <h3 class="h-members">Members<a id="members" class="heading-anchor" href="#members"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -191,21 +202,22 @@
 <tr>
 <td class="h-wireframe"><span class="enum-name">Wireframe</span><a id="wireframe" class="heading-anchor" href="#wireframe"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value">0</span></td>
-<td></td>
+<td>Render only edges, no surfaces, with exceptions for planar regions with <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/fillflags'>FillFlags</a> set up to render the surface in wireframe mode.</td>
 </tr>
 <tr>
 <td class="h-hiddenline"><span class="enum-name">HiddenLine</span><a id="hiddenline" class="heading-anchor" href="#hiddenline"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value">3</span></td>
-<td></td>
+<td>Render edges and surfaces. Surfaces are drawn using the view&apos;s background color instead of the element&apos;s fill color.</td>
 </tr>
 <tr>
 <td class="h-solidfill"><span class="enum-name">SolidFill</span><a id="solidfill" class="heading-anchor" href="#solidfill"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value">4</span></td>
-<td></td>
+<td>Render edges and surfaces.</td>
 </tr>
 <tr>
 <td class="h-smoothshade"><span class="enum-name">SmoothShade</span><a id="smoothshade" class="heading-anchor" href="#smoothshade"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value">6</span></td>
+<td>Render only surfaces, no edges, with lighting.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>

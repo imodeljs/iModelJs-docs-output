@@ -182,7 +182,8 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/modelstate/">ModelState</a> > GeometricModelState</div>
             
             <h2 class="h-geometricmodelstate">GeometricModelState <span class="badge badge-pill badge-primary badge-class">Class</span><a id="geometricmodelstate" class="heading-anchor" href="#geometricmodelstate"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>The state of a geometric model</p>
+<p>Represents the front-end state of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/models/geometricmodel'>GeometricModel</a>.
+The contents of a GeometricModelState can be rendered inside a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>.</p>
 <h3 class="h-extends">Extends<a id="extends" class="heading-anchor" href="#extends"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/modelstate'>ModelState</a></li>
@@ -204,10 +205,6 @@
 </tr>
 <tr>
 <td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/modelprops'>ModelProps</a>, iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/geometricmodelstate'>GeometricModelState</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-onimodelconnectionclose"><span class="method-name">onIModelConnectionClose</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="onimodelconnectionclose" class="heading-anchor" href="#onimodelconnectionclose"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 </tr>
 </tbody></table><h3 class="h-inherited-methods"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited methods<a id="inherited-methods" class="heading-anchor" href="#inherited-methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -254,17 +251,12 @@
 <tr>
 <td class="h-is2d"><span class="property-name">is2d</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="is2d" class="heading-anchor" href="#is2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> boolean</span></td>
-<td></td>
+<td>Returns true if this is a 2d model (a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/geometricmodel2dstate'>GeometricModel2dState</a>).</td>
 </tr>
 <tr>
 <td class="h-is3d"><span class="property-name">is3d</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="is3d" class="heading-anchor" href="#is3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> boolean</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-isgeometricmodel"><span class="property-name">isGeometricModel</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isgeometricmodel" class="heading-anchor" href="#isgeometricmodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> boolean</span></td>
-<td>Override of ModelState method, returns true</td>
+<td>Returns true if this is a 3d model (a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/geometricmodel3dstate'>GeometricModel3dState</a>).</td>
 </tr>
 </tbody></table><h3 class="h-inherited-properties"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited properties<a id="inherited-properties" class="heading-anchor" href="#inherited-properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -387,9 +379,6 @@
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#constructor">constructor</a>
                                     </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#onimodelconnectionclose">onIModelConnectionClose</a>
-                                    </li>
                             </ul>
                     </li>
                     <li class='nav-item item '>
@@ -429,9 +418,6 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#is3d">is3d</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#isgeometricmodel">isGeometricModel</a>
                                     </li>
                             </ul>
                     </li>

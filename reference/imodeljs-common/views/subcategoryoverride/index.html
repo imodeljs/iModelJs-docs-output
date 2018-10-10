@@ -182,7 +182,15 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/">imodeljs-common</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/views/">Views</a> > SubCategoryOverride</div>
             
             <h2 class="h-subcategoryoverride">SubCategoryOverride <span class="badge badge-pill badge-primary badge-class">Class</span><a id="subcategoryoverride" class="heading-anchor" href="#subcategoryoverride"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Overrides selected aspects of a SubCategoryAppearance.</p>
+<p>Overrides selected aspects of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryappearance'>SubCategoryAppearance</a> in the context of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a>.
+When determining how geometry belonging to a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/subcategory'>SubCategory</a> will appear when drawn within a view:</p>
+<ol>
+<li>The base <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryappearance'>SubCategoryAppearance</a> associated with that subcategory is obtained.</li>
+<li>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryoverride'>SubCategoryOverride</a> associated with that subcategory in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a> is obtained.</li>
+<li>Any aspects of the appearance overridden by the SubCategoryOverride are replaced with the values from the SubCategoryOverride.
+An aspect is overridden by virtue of not being set to &quot;undefined&quot; in the SubCategoryOverride.</li>
+</ol>
+<p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate/overridesubcategory'>overrideSubCategory</a></p>
 <h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -209,7 +217,7 @@
 <tr>
 <td class="h-anyoverridden"><span class="property-name">anyOverridden</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="anyoverridden" class="heading-anchor" href="#anyoverridden"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> boolean</span></td>
-<td></td>
+<td>Returns true if any aspect of the appearance is overridden (i.e., if any member is not undefined).</td>
 </tr>
 <tr>
 <td class="h-color"><span class="property-name">color</span><a id="color" class="heading-anchor" href="#color"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -219,7 +227,7 @@
 <tr>
 <td class="h-defaults"><span class="property-name">defaults</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="defaults" class="heading-anchor" href="#defaults"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryoverride'>SubCategoryOverride</a></span></td>
-<td></td>
+<td>A default SubCategoryOverride which overrides nothing.</td>
 </tr>
 <tr>
 <td class="h-invisible"><span class="property-name">invisible</span><a id="invisible" class="heading-anchor" href="#invisible"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -234,11 +242,6 @@
 <tr>
 <td class="h-priority"><span class="property-name">priority</span><a id="priority" class="heading-anchor" href="#priority"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | number</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-style"><span class="property-name">style</span><a id="style" class="heading-anchor" href="#style"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span></td>
 <td></td>
 </tr>
 <tr>
@@ -315,9 +318,6 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#priority">priority</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#style">style</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#transparency">transparency</a>

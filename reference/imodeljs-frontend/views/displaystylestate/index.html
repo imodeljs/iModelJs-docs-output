@@ -182,7 +182,10 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/views/">Views</a> > DisplayStyleState</div>
             
             <h2 class="h-displaystylestate">DisplayStyleState <span class="badge badge-pill badge-primary badge-class">Class</span><a id="displaystylestate" class="heading-anchor" href="#displaystylestate"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>A DisplayStyle defines the parameters for &apos;styling&apos; the contents of a View</p>
+<p>A DisplayStyle defines the parameters for &apos;styling&apos; the contents of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a></p>
+<p><span class="badge badge-pill badge-primary badge-note">note</span> If the DisplayStyle is associated with a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a> which is being rendered inside a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>, modifying
+the DisplayStyle directly will generally not result in immediately visible changes on the screen.
+<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a> provides APIs which forward to the DisplayStyle API and also ensure the screen is updated promptly.</p>
 <h3 class="h-extends">Extends<a id="extends" class="heading-anchor" href="#extends"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/elementstate/elementstate'>ElementState</a></li>
@@ -208,39 +211,24 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-dropsubcategoryoverride"><span class="method-name">dropSubCategoryOverride</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="dropsubcategoryoverride" class="heading-anchor" href="#dropsubcategoryoverride"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td class="h-dropsubcategoryoverride"><span class="method-name"><a href="dropsubcategoryoverride">dropSubCategoryOverride</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="dropsubcategoryoverride" class="heading-anchor" href="#dropsubcategoryoverride"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Remove any <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryoverride'>SubCategoryOverride</a> applied to a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryappearance'>SubCategoryAppearance</a> by this style.</td>
 </tr>
 <tr>
 <td class="h-equalstate"><span class="method-name">equalState</span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/displaystylestate'>DisplayStyleState</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="equalstate" class="heading-anchor" href="#equalstate"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
 <tr>
-<td class="h-getstyle"><span class="method-name">getStyle</span><span class="method-parenthesis">(</span><span class="method-parameters">name: string</span><span class="method-parenthesis">):</span><span class="method-output"> any</span><a id="getstyle" class="heading-anchor" href="#getstyle"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-getsubcategoryoverride"><span class="method-name">getSubCategoryOverride</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryoverride'>SubCategoryOverride</a> | undefined</span><a id="getsubcategoryoverride" class="heading-anchor" href="#getsubcategoryoverride"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td class="h-getsubcategoryoverride"><span class="method-name"><a href="getsubcategoryoverride">getSubCategoryOverride</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryoverride'>SubCategoryOverride</a> | undefined</span><a id="getsubcategoryoverride" class="heading-anchor" href="#getsubcategoryoverride"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Obtain the overrides applied to a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryappearance'>SubCategoryAppearance</a> by this style.</td>
 </tr>
 <tr>
 <td class="h-is3d"><span class="method-name">is3d</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="is3d" class="heading-anchor" href="#is3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
 <tr>
-<td class="h-overridesubcategory"><span class="method-name">overrideSubCategory</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, ovr: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryoverride'>SubCategoryOverride</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="overridesubcategory" class="heading-anchor" href="#overridesubcategory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-removestyle"><span class="method-name">removeStyle</span><span class="method-parenthesis">(</span><span class="method-parameters">name: string</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="removestyle" class="heading-anchor" href="#removestyle"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Remove a Style from this DisplayStyle.</td>
-</tr>
-<tr>
-<td class="h-setstyle"><span class="method-name">setStyle</span><span class="method-parenthesis">(</span><span class="method-parameters">name: string, value: any</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setstyle" class="heading-anchor" href="#setstyle"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>change the value of a style on this DisplayStyle</td>
-</tr>
-<tr>
-<td class="h-syncbackgroundmapstate"><span class="method-name">syncBackgroundMapState</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="syncbackgroundmapstate" class="heading-anchor" href="#syncbackgroundmapstate"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-overridesubcategory"><span class="method-name"><a href="overridesubcategory">overrideSubCategory</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, ovr: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryoverride'>SubCategoryOverride</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="overridesubcategory" class="heading-anchor" href="#overridesubcategory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Customize the way geometry belonging to a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/subcategory'>SubCategory</a> is drawn by this display style.</td>
 </tr>
 </tbody></table><h3 class="h-inherited-methods"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited methods<a id="inherited-methods" class="heading-anchor" href="#inherited-methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -275,29 +263,19 @@
 <th>Description</th>
 </tr>
 <tr>
-<td class="h-backgroundcolor"><span class="property-name">backgroundColor</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="backgroundcolor" class="heading-anchor" href="#backgroundcolor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-backgroundcolor"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/displaystylestate/backgroundcolor'>backgroundColor</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="backgroundcolor" class="heading-anchor" href="#backgroundcolor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/colordef'>ColorDef</a></span></td>
-<td>Get the background color for this DisplayStyle</td>
-</tr>
-<tr>
-<td class="h-backgroundmap"><span class="property-name">backgroundMap</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="backgroundmap" class="heading-anchor" href="#backgroundmap"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> BackgroundMapState</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-backgroundmapplane"><span class="property-name">backgroundMapPlane</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="backgroundmapplane" class="heading-anchor" href="#backgroundmapplane"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/plane3dbyoriginandunitnormal'>Plane3dByOriginAndUnitNormal</a> | undefined</span></td>
-<td></td>
+<td>The background color for this DisplayStyle</td>
 </tr>
 <tr>
 <td class="h-hassubcategoryoverride"><span class="property-name">hasSubCategoryOverride</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="hassubcategoryoverride" class="heading-anchor" href="#hassubcategoryoverride"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> boolean</span></td>
-<td></td>
+<td>Returns true if an [[SubCategoryOverride]s are defined by this style.</td>
 </tr>
 <tr>
-<td class="h-monochromecolor"><span class="property-name">monochromeColor</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="monochromecolor" class="heading-anchor" href="#monochromecolor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-monochromecolor"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/displaystylestate/monochromecolor'>monochromeColor</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="monochromecolor" class="heading-anchor" href="#monochromecolor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/colordef'>ColorDef</a></span></td>
-<td></td>
+<td>The color used to draw geometry in monochrome mode.</td>
 </tr>
 <tr>
 <td class="h-name"><span class="property-name">name</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="name" class="heading-anchor" href="#name"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -305,13 +283,9 @@
 <td>Get the name of this DisplayStyle</td>
 </tr>
 <tr>
-<td class="h-styles"><span class="property-name">styles</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="styles" class="heading-anchor" href="#styles"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> any</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-viewflags"><span class="property-name">viewFlags</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="viewflags" class="heading-anchor" href="#viewflags"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-viewflags"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/displaystylestate/viewflags'>viewFlags</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="viewflags" class="heading-anchor" href="#viewflags"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a></span></td>
+<td>The ViewFlags associated with this style.</td>
 </tr>
 </tbody></table><h3 class="h-inherited-properties"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited properties<a id="inherited-properties" class="heading-anchor" href="#inherited-properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -441,9 +415,6 @@
                                             <a class='title solo-title menu-text' href="#equalstate">equalState</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#getstyle">getStyle</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#getsubcategoryoverride">getSubCategoryOverride</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -451,15 +422,6 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#overridesubcategory">overrideSubCategory</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#removestyle">removeStyle</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#setstyle">setStyle</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#syncbackgroundmapstate">syncBackgroundMapState</a>
                                     </li>
                             </ul>
                     </li>
@@ -493,12 +455,6 @@
                                             <a class='title solo-title menu-text' href="#backgroundcolor">backgroundColor</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#backgroundmap">backgroundMap</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#backgroundmapplane">backgroundMapPlane</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#hassubcategoryoverride">hasSubCategoryOverride</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -506,9 +462,6 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#name">name</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#styles">styles</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#viewflags">viewFlags</a>

@@ -182,8 +182,18 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/bentleyjs-core/">bentleyjs-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/bentleyjs-core/utils/">Utils</a> > IDisposable</div>
             
             <h2 class="h-idisposable">IDisposable <span class="badge badge-pill badge-primary badge-interface">Interface</span><a id="idisposable" class="heading-anchor" href="#idisposable"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>An interface for disposable objects. Users of such objects should
-call the dispose method when the object is not needed.</p>
+<p>Interface adopted by a type which has deterministic cleanup logic.
+For example:</p>
+<ul>
+<li>Most rendering-related types, such as <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>, own WebGL resources which must be explicitly released when no longer needed.</li>
+<li>Some low-level objects like <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/ecdb/ecdb'>ECDb</a> own native types defined in C++ code which must be explicitly released when no longer needed.</li>
+</ul>
+<p>A similar concept exists in languages like C++ (implemented as &quot;destructors&quot;) and C# (&quot;IDisposable&quot;).
+However, because TypeScript and Javascript lack any built-in support for deterministic destruction, it is up to the programmer to ensure dispose() is called appropriately.
+Failure to do so may result in memory leaks or leaking of other resources.</p>
+<p>IDisposable tends to be contagious; that is, if a type has members which implement IDisposable, that type should also implement IDisposable to dispose of those members.</p>
+<p>Implementations of IDisposable tend to be more &quot;low-level&quot; types. The disposal of such types is often handled on your behalf by imodel.js.
+However, always consult the documentation for an IDisposable type to determine under what circumstances you are expected to explicitly dispose of it.</p>
 <h3 class="h-implemented-by">Implemented by<a id="implemented-by" class="heading-anchor" href="#implemented-by"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/disposablelist'>DisposableList</a></li>
@@ -195,7 +205,8 @@ call the dispose method when the object is not needed.</p>
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-dispose"><span class="method-name">dispose</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="dispose" class="heading-anchor" href="#dispose"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-dispose"><span class="method-name"><a href="dispose">dispose</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="dispose" class="heading-anchor" href="#dispose"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Disposes of any resources owned by this object.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>

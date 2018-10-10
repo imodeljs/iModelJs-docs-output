@@ -182,94 +182,82 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/rendering/">Rendering</a> > GraphicBuilder</div>
             
             <h2 class="h-graphicbuilder">GraphicBuilder <span class="badge badge-pill badge-primary badge-class">Class</span><a id="graphicbuilder" class="heading-anchor" href="#graphicbuilder"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Provides methods for constructing a RenderGraphic from geometric primitives.</p>
+<p>Provides methods for constructing a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a> from geometric primitives.
+GraphicBuilder is primarily used for creating <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/decorations'>Decorations</a> to be displayed inside a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>.</p>
+<p>The typical process for constructing a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a> proceeds as follows:</p>
+<ol>
+<li>Use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendercontext/creategraphicbuilder'>RenderContext.createGraphicBuilder</a> to obtain a builder.</li>
+<li>Set up the symbology using <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuilder/activategraphicparams'>GraphicBuilder.activateGraphicParams</a>.</li>
+<li>Add one or more geometric primitives using methods like <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuilder/addshape'>GraphicBuilder.addShape</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuilder/addlinestring'>GraphicBuilder.addLineString</a>, possibly setting new symbology in between.</li>
+<li>Use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuilder/finish'>GraphicBuilder.finish</a> to produce the finished <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a>.</li>
+</ol>
+<p><span class="badge badge-pill badge-primary badge-note">note</span> Most of the methods which add geometry to the builder take ownership of their inputs rather than cloning them.
+So, for example, if you pass an array of points to addLineString(), you should not subsequently modify that array.</p>
+<p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/decorator'>Decorator</a>.</p>
+<p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendercontext/creategraphicbuilder'>RenderContext.createGraphicBuilder</a>.</p>
+<p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendersystem/creategraphicbuilder'>RenderSystem.createGraphicBuilder</a>.</p>
+<p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/decoratecontext'>DecorateContext</a>.</p>
+<p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/dynamicscontext'>DynamicsContext</a>.</p>
 <h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">placement: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a> = Transform.identity, type: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphictype'>GraphicType</a>, viewport: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>, pickId?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuilder'>GraphicBuilder</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-activategraphicparams"><span class="method-name"><a href="activategraphicparams">activateGraphicParams</a></span><span class="method-parenthesis">(</span><span class="method-parameters">graphicParams: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/graphicparams'>GraphicParams</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="activategraphicparams" class="heading-anchor" href="#activategraphicparams"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Set a GraphicParams to be the &quot;active&quot; GraphicParams for this RenderGraphic.</td>
+<td>Sets the current active symbology for this builder.</td>
 </tr>
 <tr>
-<td class="h-addarc"><span class="method-name"><a href="addarc">addArc</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ellipse: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/arc3d'>Arc3d</a>, isEllipse: boolean, filled: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="addarc" class="heading-anchor" href="#addarc"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Draw a 3d elliptical arc or ellipse.</td>
+<td class="h-addarc"><span class="method-name"><a href="addarc">addArc</a></span><span class="method-parenthesis">(</span><span class="method-parameters">arc: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/arc3d'>Arc3d</a>, isEllipse: boolean, filled: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="addarc" class="heading-anchor" href="#addarc"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Appends a 3d open arc or closed ellipse to the builder.</td>
 </tr>
 <tr>
 <td class="h-addarc2d"><span class="method-name"><a href="addarc2d">addArc2d</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ellipse: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/arc3d'>Arc3d</a>, isEllipse: boolean, filled: boolean, zDepth: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="addarc2d" class="heading-anchor" href="#addarc2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Draw a 2d elliptical arc or ellipse.</td>
+<td>Appends a 2d open arc or closed ellipse to the builder.</td>
 </tr>
 <tr>
 <td class="h-addlinestring"><span class="method-name"><a href="addlinestring">addLineString</a></span><span class="method-parenthesis">(</span><span class="method-parameters">points: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="addlinestring" class="heading-anchor" href="#addlinestring"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Draw a 3d line string.</td>
+<td>Appends a 3d line string to the builder.</td>
 </tr>
 <tr>
 <td class="h-addlinestring2d"><span class="method-name"><a href="addlinestring2d">addLineString2d</a></span><span class="method-parenthesis">(</span><span class="method-parameters">points: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a>[], zDepth: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="addlinestring2d" class="heading-anchor" href="#addlinestring2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Draw a 2d line string.</td>
-</tr>
-<tr>
-<td class="h-addlinestrings"><span class="method-name">addLineStrings</span><span class="method-parenthesis">(</span><span class="method-parameters">...lines: Array&lt;[number, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]]&gt;</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="addlinestrings" class="heading-anchor" href="#addlinestrings"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Helper for adding a series of line strings</td>
+<td>Appends a 2d line string to the builder.</td>
 </tr>
 <tr>
 <td class="h-addloop"><span class="method-name">addLoop</span><span class="method-parenthesis">(</span><span class="method-parameters">loop: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/loop'>Loop</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="addloop" class="heading-anchor" href="#addloop"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Draw a 3d planar region</td>
+<td>Append a 3d planar region to the builder.</td>
 </tr>
 <tr>
 <td class="h-addpath"><span class="method-name">addPath</span><span class="method-parenthesis">(</span><span class="method-parameters">path: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/path'>Path</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="addpath" class="heading-anchor" href="#addpath"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Draw a 3d open path</td>
+<td>Append a 3d open path to the builder.</td>
 </tr>
 <tr>
 <td class="h-addpointstring"><span class="method-name"><a href="addpointstring">addPointString</a></span><span class="method-parenthesis">(</span><span class="method-parameters">points: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="addpointstring" class="heading-anchor" href="#addpointstring"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Draw a 3d point string.</td>
+<td>Appends a 3d point string to the builder.</td>
 </tr>
 <tr>
 <td class="h-addpointstring2d"><span class="method-name"><a href="addpointstring2d">addPointString2d</a></span><span class="method-parenthesis">(</span><span class="method-parameters">points: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a>[], zDepth: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="addpointstring2d" class="heading-anchor" href="#addpointstring2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Draw a 2d point string.</td>
+<td>Appends a 2d point string to the builder.</td>
 </tr>
 <tr>
 <td class="h-addpolyface"><span class="method-name"><a href="addpolyface">addPolyface</a></span><span class="method-parenthesis">(</span><span class="method-parameters">meshData: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyface'>Polyface</a>, filled: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="addpolyface" class="heading-anchor" href="#addpolyface"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-addrangebox"><span class="method-name">addRangeBox</span><span class="method-parenthesis">(</span><span class="method-parameters">range: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="addrangebox" class="heading-anchor" href="#addrangebox"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Add Range3d edges</td>
+<td>Append a mesh to the builder.</td>
 </tr>
 <tr>
 <td class="h-addshape"><span class="method-name"><a href="addshape">addShape</a></span><span class="method-parenthesis">(</span><span class="method-parameters">points: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="addshape" class="heading-anchor" href="#addshape"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Draw a closed 3d shape.</td>
+<td>Appends a closed 3d planar region to the builder.</td>
 </tr>
 <tr>
 <td class="h-addshape2d"><span class="method-name"><a href="addshape2d">addShape2d</a></span><span class="method-parenthesis">(</span><span class="method-parameters">points: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a>[], zDepth: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="addshape2d" class="heading-anchor" href="#addshape2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Draw a 2d shape.</td>
-</tr>
-<tr>
-<td class="h-converttolinestringparams"><span class="method-name">convertToLineStringParams</span><span class="method-parenthesis">(</span><span class="method-parameters">...lines: Array&lt;[number, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]]&gt;</span><span class="method-parenthesis">):</span><span class="method-output"> Array&lt;object&gt;</span><a id="converttolinestringparams" class="heading-anchor" href="#converttolinestringparams"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Helper for converting an array of string param data each of which are stored as array into an array of line string params</td>
+<td>Appends a closed 2d region to the builder.</td>
 </tr>
 <tr>
 <td class="h-finish"><span class="method-name"><a href="finish">finish</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a></span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="finish" class="heading-anchor" href="#finish"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Processes the accumulated symbology and geometry to produce a renderable graphic.</td>
 </tr>
 <tr>
-<td class="h-setblankingfill"><span class="method-name">setBlankingFill</span><span class="method-parenthesis">(</span><span class="method-parameters">fillColor: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/colordef'>ColorDef</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setblankingfill" class="heading-anchor" href="#setblankingfill"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Set blanking fill symbology for decoration.</td>
-</tr>
-<tr>
-<td class="h-setsymbology"><span class="method-name">setSymbology</span><span class="method-parenthesis">(</span><span class="method-parameters">lineColor: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/colordef'>ColorDef</a>, fillColor: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/colordef'>ColorDef</a>, lineWidth: number, linePixels: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/linepixels'>LinePixels</a> = LinePixels.Solid</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setsymbology" class="heading-anchor" href="#setsymbology"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Set symbology for decoration.</td>
-</tr>
-<tr>
-<td class="h-wantstrokelinestyle"><span class="method-name">wantStrokeLineStyle</span><span class="method-parenthesis">(</span><span class="method-parameters">_symb: Info, _facetOptions: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/strokeoptions'>StrokeOptions</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="wantstrokelinestyle" class="heading-anchor" href="#wantstrokelinestyle"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-wantstrokepattern"><span class="method-name">wantStrokePattern</span><span class="method-parenthesis">(</span><span class="method-parameters">_pattern: Params</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="wantstrokepattern" class="heading-anchor" href="#wantstrokepattern"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-setsymbology"><span class="method-name"><a href="setsymbology">setSymbology</a></span><span class="method-parenthesis">(</span><span class="method-parameters">lineColor: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/colordef'>ColorDef</a>, fillColor: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/colordef'>ColorDef</a>, lineWidth: number, linePixels: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/linepixels'>LinePixels</a> = LinePixels.Solid</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setsymbology" class="heading-anchor" href="#setsymbology"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Sets the current active symbology for this builder.</td>
 </tr>
 </tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -278,53 +266,24 @@
 <th>Description</th>
 </tr>
 <tr>
-<td class="h-imodel"><span class="property-name">iModel</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="imodel" class="heading-anchor" href="#imodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-isoverlay"><span class="property-name">isOverlay</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isoverlay" class="heading-anchor" href="#isoverlay"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> boolean</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-isscenegraphic"><span class="property-name">isSceneGraphic</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isscenegraphic" class="heading-anchor" href="#isscenegraphic"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> boolean</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-isviewbackground"><span class="property-name">isViewBackground</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isviewbackground" class="heading-anchor" href="#isviewbackground"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> boolean</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-isviewcoordinates"><span class="property-name">isViewCoordinates</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isviewcoordinates" class="heading-anchor" href="#isviewcoordinates"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> boolean</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-isworldcoordinates"><span class="property-name">isWorldCoordinates</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isworldcoordinates" class="heading-anchor" href="#isworldcoordinates"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> boolean</span></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-pickid"><span class="property-name">pickId</span><a id="pickid" class="heading-anchor" href="#pickid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | string</span></td>
-<td>The Id for the graphic when creating a pickable decoration.</td>
+<td></td>
 </tr>
 <tr>
-<td class="h-placement"><span class="property-name">placement</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="placement" class="heading-anchor" href="#placement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-placement"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuilder/placement'>placement</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="placement" class="heading-anchor" href="#placement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span></td>
-<td></td>
+<td>The local coordinate system transform applied to this builder&apos;s geometry.</td>
 </tr>
 <tr>
 <td class="h-type"><span class="property-name">type</span><a id="type" class="heading-anchor" href="#type"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphictype'>GraphicType</a></span></td>
-<td></td>
+<td>The type of this builder.</td>
 </tr>
 <tr>
 <td class="h-viewport"><span class="property-name">viewport</span><a id="viewport" class="heading-anchor" href="#viewport"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
+<td>The viewport in which the resultant <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a> will be drawn.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -358,9 +317,6 @@
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#constructor">constructor</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#activategraphicparams">activateGraphicParams</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -374,9 +330,6 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#addlinestring2d">addLineString2d</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#addlinestrings">addLineStrings</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#addloop">addLoop</a>
@@ -394,31 +347,16 @@
                                             <a class='title solo-title menu-text' href="#addpolyface">addPolyface</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#addrangebox">addRangeBox</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#addshape">addShape</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#addshape2d">addShape2d</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#converttolinestringparams">convertToLineStringParams</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#finish">finish</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#setblankingfill">setBlankingFill</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#setsymbology">setSymbology</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#wantstrokelinestyle">wantStrokeLineStyle</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#wantstrokepattern">wantStrokePattern</a>
                                     </li>
                             </ul>
                     </li>
@@ -428,24 +366,6 @@
                             <i class='dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#imodel">iModel</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#isoverlay">isOverlay</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#isscenegraphic">isSceneGraphic</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#isviewbackground">isViewBackground</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#isviewcoordinates">isViewCoordinates</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#isworldcoordinates">isWorldCoordinates</a>
-                                    </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#pickid">pickId</a>
                                     </li>

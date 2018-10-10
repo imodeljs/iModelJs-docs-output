@@ -182,7 +182,18 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/bentleyjs-core/">bentleyjs-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/bentleyjs-core/utils/">Utils</a> > dispose</div>
             
             <h2 class="h-dispose">dispose <span class="badge badge-pill badge-primary badge-function">Function</span><a id="dispose" class="heading-anchor" href="#dispose"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Function for disposing of a disposable object that may be undefined.</p>
+<p>Convenience function for disposing of a disposable object that may be undefined.
+This is primarily used to simplify implementations of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/idisposable/dispose'>IDisposable.dispose</a>.
+As a simple example:</p>
+<pre class="no-line-numbers"><code class="language-typescript"> class Disposable implements IDisposable {
+   public member1?: DisposableType1;
+   public member2?: DisposableType2;
+
+   public dispose() {
+     this.member1 = dispose(this.member1); // If member1 is defined, dispose of it and set it to undefined.
+     this.member2 = dispose(this.member2); // Likewise for member2.
+   }
+ }</code></pre>
 <p><span class="method-name">dispose</span><span class="method-parenthesis">(</span><span class="method-parameters">disposable?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/idisposable'>IDisposable</a></span><span class="method-parenthesis">):</span><span class="method-output"> undefined</span></p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -192,6 +203,7 @@
 <tr>
 <td class="h-disposable"><span class="parameter-name">disposable</span><a id="disposable" class="heading-anchor" href="#disposable"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/idisposable'>IDisposable</a></span></td>
+<td>The object to be disposed of.</td>
 </tr>
 </tbody></table><p><strong>Returns</strong> - undefined</p>
 <h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>

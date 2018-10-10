@@ -182,7 +182,7 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/modelstate/">ModelState</a> > SpatialModelState</div>
             
             <h2 class="h-spatialmodelstate">SpatialModelState <span class="badge badge-pill badge-primary badge-class">Class</span><a id="spatialmodelstate" class="heading-anchor" href="#spatialmodelstate"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>The state of a SpatialModel</p>
+<p>Represents the front-end state of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/models/spatialmodel'>SpatialModel</a>.</p>
 <h3 class="h-extends">Extends<a id="extends" class="heading-anchor" href="#extends"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/geometricmodel3dstate'>GeometricModel3dState</a></li>
@@ -219,11 +219,6 @@
 <tr>
 <td class="h-getextents"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/modelstate/#getextents'>getExtents</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/axisalignedbox3d'>AxisAlignedBox3d</a></span><a id="getextents" class="heading-anchor" href="#getextents"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/modelstate'>ModelState</a></span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-onimodelconnectionclose"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/geometricmodelstate/#onimodelconnectionclose'>onIModelConnectionClose</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="onimodelconnectionclose" class="heading-anchor" href="#onimodelconnectionclose"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/geometricmodelstate'>GeometricModelState</a></span></td>
 <td></td>
 </tr>
 <tr>
@@ -276,19 +271,13 @@
 <td class="h-is2d"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/geometricmodelstate/#is2d'>is2d</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="is2d" class="heading-anchor" href="#is2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> boolean</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/geometricmodelstate'>GeometricModelState</a></span></td>
-<td></td>
+<td>Returns true if this is a 2d model (a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/geometricmodel2dstate'>GeometricModel2dState</a>).</td>
 </tr>
 <tr>
 <td class="h-is3d"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/geometricmodel3dstate/#is3d'>is3d</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="is3d" class="heading-anchor" href="#is3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> boolean</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/geometricmodel3dstate'>GeometricModel3dState</a></span></td>
 <td>Returns true.</td>
-</tr>
-<tr>
-<td class="h-isgeometricmodel"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/geometricmodelstate/#isgeometricmodel'>isGeometricModel</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isgeometricmodel" class="heading-anchor" href="#isgeometricmodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> boolean</span></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/geometricmodelstate'>GeometricModelState</a></span></td>
-<td>Override of ModelState method, returns true</td>
 </tr>
 <tr>
 <td class="h-isprivate"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/modelstate/#isprivate'>isPrivate</a></span><a id="isprivate" class="heading-anchor" href="#isprivate"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -395,9 +384,6 @@
                                             <a class='title solo-title menu-text' href="#getextents">getExtents</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#onimodelconnectionclose">onIModelConnectionClose</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#tojson">toJSON</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -431,9 +417,6 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#is3d">is3d</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#isgeometricmodel">isGeometricModel</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#isprivate">isPrivate</a>

@@ -182,6 +182,7 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/">imodeljs-common</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/rendering/">Rendering</a> > FillFlags</div>
             
             <h2 class="h-fillflags">FillFlags <span class="badge badge-pill badge-primary badge-enumeration">Enumeration</span><a id="fillflags" class="heading-anchor" href="#fillflags"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Flags indicating whether and how the interiors of closed planar regions is displayed within a view.</p>
 <h3 class="h-members">Members<a id="members" class="heading-anchor" href="#members"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -191,31 +192,32 @@
 <tr>
 <td class="h-none"><span class="enum-name">None</span><a id="none" class="heading-anchor" href="#none"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value">0</span></td>
-<td></td>
+<td>No fill</td>
 </tr>
 <tr>
 <td class="h-byview"><span class="enum-name">ByView</span><a id="byview" class="heading-anchor" href="#byview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value"> 1 &lt;&lt; 0</span></td>
-<td></td>
+<td>Use the element&apos;s fill color when fill is enabled in the view&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a>.</td>
 </tr>
 <tr>
 <td class="h-always"><span class="enum-name">Always</span><a id="always" class="heading-anchor" href="#always"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value"> 1 &lt;&lt; 1</span></td>
-<td></td>
+<td>Use the element&apos;s fill color even when fill is disabled in the view&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a>.</td>
 </tr>
 <tr>
 <td class="h-behind"><span class="enum-name">Behind</span><a id="behind" class="heading-anchor" href="#behind"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value"> 1 &lt;&lt; 2</span></td>
-<td></td>
+<td>Render the fill behind other geometry belonging to the same element.<br>For example if an element&apos;s geometry contains text with background fill, the text always renders in front of the fill.</td>
 </tr>
 <tr>
 <td class="h-background"><span class="enum-name">Background</span><a id="background" class="heading-anchor" href="#background"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value"> 1 &lt;&lt; 3</span></td>
-<td></td>
+<td>Use the view&apos;s background color instead of the element&apos;s fill color.</td>
 </tr>
 <tr>
 <td class="h-blanking"><span class="enum-name">Blanking</span><a id="blanking" class="heading-anchor" href="#blanking"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value"> Behind | Always</span></td>
+<td>Combines Behind and Always flags.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>

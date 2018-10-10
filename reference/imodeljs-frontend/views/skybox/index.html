@@ -182,7 +182,18 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/views/">Views</a> > SkyBox</div>
             
             <h2 class="h-skybox">SkyBox <span class="badge badge-pill badge-primary badge-class">Class</span><a id="skybox" class="heading-anchor" href="#skybox"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>The SkyBox is an environment drawn in the background of spatial views to provide context.</p>
+<p>The SkyBox is part of an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/environment'>Environment</a> drawn in the background of spatial views to provide context.
+Several types of skybox are supported:</p>
+<ul>
+<li>A cube with a texture image mapped to each face;</li>
+<li>A sphere with a single texture image mapped to its surface;</li>
+<li>A sphere with a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/gradient'>Gradient</a> mapped to its surface.
+The SkyBox is part of an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/environment'>Environment</a> drawn in the background of spatial views to provide context.
+Several types of skybox are supported:</li>
+<li>A cube with a texture image mapped to each face;</li>
+<li>A sphere with a single texture image mapped to its surface;</li>
+<li>A sphere with a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/gradient'>Gradient</a> mapped to its surface.</li>
+</ul>
 <h3 class="h-extended-by">Extended by<a id="extended-by" class="heading-anchor" href="#extended-by"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/skygradient'>SkyGradient</a></li>
@@ -203,15 +214,12 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-loadparams"><span class="method-name">loadParams</span><span class="method-parenthesis">(</span><span class="method-parameters">_system: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendersystem'>RenderSystem</a>, _iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/skybox.createparams'>SkyBox.CreateParams</a> | undefined&gt;</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="loadparams" class="heading-anchor" href="#loadparams"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-tojson"><span class="method-name">toJSON</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/skyboxprops'>SkyBoxProps</a></span><a id="tojson" class="heading-anchor" href="#tojson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
 <tr>
 <td class="h-createfromjson"><span class="method-name">createFromJSON</span><span class="method-parenthesis">(</span><span class="method-parameters">json?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/skyboxprops'>SkyBoxProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/skybox'>SkyBox</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createfromjson" class="heading-anchor" href="#createfromjson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Instantiate a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/skybox'>SkyBox</a> from its JSON representation.</td>
 </tr>
 </tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -222,6 +230,7 @@
 <tr>
 <td class="h-display"><span class="property-name">display</span><a id="display" class="heading-anchor" href="#display"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">boolean</span></td>
+<td>Whether or not the skybox should be displayed.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -262,9 +271,6 @@
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#constructor">constructor</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#loadparams">loadParams</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#tojson">toJSON</a>

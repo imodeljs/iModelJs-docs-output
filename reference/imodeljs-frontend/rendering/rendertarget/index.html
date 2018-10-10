@@ -182,10 +182,9 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/rendering/">Rendering</a> > RenderTarget</div>
             
             <h2 class="h-rendertarget">RenderTarget <span class="badge badge-pill badge-primary badge-class">Class</span><a id="rendertarget" class="heading-anchor" href="#rendertarget"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>A RenderTarget holds the current scene, the current set of dynamic RenderGraphics, and the current decorators.
-When frames are composed, all of those RenderGraphics are rendered, as appropriate.</p>
-<p>A RenderTarget holds a reference to a RenderSystem.</p>
-<p>Every Viewport holds a reference to a RenderTarget.</p>
+<p>A RenderTarget connects a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a> to a WebGLRenderingContext to enable the viewport&apos;s contents to be displayed on the screen.
+Application code rarely interacts directly with a RenderTarget - instead, it interacts with a Viewport which forwards requests to the implementation
+of the RenderTarget.</p>
 <h3 class="h-implements">Implements<a id="implements" class="heading-anchor" href="#implements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/idisposable'>IDisposable</a></li>
@@ -196,125 +195,7 @@ When frames are composed, all of those RenderGraphics are rendered, as appropria
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-changedecorations"><span class="method-name">changeDecorations</span><span class="method-parenthesis">(</span><span class="method-parameters">decorations: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/decorations'>Decorations</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="changedecorations" class="heading-anchor" href="#changedecorations"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-changedynamics"><span class="method-name">changeDynamics</span><span class="method-parenthesis">(</span><span class="method-parameters">dynamics?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphiclist'>GraphicList</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="changedynamics" class="heading-anchor" href="#changedynamics"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-changerenderplan"><span class="method-name">changeRenderPlan</span><span class="method-parenthesis">(</span><span class="method-parameters">plan: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/renderplan'>RenderPlan</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="changerenderplan" class="heading-anchor" href="#changerenderplan"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-changescene"><span class="method-name">changeScene</span><span class="method-parenthesis">(</span><span class="method-parameters">scene: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphiclist'>GraphicList</a>, activeVolume?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/renderclipvolume'>RenderClipVolume</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="changescene" class="heading-anchor" href="#changescene"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-changeterrain"><span class="method-name">changeTerrain</span><span class="method-parenthesis">(</span><span class="method-parameters">_scene: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphiclist'>GraphicList</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="changeterrain" class="heading-anchor" href="#changeterrain"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-creategraphicbuilder"><span class="method-name">createGraphicBuilder</span><span class="method-parenthesis">(</span><span class="method-parameters">type: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphictype'>GraphicType</a>, viewport: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>, placement: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a> = Transform.identity, pickableId?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuilder'>GraphicBuilder</a></span><a id="creategraphicbuilder" class="heading-anchor" href="#creategraphicbuilder"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-dispose"><span class="method-name">dispose</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="dispose" class="heading-anchor" href="#dispose"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-drawframe"><span class="method-name">drawFrame</span><span class="method-parenthesis">(</span><span class="method-parameters">sceneMilSecElapsed?: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="drawframe" class="heading-anchor" href="#drawframe"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-onresized"><span class="method-name">onResized</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="onresized" class="heading-anchor" href="#onresized"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-overridefeaturesymbology"><span class="method-name">overrideFeatureSymbology</span><span class="method-parenthesis">(</span><span class="method-parameters">ovr: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.overrides'>FeatureSymbology.Overrides</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="overridefeaturesymbology" class="heading-anchor" href="#overridefeaturesymbology"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-pickoverlaydecoration"><span class="method-name">pickOverlayDecoration</span><span class="method-parenthesis">(</span><span class="method-parameters">_pt: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xandy'>XAndY</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/canvasdecoration'>CanvasDecoration</a> | undefined</span><a id="pickoverlaydecoration" class="heading-anchor" href="#pickoverlaydecoration"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-readimage"><span class="method-name">readImage</span><span class="method-parenthesis">(</span><span class="method-parameters">rect: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a>, targetSize: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/imagebuffer'>ImageBuffer</a> | undefined</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="readimage" class="heading-anchor" href="#readimage"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-readpixels"><span class="method-name">readPixels</span><span class="method-parenthesis">(</span><span class="method-parameters">rect: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a>, selector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/pixel/pixel.selector'>Pixel.Selector</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/pixel/pixel.buffer'>Pixel.Buffer</a> | undefined</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="readpixels" class="heading-anchor" href="#readpixels"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-reset"><span class="method-name">reset</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="reset" class="heading-anchor" href="#reset"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-setflashed"><span class="method-name">setFlashed</span><span class="method-parenthesis">(</span><span class="method-parameters">elementId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a>, intensity: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="setflashed" class="heading-anchor" href="#setflashed"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-sethiliteset"><span class="method-name">setHiliteSet</span><span class="method-parenthesis">(</span><span class="method-parameters">hilited: Set&lt;string&gt;</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="sethiliteset" class="heading-anchor" href="#sethiliteset"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-setviewrect"><span class="method-name">setViewRect</span><span class="method-parenthesis">(</span><span class="method-parameters">rect: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a>, temporary: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="setviewrect" class="heading-anchor" href="#setviewrect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-updateviewrect"><span class="method-name">updateViewRect</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="updateviewrect" class="heading-anchor" href="#updateviewrect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-depthfromdisplaypriority"><span class="method-name">depthFromDisplayPriority</span><span class="method-parenthesis">(</span><span class="method-parameters">priority: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="depthfromdisplaypriority" class="heading-anchor" href="#depthfromdisplaypriority"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Returns a transform mapping an object&apos;s display priority to a depth from 0 to frustumDepth2d.</td>
-</tr>
-</tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<table class="table table-responsive"><tbody><tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-<tr>
-<td class="h-animationfraction"><span class="property-name">animationFraction</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="animationfraction" class="heading-anchor" href="#animationfraction"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> number</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-camerafrustumnearscalelimit"><span class="property-name">cameraFrustumNearScaleLimit</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="camerafrustumnearscalelimit" class="heading-anchor" href="#camerafrustumnearscalelimit"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> number</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-frustumdepth2d"><span class="property-name">frustumDepth2d</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="frustumdepth2d" class="heading-anchor" href="#frustumdepth2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> number</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-maxdisplaypriority"><span class="property-name">maxDisplayPriority</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="maxdisplaypriority" class="heading-anchor" href="#maxdisplaypriority"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> number</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-mindisplaypriority"><span class="property-name">minDisplayPriority</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="mindisplaypriority" class="heading-anchor" href="#mindisplaypriority"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> number</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-rendersystem"><span class="property-name">renderSystem</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="rendersystem" class="heading-anchor" href="#rendersystem"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendersystem'>RenderSystem</a></span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-viewrect"><span class="property-name">viewRect</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="viewrect" class="heading-anchor" href="#viewrect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a></span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-wantinvertblackbackground"><span class="property-name">wantInvertBlackBackground</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="wantinvertblackbackground" class="heading-anchor" href="#wantinvertblackbackground"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> boolean</span></td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -351,93 +232,7 @@ When frames are composed, all of those RenderGraphics are rendered, as appropria
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#changedecorations">changeDecorations</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#changedynamics">changeDynamics</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#changerenderplan">changeRenderPlan</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#changescene">changeScene</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#changeterrain">changeTerrain</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#creategraphicbuilder">createGraphicBuilder</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#dispose">dispose</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#drawframe">drawFrame</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#onresized">onResized</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#overridefeaturesymbology">overrideFeatureSymbology</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#pickoverlaydecoration">pickOverlayDecoration</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#readimage">readImage</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#readpixels">readPixels</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#reset">reset</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#setflashed">setFlashed</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#sethiliteset">setHiliteSet</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#setviewrect">setViewRect</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#updateviewrect">updateViewRect</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#depthfromdisplaypriority">depthFromDisplayPriority</a>
-                                    </li>
-                            </ul>
-                    </li>
-                    <li class='nav-item item '>
-                            <a data-target="#inner-nav-properties" class='title' href="#properties"/>
-                            <b class='dropdown-menu-title menu-text'>Properties</b>
-                            <i class='dropdown icon'></i>
-                            </a>
-                            <ul id="inner-nav-properties" class='inner-nav'>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#animationfraction">animationFraction</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#camerafrustumnearscalelimit">cameraFrustumNearScaleLimit</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#frustumdepth2d">frustumDepth2d</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#maxdisplaypriority">maxDisplayPriority</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#mindisplaypriority">minDisplayPriority</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#rendersystem">renderSystem</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#viewrect">viewRect</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#wantinvertblackbackground">wantInvertBlackBackground</a>
                                     </li>
                             </ul>
                     </li>

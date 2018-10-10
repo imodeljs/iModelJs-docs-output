@@ -212,12 +212,12 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-changeview"><span class="method-name">changeView</span><span class="method-parenthesis">(</span><span class="method-parameters">view: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="changeview" class="heading-anchor" href="#changeview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td class="h-changeview"><span class="method-name"><a href="changeview">changeView</a></span><span class="method-parenthesis">(</span><span class="method-parameters">view: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="changeview" class="heading-anchor" href="#changeview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Change the ViewState of this Viewport</td>
 </tr>
 <tr>
-<td class="h-clearviewundo"><span class="method-name">clearViewUndo</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="clearviewundo" class="heading-anchor" href="#clearviewundo"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Clear the view undo buffers of this Viewport.</td>
+<td class="h-clearviewundo"><span class="method-name"><a href="clearviewundo">clearViewUndo</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="clearviewundo" class="heading-anchor" href="#clearviewundo"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Clear the undo buffers of this Viewport.</td>
 </tr>
 <tr>
 <td class="h-doredo"><span class="method-name">doRedo</span><span class="method-parenthesis">(</span><span class="method-parameters">animationTime?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/beduration'>BeDuration</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="doredo" class="heading-anchor" href="#doredo"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -245,7 +245,7 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 </tr>
 <tr>
 <td class="h-saveviewundo"><span class="method-name">saveViewUndo</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="saveviewundo" class="heading-anchor" href="#saveviewundo"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>Saves the current state of this viewport&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a> in the undo stack, such that it can be restored by a call to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport/#doundo'>ScreenViewport.doUndo</a>.</td>
 </tr>
 <tr>
 <td class="h-setcursor"><span class="method-name">setCursor</span><span class="method-parenthesis">(</span><span class="method-parameters">cursor: string = &quot;default&quot;</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setcursor" class="heading-anchor" href="#setcursor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -256,16 +256,8 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 <td>Set the event controller for this Viewport.</td>
 </tr>
 <tr>
-<td class="h-synchwithview"><span class="method-name">synchWithView</span><span class="method-parenthesis">(</span><span class="method-parameters">saveInUndo: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="synchwithview" class="heading-anchor" href="#synchwithview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-create"><span class="method-name"><a href="create">create</a></span><span class="method-parenthesis">(</span><span class="method-parameters">parentDiv: HTMLDivElement, view: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport'>ScreenViewport</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="create" class="heading-anchor" href="#create"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Create a new ScreenViewport that shows a View of an iModel into an HTMLDivElement.</td>
-</tr>
-<tr>
-<td class="h-removeallchildren"><span class="method-name">removeAllChildren</span><span class="method-parenthesis">(</span><span class="method-parameters">el: HTMLDivElement</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="removeallchildren" class="heading-anchor" href="#removeallchildren"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Remove all of the children of an HTMLDivElement.</td>
 </tr>
 </tbody></table><h3 class="h-inherited-methods"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited methods<a id="inherited-methods" class="heading-anchor" href="#inherited-methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -364,14 +356,9 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 <td>Scroll the view by a given number of pixels.</td>
 </tr>
 <tr>
-<td class="h-setflashed"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/setflashed'>setFlashed</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: string | undefined, duration: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setflashed" class="heading-anchor" href="#setflashed"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
-<td>Set or clear the currently <em>flashed</em> element.</td>
-</tr>
-<tr>
 <td class="h-setstandardrotation"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#setstandardrotation'>setStandardRotation</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/standardviewid'>StandardViewId</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setstandardrotation" class="heading-anchor" href="#setstandardrotation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
-<td></td>
+<td>Orient this viewport to one of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/standardview'>StandardView</a> rotations.</td>
 </tr>
 <tr>
 <td class="h-setupfromview"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#setupfromview'>setupFromView</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstatus'>ViewStatus</a></span><a id="setupfromview" class="heading-anchor" href="#setupfromview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -492,7 +479,7 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 <tr>
 <td class="h-isredopossible"><span class="property-name">isRedoPossible</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isredopossible" class="heading-anchor" href="#isredopossible"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> boolean</span></td>
-<td>True if an redoable viewing operation exists on the stack</td>
+<td>True if a redoable viewing operation exists on the stack</td>
 </tr>
 <tr>
 <td class="h-isundopossible"><span class="property-name">isUndoPossible</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isundopossible" class="heading-anchor" href="#isundopossible"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -515,14 +502,9 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 <td>The HTMLDivElement used for toolTips.</td>
 </tr>
 <tr>
-<td class="h-viewcmdtargetcenter"><span class="property-name">viewCmdTargetCenter</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="viewcmdtargetcenter" class="heading-anchor" href="#viewcmdtargetcenter"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a> | undefined</span></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-viewrect"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport/viewrect'>viewRect</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="viewrect" class="heading-anchor" href="#viewrect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a></span></td>
-<td>The ViewRect for this ScreenViewport. Left and top will be 0, right will be the width, and bottom will be the height.</td>
+<td>The ViewRect for this ScreenViewport.</td>
 </tr>
 </tbody></table><h3 class="h-inherited-properties"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited properties<a id="inherited-properties" class="heading-anchor" href="#inherited-properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -532,56 +514,8 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 <th>Description</th>
 </tr>
 <tr>
-<td class="h-_viewrange"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#_viewrange'>_viewRange</a></span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="_viewrange" class="heading-anchor" href="#_viewrange"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a></span></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-animationfraction"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#animationfraction'>animationFraction</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="animationfraction" class="heading-anchor" href="#animationfraction"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> number</span></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-auxcoordsystem"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#auxcoordsystem'>auxCoordSystem</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="auxcoordsystem" class="heading-anchor" href="#auxcoordsystem"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/auxcoordsystemstate'>AuxCoordSystemState</a></span></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-backgroundmapplane"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#backgroundmapplane'>backgroundMapPlane</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="backgroundmapplane" class="heading-anchor" href="#backgroundmapplane"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/plane3dbyoriginandunitnormal'>Plane3dByOriginAndUnitNormal</a></span></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-continuousrendering"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#continuousrendering'>continuousRendering</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="continuousrendering" class="heading-anchor" href="#continuousrendering"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> boolean</span></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
-<td>Determine whether continuous rendering is enabled.</td>
-</tr>
-<tr>
-<td class="h-flashduration"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#flashduration'>flashDuration</a></span><a id="flashduration" class="heading-anchor" href="#flashduration"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output">number</span></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
-<td>The length of time that the flash intensity will increase (in seconds)</td>
-</tr>
-<tr>
-<td class="h-flashintensity"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#flashintensity'>flashIntensity</a></span><a id="flashintensity" class="heading-anchor" href="#flashintensity"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output">number</span></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
-<td>Current flash intensity from [0..1]</td>
-</tr>
-<tr>
-<td class="h-flashupdatetime"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#flashupdatetime'>flashUpdateTime</a></span><a id="flashupdatetime" class="heading-anchor" href="#flashupdatetime"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/betimepoint'>BeTimePoint</a></span></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
-<td>Time the current flash started</td>
-</tr>
-<tr>
-<td class="h-frustfraction"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#frustfraction'>frustFraction</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="frustfraction" class="heading-anchor" href="#frustfraction"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> number</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td></td>
 </tr>
@@ -595,13 +529,7 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 <td class="h-imodel"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#imodel'>iModel</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="imodel" class="heading-anchor" href="#imodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
-<td>The iModel of this Viewport</td>
-</tr>
-<tr>
-<td class="h-isaspectratiolocked"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#isaspectratiolocked'>isAspectRatioLocked</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isaspectratiolocked" class="heading-anchor" href="#isaspectratiolocked"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> boolean</span></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
-<td></td>
+<td>The iModel whose contents are displayed within this Viewport</td>
 </tr>
 <tr>
 <td class="h-iscameraon"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#iscameraon'>isCameraOn</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="iscameraon" class="heading-anchor" href="#iscameraon"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -616,18 +544,6 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 <td>Determine whether the Grid display is currently enabled in this Viewport.</td>
 </tr>
 <tr>
-<td class="h-lastflashedelem"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#lastflashedelem'>lastFlashedElem</a></span><a id="lastflashedelem" class="heading-anchor" href="#lastflashedelem"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output">undefined | string</span></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
-<td>Id of last flashed element</td>
-</tr>
-<tr>
-<td class="h-nearscale24"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#nearscale24'>nearScale24</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="nearscale24" class="heading-anchor" href="#nearscale24"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output">number</span></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
-<td>Maximum ratio of frontplane to backplane distance for 24 bit zbuffer</td>
-</tr>
-<tr>
 <td class="h-onviewchanged"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#onviewchanged'>onViewChanged</a></span><a id="onviewchanged" class="heading-anchor" href="#onviewchanged"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/beevent'>BeEvent</a>&lt;(vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>) =&gt; void&gt;</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
@@ -637,7 +553,7 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 <td class="h-rotation"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#rotation'>rotation</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="rotation" class="heading-anchor" href="#rotation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
-<td></td>
+<td>This viewport&apos;s rotation matrix.</td>
 </tr>
 <tr>
 <td class="h-undodelay"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#undodelay'>undoDelay</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="undodelay" class="heading-anchor" href="#undodelay"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -655,24 +571,19 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 <td class="h-viewdelta"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#viewdelta'>viewDelta</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="viewdelta" class="heading-anchor" href="#viewdelta"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
-<td></td>
+<td>The vector between the opposite corners of this viewport&apos;s extents.</td>
 </tr>
 <tr>
 <td class="h-viewflags"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#viewflags'>viewFlags</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="viewflags" class="heading-anchor" href="#viewflags"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a></span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
-<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a> that determine how this Viewport is rendered.</td>
-</tr>
-<tr>
-<td class="h-viewfrustum"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#viewfrustum'>viewFrustum</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="viewfrustum" class="heading-anchor" href="#viewfrustum"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewfrustum'>ViewFrustum</a></span></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
-<td></td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a> that determine how the contents of this Viewport are rendered.</td>
 </tr>
 <tr>
 <td class="h-worldtoviewmap"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#worldtoviewmap'>worldToViewMap</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="worldtoviewmap" class="heading-anchor" href="#worldtoviewmap"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/map4d/map4d'>Map4d</a></span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
+<td>Provides conversions between world and view coordinates.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -745,13 +656,7 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
                                             <a class='title solo-title menu-text' href="#seteventcontroller">setEventController</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#synchwithview">synchWithView</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#create">create</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#removeallchildren">removeAllChildren</a>
                                     </li>
                             </ul>
                     </li>
@@ -814,9 +719,6 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#scroll">scroll</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#setflashed">setFlashed</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#setstandardrotation">setStandardRotation</a>
@@ -911,9 +813,6 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
                                             <a class='title solo-title menu-text' href="#tooltipdiv">toolTipDiv</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#viewcmdtargetcenter">viewCmdTargetCenter</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#viewrect">viewRect</a>
                                     </li>
                             </ul>
@@ -925,31 +824,7 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
                             </a>
                             <ul id="inner-nav-inherited-properties" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#_viewrange">_viewRange</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#animationfraction">animationFraction</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#auxcoordsystem">auxCoordSystem</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#backgroundmapplane">backgroundMapPlane</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#continuousrendering">continuousRendering</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#flashduration">flashDuration</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#flashintensity">flashIntensity</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#flashupdatetime">flashUpdateTime</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#frustfraction">frustFraction</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#hilite">hilite</a>
@@ -958,19 +833,10 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
                                             <a class='title solo-title menu-text' href="#imodel">iModel</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#isaspectratiolocked">isAspectRatioLocked</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#iscameraon">isCameraOn</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#isgridon">isGridOn</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#lastflashedelem">lastFlashedElem</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#nearscale24">nearScale24</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#onviewchanged">onViewChanged</a>
@@ -989,9 +855,6 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#viewflags">viewFlags</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#viewfrustum">viewFrustum</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#worldtoviewmap">worldToViewMap</a>

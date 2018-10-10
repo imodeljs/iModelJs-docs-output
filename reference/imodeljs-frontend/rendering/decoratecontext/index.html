@@ -182,7 +182,7 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/rendering/">Rendering</a> > DecorateContext</div>
             
             <h2 class="h-decoratecontext">DecorateContext <span class="badge badge-pill badge-primary badge-class">Class</span><a id="decoratecontext" class="heading-anchor" href="#decoratecontext"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Object passed to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/decorator'>Decorator</a>s to supply the context of the frame to be rendered.</p>
+<p>Provides context for a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/decorator'>Decorator</a> to add <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/decorations'>Decorations</a> to be rendered within a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>.</p>
 <h3 class="h-extends">Extends<a id="extends" class="heading-anchor" href="#extends"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendercontext'>RenderContext</a></li>
@@ -194,27 +194,23 @@
 </tr>
 <tr>
 <td class="h-addcanvasdecoration"><span class="method-name">addCanvasDecoration</span><span class="method-parenthesis">(</span><span class="method-parameters">decoration: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/canvasdecoration'>CanvasDecoration</a>, atFront: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="addcanvasdecoration" class="heading-anchor" href="#addcanvasdecoration"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Add a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/canvasdecoration'>CanvasDecoration</a> to the current frame.</td>
+<td>Add a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/canvasdecoration'>CanvasDecoration</a> to be drawn in this context&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>.</td>
 </tr>
 <tr>
-<td class="h-adddecoration"><span class="method-name">addDecoration</span><span class="method-parenthesis">(</span><span class="method-parameters">type: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphictype'>GraphicType</a>, decoration: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="adddecoration" class="heading-anchor" href="#adddecoration"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td class="h-adddecoration"><span class="method-name"><a href="adddecoration">addDecoration</a></span><span class="method-parenthesis">(</span><span class="method-parameters">type: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphictype'>GraphicType</a>, decoration: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="adddecoration" class="heading-anchor" href="#adddecoration"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Adds a graphic to the set of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/decorations'>Decorations</a> to be drawn in this context&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>.</td>
 </tr>
 <tr>
-<td class="h-adddecorationfrombuilder"><span class="method-name">addDecorationFromBuilder</span><span class="method-parenthesis">(</span><span class="method-parameters">builder: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuilder'>GraphicBuilder</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="adddecorationfrombuilder" class="heading-anchor" href="#adddecorationfrombuilder"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td class="h-adddecorationfrombuilder"><span class="method-name"><a href="adddecorationfrombuilder">addDecorationFromBuilder</a></span><span class="method-parenthesis">(</span><span class="method-parameters">builder: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuilder'>GraphicBuilder</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="adddecorationfrombuilder" class="heading-anchor" href="#adddecorationfrombuilder"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Calls <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuilder/finish'>GraphicBuilder.finish</a> on the supplied builder to obtain a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a>, then adds the graphic to the appropriate list of<br><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/decorations'>Decorations</a>.</td>
 </tr>
 <tr>
 <td class="h-addhtmldecoration"><span class="method-name">addHtmlDecoration</span><span class="method-parenthesis">(</span><span class="method-parameters">decoration: HTMLElement</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="addhtmldecoration" class="heading-anchor" href="#addhtmldecoration"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>Add an HTMLElement to be drawn as a decoration in this context&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>.</td>
 </tr>
 <tr>
-<td class="h-setskybox"><span class="method-name"><a href="setskybox">setSkyBox</a></span><span class="method-parenthesis">(</span><span class="method-parameters">graphic: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setskybox" class="heading-anchor" href="#setskybox"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Display skyBox (cube) graphic that encompasses entire scene and rotates with camera.</td>
-</tr>
-<tr>
-<td class="h-setviewbackground"><span class="method-name"><a href="setviewbackground">setViewBackground</a></span><span class="method-parenthesis">(</span><span class="method-parameters">graphic: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setviewbackground" class="heading-anchor" href="#setviewbackground"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Display view coordinate graphic as background with smooth shading, default lighting, and z testing disabled.</td>
+<td class="h-setviewbackground"><span class="method-name">setViewBackground</span><span class="method-parenthesis">(</span><span class="method-parameters">graphic: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setviewbackground" class="heading-anchor" href="#setviewbackground"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Set the graphic to be displayed behind all other geometry as the background of this context&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>.</td>
 </tr>
 </tbody></table><h3 class="h-inherited-methods"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited methods<a id="inherited-methods" class="heading-anchor" href="#inherited-methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -223,18 +219,19 @@
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-createbranch"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendercontext/#createbranch'>createBranch</a></span><span class="method-parenthesis">(</span><span class="method-parameters">branch: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbranch'>GraphicBranch</a>, location: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, clip?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/renderclipvolume'>RenderClipVolume</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a></span><a id="createbranch" class="heading-anchor" href="#createbranch"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-createbranch"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendercontext/createbranch'>createBranch</a></span><span class="method-parenthesis">(</span><span class="method-parameters">branch: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbranch'>GraphicBranch</a>, location: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, clip?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/renderclipvolume'>RenderClipVolume</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a></span><a id="createbranch" class="heading-anchor" href="#createbranch"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendercontext'>RenderContext</a></span></td>
-<td></td>
+<td>Create a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a> which groups a set of graphics into a node in a scene graph, applying to each a transform and optional clip volume and symbology overrides.</td>
 </tr>
 <tr>
-<td class="h-creategraphicbuilder"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendercontext/#creategraphicbuilder'>createGraphicBuilder</a></span><span class="method-parenthesis">(</span><span class="method-parameters">type: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphictype'>GraphicType</a>, transform?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, id?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuilder'>GraphicBuilder</a></span><a id="creategraphicbuilder" class="heading-anchor" href="#creategraphicbuilder"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-creategraphicbuilder"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendercontext/creategraphicbuilder'>createGraphicBuilder</a></span><span class="method-parenthesis">(</span><span class="method-parameters">type: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphictype'>GraphicType</a>, transform?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, id?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuilder'>GraphicBuilder</a></span><a id="creategraphicbuilder" class="heading-anchor" href="#creategraphicbuilder"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendercontext'>RenderContext</a></span></td>
-<td></td>
+<td>Create a builder for creating a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a> of the specified type appropriate for rendering within this context&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>.</td>
 </tr>
 <tr>
-<td class="h-getpixelsizeatpoint"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/viewcontext/#getpixelsizeatpoint'>getPixelSizeAtPoint</a></span><span class="method-parenthesis">(</span><span class="method-parameters">inPoint?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="getpixelsizeatpoint" class="heading-anchor" href="#getpixelsizeatpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/viewcontext'>ViewContext</a></span></td>
+<td class="h-getpixelsizeatpoint"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendercontext/#getpixelsizeatpoint'>getPixelSizeAtPoint</a></span><span class="method-parenthesis">(</span><span class="method-parameters">inPoint?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="getpixelsizeatpoint" class="heading-anchor" href="#getpixelsizeatpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendercontext'>RenderContext</a></span></td>
+<td>Given a point in world coordinates, determine approximately how many pixels it occupies on screen based on this context&apos;s frustum.</td>
 </tr>
 </tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -245,11 +242,12 @@
 <tr>
 <td class="h-decorationdiv"><span class="property-name">decorationDiv</span><a id="decorationdiv" class="heading-anchor" href="#decorationdiv"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">HTMLDivElement</span></td>
-<td></td>
+<td>The HTMLDivElement which overlays the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>&apos;s HTMLCanvasElement, to which HTML decorations are added.</td>
 </tr>
 <tr>
 <td class="h-screenviewport"><span class="property-name">screenViewport</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="screenviewport" class="heading-anchor" href="#screenviewport"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport'>ScreenViewport</a></span></td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport'>ScreenViewport</a> in which this context&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/decorations'>Decorations</a> will be drawn.</td>
 </tr>
 </tbody></table><h3 class="h-inherited-properties"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited properties<a id="inherited-properties" class="heading-anchor" href="#inherited-properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -259,33 +257,28 @@
 <th>Description</th>
 </tr>
 <tr>
-<td class="h-frustum"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/viewcontext/#frustum'>frustum</a></span><a id="frustum" class="heading-anchor" href="#frustum"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-frustum"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendercontext/#frustum'>frustum</a></span><a id="frustum" class="heading-anchor" href="#frustum"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/frustum'>Frustum</a></span></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/viewcontext'>ViewContext</a></span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-frustumplanes"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/viewcontext/#frustumplanes'>frustumPlanes</a></span><a id="frustumplanes" class="heading-anchor" href="#frustumplanes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/frustumplanes'>FrustumPlanes</a></span></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/viewcontext'>ViewContext</a></span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-target"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendercontext/#target'>target</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="target" class="heading-anchor" href="#target"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendertarget'>RenderTarget</a></span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendercontext'>RenderContext</a></span></td>
-<td></td>
+<td>Frustum extracted from the context&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>.</td>
 </tr>
 <tr>
-<td class="h-viewflags"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/viewcontext/#viewflags'>viewFlags</a></span><a id="viewflags" class="heading-anchor" href="#viewflags"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-frustumplanes"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendercontext/#frustumplanes'>frustumPlanes</a></span><a id="frustumplanes" class="heading-anchor" href="#frustumplanes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">FrustumPlanes</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendercontext'>RenderContext</a></span></td>
+<td>Frustum planes extracted from the context&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>.</td>
+</tr>
+<tr>
+<td class="h-viewflags"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendercontext/#viewflags'>viewFlags</a></span><a id="viewflags" class="heading-anchor" href="#viewflags"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a></span></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/viewcontext'>ViewContext</a></span></td>
-<td></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendercontext'>RenderContext</a></span></td>
+<td>ViewFlags extracted from the context&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>.</td>
 </tr>
 <tr>
-<td class="h-viewport"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/viewcontext/#viewport'>viewport</a></span><a id="viewport" class="heading-anchor" href="#viewport"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-viewport"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendercontext/#viewport'>viewport</a></span><a id="viewport" class="heading-anchor" href="#viewport"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/viewcontext'>ViewContext</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendercontext'>RenderContext</a></span></td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a> associated with this context.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -334,9 +327,6 @@
                                             <a class='title solo-title menu-text' href="#addhtmldecoration">addHtmlDecoration</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#setskybox">setSkyBox</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#setviewbackground">setViewBackground</a>
                                     </li>
                             </ul>
@@ -383,9 +373,6 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#frustumplanes">frustumPlanes</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#target">target</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#viewflags">viewFlags</a>

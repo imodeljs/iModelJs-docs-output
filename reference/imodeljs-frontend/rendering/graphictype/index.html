@@ -182,11 +182,12 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/rendering/">Rendering</a> > GraphicType</div>
             
             <h2 class="h-graphictype">GraphicType <span class="badge badge-pill badge-primary badge-enumeration">Enumeration</span><a id="graphictype" class="heading-anchor" href="#graphictype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Describes the type of a RenderGraphic. Used when creating a GraphicBuilder to specify the purpose of the RenderGraphic.
-For RenderGraphics like overlays and view background for which depth testing is disabled:</p>
+<p>Describes the type of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuilder'>GraphicBuilder</a>, which defines the coordinate system in which the builder&apos;s geometry is defined and
+controls the behavior of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a> produced by the builder.</p>
+<p><span class="badge badge-pill badge-primary badge-note">note</span> For those types for which depth-testing is disabled, the order in which the individual geometric primitives are drawn determines which geometry draws on top of other geometry.</p>
 <ul>
-<li>The individual geometric primitives are rendered in the order in which they were defined in the GraphicBuilder; and</li>
-<li>The individual RenderGraphics within the DecorationList are rendered in the order in which they appear in the list.</li>
+<li>Within a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphiclist'>GraphicList</a>, each <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a> is rendered in the order in which it appears in the list; and</li>
+<li>Within a single <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a>, each geometric primitive is rendered in the ordered in which it was added to the GraphicBuilder.</li>
 </ul>
 <h3 class="h-members">Members<a id="members" class="heading-anchor" href="#members"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -197,27 +198,27 @@ For RenderGraphics like overlays and view background for which depth testing is 
 <tr>
 <td class="h-scene"><span class="enum-name">Scene</span><a id="scene" class="heading-anchor" href="#scene"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
-<td>Used for the scene itself, dynamics, and &apos;normal&apos; decorations.</td>
+<td>Renders as if it were part of the scene. All of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a> applied to the view&apos;s normal geometry also applies to these types of decorations.<br>Coordinates: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/coordsystem/#world'>CoordSystem.World</a>.<br>Lighting and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendermode'>RenderMode</a>: from view.<br>Depth-testing: enabled.</td>
 </tr>
 <tr>
 <td class="h-viewbackground"><span class="enum-name">ViewBackground</span><a id="viewbackground" class="heading-anchor" href="#viewbackground"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
-<td>Renders behind all other graphics. Coordinates: view. RenderMode: smooth. Lighting: none. Z-testing: disabled.</td>
+<td>Renders behind all other graphics. For example, the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/sheetborder'>SheetBorder</a> of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/sheetviewstate'>SheetViewState</a> is of this type.<br>Coordinates: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/coordsystem/#view'>CoordSystem.View</a>.<br><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendermode'>RenderMode</a>: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendermode/#smoothshade'>SmoothShade</a>.<br>Lighting: none.<br>Depth-testing: disabled.</td>
 </tr>
 <tr>
 <td class="h-viewoverlay"><span class="enum-name">ViewOverlay</span><a id="viewoverlay" class="heading-anchor" href="#viewoverlay"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
-<td>Renders atop the scene. Coordinates: view. RenderMode: smooth. Lighting: none. Z-testing: disabled<br>Used for things like the locate circle.</td>
+<td>Renders as an overlay on top of the scene. These decorations differ from <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphictype/#worldoverlay'>GraphicType.WorldOverlay</a> only in that their geometry is defined in view coordinates rather than world.<br>Coordinates: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/coordsystem/#view'>CoordSystem.View</a>.<br><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendermode'>RenderMode</a>: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendermode/#smoothshade'>SmoothShade</a><br>Lighting: default.<br>Depth-testing: disabled.</td>
 </tr>
 <tr>
 <td class="h-worlddecoration"><span class="enum-name">WorldDecoration</span><a id="worlddecoration" class="heading-anchor" href="#worlddecoration"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
-<td>Renders within the scene. Coordinates: world. RenderMode: smooth. Lighting: default. Z-testing: enabled</td>
+<td>Renders within the scene, but ignores the view&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a>.<br>Coordinates: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/coordsystem/#world'>CoordSystem.World</a>.<br>Lighting: default.<br><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendermode'>RenderMode</a>: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendermode/#smoothshade'>SmoothShade</a>.<br>Depth-testing: enabled.</td>
 </tr>
 <tr>
 <td class="h-worldoverlay"><span class="enum-name">WorldOverlay</span><a id="worldoverlay" class="heading-anchor" href="#worldoverlay"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
-<td>Renders atop the scene. Coordinates: world. RenderMode: smooth. Lighting: none. Z-testing: disabled<br>Used for things like the ACS triad and the grid.</td>
+<td>Renders as an overlay on top of the scene. These decorations differ from <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphictype/#worlddecoration'>GraphicType.WorldDecoration</a> only in that depth-testing is disabled.<br>For example, the ACS triad and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/windowareatool'>WindowAreaTool</a> decorations are of this type.<br>Coordinates: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/coordsystem/#world'>CoordSystem.World</a>.<br><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendermode'>RenderMode</a>: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendermode/#smoothshade'>SmoothShade</a><br>Lighting: default.<br>Depth-testing: disabled.<br>Renders atop the scene. Coordinates: world. RenderMode: smooth. Lighting: none. Z-testing: disabled</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>

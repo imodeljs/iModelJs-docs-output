@@ -182,11 +182,12 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/">imodeljs-common</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/rendering/">Rendering</a> > FeatureTable</div>
             
             <h2 class="h-featuretable">FeatureTable <span class="badge badge-pill badge-primary badge-class">Class</span><a id="featuretable" class="heading-anchor" href="#featuretable"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Defines a look-up table for Features within a batched <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a>. Consecutive 32-bit
+<p>Defines a look-up table for <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/feature'>Feature</a>s within a batched <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a>. Consecutive 32-bit
 indices are assigned to each unique Feature. Primitives within the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a> can
 use per-vertex indices to specify the distribution of Features within the primitive.V
 A FeatureTable can be shared amongst multiple primitives within a single <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a>, and
 amongst multiple sub-Graphics of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a>.</p>
+<p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology'>FeatureSymbology</a> for mechanisms for resymbolizing features within a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a>.</p>
 <h3 class="h-extends">Extends<a id="extends" class="heading-anchor" href="#extends"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/indexmap'>IndexMap</a>&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/feature'>Feature</a>&gt;</li>
@@ -198,7 +199,7 @@ amongst multiple sub-Graphics of a <a href='https://imodeljs.github.io/iModelJs-
 </tr>
 <tr>
 <td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">maxFeatures: number, modelId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a> = Id64.invalidId, type: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/batchtype'>BatchType</a> = BatchType.Primary</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/featuretable'>FeatureTable</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>Construct an empty FeatureTable.</td>
 </tr>
 <tr>
 <td class="h-findfeature"><span class="method-name">findFeature</span><span class="method-parenthesis">(</span><span class="method-parameters">index: number</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/feature'>Feature</a> | undefined</span><a id="findfeature" class="heading-anchor" href="#findfeature"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -236,24 +237,19 @@ amongst multiple sub-Graphics of a <a href='https://imodeljs.github.io/iModelJs-
 <th>Description</th>
 </tr>
 <tr>
-<td class="h-anydefined"><span class="property-name">anyDefined</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="anydefined" class="heading-anchor" href="#anydefined"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> boolean</span></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-isclassifier"><span class="property-name">isClassifier</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isclassifier" class="heading-anchor" href="#isclassifier"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> boolean</span></td>
-<td></td>
+<td>Returns true if this FeatureTable is associated with <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/batchtype/#classifier'>BatchType.Classifier</a> geometry.</td>
 </tr>
 <tr>
 <td class="h-isuniform"><span class="property-name">isUniform</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isuniform" class="heading-anchor" href="#isuniform"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> boolean</span></td>
-<td></td>
+<td>Returns true if this FeatureTable contains exactly one <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/feature'>Feature</a>.</td>
 </tr>
 <tr>
 <td class="h-maxfeatures"><span class="property-name">maxFeatures</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="maxfeatures" class="heading-anchor" href="#maxfeatures"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> number</span></td>
-<td></td>
+<td>Returns the maximum number of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/feature'>Feature</a>s this FeatureTable can contain.</td>
 </tr>
 <tr>
 <td class="h-modelid"><span class="property-name">modelId</span><a id="modelid" class="heading-anchor" href="#modelid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -268,6 +264,7 @@ amongst multiple sub-Graphics of a <a href='https://imodeljs.github.io/iModelJs-
 <tr>
 <td class="h-uniform"><span class="property-name">uniform</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="uniform" class="heading-anchor" href="#uniform"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/feature'>Feature</a> | undefined</span></td>
+<td>If this FeatureTable contains exactly one <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/feature'>Feature</a>, returns that Feature; otherwise returns undefined.</td>
 </tr>
 </tbody></table><h3 class="h-inherited-properties"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited properties<a id="inherited-properties" class="heading-anchor" href="#inherited-properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -386,9 +383,6 @@ amongst multiple sub-Graphics of a <a href='https://imodeljs.github.io/iModelJs-
                             <i class='dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#anydefined">anyDefined</a>
-                                    </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#isclassifier">isClassifier</a>
                                     </li>

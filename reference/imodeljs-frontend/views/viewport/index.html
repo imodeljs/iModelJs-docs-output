@@ -182,12 +182,13 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/views/">Views</a> > Viewport</div>
             
             <h2 class="h-viewport">Viewport <span class="badge badge-pill badge-primary badge-class">Class</span><a id="viewport" class="heading-anchor" href="#viewport"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>A Viewport renders one or more Models onto an <code>HTMLCanvasElement</code>.</p>
+<p>A Viewport renders the contents of one or more Models onto an <code>HTMLCanvasElement</code>.</p>
 <p>It holds a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a> object that defines its viewing parameters. <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/viewtool'>ViewTool</a>s may
 modify the ViewState object. Changes to the ViewState are only reflected in a Viewport after the
 <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#synchwithview'>Viewport.synchWithView</a> method is called.</p>
 <p>As changes to ViewState are made, Viewports also hold a stack of <em>previous copies</em> of it, to allow
 for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing tools.</p>
+<p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager'>ViewManager</a></p>
 <h3 class="h-extended-by">Extended by<a id="extended-by" class="heading-anchor" href="#extended-by"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport'>ScreenViewport</a></li>
@@ -200,10 +201,6 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
-</tr>
-<tr>
-<td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">target: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendertarget'>RenderTarget</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Construct a new Viewport</td>
 </tr>
 <tr>
 <td class="h-changeview"><span class="method-name"><a href="changeview">changeView</a></span><span class="method-parenthesis">(</span><span class="method-parameters">view: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="changeview" class="heading-anchor" href="#changeview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -282,12 +279,8 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>Scroll the view by a given number of pixels.</td>
 </tr>
 <tr>
-<td class="h-setflashed"><span class="method-name"><a href="setflashed">setFlashed</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: string | undefined, duration: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setflashed" class="heading-anchor" href="#setflashed"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Set or clear the currently <em>flashed</em> element.</td>
-</tr>
-<tr>
 <td class="h-setstandardrotation"><span class="method-name">setStandardRotation</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/standardviewid'>StandardViewId</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setstandardrotation" class="heading-anchor" href="#setstandardrotation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>Orient this viewport to one of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/standardview'>StandardView</a> rotations.</td>
 </tr>
 <tr>
 <td class="h-setupfromview"><span class="method-name">setupFromView</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstatus'>ViewStatus</a></span><a id="setupfromview" class="heading-anchor" href="#setupfromview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -299,7 +292,7 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 </tr>
 <tr>
 <td class="h-synchwithview"><span class="method-name">synchWithView</span><span class="method-parenthesis">(</span><span class="method-parameters">_saveInUndo: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="synchwithview" class="heading-anchor" href="#synchwithview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Call <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#setupfromview'>Viewport.setupFromView</a> on this Viewport and optionally  save previous state in view undo stack</td>
+<td>Call <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#setupfromview'>Viewport.setupFromView</a> on this Viewport and optionally save previous state in view undo stack</td>
 </tr>
 <tr>
 <td class="h-turncameraon"><span class="method-name"><a href="turncameraon">turnCameraOn</a></span><span class="method-parenthesis">(</span><span class="method-parameters">lensAngle?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/angle/angle'>Angle</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstatus'>ViewStatus</a></span><a id="turncameraon" class="heading-anchor" href="#turncameraon"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -380,48 +373,13 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <th>Description</th>
 </tr>
 <tr>
-<td class="h-_viewrange"><span class="property-name">_viewRange</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="_viewrange" class="heading-anchor" href="#_viewrange"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a></span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-animationfraction"><span class="property-name">animationFraction</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="animationfraction" class="heading-anchor" href="#animationfraction"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> number</span></td>
-<td></td>
+<td class="h-addfeatureoverrides"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/addfeatureoverrides'>addFeatureOverrides</a></span> <span class="badge badge-pill badge-primary badge-setter">Setter</span><a id="addfeatureoverrides" class="heading-anchor" href="#addfeatureoverrides"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-parameters">addFeatureOverrides: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/addfeatureoverrides'>AddFeatureOverrides</a> | undefined</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></td>
+<td>Sets a function which can customize the appearance of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/feature'>Feature</a>s within a viewport.</td>
 </tr>
 <tr>
 <td class="h-auxcoordsystem"><span class="property-name">auxCoordSystem</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="auxcoordsystem" class="heading-anchor" href="#auxcoordsystem"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/auxcoordsystemstate'>AuxCoordSystemState</a></span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-backgroundmapplane"><span class="property-name">backgroundMapPlane</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="backgroundmapplane" class="heading-anchor" href="#backgroundmapplane"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/plane3dbyoriginandunitnormal'>Plane3dByOriginAndUnitNormal</a></span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-continuousrendering"><span class="property-name">continuousRendering</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="continuousrendering" class="heading-anchor" href="#continuousrendering"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> boolean</span></td>
-<td>Determine whether continuous rendering is enabled.</td>
-</tr>
-<tr>
-<td class="h-flashduration"><span class="property-name">flashDuration</span><a id="flashduration" class="heading-anchor" href="#flashduration"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output">number</span></td>
-<td>The length of time that the flash intensity will increase (in seconds)</td>
-</tr>
-<tr>
-<td class="h-flashintensity"><span class="property-name">flashIntensity</span><a id="flashintensity" class="heading-anchor" href="#flashintensity"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output">number</span></td>
-<td>Current flash intensity from [0..1]</td>
-</tr>
-<tr>
-<td class="h-flashupdatetime"><span class="property-name">flashUpdateTime</span><a id="flashupdatetime" class="heading-anchor" href="#flashupdatetime"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/betimepoint'>BeTimePoint</a></span></td>
-<td>Time the current flash started</td>
-</tr>
-<tr>
-<td class="h-frustfraction"><span class="property-name">frustFraction</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="frustfraction" class="heading-anchor" href="#frustfraction"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> number</span></td>
 <td></td>
 </tr>
 <tr>
@@ -432,12 +390,7 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <tr>
 <td class="h-imodel"><span class="property-name">iModel</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="imodel" class="heading-anchor" href="#imodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span></td>
-<td>The iModel of this Viewport</td>
-</tr>
-<tr>
-<td class="h-isaspectratiolocked"><span class="property-name">isAspectRatioLocked</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isaspectratiolocked" class="heading-anchor" href="#isaspectratiolocked"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> boolean</span></td>
-<td></td>
+<td>The iModel whose contents are displayed within this Viewport</td>
 </tr>
 <tr>
 <td class="h-iscameraon"><span class="property-name">isCameraOn</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="iscameraon" class="heading-anchor" href="#iscameraon"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -450,16 +403,6 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>Determine whether the Grid display is currently enabled in this Viewport.</td>
 </tr>
 <tr>
-<td class="h-lastflashedelem"><span class="property-name">lastFlashedElem</span><a id="lastflashedelem" class="heading-anchor" href="#lastflashedelem"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output">undefined | string</span></td>
-<td>Id of last flashed element</td>
-</tr>
-<tr>
-<td class="h-nearscale24"><span class="property-name">nearScale24</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="nearscale24" class="heading-anchor" href="#nearscale24"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output">number</span></td>
-<td>Maximum ratio of frontplane to backplane distance for 24 bit zbuffer</td>
-</tr>
-<tr>
 <td class="h-onviewchanged"><span class="property-name">onViewChanged</span><a id="onviewchanged" class="heading-anchor" href="#onviewchanged"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/beevent'>BeEvent</a>&lt;(vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>) =&gt; void&gt;</span></td>
 <td>Event called whenever this viewport is synchronized with its ViewState.</td>
@@ -467,7 +410,7 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <tr>
 <td class="h-rotation"><span class="property-name">rotation</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="rotation" class="heading-anchor" href="#rotation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span></td>
-<td></td>
+<td>This viewport&apos;s rotation matrix.</td>
 </tr>
 <tr>
 <td class="h-undodelay"><span class="property-name">undoDelay</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="undodelay" class="heading-anchor" href="#undodelay"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -482,26 +425,22 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <tr>
 <td class="h-viewdelta"><span class="property-name">viewDelta</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="viewdelta" class="heading-anchor" href="#viewdelta"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span></td>
-<td></td>
+<td>The vector between the opposite corners of this viewport&apos;s extents.</td>
 </tr>
 <tr>
 <td class="h-viewflags"><span class="property-name">viewFlags</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="viewflags" class="heading-anchor" href="#viewflags"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a></span></td>
-<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a> that determine how this Viewport is rendered.</td>
-</tr>
-<tr>
-<td class="h-viewfrustum"><span class="property-name">viewFrustum</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="viewfrustum" class="heading-anchor" href="#viewfrustum"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewfrustum'>ViewFrustum</a></span></td>
-<td></td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a> that determine how the contents of this Viewport are rendered.</td>
 </tr>
 <tr>
 <td class="h-viewrect"><span class="property-name">viewRect</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="viewrect" class="heading-anchor" href="#viewrect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a></span></td>
-<td>Get the rectangle of this Viewport in ViewCoordinates.</td>
+<td>Get the rectangle of this Viewport in <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/coordsystem/#view'>CoordSystem.View</a> coordinates.</td>
 </tr>
 <tr>
 <td class="h-worldtoviewmap"><span class="property-name">worldToViewMap</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="worldtoviewmap" class="heading-anchor" href="#worldtoviewmap"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/map4d/map4d'>Map4d</a></span></td>
+<td>Provides conversions between world and view coordinates.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -540,9 +479,6 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
                             <i class='dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#constructor">constructor</a>
-                                    </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#changeview">changeView</a>
                                     </li>
@@ -599,9 +535,6 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#scroll">scroll</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#setflashed">setFlashed</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#setstandardrotation">setStandardRotation</a>
@@ -678,31 +611,10 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#_viewrange">_viewRange</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#animationfraction">animationFraction</a>
+                                            <a class='title solo-title menu-text' href="#addfeatureoverrides">addFeatureOverrides</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#auxcoordsystem">auxCoordSystem</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#backgroundmapplane">backgroundMapPlane</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#continuousrendering">continuousRendering</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#flashduration">flashDuration</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#flashintensity">flashIntensity</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#flashupdatetime">flashUpdateTime</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#frustfraction">frustFraction</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#hilite">hilite</a>
@@ -711,19 +623,10 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
                                             <a class='title solo-title menu-text' href="#imodel">iModel</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#isaspectratiolocked">isAspectRatioLocked</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#iscameraon">isCameraOn</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#isgridon">isGridOn</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#lastflashedelem">lastFlashedElem</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#nearscale24">nearScale24</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#onviewchanged">onViewChanged</a>
@@ -742,9 +645,6 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#viewflags">viewFlags</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#viewfrustum">viewFrustum</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#viewrect">viewRect</a>
