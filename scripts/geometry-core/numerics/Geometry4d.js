@@ -1,12 +1,27 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Numerics */
 const Geometry_1 = require("../Geometry");
 const PointVector_1 = require("../PointVector");
 const Transform_1 = require("../Transform");
+const AnalyticGeometry_1 = require("../AnalyticGeometry");
+/**
+ *
+ * @param ddg numerator second derivative
+ * @param dh denominator derivative
+ * @param ddh denominator second derivative
+ * @param f primary function (g/h)
+ * @param df derivative of (g/h)
+ * @param divh = (1/h)
+ * @param dgdivh previously computed first derivative of (g/h)
+ */
+function quotientDerivative2(ddg, dh, ddh, f, df, divh) {
+    return divh * (ddg - 2.0 * df * dh - f * ddh);
+}
 /** 4 Dimensional point (x,y,z,w) used in perspective calculations.
  * * the coordinates are stored in a Float64Array of length 4.
  * * properties `x`, `y`, `z`, `w` access array members.
@@ -90,6 +105,15 @@ class Point4d {
     distanceSquaredXYZW(other) {
         return Geometry_1.Geometry.hypotenuseSquaredXYZW(other.xyzw[0] - this.xyzw[0], other.xyzw[1] - this.xyzw[1], other.xyzw[2] - this.xyzw[2], other.xyzw[3] - this.xyzw[3]);
     }
+    /** Return the distance between the instance and other after normalizing by weights
+     */
+    realDistanceXY(other) {
+        const wA = this.w;
+        const wB = other.w;
+        if (Geometry_1.Geometry.isSmallMetricDistance(wA) || Geometry_1.Geometry.isSmallMetricDistance(wB))
+            return undefined;
+        return Geometry_1.Geometry.hypotenuseXY(other.xyzw[0] / wB - this.xyzw[0] / wA, other.xyzw[1] / wB - this.xyzw[1] / wA);
+    }
     /** Return the largest absolute distance between corresponding components
      * * x,y,z,w all participate without normalization.
      */
@@ -118,17 +142,25 @@ class Point4d {
     plus(other, result) {
         return Point4d.create(this.xyzw[0] + other.xyzw[0], this.xyzw[1] + other.xyzw[1], this.xyzw[2] + other.xyzw[2], this.xyzw[3] + other.xyzw[3], result);
     }
-    isAlmostZero() {
+    get isAlmostZero() {
         return Geometry_1.Geometry.isSmallMetricDistance(this.maxAbs());
     }
     static createZero() { return new Point4d(0, 0, 0, 0); }
+    /**
+     * Create plane coefficients for the plane containing pointA, pointB, and 0010.
+     * @param pointA first point
+     * @param pointB second point
+     */
+    static createPlanePointPointZ(pointA, pointB, result) {
+        return Point4d.create(pointA.y * pointB.w - pointA.w * pointB.y, pointA.w * pointB.x - pointA.x * pointB.w, 0.0, pointA.x * pointB.y - pointA.y * pointB.x, result);
+    }
     /**
      * extract 4 consecutive numbers from a Float64Array into a Point4d.
      * @param data buffer of numbers
      * @param xIndex first index for x,y,z,w sequence
      */
-    static createFromPackedXYZW(data, xIndex = 0) {
-        return new Point4d(data[xIndex], data[xIndex + 1], data[xIndex + 2], data[xIndex + 3]);
+    static createFromPackedXYZW(data, xIndex = 0, result) {
+        return Point4d.create(data[xIndex], data[xIndex + 1], data[xIndex + 2], data[xIndex + 3], result);
     }
     static createFromPointAndWeight(xyz, w) {
         return new Point4d(xyz.x, xyz.y, xyz.z, w);
@@ -136,6 +168,12 @@ class Point4d {
     /** Return point + vector \* scalar */
     plusScaled(vector, scaleFactor, result) {
         return Point4d.create(this.xyzw[0] + vector.xyzw[0] * scaleFactor, this.xyzw[1] + vector.xyzw[1] * scaleFactor, this.xyzw[2] + vector.xyzw[2] * scaleFactor, this.xyzw[3] + vector.xyzw[3] * scaleFactor, result);
+    }
+    /** Return interpolation between instance and pointB at fraction
+     */
+    interpolate(fraction, pointB, result) {
+        const v = 1.0 - fraction;
+        return Point4d.create(this.xyzw[0] * v + pointB.xyzw[0] * fraction, this.xyzw[1] * v + pointB.xyzw[1] * fraction, this.xyzw[2] * v + pointB.xyzw[2] * fraction, this.xyzw[3] * v + pointB.xyzw[3] * fraction, result);
     }
     /** Return point + vectorA \* scalarA + vectorB \* scalarB */
     plus2Scaled(vectorA, scalarA, vectorB, scalarB, result) {
@@ -146,11 +184,11 @@ class Point4d {
         return Point4d.create(this.xyzw[0] + vectorA.xyzw[0] * scalarA + vectorB.xyzw[0] * scalarB + vectorC.xyzw[0] * scalarC, this.xyzw[1] + vectorA.xyzw[1] * scalarA + vectorB.xyzw[1] * scalarB + vectorC.xyzw[1] * scalarC, this.xyzw[2] + vectorA.xyzw[2] * scalarA + vectorB.xyzw[2] * scalarB + vectorC.xyzw[2] * scalarC, this.xyzw[3] + vectorA.xyzw[3] * scalarA + vectorB.xyzw[3] * scalarB + vectorC.xyzw[3] * scalarC, result);
     }
     /** Return point + vectorA \* scalarA + vectorB \* scalarB */
-    static add2Scaled(vectorA, scalarA, vectorB, scalarB, result) {
+    static createAdd2Scaled(vectorA, scalarA, vectorB, scalarB, result) {
         return Point4d.create(vectorA.xyzw[0] * scalarA + vectorB.xyzw[0] * scalarB, vectorA.xyzw[1] * scalarA + vectorB.xyzw[1] * scalarB, vectorA.xyzw[2] * scalarA + vectorB.xyzw[2] * scalarB, vectorA.xyzw[3] * scalarA + vectorB.xyzw[3] * scalarB, result);
     }
     /** Return point + vectorA \* scalarA + vectorB \* scalarB + vectorC \* scalarC */
-    static add3Scaled(vectorA, scalarA, vectorB, scalarB, vectorC, scalarC, result) {
+    static createAdd3Scaled(vectorA, scalarA, vectorB, scalarB, vectorC, scalarC, result) {
         return Point4d.create(vectorA.xyzw[0] * scalarA + vectorB.xyzw[0] * scalarB + vectorC.xyzw[0] * scalarC, vectorA.xyzw[1] * scalarA + vectorB.xyzw[1] * scalarB + vectorC.xyzw[1] * scalarC, vectorA.xyzw[2] * scalarA + vectorB.xyzw[2] * scalarB + vectorC.xyzw[2] * scalarC, vectorA.xyzw[3] * scalarA + vectorB.xyzw[3] * scalarB + vectorC.xyzw[3] * scalarC, result);
     }
     dotVectorsToTargets(targetA, targetB) {
@@ -164,6 +202,18 @@ class Point4d {
     }
     dotProductXYZW(x, y, z, w) {
         return this.xyzw[0] * x + this.xyzw[1] * y + this.xyzw[2] * z + this.xyzw[3] * w;
+    }
+    /** dotProduct with (point.x, point.y, point.z, 1) Used in PlaneAltitudeEvaluator interface */
+    altitude(point) {
+        return this.xyzw[0] * point.x + this.xyzw[1] * point.y + this.xyzw[2] * point.z + this.xyzw[3];
+    }
+    /** dotProduct with (vector.x, vector.y, vector.z, 0).  Used in PlaneAltitudeEvaluator interface */
+    velocity(vector) {
+        return this.xyzw[0] * vector.x + this.xyzw[1] * vector.y + this.xyzw[2] * vector.z;
+    }
+    /** dotProduct with (x,y,z, 0).  Used in PlaneAltitudeEvaluator interface */
+    velocityXYZ(x, y, z) {
+        return this.xyzw[0] * x + this.xyzw[1] * y + this.xyzw[2] * z;
     }
     /** unit X vector */
     static unitX() { return new Point4d(1, 0, 0, 0); }
@@ -198,20 +248,94 @@ class Point4d {
         result.xyzw[3] = -this.xyzw[3];
         return result;
     }
+    /**
+     * If `this.w` is nonzero, return a 4d point `(x/w,y/w,z/w, 1)`
+     * If `this.w` is zero, return undefined.
+     * @param result optional result
+     */
     normalizeWeight(result) {
         const mag = Geometry_1.Geometry.correctSmallMetricDistance(this.xyzw[3]);
         result = result ? result : new Point4d();
         return this.safeDivideOrNull(mag, result);
     }
+    /**
+     * If `this.w` is nonzero, return a 3d point `(x/w,y/w,z/w)`
+     * If `this.w` is zero, return undefined.
+     * @param result optional result
+     */
     realPoint(result) {
         const mag = Geometry_1.Geometry.correctSmallMetricDistance(this.xyzw[3]);
         if (mag === 0.0)
             return undefined;
-        result = result ? result : new PointVector_1.Point3d();
-        const a = 1.0 / mag;
-        result.set(this.xyzw[0] * a, this.xyzw[1] * a, this.xyzw[2] * a);
-        return result;
+        const a = 1.0 / mag; // in zero case everything multiplies right back to true zero.
+        return PointVector_1.Point3d.create(this.xyzw[0] * a, this.xyzw[1] * a, this.xyzw[2] * a, result);
     }
+    /**
+     * * If w is nonzero, return Point3d with x/w,y/w,z/w.
+     * * If w is zero, return 000
+     * @param x x coordinate
+     * @param y y coordinate
+     * @param z z coordinate
+     * @param w w coordinate
+     * @param result optional result
+     */
+    static createRealPoint3dDefault000(x, y, z, w, result) {
+        const mag = Geometry_1.Geometry.correctSmallMetricDistance(w);
+        const a = mag === 0 ? 0.0 : (1.0 / mag); // in zero case everything multiplies right back to true zero.
+        return PointVector_1.Point3d.create(x * a, y * a, z * a, result);
+    }
+    /**
+     * * If w is nonzero, return Vector3d which is the derivative of the projecte xyz with given w and 4d derivatives.
+     * * If w is zero, return 000
+     * @param x x coordinate
+     * @param y y coordinate
+     * @param z z coordinate
+     * @param w w coordinate
+     * @param dx x coordinate of derivative
+     * @param dy y coordinate of derivative
+     * @param dz z coordinate of derivative
+     * @param dw w coordinate of derivative
+     * @param result optional result
+     */
+    static createRealDerivativeRay3dDefault000(x, y, z, w, dx, dy, dz, dw, result) {
+        const mag = Geometry_1.Geometry.correctSmallMetricDistance(w);
+        // real point is X/w.
+        // real derivative is (X' * w - X *w) / ww, and weight is always 0 by cross products.
+        const a = mag === 0 ? 0.0 : (1.0 / mag); // in zero case everything multiplies right back to true zero.
+        const aa = a * a;
+        return AnalyticGeometry_1.Ray3d.createXYZUVW(x * a, y * a, z * a, (dx * w - dw * x) * aa, (dy * w - dw * y) * aa, (dz * w - dw * z) * aa, result);
+    }
+    /**
+     * * If w is nonzero, return Vector3d which is the derivative of the projecte xyz with given w and 4d derivatives.
+     * * If w is zero, return 000
+     * @param x x coordinate
+     * @param y y coordinate
+     * @param z z coordinate
+     * @param w w coordinate
+     * @param dx x coordinate of derivative
+     * @param dy y coordinate of derivative
+     * @param dz z coordinate of derivative
+     * @param dw w coordinate of derivative
+     * @param result optional result
+     */
+    static createRealDerivativePlane3dByOriginAndVectorsDefault000(x, y, z, w, dx, dy, dz, dw, ddx, ddy, ddz, ddw, result) {
+        const mag = Geometry_1.Geometry.correctSmallMetricDistance(w);
+        // real point is X/w.
+        // real derivative is (X' * w - X *w) / ww, and weight is always 0 by cross products.
+        const a = mag === 0 ? 0.0 : (1.0 / mag); // in zero case everything multiplies right back to true zero.
+        const aa = a * a;
+        const fx = x * a;
+        const fy = y * a;
+        const fz = z * a;
+        const dfx = (dx * w - dw * x) * aa;
+        const dfy = (dy * w - dw * y) * aa;
+        const dfz = (dz * w - dw * z) * aa;
+        return AnalyticGeometry_1.Plane3dByOriginAndVectors.createOriginAndVectorsXYZ(fx, fy, fz, dfx, dfy, dfz, quotientDerivative2(ddx, dw, ddw, fx, dfx, a), quotientDerivative2(ddy, dw, ddw, fy, dfy, a), quotientDerivative2(ddz, dw, ddw, fz, dfz, a), result);
+    }
+    /**
+     * * If this.w is nonzero, return Point3d with x/w,y/w,z/w.
+     * * If this.w is zero, return 000
+     */
     realPointDefault000(result) {
         const mag = Geometry_1.Geometry.correctSmallMetricDistance(this.xyzw[3]);
         if (mag === 0.0)
@@ -233,27 +357,27 @@ class Point4d {
 } // DPoint4d
 exports.Point4d = Point4d;
 class Matrix4d {
-    constructor() { this.coffs = new Float64Array(16); }
+    constructor() { this._coffs = new Float64Array(16); }
     setFrom(other) {
         for (let i = 0; i < 16; i++)
-            this.coffs[i] = other.coffs[i];
+            this._coffs[i] = other._coffs[i];
     }
     clone() {
         const result = new Matrix4d();
         for (let i = 0; i < 16; i++)
-            result.coffs[i] = this.coffs[i];
+            result._coffs[i] = this._coffs[i];
         return result;
     }
     /** zero this matrix4d in place. */
     setZero() {
         for (let i = 0; i < 16; i++)
-            this.coffs[i] = 0;
+            this._coffs[i] = 0;
     }
     /** set to identity. */
     setIdentity() {
         for (let i = 0; i < 16; i++)
-            this.coffs[i] = 0;
-        this.coffs[0] = this.coffs[5] = this.coffs[10] = this.coffs[15] = 1.0;
+            this._coffs[i] = 0;
+        this._coffs[0] = this._coffs[5] = this._coffs[10] = this._coffs[15] = 1.0;
     }
     static is1000(a, b, c, d, tol) {
         return Math.abs(a - 1.0) <= tol
@@ -263,10 +387,10 @@ class Matrix4d {
     }
     /** set to identity. */
     isIdentity(tol = 1.0e-10) {
-        return Matrix4d.is1000(this.coffs[0], this.coffs[1], this.coffs[2], this.coffs[3], tol)
-            && Matrix4d.is1000(this.coffs[5], this.coffs[6], this.coffs[7], this.coffs[4], tol)
-            && Matrix4d.is1000(this.coffs[10], this.coffs[11], this.coffs[8], this.coffs[9], tol)
-            && Matrix4d.is1000(this.coffs[15], this.coffs[12], this.coffs[13], this.coffs[14], tol);
+        return Matrix4d.is1000(this._coffs[0], this._coffs[1], this._coffs[2], this._coffs[3], tol)
+            && Matrix4d.is1000(this._coffs[5], this._coffs[6], this._coffs[7], this._coffs[4], tol)
+            && Matrix4d.is1000(this._coffs[10], this._coffs[11], this._coffs[8], this._coffs[9], tol)
+            && Matrix4d.is1000(this._coffs[15], this._coffs[12], this._coffs[13], this._coffs[14], tol);
     }
     /** create a Matrix4d filled with zeros. */
     static createZero(result) {
@@ -279,22 +403,22 @@ class Matrix4d {
     /** create a Matrix4d with values supplied "across the rows" */
     static createRowValues(cxx, cxy, cxz, cxw, cyx, cyy, cyz, cyw, czx, czy, czz, czw, cwx, cwy, cwz, cww, result) {
         result = result ? result : new Matrix4d();
-        result.coffs[0] = cxx;
-        result.coffs[1] = cxy;
-        result.coffs[2] = cxz;
-        result.coffs[3] = cxw;
-        result.coffs[4] = cyx;
-        result.coffs[5] = cyy;
-        result.coffs[6] = cyz;
-        result.coffs[7] = cyw;
-        result.coffs[8] = czx;
-        result.coffs[9] = czy;
-        result.coffs[10] = czz;
-        result.coffs[11] = czw;
-        result.coffs[12] = cwx;
-        result.coffs[13] = cwy;
-        result.coffs[14] = cwz;
-        result.coffs[15] = cww;
+        result._coffs[0] = cxx;
+        result._coffs[1] = cxy;
+        result._coffs[2] = cxz;
+        result._coffs[3] = cxw;
+        result._coffs[4] = cyx;
+        result._coffs[5] = cyy;
+        result._coffs[6] = cyz;
+        result._coffs[7] = cyw;
+        result._coffs[8] = czx;
+        result._coffs[9] = czy;
+        result._coffs[10] = czz;
+        result._coffs[11] = czw;
+        result._coffs[12] = cwx;
+        result._coffs[13] = cwy;
+        result._coffs[14] = cwz;
+        result._coffs[15] = cww;
         return result;
     }
     /** directly set columns from typical 3d data:
@@ -303,22 +427,22 @@ class Matrix4d {
      * * origin as column3, with weight 1
      */
     setOriginAndVectors(origin, vectorX, vectorY, vectorZ) {
-        this.coffs[0] = vectorX.x;
-        this.coffs[1] = vectorY.x;
-        this.coffs[2] = vectorZ.x;
-        this.coffs[3] = origin.x;
-        this.coffs[4] = vectorX.y;
-        this.coffs[5] = vectorY.y;
-        this.coffs[6] = vectorZ.y;
-        this.coffs[7] = origin.y;
-        this.coffs[8] = vectorX.z;
-        this.coffs[9] = vectorY.z;
-        this.coffs[10] = vectorZ.z;
-        this.coffs[11] = origin.z;
-        this.coffs[12] = 0.0;
-        this.coffs[13] = 0.0;
-        this.coffs[14] = 0.0;
-        this.coffs[15] = 1.0;
+        this._coffs[0] = vectorX.x;
+        this._coffs[1] = vectorY.x;
+        this._coffs[2] = vectorZ.x;
+        this._coffs[3] = origin.x;
+        this._coffs[4] = vectorX.y;
+        this._coffs[5] = vectorY.y;
+        this._coffs[6] = vectorZ.y;
+        this._coffs[7] = origin.y;
+        this._coffs[8] = vectorX.z;
+        this._coffs[9] = vectorY.z;
+        this._coffs[10] = vectorZ.z;
+        this._coffs[11] = origin.z;
+        this._coffs[12] = 0.0;
+        this._coffs[13] = 0.0;
+        this._coffs[14] = 0.0;
+        this._coffs[15] = 1.0;
     }
     /** promote a transform to full Matrix4d (with 0001 in final row) */
     static createTransform(source, result) {
@@ -329,22 +453,22 @@ class Matrix4d {
     /** return an identity matrix. */
     static createIdentity(result) {
         result = Matrix4d.createZero(result);
-        result.coffs[0] = 1.0;
-        result.coffs[5] = 1.0;
-        result.coffs[10] = 1.0;
-        result.coffs[15] = 1.0;
+        result._coffs[0] = 1.0;
+        result._coffs[5] = 1.0;
+        result._coffs[10] = 1.0;
+        result._coffs[15] = 1.0;
         return result;
     }
     /** return matrix with translation directly inserted (along with 1 on diagonal) */
     static createTranslationXYZ(x, y, z, result) {
         result = Matrix4d.createZero(result);
-        result.coffs[0] = 1.0;
-        result.coffs[5] = 1.0;
-        result.coffs[10] = 1.0;
-        result.coffs[15] = 1.0;
-        result.coffs[3] = x;
-        result.coffs[7] = y;
-        result.coffs[11] = z;
+        result._coffs[0] = 1.0;
+        result._coffs[5] = 1.0;
+        result._coffs[10] = 1.0;
+        result._coffs[15] = 1.0;
+        result._coffs[3] = x;
+        result._coffs[7] = y;
+        result._coffs[11] = z;
         return result;
     }
     /**
@@ -386,7 +510,7 @@ class Matrix4d {
         if (Geometry_1.Geometry.isArrayOfNumberArray(json, 4, 4))
             for (let i = 0; i < 4; ++i) {
                 for (let j = 0; j < 4; ++j)
-                    this.coffs[i * 4 + j] = json[i][j];
+                    this._coffs[i * 4 + j] = json[i][j];
             }
         else
             this.setZero();
@@ -398,7 +522,7 @@ class Matrix4d {
     maxDiff(other) {
         let a = 0.0;
         for (let i = 0; i < 16; i++)
-            a = Math.max(a, Math.abs(this.coffs[i] - other.coffs[i]));
+            a = Math.max(a, Math.abs(this._coffs[i] - other._coffs[i]));
         return a;
     }
     /**
@@ -407,7 +531,7 @@ class Matrix4d {
     maxAbs() {
         let a = 0.0;
         for (let i = 0; i < 16; i++)
-            a = Math.max(a, Math.abs(this.coffs[i]));
+            a = Math.max(a, Math.abs(this._coffs[i]));
         return a;
     }
     isAlmostEqual(other) {
@@ -420,7 +544,7 @@ class Matrix4d {
         const value = [];
         for (let i = 0; i < 4; ++i) {
             const row = i * 4;
-            value.push([this.coffs[row], this.coffs[row + 1], this.coffs[row + 2], this.coffs[row + 3]]);
+            value.push([this._coffs[row], this._coffs[row + 1], this._coffs[row + 2], this._coffs[row + 3]]);
         }
         return value;
     }
@@ -430,7 +554,7 @@ class Matrix4d {
         return result;
     }
     getSteppedPoint(i0, step, result) {
-        return Point4d.create(this.coffs[i0], this.coffs[i0 + step], this.coffs[i0 + 2 * step], this.coffs[i0 + 3 * step], result);
+        return Point4d.create(this._coffs[i0], this._coffs[i0 + step], this._coffs[i0 + 2 * step], this._coffs[i0 + 3 * step], result);
     }
     /** @returns Return column 0 as Point4d. */
     columnX() { return this.getSteppedPoint(0, 4); }
@@ -448,21 +572,32 @@ class Matrix4d {
     rowZ() { return this.getSteppedPoint(8, 1); }
     /** @returns Return row 3 as Point4d. */
     rowW() { return this.getSteppedPoint(12, 1); }
+    get hasPerspective() {
+        return this._coffs[12] !== 0.0
+            || this._coffs[13] !== 0.0
+            || this._coffs[14] !== 0.0
+            || this._coffs[15] !== 1.0;
+    }
     diagonal() { return this.getSteppedPoint(0, 5); }
-    weight() { return this.coffs[15]; }
+    weight() { return this._coffs[15]; }
     matrixPart() {
-        return Transform_1.RotMatrix.createRowValues(this.coffs[0], this.coffs[1], this.coffs[2], this.coffs[4], this.coffs[5], this.coffs[6], this.coffs[8], this.coffs[9], this.coffs[10]);
+        return Transform_1.Matrix3d.createRowValues(this._coffs[0], this._coffs[1], this._coffs[2], this._coffs[4], this._coffs[5], this._coffs[6], this._coffs[8], this._coffs[9], this._coffs[10]);
+    }
+    get asTransform() {
+        if (this.hasPerspective)
+            return undefined;
+        return Transform_1.Transform.createRowValues(this._coffs[0], this._coffs[1], this._coffs[2], this._coffs[3], this._coffs[4], this._coffs[5], this._coffs[6], this._coffs[7], this._coffs[8], this._coffs[9], this._coffs[10], this._coffs[11]);
     }
     /** multiply this * other. */
     multiplyMatrixMatrix(other, result) {
         result = (result && result !== this && result !== other) ? result : new Matrix4d();
         for (let i0 = 0; i0 < 16; i0 += 4) {
             for (let k = 0; k < 4; k++)
-                result.coffs[i0 + k] =
-                    this.coffs[i0] * other.coffs[k] +
-                        this.coffs[i0 + 1] * other.coffs[k + 4] +
-                        this.coffs[i0 + 2] * other.coffs[k + 8] +
-                        this.coffs[i0 + 3] * other.coffs[k + 12];
+                result._coffs[i0 + k] =
+                    this._coffs[i0] * other._coffs[k] +
+                        this._coffs[i0 + 1] * other._coffs[k + 4] +
+                        this._coffs[i0 + 2] * other._coffs[k + 8] +
+                        this._coffs[i0 + 3] * other._coffs[k + 12];
         }
         return result;
     }
@@ -472,11 +607,11 @@ class Matrix4d {
         let j = 0;
         for (let i0 = 0; i0 < 16; i0 += 4) {
             for (let k = 0; k < 16; k += 4)
-                result.coffs[j++] =
-                    this.coffs[i0] * other.coffs[k] +
-                        this.coffs[i0 + 1] * other.coffs[k + 1] +
-                        this.coffs[i0 + 2] * other.coffs[k + 2] +
-                        this.coffs[i0 + 3] * other.coffs[k + 3];
+                result._coffs[j++] =
+                    this._coffs[i0] * other._coffs[k] +
+                        this._coffs[i0 + 1] * other._coffs[k + 1] +
+                        this._coffs[i0 + 2] * other._coffs[k + 2] +
+                        this._coffs[i0 + 3] * other._coffs[k + 3];
         }
         return result;
     }
@@ -486,22 +621,39 @@ class Matrix4d {
         let j = 0;
         for (let i0 = 0; i0 < 4; i0 += 1) {
             for (let k0 = 0; k0 < 4; k0 += 1)
-                result.coffs[j++] =
-                    this.coffs[i0] * other.coffs[k0] +
-                        this.coffs[i0 + 4] * other.coffs[k0 + 4] +
-                        this.coffs[i0 + 8] * other.coffs[k0 + 8] +
-                        this.coffs[i0 + 12] * other.coffs[k0 + 12];
+                result._coffs[j++] =
+                    this._coffs[i0] * other._coffs[k0] +
+                        this._coffs[i0 + 4] * other._coffs[k0 + 4] +
+                        this._coffs[i0 + 8] * other._coffs[k0 + 8] +
+                        this._coffs[i0 + 12] * other._coffs[k0 + 12];
         }
         return result;
     }
     /** Return a transposed matrix. */
     cloneTransposed(result) {
-        return Matrix4d.createRowValues(this.coffs[0], this.coffs[4], this.coffs[8], this.coffs[12], this.coffs[1], this.coffs[5], this.coffs[9], this.coffs[13], this.coffs[2], this.coffs[6], this.coffs[10], this.coffs[14], this.coffs[3], this.coffs[7], this.coffs[11], this.coffs[15], result);
+        return Matrix4d.createRowValues(this._coffs[0], this._coffs[4], this._coffs[8], this._coffs[12], this._coffs[1], this._coffs[5], this._coffs[9], this._coffs[13], this._coffs[2], this._coffs[6], this._coffs[10], this._coffs[14], this._coffs[3], this._coffs[7], this._coffs[11], this._coffs[15], result);
     }
     /** multiply matrix times column [x,y,z,w].  return as Point4d.   (And the returned value is NOT normalized down to unit w) */
     multiplyXYZW(x, y, z, w, result) {
         result = result ? result : Point4d.createZero();
-        return result.set(this.coffs[0] * x + this.coffs[1] * y + this.coffs[2] * z + this.coffs[3] * w, this.coffs[4] * x + this.coffs[5] * y + this.coffs[6] * z + this.coffs[7] * w, this.coffs[8] * x + this.coffs[9] * y + this.coffs[10] * z + this.coffs[11] * w, this.coffs[12] * x + this.coffs[13] * y + this.coffs[14] * z + this.coffs[15] * w);
+        return result.set(this._coffs[0] * x + this._coffs[1] * y + this._coffs[2] * z + this._coffs[3] * w, this._coffs[4] * x + this._coffs[5] * y + this._coffs[6] * z + this._coffs[7] * w, this._coffs[8] * x + this._coffs[9] * y + this._coffs[10] * z + this._coffs[11] * w, this._coffs[12] * x + this._coffs[13] * y + this._coffs[14] * z + this._coffs[15] * w);
+    }
+    /** multiply matrix times column vectors [x,y,z,w] where [x,y,z,w] appear in blocks in an array.
+     * replace the xyzw in the block
+     */
+    multiplyBlockedFloat64ArrayInPlace(data) {
+        const n = data.length;
+        let x, y, z, w;
+        for (let i = 0; i + 3 < n; i += 4) {
+            x = data[i];
+            y = data[i + 1];
+            z = data[i + 2];
+            w = data[i + 3];
+            data[i] = this._coffs[0] * x + this._coffs[1] * y + this._coffs[2] * z + this._coffs[3] * w;
+            data[i + 1] = this._coffs[4] * x + this._coffs[5] * y + this._coffs[6] * z + this._coffs[7] * w;
+            data[i + 2] = this._coffs[8] * x + this._coffs[9] * y + this._coffs[10] * z + this._coffs[11] * w;
+            data[i + 3] = this._coffs[12] * x + this._coffs[13] * y + this._coffs[14] * z + this._coffs[15] * w;
+        }
     }
     /** multiply matrix times XYAndZ  and w. return as Point4d  (And the returned value is NOT normalized down to unit w) */
     multiplyPoint3d(pt, w, result) {
@@ -514,60 +666,60 @@ class Matrix4d {
     /** multiply [x,y,z,w] times matrix.  return as Point4d.   (And the returned value is NOT normalized down to unit w) */
     multiplyTransposeXYZW(x, y, z, w, result) {
         result = result ? result : Point4d.createZero();
-        return result.set(this.coffs[0] * x + this.coffs[4] * y + this.coffs[8] * z + this.coffs[12] * w, this.coffs[1] * x + this.coffs[5] * y + this.coffs[9] * z + this.coffs[13] * w, this.coffs[2] * x + this.coffs[6] * y + this.coffs[10] * z + this.coffs[14] * w, this.coffs[3] * x + this.coffs[7] * y + this.coffs[11] * z + this.coffs[15] * w);
+        return result.set(this._coffs[0] * x + this._coffs[4] * y + this._coffs[8] * z + this._coffs[12] * w, this._coffs[1] * x + this._coffs[5] * y + this._coffs[9] * z + this._coffs[13] * w, this._coffs[2] * x + this._coffs[6] * y + this._coffs[10] * z + this._coffs[14] * w, this._coffs[3] * x + this._coffs[7] * y + this._coffs[11] * z + this._coffs[15] * w);
     }
     /** @returns dot product of row rowIndex of this with column columnIndex of other.
      */
     rowDotColumn(rowIndex, other, columnIndex) {
         const i = rowIndex * 4;
         const j = columnIndex;
-        return this.coffs[i] * other.coffs[j]
-            + this.coffs[i + 1] * other.coffs[j + 4]
-            + this.coffs[i + 2] * other.coffs[j + 8]
-            + this.coffs[i + 3] * other.coffs[j + 12];
+        return this._coffs[i] * other._coffs[j]
+            + this._coffs[i + 1] * other._coffs[j + 4]
+            + this._coffs[i + 2] * other._coffs[j + 8]
+            + this._coffs[i + 3] * other._coffs[j + 12];
     }
     /** @returns dot product of row rowIndexThis of this with row rowIndexOther of other.
      */
     rowDotRow(rowIndexThis, other, rowIndexOther) {
         const i = rowIndexThis * 4;
         const j = rowIndexOther * 4;
-        return this.coffs[i] * other.coffs[j]
-            + this.coffs[i + 1] * other.coffs[j + 1]
-            + this.coffs[i + 2] * other.coffs[j + 2]
-            + this.coffs[i + 3] * other.coffs[j + 3];
+        return this._coffs[i] * other._coffs[j]
+            + this._coffs[i + 1] * other._coffs[j + 1]
+            + this._coffs[i + 2] * other._coffs[j + 2]
+            + this._coffs[i + 3] * other._coffs[j + 3];
     }
     /** @returns dot product of row rowIndexThis of this with row rowIndexOther of other.
      */
     columnDotColumn(columnIndexThis, other, columnIndexOther) {
         const i = columnIndexThis;
         const j = columnIndexOther;
-        return this.coffs[i] * other.coffs[j]
-            + this.coffs[i + 4] * other.coffs[j + 4]
-            + this.coffs[i + 8] * other.coffs[j + 8]
-            + this.coffs[i + 12] * other.coffs[j + 12];
+        return this._coffs[i] * other._coffs[j]
+            + this._coffs[i + 4] * other._coffs[j + 4]
+            + this._coffs[i + 8] * other._coffs[j + 8]
+            + this._coffs[i + 12] * other._coffs[j + 12];
     }
     /** @returns dot product of column columnIndexThis of this with row rowIndexOther other.
      */
     columnDotRow(columnIndexThis, other, rowIndexOther) {
         const i = columnIndexThis;
         const j = 4 * rowIndexOther;
-        return this.coffs[i] * other.coffs[j]
-            + this.coffs[i + 4] * other.coffs[j + 1]
-            + this.coffs[i + 8] * other.coffs[j + 2]
-            + this.coffs[i + 12] * other.coffs[j + 3];
+        return this._coffs[i] * other._coffs[j]
+            + this._coffs[i + 4] * other._coffs[j + 1]
+            + this._coffs[i + 8] * other._coffs[j + 2]
+            + this._coffs[i + 12] * other._coffs[j + 3];
     }
     /** @returns return a matrix entry by row and column index.
      */
     atIJ(rowIndex, columnIndex) {
-        return this.coffs[rowIndex * 4 + columnIndex];
+        return this._coffs[rowIndex * 4 + columnIndex];
     }
     /** multiply matrix * [x,y,z,w]. immediately renormalize to return in a Point3d.
      * If zero weight appears in the result (i.e. input is on eyeplane) leave the mapped xyz untouched.
      */
     multiplyXYZWQuietRenormalize(x, y, z, w, result) {
         result = result ? result : PointVector_1.Point3d.createZero();
-        result.set(this.coffs[0] * x + this.coffs[1] * y + this.coffs[2] * z + this.coffs[3] * w, this.coffs[4] * x + this.coffs[5] * y + this.coffs[6] * z + this.coffs[7] * w, this.coffs[8] * x + this.coffs[9] * y + this.coffs[10] * z + this.coffs[11] * w);
-        const w1 = this.coffs[12] * x + this.coffs[13] * y + this.coffs[14] * z + this.coffs[15] * w;
+        result.set(this._coffs[0] * x + this._coffs[1] * y + this._coffs[2] * z + this._coffs[3] * w, this._coffs[4] * x + this._coffs[5] * y + this._coffs[6] * z + this._coffs[7] * w, this._coffs[8] * x + this._coffs[9] * y + this._coffs[10] * z + this._coffs[11] * w);
+        const w1 = this._coffs[12] * x + this._coffs[13] * y + this._coffs[14] * z + this._coffs[15] * w;
         if (!Geometry_1.Geometry.isSmallMetricDistance(w1)) {
             const a = 1.0 / w1;
             result.x *= a;
@@ -603,27 +755,27 @@ class Matrix4d {
         points.forEach((point) => this.multiplyXYZWQuietRenormalize(point.x, point.y, point.z, 1.0, point));
     }
     addMomentsInPlace(x, y, z, w) {
-        this.coffs[0] += x * x;
-        this.coffs[1] += x * y;
-        this.coffs[2] += x * z;
-        this.coffs[3] += x * w;
-        this.coffs[4] += y * x;
-        this.coffs[5] += y * y;
-        this.coffs[6] += y * z;
-        this.coffs[7] += y * w;
-        this.coffs[8] += z * x;
-        this.coffs[9] += z * y;
-        this.coffs[10] += z * z;
-        this.coffs[11] += z * w;
-        this.coffs[12] += w * x;
-        this.coffs[13] += w * y;
-        this.coffs[14] += w * z;
-        this.coffs[15] += w * w;
+        this._coffs[0] += x * x;
+        this._coffs[1] += x * y;
+        this._coffs[2] += x * z;
+        this._coffs[3] += x * w;
+        this._coffs[4] += y * x;
+        this._coffs[5] += y * y;
+        this._coffs[6] += y * z;
+        this._coffs[7] += y * w;
+        this._coffs[8] += z * x;
+        this._coffs[9] += z * y;
+        this._coffs[10] += z * z;
+        this._coffs[11] += z * w;
+        this._coffs[12] += w * x;
+        this._coffs[13] += w * y;
+        this._coffs[14] += w * z;
+        this._coffs[15] += w * w;
     }
     /** accumulate all coefficients of other to this. */
     addScaledInPlace(other, scale = 1.0) {
         for (let i = 0; i < 16; i++)
-            this.coffs[i] += scale * other.coffs[i];
+            this._coffs[i] += scale * other._coffs[i];
     }
     /**
      * Add scale times rowA to rowB.
@@ -638,7 +790,7 @@ class Matrix4d {
         let iA = rowIndexA * 4 + firstColumnIndex;
         let iB = rowIndexB * 4 + firstColumnIndex;
         for (let i = firstColumnIndex; i < 4; i++, iA++, iB++)
-            this.coffs[iB] += scale * this.coffs[iA];
+            this._coffs[iB] += scale * this._coffs[iA];
     }
     /** Compute an inverse matrix.
      * * This uses simple Bauss-Jordan elimination -- no pivot.
@@ -656,14 +808,14 @@ class Matrix4d {
         // Downward gaussian elimination, no pivoting:
         for (pivotRow = 0; pivotRow < 3; pivotRow++) {
             pivotIndex = pivotRow * 5;
-            pivotValue = work.coffs[pivotIndex];
+            pivotValue = work._coffs[pivotIndex];
             // console.log("** pivot row " + pivotRow + " pivotvalue " + pivotValue);
             divPivot = Geometry_1.Geometry.conditionalDivideFraction(1.0, pivotValue);
             if (divPivot === undefined)
                 return undefined;
             let indexB = pivotIndex + 4;
             for (let rowB = pivotRow + 1; rowB < 4; rowB++, indexB += 4) {
-                const scale = -work.coffs[indexB] * divPivot;
+                const scale = -work._coffs[indexB] * divPivot;
                 work.rowOperation(pivotRow, rowB, pivotRow, scale);
                 inverse.rowOperation(pivotRow, rowB, 0, scale);
                 // console.log(work.rowArrays());
@@ -674,14 +826,14 @@ class Matrix4d {
         // upward gaussian elimination ...
         for (pivotRow = 1; pivotRow < 4; pivotRow++) {
             pivotIndex = pivotRow * 5;
-            pivotValue = work.coffs[pivotIndex];
+            pivotValue = work._coffs[pivotIndex];
             // console.log("** pivot row " + pivotRow + " pivotvalue " + pivotValue);
             divPivot = Geometry_1.Geometry.conditionalDivideFraction(1.0, pivotValue);
             if (divPivot === undefined)
                 return undefined;
             let indexB = pivotRow;
             for (let rowB = 0; rowB < pivotRow; rowB++, indexB += 4) {
-                const scale = -work.coffs[indexB] * divPivot;
+                const scale = -work._coffs[indexB] * divPivot;
                 work.rowOperation(pivotRow, rowB, pivotRow, scale);
                 inverse.rowOperation(pivotRow, rowB, 0, scale);
                 // console.log("Eliminate Row " + rowB + " from pivot " + pivotRow);
@@ -690,7 +842,7 @@ class Matrix4d {
             }
         }
         // divide through by pivots (all have  beeen confirmed nonzero)
-        inverse.scaleRowsInPlace(1.0 / work.coffs[0], 1.0 / work.coffs[5], 1.0 / work.coffs[10], 1.0 / work.coffs[15]);
+        inverse.scaleRowsInPlace(1.0 / work._coffs[0], 1.0 / work._coffs[5], 1.0 / work._coffs[10], 1.0 / work._coffs[15]);
         // console.log("descaled", inverse.rowArrays());
         return inverse;
     }
@@ -700,28 +852,28 @@ class Matrix4d {
     rowArrays(f) {
         if (f)
             return [
-                [f(this.coffs[0]), f(this.coffs[1]), f(this.coffs[2]), f(this.coffs[3])],
-                [f(this.coffs[4]), f(this.coffs[5]), f(this.coffs[6]), f(this.coffs[7])],
-                [f(this.coffs[8]), f(this.coffs[9]), f(this.coffs[10]), f(this.coffs[11])],
-                [f(this.coffs[12]), f(this.coffs[13]), f(this.coffs[14]), f(this.coffs[15])]
+                [f(this._coffs[0]), f(this._coffs[1]), f(this._coffs[2]), f(this._coffs[3])],
+                [f(this._coffs[4]), f(this._coffs[5]), f(this._coffs[6]), f(this._coffs[7])],
+                [f(this._coffs[8]), f(this._coffs[9]), f(this._coffs[10]), f(this._coffs[11])],
+                [f(this._coffs[12]), f(this._coffs[13]), f(this._coffs[14]), f(this._coffs[15])]
             ];
         else
             return [
-                [this.coffs[0], this.coffs[1], this.coffs[2], this.coffs[3]],
-                [this.coffs[4], this.coffs[5], this.coffs[6], this.coffs[7]],
-                [this.coffs[8], this.coffs[9], this.coffs[10], this.coffs[11]],
-                [this.coffs[12], this.coffs[13], this.coffs[14], this.coffs[15]]
+                [this._coffs[0], this._coffs[1], this._coffs[2], this._coffs[3]],
+                [this._coffs[4], this._coffs[5], this._coffs[6], this._coffs[7]],
+                [this._coffs[8], this._coffs[9], this._coffs[10], this._coffs[11]],
+                [this._coffs[12], this._coffs[13], this._coffs[14], this._coffs[15]]
             ];
     }
     scaleRowsInPlace(ax, ay, az, aw) {
         for (let i = 0; i < 4; i++)
-            this.coffs[i] *= ax;
+            this._coffs[i] *= ax;
         for (let i = 4; i < 8; i++)
-            this.coffs[i] *= ay;
+            this._coffs[i] *= ay;
         for (let i = 8; i < 12; i++)
-            this.coffs[i] *= az;
+            this._coffs[i] *= az;
         for (let i = 12; i < 16; i++)
-            this.coffs[i] *= aw;
+            this._coffs[i] *= aw;
     }
 }
 exports.Matrix4d = Matrix4d;
@@ -729,13 +881,13 @@ exports.Matrix4d = Matrix4d;
  */
 class Map4d {
     constructor(matrix0, matrix1) {
-        this.matrix0 = matrix0;
-        this.matrix1 = matrix1;
+        this._matrix0 = matrix0;
+        this._matrix1 = matrix1;
     }
     /** @returns Return a reference to (not copy of) the "forward" Matrix4d */
-    get transform0() { return this.matrix0; }
+    get transform0() { return this._matrix0; }
     /** @returns Return a reference to (not copy of) the "reverse" Matrix4d */
-    get transform1() { return this.matrix1; }
+    get transform1() { return this._matrix1; }
     /** Create a Map4d, capturing the references to the two matrices. */
     static createRefs(matrix0, matrix1) {
         return new Map4d(matrix0, matrix1);
@@ -747,7 +899,7 @@ class Map4d {
      */
     static createTransform(transform0, transform1) {
         const product = transform0.multiplyTransformTransform(transform1);
-        if (!product.isIdentity())
+        if (!product.isIdentity)
             return undefined;
         return new Map4d(Matrix4d.createTransform(transform0), Matrix4d.createTransform(transform1));
     }
@@ -769,16 +921,16 @@ class Map4d {
         return undefined;
     }
     /** Copy contents from another Map4d */
-    setFrom(other) { this.matrix0.setFrom(other.matrix0), this.matrix1.setFrom(other.matrix1); }
+    setFrom(other) { this._matrix0.setFrom(other._matrix0), this._matrix1.setFrom(other._matrix1); }
     /** @returns Return a clone of this Map4d */
-    clone() { return new Map4d(this.matrix0.clone(), this.matrix1.clone()); }
+    clone() { return new Map4d(this._matrix0.clone(), this._matrix1.clone()); }
     /** Reinitialize this Map4d as an identity. */
-    setIdentity() { this.matrix0.setIdentity(); this.matrix1.setIdentity(); }
+    setIdentity() { this._matrix0.setIdentity(); this._matrix1.setIdentity(); }
     /** Set this map4d from a json object that the two Matrix4d values as properties named matrix0 and matrix1 */
     setFromJSON(json) {
         if (json.matrix0 && json.matrix1) {
-            this.matrix0.setFromJSON(json.matrix0);
-            this.matrix1.setFromJSON(json.matrix1);
+            this._matrix0.setFromJSON(json.matrix0);
+            this._matrix1.setFromJSON(json.matrix1);
         }
         else
             this.setIdentity();
@@ -790,9 +942,9 @@ class Map4d {
         return result;
     }
     /** @returns a json object `{matrix0: value0, matrix1: value1}` */
-    toJSON() { return { matrix0: this.matrix0.toJSON(), matrix1: this.matrix1.toJSON() }; }
+    toJSON() { return { matrix0: this._matrix0.toJSON(), matrix1: this._matrix1.toJSON() }; }
     isAlmostEqual(other) {
-        return this.matrix0.isAlmostEqual(other.matrix0) && this.matrix1.isAlmostEqual(other.matrix1);
+        return this._matrix0.isAlmostEqual(other._matrix0) && this._matrix1.isAlmostEqual(other._matrix1);
     }
     /** Create a map between a frustum and world coordinates.
      * @param origin lower left of frustum
@@ -803,16 +955,12 @@ class Map4d {
      */
     static createVectorFrustum(origin, uVector, vVector, wVector, fraction) {
         fraction = Math.max(fraction, 1.0e-8);
-        const slabToWorld = Transform_1.Transform.createOriginAndMatrix(origin, Transform_1.RotMatrix.createColumns(uVector, vVector, wVector));
+        const slabToWorld = Transform_1.Transform.createOriginAndMatrix(origin, Transform_1.Matrix3d.createColumns(uVector, vVector, wVector));
         const worldToSlab = slabToWorld.inverse();
         if (!worldToSlab)
             return undefined;
-        const worldToSlabMap = Map4d.createTransform(worldToSlab, slabToWorld);
-        if (undefined === worldToSlab)
-            return undefined;
+        const worldToSlabMap = new Map4d(Matrix4d.createTransform(worldToSlab), Matrix4d.createTransform(slabToWorld));
         const slabToNPCMap = new Map4d(Matrix4d.createRowValues(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, fraction, 0, 0, 0, fraction - 1.0, 1), Matrix4d.createRowValues(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1.0 / fraction, 0, 0, 0, (1.0 - fraction) / fraction, 1));
-        if (undefined === worldToSlabMap)
-            return undefined;
         const result = slabToNPCMap.multiplyMapMap(worldToSlabMap);
         /*
         let numIdentity = 0;
@@ -831,24 +979,24 @@ class Map4d {
         return result;
     }
     multiplyMapMap(other) {
-        return new Map4d(this.matrix0.multiplyMatrixMatrix(other.matrix0), other.matrix1.multiplyMatrixMatrix(this.matrix1));
+        return new Map4d(this._matrix0.multiplyMatrixMatrix(other._matrix0), other._matrix1.multiplyMatrixMatrix(this._matrix1));
     }
     reverseInPlace() {
-        const temp = this.matrix0;
-        this.matrix0 = this.matrix1;
-        this.matrix1 = temp;
+        const temp = this._matrix0;
+        this._matrix0 = this._matrix1;
+        this._matrix1 = temp;
     }
     /** return a Map4d whose transform0 is
      * other.transform0 * this.transform0 * other.transform1
      */
     sandwich0This1(other) {
-        return new Map4d(other.matrix0.multiplyMatrixMatrix(this.matrix0.multiplyMatrixMatrix(other.matrix1)), other.matrix0.multiplyMatrixMatrix(this.matrix1.multiplyMatrixMatrix(other.matrix1)));
+        return new Map4d(other._matrix0.multiplyMatrixMatrix(this._matrix0.multiplyMatrixMatrix(other._matrix1)), other._matrix0.multiplyMatrixMatrix(this._matrix1.multiplyMatrixMatrix(other._matrix1)));
     }
     /** return a Map4d whose transform0 is
      * other.transform1 * this.transform0 * other.transform0
      */
     sandwich1This0(other) {
-        return new Map4d(other.matrix1.multiplyMatrixMatrix(this.matrix0.multiplyMatrixMatrix(other.matrix0)), other.matrix1.multiplyMatrixMatrix(this.matrix1.multiplyMatrixMatrix(other.matrix0)));
+        return new Map4d(other._matrix1.multiplyMatrixMatrix(this._matrix0.multiplyMatrixMatrix(other._matrix0)), other._matrix1.multiplyMatrixMatrix(this._matrix1.multiplyMatrixMatrix(other._matrix0)));
     }
 } // Map4d
 exports.Map4d = Map4d;

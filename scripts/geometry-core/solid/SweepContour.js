@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 const FrameBuilder_1 = require("../FrameBuilder");
 const PolyfaceBuilder_1 = require("../polyface/PolyfaceBuilder");
@@ -58,28 +59,28 @@ class SweepContour {
      * @param options options for stroking the curves.
      */
     buildFacets(_builder, options) {
-        if (!this.facets) {
+        if (!this._facets) {
             if (this.curves instanceof CurveChain_1.Loop) {
-                this.xyStrokes = this.curves.cloneStroked(options);
-                if (this.xyStrokes instanceof CurveChain_1.Loop && this.xyStrokes.children.length === 1) {
-                    const children = this.xyStrokes.children;
+                this._xyStrokes = this.curves.cloneStroked(options);
+                if (this._xyStrokes instanceof CurveChain_1.Loop && this._xyStrokes.children.length === 1) {
+                    const children = this._xyStrokes.children;
                     const linestring = children[0];
                     const points = linestring.points;
                     this.localToWorld.multiplyInversePoint3dArrayInPlace(points);
                     if (PointHelpers_1.PolygonOps.sumTriangleAreasXY(points) < 0)
                         points.reverse();
-                    const graph = Triangulation_1.Triangulator.earcutFromPoints(points);
+                    const graph = Triangulation_1.Triangulator.earcutSingleLoop(points);
                     const unflippedPoly = PolyfaceBuilder_1.PolyfaceBuilder.graphToPolyface(graph, options);
-                    this.facets = unflippedPoly;
-                    this.facets.tryTransformInPlace(this.localToWorld);
+                    this._facets = unflippedPoly;
+                    this._facets.tryTransformInPlace(this.localToWorld);
                 }
             }
             else if (this.curves instanceof CurveChain_1.ParityRegion) {
-                this.xyStrokes = this.curves.cloneStroked(options);
-                if (this.xyStrokes instanceof (CurveChain_1.ParityRegion)) {
-                    this.xyStrokes.tryTransformInPlace(this.localToWorld);
+                this._xyStrokes = this.curves.cloneStroked(options);
+                if (this._xyStrokes instanceof (CurveChain_1.ParityRegion)) {
+                    this._xyStrokes.tryTransformInPlace(this.localToWorld);
                     const strokes = [];
-                    for (const childLoop of this.xyStrokes.children) {
+                    for (const childLoop of this._xyStrokes.children) {
                         const loopCurves = childLoop.children;
                         if (loopCurves.length === 1) {
                             const c = loopCurves[0];
@@ -90,8 +91,8 @@ class SweepContour {
                     const graph = Triangulation_1.Triangulator.triangulateStrokedLoops(strokes);
                     if (graph) {
                         const unflippedPoly = PolyfaceBuilder_1.PolyfaceBuilder.graphToPolyface(graph, options);
-                        this.facets = unflippedPoly;
-                        this.facets.tryTransformInPlace(this.localToWorld);
+                        this._facets = unflippedPoly;
+                        this._facets.tryTransformInPlace(this.localToWorld);
                     }
                 }
             }
@@ -102,8 +103,8 @@ class SweepContour {
      */
     emitFacets(builder, reverse, transform) {
         this.buildFacets(builder, builder.options);
-        if (this.facets)
-            builder.addIndexedPolyface(this.facets, reverse, transform);
+        if (this._facets)
+            builder.addIndexedPolyface(this._facets, reverse, transform);
     }
 }
 exports.SweepContour = SweepContour;

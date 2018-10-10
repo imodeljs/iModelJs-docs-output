@@ -1,13 +1,13 @@
 /** @module CartesianGeometry */
 import { Angle, AxisOrder } from "./Geometry";
-import { RotMatrix } from "./Transform";
+import { Matrix3d } from "./Transform";
 /** OrderedRotationAngles represents a non-trivial rotation using three simple axis rotation angles, and an order in which to apply them. */
 export declare class OrderedRotationAngles {
-    private x;
-    private y;
-    private z;
+    private _x;
+    private _y;
+    private _z;
     private _order;
-    private static sTreatVectorsAsColumns;
+    private static _sTreatVectorsAsColumns;
     private constructor();
     readonly order: AxisOrder;
     readonly xAngle: Angle;
@@ -32,7 +32,8 @@ export declare class OrderedRotationAngles {
     /** Create an OrderedRotationAngles from three angles (in degrees) and an ordering in which to apply them when rotating. */
     static createDegrees(xDegrees: number, yDegrees: number, zDegrees: number, order: AxisOrder, result?: OrderedRotationAngles): OrderedRotationAngles;
     /** Create an OrderedRotationAngles from a 3x3 rotational matrix, given the ordering of axis rotations that the matrix derives from. */
-    static createFromRotMatrix(matrix: RotMatrix, order: AxisOrder, result?: OrderedRotationAngles): OrderedRotationAngles;
+    static createFromMatrix3d(matrix: Matrix3d, order: AxisOrder, result?: OrderedRotationAngles): OrderedRotationAngles;
     /** Create a 3x3 rotational matrix from this OrderedRotationAngles. */
-    toRotMatrix(result?: RotMatrix): RotMatrix;
+    toMatrix3d(result?: Matrix3d): Matrix3d;
 }
+//# sourceMappingURL=OrderedRotationAngles.d.ts.map

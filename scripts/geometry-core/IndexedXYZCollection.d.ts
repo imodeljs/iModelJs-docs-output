@@ -62,5 +62,6 @@ export declare abstract class IndexedXYZCollection {
     /**
      * read-only property for number of XYZ in the collection.
      */
-    readonly abstract length: number;
+    abstract readonly length: number;
 }
+//# sourceMappingURL=IndexedXYZCollection.d.ts.map

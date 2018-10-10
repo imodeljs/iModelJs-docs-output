@@ -10,6 +10,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>dropViewport - imodeljs-frontend</title>
+    <meta name="og:title" content="dropViewport - imodeljs-frontend">
+    <meta name="twitter:title" content="dropViewport - imodeljs-frontend">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -177,8 +182,14 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/views/">Views</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/views/viewmanager/">ViewManager</a> > dropViewport</div>
             
             <h2 class="h-dropviewport">dropViewport <span class="badge badge-pill badge-primary badge-method">Method</span><a id="dropviewport" class="heading-anchor" href="#dropviewport"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Remove a Viewport from the list of opened views.</p>
-<p><span class="method-name">dropViewport</span><span class="method-parenthesis">(</span><span class="method-parameters">vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport'>ScreenViewport</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/bentleystatus'>BentleyStatus</a></span></p>
+<p>Remove a Viewport from the list of opened views, and optionally dispose of it.
+Typically a Viewport is dropped when it is no longer of any use to the application, in which case it should also be
+disposed of as it may hold significant GPU resources.
+However in some cases a Viewport may be temporarily dropped to suspend rendering; and subsequently re-added to
+resume rendering - for example, when the Viewport is temporarily hidden by other UI elements.
+In the latter case it is up to the caller to ensure the Viewport is properly disposed of when it is no longer needed.
+Attempting to invoke any function on a Viewport after it has been disposed is an error.</p>
+<p><span class="method-name">dropViewport</span><span class="method-parenthesis">(</span><span class="method-parameters">vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport'>ScreenViewport</a>, disposeOfViewport: boolean = true</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/bentleystatus'>BentleyStatus</a></span></p>
 <p><span class="badge badge-pill badge-primary badge-note">note</span> raises onViewClose event with vp.</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -190,14 +201,19 @@
 <td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport'>ScreenViewport</a></span></td>
 <td>the Viewport to remove.</td>
 </tr>
+<tr>
+<td class="h-disposeofviewport"><span class="parameter-name">disposeOfViewport</span><a id="disposeofviewport" class="heading-anchor" href="#disposeofviewport"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="parameter-type">boolean</span></td>
+<td>Whether or not to dispose of the Viewport. Defaults to true.</td>
+</tr>
 </tbody></table><p><strong>Returns</strong> - SUCCESS if vp was successfully removed, ERROR if it was not present.</p>
 <h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
-<li><span class="defined-in"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fcore%2Ffrontend%2Fsrc%2FViewManager.ts" target="_blank">ViewManager.ts</a></span></li>
+<li><span class="defined-in"><span title="Page edit feature coming soon">ViewManager.ts</span></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             
@@ -218,6 +234,9 @@
             <ul id="inner-nav-dropviewport" class='inner-nav'>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#vp">vp</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#disposeofviewport">disposeOfViewport</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#defined-in">Defined in</a>

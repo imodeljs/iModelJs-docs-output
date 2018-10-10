@@ -1,6 +1,7 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 // Search services for HalfEdgeGraph
@@ -50,7 +51,7 @@ class HalfEdgePointerInspector {
      * * For each he:  `he.faceSuccessor.facePredecessor !== he`
      * * For each he:  `he.facePredecessor.faceSuccessor !== he`
      */
-    isValidClosedHalfEdgeGraph() {
+    get isValidClosedHalfEdgeGraph() {
         return this.numWithMatchedEdgeMate === this.numTested
             && this.numUndefinedFS === 0
             && this.numUndefinedFP === 0
@@ -62,7 +63,7 @@ class HalfEdgePointerInspector {
      * * For each he:  `he.faceSuccessor.facePredecessor !== he`
      * * For each he:  `he.facePredecessor.faceSuccessor !== he`
      */
-    isValidHalfEdgeGraphAllowRaggedBoundary() {
+    get isValidHalfEdgeGraphAllowRaggedBoundary() {
         return this.numWithMatchedEdgeMate + this.numUndefinedEdgeMate === this.numTested
             && this.numUndefinedFS === 0
             && this.numUndefinedFP === 0
@@ -85,8 +86,8 @@ class HalfEdgePointerInspector {
         const inspector = new HalfEdgePointerInspector();
         inspector.inspectHalfEdges(graph);
         if (expectAllMates)
-            return inspector.isValidClosedHalfEdgeGraph();
-        return inspector.isValidHalfEdgeGraphAllowRaggedBoundary();
+            return inspector.isValidClosedHalfEdgeGraph;
+        return inspector.isValidHalfEdgeGraphAllowRaggedBoundary;
     }
 }
 exports.HalfEdgePointerInspector = HalfEdgePointerInspector;

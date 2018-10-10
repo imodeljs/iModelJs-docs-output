@@ -16,3 +16,4 @@ export declare class BoxTopology {
     static readonly faceDirections: number[][][];
     static readonly axisEdgeVertex: number[][][];
 }
+//# sourceMappingURL=BoxTopology.d.ts.map

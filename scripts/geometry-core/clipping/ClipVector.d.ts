@@ -13,7 +13,7 @@ export declare class ClipVector {
     readonly clips: ClipShape[];
     private constructor();
     /** Returns true if this ClipVector contains a ClipShape. */
-    isValid(): boolean;
+    readonly isValid: boolean;
     /** Create a ClipVector with an empty set of ClipShapes. */
     static createEmpty(result?: ClipVector): ClipVector;
     /** Create a ClipVector from an array of ClipShapes */
@@ -77,10 +77,11 @@ export declare class ClipVector {
     isAnyLineStringPointInside(points: Point3d[]): boolean;
     /** Note: Line segments are used to represent 1 dimensional intervals here, rather than segments. */
     sumSizes(intervals: Segment1d[], begin: number, end: number): number;
-    private static readonly TARGET_FRACTION_SUM;
+    private static readonly _TARGET_FRACTION_SUM;
     /**
      * For an array of points that make up a LineString, develops a line segment between each point pair,
      * and returns true if all segments lie inside this ClipVector.
      */
     isLineStringCompletelyContained(points: Point3d[]): boolean;
 }
+//# sourceMappingURL=ClipVector.d.ts.map

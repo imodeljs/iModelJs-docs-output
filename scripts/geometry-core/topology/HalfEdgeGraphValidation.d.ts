@@ -20,13 +20,13 @@ export declare class HalfEdgePointerInspector {
      * * For each he:  `he.faceSuccessor.facePredecessor !== he`
      * * For each he:  `he.facePredecessor.faceSuccessor !== he`
      */
-    isValidClosedHalfEdgeGraph(): boolean;
+    readonly isValidClosedHalfEdgeGraph: boolean;
     /** Return true if all counts are correct for a half edge graph that is complete except for unmated boundaries:
      * * For each he:  `he.edgeMate.edgeMate === he` except where `he.edgeMate === undefined`
      * * For each he:  `he.faceSuccessor.facePredecessor !== he`
      * * For each he:  `he.facePredecessor.faceSuccessor !== he`
      */
-    isValidHalfEdgeGraphAllowRaggedBoundary(): boolean;
+    readonly isValidHalfEdgeGraphAllowRaggedBoundary: boolean;
     /** inspect all half edges of graph.
      * All pointer counts are left in member vars for later inspection.
      */
@@ -47,3 +47,4 @@ export declare class HalfEdgeMaskValidation {
      */
     static isMaskConsistentAroundAllFaces(graph: HalfEdgeGraph, mask: HalfEdgeMask): boolean;
 }
+//# sourceMappingURL=HalfEdgeGraphValidation.d.ts.map

@@ -1,6 +1,10 @@
 "use strict";
-/** @module Numerics */
+/*---------------------------------------------------------------------------------------------
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
+/** @module Numerics */
 const Geometry_1 = require("../Geometry");
 const PointVector_1 = require("../PointVector");
 const GrowableArray_1 = require("../GrowableArray");
@@ -12,13 +16,13 @@ class ClusterableArray extends GrowableArray_1.GrowableBlockedArray {
      */
     constructor(numCoordinatePerPoint, numExtraDataPerPoint, initialBlockCapacity) {
         super(1 + numCoordinatePerPoint + numExtraDataPerPoint, initialBlockCapacity);
-        this.numExtraDataPerPoint = numExtraDataPerPoint;
-        this.numCoordinatePerPoint = numCoordinatePerPoint;
+        this._numExtraDataPerPoint = numExtraDataPerPoint;
+        this._numCoordinatePerPoint = numCoordinatePerPoint;
     }
     static sortVectorComponent(index) {
         let c = 1.0;
         for (let i = 1; i < index; i++)
-            c *= ClusterableArray.vectorFactor;
+            c *= ClusterableArray._vectorFactor;
         return c;
     }
     /** load a block, placing data[i] at block[i+1] to allow sort coordinate first.
@@ -28,73 +32,73 @@ class ClusterableArray extends GrowableArray_1.GrowableBlockedArray {
         const i0 = this.newBlockIndex() + 1;
         const n = Math.min(this.numPerBlock - 1, data.length);
         for (let i = 0; i < n; i++)
-            this.data[i0 + i] = data[i];
+            this._data[i0 + i] = data[i];
     }
     /** add a block with directly 2 to 5 listed content parameters.
      * This assumes numDataPerPoint is sufficient for the parameters provided.
      */
     addDirect(x0, x1, x2, x3, x4) {
         const i0 = this.newBlockIndex();
-        this.data[i0 + 1] = x0;
-        this.data[i0 + 2] = x1;
+        this._data[i0 + 1] = x0;
+        this._data[i0 + 2] = x1;
         if (x2 !== undefined)
-            this.data[i0 + 3] = x2;
+            this._data[i0 + 3] = x2;
         if (x3 !== undefined)
-            this.data[i0 + 4] = x3;
+            this._data[i0 + 4] = x3;
         if (x4 !== undefined)
-            this.data[i0 + 5] = x4;
+            this._data[i0 + 5] = x4;
     }
     /** add a block with directly from a Point2d with 0 to 3 extras
      * This assumes numDataPerPoint is sufficient for the parameters provided.
      */
     addPoint2d(xy, a, b, c) {
         const i0 = this.newBlockIndex();
-        this.data[i0 + 1] = xy.x;
-        this.data[i0 + 2] = xy.y;
+        this._data[i0 + 1] = xy.x;
+        this._data[i0 + 2] = xy.y;
         if (a !== undefined)
-            this.data[i0 + 3] = a;
+            this._data[i0 + 3] = a;
         if (b !== undefined)
-            this.data[i0 + 4] = b;
+            this._data[i0 + 4] = b;
         if (c !== undefined)
-            this.data[i0 + 5] = c;
+            this._data[i0 + 5] = c;
     }
     /** add a block with directly from a Point2d with 0 to 3 extras
      * This assumes numDataPerPoint is sufficient for the parameters provided.
      */
     addPoint3d(xyz, a, b, c) {
         const i0 = this.newBlockIndex();
-        this.data[i0 + 1] = xyz.x;
-        this.data[i0 + 2] = xyz.y;
-        this.data[i0 + 3] = xyz.z;
+        this._data[i0 + 1] = xyz.x;
+        this._data[i0 + 2] = xyz.y;
+        this._data[i0 + 3] = xyz.z;
         if (a !== undefined)
-            this.data[i0 + 4] = a;
+            this._data[i0 + 4] = a;
         if (b !== undefined)
-            this.data[i0 + 5] = b;
+            this._data[i0 + 5] = b;
         if (c !== undefined)
-            this.data[i0 + 6] = c;
+            this._data[i0 + 6] = c;
     }
     getPoint2d(blockIndex, result) {
         const i0 = this.blockIndexToDoubleIndex(blockIndex);
-        return PointVector_1.Point2d.create(this.data[i0 + 1], this.data[i0 + 2], result);
+        return PointVector_1.Point2d.create(this._data[i0 + 1], this._data[i0 + 2], result);
     }
     getPoint3d(blockIndex, result) {
         const i0 = this.blockIndexToDoubleIndex(blockIndex);
-        return PointVector_1.Point3d.create(this.data[i0 + 1], this.data[i0 + 2], this.data[i0 + 3], result);
+        return PointVector_1.Point3d.create(this._data[i0 + 1], this._data[i0 + 2], this._data[i0 + 3], result);
     }
     /** Return a single extra data value */
     getExtraData(blockIndex, i) {
         const i0 = this.blockIndexToDoubleIndex(blockIndex);
-        return this.data[i0 + 1 + this.numCoordinatePerPoint + i];
+        return this._data[i0 + 1 + this._numCoordinatePerPoint + i];
     }
     /** Return a single data value */
     getData(blockIndex, i) {
         const i0 = this.blockIndexToDoubleIndex(blockIndex);
-        return this.data[i0 + i];
+        return this._data[i0 + i];
     }
     /** Set a single extra data value */
     setExtraData(blockIndex, i, value) {
         const i0 = this.blockIndexToDoubleIndex(blockIndex);
-        this.data[i0 + 1 + this.numCoordinatePerPoint + i] = value;
+        this._data[i0 + 1 + this._numCoordinatePerPoint + i] = value;
     }
     static isClusterTerminator(x) { return x === ClusterableArray.clusterTerminator; }
     /** Return an array giving clusters of blocks with similar coordinates.
@@ -123,7 +127,7 @@ class ClusterableArray extends GrowableArray_1.GrowableBlockedArray {
         let i = 0;
         let j = 0;
         const k0 = 1; // beginning of active column for distance
-        const k1 = 1 + this.numCoordinatePerPoint;
+        const k1 = 1 + this._numCoordinatePerPoint;
         for (i = 0; i < n; i++) {
             clusterStartBlockIndex = firstSort[i];
             if (!ClusterableArray.isClusterTerminator(clusterStartBlockIndex)) {
@@ -153,14 +157,14 @@ class ClusterableArray extends GrowableArray_1.GrowableBlockedArray {
      */
     setupPrimaryClusterSort() {
         const nb = this.numBlocks;
-        const nc = this.numCoordinatePerPoint;
+        const nc = this._numCoordinatePerPoint;
         const vector = new Float64Array(nc);
         vector[0] = 1.0;
         for (let c = 1; c < nc; c++)
-            vector[c] = vector[c - 1] * ClusterableArray.vectorFactor;
+            vector[c] = vector[c - 1] * ClusterableArray._vectorFactor;
         let k = 0;
         let dot = 0.0;
-        const data = this.data;
+        const data = this._data;
         for (let b = 0; b < nb; b++) {
             k = this.blockIndexToDoubleIndex(b);
             dot = 0.0;
@@ -174,13 +178,13 @@ class ClusterableArray extends GrowableArray_1.GrowableBlockedArray {
         const result = [];
         for (let b = 0; b < this.numBlocks; b++) {
             let i = this.blockIndexToDoubleIndex(b);
-            const chunk = [b, this.data[i++]];
+            const chunk = [b, this._data[i++]];
             const coordinates = [];
-            for (let c = 0; c < this.numCoordinatePerPoint; c++)
-                coordinates.push(this.data[i++]);
+            for (let c = 0; c < this._numCoordinatePerPoint; c++)
+                coordinates.push(this._data[i++]);
             chunk.push(coordinates);
-            for (let c = 0; c < this.numExtraDataPerPoint; c++)
-                chunk.push(this.data[i++]);
+            for (let c = 0; c < this._numExtraDataPerPoint; c++)
+                chunk.push(this._data[i++]);
             result.push(chunk);
         }
         return result;
@@ -339,7 +343,7 @@ class ClusterableArray extends GrowableArray_1.GrowableBlockedArray {
                 numThisCluster = 0;
             }
             else {
-                if (numThisCluster === 0)
+                if (numThisCluster === 0) // This is the first encounter with a new cluster
                     result.growablePackedPoints.pushFromGrowableXYZArray(source, k);
                 result.oldToNew[k] = currentClusterIndex;
                 numThisCluster++;
@@ -348,7 +352,7 @@ class ClusterableArray extends GrowableArray_1.GrowableBlockedArray {
         return result;
     }
 }
-ClusterableArray.vectorFactor = 0.8732; // use 1.0 to rig easy tests.
+ClusterableArray._vectorFactor = 0.8732; // use 1.0 to rig easy tests.
 /** this value is used as cluster terminator in the Uint232rray of indcies. */
 ClusterableArray.clusterTerminator = 0xFFffFFff;
 exports.ClusterableArray = ClusterableArray;

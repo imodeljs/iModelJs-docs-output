@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module CartesianGeometry */
 const ClipPrimitive_1 = require("./ClipPrimitive");
@@ -18,7 +19,7 @@ class ClipVector {
     /** Returns a reference to the array of ClipShapes. */
     get clips() { return this._clips; }
     /** Returns true if this ClipVector contains a ClipShape. */
-    isValid() { return this._clips.length > 0; }
+    get isValid() { return this._clips.length > 0; }
     /** Create a ClipVector with an empty set of ClipShapes. */
     static createEmpty(result) {
         if (result) {
@@ -54,7 +55,7 @@ class ClipVector {
     }
     /** Parse this ClipVector into a JSON object. */
     toJSON() {
-        if (!this.isValid())
+        if (!this.isValid)
             return [];
         const val = [];
         for (const clipShape of this.clips)
@@ -107,19 +108,19 @@ class ClipVector {
         for (const shape of this._clips) {
             const thisRange = shape.getRange(false, transform);
             if (thisRange !== undefined) {
-                if (range.isNull())
+                if (range.isNull)
                     range.setFrom(thisRange);
                 else
                     range.intersect(thisRange, range);
             }
         }
-        if (!this.boundingRange.isNull())
+        if (!this.boundingRange.isNull)
             range.intersect(this.boundingRange, range);
         return range;
     }
     /** Returns true if the given point lies inside all of this ClipVector's ClipShapes (by rule of intersection). */
     pointInside(point, onTolerance = Geometry_1.Geometry.smallMetricDistanceSquared) {
-        if (!this.boundingRange.isNull() && !this.boundingRange.containsPoint(point))
+        if (!this.boundingRange.isNull && !this.boundingRange.containsPoint(point))
             return false;
         for (const clip of this._clips)
             if (!clip.pointInside(point, onTolerance))
@@ -131,7 +132,7 @@ class ClipVector {
         for (const clip of this._clips)
             if (clip.transformInPlace(transform) === false)
                 return false;
-        if (!this.boundingRange.isNull())
+        if (!this.boundingRange.isNull)
             transform.multiplyRange(this.boundingRange, this.boundingRange);
         return true;
     }
@@ -156,7 +157,7 @@ class ClipVector {
             return retVal;
         const deltaTrans = Transform_1.Transform.createIdentity();
         for (const clip of this._clips) {
-            if (clip !== this._clips[0]) {
+            if (clip !== this._clips[0]) { // Is not the first iteration
                 let fwdTrans = Transform_1.Transform.createIdentity();
                 let invTrans = Transform_1.Transform.createIdentity();
                 if (this._clips[0].transformValid && clip.transformValid) {
@@ -271,15 +272,15 @@ class ClipVector {
                 fractionSum += this.sumSizes(clipIntervals, index0, index1);
                 index0 = index1;
                 // ASSUME primitives are non-overlapping...
-                if (fractionSum >= ClipVector.TARGET_FRACTION_SUM)
+                if (fractionSum >= ClipVector._TARGET_FRACTION_SUM)
                     break;
             }
-            if (fractionSum < ClipVector.TARGET_FRACTION_SUM)
+            if (fractionSum < ClipVector._TARGET_FRACTION_SUM)
                 return false;
         }
         return true;
     }
 }
-ClipVector.TARGET_FRACTION_SUM = 0.99999999;
+ClipVector._TARGET_FRACTION_SUM = 0.99999999;
 exports.ClipVector = ClipVector;
 //# sourceMappingURL=ClipVector.js.map

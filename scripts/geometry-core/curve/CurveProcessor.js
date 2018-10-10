@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 /** @module Curve */
 const CurvePrimitive_1 = require("./CurvePrimitive");
 /* tslint:disable:variable-name no-empty*/
@@ -57,10 +58,10 @@ exports.RecursiveCurveProcessor = RecursiveCurveProcessor;
 class RecursiveCurveProcessorWithStack extends RecursiveCurveProcessor {
     constructor() {
         super();
-        this.stack = [];
+        this._stack = [];
     }
-    enter(data) { this.stack.push(data); }
-    leave() { return this.stack.pop(); }
+    enter(data) { this._stack.push(data); }
+    leave() { return this._stack.pop(); }
     /** process error content */
     announceUnexpected(_data, _indexInParent) { }
     /** process a leaf primitive. */

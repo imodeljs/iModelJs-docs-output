@@ -1,6 +1,7 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Topology */
@@ -24,7 +25,7 @@ const Geometry_1 = require("../Geometry");
  */
 class HalfEdge {
     constructor(x = 0, y = 0, z = 0, i = 0) {
-        this._id = HalfEdge.totalNodesCreated++;
+        this._id = HalfEdge._totalNodesCreated++;
         this.i = i;
         this.maskBits = 0x00000000;
         this.x = x;
@@ -471,7 +472,7 @@ class HalfEdge {
         return 0.5 * sum;
     }
 }
-HalfEdge.totalNodesCreated = 0;
+HalfEdge._totalNodesCreated = 0;
 exports.HalfEdge = HalfEdge;
 /**
  * A HalfEdgeGraph has:
@@ -618,7 +619,7 @@ class HalfEdgeGraph {
      * * Call the announceFace function
      * * continue search if announceFace(graph, node) returns true
      * * terminate search if announceface (graph, node) returns false
-     * @param  annonceFace function to apply at one node of each face.
+     * @param  announceFace function to apply at one node of each face.
      */
     announceFaceLoops(announceFace) {
         this.clearMask(8192 /* VISITED */);
@@ -651,4 +652,24 @@ class HalfEdgeGraph {
     countNodes() { return this.allHalfEdges.length; }
 }
 exports.HalfEdgeGraph = HalfEdgeGraph;
+var HalfEdgeMask;
+(function (HalfEdgeMask) {
+    HalfEdgeMask[HalfEdgeMask["EXTERIOR"] = 1] = "EXTERIOR";
+    HalfEdgeMask[HalfEdgeMask["BOUNDARY"] = 2] = "BOUNDARY";
+    HalfEdgeMask[HalfEdgeMask["CONSTU_MASK"] = 4] = "CONSTU_MASK";
+    HalfEdgeMask[HalfEdgeMask["CONSTV_MASK"] = 8] = "CONSTV_MASK";
+    HalfEdgeMask[HalfEdgeMask["USEAM_MASK"] = 16] = "USEAM_MASK";
+    HalfEdgeMask[HalfEdgeMask["VSEAM_MASK"] = 32] = "VSEAM_MASK";
+    HalfEdgeMask[HalfEdgeMask["BOUNDARY_VERTEX_MASK"] = 64] = "BOUNDARY_VERTEX_MASK";
+    HalfEdgeMask[HalfEdgeMask["PRIMARY_VERTEX_MASK"] = 128] = "PRIMARY_VERTEX_MASK";
+    HalfEdgeMask[HalfEdgeMask["DIRECTED_EDGE_MASK"] = 256] = "DIRECTED_EDGE_MASK";
+    HalfEdgeMask[HalfEdgeMask["PRIMARY_EDGE"] = 512] = "PRIMARY_EDGE";
+    HalfEdgeMask[HalfEdgeMask["HULL_MASK"] = 1024] = "HULL_MASK";
+    HalfEdgeMask[HalfEdgeMask["SECTION_EDGE_MASK"] = 2048] = "SECTION_EDGE_MASK";
+    HalfEdgeMask[HalfEdgeMask["POLAR_LOOP_MASK"] = 4096] = "POLAR_LOOP_MASK";
+    HalfEdgeMask[HalfEdgeMask["VISITED"] = 8192] = "VISITED";
+    HalfEdgeMask[HalfEdgeMask["TRIANGULATED_NODE_MASK"] = 16384] = "TRIANGULATED_NODE_MASK";
+    HalfEdgeMask[HalfEdgeMask["NULL_MASK"] = 0] = "NULL_MASK";
+    HalfEdgeMask[HalfEdgeMask["ALL_MASK"] = 4294967295] = "ALL_MASK";
+})(HalfEdgeMask = exports.HalfEdgeMask || (exports.HalfEdgeMask = {}));
 //# sourceMappingURL=Graph.js.map

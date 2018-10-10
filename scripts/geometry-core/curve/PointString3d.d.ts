@@ -18,7 +18,7 @@ export declare class PointString3d extends GeometryQuery implements BeJSONFuncti
     readonly points: Point3d[];
     private constructor();
     cloneTransformed(transform: Transform): PointString3d;
-    private static flattenArray(arr);
+    private static flattenArray;
     /** Create a PointString3d from points. */
     static create(...points: any[]): PointString3d;
     /** Add multiple points to the PointString3d */
@@ -64,3 +64,4 @@ export declare class PointString3d extends GeometryQuery implements BeJSONFuncti
     /** Pass this PointString3d to the handler's `handlePointString` method. */
     dispatchToGeometryHandler(handler: GeometryHandler): any;
 }
+//# sourceMappingURL=PointString3d.d.ts.map

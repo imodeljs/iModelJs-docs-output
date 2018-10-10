@@ -18,9 +18,9 @@ import { LineString3d } from "../curve/LineString3d";
  * *
  */
 export declare class Cone extends SolidPrimitive implements UVSurface {
-    private localToWorld;
-    private radiusA;
-    private radiusB;
+    private _localToWorld;
+    private _radiusA;
+    private _radiusB;
     private _maxRadius;
     protected constructor(map: Transform, radiusA: number, radiusB: number, capped: boolean);
     clone(): Cone;
@@ -66,3 +66,4 @@ export declare class Cone extends SolidPrimitive implements UVSurface {
     UVFractionToPoint(uFraction: number, vFraction: number, result?: Point3d): Point3d;
     UVFractionToPointAndTangents(uFraction: number, vFraction: number, result?: Plane3dByOriginAndVectors): Plane3dByOriginAndVectors;
 }
+//# sourceMappingURL=Cone.d.ts.map

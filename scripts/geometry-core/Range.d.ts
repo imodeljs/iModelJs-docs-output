@@ -7,8 +7,8 @@ import { LowAndHighXYZ, LowAndHighXY } from "./PointVector";
 import { XAndY, XYAndZ } from "./PointVector";
 import { GrowableXYZArray } from "./GrowableArray";
 export declare abstract class RangeBase {
-    protected static readonly EXTREME_POSITIVE: number;
-    protected static readonly EXTREME_NEGATIVE: number;
+    protected static readonly _EXTREME_POSITIVE: number;
+    protected static readonly _EXTREME_NEGATIVE: number;
     /** @return 0 if high<= low, otherwise `1/(high-low)` for use in fractionalizing */
     protected static npcScaleFactor(low: number, high: number): number;
     static isExtremeValue(x: number): boolean;
@@ -60,7 +60,7 @@ export declare class Range3d extends RangeBase implements LowAndHighXYZ, BeJSONF
      */
     static fromArrayBuffer(buffer: ArrayBuffer): Range3d;
     constructor(lowx?: number, lowy?: number, lowz?: number, highx?: number, highy?: number, highz?: number);
-    /** @returns Returns true if this and other have equal low and high point x,y,z parts */
+    /** Returns true if this and other have equal low and high point x,y,z parts */
     isAlmostEqual(other: Range3d): boolean;
     /** copy low and high values from other. */
     setFrom(other: Range3d): void;
@@ -69,9 +69,9 @@ export declare class Range3d extends RangeBase implements LowAndHighXYZ, BeJSONF
     /** Return a JSON object */
     toJSON(): Range3dProps;
     static fromJSON(json?: Range3dProps): Range3d;
-    private setDirect(xA, yA, zA, xB, yB, zB, correctToNull);
+    private setDirect;
     clone(result?: Range3d): Range3d;
-    /** @returns Return a range initialized to have no content. */
+    /** Return a range initialized to have no content. */
     static createNull(result?: Range3d): Range3d;
     /** Extend (modify in place) so that the range is large enough to include the supplied points. */
     extend(...point: Point3d[]): void;
@@ -102,41 +102,44 @@ export declare class Range3d extends RangeBase implements LowAndHighXYZ, BeJSONF
     /** multiply the point x,y,z by transform and use the coordinate to extend this range.
      */
     extendTransformedXYZ(transform: Transform, x: number, y: number, z: number): void;
+    /** multiply the point x,y,z,w by transform and use the coordinate to extend this range.
+     */
+    extendTransformedXYZW(transform: Transform, x: number, y: number, z: number, w: number): void;
     /** multiply the point x,y,z by transform and use the coordinate to extend this range.
      */
     extendInverseTransformedXYZ(transform: Transform, x: number, y: number, z: number): boolean;
     /** Extend the range by the two transforms applied to xyz */
     extendTransformTransformedXYZ(transformA: Transform, transformB: Transform, x: number, y: number, z: number): void;
     /** Test if the box has high<low for any of x,y,z, condition. Note that a range around a single point is NOT null. */
-    isNull(): boolean;
+    readonly isNull: boolean;
     /** Test if  data has high<low for any of x,y,z, condition. Note that a range around a single point is NOT null. */
     static isNull(data: LowAndHighXYZ): boolean;
     /** Test of the range contains a single point. */
-    isSinglePoint(): boolean;
-    /** @returns Return the length of the box in the x direction */
+    readonly isSinglePoint: boolean;
+    /**  Return the length of the box in the x direction */
     xLength(): number;
-    /** @returns Return the length of the box in the y direction */
+    /**  Return the length of the box in the y direction */
     yLength(): number;
-    /** @returns Return the length of the box in the z direction */
+    /**  Return the length of the box in the z direction */
     zLength(): number;
-    /** @returns Return the largest of the x,y, z lengths of the range. */
+    /**  Return the largest of the x,y, z lengths of the range. */
     maxLength(): number;
     /** return the diagonal vector. There is no check for isNull -- if the range isNull(), the vector will have very large negative coordinates. */
     diagonal(result?: Vector3d): Vector3d;
-    /** @returns Return the diagonal vector. There is no check for isNull -- if the range isNull(), the vector will have very large negative coordinates. */
+    /**  Return the diagonal vector. There is no check for isNull -- if the range isNull(), the vector will have very large negative coordinates. */
     diagonalFractionToPoint(fraction: number, result?: Point3d): Point3d;
-    /** @returns Return a point given by fractional positions on the XYZ axes. This is done with no check for isNull !!! */
+    /**  Return a point given by fractional positions on the XYZ axes. This is done with no check for isNull !!! */
     fractionToPoint(fractionX: number, fractionY: number, fractionZ: number, result?: Point3d): Point3d;
-    /** @returns Return a point given by fractional positions on the XYZ axes.
-     * * Returns undefined if the range is null.
+    /**  Return a point given by fractional positions on the XYZ axes.
+     *  Returns undefined if the range is null.
      */
     localXYZToWorld(fractionX: number, fractionY: number, fractionZ: number, result?: Point3d): Point3d | undefined;
-    /** @returns Return a point given by fractional positions on the XYZ axes.
+    /** Return a point given by fractional positions on the XYZ axes.
      * * Returns undefined if the range is null.
      */
     localToWorld(xyz: XYAndZ, result?: Point3d): Point3d | undefined;
     /** Replace fractional coordinates by world coordinates.
-     * @return false if null range.
+     * @returns false if null range.
      */
     localToWorldArrayInPlace(points: Point3d[]): boolean;
     /** Return fractional coordinates of point within the range.
@@ -149,16 +152,16 @@ export declare class Range3d extends RangeBase implements LowAndHighXYZ, BeJSONF
      * * returns undefined if any direction (x,y,z) has zero length
      */
     worldToLocalArrayInPlace(point: Point3d[]): boolean;
-    /** @returns Return an array with the 8 corners on order wth "x varies fastest, then y, then z" */
+    /** Return an array with the 8 corners on order wth "x varies fastest, then y, then z" */
     corners(): Point3d[];
-    /** @returns Return the largest absolute value among any coordinates in the box corners. */
+    /** Return the largest absolute value among any coordinates in the box corners. */
     maxAbs(): number;
-    /** @returns true if the x direction size is nearly zero */
-    isAlmostZeroX(): boolean;
-    /** @returns true if the y direction size is nearly zero */
-    isAlmostZeroY(): boolean;
-    /** @returns true if the z direction size is nearly zero */
-    isAlmostZeroZ(): boolean;
+    /** returns true if the x direction size is nearly zero */
+    readonly isAlmostZeroX: boolean;
+    /** returns true if the y direction size is nearly zero */
+    readonly isAlmostZeroY: boolean;
+    /** returns true if the z direction size is nearly zero */
+    readonly isAlmostZeroZ: boolean;
     /** Test if a point given as x,y,z is within the range. */
     containsXYZ(x: number, y: number, z: number): boolean;
     /** Test if a point is within the range. */
@@ -169,12 +172,16 @@ export declare class Range3d extends RangeBase implements LowAndHighXYZ, BeJSONF
     containsRange(other: Range3d): boolean;
     /** Test if there is any intersection with other range */
     intersectsRange(other: Range3d): boolean;
+    /** Test if there is any intersection with other range */
+    intersectsRangeXY(other: Range3d): boolean;
     /** Return 0 if the point is within the range, otherwise the distance to the closest face or corner */
     distanceToPoint(point: XYAndZ): number;
-    /** @returns 0 if the ranges have any overlap, otherwise the shortest absolute distance from one to the other. */
+    /** returns 0 if the ranges have any overlap, otherwise the shortest absolute distance from one to the other. */
     distanceToRange(other: Range3d): number;
     /** Expand this range by distances a (possibly signed) in all directions */
     extendXYZ(x: number, y: number, z: number): void;
+    /** Expand this range by distances a (weighted and possibly signed) in all directions */
+    extendXYZW(x: number, y: number, z: number, w: number): void;
     /** Expand this range to include a point. */
     extendPoint(point: Point3d): void;
     /** Expand this range to include a transformed point. */
@@ -198,14 +205,21 @@ export declare class Range3d extends RangeBase implements LowAndHighXYZ, BeJSONF
      * @param delta shift to apply.
      */
     expandInPlace(delta: number): void;
+    /** Create a local to world transform from this range. */
+    getLocalToWorldTransform(result?: Transform): Transform;
+    /**
+     * Creates an NPC to world transformation to go from 000...111 to the globally aligned cube with diagonally opposite corners that are the
+     * min and max of this range. The diagonal component for any degenerate direction is 1.
+     */
+    getNpcToWorldRangeTransform(result?: Transform): Transform;
 }
 export declare class Range1d extends RangeBase {
     low: number;
     high: number;
     setNull(): void;
-    private setDirect(low, high, correctToNull);
+    private setDirect;
     private constructor();
-    /** @returns Returns true if this and other have equal low and high parts */
+    /** Returns true if this and other have equal low and high parts */
     isAlmostEqual(other: Range1d): boolean;
     /** copy contents from other Range1d. */
     setFrom(other: Range1d): void;
@@ -222,7 +236,7 @@ export declare class Range1d extends RangeBase {
      * ```
      */
     toJSON(): Range1dProps;
-    private set_direct(low, high);
+    private set_direct;
     /** return a new Range1d with contents of this.
      * @param result optional result.
      */
@@ -260,24 +274,24 @@ export declare class Range1d extends RangeBase {
     /** extend to include an array of values */
     extendArray(points: number[]): void;
     /** Test if the box has high<low Note that a range around a single point is NOT null. */
-    isNull(): boolean;
+    readonly isNull: boolean;
     /** Test of the range contains a single point. */
-    isSinglePoint(): boolean;
-    /** @returns Return the length of the range in the x direction */
+    readonly isSinglePoint: boolean;
+    /** Return the length of the range in the x direction */
     length(): number;
     /** return a point given by fractional positions within the range. This is done with no check for isNull !!! */
     fractionToPoint(fraction: number): number;
-    /** @returns Return the largest absolute value among the box limits. */
+    /** Return the largest absolute value among the box limits. */
     maxAbs(): number;
     /** Test if the x direction size is nearly zero */
-    isAlmostZeroLength(): boolean;
+    readonly isAlmostZeroLength: boolean;
     /** Test if a number is within the range. */
     containsX(x: number): boolean;
     /** Test of other range is within this range */
     containsRange(other: Range1d): boolean;
     /** Test if there is any intersection with other range */
     intersectsRange(other: Range1d): boolean;
-    /** @returns 0 if the ranges have any overlap, otherwise the shortest absolute distance from one to the other. */
+    /** returns 0 if the ranges have any overlap, otherwise the shortest absolute distance from one to the other. */
     distanceToRange(other: Range1d): number;
     /** Return 0 if the point is within the range, otherwise the (unsigned) distance to the closest face or corner */
     distanceToX(x: number): number;
@@ -331,8 +345,8 @@ export declare class Range2d extends RangeBase implements LowAndHighXY {
     freeze(): void;
     toJSON(): Range2dProps;
     static fromJSON(json?: Range2dProps): Range2d;
-    private setDirect(xA, yA, xB, yB, correctToNull);
-    /** @returns return a clone of this range (or copy to optional result) */
+    private setDirect;
+    /** return a clone of this range (or copy to optional result) */
     clone(result?: Range2d): Range2d;
     /** create a range with no content. */
     static createNull(result?: Range2d): Range2d;
@@ -347,11 +361,11 @@ export declare class Range2d extends RangeBase implements LowAndHighXY {
     /** Create a range around an array of points. */
     static createArray(points: Point2d[], result?: Range2d): Range2d;
     /** Test if the box has high<low for any of x,y, condition. Note that a range around a single point is NOT null. */
-    isNull(): boolean;
+    readonly isNull: boolean;
     /** Test if the box has high strictly less than low for any of x,y, condition. Note that a range around a single point is NOT null. */
     static isNull(range: LowAndHighXY): boolean;
     /** Test of the range contains a single point. */
-    isSinglePoint(): boolean;
+    readonly isSinglePoint: boolean;
     /** Length of the box in the x direction */
     xLength(): number;
     /** Length of the box in the y direction */
@@ -365,9 +379,9 @@ export declare class Range2d extends RangeBase implements LowAndHighXY {
     /** Largest absolute value among any coordinates in the box corners. */
     maxAbs(): number;
     /** Test if the x direction size is nearly zero */
-    isAlmostZeroX(): boolean;
+    readonly isAlmostZeroX: boolean;
     /** Test if the y direction size is nearly zero */
-    isAlmostZeroY(): boolean;
+    readonly isAlmostZeroY: boolean;
     /** Test if a point given as x,y is within the range. */
     containsXY(x: number, y: number): boolean;
     /** Test if a point is within the range. */
@@ -404,3 +418,4 @@ export declare class Range2d extends RangeBase implements LowAndHighXY {
      */
     expandInPlace(delta: number): void;
 }
+//# sourceMappingURL=Range.d.ts.map

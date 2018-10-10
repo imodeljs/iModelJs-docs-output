@@ -9,7 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AccessToken - iModelJs</title>
+    <title>AccessToken - iModel.js</title>
+    <meta name="og:title" content="AccessToken - iModel.js">
+    <meta name="twitter:title" content="AccessToken - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -90,8 +95,9 @@
         <h3 id="helpful links">Helpful links</h3>
         <ul>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
         </ul>
@@ -100,29 +106,29 @@
     <div class='documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/">common</a> > AccessToken</div>
-            <div class="edit-link"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fdocs%2Fcore%2Flearning%2Fcommon%2FAccessToken.md" target="_blank">Edit this page</a></div>
+            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
             <h1 id="accesstoken">AccessToken</h1>
-<p>A client must have an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a> in order to open an iModel. To obtain an AccessToken, the client must first obtain a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/authorizationtoken'>AuthorizationToken</a>. That requires an IMS login.</p>
+<p>A client must have an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a> to open an iModel. To obtain an AccessToken, the client must first obtain a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/authorizationtoken'>AuthorizationToken</a>. That requires an IMS login.</p>
 <p><em>Example:</em></p>
-<pre class="no-line-numbers"><code class="language-typescript">import { AccessToken, DeploymentEnv, AuthorizationToken, ImsActiveSecureTokenClient, ImsDelegationSecureTokenClient } from &quot;@bentley/imodeljs-clients&quot;;
+<pre class="no-line-numbers"><code class="language-typescript">import { AccessToken, AuthorizationToken, ImsActiveSecureTokenClient, ImsDelegationSecureTokenClient, Config } from &quot;@bentley/imodeljs-clients&quot;;
 
 interface UserCredentials {
     email: string;
     password: string;
 }
 
-async function getUserAccessToken(userCredentials: UserCredentials, env: DeploymentEnv): Promise&lt;AccessToken&gt; {
+async function getUserAccessToken(userCredentials: UserCredentials): Promise&lt;AccessToken&gt; {
     const alctx = new ActivityLoggingContext(Guid.createValue());
-    const authToken: AuthorizationToken = await (new ImsActiveSecureTokenClient(env)).getToken(alctx, userCredentials.email, userCredentials.password);
+    const authToken: AuthorizationToken = await (new ImsActiveSecureTokenClient()).getToken(alctx, userCredentials.email, userCredentials.password);
 
-    const accessToken = await (new ImsDelegationSecureTokenClient(env)).getToken(alctx, authToken!);
+    const accessToken = await (new ImsDelegationSecureTokenClient()).getToken(alctx, authToken!);
 
     return accessToken;
 }</code></pre>
 <p>AccessTokens have a limited lifetime and so the client may have to obtain a fresh AccessToken from time to time.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             

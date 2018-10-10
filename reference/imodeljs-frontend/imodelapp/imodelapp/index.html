@@ -10,6 +10,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>IModelApp - imodeljs-frontend</title>
+    <meta name="og:title" content="IModelApp - imodeljs-frontend">
+    <meta name="twitter:title" content="IModelApp - imodeljs-frontend">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -177,15 +182,11 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/imodelapp/">IModelApp</a> > IModelApp</div>
             
             <h2 class="h-imodelapp">IModelApp <span class="badge badge-pill badge-primary badge-class">Class</span><a id="imodelapp" class="heading-anchor" href="#imodelapp"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>An instance of IModelApp is the frontend administrator for applications that read, write, or display an iModel in a browser.
+<p>Creates an <em>Application</em> to show an iModel in a web browser.
 It connects the user interface with the iModel.js services. There can be only one IModelApp active in a session.</p>
-<p>Applications may customize the behavior of the IModelApp services by subclassing this class and supplying different
-implementations of them.</p>
+<p>Applications may customize the behavior of their application by subclassing this class and supplying different
+implementations of the members.</p>
 <p>Before any interactive operations may be performed, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/startup'>IModelApp.startup</a> must be called (typically on a subclass of IModelApp)</p>
-<h3 class="h-extended-by">Extended by<a id="extended-by" class="heading-anchor" href="#extended-by"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<ul>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/norenderapp/norenderapp'>NoRenderApp</a></li>
-</ul>
 <h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -197,19 +198,11 @@ implementations of them.</p>
 </tr>
 <tr>
 <td class="h-shutdown"><span class="method-name">shutdown</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="shutdown" class="heading-anchor" href="#shutdown"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Should be called before the application exits to release any held resources.</td>
+<td>Must be called before the application exits to release any held resources.</td>
 </tr>
 <tr>
 <td class="h-startup"><span class="method-name"><a href="startup">startup</a></span><span class="method-parenthesis">(</span><span class="method-parameters">imodelClient?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodels/imodelclient'>IModelClient</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="startup" class="heading-anchor" href="#startup"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>This method must be called before any iModel.js frontend services are used.</td>
-</tr>
-<tr>
-<td class="h-supplyi18noptions"><span class="method-name">supplyI18NOptions</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-i18n/appadministration/i18noptions'>I18NOptions</a> | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="supplyi18noptions" class="heading-anchor" href="#supplyi18noptions"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Implement this method to supply options for the initialization of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-i18n/appadministration/i18n'>I18N</a> system.</td>
-</tr>
-<tr>
-<td class="h-supplyrendersystem"><span class="method-name">supplyRenderSystem</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendersystem'>RenderSystem</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="supplyrendersystem" class="heading-anchor" href="#supplyrendersystem"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Implement this method to supply the RenderSystem that provides display capabilities.</td>
 </tr>
 </tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -218,111 +211,67 @@ implementations of them.</p>
 <th>Description</th>
 </tr>
 <tr>
-<td class="h-_imodelclient"><span class="property-name">_imodelClient</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="_imodelclient" class="heading-anchor" href="#_imodelclient"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodels/imodelclient'>IModelClient</a></span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-_initialized"><span class="property-name">_initialized</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="_initialized" class="heading-anchor" href="#_initialized"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output">boolean</span></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-accudraw"><span class="property-name">accuDraw</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="accudraw" class="heading-anchor" href="#accudraw"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/accudraw/accudraw'>AccuDraw</a></span></td>
-<td></td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/accudraw/accudraw'>AccuDraw</a> for this session.</td>
 </tr>
 <tr>
 <td class="h-accusnap"><span class="property-name">accuSnap</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="accusnap" class="heading-anchor" href="#accusnap"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/accusnap'>AccuSnap</a></span></td>
-<td></td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/#accusnap'>IModelApp.AccuSnap</a> for this session.</td>
 </tr>
 <tr>
 <td class="h-applicationid"><span class="property-name">applicationId</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="applicationid" class="heading-anchor" href="#applicationid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">string</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-features"><span class="property-name">features</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="features" class="heading-anchor" href="#features"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/featuregates'>FeatureGates</a></span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-hasrendersystem"><span class="property-name">hasRenderSystem</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="hasrendersystem" class="heading-anchor" href="#hasrendersystem"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> boolean</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-hubdeploymentenv"><span class="property-name">hubDeploymentEnv</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="hubdeploymentenv" class="heading-anchor" href="#hubdeploymentenv"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/deploymentenv'>DeploymentEnv</a></span></td>
-<td>The deployment environment of Connect and iModelHub Services - this identifies up the location used to find Projects and iModels.</td>
+<td>The name of this application.</td>
 </tr>
 <tr>
 <td class="h-i18n"><span class="property-name">i18n</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="i18n" class="heading-anchor" href="#i18n"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-i18n/appadministration/i18n'>I18N</a></span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-imodelclient"><span class="property-name">iModelClient</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="imodelclient" class="heading-anchor" href="#imodelclient"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodels/imodelclient'>IModelClient</a></span></td>
-<td>IModel Server Client to be used for all frontend operations</td>
-</tr>
-<tr>
-<td class="h-initialized"><span class="property-name">initialized</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="initialized" class="heading-anchor" href="#initialized"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> boolean</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-locatemanager"><span class="property-name">locateManager</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="locatemanager" class="heading-anchor" href="#locatemanager"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/elementlocatemanager'>ElementLocateManager</a></span></td>
-<td></td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-i18n/appadministration/i18n'>I18N</a> for this session.</td>
 </tr>
 <tr>
 <td class="h-notifications"><span class="property-name">notifications</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="notifications" class="heading-anchor" href="#notifications"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/notifications/notificationmanager'>NotificationManager</a></span></td>
-<td></td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/notifications/notificationmanager'>NotificationManager</a> for this session.</td>
 </tr>
 <tr>
-<td class="h-quantityformatmanager"><span class="property-name">quantityFormatManager</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="quantityformatmanager" class="heading-anchor" href="#quantityformatmanager"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/quantityformatmanager'>QuantityFormatManager</a></span></td>
-<td></td>
+<td class="h-quantityformatter"><span class="property-name">quantityFormatter</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="quantityformatter" class="heading-anchor" href="#quantityformatter"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/quantityformatter/quantityformatter'>QuantityFormatter</a></span></td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/quantityformatter/quantityformatter'>QuantityFormatter</a> for this session.</td>
 </tr>
 <tr>
 <td class="h-rendersystem"><span class="property-name">renderSystem</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="rendersystem" class="heading-anchor" href="#rendersystem"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendersystem'>RenderSystem</a></span></td>
-<td></td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendersystem'>RenderSystem</a> for this session.</td>
 </tr>
 <tr>
-<td class="h-settingsadmin"><span class="property-name">settingsAdmin</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="settingsadmin" class="heading-anchor" href="#settingsadmin"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-settings"><span class="property-name">settings</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="settings" class="heading-anchor" href="#settings"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/settings/settingsadmin'>SettingsAdmin</a></span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-tentativepoint"><span class="property-name">tentativePoint</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="tentativepoint" class="heading-anchor" href="#tentativepoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/tentativepoint'>TentativePoint</a></span></td>
-<td></td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/settings/settingsadmin'>SettingsAdmin</a> for this session.</td>
 </tr>
 <tr>
 <td class="h-tooladmin"><span class="property-name">toolAdmin</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="tooladmin" class="heading-anchor" href="#tooladmin"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/tooladmin'>ToolAdmin</a></span></td>
-<td></td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/tooladmin'>ToolAdmin</a> for this session.</td>
 </tr>
 <tr>
 <td class="h-tools"><span class="property-name">tools</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="tools" class="heading-anchor" href="#tools"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/toolregistry'>ToolRegistry</a></span></td>
-<td></td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/toolregistry'>ToolRegistry</a> for this session.</td>
 </tr>
 <tr>
 <td class="h-viewmanager"><span class="property-name">viewManager</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="viewmanager" class="heading-anchor" href="#viewmanager"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager'>ViewManager</a></span></td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager'>ViewManager</a> for this session.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
-<li><span class="defined-in"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fcore%2Ffrontend%2Fsrc%2FIModelApp.ts" target="_blank">IModelApp.ts</a></span></li>
+<li><span class="defined-in"><span title="Page edit feature coming soon">IModelApp.ts</span></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             
@@ -342,9 +291,6 @@ implementations of them.</p>
             </a>
             <ul id="inner-nav-imodelapp" class='inner-nav'>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#extended-by">Extended by</a>
-                    </li>
-                    <li class='nav-item item '>
                             <a data-target="#inner-nav-methods" class='title' href="#methods"/>
                             <b class='dropdown-menu-title menu-text'>Methods</b>
                             <i class='dropdown icon'></i>
@@ -359,12 +305,6 @@ implementations of them.</p>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#startup">startup</a>
                                     </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#supplyi18noptions">supplyI18NOptions</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#supplyrendersystem">supplyRenderSystem</a>
-                                    </li>
                             </ul>
                     </li>
                     <li class='nav-item item '>
@@ -373,12 +313,6 @@ implementations of them.</p>
                             <i class='dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#_imodelclient">_imodelClient</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#_initialized">_initialized</a>
-                                    </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#accudraw">accuDraw</a>
                                     </li>
@@ -389,40 +323,19 @@ implementations of them.</p>
                                             <a class='title solo-title menu-text' href="#applicationid">applicationId</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#features">features</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#hasrendersystem">hasRenderSystem</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#hubdeploymentenv">hubDeploymentEnv</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#i18n">i18n</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#imodelclient">iModelClient</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#initialized">initialized</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#locatemanager">locateManager</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#notifications">notifications</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#quantityformatmanager">quantityFormatManager</a>
+                                            <a class='title solo-title menu-text' href="#quantityformatter">quantityFormatter</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#rendersystem">renderSystem</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#settingsadmin">settingsAdmin</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#tentativepoint">tentativePoint</a>
+                                            <a class='title solo-title menu-text' href="#settings">settings</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#tooladmin">toolAdmin</a>

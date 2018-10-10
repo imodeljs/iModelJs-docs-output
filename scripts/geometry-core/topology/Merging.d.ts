@@ -2,34 +2,34 @@ import { LineSegment3d } from "../curve/LineSegment3d";
 import { HalfEdgeGraph } from "./Graph";
 export declare class Merger {
     /** Compare function for sorting X, Y, and theta componenets stored in a Point3d, useful for forming a graph from an array of segments */
-    private static XYThetaCompare(a, b);
+    private static XYThetaCompare;
     /** Compare function for sorting the "event queue" when searching for crossings of line segments in an array of segments (x increasing) */
-    private static eventCompareCrossings(a, b);
+    private static eventCompareCrossings;
     /** Compare function for sorting the "event queue" when sweeping a polygon forming trapezoid sections (y increasing) */
-    private static eventCompareTrapezoidation(a, b);
+    private static eventCompareTrapezoidation;
     /** Returns the greatest y-value of a segment */
-    private static getHighValueOfSegment(seg);
+    private static getHighValueOfSegment;
     /** Returns the lowest y-value of a segment */
-    private static getLowValueOfSegment(seg);
+    private static getLowValueOfSegment;
     /** Returns the lowest x-value of a segment */
-    private static getLeftValueOfSegment(seg);
+    private static getLeftValueOfSegment;
     /** Returns the greatest x-value of a segment */
-    private static getRightValueOfSegment(seg);
+    private static getRightValueOfSegment;
     /** Returns a reference to the point of a segment that lies farther left along the x-axis (if same x, use smaller y value) */
-    private static getLeftmostPointOfSegment(seg);
+    private static getLeftmostPointOfSegment;
     /** Returns a reference to the point of a segment that lies farther right along the x-axis (if same x, use greater y value) */
-    private static getRightmostPointOfSegment(seg);
+    private static getRightmostPointOfSegment;
     /** Returns an array of a Point3d holding x, y, and theta values for a point, and a corresponding node. Useful for organizing/sorting nodes */
-    private static segmentsToXYThetaNode(segments, returnGraph);
+    private static segmentsToXYThetaNode;
     /** Given two segments, uses the equations of the two representative lines and the determinant to give a point of intersection;
      *  Note that when point is found, it may fall outside bounds of segments. Therefore, extra check for in bounds is necessary.
      */
-    private static getIntersectionOfSegments(seg1, seg2, checkInBounds);
+    private static getIntersectionOfSegments;
     /**
      * sorts a number array and filters out 0's, 1's, and duplicates...
      * useful when trying to simplify the found intersections of each segment in an array
      */
-    private static sortAndFilterCrossings(arr);
+    private static sortAndFilterCrossings;
     /**
      * Returns an array for each index of the segments array given, which holds the fractional moments of intersection along that segment
      *
@@ -37,7 +37,7 @@ export declare class Merger {
      * *  For each 'event' in the queue, check its corresponding segment for intersections with segments whose left-most points
      *      appear before this event's right-most point
      */
-    private static findCrossings(segments);
+    private static findCrossings;
     /**
      * Returns a graph structure formed from the given LineSegment array
      *
@@ -49,17 +49,17 @@ export declare class Merger {
      */
     static formGraphFromSegments(lineSegments: LineSegment3d[]): HalfEdgeGraph;
     /** For every event, pair it with other events of the closest segments that this event's horizontal would hit on the left and right */
-    private static setQueuePairings(queue);
+    private static setQueuePairings;
     /**
      * Form a new connection between two nodes, patching up pointers in the creation of new face loops
      * * !! mark both new half edges visited!!! (This is strange)
      */
-    private static join(node0, node1, graph);
-    private static getNodeToJoin(eventNode, toCheckNode);
+    private static join;
+    private static getNodeToJoin;
     /** Check a variety of cases by which adding a diagonal is allowed. If one is found, link nodes and return. */
-    private static checkAndAddDiagonal(event, toCheck, graph);
+    private static checkAndAddDiagonal;
     /** Sweep over an event queue, adding new diagonal segments where possible in the formation of monotone faces */
-    private static sweepDownUp(queue, graph);
+    private static sweepDownUp;
     static formMonotoneFaces(graph: HalfEdgeGraph): void;
 }
 export declare class GraphMerge {
@@ -72,3 +72,4 @@ export declare class GraphMerge {
      */
     static clusterAndMergeXYTheta(graph: HalfEdgeGraph): void;
 }
+//# sourceMappingURL=Merging.d.ts.map

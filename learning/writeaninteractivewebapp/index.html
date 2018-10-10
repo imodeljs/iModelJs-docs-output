@@ -9,7 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Write An Interactive Web App - iModelJs</title>
+    <title>Write An Interactive Web App - iModel.js</title>
+    <meta name="og:title" content="Write An Interactive Web App - iModel.js">
+    <meta name="twitter:title" content="Write An Interactive Web App - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -90,8 +95,9 @@
         <h3 id="helpful links">Helpful links</h3>
         <ul>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
         </ul>
@@ -100,29 +106,32 @@
     <div class='documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > WriteAnInteractiveWebApp</div>
-            <div class="edit-link"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fdocs%2Fcore%2Flearning%2FWriteAnInteractiveWebApp.md" target="_blank">Edit this page</a></div>
+            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
             <h1 id="write an interactive web app">Write An Interactive Web App</h1>
-<h4 class="h-1-write-the-portable-components">1. Write the Portable Components<a id="1-write-the-portable-components" class="heading-anchor" href="#1-write-the-portable-components"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><a href="https://github.com/imodeljs/simple-viewer-app">Simple Viewer App</a> is a complete example of an interactive app that can be configured as a Web app.</p>
+<h2 class="h-1-write-the-portable-components">1. Write the Portable Components<a id="1-write-the-portable-components" class="heading-anchor" href="#1-write-the-portable-components"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/writeaninteractiveapp'>how to write an interactive app</a> for a guide to writing the portable and reusable <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#frontend'>frontend</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#backend'>backend</a> code.</p>
-<h4 class="h-2-tailor-the-app">2. Tailor the App<a id="2-tailor-the-app" class="heading-anchor" href="#2-tailor-the-app"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h2 class="h-2-tailor-the-app">2. Tailor the App<a id="2-tailor-the-app" class="heading-anchor" href="#2-tailor-the-app"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Any interactive app can be configured as a Web app. Some additional effort may be required to tailor it.</p>
+<h3 class="h-frontend">Frontend<a id="frontend" class="heading-anchor" href="#frontend"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>You must write a <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/apptailoring'>Web-specific main</a>. That is where you will tailor the frontend, in order to give it the UI that suits the platform.</p>
+<p>The Web-specific main must <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/rpcinterface/#client-side-configuration'>configure RpcInterfaces</a> in order to access backends and services over the Web. There are several options, depending on how you design and deploy your app:</p>
 <ul>
-<li>Frontend</li>
+<li><em>Frontend-only app</em> - This style of app uses only pre-existing backends and services. A <code>uriPrefix</code> is required for configuring each server.</li>
+<li><em>Simple app</em> - This style of app has its own backend, and the backend serves the frontend. No uriPrefix is required when configuring the app&apos;s own backend server. A uriPrefix is required for any other, remote backend server that the app may use.</li>
+<li>Frontend and backend deployed separately - This style of app has its own backend, but the backend and frontend are deployed separately. A <code>uriPrefix</code> is required for configuring the app&apos;s own backend server and for any other server that it may use.</li>
 </ul>
-<p>You must write a <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/apptailoring'>Web-specific main</a> to <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/rpcinterface/#client-side-configuration'>configure interfaces</a> to access services over the Web. You must know the URL of all services used by the frontend, including its own backend.</p>
-<ul>
-<li>Backend</li>
-</ul>
+<h3 class="h-backend">Backend<a id="backend" class="heading-anchor" href="#backend"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>If the app has a custom backend, you must write a <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/apptailoring'>Web-specific main</a> to do the following:</p>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/rpcinterface/#configure-interfaces'>Configure the backend interfaces</a> to serve clients over the Web.</li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/rpcinterface/#serve-the-interfaces'>Write a simple Web server</a> to serve the backend interfaces.</li>
 </ul>
-<h4 class="h-3-package-and-deploy">3. Package and Deploy<a id="3-package-and-deploy" class="heading-anchor" href="#3-package-and-deploy"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h2 class="h-3-package-and-deploy">3. Package and Deploy<a id="3-package-and-deploy" class="heading-anchor" href="#3-package-and-deploy"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/packageanddeploytotheweb'>Package and deploy to the Web</a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             
@@ -139,7 +148,18 @@
             <a class='title solo-title menu-text' href="#1-write-the-portable-components">1. Write the Portable Components</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#2-tailor-the-app">2. Tailor the App</a>
+            <a data-target="#inner-nav-2-tailor-the-app" class='title' href="#2-tailor-the-app"/>
+            <b class='dropdown-menu-title menu-text'>2. Tailor the App</b>
+            <i class='dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-2-tailor-the-app" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#frontend">Frontend</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#backend">Backend</a>
+                    </li>
+            </ul>
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#3-package-and-deploy">3. Package and Deploy</a>

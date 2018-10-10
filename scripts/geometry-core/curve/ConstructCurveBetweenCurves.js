@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 const GeometryHandler_1 = require("../GeometryHandler");
 const LineSegment3d_1 = require("./LineSegment3d");
@@ -17,8 +18,8 @@ class ConstructCurveBetweenCurves extends GeometryHandler_1.NullGeometryHandler 
     constructor(_geometry0, _fraction, _geometry1) {
         super();
         // this.geometry0 = _geometry0;   <-- Never used
-        this.geometry1 = _geometry1;
-        this.fraction = _fraction;
+        this._geometry1 = _geometry1;
+        this._fraction = _fraction;
     }
     /**
      * * To be directly called only by double displatcher
@@ -26,9 +27,9 @@ class ConstructCurveBetweenCurves extends GeometryHandler_1.NullGeometryHandler 
      * * Construct the interpoalted curve between this.geomtry1 and the supplied segment0.
      */
     handleLineSegment3d(segment0) {
-        if (this.geometry1 instanceof LineSegment3d_1.LineSegment3d) {
-            const segment1 = this.geometry1;
-            return LineSegment3d_1.LineSegment3d.create(segment0.startPoint().interpolate(this.fraction, segment1.startPoint()), segment0.endPoint().interpolate(this.fraction, segment1.endPoint()));
+        if (this._geometry1 instanceof LineSegment3d_1.LineSegment3d) {
+            const segment1 = this._geometry1;
+            return LineSegment3d_1.LineSegment3d.create(segment0.startPoint().interpolate(this._fraction, segment1.startPoint()), segment0.endPoint().interpolate(this._fraction, segment1.endPoint()));
         }
         return undefined;
     }
@@ -38,8 +39,8 @@ class ConstructCurveBetweenCurves extends GeometryHandler_1.NullGeometryHandler 
      * * Construct the interpoalted curve between this.geomtry1 and the supplied ls0.
      */
     handleLineString3d(ls0) {
-        if (this.geometry1 instanceof LineString3d_1.LineString3d) {
-            const ls1 = this.geometry1;
+        if (this._geometry1 instanceof LineString3d_1.LineString3d) {
+            const ls1 = this._geometry1;
             if (ls0.numPoints() === ls1.numPoints()) {
                 const ls = LineString3d_1.LineString3d.create();
                 const workPoint = PointVector_1.Point3d.create();
@@ -48,7 +49,7 @@ class ConstructCurveBetweenCurves extends GeometryHandler_1.NullGeometryHandler 
                 for (let i = 0; i < ls0.numPoints(); i++) {
                     ls0.pointAt(i, workPoint0);
                     ls1.pointAt(i, workPoint1);
-                    workPoint0.interpolate(this.fraction, workPoint1, workPoint);
+                    workPoint0.interpolate(this._fraction, workPoint1, workPoint);
                     ls.addPoint(workPoint);
                 }
                 return ls;
@@ -62,9 +63,9 @@ class ConstructCurveBetweenCurves extends GeometryHandler_1.NullGeometryHandler 
      * * Construct the interpoalted curve between this.geomtry1 and the supplied arc0.
      */
     handleArc3d(arc0) {
-        if (this.geometry1 instanceof Arc3d_1.Arc3d) {
-            const arc1 = this.geometry1;
-            return Arc3d_1.Arc3d.create(arc0.center.interpolate(this.fraction, arc1.center), arc0.vector0.interpolate(this.fraction, arc1.vector0), arc0.vector90.interpolate(this.fraction, arc1.vector90), arc0.sweep.interpolate(this.fraction, arc1.sweep));
+        if (this._geometry1 instanceof Arc3d_1.Arc3d) {
+            const arc1 = this._geometry1;
+            return Arc3d_1.Arc3d.create(arc0.center.interpolate(this._fraction, arc1.center), arc0.vector0.interpolate(this._fraction, arc1.vector0), arc0.vector90.interpolate(this._fraction, arc1.vector90), arc0.sweep.interpolate(this._fraction, arc1.sweep));
         }
         return undefined;
     }

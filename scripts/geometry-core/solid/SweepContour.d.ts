@@ -19,8 +19,8 @@ export declare class SweepContour {
     clone(): SweepContour;
     cloneTransformed(transform: Transform): SweepContour | undefined;
     isAlmostEqual(other: any): boolean;
-    private xyStrokes?;
-    private facets?;
+    private _xyStrokes?;
+    private _facets?;
     /**
      * build the (cached) internal facets.
      * @param _builder (NOT USED -- an internal builder is constructed for the triangulation)
@@ -32,3 +32,4 @@ export declare class SweepContour {
      */
     emitFacets(builder: PolyfaceBuilder, reverse: boolean, transform?: Transform): void;
 }
+//# sourceMappingURL=SweepContour.d.ts.map

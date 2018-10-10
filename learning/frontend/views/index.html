@@ -9,7 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Using Views in iModel.js - iModelJs</title>
+    <title>Using Views in iModel.js - iModel.js</title>
+    <meta name="og:title" content="Using Views in iModel.js - iModel.js">
+    <meta name="twitter:title" content="Using Views in iModel.js - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -90,8 +95,9 @@
         <h3 id="helpful links">Helpful links</h3>
         <ul>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
         </ul>
@@ -100,11 +106,11 @@
     <div class='documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/">frontend</a> > Views</div>
-            <div class="edit-link"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fdocs%2Fcore%2Flearning%2Ffrontend%2FViews.md" target="_blank">Edit this page</a></div>
+            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
             <h1 id="using views in imodel.js">Using Views in iModel.js</h1>
-<p>A <em>View</em> renders geometry from one or more <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/model-fundamentals'>Models</a> of an iModel in a web browser. iModel.js applications can embed and interact with Views anywhere on a web page via an <code>HTMLCanvas</code> element.</p>
+<p>A <em>View</em> renders geometry from one or more <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/model-fundamentals'>Models</a> of an iModel in a web browser. iModel.js applications can embed and interact with Views anywhere on a web page via an <code>HTMLDivElement</code>.</p>
 <p>Views are managed by the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager'>ViewManager</a> class, using <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/#viewmanager'>IModelApp.viewManager</a>.</p>
-<p>Multiple Views may be simultaneously visible on the same web page, and are coordinated by using the ViewManager.</p>
+<p>Multiple Views may be simultaneously visible on the same web page, each with their own HTMLDivElement, and are coordinated by the ViewManager.</p>
 <h2 class="h-viewdefinition-elements">ViewDefinition Elements<a id="viewdefinition-elements" class="heading-anchor" href="#viewdefinition-elements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>A <em>View</em> is saved in an iModel as an element of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/viewdefinition'>ViewDefinition</a> class. ViewDefinitions hold all the information necessary to show the same content across sessions.
 This includes the camera position, the model(s) displayed, the CategorySelector, the DisplayStyle to use, plus any additional view-specific settings.</p>
@@ -138,7 +144,8 @@ format for User Interfaces. This can be used to present a list of possible views
 <pre class="no-line-numbers"><code class="language-typescript">  /** Get the list of Spatial views from the robot iModel. */
   public static async getSpatialViews(): Promise&lt;IModelConnection.ViewSpec[]&gt; {
     return this._robotIModel.views.getViewList({ from: SpatialViewState.sqlName });
-  }</code></pre>
+  }
+</code></pre>
 <p>Once a view is selected from the list, it may be loaded with:</p>
 <pre class="no-line-numbers"><code class="language-typescript">  /** Stub for a real UI that would present the user with the list and choose one entry */
   public static async pickView(views: IModelConnection.ViewSpec[]): Promise&lt;string&gt; {
@@ -159,34 +166,40 @@ format for User Interfaces. This can be used to present a list of possible views
 
     // return a promise for the ViewState of the selected view. Note that caller will have to await this method
     return this._robotIModel.views.load(viewId);
-  }</code></pre>
+  }
+</code></pre>
 <blockquote>
 <p>Note that in the examples above, <code>getSpatialViews</code> and <code>loadOneView</code> are <code>async</code>, and you must <code>await</code> them.</p>
 </blockquote>
 <h2 class="h-using-viewports">Using Viewports<a id="using-viewports" class="heading-anchor" href="#using-viewports"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p><code>ViewState</code> objects hold the state of a <code>ViewDefinition</code> (<em>what</em> is shown in a View) in the frontend.</p>
-<p>To connect a ViewState to a rectangular region on a web page, you create instances of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a> class. The constructor of Viewport takes an <code>HTMLCanvasElement</code> and a
-(fully loaded) ViewState. In this manner, Viewports form the connection between a rectangular region on your web page and a set of
-Element and Models in the iModel, a display <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/frustum'>Frustum</a>, a DisplayStyle, and the iModel.js rendering system.</p>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a> objects hold the state of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/viewdefinition'>ViewDefinition</a> (<em>what</em> is shown in a View) in the frontend.</p>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a> is an abstract class that connects a ViewState to a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendertarget'>RenderTarget</a>.</p>
+<p>To connect a ViewState to a rectangular region on a web page , you create instances of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport'>ScreenViewport</a> class. The method <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport/create'>ScreenViewport.create</a> takes an <code>HTMLDivElement</code> and a
+(fully loaded) ViewState. In this manner, ScreenViewport form the connection between a rectangular region on your web page (a &quot;div&quot;) and a set of
+Models in an iModel, a display <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/frustum'>Frustum</a>, a DisplayStyle, and the rendering system.</p>
 <blockquote>
-<p>Note: before creating a Viewport, be sure to call <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/startup'>IModelApp.startup</a>.</p>
+<p>Note: before creating a ScreenViewport, be sure to call <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/startup'>IModelApp.startup</a>.</p>
 </blockquote>
 <h2 class="h-viewmanager">ViewManager<a id="viewmanager" class="heading-anchor" href="#viewmanager"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The Viewport class is responsible for displaying a View, as defined by its ViewState. However, typically the objective of showing a View is to allow users
 to modify the View itself, or to interact with its contents.</p>
-<p>To facilitate that, we need to connect the event system of the browser with Viewports via <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/#viewmanager'>IModelApp.viewManager</a>.</p>
+<p>To facilitate that, you need to connect the event system of the browser with Viewports via <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/#viewmanager'>IModelApp.viewManager</a>.</p>
 <pre class="no-line-numbers"><code class="language-typescript">  /** Open a Viewport on the supplied div element. */
   public static async openView(viewDiv: HTMLDivElement) {
     const viewState = await this.loadOneView();
     const viewPort = ScreenViewport.create(viewDiv, viewState);
     this.viewManager.addViewport(viewPort);
-  }</code></pre>
+  }
+</code></pre>
 <p>After the viewport is added to the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager'>ViewManager</a>, all HTML events for its canvas are directed to the active <code>Tool</code> class by the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/tooladmin'>ToolAdmin</a>.</p>
 <p>If there is more than one Viewport visible, the ViewManager keeps track of the <em>Selected Viewport</em> and treats it specially.</p>
 <h2 class="h-viewing-tools">Viewing Tools<a id="viewing-tools" class="heading-anchor" href="#viewing-tools"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The iModel.js library supplies controls that allow users to modify what is shown in Views via the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/viewtool'>ViewTool</a> classes. You can create instances of the
 supplied classes (e.g. <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/windowareatool'>WindowAreaTool</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/fitviewtool'>FitViewTool</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/walkviewtool'>WalkViewTool</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/rotateviewtool'>RotateViewTool</a>, etc.) or create your own subclasses for
 special viewing operations.</p>
+<h2 class="h-view-decorators">View Decorators<a id="view-decorators" class="heading-anchor" href="#view-decorators"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The Viewport class is responsible for displaying the <em>persistent</em> data (e.g. Models, reality data, maps, etc.) in your view. Often, however, Tools wish to show
+additional, non-persistent, information to convey context or call attention to items or areas of interest. That is accomplished via <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/frontend/viewdecorations'>View Decorators</a></p>
 <h2 class="h-displaystyles">DisplayStyles<a id="displaystyles" class="heading-anchor" href="#displaystyles"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>DisplayStyles describe the <em>styling</em> that should be applied to the contents of a View.</p>
 <p>This includes the :</p>
@@ -254,16 +267,16 @@ you can create <code>RealityDataModel</code>s that hold the URL of the Reality D
 <pre class="no-line-numbers"><code class="language-bash">{vector from eyePoint-&gt;targetPoint} : -Z (positive view Z points towards negative world Z)
 {the up vector}                     : +Y
 {Z cross Y}                         : +X</code></pre>
-<p>these three vectors form the rows of the view&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/matrix3d'>Matrix3d</a></p>
+<p>these three vectors form the rows of the view&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></p>
 </li>
 <li><p>Objects in space in front of the front plane or behind the back plane are not displayed.</p>
 </li>
-<li><p>The focus plane is not necessarily centered between the front plane and back plane (though it often is).
+<li><p>The focus plane is not necessarily centered between the front plane and back plane (though it often is.)
 It should generally be between the front plane and the back plane.</p>
 </li>
 <li><p>targetPoint is not stored in the view parameters. Instead it may be derived from <code>{origin},{eyePoint},[Matrix3d]</code> and <code>focusDist</code>.</p>
 </li>
-<li><p>The view volume is completely specified by: <code>{origin}&lt;delta&gt;[Matrix3d]</code></p>
+<li><p>The view volume is specified by: <code>{origin}&lt;delta&gt;[Matrix3d]</code></p>
 </li>
 <li><p>Perspective is determined by <code>{eyePoint}</code>, which is independent of the view volume. Sometimes the eyepoint is not
 on the rectangle on the focus plane (that is, a vector from the eyepoint along the viewZ does not hit the view
@@ -279,7 +292,7 @@ views, or &quot;wide and shallow slices&quot;, etc.) are problematic and disallo
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             
@@ -312,6 +325,9 @@ views, or &quot;wide and shallow slices&quot;, etc.) are problematic and disallo
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#viewing-tools">Viewing Tools</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#view-decorators">View Decorators</a>
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#displaystyles">DisplayStyles</a>

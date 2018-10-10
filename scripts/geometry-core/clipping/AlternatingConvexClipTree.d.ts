@@ -67,22 +67,22 @@ export declare class AlternatingCCTreeNode {
  *  </ul>
  */
 export declare class AlternatingCCTreeBuilder {
-    private points;
-    private stack;
+    private _points;
+    private _stack;
     private constructor();
     static createPointsRef(points: Point3d[], result?: AlternatingCCTreeBuilder): AlternatingCCTreeBuilder;
     readonly period: number;
     indexAfter(i: number): number;
     indexBefore(i: number): number;
     pushIndex(primaryPointIndex: number): void;
-    private static cross(pointA, pointB, pointC);
+    private static cross;
     cyclicStackPoint(cyclicIndex: number): Point3d;
     signFromStackTip(pointIndex: number, sign: number): 1 | -1;
     readonly indexOfMaxX: number;
     /** Pop from the stack until the sign condition is satisfied */
     extendHullChain(k: number, sign: number, pushAfterPops: boolean): void;
     collectHullChain(kStart: number, numK: number, sign: number): void;
-    private buildHullTreeGo(root, isPositiveArea);
+    private buildHullTreeGo;
     /**
      * <ul>
      * <li> Input a ClipTreeRoot that has start and count data
@@ -95,25 +95,25 @@ export declare class AlternatingCCTreeBuilder {
     buildHullTree(root: AlternatingCCTreeNode): boolean;
 }
 export declare class AlternatingCCTreeNodeCurveClipper {
-    private curve;
-    private intervalStack;
-    private stackDepth;
+    private _curve;
+    private _intervalStack;
+    private _stackDepth;
     constructor();
-    private setCurveRef(curve);
-    private popSegmentFrame();
-    private clearSegmentStack();
-    private pushEmptySegmentFrame();
-    private topOfStack;
+    private setCurveRef;
+    private popSegmentFrame;
+    private clearSegmentStack;
+    private pushEmptySegmentFrame;
+    private _topOfStack;
     /** Access entry [topOfStack() - numSkip] */
-    private stackEntry(numSkip);
-    private isTopOfStackEmpty();
-    private static fractionIntervals;
-    private appendSingleClipToStack(planes, insideSegments);
+    private stackEntry;
+    private isTopOfStackEmpty;
+    private static _fractionIntervals;
+    private appendSingleClipToStack;
     /**
      * Run one level of recursion. On return, the stack is one level deeper than at entry and the new top of the stack has clip for this node
      * (expensive -- must clone items of arrays during "swaps")
      */
-    private recurse(node);
+    private recurse;
     /**
      * Modifies the insideIntervvals array given in place.
      * Note: curve given is passed by reference and stored.
@@ -125,3 +125,4 @@ export declare class AlternatingCCTreeNodeCurveClipper {
      */
     appendCurveCollectionClip(root: AlternatingCCTreeNode, curve: CurveCollection, insideIntervals: CurveLocationDetailPair[], outsideIntervals: CurveLocationDetailPair[]): void;
 }
+//# sourceMappingURL=AlternatingConvexClipTree.d.ts.map

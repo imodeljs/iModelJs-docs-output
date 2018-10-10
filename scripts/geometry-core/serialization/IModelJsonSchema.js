@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Serialization */
 // import { Geometry, Angle, AxisOrder, BSIJSONValues } from "../Geometry";
@@ -29,6 +30,8 @@ const LineString3d_1 = require("../curve/LineString3d");
 const PointString3d_1 = require("../curve/PointString3d");
 const Arc3d_1 = require("../curve/Arc3d");
 const LineSegment3d_1 = require("../curve/LineSegment3d");
+const BSplineCurve3dH_1 = require("../bspline/BSplineCurve3dH");
+const Geometry4d_1 = require("../numerics/Geometry4d");
 /* tslint:disable: object-literal-key-quotes no-console*/
 var IModelJson;
 (function (IModelJson) {
@@ -139,7 +142,7 @@ var IModelJson;
         }
         static parseYawPitchRollAngles(json) {
             const ypr = PointVector_1.YawPitchRollAngles.fromJSON(json);
-            return ypr.toRotMatrix();
+            return ypr.toMatrix3d();
         }
         static parseStringProperty(json, propertyName, defaultValue) {
             if (json.hasOwnProperty(propertyName)) {
@@ -153,16 +156,16 @@ var IModelJson;
             if (Array.isArray(json) && json.length === 2) {
                 const xVector = PointVector_1.Vector3d.fromJSON(json[0]);
                 const yVector = PointVector_1.Vector3d.fromJSON(json[1]);
-                const matrix = Transform_1.RotMatrix.createRigidFromColumns(xVector, yVector, axisOrder);
+                const matrix = Transform_1.Matrix3d.createRigidFromColumns(xVector, yVector, axisOrder);
                 if (matrix)
                     return matrix;
             }
             if (createDefaultIdentity)
-                return Transform_1.RotMatrix.createIdentity();
+                return Transform_1.Matrix3d.createIdentity();
             return undefined;
         }
         /**
-         * Look for orientation data and convert to RotMatrix.
+         * Look for orientation data and convert to Matrix3d.
          * * Search order is:
          * * * yawPitchRollAngles
          * * * xyVectors
@@ -181,7 +184,7 @@ var IModelJson;
                 return Reader.parseAxesFromVectors(json.zxVectors, 2 /* ZXY */, createDefaultIdentity);
             }
             if (createDefaultIdentity)
-                return Transform_1.RotMatrix.createIdentity();
+                return Transform_1.Matrix3d.createIdentity();
             return undefined;
         }
         static parseArcByVectorProps(data) {
@@ -234,23 +237,45 @@ var IModelJson;
         }
         static parseBcurve(data) {
             if (Array.isArray(data.points) && Array.isArray(data.knots) && Number.isFinite(data.order) && data.closed !== undefined) {
-                const poles = [];
-                for (const p of data.points)
-                    poles.push(PointVector_1.Point3d.fromJSON(p));
-                const knots = [];
-                for (const knot of data.knots)
-                    knots.push(knot);
-                // TODO -- wrap poles and knots for closed case !!
-                if (data.closed) {
-                    for (let i = 0; i + 1 < data.order; i++) {
-                        poles.push(poles[i].clone());
+                if (data.points[0].length === 4) {
+                    const hPoles = [];
+                    for (const p of data.points)
+                        hPoles.push(Geometry4d_1.Point4d.fromJSON(p));
+                    const knots = [];
+                    for (const knot of data.knots)
+                        knots.push(knot);
+                    // TODO -- wrap poles and knots for closed case !!
+                    if (data.closed) {
+                        for (let i = 0; i + 1 < data.order; i++) {
+                            hPoles.push(hPoles[i].clone());
+                        }
+                    }
+                    const newCurve = BSplineCurve3dH_1.BSplineCurve3dH.create(hPoles, knots, data.order);
+                    if (newCurve) {
+                        if (data.closed === true)
+                            newCurve.setWrappable(true);
+                        return newCurve;
                     }
                 }
-                const newCurve = BSplineCurve_1.BSplineCurve3d.create(poles, knots, data.order);
-                if (newCurve) {
-                    if (data.closed === true)
-                        newCurve.setWrappable(true);
-                    return newCurve;
+                else if (data.points[0].length === 3 || data.points[0].length === 2) {
+                    const poles = [];
+                    for (const p of data.points)
+                        poles.push(PointVector_1.Point3d.fromJSON(p));
+                    const knots = [];
+                    for (const knot of data.knots)
+                        knots.push(knot);
+                    // TODO -- wrap poles and knots for closed case !!
+                    if (data.closed) {
+                        for (let i = 0; i + 1 < data.order; i++) {
+                            poles.push(poles[i].clone());
+                        }
+                    }
+                    const newCurve = BSplineCurve_1.BSplineCurve3d.create(poles, knots, data.order);
+                    if (newCurve) {
+                        if (data.closed === true)
+                            newCurve.setWrappable(true);
+                        return newCurve;
+                    }
                 }
             }
             return undefined;
@@ -276,6 +301,22 @@ var IModelJson;
                         f(Math.abs(value) - 1);
                 }
             }
+        }
+        static parsePolyfaceAuxData(data) {
+            if (!Array.isArray(data.channels) || !Array.isArray(data.indices))
+                return undefined;
+            const outChannels = [];
+            for (const inChannel of data.channels) {
+                if (Array.isArray(inChannel.data) && inChannel.hasOwnProperty("dataType")) {
+                    const outChannelData = [];
+                    for (const inChannelData of inChannel.data) {
+                        if (inChannelData.hasOwnProperty("input") && Array.isArray(inChannelData.values))
+                            outChannelData.push(new Polyface_1.AuxChannelData(inChannelData.input, inChannelData.values));
+                    }
+                    outChannels.push(new Polyface_1.AuxChannel(outChannelData, inChannel.dataType, inChannel.name, inChannel.inputName));
+                }
+            }
+            return new Polyface_1.PolyfaceAuxData(outChannels, data.indices);
         }
         static parseIndexedMesh(data) {
             // {Coord:[[x,y,z],. . . ],   -- simple xyz for each ponit
@@ -319,6 +360,8 @@ var IModelJson;
                 if (data.hasOwnProperty("colorIndex")) {
                     Reader.addZeroBasedIndicesFromSignedOneBased(data.colorIndex, (x) => { polyface.addColorIndex(x); });
                 }
+                if (data.hasOwnProperty("auxData"))
+                    polyface.data.auxData = Reader.parsePolyfaceAuxData(data.auxData);
                 return polyface;
             }
             return undefined;
@@ -372,7 +415,7 @@ var IModelJson;
                 && endRadius !== undefined) {
                 if (axes === undefined) {
                     const axisVector = PointVector_1.Vector3d.createStartEnd(start, end);
-                    const frame = Transform_1.RotMatrix.createRigidHeadsUp(axisVector, 2 /* ZXY */);
+                    const frame = Transform_1.Matrix3d.createRigidHeadsUp(axisVector, 2 /* ZXY */);
                     const vectorX = frame.columnX();
                     const vectorY = frame.columnY();
                     return Cone_1.Cone.createBaseAndTarget(start, end, vectorX, vectorY, startRadius, endRadius, capped);
@@ -439,7 +482,7 @@ var IModelJson;
             const height = Reader.parseNumberProperty(json, "height", baseX);
             const axes = Reader.parseOrientation(json, true);
             if (baseOrigin && !topOrigin)
-                topOrigin = Transform_1.RotMatrix.XYZMinusMatrixTimesXYZ(baseOrigin, axes, PointVector_1.Vector3d.create(0, 0, height));
+                topOrigin = Transform_1.Matrix3d.XYZMinusMatrixTimesXYZ(baseOrigin, axes, PointVector_1.Vector3d.create(0, 0, height));
             if (capped !== undefined
                 && baseX !== undefined
                 && baseY !== undefined
@@ -617,7 +660,7 @@ var IModelJson;
             if (omitIfIdentity) {
                 if (matrix === undefined)
                     return;
-                if (matrix.isIdentity())
+                if (matrix.isIdentity)
                     return;
             }
             if (matrix)
@@ -664,7 +707,7 @@ var IModelJson;
                 type: data.getSpiralType(),
             };
             Writer.insertOrientationFromMatrix(value, data.localToWorld.matrix, true);
-            if (!data.activeFractionInterval.isExact01())
+            if (!data.activeFractionInterval.isExact01)
                 Object.defineProperty(value, "fractionInterval", [data.activeFractionInterval.x0, data.activeFractionInterval.x1]);
             // if possible, do selective output of defining data (omit exactly one out of the 5, matching original definition)
             if (originalProperties !== undefined && originalProperties.numDefinedProperties() === 4) {
@@ -736,9 +779,9 @@ var IModelJson;
                 const value = {
                     "center": data.cloneCenter().toJSON(),
                 };
-                if (!(data.getConstructiveFrame()).matrix.isIdentity())
+                if (!(data.getConstructiveFrame()).matrix.isIdentity)
                     value.zxVectors = [zData.v.toJSON(), xData.v.toJSON()];
-                const fullSweep = latitudeSweep.isFullLatitudeSweep();
+                const fullSweep = latitudeSweep.isFullLatitudeSweep;
                 if (data.capped && !fullSweep)
                     value.capped = data.capped;
                 if (Geometry_1.Geometry.isSameCoordinate(rX, rY) && Geometry_1.Geometry.isSameCoordinate(rX, rZ))
@@ -770,7 +813,7 @@ var IModelJson;
                 "minorRadius": radiusB,
                 "xyVectors": [vectorX.toJSON(), vectorY.toJSON()],
             };
-            if (!sweep.isFullCircle()) {
+            if (!sweep.isFullCircle) {
                 value.sweepAngle = sweep.degrees;
                 value.capped = data.capped;
             }
@@ -886,6 +929,26 @@ var IModelJson;
                 out.box.topY = box.getTopY();
             return out;
         }
+        handlePolyfaceAuxData(auxData) {
+            const contents = {};
+            contents.indices = auxData.indices.slice(0);
+            contents.channels = [];
+            for (const inChannel of auxData.channels) {
+                const outChannel = {};
+                outChannel.dataType = inChannel.dataType;
+                outChannel.name = inChannel.name;
+                outChannel.inputName = inChannel.inputName;
+                outChannel.data = [];
+                for (const inData of inChannel.data) {
+                    const outData = {};
+                    outData.input = inData.input;
+                    outData.values = inData.values.slice(0);
+                    outChannel.data.push(outData);
+                }
+                contents.channels.push(outChannel);
+            }
+            return contents;
+        }
         handleIndexedPolyface(pf) {
             const points = [];
             const pointIndex = [];
@@ -941,6 +1004,8 @@ var IModelJson;
             }
             // assemble the contents in alphabetical order.
             const contents = {};
+            if (pf.data.auxData)
+                contents.auxData = this.handlePolyfaceAuxData(pf.data.auxData);
             if (pf.data.color)
                 contents.color = colors;
             if (pf.data.colorIndex)
@@ -960,7 +1025,42 @@ var IModelJson;
         handleBSplineCurve3d(curve) {
             // ASSUME -- if the curve originated "closed" the knot and pole replication are unchanged,
             // so first and last knots can be re-assigned, and last (degree - 1) poles can be deleted.
-            if (curve.isClosable()) {
+            if (curve.isClosable) {
+                const knots = curve.copyKnots(true);
+                const poles = curve.copyPoints();
+                const degree = curve.degree;
+                for (let i = 0; i < degree; i++)
+                    poles.pop();
+                // knots have replicated first and last.  Change the values to be periodic.
+                const leftIndex = degree;
+                const rightIndex = knots.length - degree - 1;
+                const knotPeriod = knots[rightIndex] - knots[leftIndex];
+                knots[0] = knots[rightIndex - degree] - knotPeriod;
+                knots[knots.length - 1] = knots[leftIndex + degree] + knotPeriod;
+                return {
+                    "bcurve": {
+                        "points": poles,
+                        "knots": knots,
+                        "closed": true,
+                        "order": curve.order,
+                    },
+                };
+            }
+            else {
+                return {
+                    "bcurve": {
+                        "points": curve.copyPoints(),
+                        "knots": curve.copyKnots(true),
+                        "closed": false,
+                        "order": curve.order,
+                    },
+                };
+            }
+        }
+        handleBSplineCurve3dH(curve) {
+            // ASSUME -- if the curve originated "closed" the knot and pole replication are unchanged,
+            // so first and last knots can be re-assigned, and last (degree - 1) poles can be deleted.
+            if (curve.isClosable) {
                 const knots = curve.copyKnots(true);
                 const poles = curve.copyPoints();
                 const degree = curve.degree;

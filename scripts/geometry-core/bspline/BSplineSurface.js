@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 const PointVector_1 = require("../PointVector");
 const Transform_1 = require("../Transform");
@@ -40,16 +41,16 @@ var WeightStyle;
 class BSpline2dNd extends CurvePrimitive_1.GeometryQuery {
     degreeUV(select) { return this.knots[select].degree; }
     orderUV(select) { return this.knots[select].degree + 1; }
-    numSpanUV(select) { return this.numPoles[select] - this.knots[select].degree; }
+    numSpanUV(select) { return this._numPoles[select] - this.knots[select].degree; }
     numPolesTotal() { return this.coffs.length / this.poleDimension; }
-    numPolesUV(select) { return this.numPoles[select]; }
-    poleStepUV(select) { return select === 0 ? 1 : this.numPoles[0]; }
+    numPolesUV(select) { return this._numPoles[select]; }
+    poleStepUV(select) { return select === 0 ? 1 : this._numPoles[0]; }
     getPoint3dPole(i, j, result) {
-        return PointVector_1.Point3d.createFromPacked(this.coffs, i + j * this.numPoles[0], result);
+        return PointVector_1.Point3d.createFromPacked(this.coffs, i + j * this._numPoles[0], result);
     }
     // Get a pole (from i,j indices) as Point3d, assuming data is stored xyzw
     getPoint3dPoleXYZW(i, j, result) {
-        return PointVector_1.Point3d.createFromPackedXYZW(this.coffs, i + j * this.numPoles[0], result);
+        return PointVector_1.Point3d.createFromPackedXYZW(this.coffs, i + j * this._numPoles[0], result);
     }
     /**
      * @param value numeric value to convert to strict 0 or 1.
@@ -106,8 +107,8 @@ class BSpline2dNd extends CurvePrimitive_1.GeometryQuery {
         const skewVectors = this.fractionToPointAndDerivatives(fractionU, fractionV);
         if (!skewVectors)
             return undefined;
-        const axes = Transform_1.RotMatrix.createColumnsInAxisOrder(0 /* XYZ */, skewVectors.vectorU, skewVectors.vectorV, undefined);
-        const axes1 = Transform_1.RotMatrix.createRigidFromRotMatrix(axes, 0 /* XYZ */, axes);
+        const axes = Transform_1.Matrix3d.createColumnsInAxisOrder(0 /* XYZ */, skewVectors.vectorU, skewVectors.vectorV, undefined);
+        const axes1 = Transform_1.Matrix3d.createRigidFromMatrix3d(axes, 0 /* XYZ */, axes);
         if (axes1)
             result = Transform_1.Transform.createOriginAndMatrix(skewVectors.origin, axes1, result);
         return result;
@@ -122,11 +123,11 @@ class BSpline2dNd extends CurvePrimitive_1.GeometryQuery {
         this.knots = [knotsU, knotsV];
         this.coffs = new Float64Array(numPolesU * numPolesV * poleLength);
         this.poleDimension = poleLength;
-        this.basisBufferUV = [new Float64Array(orderU), new Float64Array(orderV)];
-        this.basisBuffer1UV = [new Float64Array(orderU), new Float64Array(orderV)];
-        this.numPoles = [numPolesU, numPolesV];
-        this.poleBuffer = new Float64Array(poleLength);
-        this.poleBuffer1UV = [new Float64Array(poleLength), new Float64Array(poleLength)];
+        this._basisBufferUV = [new Float64Array(orderU), new Float64Array(orderV)];
+        this._basisBuffer1UV = [new Float64Array(orderU), new Float64Array(orderV)];
+        this._numPoles = [numPolesU, numPolesV];
+        this._poleBuffer = new Float64Array(poleLength);
+        this._poleBuffer1UV = [new Float64Array(poleLength), new Float64Array(poleLength)];
     }
     /**
      * Map a position, specified as (uv direction, bezier span, fraction within the bezier), to an overal knot value.
@@ -148,16 +149,16 @@ class BSpline2dNd extends CurvePrimitive_1.GeometryQuery {
     }
     /** sum poles by the weights in the basisBuffer, using poles for given span */
     sumPoleBufferForSpan(spanIndexU, spanIndexV) {
-        const poleBuffer = this.poleBuffer;
+        const poleBuffer = this._poleBuffer;
         const coffs = this.coffs;
         poleBuffer.fill(0);
         const m = this.poleDimension;
-        const stepV = this.poleDimension * this.numPoles[0];
+        const stepV = this.poleDimension * this._numPoles[0];
         let kU = m * spanIndexU + spanIndexV * stepV;
         let g = 0;
-        for (const fV of this.basisBufferUV[1]) {
+        for (const fV of this._basisBufferUV[1]) {
             let k = kU;
-            for (const fU of this.basisBufferUV[0]) {
+            for (const fU of this._basisBufferUV[0]) {
                 g = fU * fV;
                 for (let j = 0; j < m; j++) {
                     poleBuffer[j] += g * coffs[k++];
@@ -168,18 +169,18 @@ class BSpline2dNd extends CurvePrimitive_1.GeometryQuery {
     }
     /** sum derivatives by the weights in the basisBuffer, using poles for given span */
     sumpoleBufferDerivativesForSpan(spanIndexU, spanIndexV) {
-        const poleBuffer1U = this.poleBuffer1UV[0];
-        const poleBuffer1V = this.poleBuffer1UV[1];
+        const poleBuffer1U = this._poleBuffer1UV[0];
+        const poleBuffer1V = this._poleBuffer1UV[1];
         poleBuffer1U.fill(0);
         poleBuffer1V.fill(0);
         const m = this.poleDimension;
-        const stepV = this.poleDimension * this.numPoles[0];
+        const stepV = this.poleDimension * this._numPoles[0];
         let kU = m * spanIndexU + spanIndexV * stepV;
         // U partial derivatives ...
         let g = 0;
-        for (const fV of this.basisBufferUV[1]) {
+        for (const fV of this._basisBufferUV[1]) {
             let k = kU;
-            for (const fU of this.basisBuffer1UV[0]) {
+            for (const fU of this._basisBuffer1UV[0]) {
                 g = fU * fV;
                 for (let j = 0; j < m; j++) {
                     poleBuffer1U[j] += g * this.coffs[k++];
@@ -189,9 +190,9 @@ class BSpline2dNd extends CurvePrimitive_1.GeometryQuery {
         }
         // V partial derivatives ...
         kU = m * spanIndexU + spanIndexV * stepV;
-        for (const fV of this.basisBuffer1UV[1]) {
+        for (const fV of this._basisBuffer1UV[1]) {
             let k = kU;
-            for (const fU of this.basisBufferUV[0]) {
+            for (const fU of this._basisBufferUV[0]) {
                 g = fU * fV;
                 for (let j = 0; j < m; j++) {
                     poleBuffer1V[j] += g * this.coffs[k++];
@@ -206,13 +207,13 @@ class BSpline2dNd extends CurvePrimitive_1.GeometryQuery {
         const poleIndex0U = knotIndex0U - this.degreeUV(0) + 1;
         const poleIndex0V = knotIndex0V - this.degreeUV(1) + 1;
         if (numDerivative < 1) {
-            this.knots[0].evaluateBasisFunctions(knotIndex0U, u, this.basisBufferUV[0]);
-            this.knots[1].evaluateBasisFunctions(knotIndex0V, v, this.basisBufferUV[1]);
+            this.knots[0].evaluateBasisFunctions(knotIndex0U, u, this._basisBufferUV[0]);
+            this.knots[1].evaluateBasisFunctions(knotIndex0V, v, this._basisBufferUV[1]);
             this.sumPoleBufferForSpan(poleIndex0U, poleIndex0V);
         }
         else {
-            this.knots[0].evaluateBasisFunctions1(knotIndex0U, u, this.basisBufferUV[0], this.basisBuffer1UV[0]);
-            this.knots[1].evaluateBasisFunctions1(knotIndex0V, v, this.basisBufferUV[1], this.basisBuffer1UV[1]);
+            this.knots[0].evaluateBasisFunctions1(knotIndex0U, u, this._basisBufferUV[0], this._basisBuffer1UV[0]);
+            this.knots[1].evaluateBasisFunctions1(knotIndex0V, v, this._basisBufferUV[1], this._basisBuffer1UV[1]);
             this.sumPoleBufferForSpan(poleIndex0U, poleIndex0V);
             this.sumpoleBufferDerivativesForSpan(poleIndex0U, poleIndex0V);
         }
@@ -440,12 +441,12 @@ class BSplineSurface3d extends BSpline2dNd {
      */
     knotToPoint(u, v) {
         this.evaluateBuffersAtKnot(u, v);
-        return PointVector_1.Point3d.createFrom(this.poleBuffer);
+        return PointVector_1.Point3d.createFrom(this._poleBuffer);
     }
     /** Evaluate at a position given by a knot value.  */
     knotToPointAndDerivatives(u, v, result) {
         this.evaluateBuffersAtKnot(u, v, 1);
-        return AnalyticGeometry_1.Plane3dByOriginAndVectors.createOriginAndVectorsArrays(this.poleBuffer, this.poleBuffer1UV[0], this.poleBuffer1UV[1], result);
+        return AnalyticGeometry_1.Plane3dByOriginAndVectors.createOriginAndVectorsArrays(this._poleBuffer, this._poleBuffer1UV[0], this._poleBuffer1UV[1], result);
     }
     /** Evalute at a position given by fractional coordinte in each direction.
        * @param fractionU u coordinate, as a fraction of the knot range.
@@ -669,12 +670,12 @@ class BSplineSurface3dH extends BSpline2dNd {
     /** Evaluate at a position given by a knot value.  */
     knotToPoint4d(u, v) {
         this.evaluateBuffersAtKnot(u, v);
-        return Geometry4d_1.Point4d.createFromPackedXYZW(this.poleBuffer, 0);
+        return Geometry4d_1.Point4d.createFromPackedXYZW(this._poleBuffer, 0);
     }
     /** Evaluate at a position given by a knot value.  */
     knotToPointAndDerivatives(u, v, result) {
         this.evaluateBuffersAtKnot(u, v, 1);
-        return AnalyticGeometry_1.Plane3dByOriginAndVectors.createOriginAndVectorsWeightedArrays(this.poleBuffer, this.poleBuffer1UV[0], this.poleBuffer1UV[1], result);
+        return AnalyticGeometry_1.Plane3dByOriginAndVectors.createOriginAndVectorsWeightedArrays(this._poleBuffer, this._poleBuffer1UV[0], this._poleBuffer1UV[1], result);
     }
     fractionToPoint4d(fractionU, fractionV) {
         return this.knotToPoint4d(this.knots[0].fractionToKnot(fractionU), this.knots[1].fractionToKnot(fractionV));

@@ -10,8 +10,8 @@ import { LineString3d } from "./LineString3d";
  * * Other methods are called only by `dispatchToGeometryHandler`
  */
 export declare class ConstructCurveBetweenCurves extends NullGeometryHandler {
-    private geometry1;
-    private fraction;
+    private _geometry1;
+    private _fraction;
     private constructor();
     /**
      * * To be directly called only by double displatcher
@@ -43,3 +43,4 @@ export declare class ConstructCurveBetweenCurves extends NullGeometryHandler {
      */
     static InterpolateBetween(geometry0: GeometryQuery, fraction: number, geometry1: GeometryQuery): GeometryQuery | undefined;
 }
+//# sourceMappingURL=ConstructCurveBetweenCurves.d.ts.map

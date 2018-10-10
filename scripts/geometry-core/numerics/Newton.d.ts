@@ -1,3 +1,4 @@
+import { Plane3dByOriginAndVectors } from "../AnalyticGeometry";
 /** base class for Newton iterations in various dimensions.
  * Dimension-specific classes carry all dimension-related data and answer generalized queries
  * from this base class.
@@ -20,10 +21,10 @@ export declare abstract class AbstractNewtonIterator {
      *     Allow 15 to 20 to catch difficult cases.
      */
     protected constructor(stepSizeTolerance?: number, successiveConvergenceTarget?: number, maxIterations?: number);
-    protected numAccepted: number;
-    protected successiveConvergenceTarget: number;
-    protected stepSizeTolerance: number;
-    protected maxIterations: number;
+    protected _numAccepted: number;
+    protected _successiveConvergenceTarget: number;
+    protected _stepSizeTolerance: number;
+    protected _maxIterations: number;
     numIterations: number;
     testConvergence(delta: number): boolean;
     runIterations(): boolean;
@@ -37,10 +38,10 @@ export declare abstract class NewtonEvaluatorRtoRD {
     currentdFdX: number;
 }
 export declare class Newton1dUnbounded extends AbstractNewtonIterator {
-    private func;
-    private currentStep;
-    private currentX;
-    private target;
+    private _func;
+    private _currentStep;
+    private _currentX;
+    private _target;
     constructor(func: NewtonEvaluatorRtoRD);
     setX(x: number): boolean;
     getX(): number;
@@ -56,10 +57,11 @@ export declare abstract class NewtonEvaluatorRtoR {
     abstract evaluate(x: number): boolean;
     currentF: number;
 }
+/** Newton iteration for a univariate function, using approximate derivatives. */
 export declare class Newton1dUnboundedApproximateDerivative extends AbstractNewtonIterator {
-    private func;
-    private currentStep;
-    private currentX;
+    private _func;
+    private _currentStep;
+    private _currentX;
     derivativeH: number;
     constructor(func: NewtonEvaluatorRtoR);
     setX(x: number): boolean;
@@ -69,3 +71,38 @@ export declare class Newton1dUnboundedApproximateDerivative extends AbstractNewt
     computeStep(): boolean;
     currentStepSize(): number;
 }
+/** object to evaluate a 2-parameter newton function (with derivatives!!).
+ */
+export declare abstract class NewtonEvaluatorRRtoRRD {
+    /** Iteration controller calls this to ask for evaluation of the function and its two partial derivatives.
+     * * The implemention returns true, it must set the currentF object.
+     */
+    abstract evaluate(x: number, y: number): boolean;
+    /** most recent function evaluation */
+    currentF: Plane3dByOriginAndVectors;
+    /**
+     * constructor.
+     * * This creates a crrentF object to (repeatedly) receive function and derivatives.
+     */
+    constructor();
+}
+/**
+ * Implement evaluation steps for newton iteration in 2 dimensions.
+ */
+export declare class Newton2dUnboundedWithDerivative extends AbstractNewtonIterator {
+    private _func;
+    private _currentStep;
+    private _currentUV;
+    constructor(func: NewtonEvaluatorRRtoRRD);
+    setUV(x: number, y: number): boolean;
+    getU(): number;
+    getV(): number;
+    applyCurrentStep(): boolean;
+    /** Univariate newton step : */
+    computeStep(): boolean;
+    /**
+     * @returns the largest relative step of the x,y, components of the current step.
+     */
+    currentStepSize(): number;
+}
+//# sourceMappingURL=Newton.d.ts.map

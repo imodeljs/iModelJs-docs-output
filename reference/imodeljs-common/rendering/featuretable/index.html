@@ -10,6 +10,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>FeatureTable - imodeljs-common</title>
+    <meta name="og:title" content="FeatureTable - imodeljs-common">
+    <meta name="twitter:title" content="FeatureTable - imodeljs-common">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -177,11 +182,11 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/">imodeljs-common</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/rendering/">Rendering</a> > FeatureTable</div>
             
             <h2 class="h-featuretable">FeatureTable <span class="badge badge-pill badge-primary badge-class">Class</span><a id="featuretable" class="heading-anchor" href="#featuretable"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Defines a look-up table for Features within a batched RenderGraphic. Consecutive 32-bit
-indices are assigned to each unique Feature. Primitives within the RenderGraphic can
-use per-vertex indices to specify the distribution of Features within the primitive.
-A FeatureTable can be shared amongst multiple primitives within a single RenderGraphic, and
-amongst multiple sub-Graphics of a RenderGraphic.</p>
+<p>Defines a look-up table for Features within a batched <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a>. Consecutive 32-bit
+indices are assigned to each unique Feature. Primitives within the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a> can
+use per-vertex indices to specify the distribution of Features within the primitive.V
+A FeatureTable can be shared amongst multiple primitives within a single <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a>, and
+amongst multiple sub-Graphics of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a>.</p>
 <h3 class="h-extends">Extends<a id="extends" class="heading-anchor" href="#extends"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/indexmap'>IndexMap</a>&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/feature'>Feature</a>&gt;</li>
@@ -192,7 +197,7 @@ amongst multiple sub-Graphics of a RenderGraphic.</p>
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">maxFeatures: number, modelId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a> = Id64.invalidId</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/featuretable'>FeatureTable</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">maxFeatures: number, modelId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a> = Id64.invalidId, type: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/batchtype'>BatchType</a> = BatchType.Primary</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/featuretable'>FeatureTable</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
 <tr>
@@ -236,6 +241,11 @@ amongst multiple sub-Graphics of a RenderGraphic.</p>
 <td></td>
 </tr>
 <tr>
+<td class="h-isclassifier"><span class="property-name">isClassifier</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isclassifier" class="heading-anchor" href="#isclassifier"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> boolean</span></td>
+<td></td>
+</tr>
+<tr>
 <td class="h-isuniform"><span class="property-name">isUniform</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isuniform" class="heading-anchor" href="#isuniform"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> boolean</span></td>
 <td></td>
@@ -248,6 +258,11 @@ amongst multiple sub-Graphics of a RenderGraphic.</p>
 <tr>
 <td class="h-modelid"><span class="property-name">modelId</span><a id="modelid" class="heading-anchor" href="#modelid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-type"><span class="property-name">type</span><a id="type" class="heading-anchor" href="#type"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/batchtype'>BatchType</a></span></td>
 <td></td>
 </tr>
 <tr>
@@ -305,11 +320,11 @@ amongst multiple sub-Graphics of a RenderGraphic.</p>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
-<li><span class="defined-in"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fcore%2Fcommon%2Fsrc%2FRender.ts" target="_blank">Render.ts</a></span></li>
+<li><span class="defined-in"><span title="Page edit feature coming soon">Render.ts</span></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             
@@ -375,6 +390,9 @@ amongst multiple sub-Graphics of a RenderGraphic.</p>
                                             <a class='title solo-title menu-text' href="#anydefined">anyDefined</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isclassifier">isClassifier</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#isuniform">isUniform</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -382,6 +400,9 @@ amongst multiple sub-Graphics of a RenderGraphic.</p>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#modelid">modelId</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#type">type</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#uniform">uniform</a>

@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 /** @module CartesianGeometry */
 Object.defineProperty(exports, "__esModule", { value: true });
 const PointVector_1 = require("../PointVector");
@@ -149,17 +150,15 @@ class UnionOfConvexClipPlaneSets {
         }
         return 3 /* StronglyOutside */;
     }
-    /** Clip a polygon using this ClipPlaneSet, returning a new polygon boundary. */
+    /** Clip a polygon using this ClipPlaneSet, returning new polygon boundaries. Note that each polygon may lie next to the previous, or be disconnected. */
     polygonClip(input, output) {
         output.length = 0;
-        const convexClipOutput = [];
         for (const convexSet of this._convexSets) {
-            convexSet.polygonClip(input, convexClipOutput, []);
-            input = convexClipOutput.slice(); // input of next convex set is the output from the previous
-            convexClipOutput.length = 0;
+            const convexSetOutput = [];
+            convexSet.polygonClip(input, convexSetOutput, []);
+            if (convexSetOutput.length !== 0)
+                output.push(convexSetOutput);
         }
-        for (const point of input)
-            output.push(point);
     }
     /**
      * * announce clipSegment() for each convexSet in this ClipPlaneSet.
@@ -181,7 +180,7 @@ class UnionOfConvexClipPlaneSets {
         return numAnnounce > 0;
     }
     announceClippedArcIntervals(arc, announce) {
-        const breaks = UnionOfConvexClipPlaneSets.sClipArcFractionArray;
+        const breaks = UnionOfConvexClipPlaneSets._clipArcFractionArray;
         breaks.clear();
         for (const convexSet of this._convexSets) {
             for (const clipPlane of convexSet.planes) {
@@ -202,7 +201,7 @@ class UnionOfConvexClipPlaneSets {
             if (convexSet.getRangeOfAlignedPlanes(transform, thisRange))
                 range.extendRange(thisRange);
         }
-        if (range.isNull())
+        if (range.isNull)
             return undefined;
         else
             return range;
@@ -230,6 +229,6 @@ class UnionOfConvexClipPlaneSets {
         }
     }
 }
-UnionOfConvexClipPlaneSets.sClipArcFractionArray = new GrowableArray_1.GrowableFloat64Array();
+UnionOfConvexClipPlaneSets._clipArcFractionArray = new GrowableArray_1.GrowableFloat64Array();
 exports.UnionOfConvexClipPlaneSets = UnionOfConvexClipPlaneSets;
 //# sourceMappingURL=UnionOfConvexClipPlaneSets.js.map

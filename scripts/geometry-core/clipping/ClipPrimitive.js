@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module CartesianGeometry */
 const ClipPlane_1 = require("./ClipPlane");
@@ -12,6 +13,23 @@ const Transform_1 = require("../Transform");
 const Geometry_1 = require("../Geometry");
 const PointHelpers_1 = require("../PointHelpers");
 const UnionOfConvexClipPlaneSets_1 = require("./UnionOfConvexClipPlaneSets");
+const Triangulation_1 = require("../topology/Triangulation");
+/**
+ * Bit mask type for easily keeping track of defined vs undefined values and which parts of a clipping shape
+ * should or should not be used.
+ */
+var ClipMask;
+(function (ClipMask) {
+    ClipMask[ClipMask["None"] = 0] = "None";
+    ClipMask[ClipMask["XLow"] = 1] = "XLow";
+    ClipMask[ClipMask["XHigh"] = 2] = "XHigh";
+    ClipMask[ClipMask["YLow"] = 4] = "YLow";
+    ClipMask[ClipMask["YHigh"] = 8] = "YHigh";
+    ClipMask[ClipMask["ZLow"] = 16] = "ZLow";
+    ClipMask[ClipMask["ZHigh"] = 32] = "ZHigh";
+    ClipMask[ClipMask["XAndY"] = 15] = "XAndY";
+    ClipMask[ClipMask["All"] = 63] = "All";
+})(ClipMask = exports.ClipMask || (exports.ClipMask = {}));
 /** Internal helper class holding XYZ components that serves as a representation of polygon edges defined by clip planes */
 class PolyEdge {
     constructor(origin, next, normal, z) {
@@ -48,7 +66,8 @@ class ClipPrimitive {
         this._clipPlanes = planeSet;
         this._invisible = isInvisible;
     }
-    transformInPlaceSuper(transform) {
+    /** Apply a transform to the clipper (e.g. transform all planes) */
+    transformInPlace(transform) {
         if (this._clipPlanes)
             this._clipPlanes.transformInPlace(transform);
         if (this._maskPlanes)
@@ -262,15 +281,9 @@ class ClipShape extends ClipPrimitive {
     initSecondaryProps(isMask, zLow, zHigh, transform) {
         this._isMask = isMask;
         this._zLowValid = (zLow !== undefined);
-        if (false !== this._zLowValid)
-            this._zLow = zLow;
-        else
-            this._zLow = -Number.MAX_VALUE;
+        this._zLow = zLow;
         this._zHighValid = (zHigh !== undefined);
-        if (false !== this._zHighValid)
-            this._zHigh = zHigh;
-        else
-            this._zHigh = Number.MAX_VALUE;
+        this._zHigh = zHigh;
         this._transformValid = (transform !== undefined);
         if (false !== this._transformValid) {
             this._transformFromClip = transform;
@@ -289,7 +302,7 @@ class ClipShape extends ClipPrimitive {
             val.shape.points.push(pt.toJSON());
         if (this.invisible)
             val.shape.invisible = true;
-        if (this._transformFromClip && !this._transformFromClip.isIdentity())
+        if (this._transformFromClip && !this._transformFromClip.isIdentity)
             val.shape.trans = this._transformFromClip.toJSON();
         if (this.isMask)
             val.shape.mask = true;
@@ -392,7 +405,7 @@ class ClipShape extends ClipPrimitive {
         return new ClipShape([], undefined, undefined, transform, isMask, invisible);
     }
     /** Checks to ensure that the member polygon has an area, and that the polygon is closed. */
-    isValidPolygon() {
+    get isValidPolygon() {
         if (this._polygon.length < 3)
             return false;
         if (!this._polygon[0].isExactEqual(this._polygon[this._polygon.length - 1]))
@@ -412,14 +425,15 @@ class ClipShape extends ClipPrimitive {
         }
         const direction = PointHelpers_1.PolygonOps.testXYPolygonTurningDirections(points);
         if (0 !== direction) {
-            this.parseConvexPolygonPlanes(set, direction);
+            this.parseConvexPolygonPlanes(set, this._polygon, direction);
             return true;
         }
         else {
-            // TODO: HANDLE CONCAVE POLYGONS
+            this.parseConcavePolygonPlanes(set, this._polygon);
             return false;
         }
     }
+    /** Given a start and end point, populate the given UnionOfConvexClipPlaneSets with ConvexClipPlaneSets defining the bounded region of linear planes. Returns true if successful. */
     parseLinearPlanes(set, start, end, cameraFocalLength) {
         // Handles the degenerate case of 2 distinct points (used by select by line).
         const normal = start.vectorTo(end);
@@ -451,13 +465,12 @@ class ClipShape extends ClipPrimitive {
         set.addConvexSet(convexSet);
         return true;
     }
-    parseConvexPolygonPlanes(set, direction, cameraFocalLength) {
+    /** Given a convex polygon defined as an array of points, populate the given UnionOfConvexClipPlaneSets with ConvexClipPlaneSets defining the bounded region. Returns true if successful. */
+    parseConvexPolygonPlanes(set, polygon, direction, cameraFocalLength) {
         const samePointTolerance = 1.0e-8; // This could possibly be replaced with more widely used constants
         const edges = [];
         const reverse = (direction < 0) !== this._isMask;
-        const polygon = this._polygon;
-        const numVerts = this._polygon.length;
-        for (let i = 0; i < numVerts - 1; i++) {
+        for (let i = 0; i < polygon.length - 1; i++) {
             const z = (cameraFocalLength === undefined) ? 0.0 : -cameraFocalLength;
             const dir = PointVector_1.Vector2d.createFrom((polygon[i + 1].minus(polygon[i])));
             const magnitude = dir.magnitude();
@@ -510,6 +523,25 @@ class ClipShape extends ClipPrimitive {
         }
         return true;
     }
+    /** Given a concave polygon defined as an array of points, populate the given UnionOfConvexClipPlaneSets with multiple ConvexClipPlaneSets defining the bounded region. Returns true if successful. */
+    parseConcavePolygonPlanes(set, polygon, cameraFocalLength) {
+        const triangulatedPolygon = Triangulation_1.Triangulator.earcutSingleLoop(polygon);
+        Triangulation_1.Triangulator.cleanupTriangulation(triangulatedPolygon);
+        triangulatedPolygon.announceFaceLoops((_graph, edge) => {
+            if (!edge.isMaskSet(1 /* EXTERIOR */)) {
+                const convexFacetPoints = edge.collectAroundFace((node) => {
+                    if (!node.isMaskSet(1 /* EXTERIOR */))
+                        return PointVector_1.Point3d.create(node.x, node.y, 0);
+                });
+                // parseConvexPolygonPlanes expects a closed loop (pushing the reference doesn't matter)
+                convexFacetPoints.push(convexFacetPoints[0]);
+                const direction = PointHelpers_1.PolygonOps.testXYPolygonTurningDirections(convexFacetPoints); // ###TODO: Can we expect a direction coming out of graph facet?
+                this.parseConvexPolygonPlanes(set, convexFacetPoints, direction, cameraFocalLength);
+            }
+            return true;
+        });
+        return true;
+    }
     /** Get the 3-dimensional range that this combination of ClipPlanes bounds in space. Returns the range/result
      *  if successful, otherwise, returns undefined. Transform will only be used for transforming the polygon points if clipplanes/maskplanes
      *  have not yet been set. Otherwise, we return the range of the planes without an applied transform.
@@ -535,7 +567,7 @@ class ClipShape extends ClipPrimitive {
             transform.multiplyPoint3dArray(shapePts, shapePts);
             range.extend(shapePts[0], shapePts[1]);
         }
-        if (range.isNull()) {
+        if (range.isNull) {
             return undefined;
         }
         return range;
@@ -547,9 +579,9 @@ class ClipShape extends ClipPrimitive {
         return this.fetchClipPlanesRef().isPointOnOrInside(point, onTolerance);
     }
     transformInPlace(transform) {
-        if (transform.isIdentity())
+        if (transform.isIdentity)
             return true;
-        this.transformInPlaceSuper(transform);
+        super.transformInPlace(transform);
         if (this._transformValid)
             transform.multiplyTransformTransform(this._transformFromClip, this._transformFromClip);
         else
@@ -567,8 +599,8 @@ class ClipShape extends ClipPrimitive {
         this._clipPlanes.multiplyPlanesByMatrix(matrix);
         return true;
     }
-    isXYPolygon() {
-        if (this._polygon.length === 0)
+    get isXYPolygon() {
+        if (this._polygon.length === 0) // Note: This is a lenient check, as points array could also contain less than 3 points (not a polygon)
             return false;
         if (this._transformFromClip === undefined)
             return true;

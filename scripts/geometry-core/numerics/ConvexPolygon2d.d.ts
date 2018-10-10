@@ -32,7 +32,7 @@ export declare class Ray2d {
     fractionToPoint(f: number): Point2d;
 }
 export declare class ConvexPolygon2d {
-    private hullPoints;
+    private _hullPoints;
     constructor(points: Point2d[]);
     /** Create the hull */
     static createHull(points: Point2d[]): ConvexPolygon2d;
@@ -66,3 +66,4 @@ export declare class ConvexPolygon2d {
      */
     static computeConvexHull(points: Point2d[]): Point2d[];
 }
+//# sourceMappingURL=ConvexPolygon2d.d.ts.map

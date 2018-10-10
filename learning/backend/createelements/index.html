@@ -9,7 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Creating Elements - iModelJs</title>
+    <title>Creating Elements - iModel.js</title>
+    <meta name="og:title" content="Creating Elements - iModel.js">
+    <meta name="twitter:title" content="Creating Elements - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -90,8 +95,9 @@
         <h3 id="helpful links">Helpful links</h3>
         <ul>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
         </ul>
@@ -100,7 +106,7 @@
     <div class='documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/">backend</a> > CreateElements</div>
-            <div class="edit-link"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fdocs%2Fcore%2Flearning%2Fbackend%2FCreateElements.md" target="_blank">Edit this page</a></div>
+            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
             <h1 id="creating elements">Creating Elements</h1>
 <p>Use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb.elements/insertelement'>IModelDb.Elements.insertElement</a> to insert a new element into an IModelDb. This method takes as its input an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a> or a subclass of it, which defines the class and all required properties of the new element. The pattern is:</p>
 <pre class="no-line-numbers"><code class="language-typescript">const elementProps: SomeBisClassProps = {
@@ -134,7 +140,8 @@ const newElementId: Id64 = iModel.elements.insertElement(elementProps);</code></
     modeledElement: { id: partitionId },
   }) as DefinitionModel;
   return iModelDb.models.insertModel(model);
-}</code></pre>
+}
+</code></pre>
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/informationpartitionelementprops'>InformationPartitionElementProps</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/code'>Code</a>, and <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/createmodels'>creating models</a></p>
 <h2 class="h-subject">Subject<a id="subject" class="heading-anchor" href="#subject"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <pre class="no-line-numbers"><code class="language-typescript">export function insertSubject(parentElement: Subject, name: string): Subject {
@@ -147,10 +154,11 @@ const newElementId: Id64 = iModel.elements.insertElement(elementProps);</code></
   };
   const id = parentElement.iModel.elements.insertElement(subjectProps);
   return parentElement.iModel.elements.getElement(id) as Subject;
-}</code></pre>
+}
+</code></pre>
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/subjectprops'>SubjectProps</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/code'>Code</a></p>
 <h2 class="h-geometricelement3d">GeometricElement3d<a id="geometricelement3d" class="heading-anchor" href="#geometricelement3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<pre class="no-line-numbers"><code class="language-typescript">    public static insertRobot(iModelDb: IModelDb, modelId: Id64Props, name: string, location: Point3d): Id64Props {
+<pre class="no-line-numbers"><code class="language-typescript">    public static insertRobot(iModelDb: IModelDb, modelId: Id64String, name: string, location: Point3d): Id64String {
         const props: GeometricElement3dProps = {
             model: modelId,
             code: Code.createEmpty(),
@@ -171,7 +179,8 @@ export function generateGeometry(radius: number = 0.1): GeometryStreamProps {
   const circle = Arc3d.createXY(Point3d.createZero(), radius);
   builder.appendGeometry(circle);
   return builder.geometryStream;
-}</code></pre>
+}
+</code></pre>
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/geometrystreambuilder'>GeometryStreamBuilder</a></p>
 <h2 class="h-spatialcategory">SpatialCategory<a id="spatialcategory" class="heading-anchor" href="#spatialcategory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <pre class="no-line-numbers"><code class="language-typescript">export function insertSpatialCategory(iModelDb: IModelDb, modelId: Id64, name: string, color: ColorDef): Id64 {
@@ -186,7 +195,8 @@ export function generateGeometry(radius: number = 0.1): GeometryStreamProps {
   category.setDefaultAppearance(new SubCategoryAppearance({ color }));
   iModelDb.elements.updateElement(category);
   return categoryId;
-}</code></pre>
+}
+</code></pre>
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/spatialcategory'>SpatialCategory</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/categoryprops'>CategoryProps</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryappearance'>SubCategoryAppearance</a>.</p>
 <p>Also see <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb.elements/updateelement'>IModelDb.Elements.updateElement</a>.</p>
 <h2 class="h-modelselector">ModelSelector<a id="modelselector" class="heading-anchor" href="#modelselector"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
@@ -198,7 +208,8 @@ export function generateGeometry(radius: number = 0.1): GeometryStreamProps {
     models,
   };
   return iModelDb.elements.insertElement(modelSelectorProps);
-}</code></pre>
+}
+</code></pre>
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/modelselector'>ModelSelector</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/modelselectorprops'>ModelSelectorProps</a></p>
 <h2 class="h-categoryselector">CategorySelector<a id="categoryselector" class="heading-anchor" href="#categoryselector"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <pre class="no-line-numbers"><code class="language-typescript">export function insertCategorySelector(iModelDb: IModelDb, modelId: Id64, categories: string[]): Id64 {
@@ -209,7 +220,8 @@ export function generateGeometry(radius: number = 0.1): GeometryStreamProps {
     categories,
   };
   return iModelDb.elements.insertElement(categorySelectorProps);
-}</code></pre>
+}
+</code></pre>
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/categoryselector'>CategorySelector</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/categoryselectorprops'>CategorySelectorProps</a></p>
 <h2 class="h-displaystyle3d">DisplayStyle3d<a id="displaystyle3d" class="heading-anchor" href="#displaystyle3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <pre class="no-line-numbers"><code class="language-typescript">export function insertDisplayStyle3d(iModelDb: IModelDb, modelId: Id64): Id64 {
@@ -220,7 +232,8 @@ export function generateGeometry(radius: number = 0.1): GeometryStreamProps {
     isPrivate: false,
   };
   return iModelDb.elements.insertElement(displayStyleProps);
-}</code></pre>
+}
+</code></pre>
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/definitionelementprops'>DefinitionElementProps</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/displaystyle3d'>DisplayStyle3d</a></p>
 <h2 class="h-orthographicviewdefinition">OrthographicViewDefinition<a id="orthographicviewdefinition" class="heading-anchor" href="#orthographicviewdefinition"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <pre class="no-line-numbers"><code class="language-typescript">export function insertOrthographicViewDefinition(
@@ -246,11 +259,12 @@ export function generateGeometry(radius: number = 0.1): GeometryStreamProps {
     camera: { eye: [0, 0, 0], lens: 0, focusDist: 0 }, // not used when cameraOn === false
   };
   return iModelDb.elements.insertElement(viewDefinitionProps);
-}</code></pre>
+}
+</code></pre>
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/viewdefinition/createcode'>ViewDefinition.createCode</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/orthographicviewdefinition'>OrthographicViewDefinition</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/spatialviewdefinitionprops'>SpatialViewDefinitionProps</a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             

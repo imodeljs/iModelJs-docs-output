@@ -40,8 +40,8 @@ export declare class UnionOfConvexClipPlaneSets implements Clipper {
     transformInPlace(transform: Transform): void;
     /** Returns 1, 2, or 3 based on whether point is strongly inside, ambiguous, or strongly outside respectively */
     classifyPointContainment(points: Point3d[], onIsOutside: boolean): number;
-    /** Clip a polygon using this ClipPlaneSet, returning a new polygon boundary. */
-    polygonClip(input: Point3d[], output: Point3d[]): void;
+    /** Clip a polygon using this ClipPlaneSet, returning new polygon boundaries. Note that each polygon may lie next to the previous, or be disconnected. */
+    polygonClip(input: Point3d[], output: Point3d[][]): void;
     /**
      * * announce clipSegment() for each convexSet in this ClipPlaneSet.
      * * all clipPlaneSets are inspected
@@ -54,7 +54,7 @@ export declare class UnionOfConvexClipPlaneSets implements Clipper {
      * @returns Return true if any announcements are made.
      */
     announceClippedSegmentIntervals(f0: number, f1: number, pointA: Point3d, pointB: Point3d, announce?: (fraction0: number, fraction1: number) => void): boolean;
-    private static sClipArcFractionArray;
+    private static _clipArcFractionArray;
     announceClippedArcIntervals(arc: Arc3d, announce?: AnnounceNumberNumberCurvePrimitive): boolean;
     /**
      * Returns range if result does not cover a space of infinity, otherwise undefined.
@@ -65,3 +65,4 @@ export declare class UnionOfConvexClipPlaneSets implements Clipper {
     setInvisible(invisible: boolean): void;
     addOutsideZClipSets(invisible: boolean, zLow?: number, zHigh?: number): void;
 }
+//# sourceMappingURL=UnionOfConvexClipPlaneSets.d.ts.map

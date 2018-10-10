@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Solid */
 const PointVector_1 = require("../PointVector");
@@ -20,8 +21,8 @@ const SolidPrimitive_1 = require("./SolidPrimitive");
 class LinearSweep extends SolidPrimitive_1.SolidPrimitive {
     constructor(contour, direction, capped) {
         super(capped);
-        this.contour = contour;
-        this.direction = direction;
+        this._contour = contour;
+        this._direction = direction;
     }
     static create(contour, direction, capped) {
         const sweepable = SweepContour_1.SweepContour.createForLinearSweep(contour, direction);
@@ -50,16 +51,16 @@ class LinearSweep extends SolidPrimitive_1.SolidPrimitive {
         const contour = capped ? CurveChain_1.Loop.create(xyz) : CurveChain_1.Path.create(xyz);
         return LinearSweep.create(contour, PointVector_1.Vector3d.create(0, 0, zSweep), capped);
     }
-    getCurvesRef() { return this.contour.curves; }
-    getSweepContourRef() { return this.contour; }
-    cloneSweepVector() { return this.direction.clone(); }
+    getCurvesRef() { return this._contour.curves; }
+    getSweepContourRef() { return this._contour; }
+    cloneSweepVector() { return this._direction.clone(); }
     isSameGeometryClass(other) { return other instanceof LinearSweep; }
     clone() {
-        return new LinearSweep(this.contour.clone(), this.direction.clone(), this.capped);
+        return new LinearSweep(this._contour.clone(), this._direction.clone(), this.capped);
     }
     tryTransformInPlace(transform) {
-        if (this.contour.tryTransformInPlace(transform)) {
-            transform.multiplyVector(this.direction, this.direction);
+        if (this._contour.tryTransformInPlace(transform)) {
+            transform.multiplyVector(this._direction, this._direction);
         }
         return false;
     }
@@ -69,7 +70,7 @@ class LinearSweep extends SolidPrimitive_1.SolidPrimitive {
      * * z direction perpenedicular
      */
     getConstructiveFrame() {
-        return this.contour.localToWorld.cloneRigid();
+        return this._contour.localToWorld.cloneRigid();
     }
     cloneTransformed(transform) {
         const result = this.clone();
@@ -78,8 +79,8 @@ class LinearSweep extends SolidPrimitive_1.SolidPrimitive {
     }
     isAlmostEqual(other) {
         if (other instanceof LinearSweep) {
-            return this.contour.isAlmostEqual(other.contour)
-                && this.direction.isAlmostEqual(other.direction)
+            return this._contour.isAlmostEqual(other._contour)
+                && this._direction.isAlmostEqual(other._direction)
                 && this.capped === other.capped;
         }
         return false;
@@ -92,22 +93,22 @@ class LinearSweep extends SolidPrimitive_1.SolidPrimitive {
      * @param vFraction fractional position along the sweep direction
      */
     constantVSection(vFraction) {
-        const section = this.contour.curves.clone();
+        const section = this._contour.curves.clone();
         if (section && vFraction !== 0.0)
-            section.tryTransformInPlace(Transform_1.Transform.createTranslation(this.direction.scale(vFraction)));
+            section.tryTransformInPlace(Transform_1.Transform.createTranslation(this._direction.scale(vFraction)));
         return section;
     }
     extendRange(range, transform) {
-        const contourRange = this.contour.curves.range(transform);
+        const contourRange = this._contour.curves.range(transform);
         range.extendRange(contourRange);
         if (transform) {
-            const transformedDirection = transform.multiplyVector(this.direction);
+            const transformedDirection = transform.multiplyVector(this._direction);
             contourRange.low.addInPlace(transformedDirection);
             contourRange.high.addInPlace(transformedDirection);
         }
         else {
-            contourRange.low.addInPlace(this.direction);
-            contourRange.high.addInPlace(this.direction);
+            contourRange.low.addInPlace(this._direction);
+            contourRange.high.addInPlace(this._direction);
         }
         range.extendRange(contourRange);
     }

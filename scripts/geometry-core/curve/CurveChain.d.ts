@@ -28,7 +28,7 @@ export declare abstract class CurveCollection extends GeometryQuery {
      */
     maxGap(): number;
     /** return true if the curve collection has any primitives other than LineSegment3d and LineString3d  */
-    hasNonLinearPrimitives(): boolean;
+    checkForNonLinearPrimitives(): boolean;
     tryTransformInPlace(transform: Transform): boolean;
     clone(): CurveCollection | undefined;
     cloneTransformed(transform: Transform): CurveCollection | undefined;
@@ -37,14 +37,14 @@ export declare abstract class CurveCollection extends GeometryQuery {
      * * `ParityRegion`
      * * `UnionRegion`
      */
-    isAnyRegionType(): boolean;
+    readonly isAnyRegionType: boolean;
     /** Return true for a `Path`, i.e. a chain of curves joined head-to-tail
      */
-    isOpenPath(): boolean;
+    readonly isOpenPath: boolean;
     /** Return true for a single-loop planar region type, i.e. `Loop`.
      * * This is _not- a test for physical closure of a `Path`
      */
-    isClosedPath(): boolean;
+    readonly isClosedPath: boolean;
     /** Return a CurveCollection with the same structure but all curves replaced by strokes. */
     abstract cloneStroked(options?: StrokeOptions): AnyCurve;
     /** Support method for ICurvePrimtive ... one line call to specific announce method . . */
@@ -96,7 +96,16 @@ export declare class Path extends CurveChain {
     isSameGeometryClass(other: GeometryQuery): boolean;
     announceToCurveProcessor(processor: RecursiveCurveProcessor, indexInParent?: number): void;
     constructor();
+    /**
+     * Create a path from a variable length list of curve primtiives
+     * @param curves variable length list of individual curve primitives
+     */
     static create(...curves: CurvePrimitive[]): Path;
+    /**
+     * Create a path from a an array of curve primtiives
+     * @param curves array of individual curve primitives
+     */
+    static createArray(curves: CurvePrimitive[]): Path;
     cloneStroked(options?: StrokeOptions): AnyCurve;
     dgnBoundaryType(): number;
     cyclicCurvePrimitive(index: number): CurvePrimitive | undefined;
@@ -110,7 +119,16 @@ export declare class Loop extends CurveChain {
     isInner: boolean;
     isSameGeometryClass(other: GeometryQuery): boolean;
     constructor();
+    /**
+     * Create a loop from variable length list of CurvePrimtives
+     * @param curves array of individual curve primitives
+     */
     static create(...curves: CurvePrimitive[]): Loop;
+    /**
+     * Create a loop from an array of curve primtiives
+     * @param curves array of individual curve primitives
+     */
+    static createArray(curves: CurvePrimitive[]): Loop;
     static createPolygon(points: Point3d[]): Loop;
     cloneStroked(options?: StrokeOptions): AnyCurve;
     dgnBoundaryType(): number;
@@ -176,3 +194,4 @@ export declare class BagOfCurves extends CurveCollection {
     getChild(i: number): AnyCurve | undefined;
     dispatchToGeometryHandler(handler: GeometryHandler): any;
 }
+//# sourceMappingURL=CurveChain.d.ts.map

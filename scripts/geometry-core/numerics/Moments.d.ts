@@ -1,6 +1,6 @@
 /** @module Numerics */
 import { XYZ, Point3d, Vector3d } from "../PointVector";
-import { RotMatrix, Transform } from "../Transform";
+import { Matrix3d, Transform } from "../Transform";
 import { Matrix4d } from "../numerics/Geometry4d";
 export declare class MomentData {
     origin: Point3d;
@@ -13,8 +13,8 @@ export declare class MomentData {
      */
     radiusOfGyration: Vector3d;
     private constructor();
-    static momentTensorFromInertiaProducts(products: RotMatrix): RotMatrix;
-    static sortColumnsForIncreasingMoments(axes: RotMatrix, moments: Vector3d): void;
+    static momentTensorFromInertiaProducts(products: Matrix3d): Matrix3d;
+    static sortColumnsForIncreasingMoments(axes: Matrix3d, moments: Vector3d): void;
     static pointsToPrincipalAxes(points: Point3d[]): MomentData;
     /**
      * Compute principal axes from inertial products
@@ -26,3 +26,4 @@ export declare class MomentData {
     accumulatePointMomentsFromOrigin(points: Point3d[]): void;
     shiftSumsToCentroid(): boolean;
 }
+//# sourceMappingURL=Moments.d.ts.map

@@ -20,3 +20,4 @@ export declare abstract class SolidPrimitive extends GeometryQuery {
      */
     abstract getConstructiveFrame(): Transform | undefined;
 }
+//# sourceMappingURL=SolidPrimitive.d.ts.map

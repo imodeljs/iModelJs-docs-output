@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
@@ -23,7 +24,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * * Fundamental cartesian geometry objects:
  * * * Point2d, Point3d -- points with x,y,z coordinates
  * * * Vector2d, Vector3d -- vectors with x,y,z coordinates
- * * * RotMatrix -- 3x3 matrix
+ * * * Matrix3d -- 3x3 matrix
  * * * * commonly used for pure rotations
  * * * * scale and skew entries are also allowed.
  * * * Transform -- an origin and axes.
@@ -118,6 +119,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 // doc:export class TopologyDoc { }
 __export(require("./PointVector"));
+__export(require("./PointHelpers"));
 __export(require("./Geometry"));
 __export(require("./Transform"));
 __export(require("./Range"));
@@ -159,6 +161,8 @@ __export(require("./solid/Sphere"));
 __export(require("./solid/SweepContour"));
 __export(require("./solid/TorusPipe"));
 __export(require("./bspline/BSplineCurve"));
+__export(require("./bspline/BSpline1dNd"));
+__export(require("./bspline/BSplineCurve3dH"));
 __export(require("./bspline/BSplineSurface"));
 __export(require("./bspline/KnotVector"));
 __export(require("./polyface/BoxTopology"));

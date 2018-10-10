@@ -60,11 +60,11 @@ export declare class HalfEdge {
      * * This changes heA._faceSuccessor and heB._facePredecessor, but not heA._facePredecessor and heB._faceSuccessor.
      * * this must always be done with another call to restablish the entire double-linked list.
      */
-    private static setFaceLinks(heA, heB);
+    private static setFaceLinks;
     /**
      * * set heA <==> heB pointer relation edgeMate
      */
-    private static setEdgeMates(heA, heB);
+    private static setEdgeMates;
     /**
      * * Create a new vertex within the edge from base.
      * * Insert it "within" the base edge.
@@ -79,7 +79,7 @@ export declare class HalfEdge {
     nextZ: HalfEdge;
     steiner: boolean;
     zOrder: number;
-    private static totalNodesCreated;
+    private static _totalNodesCreated;
     constructor(x?: number, y?: number, z?: number, i?: number);
     /**
      * @returns Return the next outbound half edge around this vertex in the CCW direction
@@ -310,7 +310,7 @@ export declare class HalfEdgeGraph {
      * * Call the announceFace function
      * * continue search if announceFace(graph, node) returns true
      * * terminate search if announceface (graph, node) returns false
-     * @param  annonceFace function to apply at one node of each face.
+     * @param  announceFace function to apply at one node of each face.
      */
     announceFaceLoops(announceFace: GraphNodeFunction): void;
     /**
@@ -341,5 +341,6 @@ export declare const enum HalfEdgeMask {
     VISITED = 8192,
     TRIANGULATED_NODE_MASK = 16384,
     NULL_MASK = 0,
-    ALL_MASK = 4294967295,
+    ALL_MASK = 4294967295
 }
+//# sourceMappingURL=Graph.d.ts.map

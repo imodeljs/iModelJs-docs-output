@@ -9,10 +9,10 @@ import { BeJSONFunctions } from "./Geometry";
  * * a unit normal.
  */
 export declare class Plane3dByOriginAndUnitNormal implements BeJSONFunctions {
-    private origin;
-    private normal;
+    private _origin;
+    private _normal;
     private constructor();
-    private static _create(x, y, z, u, v, w);
+    private static _create;
     /**
      * Create a plane parallel to the XY plane
      * @param origin optional plane origin.  If omitted, the origin is placed at 000
@@ -61,6 +61,10 @@ export declare class Plane3dByOriginAndUnitNormal implements BeJSONFunctions {
     /** @returns The dot product of spaceVector with the plane's unit normal.  This tells the rate of change of altitude
      * for a point moving at speed one along the spaceVector.
      */
+    velocityXYZ(x: number, y: number, z: number): number;
+    /** @returns The dot product of spaceVector with the plane's unit normal.  This tells the rate of change of altitude
+     * for a point moving at speed one along the spaceVector.
+     */
     velocity(spaceVector: Vector3d): number;
     /** @returns the altitude of a point given as separate x,y,z components. */
     altitudeXYZ(x: number, y: number, z: number): number;
@@ -82,13 +86,20 @@ export declare class Ray3d implements BeJSONFunctions {
     direction: Vector3d;
     a?: number;
     private constructor();
-    private static _create(x, y, z, u, v, w);
+    private static _create;
     static createXAxis(): Ray3d;
     static createYAxis(): Ray3d;
     static createZAxis(): Ray3d;
     static createZero(result?: Ray3d): Ray3d;
     isAlmostEqual(other: Ray3d): boolean;
     static create(origin: Point3d, direction: Vector3d, result?: Ray3d): Ray3d;
+    /**
+     * Given a homogeneous point and its derivative components, construct a Ray3d with cartesian coordinates and derivatives.
+     * @param weightedPoint `[x,y,z,w]` parts of weighted point.
+     * @param weightedDerivative `[x,y,z,w]` derivatives
+     * @param result
+     */
+    static createWeightedDerivative(weightedPoint: Float64Array, weightedDerivative: Float64Array, result?: Ray3d): Ray3d | undefined;
     /** Create from coordinates of the origin and direction. */
     static createXYZUVW(originX: number, originY: number, originZ: number, directionX: number, directionY: number, directionZ: number, result?: Ray3d): Ray3d;
     /** Capture origin and direction in a new Ray3d. */
@@ -213,3 +224,4 @@ export declare class Plane3dByOriginAndVectors implements BeJSONFunctions {
     static fromJSON(json?: any): Plane3dByOriginAndVectors;
     isAlmostEqual(other: Plane3dByOriginAndVectors): boolean;
 }
+//# sourceMappingURL=AnalyticGeometry.d.ts.map

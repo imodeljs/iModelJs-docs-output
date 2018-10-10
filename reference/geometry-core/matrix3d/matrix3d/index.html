@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Matrix3d - geometry-core</title>
+    <meta name="og:title" content="Matrix3d - geometry-core">
+    <meta name="twitter:title" content="Matrix3d - geometry-core">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
+
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
+    <span id="contentLoader">
+        <p>Woah! This page has a great deal of content... Give us a second to load it.</p>
+    </span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+
+
+
+        <header id="main-header">
+            <div class='nav-header-container'>
+                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                    <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+                        <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar5">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
+                        <ul class="navbar-nav mb-0" id="doc-site-tabs">
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li>
+                        </ul>
+                        <ul class="navbar-nav ml-auto">
+                            <span class='search-bar'>
+                              <li>
+                                <div id='search-container'>
+                                </div>
+                              </li>
+                              <script>
+                                (function() {
+                                  var cx = '000629069474334212860:yxwzhn4umym';
+                                  var gcse = document.createElement('script');
+                                  gcse.type = 'text/javascript';
+                                  gcse.async = true;
+                                  gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                                  var s = document.getElementsByTagName('script')[0];
+                                  s.parentNode.insertBefore(gcse, s);
+                                })();
+                              </script>
+                              <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+                            </span>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+<div id='main-wrapper'>
+    <div id='table-of-contents'>
+        <ul id='main-navigation-list'>
+            <html><head></head><body><h2 id="imodel.js packages">iModel.js Packages</h2>
+        <hr>
+        <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/&apos;&gt;imodeljs-backend&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/" class="table-of-contents-link">imodeljs-backend</a></h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodelhost/" class="table-of-contents-link">IModelHost</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/" class="table-of-contents-link">iModels</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/" class="table-of-contents-link">Schema</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/models/" class="table-of-contents-link">Models</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/" class="table-of-contents-link">Elements</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/codes/" class="table-of-contents-link">Codes</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/" class="table-of-contents-link">View Definitions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/" class="table-of-contents-link">Relationships</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elementaspects/" class="table-of-contents-link">Element Aspects</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/" class="table-of-contents-link">Categories</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/symbology/" class="table-of-contents-link">Symbology</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/ecdb/" class="table-of-contents-link">ECDb</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/ecsql/" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/portability/" class="table-of-contents-link">Portability</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/all/" class="table-of-contents-link">All</a></li>
+        </ul>
+        <hr>
+        <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/&apos;&gt;imodeljs-frontend&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/" class="table-of-contents-link">imodeljs-frontend</a></h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/" class="table-of-contents-link">IModelApp</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/" class="table-of-contents-link">IModelConnection</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/elementstate/" class="table-of-contents-link">ElementState</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/" class="table-of-contents-link">ModelState</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/" class="table-of-contents-link">Tools</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/" class="table-of-contents-link">Views</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/" class="table-of-contents-link">Locating Elements</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/accudraw/" class="table-of-contents-link">AccuDraw</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/notifications/" class="table-of-contents-link">Notifications</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/selectionset/" class="table-of-contents-link">Selection Set</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/" class="table-of-contents-link">Rendering</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/all/" class="table-of-contents-link">All</a></li>
+        </ul>
+        <hr>
+        <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/&apos;&gt;imodeljs-common&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/" class="table-of-contents-link">imodeljs-common</a></h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/" class="table-of-contents-link">Wire Formats</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/" class="table-of-contents-link">Codes</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/" class="table-of-contents-link">Geometry</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/" class="table-of-contents-link">Views</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/" class="table-of-contents-link">Symbology</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/" class="table-of-contents-link">Rendering</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/" class="table-of-contents-link">iModels</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/" class="table-of-contents-link">RPC Interface</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/" class="table-of-contents-link">Feature Gates</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/all/" class="table-of-contents-link">All</a></li>
+        </ul>
+        <hr>
+        <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/&apos;&gt;imodeljs-clients&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/" class="table-of-contents-link">imodeljs-clients</a></h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/" class="table-of-contents-link">Authentication</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/" class="table-of-contents-link">Base Clients</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/connectservices/" class="table-of-contents-link">Connect Services</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/" class="table-of-contents-link">iModel Hub</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/" class="table-of-contents-link">iModel Hub Events</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/" class="table-of-contents-link">iModel Hub Global Events</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodels/" class="table-of-contents-link">iModels</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/otherservices/" class="table-of-contents-link">Other Services</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/" class="table-of-contents-link">Utils</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/all/" class="table-of-contents-link">All</a></li>
+        </ul>
+        <p>&#xA0;</p>
+        <h2 id="support packages">Support Packages</h2>
+        <hr>
+        <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/&apos;&gt;bentleyjs-core&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/" class="table-of-contents-link">bentleyjs-core</a></h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/besqlite/" class="table-of-contents-link">BeSQLite</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/" class="table-of-contents-link">Errors</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/" class="table-of-contents-link">Events</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/" class="table-of-contents-link">Ids</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/" class="table-of-contents-link">Logging</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/" class="table-of-contents-link">Utils</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/all/" class="table-of-contents-link">All</a></li>
+        </ul>
+        <hr>
+        <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/&apos;&gt;geometry-core&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/" class="table-of-contents-link">geometry-core</a></h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/" class="table-of-contents-link">Cartesian Geometry</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/arraysandinterfaces/" class="table-of-contents-link">Arrays &amp; Interfaces</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/bspline/" class="table-of-contents-link">Bspline</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/" class="table-of-contents-link">Curve</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/" class="table-of-contents-link">Numerics</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/" class="table-of-contents-link">Polyface</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/serialization/" class="table-of-contents-link">Serialization</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/solid/" class="table-of-contents-link">Solid</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/" class="table-of-contents-link">Topology</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/all/" class="table-of-contents-link">All</a></li>
+        </ul>
+        </body></html>
+        </ul>    </div>
+    <div class='documentation-main'>
+        <article id="main" name="main-content">
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/">geometry-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/matrix3d/">Matrix3d</a> > Matrix3d</div>
+            
+            <h2 class="h-matrix3d">Matrix3d <span class="badge badge-pill badge-primary badge-class">Class</span><a id="matrix3d" class="heading-anchor" href="#matrix3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>A Matrix3d is a 3x3 matrix.</p>
+<ul>
+<li>A very common use is to hold a rigid body rotation (which has no scaling or skew), but the 3x3 contents can
+also hold scaling and skewing.</li>
+<li>The 9 entries are stored in row-major order in the coffs array.</li>
+<li>If the matrix inverse is known it is stored in the inverseCoffs array.</li>
+<li>The inverse status (unknown, inverseStored, singular) status is indicated by the inverseState property.</li>
+<li>constructions method that are able to determine the inverse store it immediately and
+  note that in the inverseState.</li>
+<li>constructions (e.g. createRowValues) for which the inverse is not immediately known mark the
+  inverseState as unknown.</li>
+<li>Later queries for the inverse trigger full computation if needed at that time.</li>
+<li>Most matrix queries are present with both &quot;column&quot; and &quot;row&quot; variants.</li>
+<li>Usage elsewhere in the library is typically &quot;column&quot; based.  For example, in a Transform
+  that carries a coordinate frame the matrix columns are the unit vectors for the axes.</li>
+</ul>
+<h3 class="h-implements">Implements<a id="implements" class="heading-anchor" href="#implements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/bejsonfunctions'>BeJSONFunctions</a></li>
+</ul>
+<h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
+</tr>
+<tr>
+<td class="h-constructor"><span class="method-name"><a href="constructor">constructor</a></span><span class="method-parenthesis">(</span><span class="method-parameters">coffs?: Float64Array</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-addscaledinplace"><span class="method-name"><a href="addscaledinplace">addScaledInPlace</a></span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a>, scale: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="addscaledinplace" class="heading-anchor" href="#addscaledinplace"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>add scaled values from other Matrix3d to this Matrix3d</td>
+</tr>
+<tr>
+<td class="h-applygivenscolumnop"><span class="method-name"><a href="applygivenscolumnop">applyGivensColumnOp</a></span><span class="method-parenthesis">(</span><span class="method-parameters">i: number, j: number, c: number, s: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="applygivenscolumnop" class="heading-anchor" href="#applygivenscolumnop"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Replace current columns Ui Uj with (c<em>Ui - s</em>Uj) and (c<em>Uj + s</em>Ui)<br>This is used in compute intensive inner loops -- there is no<br>checking for i,j being 0,1,2</td>
+</tr>
+<tr>
+<td class="h-at"><span class="method-name">at</span><span class="method-parenthesis">(</span><span class="method-parameters">row: number, column: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="at" class="heading-anchor" href="#at"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>return the entry at specific row and column</td>
+</tr>
+<tr>
+<td class="h-axisordercrossproductsinplace"><span class="method-name"><a href="axisordercrossproductsinplace">axisOrderCrossProductsInPlace</a></span><span class="method-parenthesis">(</span><span class="method-parameters">axisOrder: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/axisorder'>AxisOrder</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="axisordercrossproductsinplace" class="heading-anchor" href="#axisordercrossproductsinplace"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Form cross products among axes in axisOrder.</td>
+</tr>
+<tr>
+<td class="h-clone"><span class="method-name">clone</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><a id="clone" class="heading-anchor" href="#clone"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-columnx"><span class="method-name"><a href="columnx">columnX</a></span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><a id="columnx" class="heading-anchor" href="#columnx"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-columnxdotcolumny"><span class="method-name"><a href="columnxdotcolumny">columnXDotColumnY</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="columnxdotcolumny" class="heading-anchor" href="#columnxdotcolumny"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-columnxmagnitude"><span class="method-name"><a href="columnxmagnitude">columnXMagnitude</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="columnxmagnitude" class="heading-anchor" href="#columnxmagnitude"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-columnxmagnitudesquared"><span class="method-name"><a href="columnxmagnitudesquared">columnXMagnitudeSquared</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="columnxmagnitudesquared" class="heading-anchor" href="#columnxmagnitudesquared"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-columny"><span class="method-name"><a href="columny">columnY</a></span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><a id="columny" class="heading-anchor" href="#columny"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-columnymagnitude"><span class="method-name"><a href="columnymagnitude">columnYMagnitude</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="columnymagnitude" class="heading-anchor" href="#columnymagnitude"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-columnymagnitudesquared"><span class="method-name"><a href="columnymagnitudesquared">columnYMagnitudeSquared</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="columnymagnitudesquared" class="heading-anchor" href="#columnymagnitudesquared"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-columnz"><span class="method-name"><a href="columnz">columnZ</a></span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><a id="columnz" class="heading-anchor" href="#columnz"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-columnzcrossvector"><span class="method-name"><a href="columnzcrossvector">columnZCrossVector</a></span><span class="method-parenthesis">(</span><span class="method-parameters">vector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><a id="columnzcrossvector" class="heading-anchor" href="#columnzcrossvector"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-columnzmagnitude"><span class="method-name"><a href="columnzmagnitude">columnZMagnitude</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="columnzmagnitude" class="heading-anchor" href="#columnzmagnitude"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-columnzmagnitudesquared"><span class="method-name"><a href="columnzmagnitudesquared">columnZMagnitudeSquared</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="columnzmagnitudesquared" class="heading-anchor" href="#columnzmagnitudesquared"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-computecachedinverse"><span class="method-name"><a href="computecachedinverse">computeCachedInverse</a></span><span class="method-parenthesis">(</span><span class="method-parameters">useCacheIfAvailable: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="computecachedinverse" class="heading-anchor" href="#computecachedinverse"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>compute the inverse of this Matrix3d.</td>
+</tr>
+<tr>
+<td class="h-conditionnumber"><span class="method-name"><a href="conditionnumber">conditionNumber</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="conditionnumber" class="heading-anchor" href="#conditionnumber"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Return an estimate of how independent the columns are.</td>
+</tr>
+<tr>
+<td class="h-determinant"><span class="method-name">determinant</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="determinant" class="heading-anchor" href="#determinant"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Return the determinant of this matrix.</td>
+</tr>
+<tr>
+<td class="h-dotcolumnx"><span class="method-name"><a href="dotcolumnx">dotColumnX</a></span><span class="method-parenthesis">(</span><span class="method-parameters">vector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="dotcolumnx" class="heading-anchor" href="#dotcolumnx"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-dotcolumny"><span class="method-name"><a href="dotcolumny">dotColumnY</a></span><span class="method-parenthesis">(</span><span class="method-parameters">vector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="dotcolumny" class="heading-anchor" href="#dotcolumny"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-dotcolumnz"><span class="method-name"><a href="dotcolumnz">dotColumnZ</a></span><span class="method-parenthesis">(</span><span class="method-parameters">vector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="dotcolumnz" class="heading-anchor" href="#dotcolumnz"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-dotrowx"><span class="method-name"><a href="dotrowx">dotRowX</a></span><span class="method-parenthesis">(</span><span class="method-parameters">vector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="dotrowx" class="heading-anchor" href="#dotrowx"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-dotrowxxyz"><span class="method-name"><a href="dotrowxxyz">dotRowXXYZ</a></span><span class="method-parenthesis">(</span><span class="method-parameters">x: number, y: number, z: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="dotrowxxyz" class="heading-anchor" href="#dotrowxxyz"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-dotrowy"><span class="method-name"><a href="dotrowy">dotRowY</a></span><span class="method-parenthesis">(</span><span class="method-parameters">vector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="dotrowy" class="heading-anchor" href="#dotrowy"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-dotrowyxyz"><span class="method-name"><a href="dotrowyxyz">dotRowYXYZ</a></span><span class="method-parenthesis">(</span><span class="method-parameters">x: number, y: number, z: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="dotrowyxyz" class="heading-anchor" href="#dotrowyxyz"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-dotrowz"><span class="method-name"><a href="dotrowz">dotRowZ</a></span><span class="method-parenthesis">(</span><span class="method-parameters">vector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="dotrowz" class="heading-anchor" href="#dotrowz"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-dotrowzxyz"><span class="method-name"><a href="dotrowzxyz">dotRowZXYZ</a></span><span class="method-parenthesis">(</span><span class="method-parameters">x: number, y: number, z: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="dotrowzxyz" class="heading-anchor" href="#dotrowzxyz"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-factorperpendicularcolumns"><span class="method-name"><a href="factorperpendicularcolumns">factorPerpendicularColumns</a></span><span class="method-parenthesis">(</span><span class="method-parameters">matrixC: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a>, matrixU: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="factorperpendicularcolumns" class="heading-anchor" href="#factorperpendicularcolumns"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Factor this as a product C * U where C has mutually perpendicular columns and<br>U is orthogonal.</td>
+</tr>
+<tr>
+<td class="h-factorrigidwithsignedscale"><span class="method-name"><a href="factorrigidwithsignedscale">factorRigidWithSignedScale</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> object | undefined</span><a id="factorrigidwithsignedscale" class="heading-anchor" href="#factorrigidwithsignedscale"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Test if all rows and columns are perpendicular to each other and have equal length.</td>
+</tr>
+<tr>
+<td class="h-fastsymmetriceigenvalues"><span class="method-name"><a href="fastsymmetriceigenvalues">fastSymmetricEigenvalues</a></span><span class="method-parenthesis">(</span><span class="method-parameters">leftEigenvectors: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a>, lambda: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="fastsymmetriceigenvalues" class="heading-anchor" href="#fastsymmetriceigenvalues"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Factor this (symmetrized) as a product U <em> lambda </em> UT where U is orthogonal, lambda is diagonal.</td>
+</tr>
+<tr>
+<td class="h-freeze"><span class="method-name">freeze</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="freeze" class="heading-anchor" href="#freeze"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Freeze this Matrix3d.</td>
+</tr>
+<tr>
+<td class="h-getaxisandangleofrotation"><span class="method-name"><a href="getaxisandangleofrotation">getAxisAndAngleOfRotation</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> object</span><a id="getaxisandangleofrotation" class="heading-anchor" href="#getaxisandangleofrotation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Compute the (unit vector) axis and angle of rotation.</td>
+</tr>
+<tr>
+<td class="h-getcolumn"><span class="method-name">getColumn</span><span class="method-parenthesis">(</span><span class="method-parameters">columnIndex: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><a id="getcolumn" class="heading-anchor" href="#getcolumn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Return a (copy of) a column of the matrix.</td>
+</tr>
+<tr>
+<td class="h-getrow"><span class="method-name">getRow</span><span class="method-parenthesis">(</span><span class="method-parameters">columnIndex: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><a id="getrow" class="heading-anchor" href="#getrow"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Return a (copy of) a row of the matrix.</td>
+</tr>
+<tr>
+<td class="h-indexedcolumnwithweight"><span class="method-name"><a href="indexedcolumnwithweight">indexedColumnWithWeight</a></span><span class="method-parenthesis">(</span><span class="method-parameters">index: number, weight: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/point4d'>Point4d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/point4d'>Point4d</a></span><a id="indexedcolumnwithweight" class="heading-anchor" href="#indexedcolumnwithweight"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Get a column by index (0,1,2), packaged as a Point4d with given weight.</td>
+</tr>
+<tr>
+<td class="h-inverse"><span class="method-name"><a href="inverse">inverse</a></span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a> | undefined</span><a id="inverse" class="heading-anchor" href="#inverse"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>return the inverse matrix.</td>
+</tr>
+<tr>
+<td class="h-isalmostequal"><span class="method-name"><a href="isalmostequal">isAlmostEqual</a></span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a>, tol?: number</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="isalmostequal" class="heading-anchor" href="#isalmostequal"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Test if this Matrix3d and other are within tolerance in all numeric entries.</td>
+</tr>
+<tr>
+<td class="h-isexactequal"><span class="method-name">isExactEqual</span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="isexactequal" class="heading-anchor" href="#isexactequal"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Test for exact (bitwise) equality with other.</td>
+</tr>
+<tr>
+<td class="h-isrigid"><span class="method-name">isRigid</span><span class="method-parenthesis">(</span><span class="method-parameters">allowMirror: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="isrigid" class="heading-anchor" href="#isrigid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Test if the matrix is a pure rotation.</td>
+</tr>
+<tr>
+<td class="h-maxabs"><span class="method-name">maxAbs</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="maxabs" class="heading-anchor" href="#maxabs"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Return the Maximum absolute value of any single entry</td>
+</tr>
+<tr>
+<td class="h-maxdiff"><span class="method-name">maxDiff</span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="maxdiff" class="heading-anchor" href="#maxdiff"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Return the maximum absolute difference between corresponding entries</td>
+</tr>
+<tr>
+<td class="h-multiplyinverse"><span class="method-name"><a href="multiplyinverse">multiplyInverse</a></span><span class="method-parenthesis">(</span><span class="method-parameters">vector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a> | undefined</span><a id="multiplyinverse" class="heading-anchor" href="#multiplyinverse"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Solve matrix * result = vector, i.e.</td>
+</tr>
+<tr>
+<td class="h-multiplyinversetranspose"><span class="method-name"><a href="multiplyinversetranspose">multiplyInverseTranspose</a></span><span class="method-parenthesis">(</span><span class="method-parameters">vector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a> | undefined</span><a id="multiplyinversetranspose" class="heading-anchor" href="#multiplyinversetranspose"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Solve matrix * result = vector, i.e.</td>
+</tr>
+<tr>
+<td class="h-multiplyinversexyzaspoint3d"><span class="method-name">multiplyInverseXYZAsPoint3d</span><span class="method-parenthesis">(</span><span class="method-parameters">x: number, y: number, z: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a> | undefined</span><a id="multiplyinversexyzaspoint3d" class="heading-anchor" href="#multiplyinversexyzaspoint3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><em>  multiply matrixInverse </em> [x,y,z]<br><em>  Equivalent to solving matrix </em> result = [x,y,z]<br>*  return as a Point3d.</td>
+</tr>
+<tr>
+<td class="h-multiplyinversexyzasvector3d"><span class="method-name">multiplyInverseXYZAsVector3d</span><span class="method-parenthesis">(</span><span class="method-parameters">x: number, y: number, z: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a> | undefined</span><a id="multiplyinversexyzasvector3d" class="heading-anchor" href="#multiplyinversexyzasvector3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><em>  multiply matrixInverse </em> [x,y,z]<br><em>  Equivalent to solving matrix </em> result = [x,y,z]<br>*  return as a Vector3d.</td>
+</tr>
+<tr>
+<td class="h-multiplymatrixmatrix"><span class="method-name"><a href="multiplymatrixmatrix">multiplyMatrixMatrix</a></span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><a id="multiplymatrixmatrix" class="heading-anchor" href="#multiplymatrixmatrix"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Multiply two matrices.</td>
+</tr>
+<tr>
+<td class="h-multiplymatrixmatrixtranspose"><span class="method-name"><a href="multiplymatrixmatrixtranspose">multiplyMatrixMatrixTranspose</a></span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><a id="multiplymatrixmatrixtranspose" class="heading-anchor" href="#multiplymatrixmatrixtranspose"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Matrix multiplication <code>this * otherTranspose</code></td>
+</tr>
+<tr>
+<td class="h-multiplymatrixtransform"><span class="method-name"><a href="multiplymatrixtransform">multiplyMatrixTransform</a></span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><a id="multiplymatrixtransform" class="heading-anchor" href="#multiplymatrixtransform"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>multiply this Matrix3d (considered as a transform with 0 translation) times other Transform.</td>
+</tr>
+<tr>
+<td class="h-multiplymatrixtransposematrix"><span class="method-name">multiplyMatrixTransposeMatrix</span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><a id="multiplymatrixtransposematrix" class="heading-anchor" href="#multiplymatrixtransposematrix"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Matrix multiplication <code>thisTranspose * other</code><br>  @return the matrix result</td>
+</tr>
+<tr>
+<td class="h-multiplytransposevector"><span class="method-name">multiplyTransposeVector</span><span class="method-parenthesis">(</span><span class="method-parameters">vector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><a id="multiplytransposevector" class="heading-anchor" href="#multiplytransposevector"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-multiplytransposevectorinplace"><span class="method-name">multiplyTransposeVectorInPlace</span><span class="method-parenthesis">(</span><span class="method-parameters">xyzData: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="multiplytransposevectorinplace" class="heading-anchor" href="#multiplytransposevectorinplace"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Multiply matrix * (x, y, z) using any 3d object given containing those members</td>
+</tr>
+<tr>
+<td class="h-multiplytransposexyz"><span class="method-name"><a href="multiplytransposexyz">multiplyTransposeXYZ</a></span><span class="method-parenthesis">(</span><span class="method-parameters">x: number, y: number, z: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><a id="multiplytransposexyz" class="heading-anchor" href="#multiplytransposexyz"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Multiply the (x,y,z) * matrix, i.e.</td>
+</tr>
+<tr>
+<td class="h-multiplyvector"><span class="method-name"><a href="multiplyvector">multiplyVector</a></span><span class="method-parenthesis">(</span><span class="method-parameters">vector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><a id="multiplyvector" class="heading-anchor" href="#multiplyvector"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Multiply the matrix * vector, i.e.</td>
+</tr>
+<tr>
+<td class="h-multiplyvectorarrayinplace"><span class="method-name"><a href="multiplyvectorarrayinplace">multiplyVectorArrayInPlace</a></span><span class="method-parenthesis">(</span><span class="method-parameters">data: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="multiplyvectorarrayinplace" class="heading-anchor" href="#multiplyvectorarrayinplace"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Multiply the matrix * vector, i.e.</td>
+</tr>
+<tr>
+<td class="h-multiplyvectorinplace"><span class="method-name">multiplyVectorInPlace</span><span class="method-parenthesis">(</span><span class="method-parameters">xyzData: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="multiplyvectorinplace" class="heading-anchor" href="#multiplyvectorinplace"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Multiply matrix * (x, y, z) using any 3d object given containing those members</td>
+</tr>
+<tr>
+<td class="h-multiplyxy"><span class="method-name"><a href="multiplyxy">multiplyXY</a></span><span class="method-parenthesis">(</span><span class="method-parameters">x: number, y: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><a id="multiplyxy" class="heading-anchor" href="#multiplyxy"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Multiply the matrix * (x,y,z), i.e.</td>
+</tr>
+<tr>
+<td class="h-multiplyxyz"><span class="method-name"><a href="multiplyxyz">multiplyXYZ</a></span><span class="method-parenthesis">(</span><span class="method-parameters">x: number, y: number, z: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><a id="multiplyxyz" class="heading-anchor" href="#multiplyxyz"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Multiply the matrix * (x,y,z), i.e.</td>
+</tr>
+<tr>
+<td class="h-multiplyxyztoxyz"><span class="method-name"><a href="multiplyxyztoxyz">multiplyXYZtoXYZ</a></span><span class="method-parenthesis">(</span><span class="method-parameters">xyz: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a>, result: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a></span><a id="multiplyxyztoxyz" class="heading-anchor" href="#multiplyxyztoxyz"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Multiply the matrix * xyz, place result in (required) return value.</td>
+</tr>
+<tr>
+<td class="h-normalizecolumnsinplace"><span class="method-name"><a href="normalizecolumnsinplace">normalizeColumnsInPlace</a></span><span class="method-parenthesis">(</span><span class="method-parameters">originalMagnitudes?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="normalizecolumnsinplace" class="heading-anchor" href="#normalizecolumnsinplace"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Normalize each column in place.</td>
+</tr>
+<tr>
+<td class="h-normalizerowsinplace"><span class="method-name">normalizeRowsInPlace</span><span class="method-parenthesis">(</span><span class="method-parameters">originalMagnitudes?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="normalizerowsinplace" class="heading-anchor" href="#normalizerowsinplace"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Normalize each row in place</td>
+</tr>
+<tr>
+<td class="h-originplusmatrixtimesxy"><span class="method-name">originPlusMatrixTimesXY</span><span class="method-parenthesis">(</span><span class="method-parameters">origin: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a>, x: number, y: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="originplusmatrixtimesxy" class="heading-anchor" href="#originplusmatrixtimesxy"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-rowx"><span class="method-name">rowX</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><a id="rowx" class="heading-anchor" href="#rowx"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Return (a copy of) the X row</td>
+</tr>
+<tr>
+<td class="h-rowxmagnitude"><span class="method-name"><a href="rowxmagnitude">rowXMagnitude</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="rowxmagnitude" class="heading-anchor" href="#rowxmagnitude"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-rowy"><span class="method-name">rowY</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><a id="rowy" class="heading-anchor" href="#rowy"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Return (a copy of) the Y row</td>
+</tr>
+<tr>
+<td class="h-rowymagnitude"><span class="method-name"><a href="rowymagnitude">rowYMagnitude</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="rowymagnitude" class="heading-anchor" href="#rowymagnitude"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-rowz"><span class="method-name">rowZ</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><a id="rowz" class="heading-anchor" href="#rowz"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Return (a copy of) the Z row</td>
+</tr>
+<tr>
+<td class="h-rowzmagnitude"><span class="method-name"><a href="rowzmagnitude">rowZMagnitude</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="rowzmagnitude" class="heading-anchor" href="#rowzmagnitude"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-samediagonalscale"><span class="method-name"><a href="samediagonalscale">sameDiagonalScale</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number | undefined</span><a id="samediagonalscale" class="heading-anchor" href="#samediagonalscale"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>If the matrix is diagonal and all diagonals are within tolerance, return the first diagonal.</td>
+</tr>
+<tr>
+<td class="h-scale"><span class="method-name"><a href="scale">scale</a></span><span class="method-parenthesis">(</span><span class="method-parameters">scale: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><a id="scale" class="heading-anchor" href="#scale"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>create a Matrix3d whose values are uniformly scaled from this.</td>
+</tr>
+<tr>
+<td class="h-scalecolumns"><span class="method-name"><a href="scalecolumns">scaleColumns</a></span><span class="method-parenthesis">(</span><span class="method-parameters">scaleX: number, scaleY: number, scaleZ: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><a id="scalecolumns" class="heading-anchor" href="#scalecolumns"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>create a Matrix3d whose columns are scaled copies of this Matrix3d.</td>
+</tr>
+<tr>
+<td class="h-scalecolumnsinplace"><span class="method-name"><a href="scalecolumnsinplace">scaleColumnsInPlace</a></span><span class="method-parenthesis">(</span><span class="method-parameters">scaleX: number, scaleY: number, scaleZ: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="scalecolumnsinplace" class="heading-anchor" href="#scalecolumnsinplace"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>create a Matrix3d whose columns are scaled copies of this Matrix3d.</td>
+</tr>
+<tr>
+<td class="h-scalerows"><span class="method-name"><a href="scalerows">scaleRows</a></span><span class="method-parenthesis">(</span><span class="method-parameters">scaleX: number, scaleY: number, scaleZ: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><a id="scalerows" class="heading-anchor" href="#scalerows"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>create a Matrix3d whose rows are scaled copies of this Matrix3d.</td>
+</tr>
+<tr>
+<td class="h-setat"><span class="method-name">setAt</span><span class="method-parenthesis">(</span><span class="method-parameters">row: number, column: number, value: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setat" class="heading-anchor" href="#setat"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Set the entry at specific row and column</td>
+</tr>
+<tr>
+<td class="h-setcolumn"><span class="method-name"><a href="setcolumn">setColumn</a></span><span class="method-parenthesis">(</span><span class="method-parameters">columnIndex: number, value: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a> | undefined</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setcolumn" class="heading-anchor" href="#setcolumn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>set entries in one column of the matrix.</td>
+</tr>
+<tr>
+<td class="h-setcolumns"><span class="method-name"><a href="setcolumns">setColumns</a></span><span class="method-parenthesis">(</span><span class="method-parameters">vectorX: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a> | undefined, vectorY: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a> | undefined, vectorZ?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setcolumns" class="heading-anchor" href="#setcolumns"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Set all columns of the matrix.</td>
+</tr>
+<tr>
+<td class="h-setcolumnspoint4dxyz"><span class="method-name">setColumnsPoint4dXYZ</span><span class="method-parenthesis">(</span><span class="method-parameters">vectorU: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/point4d'>Point4d</a>, vectorV: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/point4d'>Point4d</a>, vectorW: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/point4d'>Point4d</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setcolumnspoint4dxyz" class="heading-anchor" href="#setcolumnspoint4dxyz"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Install data from xyz parts of Point4d  (w part of Point4d ignored)</td>
+</tr>
+<tr>
+<td class="h-setfrom"><span class="method-name">setFrom</span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setfrom" class="heading-anchor" href="#setfrom"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-setfromjson"><span class="method-name">setFromJSON</span><span class="method-parenthesis">(</span><span class="method-parameters">json?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/matrix3dprops'>Matrix3dProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setfromjson" class="heading-anchor" href="#setfromjson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-setidentity"><span class="method-name">setIdentity</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setidentity" class="heading-anchor" href="#setidentity"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-setrow"><span class="method-name">setRow</span><span class="method-parenthesis">(</span><span class="method-parameters">columnIndex: number, value: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setrow" class="heading-anchor" href="#setrow"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-setrowvalues"><span class="method-name"><a href="setrowvalues">setRowValues</a></span><span class="method-parenthesis">(</span><span class="method-parameters">axx: number, axy: number, axz: number, ayx: number, ayy: number, ayz: number, azx: number, azy: number, azz: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setrowvalues" class="heading-anchor" href="#setrowvalues"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>set all entries in the matrix from call parameters appearing in row-major order.</td>
+</tr>
+<tr>
+<td class="h-setzero"><span class="method-name">setZero</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setzero" class="heading-anchor" href="#setzero"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-sumdiagonal"><span class="method-name">sumDiagonal</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="sumdiagonal" class="heading-anchor" href="#sumdiagonal"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Return the sum of diagonal entries (also known as the trace)</td>
+</tr>
+<tr>
+<td class="h-sumdiagonalsquares"><span class="method-name">sumDiagonalSquares</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="sumdiagonalsquares" class="heading-anchor" href="#sumdiagonalsquares"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Return the sum of squares of diagonal entries</td>
+</tr>
+<tr>
+<td class="h-sumskewsquares"><span class="method-name">sumSkewSquares</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="sumskewsquares" class="heading-anchor" href="#sumskewsquares"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Sum of squared differences between symmetric pairs</td>
+</tr>
+<tr>
+<td class="h-sumsquares"><span class="method-name">sumSquares</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="sumsquares" class="heading-anchor" href="#sumsquares"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Return the sum of squares of all entries</td>
+</tr>
+<tr>
+<td class="h-symmetriceigenvalues"><span class="method-name"><a href="symmetriceigenvalues">symmetricEigenvalues</a></span><span class="method-parenthesis">(</span><span class="method-parameters">leftEigenvectors: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a>, lambda: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="symmetriceigenvalues" class="heading-anchor" href="#symmetriceigenvalues"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Factor this (symmetrized) as a product U <em> lambda </em> UT where U is orthogonal, lambda is diagonal.</td>
+</tr>
+<tr>
+<td class="h-testperpendicularunitrowsandcolumns"><span class="method-name"><a href="testperpendicularunitrowsandcolumns">testPerpendicularUnitRowsAndColumns</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="testperpendicularunitrowsandcolumns" class="heading-anchor" href="#testperpendicularunitrowsandcolumns"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Test if all rows and columns are length 1 and are perpendicular to each other.</td>
+</tr>
+<tr>
+<td class="h-tojson"><span class="method-name">toJSON</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/matrix3dprops'>Matrix3dProps</a></span><a id="tojson" class="heading-anchor" href="#tojson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Return a json object containing the 9 numeric entries as a single array in row major order,<br><code>[ [1, 2, 3],[ 4, 5, 6], [7, 8, 9] ]</code></td>
+</tr>
+<tr>
+<td class="h-transpose"><span class="method-name">transpose</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><a id="transpose" class="heading-anchor" href="#transpose"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>return the transposed matrix</td>
+</tr>
+<tr>
+<td class="h-transposeinplace"><span class="method-name">transposeInPlace</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="transposeinplace" class="heading-anchor" href="#transposeinplace"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>return the transposed matrix</td>
+</tr>
+<tr>
+<td class="h-xyplusmatrixtimesxy"><span class="method-name">XYPlusMatrixTimesXY</span><span class="method-parenthesis">(</span><span class="method-parameters">origin: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xandy'>XAndY</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a>, vector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xandy'>XAndY</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="xyplusmatrixtimesxy" class="heading-anchor" href="#xyplusmatrixtimesxy"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-xyzminusmatrixtimesxyz"><span class="method-name">XYZMinusMatrixTimesXYZ</span><span class="method-parenthesis">(</span><span class="method-parameters">origin: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a>, vector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="xyzminusmatrixtimesxyz" class="heading-anchor" href="#xyzminusmatrixtimesxyz"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-xyzplusmatrixtimescoordinates"><span class="method-name">XYZPlusMatrixTimesCoordinates</span><span class="method-parenthesis">(</span><span class="method-parameters">origin: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a>, x: number, y: number, z: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="xyzplusmatrixtimescoordinates" class="heading-anchor" href="#xyzplusmatrixtimescoordinates"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-xyzplusmatrixtimescoordinatestofloat64array"><span class="method-name"><a href="xyzplusmatrixtimescoordinatestofloat64array">XYZPlusMatrixTimesCoordinatesToFloat64Array</a></span><span class="method-parenthesis">(</span><span class="method-parameters">origin: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a>, x: number, y: number, z: number, result?: Float64Array</span><span class="method-parenthesis">):</span><span class="method-output"> Float64Array</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="xyzplusmatrixtimescoordinatestofloat64array" class="heading-anchor" href="#xyzplusmatrixtimescoordinatestofloat64array"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Treat the 3x3 matrix and origin as upper 3x4 part of a 4x4 matrix, with 0001 as the final row.</td>
+</tr>
+<tr>
+<td class="h-xyzplusmatrixtimesweightedcoordinates"><span class="method-name"><a href="xyzplusmatrixtimesweightedcoordinates">XYZPlusMatrixTimesWeightedCoordinates</a></span><span class="method-parenthesis">(</span><span class="method-parameters">origin: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a>, x: number, y: number, z: number, w: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/point4d'>Point4d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/point4d'>Point4d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="xyzplusmatrixtimesweightedcoordinates" class="heading-anchor" href="#xyzplusmatrixtimesweightedcoordinates"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Treat the 3x3 matrix and origin as upper 3x4 part of a 4x4 matrix, with 0001 as the final row.</td>
+</tr>
+<tr>
+<td class="h-xyzplusmatrixtimesweightedcoordinatestofloat64array"><span class="method-name"><a href="xyzplusmatrixtimesweightedcoordinatestofloat64array">XYZPlusMatrixTimesWeightedCoordinatesToFloat64Array</a></span><span class="method-parenthesis">(</span><span class="method-parameters">origin: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a>, x: number, y: number, z: number, w: number, result?: Float64Array</span><span class="method-parenthesis">):</span><span class="method-output"> Float64Array</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="xyzplusmatrixtimesweightedcoordinatestofloat64array" class="heading-anchor" href="#xyzplusmatrixtimesweightedcoordinatestofloat64array"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Treat the 3x3 matrix and origin as upper 3x4 part of a 4x4 matrix, with 0001 as the final row.</td>
+</tr>
+<tr>
+<td class="h-xyzplusmatrixtimesxyz"><span class="method-name">XYZPlusMatrixTimesXYZ</span><span class="method-parenthesis">(</span><span class="method-parameters">origin: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a>, vector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="xyzplusmatrixtimesxyz" class="heading-anchor" href="#xyzplusmatrixtimesxyz"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-create90degreerotationaroundaxis"><span class="method-name">create90DegreeRotationAroundAxis</span><span class="method-parenthesis">(</span><span class="method-parameters">axisIndex: number</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="create90degreerotationaroundaxis" class="heading-anchor" href="#create90degreerotationaroundaxis"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Create a 90 degree rotation around a principal axis</td>
+</tr>
+<tr>
+<td class="h-createcapture"><span class="method-name"><a href="createcapture">createCapture</a></span><span class="method-parenthesis">(</span><span class="method-parameters">coffs: Float64Array, inverseCoffs?: Float64Array</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createcapture" class="heading-anchor" href="#createcapture"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Create a Matrix3d with caller-supplied coefficients and optional inverse coefficients.</td>
+</tr>
+<tr>
+<td class="h-createcolumns"><span class="method-name">createColumns</span><span class="method-parenthesis">(</span><span class="method-parameters">vectorU: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, vectorV: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, vectorW: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createcolumns" class="heading-anchor" href="#createcolumns"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Create a matrix from column vectors.</td>
+</tr>
+<tr>
+<td class="h-createcolumnsinaxisorder"><span class="method-name">createColumnsInAxisOrder</span><span class="method-parenthesis">(</span><span class="method-parameters">axisOrder: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/axisorder'>AxisOrder</a>, columnA: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, columnB: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, columnC: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a> | undefined, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createcolumnsinaxisorder" class="heading-anchor" href="#createcolumnsinaxisorder"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-createcolumnsxyw"><span class="method-name"><a href="createcolumnsxyw">createColumnsXYW</a></span><span class="method-parenthesis">(</span><span class="method-parameters">vectorU: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xandy'>XAndY</a>, uz: number, vectorV: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xandy'>XAndY</a>, vz: number, vectorW: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xandy'>XAndY</a>, wz: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createcolumnsxyw" class="heading-anchor" href="#createcolumnsxyw"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Create a matrix from column vectors.</td>
+</tr>
+<tr>
+<td class="h-createdirectionalscale"><span class="method-name"><a href="createdirectionalscale">createDirectionalScale</a></span><span class="method-parenthesis">(</span><span class="method-parameters">direction: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, scale: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createdirectionalscale" class="heading-anchor" href="#createdirectionalscale"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Create a matrix that scales along a specified direction.</td>
+</tr>
+<tr>
+<td class="h-createidentity"><span class="method-name">createIdentity</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createidentity" class="heading-anchor" href="#createidentity"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-createpartialrotationvectortovector"><span class="method-name"><a href="createpartialrotationvectortovector">createPartialRotationVectorToVector</a></span><span class="method-parenthesis">(</span><span class="method-parameters">vectorA: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, fraction: number, vectorB: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a> | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createpartialrotationvectortovector" class="heading-anchor" href="#createpartialrotationvectortovector"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Return a matrix that rotates a fraction of the angular sweep from vectorA to vectorB.</td>
+</tr>
+<tr>
+<td class="h-createperpendicularvectorfavorplanecontainingz"><span class="method-name"><a href="createperpendicularvectorfavorplanecontainingz">createPerpendicularVectorFavorPlaneContainingZ</a></span><span class="method-parenthesis">(</span><span class="method-parameters">vector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createperpendicularvectorfavorplanecontainingz" class="heading-anchor" href="#createperpendicularvectorfavorplanecontainingz"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>* return a vector that is perpendicular to the input direction.</td>
+</tr>
+<tr>
+<td class="h-createperpendicularvectorfavorxyplane"><span class="method-name"><a href="createperpendicularvectorfavorxyplane">createPerpendicularVectorFavorXYPlane</a></span><span class="method-parenthesis">(</span><span class="method-parameters">vector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createperpendicularvectorfavorxyplane" class="heading-anchor" href="#createperpendicularvectorfavorxyplane"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>* return a vector that is perpendicular to the input direction.</td>
+</tr>
+<tr>
+<td class="h-createrigidfromcolumns"><span class="method-name"><a href="createrigidfromcolumns">createRigidFromColumns</a></span><span class="method-parenthesis">(</span><span class="method-parameters">vectorA: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, vectorB: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, axisOrder: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/axisorder'>AxisOrder</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a> | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createrigidfromcolumns" class="heading-anchor" href="#createrigidfromcolumns"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>create a new orthogonal matrix (perpendicular columns, unit length, transpose is inverse)<br>vectorA is placed in the first column of the axis order.</td>
+</tr>
+<tr>
+<td class="h-createrigidfrommatrix3d"><span class="method-name">createRigidFromMatrix3d</span><span class="method-parenthesis">(</span><span class="method-parameters">source: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a>, axisOrder: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/axisorder'>AxisOrder</a> = AxisOrder.XYZ, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a> | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createrigidfrommatrix3d" class="heading-anchor" href="#createrigidfrommatrix3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>create a new orthogonal matrix (perpendicular columns, unit length, transpose is inverse)<br>columns are taken from the source Matrix3d in order indicated by the axis order.</td>
+</tr>
+<tr>
+<td class="h-createrigidheadsup"><span class="method-name">createRigidHeadsUp</span><span class="method-parenthesis">(</span><span class="method-parameters">vectorA: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, axisOrder: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/axisorder'>AxisOrder</a> = AxisOrder.ZXY, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createrigidheadsup" class="heading-anchor" href="#createrigidheadsup"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><em>  use createHeadsUpPerpendicular to generate a vectorV perpendicular to vectorA<br></em>  construct a frame using createRigidFromColumns (vectorA, vectorB, axisOrder)</td>
+</tr>
+<tr>
+<td class="h-createrigidviewaxesztowardseye"><span class="method-name"><a href="createrigidviewaxesztowardseye">createRigidViewAxesZTowardsEye</a></span><span class="method-parenthesis">(</span><span class="method-parameters">x: number, y: number, z: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createrigidviewaxesztowardseye" class="heading-anchor" href="#createrigidviewaxesztowardseye"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>create a rigid coordinate frame with:<br><em> column z points from origin to x,y,z<br></em> column x is perpendicular and in the xy plane<br>* column y is perpendicular to both.</td>
+</tr>
+<tr>
+<td class="h-createrotationaroundaxisindex"><span class="method-name"><a href="createrotationaroundaxisindex">createRotationAroundAxisIndex</a></span><span class="method-parenthesis">(</span><span class="method-parameters">axisIndex: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/axis'>AxisIndex</a>, angle: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/angle/angle'>Angle</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createrotationaroundaxisindex" class="heading-anchor" href="#createrotationaroundaxisindex"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-createrotationaroundvector"><span class="method-name"><a href="createrotationaroundvector">createRotationAroundVector</a></span><span class="method-parenthesis">(</span><span class="method-parameters">axis: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, angle: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/angle/angle'>Angle</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a> | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createrotationaroundvector" class="heading-anchor" href="#createrotationaroundvector"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-createrotationvectortovector"><span class="method-name"><a href="createrotationvectortovector">createRotationVectorToVector</a></span><span class="method-parenthesis">(</span><span class="method-parameters">vectorA: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, vectorB: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a> | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createrotationvectortovector" class="heading-anchor" href="#createrotationvectortovector"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-createrowvalues"><span class="method-name"><a href="createrowvalues">createRowValues</a></span><span class="method-parenthesis">(</span><span class="method-parameters">axx: number, axy: number, axz: number, ayx: number, ayy: number, ayz: number, azx: number, azy: number, azz: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createrowvalues" class="heading-anchor" href="#createrowvalues"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-createrows"><span class="method-name">createRows</span><span class="method-parenthesis">(</span><span class="method-parameters">vectorU: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, vectorV: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, vectorW: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createrows" class="heading-anchor" href="#createrows"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Create a matrix from row vectors.</td>
+</tr>
+<tr>
+<td class="h-createscale"><span class="method-name">createScale</span><span class="method-parenthesis">(</span><span class="method-parameters">scaleFactorX: number, scaleFactorY: number, scaleFactorZ: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createscale" class="heading-anchor" href="#createscale"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Create a matrix with distinct x,y,z diagonal (scale) entries</td>
+</tr>
+<tr>
+<td class="h-createshuffledcolumns"><span class="method-name">createShuffledColumns</span><span class="method-parenthesis">(</span><span class="method-parameters">vectorU: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, vectorV: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, vectorW: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, axisOrder: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/axisorder'>AxisOrder</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createshuffledcolumns" class="heading-anchor" href="#createshuffledcolumns"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Create a matrix from column vectors, shuffled into place per AxisTriple</td>
+</tr>
+<tr>
+<td class="h-createstandardworldtoview"><span class="method-name"><a href="createstandardworldtoview">createStandardWorldToView</a></span><span class="method-parenthesis">(</span><span class="method-parameters">index: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/standardview'>StandardViewIndex</a>, invert: boolean = false, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createstandardworldtoview" class="heading-anchor" href="#createstandardworldtoview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Create a rotation matrix for one of the 8 standard views.</td>
+</tr>
+<tr>
+<td class="h-createuniformscale"><span class="method-name">createUniformScale</span><span class="method-parenthesis">(</span><span class="method-parameters">scaleFactor: number</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createuniformscale" class="heading-anchor" href="#createuniformscale"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Create a matrix with uniform scale factors</td>
+</tr>
+<tr>
+<td class="h-createviewedaxes"><span class="method-name"><a href="createviewedaxes">createViewedAxes</a></span><span class="method-parenthesis">(</span><span class="method-parameters">rightVector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, upVector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, leftNoneRight: number = 0, topNoneBottom: number = 0</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a> | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createviewedaxes" class="heading-anchor" href="#createviewedaxes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Create a matrix with<br><em> ColumnX points in the rightVector direction<br></em> ColumnY points in in the upVectorDirection<br>* ColumnZ is a unit cross product.</td>
+</tr>
+<tr>
+<td class="h-createzero"><span class="method-name">createZero</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createzero" class="heading-anchor" href="#createzero"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-flatindexof"><span class="method-name">flatIndexOf</span><span class="method-parenthesis">(</span><span class="method-parameters">row: number, column: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="flatindexof" class="heading-anchor" href="#flatindexof"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-fromjson"><span class="method-name"><a href="fromjson">fromJSON</a></span><span class="method-parenthesis">(</span><span class="method-parameters">json?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/matrix3dprops'>Matrix3dProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="fromjson" class="heading-anchor" href="#fromjson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+</tr>
+</tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td class="h-coffs"><span class="property-name">coffs</span><a id="coffs" class="heading-anchor" href="#coffs"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">Float64Array</span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-identity"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d/identity'>identity</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="identity" class="heading-anchor" href="#identity"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span></td>
+<td>The identity Matrix3d. Value is frozen and cannot be modified.</td>
+</tr>
+<tr>
+<td class="h-inversecoffs"><span class="property-name">inverseCoffs</span><a id="inversecoffs" class="heading-anchor" href="#inversecoffs"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">Float64Array | undefined</span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-inversestate"><span class="property-name">inverseState</span><a id="inversestate" class="heading-anchor" href="#inversestate"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/inversematrixstate'>InverseMatrixState</a></span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-isdiagonal"><span class="property-name">isDiagonal</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isdiagonal" class="heading-anchor" href="#isdiagonal"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> boolean</span></td>
+<td>Test if the off diagonal entries are all nearly zero</td>
+</tr>
+<tr>
+<td class="h-isidentity"><span class="property-name">isIdentity</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isidentity" class="heading-anchor" href="#isidentity"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> boolean</span></td>
+<td>Test if the matrix is (very near to) an identity</td>
+</tr>
+<tr>
+<td class="h-issignedpermutation"><span class="property-name">isSignedPermutation</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="issignedpermutation" class="heading-anchor" href="#issignedpermutation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> boolean</span></td>
+<td>Test if the matrix is shuffles and negates columns.</td>
+</tr>
+<tr>
+<td class="h-isuppertriangular"><span class="property-name">isUpperTriangular</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isuppertriangular" class="heading-anchor" href="#isuppertriangular"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> boolean</span></td>
+<td>Test if the below diagonal entries are all nearly zero</td>
+</tr>
+<tr>
+<td class="h-isxy"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d/isxy'>isXY</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isxy" class="heading-anchor" href="#isxy"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> boolean</span></td>
+<td>test if all entries in the z row and column are exact 001, i.e. the matrix only acts in 2d</td>
+</tr>
+<tr>
+<td class="h-numcomputecache"><span class="property-name">numComputeCache</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="numcomputecache" class="heading-anchor" href="#numcomputecache"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">number</span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-numusecache"><span class="property-name">numUseCache</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="numusecache" class="heading-anchor" href="#numusecache"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">number</span></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-usecachedinverse"><span class="property-name">useCachedInverse</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="usecachedinverse" class="heading-anchor" href="#usecachedinverse"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">boolean</span></td>
+</tr>
+</tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<ul>
+<li><span class="defined-in"><span title="Page edit feature coming soon">geometry3d/Matrix3d.ts</span></span></li>
+</ul>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>10 October, 2018</span>
+            </p>
+
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div id='inner-table-of-contents'>
+       <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item active typeDocHeader'>
+            <a data-target="#inner-nav-matrix3d" class='title' href="#matrix3d"/>
+            <b class='dropdown-menu-title menu-text'>Matrix3d</b>
+            <i class='dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-matrix3d" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#implements">Implements</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-methods" class='title' href="#methods"/>
+                            <b class='dropdown-menu-title menu-text'>Methods</b>
+                            <i class='dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-methods" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constructor">constructor</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#addscaledinplace">addScaledInPlace</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#applygivenscolumnop">applyGivensColumnOp</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#at">at</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#axisordercrossproductsinplace">axisOrderCrossProductsInPlace</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#clone">clone</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#columnx">columnX</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#columnxdotcolumny">columnXDotColumnY</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#columnxmagnitude">columnXMagnitude</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#columnxmagnitudesquared">columnXMagnitudeSquared</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#columny">columnY</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#columnymagnitude">columnYMagnitude</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#columnymagnitudesquared">columnYMagnitudeSquared</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#columnz">columnZ</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#columnzcrossvector">columnZCrossVector</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#columnzmagnitude">columnZMagnitude</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#columnzmagnitudesquared">columnZMagnitudeSquared</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#computecachedinverse">computeCachedInverse</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#conditionnumber">conditionNumber</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#determinant">determinant</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#dotcolumnx">dotColumnX</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#dotcolumny">dotColumnY</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#dotcolumnz">dotColumnZ</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#dotrowx">dotRowX</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#dotrowxxyz">dotRowXXYZ</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#dotrowy">dotRowY</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#dotrowyxyz">dotRowYXYZ</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#dotrowz">dotRowZ</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#dotrowzxyz">dotRowZXYZ</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#factorperpendicularcolumns">factorPerpendicularColumns</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#factorrigidwithsignedscale">factorRigidWithSignedScale</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#fastsymmetriceigenvalues">fastSymmetricEigenvalues</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#freeze">freeze</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getaxisandangleofrotation">getAxisAndAngleOfRotation</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getcolumn">getColumn</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getrow">getRow</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#indexedcolumnwithweight">indexedColumnWithWeight</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#inverse">inverse</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isalmostequal">isAlmostEqual</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isexactequal">isExactEqual</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isrigid">isRigid</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#maxabs">maxAbs</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#maxdiff">maxDiff</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplyinverse">multiplyInverse</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplyinversetranspose">multiplyInverseTranspose</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplyinversexyzaspoint3d">multiplyInverseXYZAsPoint3d</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplyinversexyzasvector3d">multiplyInverseXYZAsVector3d</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplymatrixmatrix">multiplyMatrixMatrix</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplymatrixmatrixtranspose">multiplyMatrixMatrixTranspose</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplymatrixtransform">multiplyMatrixTransform</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplymatrixtransposematrix">multiplyMatrixTransposeMatrix</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplytransposevector">multiplyTransposeVector</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplytransposevectorinplace">multiplyTransposeVectorInPlace</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplytransposexyz">multiplyTransposeXYZ</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplyvector">multiplyVector</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplyvectorarrayinplace">multiplyVectorArrayInPlace</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplyvectorinplace">multiplyVectorInPlace</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplyxy">multiplyXY</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplyxyz">multiplyXYZ</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplyxyztoxyz">multiplyXYZtoXYZ</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#normalizecolumnsinplace">normalizeColumnsInPlace</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#normalizerowsinplace">normalizeRowsInPlace</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#originplusmatrixtimesxy">originPlusMatrixTimesXY</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#rowx">rowX</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#rowxmagnitude">rowXMagnitude</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#rowy">rowY</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#rowymagnitude">rowYMagnitude</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#rowz">rowZ</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#rowzmagnitude">rowZMagnitude</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#samediagonalscale">sameDiagonalScale</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#scale">scale</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#scalecolumns">scaleColumns</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#scalecolumnsinplace">scaleColumnsInPlace</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#scalerows">scaleRows</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setat">setAt</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setcolumn">setColumn</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setcolumns">setColumns</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setcolumnspoint4dxyz">setColumnsPoint4dXYZ</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setfrom">setFrom</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setfromjson">setFromJSON</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setidentity">setIdentity</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setrow">setRow</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setrowvalues">setRowValues</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setzero">setZero</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#sumdiagonal">sumDiagonal</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#sumdiagonalsquares">sumDiagonalSquares</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#sumskewsquares">sumSkewSquares</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#sumsquares">sumSquares</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#symmetriceigenvalues">symmetricEigenvalues</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#testperpendicularunitrowsandcolumns">testPerpendicularUnitRowsAndColumns</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#tojson">toJSON</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#transpose">transpose</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#transposeinplace">transposeInPlace</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#xyplusmatrixtimesxy">XYPlusMatrixTimesXY</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#xyzminusmatrixtimesxyz">XYZMinusMatrixTimesXYZ</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#xyzplusmatrixtimescoordinates">XYZPlusMatrixTimesCoordinates</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#xyzplusmatrixtimescoordinatestofloat64array">XYZPlusMatrixTimesCoordinatesToFloat64Array</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#xyzplusmatrixtimesweightedcoordinates">XYZPlusMatrixTimesWeightedCoordinates</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#xyzplusmatrixtimesweightedcoordinatestofloat64array">XYZPlusMatrixTimesWeightedCoordinatesToFloat64Array</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#xyzplusmatrixtimesxyz">XYZPlusMatrixTimesXYZ</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#create90degreerotationaroundaxis">create90DegreeRotationAroundAxis</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createcapture">createCapture</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createcolumns">createColumns</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createcolumnsinaxisorder">createColumnsInAxisOrder</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createcolumnsxyw">createColumnsXYW</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createdirectionalscale">createDirectionalScale</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createidentity">createIdentity</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createpartialrotationvectortovector">createPartialRotationVectorToVector</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createperpendicularvectorfavorplanecontainingz">createPerpendicularVectorFavorPlaneContainingZ</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createperpendicularvectorfavorxyplane">createPerpendicularVectorFavorXYPlane</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createrigidfromcolumns">createRigidFromColumns</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createrigidfrommatrix3d">createRigidFromMatrix3d</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createrigidheadsup">createRigidHeadsUp</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createrigidviewaxesztowardseye">createRigidViewAxesZTowardsEye</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createrotationaroundaxisindex">createRotationAroundAxisIndex</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createrotationaroundvector">createRotationAroundVector</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createrotationvectortovector">createRotationVectorToVector</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createrowvalues">createRowValues</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createrows">createRows</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createscale">createScale</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createshuffledcolumns">createShuffledColumns</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createstandardworldtoview">createStandardWorldToView</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createuniformscale">createUniformScale</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createviewedaxes">createViewedAxes</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createzero">createZero</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#flatindexof">flatIndexOf</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#fromjson">fromJSON</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-properties" class='title' href="#properties"/>
+                            <b class='dropdown-menu-title menu-text'>Properties</b>
+                            <i class='dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-properties" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#coffs">coffs</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#identity">identity</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#inversecoffs">inverseCoffs</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#inversestate">inverseState</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isdiagonal">isDiagonal</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isidentity">isIdentity</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#issignedpermutation">isSignedPermutation</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isuppertriangular">isUpperTriangular</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isxy">isXY</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#numcomputecache">numComputeCache</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#numusecache">numUseCache</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#usecachedinverse">useCachedInverse</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#defined-in">Defined in</a>
+                    </li>
+            </ul>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color pt-1 pb-3">
+  <!-- Footer Links Container -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row d-flex align-items-center mt-2">
+
+      <!-- Grid column -->
+      <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
+
+        <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+        </a>
+        <small style="color: white; margin-right: 7px;"> powered by </small>
+        <a href="https://www.bentley.com">
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
+        </a>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-5 col-lg-4 ml-lg-0">
+
+        <!-- Social buttons -->
+        <div class="text-center text-md-right">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://twitter.com/imodeljs" target="_blank">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://github.com/imodeljs" target="_blank">
+                <i class="fa fa-github"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://stackoverflow.com/tags/imodeljs"
+                target="_blank">
+                <i class="fa fa-stack-overflow"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links Container -->
+
+</footer>
+<!-- Footer -->
+
+</div>
+<a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
+</body>
+
+</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

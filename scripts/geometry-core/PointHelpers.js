@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module CartesianGeometry */
 // import { Point2d } from "./Geometry2d";
@@ -129,6 +130,19 @@ class Point2dArray {
     static clonePoint2dArray(data) {
         return data.map((p) => p.clone());
     }
+    static lengthWithoutWraparound(data) {
+        let n = data.length;
+        if (n < 2)
+            return n;
+        const x0 = data[0].x;
+        const y0 = data[0].y;
+        while (n > 1) {
+            if (!Geometry_1.Geometry.isSameCoordinate(data[n - 1].x, x0) || !Geometry_1.Geometry.isSameCoordinate(data[n - 1].y, y0))
+                return n;
+            n--;
+        }
+        return n;
+    }
 }
 exports.Point2dArray = Point2dArray;
 class Vector3dArray {
@@ -202,7 +216,7 @@ class Point4dArray {
      */
     static multiplyInPlace(transform, xyzw) {
         const numXYZW = xyzw.length;
-        const xyzw1 = Point4dArray.s_workPoint4d;
+        const xyzw1 = Point4dArray._workPoint4d;
         for (let i = 0; i + 3 < numXYZW; i += 4) {
             transform.multiplyXYZW(xyzw[i], xyzw[i + 1], xyzw[i + 2], xyzw[i + 3], xyzw1);
             xyzw[i] = xyzw1.x;
@@ -248,7 +262,7 @@ class Point4dArray {
         return true;
     }
 }
-Point4dArray.s_workPoint4d = Geometry4d_1.Point4d.create();
+Point4dArray._workPoint4d = Geometry4d_1.Point4d.create();
 exports.Point4dArray = Point4dArray;
 class Point3dArray {
     static packToFloat64Array(data) {
@@ -624,9 +638,9 @@ class PolygonOps {
         }
         if (n === 4) {
             // cross product of diagonals is more stable than from single of the points . . .
-            points.vectorIndexIndex(0, 2, PolygonOps.s_vector0);
-            points.vectorIndexIndex(1, 3, PolygonOps.s_vector1);
-            PolygonOps.s_vector0.crossProduct(PolygonOps.s_vector1, result);
+            points.vectorIndexIndex(0, 2, PolygonOps._vector0);
+            points.vectorIndexIndex(1, 3, PolygonOps._vector1);
+            PolygonOps._vector0.crossProduct(PolygonOps._vector1, result);
             return result.normalizeInPlace();
         }
         // more than 4 points  ... no shortcuts ...
@@ -637,16 +651,16 @@ class PolygonOps {
      * The polygon is assumed to be planar and non-self-intersecting.
      */
     static addSecondMomentAreaProducts(points, origin, moments) {
-        const unitNormal = PolygonOps.s_normal;
+        const unitNormal = PolygonOps._normal;
         if (PolygonOps.unitNormal(points, unitNormal)) {
             // The direction of the normal makes the various detJ values positive or negative so that non-convex polygons
             // sum correctly.
-            const vector01 = PolygonOps.s_vector0;
-            const vector02 = PolygonOps.s_vector1;
-            const placement = PolygonOps.s_matrixA;
-            const matrixAB = PolygonOps.s_matrixB;
-            const matrixABC = PolygonOps.s_matrixC;
-            const vectorOrigin = points.vectorXYAndZIndex(origin, 0, PolygonOps.s_vectorOrigin);
+            const vector01 = PolygonOps._vector0;
+            const vector02 = PolygonOps._vector1;
+            const placement = PolygonOps._matrixA;
+            const matrixAB = PolygonOps._matrixB;
+            const matrixABC = PolygonOps._matrixC;
+            const vectorOrigin = points.vectorXYAndZIndex(origin, 0, PolygonOps._vectorOrigin);
             const numPoints = points.length;
             let detJ = 0;
             for (let i2 = 2; i2 < numPoints; i2++) {
@@ -654,7 +668,7 @@ class PolygonOps {
                 points.vectorIndexIndex(0, i2, vector02);
                 detJ = unitNormal.tripleProduct(vector01, vector02);
                 placement.setOriginAndVectors(vectorOrigin, vector01, vector02, unitNormal);
-                placement.multiplyMatrixMatrix(PolygonOps.s_triangleMomentWeights, matrixAB);
+                placement.multiplyMatrixMatrix(PolygonOps._triangleMomentWeights, matrixAB);
                 matrixAB.multiplyMatrixMatrixTranspose(placement, matrixABC);
                 moments.addScaledInPlace(matrixABC, detJ);
             }
@@ -747,7 +761,7 @@ class PolygonOps {
         if (Math.abs(h0) <= tol)
             return undefined;
         let i0;
-        for (let i = 0; i < numPoint; i++, h0 = h1) {
+        for (let i = 0; i < numPoint; i++, h0 = h1) { // <-- h0 won't be assigned to h1 until after first iteration
             h1 = h - pPointArray[i].y;
             if (Math.abs(h1) <= tol)
                 return undefined;
@@ -785,7 +799,7 @@ class PolygonOps {
         if (Math.abs(h0) <= tol)
             return undefined;
         let i0;
-        for (let i = 0; i < numPoint; i++, h0 = h1) {
+        for (let i = 0; i < numPoint; i++, h0 = h1) { // <-- h0 won't be assigned to h1 until after first iteration
             h1 = h - pPointArray[i].x;
             if (Math.abs(h1) <= tol)
                 return undefined;
@@ -823,7 +837,7 @@ class PolygonOps {
         if (Math.abs(v0) <= tol)
             return undefined;
         let i0;
-        for (let i = 0; i < numPoint; i++, v0 = v1) {
+        for (let i = 0; i < numPoint; i++, v0 = v1) { // <-- v0 won't be assigned to v1 until after first iteration
             v1 = normal.dotProductStartEnd(pPoint, pPointArray[i]);
             if (Math.abs(v1) <= tol)
                 return undefined;
@@ -847,20 +861,23 @@ class PolygonOps {
 /** These values are the integrated area moment products [xx,xy,xz, x]
  * for a right triangle in the first quadrant at the origin -- (0,0),(1,0),(0,1)
  */
-PolygonOps.s_triangleMomentWeights = Geometry4d_1.Matrix4d.createRowValues(2.0 / 24.0, 1.0 / 24.0, 0, 4.0 / 24.0, 1.0 / 24.0, 2.0 / 24.0, 0, 4.0 / 24.0, 0, 0, 0, 0, 4.0 / 24.0, 4.0 / 24.0, 0, 12.0 / 24.0);
+PolygonOps._triangleMomentWeights = Geometry4d_1.Matrix4d.createRowValues(2.0 / 24.0, 1.0 / 24.0, 0, 4.0 / 24.0, 1.0 / 24.0, 2.0 / 24.0, 0, 4.0 / 24.0, 0, 0, 0, 0, 4.0 / 24.0, 4.0 / 24.0, 0, 12.0 / 24.0);
 // statics for shared reuse.
 // many methods use these.
 // only use them in "leaf" methods that are certain not to call other users . . .
-PolygonOps.s_vector0 = PointVector_1.Vector3d.create();
-PolygonOps.s_vector1 = PointVector_1.Vector3d.create();
-PolygonOps.s_vectorOrigin = PointVector_1.Vector3d.create();
-PolygonOps.s_normal = PointVector_1.Vector3d.create();
-PolygonOps.s_matrixA = Geometry4d_1.Matrix4d.createIdentity();
-PolygonOps.s_matrixB = Geometry4d_1.Matrix4d.createIdentity();
-PolygonOps.s_matrixC = Geometry4d_1.Matrix4d.createIdentity();
+PolygonOps._vector0 = PointVector_1.Vector3d.create();
+PolygonOps._vector1 = PointVector_1.Vector3d.create();
+PolygonOps._vectorOrigin = PointVector_1.Vector3d.create();
+PolygonOps._normal = PointVector_1.Vector3d.create();
+PolygonOps._matrixA = Geometry4d_1.Matrix4d.createIdentity();
+PolygonOps._matrixB = Geometry4d_1.Matrix4d.createIdentity();
+PolygonOps._matrixC = Geometry4d_1.Matrix4d.createIdentity();
 exports.PolygonOps = PolygonOps;
 /**
  * Helper object to access members of a Point3d[] in geometric calculations.
+ * * The collection holds only a reference to the actual array.
+ * * The actual array may be replaced by the user as needed.
+ * * When replaced, there is no cached data to be updated.
 */
 class Point3dArrayCarrier extends IndexedXYZCollection_1.IndexedXYZCollection {
     /** CAPTURE caller supplied array ... */

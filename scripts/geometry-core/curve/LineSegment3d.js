@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Curve */
 const Geometry_1 = require("../Geometry");
@@ -101,6 +102,22 @@ class LineSegment3d extends CurvePrimitive_1.CurvePrimitive {
         }
         return new LineSegment3d(PointVector_1.Point3d.create(x0, y0, z), PointVector_1.Point3d.create(x1, y1, z));
     }
+    /** create a LineSegment3d from xy coordinates of start and end, with common z.
+     * @param x0 start point x coordinate.
+     * @param y0 start point y coordinate.
+     * @param x1 end point x coordinate.
+     * @param y1 end point y coordinate.
+     * @param z z coordinate to use for both points.
+     * @param result optional existing LineSegment to be reinitiazlized.
+     */
+    static createXYZXYZ(x0, y0, z0, x1, y1, z1, result) {
+        if (result) {
+            result._point0.set(x0, y0, z0);
+            result._point1.set(x1, y1, z1);
+            return result;
+        }
+        return new LineSegment3d(PointVector_1.Point3d.create(x0, y0, z0), PointVector_1.Point3d.create(x1, y1, z1));
+    }
     /** @returns Return the point at fractional position along the line segment. */
     fractionToPoint(fraction, result) { return this._point0.interpolate(fraction, this._point1, result); }
     curveLength() { return this._point0.distance(this._point1); }
@@ -181,12 +198,12 @@ class LineSegment3d extends CurvePrimitive_1.CurvePrimitive {
             this._point1.set(1, 0, 0);
             return;
         }
-        else if (json.startPoint && json.endPoint) {
+        else if (json.startPoint && json.endPoint) { // {startPoint:JSONPOINT, endPoint:JSONPOINT}
             this._point0.setFromJSON(json.startPoint);
             this._point1.setFromJSON(json.endPoint);
         }
         else if (Array.isArray(json)
-            && json.length > 1) {
+            && json.length > 1) { // [JSONPOINT, JSONPOINT]
             this._point0.setFromJSON(json[0]);
             this._point1.setFromJSON(json[1]);
         }

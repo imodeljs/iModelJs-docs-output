@@ -6,7 +6,7 @@ import { GeometryHandler } from "../GeometryHandler";
 import { SolidPrimitive } from "./SolidPrimitive";
 import { SweepContour } from "./SweepContour";
 export declare class RuledSweep extends SolidPrimitive {
-    private contours;
+    private _contours;
     private constructor();
     static create(contours: CurveCollection[], capped: boolean): RuledSweep | undefined;
     /** @returns Return a reference to the array of sweep contours. */
@@ -32,3 +32,4 @@ export declare class RuledSweep extends SolidPrimitive {
     constantVSection(vFraction: number): CurveCollection | undefined;
     extendRange(rangeToExtend: Range3d, transform?: Transform): void;
 }
+//# sourceMappingURL=RuledSweep.d.ts.map

@@ -64,7 +64,7 @@ export declare class ConvexClipPlaneSet implements Clipper {
      * @returns true if a segment was announced, false if entirely outside.
      */
     announceClippedSegmentIntervals(f0: number, f1: number, pointA: Point3d, pointB: Point3d, announce?: (fraction0: number, fraction1: number) => void): boolean;
-    private static sClipArcFractionArray;
+    private static _clipArcFractionArray;
     announceClippedArcIntervals(arc: Arc3d, announce?: AnnounceNumberNumberCurvePrimitive): boolean;
     /** Find the parts of the (unbounded) line segment  (if any) that is within the convex clip volume.
      * @param pointA segment start (fraction 0)
@@ -108,9 +108,10 @@ export declare class ConvexClipPlaneSet implements Clipper {
     reloadSweptPolygon(points: Point3d[], sweepDirection: Vector3d, sideSelect: number): number;
     /**
      * Returns range if result does not cover a space of infinity, otherwise undefined.
-     * Note: If given a range for output, overwrites it, rather than extending it.
+     * Note: If given a range for output, this will overwrite it, NOT extend it.
      */
     getRangeOfAlignedPlanes(transform?: Transform, result?: Range3d): Range3d | undefined;
     setInvisible(invisible: boolean): void;
     addZClipPlanes(invisible: boolean, zLow?: number, zHigh?: number): void;
 }
+//# sourceMappingURL=ConvexClipPlaneSet.d.ts.map

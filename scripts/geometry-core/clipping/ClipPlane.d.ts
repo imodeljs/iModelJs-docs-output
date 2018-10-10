@@ -86,7 +86,7 @@ export declare class ClipPlane implements Clipper {
     isPointInside(point: Point3d, tolerance?: number): boolean;
     isPointOn(point: Point3d, tolerance?: number): boolean;
     appendIntersectionRadians(arc: Arc3d, intersectionRadians: GrowableFloat64Array): void;
-    private static sClipArcFractionArray;
+    private static _clipArcFractionArray;
     announceClippedArcIntervals(arc: Arc3d, announce?: AnnounceNumberNumberCurvePrimitive): boolean;
     /**
      * * Compute intersection of (unbounded) segment with the plane.
@@ -111,3 +111,4 @@ export declare class ClipPlane implements Clipper {
     /** announce the interval (if any) where a line is within the clip plane half space. */
     announceClippedSegmentIntervals(f0: number, f1: number, pointA: Point3d, pointB: Point3d, announce?: (fraction0: number, fraction1: number) => void): boolean;
 }
+//# sourceMappingURL=ClipPlane.d.ts.map

@@ -9,7 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Glossary of terms in iModel.js - iModelJs</title>
+    <title>Glossary of terms in iModel.js - iModel.js</title>
+    <meta name="og:title" content="Glossary of terms in iModel.js - iModel.js">
+    <meta name="twitter:title" content="Glossary of terms in iModel.js - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -90,8 +95,9 @@
         <h3 id="helpful links">Helpful links</h3>
         <ul>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
         </ul>
@@ -100,7 +106,7 @@
     <div class='documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > Glossary</div>
-            <div class="edit-link"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fdocs%2Fcore%2Flearning%2FGlossary.md" target="_blank">Edit this page</a></div>
+            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
             <h1 id="glossary of terms in imodel.js">Glossary of terms in iModel.js</h1>
 <table class="table table-responsive"><tbody><tr>
 <th>Term</th>
@@ -124,7 +130,7 @@
 </tr>
 <tr>
 <td class="h-briefcase"><strong>Briefcase</strong><a id="briefcase" class="heading-anchor" href="#briefcase"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>A file holding a <em>copy of</em> an iModel. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/imodeldb'>IModelDb</a>.</td>
+<td>A file holding a <em>copy of</em> an iModel. It contains data from <a href="#changeset">ChangeSets</a> as well as local changes. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/imodeldb'>IModelDb</a>.</td>
 </tr>
 <tr>
 <td class="h-cartographic-coordinates"><strong>Cartographic Coordinates</strong><a id="cartographic-coordinates" class="heading-anchor" href="#cartographic-coordinates"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -299,12 +305,20 @@
 <td>A cloud service that coordinates access to iModels. It grants permission to approved iModel.js applications to access Briefcases of iModels on behalf of a authorized user. It also accepts and distributes ChangeSets to form the immutable and authoritative <em>timeline of changes</em> for an iModel.</td>
 </tr>
 <tr>
+<td class="h-lock"><strong>Lock</strong><a id="lock" class="heading-anchor" href="#lock"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>The right to modify a specific type of data (e.g. <a href="#element">Elements</a>, <a href="#model">Models</a>). See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/concurrencycontrol/#pessimistic-concurrency-control'>pessimistic concurrency control</a>.</td>
+</tr>
+<tr>
 <td class="h-l10n"><strong>L10N</strong><a id="l10n" class="heading-anchor" href="#l10n"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>An abbreviation for <a href="https://en.wikipedia.org/wiki/Internationalization_and_localization">Localization</a>.</td>
 </tr>
 <tr>
 <td class="h-linestyle"><strong>LineStyle</strong><a id="linestyle" class="heading-anchor" href="#linestyle"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>A named pattern that is repeated along a path when it is displayed to represent the meaning of the path.</td>
+</tr>
+<tr>
+<td class="h-merge"><strong>Merge</strong><a id="merge" class="heading-anchor" href="#merge"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Process of applying changes from a <a href="#changeset">ChangeSet</a> file to a <a href="#briefcase">Briefcase</a>.</td>
 </tr>
 <tr>
 <td class="h-model"><strong>Model</strong><a id="model" class="heading-anchor" href="#model"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -317,6 +331,10 @@
 <tr>
 <td class="h-modelselector"><strong>ModelSelector</strong><a id="modelselector" class="heading-anchor" href="#modelselector"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>A named set of Models that are visible in a View. Many ViewDefinitions may point to the same ModelSelector.</td>
+</tr>
+<tr>
+<td class="h-namedversion"><strong>NamedVersion</strong><a id="namedversion" class="heading-anchor" href="#namedversion"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>A version that is given a name on iModelHub to distinguish it amongst other versions due to its significants (e.g. a milestone, a review version).</td>
 </tr>
 <tr>
 <td class="h-nodejs"><strong>Node.js</strong><a id="nodejs" class="heading-anchor" href="#nodejs"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -345,6 +363,14 @@
 <tr>
 <td class="h-props"><strong>Props</strong><a id="props" class="heading-anchor" href="#props"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>iModel.js uses the convention that the members and types of a <em>JSON wire format</em> are expressed in TypeScript by an <a href="https://www.typescriptlang.org/docs/handbook/interfaces.html">interface</a> or <a href="http://www.typescriptlang.org/docs/handbook/advanced-types.html">type alias</a> with the suffix <strong>Props</strong> (for <em>prop</em>erties). E.g. <code>ElementProps</code>, <code>ViewDefinitionProps</code>, etc.</td>
+</tr>
+<tr>
+<td class="h-pull"><strong>Pull</strong><a id="pull" class="heading-anchor" href="#pull"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Process of downloading <a href="#changeset">ChangeSets</a> for a <a href="#briefcase">Briefcase</a> that are newer than the last ChangeSet <a href="#merge"><em>merged</em></a> into that Briefcase.</td>
+</tr>
+<tr>
+<td class="h-push"><strong>Push</strong><a id="push" class="heading-anchor" href="#push"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Process of uploading local changes from a <a href="#briefcase">Briefcase</a> to <a href="#imodelhub">iModelHub</a> in a form of a <a href="#changeset">ChangeSet</a> file. It is required that user <a href="#pull">pulls</a> and <a href="#merge">merges</a> before attempting a push.</td>
 </tr>
 <tr>
 <td class="h-rootsubject"><strong>RootSubject</strong><a id="rootsubject" class="heading-anchor" href="#rootsubject"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -415,6 +441,10 @@
 <td>An optional string that holds a user-assigned <em>alias</em> for an Element. UserLabels are <strong>not</strong> enforced to be unique.</td>
 </tr>
 <tr>
+<td class="h-version"><strong>Version</strong><a id="version" class="heading-anchor" href="#version"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>An immutable state of <a href="#imodel">iModel</a> as of a specific <a href="#changeset">ChangeSet</a>. It contains data from all ChangeSets up to specified one and contains no local changes. See <a href="#briefcase">Briefcase</a> for comparison.</td>
+</tr>
+<tr>
 <td class="h-view"><strong>View</strong><a id="view" class="heading-anchor" href="#view"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>An abstract concept that forms a relationship between a rectangular region on a screen and content in an iModel. All of the classes involved in that mapping are collectively referred to as a View.</td>
 </tr>
@@ -444,7 +474,7 @@
 </tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             
@@ -602,10 +632,16 @@
             <a class='title solo-title menu-text' href="#imodelhub">iModelHub</a>
     </li>
        <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#lock">Lock</a>
+    </li>
+       <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#l10n">L10N</a>
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#linestyle">LineStyle</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#merge">Merge</a>
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#model">Model</a>
@@ -615,6 +651,9 @@
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#modelselector">ModelSelector</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#namedversion">NamedVersion</a>
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#nodejs">Node.js</a>
@@ -636,6 +675,12 @@
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#props">Props</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#pull">Pull</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#push">Push</a>
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#rootsubject">RootSubject</a>
@@ -687,6 +732,9 @@
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#userlabel">UserLabel</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#version">Version</a>
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#view">View</a>

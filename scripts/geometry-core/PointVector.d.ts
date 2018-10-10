@@ -1,7 +1,7 @@
 /** @module CartesianGeometry */
 import { Angle, BeJSONFunctions, AngleProps } from "./Geometry";
 import { Ray3d } from "./AnalyticGeometry";
-import { RotMatrix, Transform } from "./Transform";
+import { Matrix3d, Transform } from "./Transform";
 export interface IsNullCheck {
     isNull(): boolean;
 }
@@ -36,10 +36,10 @@ export declare type XYProps = {
     x?: number;
     y?: number;
 } | number[];
-export declare type RotMatrixProps = number[][] | RotMatrix | number[];
+export declare type Matrix3dProps = number[][] | Matrix3d | number[];
 export declare type TransformProps = number[][] | number[] | {
     origin: XYZProps;
-    matrix: RotMatrixProps;
+    matrix: Matrix3dProps;
 };
 export declare type Range3dProps = {
     low: XYZProps;
@@ -80,7 +80,7 @@ export declare class XY implements XAndY {
     /** Return the largest absolute distance between corresponding components */
     maxDiff(other: XAndY): number;
     /** @returns true if the x,y components are both small by metric metric tolerance */
-    isAlmostZero(): boolean;
+    readonly isAlmostZero: boolean;
     /** Return the largest absolute value of any component */
     maxAbs(): number;
     /** Return the magnitude of the vector */
@@ -126,6 +126,11 @@ export declare class XYZ implements XYAndZ {
      * * XY -- copy the x, y parts and set z=0
      */
     setFrom(other: Float64Array | XAndY | XYAndZ): void;
+    /**
+     * Set the x,y,z parts from a Point3d.
+     * This is the same effect as `setFrom(other)` with no pretesting of variant input type
+     */
+    setFromPoint3d(other: Point3d): void;
     /** Returns true if this and other have equal x,y,z parts within Geometry.smallMetricDistance.
      * @param other The other XYAndZ to compare
      * @param tol The tolerance for the comparison. If undefined, use [[Geometry.smallMetricDistance]]
@@ -164,7 +169,7 @@ export declare class XYZ implements XYAndZ {
     /** Return the index (0,1,2) of the x,y,z component with largest absolute value */
     indexOfMaxAbs(): number;
     /** Return true if the if x,y,z components are all nearly zero to tolerance Geometry.smallMetricDistance */
-    isAlmostZero(): boolean;
+    readonly isAlmostZero: boolean;
     /** Return the largest absolute value of any component */
     maxAbs(): number;
     /** Return the sqrt of the sum of squared x,y,z parts */
@@ -199,6 +204,7 @@ export declare class XYZ implements XYAndZ {
     /** Freeze this XYZ */
     freeze(): void;
 }
+/** 3D vector with x,y,z properties */
 export declare class Point3d extends XYZ {
     /** Constructor for Point3d */
     constructor(x?: number, y?: number, z?: number);
@@ -208,7 +214,7 @@ export declare class Point3d extends XYZ {
     /** Create a new Point3d with given coordinates
      * @param x x part
      * @param y y part
-     * @param z z part
+     * @param z z partpubli
      */
     static create(x?: number, y?: number, z?: number, result?: Point3d): Point3d;
     /** Copy contents from another Point3d, Point2d, Vector2d, or Vector3d */
@@ -282,14 +288,14 @@ export declare class Point3d extends XYZ {
      * @param scale scale factor to apply to its x,y,z parts
      * @param result optional point to receive coordinates
      */
-    static createScale(source: XYZ, scale: number, result?: Point3d): Point3d;
+    static createScale(source: XYAndZ, scale: number, result?: Point3d): Point3d;
     /** create a point that is a linear combination (weighted sum) of 2 input points.
      * @param pointA first input point
      * @param scaleA scale factor for pointA
      * @param pointB second input point
      * @param scaleB scale factor for pointB
      */
-    static add2Scaled(pointA: XYZ, scaleA: number, pointB: XYZ, scaleB: number, result?: Point3d): Point3d;
+    static createAdd2Scaled(pointA: XYAndZ, scaleA: number, pointB: XYAndZ, scaleB: number, result?: Point3d): Point3d;
     /** Create a point that is a linear combination (weighted sum) of 3 input points.
      * @param pointA first input point
      * @param scaleA scale factor for pointA
@@ -298,7 +304,7 @@ export declare class Point3d extends XYZ {
      * @param pointC third input point.
      * @param scaleC scale factor for pointC
      */
-    static add3Scaled(pointA: XYZ, scaleA: number, pointB: XYZ, scaleB: number, pointC: XYZ, scaleC: number, result?: Point3d): Point3d;
+    static createAdd3Scaled(pointA: XYAndZ, scaleA: number, pointB: XYAndZ, scaleB: number, pointC: XYAndZ, scaleC: number, result?: Point3d): Point3d;
     /**
      * Return the dot product of vectors from this to pointA and this to pointB.
      * @param targetA target point for first vector
@@ -397,12 +403,12 @@ export declare class Vector3d extends XYZ {
     setStartEnd(point0: XYAndZ, point1: XYAndZ): void;
     /** Return a vector with 000 xyz parts. */
     static createZero(result?: Vector3d): Vector3d;
-    /** Return a unit X vector  */
-    static unitX(): Vector3d;
+    /** Return a unit X vector optionally multiplied by a scale  */
+    static unitX(scale?: number): Vector3d;
     /** Return a unit Y vector  */
-    static unitY(): Vector3d;
+    static unitY(scale?: number): Vector3d;
     /** Return a unit Z vector  */
-    static unitZ(): Vector3d;
+    static unitZ(scale?: number): Vector3d;
     /** Divide by denominator, but return undefined if denominator is zero. */
     safeDivideOrNull(denominator: number, result?: Vector3d): Vector3d | undefined;
     /**
@@ -447,10 +453,10 @@ export declare class Vector3d extends XYZ {
     /** Return `point + vectorA * scalarA + vectorB * scalarB + vectorC * scalarC` */
     plus3Scaled(vectorA: XYAndZ, scalarA: number, vectorB: XYAndZ, scalarB: number, vectorC: XYAndZ, scalarC: number, result?: Vector3d): Vector3d;
     /** Return `point + vectorA * scalarA + vectorB * scalarB` */
-    static add2Scaled(vectorA: XYAndZ, scaleA: number, vectorB: XYAndZ, scaleB: number, result?: Vector3d): Vector3d;
+    static createAdd2Scaled(vectorA: XYAndZ, scaleA: number, vectorB: XYAndZ, scaleB: number, result?: Vector3d): Vector3d;
     /** Return `point + vectorA * scalarA + vectorB * scalarB` with all components presented as numbers */
-    static add2ScaledXYZ(ax: number, ay: number, az: number, scaleA: number, bx: number, by: number, bz: number, scaleB: number, result?: Vector3d): Vector3d;
-    static add3Scaled(vectorA: XYAndZ, scaleA: number, vectorB: XYAndZ, scaleB: number, vectorC: XYAndZ, scaleC: number, result?: Vector3d): Vector3d;
+    static createAdd2ScaledXYZ(ax: number, ay: number, az: number, scaleA: number, bx: number, by: number, bz: number, scaleB: number, result?: Vector3d): Vector3d;
+    static createAdd3Scaled(vectorA: XYAndZ, scaleA: number, vectorB: XYAndZ, scaleB: number, vectorC: XYAndZ, scaleC: number, result?: Vector3d): Vector3d;
     /** Return vector * scalar */
     scale(scale: number, result?: Vector3d): Vector3d;
     scaleToLength(length: number, result?: Vector3d): Vector3d;
@@ -458,7 +464,7 @@ export declare class Vector3d extends XYZ {
     unitCrossProductWithDefault(vectorB: Vector3d, x: number, y: number, z: number, result?: Vector3d): Vector3d;
     normalizeWithDefault(x: number, y: number, z: number, result?: Vector3d): Vector3d;
     tryNormalizeInPlace(smallestMagnitude?: number): boolean;
-    sizedCrossProduct(vectorB: Vector3d, productLength: number, result?: Vector3d): Vector3d;
+    sizedCrossProduct(vectorB: Vector3d, productLength: number, result?: Vector3d): Vector3d | undefined;
     crossProductMagnitudeSquared(vectorB: Vector3d): number;
     crossProductMagnitude(vectorB: Vector3d): number;
     dotProduct(vectorB: XYAndZ): number;
@@ -475,6 +481,7 @@ export declare class Vector3d extends XYZ {
      * * if the weight is near zero metric, the return is zero.
      */
     dotProductStartEndXYZW(pointA: Point3d, x: number, y: number, z: number, w: number): number;
+    /** Return the dot product of the instance and vectorB, using only the x and y parts. */
     dotProductXY(vectorB: Vector3d): number;
     /**
      * Dot product with vector (x,y,z)
@@ -483,7 +490,9 @@ export declare class Vector3d extends XYZ {
      * @param z z component for dot product
      */
     dotProductXYZ(x: number, y: number, z?: number): number;
+    /** Return the triple product of the instance, vectorB, and vectorC  */
     tripleProduct(vectorB: Vector3d, vectorC: Vector3d): number;
+    /** Return the cross product of the instance and vectorB, using only the x and y parts. */
     crossProductXY(vectorB: Vector3d): number;
     crossProduct(vectorB: Vector3d, result?: Vector3d): Vector3d;
     angleTo(vectorB: Vector3d): Angle;
@@ -523,7 +532,7 @@ export declare class Segment1d {
     /**
      * Return true if the segment limits are (exactly) 0 and 1
      */
-    isExact01(): boolean;
+    readonly isExact01: boolean;
 }
 /** The properties that define [[YawPitchRollAngles]]. */
 export interface YawPitchRollProps {
@@ -567,9 +576,9 @@ export declare class YawPitchRollAngles {
      *
      * * The returned matrix is "rigid" -- unit length rows and columns, and its transpose is its inverse.
      * * The "rigid" matrix is always a right handed coordinate system.
-     * @param result optional pre-allocated `RotMatrix`
+     * @param result optional pre-allocated `Matrix3d`
      */
-    toRotMatrix(result?: RotMatrix): RotMatrix;
+    toMatrix3d(result?: Matrix3d): Matrix3d;
     /** @returns Return the largest angle in radians */
     maxAbsRadians(): number;
     /** Return the sum of the angles in squared radians */
@@ -587,12 +596,12 @@ export declare class YawPitchRollAngles {
         origin: Point3d;
         angles: YawPitchRollAngles | undefined;
     };
-    /** Attempts to create a YawPitchRollAngles object from an RotMatrix
+    /** Attempts to create a YawPitchRollAngles object from an Matrix3d
      * * This conversion fails if the matrix is not rigid (unit rows and columns, transpose is inverse)
      * * In the failure case the method's return value is `undefined`.
      * * In the failure case, if the optional result was supplied, that result will nonetheless be filled with a set of angles.
      */
-    static createFromRotMatrix(matrix: RotMatrix, result?: YawPitchRollAngles): YawPitchRollAngles | undefined;
+    static createFromMatrix3d(matrix: Matrix3d, result?: YawPitchRollAngles): YawPitchRollAngles | undefined;
 }
 export declare class Point2d extends XY implements BeJSONFunctions {
     /** Constructor for Point2d */
@@ -641,14 +650,20 @@ export declare class Vector2d extends XY implements BeJSONFunctions {
     constructor(x?: number, y?: number);
     clone(): Vector2d;
     static create(x?: number, y?: number, result?: Vector2d): Vector2d;
-    static unitX(): Vector2d;
-    static unitY(): Vector2d;
+    static unitX(scale?: number): Vector2d;
+    static unitY(scale?: number): Vector2d;
     static createZero(result?: Vector2d): Vector2d;
     /** copy contents from another Point3d, Point2d, Vector2d, or Vector3d */
     static createFrom(data: XAndY | Float64Array, result?: Vector2d): Vector2d;
     static fromJSON(json?: XYProps): Vector2d;
     static createPolar(r: number, theta: Angle): Vector2d;
     static createStartEnd(point0: XAndY, point1: XAndY, result?: Vector2d): Vector2d;
+    /**
+     * Return a vector that bisects the angle between two normals and extends to the intersection of two offset lines
+     * @param unitPerpA unit perpendicular to incoming direction
+     * @param unitPerpB  unit perpendicular to outgoing direction
+     * @param offset offset distance
+     */
     static createOffsetBisector(unitPerpA: Vector2d, unitPerpB: Vector2d, offset: number): Vector2d | undefined;
     safeDivideOrNull(denominator: number, result?: Vector2d): Vector2d | undefined;
     normalize(result?: Vector2d): Vector2d | undefined;
@@ -685,5 +700,10 @@ export declare class Vector2d extends XY implements BeJSONFunctions {
     /** return the (signed) angle from this to vectorB.   This is positive if the shortest turn is counterclockwise, negative if clockwise. */
     angleTo(vectorB: Vector2d): Angle;
     isParallelTo(other: Vector2d, oppositeIsParallel?: boolean): boolean;
+    /**
+     * @returns `true` if `this` vector is perpendicular to `other`.
+     * @param other second vector.
+     */
     isPerpendicularTo(other: Vector2d): boolean;
 }
+//# sourceMappingURL=PointVector.d.ts.map

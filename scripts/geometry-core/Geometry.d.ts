@@ -1,6 +1,7 @@
 /** @module CartesianGeometry */
-import { Point3d, Vector3d, Point2d, Vector2d, XY, XYZ } from "./PointVector";
+import { Point3d, Vector3d, Point2d, Vector2d, XAndY, XY, XYZ } from "./PointVector";
 import { GrowableFloat64Array } from "./GrowableArray";
+import { Point4d } from "./numerics/Geometry4d";
 /** Enumeration of the 6 possible orderings of XYZ axis order */
 export declare const enum AxisOrder {
     /** Right handed system, X then Y then Z */
@@ -14,12 +15,22 @@ export declare const enum AxisOrder {
     /** Left handed system, Y then X then Z */
     YXZ = 5,
     /** Left handed system, Z then Y then X */
-    ZYX = 6,
+    ZYX = 6
 }
 export declare const enum AxisIndex {
     X = 0,
     Y = 1,
-    Z = 2,
+    Z = 2
+}
+export declare const enum StandardViewIndex {
+    Top = 1,
+    Bottom = 2,
+    Left = 3,
+    Right = 4,
+    Front = 5,
+    Back = 6,
+    Iso = 7,
+    RightIso = 8
 }
 /** Enumeration among choice for how a coordinate transformation should incorporate scaling. */
 export declare const enum AxisScaleSelect {
@@ -28,12 +39,36 @@ export declare const enum AxisScaleSelect {
     /** On each axis, the vector length matches the longest side of the range of the data. */
     LongestRangeDirection = 1,
     /** On each axis, the vector length matches he length of the corresponding edge of the range. */
-    NonUniformRangeContainment = 2,
+    NonUniformRangeContainment = 2
 }
 export interface TrigValues {
     c: number;
     s: number;
     radians: number;
+}
+/**
+ * Interface so various plane representations can be used by algorithms that just want altitude evaluations.
+ *
+ * Specific implementors are
+ * * Plane3dByOriginAndUnitNormal
+ * * Point4d (used for homogeneous plane coefficients)
+ */
+export interface PlaneAltitudeEvaluator {
+    /**
+     * Return the altitude of the point from the plane.
+     * @param point point for evaluation
+     */
+    altitude(point: Point3d): number;
+    /**
+     * Return the derivative of altitude wrt motion along a vector.
+     * @param point point for evaluation
+     */
+    velocity(vector: Vector3d): number;
+    /**
+     * Return the derivative of altitude wrt motion along a vector given by components
+     * @param point point for evaluation
+     */
+    velocityXYZ(x: number, y: number, z: number): number;
 }
 export interface BeJSONFunctions {
     /**
@@ -51,6 +86,10 @@ export declare type AngleProps = {
     degrees: number;
 } | {
     radians: number;
+} | {
+    _radians: number;
+} | {
+    _degrees: number;
 } | number;
 /** The Properties for a JSON representation of an AngleSweep.
  * * The json data is always start and end angles as a pair in an array.
@@ -58,7 +97,7 @@ export declare type AngleProps = {
  * If the AngleProps is an object with key degrees, the degrees value must be an array with the two degrees angles as numbers
  * If the AngleProps is an object with key radians, the radians value must be an array with the two radians angles as numbers
  */
-export declare type AngleSweepProps = {
+export declare type AngleSweepProps = AngleSweep | {
     degrees: [number, number];
 } | {
     radians: [number, number];
@@ -120,8 +159,12 @@ export declare class Geometry {
     static maxAbsDiff(a: number, b0: number, b1: number): number;
     /** @returns the largest absolute absolute value among x,y,z */
     static maxAbsXYZ(x: number, y: number, z: number): number;
+    /** @returns the largest absolute absolute value among x,y */
+    static maxAbsXY(x: number, y: number): number;
     /** @returns the largest signed value among a, b, c */
     static maxXYZ(a: number, b: number, c: number): number;
+    /** @returns the largest signed value among a, b*/
+    static maxXY(a: number, b: number): number;
     /** @returns Return the hypotenuse sqrt(x\*x + y\*y). This is much faster than Math.hypot(x,y).*/
     static hypotenuseXY(x: number, y: number): number;
     /** @returns Return the squared hypotenuse (x\*x + y\*y). */
@@ -167,13 +210,34 @@ export declare class Geometry {
      * * the triple product is 6 times the (signed) volume of the tetrahedron with the three vectors as edges from a common vertex.
      */
     static tripleProduct(ux: number, uy: number, uz: number, vx: number, vy: number, vz: number, wx: number, wy: number, wz: number): number;
+    /**
+   * @returns Returns curvature magnitude from a first and second derivative vector.
+   * @param ux  first derivative x component
+   * @param uy first derivative y component
+   * @param uz first derivative z component
+   * @param vx second derivative x component
+   * @param vy second derivative y component
+   * @param vz second derivative z component
+   */
+    static curvatureMagnitude(ux: number, uy: number, uz: number, vx: number, vy: number, vz: number): number;
+    /** Returns the determinant of 3x3 matrix with x and y rows taken from 3 points, third row from corresponding numbers.
+     *
+     */
+    static tripleProductXYW(columnA: XAndY, weightA: number, columnB: XAndY, weightB: number, columnC: XAndY, weightC: number): number;
+    /** Returns the determinant of 3x3 matrix with x and y rows taken from 3 points, third row from corresponding numbers.
+     *
+     */
+    static tripleProductPoint4dXYW(columnA: Point4d, columnB: Point4d, columnC: Point4d): number;
     /**  2D cross product of vectors layed out as scalars. */
     static crossProductXYXY(ux: number, uy: number, vx: number, vy: number): number;
     /**  3D cross product of vectors layed out as scalars. */
     static crossProductXYZXYZ(ux: number, uy: number, uz: number, vx: number, vy: number, vz: number, result?: Vector3d): Vector3d;
+    /**  magnitude of 3D cross product of vectors, with the vectors presented as */
+    static crossProductMagnitude(ux: number, uy: number, uz: number, vx: number, vy: number, vz: number): number;
     /**  3D dot product of vectors layed out as scalars. */
     static dotProductXYZXYZ(ux: number, uy: number, uz: number, vx: number, vy: number, vz: number): number;
     static clampToStartEnd(x: number, a: number, b: number): number;
+    static clamp(value: number, min: number, max: number): number;
     /** simple interpolation between values, but choosing (based on fraction) a or b as starting point for maximum accuracy. */
     static interpolate(a: number, f: number, b: number): number;
     /** given an axisOrder (e.g. XYZ, YZX, ZXY, XZYLeftHanded etc) and an (integer) offset, resolve to an axis index. */
@@ -314,7 +378,7 @@ export declare class Angle implements BeJSONFunctions {
      */
     tan(): number;
     static isFullCircleRadians(radians: number): boolean;
-    isFullCircle(): boolean;
+    readonly isFullCircle: boolean;
     /** Adjust a radians value so it is positive in 0..360 */
     static adjustDegrees0To360(degrees: number): number;
     /** Adjust a radians value so it is positive in -180..180 */
@@ -324,8 +388,8 @@ export declare class Angle implements BeJSONFunctions {
     /** Adjust a radians value so it is positive in -PI..PI */
     static adjustRadiansMinusPiPlusPi(radians: number): number;
     static zero(): Angle;
-    isExactZero(): boolean;
-    isAlmostZero(): boolean;
+    readonly isExactZero: boolean;
+    readonly isAlmostZero: boolean;
     /** Create an angle object with degrees adjusted into 0..360. */
     static createDegreesAdjustPositive(degrees: number): Angle;
     /** Create an angle object with degrees adjusted into -180..180. */
@@ -361,13 +425,26 @@ export declare class Angle implements BeJSONFunctions {
      * @param rSin2A sine value (scaled by radius) for final angle.
      */
     static trigValuesToHalfAngleTrigValues(rCos2A: number, rSin2A: number): TrigValues;
+    /** If value is close to -1, -0.5, 0, 0.5, 1, adjust it to the exact value. */
+    static cleanupTrigValue(value: number, tolerance?: number): number;
     /**
-       * Return the half angle of angle between vectors U, V with given vector dots.
+       * Return the half angle cosine, sine, and radians for given dot products between vectors.
        * @param dotUU dot product of vectorU with itself
        * @param dotVV dot product of vectorV with itself
        * @param dotUV dot product of vectorU with vectorV
        */
     static dotProductsToHalfAngleTrigValues(dotUU: number, dotVV: number, dotUV: number, favorZero?: boolean): TrigValues;
+    /**
+     * * The returned angle is between 0 and PI
+     * @return the angle between two vectors, with the vectors given as xyz components
+     * @param ux x component of vector u
+     * @param uy y component of vector u
+     * @param uz z component of vector u
+     * @param vx x component of vector v
+     * @param vy y component of vector v
+     * @param vz z component of vector v
+     */
+    static radiansBetweenVectorsXYZ(ux: number, uy: number, uz: number, vx: number, vy: number, vz: number): number;
 }
 /**
  * An AngleSweep is a pair of angles at start and end of an interval.
@@ -443,11 +520,11 @@ export declare class AngleSweep implements BeJSONFunctions {
     /** Restrict start and end angles into the range (-90,+90) in degrees. */
     capLatitudeInPlace(): void;
     /** Ask if the sweep is counterclockwise, i.e. positive sweep */
-    isCCW(): boolean;
+    readonly isCCW: boolean;
     /** Ask if the sweep is a full circle. */
-    isFullCircle(): boolean;
+    readonly isFullCircle: boolean;
     /** Ask if the sweep is a full sweep from south pole to north pole. */
-    isFullLatitudeSweep(): boolean;
+    readonly isFullLatitudeSweep: boolean;
     /** return a clone of this sweep. */
     clone(): AngleSweep;
     /** Convert fractional position in the sweep to radians. */
@@ -517,3 +594,4 @@ export declare class AngleSweep implements BeJSONFunctions {
     /** test if start and end angles match, allowing for 360-degree shifts. */
     isAlmostEqualNoPeriodShift(other: AngleSweep): boolean;
 }
+//# sourceMappingURL=Geometry.d.ts.map

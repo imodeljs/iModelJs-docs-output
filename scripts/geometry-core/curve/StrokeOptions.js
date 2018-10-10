@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Curve */
 const Geometry_1 = require("../Geometry");
@@ -37,7 +38,7 @@ class StrokeOptions {
     set needParams(value) { this._needParams = value; }
     get needNormals() { return this._needNormals !== undefined ? this._needNormals : false; }
     set needNormals(value) { this._needNormals = value; }
-    hasMaxEdgeLength() { return this.maxEdgeLength !== undefined && this.maxEdgeLength > 0.0; }
+    get hasMaxEdgeLength() { return this.maxEdgeLength !== undefined && this.maxEdgeLength > 0.0; }
     // return stroke count which is the larger of the minCount or count needed for edge length condition.
     applyMaxEdgeLength(minCount, totalLength) {
         if (this.maxEdgeLength && this.maxEdgeLength > 0.0 && minCount * this.maxEdgeLength < totalLength) {
@@ -57,6 +58,22 @@ class StrokeOptions {
             stepRadians = options.angleTol.radians;
         if (minCount * stepRadians < sweepRadians)
             minCount = Geometry_1.Geometry.stepCount(stepRadians, sweepRadians, minCount);
+        return minCount;
+    }
+    /**
+     *
+     * @param options
+     * @param minCount smallest allowed count
+     * @param edgeLength
+     */
+    static applyMaxEdgeLength(options, minCount, edgeLength) {
+        if (edgeLength < 0)
+            edgeLength = -edgeLength;
+        if (minCount < 1)
+            minCount = 1;
+        if (options && options.maxEdgeLength && options.maxEdgeLength * minCount < edgeLength) {
+            minCount = Math.ceil(edgeLength / options.maxEdgeLength + 0.99999);
+        }
         return minCount;
     }
     applyTolerancesToArc(radius, sweepRadians = Math.PI * 2) {

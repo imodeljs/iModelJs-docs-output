@@ -3,19 +3,84 @@ import { Point3d } from "../PointVector";
 import { Range3d } from "../Range";
 import { Transform } from "../Transform";
 import { Ray3d, Plane3dByOriginAndVectors } from "../AnalyticGeometry";
-import { CurvePrimitive } from "../curve/CurvePrimitive";
+import { CurvePrimitive, CurveLocationDetail } from "../curve/CurvePrimitive";
 import { StrokeOptions } from "../curve/StrokeOptions";
 import { Plane3dByOriginAndUnitNormal } from "../AnalyticGeometry";
 import { GeometryHandler, IStrokeHandler } from "../GeometryHandler";
+import { KnotVector } from "./KnotVector";
 import { LineString3d } from "../curve/LineString3d";
-export declare class BSplineCurve3d extends CurvePrimitive {
-    isSameGeometryClass(other: any): boolean;
-    tryTransformInPlace(transform: Transform): boolean;
-    private bcurve;
+import { BezierCurve3dH, BezierCurveBase } from "./BezierCurve";
+import { BSpline1dNd } from "./BSpline1dNd";
+/**
+ * Base class for BSplineCurve3d and BSplineCurve3dH.
+ * * The weighted variant has the problem that CurvePrimitive 3d typing does not allow undefined result where Point4d has zero weight.
+ * * The convention for these is to return 000 in such places.
+ */
+export declare abstract class BSplineCurve3dBase extends CurvePrimitive {
+    protected _bcurve: BSpline1dNd;
+    protected constructor(poleDimension: number, numPoles: number, order: number, knots: KnotVector);
     readonly degree: number;
     readonly order: number;
     readonly numSpan: number;
     readonly numPoles: number;
+    /**
+   * return a simple array form of the knots.  optionally replicate the first and last
+   * in classic over-clamped manner
+   */
+    copyKnots(includeExtraEndKnot: boolean): number[];
+    /**
+   * Set the flag indicating the bspline might be suitable for having wrapped "closed" interpretation.
+   */
+    setWrappable(value: boolean): void;
+    /** Evaluate at a position given by fractional position within a span. */
+    abstract evaluatePointInSpan(spanIndex: number, spanFraction: number, result?: Point3d): Point3d;
+    /** Evaluate at a position given by fractional position within a span. */
+    abstract evaluatePointAndTangentInSpan(spanIndex: number, spanFraction: number, result?: Ray3d): Ray3d;
+    /** Evaluate xyz at a position given by knot. */
+    abstract knotToPoint(knot: number, result?: Point3d): Point3d;
+    /** Evaluate xyz and derivative at position given by a knot value.  */
+    abstract knotToPointAndDerivative(knot: number, result?: Ray3d): Ray3d;
+    /** Evaluate xyz and 2 derivatives at position given by a knot value.  */
+    abstract knotToPointAnd2Derivatives(knot: number, result?: Plane3dByOriginAndVectors): Plane3dByOriginAndVectors;
+    fractionToPoint(fraction: number, result?: Point3d): Point3d;
+    /** Construct a ray with
+     * * origin at the fractional position along the arc
+     * * direction is the first derivative, i.e. tangent along the curve
+     */
+    fractionToPointAndDerivative(fraction: number, result?: Ray3d): Ray3d;
+    /** Construct a plane with
+     * * origin at the fractional position along the arc
+     * * x axis is the first derivative, i.e. tangent along the curve
+     * * y axis is the second derivative
+     */
+    fractionToPointAnd2Derivatives(fraction: number, result?: Plane3dByOriginAndVectors): Plane3dByOriginAndVectors;
+    startPoint(): Point3d;
+    endPoint(): Point3d;
+    reverseInPlace(): void;
+    /**
+     * Return an array with this curve's bezier fragments.
+     */
+    collectBezierSpans(prefer3dH: boolean): BezierCurveBase[];
+    /**
+      * Return a BezierCurveBase for this curve.  The concrete return type may be BezierCuve3d or BezierCurve3dH according to the instance type and the prefer3dH parameter.
+      * @param spanIndex
+      * @param prefer3dH true to force promotion to homogeneous.
+      * @param result optional reusable curve.  This will only be reused if it is a BezierCurve3d with matching order.
+      */
+    abstract getSaturatedBezierSpan3dOr3dH(spanIndex: number, prefer3dH: boolean, result?: BezierCurveBase): BezierCurveBase | undefined;
+    /** Search for the curve point that is closest to the spacePoint.
+     *
+     * * If the space point is exactly on the curve, this is the reverse of fractionToPoint.
+     * * Since CurvePrimitive should always have start and end available as candidate points, this method should always succeed
+     * @param spacePoint point in space
+     * @param extend true to extend the curve (if possible)
+     * @returns Returns a CurveLocationDetail structure that holds the details of the close point.
+     */
+    closestPoint(spacePoint: Point3d, _extend: boolean): CurveLocationDetail | undefined;
+}
+export declare class BSplineCurve3d extends BSplineCurve3dBase {
+    isSameGeometryClass(other: any): boolean;
+    tryTransformInPlace(transform: Transform): boolean;
     getPole(i: number, result?: Point3d): Point3d | undefined;
     spanFractionToKnot(span: number, localFraction: number): number;
     private constructor();
@@ -47,7 +112,7 @@ export declare class BSplineCurve3d extends CurvePrimitive {
     evaluatePointAndTangentInSpan(spanIndex: number, spanFraction: number): Ray3d;
     /** Evaluate at a positioni given by a knot value.  */
     knotToPoint(u: number, result?: Point3d): Point3d;
-    /** Evaluate at a positioni given by a knot value.  */
+    /** Evaluate at a position given by a knot value.  */
     knotToPointAndDerivative(u: number, result?: Ray3d): Ray3d;
     /** Evaluate at a position given by a knot value.  Return point with 2 derivatives. */
     knotToPointAnd2Derivatives(u: number, result?: Plane3dByOriginAndVectors): Plane3dByOriginAndVectors;
@@ -62,9 +127,6 @@ export declare class BSplineCurve3d extends CurvePrimitive {
     fractionToPointAnd2Derivatives(fraction: number, result?: Plane3dByOriginAndVectors): Plane3dByOriginAndVectors;
     isAlmostEqual(other: any): boolean;
     isInPlane(plane: Plane3dByOriginAndUnitNormal): boolean;
-    startPoint(): Point3d;
-    endPoint(): Point3d;
-    reverseInPlace(): void;
     quickLength(): number;
     emitStrokableParts(handler: IStrokeHandler, _options?: StrokeOptions): void;
     emitStrokes(dest: LineString3d, _options?: StrokeOptions): void;
@@ -73,7 +135,25 @@ export declare class BSplineCurve3d extends CurvePrimitive {
      * (b) (degree-1) wrapped points,
      * (c) marked wrappable from construction time.
      */
-    isClosable(): boolean;
+    readonly isClosable: boolean;
+    /**
+     * Return a BezierCurveBase for this curve.  The concrete return type may be BezierCuve3d or BezierCurve3dH according to this type.
+     * @param spanIndex
+     * @param result optional reusable curve.  This will only be reused if it is a BezierCurve3d with matching order.
+     */
+    getSaturatedBezierSpan3dOr3dH(spanIndex: number, prefer3dH: boolean, result?: BezierCurveBase): BezierCurveBase | undefined;
+    /**
+     * Return a CurvePrimitive (which is a BezierCurve3d) for a specified span of this curve.
+     * @param spanIndex
+     * @param result optional reusable curve.  This will only be reused if it is a BezierCurve3d with matching order.
+     */
+    getSaturatedBezierSpan3d(spanIndex: number, result?: BezierCurveBase): BezierCurveBase | undefined;
+    /**
+     * Return a CurvePrimitive (which is a BezierCurve3dH) for a specified span of this curve.
+     * @param spanIndex
+     * @param result optional reusable curve.  This will only be reused if it is a BezierCurve3d with matching order.
+     */
+    getSaturatedBezierSpan3dH(spanIndex: number, result?: BezierCurveBase): BezierCurve3dH | undefined;
     /**
      * Set the flag indicating the bspline might be suitable for having wrapped "closed" interpretation.
      */
@@ -81,3 +161,4 @@ export declare class BSplineCurve3d extends CurvePrimitive {
     dispatchToGeometryHandler(handler: GeometryHandler): any;
     extendRange(rangeToExtend: Range3d, transform?: Transform): void;
 }
+//# sourceMappingURL=BSplineCurve.d.ts.map

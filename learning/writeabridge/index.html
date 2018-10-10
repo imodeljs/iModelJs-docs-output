@@ -9,7 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Write an iModel Bridge - iModelJs</title>
+    <title>Write an iModel Bridge - iModel.js</title>
+    <meta name="og:title" content="Write an iModel Bridge - iModel.js">
+    <meta name="twitter:title" content="Write an iModel Bridge - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -90,8 +95,9 @@
         <h3 id="helpful links">Helpful links</h3>
         <ul>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
         </ul>
@@ -100,7 +106,7 @@
     <div class='documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > WriteABridge</div>
-            <div class="edit-link"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fdocs%2Fcore%2Flearning%2FWriteABridge.md" target="_blank">Edit this page</a></div>
+            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
             <h1 id="write an imodel bridge">Write an iModel Bridge</h1>
 <p>As explained in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/imodel-bridges'>overview</a>, a &quot;bridge&quot; is a program that:</p>
 <ol>
@@ -113,7 +119,7 @@
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/imodeldb'>Open a local briefcase copy</a> of the iModel that is to be updated.</li>
 <li>Import or Update Schema<ul>
 <li>Possibly <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/schemasandelementsintypescript/#importing-the-schema'>import an appropriate BIS schema into the briefcase</a>  or upgrade an existing schema.</li>
-<li>Push the results to the iModelServer.</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/imodeldbreadwrite/#pushing-changes-to-imodelhub'>Push</a> the results to the iModelServer.</li>
 </ul>
 </li>
 <li>Convert Changed Data<ul>
@@ -122,8 +128,8 @@
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/imodel-bridges/#data-alignment'>Transform</a> the new or changed source data into the target BIS schema.</li>
 <li>Write the resulting BIS data to the local briefcase.</li>
 <li>Remove BIS data corresponding to deleted source data.</li>
-<li>Obtain required Locks and Codes from the iModel server and/or code server.</li>
-<li>Push changes to the iModel server.</li>
+<li>Obtain required <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/concurrencycontrol'>Locks and Codes</a> from the iModel server and/or code server.</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/imodeldbreadwrite/#pushing-changes-to-imodelhub'>Push</a> changes to the iModel server.</li>
 </ul>
 </li>
 </ul>
@@ -256,13 +262,13 @@ function convertToBis(briefcase: IModelDb, modelId: Id64, data: RobotWorldProps)
 </code></pre>
 <h2 class="h-detecting-and-pushing-changes">Detecting and pushing changes<a id="detecting-and-pushing-changes" class="heading-anchor" href="#detecting-and-pushing-changes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Rather than starting over when the source data changes, a bridge should be able to detect and convert only the changes. That makes for compact, meaningful ChangeSets, which are added to the iModel&apos;s
-<a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/imodelhub/#the-timeline-of-changes-to-an-imodel'>timeline</a>.</p>
+<a href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub//#the-timeline-of-changes-to-an-imodel'>timeline</a>.</p>
 <p>In the case of source data that was previously converted and has changed, the bridge should update the data in the iModel that were the results of the previous conversion. In the case of source data that was previously converted and has been deleted in the source, the bridge should delete the results of the previous conversion. Source data that has been added should be inserted.</p>
-<p>In order to do incremental updates, a bridge must do ID mapping and change-detection.</p>
-<h3 class="h-id-mapping">ID mapping<a id="id-mapping" class="heading-anchor" href="#id-mapping"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>ID mapping is a way of looking up the data in the iModel that corresponds to a given piece of source data.</p>
-<p>If the source data has stable, unique IDs, then ID mapping could be straightforward. The bridge just needs to record the source -&gt; BIS ID mappings somewhere. If the source data IDs are GUIDs, then the bridge can assign them to the federationGuid property value of the BIS elements that it creates. That way, the mappings will be directly recorded in the iModel itself.</p>
-<p>If the soruce data does not have stable, unique IDs, then the bridge will have to use some other means of identifying pieces of source data in a stable way. A crytographic hash of the source data itself can work as a stable ID -- that is, it can be used to identify data that has not changed.</p>
+<p>To do incremental updates, a bridge must do Id mapping and change-detection.</p>
+<h3 class="h-id-mapping">Id mapping<a id="id-mapping" class="heading-anchor" href="#id-mapping"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>Id mapping is a way of looking up the data in the iModel that corresponds to a given piece of source data.</p>
+<p>If the source data has stable, unique IDs, then Id mapping could be straightforward. The bridge just needs to record the source -&gt; BIS Id mappings somewhere. If the source data IDs are GUIDs, then the bridge can assign them to the federationGuid property value of the BIS elements that it creates. That way, the mappings will be directly recorded in the iModel itself.</p>
+<p>If the soruce data does not have stable, unique IDs, then the bridge will have to use some other means of identifying pieces of source data in a stable way. A crytographic hash of the source data itself can work as a stable Id -- that is, it can be used to identify data that has not changed.</p>
 <h3 class="h-change-detection">Change-detection<a id="change-detection" class="heading-anchor" href="#change-detection"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>Change-detection is a way of detecting changes in the source data.</p>
 <p>If the source data is timestamped in some way, then the change-detection logic should be easy. The bridge just has to save the highest timestamp at the end of the conversion and then look for source data with later timestamps the next time it runs.</p>
@@ -270,7 +276,7 @@ function convertToBis(briefcase: IModelDb, modelId: Id64, data: RobotWorldProps)
 <p>A basic change-detection algorithm is:</p>
 <ul>
 <li>For each source data item:<ul>
-<li>add source item&apos;s ID to the <em>source_items_seen</em> set</li>
+<li>add source item&apos;s Id to the <em>source_items_seen</em> set</li>
 <li>Look in the mappings for the corresponding data in the iModel (element, aspect, model)</li>
 <li>If found,<ul>
 <li>Detect if the source item&apos;s current data has changed. If so,<ul>
@@ -283,7 +289,7 @@ function convertToBis(briefcase: IModelDb, modelId: Id64, data: RobotWorldProps)
 <li>Else,<ul>
 <li>Convert the source data to BIS data</li>
 <li>Insert the new data into the iModel</li>
-<li>Add the source data item&apos;s ID to the mappings</li>
+<li>Add the source data item&apos;s Id to the mappings</li>
 </ul>
 </li>
 </ul>
@@ -291,11 +297,11 @@ function convertToBis(briefcase: IModelDb, modelId: Id64, data: RobotWorldProps)
 </ul>
 <p>Infer deletions:</p>
 <ul>
-<li>For each source data item ID previously converted<ul>
-<li>if item ID is not in <em>source_items_seen</em><ul>
+<li>For each source data item Id previously converted<ul>
+<li>if item Id is not in <em>source_items_seen</em><ul>
 <li>Find the the corresponind data in the iModel<ul>
 <li>Delete the data in the iModel</li>
-<li>Remove the the source data item&apos;s ID from the mappings</li>
+<li>Remove the the source data item&apos;s Id from the mappings</li>
 </ul>
 </li>
 </ul>
@@ -305,7 +311,7 @@ function convertToBis(briefcase: IModelDb, modelId: Id64, data: RobotWorldProps)
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             
@@ -328,7 +334,7 @@ function convertToBis(briefcase: IModelDb, modelId: Id64, data: RobotWorldProps)
             </a>
             <ul id="inner-nav-detecting-and-pushing-changes" class='inner-nav'>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#id-mapping">ID mapping</a>
+                            <a class='title solo-title menu-text' href="#id-mapping">Id mapping</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#change-detection">Change-detection</a>

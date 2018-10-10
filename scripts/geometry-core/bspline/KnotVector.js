@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Bspline */
 // import { Point2d } from "../Geometry2d";
@@ -32,10 +33,10 @@ class KnotVector {
      */
     constructor(knots, degree) {
         this.degree = degree;
-        this.possibleWrap = false;
+        this._possibleWrap = false;
         // default values to satisfy compiler -- real values hapn setupFixedValues or final else defers to user
-        this.knot0 = 0.0;
-        this.knot1 = 1.0;
+        this._knot0 = 0.0;
+        this._knot1 = 1.0;
         // satisfy the initialize checker ..
         if (Array.isArray(knots)) {
             this.knots = new Float64Array(knots.length);
@@ -46,26 +47,26 @@ class KnotVector {
             this.knots = knots.slice();
             this.setupFixedValues();
         }
-        else {
+        else { // caller is responsible for filling array separately ...
             this.knots = new Float64Array(knots);
         }
     }
-    get leftKnot() { return this.knot0; }
-    get rightKnot() { return this.knot1; }
+    get leftKnot() { return this._knot0; }
+    get rightKnot() { return this._knot1; }
     get leftKnotIndex() { return this.degree - 1; }
     get rightKnotIndex() { return this.knots.length - this.degree; }
-    get wrappable() { return this.possibleWrap; }
-    set wrappable(value) { this.possibleWrap = value; }
+    get wrappable() { return this._possibleWrap; }
+    set wrappable(value) { this._possibleWrap = value; }
     get numSpans() { return this.rightKnotIndex - this.leftKnotIndex; }
     /** copy degree and knots to a new KnotVector. */
     clone() { return new KnotVector(this.knots, this.degree); }
     setupFixedValues() {
         // These should be read-only . ..
-        this.knot0 = this.knots[this.degree - 1];
-        this.knot1 = this.knots[this.knots.length - this.degree];
+        this._knot0 = this.knots[this.degree - 1];
+        this._knot1 = this.knots[this.knots.length - this.degree];
     }
     /** @returns Return the total knot distance from beginning to end. */
-    get knotLength01() { return this.knot1 - this.knot0; }
+    get knotLength01() { return this._knot1 - this._knot0; }
     isAlmostEqual(other) {
         if (this.degree !== other.degree)
             return false;
@@ -202,7 +203,7 @@ class KnotVector {
         f[0] = 1.0 - f[1];
         df[0] = -ah;
         df[1] = ah;
-        if (ddf) {
+        if (ddf) { // first derivative started constant, second derivative started zero.
             ddf[0] = 0.0;
             ddf[1] = 0.0;
         }
@@ -214,6 +215,14 @@ class KnotVector {
             let gCarry = 0.0;
             let dgCarry = 0.0;
             let ddgCarry = 0.0;
+            // f, df, ddf, are each row vectors with product of `step` ilnear terms.
+            // f is multiplied on the right by matrix V.  Each row has 2 nonzero entries (which sum to 1)  (0,0,1-fraction, fraction,0,0,0)
+            //    Each row of the derivative dV is two entries (0,0, -1/h, 1/h,0,0,0)
+            // Hence fnew = f * V
+            //      dfnew = df * V + f * dV
+            //      ddfnew = ddf * V + df*dV + df * dV + f * ddV
+            // but ddV is zero so
+            //      ddfnew = ddf * V + 2 * df * dV
             for (let step = 0; step <= depth; step++) {
                 const tLeft = this.knots[kLeft++];
                 const tRight = this.knots[kRight++];
@@ -224,13 +233,14 @@ class KnotVector {
                 const g0 = f[step] * fraction1;
                 const dg1 = df[step] * fraction + f[step] * ah;
                 const dg0 = df[step] * fraction1 - f[step] * ah;
+                const dfSave = 2.0 * df[step] * ah;
                 f[step] = gCarry + g0;
                 df[step] = dgCarry + dg0;
                 gCarry = g1;
                 dgCarry = dg1;
-                if (ddf) {
-                    const ddg1 = ddf[step] * fraction + 2.0 * df[step] * ah;
-                    const ddg0 = ddf[step] * fraction1 - 2.0 * df[step] * ah;
+                if (ddf) { // do the backward reference to df before rewriting df !!!
+                    const ddg1 = ddf[step] * fraction + dfSave;
+                    const ddg0 = ddf[step] * fraction1 - dfSave;
                     ddf[step] = ddgCarry + ddg0;
                     ddgCarry = ddg1;
                 }

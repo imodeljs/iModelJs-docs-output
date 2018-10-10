@@ -9,7 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>iModel.js TypeScript Coding Guidelines - iModelJs</title>
+    <title>iModel.js TypeScript Coding Guidelines - iModel.js</title>
+    <meta name="og:title" content="iModel.js TypeScript Coding Guidelines - iModel.js">
+    <meta name="twitter:title" content="iModel.js TypeScript Coding Guidelines - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -90,8 +95,9 @@
         <h3 id="helpful links">Helpful links</h3>
         <ul>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
         </ul>
@@ -100,7 +106,7 @@
     <div class='documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/">guidelines</a> > typescript-coding-guidelines</div>
-            <div class="edit-link"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fdocs%2Fcore%2Flearning%2Fguidelines%2Ftypescript-coding-guidelines.md" target="_blank">Edit this page</a></div>
+            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
             <h1 id="imodel.js typescript coding guidelines">iModel.js TypeScript Coding Guidelines</h1>
 <p>These are the TypeScript coding guidelines that we expect all iModel.js contributors to follow.
 Where possible, these guidelines are enforced through our TSLint configuration file (tslint.json).</p>
@@ -114,7 +120,6 @@ Where possible, these guidelines are enforced through our TSLint configuration f
 <li>Use <code>_</code> as a prefix for private properties.</li>
 <li>Use whole words in names when possible. Only use abbreviations where their use is common and obvious.</li>
 <li>We use &quot;Id&quot;, &quot;3d&quot;, &quot;2d&quot; rather than capital D.</li>
-<li>Do not use <code>Dgn</code> as a prefix in TypeScript code. Often no prefix is necessary, but if it is, prefer <code>IModel</code> or <code>Db</code> instead.</li>
 </ol>
 <h2 class="h-files">Files<a id="files" class="heading-anchor" href="#files"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ol>
@@ -129,7 +134,7 @@ Where possible, these guidelines are enforced through our TSLint configuration f
 </ol>
 <h2 class="h-do-not-use-null">Do not use <code>null</code><a id="do-not-use-null" class="heading-anchor" href="#do-not-use-null"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ul>
-<li>Use <code>undefined</code>. <strong>Do not</strong> use <code>null</code> anywhere.</li>
+<li>Use <code>undefined</code>. Do not use <code>null</code> except where external libraries require it.</li>
 </ul>
 <h2 class="h--and--operators"><code>===</code> and <code>!==</code> Operators<a id="-and--operators" class="heading-anchor" href="#-and--operators"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ul>
@@ -142,20 +147,20 @@ Where possible, these guidelines are enforced through our TSLint configuration f
 </ol>
 <h2 class="h-general-constructs">General Constructs<a id="general-constructs" class="heading-anchor" href="#general-constructs"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ol>
-<li>Always use semicolons. JavaScript does not require a semicolon when it thinks it can safely infer its existence. Not using a semicolon is confusing at best and a bug at worst.</li>
+<li>Always use semicolons. JavaScript does not require a semicolon when it thinks it can safely infer its existence. Not using a semicolon is confusing and error prone. Our TSLint rules enforce this.</li>
 <li>Use curly braces <code>{}</code> instead of <code>new Object()</code>.</li>
 <li>Use brackets <code>[]</code> instead of <code>new Array()</code>.</li>
 </ol>
 <h2 class="h-preserve-vertical-screen-space">Preserve vertical screen space<a id="preserve-vertical-screen-space" class="heading-anchor" href="#preserve-vertical-screen-space"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Programmer monitors are almost always wider than they are tall. It is common for widths to be at least 120 columns but heights to be less than 100. Therefore to make the greatest use of screen real estate, it is desireable to preserve vertical screen space wherever possible.</p>
 <ol>
-<li>Some codebases advocate breaking lines at 80 columns. This is silly and wasteful. Don&apos;t break lines before 120 columns.</li>
+<li>Some codebases advocate breaking lines at 80 columns. With current screen sizes, this is silly and wasteful. Don&apos;t break lines before 120 columns.</li>
 <li>Don&apos;t use blank lines unnecessarily. For example the first line of a function <em>not</em> should be a blank line.</li>
 <li>There should never be more than one blank line in a row.</li>
 <li><strong>Don&apos;t use</strong> clever/pretty multi-line comment blocks to separate sections of code. One line suffices, if you absolutely feel the need to include them. Usually they aren&apos;t necessary. Your well written, accurate and complete documentation and logical source organization is all the help anyone needs to understand your code.</li>
 <li>If a function has only a single statement, it <strong>should be</strong> on one line.</li>
 </ol>
-<pre class="no-line-numbers"><code class="language-typescript">  // WRONG !!!
+<pre class="no-line-numbers"><code class="language-typescript">  // No !!!
   public middle(): number {
      return this.minimum + ((this.maximum - this.minimum) / 2.0);
   }</code></pre>
@@ -273,9 +278,9 @@ class Corner {
   public name: string;
   public description?: string; // Correct !!
 }</code></pre>
-<h2 class="h-enforcing-getters-for-certain-function-names">Enforcing getters for certain function names<a id="enforcing-getters-for-certain-function-names" class="heading-anchor" href="#enforcing-getters-for-certain-function-names"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>If a public method takes no parameters and its name begins with a keyword such as &quot;is&quot;, &quot;has&quot;, or &quot;want&quot;, the method should be a getter (specified by using the &quot;get&quot; modifier in front of the method name). By doing this, the method may be accessed as a property of the object rather than as a function. This avoids confusion over whether it is necessary to include parenthesis when using the method to gain access to the value.</p>
-<p>This rule will be enforced by the Typescript linter. If the value being returned is expensive to compute, consider using a different name for the method to reflect this. Possible examples may include prefixing the name with words such as &quot;compute&quot; or &quot;calculate&quot;.</p>
+<h2 class="h-prefer-getters-where-possible">Prefer getters where possible<a id="prefer-getters-where-possible" class="heading-anchor" href="#prefer-getters-where-possible"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>If a public method takes no parameters and its name begins with a keyword such as &quot;is&quot;, &quot;has&quot;, or &quot;want&quot;, the method should be a getter (specified by using the &quot;get&quot; modifier in front of the method name). This way the method is accessed as a property rather than as a function. This avoids confusion over whether it is necessary to include parenthesis to access the value, and the caller will get a compile error if they are included. This rule is enforced by TsLint.</p>
+<p>If the value being returned is expensive to compute, consider using a different name to reflect this. Possible prefixes are &quot;compute&quot; or &quot;calculate&quot;, etc.</p>
 <h2 class="h-dont-repeat-type-names-unnecessarily">Don&apos;t repeat type names unnecessarily<a id="dont-repeat-type-names-unnecessarily" class="heading-anchor" href="#dont-repeat-type-names-unnecessarily"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>TypeScript is all about adding types to JavaScript. However, the compiler automatically infers type by context, and it is therefore not necessary to decorate every member or variable declaration with its type, if it is obvious. That only adds clutter and obscures the real code. For example,</p>
 <pre class="no-line-numbers"><code class="language-typescript">  let width: number = 7.3; // useless type declaration
@@ -285,7 +290,7 @@ class Corner {
   let width = 7.3; // correct
   public isReady = false; // correct
   public readonly origin = new Point3d(); // correct
-  const upVector: Vector3d = rMatrix.getRow(1); // fine, helps readability. Not strictly necessary.</code></pre>
+  const upVector: Vector3d = rMatrix.getRow(1); // good, helps readability. Not strictly necessary.</code></pre>
 <p>However, as stated above, it is a good idea to always include the return type of a function if it is more than one line, to make sure no return path has an unexpected type.</p>
 <h2 class="h-error-handling">Error Handling<a id="error-handling" class="heading-anchor" href="#error-handling"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>For public-facing APIs we have decided to prefer exceptions (<code>throw new Error</code>) and rejecting promises (<code>Promise.reject</code>) over returning status codes. The reasons include:</p>
@@ -294,7 +299,6 @@ class Corner {
 <li>Exceptions let you return the natural return value of success rather than an unnatural composite object.</li>
 <li>Exceptions can carry more information than a status return.</li>
 <li>Status returns can be ignored, but exceptions can&apos;t. If the immediate layer does not handle the exception it will be bubbled up to the outer layer.</li>
-<li>Note that TypeScript/JavaScript doesn&apos;t have the same library boundary issues that C++ has with exceptions</li>
 <li>The optional <code>message</code> property of an <code>Error</code> should (if defined) hold an English debugging message that is not meant to be localized. Instead, applications should catch errors and then separately provide a context-appropriate localized message.</li>
 </ol>
 <blockquote>
@@ -398,18 +402,17 @@ export type XYZProps = { x?: number; y?: number; z?: number } | number[];</code>
 </ol>
 <p>A correctly implemented program that interprets a JSON string containing an XYZ value must handle both forms (object and array). However, it is free to choose either form for creating JSON strings from XYZ values.</p>
 <h2 class="h-copyright-notice">Copyright notice<a id="copyright-notice" class="heading-anchor" href="#copyright-notice"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Every .ts file should have this notice as its <strong>first 3 lines</strong>:</p>
+<p>Every .ts file should have this notice as its <strong>first lines</strong>:</p>
 <pre class="no-line-numbers"><code class="language-typescript">/*---------------------------------------------------------------------------------------------
-| $Copyright: (c) 20xx Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/</code></pre>
+* Copyright (c) 20xx - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/</code></pre>
 <p>verbatim, with the xx replaced with the current year.</p>
 <h2 class="h-source-code-editor">Source Code Editor<a id="source-code-editor" class="heading-anchor" href="#source-code-editor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<ol>
-<li>While not an absolute requirement, we recommend and optimize for <a href="https://code.visualstudio.com/">Visual Studio Code</a>. You will be likely be less productive if you attempt to use anything else. We recommend configuring the <strong>TSLint</strong> extension for Visual Studio Code and using our <strong>tslint.json</strong> to get real-time feedback.</li>
-</ol>
+<p>While not an absolute requirement, we recommend and optimize for <a href="https://code.visualstudio.com/">Visual Studio Code</a>. You will be likely be less productive if you attempt to use anything else. We recommend configuring the <strong>TSLint</strong> extension for Visual Studio Code and using our <strong>tslint.json</strong> to get real-time feedback.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             
@@ -456,10 +459,10 @@ export type XYZProps = { x?: number; y?: number; z?: number } | number[];</code>
             <a class='title solo-title menu-text' href="#getters-and-setters">Getters and Setters</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#use--syntax-vs---undefined">use &quot;?:&quot; syntax vs. &quot; | undefined&quot;</a>
+            <a class='title solo-title menu-text' href="#use--syntax-vs---undefined">use "?:" syntax vs. " | undefined"</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#enforcing-getters-for-certain-function-names">Enforcing getters for certain function names</a>
+            <a class='title solo-title menu-text' href="#prefer-getters-where-possible">Prefer getters where possible</a>
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#dont-repeat-type-names-unnecessarily">Don't repeat type names unnecessarily</a>

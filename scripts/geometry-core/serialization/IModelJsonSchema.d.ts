@@ -5,7 +5,7 @@ import { CoordinateXYZ } from "../curve/CurvePrimitive";
 import { CurveCollection } from "../curve/CurveChain";
 import { TransitionSpiral3d } from "../curve/TransitionSpiral";
 import { Path, Loop, ParityRegion, UnionRegion, BagOfCurves } from "../curve/CurveChain";
-import { IndexedPolyface } from "../polyface/Polyface";
+import { IndexedPolyface, PolyfaceAuxData } from "../polyface/Polyface";
 import { BSplineCurve3d } from "../bspline/BSplineCurve";
 import { BSplineSurface3d, BSplineSurface3dH } from "../bspline/BSplineSurface";
 import { Sphere } from "../solid/Sphere";
@@ -20,6 +20,7 @@ import { LineString3d } from "../curve/LineString3d";
 import { PointString3d } from "../curve/PointString3d";
 import { Arc3d } from "../curve/Arc3d";
 import { LineSegment3d } from "../curve/LineSegment3d";
+import { BSplineCurve3dH } from "../bspline/BSplineCurve3dH";
 export declare namespace IModelJson {
     interface GeometryProps extends CurvePrimitiveProps, SolidPrimitiveProps {
         indexedMesh?: IndexedMeshProps;
@@ -367,22 +368,22 @@ export declare namespace IModelJson {
      */
     class Reader {
         constructor();
-        private static parseVector3dProperty(json, propertyName, defaultValue?);
-        private static parsePoint3dProperty(json, propertyName, defaultValue?);
-        private static parseSegment1dProperty(json, propertyName, defaultValue?);
-        private static parseNumberProperty(json, propertyName, defaultValue?);
-        private static parseAngleProperty(json, propertyName, defaultValue?);
+        private static parseVector3dProperty;
+        private static parsePoint3dProperty;
+        private static parseSegment1dProperty;
+        private static parseNumberProperty;
+        private static parseAngleProperty;
         /**
          * @param defaultFunction function to call if needed to produce a default value
          */
-        private static parseAngleSweepProps(json, propertyName, defaultFunction?);
-        private static parseBooleanProperty(json, propertyName, defaultValue?);
-        private static loadContourArray(json, propertyName);
-        private static parseYawPitchRollAngles(json);
-        private static parseStringProperty(json, propertyName, defaultValue?);
-        private static parseAxesFromVectors(json, axisOrder, createDefaultIdentity);
+        private static parseAngleSweepProps;
+        private static parseBooleanProperty;
+        private static loadContourArray;
+        private static parseYawPitchRollAngles;
+        private static parseStringProperty;
+        private static parseAxesFromVectors;
         /**
-         * Look for orientation data and convert to RotMatrix.
+         * Look for orientation data and convert to Matrix3d.
          * * Search order is:
          * * * yawPitchRollAngles
          * * * xyVectors
@@ -390,15 +391,16 @@ export declare namespace IModelJson {
          * @param json [in] json source data
          * @param createDefaultIdentity [in] If true and no orientation is present, return an identity matrix.  If false and no orientation is present, return undefined.
          */
-        private static parseOrientation(json, createDefaultIdentity);
-        private static parseArcByVectorProps(data?);
-        private static parseArcBy3Points(data?);
-        private static parseArcObject(data?);
+        private static parseOrientation;
+        private static parseArcByVectorProps;
+        private static parseArcBy3Points;
+        private static parseArcObject;
         static parseCoordinate(data?: any): CoordinateXYZ | undefined;
         static parseTransitionSpiral(data?: any): TransitionSpiral3d | undefined;
-        static parseBcurve(data?: any): BSplineCurve3d | undefined;
+        static parseBcurve(data?: any): BSplineCurve3d | BSplineCurve3dH | undefined;
         static parseArray(data?: any): any[] | undefined;
-        private static addZeroBasedIndicesFromSignedOneBased(data, f);
+        private static addZeroBasedIndicesFromSignedOneBased;
+        static parsePolyfaceAuxData(data?: any): PolyfaceAuxData | undefined;
         static parseIndexedMesh(data?: any): any | undefined;
         static parseCurveCollectionMembers(result: CurveCollection, data?: any): CurveCollection | undefined;
         static parseBsurf(data?: any): BSplineSurface3d | BSplineSurface3dH | undefined;
@@ -410,7 +412,7 @@ export declare namespace IModelJson {
          * Create a cylinder.
          */
         static parseCylinderProps(json?: CylinderProps): any;
-        private static parseLineSegmentProps(value);
+        private static parseLineSegmentProps;
         static parseLinearSweep(json?: any): any;
         static parseRotationalSweep(json?: any): any;
         static parseBox(json?: any): any;
@@ -430,15 +432,15 @@ export declare namespace IModelJson {
          * @param omitIfIdentity omit the axis data if the matrix is an identity.
          * @param data AxesProps object to be annotated.
          */
-        private static insertOrientationFromMatrix(data, matrix, omitIfIdentity);
-        private static isIdentityXY(xVector, yVector);
+        private static insertOrientationFromMatrix;
+        private static isIdentityXY;
         /**
          * Insert orientation description to a data object.
          * @param matrix matrix with orientation
          * @param omitIfIdentity omit the axis data if the matrix is an identity.
          * @param data AxesProps object to be annotated.
          */
-        private static insertOrientationFromXYVectors(data, vectorX, vectorY, omitIfIdentity);
+        private static insertOrientationFromXYVectors;
         /**
          * Insert orientation description to a data object, with orientation defined by u and v direction
          * vectors.
@@ -447,7 +449,7 @@ export declare namespace IModelJson {
          * @param omitIfIdentity omit the axis data if the vectorU and vectorV are global x and y vectors.
          * @param data AxesProps object to be annotated.
          */
-        private static insertXYOrientation(data, vectorU, vectorV, omitIfIdentity);
+        private static insertXYOrientation;
         handleTransitionSpiral(data: TransitionSpiral3d): any;
         handleCone(data: Cone): any;
         handleSphere(data: Sphere): any;
@@ -459,13 +461,15 @@ export declare namespace IModelJson {
         handleParityRegion(data: ParityRegion): any;
         handleUnionRegion(data: UnionRegion): any;
         handleBagOfCurves(data: BagOfCurves): any;
-        private collectChildren(data);
+        private collectChildren;
         handleLinearSweep(data: LinearSweep): any;
         handleRuledSweep(data: RuledSweep): any;
         handleRotationalSweep(data: RotationalSweep): any;
         handleBox(box: Box): any;
+        private handlePolyfaceAuxData;
         handleIndexedPolyface(pf: IndexedPolyface): any;
         handleBSplineCurve3d(curve: BSplineCurve3d): any;
+        handleBSplineCurve3dH(curve: BSplineCurve3dH): any;
         handleBSplineSurface3d(surface: BSplineSurface3d): any;
         handleBSplineSurface3dH(surface: BSplineSurface3dH): any;
         emitArray(data: object[]): any;
@@ -474,3 +478,4 @@ export declare namespace IModelJson {
         static toIModelJson(data: any): any;
     }
 }
+//# sourceMappingURL=IModelJsonSchema.d.ts.map

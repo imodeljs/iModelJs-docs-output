@@ -1,7 +1,7 @@
 /** @module Solid */
 import { Point3d, Vector3d } from "../PointVector";
 import { Range3d } from "../Range";
-import { Transform, RotMatrix } from "../Transform";
+import { Transform, Matrix3d } from "../Transform";
 import { GeometryQuery } from "../curve/CurvePrimitive";
 import { StrokeOptions } from "../curve/StrokeOptions";
 import { AngleSweep } from "../Geometry";
@@ -18,8 +18,8 @@ import { Plane3dByOriginAndVectors } from "../AnalyticGeometry";
  * * hence possibly the final geometry is ellipsoidal
  */
 export declare class Sphere extends SolidPrimitive implements UVSurface {
-    private localToWorld;
-    private latitudeSweep;
+    private _localToWorld;
+    private _latitudeSweep;
     /** Return the latitude (in radians) all fractional v. */
     vFractionToRadians(v: number): number;
     /** Return the longitude (in radians) all fractional u. */
@@ -40,7 +40,7 @@ export declare class Sphere extends SolidPrimitive implements UVSurface {
     /** Create a sphere from the typical parameters of the Dgn file */
     static createDgnSphere(center: Point3d, vectorX: Vector3d, vectorZ: Vector3d, radiusXY: number, radiusZ: number, latitudeSweep: AngleSweep, capped: boolean): Sphere | undefined;
     /** Create a sphere from the typical parameters of the Dgn file */
-    static createFromAxesAndScales(center: Point3d, axes: undefined | RotMatrix, radiusX: number, radiusY: number, radiusZ: number, latitudeSweep: AngleSweep | undefined, capped: boolean): Sphere | undefined;
+    static createFromAxesAndScales(center: Point3d, axes: undefined | Matrix3d, radiusX: number, radiusY: number, radiusZ: number, latitudeSweep: AngleSweep | undefined, capped: boolean): Sphere | undefined;
     /** return (copy of) sphere center */
     cloneCenter(): Point3d;
     /** return the (full length, i.e. scaled by radius) X vector from the sphere transform */
@@ -82,3 +82,4 @@ export declare class Sphere extends SolidPrimitive implements UVSurface {
      */
     UVFractionToPointAndTangents(uFraction: number, vFraction: number, result?: Plane3dByOriginAndVectors): Plane3dByOriginAndVectors;
 }
+//# sourceMappingURL=Sphere.d.ts.map

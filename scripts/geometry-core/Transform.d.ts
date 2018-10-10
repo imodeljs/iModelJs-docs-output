@@ -1,10 +1,10 @@
 /** @module CartesianGeometry */
-import { Angle, AxisOrder, BeJSONFunctions } from "./Geometry";
+import { Angle, AxisOrder, AxisIndex, BeJSONFunctions, StandardViewIndex } from "./Geometry";
 import { Point4d } from "./numerics/Geometry4d";
 import { Range3d } from "./Range";
 import { Point2d, Point3d, Vector3d, XYAndZ } from "./PointVector";
-import { XAndY, XYZ, RotMatrixProps, TransformProps } from "./PointVector";
-/** A RotMatrix is tagged indicating one of the following states:
+import { XAndY, XYZ, Matrix3dProps, TransformProps } from "./PointVector";
+/** A Matrix3d is tagged indicating one of the following states:
  * * unknown: it is not know if the matrix is invertible.
  * * inverseStored: the matrix has its inverse stored
  * * singular: the matrix is known to be singular.
@@ -12,9 +12,9 @@ import { XAndY, XYZ, RotMatrixProps, TransformProps } from "./PointVector";
 export declare enum InverseMatrixState {
     unknown = 0,
     inverseStored = 1,
-    singular = 2,
+    singular = 2
 }
-/** A RotMatrix (short for RotationMatrix) is a 3x3 matrix.
+/** A Matrix3d (short for RotationMatrix) is a 3x3 matrix.
  * * The name from common use to hold a rigid body rotation,, but its 3x3 contents can
  * also hold scaling and skewing.
  * * The 9 entries are stored in row-major order in the coffs array.
@@ -29,15 +29,17 @@ export declare enum InverseMatrixState {
  * * Usage elsewhere in the library is typically "column" based.  For example, in a Transform
  *     that carries a coordinate frame the matrix columns are the unit vectors for the axes.
  */
-export declare class RotMatrix implements BeJSONFunctions {
+export declare class Matrix3d implements BeJSONFunctions {
     static useCachedInverse: boolean;
     static numUseCache: number;
     static numComputeCache: number;
     coffs: Float64Array;
     inverseCoffs: Float64Array | undefined;
     inverseState: InverseMatrixState;
-    static readonly identity: RotMatrix;
-    /** Freeze this RotMatrix. */
+    private static _identity;
+    /** The identity Matrix3d. Value is frozen and cannot be modified. */
+    static readonly identity: Matrix3d;
+    /** Freeze this Matrix3d. */
     freeze(): void;
     /**
      *
@@ -47,20 +49,20 @@ export declare class RotMatrix implements BeJSONFunctions {
     /** Return a json object containing the 9 numeric entries as a single array in row major order,
      * `[ [1, 2, 3],[ 4, 5, 6], [7, 8, 9] ]`
      * */
-    toJSON(): RotMatrixProps;
-    setFromJSON(json?: RotMatrixProps): void;
-    /** @returns Return a new RotMatrix constructed from contents of the json value. */
-    static fromJSON(json?: RotMatrixProps): RotMatrix;
-    /** Test if this RotMatrix and other are within tolerance in all numeric entries.
+    toJSON(): Matrix3dProps;
+    setFromJSON(json?: Matrix3dProps): void;
+    /** @returns Return a new Matrix3d constructed from contents of the json value. */
+    static fromJSON(json?: Matrix3dProps): Matrix3d;
+    /** Test if this Matrix3d and other are within tolerance in all numeric entries.
      * @param tol optional tolerance for comparisons by Geometry.isDistanceWithinTol
      */
-    isAlmostEqual(other: RotMatrix, tol?: number): boolean;
+    isAlmostEqual(other: Matrix3d, tol?: number): boolean;
     /** Test for exact (bitwise) equality with other. */
-    isExactEqual(other: RotMatrix): boolean;
+    isExactEqual(other: Matrix3d): boolean;
     /** test if all entries in the z row and column are exact 001, i.e. the matrix only acts in 2d */
-    isXY(): boolean;
-    private static _create(result?);
-    /** @returns a RotMatrix populated by numeric values given in row-major order.
+    readonly isXY: boolean;
+    private static _create;
+    /** @returns a Matrix3d populated by numeric values given in row-major order.
     *  set all entries in the matrix from call parameters appearing in row - major order.
     * @param axx Row x, column x(0, 0) entry
     * @param axy Row x, column y(0, 1) entry
@@ -72,17 +74,17 @@ export declare class RotMatrix implements BeJSONFunctions {
     * @param azy Row z, column y(2, 2) entry
     * @param azz row z, column z(2, 3) entry
     */
-    static createRowValues(axx: number, axy: number, axz: number, ayx: number, ayy: number, ayz: number, azx: number, azy: number, azz: number, result?: RotMatrix): RotMatrix;
+    static createRowValues(axx: number, axy: number, axz: number, ayx: number, ayy: number, ayz: number, azx: number, azy: number, azz: number, result?: Matrix3d): Matrix3d;
     /**
-     * Create a RotMatrix with caller-supplied coefficients and optional inverse coefficients.
-     * * The inputs are captured into the new RotMatrix.
+     * Create a Matrix3d with caller-supplied coefficients and optional inverse coefficients.
+     * * The inputs are captured into the new Matrix3d.
      * * The caller is responsible for validity of the inverse coefficients.
      * @param coffs (required) array of 9 coefficients.
      * @param inverseCoffs (optional) array of 9 coefficients.
-     * @returns a RotMatrix populated by a coffs array.
+     * @returns a Matrix3d populated by a coffs array.
      */
-    static createCapture(coffs: Float64Array, inverseCoffs?: Float64Array): RotMatrix;
-    static createColumnsInAxisOrder(axisOrder: AxisOrder, columnA: Vector3d, columnB: Vector3d, columnC: Vector3d | undefined, result?: RotMatrix): RotMatrix;
+    static createCapture(coffs: Float64Array, inverseCoffs?: Float64Array): Matrix3d;
+    static createColumnsInAxisOrder(axisOrder: AxisOrder, columnA: Vector3d, columnB: Vector3d, columnC: Vector3d | undefined, result?: Matrix3d): Matrix3d;
     /**
      *  set all entries in the matrix from call parameters appearing in row-major order.
      * @param axx Row x, column x (0,0) entry
@@ -98,18 +100,18 @@ export declare class RotMatrix implements BeJSONFunctions {
     setRowValues(axx: number, axy: number, axz: number, ayx: number, ayy: number, ayz: number, azx: number, azy: number, azz: number): void;
     setIdentity(): void;
     setZero(): void;
-    setFrom(other: RotMatrix): void;
-    clone(result?: RotMatrix): RotMatrix;
-    static createZero(): RotMatrix;
-    static createIdentity(result?: RotMatrix): RotMatrix;
+    setFrom(other: Matrix3d): void;
+    clone(result?: Matrix3d): Matrix3d;
+    static createZero(): Matrix3d;
+    static createIdentity(result?: Matrix3d): Matrix3d;
     /** Create a matrix with uniform scale factors */
-    static createUniformScale(scaleFactor: number): RotMatrix;
+    static createUniformScale(scaleFactor: number): Matrix3d;
     /**
      *
      * *  use createHeadsUpPerpendicular to generate a vectorV perpendicular to vectorA
      * *  construct a frame using createRigidFromColumns (vectorA, vectorB, axisOrder)
      */
-    static createRigidHeadsUp(vectorA: Vector3d, axisOrder?: AxisOrder, result?: RotMatrix): RotMatrix;
+    static createRigidHeadsUp(vectorA: Vector3d, axisOrder?: AxisOrder, result?: Matrix3d): Matrix3d;
     /**
      *
      * * return a vector that is perpendicular to the input direction.
@@ -118,19 +120,53 @@ export declare class RotMatrix implements BeJSONFunctions {
      * * Hence, when vectorA is NOT close to the Z axis, the returned vector is Z cross vectorA.
      * * But vectorA is close to the Z axis, the returned vector is unitY cross vectorA.
      */
-    static createRigidHeadsUpFavorXYPlane(vector: Vector3d, result?: Vector3d): Vector3d;
+    static createPerpendicularVectorFavorXYPlane(vector: Vector3d, result?: Vector3d): Vector3d;
     /**
-   *
-   * * return a vector that is perpendicular to the input direction.
-   * * Among the infinite number of perpendiculars possible, this method
-   * favors having one near the Z.
-   * That is achieved by crossing "this" vector with the result of createHeadsUpPerpendicularFavorXYPlane.
-   */
-    static createHeadsUpPerpendicularNearZ(vector: Vector3d, result?: Vector3d): Vector3d;
+     *
+     * * return a vector that is perpendicular to the input direction.
+     * * Among the infinite number of perpendiculars possible, this method
+     * favors having one near the Z.
+     * That is achieved by crossing "this" vector with the result of createHeadsUpPerpendicularFavorXYPlane.
+     */
+    static createPerpendicularVectorFavorPlaneContainingZ(vector: Vector3d, result?: Vector3d): Vector3d;
     /** Create a matrix with distinct x,y,z diagonal (scale) entries */
-    static createScale(scaleFactorX: number, scaleFactorY: number, scaleFactorZ: number, result?: RotMatrix): RotMatrix;
+    static createScale(scaleFactorX: number, scaleFactorY: number, scaleFactorZ: number, result?: Matrix3d): Matrix3d;
     /** @returns return a rotation of specified angle around an axis */
-    static createRotationAroundVector(axis: Vector3d, angle: Angle, result?: RotMatrix): RotMatrix | undefined;
+    static createRotationAroundVector(axis: Vector3d, angle: Angle, result?: Matrix3d): Matrix3d | undefined;
+    /** @returns return a rotation of specified angle around an axis
+     * @param axisIndex index of axis (AxisIndex.X, AxisIndex.Y, AxisIndex.Z) kept fixed by the rotation.
+     * @param angle angle of rotation
+     * @param result optional result matrix.
+    */
+    static createRotationAroundAxisIndex(axisIndex: AxisIndex, angle: Angle, result?: Matrix3d): Matrix3d;
+    /** Create a matrix with
+     * * ColumnX points in the rightVector direction
+     * * ColumnY points in in the upVectorDirection
+     * * ColumnZ is a unit cross product.
+     * Optinoally rotate the standard cube by 45 to bring its left or right vertical edge to center
+     * * leftNoneRight = [-1,0,1] respectively for left edge, no rotation, or right edge
+     * * bottomNoneTop = [-1,0,1] respectively for isometric rotation to view the bottom, no isometric rotation, and isometric rotation to view the top
+     * This is expected to be used with various principal unit vectors that are perpendicular to each other.
+     *  * STANDARD TOP VIEW: (Vector3d.UnitX (), Vector3d.UnitY (), 0, 0)
+     *  * STANDARD FRONT VIEW: (Vector3d.UnitX (), Vector3d.UnitZ (), 0, 0)
+     *  * STANDARD BACK VIEW: (Vector3d.UnitX (-1), Vector3d.UnitZ (), 0, 0)
+     *  * STANDARD RIGHT VIEW: (Vector3d.UnitY (1), Vector3d.UnitZ (), 0, 0)
+     *  * STANDARD LEFT VIEW: (Vector3d.UnitY (-1), Vector3d.UnitZ (), 0, 0)
+     *  * STANDARD BOTTOM VIEW: (Vector3d.UnitX (1), Vector3d.UnitY (-1), 0, 0)
+     * @param leftNoneRight Normally one of {-1,0,1}, where (-1) indicates the left vertical is rotated to center and (1) for right.  Other numbers are used as multiplier for this 45 degree rotation
+     * @returns undefined if columNX, columnY are coplanar.
+    */
+    static createViewedAxes(rightVector: Vector3d, upVector: Vector3d, leftNoneRight?: number, topNoneBottom?: number): Matrix3d | undefined;
+    /**
+     * Create a rotation matrix for one of the 8 standard views.
+     * * With `invert === false` the return is such that `matrix.multiply(worldVector)` returns the vector as seen in the xy (projected) coordinates of the view.
+     * * With invert === true the matrix is transposed so that `matrix.mutiply(viewVector` maps the "in view" vector to a world vector.
+     *
+     * @param index standard veiw index `StandardViewIndex.Top, Bottom, LEft, Right, Front, Back, Iso, LeftIso`
+     * @param invert if false (default), the returned Matrix3d "projects" world vectors into XY view vectors.  If true, it is inverted to map view vectors to world.
+     * @param result optional result.
+     */
+    static createStandardWorldToView(index: StandardViewIndex, invert?: boolean, result?: Matrix3d): Matrix3d;
     /**
      * Compute the (unit vector) axis and angle of rotation.
      * @returns Returns with result.ok === true when the conversion succeeded.
@@ -143,7 +179,7 @@ export declare class RotMatrix implements BeJSONFunctions {
     /**
      * @returns return a matrix that rotates from vectorA to vectorB.
      */
-    static createRotationVectorToVector(vectorA: Vector3d, vectorB: Vector3d, result?: RotMatrix): RotMatrix | undefined;
+    static createRotationVectorToVector(vectorA: Vector3d, vectorB: Vector3d, result?: Matrix3d): Matrix3d | undefined;
     /**
      * Return a matrix that rotates a fraction of the angular sweep from vectorA to vectorB.
      * @param vectorA initial vector position
@@ -151,9 +187,9 @@ export declare class RotMatrix implements BeJSONFunctions {
      * @param vectorB final vector position
      * @param result optional result matrix.
     */
-    static createPartialRotationVectorToVector(vectorA: Vector3d, fraction: number, vectorB: Vector3d, result?: RotMatrix): RotMatrix | undefined;
+    static createPartialRotationVectorToVector(vectorA: Vector3d, fraction: number, vectorB: Vector3d, result?: Matrix3d): Matrix3d | undefined;
     /** Create a 90 degree rotation around a principal axis */
-    static create90DegreeRotationAroundAxis(axisIndex: number): RotMatrix;
+    static create90DegreeRotationAroundAxis(axisIndex: number): Matrix3d;
     /** @returns Return (a copy of) the X column */
     columnX(result?: Vector3d): Vector3d;
     /** @returns Return (a copy of)the Y column */
@@ -172,13 +208,13 @@ export declare class RotMatrix implements BeJSONFunctions {
     columnYMagnitude(): number;
     /** @returns Return the Z column magnitude */
     columnZMagnitude(): number;
-    /** @returns the dot product of column X with column Y */
-    /** @returns Return the X row magnitude squared */
+    /** @returns Return the X row magnitude d */
     rowXMagnitude(): number;
-    /** @returns Return the Y row magnitude squared */
+    /** @returns Return the Y row magnitude  */
     rowYMagnitude(): number;
-    /** @returns Return the Z row magnitude squared */
+    /** @returns Return the Z row magnitude  */
     rowZMagnitude(): number;
+    /** @returns the dot product of column X with column Y */
     /** @returns the dot product of column X with column Y */
     columnXDotColumnY(): number;
     /** Return (a copy of) the X row */
@@ -199,6 +235,12 @@ export declare class RotMatrix implements BeJSONFunctions {
     dotRowY(vector: XYZ): number;
     /** @returns Return the dot product of the vector parameter with the Z row. */
     dotRowZ(vector: XYZ): number;
+    /** @returns Return the dot product of the x,y,z with the X row. */
+    dotRowXXYZ(x: number, y: number, z: number): number;
+    /** @returns Return the dot product of the x,y,z with the Y row. */
+    dotRowYXYZ(x: number, y: number, z: number): number;
+    /** @returns Return the dot product of the x,y,z with the Z row. */
+    dotRowZXYZ(x: number, y: number, z: number): number;
     /** @returns Return the (vector) cross product of the Z column with the vector parameter. */
     columnZCrossVector(vector: XYZ, result?: Vector3d): Vector3d;
     /**
@@ -208,7 +250,7 @@ export declare class RotMatrix implements BeJSONFunctions {
      * @param c fist coefficient
      * @param s second coefficient
      */
-    private applyGivensRowOp(i, j, c, s);
+    private applyGivensRowOp;
     /**
       * Replace current columns Ui Uj with (c*Ui - s*Uj) and (c*Uj + s*Ui)
       * This is used in compute intensive inner loops -- there is no
@@ -219,35 +261,52 @@ export declare class RotMatrix implements BeJSONFunctions {
       * @param s second coefficient
       */
     applyGivensColumnOp(i: number, j: number, c: number, s: number): void;
+    /**
+     * create a rigid coordinate frame with:
+     * * column z points from origin to x,y,z
+     * * column x is perpendicular and in the xy plane
+     * * column y is perpendicular to both.  It is the "up" vector on the view plane.
+     * * Multiplying a world vector times the transpose of this matrix transforms into the view xy
+     * * Multiplying the matrix times the an in-view vector transforms the vector to world.
+     * @param x eye x coordinate
+     * @param y eye y coordinate
+     * @param z eye z coordinate
+     * @param result
+     */
+    static createRigidViewAxesZTowardsEye(x: number, y: number, z: number, result?: Matrix3d): Matrix3d;
     /** Rotate so columns i and j become perpendicular */
-    private applyJacobiColumnRotation(i, j, matrixU);
+    private applyJacobiColumnRotation;
     /**
      * Factor this as a product C * U where C has mutually perpendicular columns and
      * U is orthogonal.
      * @param matrixC (allocate by caller, computed here)
      * @param factor  (allocate by caller, computed here)
      */
-    factorPerpendicularColumns(matrixC: RotMatrix, matrixU: RotMatrix): boolean;
+    factorPerpendicularColumns(matrixC: Matrix3d, matrixU: Matrix3d): boolean;
     /** Apply a jacobi step to lambda which evolves towards diagonal. */
-    private applySymmetricJacobi(i, j, lambda);
+    private applySymmetricJacobi;
     /**
      * Factor this (symmetrized) as a product U * lambda * UT where U is orthogonal, lambda is diagonal.
      * The upper triangle is mirrored to lower triangle to enforce symmetry.
      * @param matrixC (allocate by caller, computed here)
      * @param factor  (allocate by caller, computed here)
      */
-    symmetricEigenvalues(leftEigenvectors: RotMatrix, lambda: Vector3d): boolean;
+    symmetricEigenvalues(leftEigenvectors: Matrix3d, lambda: Vector3d): boolean;
     /** Apply (in place a jacobi update that zeros out this.at(i,j).*/
-    private applyFastSymmetricJacobiUpdate(i, j, k, leftEigenVectors);
+    private applyFastSymmetricJacobiUpdate;
     /**
    * Factor this (symmetrized) as a product U * lambda * UT where U is orthogonal, lambda is diagonal.
    * The upper triangle is mirrored to lower triangle to enforce symmetry.
    * @param matrixC (allocate by caller, computed here)
    * @param factor  (allocate by caller, computed here)
    */
-    fastSymmetricEigenvalues(leftEigenvectors: RotMatrix, lambda: Vector3d): boolean;
+    fastSymmetricEigenvalues(leftEigenvectors: Matrix3d, lambda: Vector3d): boolean;
     /** Create a matrix from column vectors. */
-    static createColumns(vectorU: Vector3d, vectorV: Vector3d, vectorW: Vector3d, result?: RotMatrix): RotMatrix;
+    static createColumns(vectorU: Vector3d, vectorV: Vector3d, vectorW: Vector3d, result?: Matrix3d): Matrix3d;
+    /** Create a matrix from column vectors.
+     * Each column gets x and y from given XAndY, and z from w.
+     */
+    static createColumnsXYW(vectorU: XAndY, uz: number, vectorV: XAndY, vz: number, vectorW: XAndY, wz: number, result?: Matrix3d): Matrix3d;
     /** Install data from xyz parts of Point4d  (w part of Point4d ignored) */
     setColumnsPoint4dXYZ(vectorU: Point4d, vectorV: Point4d, vectorW: Point4d): void;
     /**
@@ -268,11 +327,11 @@ export declare class RotMatrix implements BeJSONFunctions {
      */
     getRow(columnIndex: number, result?: Vector3d): Vector3d;
     /** Create a matrix from column vectors, shuffled into place per AxisTriple */
-    static createShuffledColumns(vectorU: Vector3d, vectorV: Vector3d, vectorW: Vector3d, axisOrder: AxisOrder, result?: RotMatrix): RotMatrix;
+    static createShuffledColumns(vectorU: Vector3d, vectorV: Vector3d, vectorW: Vector3d, axisOrder: AxisOrder, result?: Matrix3d): Matrix3d;
     /** Create a matrix from row vectors. */
-    static createRows(vectorU: Vector3d, vectorV: Vector3d, vectorW: Vector3d, result?: RotMatrix): RotMatrix;
+    static createRows(vectorU: Vector3d, vectorV: Vector3d, vectorW: Vector3d, result?: Matrix3d): Matrix3d;
     /** Create a matrix that scales along a specified direction. The scale factor can be negative. for instance scale of -1.0 (negative one) is a mirror. */
-    static createDirectionalScale(direction: Vector3d, scale: number, result?: RotMatrix): RotMatrix;
+    static createDirectionalScale(direction: Vector3d, scale: number, result?: Matrix3d): Matrix3d;
     /** Multiply the matrix * vector, i.e. the vector is a column vector on the right.
         @return the vector result
     */
@@ -281,10 +340,10 @@ export declare class RotMatrix implements BeJSONFunctions {
         @return the vector result
     */
     multiplyVectorArrayInPlace(data: XYZ[]): void;
-    static XYZMinusMatrixTimesXYZ(origin: XYZ, matrix: RotMatrix, vector: XYZ, result?: Point3d): Point3d;
-    static XYPlusMatrixTimesXY(origin: XAndY, matrix: RotMatrix, vector: XAndY, result?: Point2d): Point2d;
-    static XYZPlusMatrixTimesXYZ(origin: XYZ, matrix: RotMatrix, vector: XYAndZ, result?: Point3d): Point3d;
-    static XYZPlusMatrixTimesCoordinates(origin: XYZ, matrix: RotMatrix, x: number, y: number, z: number, result?: Point3d): Point3d;
+    static XYZMinusMatrixTimesXYZ(origin: XYZ, matrix: Matrix3d, vector: XYZ, result?: Point3d): Point3d;
+    static XYPlusMatrixTimesXY(origin: XAndY, matrix: Matrix3d, vector: XAndY, result?: Point2d): Point2d;
+    static XYZPlusMatrixTimesXYZ(origin: XYZ, matrix: Matrix3d, vector: XYAndZ, result?: Point3d): Point3d;
+    static XYZPlusMatrixTimesCoordinates(origin: XYZ, matrix: Matrix3d, x: number, y: number, z: number, result?: Point3d): Point3d;
     /**
      * Treat the 3x3 matrix and origin as upper 3x4 part of a 4x4 matrix, with 0001 as the final row.
      * Multiply times point with coordinates `[x,y,z,w]`
@@ -296,7 +355,31 @@ export declare class RotMatrix implements BeJSONFunctions {
      * @param w w part of multiplied point
      * @param result optional result.
      */
-    static XYZPlusMatrixTimesWeightedCoordinates(origin: XYZ, matrix: RotMatrix, x: number, y: number, z: number, w: number, result?: Point4d): Point4d;
+    static XYZPlusMatrixTimesWeightedCoordinates(origin: XYZ, matrix: Matrix3d, x: number, y: number, z: number, w: number, result?: Point4d): Point4d;
+    /**
+     * Treat the 3x3 matrix and origin as upper 3x4 part of a 4x4 matrix, with 0001 as the final row.
+     * Multiply times point with coordinates `[x,y,z,w]`
+     * @param origin translation part (xyz in column 3)
+     * @param matrix matrix part (leading 3x3)
+     * @param x x part of multiplied point
+     * @param y y part of multiplied point
+     * @param z z part of multiplied point
+     * @param w w part of multiplied point
+     * @param result optional result.
+     */
+    static XYZPlusMatrixTimesWeightedCoordinatesToFloat64Array(origin: XYZ, matrix: Matrix3d, x: number, y: number, z: number, w: number, result?: Float64Array): Float64Array;
+    /**
+     * Treat the 3x3 matrix and origin as upper 3x4 part of a 4x4 matrix, with 0001 as the final row.
+     * Multiply times point with coordinates `[x,y,z,w]`
+     * @param origin translation part (xyz in column 3)
+     * @param matrix matrix part (leading 3x3)
+     * @param x x part of multiplied point
+     * @param y y part of multiplied point
+     * @param z z part of multiplied point
+     * @param w w part of multiplied point
+     * @param result optional result.
+     */
+    static XYZPlusMatrixTimesCoordinatesToFloat64Array(origin: XYZ, matrix: Matrix3d, x: number, y: number, z: number, result?: Float64Array): Float64Array;
     multiplyTransposeVector(vector: Vector3d, result?: Vector3d): Vector3d;
     /** Multiply the matrix * (x,y,z), i.e. the vector (x,y,z) is a column vector on the right.
         @return the vector result
@@ -341,32 +424,32 @@ export declare class RotMatrix implements BeJSONFunctions {
     /** Multiply two matrices.
      *   @return the matrix result
      */
-    multiplyMatrixMatrix(other: RotMatrix, result?: RotMatrix): RotMatrix;
+    multiplyMatrixMatrix(other: Matrix3d, result?: Matrix3d): Matrix3d;
     /** Matrix multiplication `this * otherTranspose`
         @return the matrix result
     */
-    multiplyMatrixMatrixTranspose(other: RotMatrix, result?: RotMatrix): RotMatrix;
+    multiplyMatrixMatrixTranspose(other: Matrix3d, result?: Matrix3d): Matrix3d;
     /** Matrix multiplication `thisTranspose * other`
         @return the matrix result
     */
-    multiplyMatrixTransposeMatrix(other: RotMatrix, result?: RotMatrix): RotMatrix;
-    /** multiply this RotMatrix (considered as a transform with 0 translation) times other Transform.
-     * @param other right hand RotMatrix for multiplication.
+    multiplyMatrixTransposeMatrix(other: Matrix3d, result?: Matrix3d): Matrix3d;
+    /** multiply this Matrix3d (considered as a transform with 0 translation) times other Transform.
+     * @param other right hand Matrix3d for multiplication.
      * @param result optional preallocated result to reuse.
     */
     multiplyMatrixTransform(other: Transform, result?: Transform): Transform;
     /** return the transposed matrix */
-    transpose(result?: RotMatrix): RotMatrix;
+    transpose(result?: Matrix3d): Matrix3d;
     /** return the transposed matrix */
     transposeInPlace(): void;
     /** return the inverse matrix.  The return is  null if the matrix is singular (has columns that are coplanar or colinear) */
-    inverse(result?: RotMatrix): RotMatrix | undefined;
+    inverse(result?: Matrix3d): Matrix3d | undefined;
     /** copy the transpose of the coffs to the inverseCoffs.
      * * mark the matrix as inverseStored.
      */
-    private setupInverseTranspose();
-    private static indexedRowCrossProduct(source, rowStart0, rowStart1, dest, columnStart);
-    private indexedColumnCrossProductInPlace(colStart0, colStart1, colStart2);
+    private setupInverseTranspose;
+    private static indexedRowCrossProduct;
+    private indexedColumnCrossProductInPlace;
     /** Form cross products among axes in axisOrder.
      * For axis order ABC,
      * * form cross product of column A and B, store in C
@@ -386,8 +469,8 @@ export declare class RotMatrix implements BeJSONFunctions {
     normalizeColumnsInPlace(originalMagnitudes?: Vector3d): boolean;
     /** Normalize each row in place */
     normalizeRowsInPlace(originalMagnitudes?: Vector3d): boolean;
-    private static rowColumnDot(coffA, rowStartA, coffB, columnStartB);
-    /** compute the inverse of this RotMatrix. The inverse is stored for later use.
+    private static rowColumnDot;
+    /** compute the inverse of this Matrix3d. The inverse is stored for later use.
      * @returns Return true if the inverse computed.  (False if the columns collapse to a point, line or plane.)
      */
     computeCachedInverse(useCacheIfAvailable: boolean): boolean;
@@ -398,42 +481,43 @@ export declare class RotMatrix implements BeJSONFunctions {
     at(row: number, column: number): number;
     /** Set the entry at specific row and column */
     setAt(row: number, column: number, value: number): void;
-    /** create a RotMatrix whose columns are scaled copies of this RotMatrix.
+    /** create a Matrix3d whose columns are scaled copies of this Matrix3d.
      * @param scaleX scale factor for columns x
      * @param scaleY scale factor for column y
      * @param scaleZ scale factor for column z
      * @param result optional result.
      * */
-    scaleColumns(scaleX: number, scaleY: number, scaleZ: number, result?: RotMatrix): RotMatrix;
-    /** create a RotMatrix whose columns are scaled copies of this RotMatrix.
+    scaleColumns(scaleX: number, scaleY: number, scaleZ: number, result?: Matrix3d): Matrix3d;
+    /** create a Matrix3d whose columns are scaled copies of this Matrix3d.
      * @param scaleX scale factor for columns x
      * @param scaleY scale factor for column y
      * @param scaleZ scale factor for column z
      * @param result optional result.
      * */
     scaleColumnsInPlace(scaleX: number, scaleY: number, scaleZ: number): void;
-    /** create a RotMatrix whose rows are scaled copies of this RotMatrix.
+    /** create a Matrix3d whose rows are scaled copies of this Matrix3d.
      * @param scaleX scale factor for row x
      * @param scaleY scale factor for row y
      * @param scaleZ scale factor for row z
      * @param result optional result.
      * */
-    scaleRows(scaleX: number, scaleY: number, scaleZ: number, result?: RotMatrix): RotMatrix;
+    scaleRows(scaleX: number, scaleY: number, scaleZ: number, result?: Matrix3d): Matrix3d;
     /**
-     * add scaled values from other RotMatrix to this RotMatrix
-     * @param other RotMatrix with values to be added
+     * add scaled values from other Matrix3d to this Matrix3d
+     * @param other Matrix3d with values to be added
      * @param scale scale factor to apply to th eadded values.
      */
-    addScaledInPlace(other: RotMatrix, scale: number): void;
-    /** create a RotMatrix whose values are uniformly scaled from this.
+    addScaledInPlace(other: Matrix3d, scale: number): void;
+    /** create a Matrix3d whose values are uniformly scaled from this.
      * @param scale scale factor to apply.
      * @param result optional result.
      * @returns Return the new or repopulated matrix
      */
-    scale(scale: number, result?: RotMatrix): RotMatrix;
+    scale(scale: number, result?: Matrix3d): Matrix3d;
     /** Return the determinant of this matrix. */
     determinant(): number;
-    /** Return an estimate of how independent the columns are.  Near zero is bad. */
+    /** Return an estimate of how independent the columns are.  Near zero is bad. Near 1 is good.*/
+    conditionNumber(): number;
     /** Return the sum of squares of all entries */
     sumSquares(): number;
     /** Return the sum of squares of diagonal entries */
@@ -443,13 +527,13 @@ export declare class RotMatrix implements BeJSONFunctions {
     /** Return the Maximum absolute value of any single entry */
     maxAbs(): number;
     /** Return the maximum absolute difference between corresponding entries */
-    maxDiff(other: RotMatrix): number;
+    maxDiff(other: Matrix3d): number;
     /** Test if the matrix is (very near to) an identity */
-    isIdentity(): boolean;
+    readonly isIdentity: boolean;
     /** Test if the off diagonal entries are all nearly zero */
-    isDiagonal(): boolean;
+    readonly isDiagonal: boolean;
     /** Test if the below diagonal entries are all nearly zero */
-    isUpperTriangular(): boolean;
+    readonly isUpperTriangular: boolean;
     /** If the matrix is diagonal and all diagonals are within tolerance, return the first diagonal.  Otherwise return undefined.
      */
     sameDiagonalScale(): number | undefined;
@@ -463,27 +547,27 @@ export declare class RotMatrix implements BeJSONFunctions {
      * * result.scale is the scale factor
      */
     factorRigidWithSignedScale(): {
-        rigidAxes: RotMatrix;
+        rigidAxes: Matrix3d;
         scale: number;
     } | undefined;
     /** Test if the matrix is shuffles and negates columns. */
-    isSignedPermutation(): boolean;
+    readonly isSignedPermutation: boolean;
     /** Test if all rows and columns are length 1 and are perpendicular to each other.  (I.e. the matrix is either a pure rotation with uniform scale factor of 1 or -1) */
-    hasPerpendicularUnitRowsAndColumns(): boolean;
+    testPerpendicularUnitRowsAndColumns(): boolean;
     /** create a new orthogonal matrix (perpendicular columns, unit length, transpose is inverse)
      * vectorA is placed in the first column of the axis order.
      * vectorB is projected perpendicular to vectorA within their plane and placed in the second column.
      */
-    static createRigidFromColumns(vectorA: Vector3d, vectorB: Vector3d, axisOrder: AxisOrder, result?: RotMatrix): RotMatrix | undefined;
+    static createRigidFromColumns(vectorA: Vector3d, vectorB: Vector3d, axisOrder: AxisOrder, result?: Matrix3d): Matrix3d | undefined;
     /** create a new orthogonal matrix (perpendicular columns, unit length, transpose is inverse)
-     * columns are taken from the source RotMatrix in order indicated by the axis order.
+     * columns are taken from the source Matrix3d in order indicated by the axis order.
      */
-    static createRigidFromRotMatrix(source: RotMatrix, axisOrder?: AxisOrder, result?: RotMatrix): RotMatrix | undefined;
+    static createRigidFromMatrix3d(source: Matrix3d, axisOrder?: AxisOrder, result?: Matrix3d): Matrix3d | undefined;
 }
-/** A transform is an origin and a RotMatrix.
+/** A transform is an origin and a Matrix3d.
  *
  * * This describes a coordinate frame with
- * this origin, with the columns of the RotMatrix being the
+ * this origin, with the columns of the Matrix3d being the
  * local x,y,z axis directions.
  * *  Beware that for common transformations (e.g. scale about point,
  * rotate around line, mirror across a plane) the "fixed point" that is used
@@ -492,10 +576,13 @@ export declare class RotMatrix implements BeJSONFunctions {
  * take care of determining the appropriate origin coordinates.
  */
 export declare class Transform implements BeJSONFunctions {
-    private static scratchPoint;
+    private static _scratchPoint;
     private _origin;
     private _matrix;
     private constructor();
+    private static _identity?;
+    /** The identity Transform. Value is frozen and cannot be modified. */
+    static readonly identity: Transform;
     freeze(): void;
     setFrom(other: Transform): void;
     /** Set this Transform to be an identity. */
@@ -514,8 +601,10 @@ export declare class Transform implements BeJSONFunctions {
     /** @returns Return a copy of this Transform, modified so that its axes are rigid
      */
     cloneRigid(axisOrder?: AxisOrder): Transform | undefined;
-    /** Create a copy with the given origin and matrix captured as the Transform origin and RotMatrix. */
-    static createRefs(origin: XYZ, matrix: RotMatrix, result?: Transform): Transform;
+    /** Create a copy with the given origin and matrix captured as the Transform origin and Matrix3d. */
+    static createRefs(origin: XYZ, matrix: Matrix3d, result?: Transform): Transform;
+    /** Create a transform with complete contents given */
+    static createRowValues(qxx: number, qxy: number, qxz: number, ax: number, qyx: number, qyy: number, qyz: number, ay: number, qzx: number, qzy: number, qzz: number, az: number, result?: Transform): Transform;
     /**
      * create a Transform with translation provided by x,y,z parts.
      * @param x x part of translation
@@ -531,22 +620,22 @@ export declare class Transform implements BeJSONFunctions {
      */
     static createTranslation(translation: XYZ, result?: Transform): Transform;
     /** Return a reference to the matrix within the transform.  (NOT a copy) */
-    readonly matrix: RotMatrix;
+    readonly matrix: Matrix3d;
     /** Return a reference to the origin within the transform.  (NOT a copy) */
     readonly origin: XYZ;
     /** return a (clone of) the origin part of the transform, as a Point3d */
     getOrigin(): Point3d;
     /** return a (clone of) the origin part of the transform, as a Vector3d */
     getTranslation(): Vector3d;
-    /** test if the transform has 000 origin and identity RotMatrix */
-    isIdentity(): boolean;
+    /** test if the transform has 000 origin and identity Matrix3d */
+    readonly isIdentity: boolean;
     /** Return an identity transform, optionally filling existing transform.  */
     static createIdentity(result?: Transform): Transform;
     /** Create by directly installing origin and matrix
      * this is a the appropriate construction when the columns of the matrix are coordinate axes of a local-to-global mapping
      * Note there is a closely related createFixedPointAndMatrix whose point input is the fixed point of the global-to-global transformation.
      */
-    static createOriginAndMatrix(origin: XYZ | undefined, matrix: RotMatrix | undefined, result?: Transform): Transform;
+    static createOriginAndMatrix(origin: XYZ | undefined, matrix: Matrix3d | undefined, result?: Transform): Transform;
     /** Create by directly installing origin and columns of the matrix
     */
     static createOriginAndMatrixColumns(origin: XYZ, vectorX: Vector3d, vectorY: Vector3d, vectorZ: Vector3d, result?: Transform): Transform;
@@ -556,7 +645,7 @@ export declare class Transform implements BeJSONFunctions {
     /** Create a transform with the specified matrix. Compute an origin (different from the given fixedPoint)
      * so that the fixedPoint maps back to itself.
      */
-    static createFixedPointAndMatrix(fixedPoint: Point3d, matrix: RotMatrix, result?: Transform): Transform;
+    static createFixedPointAndMatrix(fixedPoint: Point3d, matrix: Matrix3d, result?: Transform): Transform;
     /** Create a Transform which leaves the fixedPoint unchanged and
      * scales everything else around it by a single scale factor.
      */
@@ -569,6 +658,12 @@ export declare class Transform implements BeJSONFunctions {
     multiplyXYZ(x: number, y: number, z: number, result?: Point3d): Point3d;
     /** Transform the input homogeneous point.  Return as a new point or in the pre-allocated result (if result is given) */
     multiplyXYZW(x: number, y: number, z: number, w: number, result?: Point4d): Point4d;
+    /** Transform the input homogeneous point.  Return as a new point or in the pre-allocated result (if result is given) */
+    multiplyXYZWToFloat64Array(x: number, y: number, z: number, w: number, result?: Float64Array): Float64Array;
+    /** Transform the input homogeneous point.  Return as a new point or in the pre-allocated result (if result is given) */
+    multiplyXYZToFloat64Array(x: number, y: number, z: number, result?: Float64Array): Float64Array;
+    /** Multiply the tranposed transform (as 4x4 with 0001 row) by Point4d given as xyzw..  Return as a new point or in the pre-allocated result (if result is given) */
+    multiplyTransposeXYZW(x: number, y: number, z: number, w: number, result?: Point4d): Point4d;
     /** for each point:  replace point by Transform*point */
     multiplyPoint3dArrayInPlace(points: Point3d[]): void;
     /** @returns Return product of the transform's inverse times a point. */
@@ -598,13 +693,13 @@ export declare class Transform implements BeJSONFunctions {
      * *  if result is not given, return a new array.
      */
     multiplyPoint3dArray(source: Point3d[], result?: Point3d[]): Point3d[];
-    /** Multiply the vector by the RotMatrix part of the transform.
+    /** Multiply the vector by the Matrix3d part of the transform.
      *
      * *  The transform's origin is not used.
      * *  Return as new or result by usual optional result convention
      */
     multiplyVector(vector: Vector3d, result?: Vector3d): Vector3d;
-    /** Multiply the vector (x,y,z) by the RotMatrix part of the transform.
+    /** Multiply the vector (x,y,z) by the Matrix3d part of the transform.
    *
    * *  The transform's origin is not used.
    * *  Return as new or result by usual optional result convention
@@ -621,11 +716,11 @@ export declare class Transform implements BeJSONFunctions {
      * @param transformB right operand
      */
     setMultiplyTransformTransform(transformA: Transform, transformB: Transform): void;
-    /** multiply this Transform times other RotMatrix, with other considered to be a Transform with 0 translation.
-     * @param other right hand RotMatrix for multiplication.
+    /** multiply this Transform times other Matrix3d, with other considered to be a Transform with 0 translation.
+     * @param other right hand Matrix3d for multiplication.
      * @param result optional preallocated result to reuse.
     */
-    multiplyTransformRotMatrix(other: RotMatrix, result?: Transform): Transform;
+    multiplyTransformMatrix3d(other: Matrix3d, result?: Transform): Transform;
     /** transform each of the 8 corners of a range. Return the range of the transformed corers */
     multiplyRange(range: Range3d, result?: Range3d): Range3d;
     /**
@@ -640,3 +735,4 @@ export declare class Transform implements BeJSONFunctions {
      */
     static initFromRange(min: Point3d, max: Point3d, npcToGlobal?: Transform, globalToNpc?: Transform): void;
 }
+//# sourceMappingURL=Transform.d.ts.map

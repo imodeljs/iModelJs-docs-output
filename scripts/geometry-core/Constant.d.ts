@@ -9,3 +9,4 @@ export declare class Constant {
     static readonly circumferenceOfEarth: number;
     static readonly radiansPerDegree: number;
 }
+//# sourceMappingURL=Constant.d.ts.map

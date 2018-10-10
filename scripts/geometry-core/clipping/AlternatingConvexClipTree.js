@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module CartesianGeometry */
 const PointVector_1 = require("../PointVector");
@@ -135,21 +136,21 @@ exports.AlternatingCCTreeNode = AlternatingCCTreeNode;
  */
 class AlternatingCCTreeBuilder {
     constructor() {
-        this.points = [];
-        this.stack = [];
+        this._points = [];
+        this._stack = [];
     }
     static createPointsRef(points, result) {
         result = result ? result : new AlternatingCCTreeBuilder();
-        result.points = points;
+        result._points = points;
         if (PointHelpers_1.PolygonOps.areaXY(points) < 0.0)
-            result.points.reverse();
+            result._points.reverse();
         return result;
     }
-    get period() { return this.points.length; }
-    indexAfter(i) { return (i + 1) % this.points.length; }
-    indexBefore(i) { return (i + this.points.length - 1) % this.points.length; }
+    get period() { return this._points.length; }
+    indexAfter(i) { return (i + 1) % this._points.length; }
+    indexBefore(i) { return (i + this._points.length - 1) % this._points.length; }
     pushIndex(primaryPointIndex) {
-        this.stack.push(primaryPointIndex);
+        this._stack.push(primaryPointIndex);
     }
     static cross(pointA, pointB, pointC) {
         return pointA.crossProductToPointsXY(pointB, pointC);
@@ -161,18 +162,18 @@ class AlternatingCCTreeBuilder {
     */
     cyclicStackPoint(cyclicIndex) {
         let stackIndex;
-        const stack = this.stack;
+        const stack = this._stack;
         if (cyclicIndex > 0)
             stackIndex = cyclicIndex;
         else
             stackIndex = cyclicIndex + 10 * stack.length;
         stackIndex = stackIndex % stack.length;
-        return this.points[stack[stackIndex]];
+        return this._points[stack[stackIndex]];
     }
     signFromStackTip(pointIndex, sign) {
         const pointA = this.cyclicStackPoint(-2);
         const pointB = this.cyclicStackPoint(-1);
-        const pointC = this.points[pointIndex];
+        const pointC = this._points[pointIndex];
         return sign * AlternatingCCTreeBuilder.cross(pointA, pointB, pointC) >= 0.0 ? 1 : -1;
     }
     /*
@@ -193,8 +194,8 @@ class AlternatingCCTreeBuilder {
      */
     get indexOfMaxX() {
         let k = 0;
-        const points = this.points;
-        const nPoints = this.points.length;
+        const points = this._points;
+        const nPoints = this._points.length;
         for (let i = 1; i < nPoints; i++) {
             if (points[i].x > points[k].x)
                 k = i;
@@ -203,13 +204,13 @@ class AlternatingCCTreeBuilder {
     }
     /** Pop from the stack until the sign condition is satisfied */
     extendHullChain(k, sign, pushAfterPops) {
-        while (this.stack.length > 1 && this.signFromStackTip(k, sign) < 0.0)
-            this.stack.pop();
+        while (this._stack.length > 1 && this.signFromStackTip(k, sign) < 0.0)
+            this._stack.pop();
         if (pushAfterPops)
             this.pushIndex(k);
     }
     collectHullChain(kStart, numK, sign) {
-        this.stack.length = 0;
+        this._stack.length = 0;
         if (numK > 2) {
             let k = kStart;
             for (let i = 0; i < numK; i++) {
@@ -221,8 +222,8 @@ class AlternatingCCTreeBuilder {
     buildHullTreeGo(root, isPositiveArea) {
         this.collectHullChain(root.startIdx, root.numPoints, isPositiveArea ? 1.0 : -1.0);
         root.points.length = 0;
-        const stack = this.stack;
-        const points = this.points;
+        const stack = this._stack;
+        const points = this._points;
         const stackLen = stack.length;
         for (let i = 0; i < stackLen; i++) {
             const k0 = stack[i];
@@ -266,47 +267,47 @@ class AlternatingCCTreeBuilder {
 exports.AlternatingCCTreeBuilder = AlternatingCCTreeBuilder;
 class AlternatingCCTreeNodeCurveClipper {
     constructor() {
-        this.stackDepth = 0;
-        this.intervalStack = [];
+        this._stackDepth = 0;
+        this._intervalStack = [];
     }
-    setCurveRef(curve) { this.curve = curve; }
+    setCurveRef(curve) { this._curve = curve; }
     popSegmentFrame() {
-        if (this.stackDepth > 0) {
-            this.topOfStack.length = 0; // formality.
-            this.stackDepth -= 1;
+        if (this._stackDepth > 0) {
+            this._topOfStack.length = 0; // formality.
+            this._stackDepth -= 1;
         }
     }
     clearSegmentStack() {
-        while (this.stackDepth > 0)
+        while (this._stackDepth > 0)
             this.popSegmentFrame(); // and that will reduce stack depth
     }
     pushEmptySegmentFrame() {
-        this.stackDepth += 1;
-        while (this.intervalStack.length < this.stackDepth)
-            this.intervalStack.push([]);
-        this.topOfStack.length = 0;
+        this._stackDepth += 1;
+        while (this._intervalStack.length < this._stackDepth)
+            this._intervalStack.push([]);
+        this._topOfStack.length = 0;
     }
-    get topOfStack() { return this.intervalStack[this.stackDepth - 1]; }
+    get _topOfStack() { return this._intervalStack[this._stackDepth - 1]; }
     // set the top of the stack (as defined by stackDepth -- not array length)
-    set topOfStack(value) {
-        const n = this.stackDepth;
+    set _topOfStack(value) {
+        const n = this._stackDepth;
         if (n > 0)
-            this.intervalStack[n - 1] = value;
+            this._intervalStack[n - 1] = value;
     }
     /** Access entry [topOfStack() - numSkip] */
     stackEntry(numSkip) {
-        if (numSkip <= this.stackDepth)
-            return this.intervalStack[this.stackDepth - 1 - numSkip];
+        if (numSkip <= this._stackDepth)
+            return this._intervalStack[this._stackDepth - 1 - numSkip];
         else
             return [];
     }
     isTopOfStackEmpty() {
-        return this.topOfStack.length === 0;
+        return this._topOfStack.length === 0;
     }
     appendSingleClipToStack(planes, insideSegments) {
-        const fractionIntervals = AlternatingCCTreeNodeCurveClipper.fractionIntervals;
-        if (this.curve instanceof LineSegment3d_1.LineSegment3d) {
-            const segment = this.curve;
+        const fractionIntervals = AlternatingCCTreeNodeCurveClipper._fractionIntervals;
+        if (this._curve instanceof LineSegment3d_1.LineSegment3d) {
+            const segment = this._curve;
             let f0;
             let f1;
             if (segment.announceClipIntervals(planes, (a0, a1, _cp) => { f0 = a0; f1 = a1; })) {
@@ -314,8 +315,8 @@ class AlternatingCCTreeNodeCurveClipper {
             }
             return true;
         }
-        else if (this.curve instanceof Arc3d_1.Arc3d) {
-            const arc = this.curve;
+        else if (this._curve instanceof Arc3d_1.Arc3d) {
+            const arc = this._curve;
             fractionIntervals.length = 0;
             arc.announceClipIntervals(planes, (a0, a1, _cp) => {
                 fractionIntervals.push(a0);
@@ -325,8 +326,8 @@ class AlternatingCCTreeNodeCurveClipper {
                 insideSegments.push(Range_1.Range1d.createXX(fractionIntervals[i], fractionIntervals[i + 1]));
             return true;
         }
-        else if (this.curve instanceof LineString3d_1.LineString3d && this.curve.points.length > 1) {
-            const linestring = this.curve;
+        else if (this._curve instanceof LineString3d_1.LineString3d && this._curve.points.length > 1) {
+            const linestring = this._curve;
             let f0;
             let f1;
             const nPoints = linestring.points.length;
@@ -339,8 +340,8 @@ class AlternatingCCTreeNodeCurveClipper {
             }
             return true;
         }
-        else if (this.curve instanceof BSplineCurve_1.BSplineCurve3d) {
-            const bcurve = this.curve;
+        else if (this._curve instanceof BSplineCurve_1.BSplineCurve3d) {
+            const bcurve = this._curve;
             fractionIntervals.length = 0;
             bcurve.announceClipIntervals(planes, (a0, a1, _cp) => {
                 fractionIntervals.push(a0);
@@ -358,8 +359,8 @@ class AlternatingCCTreeNodeCurveClipper {
      */
     recurse(node) {
         this.pushEmptySegmentFrame();
-        this.appendSingleClipToStack(node.planes, this.topOfStack);
-        Range1dArray_1.Range1dArray.sort(this.topOfStack);
+        this.appendSingleClipToStack(node.planes, this._topOfStack);
+        Range1dArray_1.Range1dArray.sort(this._topOfStack);
         if (this.isTopOfStackEmpty())
             return;
         for (const child of node.children) {
@@ -367,7 +368,7 @@ class AlternatingCCTreeNodeCurveClipper {
             if (!this.isTopOfStackEmpty()) {
                 const ranges = Range1dArray_1.Range1dArray.differenceSorted(this.stackEntry(1), this.stackEntry(0));
                 this.popSegmentFrame();
-                this.topOfStack = ranges;
+                this._topOfStack = ranges;
             }
             else {
                 this.popSegmentFrame();
@@ -384,9 +385,9 @@ class AlternatingCCTreeNodeCurveClipper {
         this.setCurveRef(curve);
         this.clearSegmentStack();
         this.recurse(root);
-        if (this.stackDepth !== 1)
+        if (this._stackDepth !== 1)
             return;
-        const intervals = this.topOfStack;
+        const intervals = this._topOfStack;
         for (const interval of intervals) {
             const f0 = interval.low;
             const f1 = interval.high;
@@ -410,6 +411,6 @@ class AlternatingCCTreeNodeCurveClipper {
     }
 }
 // Is re-used by method calls
-AlternatingCCTreeNodeCurveClipper.fractionIntervals = [];
+AlternatingCCTreeNodeCurveClipper._fractionIntervals = [];
 exports.AlternatingCCTreeNodeCurveClipper = AlternatingCCTreeNodeCurveClipper;
 //# sourceMappingURL=AlternatingConvexClipTree.js.map

@@ -6,8 +6,8 @@ import { Plane3dByOriginAndUnitNormal } from "./AnalyticGeometry";
 export declare type OptionalGrowableFloat64Array = GrowableFloat64Array | undefined;
 export declare type BlockComparisonFunction = (data: Float64Array, blockSize: number, index0: number, index1: number) => number;
 export declare class GrowableFloat64Array {
-    private data;
-    private inUse;
+    private _data;
+    private _inUse;
     constructor(initialCapacity?: number);
     static compare(a: any, b: any): number;
     readonly length: number;
@@ -84,9 +84,9 @@ export declare class GrowableFloat64Array {
  * * This is essentially a rectangular matrix, with each block being a row of the matrix.
  */
 export declare class GrowableBlockedArray {
-    protected data: Float64Array;
-    protected inUse: number;
-    protected blockSize: number;
+    protected _data: Float64Array;
+    protected _inUse: number;
+    protected _blockSize: number;
     protected constructor(blockSize: number, initialBlocks?: number);
     /** computed property: length (in blocks, not doubles) */
     readonly numBlocks: number;
@@ -134,9 +134,9 @@ export declare class GrowableBlockedArray {
 }
 /** Use a Float64Array to pack xyz coordinates. */
 export declare class GrowableXYZArray extends IndexedXYZCollection {
-    private data;
-    private inUse;
-    private capacity;
+    private _data;
+    private _inUse;
+    private _capacity;
     /** Construct a new GrowablePoint3d array.
      * @param numPoints [in] initial capacity.
      */
@@ -261,3 +261,4 @@ export declare class GrowableXYZArray extends IndexedXYZCollection {
     /** Access a single double at offset within a block.  This has no index checking. */
     component(pointIndex: number, componentIndex: number): number;
 }
+//# sourceMappingURL=GrowableArray.d.ts.map

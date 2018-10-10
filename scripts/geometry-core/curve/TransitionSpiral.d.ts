@@ -42,8 +42,8 @@ export declare class TransitionConditionalProperties {
      * @returns Return true if the input state had precisely one undefined member.
      */
     tryResolveAnySingleUnknown(): boolean;
-    private almostEqualCoordinate(a, b);
-    private almostEqualBearing(a, b);
+    private almostEqualCoordinate;
+    private almostEqualBearing;
     /**
      * Test if this and other have matching numeric and undefined members.
      */
@@ -67,11 +67,11 @@ export declare class TransitionSpiral3d extends CurvePrimitive {
     radius01: Segment1d;
     bearing01: AngleSweep;
     localToWorld: Transform;
-    private strokes;
-    private arcLength01;
-    private curvature01;
-    private spiralType;
-    private properties;
+    private _strokes;
+    private _arcLength01;
+    private _curvature01;
+    private _spiralType;
+    private _properties;
     constructor(spiralType: string | undefined, radius01: Segment1d, bearing01: AngleSweep, activeFractionInterval: Segment1d, localToWorld: Transform, arcLength: number, properties: TransitionConditionalProperties | undefined);
     /** Return the origial defining properties (if any) saved by the constructor. */
     readonly originalProperties: TransitionConditionalProperties | undefined;
@@ -82,9 +82,9 @@ export declare class TransitionSpiral3d extends CurvePrimitive {
     fractionToBearingRadians(fraction: number): number;
     /** Return the curvature at given fraction ... */
     fractionToCurvature(fraction: number): number;
-    private static sGaussFraction;
-    private static sGaussWeight;
-    private static sGaussMapper;
+    private static _gaussFraction;
+    private static _gaussWeight;
+    private static _gaussMapper;
     static initWorkSpace(): void;
     /** Evaluate and sum the gauss quadrature formulas to integrate cos(theta), sin(theta) fractional subset of a reference length.
      * (recall that theta is a nonlinear function of the fraction.)
@@ -95,7 +95,7 @@ export declare class TransitionSpiral3d extends CurvePrimitive {
      * @param fractionB fraction at end of interval.
      * @param unitArcLength length of curve for 0 to 1 fractional
      */
-    private fullSpiralIncrementalIntegral(xyz, fractionA, fractionB);
+    private fullSpiralIncrementalIntegral;
     refreshComputedProperties(): void;
     /**
      * Create a transition spiral with radius and bearing conditions.
@@ -147,3 +147,4 @@ export declare class TransitionSpiral3d extends CurvePrimitive {
     extendRange(rangeToExtend: Range3d, transform?: Transform): void;
     isAlmostEqual(other: GeometryQuery): boolean;
 }
+//# sourceMappingURL=TransitionSpiral.d.ts.map

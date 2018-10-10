@@ -1,9 +1,24 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 const PointVector_1 = require("../PointVector");
+/** Enumerated type for describing where geometry lies with respect to clipping planes. */
+var ClipPlaneContainment;
+(function (ClipPlaneContainment) {
+    ClipPlaneContainment[ClipPlaneContainment["StronglyInside"] = 1] = "StronglyInside";
+    ClipPlaneContainment[ClipPlaneContainment["Ambiguous"] = 2] = "Ambiguous";
+    ClipPlaneContainment[ClipPlaneContainment["StronglyOutside"] = 3] = "StronglyOutside";
+})(ClipPlaneContainment = exports.ClipPlaneContainment || (exports.ClipPlaneContainment = {}));
+/** Enumerated type for describing what must yet be done to clip a piece of geometry. */
+var ClipStatus;
+(function (ClipStatus) {
+    ClipStatus[ClipStatus["ClipRequired"] = 0] = "ClipRequired";
+    ClipStatus[ClipStatus["TrivialReject"] = 1] = "TrivialReject";
+    ClipStatus[ClipStatus["TrivialAccept"] = 2] = "TrivialAccept";
+})(ClipStatus = exports.ClipStatus || (exports.ClipStatus = {}));
 /** Static class whose various methods are functions for clipping geometry. */
 class ClipUtilities {
     static selectIntervals01(curve, unsortedFractions, clipper, announce) {
@@ -13,7 +28,7 @@ class ClipUtilities {
         let f0 = unsortedFractions.at(0);
         let f1;
         let fMid;
-        const testPoint = ClipUtilities.sSelectIntervals01TestPoint;
+        const testPoint = ClipUtilities._selectIntervals01TestPoint;
         const n = unsortedFractions.length;
         for (let i = 1; i < n; i++, f0 = f1) {
             f1 = unsortedFractions.at(i);
@@ -56,16 +71,12 @@ class ClipUtilities {
         return result;
     }
     /**
-     * Clip a polygon down to regions defined by each shape of a ClipVector.
-     * @return An multidimensional array of points, where each array is the boundary of a clipped polygon.
+     * Clip a polygon down to regions defined by each shape of a ClipShape.
+     * @return An multidimensional array of points, where each array is the boundary of part of the remaining polygon.
      */
-    static clipPolygonToClipVector(polygon, clipVec) {
+    static clipPolygonToClipShape(polygon, clipShape) {
         const output = [];
-        for (const primitive of clipVec.clips) {
-            const setOutput = [];
-            primitive.fetchClipPlanesRef().polygonClip(polygon, setOutput);
-            output.push(setOutput);
-        }
+        clipShape.fetchClipPlanesRef().polygonClip(polygon, output);
         return output;
     }
     /** Given an array of points, return whether or not processing is required to clip to a ClipPlaneSet region. */
@@ -90,7 +101,7 @@ class ClipUtilities {
                     break;
                 }
             }
-            if (!anyOutside)
+            if (!anyOutside) // totally inside this set - no clip required
                 return 2 /* TrivialAccept */;
             if (!allOutsideSinglePlane)
                 return 0 /* ClipRequired */;
@@ -98,6 +109,6 @@ class ClipUtilities {
         return 1 /* TrivialReject */;
     }
 }
-ClipUtilities.sSelectIntervals01TestPoint = PointVector_1.Point3d.create();
+ClipUtilities._selectIntervals01TestPoint = PointVector_1.Point3d.create();
 exports.ClipUtilities = ClipUtilities;
 //# sourceMappingURL=ClipUtils.js.map

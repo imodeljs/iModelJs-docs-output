@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Curve */
 const Geometry_1 = require("../Geometry");
@@ -20,7 +21,7 @@ function accumulateGoodUnitPerpendicular(points, vectorA, baseIndex, stepDirecti
     const n = points.length;
     if (stepDirection > 0) {
         for (let i = baseIndex; i + 1 < n; i++) {
-            points.vectorIndexIndex(i + 1, i, workVector);
+            points.vectorIndexIndex(i, i + 1, workVector);
             vectorA.crossProduct(workVector, workVector);
             if (workVector.normalizeInPlace()) {
                 normal.addScaledInPlace(workVector, weight);
@@ -33,7 +34,7 @@ function accumulateGoodUnitPerpendicular(points, vectorA, baseIndex, stepDirecti
             baseIndex = n - 2;
         for (let i = baseIndex; i >= 0; i--) {
             points.vectorIndexIndex(i, i + 1, workVector);
-            vectorA.crossProduct(workVector, workVector);
+            workVector.crossProduct(vectorA, workVector);
             if (workVector.normalizeInPlace()) {
                 normal.addScaledInPlace(workVector, weight);
                 return true;
@@ -93,8 +94,19 @@ class LineString3d extends CurvePrimitive_1.CurvePrimitive {
                 this._points.push(p);
         }
     }
+    /**
+     * Add a point to the linestring.
+     * @param point
+     */
     addPoint(point) {
         this._points.push(point);
+    }
+    /**
+     * Add a point to the linestring.
+     * @param point
+     */
+    addPointXYZ(x, y, z = 0) {
+        this._points.pushXYZ(x, y, z);
     }
     /**
      * If the linestring is not already closed, add a closure point.
@@ -109,10 +121,46 @@ class LineString3d extends CurvePrimitive_1.CurvePrimitive {
     popPoint() {
         this._points.pop();
     }
-    static createRectangleXY(point0, ax, ay, closed) {
-        const ls = LineString3d.create(point0, point0.plusXYZ(ax, 0), point0.plusXYZ(ax, ay), point0.plusXYZ(0, ay));
+    static createRectangleXY(point0, ax, ay, closed = true) {
+        const ls = LineString3d.create();
+        const x0 = point0.x;
+        const x1 = point0.x + ax;
+        const y0 = point0.y;
+        const y1 = point0.y + ay;
+        const z = point0.z;
+        ls.addPointXYZ(x0, y0, z);
+        ls.addPointXYZ(x1, y0, z);
+        ls.addPointXYZ(x1, y1, z);
+        ls.addPointXYZ(x0, y1, z);
         if (closed)
-            ls.addPoint(point0);
+            ls.addClosurePoint();
+        return ls;
+    }
+    /**
+     * Create a regular polygon centered
+     * @param center center of the polygon.
+     * @param edgeCount number of edges.
+     * @param radius distance to vertex or edge (see `radiusToVertices`)
+     * @param radiusToVertices true if polygon is inscribed in circle (radius measured to vertices); false if polygon is outside circle (radius to edges)
+     */
+    static createRegularPolygonXY(center, edgeCount, radius, radiusToVertices = true) {
+        if (edgeCount < 3)
+            edgeCount = 3;
+        const ls = LineString3d.create();
+        const i0 = radiusToVertices ? 0 : -1; // offset to make first vector (radius,0,0)
+        const radiansStep = Math.PI / edgeCount;
+        let c;
+        let s;
+        let radians;
+        if (!radiusToVertices)
+            radius = radius / (1.0 - Math.cos(2.0 * radiansStep));
+        for (let i = 0; i < edgeCount; i++) {
+            radians = (i0 + 2 * i) * radiansStep;
+            c = Geometry_1.Angle.cleanupTrigValue(Math.cos(radians));
+            s = Geometry_1.Angle.cleanupTrigValue(Math.sin(radians));
+            ls.addPointXYZ(center.x + radius * c, center.y + radius * s, center.z);
+        }
+        ls.addClosurePoint();
         return ls;
     }
     setFrom(other) {
@@ -244,7 +292,7 @@ class LineString3d extends CurvePrimitive_1.CurvePrimitive {
             return Transform_1.Transform.createIdentity(result);
         }
         if (n === 2)
-            return Transform_1.Transform.createRefs(this._points.interpolate(0, fraction, 1), Transform_1.RotMatrix.createRigidHeadsUp(this._points.vectorIndexIndex(0, 1), 0 /* XYZ */));
+            return Transform_1.Transform.createRefs(this._points.interpolate(0, fraction, 1), Transform_1.Matrix3d.createRigidHeadsUp(this._points.vectorIndexIndex(0, 1), 0 /* XYZ */));
         /** 3 or more points. */
         const numSegment = n - 1;
         const df = 1.0 / numSegment;
@@ -267,12 +315,17 @@ class LineString3d extends CurvePrimitive_1.CurvePrimitive {
         // tricky stuff to handle colinear points.   But if vectorA is zero it is still a mess . ..
         const normal = PointVector_1.Vector3d.create();
         const workVector = PointVector_1.Vector3d.create();
-        // try forming normal using both forward and reverse stepping.
-        // if at an end segment, only one will succeed.
-        // if interior, both produce candidates, both can succeed and will be weighted.
-        accumulateGoodUnitPerpendicular(this._points, vectorA, baseIndex - 1, -1, localFraction, normal, workVector);
-        accumulateGoodUnitPerpendicular(this._points, vectorA, baseIndex + 1, 1, (1.0 - localFraction), normal, workVector);
-        const matrix = Transform_1.RotMatrix.createRigidFromColumns(normal, vectorA, 2 /* ZXY */);
+        if (baseIndex === 0) { // only look forward
+            accumulateGoodUnitPerpendicular(this._points, vectorA, baseIndex + 1, 1, 1.0, normal, workVector);
+        }
+        else if (baseIndex + 2 >= n) { // only look back
+            accumulateGoodUnitPerpendicular(this._points, vectorA, baseIndex - 1, -1, 1.0, normal, workVector);
+        }
+        else {
+            accumulateGoodUnitPerpendicular(this._points, vectorA, baseIndex - 1, -1, (1.0 - localFraction), normal, workVector);
+            accumulateGoodUnitPerpendicular(this._points, vectorA, baseIndex + 1, 1, (localFraction), normal, workVector);
+        }
+        const matrix = Transform_1.Matrix3d.createRigidFromColumns(normal, vectorA, 2 /* ZXY */);
         if (matrix)
             return Transform_1.Transform.createOriginAndMatrix(origin, matrix, result);
         return Transform_1.Transform.createTranslation(origin, result);
@@ -354,7 +407,7 @@ class LineString3d extends CurvePrimitive_1.CurvePrimitive {
         if (counter === 0) {
             detail.setIntervalRole(CurvePrimitive_1.CurveIntervalRole.isolatedAtVertex);
         }
-        else if (counter === 1) {
+        else if (counter === 1) { // last entry must be isolatedAtVertex !!!
             result[result.length - 2].setIntervalRole(CurvePrimitive_1.CurveIntervalRole.intervalStart);
             detail.setIntervalRole(CurvePrimitive_1.CurveIntervalRole.intervalEnd);
         }
@@ -373,9 +426,9 @@ class LineString3d extends CurvePrimitive_1.CurvePrimitive {
         const initialLength = result.length;
         const n = this._points.length;
         const divisor = n === 1 ? 1.0 : n - 1;
-        const pointA = LineString3d.s_workPointA;
-        const pointB = LineString3d.s_workPointB;
-        const pointC = LineString3d.s_workPointC;
+        const pointA = LineString3d._workPointA;
+        const pointB = LineString3d._workPointB;
+        const pointC = LineString3d._workPointC;
         this._points.getPoint3dAt(0, pointA);
         let hB = 0;
         let numConsecutiveZero = 0;
@@ -387,7 +440,7 @@ class LineString3d extends CurvePrimitive_1.CurvePrimitive {
             if (hB === 0.0)
                 LineString3d.pushVertexHit(result, numConsecutiveZero++, this, i / divisor, pointB);
             else {
-                if (hA * hB < 0.0) {
+                if (hA * hB < 0.0) { // at point0, hA=0 will keep us out of here . ..
                     segmentFraction = hA / (hA - hB); // this division is safe because the signs are different.
                     pointA.interpolate(segmentFraction, pointB, pointC);
                     const detail = CurvePrimitive_1.CurveLocationDetail.createCurveFractionPoint(this, (i - 1 + segmentFraction) / divisor, pointC);
@@ -448,13 +501,13 @@ class LineString3d extends CurvePrimitive_1.CurvePrimitive {
     /** Emit strokes to caller-supplied linestring */
     emitStrokes(dest, options) {
         const n = this._points.length;
-        const pointA = LineString3d.s_workPointA;
-        const pointB = LineString3d.s_workPointB;
+        const pointA = LineString3d._workPointA;
+        const pointB = LineString3d._workPointB;
         if (n > 0) {
             // This is a linestring.
             // There is no need for chordTol and angleTol within a segment.
             // Do NOT apply minstrokes per primitive.
-            if (options && options.hasMaxEdgeLength()) {
+            if (options && options.hasMaxEdgeLength) {
                 dest.appendStrokePoint(this._points.getPoint3dAt(0));
                 for (let i = 1; i < n; i++) {
                     this._points.getPoint3dAt(i - 1, pointA);
@@ -484,7 +537,7 @@ class LineString3d extends CurvePrimitive_1.CurvePrimitive {
             // This is a linestring.
             // There is no need for chordTol and angleTol within a segment.
             // Do NOT apply minstrokes per primitive.
-            if (options && options.hasMaxEdgeLength()) {
+            if (options && options.hasMaxEdgeLength) {
                 for (let i = 1; i < n; i++) {
                     const numStroke = options.applyMaxEdgeLength(1, this._points.getPoint3dAt(i - 1).distance(this._points.getPoint3dAt(i)));
                     handler.announceSegmentInterval(this, this._points.getPoint3dAt(i - 1), this._points.getPoint3dAt(i), numStroke, (i - 1) * df, i * df);
@@ -519,8 +572,8 @@ class LineString3d extends CurvePrimitive_1.CurvePrimitive {
             if (announce)
                 announce(Geometry_1.Geometry.interpolate(globalFractionA, localFraction0, globalFractionB), Geometry_1.Geometry.interpolate(globalFractionA, localFraction1, globalFractionB), this);
         };
-        const pointA = LineString3d.s_workPointA;
-        const pointB = LineString3d.s_workPointB;
+        const pointA = LineString3d._workPointA;
+        const pointB = LineString3d._workPointB;
         this._points.getPoint3dAt(0, pointA);
         let status = false;
         for (let i = 1; i < n; i++, pointA.setFrom(pointB), globalFractionA = globalFractionB) {
@@ -536,8 +589,8 @@ class LineString3d extends CurvePrimitive_1.CurvePrimitive {
         if (n === 0)
             return;
         if (n === 1) {
-            this._points.getPoint3dAt(0, LineString3d.s_indexPoint);
-            dest.push(LineString3d.s_indexPoint);
+            this._points.getPoint3dAt(0, LineString3d._indexPoint);
+            dest.push(LineString3d._indexPoint);
             return;
         }
         if (index < 0)
@@ -546,8 +599,8 @@ class LineString3d extends CurvePrimitive_1.CurvePrimitive {
             index = n - 1;
             fraction += 1;
         }
-        this._points.interpolate(index, fraction, index + 1, LineString3d.s_indexPoint);
-        dest.push(LineString3d.s_indexPoint);
+        this._points.interpolate(index, fraction, index + 1, LineString3d._indexPoint);
+        dest.push(LineString3d._indexPoint);
     }
     /** Return (if possible) a LineString which is a portion of this curve.
      * @param fractionA [in] start fraction
@@ -577,8 +630,8 @@ class LineString3d extends CurvePrimitive_1.CurvePrimitive {
         const result = LineString3d.create();
         this.addResolvedPoint(indexA, localFractionA, result._points);
         for (let index = indexA + 1; index <= indexB; index++) {
-            this._points.getPoint3dAt(index, LineString3d.s_workPointA);
-            result._points.push(LineString3d.s_workPointA);
+            this._points.getPoint3dAt(index, LineString3d._workPointA);
+            result._points.push(LineString3d._workPointA);
         }
         if (!Geometry_1.Geometry.isSmallRelative(localFractionB)) {
             this.addResolvedPoint(indexB, localFractionB, result._points);
@@ -586,10 +639,10 @@ class LineString3d extends CurvePrimitive_1.CurvePrimitive {
         return result;
     }
 }
-LineString3d.s_workPointA = PointVector_1.Point3d.create();
-LineString3d.s_workPointB = PointVector_1.Point3d.create();
-LineString3d.s_workPointC = PointVector_1.Point3d.create();
-LineString3d.s_indexPoint = PointVector_1.Point3d.create(); // private point for indexAndFractionToPoint.
+LineString3d._workPointA = PointVector_1.Point3d.create();
+LineString3d._workPointB = PointVector_1.Point3d.create();
+LineString3d._workPointC = PointVector_1.Point3d.create();
+LineString3d._indexPoint = PointVector_1.Point3d.create(); // private point for indexAndFractionToPoint.
 exports.LineString3d = LineString3d;
 /** An AnnotatedLineString3d is a linestring with additional data attached to each point
  * * This is useful in facet construction.

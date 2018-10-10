@@ -1,11 +1,12 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Curve */
 // import { Geometry, Angle, AngleSweep } from "../Geometry";
-// import { Point3d, Vector3d, RotMatrix } from "../PointVector";
+// import { Point3d, Vector3d, Matrix3d } from "../PointVector";
 const Geometry_1 = require("../Geometry");
 const CurvePrimitive_1 = require("./CurvePrimitive");
 const CurveSearches_1 = require("./CurveSearches");
@@ -35,7 +36,7 @@ class CurveCollection extends CurvePrimitive_1.GeometryQuery {
      */
     maxGap() { return CurveSearches_1.GapSearchContext.maxGap(this); }
     /** return true if the curve collection has any primitives other than LineSegment3d and LineString3d  */
-    hasNonLinearPrimitives() { return CurveSearches_1.CountLinearPartsSearchContext.hasNonLinearPrimitives(this); }
+    checkForNonLinearPrimitives() { return CurveSearches_1.CountLinearPartsSearchContext.hasNonLinearPrimitives(this); }
     tryTransformInPlace(transform) { return CurveSearches_1.TransformInPlaceContext.tryTransformInPlace(this, transform); }
     clone() {
         return CurveSearches_1.CloneCurvesContext.clone(this);
@@ -48,18 +49,18 @@ class CurveCollection extends CurvePrimitive_1.GeometryQuery {
      * * `ParityRegion`
      * * `UnionRegion`
      */
-    isAnyRegionType() {
+    get isAnyRegionType() {
         return this.dgnBoundaryType() === 2 || this.dgnBoundaryType() === 5 || this.dgnBoundaryType() === 4;
     }
     /** Return true for a `Path`, i.e. a chain of curves joined head-to-tail
      */
-    isOpenPath() {
+    get isOpenPath() {
         return this.dgnBoundaryType() === 1;
     }
     /** Return true for a single-loop planar region type, i.e. `Loop`.
      * * This is _not- a test for physical closure of a `Path`
      */
-    isClosedPath() {
+    get isClosedPath() {
         return this.dgnBoundaryType() === 2;
     }
     /** Extend (increase) `rangeToExtend` as needed to include these curves (optionally transformed)
@@ -181,7 +182,22 @@ class Path extends CurveChain {
         return processor.announcePath(this, indexInParent);
     }
     constructor() { super(); }
+    /**
+     * Create a path from a variable length list of curve primtiives
+     * @param curves variable length list of individual curve primitives
+     */
     static create(...curves) {
+        const result = new Path();
+        for (const curve of curves) {
+            result.children.push(curve);
+        }
+        return result;
+    }
+    /**
+     * Create a path from a an array of curve primtiives
+     * @param curves array of individual curve primitives
+     */
+    static createArray(curves) {
         const result = new Path();
         for (const curve of curves) {
             result.children.push(curve);
@@ -215,7 +231,22 @@ class Loop extends CurveChain {
         this.isInner = false;
     }
     isSameGeometryClass(other) { return other instanceof Loop; }
+    /**
+     * Create a loop from variable length list of CurvePrimtives
+     * @param curves array of individual curve primitives
+     */
     static create(...curves) {
+        const result = new Loop();
+        for (const curve of curves) {
+            result.children.push(curve);
+        }
+        return result;
+    }
+    /**
+     * Create a loop from an array of curve primtiives
+     * @param curves array of individual curve primitives
+     */
+    static createArray(curves) {
         const result = new Loop();
         for (const curve of curves) {
             result.children.push(curve);

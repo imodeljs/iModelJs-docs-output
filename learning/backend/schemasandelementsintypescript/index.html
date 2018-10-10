@@ -9,7 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Schemas and Elements in TypeScript - iModelJs</title>
+    <title>Schemas and Elements in TypeScript - iModel.js</title>
+    <meta name="og:title" content="Schemas and Elements in TypeScript - iModel.js">
+    <meta name="twitter:title" content="Schemas and Elements in TypeScript - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -90,8 +95,9 @@
         <h3 id="helpful links">Helpful links</h3>
         <ul>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
         </ul>
@@ -100,7 +106,7 @@
     <div class='documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/">backend</a> > SchemasAndElementsInTypeScript</div>
-            <div class="edit-link"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fdocs%2Fcore%2Flearning%2Fbackend%2FSchemasAndElementsInTypeScript.md" target="_blank">Edit this page</a></div>
+            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
             <h1 id="schemas and elements in typescript">Schemas and Elements in TypeScript</h1>
 <p>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/schema'>Schema</a> represents an ECSchema in TypeScript. It is a collection of Entity-based classes. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-with-bis'>the BIS overview</a> for how ECSchemas are used to model information. ECSchemas define classes for models, elements, and aspects, as well as ECRelationships.</p>
 <p>An <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a> object represents an <em>instance</em> if a <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals'>bis:Element</a> class when it is read from an iModel. The Element object has properties that correspond to the bis class definition in the schema. An <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elementaspects/elementaspect'>ElementAspect</a> object represents an instance of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/elementaspect-fundamentals'>bis:Aspect</a> in memory.</p>
@@ -109,28 +115,28 @@
 <p>An ECSchema must be imported into an iModel before apps can insert and query instances of the ECClasses that it defines.</p>
 <p><em>Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">
-    // Import the RobotWorld schema into the specified iModel.
-    // Also do some one-time bootstrapping of supporting definitions such as Categories.
-    public static async importSchema(activityContext: ActivityLoggingContext, iModelDb: IModelDb): Promise&lt;void&gt; {
-        activityContext.enter();
-        if (iModelDb.containsClass(_schemaNames.Class.Robot))
-            return Promise.resolve();
+  // Import the RobotWorld schema into the specified iModel.
+  // Also do some one-time bootstrapping of supporting definitions such as Categories.
+  public static async importSchema(activityContext: ActivityLoggingContext, iModelDb: IModelDb): Promise&lt;void&gt; {
+    activityContext.enter();
+    if (iModelDb.containsClass(_schemaNames.Class.Robot))
+      return Promise.resolve();
 
-        if (iModelDb.isReadonly)
-            throw new IModelError(IModelStatus.ReadOnly);
+    if (iModelDb.isReadonly)
+      throw new IModelError(IModelStatus.ReadOnly, &quot;importSchema failed because IModelDb is read-only&quot;);
 
-        // Must import the schema. The schema must be installed alongside the app in its
-        // assets directory. Note that, for portability, make sure the case of
-        // the filename is correct!
-        await iModelDb.importSchema(activityContext, path.join(IModelHost.appAssetsDir!, &quot;RobotWorld.ecschema.xml&quot;));
-        activityContext.enter();
+    // Must import the schema. The schema must be installed alongside the app in its
+    // assets directory. Note that, for portability, make sure the case of
+    // the filename is correct!
+    await iModelDb.importSchema(activityContext, path.join(IModelHost.appAssetsDir!, &quot;RobotWorld.ecschema.xml&quot;));
+    activityContext.enter();
 
-        // This is the right time to create definitions, such as Categories, that will
-        // be used with the classes in this schema.
-        RobotWorld.bootStrapDefinitions(iModelDb);
+    // This is the right time to create definitions, such as Categories, that will
+    // be used with the classes in this schema.
+    RobotWorld.bootStrapDefinitions(iModelDb);
 
-        return Promise.resolve();
-    }</code></pre>
+    return Promise.resolve();
+  }</code></pre>
 <p>ECSchema.xml files must be in the app backend&apos;s install set, as part of its assets.</p>
 <p>The app can ensure that the underlying schema is imported by registering an onOpened event handler:</p>
 <p><em>Example:</em></p>
@@ -211,11 +217,7 @@ export class Robot extends SpatialLocationElement {
 <p>Note that the pre-written TypeScript class does not have to define accessors for the properties of the ECClass. The Element base class takes care of that automatically.</p>
 <p>Note that you still have to import the underlying ECSchema before attempting to create instances of the ECClasses that it defines.</p>
 <h2 class="h-schema-registration">Schema Registration<a id="schema-registration" class="heading-anchor" href="#schema-registration"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>If an app backend wants to use a pre-written TypeScript Schema class, it must register the pre-written schema first.</p>
-<p><em>Example:</em></p>
-<pre class="no-line-numbers"><code class="language-typescript">        // Register the TypeScript schema classes that I intend to use.
-        RobotWorld.registerSchema();</code></pre>
-<p>The TypeScript Schema class itself must register all of the classes that it defines. The best practice is for the Schema class to do that in its constructor.</p>
+<p>If an app backend wants to use a pre-written TypeScript Schema class, it must first register it and all of the classes that it defines. The best practice is for the Schema class to do that in its constructor.</p>
 <p><em>Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">
 // Import all modules that define classes in this schema.
@@ -230,31 +232,31 @@ import { ActivityLoggingContext } from &quot;@bentley/bentleyjs-core&quot;;
  * definition. You would then edit the generated TypeScript class to add methods.
  */
 export class RobotWorld extends Schema {
-    /** An app must call this to register the RobotWorld schema prior to using it. */
-    public static registerSchema() {
-        // Make sure that this Schema is registered.
-        // An app may call this more than once. Make sure that&apos;s harmless.
-        if (Schemas.getRegisteredSchema(RobotWorld.name) !== undefined)
-            return;
+  /** An app must call this to register the RobotWorld schema prior to using it. */
+  public static registerSchema() {
+    // Make sure that this Schema is registered.
+    // An app may call this more than once. Make sure that&apos;s harmless.
+    if (Schemas.getRegisteredSchema(RobotWorld.name) !== undefined)
+      return;
 
-        Schemas.registerSchema(new RobotWorld());
-    }
+    Schemas.registerSchema(new RobotWorld());
+  }
 
-    // Registers all classes of the RobotWorld schema.
-    private constructor() {
-        super();
-        // Register all modules that define classes in this schema.
-        // ClassRegistry detects all classes defined by each module and registers them.
-        ClassRegistry.registerModule(robots, this);
-        ClassRegistry.registerModule(obstacles, this);
-        // ... other modules ...
-    }
+  // Registers all classes of the RobotWorld schema.
+  private constructor() {
+    super();
+    // Register all modules that define classes in this schema.
+    // ClassRegistry detects all classes defined by each module and registers them.
+    ClassRegistry.registerModule(robots, this);
+    ClassRegistry.registerModule(obstacles, this);
+    // ... other modules ...
+  }
 
-    // ...
+  // ...
 </code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             

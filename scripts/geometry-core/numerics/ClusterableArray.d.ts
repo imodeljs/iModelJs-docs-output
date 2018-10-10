@@ -1,10 +1,10 @@
 import { Point2d, Point3d } from "../PointVector";
 import { GrowableBlockedArray, GrowableXYZArray } from "../GrowableArray";
 export declare class ClusterableArray extends GrowableBlockedArray {
-    private static readonly vectorFactor;
+    private static readonly _vectorFactor;
     static sortVectorComponent(index: number): number;
-    private numCoordinatePerPoint;
-    private numExtraDataPerPoint;
+    private _numCoordinatePerPoint;
+    private _numExtraDataPerPoint;
     /**
      * @param numCoordinatePerPoint number of coordinates per point
      * @param  numExtraDataPerPoint of extra data values per point.
@@ -111,3 +111,4 @@ export declare class PackedPointsWithIndex {
      */
     updateIndices(indices: number[]): boolean;
 }
+//# sourceMappingURL=ClusterableArray.d.ts.map

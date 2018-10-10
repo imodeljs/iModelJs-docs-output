@@ -1,16 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 /** @module Numerics */
 const Geometry_1 = require("../Geometry");
 class Complex {
-    set x(value) { this.myX = value; }
-    get x() { return this.myX; }
-    set y(value) { this.myY = value; }
-    get y() { return this.myY; }
-    constructor(x = 0, y = 0) { this.myX = x; this.myY = y; }
+    set x(value) { this._myX = value; }
+    get x() { return this._myX; }
+    set y(value) { this._myY = value; }
+    get y() { return this._myY; }
+    constructor(x = 0, y = 0) { this._myX = x; this._myY = y; }
     set(x = 0, y = 0) { this.x = x; this.y = y; }
     setFrom(other) { this.x = other.x; this.y = other.y; }
     clone() { return new Complex(this.x, this.y); }

@@ -33,7 +33,7 @@ export declare class TransformInPlaceContext extends RecursiveCurveProcessor {
 }
 /** Algorithmic class: Sum lengths of curves */
 export declare class SumLengthsContext extends RecursiveCurveProcessor {
-    private sum;
+    private _sum;
     private constructor();
     static sumLengths(target: CurveCollection): number;
     announceCurvePrimitive(curvePrimitive: CurvePrimitive, _indexInParent: number): void;
@@ -44,8 +44,8 @@ export declare class SumLengthsContext extends RecursiveCurveProcessor {
  * * for individual primitive, invoke doClone (protected) for direct clone; insert into parent
  */
 export declare class CloneCurvesContext extends RecursiveCurveProcessorWithStack {
-    private result;
-    private transform;
+    private _result;
+    private _transform;
     private constructor();
     static clone(target: CurveCollection, transform?: Transform): CurveCollection | undefined;
     enter(c: CurveCollection): void;
@@ -53,3 +53,4 @@ export declare class CloneCurvesContext extends RecursiveCurveProcessorWithStack
     protected doClone(primitive: CurvePrimitive): CurvePrimitive;
     announceCurvePrimitive(primitive: CurvePrimitive, _indexInParent: number): void;
 }
+//# sourceMappingURL=CurveSearches.d.ts.map

@@ -4,18 +4,18 @@ import { GrowableFloat64Array, GrowableXYZArray } from "../GrowableArray";
 import { Arc3d } from "../curve/Arc3d";
 import { UnionOfConvexClipPlaneSets } from "./UnionOfConvexClipPlaneSets";
 import { CurvePrimitive, AnnounceNumberNumber, AnnounceNumberNumberCurvePrimitive } from "../curve/CurvePrimitive";
-import { ClipVector } from "./ClipVector";
+import { ClipShape } from "./ClipPrimitive";
 /** Enumerated type for describing where geometry lies with respect to clipping planes. */
 export declare const enum ClipPlaneContainment {
     StronglyInside = 1,
     Ambiguous = 2,
-    StronglyOutside = 3,
+    StronglyOutside = 3
 }
 /** Enumerated type for describing what must yet be done to clip a piece of geometry. */
 export declare const enum ClipStatus {
     ClipRequired = 0,
     TrivialReject = 1,
-    TrivialAccept = 2,
+    TrivialAccept = 2
 }
 /** An object containing clipping planes that can be used to clip geometry. */
 export interface Clipper {
@@ -37,7 +37,7 @@ export interface Clipper {
 }
 /** Static class whose various methods are functions for clipping geometry. */
 export declare class ClipUtilities {
-    private static sSelectIntervals01TestPoint;
+    private static _selectIntervals01TestPoint;
     static selectIntervals01(curve: CurvePrimitive, unsortedFractions: GrowableFloat64Array, clipper: Clipper, announce?: AnnounceNumberNumberCurvePrimitive): boolean;
     /**
      * Announce triples of (low, high, cp) for each entry in intervals
@@ -48,10 +48,11 @@ export declare class ClipUtilities {
     static announceNNC(intervals: Range1d[], cp: CurvePrimitive, announce?: AnnounceNumberNumberCurvePrimitive): boolean;
     static collectClippedCurves(curve: CurvePrimitive, clipper: Clipper): CurvePrimitive[];
     /**
-     * Clip a polygon down to regions defined by each shape of a ClipVector.
-     * @return An multidimensional array of points, where each array is the boundary of a clipped polygon.
+     * Clip a polygon down to regions defined by each shape of a ClipShape.
+     * @return An multidimensional array of points, where each array is the boundary of part of the remaining polygon.
      */
-    static clipPolygonToClipVector(polygon: Point3d[], clipVec: ClipVector): Point3d[][];
+    static clipPolygonToClipShape(polygon: Point3d[], clipShape: ClipShape): Point3d[][];
     /** Given an array of points, return whether or not processing is required to clip to a ClipPlaneSet region. */
     static pointSetSingleClipStatus(points: GrowableXYZArray, planeSet: UnionOfConvexClipPlaneSets, tolerance: number): ClipStatus;
 }
+//# sourceMappingURL=ClipUtils.d.ts.map

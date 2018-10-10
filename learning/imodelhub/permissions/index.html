@@ -9,7 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Permissions - iModelJs</title>
+    <title>Permissions - iModel.js</title>
+    <meta name="og:title" content="Permissions - iModel.js">
+    <meta name="twitter:title" content="Permissions - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -90,8 +95,9 @@
         <h3 id="helpful links">Helpful links</h3>
         <ul>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
         </ul>
@@ -100,11 +106,39 @@
     <div class='documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/">imodelhub</a> > Permissions</div>
-            <div class="edit-link"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fdocs%2Fcore%2Flearning%2FiModelHub%2FPermissions.md" target="_blank">Edit this page</a></div>
+            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
             <h1 id="permissions">Permissions</h1>
+<p>Every iModelHub operation requires that user would be authorized to perform it. iModelHub uses Role Based Access Control (RBAC) service to manage authorization. RBAC allows to create roles with a chosen set of permissions. Every user can be assigned one of these roles. RBAC permissions are configured per <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/connectservices/project'>Project</a>. You can access RBAC permissions management through <a href="https://https://connect.bentley.com">CONNECT portal</a>. You can also query permissions for a specific Project through <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/connectservices/rbacclient'>RbacClient</a>.</p>
+<p>iModelHub uses 6 permissions:</p>
+<ol>
+<li><a href="#create-imodel">Create iModel</a></li>
+<li><a href="#delete-imodel">Delete iModel</a></li>
+<li><a href="#read-imodel">Read iModel</a></li>
+<li><a href="#modify-imodel">Modify iModel</a></li>
+<li><a href="#manage-imodel-resources">Manage iModel Resources</a></li>
+<li><a href="#manage-imodel-resources">Manage iModel Versions</a></li>
+</ol>
+<h2 class="h-create-imodel">Create iModel<a id="create-imodel" class="heading-anchor" href="#create-imodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Permissions automatically included: <em>Read iModel</em>, <em>Modify iModel</em></p>
+<p>Create iModel permission allows creating iModels. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/#create'>IModelDb.create</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/imodelhandler/create'>IModelHandler.create</a>.</p>
+<h2 class="h-delete-imodel">Delete iModel<a id="delete-imodel" class="heading-anchor" href="#delete-imodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Permissions automatically included: <em>Read iModel</em></p>
+<p>Delete iModel permission allows deleting iModels. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/imodelhandler/delete'>IModelHandler.delete</a>.</p>
+<h2 class="h-read-imodel">Read iModel<a id="read-imodel" class="heading-anchor" href="#read-imodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Read iModel permission is required for every single iModelHub operation. It is automatically granted when giving any other iModelHub permission.</p>
+<p>User that only has Read iModel permission can work with iModel, but they will be unable to make any changes to it. It means that users with this permission will be able to send all query requests. In addition to that, they will be able to acquire and download <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/briefcase'>Briefcase</a>s and pull <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a>s. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/open'>IModelDb.open</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/pullandmergechanges'>IModelDb.pullAndMergeChanges</a>.</p>
+<h2 class="h-modify-imodel">Modify iModel<a id="modify-imodel" class="heading-anchor" href="#modify-imodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Permissions automatically included: <em>Read iModel</em></p>
+<p>Modifiy iModel permission allows making changes to the iModel. It means that users will be able to manage their own <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/hubcode'>HubCode</a>s and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/lock'>Lock</a>s and push their <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a>s to iModelHub. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/concurrencycontrol'>concurrency control</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/pushchanges'>IModelDb.pushChanges</a>.</p>
+<h2 class="h-manage-imodel-resources">Manage iModel Resources<a id="manage-imodel-resources" class="heading-anchor" href="#manage-imodel-resources"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Permissions automatically included: <em>Read iModel</em>, <em>Modify iModel</em></p>
+<p>Manage iModel Resources permission allows managing <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/hubcode'>HubCode</a>s and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/lock'>Lock</a>s for the entire iModel. It means that they will be able to modify and relinquish Codes and Locks that belong to other users. Modifying resources that are owned by other users is not recommended, as it could cause conflicts.</p>
+<h2 class="h-manage-imodel-versions">Manage iModel Versions<a id="manage-imodel-versions" class="heading-anchor" href="#manage-imodel-versions"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Permissions automatically included: <em>Read iModel</em>, <em>Modify iModel</em></p>
+<p>Manage iModel Versions permission allows creating and modifying Named <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/version'>Version</a>s. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/versionhandler/create'>VersionHandler.create</a>.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             
@@ -113,7 +147,33 @@
             </script>        </article>
     </div>
     <div id='inner-table-of-contents'>
-       <!--  
+       <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#create-imodel">Create iModel</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#delete-imodel">Delete iModel</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#read-imodel">Read iModel</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#modify-imodel">Modify iModel</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#manage-imodel-resources">Manage iModel Resources</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#manage-imodel-versions">Manage iModel Versions</a>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
  -->
     </div>
 </div>

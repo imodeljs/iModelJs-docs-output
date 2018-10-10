@@ -9,7 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ECClass - iModelJs</title>
+    <title>ECClass - iModel.js</title>
+    <meta name="og:title" content="ECClass - iModel.js">
+    <meta name="twitter:title" content="ECClass - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -147,10 +152,10 @@
     <div class='documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">bis</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/ec/">ec</a> > ec-class</div>
-            <div class="edit-link"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fdocs%2Fcore%2Fbis%2Fec%2Fec-class.md" target="_blank">Edit this page</a></div>
+            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
             <h1 id="ecclass">ECClass</h1>
 <p>There are 5 types of ECClass in ECObjects, <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-entity-class'>ECEntityClass</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-mixin-class'>ECMixinClass</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-struct-class'>ECStructClass</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-custom-attribute-class'>ECCustomAttributeClass</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-relationship-class'>ECRelationshipClass</a>. This section will cover what is common among all ECClass types.</p>
-<p>Each class type models a different type of object. ECEntityClass models business objects, which are individually instantiable and have an ID. ECStructClass models complex property types, often known as structs. ECCustomAttributeClass models objects which are applied to other schema elements in order to provide additional metadata. ECRelationshipClass models connections between ECEntityClasses.</p>
+<p>Each class type models a different type of object. ECEntityClass models business objects, which are individually instantiable and have an Id. ECStructClass models complex property types, often known as structs. ECCustomAttributeClass models objects which are applied to other schema elements to provide additional metadata. ECRelationshipClass models connections between ECEntityClasses.</p>
 <p>All classes support inheritance within their own class type. Therefore, an ECEntityClass can have another ECEntityClass as its base class, but could not have an ECStructClass as the base class. ECRelationshipClass only supports single inheritance while ECEntityClass supports a limited form of multi-inheritance using &apos;mixins&apos;.</p>
 <h2 class="h-common-class-attributes">Common Class Attributes<a id="common-class-attributes" class="heading-anchor" href="#common-class-attributes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p><strong>typeName</strong> defines the name of this ECClass. Must be a valid <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-name'>ECName</a> and be unique among all other items in a schema.</p>
@@ -198,7 +203,7 @@
 <p>The traversal order will be: Foo, B2, B1, Root and B2&#x2019;s definition of property &quot;A&quot; will &quot;win&quot;. If we introduce the &quot;diamond pattern&quot; via multiple inheritance by adding &quot;Root&quot; as a BaseClass of B2, the traversal order (using our second definition of Foo) would be: Foo, B2, Root, B1, Root. If a polymorphic algorithm were looking for subclasses of &quot;Root&quot;, it would stop when it hit &quot;Root&quot; the first time.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             

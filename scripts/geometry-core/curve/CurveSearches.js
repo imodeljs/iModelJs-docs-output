@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 const CurveProcessor_1 = require("./CurveProcessor");
 const CurveChain_1 = require("./CurveChain");
@@ -17,8 +18,8 @@ class GapSearchContext extends CurveProcessor_1.RecursiveCurveProcessorWithStack
         return context.maxGap;
     }
     announceCurvePrimitive(curve, _indexInParent) {
-        if (this.stack.length > 0) {
-            const parent = this.stack[this.stack.length - 1];
+        if (this._stack.length > 0) {
+            const parent = this._stack[this._stack.length - 1];
             if (parent instanceof CurveChain_1.CurveChain) {
                 const chain = parent;
                 const nextCurve = chain.cyclicCurvePrimitive(_indexInParent + 1);
@@ -73,14 +74,14 @@ class TransformInPlaceContext extends CurveProcessor_1.RecursiveCurveProcessor {
 exports.TransformInPlaceContext = TransformInPlaceContext;
 /** Algorithmic class: Sum lengths of curves */
 class SumLengthsContext extends CurveProcessor_1.RecursiveCurveProcessor {
-    constructor() { super(); this.sum = 0.0; }
+    constructor() { super(); this._sum = 0.0; }
     static sumLengths(target) {
         const context = new SumLengthsContext();
         target.announceToCurveProcessor(context);
-        return context.sum;
+        return context._sum;
     }
     announceCurvePrimitive(curvePrimitive, _indexInParent) {
-        this.sum += curvePrimitive.curveLength();
+        this._sum += curvePrimitive.curveLength();
     }
 }
 exports.SumLengthsContext = SumLengthsContext;
@@ -92,13 +93,13 @@ exports.SumLengthsContext = SumLengthsContext;
 class CloneCurvesContext extends CurveProcessor_1.RecursiveCurveProcessorWithStack {
     constructor(transform) {
         super();
-        this.transform = transform;
-        this.result = undefined;
+        this._transform = transform;
+        this._result = undefined;
     }
     static clone(target, transform) {
         const context = new CloneCurvesContext(transform);
         target.announceToCurveProcessor(context);
-        return context.result;
+        return context._result;
     }
     enter(c) {
         if (c instanceof CurveChain_1.CurveCollection)
@@ -107,23 +108,23 @@ class CloneCurvesContext extends CurveProcessor_1.RecursiveCurveProcessorWithSta
     leave() {
         const result = super.leave();
         if (result) {
-            if (this.stack.length === 0)
-                this.result = result;
-            else
-                this.stack[this.stack.length - 1].tryAddChild(result);
+            if (this._stack.length === 0) // this should only happen once !!!
+                this._result = result;
+            else // push this result to top of stack.
+                this._stack[this._stack.length - 1].tryAddChild(result);
         }
         return result;
     }
     // specialized cloners override this (and allow announceCurvePrimitive to insert to parent)
     doClone(primitive) {
-        if (this.transform)
-            return primitive.cloneTransformed(this.transform);
+        if (this._transform)
+            return primitive.cloneTransformed(this._transform);
         return primitive.clone();
     }
     announceCurvePrimitive(primitive, _indexInParent) {
         const c = this.doClone(primitive);
-        if (c && this.stack.length > 0) {
-            const parent = this.stack[this.stack.length - 1];
+        if (c && this._stack.length > 0) {
+            const parent = this._stack[this._stack.length - 1];
             if (parent instanceof CurveChain_1.CurveChain) {
                 parent.tryAddChild(c);
             }

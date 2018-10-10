@@ -18,7 +18,7 @@ export declare const enum ClipMask {
     ZLow = 16,
     ZHigh = 32,
     XAndY = 15,
-    All = 63,
+    All = 63
 }
 /**
  * Cache structure that holds a ClipPlaneSet and various parameters for adding new ClipPlanes to the set. This structure
@@ -47,7 +47,7 @@ export declare abstract class ClipPrimitive {
     protected _invisible: boolean;
     abstract fetchClipPlanesRef(): UnionOfConvexClipPlaneSets | undefined;
     abstract fetchMaskPlanesRef(): UnionOfConvexClipPlaneSets | undefined;
-    readonly abstract invisible: boolean;
+    abstract readonly invisible: boolean;
     protected constructor(planeSet?: UnionOfConvexClipPlaneSets | undefined, isInvisible?: boolean);
     abstract toJSON(): any;
     /**
@@ -56,10 +56,9 @@ export declare abstract class ClipPrimitive {
      * clippers such as polygons swept through a volume with front and back planes.
      */
     abstract getRange(returnMaskRange: boolean, transform: Transform, result?: Range3d): Range3d | undefined;
-    /** Apply a transform to the clipper (e.g. transform all planes) */
-    abstract transformInPlace(transform: Transform): boolean;
     abstract multiplyPlanesTimesMatrix(matrix: Matrix4d): boolean;
-    protected transformInPlaceSuper(transform: Transform): boolean;
+    /** Apply a transform to the clipper (e.g. transform all planes) */
+    transformInPlace(transform: Transform): boolean;
     /** Sets both the clip plane set and the mask set visibility */
     setInvisible(invisible: boolean): void;
     containsZClip(): boolean;
@@ -156,13 +155,17 @@ export declare class ClipShape extends ClipPrimitive {
     /** Creates a new ClipShape with undefined members and a polygon points array of zero length. */
     static createEmpty(isMask?: boolean, invisible?: boolean, transform?: Transform, result?: ClipShape): ClipShape;
     /** Checks to ensure that the member polygon has an area, and that the polygon is closed. */
-    isValidPolygon(): boolean;
+    readonly isValidPolygon: boolean;
     /** Returns a deep copy of this instance of ClipShape, storing in an optional result */
     clone(result?: ClipShape): ClipShape;
     /** Given the current polygon data, parses clip planes that together form an object, storing the result in the set given, either clipplanes or maskplanes. */
-    private parseClipPlanes(set);
-    private parseLinearPlanes(set, start, end, cameraFocalLength?);
-    private parseConvexPolygonPlanes(set, direction, cameraFocalLength?);
+    private parseClipPlanes;
+    /** Given a start and end point, populate the given UnionOfConvexClipPlaneSets with ConvexClipPlaneSets defining the bounded region of linear planes. Returns true if successful. */
+    private parseLinearPlanes;
+    /** Given a convex polygon defined as an array of points, populate the given UnionOfConvexClipPlaneSets with ConvexClipPlaneSets defining the bounded region. Returns true if successful. */
+    private parseConvexPolygonPlanes;
+    /** Given a concave polygon defined as an array of points, populate the given UnionOfConvexClipPlaneSets with multiple ConvexClipPlaneSets defining the bounded region. Returns true if successful. */
+    private parseConcavePolygonPlanes;
     /** Get the 3-dimensional range that this combination of ClipPlanes bounds in space. Returns the range/result
      *  if successful, otherwise, returns undefined. Transform will only be used for transforming the polygon points if clipplanes/maskplanes
      *  have not yet been set. Otherwise, we return the range of the planes without an applied transform.
@@ -172,9 +175,10 @@ export declare class ClipShape extends ClipPrimitive {
     pointInside(point: Point3d, onTolerance?: number): boolean;
     transformInPlace(transform: Transform): boolean;
     multiplyPlanesTimesMatrix(matrix: Matrix4d): boolean;
-    isXYPolygon(): boolean;
+    readonly isXYPolygon: boolean;
     /** Transform the input point using this instance's transformToClip member */
     performTransformToClip(point: Point3d): void;
     /** Transform the input point using this instance's transformFromClip member */
     performTransformFromClip(point: Point3d): void;
 }
+//# sourceMappingURL=ClipPrimitive.d.ts.map

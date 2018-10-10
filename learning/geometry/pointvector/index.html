@@ -9,7 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Point and Vector operations - iModelJs</title>
+    <title>Point and Vector operations - iModel.js</title>
+    <meta name="og:title" content="Point and Vector operations - iModel.js">
+    <meta name="twitter:title" content="Point and Vector operations - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -90,8 +95,9 @@
         <h3 id="helpful links">Helpful links</h3>
         <ul>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
         </ul>
@@ -100,7 +106,7 @@
     <div class='documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/">geometry</a> > PointVector</div>
-            <div class="edit-link"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fdocs%2Fcore%2Flearning%2Fgeometry%2FPointVector.md" target="_blank">Edit this page</a></div>
+            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
             <h1 id="point and vector operations">Point and Vector operations</h1>
 <h1 id="notes on compact table notation">Notes on compact table notation</h1>
 <ul>
@@ -115,18 +121,53 @@
 </ul>
 </li>
 </ul>
-<p>Typical names in the tables are:
-| name | implied type | remarks |
-|---|---|---|
-| x | number | x coordinate |
-| y | number | y coordinate |
-| z | number | z coordinate |
-| p | Point3d or Point2d | point object |
-| v | Vector3d or Vector2d | vector object |
-| newVector | Vector3d or Vector2d | newly created vector object |
-| basePoint | Point3d or Point2d | point object used as origin of the calculation |
-| targetA, targetB | Point3d, Vector3d, Point2d, or Vector3d | point or vector used as target of a vector during the calculation |</p>
-<h2 class="h-public-members">public members<a id="public-members" class="heading-anchor" href="#public-members"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Typical names in the tables are:</p>
+<table class="table table-responsive"><tbody><tr>
+<th>name</th>
+<th>implied type</th>
+<th>remarks</th>
+</tr>
+<tr>
+<td>x</td>
+<td>number</td>
+<td>x coordinate</td>
+</tr>
+<tr>
+<td>y</td>
+<td>number</td>
+<td>y coordinate</td>
+</tr>
+<tr>
+<td>z</td>
+<td>number</td>
+<td>z coordinate</td>
+</tr>
+<tr>
+<td>p</td>
+<td>Point3d or Point2d</td>
+<td>point object</td>
+</tr>
+<tr>
+<td>v</td>
+<td>Vector3d or Vector2d</td>
+<td>vector object</td>
+</tr>
+<tr>
+<td>newVector</td>
+<td>Vector3d or Vector2d</td>
+<td>newly created vector object</td>
+</tr>
+<tr>
+<td>basePoint</td>
+<td>Point3d or Point2d</td>
+<td>point object used as origin of the calculation</td>
+</tr>
+<tr>
+<td>targetA, targetB</td>
+<td>Point3d, Vector3d, Point2d, or Vector3d</td>
+<td>point or vector used as target of a vector during the calculation</td>
+</tr>
+</tbody></table><h2 class="h-public-members">public members<a id="public-members" class="heading-anchor" href="#public-members"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <table class="table table-responsive"><tbody><tr>
 <th>category</th>
 <th>Point3d</th>
@@ -660,7 +701,7 @@
 <td>dot product of vectors from instance to 2 targets</td>
 <td>a = basePoint.dotVectorsToTargets (pointA, pointB)</td>
 <td></td>
-<td>a = basePoint.dotVectorsToTargets (pointA, </td>
+<td>a = basePoint.dotVectorsToTargets (pointA,</td>
 </tr>
 </tbody></table><p>pointB) | |
 | dot product of instance vector with vector from startPoint to endPoint.  | | a = vector.dotProductStartEnd (startPoint, endPoint)  : number| | a = vector.dotProductStartEnd (startPoint, endPoint)  : number |</p>
@@ -670,7 +711,7 @@
 <h2 class="h-angles-between-vectors">Angles between vectors<a id="angles-between-vectors" class="heading-anchor" href="#angles-between-vectors"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ul>
 <li>Methods that return bare radians have <em>radians</em> in the method name.</li>
-<li>Methods without specific <em>radians</em> indication return a (strongly typed) <code>Angle</code> object that can be queried for <code>degrees</code> or <code>radians</code>.   </li>
+<li>Methods without specific <em>radians</em> indication return a (strongly typed) <code>Angle</code> object that can be queried for <code>degrees</code> or <code>radians</code>.</li>
 </ul>
 <table class="table table-responsive"><tbody><tr>
 <th>category</th>
@@ -864,7 +905,7 @@
 | max component difference | p.maxDiff (otherXYAndZ) | v.maxDiff (otherXYAndZ) | p.maxDiff (otherXAndY) | v.maxDiff (otherXAndY) |</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             
@@ -881,10 +922,10 @@
             <a class='title solo-title menu-text' href="#public-members">public members</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#static-create-methods">static &quot;create&quot; methods</a>
+            <a class='title solo-title menu-text' href="#static-create-methods">static "create" methods</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#create-via-instance-methods-on-existing-objects">&quot;create&quot; via instance methods on existing objects</a>
+            <a class='title solo-title menu-text' href="#create-via-instance-methods-on-existing-objects">"create" via instance methods on existing objects</a>
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#create-by-interpolation-and-addition">create by Interpolation and addition</a>

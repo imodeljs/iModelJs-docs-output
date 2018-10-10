@@ -1,6 +1,6 @@
 /** @module Polyface */
 import { Point3d, Vector3d, Point2d } from "../PointVector";
-import { Range3d, Range2d } from "../Range";
+import { Range3d, Range2d, Range1d } from "../Range";
 import { Transform } from "../Transform";
 import { GrowableXYZArray } from "../GrowableArray";
 import { GeometryQuery } from "../curve/CurvePrimitive";
@@ -35,6 +35,32 @@ export declare class FacetFaceData {
      */
     setParamDistanceRangeFromNewFaceData(polyface: IndexedPolyface, facetStart: number, facetEnd: number): boolean;
 }
+export declare enum AuxChannelDataType {
+    Scalar = 0,
+    Distance = 1,
+    Vector = 2,
+    Normal = 3,
+    Point = 4
+}
+export declare class AuxChannelData {
+    input: number;
+    values: number[];
+    constructor(input: number, values: number[]);
+}
+export declare class AuxChannel {
+    data: AuxChannelData[];
+    dataType: AuxChannelDataType;
+    name?: string;
+    inputName?: string;
+    constructor(data: AuxChannelData[], dataType: AuxChannelDataType, name?: string, inputName?: string);
+    readonly isScalar: boolean;
+    readonly scalarRange: Range1d | undefined;
+}
+export declare class PolyfaceAuxData {
+    channels: AuxChannel[];
+    indices: number[];
+    constructor(channels: AuxChannel[], indices: number[]);
+}
 /**
  * PolyfaceData carries data arrays for point, normal, param, color and their indices.
  *
@@ -54,6 +80,7 @@ export declare class PolyfaceData {
     colorIndex: number[] | undefined;
     /** Face data will remain empty until a face is specified. */
     face: FacetFaceData[];
+    auxData: PolyfaceAuxData | undefined;
     constructor(needNormals?: boolean, needParams?: boolean, needColors?: boolean);
     clone(): PolyfaceData;
     isAlmostEqual(other: PolyfaceData): boolean;
@@ -65,7 +92,7 @@ export declare class PolyfaceData {
     readonly indexCount: number;
     /** Will return 0 if no faces were specified during construction. */
     readonly faceCount: number;
-    /** return indexed point. This is a copy of the coordinates, not a referenc. */
+    /** return indexed point. This is a copy of the coordinates, not a reference. */
     getPoint(i: number): Point3d;
     /** return indexed normal. This is the REFERENCE to the normal, not a copy. */
     getNormal(i: number): Vector3d;
@@ -93,7 +120,7 @@ export declare class PolyfaceData {
      * @param numWrap number of points to replicate as wraparound.
      */
     gatherIndexedData(other: PolyfaceData, index0: number, index1: number, numWrap: number): void;
-    private static trimArray(data, length);
+    private static trimArray;
     trimAllIndexArrays(length: number): void;
     resizeAllDataArrays(length: number): void;
     range(result?: Range3d, transform?: Transform): Range3d;
@@ -130,8 +157,8 @@ export declare class IndexedPolyface extends Polyface {
     cloneTransformed(transform: Transform): IndexedPolyface;
     reverseIndices(): void;
     reverseNormals(): void;
-    protected facetStart: number[];
-    protected facetToFaceData: number[];
+    protected _facetStart: number[];
+    protected _facetToFaceData: number[];
     /** return face data using a facet index. This is the REFERENCE to the FacetFaceData, not a copy. Returns undefined if none found. */
     tryGetFaceData(i: number): FacetFaceData | undefined;
     protected constructor(data: PolyfaceData, facetStart?: number[], facetToFaceData?: number[]);
@@ -215,7 +242,7 @@ export declare class IndexedPolyface extends Polyface {
      */
     setNewFaceData(endFacetIndex?: number): boolean;
     /** TODO: IMPLEMENT */
-    isClosedByEdgePairing(): boolean;
+    checkIfClosedByEdgePairing(): boolean;
     dispatchToGeometryHandler(handler: GeometryHandler): any;
 }
 /**
@@ -236,11 +263,11 @@ export interface PolyfaceVisitor extends PolyfaceData {
     clientColorIndex(i: number): number;
 }
 export declare class IndexedPolyfaceVisitor extends PolyfaceData implements PolyfaceVisitor {
-    private currentFacetIndex;
-    private nextFacetIndex;
-    private numWrap;
-    private numEdges;
-    private polyface;
+    private _currentFacetIndex;
+    private _nextFacetIndex;
+    private _numWrap;
+    private _numEdges;
+    private _polyface;
     private constructor();
     readonly numEdgesThisFacet: number;
     static create(polyface: IndexedPolyface, numWrap: number): IndexedPolyfaceVisitor;
@@ -263,3 +290,4 @@ export declare class IndexedPolyfaceVisitor extends PolyfaceData implements Poly
     clientNormalIndex(i: number): number;
     clientColorIndex(i: number): number;
 }
+//# sourceMappingURL=Polyface.d.ts.map

@@ -11,7 +11,7 @@ import { GeometryHandler } from "../GeometryHandler";
  */
 export declare enum UVSelect {
     uDirection = 0,
-    VDirection = 1,
+    VDirection = 1
 }
 export declare enum WeightStyle {
     /** There are no weights. */
@@ -25,7 +25,7 @@ export declare enum WeightStyle {
      * * Data is weighted
      * * point with normalized coordinate `[x,y,z]` and weight `w` has is `[x,y,z,w]`
      * */
-    WeightsSeparateFromCoordinates = 2,
+    WeightsSeparateFromCoordinates = 2
 }
 /**
  * interface for points returned from getPointGrid, with annotation of physical and weighting dimensions.
@@ -106,7 +106,7 @@ export declare abstract class BSpline2dNd extends GeometryQuery {
     knots: KnotVector[];
     coffs: Float64Array;
     poleDimension: number;
-    private numPoles;
+    private _numPoles;
     degreeUV(select: UVSelect): number;
     orderUV(select: UVSelect): number;
     numSpanUV(select: UVSelect): number;
@@ -139,10 +139,10 @@ export declare abstract class BSpline2dNd extends GeometryQuery {
        * @param result undefined if surface derivatives are parallel (or either alone is zero)
        */
     fractionToRigidFrame(fractionU: number, fractionV: number, result?: Transform): Transform | undefined;
-    protected basisBufferUV: Float64Array[];
-    protected basisBuffer1UV: Float64Array[];
-    protected poleBuffer: Float64Array;
-    protected poleBuffer1UV: Float64Array[];
+    protected _basisBufferUV: Float64Array[];
+    protected _basisBuffer1UV: Float64Array[];
+    protected _poleBuffer: Float64Array;
+    protected _poleBuffer1UV: Float64Array[];
     /**
      * initialize arrays for given spline dimensions.
      */
@@ -160,7 +160,7 @@ export declare abstract class BSpline2dNd extends GeometryQuery {
     /** sum derivatives by the weights in the basisBuffer, using poles for given span */
     sumpoleBufferDerivativesForSpan(spanIndexU: number, spanIndexV: number): void;
     evaluateBuffersAtKnot(u: number, v: number, numDerivative?: number): void;
-    private swapBlocks(i0, i1, numSwap);
+    private swapBlocks;
     /**
      * Reverse the parameter direction for either u or v.
      * @param select direction to reverse -- 0 for u, 1 for v.
@@ -387,3 +387,4 @@ export declare class BSplineSurface3dH extends BSpline2dNd implements BSplineSur
      */
     extendRange(rangeToExtend: Range3d, transform?: Transform): void;
 }
+//# sourceMappingURL=BSplineSurface.d.ts.map

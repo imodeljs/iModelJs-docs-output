@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Numerics */
 // import { Point2d } from "./Geometry2d";
@@ -18,7 +19,7 @@ class MomentData {
     }
     static momentTensorFromInertiaProducts(products) {
         const rr = products.sumDiagonal();
-        const result = Transform_1.RotMatrix.createScale(rr, rr, rr);
+        const result = Transform_1.Matrix3d.createScale(rr, rr, rr);
         result.addScaledInPlace(products, -1.0);
         return result;
     }
@@ -47,7 +48,7 @@ class MomentData {
             const products = moments.sums.matrixPart();
             const tensor = MomentData.momentTensorFromInertiaProducts(products);
             const moment2 = PointVector_1.Vector3d.create();
-            const axisVectors = Transform_1.RotMatrix.createZero();
+            const axisVectors = Transform_1.Matrix3d.createZero();
             tensor.fastSymmetricEigenvalues(axisVectors, moment2);
             MomentData.sortColumnsForIncreasingMoments(axisVectors, moment2);
             moments.localToWorldMap = Transform_1.Transform.createOriginAndMatrix(moments.origin, axisVectors);
@@ -70,7 +71,7 @@ class MomentData {
         const products = moments.sums.matrixPart();
         const tensor = MomentData.momentTensorFromInertiaProducts(products);
         const moment2 = PointVector_1.Vector3d.create();
-        const axisVectors = Transform_1.RotMatrix.createZero();
+        const axisVectors = Transform_1.Matrix3d.createZero();
         tensor.fastSymmetricEigenvalues(axisVectors, moment2);
         MomentData.sortColumnsForIncreasingMoments(axisVectors, moment2);
         moments.localToWorldMap = Transform_1.Transform.createOriginAndMatrix(moments.origin, axisVectors);

@@ -1,6 +1,6 @@
 /** @module Solid */
 import { Point3d, Vector3d } from "../PointVector";
-import { RotMatrix } from "../Transform";
+import { Matrix3d } from "../Transform";
 import { Range3d } from "../Range";
 import { Transform } from "../Transform";
 import { GeometryQuery } from "../curve/CurvePrimitive";
@@ -11,11 +11,11 @@ import { LineString3d } from "../curve/LineString3d";
 /**
  */
 export declare class Box extends SolidPrimitive {
-    private localToWorld;
-    private baseX;
-    private baseY;
-    private topX;
-    private topY;
+    private _localToWorld;
+    private _baseX;
+    private _baseY;
+    private _topX;
+    private _topY;
     protected constructor(map: Transform, baseX: number, baseY: number, topX: number, topY: number, capped: boolean);
     clone(): Box;
     /** Return a coordinate frame (right handed unit vectors)
@@ -50,7 +50,7 @@ export declare class Box extends SolidPrimitive {
      * @param topY size factor for top rectangle (multiplies vectorY)
      * @param capped true to define top and bottom closure caps
      */
-    static createDgnBoxWithAxes(baseOrigin: Point3d, axes: RotMatrix, topOrigin: Point3d, baseX: number, baseY: number, topX: number, topY: number, capped: boolean): Box | undefined;
+    static createDgnBoxWithAxes(baseOrigin: Point3d, axes: Matrix3d, topOrigin: Point3d, baseX: number, baseY: number, topX: number, topY: number, capped: boolean): Box | undefined;
     getBaseX(): number;
     getBaseY(): number;
     getTopX(): number;
@@ -67,3 +67,4 @@ export declare class Box extends SolidPrimitive {
     constantVSection(zFraction: number): CurveCollection;
     extendRange(range: Range3d, transform?: Transform): void;
 }
+//# sourceMappingURL=Box.d.ts.map

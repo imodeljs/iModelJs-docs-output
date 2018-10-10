@@ -9,7 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Wire Format - iModelJs</title>
+    <title>Wire Format - iModel.js</title>
+    <meta name="og:title" content="Wire Format - iModel.js">
+    <meta name="twitter:title" content="Wire Format - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -90,8 +95,9 @@
         <h3 id="helpful links">Helpful links</h3>
         <ul>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
         </ul>
@@ -100,14 +106,65 @@
     <div class='documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > WireFormat</div>
-            <div class="edit-link"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fdocs%2Fcore%2Flearning%2FWireFormat.md" target="_blank">Edit this page</a></div>
+            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
             <h1 id="wire format">Wire Format</h1>
-<p>The <em>wire format</em> describes is the way entities are serialized to JSON.</p>
-<p>Below are examples of wire formats for .</p>
+<p>The <em>wire format</em> describes the way entities are serialized to JSON.</p>
+<p>Here is some sample code that dumps the entire iModel to JSON.</p>
+<pre class="no-line-numbers"><code class="language-typescript">/**
+ * This example code shows one possible way to dump an iModel to JSON.
+ * The strategy employed by this example is as follows:
+ * - Use the GUID of the iModel to create a new directory
+ * - Create a JSON file per Model under that directory
+ * - Output a JSON string and newline character per Element into the Model JSON file
+ *
+ * &gt; Note: The Model JSON file is formatted in such a way that it can either be loaded as JSON or optionally read line-by-line to conserve memory.
+ */
+class DumpIModel {
+  public static dump(iModel: IModelDb, baseDir: string): void {
+    // Use the GUID of the iModel to create a new directory
+    const outputDir = path.join(baseDir, iModel.getGuid().toString());
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir);
+    }
+    // Iterate each Model
+    const sql = `SELECT ECInstanceId AS id FROM ${Model.classFullName}`;
+    iModel.withPreparedStatement(sql, (statement: ECSqlStatement) =&gt; {
+      while (DbResult.BE_SQLITE_ROW === statement.step()) {
+        const row = statement.getRow();
+        DumpIModel.dumpModel(iModel, row.id, outputDir);
+      }
+    });
+  }
+
+  private static dumpModel(iModel: IModelDb, modelId: Id64String, outputDir: string): void {
+    // Use the Id of the Model to create a JSON output file
+    const outputFile = path.join(outputDir, `${modelId.toString()}.json`);
+    fs.writeFileSync(outputFile, &quot;[&quot;);
+    // ECSQL to SELECT every Element in the specified Model
+    const sql = `SELECT ECInstanceId AS id FROM ${Element.classFullName} WHERE Model.Id=:modelId`;
+    iModel.withPreparedStatement(sql, (statement: ECSqlStatement) =&gt; {
+      statement.bindId(&quot;modelId&quot;, modelId);
+      let isFirstEntry = true;
+      while (DbResult.BE_SQLITE_ROW === statement.step()) {
+        isFirstEntry ? fs.appendFileSync(outputFile, &quot;\n&quot;) : fs.appendFileSync(outputFile, &quot;,\n&quot;);
+        isFirstEntry = false;
+        const row = statement.getRow();
+        // Get the ElementProps (including the geometry detail) for the specified Element
+        const elementProps = iModel.elements.getElementProps({ id: row.id, wantGeometry: true });
+        // Output the ElementProps as a JSON string
+        fs.appendFileSync(outputFile, JSON.stringify(elementProps));
+      }
+    });
+    fs.appendFileSync(outputFile, &quot;\n]&quot;);
+  }
+}
+</code></pre>
+<hr>
+<p>Below are examples of wire formats for a few interesting iModel.js classes.</p>
 <h2 class="h-root-subject">Root Subject<a id="root-subject" class="heading-anchor" href="#root-subject"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The following code:</p>
-<pre class="no-line-numbers"><code class="language-typescript">    const elementProps: ElementProps = iModel.elements.getElementProps(IModel.rootSubjectId);
-    const json: string = JSON.stringify(elementProps, undefined, 2);</code></pre>
+<pre class="no-line-numbers"><code class="language-typescript">    const elementProps = iModel.elements.getElementProps(IModel.rootSubjectId) as ElementProps;
+    const json = JSON.stringify(elementProps, undefined, 2);</code></pre>
 <p>Produces the following result:</p>
 <pre class="no-line-numbers"><code class="language-json">{
   &quot;bisBaseClass&quot;: &quot;Subject&quot;,
@@ -124,8 +181,8 @@
 <hr>
 <h2 class="h-repositorymodel">RepositoryModel<a id="repositorymodel" class="heading-anchor" href="#repositorymodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The following code:</p>
-<pre class="no-line-numbers"><code class="language-typescript">    const modelProps: ModelProps = iModel.models.getModel(IModel.repositoryModelId);
-    const json: string = JSON.stringify(modelProps, undefined, 2);</code></pre>
+<pre class="no-line-numbers"><code class="language-typescript">    const modelProps = iModel.models.getModel(IModel.repositoryModelId) as ModelProps;
+    const json = JSON.stringify(modelProps, undefined, 2);</code></pre>
 <p>Produces the following result:</p>
 <pre class="no-line-numbers"><code class="language-json">{
   &quot;classFullName&quot;: &quot;BisCore:RepositoryModel&quot;,
@@ -353,7 +410,7 @@ This shows that the JSON from the <code>GeometricElement3d</code> contains the J
 <hr>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             

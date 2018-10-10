@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 /** @module Curve */
 const Geometry_1 = require("../Geometry");
 const BezierPolynomials_1 = require("../numerics/BezierPolynomials");
@@ -44,7 +45,7 @@ class CurveLocationDetail {
         this.intervalRole = value;
     }
     /** test if this is an isolated point. This is true if intervalRole is any of (undefined, isolated, isolatedAtVertex) */
-    isIsolated() {
+    get isIsolated() {
         return this.intervalRole === undefined
             || this.intervalRole === CurveIntervalRole.isolated
             || this.intervalRole === CurveIntervalRole.isolatedAtVertex;
@@ -99,10 +100,34 @@ class CurveLocationDetail {
         result = result ? result : new CurveLocationDetail();
         result.curve = curve;
         result.fraction = fraction;
-        result.point = point.clone();
+        result.point.setFromPoint3d(point);
         result.vector.set(0, 0, 0);
         result.a = 0.0;
         return result;
+    }
+    /** create with CurvePrimitive pointer, fraction, and point coordinates.
+     */
+    static createCurveFractionPointDistance(curve, fraction, point, a, result) {
+        result = result ? result : new CurveLocationDetail();
+        result.curve = curve;
+        result.fraction = fraction;
+        result.point.setFromPoint3d(point);
+        result.vector.set(0, 0, 0);
+        result.a = a;
+        return result;
+    }
+    /** update or create if closer than current contents.
+     * @param curve candidate curve
+     * @param fraction candidate fraction
+     * @param point candidate point
+     * @param a candidate distance
+     * @returns true if the given distance is smaller (and hence this detail was updated.)
+     */
+    updateIfCloserCurveFractionPointDistance(curve, fraction, point, a) {
+        if (this.a < a)
+            return false;
+        CurveLocationDetail.createCurveFractionPointDistance(curve, fraction, point, a, this);
+        return true;
     }
 }
 exports.CurveLocationDetail = CurveLocationDetail;
@@ -215,12 +240,12 @@ class CurvePrimitive extends GeometryQuery {
         const plane = this.fractionToPointAnd2Derivatives(fraction);
         if (!plane)
             return undefined;
-        let axes = Transform_1.RotMatrix.createRigidFromColumns(plane.vectorU, plane.vectorV, 0 /* XYZ */);
+        let axes = Transform_1.Matrix3d.createRigidFromColumns(plane.vectorU, plane.vectorV, 0 /* XYZ */);
         if (axes)
             return Transform_1.Transform.createRefs(plane.origin, axes, result);
         // 2nd derivative not distinct -- do arbitrary headsup ...
-        const perpVector = Transform_1.RotMatrix.createRigidHeadsUpFavorXYPlane(plane.vectorU, plane.vectorV);
-        axes = Transform_1.RotMatrix.createRigidFromColumns(plane.vectorU, perpVector, 0 /* XYZ */);
+        const perpVector = Transform_1.Matrix3d.createPerpendicularVectorFavorXYPlane(plane.vectorU, plane.vectorV);
+        axes = Transform_1.Matrix3d.createRigidFromColumns(plane.vectorU, perpVector, 0 /* XYZ */);
         if (axes)
             return Transform_1.Transform.createRefs(plane.origin, axes, result);
         return undefined;
@@ -292,41 +317,41 @@ exports.CurvePrimitive = CurvePrimitive;
 class NewtonRotRStrokeHandler extends Newton_1.NewtonEvaluatorRtoR {
     constructor() {
         super();
-        this.parentCurvePrimitive = undefined;
+        this._parentCurvePrimitive = undefined;
     }
     /** retain the parentCurvePrimitive */
-    startParentCurvePrimitive(curve) { this.parentCurvePrimitive = curve; }
+    startParentCurvePrimitive(curve) { this._parentCurvePrimitive = curve; }
     /** Forget the parentCurvePrimitive */
-    endParentCurvePrimitive(_curve) { this.parentCurvePrimitive = undefined; }
+    endParentCurvePrimitive(_curve) { this._parentCurvePrimitive = undefined; }
 }
 class AppendPlaneIntersectionStrokeHandler extends NewtonRotRStrokeHandler {
     constructor(plane, intersections) {
         super();
-        this.fractionA = 0;
-        this.functionA = 0;
+        this._fractionA = 0;
+        this._functionA = 0;
         // private derivativeA: number;   <---- Not currently used
-        this.functionB = 0;
-        this.fractionB = 0;
-        this.derivativeB = 0;
-        this.numThisCurve = 0;
-        this.plane = plane;
-        this.intersections = intersections;
+        this._functionB = 0;
+        this._fractionB = 0;
+        this._derivativeB = 0;
+        this._numThisCurve = 0;
+        this._plane = plane;
+        this._intersections = intersections;
         this.startCurvePrimitive(undefined);
-        this.ray = AnalyticGeometry_1.Ray3d.createZero();
-        this.newtonSolver = new Newton_1.Newton1dUnboundedApproximateDerivative(this);
+        this._ray = AnalyticGeometry_1.Ray3d.createZero();
+        this._newtonSolver = new Newton_1.Newton1dUnboundedApproximateDerivative(this);
     }
     // Return the first defined curve among: this.parentCurvePrimitive, this.curve;
     effectiveCurve() {
-        if (this.parentCurvePrimitive)
-            return this.parentCurvePrimitive;
-        return this.curve;
+        if (this._parentCurvePrimitive)
+            return this._parentCurvePrimitive;
+        return this._curve;
     }
-    get getDerivativeB() { return this.derivativeB; } // <--- DerivativeB is not currently used anywhere. Provided getter to suppress tslint error
+    get getDerivativeB() { return this._derivativeB; } // <--- DerivativeB is not currently used anywhere. Provided getter to suppress tslint error
     startCurvePrimitive(curve) {
-        this.curve = curve;
-        this.fractionA = 0.0;
-        this.numThisCurve = 0;
-        this.functionA = 0.0;
+        this._curve = curve;
+        this._fractionA = 0.0;
+        this._numThisCurve = 0;
+        this._functionA = 0.0;
         // this.derivativeA = 0.0;
     }
     endCurvePrimitive() { }
@@ -337,13 +362,13 @@ class AppendPlaneIntersectionStrokeHandler extends NewtonRotRStrokeHandler {
         const df = 1.0 / numStrokes;
         for (let i = 0; i <= numStrokes; i++) {
             const fraction = Geometry_1.Geometry.interpolate(fraction0, i * df, fraction1);
-            cp.fractionToPointAndDerivative(fraction, this.ray);
-            this.announcePointTangent(this.ray.origin, fraction, this.ray.direction);
+            cp.fractionToPointAndDerivative(fraction, this._ray);
+            this.announcePointTangent(this._ray.origin, fraction, this._ray.direction);
         }
     }
     announceSegmentInterval(_cp, point0, point1, _numStrokes, fraction0, fraction1) {
-        const h0 = this.plane.altitude(point0);
-        const h1 = this.plane.altitude(point1);
+        const h0 = this._plane.altitude(point0);
+        const h1 = this._plane.altitude(point1);
         if (h0 * h1 > 0.0)
             return;
         const fraction01 = BezierPolynomials_1.Order2Bezier.solveCoffs(h0, h1);
@@ -351,73 +376,89 @@ class AppendPlaneIntersectionStrokeHandler extends NewtonRotRStrokeHandler {
         if (fraction01 !== undefined) {
             // numIntersection++;
             const fraction = Geometry_1.Geometry.interpolate(fraction0, fraction01, fraction1);
-            this.newtonSolver.setX(fraction);
-            if (this.newtonSolver.runIterations()) {
-                this.announceSolutionFraction(this.newtonSolver.getX());
+            this._newtonSolver.setX(fraction);
+            if (this._newtonSolver.runIterations()) {
+                this.announceSolutionFraction(this._newtonSolver.getX());
             }
             // this.intersections.push(CurveLocationDetail.createCurveFractionPoint(cp, fraction, cp.fractionToPoint(fraction)));
         }
     }
     announceSolutionFraction(fraction) {
-        if (this.curve) {
-            this.ray = this.curve.fractionToPointAndDerivative(fraction, this.ray);
-            this.intersections.push(CurveLocationDetail.createCurveFractionPoint(this.curve, fraction, this.ray.origin));
+        if (this._curve) {
+            this._ray = this._curve.fractionToPointAndDerivative(fraction, this._ray);
+            this._intersections.push(CurveLocationDetail.createCurveFractionPoint(this._curve, fraction, this._ray.origin));
         }
     }
     evaluate(fraction) {
         const curve = this.effectiveCurve();
         if (!curve)
             return false;
-        this.currentF = this.plane.altitude(curve.fractionToPoint(fraction));
+        this.currentF = this._plane.altitude(curve.fractionToPoint(fraction));
         return true;
     }
+    /**
+     * * ASSUME both the "A" and "B"  evaluations (fraction, function, and derivative) are known.
+     * * If function value changed sign between, interpolate an approximate root and improve it with
+     *     the newton solver.
+     */
     searchInterval() {
-        if (this.functionA * this.functionB > 0)
+        if (this._functionA * this._functionB > 0)
             return;
-        if (this.functionA === 0)
-            this.announceSolutionFraction(this.fractionA);
-        if (this.functionB === 0)
-            this.announceSolutionFraction(this.fractionB);
-        if (this.functionA * this.functionB > 0) {
-            const fraction = Geometry_1.Geometry.inverseInterpolate(this.fractionA, this.functionA, this.fractionB, this.functionB);
+        if (this._functionA === 0)
+            this.announceSolutionFraction(this._fractionA);
+        if (this._functionB === 0)
+            this.announceSolutionFraction(this._fractionB);
+        if (this._functionA * this._functionB < 0) {
+            const fraction = Geometry_1.Geometry.inverseInterpolate(this._fractionA, this._functionA, this._fractionB, this._functionB);
             if (fraction) {
-                this.newtonSolver.setX(fraction);
-                if (this.newtonSolver.runIterations())
-                    this.announceSolutionFraction(this.newtonSolver.getX());
+                this._newtonSolver.setX(fraction);
+                if (this._newtonSolver.runIterations())
+                    this.announceSolutionFraction(this._newtonSolver.getX());
             }
         }
     }
+    /** Evaluate and save _functionB, _derivativeB, and _fractionB. */
     evaluateB(xyz, fraction, tangent) {
-        this.functionB = this.plane.altitude(xyz);
-        this.derivativeB = this.plane.velocity(tangent);
-        this.fractionB = fraction;
+        this._functionB = this._plane.altitude(xyz);
+        this._derivativeB = this._plane.velocity(tangent);
+        this._fractionB = fraction;
     }
+    /**
+     * Announce point and tangent for evaluations.
+     * * The function evaluation is saved as the "B" function point.
+     * * The function point count is incremented
+     * * If function point count is greater than 1, the current interval is searched.
+     * * The just-evaluated point ("B") is saved as the "old" ("A") evaluation point.
+     * @param xyz
+     * @param fraction
+     * @param tangent
+     */
     announcePointTangent(xyz, fraction, tangent) {
         this.evaluateB(xyz, fraction, tangent);
-        if (this.numThisCurve++ > 0)
+        if (this._numThisCurve++ > 0)
             this.searchInterval();
-        this.functionA = this.functionB;
-        this.fractionA = this.fractionB;
-        this.fractionA = this.fractionB;
+        this._functionA = this._functionB;
+        this._fractionA = this._fractionB;
+        this._fractionA = this._fractionB;
     }
 }
 class CurveLengthContext {
     tangentMagnitude(fraction) {
-        this.ray = this.curve.fractionToPointAndDerivative(fraction, this.ray);
-        return this.ray.direction.magnitude();
+        this._ray = this._curve.fractionToPointAndDerivative(fraction, this._ray);
+        return this._ray.direction.magnitude();
     }
-    getSum() { return this.summedLength; }
+    getSum() { return this._summedLength; }
     constructor() {
         this.startCurvePrimitive(undefined);
-        this.summedLength = 0.0;
-        this.ray = AnalyticGeometry_1.Ray3d.createZero();
+        this._summedLength = 0.0;
+        this._ray = AnalyticGeometry_1.Ray3d.createZero();
         const maxGauss = 7;
-        this.gaussX = new Float64Array(maxGauss);
-        this.gaussW = new Float64Array(maxGauss);
-        this.gaussMapper = Quadrature_1.Quadrature.setupGauss5;
+        this._gaussX = new Float64Array(maxGauss);
+        this._gaussW = new Float64Array(maxGauss);
+        this._gaussMapper = Quadrature_1.Quadrature.setupGauss5;
     }
     startCurvePrimitive(curve) {
-        this.curve = curve;
+        this._curve = curve;
     }
     startParentCurvePrimitive(_curve) { }
     endParentCurvePrimitive(_curve) { }
@@ -430,14 +471,14 @@ class CurveLengthContext {
         for (let i = 1; i <= numStrokes; i++) {
             const fractionA = Geometry_1.Geometry.interpolate(fraction0, (i - 1) * df, fraction1);
             const fractionB = i === numStrokes ? fraction1 : Geometry_1.Geometry.interpolate(fraction0, (i) * df, fraction1);
-            const numGauss = this.gaussMapper(fractionA, fractionB, this.gaussX, this.gaussW);
+            const numGauss = this._gaussMapper(fractionA, fractionB, this._gaussX, this._gaussW);
             for (let k = 0; k < numGauss; k++) {
-                this.summedLength += this.gaussW[k] * this.tangentMagnitude(this.gaussX[k]);
+                this._summedLength += this._gaussW[k] * this.tangentMagnitude(this._gaussX[k]);
             }
         }
     }
     announceSegmentInterval(_cp, point0, point1, _numStrokes, _fraction0, _fraction1) {
-        this.summedLength += point0.distance(point1);
+        this._summedLength += point0.distance(point1);
     }
     announcePointTangent(_xyz, _fraction, _tangent) {
         // uh oh -- need to retain point for next interval
@@ -447,33 +488,33 @@ class CurveLengthContext {
 class ClosestPointStrokeHandler extends NewtonRotRStrokeHandler {
     constructor(spacePoint, extend) {
         super();
-        this.fractionA = 0;
-        this.functionA = 0;
-        this.functionB = 0;
-        this.fractionB = 0;
-        this.numThisCurve = 0;
-        this.spacePoint = spacePoint;
-        this.workPoint = PointVector_1.Point3d.create();
-        this.workRay = AnalyticGeometry_1.Ray3d.createZero();
-        this.closestPoint = undefined;
-        this.extend = extend;
+        this._fractionA = 0;
+        this._functionA = 0;
+        this._functionB = 0;
+        this._fractionB = 0;
+        this._numThisCurve = 0;
+        this._spacePoint = spacePoint;
+        this._workPoint = PointVector_1.Point3d.create();
+        this._workRay = AnalyticGeometry_1.Ray3d.createZero();
+        this._closestPoint = undefined;
+        this._extend = extend;
         this.startCurvePrimitive(undefined);
-        this.newtonSolver = new Newton_1.Newton1dUnboundedApproximateDerivative(this);
+        this._newtonSolver = new Newton_1.Newton1dUnboundedApproximateDerivative(this);
     }
     claimResult() {
-        if (this.closestPoint) {
-            this.newtonSolver.setX(this.closestPoint.fraction);
-            this.curve = this.closestPoint.curve;
-            if (this.newtonSolver.runIterations())
-                this.announceSolutionFraction(this.newtonSolver.getX());
+        if (this._closestPoint) {
+            this._newtonSolver.setX(this._closestPoint.fraction);
+            this._curve = this._closestPoint.curve;
+            if (this._newtonSolver.runIterations())
+                this.announceSolutionFraction(this._newtonSolver.getX());
         }
-        return this.closestPoint;
+        return this._closestPoint;
     }
     startCurvePrimitive(curve) {
-        this.curve = curve;
-        this.fractionA = 0.0;
-        this.numThisCurve = 0;
-        this.functionA = 0.0;
+        this._curve = curve;
+        this._fractionA = 0.0;
+        this._numThisCurve = 0;
+        this._functionA = 0.0;
     }
     endCurvePrimitive() { }
     announceIntervalForUniformStepStrokes(cp, numStrokes, fraction0, fraction1) {
@@ -483,23 +524,23 @@ class ClosestPointStrokeHandler extends NewtonRotRStrokeHandler {
         const df = 1.0 / numStrokes;
         for (let i = 0; i <= numStrokes; i++) {
             const fraction = Geometry_1.Geometry.interpolate(fraction0, i * df, fraction1);
-            cp.fractionToPointAndDerivative(fraction, this.workRay);
-            this.announceRay(fraction, this.workRay);
+            cp.fractionToPointAndDerivative(fraction, this._workRay);
+            this.announceRay(fraction, this._workRay);
         }
     }
     announceCandidate(cp, fraction, point) {
-        const distance = this.spacePoint.distance(point);
-        if (this.closestPoint && distance > this.closestPoint.a)
+        const distance = this._spacePoint.distance(point);
+        if (this._closestPoint && distance > this._closestPoint.a)
             return;
-        this.closestPoint = CurveLocationDetail.createCurveFractionPoint(cp, fraction, point, this.closestPoint);
-        this.closestPoint.a = distance;
-        if (this.parentCurvePrimitive !== undefined)
-            this.closestPoint.curve = this.parentCurvePrimitive;
+        this._closestPoint = CurveLocationDetail.createCurveFractionPoint(cp, fraction, point, this._closestPoint);
+        this._closestPoint.a = distance;
+        if (this._parentCurvePrimitive !== undefined)
+            this._closestPoint.curve = this._parentCurvePrimitive;
     }
     announceSegmentInterval(cp, point0, point1, _numStrokes, fraction0, fraction1) {
-        let localFraction = this.spacePoint.fractionOfProjectionToLine(point0, point1, 0.0);
+        let localFraction = this._spacePoint.fractionOfProjectionToLine(point0, point1, 0.0);
         // only consider extending the segment if the immediate caller says we are at endpoints ...
-        if (!this.extend)
+        if (!this._extend)
             localFraction = Geometry_1.Geometry.clampToStartEnd(localFraction, 0.0, 1.0);
         else {
             if (fraction0 !== 0.0)
@@ -507,94 +548,94 @@ class ClosestPointStrokeHandler extends NewtonRotRStrokeHandler {
             if (fraction1 !== 1.0)
                 localFraction = Math.min(localFraction, 1.0);
         }
-        this.workPoint = point0.interpolate(localFraction, point1);
+        this._workPoint = point0.interpolate(localFraction, point1);
         const globalFraction = Geometry_1.Geometry.interpolate(fraction0, localFraction, fraction1);
-        this.announceCandidate(cp, globalFraction, this.workPoint);
+        this.announceCandidate(cp, globalFraction, this._workPoint);
     }
     searchInterval() {
-        if (this.functionA * this.functionB > 0)
+        if (this._functionA * this._functionB > 0)
             return;
-        if (this.functionA === 0)
-            this.announceSolutionFraction(this.fractionA);
-        if (this.functionB === 0)
-            this.announceSolutionFraction(this.fractionB);
-        if (this.functionA * this.functionB < 0) {
-            const fraction = Geometry_1.Geometry.inverseInterpolate(this.fractionA, this.functionA, this.fractionB, this.functionB);
+        if (this._functionA === 0)
+            this.announceSolutionFraction(this._fractionA);
+        if (this._functionB === 0)
+            this.announceSolutionFraction(this._fractionB);
+        if (this._functionA * this._functionB < 0) {
+            const fraction = Geometry_1.Geometry.inverseInterpolate(this._fractionA, this._functionA, this._fractionB, this._functionB);
             if (fraction) {
-                this.newtonSolver.setX(fraction);
-                if (this.newtonSolver.runIterations())
-                    this.announceSolutionFraction(this.newtonSolver.getX());
+                this._newtonSolver.setX(fraction);
+                if (this._newtonSolver.runIterations())
+                    this.announceSolutionFraction(this._newtonSolver.getX());
             }
         }
     }
     evaluateB(fractionB, dataB) {
-        this.functionB = dataB.dotProductToPoint(this.spacePoint);
-        this.fractionB = fractionB;
+        this._functionB = dataB.dotProductToPoint(this._spacePoint);
+        this._fractionB = fractionB;
     }
     announceSolutionFraction(fraction) {
-        if (this.curve)
-            this.announceCandidate(this.curve, fraction, this.curve.fractionToPoint(fraction));
+        if (this._curve)
+            this.announceCandidate(this._curve, fraction, this._curve.fractionToPoint(fraction));
     }
     evaluate(fraction) {
-        let curve = this.curve;
-        if (this.parentCurvePrimitive)
-            curve = this.parentCurvePrimitive;
+        let curve = this._curve;
+        if (this._parentCurvePrimitive)
+            curve = this._parentCurvePrimitive;
         if (curve) {
-            this.workRay = curve.fractionToPointAndDerivative(fraction, this.workRay);
-            this.currentF = this.workRay.dotProductToPoint(this.spacePoint);
+            this._workRay = curve.fractionToPointAndDerivative(fraction, this._workRay);
+            this.currentF = this._workRay.dotProductToPoint(this._spacePoint);
             return true;
         }
         return false;
     }
     announceRay(fraction, data) {
         this.evaluateB(fraction, data);
-        if (this.numThisCurve++ > 0)
+        if (this._numThisCurve++ > 0)
             this.searchInterval();
-        this.functionA = this.functionB;
-        this.fractionA = this.fractionB;
-        this.fractionA = this.fractionB;
+        this._functionA = this._functionB;
+        this._fractionA = this._fractionB;
+        this._fractionA = this._fractionB;
     }
     announcePointTangent(point, fraction, tangent) {
-        this.workRay.set(point, tangent);
-        this.announceRay(fraction, this.workRay);
+        this._workRay.set(point, tangent);
+        this.announceRay(fraction, this._workRay);
     }
 }
 /** A Coordinate is a persistable Point3d */
 class CoordinateXYZ extends GeometryQuery {
-    get point() { return this.xyz; }
+    get point() { return this._xyz; }
     /**
      * @param xyz point to be CAPTURED.
      */
     constructor(xyz) {
         super();
-        this.xyz = xyz;
+        this._xyz = xyz;
     }
     static create(point) {
         return new CoordinateXYZ(point.clone());
     }
     /** return the range of the point */
-    range() { return Range_1.Range3d.create(this.xyz); }
+    range() { return Range_1.Range3d.create(this._xyz); }
     extendRange(rangeToExtend, transform) {
         if (transform)
-            rangeToExtend.extendTransformedXYZ(transform, this.xyz.x, this.xyz.y, this.xyz.z);
+            rangeToExtend.extendTransformedXYZ(transform, this._xyz.x, this._xyz.y, this._xyz.z);
         else
-            rangeToExtend.extend(this.xyz);
+            rangeToExtend.extend(this._xyz);
     }
     /** Apply transform to the Coordinate's point. */
     tryTransformInPlace(transform) {
-        transform.multiplyPoint3d(this.xyz, this.xyz);
+        transform.multiplyPoint3d(this._xyz, this._xyz);
         return true;
     }
     /** return a transformed clone.
      */
     cloneTransformed(transform) {
-        const result = new CoordinateXYZ(this.xyz.clone());
+        const result = new CoordinateXYZ(this._xyz.clone());
         result.tryTransformInPlace(transform);
         return result;
     }
     /** return a clone */
     clone() {
-        return new CoordinateXYZ(this.xyz.clone());
+        return new CoordinateXYZ(this._xyz.clone());
     }
     /** return GeometryQuery children for recursive queries.
      *
@@ -612,7 +653,7 @@ class CoordinateXYZ extends GeometryQuery {
      * *  classes with both children and properties must implement for properties, call super for children.
      */
     isAlmostEqual(other) {
-        return (other instanceof CoordinateXYZ) && this.xyz.isAlmostEqual(other.xyz);
+        return (other instanceof CoordinateXYZ) && this._xyz.isAlmostEqual(other._xyz);
     }
     dispatchToGeometryHandler(handler) {
         return handler.handleCoordinateXYZ(this);

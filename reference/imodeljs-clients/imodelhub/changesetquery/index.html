@@ -10,6 +10,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>ChangeSetQuery - imodeljs-clients</title>
+    <meta name="og:title" content="ChangeSetQuery - imodeljs-clients">
+    <meta name="twitter:title" content="ChangeSetQuery - imodeljs-clients">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -180,7 +185,7 @@
 <p>Query object for getting <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a>s. You can use this to modify the query. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changesethandler/get'>ChangeSetHandler.get</a>.</p>
 <h3 class="h-extends">Extends<a id="extends" class="heading-anchor" href="#extends"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/instanceidquery'>InstanceIdQuery</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/stringidquery'>StringIdQuery</a></li>
 </ul>
 <h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -188,7 +193,7 @@
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-afterversion"><span class="method-name"><a href="afterversion">afterVersion</a></span><span class="method-parenthesis">(</span><span class="method-parameters">versionId: string</span><span class="method-parenthesis">):</span><span class="method-output"> this</span><a id="afterversion" class="heading-anchor" href="#afterversion"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-afterversion"><span class="method-name"><a href="afterversion">afterVersion</a></span><span class="method-parenthesis">(</span><span class="method-parameters">versionId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guid'>Guid</a></span><span class="method-parenthesis">):</span><span class="method-output"> this</span><a id="afterversion" class="heading-anchor" href="#afterversion"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Query <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a>s after the specified <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/version'>Version</a>.</td>
 </tr>
 <tr>
@@ -196,23 +201,19 @@
 <td>Query <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a>s between two specified ChangeSets.</td>
 </tr>
 <tr>
-<td class="h-betweenversionandchangeset"><span class="method-name"><a href="betweenversionandchangeset">betweenVersionAndChangeSet</a></span><span class="method-parenthesis">(</span><span class="method-parameters">versionId: string, changeSetId: string</span><span class="method-parenthesis">):</span><span class="method-output"> this</span><a id="betweenversionandchangeset" class="heading-anchor" href="#betweenversionandchangeset"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-betweenversionandchangeset"><span class="method-name"><a href="betweenversionandchangeset">betweenVersionAndChangeSet</a></span><span class="method-parenthesis">(</span><span class="method-parameters">versionId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guid'>Guid</a>, changeSetId: string</span><span class="method-parenthesis">):</span><span class="method-output"> this</span><a id="betweenversionandchangeset" class="heading-anchor" href="#betweenversionandchangeset"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Query <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a>s between the specified <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/version'>Version</a> and another <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a>.</td>
 </tr>
 <tr>
-<td class="h-betweenversions"><span class="method-name"><a href="betweenversions">betweenVersions</a></span><span class="method-parenthesis">(</span><span class="method-parameters">sourceVersionId: string, destinationVersionId: string</span><span class="method-parenthesis">):</span><span class="method-output"> this</span><a id="betweenversions" class="heading-anchor" href="#betweenversions"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-betweenversions"><span class="method-name"><a href="betweenversions">betweenVersions</a></span><span class="method-parenthesis">(</span><span class="method-parameters">sourceVersionId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guid'>Guid</a>, destinationVersionId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guid'>Guid</a></span><span class="method-parenthesis">):</span><span class="method-output"> this</span><a id="betweenversions" class="heading-anchor" href="#betweenversions"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Query <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a>s between two specified <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/version'>Version</a>s.</td>
-</tr>
-<tr>
-<td class="h-byid"><span class="method-name"><a href="byid">byId</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: string</span><span class="method-parenthesis">):</span><span class="method-output"> this</span><a id="byid" class="heading-anchor" href="#byid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Query <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a> by its id.</td>
 </tr>
 <tr>
 <td class="h-fromid"><span class="method-name"><a href="fromid">fromId</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: string</span><span class="method-parenthesis">):</span><span class="method-output"> this</span><a id="fromid" class="heading-anchor" href="#fromid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Query <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a>s that are after the specified ChangeSet.</td>
 </tr>
 <tr>
-<td class="h-getversionchangesets"><span class="method-name"><a href="getversionchangesets">getVersionChangeSets</a></span><span class="method-parenthesis">(</span><span class="method-parameters">versionId: string</span><span class="method-parenthesis">):</span><span class="method-output"> this</span><a id="getversionchangesets" class="heading-anchor" href="#getversionchangesets"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-getversionchangesets"><span class="method-name"><a href="getversionchangesets">getVersionChangeSets</a></span><span class="method-parenthesis">(</span><span class="method-parameters">versionId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guid'>Guid</a></span><span class="method-parenthesis">):</span><span class="method-output"> this</span><a id="getversionchangesets" class="heading-anchor" href="#getversionchangesets"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Query <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a>s included in the specified <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/version'>Version</a>.</td>
 </tr>
 <tr>
@@ -228,6 +229,11 @@
 <th>Name</th>
 <th>Inherited from</th>
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
+</tr>
+<tr>
+<td class="h-byid"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/stringidquery/byid'>byId</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: string</span><span class="method-parenthesis">):</span><span class="method-output"> this</span><a id="byid" class="heading-anchor" href="#byid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/stringidquery'>StringIdQuery</a></span></td>
+<td>Query single instance by its id.</td>
 </tr>
 <tr>
 <td class="h-filter"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/query/filter'>filter</a></span><span class="method-parenthesis">(</span><span class="method-parameters">filter: string</span><span class="method-parenthesis">):</span><span class="method-output"> this</span><a id="filter" class="heading-anchor" href="#filter"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -268,11 +274,11 @@
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
-<li><span class="defined-in"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fcore%2Fclients%2Fsrc%2Fimodelhub%2FChangeSets.ts" target="_blank">imodelhub/ChangeSets.ts</a></span></li>
+<li><span class="defined-in"><span title="Page edit feature coming soon">imodelhub/ChangeSets.ts</span></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             
@@ -313,9 +319,6 @@
                                             <a class='title solo-title menu-text' href="#betweenversions">betweenVersions</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#byid">byId</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#fromid">fromId</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -335,6 +338,9 @@
                             <i class='dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-inherited-methods" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#byid">byId</a>
+                                    </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#filter">filter</a>
                                     </li>

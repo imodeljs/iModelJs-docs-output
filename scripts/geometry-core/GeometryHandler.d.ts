@@ -18,12 +18,14 @@ import { Arc3d } from "./curve/Arc3d";
 import { LineString3d } from "./curve/LineString3d";
 import { PointString3d } from "./curve/PointString3d";
 import { Plane3dByOriginAndVectors } from "./AnalyticGeometry";
+import { BSplineCurve3dH } from "./bspline/BSplineCurve3dH";
 export declare abstract class GeometryHandler {
     abstract handleLineSegment3d(g: LineSegment3d): any;
     abstract handleLineString3d(g: LineString3d): any;
     abstract handleArc3d(g: Arc3d): any;
     handleCurveCollection(_g: CurveCollection): any;
     abstract handleBSplineCurve3d(g: BSplineCurve3d): any;
+    abstract handleBSplineCurve3dH(g: BSplineCurve3dH): any;
     abstract handleBSplineSurface3d(g: BSplineSurface3d): any;
     abstract handleCoordinateXYZ(g: CoordinateXYZ): any;
     abstract handleBSplineSurface3dH(g: BSplineSurface3dH): any;
@@ -60,6 +62,7 @@ export declare class NullGeometryHandler extends GeometryHandler {
     handleArc3d(_g: Arc3d): any;
     handleCurveCollection(_g: CurveCollection): any;
     handleBSplineCurve3d(_g: BSplineCurve3d): any;
+    handleBSplineCurve3dH(_g: BSplineCurve3dH): any;
     handleBSplineSurface3d(_g: BSplineSurface3d): any;
     handleCoordinateXYZ(_g: CoordinateXYZ): any;
     handleBSplineSurface3dH(_g: BSplineSurface3dH): any;
@@ -131,3 +134,4 @@ export interface UVSurface {
      */
     UVFractionToPointAndTangents(uFraction: number, vFraction: number, result?: Plane3dByOriginAndVectors): Plane3dByOriginAndVectors;
 }
+//# sourceMappingURL=GeometryHandler.d.ts.map

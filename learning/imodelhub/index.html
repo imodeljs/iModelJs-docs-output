@@ -9,7 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>iModelHub - The Backbone for iModel.js Applications - iModelJs</title>
+    <title>iModelHub - The Backbone for iModel.js Applications - iModel.js</title>
+    <meta name="og:title" content="iModelHub - The Backbone for iModel.js Applications - iModel.js">
+    <meta name="twitter:title" content="iModelHub - The Backbone for iModel.js Applications - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -90,8 +95,9 @@
         <h3 id="helpful links">Helpful links</h3>
         <ul>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
         </ul>
@@ -99,52 +105,50 @@
         </ul>    </div>
     <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > IModelHub</div>
-            <div class="edit-link"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fdocs%2Fcore%2Flearning%2FIModelHub.md" target="_blank">Edit this page</a></div>
+            <div class='bread-crumb-label'>imodelhub</div>
+            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
             <h1 id="imodelhub -the backbone for imodel.js applications">iModelHub - The Backbone for iModel.js Applications</h1>
-<p><a href="http:/www.iModelHub.com">iModelHub</a> is a cloud service for managing and coordinating access to <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/imodels'>iModels</a>.</p>
-<p>Like <a href="https://git-scm.com/">Git</a> repositories for source code, in the iModel ecosystem copies of iModels are distributed widely in <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#briefcase'>briefcases</a>. In fact, iModelHub&apos;s primary purpose is <em>not</em> to hold or process copies of iModels (it does so only to facilitate Briefcase checkout.) Rather, iModelHub&apos;s main role is to maintain the sequence of <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#changeset'>ChangeSets</a> that forms an iModel&apos;s <a href="#the-timeline-of-changes-to-an-imodel">Timeline</a>. Like an accounting system does for financial transactions, iModelHub holds a ledger of all changes to an iModel.</p>
-<p>iModelHub accepts ChangeSets from iModel.js <a href='https://imodeljs.github.io/iModelJs-docs-output//learning/backend/'>backends</a> through a process called <a href="#upload-changesets"><em>Check In</em></a>, and sends them to other validated users when requested through a process called <a href="#download-changesets"><em>Synchronization</em></a>. iModel.js applications determine when and how to Check In and Synchronize.</p>
+<p><a href="http:/www.iModelHub.com">iModelHub</a> is the control center for iModels. It is responsible for coordinating concurrent access to <a href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/imodels/'>iModels</a> as well as changes made to them in a form of <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#changeset'>ChangeSets</a>.</p>
+<p><img src="./iModelHub.png" alt="iModelHub"></p>
+<p>Like <a href="https://git-scm.com/">Git</a> repositories for source code, in the iModel ecosystem copies of iModels are distributed widely in <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#briefcase'>Briefcases</a>. In fact, iModelHub&apos;s primary purpose is <em>not</em> to hold or process copies of iModels (it does so only to facilitate Briefcase checkout). Rather, iModelHub&apos;s main role is to maintain the sequence of <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#changeset'>ChangeSets</a> that forms an iModel&apos;s <a href="#the-timeline-of-changes-to-an-imodel">Timeline</a>. Like an accounting system does for financial transactions, iModelHub holds a ledger of all changes to an iModel.</p>
+<p>iModelHub accepts ChangeSets from iModel.js <a href='https://imodeljs.github.io/iModelJs-docs-output//learning/backend/'>backends</a> through a process called <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#push'><em>push</em></a>, and sends them to other validated users when requested through a process called <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#pull'><em>pull</em></a>. iModel.js applications determine when and how to push and pull changes.</p>
+<p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/imodelhub/workingwith'>working with iModelHub</a> for a list of related learning topics.</p>
 <h2 class="h-the-connection-between-imodeljs-and-imodelhub">The Connection between iModel.js and iModelHub<a id="the-connection-between-imodeljs-and-imodelhub" class="heading-anchor" href="#the-connection-between-imodeljs-and-imodelhub"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ol>
 <li>Every iModel has an <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/imodels/#every-imodel-has-a-guid'>identity</a> registered in iModelHub.</li>
-<li>Users log into iModelHub for authentication.</li>
+<li>Users <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/common/accesstoken'>authenticate</a> with iModelHub.</li>
 <li>iModel.js backends have an identity, registered with iModelHub.</li>
-<li>iModel owners decide, via iModelHub, which users and which applications have access to their iModels.</li>
+<li>iModel owners decide, which users and which applications have <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/imodelhub/permissions'>access</a> to their iModels.</li>
 </ol>
-<p>When an iModel.js backend opens an iModel, it is first required to verify with iModelHub that the iModel&apos;s owner has granted the right for the current user and application to access the briefcase. In this manner owners can maintain control over who-does-what with their iModels, even if someone receives an unauthorized copy<sup>1</sup>.</p>
+<p>When an iModel.js backend opens an iModel, it first verifies with iModelHub that the iModel&apos;s owner has granted the right for the specified user and application to access the briefcase. In this manner owners can maintain control over who-does-what with their iModels, even if someone receives an unauthorized copy<sup>1</sup>.</p>
 <blockquote>
 <p>This means that applications written using iModel.js require a valid project on iModelHub.</p>
 </blockquote>
-<h2 class="h-the-timeline-of-changes-to-an-imodel">The Timeline of Changes to an iModel<a id="the-timeline-of-changes-to-an-imodel" class="heading-anchor" href="#the-timeline-of-changes-to-an-imodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>iModelHub holds an immutable ledger of all changes to an iModel. Similar to an accounting system for financial data, the ledger can provide a reliable record of what-happened-when and by whom.
-Since the ledger is reliable, immutable and append-only (i.e. it is not possible to <em>revise history</em>), it forms a timeline that can be referenced externally as an authoritative record of the state-of-the-iModel
-as of a given point in time. In this manner, iModelHub provides the means to <em>sign the timeline</em> rather than create external (and potentially forgeable) snapshots for archival or reference.</p>
-<h2 class="h-named-versions">Named Versions<a id="named-versions" class="heading-anchor" href="#named-versions"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Every ChangeSet on the timeline creates a <em>new version</em> of the iModel. However, some points on the timeline can represent important milestones or significant events to be saved (e.g. for a design review.)
-iModelHub provides a way to mark a point on the timeline with a name. These timepoints are referred to as <strong>Named Versions</strong>. Since a specific action must be taken to create them, they are treated specially by
-iModelHub with caching to make them faster to access.</p>
-<h2 class="h-locks-and-codes">Locks and Codes<a id="locks-and-codes" class="heading-anchor" href="#locks-and-codes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>iModels are meant to be distributed widely in the form of Briefcases, and each Briefcase may be edited independently. However, certain actions among the distributed Briefcases are best coordinated to avoid
-conflicting changes. iModelHub provides services for acquiring <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/concurrencycontrol'>locks and codes</a> for this purpose.</p>
 <h2 class="h-creating-a-new-imodel-in-imodelhub">Creating a new iModel in iModelHub<a id="creating-a-new-imodel-in-imodelhub" class="heading-anchor" href="#creating-a-new-imodel-in-imodelhub"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>When an iModel is first created, it is uploaded to iModelHub, assigned a Guid, associated with a connected context, and its timeline is initialized.
-iModelHub provides tools to configure access to the iModel by users and applications. As new users and agents connect to iModelHub to access the iModel, they are each assigned
-briefcases with a unique Id.</p>
-<h2 class="h-uploading-and-download-changesets">Uploading and Download ChangeSets<a id="uploading-and-download-changesets" class="heading-anchor" href="#uploading-and-download-changesets"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>A local Briefcase holds the state of an iModel as of a given point in time, plus changes made locally, if any. To receive changes made by others, users <em>synchronizes</em> their Briefcase from iModelHub.
-Any ChangeSets pushed to iModelHub by other users are downloaded and merged into the local Briefcase.</p>
-<p>To permanently save your changes, you upload them in the form of a ChangeSet to iModelHub. You must always synchronize your Briefcase with iModelHub before you can upload changes.
-iModelHub enforces that ChangeSets it accepts must always be <em>based on</em> (i.e. synchronized with) the most recent ChangeSet. This is what establishes the linear timeline of changes.</p>
-<h2 class="h-imodelhub-notifications">iModelHub Notifications<a id="imodelhub-notifications" class="heading-anchor" href="#imodelhub-notifications"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Applications can register listeners for notifications from iModelHub. It is possible therefore to create Agents that react to every ChangeSet, performing validation, tracking, synchronization with external systems, etc. Since each Agent works on a local Briefcase synchronized with ChangeSets, each can be deployed independently and the system is infinitely scalable.</p>
+<p>When an iModel is first created, it is uploaded to iModelHub, assigned a Guid, associated with a connected context (e.g. a CONNECT <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/connectservices/project'>Project</a>), and its timeline is initialized. iModelHub provides tools to configure access to the iModel by users and applications. As new users and agents connect to iModelHub to access the iModel, they are each assigned briefcases with a unique Id.</p>
+<p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/imodels/'>working with iModels</a>.</p>
+<h2 class="h-the-timeline-of-changes-to-an-imodel">The Timeline of Changes to an iModel<a id="the-timeline-of-changes-to-an-imodel" class="heading-anchor" href="#the-timeline-of-changes-to-an-imodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>iModelHub holds an immutable ledger of all changes to an iModel. Similar to an accounting system for financial data, the ledger can provide a reliable record of what-happened-when and by whom. Since the ledger is reliable, immutable and append-only (i.e. it is not possible to <em>revise history</em>), it forms a timeline that can be referenced externally as an authoritative record of the state-of-the-iModel as of a given point in time. In this manner, iModelHub provides the means to <em>sign the timeline</em> rather than create external (and potentially forgeable) snapshots for archival or reference.</p>
+<h3 class="h-pushing-and-pulling-changesets">Pushing and Pulling ChangeSets<a id="pushing-and-pulling-changesets" class="heading-anchor" href="#pushing-and-pulling-changesets"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>A local <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#briefcase'>Briefcase</a> holds the state of an iModel as of a given point in time, plus changes made locally, if any. To receive changes made by others, users <em>synchronize</em> their Briefcase from iModelHub. Any ChangeSets <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#push'>pushed</a> to iModelHub by other users are <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#pull'>pulled</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#merge'>merged</a> into the local Briefcase.</p>
+<p>To permanently save your changes, you push them in the form of a ChangeSet to iModelHub. You must always synchronize your Briefcase with iModelHub before you can upload changes. iModelHub enforces that ChangeSets it accepts must always be <em>based on</em> (i.e. synchronized with) the most recent ChangeSet. This is what establishes the linear timeline of changes.</p>
+<p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/imodelhub/briefcases'>working with Briefcase and ChangeSets</a>.</p>
+<h3 class="h-named-versions">Named Versions<a id="named-versions" class="heading-anchor" href="#named-versions"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>Every ChangeSet on the timeline creates a <em>new version</em> of the iModel. However, some points on the timeline can represent important milestones or significant events to be saved (e.g. for a design review). iModelHub provides a way to mark a point on the timeline with a name. These timepoints are referred to as <strong>Named Versions</strong>. Since a specific action must be taken to create them, they are treated specially by iModelHub with caching to make them faster to access.</p>
+<p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/imodelhub/versions'>using Named Versions</a>.</p>
+<h2 class="h-locks-and-codes">Locks and Codes<a id="locks-and-codes" class="heading-anchor" href="#locks-and-codes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>iModels are meant to be distributed widely in the form of Briefcases, and each Briefcase may be edited independently. However, certain actions among the distributed Briefcases are best coordinated to avoid conflicting changes. iModelHub provides services for acquiring Locks and <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#code'>Codes</a> for this purpose.</p>
+<p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/concurrencycontrol'>working with locks and codes</a>.</p>
+<h2 class="h-imodelhub-events">iModelHub Events<a id="imodelhub-events" class="heading-anchor" href="#imodelhub-events"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Applications can register listeners for events from iModelHub. Events report on certain operations being performed on that iModel. It is possible therefore to create Agents that react to every ChangeSet, performing validation, tracking, synchronization with external systems, etc. Since each Agent works on a local Briefcase synchronized with ChangeSets, they can be deployed independently and the system is vastly scalable.</p>
+<p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/imodelhub/events'>working with events</a>.</p>
 <hr>
 <ol>
 <li>iModel.js does what it can to enforce security for iModels. It makes no guarantee that a determined hacker won&apos;t be able to defeat any barriers iModel.js imposes.</li>
 </ol>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             
@@ -161,22 +165,27 @@ iModelHub enforces that ChangeSets it accepts must always be <em>based on</em> (
             <a class='title solo-title menu-text' href="#the-connection-between-imodeljs-and-imodelhub">The Connection between iModel.js and iModelHub</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#the-timeline-of-changes-to-an-imodel">The Timeline of Changes to an iModel</a>
+            <a class='title solo-title menu-text' href="#creating-a-new-imodel-in-imodelhub">Creating a new iModel in iModelHub</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#named-versions">Named Versions</a>
+            <a data-target="#inner-nav-the-timeline-of-changes-to-an-imodel" class='title' href="#the-timeline-of-changes-to-an-imodel"/>
+            <b class='dropdown-menu-title menu-text'>The Timeline of Changes to an iModel</b>
+            <i class='dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-the-timeline-of-changes-to-an-imodel" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#pushing-and-pulling-changesets">Pushing and Pulling ChangeSets</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#named-versions">Named Versions</a>
+                    </li>
+            </ul>
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#locks-and-codes">Locks and Codes</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#creating-a-new-imodel-in-imodelhub">Creating a new iModel in iModelHub</a>
-    </li>
-       <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#uploading-and-download-changesets">Uploading and Download ChangeSets</a>
-    </li>
-       <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#imodelhub-notifications">iModelHub Notifications</a>
+            <a class='title solo-title menu-text' href="#imodelhub-events">iModelHub Events</a>
     </li>
  
       </ul>

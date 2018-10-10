@@ -1,5 +1,5 @@
 /** @module Curve */
-import { BeJSONFunctions } from "../Geometry";
+import { BeJSONFunctions, PlaneAltitudeEvaluator } from "../Geometry";
 import { Point3d, XAndY } from "../PointVector";
 import { Range3d } from "../Range";
 import { Transform } from "../Transform";
@@ -10,9 +10,9 @@ import { StrokeOptions } from "../curve/StrokeOptions";
 import { CurvePrimitive, GeometryQuery, CurveLocationDetail, AnnounceNumberNumberCurvePrimitive } from "./CurvePrimitive";
 import { Clipper } from "../clipping/ClipUtils";
 export declare class LineString3d extends CurvePrimitive implements BeJSONFunctions {
-    private static s_workPointA;
-    private static s_workPointB;
-    private static s_workPointC;
+    private static _workPointA;
+    private static _workPointB;
+    private static _workPointC;
     isSameGeometryClass(other: GeometryQuery): boolean;
     private _points;
     /** return the points array (cloned). */
@@ -21,17 +21,34 @@ export declare class LineString3d extends CurvePrimitive implements BeJSONFuncti
     readonly packedPoints: GrowableXYZArray;
     private constructor();
     cloneTransformed(transform: Transform): CurvePrimitive;
-    private static flattenArray(arr);
+    private static flattenArray;
     static create(...points: any[]): LineString3d;
     static createXY(points: XAndY[], z: number, enforceClosure?: boolean): LineString3d;
     addPoints(...points: any[]): void;
+    /**
+     * Add a point to the linestring.
+     * @param point
+     */
     addPoint(point: Point3d): void;
+    /**
+     * Add a point to the linestring.
+     * @param point
+     */
+    addPointXYZ(x: number, y: number, z?: number): void;
     /**
      * If the linestring is not already closed, add a closure point.
      */
     addClosurePoint(): void;
     popPoint(): void;
     static createRectangleXY(point0: Point3d, ax: number, ay: number, closed?: boolean): LineString3d;
+    /**
+     * Create a regular polygon centered
+     * @param center center of the polygon.
+     * @param edgeCount number of edges.
+     * @param radius distance to vertex or edge (see `radiusToVertices`)
+     * @param radiusToVertices true if polygon is inscribed in circle (radius measured to vertices); false if polygon is outside circle (radius to edges)
+     */
+    static createRegularPolygonXY(center: Point3d, edgeCount: number, radius: number, radiusToVertices?: boolean): LineString3d;
     setFrom(other: LineString3d): void;
     static createPoints(points: Point3d[]): LineString3d;
     /** Create a LineString3d from xyz coordinates packed in a Float64Array */
@@ -69,12 +86,12 @@ export declare class LineString3d extends CurvePrimitive implements BeJSONFuncti
     /** push a hit, fixing up the prior entry if needed.
      * return the incremented counter.
      */
-    private static pushVertexHit(result, counter, cp, fraction, point);
+    private static pushVertexHit;
     /** find intersections with a plane.
      *  Intersections within segments are recorded as CurveIntervalRole.isolated
      *   Intersections at isolated "on" vertex are recoded as CurveIntervalRole.isolatedAtVertex.
      */
-    appendPlaneIntersectionPoints(plane: Plane3dByOriginAndUnitNormal, result: CurveLocationDetail[]): number;
+    appendPlaneIntersectionPoints(plane: PlaneAltitudeEvaluator, result: CurveLocationDetail[]): number;
     extendRange(rangeToExtend: Range3d, transform?: Transform): void;
     isAlmostEqual(other: GeometryQuery): boolean;
     /** Append (clone of) one point.
@@ -106,8 +123,8 @@ export declare class LineString3d extends CurvePrimitive implements BeJSONFuncti
      * @returns true if any "in" segments are announced.
      */
     announceClipIntervals(clipper: Clipper, announce?: AnnounceNumberNumberCurvePrimitive): boolean;
-    private static s_indexPoint;
-    private addResolvedPoint(index, fraction, dest);
+    private static _indexPoint;
+    private addResolvedPoint;
     /** Return (if possible) a LineString which is a portion of this curve.
      * @param fractionA [in] start fraction
      * @param fractionB [in] end fraction
@@ -126,3 +143,4 @@ export declare class AnnotatedLineString3d {
     vecturU?: GrowableXYZArray;
     vectorV?: GrowableXYZArray;
 }
+//# sourceMappingURL=LineString3d.d.ts.map

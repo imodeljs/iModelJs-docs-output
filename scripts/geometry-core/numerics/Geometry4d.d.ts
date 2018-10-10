@@ -1,7 +1,8 @@
 /** @module Numerics */
 import { BeJSONFunctions } from "../Geometry";
 import { Point3d, Vector3d, XYZ, XYAndZ } from "../PointVector";
-import { RotMatrix, Transform } from "../Transform";
+import { Matrix3d, Transform } from "../Transform";
+import { Ray3d, Plane3dByOriginAndVectors } from "../AnalyticGeometry";
 export declare type Point4dProps = number[];
 export declare type Matrix4dProps = Point4dProps[];
 /** 4 Dimensional point (x,y,z,w) used in perspective calculations.
@@ -42,6 +43,9 @@ export declare class Point4d implements BeJSONFunctions {
      * * x,y,z,w all participate without normalization.
      */
     distanceSquaredXYZW(other: Point4d): number;
+    /** Return the distance between the instance and other after normalizing by weights
+     */
+    realDistanceXY(other: Point4d): number | undefined;
     /** Return the largest absolute distance between corresponding components
      * * x,y,z,w all participate without normalization.
      */
@@ -56,28 +60,43 @@ export declare class Point4d implements BeJSONFunctions {
     crossWeightedMinus(other: Point4d, result?: Vector3d): Vector3d;
     /** @returns Return the sum of this and other, using all 4 components x,y,z,w */
     plus(other: Point4d, result?: Point4d): Point4d;
-    isAlmostZero(): boolean;
+    readonly isAlmostZero: boolean;
     static createZero(): Point4d;
+    /**
+     * Create plane coefficients for the plane containing pointA, pointB, and 0010.
+     * @param pointA first point
+     * @param pointB second point
+     */
+    static createPlanePointPointZ(pointA: Point4d, pointB: Point4d, result?: Point4d): Point4d;
     /**
      * extract 4 consecutive numbers from a Float64Array into a Point4d.
      * @param data buffer of numbers
      * @param xIndex first index for x,y,z,w sequence
      */
-    static createFromPackedXYZW(data: Float64Array, xIndex?: number): Point4d;
-    static createFromPointAndWeight(xyz: XYZ, w: number): Point4d;
+    static createFromPackedXYZW(data: Float64Array, xIndex?: number, result?: Point4d): Point4d;
+    static createFromPointAndWeight(xyz: XYAndZ, w: number): Point4d;
     /** Return point + vector \* scalar */
     plusScaled(vector: Point4d, scaleFactor: number, result?: Point4d): Point4d;
+    /** Return interpolation between instance and pointB at fraction
+     */
+    interpolate(fraction: number, pointB: Point4d, result?: Point4d): Point4d;
     /** Return point + vectorA \* scalarA + vectorB \* scalarB */
     plus2Scaled(vectorA: Point4d, scalarA: number, vectorB: Point4d, scalarB: number, result?: Point4d): Point4d;
     /** Return point + vectorA \* scalarA + vectorB \* scalarB + vectorC \* scalarC */
     plus3Scaled(vectorA: Point4d, scalarA: number, vectorB: Point4d, scalarB: number, vectorC: Point4d, scalarC: number, result?: Point4d): Point4d;
     /** Return point + vectorA \* scalarA + vectorB \* scalarB */
-    static add2Scaled(vectorA: Point4d, scalarA: number, vectorB: Point4d, scalarB: number, result?: Point4d): Point4d;
+    static createAdd2Scaled(vectorA: Point4d, scalarA: number, vectorB: Point4d, scalarB: number, result?: Point4d): Point4d;
     /** Return point + vectorA \* scalarA + vectorB \* scalarB + vectorC \* scalarC */
-    static add3Scaled(vectorA: Point4d, scalarA: number, vectorB: Point4d, scalarB: number, vectorC: Point4d, scalarC: number, result?: Point4d): Point4d;
+    static createAdd3Scaled(vectorA: Point4d, scalarA: number, vectorB: Point4d, scalarB: number, vectorC: Point4d, scalarC: number, result?: Point4d): Point4d;
     dotVectorsToTargets(targetA: Point4d, targetB: Point4d): number;
     dotProduct(other: Point4d): number;
     dotProductXYZW(x: number, y: number, z: number, w: number): number;
+    /** dotProduct with (point.x, point.y, point.z, 1) Used in PlaneAltitudeEvaluator interface */
+    altitude(point: Point3d): number;
+    /** dotProduct with (vector.x, vector.y, vector.z, 0).  Used in PlaneAltitudeEvaluator interface */
+    velocity(vector: Vector3d): number;
+    /** dotProduct with (x,y,z, 0).  Used in PlaneAltitudeEvaluator interface */
+    velocityXYZ(x: number, y: number, z: number): number;
     /** unit X vector */
     static unitX(): Point4d;
     /** unit Y vector */
@@ -91,8 +110,60 @@ export declare class Point4d implements BeJSONFunctions {
     scale(scale: number, result?: Point4d): Point4d;
     /** Negate components (including w!!) */
     negate(result?: Point4d): Point4d;
+    /**
+     * If `this.w` is nonzero, return a 4d point `(x/w,y/w,z/w, 1)`
+     * If `this.w` is zero, return undefined.
+     * @param result optional result
+     */
     normalizeWeight(result?: Point4d): Point4d | undefined;
+    /**
+     * If `this.w` is nonzero, return a 3d point `(x/w,y/w,z/w)`
+     * If `this.w` is zero, return undefined.
+     * @param result optional result
+     */
     realPoint(result?: Point3d): Point3d | undefined;
+    /**
+     * * If w is nonzero, return Point3d with x/w,y/w,z/w.
+     * * If w is zero, return 000
+     * @param x x coordinate
+     * @param y y coordinate
+     * @param z z coordinate
+     * @param w w coordinate
+     * @param result optional result
+     */
+    static createRealPoint3dDefault000(x: number, y: number, z: number, w: number, result?: Point3d): Point3d;
+    /**
+     * * If w is nonzero, return Vector3d which is the derivative of the projecte xyz with given w and 4d derivatives.
+     * * If w is zero, return 000
+     * @param x x coordinate
+     * @param y y coordinate
+     * @param z z coordinate
+     * @param w w coordinate
+     * @param dx x coordinate of derivative
+     * @param dy y coordinate of derivative
+     * @param dz z coordinate of derivative
+     * @param dw w coordinate of derivative
+     * @param result optional result
+     */
+    static createRealDerivativeRay3dDefault000(x: number, y: number, z: number, w: number, dx: number, dy: number, dz: number, dw: number, result?: Ray3d): Ray3d;
+    /**
+     * * If w is nonzero, return Vector3d which is the derivative of the projecte xyz with given w and 4d derivatives.
+     * * If w is zero, return 000
+     * @param x x coordinate
+     * @param y y coordinate
+     * @param z z coordinate
+     * @param w w coordinate
+     * @param dx x coordinate of derivative
+     * @param dy y coordinate of derivative
+     * @param dz z coordinate of derivative
+     * @param dw w coordinate of derivative
+     * @param result optional result
+     */
+    static createRealDerivativePlane3dByOriginAndVectorsDefault000(x: number, y: number, z: number, w: number, dx: number, dy: number, dz: number, dw: number, ddx: number, ddy: number, ddz: number, ddw: number, result?: Plane3dByOriginAndVectors): Plane3dByOriginAndVectors;
+    /**
+     * * If this.w is nonzero, return Point3d with x/w,y/w,z/w.
+     * * If this.w is zero, return 000
+     */
     realPointDefault000(result?: Point3d): Point3d;
     /** divide all components (x,y,z,w) by the 4d magnitude.
      *
@@ -102,7 +173,7 @@ export declare class Point4d implements BeJSONFunctions {
     normalizeXYZW(result?: Point4d): Point4d | undefined;
 }
 export declare class Matrix4d implements BeJSONFunctions {
-    private coffs;
+    private _coffs;
     private constructor();
     setFrom(other: Matrix4d): void;
     clone(): Matrix4d;
@@ -110,7 +181,7 @@ export declare class Matrix4d implements BeJSONFunctions {
     setZero(): void;
     /** set to identity. */
     setIdentity(): void;
-    private static is1000(a, b, c, d, tol);
+    private static is1000;
     /** set to identity. */
     isIdentity(tol?: number): boolean;
     /** create a Matrix4d filled with zeros. */
@@ -181,9 +252,11 @@ export declare class Matrix4d implements BeJSONFunctions {
     rowZ(): Point4d;
     /** @returns Return row 3 as Point4d. */
     rowW(): Point4d;
+    readonly hasPerspective: boolean;
     diagonal(): Point4d;
     weight(): number;
-    matrixPart(): RotMatrix;
+    matrixPart(): Matrix3d;
+    readonly asTransform: Transform | undefined;
     /** multiply this * other. */
     multiplyMatrixMatrix(other: Matrix4d, result?: Matrix4d): Matrix4d;
     /** multiply this * transpose(other). */
@@ -194,6 +267,10 @@ export declare class Matrix4d implements BeJSONFunctions {
     cloneTransposed(result?: Matrix4d): Matrix4d;
     /** multiply matrix times column [x,y,z,w].  return as Point4d.   (And the returned value is NOT normalized down to unit w) */
     multiplyXYZW(x: number, y: number, z: number, w: number, result?: Point4d): Point4d;
+    /** multiply matrix times column vectors [x,y,z,w] where [x,y,z,w] appear in blocks in an array.
+     * replace the xyzw in the block
+     */
+    multiplyBlockedFloat64ArrayInPlace(data: Float64Array): void;
     /** multiply matrix times XYAndZ  and w. return as Point4d  (And the returned value is NOT normalized down to unit w) */
     multiplyPoint3d(pt: XYAndZ, w: number, result?: Point4d): Point4d;
     /** multiply matrix times and array  of XYAndZ. return as array of Point4d  (And the returned value is NOT normalized down to unit w) */
@@ -260,8 +337,8 @@ export declare class Matrix4d implements BeJSONFunctions {
 /** Map4 carries two Matrix4d which are inverses of each other.
  */
 export declare class Map4d implements BeJSONFunctions {
-    private matrix0;
-    private matrix1;
+    private _matrix0;
+    private _matrix1;
     private constructor();
     /** @returns Return a reference to (not copy of) the "forward" Matrix4d */
     readonly transform0: Matrix4d;
@@ -345,3 +422,4 @@ export declare class Plane4dByOriginAndVectors {
     fractionToPoint(u: number, v: number, result?: Point4d): Point4d;
     static createXYPlane(result?: Plane4dByOriginAndVectors): Plane4dByOriginAndVectors;
 }
+//# sourceMappingURL=Geometry4d.d.ts.map

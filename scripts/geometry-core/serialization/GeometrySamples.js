@@ -1,6 +1,10 @@
 "use strict";
-/** @module Serialization */
+/*---------------------------------------------------------------------------------------------
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
+/** @module Serialization */
 const Geometry_1 = require("../Geometry");
 const AnalyticGeometry_1 = require("../AnalyticGeometry");
 const PointVector_1 = require("../PointVector");
@@ -27,6 +31,7 @@ const ClipPlane_1 = require("../clipping/ClipPlane");
 const ConvexClipPlaneSet_1 = require("../clipping/ConvexClipPlaneSet");
 const GrowableArray_1 = require("../GrowableArray");
 const UnionOfConvexClipPlaneSets_1 = require("../clipping/UnionOfConvexClipPlaneSets");
+const BSplineCurve3dH_1 = require("../bspline/BSplineCurve3dH");
 /* tslint:disable:no-console */
 /** Access the last point in the array. push another shifted by dx,dy,dz */
 function pushMove(data, dx, dy, dz = 0.0) {
@@ -144,13 +149,29 @@ class Sample {
     }
     static createBsplineCurves() {
         const result = [];
+        const zScale = 0.1;
         for (const order of [2, 3, 4, 5]) {
             const points = [];
             for (const x of [0, 1, 2, 3, 4, 5, 7]) {
-                points.push(PointVector_1.Point3d.create(1, x, 1 + x * x));
+                points.push(PointVector_1.Point3d.create(1, x, zScale * (1 + x * x)));
             }
             const curve = BSplineCurve_1.BSplineCurve3d.createUniformKnots(points, order);
             result.push(curve);
+        }
+        return result;
+    }
+    static createBspline3dHCurves() {
+        const result = [];
+        const zScale = 0.1;
+        for (const weightVariation of [0, 0.125]) {
+            for (const order of [2, 3, 4, 5]) {
+                const points = [];
+                for (const x of [0, 1, 2, 3, 4, 5, 7]) {
+                    points.push(Geometry4d_1.Point4d.create(1, x, zScale * (1 + x * x), 1.0 + weightVariation * Math.sin(x * Math.PI * 0.25)));
+                }
+                const curve = BSplineCurve3dH_1.BSplineCurve3dH.createUniformKnots(points, order);
+                result.push(curve);
+            }
         }
         return result;
     }
@@ -188,15 +209,15 @@ class Sample {
             ])
         ];
     }
-    static createRotMatrixArray() {
+    static createMatrix3dArray() {
         return [
-            Transform_1.RotMatrix.createIdentity(),
-            Transform_1.RotMatrix.createRotationAroundVector(PointVector_1.Vector3d.create(1, 0, 0), Geometry_1.Angle.createDegrees(10)),
-            Transform_1.RotMatrix.createRotationAroundVector(PointVector_1.Vector3d.create(1, -2, 5), Geometry_1.Angle.createDegrees(-6.0)),
-            Transform_1.RotMatrix.createUniformScale(2.0),
-            Transform_1.RotMatrix.createRotationAroundVector(PointVector_1.Vector3d.create(1, 2, 3), Geometry_1.Angle.createDegrees(49.0)),
-            Transform_1.RotMatrix.createScale(1, 1, -1),
-            Transform_1.RotMatrix.createScale(2, 3, 4)
+            Transform_1.Matrix3d.createIdentity(),
+            Transform_1.Matrix3d.createRotationAroundVector(PointVector_1.Vector3d.create(1, 0, 0), Geometry_1.Angle.createDegrees(10)),
+            Transform_1.Matrix3d.createRotationAroundVector(PointVector_1.Vector3d.create(1, -2, 5), Geometry_1.Angle.createDegrees(-6.0)),
+            Transform_1.Matrix3d.createUniformScale(2.0),
+            Transform_1.Matrix3d.createRotationAroundVector(PointVector_1.Vector3d.create(1, 2, 3), Geometry_1.Angle.createDegrees(49.0)),
+            Transform_1.Matrix3d.createScale(1, 1, -1),
+            Transform_1.Matrix3d.createScale(2, 3, 4)
         ];
     }
     static createInvertibleTransforms() {
@@ -204,60 +225,60 @@ class Sample {
             Transform_1.Transform.createIdentity(),
             Transform_1.Transform.createTranslationXYZ(1, 2, 0),
             Transform_1.Transform.createTranslationXYZ(1, 2, 3),
-            Transform_1.Transform.createFixedPointAndMatrix(PointVector_1.Point3d.create(4, 1, -2), Transform_1.RotMatrix.createUniformScale(2.0)),
-            Transform_1.Transform.createFixedPointAndMatrix(PointVector_1.Point3d.create(4, 1, -2), Transform_1.RotMatrix.createRotationAroundVector(PointVector_1.Vector3d.create(1, 2, 3), Geometry_1.Angle.createRadians(10)))
+            Transform_1.Transform.createFixedPointAndMatrix(PointVector_1.Point3d.create(4, 1, -2), Transform_1.Matrix3d.createUniformScale(2.0)),
+            Transform_1.Transform.createFixedPointAndMatrix(PointVector_1.Point3d.create(4, 1, -2), Transform_1.Matrix3d.createRotationAroundVector(PointVector_1.Vector3d.create(1, 2, 3), Geometry_1.Angle.createRadians(10)))
         ];
     }
-    /** Return an array of RotMatrix with various skew and scale.  This includes at least:
+    /** Return an array of Matrix3d with various skew and scale.  This includes at least:
      * * identity
      * * 3 disinct diagonals.
      * * The distinct diagonal base with smaller value added to
      *    other 6 spots in succession.
      * * the distinct diagonals with all others also smaller nonzeros.
      */
-    static createScaleSkewRotMatrix() {
+    static createScaleSkewMatrix3d() {
         return [
-            Transform_1.RotMatrix.createRowValues(1, 0, 0, 0, 1, 0, 0, 0, 1),
-            Transform_1.RotMatrix.createRowValues(5, 0, 0, 0, 6, 0, 0, 0, 7),
-            Transform_1.RotMatrix.createRowValues(5, 2, 0, 0, 6, 0, 0, 0, 7),
-            Transform_1.RotMatrix.createRowValues(5, 0, 2, 0, 6, 0, 0, 0, 7),
-            Transform_1.RotMatrix.createRowValues(5, 0, 0, 1, 6, 0, 0, 0, 7),
-            Transform_1.RotMatrix.createRowValues(5, 0, 0, 0, 6, 1, 0, 0, 7),
-            Transform_1.RotMatrix.createRowValues(5, 0, 0, 0, 6, 0, 1, 0, 7),
-            Transform_1.RotMatrix.createRowValues(5, 0, 0, 0, 6, 0, 0, 1, 7),
-            Transform_1.RotMatrix.createRowValues(5, 2, 3, 2, 6, 1, -1, 2, 7)
+            Transform_1.Matrix3d.createRowValues(1, 0, 0, 0, 1, 0, 0, 0, 1),
+            Transform_1.Matrix3d.createRowValues(5, 0, 0, 0, 6, 0, 0, 0, 7),
+            Transform_1.Matrix3d.createRowValues(5, 2, 0, 0, 6, 0, 0, 0, 7),
+            Transform_1.Matrix3d.createRowValues(5, 0, 2, 0, 6, 0, 0, 0, 7),
+            Transform_1.Matrix3d.createRowValues(5, 0, 0, 1, 6, 0, 0, 0, 7),
+            Transform_1.Matrix3d.createRowValues(5, 0, 0, 0, 6, 1, 0, 0, 7),
+            Transform_1.Matrix3d.createRowValues(5, 0, 0, 0, 6, 0, 1, 0, 7),
+            Transform_1.Matrix3d.createRowValues(5, 0, 0, 0, 6, 0, 0, 1, 7),
+            Transform_1.Matrix3d.createRowValues(5, 2, 3, 2, 6, 1, -1, 2, 7)
         ];
     }
-    /** Return an array of singular RotMatrix.  This includes at least:
+    /** Return an array of singular Matrix3d.  This includes at least:
      * * all zeros
      * * one nonzero column
      * * two independent columns, third is zero
      * * two independent columns, third is sum of those
      * * two independent columns, third is copy of one
      */
-    static createSingularRotMatrix() {
+    static createSingularMatrix3d() {
         const vectorU = PointVector_1.Vector3d.create(2, 3, 6);
         const vectorV = PointVector_1.Vector3d.create(-1, 5, 2);
         const vectorUplusV = vectorU.plus(vectorV);
         const vector0 = PointVector_1.Vector3d.createZero();
         return [
-            Transform_1.RotMatrix.createZero(),
+            Transform_1.Matrix3d.createZero(),
             // one nonzero column
-            Transform_1.RotMatrix.createColumns(vectorU, vector0, vector0),
-            Transform_1.RotMatrix.createColumns(vector0, vectorU, vector0),
-            Transform_1.RotMatrix.createColumns(vector0, vector0, vector0),
+            Transform_1.Matrix3d.createColumns(vectorU, vector0, vector0),
+            Transform_1.Matrix3d.createColumns(vector0, vectorU, vector0),
+            Transform_1.Matrix3d.createColumns(vector0, vector0, vector0),
             // two independent nonzero columns with zero
-            Transform_1.RotMatrix.createColumns(vectorU, vectorV, vector0),
-            Transform_1.RotMatrix.createColumns(vector0, vectorU, vectorV),
-            Transform_1.RotMatrix.createColumns(vectorV, vector0, vector0),
+            Transform_1.Matrix3d.createColumns(vectorU, vectorV, vector0),
+            Transform_1.Matrix3d.createColumns(vector0, vectorU, vectorV),
+            Transform_1.Matrix3d.createColumns(vectorV, vector0, vector0),
             // third column dependent
-            Transform_1.RotMatrix.createColumns(vectorU, vectorV, vectorUplusV),
-            Transform_1.RotMatrix.createColumns(vectorU, vectorUplusV, vectorV),
-            Transform_1.RotMatrix.createColumns(vectorUplusV, vectorV, vectorU),
+            Transform_1.Matrix3d.createColumns(vectorU, vectorV, vectorUplusV),
+            Transform_1.Matrix3d.createColumns(vectorU, vectorUplusV, vectorV),
+            Transform_1.Matrix3d.createColumns(vectorUplusV, vectorV, vectorU),
             // two independent with duplicate
-            Transform_1.RotMatrix.createColumns(vectorU, vectorV, vectorU),
-            Transform_1.RotMatrix.createColumns(vectorU, vectorU, vectorV),
-            Transform_1.RotMatrix.createColumns(vectorV, vectorV, vectorU)
+            Transform_1.Matrix3d.createColumns(vectorU, vectorV, vectorU),
+            Transform_1.Matrix3d.createColumns(vectorU, vectorU, vectorV),
+            Transform_1.Matrix3d.createColumns(vectorV, vectorV, vectorU)
         ];
     }
     /**
@@ -271,21 +292,21 @@ class Sample {
         return [
             Transform_1.Transform.createIdentity(),
             Transform_1.Transform.createTranslationXYZ(1, 2, 3),
-            Transform_1.Transform.createFixedPointAndMatrix(PointVector_1.Point3d.create(0, 0, 0), Transform_1.RotMatrix.createRotationAroundVector(PointVector_1.Vector3d.unitY(), Geometry_1.Angle.createDegrees(10))),
-            Transform_1.Transform.createFixedPointAndMatrix(PointVector_1.Point3d.create(4, 1, -2), Transform_1.RotMatrix.createRotationAroundVector(PointVector_1.Vector3d.create(1, 2, 3), Geometry_1.Angle.createDegrees(10)))
+            Transform_1.Transform.createFixedPointAndMatrix(PointVector_1.Point3d.create(0, 0, 0), Transform_1.Matrix3d.createRotationAroundVector(PointVector_1.Vector3d.unitY(), Geometry_1.Angle.createDegrees(10))),
+            Transform_1.Transform.createFixedPointAndMatrix(PointVector_1.Point3d.create(4, 1, -2), Transform_1.Matrix3d.createRotationAroundVector(PointVector_1.Vector3d.create(1, 2, 3), Geometry_1.Angle.createDegrees(10)))
         ];
     }
     /**
      * Return a single rigid transform with all terms nonzero.
      */
     static createMessyRigidTransform() {
-        return Transform_1.Transform.createFixedPointAndMatrix(PointVector_1.Point3d.create(1, 2, 3), Transform_1.RotMatrix.createRotationAroundVector(PointVector_1.Vector3d.create(0.3, -0.2, 1.2), Geometry_1.Angle.createDegrees(15.7)));
+        return Transform_1.Transform.createFixedPointAndMatrix(PointVector_1.Point3d.create(1, 2, 3), Transform_1.Matrix3d.createRotationAroundVector(PointVector_1.Vector3d.create(0.3, -0.2, 1.2), Geometry_1.Angle.createDegrees(15.7)));
     }
     static createRigidAxes() {
         return [
-            Transform_1.RotMatrix.createIdentity(),
-            Transform_1.RotMatrix.createRotationAroundVector(PointVector_1.Vector3d.unitY(), Geometry_1.Angle.createDegrees(10)),
-            Transform_1.RotMatrix.createRotationAroundVector(PointVector_1.Vector3d.create(1, 2, 3), Geometry_1.Angle.createDegrees(10)),
+            Transform_1.Matrix3d.createIdentity(),
+            Transform_1.Matrix3d.createRotationAroundVector(PointVector_1.Vector3d.unitY(), Geometry_1.Angle.createDegrees(10)),
+            Transform_1.Matrix3d.createRotationAroundVector(PointVector_1.Vector3d.create(1, 2, 3), Geometry_1.Angle.createDegrees(10)),
         ];
     }
     // promote each transform[] to a Matrix4d.
@@ -314,9 +335,17 @@ class Sample {
     }
     static createSimplePaths(withGaps = false) {
         const p1 = [[PointVector_1.Point3d.create(0, 10, 0)], [PointVector_1.Point3d.create(6, 10, 0)], [PointVector_1.Point3d.create(6, 10, 1), [PointVector_1.Point3d.create(0, 10, 0)]]];
+        const point0 = PointVector_1.Point3d.create(0, 0, 0);
+        const point1 = PointVector_1.Point3d.create(10, 0, 0);
+        const segment1 = LineSegment3d_1.LineSegment3d.create(point0, point1);
+        const vectorU = PointVector_1.Vector3d.unitX(3);
+        const vectorV = PointVector_1.Vector3d.unitY(3);
+        const arc2 = Arc3d_1.Arc3d.create(point1.minus(vectorU), vectorU, vectorV, Geometry_1.AngleSweep.createStartEndDegrees(0, 90));
         const simplePaths = [
-            CurveChain_1.Path.create(LineSegment3d_1.LineSegment3d.create(PointVector_1.Point3d.create(0, 0, 0), PointVector_1.Point3d.create(10, 0, 0))),
-            CurveChain_1.Path.create(LineSegment3d_1.LineSegment3d.create(PointVector_1.Point3d.create(0, 0, 0), PointVector_1.Point3d.create(10, 0, 0)), LineString3d_1.LineString3d.create(PointVector_1.Point3d.create(10, 0, 0), PointVector_1.Point3d.create(10, 5, 0)), LineString3d_1.LineString3d.create(p1))
+            CurveChain_1.Path.create(segment1),
+            CurveChain_1.Path.create(segment1, arc2),
+            CurveChain_1.Path.create(LineSegment3d_1.LineSegment3d.create(point0, point1), LineString3d_1.LineString3d.create(PointVector_1.Point3d.create(10, 0, 0), PointVector_1.Point3d.create(10, 5, 0)), LineString3d_1.LineString3d.create(p1)),
+            Sample.createCappedArcPath(4, 0, 180),
         ];
         if (withGaps)
             simplePaths.push(CurveChain_1.Path.create(LineSegment3d_1.LineSegment3d.create(PointVector_1.Point3d.create(0, 0, 0), PointVector_1.Point3d.create(10, 0, 0)), LineSegment3d_1.LineSegment3d.create(PointVector_1.Point3d.create(10, 10, 0), PointVector_1.Point3d.create(5, 0, 0))));
@@ -325,6 +354,7 @@ class Sample {
     static createSimplePointStrings() {
         const p1 = [[PointVector_1.Point3d.create(0, 10, 0)], [PointVector_1.Point3d.create(6, 10, 0)], [PointVector_1.Point3d.create(6, 10, 0), [PointVector_1.Point3d.create(6, 10, 0)]]];
         const simplePaths = [
+            PointString3d_1.PointString3d.create(PointVector_1.Point3d.create(1, 2, 0)),
             PointString3d_1.PointString3d.create(PointVector_1.Point3d.create(0, 0, 0), PointVector_1.Point3d.create(10, 0, 0)),
             PointString3d_1.PointString3d.create(PointVector_1.Point3d.create(10, 0, 0), PointVector_1.Point3d.create(10, 5, 0)),
             PointString3d_1.PointString3d.create(p1)
@@ -343,6 +373,8 @@ class Sample {
             CurveChain_1.Loop.create(Arc3d_1.Arc3d.createUnitCircle()),
             // rectangle, but with individual line segments
             CurveChain_1.Loop.create(LineSegment3d_1.LineSegment3d.create(point0, point1), LineSegment3d_1.LineSegment3d.create(point1, point2), LineSegment3d_1.LineSegment3d.create(point2, point3), LineSegment3d_1.LineSegment3d.create(point3, point0)),
+            // Semicircle
+            Sample.createCappedArcLoop(4, -90, 90),
         ];
         return result;
     }
@@ -572,6 +604,7 @@ class Sample {
         result.push(LinearSweep_1.LinearSweep.create(base, vectorZ, true));
         result.push(LinearSweep_1.LinearSweep.create(base, vectorQ, false));
         result.push(LinearSweep_1.LinearSweep.create(base, vectorQ, true));
+        result.push(LinearSweep_1.LinearSweep.create(Sample.createCappedArcLoop(5, -45, 90), vectorQ, true));
         for (const curve of Sample.createSmoothCurvePrimitives()) {
             const path = CurveChain_1.Path.create(curve);
             result.push(LinearSweep_1.LinearSweep.create(path, vectorZ, false));
@@ -596,6 +629,22 @@ class Sample {
         result.push(LinearSweep_1.LinearSweep.createZSweep(xyPoints, 1, 3, true));
         return result;
     }
+    /**
+     * Create an array of primitives with an arc centerd at origin and a line segment closing back to the arc start.
+     * This can be bundled into Path or Loop by caller.
+     */
+    static createCappedArcPrimitives(radius, startDegrees, endDegrees) {
+        const arc = Arc3d_1.Arc3d.create(PointVector_1.Point3d.create(0, 0, 0), PointVector_1.Vector3d.unitX(radius), PointVector_1.Vector3d.unitY(radius), Geometry_1.AngleSweep.createStartEndDegrees(startDegrees, endDegrees));
+        return [arc, LineSegment3d_1.LineSegment3d.create(arc.fractionToPoint(0.0), arc.fractionToPoint(1.0))];
+    }
+    /** Return a Path structure for a segment of arc, with closure segment */
+    static createCappedArcPath(radius, startDegrees, endDegrees) {
+        return CurveChain_1.Path.createArray(Sample.createCappedArcPrimitives(radius, startDegrees, endDegrees));
+    }
+    /** Return a Loop structure for a segment of arc, with closure segment */
+    static createCappedArcLoop(radius, startDegrees, endDegrees) {
+        return CurveChain_1.Loop.createArray(Sample.createCappedArcPrimitives(radius, startDegrees, endDegrees));
+    }
     static createSimpleRotationalSweeps() {
         const result = [];
         // rectangle in xy plane
@@ -614,14 +663,14 @@ class Sample {
         s1.capped = true;
         result.push(s1);
         // still a sphere, but with axes KIJ . .
-        const s2 = Sphere_1.Sphere.createFromAxesAndScales(PointVector_1.Point3d.create(1, 2, 3), Transform_1.RotMatrix.createRowValues(0, 1, 0, 0, 0, 1, 1, 0, 0), 4, 4, 4, Geometry_1.AngleSweep.createStartEndDegrees(-45, 45), true);
+        const s2 = Sphere_1.Sphere.createFromAxesAndScales(PointVector_1.Point3d.create(1, 2, 3), Transform_1.Matrix3d.createRowValues(0, 1, 0, 0, 0, 1, 1, 0, 0), 4, 4, 4, Geometry_1.AngleSweep.createStartEndDegrees(-45, 45), true);
         result.push(s2);
         return result;
     }
     // These are promised to be non-spherical than DGN sphere accepts . . .
     static createEllipsoids() {
         return [
-            Sphere_1.Sphere.createEllipsoid(Transform_1.Transform.createOriginAndMatrix(PointVector_1.Point3d.create(0, 0, 0), Transform_1.RotMatrix.createRowValues(4, 1, 1, 1, 4, 1, 0.5, 0.2, 5)), Geometry_1.AngleSweep.createFullLatitude(), true)
+            Sphere_1.Sphere.createEllipsoid(Transform_1.Transform.createOriginAndMatrix(PointVector_1.Point3d.create(0, 0, 0), Transform_1.Matrix3d.createRowValues(4, 1, 1, 1, 4, 1, 0.5, 0.2, 5)), Geometry_1.AngleSweep.createFullLatitude(), true)
         ];
     }
     static createCones() {
@@ -640,7 +689,7 @@ class Sample {
     static createTorusPipes() {
         const result = [];
         const center = PointVector_1.Point3d.create(1, 50, 3);
-        const frame = Transform_1.RotMatrix.createRotationAroundVector(PointVector_1.Vector3d.create(1, 2, 3), Geometry_1.Angle.createRadians(10));
+        const frame = Transform_1.Matrix3d.createRotationAroundVector(PointVector_1.Vector3d.create(1, 2, 3), Geometry_1.Angle.createRadians(10));
         const vectorX = frame.columnX();
         const vectorY = frame.columnY();
         const vectorZ = frame.columnZ();
@@ -657,14 +706,14 @@ class Sample {
         const bX = 1.5;
         const bY = 1.0;
         const h = 5.0;
-        const frame = Transform_1.RotMatrix.createRotationAroundVector(PointVector_1.Vector3d.create(0, 0, 1), Geometry_1.Angle.createDegrees(10));
+        const frame = Transform_1.Matrix3d.createRotationAroundVector(PointVector_1.Vector3d.create(0, 0, 1), Geometry_1.Angle.createDegrees(10));
         const vectorX = frame.columnX();
         const vectorY = frame.columnY();
-        const cornerB = Transform_1.RotMatrix.XYZPlusMatrixTimesCoordinates(cornerA, frame, 0, 0, h);
+        const cornerB = Transform_1.Matrix3d.XYZPlusMatrixTimesCoordinates(cornerA, frame, 0, 0, h);
         result.push(Box_1.Box.createDgnBox(cornerA, PointVector_1.Vector3d.unitX(), PointVector_1.Vector3d.unitY(), cornerB, aX, aY, aX, aY, true));
         result.push(Box_1.Box.createDgnBox(cornerA, PointVector_1.Vector3d.unitX(), PointVector_1.Vector3d.unitY(), cornerB, aX, aY, bX, bY, true));
         result.push(Box_1.Box.createDgnBox(cornerA, vectorX, vectorY, cornerB, aX, aY, bX, bY, true));
-        const frameY = Transform_1.RotMatrix.createRotationAroundVector(PointVector_1.Vector3d.create(0, 1, 0), Geometry_1.Angle.createDegrees(10));
+        const frameY = Transform_1.Matrix3d.createRotationAroundVector(PointVector_1.Vector3d.create(0, 1, 0), Geometry_1.Angle.createDegrees(10));
         result.push(Box_1.Box.createDgnBox(cornerA, frameY.columnX(), frameY.columnY(), cornerA.plusScaled(frameY.columnZ(), h), aX, aY, bX, bY, true));
         return result;
     }
@@ -885,6 +934,24 @@ class Sample {
         Sample.appendSplits(result, xyzA, numSplitCA, wrap);
         return result;
     }
+    static createCenteredBoxEdges(ax = 1, ay = 1, az = 0, cx = 0, cy = 0, cz = 0, geometry) {
+        if (!geometry)
+            geometry = [];
+        const x0 = cx - ax;
+        const y0 = cy - ay;
+        const z0 = cz - az;
+        const x1 = cx + ax;
+        const y1 = cy + ay;
+        const z1 = cz + az;
+        for (const z of [z0, z1]) {
+            geometry.push(LineString3d_1.LineString3d.create(PointVector_1.Point3d.create(x0, y0, z), PointVector_1.Point3d.create(x1, y0, z), PointVector_1.Point3d.create(x1, y1, z), PointVector_1.Point3d.create(x0, y1, z), PointVector_1.Point3d.create(x0, y0, z)));
+        }
+        geometry.push(LineSegment3d_1.LineSegment3d.createXYZXYZ(x0, y0, z0, x0, y0, z1));
+        geometry.push(LineSegment3d_1.LineSegment3d.createXYZXYZ(x1, y0, z0, x1, y0, z1));
+        geometry.push(LineSegment3d_1.LineSegment3d.createXYZXYZ(x1, y1, z0, x1, y1, z1));
+        geometry.push(LineSegment3d_1.LineSegment3d.createXYZXYZ(x0, y1, z0, x0, y1, z1));
+        return geometry;
+    }
     static createSimpleTransitionSpirals() {
         // 5 spirals exercise the intricate "4 out of 5" input ruls for spirals . ..
         const r1 = 1000.0;
@@ -898,7 +965,7 @@ class Sample {
             TransitionSpiral_1.TransitionSpiral3d.create("clothoid", r0, r1, undefined, Geometry_1.Angle.createRadians(dThetaRadians), arcLength, undefined, Transform_1.Transform.createIdentity()),
             TransitionSpiral_1.TransitionSpiral3d.create("clothoid", r0, undefined, Geometry_1.Angle.createDegrees(0), Geometry_1.Angle.createRadians(dThetaRadians), arcLength, undefined, Transform_1.Transform.createIdentity()),
             TransitionSpiral_1.TransitionSpiral3d.create("clothoid", undefined, r1, Geometry_1.Angle.createDegrees(0), Geometry_1.Angle.createRadians(dThetaRadians), arcLength, undefined, Transform_1.Transform.createIdentity()),
-            TransitionSpiral_1.TransitionSpiral3d.create("clothoid", r0, r1, Geometry_1.Angle.createDegrees(0), Geometry_1.Angle.createRadians(dThetaRadians), undefined, PointVector_1.Segment1d.create(0, 0.5), Transform_1.Transform.createOriginAndMatrix(PointVector_1.Point3d.create(1, 2, 0), Transform_1.RotMatrix.createRotationAroundVector(PointVector_1.Vector3d.unitZ(), Geometry_1.Angle.createDegrees(15)))),
+            TransitionSpiral_1.TransitionSpiral3d.create("clothoid", r0, r1, Geometry_1.Angle.createDegrees(0), Geometry_1.Angle.createRadians(dThetaRadians), undefined, PointVector_1.Segment1d.create(0, 0.5), Transform_1.Transform.createOriginAndMatrix(PointVector_1.Point3d.create(1, 2, 0), Transform_1.Matrix3d.createRotationAroundVector(PointVector_1.Vector3d.unitZ(), Geometry_1.Angle.createDegrees(15)))),
         ];
     }
 }

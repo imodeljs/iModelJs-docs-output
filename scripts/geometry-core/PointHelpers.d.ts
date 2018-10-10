@@ -1,4 +1,4 @@
-import { Point2d, Point3d, Vector3d, XYZ, XYAndZ } from "./PointVector";
+import { Point2d, Point3d, Vector3d, XYZ, XYAndZ, XAndY } from "./PointVector";
 import { Transform } from "./Transform";
 import { Point4d, Matrix4d } from "./numerics/Geometry4d";
 import { Ray3d, Plane3dByOriginAndUnitNormal } from "./AnalyticGeometry";
@@ -27,6 +27,7 @@ export declare class Point2dArray {
      * @param data source data
      */
     static clonePoint2dArray(data: Point2d[]): Point2d[];
+    static lengthWithoutWraparound(data: XAndY[]): number;
 }
 export declare class Vector3dArray {
     static isAlmostEqual(dataA: undefined | Vector3d[], dataB: undefined | Vector3d[]): boolean;
@@ -45,7 +46,7 @@ export declare class Point4dArray {
     /** unpack from xyzwxyzw... array to array of Point3d and array of weight.
      */
     static unpackFloat64ArrayToPointsAndWeights(data: Float64Array, points: Point3d[], weights: number[], pointFormatter?: (x: number, y: number, z: number) => any): void;
-    private static s_workPoint4d;
+    private static _workPoint4d;
     /**
      * Multiply (and replace) each block of 4 values as a Point4d.
      * @param transform transform to apply
@@ -112,14 +113,14 @@ export declare class PolygonOps {
     /** These values are the integrated area moment products [xx,xy,xz, x]
      * for a right triangle in the first quadrant at the origin -- (0,0),(1,0),(0,1)
      */
-    private static readonly s_triangleMomentWeights;
-    private static s_vector0;
-    private static s_vector1;
-    private static s_vectorOrigin;
-    private static s_normal;
-    private static s_matrixA;
-    private static s_matrixB;
-    private static s_matrixC;
+    private static readonly _triangleMomentWeights;
+    private static _vector0;
+    private static _vector1;
+    private static _vectorOrigin;
+    private static _normal;
+    private static _matrixA;
+    private static _matrixB;
+    private static _matrixC;
     /** return a vector which is perpendicular to the polygon and has magnitude equal to the polygon area. */
     static areaNormalGo(points: IndexedXYZCollection, result?: Vector3d): Vector3d | undefined;
     static areaNormal(points: Point3d[], result?: Vector3d): Vector3d;
@@ -178,6 +179,9 @@ export declare class PolygonOps {
 }
 /**
  * Helper object to access members of a Point3d[] in geometric calculations.
+ * * The collection holds only a reference to the actual array.
+ * * The actual array may be replaced by the user as needed.
+ * * When replaced, there is no cached data to be updated.
 */
 export declare class Point3dArrayCarrier extends IndexedXYZCollection {
     data: Point3d[];
@@ -239,3 +243,4 @@ export declare class Point3dArrayCarrier extends IndexedXYZCollection {
      */
     readonly length: number;
 }
+//# sourceMappingURL=PointHelpers.d.ts.map

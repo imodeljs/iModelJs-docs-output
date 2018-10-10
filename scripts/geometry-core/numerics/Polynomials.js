@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Numerics */
 const PointVector_1 = require("../PointVector");
@@ -380,13 +381,13 @@ class AnalyticRoots {
     }
     // Used in NewtonMethod for testing if a root has been adjusted past its bounding region
     static checkRootProximity(roots, i) {
-        if (i === 0) {
+        if (i === 0) { // Case 1: Beginning Root (check root following it)
             return roots.at(i) < roots.at(i + 1);
         }
-        else if (i > 0 && i + 1 < roots.length) {
+        else if (i > 0 && i + 1 < roots.length) { // Case 2: Middle Root (check roots before and after)
             return (roots.at(i) > roots.at(i - 1)) && (roots.at(i) < roots.at(i + 1));
         }
-        else {
+        else { // Case 3: End root (check preceding root)
             return (roots.at(i) > roots.at(i - 1));
         }
     }
@@ -580,7 +581,7 @@ class AnalyticRoots {
                 }
             }
         }
-        else if (D <= 0) {
+        else if (D <= 0) { // Causes irreducibilis: three real solutions
             const phi = 1.0 / 3 * Math.acos(-q / Math.sqrt(-cb_p));
             const t = 2 * Math.sqrt(-p);
             results.push(origin + t * Math.cos(phi));
@@ -588,7 +589,7 @@ class AnalyticRoots {
             results.push(origin - t * Math.cos(phi - Math.PI / 3));
             return;
         }
-        else {
+        else { // One real solution
             const sqrt_D = Math.sqrt(D);
             const u = this.cbrt(sqrt_D - q);
             const v = -(this.cbrt(sqrt_D + q));
@@ -998,6 +999,39 @@ class TrigPolynomial {
         }
         return boolstat;
     }
+    /// <summary> Compute intersections of unit circle x^2 + y 2 = w^2 with the ellipse
+    ///         (x,y) = (cx + ux Math.Cos + vx sin, cy + uy Math.Cos + vy sin)/ (cw + uw Math.Cos + vw * Math.Sin)
+    /// Solutions are returned as angles in the ellipse space.
+    /// <param name="cx">center x</param>
+    /// <param name="cy">center y</param>
+    /// <param name="cw">center w</param>
+    /// <param name="ux">0 degree vector x</param>
+    /// <param name="uy">0 degree vector y</param>
+    /// <param name="uw">0 degree vector w</param>
+    /// <param name="vx">90 degree vector x</param>
+    /// <param name="vy">90 degree vector y</param>
+    /// <param name="vw">90 degree vector w</param>
+    /// <param name="ellipseAngles">solution angles in ellipse parameter space</param>
+    /// <param name="circleAngles">solution angles in circle parameter space</param>
+    /// <param name="numAngle">number of solution angles (passed as an array to change reference)</param>
+    static SolveUnitCircleHomogeneousEllipseIntersection(cx, cy, cw, ux, uy, uw, vx, vy, vw, ellipseRadians, circleRadians) {
+        circleRadians.length = 0;
+        const acc = ux * ux + uy * uy - uw * uw;
+        const acs = 2.0 * (ux * vx + uy * vy - uw * vw);
+        const ass = vx * vx + vy * vy - vw * vw;
+        const ac = 2.0 * (ux * cx + uy * cy - uw * cw);
+        const asi = 2.0 * (vx * cx + vy * cy - vw * cw);
+        const a = cx * cx + cy * cy - cw * cw;
+        const boolstat = this.SolveUnitCircleImplicitQuadricIntersection(acc, acs, ass, ac, asi, a, ellipseRadians);
+        for (const radians of ellipseRadians) {
+            const cc = Math.cos(radians);
+            const ss = Math.sin(radians);
+            const x = cx + ux * cc + vx * ss;
+            const y = cy + uy * cc + vy * ss;
+            circleRadians.push(Math.atan2(y, x));
+        }
+        return boolstat;
+    }
 }
 // Constants taken from Angle.cpp (may be later moved to a constants module)
 TrigPolynomial.SmallAngle = 1.0e-11;
@@ -1079,6 +1113,65 @@ class SmallSystem {
         }
         result.set(0, 0);
         return false;
+    }
+    /**
+     * Return true if lines (a0,a1) to (b0, b1) have a simple intersection using only xy parts of WEIGHTED 4D Points
+     * Return the fractional (not xy) coordinates in result.x, result.y
+     * @param hA0 homogeneous start point of line a
+     * @param hA1 homogeneous end point of line a
+     * @param hB0 homogeneous start point of line b
+     * @param hB1 homogeneous end point of line b
+     * @param result point to receive fractional coordinates of intersection.   result.x is fraction on line a. result.y is fraction on line b.
+     */
+    static lineSegment3dHXYTransverseIntersectionUnbounded(hA0, hA1, hB0, hB1, result) {
+        // Considering only x,y,w parts....
+        // Point Q along B is (in full homogeneous)  `(1-lambda) B0 + lambda 1`
+        // PointQ is colinear with A0,A1 when the determinat det (A0,A1,Q) is zero.  (Each column takes xyw parts)
+        const alpha0 = Geometry_1.Geometry.tripleProduct(hA0.x, hA1.x, hB0.x, hA0.y, hA1.y, hB0.y, hA0.w, hA1.w, hB0.w);
+        const alpha1 = Geometry_1.Geometry.tripleProduct(hA0.x, hA1.x, hB1.x, hA0.y, hA1.y, hB1.y, hA0.w, hA1.w, hB1.w);
+        const fractionB = Geometry_1.Geometry.conditionalDivideFraction(-alpha0, alpha1 - alpha0);
+        if (fractionB !== undefined) {
+            const beta0 = Geometry_1.Geometry.tripleProduct(hB0.x, hB1.x, hA0.x, hB0.y, hB1.y, hA0.y, hB0.w, hB1.w, hA0.w);
+            const beta1 = Geometry_1.Geometry.tripleProduct(hB0.x, hB1.x, hA1.x, hB0.y, hB1.y, hA1.y, hB0.w, hB1.w, hA1.w);
+            const fractionA = Geometry_1.Geometry.conditionalDivideFraction(-beta0, beta1 - beta0);
+            if (fractionA !== undefined)
+                return PointVector_1.Vector2d.create(fractionA, fractionB, result);
+        }
+        return undefined;
+    }
+    /**
+     * Return the line fraction at which the (homogeneous) line is closest to a space point as viewed in xy only.
+     * @param hA0 homogeneous start point of line a
+     * @param hA1 homogeneous end point of line a
+     * @param spacePoint homogeneous point in space
+     */
+    static lineSegment3dHXYClosestPointUnbounded(hA0, hA1, spacePoint) {
+        // Considering only x,y,w parts....
+        // weighted difference of (A1 w0 - A0 w1) is (cartesian) tangent vector along the line as viewed.
+        // The perpendicular (pure vector) W = (-y,x) flip is the direction of projection
+        // Point Q along A is (in full homogeneous)  `(1-lambda) A0 + lambda 1 A1`
+        // PointQ is colinear with spacePoint and and W when the xyw homogeneous determinant | Q W spacePoint | is zero.
+        const tx = hA1.x * hA0.w - hA0.x * hA1.w;
+        const ty = hA1.y * hA0.w - hA0.y * hA1.w;
+        const det0 = Geometry_1.Geometry.tripleProduct(hA0.x, -ty, spacePoint.x, hA0.y, tx, spacePoint.y, hA0.w, 0, spacePoint.w);
+        const det1 = Geometry_1.Geometry.tripleProduct(hA1.x, -ty, spacePoint.x, hA1.y, tx, spacePoint.y, hA1.w, 0, spacePoint.w);
+        return Geometry_1.Geometry.conditionalDivideFraction(-det0, det1 - det0);
+    }
+    /**
+     * Return the line fraction at which the line is closest to a space point as viewed in xy only.
+     * @param pointA0 start point
+     * @param pointA1 end point
+     * @param spacePoint homogeneous point in space
+     */
+    static lineSegment3dXYClosestPointUnbounded(pointA0, pointA1, spacePoint) {
+        // Considering only x,y parts....
+        const ux = pointA1.x - pointA0.x;
+        const uy = pointA1.y - pointA0.y;
+        const uu = ux * ux + uy * uy;
+        const vx = spacePoint.x - pointA0.x;
+        const vy = spacePoint.y - pointA0.y;
+        const uv = ux * vx + uy * vy;
+        return Geometry_1.Geometry.conditionalDivideFraction(uv, uu);
     }
     /**
      * Return true if lines (a0,a1) to (b0, b1) have closest approach (go by each other) in 3d

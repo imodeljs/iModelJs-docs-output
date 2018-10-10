@@ -9,7 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>iModel.js Apps - iModelJs</title>
+    <title>iModel.js Apps - iModel.js</title>
+    <meta name="og:title" content="iModel.js Apps - iModel.js">
+    <meta name="twitter:title" content="iModel.js Apps - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -90,8 +95,9 @@
         <h3 id="helpful links">Helpful links</h3>
         <ul>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
         </ul>
@@ -100,7 +106,7 @@
     <div class='documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > App</div>
-            <div class="edit-link"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fdocs%2Fcore%2Flearning%2FApp.md" target="_blank">Edit this page</a></div>
+            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
             <h1 id="imodel.js apps">iModel.js Apps</h1>
 <p>From the same JavaScript codebase, it is possible to create:</p>
 <ul>
@@ -147,18 +153,18 @@
 <h4 class="h-app-backend">App Backend<a id="app-backend" class="heading-anchor" href="#app-backend"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p>The data-access part of an app is called the <a href="https://en.wikipedia.org/wiki/Front_and_back_ends">backend</a>.</p>
 <p>An app can use a pre-existing or general-purpose <a href="#imodel-services">service</a> as its backend. For example, a family of viewing apps can use a general-purpose service that handles requests for data from a given iModel.</p>
-<p>An app may require data-access operations that are specific to and intrinsically part of the app. One reason is performance. An analysis that must make many related queries on iModel content, perhaps based on knowledge of a domain schema, in order to produce a single, combined result should be done close to the data. Another reason for app-specific backends is the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/apptailoring/#backends-for-frontends'>backends-for-frontends pattern</a>. App-specific backends are easy to write using <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/rpcinterface'>RpcInterfaces</a> and are encouraged.</p>
+<p>An app may require data-access operations that are specific to and intrinsically part of the app. One reason is performance. An analysis that must make many related queries on iModel content, perhaps based on knowledge of a domain schema, to produce a single, combined result should be done close to the data. Another reason for app-specific backends is the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/apptailoring/#backends-for-frontends'>backends-for-frontends pattern</a>. App-specific backends are easy to write using <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/rpcinterface'>RpcInterfaces</a> and are encouraged.</p>
 <p>App-specific backends are written in TypeScript/JavaScript and depend on <code>@bentley/imodeljs-backend</code>. A backend may also depend on common packages such as imodeljs-common, bentleyjs-core, or geometry-core. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/portability/#backend-portability'>backend portability</a>.</p>
 <p>An app can use many services, both general-purpose and app-specific.</p>
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//learning/backend/'>the learning article</a> for how to write backend code.</p>
 <h4 class="h-app-frontend">App Frontend<a id="app-frontend" class="heading-anchor" href="#app-frontend"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p>The UI-specific part of an app is called the <a href="https://en.wikipedia.org/wiki/Front_and_back_ends">frontend</a>. The frontend should be concerned only with display and user interaction.</p>
 <p>The frontend must be written in TypeScript or JavaScript. The frontend should use Web technologies only, including HTML, CSS, and JavaScript. The frontend can use any Web app framework, such as React or Angular.</p>
-<p>The frontend makes requests on backend services in order to access iModel content. The frontend uses <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/rpcinterface'>RpcInterfaces</a> to communicate with the app&apos;s backend(s) and other services. The frontend should depend on <code>@bentley/imodeljs-frontend</code>. The frontend may also depend on common packages such as imodeljs-common, bentleyjs-core, or geometry-core. It may also depend on Web-specific packages. Both the UI and functionality of the app frontend <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/apptailoring'>can be tailored</a> to best fit each desired configuration and target platform.</p>
+<p>The frontend makes requests on backend services to access iModel content. The frontend uses <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/rpcinterface'>RpcInterfaces</a> to communicate with the app&apos;s backend(s) and other services. The frontend should depend on <code>@bentley/imodeljs-frontend</code>. The frontend may also depend on common packages such as imodeljs-common, bentleyjs-core, or geometry-core. It may also depend on Web-specific packages. Both the UI and functionality of the app frontend <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/apptailoring'>can be tailored</a> to best fit each desired configuration and target platform.</p>
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/'>the learning article</a> for how to write a frontend.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             

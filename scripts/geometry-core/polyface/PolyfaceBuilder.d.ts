@@ -67,10 +67,10 @@ import { NullGeometryHandler, UVSurface } from "../GeometryHandler";
  * *** `builder.addOneBasedPointIndex (index)`
  */
 export declare class PolyfaceBuilder extends NullGeometryHandler {
-    private polyface;
+    private _polyface;
     private _options;
     readonly options: StrokeOptions;
-    private reversed;
+    private _reversed;
     /** extract the polyface. */
     claimPolyface(compress?: boolean): IndexedPolyface;
     toggleReversedFacetFlag(): void;
@@ -101,7 +101,7 @@ export declare class PolyfaceBuilder extends NullGeometryHandler {
      * Announce point coordinates.  The implemetation is free to either create a new param or (if known) return indxex of a prior param with the same coordinates.
      */
     findOrAddParamXY(x: number, y: number): number;
-    private static workPointFindOrAdd;
+    private static _workPointFindOrAdd;
     /**
      * Announce point coordinates.  The implemetation is free to either create a new point or (if knonw) return indxex of a prior point with the same coordinates.
      * @returns Returns the point index in the Polyface.
@@ -112,9 +112,13 @@ export declare class PolyfaceBuilder extends NullGeometryHandler {
      * Announce point coordinates.  The implemetation is free to either create a new point or (if known) return index of a prior point with the same coordinates.
      */
     findOrAddPointXYZ(x: number, y: number, z: number): number;
+    /** Returns a transform who can be applied to points on a triangular facet in order to obtain UV parameters. */
+    private getUVTransformForTriangleFacet;
+    /** Returns the normal to a triangular facet. */
+    private getNormalForTriangularFacet;
     /**
      * Add a quad to the polyface given its points in order around the edges.
-     * Optionally provide params and normals, otherwise they will be calculated without reference data.
+     * Optionally provide params and the plane normal, otherwise they will be calculated without reference data.
      * Optionally mark this quad as the last piece of a face in this polyface.
      */
     addQuadFacet(points: Point3d[], params?: Point2d[], normals?: Vector3d[]): void;
@@ -124,15 +128,14 @@ export declare class PolyfaceBuilder extends NullGeometryHandler {
      * *  indexA0 and indexA1 are in the forward order at the "A" end of the quad
      * *  indexB0 and indexB1 are in the forward order at the "B" end of the quad.
      */
-    private addIndexedQuadPointIndexes(indexA0, indexA1, indexB0, indexB1);
+    private addIndexedQuadPointIndexes;
     /** For a single quad facet, add the indexes of the corresponding param points. */
-    private addIndexedQuadParamIndexes(indexA0, indexA1, indexB0, indexB1);
+    private addIndexedQuadParamIndexes;
     /** For a single quad facet, add the indexes of the corresponding normal vectors. */
-    private addIndexedQuadNormalIndexes(indexA0, indexA1, indexB0, indexB1);
+    private addIndexedQuadNormalIndexes;
     /**
      * Add a triangle to the polyface given its points in order around the edges.
-     * Optionally provide params and normals, otherwise they will be calculated without reference data.
-     * Optionally mark this triangle as the last piece of a face in this polyface.
+     * * Optionally provide params and triangle normals, otherwise they will be calculated without reference data.
      */
     addTriangleFacet(points: Point3d[], params?: Point2d[], normals?: Vector3d[]): void;
     /** Announce a single triangle facet's point indexes.
@@ -141,11 +144,11 @@ export declare class PolyfaceBuilder extends NullGeometryHandler {
      * *  indexA0 and indexA1 are in the forward order at the "A" end of the quad
      * *  indexB0 and indexB1 are in the forward order at the "B" end of hte quad.
      */
-    private addIndexedTrianglePointIndexes(indexA, indexB, indexC);
+    private addIndexedTrianglePointIndexes;
     /** For a single triangle facet, add the indexes of the corresponding params. */
-    private addIndexedTriangleParamIndexes(indexA, indexB, indexC);
+    private addIndexedTriangleParamIndexes;
     /** For a single triangle facet, add the indexes of the corresponding params. */
-    private addIndexedTriangleNormalIndexes(indexA, indexB, indexC);
+    private addIndexedTriangleNormalIndexes;
     /** Add facets betwee lineStrings with matched point counts.
      *
      * * Facets are announced to addIndexedQuad.
@@ -197,7 +200,7 @@ export declare class PolyfaceBuilder extends NullGeometryHandler {
      * @param points array of points.  This may contain extra points not to be used in the polygon
      * @param numPointsToUse number of points to use.
      */
-    addPolygon(points: Point3d[], numPointsToUse: number): void;
+    addPolygon(points: Point3d[], numPointsToUse?: number): void;
     /** Add a polyface, with optional reverse and transform. */
     addIndexedPolyface(source: IndexedPolyface, reversed: boolean, transform?: Transform): void;
     /**
@@ -223,8 +226,8 @@ export declare class PolyfaceBuilder extends NullGeometryHandler {
      */
     addGraph(graph: HalfEdgeGraph, needParams: boolean, acceptFaceFunction?: HalfEdgeToBooleanFunction): void;
     static graphToPolyface(graph: HalfEdgeGraph, options?: StrokeOptions, acceptFaceFunction?: HalfEdgeToBooleanFunction): IndexedPolyface;
-    private static index0;
-    private static index1;
+    private static _index0;
+    private static _index1;
     /**
      * Given a 2-dimensional grid of points and optional corresponding params and normals, add the grid to the polyface as a series of quads.
      * Each facet in the grid should either be made up of 3 or 4 edges. Optionally specify that this quad is the last piece of a face.
@@ -232,3 +235,4 @@ export declare class PolyfaceBuilder extends NullGeometryHandler {
     addGrid(pointArray: Point3d[][], paramArray?: Point2d[][], normalArray?: Vector3d[][], endFace?: boolean): void;
     addUVGrid(surface: UVSurface, numU: number, numV: number, createFanInCaps: boolean): void;
 }
+//# sourceMappingURL=PolyfaceBuilder.d.ts.map

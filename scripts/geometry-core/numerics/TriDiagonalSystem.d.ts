@@ -1,11 +1,11 @@
 import { Point3d } from "../PointVector";
 export declare class TriDiagonalSystem {
-    private aLeft;
-    private aRight;
-    private aDiag;
-    private b;
-    private x;
-    private dataState;
+    private _aLeft;
+    private _aRight;
+    private _aDiag;
+    private _b;
+    private _x;
+    private _dataState;
     constructor(n: number);
     Reset(): void;
     SetRow(row: number, left: number, diag: number, right: number): void;
@@ -26,3 +26,4 @@ export declare class TriDiagonalSystem {
     flatten(): any;
     flattenWithPoints(xyzB: Point3d[]): any;
 }
+//# sourceMappingURL=TriDiagonalSystem.d.ts.map

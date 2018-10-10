@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Curve */
 const Geometry_1 = require("../Geometry");
@@ -27,16 +28,29 @@ const LineString3d_1 = require("./LineString3d");
  * ** vector0 is the vector from the center to the major axis extreme.
  * ** vector90 is the vector from the center to the minor axis extreme.
  * ** note the constructing the vectors to the extreme points makes them perpendicular.
- * *  The method toScaledRotMatrix () can be called to convert the unrestricted vector0,vector90 to perpendicular form.
+ * *  The method toScaledMatrix3d () can be called to convert the unrestricted vector0,vector90 to perpendicular form.
  * * The unrestricted form is much easier to work with for common calculations -- stroking, projection to 2d, intersection with plane.
  */
 class Arc3d extends CurvePrimitive_1.CurvePrimitive {
     isSameGeometryClass(other) { return other instanceof Arc3d; }
-    get center() { return this._center; }
+    /**
+     * read property for (clone of) center
+     */
+    get center() { return this._center.clone(); }
+    /**
+     * read property for (clone of) vector0
+     */
     get vector0() { return this._matrix.columnX(); }
+    /**
+     * read property for (clone of) vector90
+     */
     get vector90() { return this._matrix.columnY(); }
-    get matrix() { return this._matrix; }
+    /**
+     * read property for (clone of) matrix of vector0, vector90, unit normal
+     */
+    get matrix() { return this._matrix.clone(); }
     get sweep() { return this._sweep; }
+    set sweep(value) { this._sweep.setFrom(value); }
     // constructor copies the pointers !!!
     constructor(center, matrix, sweep) {
         super();
@@ -79,7 +93,7 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
     }
     static create(center, vector0, vector90, sweep, result) {
         const normal = vector0.unitCrossProductWithDefault(vector90, 0, 0, 0); // normal will be 000 for degenerate case ! !!
-        const matrix = Transform_1.RotMatrix.createColumns(vector0, vector90, normal);
+        const matrix = Transform_1.Matrix3d.createColumns(vector0, vector90, normal);
         if (result) {
             result.setRefs(center.clone(), matrix, sweep ? sweep.clone() : Geometry_1.AngleSweep.create360());
             return result;
@@ -95,17 +109,19 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
         const ab = vectorAB.magnitude();
         const bc = vectorAC.magnitude();
         const normal = vectorAB.sizedCrossProduct(vectorAC, Math.sqrt(ab * bc));
-        const vectorToCenter = Polynomials_1.SmallSystem.linearSystem3d(normal.x, normal.y, normal.z, vectorAB.x, vectorAB.y, vectorAB.z, vectorAC.x, vectorAC.y, vectorAC.z, 0, // vectorToCenter DOT normal = 0
-        0.5 * ab * ab, // vectorToCenter DOT vectorBA = 0.5 * vectorBA DOT vectorBA  (Rayleigh quotient)
-        0.5 * bc * bc); // vectorToCenter DOT vectorBC = 0.5 * vectorBC DOT vectorBC  (Rayleigh quotient)
-        if (vectorToCenter) {
-            const center = PointVector_1.Point3d.create(pointA.x, pointA.y, pointA.z).plus(vectorToCenter);
-            const vectorX = PointVector_1.Vector3d.createStartEnd(center, pointA);
-            const vectorY = PointVector_1.Vector3d.createRotateVectorAroundVector(vectorX, normal);
-            if (vectorY) {
-                const vectorCenterToC = PointVector_1.Vector3d.createStartEnd(center, pointC);
-                const sweepAngle = vectorX.signedAngleTo(vectorCenterToC, normal);
-                return Arc3d.create(center, vectorX, vectorY, Geometry_1.AngleSweep.createStartEndRadians(0.0, sweepAngle.radians), result);
+        if (normal) {
+            const vectorToCenter = Polynomials_1.SmallSystem.linearSystem3d(normal.x, normal.y, normal.z, vectorAB.x, vectorAB.y, vectorAB.z, vectorAC.x, vectorAC.y, vectorAC.z, 0, // vectorToCenter DOT normal = 0
+            0.5 * ab * ab, // vectorToCenter DOT vectorBA = 0.5 * vectorBA DOT vectorBA  (Rayleigh quotient)
+            0.5 * bc * bc); // vectorToCenter DOT vectorBC = 0.5 * vectorBC DOT vectorBC  (Rayleigh quotient)
+            if (vectorToCenter) {
+                const center = PointVector_1.Point3d.create(pointA.x, pointA.y, pointA.z).plus(vectorToCenter);
+                const vectorX = PointVector_1.Vector3d.createStartEnd(center, pointA);
+                const vectorY = PointVector_1.Vector3d.createRotateVectorAroundVector(vectorX, normal, Geometry_1.Angle.createDegrees(90));
+                if (vectorY) {
+                    const vectorCenterToC = PointVector_1.Vector3d.createStartEnd(center, pointC);
+                    const sweepAngle = vectorX.signedAngleTo(vectorCenterToC, normal);
+                    return Arc3d.create(center, vectorX, vectorY, Geometry_1.AngleSweep.createStartEndRadians(0.0, sweepAngle.radians), result);
+                }
             }
         }
         return LineString3d_1.LineString3d.create(pointA, pointB, pointC);
@@ -177,7 +193,7 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
     closestPoint(spacePoint, extend, result) {
         result = CurvePrimitive_1.CurveLocationDetail.create(this, result);
         const allRadians = this.allPerpendicularAngles(spacePoint);
-        if (!extend && !this._sweep.isFullCircle()) {
+        if (!extend && !this._sweep.isFullCircle) {
             allRadians.push(this._sweep.startRadians);
             allRadians.push(this._sweep.endRadians);
         }
@@ -219,7 +235,7 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
             && Geometry_1.Geometry.isSmallMetricDistance(this._matrix.dotColumnX(normal))
             && Geometry_1.Geometry.isSmallMetricDistance(this._matrix.dotColumnY(normal));
     }
-    isCircular() {
+    get isCircular() {
         const axx = this._matrix.columnXMagnitudeSquared();
         const ayy = this._matrix.columnYMagnitudeSquared();
         const axy = this._matrix.columnXDotColumnY();
@@ -227,15 +243,15 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
     }
     /** If the arc is circular, return its radius.  Otherwise return undefined */
     circularRadius() {
-        return this.isCircular() ? this._matrix.columnXMagnitude() : undefined;
+        return this.isCircular ? this._matrix.columnXMagnitude() : undefined;
     }
     /** Return the larger of the two defining vectors. */
     maxVectorLength() { return Math.max(this._matrix.columnXMagnitude(), this._matrix.columnYMagnitude()); }
     appendPlaneIntersectionPoints(plane, result) {
-        const normal = plane.getNormalRef();
-        const constCoff = normal.dotProductStartEnd(plane.getOriginRef(), this._center);
-        const cosCoff = this._matrix.dotColumnX(normal);
-        const sinCoff = this._matrix.dotColumnY(normal);
+        const constCoff = plane.altitude(this._center);
+        const coffs = this._matrix.coffs;
+        const cosCoff = plane.velocityXYZ(coffs[0], coffs[3], coffs[6]);
+        const sinCoff = plane.velocityXYZ(coffs[1], coffs[4], coffs[7]);
         const trigPoints = Geometry_1.Geometry.solveTrigForm(constCoff, cosCoff, sinCoff);
         let numIntersection = 0;
         if (trigPoints !== undefined) {
@@ -259,7 +275,7 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
         }
     }
     static createUnitCircle() {
-        return Arc3d.createRefs(PointVector_1.Point3d.create(0, 0, 0), Transform_1.RotMatrix.createIdentity(), Geometry_1.AngleSweep.create360());
+        return Arc3d.createRefs(PointVector_1.Point3d.create(0, 0, 0), Transform_1.Matrix3d.createIdentity(), Geometry_1.AngleSweep.create360());
     }
     /**
      * @param center center of arc
@@ -267,21 +283,21 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
      * @param sweep sweep limits.  defaults to full circle.
      */
     static createXY(center, radius, sweep = Geometry_1.AngleSweep.create360()) {
-        return new Arc3d(center.clone(), Transform_1.RotMatrix.createScale(radius, radius, 1.0), sweep);
+        return new Arc3d(center.clone(), Transform_1.Matrix3d.createScale(radius, radius, 1.0), sweep);
     }
     static createXYEllipse(center, radiusA, radiusB, sweep = Geometry_1.AngleSweep.create360()) {
-        return new Arc3d(center.clone(), Transform_1.RotMatrix.createScale(radiusA, radiusB, 1.0), sweep);
+        return new Arc3d(center.clone(), Transform_1.Matrix3d.createScale(radiusA, radiusB, 1.0), sweep);
     }
     setVector0Vector90(vector0, vector90) {
         this._matrix.setColumns(vector0, vector90, vector0.unitCrossProductWithDefault(vector90, 0, 0, 0));
     }
-    toScaledRotMatrix() {
+    toScaledMatrix3d() {
         const angleData = Geometry_1.Angle.dotProductsToHalfAngleTrigValues(this._matrix.columnXMagnitudeSquared(), this._matrix.columnYMagnitudeSquared(), this._matrix.columnXDotColumnY(), true);
         const vector0A = this._matrix.multiplyXY(angleData.c, angleData.s);
         const vector90A = this._matrix.multiplyXY(-angleData.s, angleData.c);
-        const axes = Transform_1.RotMatrix.createRigidFromColumns(vector0A, vector90A, 0 /* XYZ */);
+        const axes = Transform_1.Matrix3d.createRigidFromColumns(vector0A, vector90A, 0 /* XYZ */);
         return {
-            axes: (axes ? axes : Transform_1.RotMatrix.createIdentity()),
+            axes: (axes ? axes : Transform_1.Matrix3d.createIdentity()),
             center: this._center,
             r0: vector0A.magnitude(),
             r90: vector90A.magnitude(),
@@ -289,13 +305,38 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
         };
     }
     /** Return the arc definition with center, two vectors, and angle sweep;
-     * The center and AngleSweep are references to inside the Arc3d.
      */
     toVectors() {
         return {
             center: this.center,
             vector0: this.matrix.columnX(),
             vector90: this.matrix.columnY(),
+            sweep: this.sweep,
+        };
+    }
+    /** Return the arc definition with center, two vectors, and angle sweep, optionally transformed.
+     */
+    toTransformedVectors(transform) {
+        return transform ? {
+            center: transform.multiplyPoint3d(this._center),
+            vector0: transform.multiplyVector(this._matrix.columnX()),
+            vector90: transform.multiplyVector(this._matrix.columnY()),
+            sweep: this.sweep,
+        }
+            : {
+                center: this._center.clone(),
+                vector0: this._matrix.columnX(),
+                vector90: this._matrix.columnY(),
+                sweep: this.sweep,
+            };
+    }
+    /** Return the arc definition with center, two vectors, and angle sweep, transformed to 4d points.
+     */
+    toTransformedPoint4d(matrix) {
+        return {
+            center: matrix.multiplyPoint3d(this._center, 1.0),
+            vector0: matrix.multiplyPoint3d(this._matrix.columnX(), 0.0),
+            vector90: matrix.multiplyPoint3d(this._matrix.columnY(), 0.0),
             sweep: this.sweep,
         };
     }
@@ -311,7 +352,7 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
         }
         else {
             this._center.set(0, 0, 0);
-            this._matrix.setFrom(Transform_1.RotMatrix.identity);
+            this._matrix.setFrom(Transform_1.Matrix3d.identity);
             this._sweep.setStartEndRadians();
         }
     }

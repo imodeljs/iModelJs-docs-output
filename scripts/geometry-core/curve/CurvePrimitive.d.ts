@@ -1,3 +1,5 @@
+/** @module Curve */
+import { PlaneAltitudeEvaluator } from "../Geometry";
 import { StrokeOptions } from "./StrokeOptions";
 import { Point3d, Vector3d } from "../PointVector";
 import { Range3d } from "../Range";
@@ -19,7 +21,7 @@ export declare enum CurveIntervalRole {
     /** This is an interior point of an interval. */
     intervalInterior = 11,
     /** This is the end of an interval */
-    intervalEnd = 12,
+    intervalEnd = 12
 }
 /** Type for callback function which announces a pair of numbers, such as a fractional interval, along with a containing CurvePrimitive. */
 export declare type AnnounceNumberNumberCurvePrimitive = (a0: number, a1: number, cp: CurvePrimitive) => void;
@@ -47,7 +49,7 @@ export declare class CurveLocationDetail {
     /** Set the (optional) intervalRole field */
     setIntervalRole(value: CurveIntervalRole): void;
     /** test if this is an isolated point. This is true if intervalRole is any of (undefined, isolated, isolatedAtVertex) */
-    isIsolated(): boolean;
+    readonly isIsolated: boolean;
     /** @returns Return a complete copy */
     clone(result?: CurveLocationDetail): CurveLocationDetail;
     setFP(fraction: number, point: Point3d, vector?: Vector3d, a?: number): void;
@@ -63,6 +65,17 @@ export declare class CurveLocationDetail {
     /** create with CurvePrimitive pointer, fraction, and point coordinates.
      */
     static createCurveFractionPoint(curve: CurvePrimitive, fraction: number, point: Point3d, result?: CurveLocationDetail): CurveLocationDetail;
+    /** create with CurvePrimitive pointer, fraction, and point coordinates.
+     */
+    static createCurveFractionPointDistance(curve: CurvePrimitive, fraction: number, point: Point3d, a: number, result?: CurveLocationDetail): CurveLocationDetail;
+    /** update or create if closer than current contents.
+     * @param curve candidate curve
+     * @param fraction candidate fraction
+     * @param point candidate point
+     * @param a candidate distance
+     * @returns true if the given distance is smaller (and hence this detail was updated.)
+     */
+    updateIfCloserCurveFractionPointDistance(curve: CurvePrimitive, fraction: number, point: Point3d, a: number): boolean;
 }
 /** A pair of CurveLocationDetail. */
 export declare class CurveLocationDetailPair {
@@ -212,7 +225,7 @@ export declare abstract class CurvePrimitive extends GeometryQuery {
      * @param result Array to receive intersections
      * @returns Return the number of CurveLocationDetail's added to the result array.
      */
-    appendPlaneIntersectionPoints(plane: Plane3dByOriginAndUnitNormal, result: CurveLocationDetail[]): number;
+    appendPlaneIntersectionPoints(plane: PlaneAltitudeEvaluator, result: CurveLocationDetail[]): number;
     /** Ask if the curve is within tolerance of a plane.
      * @returns Returns true if the curve is completely within tolerance of the plane.
      */
@@ -230,7 +243,7 @@ export declare abstract class CurvePrimitive extends GeometryQuery {
 }
 /** A Coordinate is a persistable Point3d */
 export declare class CoordinateXYZ extends GeometryQuery {
-    private xyz;
+    private _xyz;
     readonly point: Point3d;
     /**
      * @param xyz point to be CAPTURED.
@@ -263,3 +276,4 @@ export declare class CoordinateXYZ extends GeometryQuery {
     isAlmostEqual(other: GeometryQuery): boolean;
     dispatchToGeometryHandler(handler: GeometryHandler): any;
 }
+//# sourceMappingURL=CurvePrimitive.d.ts.map

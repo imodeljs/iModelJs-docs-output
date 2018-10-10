@@ -21,10 +21,10 @@ import { Range3d } from "./Range";
  * **  this will use the third vector to select right or left handed frame.
  */
 export declare class FrameBuilder {
-    private origin;
-    private vector0;
-    private vector1;
-    private vector2;
+    private _origin;
+    private _vector0;
+    private _vector1;
+    private _vector2;
     clear(): void;
     constructor();
     /** Try to assemble the data into a nonsingular transform.
@@ -34,7 +34,7 @@ export declare class FrameBuilder {
      */
     getValidatedFrame(allowLeftHanded?: boolean): Transform | undefined;
     applyDefaultUpVector(vector?: Vector3d): void;
-    hasOrigin(): boolean;
+    readonly hasOrigin: boolean;
     /** Return the number of vectors saved.   Because the save process checkes numerics, this should be the rank of the system.
      */
     savedVectorCount(): number;
@@ -77,3 +77,4 @@ export declare class FrameBuilder {
      */
     static createLocalToWorldTransformInRange(range: Range3d, scaleSelect?: AxisScaleSelect, fractionX?: number, fractionY?: number, fractionZ?: number, defaultAxisLength?: number): Transform;
 }
+//# sourceMappingURL=FrameBuilder.d.ts.map

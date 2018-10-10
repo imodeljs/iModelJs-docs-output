@@ -8,9 +8,9 @@ import { GeometryHandler } from "../GeometryHandler";
 import { SweepContour } from "./SweepContour";
 import { SolidPrimitive } from "./SolidPrimitive";
 export declare class RotationalSweep extends SolidPrimitive {
-    private contour;
-    private normalizedAxis;
-    private sweepAngle;
+    private _contour;
+    private _normalizedAxis;
+    private _sweepAngle;
     private constructor();
     static create(contour: CurveCollection, axis: Ray3d, sweepAngle: Angle, capped: boolean): RotationalSweep | undefined;
     /** Return a coordinate frame (right handed unit vectors)
@@ -37,3 +37,4 @@ export declare class RotationalSweep extends SolidPrimitive {
     constantVSection(vFraction: number): CurveCollection | undefined;
     extendRange(range: Range3d): void;
 }
+//# sourceMappingURL=RotationalSweep.d.ts.map

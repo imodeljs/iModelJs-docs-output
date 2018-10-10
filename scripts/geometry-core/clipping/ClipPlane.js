@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module CartesianGeometry */
 const PointVector_1 = require("../PointVector");
@@ -145,7 +146,7 @@ class ClipPlane {
         const edgeVector = PointVector_1.Vector3d.createFrom(point1.minus(point0));
         let normal = (upVector.crossProduct(edgeVector)).normalize();
         if (normal) {
-            if (!tiltAngle.isAlmostZero()) {
+            if (!tiltAngle.isAlmostZero) {
                 const tiltNormal = PointVector_1.Vector3d.createRotateVectorAroundVector(normal, edgeVector, tiltAngle);
                 if (tiltNormal) {
                     normal = tiltNormal.clone();
@@ -216,7 +217,7 @@ class ClipPlane {
         Polynomials_1.AnalyticRoots.appendImplicitLineUnitCircleIntersections(alpha, beta, gamma, undefined, undefined, intersectionRadians);
     }
     announceClippedArcIntervals(arc, announce) {
-        const breaks = ClipPlane.sClipArcFractionArray;
+        const breaks = ClipPlane._clipArcFractionArray;
         breaks.clear();
         this.appendIntersectionRadians(arc, breaks);
         arc.sweep.radiansArraytoPositivePeriodicFractions(breaks);
@@ -323,7 +324,7 @@ class ClipPlane {
                     const f = -a0 / (a1 - a0);
                     crossings.push(xyz0.interpolate(f, xyz1));
                 }
-                if (a1 === 0.0) {
+                if (a1 === 0.0) { // IMPORTANT -- every point is directly tested here
                     crossings.push(xyz1);
                 }
                 xyz0 = PointVector_1.Point3d.createFrom(xyz1);
@@ -383,7 +384,7 @@ class ClipPlane {
         const h1 = -this.evaluatePoint(pointB);
         const delta = h1 - h0;
         const f = Geometry_1.Geometry.conditionalDivideFraction(-h0, delta);
-        if (f === undefined) {
+        if (f === undefined) { // The segment is parallel to the plane.
             if (h0 <= 0.0) {
                 if (announce)
                     announce(f0, f1);
@@ -391,7 +392,7 @@ class ClipPlane {
             }
             return false;
         }
-        if (delta > 0) {
+        if (delta > 0) { // segment aims OUT
             if (f < f1)
                 f1 = f;
         }
@@ -409,6 +410,6 @@ class ClipPlane {
 }
 // Static variable from original native c++ function ConvexPolygonClipInPlace
 ClipPlane.fractionTol = 1.0e-8;
-ClipPlane.sClipArcFractionArray = new GrowableArray_1.GrowableFloat64Array();
+ClipPlane._clipArcFractionArray = new GrowableArray_1.GrowableFloat64Array();
 exports.ClipPlane = ClipPlane;
 //# sourceMappingURL=ClipPlane.js.map

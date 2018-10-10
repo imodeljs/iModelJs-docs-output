@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module CartesianGeometry */
 const PointVector_1 = require("../PointVector");
@@ -194,7 +195,7 @@ class ConvexClipPlaneSet {
     }
     isPointInside(point) {
         for (const plane of this._planes) {
-            if (!plane.isPointInside(point))
+            if (!plane.isPointInside(point)) // Defaults to strict inside check. Other clipping classes may use "on or inside" check for the "on" case
                 return false;
         }
         return true;
@@ -242,13 +243,13 @@ class ConvexClipPlaneSet {
                 if (hA > 0.0)
                     return false;
             }
-            else if (hB > hA) {
+            else if (hB > hA) { // STRICTLY moving outward
                 if (fraction < f0)
                     return false;
                 if (fraction < f1)
                     f1 = fraction;
             }
-            else if (hA > hB) {
+            else if (hA > hB) { // STRICTLY moving inward
                 if (fraction > f1)
                     return false;
                 if (fraction > f0)
@@ -268,7 +269,7 @@ class ConvexClipPlaneSet {
         return false;
     }
     announceClippedArcIntervals(arc, announce) {
-        const breaks = ConvexClipPlaneSet.sClipArcFractionArray;
+        const breaks = ConvexClipPlaneSet._clipArcFractionArray;
         breaks.clear();
         for (const clipPlane of this.planes) {
             clipPlane.appendIntersectionRadians(arc, breaks);
@@ -337,7 +338,7 @@ class ConvexClipPlaneSet {
         for (let i = 0; (i + 1) < points.length; i++) {
             if (reverse) {
                 const toAdd = ClipPlane_1.ClipPlane.createEdgeAndUpVector(points[i + 1], points[i], upVector, tiltAngle);
-                if (toAdd) {
+                if (toAdd) { // Clipplane creation could result in undefined
                     result.addPlaneToConvexSet(toAdd);
                 }
                 else {
@@ -346,7 +347,7 @@ class ConvexClipPlaneSet {
             }
             else {
                 const toAdd = ClipPlane_1.ClipPlane.createEdgeAndUpVector(points[i], points[i + 1], upVector, tiltAngle);
-                if (toAdd) {
+                if (toAdd) { // Clipplane creation could result in undefined
                     result.addPlaneToConvexSet(toAdd);
                 }
                 else {
@@ -409,7 +410,7 @@ class ConvexClipPlaneSet {
             const inwardNormal = PointVector_1.Vector3d.createCrossProduct(sweepDirection.x, sweepDirection.y, sweepDirection.z, edgeVector.x, edgeVector.y, edgeVector.z);
             const inwardNormalNormalized = inwardNormal.normalize();
             let distance;
-            if (inwardNormalNormalized) {
+            if (inwardNormalNormalized) { // Should never fail... simply a check due to the format of the normalize function return
                 distance = inwardNormalNormalized.dotProduct(xyz0);
                 const clipToAdd = ClipPlane_1.ClipPlane.createNormalAndDistance(inwardNormalNormalized, distance, false, false);
                 if (clipToAdd) {
@@ -419,7 +420,7 @@ class ConvexClipPlaneSet {
         }
         if (sideSelect !== 0.0) {
             let planeNormalNormalized = planeNormal.normalize();
-            if (planeNormalNormalized) {
+            if (planeNormalNormalized) { // Again.. should never fail
                 const a = sweepDirection.dotProduct(planeNormalNormalized) * sideSelect;
                 if (a < 0.0)
                     planeNormalNormalized = planeNormalNormalized.negate();
@@ -435,10 +436,10 @@ class ConvexClipPlaneSet {
     }
     /**
      * Returns range if result does not cover a space of infinity, otherwise undefined.
-     * Note: If given a range for output, overwrites it, rather than extending it.
+     * Note: If given a range for output, this will overwrite it, NOT extend it.
      */
     getRangeOfAlignedPlanes(transform, result) {
-        const idMatrix = Transform_1.RotMatrix.createIdentity();
+        const idMatrix = Transform_1.Matrix3d.createIdentity();
         const bigRange = Range_2.Range3d.createXYZXYZ(-Number.MAX_VALUE, -Number.MAX_VALUE, -Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE);
         const range = bigRange.clone(result);
         for (const clipPlane of this._planes) {
@@ -494,6 +495,6 @@ class ConvexClipPlaneSet {
     }
 }
 ConvexClipPlaneSet.hugeVal = 1e37;
-ConvexClipPlaneSet.sClipArcFractionArray = new GrowableArray_1.GrowableFloat64Array();
+ConvexClipPlaneSet._clipArcFractionArray = new GrowableArray_1.GrowableFloat64Array();
 exports.ConvexClipPlaneSet = ConvexClipPlaneSet;
 //# sourceMappingURL=ConvexClipPlaneSet.js.map

@@ -41,3 +41,4 @@ export declare class Quadrature {
     /** Sum function values with given weghts and x values. */
     static sum1(xx: Float64Array, ww: Float64Array, n: number, f: (x: number) => number): number;
 }
+//# sourceMappingURL=Quadrature.d.ts.map

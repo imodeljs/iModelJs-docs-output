@@ -15,9 +15,9 @@
 export declare class KnotVector {
     knots: Float64Array;
     degree: number;
-    private knot0;
-    private knot1;
-    private possibleWrap;
+    private _knot0;
+    private _knot1;
+    private _possibleWrap;
     static readonly knotTolerance: number;
     readonly leftKnot: number;
     readonly rightKnot: number;
@@ -35,7 +35,7 @@ export declare class KnotVector {
     private constructor();
     /** copy degree and knots to a new KnotVector. */
     clone(): KnotVector;
-    private setupFixedValues();
+    private setupFixedValues;
     /** @returns Return the total knot distance from beginning to end. */
     readonly knotLength01: number;
     isAlmostEqual(other: KnotVector): boolean;
@@ -89,3 +89,4 @@ export declare class KnotVector {
      */
     copyKnots(includeExtraEndKnot: boolean): number[];
 }
+//# sourceMappingURL=KnotVector.d.ts.map

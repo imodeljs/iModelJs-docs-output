@@ -9,7 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Cross-Platform Technologies - iModelJs</title>
+    <title>Cross-Platform Technologies - iModel.js</title>
+    <meta name="og:title" content="Cross-Platform Technologies - iModel.js">
+    <meta name="twitter:title" content="Cross-Platform Technologies - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -90,8 +95,9 @@
         <h3 id="helpful links">Helpful links</h3>
         <ul>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
         </ul>
@@ -100,14 +106,14 @@
     <div class='documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > Portability</div>
-            <div class="edit-link"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fdocs%2Fcore%2Flearning%2FPortability.md" target="_blank">Edit this page</a></div>
+            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
             <h1 id="portability">Portability</h1>
-<p>This article describes the technologies and best practices that make iModel.js apps portable. An well-written iModel.js app will run on many platforms without modification.</p>
+<p>This article describes the technologies and best practices that make iModel.js apps portable. A well-written iModel.js app will run on many platforms without modification.</p>
 <p>In addition, a well-written interactive app can be configured to run as a Web abb, a desktop app, and a mobile app, with a few simple runtime checks and no other code changes. Configurability does not mean that an iModel.js app must be the same in all configurations. In fact, the iModel.js architecture makes it easy to <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/apptailoring'>make the app fit the platform</a>.</p>
 <p>This degree of portability and configurability is possible because of the technologies used by iModel.js apps and the iModel.js app architecture.</p>
 <h2 class="h-cross-platform-technologies">Cross-Platform Technologies<a id="cross-platform-technologies" class="heading-anchor" href="#cross-platform-technologies"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The key technology that makes an app portable is JavaScript. JavaScript engines are available on many operating systems and Web browsers. TypeScript compiles to JavaScript.</p>
-<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#nodejs'>Nodejs</a> is an execution environment for agents, services, and servers. Nodejs runs JavaScript programs. Nodejs itself runs on many platforms, including Windows and Linux. Nodejs is also widely supported by cloud infrastructures and deployment mechanisms.</p>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#nodejs'>Node.js</a> is an execution environment for agents, services, and servers. Node.js runs JavaScript programs. Node.js itself runs on many platforms, including Windows and Linux. Node.js is also widely supported by cloud infrastructures and deployment mechanisms.</p>
 <p>Web UI technology, including HTML and CSS, makes it possible to write a cross-platform user interface that looks and behaves the same everywhere, in every configuration. Web UI technology is supported by Web browsers and Web view renderers on many platforms. Web UI technology also simplifies the task of reconfiguring or even swapping out an app&apos;s GUI.</p>
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#electron'>Electron</a> combines a Web view client and a nodejs-based server into a single desktop product, without requiring any modification of the code or the UI. Electron runs on many desktop platforms.</p>
 <h2 class="h-frontend-portability">Frontend Portability<a id="frontend-portability" class="heading-anchor" href="#frontend-portability"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
@@ -122,7 +128,7 @@ if (isIos) {
 }</code></pre>
 <h2 class="h-backend-portability">Backend Portability<a id="backend-portability" class="heading-anchor" href="#backend-portability"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <h3 class="h-services-and-agents">Services and Agents<a id="services-and-agents" class="heading-anchor" href="#services-and-agents"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>True services and agents are easy to make portable, since they always run in nodejs and they always run on a server. Services always run a Web server and always use <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/rpcinterface/#web-rpc-configuration'>Web RPC configuration</a>. Note that an iModel.js service or agent does not deal directly with issues such as deployment, routing, or scaling. Those are the concerns of the cloud infrastructure. As nodejs apps, iModel.js services and agents are cloud-neutral and run on many cloud infrastructures.</p>
+<p>True services and agents are easy to make portable, since they always run in Node.js and they always run on a server. Services always run a Web server and always use <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/rpcinterface/#web-rpc-configuration'>Web RPC configuration</a>. Note that an iModel.js service or agent does not deal directly with issues such as deployment, routing, or scaling. Those are the concerns of the cloud infrastructure. As nodejs apps, iModel.js services and agents are cloud-neutral and run on many cloud infrastructures.</p>
 <h3 class="h-app-backends">App Backends<a id="app-backends" class="heading-anchor" href="#app-backends"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>App-specific backends do not always run in nodejs, and they do not always run on a server. This section describes how to make an app-specific backend portable and adaptable to multiple app configurations.</p>
 <h4 class="h-using-platform-specific-modules-in-the-backend">Using Platform-specific Modules in the Backend<a id="using-platform-specific-modules-in-the-backend" class="heading-anchor" href="#using-platform-specific-modules-in-the-backend"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
@@ -137,7 +143,7 @@ if (isIos) {
     require(&quot;fs&quot;);
     // ...
   }</code></pre>
-<h3 class="h-avoiding-nodejs-dependencies">Avoiding Nodejs dependencies<a id="avoiding-nodejs-dependencies" class="heading-anchor" href="#avoiding-nodejs-dependencies"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h3 class="h-avoiding-nodejs-dependencies">Avoiding Node.js dependencies<a id="avoiding-nodejs-dependencies" class="heading-anchor" href="#avoiding-nodejs-dependencies"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>A backend can use the following portable imodeljs-backend classes to avoid unnecessary node dependencies:</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Node builtin</th>
@@ -177,10 +183,13 @@ if (isIos) {
 posix, win32, sep, delimiter, basename, dirname, extname, normalize, join, isAbsolute.</p>
 <p>Use only these methods in unguarded code.</p>
 <h4 class="h-unsupported">Unsupported<a id="unsupported" class="heading-anchor" href="#unsupported"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
-<p>An app backend must not <em>never</em> depend on node-specific <em>packages</em>, including any package that is based on native code. (For fs-extra, use IModelJsFs)</p>
+<p>An app backend must <em>never</em> depend on node-specific <em>packages</em>, including any package that is based on native code.</p>
+<blockquote>
+<p>For fs-extra, use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/portability/imodeljsfs'>IModelJsFs</a>.</p>
+</blockquote>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             
@@ -229,7 +238,7 @@ posix, win32, sep, delimiter, basename, dirname, extname, normalize, join, isAbs
                     </li>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-avoiding-nodejs-dependencies" class='title' href="#avoiding-nodejs-dependencies"/>
-                            <b class='dropdown-menu-title menu-text'>Avoiding Nodejs dependencies</b>
+                            <b class='dropdown-menu-title menu-text'>Avoiding Node.js dependencies</b>
                             <i class='dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-avoiding-nodejs-dependencies" class='inner-nav'>

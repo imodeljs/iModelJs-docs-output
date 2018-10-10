@@ -10,6 +10,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Arc3d - geometry-core</title>
+    <meta name="og:title" content="Arc3d - geometry-core">
+    <meta name="twitter:title" content="Arc3d - geometry-core">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -186,12 +191,10 @@
 <li>When the two vectors are perpendicular and have equal length, it is a true circle.</li>
 <li>Non-perpendicular vectors are always elliptic.</li>
 <li>vectors of unequal length are always elliptic.</li>
-<li>To create an ellipse in the common &quot;major and minor axis&quot; form of an ellipse:</li>
-</ul>
-<p><strong> vector0 is the vector from the center to the major axis extreme.
+<li>To create an ellipse in the common &quot;major and minor axis&quot; form of an ellipse:
+<strong> vector0 is the vector from the center to the major axis extreme.
 </strong> vector90 is the vector from the center to the minor axis extreme.
-** note the constructing the vectors to the extreme points makes them perpendicular.</p>
-<ul>
+** note the constructing the vectors to the extreme points makes them perpendicular.</li>
 <li>The method toScaledMatrix3d () can be called to convert the unrestricted vector0,vector90 to perpendicular form.</li>
 <li>The unrestricted form is much easier to work with for common calculations -- stroking, projection to 2d, intersection with plane.</li>
 </ul>
@@ -213,11 +216,11 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-allperpendicularangles"><span class="method-name">allPerpendicularAngles</span><span class="method-parenthesis">(</span><span class="method-parameters">spacePoint: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, _extend: boolean = false, _endpoints: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> number[]</span><a id="allperpendicularangles" class="heading-anchor" href="#allperpendicularangles"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-allperpendicularangles"><span class="method-name">allPerpendicularAngles</span><span class="method-parenthesis">(</span><span class="method-parameters">spacePoint: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>, _extend: boolean = false, _endpoints: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> number[]</span><a id="allperpendicularangles" class="heading-anchor" href="#allperpendicularangles"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
 <tr>
-<td class="h-angletopointandderivative"><span class="method-name">angleToPointAndDerivative</span><span class="method-parenthesis">(</span><span class="method-parameters">theta: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/angle'>Angle</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/ray3d'>Ray3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/ray3d'>Ray3d</a></span><a id="angletopointandderivative" class="heading-anchor" href="#angletopointandderivative"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-angletopointandderivative"><span class="method-name">angleToPointAndDerivative</span><span class="method-parenthesis">(</span><span class="method-parameters">theta: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/angle/angle'>Angle</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/ray3d'>Ray3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/ray3d'>Ray3d</a></span><a id="angletopointandderivative" class="heading-anchor" href="#angletopointandderivative"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
 <tr>
@@ -245,7 +248,7 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-closestpoint"><span class="method-name">closestPoint</span><span class="method-parenthesis">(</span><span class="method-parameters">spacePoint: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, extend: boolean, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curvelocationdetail'>CurveLocationDetail</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curvelocationdetail'>CurveLocationDetail</a></span><a id="closestpoint" class="heading-anchor" href="#closestpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-closestpoint"><span class="method-name">closestPoint</span><span class="method-parenthesis">(</span><span class="method-parameters">spacePoint: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>, extend: boolean, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curvelocationdetail'>CurveLocationDetail</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curvelocationdetail'>CurveLocationDetail</a></span><a id="closestpoint" class="heading-anchor" href="#closestpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
 <tr>
@@ -265,7 +268,7 @@
 <td>Emit strokes to caller-supplied linestring</td>
 </tr>
 <tr>
-<td class="h-endpoint"><span class="method-name">endPoint</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span><a id="endpoint" class="heading-anchor" href="#endpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-endpoint"><span class="method-name">endPoint</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="endpoint" class="heading-anchor" href="#endpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
 <tr>
@@ -273,7 +276,7 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-fractiontopoint"><span class="method-name">fractionToPoint</span><span class="method-parenthesis">(</span><span class="method-parameters">fraction: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span><a id="fractiontopoint" class="heading-anchor" href="#fractiontopoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-fractiontopoint"><span class="method-name">fractionToPoint</span><span class="method-parenthesis">(</span><span class="method-parameters">fraction: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="fractiontopoint" class="heading-anchor" href="#fractiontopoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
 <tr>
@@ -313,7 +316,7 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-set"><span class="method-name">set</span><span class="method-parenthesis">(</span><span class="method-parameters">center: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/matrix3d'>Matrix3d</a>, sweep: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> | undefined</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="set" class="heading-anchor" href="#set"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-set"><span class="method-name">set</span><span class="method-parenthesis">(</span><span class="method-parameters">center: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a>, sweep: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/anglesweep/anglesweep'>AngleSweep</a> | undefined</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="set" class="heading-anchor" href="#set"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
 <tr>
@@ -325,15 +328,15 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-setrefs"><span class="method-name">setRefs</span><span class="method-parenthesis">(</span><span class="method-parameters">center: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/matrix3d'>Matrix3d</a>, sweep: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setrefs" class="heading-anchor" href="#setrefs"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-setrefs"><span class="method-name">setRefs</span><span class="method-parenthesis">(</span><span class="method-parameters">center: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a>, sweep: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/anglesweep/anglesweep'>AngleSweep</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setrefs" class="heading-anchor" href="#setrefs"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
 <tr>
-<td class="h-setvector0vector90"><span class="method-name">setVector0Vector90</span><span class="method-parenthesis">(</span><span class="method-parameters">vector0: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a>, vector90: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setvector0vector90" class="heading-anchor" href="#setvector0vector90"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-setvector0vector90"><span class="method-name">setVector0Vector90</span><span class="method-parenthesis">(</span><span class="method-parameters">vector0: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, vector90: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setvector0vector90" class="heading-anchor" href="#setvector0vector90"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
 <tr>
-<td class="h-startpoint"><span class="method-name">startPoint</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span><a id="startpoint" class="heading-anchor" href="#startpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-startpoint"><span class="method-name">startPoint</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="startpoint" class="heading-anchor" href="#startpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
 <tr>
@@ -361,7 +364,7 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-create"><span class="method-name">create</span><span class="method-parenthesis">(</span><span class="method-parameters">center: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, vector0: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a>, vector90: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a>, sweep?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/arc3d'>Arc3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/arc3d'>Arc3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="create" class="heading-anchor" href="#create"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-create"><span class="method-name">create</span><span class="method-parenthesis">(</span><span class="method-parameters">center: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>, vector0: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, vector90: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a>, sweep?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/anglesweep/anglesweep'>AngleSweep</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/arc3d'>Arc3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/arc3d'>Arc3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="create" class="heading-anchor" href="#create"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
 <tr>
@@ -369,11 +372,11 @@
 <td>Create a circular arc defined by start point, any intermediate point, and end point.</td>
 </tr>
 <tr>
-<td class="h-createrefs"><span class="method-name">createRefs</span><span class="method-parenthesis">(</span><span class="method-parameters">center: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/matrix3d'>Matrix3d</a>, sweep: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/arc3d'>Arc3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/arc3d'>Arc3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createrefs" class="heading-anchor" href="#createrefs"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-createrefs"><span class="method-name">createRefs</span><span class="method-parenthesis">(</span><span class="method-parameters">center: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a>, sweep: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/anglesweep/anglesweep'>AngleSweep</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/arc3d'>Arc3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/arc3d'>Arc3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createrefs" class="heading-anchor" href="#createrefs"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
 <tr>
-<td class="h-createscaledxycolumns"><span class="method-name">createScaledXYColumns</span><span class="method-parenthesis">(</span><span class="method-parameters">center: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/matrix3d'>Matrix3d</a>, radius0: number, radius90: number, sweep: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/arc3d'>Arc3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/arc3d'>Arc3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createscaledxycolumns" class="heading-anchor" href="#createscaledxycolumns"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-createscaledxycolumns"><span class="method-name">createScaledXYColumns</span><span class="method-parenthesis">(</span><span class="method-parameters">center: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a>, radius0: number, radius90: number, sweep: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/anglesweep/anglesweep'>AngleSweep</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/arc3d'>Arc3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/arc3d'>Arc3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createscaledxycolumns" class="heading-anchor" href="#createscaledxycolumns"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
 <tr>
@@ -381,11 +384,11 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-createxy"><span class="method-name"><a href="createxy">createXY</a></span><span class="method-parenthesis">(</span><span class="method-parameters">center: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, radius: number, sweep: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> = AngleSweep.create360()</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/arc3d'>Arc3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createxy" class="heading-anchor" href="#createxy"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-createxy"><span class="method-name"><a href="createxy">createXY</a></span><span class="method-parenthesis">(</span><span class="method-parameters">center: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>, radius: number, sweep: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/anglesweep/anglesweep'>AngleSweep</a> = AngleSweep.create360()</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/arc3d'>Arc3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createxy" class="heading-anchor" href="#createxy"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
 <tr>
-<td class="h-createxyellipse"><span class="method-name">createXYEllipse</span><span class="method-parenthesis">(</span><span class="method-parameters">center: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a>, radiusA: number, radiusB: number, sweep: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a> = AngleSweep.create360()</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/arc3d'>Arc3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createxyellipse" class="heading-anchor" href="#createxyellipse"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-createxyellipse"><span class="method-name">createXYEllipse</span><span class="method-parenthesis">(</span><span class="method-parameters">center: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>, radiusA: number, radiusB: number, sweep: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/anglesweep/anglesweep'>AngleSweep</a> = AngleSweep.create360()</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/arc3d'>Arc3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createxyellipse" class="heading-anchor" href="#createxyellipse"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 </tr>
 </tbody></table><h3 class="h-inherited-methods"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited methods<a id="inherited-methods" class="heading-anchor" href="#inherited-methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -421,7 +424,7 @@
 </tr>
 <tr>
 <td class="h-center"><span class="property-name">center</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="center" class="heading-anchor" href="#center"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point3d'>Point3d</a></span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span></td>
 <td>read property for (clone of) center</td>
 </tr>
 <tr>
@@ -431,22 +434,22 @@
 </tr>
 <tr>
 <td class="h-matrix"><span class="property-name">matrix</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="matrix" class="heading-anchor" href="#matrix"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/matrix3d'>Matrix3d</a></span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span></td>
 <td>read property for (clone of) matrix of vector0, vector90, unit normal</td>
 </tr>
 <tr>
 <td class="h-sweep"><span class="property-name">sweep</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="sweep" class="heading-anchor" href="#sweep"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/anglesweep'>AngleSweep</a></span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/anglesweep/anglesweep'>AngleSweep</a></span></td>
 <td></td>
 </tr>
 <tr>
 <td class="h-vector0"><span class="property-name">vector0</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="vector0" class="heading-anchor" href="#vector0"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a></span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span></td>
 <td>read property for (clone of) vector0</td>
 </tr>
 <tr>
 <td class="h-vector90"><span class="property-name">vector90</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="vector90" class="heading-anchor" href="#vector90"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/vector3d'>Vector3d</a></span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span></td>
 <td>read property for (clone of) vector90</td>
 </tr>
 </tbody></table><h3 class="h-inherited-properties"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited properties<a id="inherited-properties" class="heading-anchor" href="#inherited-properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -457,18 +460,18 @@
 <th>Description</th>
 </tr>
 <tr>
-<td class="h-children"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/geometryquery/#children'>children</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="children" class="heading-anchor" href="#children"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-children"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/geometryquery/children'>children</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="children" class="heading-anchor" href="#children"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/geometryquery'>GeometryQuery</a>[] | undefined</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/geometryquery'>GeometryQuery</a></span></td>
 <td>return GeometryQuery children for recursive queries.<br><br>* leaf classes do not need to implement.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
-<li><span class="defined-in"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fcore%2Fgeometry%2Fsrc%2Fcurve%2FArc3d.ts" target="_blank">curve/Arc3d.ts</a></span></li>
+<li><span class="defined-in"><span title="Page edit feature coming soon">curve/Arc3d.ts</span></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             

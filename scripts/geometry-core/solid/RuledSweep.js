@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 const CurveChain_1 = require("../curve/CurveChain");
 const CurvePrimitive_1 = require("../curve/CurvePrimitive");
@@ -12,7 +13,7 @@ const ConstructCurveBetweenCurves_1 = require("../curve/ConstructCurveBetweenCur
 class RuledSweep extends SolidPrimitive_1.SolidPrimitive {
     constructor(contours, capped) {
         super(capped);
-        this.contours = contours;
+        this._contours = contours;
     }
     static create(contours, capped) {
         const sweepContours = [];
@@ -25,17 +26,17 @@ class RuledSweep extends SolidPrimitive_1.SolidPrimitive {
         return new RuledSweep(sweepContours, capped);
     }
     /** @returns Return a reference to the array of sweep contours. */
-    sweepContoursRef() { return this.contours; }
+    sweepContoursRef() { return this._contours; }
     cloneSweepContours() {
         const result = [];
-        for (const sweepable of this.contours) {
+        for (const sweepable of this._contours) {
             result.push(sweepable.clone());
         }
         return result;
     }
     cloneContours() {
         const result = [];
-        for (const sweepable of this.contours) {
+        for (const sweepable of this._contours) {
             result.push(sweepable.curves.clone());
         }
         return result;
@@ -44,7 +45,7 @@ class RuledSweep extends SolidPrimitive_1.SolidPrimitive {
         return new RuledSweep(this.cloneSweepContours(), this.capped);
     }
     tryTransformInPlace(transform) {
-        for (const contour of this.contours) {
+        for (const contour of this._contours) {
             contour.tryTransformInPlace(transform);
         }
         return true;
@@ -60,19 +61,19 @@ class RuledSweep extends SolidPrimitive_1.SolidPrimitive {
      * * z direction perpenedicular
      */
     getConstructiveFrame() {
-        if (this.contours.length === 0)
+        if (this._contours.length === 0)
             return undefined;
-        return this.contours[0].localToWorld.cloneRigid();
+        return this._contours[0].localToWorld.cloneRigid();
     }
     isSameGeometryClass(other) { return other instanceof RuledSweep; }
     isAlmostEqual(other) {
         if (other instanceof RuledSweep) {
             if (this.capped !== other.capped)
                 return false;
-            if (this.contours.length !== other.contours.length)
+            if (this._contours.length !== other._contours.length)
                 return false;
-            for (let i = 0; i < this.contours.length; i++) {
-                if (!this.contours[i].isAlmostEqual(other.contours[i]))
+            for (let i = 0; i < this._contours.length; i++) {
+                if (!this._contours[i].isAlmostEqual(other._contours[i]))
                     return false;
             }
             return true;
@@ -87,7 +88,7 @@ class RuledSweep extends SolidPrimitive_1.SolidPrimitive {
      * @param vFraction fractional position along the sweep direction
      */
     constantVSection(vFraction) {
-        const numSection = this.contours.length;
+        const numSection = this._contours.length;
         if (numSection < 2)
             return undefined;
         const q = vFraction * numSection;
@@ -100,7 +101,7 @@ class RuledSweep extends SolidPrimitive_1.SolidPrimitive {
             section0 = numSection - 2;
         const section1 = section0 + 1;
         const localFraction = Geometry_1.Geometry.clampToStartEnd(q - section0, 0, 1);
-        return CurveChain_1.CurveCollection.mutatePartners(this.contours[section0].curves, this.contours[section1].curves, (primitive0, primitive1) => {
+        return CurveChain_1.CurveCollection.mutatePartners(this._contours[section0].curves, this._contours[section1].curves, (primitive0, primitive1) => {
             const newPrimitive = ConstructCurveBetweenCurves_1.ConstructCurveBetweenCurves.InterpolateBetween(primitive0, localFraction, primitive1);
             if (newPrimitive instanceof CurvePrimitive_1.CurvePrimitive)
                 return newPrimitive;
@@ -108,7 +109,7 @@ class RuledSweep extends SolidPrimitive_1.SolidPrimitive {
         });
     }
     extendRange(rangeToExtend, transform) {
-        for (const contour of this.contours)
+        for (const contour of this._contours)
             contour.curves.extendRange(rangeToExtend, transform);
     }
 }

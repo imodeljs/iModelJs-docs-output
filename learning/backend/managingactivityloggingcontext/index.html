@@ -9,7 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Managing the ActivityLoggingContext - iModelJs</title>
+    <title>Managing the ActivityLoggingContext - iModel.js</title>
+    <meta name="og:title" content="Managing the ActivityLoggingContext - iModel.js">
+    <meta name="twitter:title" content="Managing the ActivityLoggingContext - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -90,8 +95,9 @@
         <h3 id="helpful links">Helpful links</h3>
         <ul>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
         </ul>
@@ -100,9 +106,9 @@
     <div class='documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/">backend</a> > ManagingActivityLoggingContext</div>
-            <div class="edit-link"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fdocs%2Fcore%2Flearning%2Fbackend%2FManagingActivityLoggingContext.md" target="_blank">Edit this page</a></div>
+            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
             <h1 id="managing the activityloggingcontext">Managing the ActivityLoggingContext</h1>
-<p>Asynchronous backend methods must cooperate to propagate a request&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/rpcinterface/#logging-and-activityids'>ActivityId</a> into logging messages. The current ActivityId is held by <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext/#current'>ActivityLoggingContext.current</a>. Asynchronous methods must follow several rules in order to maintain this context.</p>
+<p>Asynchronous backend methods must cooperate to propagate a request&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/rpcinterface/#logging-and-activityids'>ActivityId</a> into logging messages. The current ActivityId is held by <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext/#current'>ActivityLoggingContext.current</a>. Asynchronous methods must follow several rules to maintain this context.</p>
 <h2 class="h-promise-returning-functions">Promise-returning functions<a id="promise-returning-functions" class="heading-anchor" href="#promise-returning-functions"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Every <code>Promise</code>-returning functions <em>must</em>:</p>
 <ul>
@@ -144,8 +150,7 @@
         Logger.logTrace(&quot;cat&quot;, &quot;promise rejected&quot;);
       });
 
-  }
-</code></pre>
+  }</code></pre>
 <h2 class="h-rpcinterface-implementation-methods">RpcInterface implementation methods<a id="rpcinterface-implementation-methods" class="heading-anchor" href="#rpcinterface-implementation-methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>There is one exception to the above rule for Promise-returning functions. An <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/rpcinterface/#server-implementation'>RpcInterface implementation method</a> does not take a ActivityLoggingContext object as an argument. Instead, it must obtain the ActivityLoggingContext by calling <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext/#current'>ActivityLoggingContext.current</a>. An RcpInterface implementation method must follow all of the other rules listed above.</p>
 <h2 class="h-callbacks-to-asynchronous-functions">Callbacks to asynchronous functions<a id="callbacks-to-asynchronous-functions" class="heading-anchor" href="#callbacks-to-asynchronous-functions"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
@@ -157,7 +162,7 @@
 </ul>
 <p>If a callback does any logging or calls functions that do:</p>
 <ul>
-<li>Before invoking an asynchrounous function, an app must ensure that the correct ActivityLoggingContext is assigned to a local variable in the scope that encloses the callback.</li>
+<li>Before invoking an asynchronous function, an app must ensure that the correct ActivityLoggingContext is assigned to a local variable in the scope that encloses the callback.</li>
 <li>The callback must, on its first line, call the ActivityLoggingContext.enter method on that local variable in the enclosing scope.</li>
 </ul>
 <p>There are two possible cases:</p>
@@ -175,8 +180,7 @@
         resolve();
       }, 1);
     });
-  }
-</code></pre>
+  }</code></pre>
 <h3 class="h-2-synchronous-function-invokes-an-asynchronous-function-passing-it-a-callback">2. Synchronous function invokes an asynchronous function, passing it a callback.<a id="2-synchronous-function-invokes-an-asynchronous-function-passing-it-a-callback" class="heading-anchor" href="#2-synchronous-function-invokes-an-asynchronous-function-passing-it-a-callback"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>In this case, the calling function must save a reference to the ActivityLoggingContext.current property and transmit that to the callback.</p>
 <p><em>Example</em>:</p>
@@ -189,12 +193,11 @@
       context.enter(); // Rule: Enter the activity logging context of the enclosing JavaScript scope in the callback.
       Logger.logTrace(&quot;cat&quot;, &quot;callback invoked&quot;);
     }, 1);
-  }
-</code></pre>
+  }</code></pre>
 <p>A callback to an async function must never call ActivityLoggingContext.current.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             

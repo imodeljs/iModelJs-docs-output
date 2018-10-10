@@ -1,5 +1,5 @@
 /** @module Curve */
-import { BeJSONFunctions } from "../Geometry";
+import { BeJSONFunctions, PlaneAltitudeEvaluator } from "../Geometry";
 import { Point3d } from "../PointVector";
 import { Range3d } from "../Range";
 import { Transform } from "../Transform";
@@ -61,6 +61,15 @@ export declare class LineSegment3d extends CurvePrimitive implements BeJSONFunct
      * @param result optional existing LineSegment to be reinitiazlized.
      */
     static createXYXY(x0: number, y0: number, x1: number, y1: number, z?: number, result?: LineSegment3d): LineSegment3d;
+    /** create a LineSegment3d from xy coordinates of start and end, with common z.
+     * @param x0 start point x coordinate.
+     * @param y0 start point y coordinate.
+     * @param x1 end point x coordinate.
+     * @param y1 end point y coordinate.
+     * @param z z coordinate to use for both points.
+     * @param result optional existing LineSegment to be reinitiazlized.
+     */
+    static createXYZXYZ(x0: number, y0: number, z0: number, x1: number, y1: number, z1: number, result?: LineSegment3d): LineSegment3d;
     /** @returns Return the point at fractional position along the line segment. */
     fractionToPoint(fraction: number, result?: Point3d): Point3d;
     curveLength(): number;
@@ -74,7 +83,7 @@ export declare class LineSegment3d extends CurvePrimitive implements BeJSONFunct
     reverseInPlace(): void;
     tryTransformInPlace(transform: Transform): boolean;
     isInPlane(plane: Plane3dByOriginAndUnitNormal): boolean;
-    appendPlaneIntersectionPoints(plane: Plane3dByOriginAndUnitNormal, result: CurveLocationDetail[]): number;
+    appendPlaneIntersectionPoints(plane: PlaneAltitudeEvaluator, result: CurveLocationDetail[]): number;
     /**
      * Extend a range to include the (optionally transformed) line segment
      * @param range range to extend
@@ -116,3 +125,4 @@ export declare class LineSegment3d extends CurvePrimitive implements BeJSONFunct
      */
     clonePartialCurve(fractionA: number, fractionB: number): CurvePrimitive | undefined;
 }
+//# sourceMappingURL=LineSegment3d.d.ts.map

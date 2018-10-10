@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module CartesianGeometry */
 const Geometry_1 = require("./Geometry");
@@ -9,24 +10,24 @@ const Transform_1 = require("./Transform");
 /** OrderedRotationAngles represents a non-trivial rotation using three simple axis rotation angles, and an order in which to apply them. */
 class OrderedRotationAngles {
     constructor(x, y, z, axisOrder) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        this._x = x;
+        this._y = y;
+        this._z = z;
         this._order = axisOrder;
     }
     // Getters and setters
     get order() { return this._order; }
-    get xAngle() { return this.x.clone(); }
-    get yAngle() { return this.y.clone(); }
-    get zAngle() { return this.z.clone(); }
-    get xDegrees() { return this.x.degrees; }
-    get xRadians() { return this.x.radians; }
-    get yDegrees() { return this.y.degrees; }
-    get yRadians() { return this.y.radians; }
-    get zDegrees() { return this.z.degrees; }
-    get zRadians() { return this.z.radians; }
-    static get treatVectorsAsColumns() { return OrderedRotationAngles.sTreatVectorsAsColumns; }
-    static set treatVectorsAsColumns(value) { OrderedRotationAngles.sTreatVectorsAsColumns = value; }
+    get xAngle() { return this._x.clone(); }
+    get yAngle() { return this._y.clone(); }
+    get zAngle() { return this._z.clone(); }
+    get xDegrees() { return this._x.degrees; }
+    get xRadians() { return this._x.radians; }
+    get yDegrees() { return this._y.degrees; }
+    get yRadians() { return this._y.radians; }
+    get zDegrees() { return this._z.degrees; }
+    get zRadians() { return this._z.radians; }
+    static get treatVectorsAsColumns() { return OrderedRotationAngles._sTreatVectorsAsColumns; }
+    static set treatVectorsAsColumns(value) { OrderedRotationAngles._sTreatVectorsAsColumns = value; }
     /** Create an OrderedRotationAngles from three angles and an ordering in which to apply them when rotating.
      * @param xRotation rotation around x
      * @param yRotation rotation around y
@@ -35,9 +36,9 @@ class OrderedRotationAngles {
      */
     static createAngles(xRotation, yRotation, zRotation, order, result) {
         if (result) {
-            result.x.setFrom(xRotation);
-            result.y.setFrom(yRotation);
-            result.z.setFrom(zRotation);
+            result._x.setFrom(xRotation);
+            result._y.setFrom(yRotation);
+            result._z.setFrom(zRotation);
             result._order = order;
             return result;
         }
@@ -46,9 +47,9 @@ class OrderedRotationAngles {
     /** Create an OrderedRotationAngles from three angles (in radians) and an ordering in which to apply them when rotating. */
     static createRadians(xRadians, yRadians, zRadians, order, result) {
         if (result) {
-            result.x.setRadians(xRadians);
-            result.y.setRadians(yRadians);
-            result.z.setRadians(zRadians);
+            result._x.setRadians(xRadians);
+            result._y.setRadians(yRadians);
+            result._z.setRadians(zRadians);
             result._order = order;
             return result;
         }
@@ -57,16 +58,16 @@ class OrderedRotationAngles {
     /** Create an OrderedRotationAngles from three angles (in degrees) and an ordering in which to apply them when rotating. */
     static createDegrees(xDegrees, yDegrees, zDegrees, order, result) {
         if (result) {
-            result.x.setDegrees(xDegrees);
-            result.y.setDegrees(yDegrees);
-            result.z.setDegrees(zDegrees);
+            result._x.setDegrees(xDegrees);
+            result._y.setDegrees(yDegrees);
+            result._z.setDegrees(zDegrees);
             result._order = order;
             return result;
         }
         return new OrderedRotationAngles(Geometry_1.Angle.createDegrees(xDegrees), Geometry_1.Angle.createDegrees(yDegrees), Geometry_1.Angle.createDegrees(zDegrees), order);
     }
     /** Create an OrderedRotationAngles from a 3x3 rotational matrix, given the ordering of axis rotations that the matrix derives from. */
-    static createFromRotMatrix(matrix, order, result) {
+    static createFromMatrix3d(matrix, order, result) {
         let m11 = matrix.coffs[0], m12 = matrix.coffs[3], m13 = matrix.coffs[6];
         let m21 = matrix.coffs[1], m22 = matrix.coffs[4], m23 = matrix.coffs[7];
         let m31 = matrix.coffs[2], m32 = matrix.coffs[5], m33 = matrix.coffs[8];
@@ -161,8 +162,8 @@ class OrderedRotationAngles {
         return OrderedRotationAngles.createRadians(xRad, yRad, zRad, order, result);
     }
     /** Create a 3x3 rotational matrix from this OrderedRotationAngles. */
-    toRotMatrix(result) {
-        const rot = result !== undefined ? result : new Transform_1.RotMatrix();
+    toMatrix3d(result) {
+        const rot = result !== undefined ? result : new Transform_1.Matrix3d();
         const axisOrder = this.order;
         const x = this.xAngle, y = this.yAngle, z = this.zAngle;
         const a = x.cos();
@@ -205,6 +206,6 @@ class OrderedRotationAngles {
         return rot;
     }
 }
-OrderedRotationAngles.sTreatVectorsAsColumns = false;
+OrderedRotationAngles._sTreatVectorsAsColumns = false;
 exports.OrderedRotationAngles = OrderedRotationAngles;
 //# sourceMappingURL=OrderedRotationAngles.js.map

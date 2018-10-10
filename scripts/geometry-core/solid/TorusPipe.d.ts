@@ -16,11 +16,11 @@ import { Plane3dByOriginAndVectors } from "../AnalyticGeometry";
  * * The coordinate system has positive determinant.
  */
 export declare class TorusPipe extends SolidPrimitive implements UVSurface {
-    private localToWorld;
-    private radiusA;
-    private radiusB;
-    private sweep;
-    private isReversed;
+    private _localToWorld;
+    private _radiusA;
+    private _radiusB;
+    private _sweep;
+    private _isReversed;
     protected constructor(map: Transform, radiusA: number, radiusB: number, sweep: Angle, capped: boolean);
     clone(): TorusPipe;
     tryTransformInPlace(transform: Transform): boolean;
@@ -63,3 +63,4 @@ export declare class TorusPipe extends SolidPrimitive implements UVSurface {
      */
     UVFractionToPointAndTangents(u: number, v: number, result?: Plane3dByOriginAndVectors): Plane3dByOriginAndVectors;
 }
+//# sourceMappingURL=TorusPipe.d.ts.map

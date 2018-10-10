@@ -28,3 +28,4 @@ export declare class PolyfaceQuery {
      */
     static computePrincipalAreaMoments(source: Polyface): MomentData | undefined;
 }
+//# sourceMappingURL=PolyfaceQuery.d.ts.map

@@ -17,9 +17,10 @@ export declare class DeepCompare {
     errorTracker: any[];
     constructor(numberRelTol?: number);
     compareNumber(_a: number, _b: number): boolean;
-    private compareArray(a, b);
-    private compareObject(a, b);
-    private announce(value);
+    private compareArray;
+    private compareObject;
+    private announce;
     compare(a: any, b: any, tolerance?: number): boolean;
-    private compareInternal(a, b);
+    private compareInternal;
 }
+//# sourceMappingURL=DeepCompare.d.ts.map

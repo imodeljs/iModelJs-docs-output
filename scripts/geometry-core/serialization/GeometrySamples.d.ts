@@ -2,9 +2,9 @@
 import { Angle, AngleSweep } from "../Geometry";
 import { Plane3dByOriginAndUnitNormal, Ray3d } from "../AnalyticGeometry";
 import { Point3d, Vector3d, Point2d, Vector2d } from "../PointVector";
-import { Transform, RotMatrix } from "../Transform";
+import { Transform, Matrix3d } from "../Transform";
 import { Range1d, Range2d, Range3d } from "../Range";
-import { CurvePrimitive } from "../curve/CurvePrimitive";
+import { CurvePrimitive, GeometryQuery } from "../curve/CurvePrimitive";
 import { Point4d, Matrix4d, Map4d } from "../numerics/Geometry4d";
 import { Path, Loop, ParityRegion, UnionRegion, BagOfCurves } from "../curve/CurveChain";
 import { IndexedPolyface } from "../polyface/Polyface";
@@ -24,6 +24,7 @@ import { PointString3d } from "../curve/PointString3d";
 import { ClipPlane } from "../clipping/ClipPlane";
 import { GrowableFloat64Array, GrowableXYZArray } from "../GrowableArray";
 import { UnionOfConvexClipPlaneSets } from "../clipping/UnionOfConvexClipPlaneSets";
+import { BSplineCurve3dH } from "../bspline/BSplineCurve3dH";
 export declare class Sample {
     static readonly point2d: Point2d[];
     static readonly point3d: Point3d[];
@@ -50,6 +51,7 @@ export declare class Sample {
      */
     static createClipPlaneSets(): UnionOfConvexClipPlaneSets[];
     static createBsplineCurves(): BSplineCurve3d[];
+    static createBspline3dHCurves(): BSplineCurve3dH[];
     static createPlane(x: number, y: number, z: number, u: number, v: number, w: number): Plane3dByOriginAndUnitNormal;
     static createRay(x: number, y: number, z: number, u: number, v: number, w: number): Ray3d;
     static readonly plane3dByOriginAndUnitNormal: Plane3dByOriginAndUnitNormal[];
@@ -61,24 +63,24 @@ export declare class Sample {
     static readonly range1d: Range1d[];
     static readonly range2d: Range2d[];
     static readonly range3d: Range3d[];
-    static createRotMatrixArray(): RotMatrix[];
+    static createMatrix3dArray(): Matrix3d[];
     static createInvertibleTransforms(): Transform[];
-    /** Return an array of RotMatrix with various skew and scale.  This includes at least:
+    /** Return an array of Matrix3d with various skew and scale.  This includes at least:
      * * identity
      * * 3 disinct diagonals.
      * * The distinct diagonal base with smaller value added to
      *    other 6 spots in succession.
      * * the distinct diagonals with all others also smaller nonzeros.
      */
-    static createScaleSkewRotMatrix(): RotMatrix[];
-    /** Return an array of singular RotMatrix.  This includes at least:
+    static createScaleSkewMatrix3d(): Matrix3d[];
+    /** Return an array of singular Matrix3d.  This includes at least:
      * * all zeros
      * * one nonzero column
      * * two independent columns, third is zero
      * * two independent columns, third is sum of those
      * * two independent columns, third is copy of one
      */
-    static createSingularRotMatrix(): RotMatrix[];
+    static createSingularMatrix3d(): Matrix3d[];
     /**
      * Return an array of rigid transforms.  This includes (at least)
      * * Identity
@@ -91,7 +93,7 @@ export declare class Sample {
      * Return a single rigid transform with all terms nonzero.
      */
     static createMessyRigidTransform(): Transform;
-    static createRigidAxes(): RotMatrix[];
+    static createRigidAxes(): Matrix3d[];
     static createMatrix4ds(includeIrregular?: boolean): Matrix4d[];
     static createMap4ds(): Map4d[];
     static createSimplePaths(withGaps?: boolean): Path[];
@@ -138,6 +140,15 @@ export declare class Sample {
     static createXYGridBsplineSurface(numU: number, numV: number, orderU: number, orderV: number): BSplineSurface3d | undefined;
     static createWeightedXYGridBsplineSurface(numU: number, numV: number, orderU: number, orderV: number, weight00?: number, weight10?: number, weight01?: number, weight11?: number): BSplineSurface3dH | undefined;
     static createSimpleLinearSweeps(): LinearSweep[];
+    /**
+     * Create an array of primitives with an arc centerd at origin and a line segment closing back to the arc start.
+     * This can be bundled into Path or Loop by caller.
+     */
+    static createCappedArcPrimitives(radius: number, startDegrees: number, endDegrees: number): CurvePrimitive[];
+    /** Return a Path structure for a segment of arc, with closure segment */
+    static createCappedArcPath(radius: number, startDegrees: number, endDegrees: number): Path;
+    /** Return a Loop structure for a segment of arc, with closure segment */
+    static createCappedArcLoop(radius: number, startDegrees: number, endDegrees: number): Loop;
     static createSimpleRotationalSweeps(): RotationalSweep[];
     static createSpheres(): Sphere[];
     static createEllipsoids(): Sphere[];
@@ -162,8 +173,8 @@ export declare class Sample {
      * @param closed true to include final point (i.e. return numEdge+1 points)
      */
     static createGrowableArrayCirclePoints(radius: number, numEdge: number, closed?: boolean, centerX?: number, centerY?: number, data?: GrowableXYZArray): GrowableXYZArray;
-    private static pushIfDistinct(points, xyz, tol?);
-    private static appendToFractalEval(points, pointA, pointB, pattern, numRecursion, perpendicularFactor);
+    private static pushIfDistinct;
+    private static appendToFractalEval;
     /**
      * For each edge of points, construct a transform (with scale, rotate, and translate) that spreads the patter out along the edge.
      * Repeat recursively for each edge
@@ -197,5 +208,7 @@ export declare class Sample {
      * @param xyzC vertexC
      */
     static createTriangleWithSplitEdges(numSplitAB: number, numSplitBC: number, numSplitCA: number, wrap?: boolean, xyzA?: Point3d, xyzB?: Point3d, xyzC?: Point3d): Point3d[];
+    static createCenteredBoxEdges(ax?: number, ay?: number, az?: number, cx?: number, cy?: number, cz?: number, geometry?: GeometryQuery[]): GeometryQuery[];
     static createSimpleTransitionSpirals(): TransitionSpiral3d[];
 }
+//# sourceMappingURL=GeometrySamples.d.ts.map

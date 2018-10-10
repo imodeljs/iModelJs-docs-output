@@ -40,13 +40,21 @@ export declare class StrokeOptions {
     needNormals: boolean;
     needColors?: boolean;
     defaultCircleStrokes: number;
-    hasMaxEdgeLength(): boolean;
+    readonly hasMaxEdgeLength: boolean;
     applyMaxEdgeLength(minCount: number, totalLength: number): number;
     applyAngleTol(minCount: number, sweepRadians: number, defaultStepRadians: number): number;
     static applyAngleTol(options: StrokeOptions | undefined, minCount: number, sweepRadians: number, defaultStepRadians?: number): number;
+    /**
+     *
+     * @param options
+     * @param minCount smallest allowed count
+     * @param edgeLength
+     */
+    static applyMaxEdgeLength(options: StrokeOptions | undefined, minCount: number, edgeLength: number): number;
     applyTolerancesToArc(radius: number, sweepRadians?: number): number;
     applyChordTol(minCount: number, radius: number, sweepRadians: number): number;
     applyMinStrokesPerPrimitive(minCount: number): number;
     static createForCurves(): StrokeOptions;
     static createForFacets(): StrokeOptions;
 }
+//# sourceMappingURL=StrokeOptions.d.ts.map

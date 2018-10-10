@@ -1,6 +1,7 @@
 /** @module Numerics */
 import { Point2d, Vector2d, Point3d, Vector3d } from "../PointVector";
 import { OptionalGrowableFloat64Array, GrowableFloat64Array } from "../GrowableArray";
+import { Point4d } from "./Geometry4d";
 export declare class Degree2PowerPolynomial {
     coffs: number[];
     constructor(c0?: number, c1?: number, c2?: number);
@@ -134,22 +135,22 @@ export declare class AnalyticRoots {
      * @param offset index of value to replace.
      */
     static SafeDivide(values: Float64Array, numerator: number, denominator: number, defaultValue: number | undefined, offset: number): boolean;
-    private static checkRootProximity(roots, i);
-    private static NewtonMethodAdjustment(coffs, root, order);
-    private static improveSortedRoots(coffs, degree, roots);
+    private static checkRootProximity;
+    private static NewtonMethodAdjustment;
+    private static improveSortedRoots;
     /**
      * Append (if defined) value to results.
      * @param value optional value to append
      * @param results growning array
      */
-    private static appendSolution(value, results);
+    private static appendSolution;
     /**
      * Append 2 solutions -- note that both are required args, no option of omitting as in single solution case
      * @param value1
      * @param value2
      * @param results
      */
-    private static append2Solutions(valueA, valueB, results);
+    private static append2Solutions;
     /**
      * If `co/c1` is a safed division, append it to the values array.
      * @param c0 numerator
@@ -157,22 +158,22 @@ export declare class AnalyticRoots {
      * @param values array to expand
      */
     static appendLinearRoot(c0: number, c1: number, values: GrowableFloat64Array): void;
-    private static mostDistantFromMean(data);
+    private static mostDistantFromMean;
     /**
      * Append 0, 1, or 2 solutions of a quadratic to the values array.
      * @param c array of coefficients for quadratic `c[0] + c[1] * x + c[2] * x*x`
      * @param values array to be expanded.
      */
     static appendQuadraticRoots(c: Float64Array | number[], values: GrowableFloat64Array): void;
-    private static addConstant(value, data);
+    private static addConstant;
     /** return roots of a cubic c0 + c1 *x + c2 * x^2 + c2 * x3.
      * In the usual case where c0 is non-zero, there are either 1 or 3 roots.
      * But if c0 is zero the (0, 1, or 2) roots of the lower order equation
      */
-    private static appendCubicRootsUnsorted(c, results);
+    private static appendCubicRootsUnsorted;
     static appendCubicRoots(c: Float64Array | number[], results: GrowableFloat64Array): void;
     static appendQuarticRoots(c: Float64Array | number[], results: GrowableFloat64Array): void;
-    private static appendCosSinRadians(c, s, cosValues, sinValues, radiansValues);
+    private static appendCosSinRadians;
     static appendImplicitLineUnitCircleIntersections(alpha: number, beta: number, gamma: number, cosValues: OptionalGrowableFloat64Array, sinValues: OptionalGrowableFloat64Array, radiansValues: OptionalGrowableFloat64Array, reltol?: number): number;
 }
 export declare class PowerPolynomial {
@@ -197,6 +198,7 @@ export declare class TrigPolynomial {
     static readonly coeffientRelTol: number;
     static SolveUnitCircleImplicitQuadricIntersection(axx: number, axy: number, ayy: number, ax: number, ay: number, a1: number, radians: number[]): boolean;
     static SolveUnitCircleEllipseIntersection(cx: number, cy: number, ux: number, uy: number, vx: number, vy: number, ellipseRadians: number[], circleRadians: number[]): boolean;
+    static SolveUnitCircleHomogeneousEllipseIntersection(cx: number, cy: number, cw: number, ux: number, uy: number, uw: number, vx: number, vy: number, vw: number, ellipseRadians: number[], circleRadians: number[]): boolean;
 }
 export declare class SmallSystem {
     /**
@@ -220,6 +222,30 @@ export declare class SmallSystem {
      */
     static lineSegment3dXYTransverseIntersectionUnbounded(a0: Point3d, a1: Point3d, b0: Point3d, b1: Point3d, result: Vector2d): boolean;
     /**
+     * Return true if lines (a0,a1) to (b0, b1) have a simple intersection using only xy parts of WEIGHTED 4D Points
+     * Return the fractional (not xy) coordinates in result.x, result.y
+     * @param hA0 homogeneous start point of line a
+     * @param hA1 homogeneous end point of line a
+     * @param hB0 homogeneous start point of line b
+     * @param hB1 homogeneous end point of line b
+     * @param result point to receive fractional coordinates of intersection.   result.x is fraction on line a. result.y is fraction on line b.
+     */
+    static lineSegment3dHXYTransverseIntersectionUnbounded(hA0: Point4d, hA1: Point4d, hB0: Point4d, hB1: Point4d, result?: Vector2d): Vector2d | undefined;
+    /**
+     * Return the line fraction at which the (homogeneous) line is closest to a space point as viewed in xy only.
+     * @param hA0 homogeneous start point of line a
+     * @param hA1 homogeneous end point of line a
+     * @param spacePoint homogeneous point in space
+     */
+    static lineSegment3dHXYClosestPointUnbounded(hA0: Point4d, hA1: Point4d, spacePoint: Point4d): number | undefined;
+    /**
+     * Return the line fraction at which the line is closest to a space point as viewed in xy only.
+     * @param pointA0 start point
+     * @param pointA1 end point
+     * @param spacePoint homogeneous point in space
+     */
+    static lineSegment3dXYClosestPointUnbounded(pointA0: Point3d, pointA1: Point3d, spacePoint: Point3d): number | undefined;
+    /**
      * Return true if lines (a0,a1) to (b0, b1) have closest approach (go by each other) in 3d
      * Return the fractional (not xy) coordinates in result.x, result.y
      * @param a0 start point of line a
@@ -229,7 +255,10 @@ export declare class SmallSystem {
      * @param result point to receive fractional coordinates of intersection.   result.x is fraction on line a. result.y is fraction on line b.
      */
     static lineSegment3dClosestApproachUnbounded(a0: Point3d, a1: Point3d, b0: Point3d, b1: Point3d, result: Vector2d): boolean;
-    static linearSystem2d(ux: number, vx: number, uy: number, vy: number, cx: number, cy: number, result: Vector2d): boolean;
+    static linearSystem2d(ux: number, vx: number, // first row of matrix
+    uy: number, vy: number, // second row of matrix
+    cx: number, cy: number, // right side
+    result: Vector2d): boolean;
     /**
      * Solve a linear system
      * * x equation: `ux *u * vx * v + wx * w = cx`
@@ -249,5 +278,10 @@ export declare class SmallSystem {
      * @param cz right hand side row 2 coeficient
      * @param result optional result.
      */
-    static linearSystem3d(axx: number, axy: number, axz: number, ayx: number, ayy: number, ayz: number, azx: number, azy: number, azz: number, cx: number, cy: number, cz: number, result?: Vector3d): Vector3d | undefined;
+    static linearSystem3d(axx: number, axy: number, axz: number, // first row of matrix
+    ayx: number, ayy: number, ayz: number, // second row of matrix
+    azx: number, azy: number, azz: number, // second row of matrix
+    cx: number, cy: number, cz: number, // right side
+    result?: Vector3d): Vector3d | undefined;
 }
+//# sourceMappingURL=Polynomials.d.ts.map

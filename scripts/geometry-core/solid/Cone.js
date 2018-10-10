@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 const Transform_1 = require("../Transform");
 const Geometry_1 = require("../Geometry");
@@ -22,13 +23,13 @@ const LineString3d_1 = require("../curve/LineString3d");
 class Cone extends SolidPrimitive_1.SolidPrimitive {
     constructor(map, radiusA, radiusB, capped) {
         super(capped);
-        this.localToWorld = map;
-        this.radiusA = radiusA;
-        this.radiusB = radiusB;
-        this._maxRadius = Math.max(this.radiusA, this.radiusB); // um... should resolve elliptical sections
+        this._localToWorld = map;
+        this._radiusA = radiusA;
+        this._radiusB = radiusB;
+        this._maxRadius = Math.max(this._radiusA, this._radiusB); // um... should resolve elliptical sections
     }
     clone() {
-        return new Cone(this.localToWorld.clone(), this.radiusA, this.radiusB, this.capped);
+        return new Cone(this._localToWorld.clone(), this._radiusA, this._radiusB, this.capped);
     }
     /** Return a coordinate frame (right handed unit vectors)
      * * origin at center of the base circle.
@@ -36,15 +37,15 @@ class Cone extends SolidPrimitive_1.SolidPrimitive {
      * * z axis by right hand rule.
      */
     getConstructiveFrame() {
-        return this.localToWorld.cloneRigid();
+        return this._localToWorld.cloneRigid();
     }
     tryTransformInPlace(transform) {
-        transform.multiplyTransformTransform(this.localToWorld, this.localToWorld);
+        transform.multiplyTransformTransform(this._localToWorld, this._localToWorld);
         return true;
     }
     cloneTransformed(transform) {
         const result = this.clone();
-        transform.multiplyTransformTransform(result.localToWorld, result.localToWorld);
+        transform.multiplyTransformTransform(result._localToWorld, result._localToWorld);
         return result;
     }
     /** create a cylinder or cone from two endpoints and their radii.   The circular cross sections are perpendicular to the axis line
@@ -64,7 +65,7 @@ class Cone extends SolidPrimitive_1.SolidPrimitive {
         // at least one must be nonzero.
         if (radiusA + radiusB === 0.0)
             return undefined;
-        const matrix = Transform_1.RotMatrix.createRigidHeadsUp(zDirection);
+        const matrix = Transform_1.Matrix3d.createRigidHeadsUp(zDirection);
         matrix.scaleColumns(1.0, 1.0, a, matrix);
         const localToWorld = Transform_1.Transform.createOriginAndMatrix(centerA, matrix);
         return new Cone(localToWorld, radiusA, radiusB, capped);
@@ -79,23 +80,23 @@ class Cone extends SolidPrimitive_1.SolidPrimitive {
         const localToWorld = Transform_1.Transform.createOriginAndMatrixColumns(centerA, vectorX, vectorY, vectorZ);
         return new Cone(localToWorld, radiusA, radiusB, capped);
     }
-    getCenterA() { return this.localToWorld.multiplyXYZ(0, 0, 0); }
-    getCenterB() { return this.localToWorld.multiplyXYZ(0, 0, 1); }
-    getVectorX() { return this.localToWorld.matrix.columnX(); }
-    getVectorY() { return this.localToWorld.matrix.columnY(); }
-    getRadiusA() { return this.radiusA; }
-    getRadiusB() { return this.radiusB; }
+    getCenterA() { return this._localToWorld.multiplyXYZ(0, 0, 0); }
+    getCenterB() { return this._localToWorld.multiplyXYZ(0, 0, 1); }
+    getVectorX() { return this._localToWorld.matrix.columnX(); }
+    getVectorY() { return this._localToWorld.matrix.columnY(); }
+    getRadiusA() { return this._radiusA; }
+    getRadiusB() { return this._radiusB; }
     getMaxRadius() { return this._maxRadius; }
-    vFractionToRadius(v) { return Geometry_1.Geometry.interpolate(this.radiusA, v, this.radiusB); }
+    vFractionToRadius(v) { return Geometry_1.Geometry.interpolate(this._radiusA, v, this._radiusB); }
     isSameGeometryClass(other) { return other instanceof Cone; }
     isAlmostEqual(other) {
         if (other instanceof Cone) {
             if (this.capped !== other.capped)
                 return false;
-            if (!this.localToWorld.isAlmostEqual(other.localToWorld))
+            if (!this._localToWorld.isAlmostEqual(other._localToWorld))
                 return false;
-            return Geometry_1.Geometry.isSameCoordinate(this.radiusA, other.radiusA)
-                && Geometry_1.Geometry.isSameCoordinate(this.radiusB, other.radiusB);
+            return Geometry_1.Geometry.isSameCoordinate(this._radiusA, other._radiusA)
+                && Geometry_1.Geometry.isSameCoordinate(this._radiusB, other._radiusB);
         }
         return false;
     }
@@ -123,7 +124,7 @@ class Cone extends SolidPrimitive_1.SolidPrimitive {
         const result = LineString3d_1.LineString3d.create();
         const deltaRadians = Math.PI * 2.0 / strokeCount;
         let radians = 0;
-        const transform = this.localToWorld;
+        const transform = this._localToWorld;
         for (let i = 0; i <= strokeCount; i++) {
             if (i * 2 <= strokeCount)
                 radians = i * deltaRadians;
@@ -140,7 +141,7 @@ class Cone extends SolidPrimitive_1.SolidPrimitive {
      */
     constantVSection(vFraction) {
         const r = this.vFractionToRadius(vFraction);
-        const transform = this.localToWorld;
+        const transform = this._localToWorld;
         const center = transform.multiplyXYZ(0, 0, vFraction);
         const vector0 = transform.matrix.multiplyXYZ(r, 0, 0);
         const vector90 = transform.matrix.multiplyXYZ(0, r, 0);
@@ -154,19 +155,19 @@ class Cone extends SolidPrimitive_1.SolidPrimitive {
     }
     UVFractionToPoint(uFraction, vFraction, result) {
         const theta = uFraction * Math.PI * 2.0;
-        const r = Geometry_1.Geometry.interpolate(this.radiusA, vFraction, this.radiusB);
+        const r = Geometry_1.Geometry.interpolate(this._radiusA, vFraction, this._radiusB);
         const cosTheta = Math.cos(theta);
         const sinTheta = Math.sin(theta);
-        return this.localToWorld.multiplyXYZ(r * cosTheta, r * sinTheta, vFraction, result);
+        return this._localToWorld.multiplyXYZ(r * cosTheta, r * sinTheta, vFraction, result);
     }
     UVFractionToPointAndTangents(uFraction, vFraction, result) {
         const theta = uFraction * Math.PI * 2.0;
-        const r = Geometry_1.Geometry.interpolate(this.radiusA, vFraction, this.radiusB);
-        const drdv = this.radiusB - this.radiusA;
+        const r = Geometry_1.Geometry.interpolate(this._radiusA, vFraction, this._radiusB);
+        const drdv = this._radiusB - this._radiusA;
         const cosTheta = Math.cos(theta);
         const sinTheta = Math.sin(theta);
         const fTheta = 2.0 * Math.PI;
-        return AnalyticGeometry_1.Plane3dByOriginAndVectors.createOriginAndVectors(this.localToWorld.multiplyXYZ(r * cosTheta, r * sinTheta, vFraction), this.localToWorld.multiplyVectorXYZ(-r * sinTheta * fTheta, r * cosTheta * fTheta, 0), this.localToWorld.multiplyVectorXYZ(drdv * cosTheta, drdv * sinTheta, 1.0), result);
+        return AnalyticGeometry_1.Plane3dByOriginAndVectors.createOriginAndVectors(this._localToWorld.multiplyXYZ(r * cosTheta, r * sinTheta, vFraction), this._localToWorld.multiplyVectorXYZ(-r * sinTheta * fTheta, r * cosTheta * fTheta, 0), this._localToWorld.multiplyVectorXYZ(drdv * cosTheta, drdv * sinTheta, 1.0), result);
     }
 }
 exports.Cone = Cone;

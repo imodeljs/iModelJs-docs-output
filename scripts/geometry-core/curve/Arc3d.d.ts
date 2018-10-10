@@ -1,14 +1,15 @@
 /** @module Curve */
-import { Angle, AngleSweep, BeJSONFunctions } from "../Geometry";
+import { Angle, AngleSweep, BeJSONFunctions, PlaneAltitudeEvaluator } from "../Geometry";
 import { Point3d, Vector3d, XYAndZ } from "../PointVector";
 import { Range3d } from "../Range";
-import { Transform, RotMatrix } from "../Transform";
+import { Transform, Matrix3d } from "../Transform";
 import { Plane3dByOriginAndUnitNormal, Ray3d, Plane3dByOriginAndVectors } from "../AnalyticGeometry";
 import { GeometryHandler, IStrokeHandler } from "../GeometryHandler";
 import { CurvePrimitive, GeometryQuery, CurveLocationDetail, AnnounceNumberNumberCurvePrimitive } from "./CurvePrimitive";
 import { StrokeOptions } from "../curve/StrokeOptions";
 import { Clipper } from "../clipping/ClipUtils";
 import { LineString3d } from "./LineString3d";
+import { Matrix4d, Point4d } from "../numerics/Geometry4d";
 /**
  * Circular or elliptic arc.
  *
@@ -23,7 +24,7 @@ import { LineString3d } from "./LineString3d";
  * ** vector0 is the vector from the center to the major axis extreme.
  * ** vector90 is the vector from the center to the minor axis extreme.
  * ** note the constructing the vectors to the extreme points makes them perpendicular.
- * *  The method toScaledRotMatrix () can be called to convert the unrestricted vector0,vector90 to perpendicular form.
+ * *  The method toScaledMatrix3d () can be called to convert the unrestricted vector0,vector90 to perpendicular form.
  * * The unrestricted form is much easier to work with for common calculations -- stroking, projection to 2d, intersection with plane.
  */
 export declare class Arc3d extends CurvePrimitive implements BeJSONFunctions {
@@ -31,19 +32,31 @@ export declare class Arc3d extends CurvePrimitive implements BeJSONFunctions {
     private _center;
     private _matrix;
     private _sweep;
+    /**
+     * read property for (clone of) center
+     */
     readonly center: Point3d;
+    /**
+     * read property for (clone of) vector0
+     */
     readonly vector0: Vector3d;
+    /**
+     * read property for (clone of) vector90
+     */
     readonly vector90: Vector3d;
-    readonly matrix: RotMatrix;
-    readonly sweep: AngleSweep;
+    /**
+     * read property for (clone of) matrix of vector0, vector90, unit normal
+     */
+    readonly matrix: Matrix3d;
+    sweep: AngleSweep;
     private constructor();
     cloneTransformed(transform: Transform): CurvePrimitive;
-    setRefs(center: Point3d, matrix: RotMatrix, sweep: AngleSweep): void;
-    set(center: Point3d, matrix: RotMatrix, sweep: AngleSweep | undefined): void;
+    setRefs(center: Point3d, matrix: Matrix3d, sweep: AngleSweep): void;
+    set(center: Point3d, matrix: Matrix3d, sweep: AngleSweep | undefined): void;
     setFrom(other: Arc3d): void;
     clone(): Arc3d;
-    static createRefs(center: Point3d, matrix: RotMatrix, sweep: AngleSweep, result?: Arc3d): Arc3d;
-    static createScaledXYColumns(center: Point3d, matrix: RotMatrix, radius0: number, radius90: number, sweep: AngleSweep, result?: Arc3d): Arc3d;
+    static createRefs(center: Point3d, matrix: Matrix3d, sweep: AngleSweep, result?: Arc3d): Arc3d;
+    static createScaledXYColumns(center: Point3d, matrix: Matrix3d, radius0: number, radius90: number, sweep: AngleSweep, result?: Arc3d): Arc3d;
     static create(center: Point3d, vector0: Vector3d, vector90: Vector3d, sweep?: AngleSweep, result?: Arc3d): Arc3d;
     /** Create a circular arc defined by start point, any intermediate point, and end point.
      * If the points are colinear, assemble them into a linestring.
@@ -69,12 +82,12 @@ export declare class Arc3d extends CurvePrimitive implements BeJSONFunctions {
     reverseInPlace(): void;
     tryTransformInPlace(transform: Transform): boolean;
     isInPlane(plane: Plane3dByOriginAndUnitNormal): boolean;
-    isCircular(): boolean;
+    readonly isCircular: boolean;
     /** If the arc is circular, return its radius.  Otherwise return undefined */
     circularRadius(): number | undefined;
     /** Return the larger of the two defining vectors. */
     maxVectorLength(): number;
-    appendPlaneIntersectionPoints(plane: Plane3dByOriginAndUnitNormal, result: CurveLocationDetail[]): number;
+    appendPlaneIntersectionPoints(plane: PlaneAltitudeEvaluator, result: CurveLocationDetail[]): number;
     extendRange(range: Range3d): void;
     static createUnitCircle(): Arc3d;
     /**
@@ -85,20 +98,35 @@ export declare class Arc3d extends CurvePrimitive implements BeJSONFunctions {
     static createXY(center: Point3d, radius: number, sweep?: AngleSweep): Arc3d;
     static createXYEllipse(center: Point3d, radiusA: number, radiusB: number, sweep?: AngleSweep): Arc3d;
     setVector0Vector90(vector0: Vector3d, vector90: Vector3d): void;
-    toScaledRotMatrix(): {
+    toScaledMatrix3d(): {
         center: Point3d;
-        axes: RotMatrix;
+        axes: Matrix3d;
         r0: number;
         r90: number;
         sweep: AngleSweep;
     };
     /** Return the arc definition with center, two vectors, and angle sweep;
-     * The center and AngleSweep are references to inside the Arc3d.
      */
     toVectors(): {
         center: Point3d;
         vector0: Vector3d;
         vector90: Vector3d;
+        sweep: AngleSweep;
+    };
+    /** Return the arc definition with center, two vectors, and angle sweep, optionally transformed.
+     */
+    toTransformedVectors(transform?: Transform): {
+        center: Point3d;
+        vector0: Vector3d;
+        vector90: Vector3d;
+        sweep: AngleSweep;
+    };
+    /** Return the arc definition with center, two vectors, and angle sweep, transformed to 4d points.
+     */
+    toTransformedPoint4d(matrix: Matrix4d): {
+        center: Point4d;
+        vector0: Point4d;
+        vector90: Point4d;
         sweep: AngleSweep;
     };
     setFromJSON(json?: any): void;
@@ -126,3 +154,4 @@ export declare class Arc3d extends CurvePrimitive implements BeJSONFunctions {
      */
     announceClipIntervals(clipper: Clipper, announce?: AnnounceNumberNumberCurvePrimitive): boolean;
 }
+//# sourceMappingURL=Arc3d.d.ts.map

@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Numerics */
 const PointVector_1 = require("../PointVector");
@@ -87,10 +88,10 @@ class Ray2d {
 exports.Ray2d = Ray2d;
 class ConvexPolygon2d {
     constructor(points) {
-        this.hullPoints = [];
+        this._hullPoints = [];
         // Deep copy of points array given
         for (const point of points) {
-            this.hullPoints.push(point);
+            this._hullPoints.push(point);
         }
     }
     /** Create the hull */
@@ -106,7 +107,7 @@ class ConvexPolygon2d {
     }
     /** Return a reference of the hull points. */
     get points() {
-        return this.hullPoints;
+        return this._hullPoints;
     }
     /** Test if hull points are a convex, CCW polygon */
     static isValidConvexHull(points) {
@@ -123,9 +124,9 @@ class ConvexPolygon2d {
     }
     /** Return true if the convex hull (to the left of the edges) contains the test point */
     containsPoint(point) {
-        let xy0 = this.hullPoints[this.hullPoints.length - 1];
+        let xy0 = this._hullPoints[this._hullPoints.length - 1];
         // double tol = -1.0e-20;  negative tol!!
-        for (const i of this.hullPoints) {
+        for (const i of this._hullPoints) {
             const xy1 = i;
             const c = xy0.crossProductToPoints(xy1, point);
             if (c < 0.0)
@@ -137,11 +138,11 @@ class ConvexPolygon2d {
     /** Return the largest outside. (return 0 if in or on) */
     distanceOutside(xy) {
         let maxDistance = 0.0;
-        const n = this.hullPoints.length;
-        let xy0 = this.hullPoints[n - 1];
+        const n = this._hullPoints.length;
+        let xy0 = this._hullPoints[n - 1];
         // double tol = -1.0e-20;  // negative tol!!
         for (let i = 0; i < n; i++) {
-            const xy1 = this.hullPoints[i];
+            const xy1 = this._hullPoints[i];
             const c = xy0.crossProductToPoints(xy1, xy);
             if (c < 0.0) {
                 const ray = Ray2d.createOriginAndTarget(xy0, xy1);
@@ -156,7 +157,7 @@ class ConvexPolygon2d {
                 if (d > maxDistance)
                     maxDistance = d;
             }
-            xy0 = this.hullPoints[i];
+            xy0 = this._hullPoints[i];
         }
         return maxDistance;
     }
@@ -164,10 +165,10 @@ class ConvexPolygon2d {
      * Returns false if an undefined occurred from normalizing (could occur after changing some hull points already)
      */
     offsetInPlace(distance) {
-        const n = this.hullPoints.length;
+        const n = this._hullPoints.length;
         if (n >= 3) {
-            const hullPoint0 = this.hullPoints[0];
-            let edgeA = this.hullPoints[n - 1].vectorTo(hullPoint0);
+            const hullPoint0 = this._hullPoints[0];
+            let edgeA = this._hullPoints[n - 1].vectorTo(hullPoint0);
             edgeA = edgeA.normalize();
             if (edgeA === undefined) {
                 return false;
@@ -177,7 +178,7 @@ class ConvexPolygon2d {
             let perpB;
             for (let i = 0; i < n; i++) {
                 const j = i + 1;
-                edgeB = this.hullPoints[i].vectorTo(j < n ? this.hullPoints[j] : hullPoint0);
+                edgeB = this._hullPoints[i].vectorTo(j < n ? this._hullPoints[j] : hullPoint0);
                 edgeB = edgeB.normalize();
                 if (edgeB === undefined) {
                     return false;
@@ -187,7 +188,7 @@ class ConvexPolygon2d {
                 if (offsetBisector === undefined) {
                     return false;
                 }
-                this.hullPoints[i] = this.hullPoints[i].plus(offsetBisector);
+                this._hullPoints[i] = this._hullPoints[i].plus(offsetBisector);
                 // PerpA takes up reference to perpB, as perpB will die in new iteration
                 perpA = perpB;
             }
@@ -203,11 +204,11 @@ class ConvexPolygon2d {
     clipRay(ray) {
         let distanceA = -Number.MAX_VALUE;
         let distanceB = Number.MAX_VALUE;
-        const n = this.hullPoints.length;
+        const n = this._hullPoints.length;
         if (n < 3)
             return Range_1.Range1d.createNull();
-        let xy0 = this.hullPoints[n - 1];
-        for (const xy1 of this.hullPoints) {
+        let xy0 = this._hullPoints[n - 1];
+        for (const xy1 of this._hullPoints) {
             const distance = [];
             const dhds = [];
             if (ray.intersectUnboundedLine(xy0, xy1, distance, dhds)) {
@@ -239,14 +240,14 @@ class ConvexPolygon2d {
     /** Return the range of (fractional) ray postions for projections of all points from the arrays. */
     rangeAlongRay(ray) {
         const range = Range_1.Range1d.createNull();
-        for (const xy1 of this.hullPoints)
+        for (const xy1 of this._hullPoints)
             range.extendX(ray.projectionFraction(xy1));
         return range;
     }
     /** Return the range of (fractional) ray postions for projections of all points from the arrays. */
     rangePerpendicularToRay(ray) {
         const range = Range_1.Range1d.createNull();
-        for (const xy1 of this.hullPoints)
+        for (const xy1 of this._hullPoints)
             range.extendX(ray.perpendicularProjectionFraction(xy1));
         return range;
     }
@@ -284,7 +285,7 @@ class ConvexPolygon2d {
                 top--;
                 hull.pop();
             }
-            if (i > 0)
+            if (i > 0) // don't replicate start point!!!
                 hull.push(candidate);
         }
         return hull;

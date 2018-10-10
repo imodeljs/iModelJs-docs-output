@@ -1,10 +1,10 @@
 /** @module Numerics */
 import { BeJSONFunctions, Angle } from "../Geometry";
 export declare class Complex implements BeJSONFunctions {
-    private myX;
-    x: number;
-    private myY;
-    y: number;
+    private _myX;
+    x: any;
+    private _myY;
+    y: any;
     constructor(x?: number, y?: number);
     set(x?: number, y?: number): void;
     setFrom(other: Complex): void;
@@ -30,3 +30,4 @@ export declare class Complex implements BeJSONFunctions {
      */
     toJSON(): any;
 }
+//# sourceMappingURL=Complex.d.ts.map

@@ -1,6 +1,7 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Topology */
@@ -203,7 +204,7 @@ class Merger {
         queue.sort(Merger.eventCompareCrossings);
         for (let i = 0; i < queue.length; i++) {
             const iSegIdx = queue[i].segIdx;
-            if (!crossings[iSegIdx])
+            if (!crossings[iSegIdx]) // If index into crossings does not exist yet for segment, create it
                 crossings[iSegIdx] = [];
             // Only check intersections of segments in queue who's left endpoints are before this segment's right
             // endpoint pair
@@ -218,7 +219,7 @@ class Merger {
                     const fractionForISeg = iSeg.point0Ref.distance(intersection) / iSeg.curveLength();
                     const fractionForJSeg = jSeg.point0Ref.distance(intersection) / jSeg.curveLength();
                     if (fractionForISeg > 0 && fractionForISeg < 1 && fractionForJSeg > 0 && fractionForJSeg < 1) {
-                        if (!crossings[jSegIdx])
+                        if (!crossings[jSegIdx]) // If array does not exist for other (j) segment of intersection yet, create it
                             crossings[jSegIdx] = [];
                         crossings[iSegIdx].push(fractionForISeg);
                         crossings[jSegIdx].push(fractionForJSeg);
@@ -295,13 +296,13 @@ class Merger {
                     continue;
                 LineSegment3d_1.LineSegment3d.createXYXY(toCheck.node0.x, toCheck.node0.y, toCheck.node1.x, toCheck.node1.y, undefined, segToCheck);
                 const intersection = Merger.getIntersectionOfSegments(unitSegment, segToCheck, false);
-                if (intersection) {
+                if (intersection) { // found possible match
                     if ((segToCheck.point0Ref.y <= event.node0.y && segToCheck.point1Ref.y >= event.node0.y) ||
-                        (segToCheck.point0Ref.y >= event.node0.y && segToCheck.point1Ref.y <= event.node0.y)) {
-                        if (intersection.x < event.node0.x) {
-                            if (!(Geometry_1.Geometry.isSameCoordinate(intersection.x, event.node0.x))) {
+                        (segToCheck.point0Ref.y >= event.node0.y && segToCheck.point1Ref.y <= event.node0.y)) { // Check that segment is of correct height
+                        if (intersection.x < event.node0.x) { // Is to left of point
+                            if (!(Geometry_1.Geometry.isSameCoordinate(intersection.x, event.node0.x))) { // Intersection does not occur at same coord as endpoint
                                 const distanceToSegment = Geometry_1.Geometry.distanceXYXY(intersection.x, intersection.y, event.node0.x, event.node0.y);
-                                if (lastIntersection && Geometry_1.Geometry.isSamePoint3d(lastIntersection, intersection)) {
+                                if (lastIntersection && Geometry_1.Geometry.isSamePoint3d(lastIntersection, intersection)) { // For pairing at vertice, save alt.
                                     event.leftAlt = toCheck;
                                     lastIntersection = intersection;
                                 }
@@ -325,13 +326,13 @@ class Merger {
                     continue;
                 LineSegment3d_1.LineSegment3d.createXYXY(toCheck.node0.x, toCheck.node0.y, toCheck.node1.x, toCheck.node1.y, undefined, segToCheck);
                 const intersection = Merger.getIntersectionOfSegments(unitSegment, segToCheck, false);
-                if (intersection) {
+                if (intersection) { // found possible match
                     if ((segToCheck.point0Ref.y <= event.node0.y && segToCheck.point1Ref.y >= event.node0.y) ||
-                        (segToCheck.point0Ref.y >= event.node0.y && segToCheck.point1Ref.y <= event.node0.y)) {
-                        if (intersection.x > event.node0.x) {
-                            if (!(Geometry_1.Geometry.isSameCoordinate(intersection.x, event.node0.x))) {
+                        (segToCheck.point0Ref.y >= event.node0.y && segToCheck.point1Ref.y <= event.node0.y)) { // Check that segment is of correct height
+                        if (intersection.x > event.node0.x) { // Is to right of point
+                            if (!(Geometry_1.Geometry.isSameCoordinate(intersection.x, event.node0.x))) { // Intersection does not occur at same coord as endpoint
                                 const distanceToSegment = Geometry_1.Geometry.distanceXYXY(intersection.x, intersection.y, event.node0.x, event.node0.y);
-                                if (lastIntersection && Geometry_1.Geometry.isSamePoint3d(lastIntersection, intersection)) {
+                                if (lastIntersection && Geometry_1.Geometry.isSamePoint3d(lastIntersection, intersection)) { // For pairing at vertice, save alt.
                                     event.rightAlt = toCheck;
                                     lastIntersection = intersection;
                                 }
@@ -389,9 +390,9 @@ class Merger {
     }
     /** Check a variety of cases by which adding a diagonal is allowed. If one is found, link nodes and return. */
     static checkAndAddDiagonal(event, toCheck, graph) {
-        if (!event.leftEvent && !event.rightEvent)
+        if (!event.leftEvent && !event.rightEvent) // No side of trapezoid.. continue to next event
             return;
-        if (event.node0.facePredecessor === toCheck.node0 || event.node0.faceSuccessor === toCheck.node0)
+        if (event.node0.facePredecessor === toCheck.node0 || event.node0.faceSuccessor === toCheck.node0) // Can't join two neighbors
             return;
         // Case 1: Both left and right pairings of events are equal
         if (event.leftEvent && toCheck.leftEvent && event.rightEvent && toCheck.rightEvent) {

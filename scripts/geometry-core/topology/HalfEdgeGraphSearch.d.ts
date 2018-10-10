@@ -5,7 +5,7 @@ export declare class HalfEdgeGraphSearch {
      * * for each node of face, set the mask push to allNodesStack
      * * push the faceSeed on onePerFaceStack[]
      */
-    private static pushAndMaskAllNodesInFace(faceSeed, mask, allNodeStack, onePerFaceStack);
+    private static pushAndMaskAllNodesInFace;
     /**
      * Search an array of faceSeed nodes for the face with the most negative area.
      */
@@ -16,7 +16,7 @@ export declare class HalfEdgeGraphSearch {
      * @param visitMask mask applied to all faces as visited.
      * @param parityMask mask to apply (a) to first face, (b) to faces with alternating parity during the search.
      */
-    private static parityFloodFromSeed(seedEdge, visitMask, parityMask);
+    private static parityFloodFromSeed;
     /**
      * * Search the given faces for the one with the minimum area.
      * * If the mask in that face is OFF, toggle it on (all half edges of) all the faces.
@@ -25,9 +25,9 @@ export declare class HalfEdgeGraphSearch {
      * @param parityMask mask which was previously set with alternating parity, but with an arbitrary start face.
      * @param faces array of faces to search.
      */
-    private static correctParityInSingleComponent(_graph, mask, faces);
+    private static correctParityInSingleComponent;
     /** Apply correctParityInSingleComponent to each array in components. (Quick exit if mask in NULL_MASK) */
-    private static correctParityInComponentArrays(graph, mask, components);
+    private static correctParityInComponentArrays;
     /**
      * Collect arrays gathering faces by connected component.
      * @param graph graph to inspect
@@ -35,3 +35,4 @@ export declare class HalfEdgeGraphSearch {
      */
     static collectConnectedComponents(graph: HalfEdgeGraph, parityMask?: HalfEdgeMask): HalfEdge[][];
 }
+//# sourceMappingURL=HalfEdgeGraphSearch.d.ts.map

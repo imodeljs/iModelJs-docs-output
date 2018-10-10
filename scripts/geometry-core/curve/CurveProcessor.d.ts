@@ -24,7 +24,7 @@ export declare abstract class RecursiveCurveProcessor {
  * Use the QuickRecursiveCurveProcessor to visit without recording the path.
  */
 export declare abstract class RecursiveCurveProcessorWithStack extends RecursiveCurveProcessor {
-    protected stack: CurveCollection[];
+    protected _stack: CurveCollection[];
     protected constructor();
     enter(data: CurveCollection): void;
     leave(): CurveCollection | undefined;
@@ -42,3 +42,4 @@ export declare abstract class RecursiveCurveProcessorWithStack extends Recursive
     announceUnionRegion(data: UnionRegion, indexInParent?: number): void;
     announceBagOfCurves(data: BagOfCurves, _indexInParent?: number): void;
 }
+//# sourceMappingURL=CurveProcessor.d.ts.map

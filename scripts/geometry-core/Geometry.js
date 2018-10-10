@@ -1,12 +1,59 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module CartesianGeometry */
 // import { Point2d } from "./Geometry2d";
 /* tslint:disable:variable-name jsdoc-format no-empty*/
 const PointVector_1 = require("./PointVector");
+/** Enumeration of the 6 possible orderings of XYZ axis order */
+var AxisOrder;
+(function (AxisOrder) {
+    /** Right handed system, X then Y then Z */
+    AxisOrder[AxisOrder["XYZ"] = 0] = "XYZ";
+    /** Right handed system, Y then Z then X */
+    AxisOrder[AxisOrder["YZX"] = 1] = "YZX";
+    /** Right handed system, Z then X then Y */
+    AxisOrder[AxisOrder["ZXY"] = 2] = "ZXY";
+    /** Left handed system, X then Z then Y */
+    AxisOrder[AxisOrder["XZY"] = 4] = "XZY";
+    /** Left handed system, Y then X then Z */
+    AxisOrder[AxisOrder["YXZ"] = 5] = "YXZ";
+    /** Left handed system, Z then Y then X */
+    AxisOrder[AxisOrder["ZYX"] = 6] = "ZYX";
+})(AxisOrder = exports.AxisOrder || (exports.AxisOrder = {}));
+/* Enumeration of the 3 axes AxisIndex.X, AxisIndex.Y, AxisIndex.Z */
+var AxisIndex;
+(function (AxisIndex) {
+    AxisIndex[AxisIndex["X"] = 0] = "X";
+    AxisIndex[AxisIndex["Y"] = 1] = "Y";
+    AxisIndex[AxisIndex["Z"] = 2] = "Z";
+})(AxisIndex = exports.AxisIndex || (exports.AxisIndex = {}));
+/* Standard views.   Used in `Matrix3d.createStandardViewAxes (index: StandardViewIndex, worldToView :boolean)`
+*/
+var StandardViewIndex;
+(function (StandardViewIndex) {
+    StandardViewIndex[StandardViewIndex["Top"] = 1] = "Top";
+    StandardViewIndex[StandardViewIndex["Bottom"] = 2] = "Bottom";
+    StandardViewIndex[StandardViewIndex["Left"] = 3] = "Left";
+    StandardViewIndex[StandardViewIndex["Right"] = 4] = "Right";
+    StandardViewIndex[StandardViewIndex["Front"] = 5] = "Front";
+    StandardViewIndex[StandardViewIndex["Back"] = 6] = "Back";
+    StandardViewIndex[StandardViewIndex["Iso"] = 7] = "Iso";
+    StandardViewIndex[StandardViewIndex["RightIso"] = 8] = "RightIso";
+})(StandardViewIndex = exports.StandardViewIndex || (exports.StandardViewIndex = {}));
+/** Enumeration among choice for how a coordinate transformation should incorporate scaling. */
+var AxisScaleSelect;
+(function (AxisScaleSelect) {
+    /** All axes of unit length. */
+    AxisScaleSelect[AxisScaleSelect["Unit"] = 0] = "Unit";
+    /** On each axis, the vector length matches the longest side of the range of the data. */
+    AxisScaleSelect[AxisScaleSelect["LongestRangeDirection"] = 1] = "LongestRangeDirection";
+    /** On each axis, the vector length matches he length of the corresponding edge of the range. */
+    AxisScaleSelect[AxisScaleSelect["NonUniformRangeContainment"] = 2] = "NonUniformRangeContainment";
+})(AxisScaleSelect = exports.AxisScaleSelect || (exports.AxisScaleSelect = {}));
 class Geometry {
     /** Points and vectors can be emitted in two forms:
       *
@@ -92,7 +139,8 @@ class Geometry {
     static isSmallRelative(value) { return Math.abs(value) < Geometry.smallAngleRadians; }
     static isSmallAngleRadians(value) { return Math.abs(value) < Geometry.smallAngleRadians; }
     static isAlmostEqualNumber(a, b) {
-        return Math.abs(a - b) < Geometry.smallAngleRadians * Math.max(a, b);
+        const sumAbs = Math.abs(a) + Math.abs(b);
+        return Math.abs(a - b) < Geometry.smallAngleRadians * sumAbs;
     }
     static isDistanceWithinTol(distance, tol) {
         return Math.abs(distance) <= Math.abs(tol);
@@ -137,6 +185,10 @@ class Geometry {
     static maxAbsXYZ(x, y, z) {
         return Geometry.maxXYZ(Math.abs(x), Math.abs(y), Math.abs(z));
     }
+    /** @returns the largest absolute absolute value among x,y */
+    static maxAbsXY(x, y) {
+        return Geometry.maxXY(Math.abs(x), Math.abs(y));
+    }
     /** @returns the largest signed value among a, b, c */
     static maxXYZ(a, b, c) {
         let q = a;
@@ -144,6 +196,13 @@ class Geometry {
             q = b;
         if (c > q)
             q = c;
+        return q;
+    }
+    /** @returns the largest signed value among a, b*/
+    static maxXY(a, b) {
+        let q = a;
+        if (b > q)
+            q = b;
         return q;
     }
     /** @returns Return the hypotenuse sqrt(x\*x + y\*y). This is much faster than Math.hypot(x,y).*/
@@ -199,6 +258,45 @@ class Geometry {
             + uy * (vz * wx - vx * wz)
             + uz * (vx * wy - vy * wx);
     }
+    /**
+   * @returns Returns curvature magnitude from a first and second derivative vector.
+   * @param ux  first derivative x component
+   * @param uy first derivative y component
+   * @param uz first derivative z component
+   * @param vx second derivative x component
+   * @param vy second derivative y component
+   * @param vz second derivative z component
+   */
+    static curvatureMagnitude(ux, uy, uz, vx, vy, vz) {
+        let q = uy * vz - uz * vy;
+        let sum = q * q;
+        q = uz * vx - ux * vz;
+        sum += q * q;
+        q = ux * vy - uy * vx;
+        sum += q * q;
+        const a = Math.sqrt(ux * ux + uy * uy + uz * uz);
+        const b = Math.sqrt(sum);
+        // (sum and a are both nonnegative)
+        const aaa = a * a * a;
+        // radius of curvature = aaa / b;
+        // curvature = b/aaa
+        const tol = Geometry.smallAngleRadians;
+        if (aaa > tol * b)
+            return b / aaa;
+        return 0; // hm.. maybe should be infinte?
+    }
+    /** Returns the determinant of 3x3 matrix with x and y rows taken from 3 points, third row from corresponding numbers.
+     *
+     */
+    static tripleProductXYW(columnA, weightA, columnB, weightB, columnC, weightC) {
+        return Geometry.tripleProduct(columnA.x, columnB.x, columnC.x, columnA.y, columnB.y, columnC.y, weightA, weightB, weightC);
+    }
+    /** Returns the determinant of 3x3 matrix with x and y rows taken from 3 points, third row from corresponding numbers.
+     *
+     */
+    static tripleProductPoint4dXYW(columnA, columnB, columnC) {
+        return Geometry.tripleProduct(columnA.x, columnB.x, columnC.x, columnA.y, columnB.y, columnC.y, columnA.w, columnB.w, columnC.w);
+    }
     /**  2D cross product of vectors layed out as scalars. */
     static crossProductXYXY(ux, uy, vx, vy) {
         return ux * vy - uy * vx;
@@ -206,6 +304,10 @@ class Geometry {
     /**  3D cross product of vectors layed out as scalars. */
     static crossProductXYZXYZ(ux, uy, uz, vx, vy, vz, result) {
         return PointVector_1.Vector3d.create(uy * vz - uz * vy, uz * vx - ux * vz, ux * vy - uy * vx, result);
+    }
+    /**  magnitude of 3D cross product of vectors, with the vectors presented as */
+    static crossProductMagnitude(ux, uy, uz, vx, vy, vz) {
+        return Geometry.hypotenuseXYZ(uy * vz - uz * vy, uz * vx - ux * vz, ux * vy - uy * vx);
     }
     /**  3D dot product of vectors layed out as scalars. */
     static dotProductXYZXYZ(ux, uy, uz, vx, vy, vz) {
@@ -220,6 +322,7 @@ class Geometry {
             return b;
         return x;
     }
+    static clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }
     /** simple interpolation between values, but choosing (based on fraction) a or b as starting point for maximum accuracy. */
     static interpolate(a, f, b) {
         return f <= 0.5 ? a + f * (b - a) : b - (1.0 - f) * (b - a);
@@ -489,7 +592,7 @@ class Angle {
      */
     tan() { return Math.tan(this._radians); }
     static isFullCircleRadians(radians) { return Math.abs(radians) >= Geometry.fullCircleRadiansMinusSmallAngle; }
-    isFullCircle() { return Angle.isFullCircleRadians(this._radians); }
+    get isFullCircle() { return Angle.isFullCircleRadians(this._radians); }
     /** Adjust a radians value so it is positive in 0..360 */
     static adjustDegrees0To360(degrees) {
         if (degrees >= 0) {
@@ -541,8 +644,8 @@ class Angle {
         return -Angle.adjustRadiansMinusPiPlusPi(-radians);
     }
     static zero() { return new Angle(0); }
-    isExactZero() { return this.radians === 0; }
-    isAlmostZero() { return Math.abs(this.radians) < Geometry.smallAngleRadians; }
+    get isExactZero() { return this.radians === 0; }
+    get isAlmostZero() { return Math.abs(this.radians) < Geometry.smallAngleRadians; }
     /** Create an angle object with degrees adjusted into 0..360. */
     static createDegreesAdjustPositive(degrees) { return Angle.createDegrees(Angle.adjustDegrees0To360(degrees)); }
     /** Create an angle object with degrees adjusted into -180..180. */
@@ -628,8 +731,21 @@ class Angle {
             return { c: cosA, s: sinA, radians: Math.atan2(sinA, cosA) };
         }
     }
+    /** If value is close to -1, -0.5, 0, 0.5, 1, adjust it to the exact value. */
+    static cleanupTrigValue(value, tolerance = 1.0e-15) {
+        const absValue = Math.abs(value);
+        if (absValue <= tolerance)
+            return 0;
+        let a = Math.abs(absValue - 0.5);
+        if (a <= tolerance)
+            return value < 0.0 ? -0.5 : 0.5;
+        a = Math.abs(absValue - 1.0);
+        if (a <= tolerance)
+            return value < 0.0 ? -1.0 : 1.0;
+        return value;
+    }
     /**
-       * Return the half angle of angle between vectors U, V with given vector dots.
+       * Return the half angle cosine, sine, and radians for given dot products between vectors.
        * @param dotUU dot product of vectorU with itself
        * @param dotVV dot product of vectorV with itself
        * @param dotUV dot product of vectorU with vectorV
@@ -640,6 +756,22 @@ class Angle {
         if (favorZero && Math.abs(rsin) < Geometry.smallAngleRadians * (Math.abs(dotUU) + Math.abs(dotVV)))
             return { c: 1.0, s: 0.0, radians: 0.0 };
         return Angle.trigValuesToHalfAngleTrigValues(rcos, rsin);
+    }
+    /**
+     * * The returned angle is between 0 and PI
+     * @return the angle between two vectors, with the vectors given as xyz components
+     * @param ux x component of vector u
+     * @param uy y component of vector u
+     * @param uz z component of vector u
+     * @param vx x component of vector v
+     * @param vy y component of vector v
+     * @param vz z component of vector v
+     */
+    static radiansBetweenVectorsXYZ(ux, uy, uz, vx, vy, vz) {
+        //  const uu = ux * ux + uy * uy + uz * uz;
+        const uDotV = ux * vx + uy * vy + uz * vz; // magU magV cos(theta)
+        //    const vv = vx * vx + vy * vy + vz * vz;
+        return Math.atan2(Geometry.crossProductMagnitude(ux, uy, uz, vx, vy, vz), uDotV);
     }
 }
 Angle.piOver4Radians = 7.85398163397448280000e-001;
@@ -758,11 +890,11 @@ class AngleSweep {
         this._radians1 = Geometry.clampToStartEnd(this._radians1, -limit, limit);
     }
     /** Ask if the sweep is counterclockwise, i.e. positive sweep */
-    isCCW() { return this._radians1 >= this._radians0; }
+    get isCCW() { return this._radians1 >= this._radians0; }
     /** Ask if the sweep is a full circle. */
-    isFullCircle() { return Angle.isFullCircleRadians(this.sweepRadians); }
+    get isFullCircle() { return Angle.isFullCircleRadians(this.sweepRadians); }
     /** Ask if the sweep is a full sweep from south pole to north pole. */
-    isFullLatitudeSweep() {
+    get isFullLatitudeSweep() {
         const a = Math.PI * 0.5;
         return Angle.isAlmostEqualRadiansNoPeriodShift(this._radians0, -a)
             && Angle.isAlmostEqualRadiansNoPeriodShift(this._radians1, a);

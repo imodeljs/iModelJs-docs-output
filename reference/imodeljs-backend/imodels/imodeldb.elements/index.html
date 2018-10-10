@@ -10,6 +10,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>IModelDb.Elements - imodeljs-backend</title>
+    <meta name="og:title" content="IModelDb.Elements - imodeljs-backend">
+    <meta name="twitter:title" content="IModelDb.Elements - imodeljs-backend">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -188,11 +193,19 @@
 <td>Create a new instance of an element.</td>
 </tr>
 <tr>
+<td class="h-deleteaspect"><span class="method-name"><a href="deleteaspect">deleteAspect</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ids: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64arg'>Id64Arg</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="deleteaspect" class="heading-anchor" href="#deleteaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Delete one or more ElementAspects from this iModel.</td>
+</tr>
+<tr>
 <td class="h-deleteelement"><span class="method-name"><a href="deleteelement">deleteElement</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ids: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64arg'>Id64Arg</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="deleteelement" class="heading-anchor" href="#deleteelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Delete one or more elements from this iModel.</td>
 </tr>
 <tr>
-<td class="h-getelement"><span class="method-name"><a href="getelement">getElement</a></span><span class="method-parenthesis">(</span><span class="method-parameters">elementId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64props'>Id64Props</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guid'>Guid</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/code'>Code</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementloadprops'>ElementLoadProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a></span><a id="getelement" class="heading-anchor" href="#getelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-getaspects"><span class="method-name"><a href="getaspects">getAspects</a></span><span class="method-parenthesis">(</span><span class="method-parameters">elementId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a>, aspectClassName: string</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elementaspects/elementaspect'>ElementAspect</a>[]</span><a id="getaspects" class="heading-anchor" href="#getaspects"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Get the ElementAspect instances (by class name) that are related to the specified element.</td>
+</tr>
+<tr>
+<td class="h-getelement"><span class="method-name"><a href="getelement">getElement</a></span><span class="method-parenthesis">(</span><span class="method-parameters">elementId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guid'>Guid</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/code'>Code</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementloadprops'>ElementLoadProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a></span><a id="getelement" class="heading-anchor" href="#getelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Get an element by Id, FederationGuid, or Code</td>
 </tr>
 <tr>
@@ -200,20 +213,16 @@
 <td>Read element data from iModel as a json string</td>
 </tr>
 <tr>
-<td class="h-getelementprops"><span class="method-name"><a href="getelementprops">getElementProps</a></span><span class="method-parenthesis">(</span><span class="method-parameters">elementId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64props'>Id64Props</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guid'>Guid</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/code'>Code</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementloadprops'>ElementLoadProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a></span><a id="getelementprops" class="heading-anchor" href="#getelementprops"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-getelementprops"><span class="method-name"><a href="getelementprops">getElementProps</a></span><span class="method-parenthesis">(</span><span class="method-parameters">elementId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guid'>Guid</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/code'>Code</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementloadprops'>ElementLoadProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a></span><a id="getelementprops" class="heading-anchor" href="#getelementprops"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Get properties of an Element by Id, FederationGuid, or Code</td>
-</tr>
-<tr>
-<td class="h-getmultiaspects"><span class="method-name"><a href="getmultiaspects">getMultiAspects</a></span><span class="method-parenthesis">(</span><span class="method-parameters">elementId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a>, aspectClassName: string</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elementaspects/elementmultiaspect'>ElementMultiAspect</a>[]</span><a id="getmultiaspects" class="heading-anchor" href="#getmultiaspects"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Get the ElementMultiAspect instances (by class name) that are related to the specified element.</td>
 </tr>
 <tr>
 <td class="h-getrootsubject"><span class="method-name">getRootSubject</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/subject'>Subject</a></span><a id="getrootsubject" class="heading-anchor" href="#getrootsubject"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Get the root subject element.</td>
 </tr>
 <tr>
-<td class="h-getuniqueaspect"><span class="method-name"><a href="getuniqueaspect">getUniqueAspect</a></span><span class="method-parenthesis">(</span><span class="method-parameters">elementId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a>, aspectClassName: string</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elementaspects/elementuniqueaspect'>ElementUniqueAspect</a></span><a id="getuniqueaspect" class="heading-anchor" href="#getuniqueaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Get an ElementUniqueAspect instance (by class name) that is related to the specified element.</td>
+<td class="h-insertaspect"><span class="method-name"><a href="insertaspect">insertAspect</a></span><span class="method-parenthesis">(</span><span class="method-parameters">aspectProps: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementaspectprops'>ElementAspectProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="insertaspect" class="heading-anchor" href="#insertaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Insert a new ElementAspect into the iModel.</td>
 </tr>
 <tr>
 <td class="h-insertelement"><span class="method-name"><a href="insertelement">insertElement</a></span><span class="method-parenthesis">(</span><span class="method-parameters">elProps: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span><a id="insertelement" class="heading-anchor" href="#insertelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -233,11 +242,11 @@
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
-<li><span class="defined-in"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fcore%2Fbackend%2Fsrc%2FIModelDb.ts" target="_blank">IModelDb.ts</a></span></li>
+<li><span class="defined-in"><span title="Page edit feature coming soon">IModelDb.ts</span></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             
@@ -266,7 +275,13 @@
                                             <a class='title solo-title menu-text' href="#createelement">createElement</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#deleteaspect">deleteAspect</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#deleteelement">deleteElement</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getaspects">getAspects</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#getelement">getElement</a>
@@ -278,13 +293,10 @@
                                             <a class='title solo-title menu-text' href="#getelementprops">getElementProps</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#getmultiaspects">getMultiAspects</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#getrootsubject">getRootSubject</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#getuniqueaspect">getUniqueAspect</a>
+                                            <a class='title solo-title menu-text' href="#insertaspect">insertAspect</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#insertelement">insertElement</a>

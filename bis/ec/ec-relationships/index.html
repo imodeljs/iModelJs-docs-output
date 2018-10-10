@@ -9,7 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ECRelationships - iModelJs</title>
+    <title>ECRelationships - iModel.js</title>
+    <meta name="og:title" content="ECRelationships - iModel.js">
+    <meta name="twitter:title" content="ECRelationships - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,7 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
-    <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//learning/imodeljs.ico' /> 
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
 </head>
 
 <body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
@@ -147,7 +152,7 @@
     <div class='documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">bis</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/ec/">ec</a> > ec-relationships</div>
-            <div class="edit-link"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=%2Fdocs%2Fcore%2Fbis%2Fec%2Fec-relationships.md" target="_blank">Edit this page</a></div>
+            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
             <h1 id="ecrelationships">ECRelationships</h1>
 <p>This section discusses <em>relationships</em> in general in the EC Information Model.</p>
 <p>&quot;Relationships&quot; in the EC Information Model are a higher-level concept than simple object references in OO programming. For example, ECRelationships can be many-to-many, and they can have their own business properties that are applied directly to the instances of the relationship. Of course, you can accomplish a many-to-many relationship with business properties in an OO language via a class that has one &#x2018;source&#x2019; object reference and one &#x2018;target&#x2019; object reference. However, ECObjects raises these relationship-oriented &#x2018;patterns&#x2019; that you might find in OO schemas and raises them to a first-class concept. Making ECRelationship a first-class concept simplifies things for the user and developer for whom the business objects and the relationships between them need to be handled and viewed differently. If you are working in a pure OO world of objects and object references, it is not inherently obvious (from inspecting the schema) which classes are playing the role of relationships, and which are the real business objects.</p>
@@ -174,10 +179,10 @@
 <h2 class="h-persisting-relationships">Persisting Relationships<a id="persisting-relationships" class="heading-anchor" href="#persisting-relationships"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The <em>relationships</em> must ultimately be persisted in a relational database and/or in XML, and there are a number of ways to do so. The persistent data may be stored in its own table or the table of the <em>source</em> and/or <em>target</em> class. The <em>relationships</em> belonging to a given <em>relationship class</em> may be persisted in a table all their own, or many <em>relationship</em> <em>classes</em> may share a single table.</p>
 <h2 class="h-ecrelationshipinstances-and-instanceids">ECRelationshipInstances and InstanceIds<a id="ecrelationshipinstances-and-instanceids" class="heading-anchor" href="#ecrelationshipinstances-and-instanceids"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Though ECRelationshipInstances have InstanceId, generally, stable InstanceIds on relationship instances <em>cannot</em> be supported. Imagine the case where the relationship is persisted as a simple foreign-key relationship in the database&#x2026; there is no place to store a stable ID for the relationship instance itself. Concatenating IDs from the source and target will not work, because a relationship ID may change when one of its endpoints is changed.</p>
+<p>Though ECRelationshipInstances have InstanceId, generally, stable InstanceIds on relationship instances <em>cannot</em> be supported. Imagine the case where the relationship is persisted as a simple foreign-key relationship in the database&#x2026; there is no place to store a stable Id for the relationship instance itself. Concatenating IDs from the source and target will not work, because a relationship Id may change when one of its endpoints is changed.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>21 September, 2018</span>
+                <span class='date-updated'>10 October, 2018</span>
             </p>
 
             
@@ -201,7 +206,7 @@
     </li>
        <li class='nav-item item '>
             <a data-target="#inner-nav-relationship-strengths" class='title' href="#relationship-strengths"/>
-            <b class='dropdown-menu-title menu-text'>Relationship &quot;Strengths&quot;</b>
+            <b class='dropdown-menu-title menu-text'>Relationship "Strengths"</b>
             <i class='dropdown icon'></i>
             </a>
             <ul id="inner-nav-relationship-strengths" class='inner-nav'>

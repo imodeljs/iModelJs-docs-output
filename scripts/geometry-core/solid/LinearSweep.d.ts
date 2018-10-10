@@ -14,8 +14,8 @@ import { SolidPrimitive } from "./SolidPrimitive";
  * * A sweep vector
  */
 export declare class LinearSweep extends SolidPrimitive {
-    private contour;
-    private direction;
+    private _contour;
+    private _direction;
     private constructor();
     static create(contour: CurveCollection, direction: Vector3d, capped: boolean): LinearSweep | undefined;
     /** Create a z-direction sweep of the polyline or polygon given as xy linestring values.
@@ -52,3 +52,4 @@ export declare class LinearSweep extends SolidPrimitive {
     constantVSection(vFraction: number): CurveCollection | undefined;
     extendRange(range: Range3d, transform?: Transform): void;
 }
+//# sourceMappingURL=LinearSweep.d.ts.map
