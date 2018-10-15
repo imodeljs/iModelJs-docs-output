@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
@@ -88,7 +90,6 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/" class="table-of-contents-link">Introduction</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-with-bis" class="table-of-contents-link">Modeling with BIS</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/bis-organization" class="table-of-contents-link">BIS Organization</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/bis-ecosystem" class="table-of-contents-link">BIS Ecosystem</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/fabric-of-the-universe" class="table-of-contents-link">Fabric of the Universe</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals" class="table-of-contents-link">Element Fundamentals</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/codes" class="table-of-contents-link">Codes</a></li>
@@ -113,11 +114,6 @@
         ./domains/*
         ./intro/appendix-c-bis-domain-design-fundamentals.md
         ./intro/bis-schema-validation.md
-        ./intro/documents.md
-        ./intro/dynamic-data.md
-        ./intro/forms-profiles-and-features.md
-        ./intro/requirements.md
-        ./intro/types-instances-and-catalogs.md
         ./intro/units.md
         -->
         <p>&#xA0;</p>
@@ -146,20 +142,26 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/property-category" class="table-of-contents-link">PropertyCategory</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/primitive-types" class="table-of-contents-link">PrimitiveTypes</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/customattribute-container-types" class="table-of-contents-link">CustomAttribute Container Types</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-unit" class="table-of-contents-link">Unit</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-constant" class="table-of-contents-link">Constant</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-phenomenon" class="table-of-contents-link">Phenomenon</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-unitsystem" class="table-of-contents-link">UnitSystem</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-format" class="table-of-contents-link">Format</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-name" class="table-of-contents-link">ECName</a></li>
         </ul>
         </body></html>
         </ul>    </div>
     <div class='documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">bis</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/intro/">intro</a> > modeling-with-bis</div>
-            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/bis/intro/modeling-with-bis.md">Edit this page</a></div>
             <h1 id="modeling with bis">Modeling with BIS</h1>
-<p>This section describes how <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#bis'>BIS</a> models the world, and why. First, we introduce the way that BIS perceives the real world. Next, we describe the fundamental building blocks for modeling with BIS and how those blocks are used to construct a cohesive &quot;Digital Twin&quot;&#x2014;which is significantly different from how one would define the data model of an application-specific &quot;silo&quot; database.</p>
+<p>This section describes how <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#bis'>BIS</a> models the world, and why. First, we introduce the way that BIS perceives the real world. Next, we describe the fundamental building blocks for modeling with BIS and how those blocks are used to construct the core models of a cohesive <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#digital-twin'>Digital Twin</a>&#x2014;which is significantly different from how one would define the data model of an application-specific &quot;silo&quot; database.</p>
 <p>This section uses terms without fully defining them. See more-detailed definitions in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary'>BIS Glossary</a>.</p>
 <h2 class="h-the-bis-view-of-the-world">The BIS View of the World<a id="the-bis-view-of-the-world" class="heading-anchor" href="#the-bis-view-of-the-world"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>To &quot;model&quot; reality is to represent it in a simplified, purposeful way that we call a modeling <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#perspective'>Perspective</a>. Consider a real-world physical <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#object'>Object</a>. We can model both its physical form (Physical Perspective) and the role it plays in a functioning system (Functional Perspective). BIS conceives of Objects as composed of multiple Entities, where each <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#entity'>Entity</a> has a subset of the Object&apos;s attributes (relevant to a given Perspective).
 <img src=".././media/bis-modeling-01.png" alt="01" title="An Object is comprised of multiple Entities"> <!--style="width:5.51546in;height:1.97637in"--></p>
-<p>A BIS <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#digital-twin'>Digital Twin</a> models Entities like:</p>
+<p>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#bis-repository'>BIS Repository</a> is an information repository with structure and semantics governed by BIS. It contains models of Entities like:</p>
 <ul>
 <li><p>The physical forms of built infrastructure</p>
 </li>
@@ -168,11 +170,11 @@
 <li><p>Intangible Objects (e.g. documents, requirements, electronic drawings, etc.) that support the design, construction, and operation of built infrastructure.</p>
 </li>
 </ul>
-<p>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#bis-repository'>BIS Repository</a> is an information repository with structure and semantics governed by BIS. It is the &quot;digital universe&quot; in which BIS Digital Twin(s) reside.</p>
+<h2 class="h-modeling-perspectives">Modeling Perspectives<a id="modeling-perspectives" class="heading-anchor" href="#modeling-perspectives"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>BIS supports multiple modeling &quot;<a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#perspective'>Perspectives</a>&quot; within one BIS Repository. For physical Objects, the physical Perspective is primary, but there are additional Perspectives for the roles the Object plays in different systems, e.g. in a functional process, a thermal system, a safety analysis, a spatial layout, a structural system, a financial system, a logistics system, etc.</p>
 <p>BIS also supports modeling an Object at multiple <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#granularity'>Granularities</a> within one BIS Repository, e.g. as both an &quot;atomic&quot; thing and as a collection of smaller parts.</p>
 <h2 class="h-the-bis-building-blocks-and-how-to-use-them">The BIS Building Blocks and How to Use Them<a id="the-bis-building-blocks-and-how-to-use-them" class="heading-anchor" href="#the-bis-building-blocks-and-how-to-use-them"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>The fundamental building blocks for a Digital Twin in a BIS Repository are information records called: <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#model'>Model</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#element'>Element</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#elementaspect'>ElementAspect</a>, and <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#relationship'>Relationship</a>.</p>
+<p>The fundamental building blocks in a BIS Repository are information records called: <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#model'>Model</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#element'>Element</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#elementaspect'>ElementAspect</a>, and <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#relationship'>Relationship</a>.</p>
 <h3 class="h-element">Element<a id="element" class="heading-anchor" href="#element"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>An <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#element'>Element</a> models a real-world Entity. A set of closely-related Elements (each modeling a different Entity comprising the Object) collectively model the complete Object. One Element will be the &quot;lead&quot; Element, based on the nature of the Object being modeled. For example, if it is a Physical Object, then the PhysicalElement (modeling the Physical Entity) will be the &quot;lead&quot; Element, and all other Elements (modeling the other Entities comprising the Object) will relate back to the lead PhysicalElement. For a purely spatial Object (e.g. a political border) the SpatialLocationElement would be the &quot;lead&quot;. For an &quot;information&quot; Object, an InformationContentElement would be the &quot;lead&quot;.</p>
 <p><img src=".././media/bis-modeling-02.png" alt="02" title="Elements model Entities"></p>
@@ -209,7 +211,7 @@ There are three Element properties related to the Code: <a href='https://imodelj
 </blockquote>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 October, 2018</span>
+                <span class='date-updated'>15 October, 2018</span>
             </p>
 
             
@@ -224,6 +226,9 @@ There are three Element properties related to the Code: <a href='https://imodelj
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
               <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#the-bis-view-of-the-world">The BIS View of the World</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#modeling-perspectives">Modeling Perspectives</a>
     </li>
        <li class='nav-item item '>
             <a data-target="#inner-nav-the-bis-building-blocks-and-how-to-use-them" class='title' href="#the-bis-building-blocks-and-how-to-use-them"/>

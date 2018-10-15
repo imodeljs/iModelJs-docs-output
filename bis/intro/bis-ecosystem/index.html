@@ -9,9 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>The BIS Ecosystem - iModel.js</title>
-    <meta name="og:title" content="The BIS Ecosystem - iModel.js">
-    <meta name="twitter:title" content="The BIS Ecosystem - iModel.js">
+    <title>Unit - iModel.js</title>
+    <meta name="og:title" content="Unit - iModel.js">
+    <meta name="twitter:title" content="Unit - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,6 +26,8 @@
     <!-- fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
@@ -88,7 +90,6 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/" class="table-of-contents-link">Introduction</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-with-bis" class="table-of-contents-link">Modeling with BIS</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/bis-organization" class="table-of-contents-link">BIS Organization</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/bis-ecosystem" class="table-of-contents-link">BIS Ecosystem</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/fabric-of-the-universe" class="table-of-contents-link">Fabric of the Universe</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals" class="table-of-contents-link">Element Fundamentals</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/codes" class="table-of-contents-link">Codes</a></li>
@@ -113,11 +114,6 @@
         ./domains/*
         ./intro/appendix-c-bis-domain-design-fundamentals.md
         ./intro/bis-schema-validation.md
-        ./intro/documents.md
-        ./intro/dynamic-data.md
-        ./intro/forms-profiles-and-features.md
-        ./intro/requirements.md
-        ./intro/types-instances-and-catalogs.md
         ./intro/units.md
         -->
         <p>&#xA0;</p>
@@ -146,53 +142,42 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/property-category" class="table-of-contents-link">PropertyCategory</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/primitive-types" class="table-of-contents-link">PrimitiveTypes</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/customattribute-container-types" class="table-of-contents-link">CustomAttribute Container Types</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-unit" class="table-of-contents-link">Unit</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-constant" class="table-of-contents-link">Constant</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-phenomenon" class="table-of-contents-link">Phenomenon</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-unitsystem" class="table-of-contents-link">UnitSystem</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-format" class="table-of-contents-link">Format</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-name" class="table-of-contents-link">ECName</a></li>
         </ul>
         </body></html>
         </ul>    </div>
     <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">bis</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/intro/">intro</a> > bis-ecosystem</div>
-            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
-            <h1 id="the bis ecosystem">The BIS Ecosystem</h1>
-<p>BIS is the Base Infrastructure Schema for iModels. This chapter discusses some of the key technology in the BIS ecosystem.</p>
-<h2 class="h-the-imodel-technology-stack">The iModel Technology Stack<a id="the-imodel-technology-stack" class="heading-anchor" href="#the-imodel-technology-stack"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>The iModel technology stack is a cross-platform (e.g. Windows, MacOs, Linux, iOS, Android, etc.) set of libraries for developing applications and services for iModels.</p>
-<h2 class="h-the-imodel-file-format">The iModel File Format<a id="the-imodel-file-format" class="heading-anchor" href="#the-imodel-file-format"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>The iModel format is a relational database built on <a href="https://www.sqlite.org">SQLite</a>. iModel-specific db schema that is designed to hold information that conforms to BIS The db schema is actually fixed, and all of the information conforming to BIS is mapped into those somewhat generic tables.</p>
-<h2 class="h-imodel-briefcases">iModel Briefcases<a id="imodel-briefcases" class="heading-anchor" href="#imodel-briefcases"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<h2 class="h-imodelhub">iModelHub<a id="imodelhub" class="heading-anchor" href="#imodelhub"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>iModelHub is a cloud service that .... It manages iModels, push/pull of Revisions, management of Briefcases.</p>
-<ul>
-<li><p><em>Lock Services</em>: Locks can help a group of users, each with their own Briefcase, avoid making changes to the same information.</p>
-</li>
-<li><p><em>Code Management Services</em>: Generating, validating, and registering Codes</p>
-</li>
-<li><p><em>Change Event Services</em>: Notifies subscribers of any relevant events of interest.</p>
-</li>
-<li><p><em>Etc</em>.</p>
-</li>
-</ul>
-<p>Conceptually, it may be helpful to think of iModelHub as playing the same role for iModels as <a href="https://github.com/">GitHub</a> plays for Git repositories.</p>
-<p>Clients of iModelHub can download a Briefcase (&quot;.bim&quot; File) of any iModel that iModelHub is managing, and then pull and push ChangeSets in the form of Revisions (see below).</p>
-<p>iModelHub allows clients to subscribe to events like &#x201C;A new Revision has been pushed&#x201D; and then pull the  Revision into their own Briefcase. The clients may be desktop or mobile apps or other cloud services. For example, a mobile app can keep large Briefcases up-to-date without requiring repeated large file downloads.</p>
-<h2 class="h-revisions">Revisions<a id="revisions" class="heading-anchor" href="#revisions"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>A Revision is a collection of changes required to <em>revise</em> a BIS Repository from a pre-revision state to a post-revision state. A Revision is</p>
-<p>A Revision file is a binary file used to hold all of changes made to a Briefcase. The Revision includes a SQLite ChangeSet, which records changes to a Briefcase in a compact format.</p>
-<p>When you <em>pull from</em> and <em>push to</em> iModelHub, you are pushing and pulling Revisions. iModelHub requires that before it will accept a Revision the</p>
-<h2 class="h-bis-generations">BIS Generations<a id="bis-generations" class="heading-anchor" href="#bis-generations"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>A BIS Generation is a series of BIS releases in which only &quot;minor changes&quot; to schemas are allowed, where &#x201C;minor change&#x201D; is defined as any change that does not break compatibility with software written against any version of BIS within that Generation. Minor changes can include very <em>significant</em> additions (but no deletions) &#x2013; including adding new domains - so a Generation is not as constricting as might initially be assumed.</p>
-<p>For the iModel technology stack, the BIS Generation approach gives one huge benefit:</p>
-<p><em>Software written for any version of BIS within a Generation can work with .bim files written by software written for any version of BIS within the same Generation.</em></p>
-<p>This flexibility largely removes the need for synchronized product releases and has the potential to vastly simplify the user&#x2019;s product upgrade complexities. If the user stays within a BIS Generation, all the products and services should work together.</p>
-<p>See <em><strong>xxxxxxxx</strong></em> for a detailed description of BIS Generations and the motivation for them.</p>
-<h2 class="h-bis-outside-of-imodels">BIS Outside of iModels<a id="bis-outside-of-imodels" class="heading-anchor" href="#bis-outside-of-imodels"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>BIS is not only intended for the iModel stack; BIS is intended to be schema for applications and services. The use of the same conceptual schema will allow all the facets of the BIS (and Bentley) ecosystem to work together. The expectation is that all new REST APIs exposing user-domain concepts like &#x201C;user&#x201D;, &#x201C;asset&#x201D;, &#x201C;project&#x201D;, &#x201C;enterprise&#x201D;, &#x201C;major infrastructure&#x201D;, &#x201C;document&#x201D;, &#x201C;transmittal&#x201D;, &#x201C;issue&#x201D;, &#x201C;deliverable&#x201D;, &#x201C;rendition&#x201D;, &#x201C;work package&#x201D; etc. will need to conform to BIS (meaning that there will need to be BIS ECClasses describing the resources exposed by those services and the JSON should use the semantics defined by BIS and a JSON format that is compatible with the overall BIM ecosystem.</p>
-<blockquote>
-<p>Next: <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/fabric-of-the-universe'>Fabric of the Universe</a></p>
-</blockquote>
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">bis</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/ec/">ec</a> > ec-unit</div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/bis/ec/ec-unit.md">Edit this page</a></div>
+            <h1 id="unit">Unit</h1>
+<p>Defines a Unit of Measure in terms of other Units allowing generation of a conversion factor between it and any other dimensionally compatible unit.  NOTE: Conversions are limited to units in the same Phenomenon.</p>
+<h2 class="h-attributes">Attributes<a id="attributes" class="heading-anchor" href="#attributes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p><strong>typeName</strong> Defines the name of this Unit. Must be a valid <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-name'>ECName</a> and be unique among all other items in a schema.</p>
+<p><strong>displayLabel</strong> A display label that will be localized and used instead of the name in a GUI. If not set, the typeName is used.</p>
+<p><strong>description</strong> A user-facing description of the Unit. Localized and may be shown in a UI.</p>
+<p><strong>phenomenon</strong> The physical quantity that this unit measures (e.g., length, temperature, pressure).  Only units in the same phenomenon can be converted between.</p>
+<p><strong>unitSystem</strong> The unit system that this unit belongs to (e.g., metric, imperial).</p>
+<p><strong>definition</strong> The expression that defines this unit in terms of other units.  This expression defines the dimensionality of the unit and is used along with the numerator, denominator, and offset to convert between units in the same phenomenon.</p>
+<p><strong>numerator</strong> The numerator for the conversion factor which is used in combination with the units definition to convert between units.</p>
+<p><strong>denominator</strong> The denominator for the conversion factor which is used in combination with the units definition to convert between units.</p>
+<p><strong>offset</strong> The offset applied when converting between units.</p>
+<h1 id="invertedunit">InvertedUnit</h1>
+<p>Defines a Unit that is the inverse of another Unit.  Only valid for Units whose dimensional derivation is Unit-less (e.g., slope).</p>
+<h2 class="h-attributes-1">Attributes<a id="attributes-1" class="heading-anchor" href="#attributes-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p><strong>typeName</strong> Defines the name of this Unit. Must be a valid <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-name'>ECName</a> and be unique among all other items in a schema.</p>
+<p><strong>displayLabel</strong> A localized display label that will be used instead of the name in a GUI. If not set, the name is used.</p>
+<p><strong>description</strong> A user-facing description of the Unit. Localized and may be shown in a UI.</p>
+<p><strong>invertsUnit</strong> The unit this is inverting.</p>
+<p><strong>unitSystem</strong> The UnitSystem this is a member of.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 October, 2018</span>
+                <span class='date-updated'>15 October, 2018</span>
             </p>
 
             
@@ -206,25 +191,10 @@
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
               <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#the-imodel-technology-stack">The iModel Technology Stack</a>
+            <a class='title solo-title menu-text' href="#attributes">Attributes</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#the-imodel-file-format">The iModel File Format</a>
-    </li>
-       <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#imodel-briefcases">iModel Briefcases</a>
-    </li>
-       <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#imodelhub">iModelHub</a>
-    </li>
-       <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#revisions">Revisions</a>
-    </li>
-       <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#bis-generations">BIS Generations</a>
-    </li>
-       <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#bis-outside-of-imodels">BIS Outside of iModels</a>
+            <a class='title solo-title menu-text' href="#attributes-1">Attributes</a>
     </li>
  
       </ul>

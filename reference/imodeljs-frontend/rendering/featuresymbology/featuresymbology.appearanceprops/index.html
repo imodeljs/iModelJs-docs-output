@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
@@ -131,7 +133,6 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/" class="table-of-contents-link">iModels</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/" class="table-of-contents-link">RPC Interface</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/" class="table-of-contents-link">ECSQL</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/" class="table-of-contents-link">Feature Gates</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/all/" class="table-of-contents-link">All</a></li>
         </ul>
         <hr>
@@ -183,6 +184,10 @@
             
             <h2 class="h-featuresymbologyappearanceprops">FeatureSymbology.AppearanceProps <span class="badge badge-pill badge-primary badge-interface">Interface</span><a id="featuresymbologyappearanceprops" class="heading-anchor" href="#featuresymbologyappearanceprops"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Properties used to initialize a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a>.</p>
+<h3 class="h-implemented-by">Implemented by<a id="implemented-by" class="heading-anchor" href="#implemented-by"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a></li>
+</ul>
 <h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -190,24 +195,24 @@
 <th>Description</th>
 </tr>
 <tr>
-<td class="h-alpha"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearanceprops/alpha'>alpha</a></span><a id="alpha" class="heading-anchor" href="#alpha"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output">undefined | number</span></td>
-<td>Alpha 0-255.</td>
-</tr>
-<tr>
 <td class="h-ignoresmaterial"><span class="property-name">ignoresMaterial</span><a id="ignoresmaterial" class="heading-anchor" href="#ignoresmaterial"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">true | undefined</span></td>
-<td></td>
+<td>If true, ignore the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendermaterial'>RenderMaterial</a> associated with surfaces.</td>
 </tr>
 <tr>
 <td class="h-linepixels"><span class="property-name">linePixels</span><a id="linepixels" class="heading-anchor" href="#linepixels"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/linepixels'>LinePixels</a></span></td>
-<td></td>
+<td>The pixel pattern used to draw lines.</td>
 </tr>
 <tr>
 <td class="h-rgb"><span class="property-name">rgb</span><a id="rgb" class="heading-anchor" href="#rgb"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/rgbcolor'>RgbColor</a></span></td>
 <td>The color of the Appearance</td>
+</tr>
+<tr>
+<td class="h-transparency"><span class="property-name">transparency</span><a id="transparency" class="heading-anchor" href="#transparency"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">undefined | number</span></td>
+<td>The transparency in the range [0.0, 1.0] where 0 indicates fully opaque and 1 indicates fully transparent.</td>
 </tr>
 <tr>
 <td class="h-weight"><span class="property-name">weight</span><a id="weight" class="heading-anchor" href="#weight"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -216,11 +221,11 @@
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
-<li><span class="defined-in"><span title="Page edit feature coming soon">render/FeatureSymbology.ts</span></span></li>
+<li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/frontend/src/render/FeatureSymbology.ts">render/FeatureSymbology.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 October, 2018</span>
+                <span class='date-updated'>15 October, 2018</span>
             </p>
 
             
@@ -240,14 +245,14 @@
             </a>
             <ul id="inner-nav-featuresymbologyappearanceprops" class='inner-nav'>
                     <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#implemented-by">Implemented by</a>
+                    </li>
+                    <li class='nav-item item '>
                             <a data-target="#inner-nav-properties" class='title' href="#properties"/>
                             <b class='dropdown-menu-title menu-text'>Properties</b>
                             <i class='dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#alpha">alpha</a>
-                                    </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#ignoresmaterial">ignoresMaterial</a>
                                     </li>
@@ -256,6 +261,9 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#rgb">rgb</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#transparency">transparency</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#weight">weight</a>

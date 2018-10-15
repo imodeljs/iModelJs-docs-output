@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
@@ -106,7 +108,7 @@
     <div class='documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > RpcInterface</div>
-            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/RpcInterface.md">Edit this page</a></div>
             <h1 id="rpcinterface">RpcInterface</h1>
 <p>Table of Contents:</p>
 <ul>
@@ -236,7 +238,7 @@ export class RobotWorldReadRpcImpl extends RpcInterface implements RobotWorldRea
 <p><em>Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">        RpcManager.registerImpl(RobotWorldReadRpcInterface, RobotWorldReadRpcImpl);</code></pre>
 <h3 class="h-choose-interfaces">Choose Interfaces<a id="choose-interfaces" class="heading-anchor" href="#choose-interfaces"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>The server must decide which interfaces it wants to expose. A server can expose multiple interfaces. A server can expose both its own implementations, if any, and imported implementations. The server can decide at run time which interfaces to expose, perhaps based on deployment parameters. A server will often use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/featuregates'>FeatureGates</a> to decide which interfaces to expose.</p>
+<p>The server must decide which interfaces it wants to expose. A server can expose multiple interfaces. A server can expose both its own implementations, if any, and imported implementations. The server can decide at run time which interfaces to expose, perhaps based on deployment parameters.</p>
 <p><em>Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">    private static chooseInterfacesToExpose(): RpcInterfaceDefinition[] {
         const interfaces: RpcInterfaceDefinition[] = [IModelReadRpcInterface, RobotWorldReadRpcInterface];
@@ -250,8 +252,8 @@ export class RobotWorldReadRpcImpl extends RpcInterface implements RobotWorldRea
 <h3 class="h-configure-interfaces">Configure Interfaces<a id="configure-interfaces" class="heading-anchor" href="#configure-interfaces"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>The server must choose the appropriate RPC configuration for the interfaces that it exposes to clients.
 If the server is an app backend, the RPC configuration must correspond to the app configuration.
-If the server is a <a href="..App.md#imodel-services">service</a>, it must always use a <a href="#web-rpc-configuration">Web RPC configuration</a> for its interfaces.
-A backend should configure its RpcInterfaces in its <a href="..AppTailoring.md#configuration-specific-main">configuration-specific main</a>.</p>
+If the server is a <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/app/#imodel-services'>service</a>, it must always use a <a href="#web-rpc-configuration">Web RPC configuration</a> for its interfaces.
+A backend should configure its RpcInterfaces in its <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/apptailoring/#configuration-specific-main'>configuration-specific main</a>.</p>
 <p><em>Desktop Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">import { ElectronRpcManager } from &quot;@bentley/imodeljs-common&quot;;
 
@@ -266,7 +268,7 @@ export function initializeRpcImplBentleyCloud(interfaces: RpcInterfaceDefinition
     BentleyCloudRpcManager.initializeImpl(cloudParams, interfaces);
 }</code></pre>
 <h3 class="h-serve-the-interfaces">Serve the Interfaces<a id="serve-the-interfaces" class="heading-anchor" href="#serve-the-interfaces"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>When a backend is configured as a Web app, it must implement a Web server to serve out its interfaces, so that in-coming client requests are forwarded to the implementations. This is always true of all <a href="..App.md#imodel-services">services</a>. Any Web server technology can be used. Normally, a single function call is all that is required to integrate all configured interfaces with the Web server. For example, if a Web server uses express, it would serve its RpcInterfaces like this:</p>
+<p>When a backend is configured as a Web app, it must implement a Web server to serve out its interfaces, so that in-coming client requests are forwarded to the implementations. This is always true of all <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/app/#imodel-services'>services</a>. Any Web server technology can be used. Normally, a single function call is all that is required to integrate all configured interfaces with the Web server. For example, if a Web server uses express, it would serve its RpcInterfaces like this:</p>
 <pre class="no-line-numbers"><code class="language-typescript">const webServer = express();
 ...
 webServer.post(&quot;*&quot;, async (request, response) =&gt; {
@@ -346,7 +348,7 @@ export function initializeRpcClientBentleyCloudForApp(interfaces: RpcInterfaceDe
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 October, 2018</span>
+                <span class='date-updated'>15 October, 2018</span>
             </p>
 
             

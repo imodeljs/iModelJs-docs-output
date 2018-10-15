@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
@@ -106,7 +108,7 @@
     <div class='documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ecsqltutorial/">ecsqltutorial</a> > Joins</div>
-            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/ECSQLTutorial/Joins.md">Edit this page</a></div>
             <h1 id="relationships and joins">Relationships and Joins</h1>
 <h2 class="h-ecrelationshipclasses">ECRelationshipClasses<a id="ecrelationshipclasses" class="heading-anchor" href="#ecrelationshipclasses"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>As ECRelationshipClasses are ECClasses as well, they can be used in ECSQL like ECClasses. Their additional relationship semantics are expressed by these system properties.</p>
@@ -132,7 +134,7 @@
 </tr>
 </tbody></table><blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Return the child <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#element'>Element</a>s (id and class id) of the parent <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#element'>Element</a> 0x10000000013</p>
+<p><em>Goal:</em> Return the child <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a>s (id and class id) of the parent <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a> 0x10000000013</p>
 <p><em>ECSQL</em></p>
 <pre class="no-line-numbers"><code class="language-sql"> SELECT TargetECInstanceId ChildId, TargetECClassId ChildClassId FROM bis.ElementOwnsChildElements WHERE SourceECInstanceId=0x10000000013</code></pre>
 <p><em>Result</em></p>
@@ -153,7 +155,7 @@
 <p>We will cover relationships more in the next chapter on joins.</p>
 <h2 class="h-joins">Joins<a id="joins" class="heading-anchor" href="#joins"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Joins are a powerful feature of ECSQL to combine data from different classes. <strong>The syntax is the same as as in SQL</strong>.</p>
-<p>Unlike a plain database, ECSchemas provide first-class concepts like <a href="#ecrelationshipclasses">ECRelationshipClasses</a> and <a href=".%5CECSQLDataTypes.md#navigation-properties">Navigation properties</a> which are helpful when using joins in ECSQL. However, you can also use the joins as you did in SQL without being aware of the above-mentioned concepts.</p>
+<p>Unlike a plain database, ECSchemas provide first-class concepts like <a href="#ecrelationshipclasses">ECRelationshipClasses</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/ecsqldatatypes/#navigation-properties'>Navigation properties</a> which are helpful when using joins in ECSQL. However, you can also use the joins as you did in SQL without being aware of the above-mentioned concepts.</p>
 <h3 class="h-quick-recap">Quick Recap<a id="quick-recap" class="heading-anchor" href="#quick-recap"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>The tutorial expects that you are familiar with SQL joins. Because their understanding is crucial for how relationships and navigation properties affect defining joins, we do a quick recap of the key aspects of joins.</p>
 <p>A join is made up of two pieces:</p>
@@ -176,7 +178,7 @@ We will also cover examples that compare ECSQL using navigation properties with 
 <p>As explained above using navigation properties instead of joins is preferred. So always double-check whether a navigation property is defined for the ECRelationshipClass you want to navigate. The examples below show how to use navigation properties and how the corresponding ECSQL using ECRelationshipClasses would look like.</p>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Return the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#model'>Model</a> that contains the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> with code &apos;DEV-A-2-6&apos;.</p>
+<p><em>Goal:</em> Return the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#model'>Model</a> that contains the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> with code &apos;DEV-A-2-6&apos;.</p>
 <p><em>ECSQL</em></p>
 <pre class="no-line-numbers"><code class="language-sql"> SELECT Model FROM MyDomain.Device WHERE CodeValue=&apos;DEV-A-2-6&apos;</code></pre>
 <p><em>Result</em></p>
@@ -188,11 +190,11 @@ We will also cover examples that compare ECSQL using navigation properties with 
 <td></td>
 </tr>
 </tbody></table></blockquote>
-<p>Note that the above ECSQL implies to navigate from the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> ECClass (which is a subclass of <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#element'>Element</a> to the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#model'>Model</a> ECClass using the ECRelationshipClass <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#modelcontainselements'>ModModelContainsElementsel</a>. But none of that has to be expressed in the ECSQL. It is all hidden behind the navigation property and makes the ECSQL straight-forward.</p>
+<p>Note that the above ECSQL implies to navigate from the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> ECClass (which is a subclass of <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a> to the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#model'>Model</a> ECClass using the ECRelationshipClass <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#modelcontainselements'>ModModelContainsElementsel</a>. But none of that has to be expressed in the ECSQL. It is all hidden behind the navigation property and makes the ECSQL straight-forward.</p>
 <p>The following ECSQL is the same as above but uses joins instead of the navigation property.</p>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Return the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#model'>Model</a> that contains the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> with code &apos;DEV-A-2-6&apos;.</p>
+<p><em>Goal:</em> Return the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#model'>Model</a> that contains the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> with code &apos;DEV-A-2-6&apos;.</p>
 <p><em>ECSQL</em></p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT rel.SourceECInstanceId ModelId FROM bis.ModelContainsElements rel JOIN bis.Element ON rel.TargetECInstanceId=Element.ECInstanceId WHERE Element.CodeValue=&apos;DEV-A-2-6&apos;</code></pre>
 <p><em>Result</em></p>
@@ -207,7 +209,7 @@ We will also cover examples that compare ECSQL using navigation properties with 
 <p>If you want to return something else than just the id of the related instance, you can still use the navigation property but you need a join to bring in the related instance&apos;s class.</p>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Return the id, the modeled element and the parent model of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#model'>Model</a> that contains the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> with code &apos;DEV-A-2-6&apos;.</p>
+<p><em>Goal:</em> Return the id, the modeled element and the parent model of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#model'>Model</a> that contains the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> with code &apos;DEV-A-2-6&apos;.</p>
 <p><em>ECSQL</em></p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT Model.ECInstanceId,Model.ModeledElement.Id ModeledElementId,Model.ParentModel.Id ParentModelId FROM bis.Model JOIN bis.Element ON Element.Model.Id=Model.ECInstanceId WHERE Element.CodeValue=&apos;DEV-A-2-6&apos;</code></pre>
 <p><em>Result</em></p>
@@ -225,7 +227,7 @@ We will also cover examples that compare ECSQL using navigation properties with 
 <p>Again for the purpose of learning, the same ECSQL expressed with relationship classes instead of navigation properties looks like this.</p>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Return the id, the modeled element and the parent model of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore/biscore.ecschema/#model'>Model</a> that contains the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> with code &apos;DEV-A-2-6&apos;.</p>
+<p><em>Goal:</em> Return the id, the modeled element and the parent model of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#model'>Model</a> that contains the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> with code &apos;DEV-A-2-6&apos;.</p>
 <p><em>ECSQL</em></p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT Model.ECInstanceId,Model.ModeledElement.Id ModeledElementId,Model.ParentModel.Id ParentModelId FROM MyDomain.Device JOIN bis.ModelContainsElements rel ON Device.ECInstanceId=rel.TargetECInstanceId JOIN bis.Model ON rel.SourceECInstanceId=Model.ECInstanceId WHERE Device.CodeValue=&apos;DEV-A-2-6&apos;</code></pre>
 <p><em>Result</em></p>
@@ -244,7 +246,7 @@ We will also cover examples that compare ECSQL using navigation properties with 
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/ecsqldatatypes'><strong>&lt; Previous</strong></a> &#xA0; | &#xA0; <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/polymorphicqueries'><strong>Next &gt;</strong></a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 October, 2018</span>
+                <span class='date-updated'>15 October, 2018</span>
             </p>
 
             

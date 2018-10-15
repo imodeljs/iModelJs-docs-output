@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
@@ -131,7 +133,6 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/" class="table-of-contents-link">iModels</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/" class="table-of-contents-link">RPC Interface</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/" class="table-of-contents-link">ECSQL</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/" class="table-of-contents-link">Feature Gates</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/all/" class="table-of-contents-link">All</a></li>
         </ul>
         <hr>
@@ -205,12 +206,15 @@
 <td>Override default region for this service</td>
 </tr>
 <tr>
-<td class="h-gettoken"><span class="method-name"><a href="gettoken">getToken</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, authorizationToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/authorizationtoken'>AuthorizationToken</a>, relyingPartyUri?: string</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>&gt;</span><a id="gettoken" class="heading-anchor" href="#gettoken"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-gettoken"><span class="method-name"><a href="gettoken">getToken</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, authorizationToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/authorizationtoken'>AuthorizationToken</a>, relyingPartyUri?: string, appId?: string</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>&gt;</span><a id="gettoken" class="heading-anchor" href="#gettoken"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Gets the (delegation) access token given the authorization token.</td>
 </tr>
 <tr>
 <td class="h-geturlsearchkey"><span class="method-name"><a href="geturlsearchkey">getUrlSearchKey</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> string</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="geturlsearchkey" class="heading-anchor" href="#geturlsearchkey"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Gets name/key to query the service URLs from the URL Discovery Service (&quot;Buddi&quot;)</td>
+</tr>
+<tr>
+<td class="h-setupoptiondefaults"><span class="method-name">setupOptionDefaults</span><span class="method-parenthesis">(</span><span class="method-parameters">options: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/requestoptions'>RequestOptions</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="setupoptiondefaults" class="heading-anchor" href="#setupoptiondefaults"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 </tr>
 </tbody></table><h3 class="h-inherited-methods"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited methods<a id="inherited-methods" class="heading-anchor" href="#inherited-methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -227,11 +231,6 @@
 <td class="h-geturl"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/client/geturl'>getUrl</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;string&gt;</span><a id="geturl" class="heading-anchor" href="#geturl"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/client'>Client</a></span></td>
 <td>Gets the URL of the service.</td>
-</tr>
-<tr>
-<td class="h-setupoptiondefaults"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/client/setupoptiondefaults'>setupOptionDefaults</a></span><span class="method-parenthesis">(</span><span class="method-parameters">options: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/requestoptions'>RequestOptions</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="setupoptiondefaults" class="heading-anchor" href="#setupoptiondefaults"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/client'>Client</a></span></td>
-<td>Augments request options with defaults returned by the DefaultRequestOptionsProvider.</td>
 </tr>
 </tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -267,11 +266,11 @@
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
-<li><span class="defined-in"><span title="Page edit feature coming soon">ImsClients.ts</span></span></li>
+<li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/clients/src/ImsClients.ts">ImsClients.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 October, 2018</span>
+                <span class='date-updated'>15 October, 2018</span>
             </p>
 
             
@@ -314,6 +313,9 @@
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#geturlsearchkey">getUrlSearchKey</a>
                                     </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setupoptiondefaults">setupOptionDefaults</a>
+                                    </li>
                             </ul>
                     </li>
                     <li class='nav-item item '>
@@ -327,9 +329,6 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#geturl">getUrl</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#setupoptiondefaults">setupOptionDefaults</a>
                                     </li>
                             </ul>
                     </li>

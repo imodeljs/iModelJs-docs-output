@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
@@ -88,7 +90,6 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/" class="table-of-contents-link">Introduction</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-with-bis" class="table-of-contents-link">Modeling with BIS</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/bis-organization" class="table-of-contents-link">BIS Organization</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/bis-ecosystem" class="table-of-contents-link">BIS Ecosystem</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/fabric-of-the-universe" class="table-of-contents-link">Fabric of the Universe</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals" class="table-of-contents-link">Element Fundamentals</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/codes" class="table-of-contents-link">Codes</a></li>
@@ -113,11 +114,6 @@
         ./domains/*
         ./intro/appendix-c-bis-domain-design-fundamentals.md
         ./intro/bis-schema-validation.md
-        ./intro/documents.md
-        ./intro/dynamic-data.md
-        ./intro/forms-profiles-and-features.md
-        ./intro/requirements.md
-        ./intro/types-instances-and-catalogs.md
         ./intro/units.md
         -->
         <p>&#xA0;</p>
@@ -146,13 +142,19 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/property-category" class="table-of-contents-link">PropertyCategory</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/primitive-types" class="table-of-contents-link">PrimitiveTypes</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/customattribute-container-types" class="table-of-contents-link">CustomAttribute Container Types</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-unit" class="table-of-contents-link">Unit</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-constant" class="table-of-contents-link">Constant</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-phenomenon" class="table-of-contents-link">Phenomenon</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-unitsystem" class="table-of-contents-link">UnitSystem</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-format" class="table-of-contents-link">Format</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-name" class="table-of-contents-link">ECName</a></li>
         </ul>
         </body></html>
         </ul>    </div>
     <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">bis</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/domains/">domains</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/domains/core/">core</a> > Functional.ecschema</div>
-            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">bis</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/domains/">domains</a> > Functional.ecschema</div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/bis/domains/Functional.ecschema.md">Edit this page</a></div>
             <h1 id="functional">Functional</h1>
 <p><strong>alias:</strong> func</p>
 <p><strong>version:</strong> 1.0.0</p>
@@ -162,56 +164,24 @@
 <p>A Functional Breakdown is a &apos;folder&apos; node in the functional hierarchy.</p>
 <p><strong>displayLabel:</strong> Functional Breakdown</p>
 <p><strong>modifier:</strong> Abstract</p>
-<p><strong>baseClass:</strong> <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//functional.ecschema/#functionalelement'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//functional.ecschema/#functionalelement</small>'>
-            Functional:FunctionalElement
-            </a></p>
+<p><strong>baseClass:</strong> <a href="#functionalelement">Functional:FunctionalElement</a></p>
 <h3 class="h-functionalcomponentelement">FunctionalComponentElement<a id="functionalcomponentelement" class="heading-anchor" href="#functionalcomponentelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p>A Functional Component is a &apos;leaf&apos; node in the functional hierarchy.</p>
 <p><strong>displayLabel:</strong> Functional Component</p>
 <p><strong>modifier:</strong> Abstract</p>
-<p><strong>baseClass:</strong> <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//functional.ecschema/#functionalelement'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//functional.ecschema/#functionalelement</small>'>
-            Functional:FunctionalElement
-            </a></p>
+<p><strong>baseClass:</strong> <a href="#functionalelement">Functional:FunctionalElement</a></p>
 <h3 class="h-functionalcomposite">FunctionalComposite<a id="functionalcomposite" class="heading-anchor" href="#functionalcomposite"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>displayLabel:</strong> Functional Composite</p>
 <p><strong>modifier:</strong> None</p>
-<p><strong>baseClass:</strong> <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//functional.ecschema/#functionalbreakdownelement'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//functional.ecschema/#functionalbreakdownelement</small>'>
-            Functional:FunctionalBreakdownElement
-            </a></p>
+<p><strong>baseClass:</strong> <a href="#functionalbreakdownelement">Functional:FunctionalBreakdownElement</a></p>
 <h3 class="h-functionalelement">FunctionalElement<a id="functionalelement" class="heading-anchor" href="#functionalelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p>A Functional Element captures functional requirements that will ultimately be fulfilled by a Physical Element.</p>
 <p><strong>displayLabel:</strong> Functional Element</p>
 <p><strong>modifier:</strong> Abstract</p>
-<p><strong>baseClass:</strong> <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//biscore.ecschema/#roleelement'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//biscore.ecschema/#roleelement</small>'>
-            BisCore:RoleElement
-            </a></p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#roleelement'>BisCore:RoleElement</a></p>
 <h4 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
@@ -222,85 +192,37 @@
 <tr>
 <td align="left">TypeDefinition</td>
 <td align="left"></td>
-<td align="left"><a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//functional.ecschema/#functionalelementisoftype'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//functional.ecschema/#functionalelementisoftype</small>'>
-            navigation
-            </a></td>
+<td align="left"><a href="#functionalelementisoftype">navigation</a></td>
 </tr>
 </tbody></table><h3 class="h-functionalmodel">FunctionalModel<a id="functionalmodel" class="heading-anchor" href="#functionalmodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p>A container for persisting Functional Elements.</p>
 <p><strong>displayLabel:</strong> Functional Model</p>
 <p><strong>modifier:</strong> None</p>
-<p><strong>baseClass:</strong> <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//biscore.ecschema/#rolemodel'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//biscore.ecschema/#rolemodel</small>'>
-            BisCore:RoleModel
-            </a></p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#rolemodel'>BisCore:RoleModel</a></p>
 <h3 class="h-functionalpartition">FunctionalPartition<a id="functionalpartition" class="heading-anchor" href="#functionalpartition"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p>A Functional Partition element is a key part of the DgnDb information hierarchy that is always parented to a Subject and broken down by a Functional Model.</p>
 <p><strong>displayLabel:</strong> Functional Partition</p>
 <p><strong>modifier:</strong> Sealed</p>
-<p><strong>baseClass:</strong> <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//biscore.ecschema/#informationpartitionelement'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//biscore.ecschema/#informationpartitionelement</small>'>
-            BisCore:InformationPartitionElement
-            </a></p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#informationpartitionelement'>BisCore:InformationPartitionElement</a></p>
 <h3 class="h-functionalportion">FunctionalPortion<a id="functionalportion" class="heading-anchor" href="#functionalportion"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p>A Functional Portion is a Functional Component that will be broken down in more detail in a separate (sub) Functional Model.</p>
 <p><strong>displayLabel:</strong> Functional Portion</p>
 <p><strong>modifier:</strong> None</p>
-<p><strong>baseClass:</strong> <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//functional.ecschema/#functionalcomponentelement'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//functional.ecschema/#functionalcomponentelement</small>'>
-            Functional:FunctionalComponentElement
-            </a></p>
+<p><strong>baseClass:</strong> <a href="#functionalcomponentelement">Functional:FunctionalComponentElement</a></p>
 <h3 class="h-functionaltype">FunctionalType<a id="functionaltype" class="heading-anchor" href="#functionaltype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p>Defines a set of properties (the &apos;type&apos;) that can be associated with a Functional Element.</p>
 <p><strong>displayLabel:</strong> Functional Type</p>
 <p><strong>modifier:</strong> Abstract</p>
-<p><strong>baseClass:</strong> <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//biscore.ecschema/#typedefinitionelement'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//biscore.ecschema/#typedefinitionelement</small>'>
-            BisCore:TypeDefinitionElement
-            </a></p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#typedefinitionelement'>BisCore:TypeDefinitionElement</a></p>
 <h2 class="h-relationship-classes">Relationship Classes<a id="relationship-classes" class="heading-anchor" href="#relationship-classes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <h3 class="h-drawinggraphicrepresentsfunctionalelement">DrawingGraphicRepresentsFunctionalElement<a id="drawinggraphicrepresentsfunctionalelement" class="heading-anchor" href="#drawinggraphicrepresentsfunctionalelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> RelationshipClass</p>
 <p><strong>modifier:</strong> None</p>
-<p><strong>baseClass:</strong> <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//biscore.ecschema/#drawinggraphicrepresentselement'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//biscore.ecschema/#drawinggraphicrepresentselement</small>'>
-            BisCore:DrawingGraphicRepresentsElement
-            </a></p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#drawinggraphicrepresentselement'>BisCore:DrawingGraphicRepresentsElement</a></p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
 <h4 class="h-source">Source<a id="source" class="heading-anchor" href="#source"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
@@ -309,15 +231,7 @@
 <p><strong>multiplicity:</strong> (0..*)</p>
 <h5 id="constraint classes">Constraint Classes</h5>
 <ul>
-<li><a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//biscore.ecschema/#drawinggraphic'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//biscore.ecschema/#drawinggraphic</small>'>
-            DrawingGraphic
-            </a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#drawinggraphic'>DrawingGraphic</a></li>
 </ul>
 <h4 class="h-target">Target<a id="target" class="heading-anchor" href="#target"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
@@ -325,15 +239,7 @@
 <p><strong>multiplicity:</strong> (0..*)</p>
 <h5 id="constraint classes">Constraint Classes</h5>
 <ul>
-<li><a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//functional.ecschema/#functionalelement'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//functional.ecschema/#functionalelement</small>'>
-            FunctionalElement
-            </a></li>
+<li><a href="#functionalelement">FunctionalElement</a></li>
 </ul>
 <h3 class="h-functionalelementisoftype">FunctionalElementIsOfType<a id="functionalelementisoftype" class="heading-anchor" href="#functionalelementisoftype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> RelationshipClass</p>
@@ -346,15 +252,7 @@
 <p><strong>multiplicity:</strong> (0..*)</p>
 <h5 id="constraint classes">Constraint Classes</h5>
 <ul>
-<li><a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//functional.ecschema/#functionalelement'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//functional.ecschema/#functionalelement</small>'>
-            FunctionalElement
-            </a></li>
+<li><a href="#functionalelement">FunctionalElement</a></li>
 </ul>
 <h4 class="h-target-1">Target<a id="target-1" class="heading-anchor" href="#target-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
@@ -362,28 +260,12 @@
 <p><strong>multiplicity:</strong> (0..1)</p>
 <h5 id="constraint classes">Constraint Classes</h5>
 <ul>
-<li><a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//functional.ecschema/#functionaltype'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//functional.ecschema/#functionaltype</small>'>
-            FunctionalType
-            </a></li>
+<li><a href="#functionaltype">FunctionalType</a></li>
 </ul>
 <h3 class="h-physicalelementfulfillsfunction">PhysicalElementFulfillsFunction<a id="physicalelementfulfillsfunction" class="heading-anchor" href="#physicalelementfulfillsfunction"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> RelationshipClass</p>
 <p><strong>modifier:</strong> None</p>
-<p><strong>baseClass:</strong> <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//biscore.ecschema/#elementreferstoelements'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//biscore.ecschema/#elementreferstoelements</small>'>
-            BisCore:ElementRefersToElements
-            </a></p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#elementreferstoelements'>BisCore:ElementRefersToElements</a></p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
 <h4 class="h-source-2">Source<a id="source-2" class="heading-anchor" href="#source-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
@@ -392,15 +274,7 @@
 <p><strong>multiplicity:</strong> (0..*)</p>
 <h5 id="constraint classes">Constraint Classes</h5>
 <ul>
-<li><a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//biscore.ecschema/#physicalelement'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//biscore.ecschema/#physicalelement</small>'>
-            PhysicalElement
-            </a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#physicalelement'>PhysicalElement</a></li>
 </ul>
 <h4 class="h-target-2">Target<a id="target-2" class="heading-anchor" href="#target-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
@@ -408,19 +282,11 @@
 <p><strong>multiplicity:</strong> (0..*)</p>
 <h5 id="constraint classes">Constraint Classes</h5>
 <ul>
-<li><a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//functional.ecschema/#functionalelement'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//functional.ecschema/#functionalelement</small>'>
-            FunctionalElement
-            </a></li>
+<li><a href="#functionalelement">FunctionalElement</a></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 October, 2018</span>
+                <span class='date-updated'>15 October, 2018</span>
             </p>
 
             

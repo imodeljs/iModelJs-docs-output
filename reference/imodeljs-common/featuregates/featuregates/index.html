@@ -9,9 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>FeatureGates - imodeljs-common</title>
-    <meta name="og:title" content="FeatureGates - imodeljs-common">
-    <meta name="twitter:title" content="FeatureGates - imodeljs-common">
+    <title>overrideSubCategory - imodeljs-frontend</title>
+    <meta name="og:title" content="overrideSubCategory - imodeljs-frontend">
+    <meta name="twitter:title" content="overrideSubCategory - imodeljs-frontend">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,6 +26,8 @@
     <!-- fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
@@ -131,7 +133,6 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/" class="table-of-contents-link">iModels</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/" class="table-of-contents-link">RPC Interface</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/" class="table-of-contents-link">ECSQL</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/" class="table-of-contents-link">Feature Gates</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/all/" class="table-of-contents-link">All</a></li>
         </ul>
         <hr>
@@ -179,50 +180,40 @@
         </ul>    </div>
     <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/">imodeljs-common</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/featuregates/">FeatureGates</a> > FeatureGates</div>
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/rendering/">Rendering</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/rendering/featuresymbology/">FeatureSymbology</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.overrides/">FeatureSymbology.Overrides</a> > overrideSubCategory</div>
             
-            <h2 class="h-featuregates">FeatureGates <span class="badge badge-pill badge-primary badge-class">Class</span><a id="featuregates" class="heading-anchor" href="#featuregates"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>A set of &quot;gates&quot; that can enable or disable <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/common/featuregates'>features at runtime</a>.</p>
-<h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+            <h2 class="h-overridesubcategory">overrideSubCategory <span class="badge badge-pill badge-primary badge-method">Method</span><a id="overridesubcategory" class="heading-anchor" href="#overridesubcategory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Specify overrides for all geometry belonging to the specified <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/subcategory'>SubCategory</a>.</p>
+<p><span class="method-name">overrideSubCategory</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, app: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a>, replaceExisting: boolean = true</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></p>
+<p><span class="badge badge-pill badge-primary badge-note">note</span> These overrides have lower priority than element and model overrides.</p>
+<p><span class="badge badge-pill badge-primary badge-note">note</span> If <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.overrides/#defaultoverrides'>FeatureSymbology.Overrides.defaultOverrides</a> are defined, they will not apply to any geometry within this subcategory, even if the supplied Appearance overrides nothing.</p>
 <table class="table table-responsive"><tbody><tr>
-<th>Name</th>
-<th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
-</tr>
-<tr>
-<td class="h-addmonitor"><span class="method-name"><a href="addmonitor">addMonitor</a></span><span class="method-parenthesis">(</span><span class="method-parameters">feature: string, monitor: (val: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/gatevalue'>GateValue</a>) =&gt; void</span><span class="method-parenthesis">):</span><span class="method-output"> () =&gt; void</span><a id="addmonitor" class="heading-anchor" href="#addmonitor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Register a listener to be called whenever the value of a specific gate changes.</td>
-</tr>
-<tr>
-<td class="h-check"><span class="method-name"><a href="check">check</a></span><span class="method-parenthesis">(</span><span class="method-parameters">feature: string, defaultVal?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/gatevalue'>GateValue</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/gatevalue'>GateValue</a></span><a id="check" class="heading-anchor" href="#check"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Get the value of a potentially gated feature.</td>
-</tr>
-<tr>
-<td class="h-setgate"><span class="method-name"><a href="setgate">setGate</a></span><span class="method-parenthesis">(</span><span class="method-parameters">feature: string, val: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/gatevalue'>GateValue</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setgate" class="heading-anchor" href="#setgate"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Gate access to a feature.</td>
-</tr>
-</tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<table class="table table-responsive"><tbody><tr>
-<th>Name</th>
+<th>Parameter</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
 <tr>
-<td class="h-gates"><span class="property-name">gates</span><a id="gates" class="heading-anchor" href="#gates"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output">Map&lt;string, undefined | string | number | true | false&gt;</span></td>
-<td>A map of the current set of features.</td>
+<td class="h-id"><span class="parameter-name">id</span><a id="id" class="heading-anchor" href="#id"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span></td>
+<td>The ID of the subcategory.</td>
 </tr>
 <tr>
-<td class="h-onchanged"><span class="property-name">onChanged</span><a id="onchanged" class="heading-anchor" href="#onchanged"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/beevent'>BeEvent</a>&lt;(feature: string, val: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/gatevalue'>GateValue</a>) =&gt; void&gt;</span></td>
-<td>Event raised every time any feature changes.</td>
+<td class="h-app"><span class="parameter-name">app</span><a id="app" class="heading-anchor" href="#app"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a></span></td>
+<td>The symbology overrides.</td>
+</tr>
+<tr>
+<td class="h-replaceexisting"><span class="parameter-name">replaceExisting</span><a id="replaceexisting" class="heading-anchor" href="#replaceexisting"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="parameter-type">boolean</span></td>
+<td>Specifies whether to replace a pre-existing override for the same subcategory.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
-<li><span class="defined-in"><span title="Page edit feature coming soon">FeatureGates.ts</span></span></li>
+<li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/frontend/src/render/FeatureSymbology.ts">render/FeatureSymbology.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 October, 2018</span>
+                <span class='date-updated'>15 October, 2018</span>
             </p>
 
             
@@ -236,41 +227,19 @@
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
               <li class='nav-item item active typeDocHeader'>
-            <a data-target="#inner-nav-featuregates" class='title' href="#featuregates"/>
-            <b class='dropdown-menu-title menu-text'>FeatureGates</b>
+            <a data-target="#inner-nav-overridesubcategory" class='title' href="#overridesubcategory"/>
+            <b class='dropdown-menu-title menu-text'>overrideSubCategory</b>
             <i class='dropdown icon'></i>
             </a>
-            <ul id="inner-nav-featuregates" class='inner-nav'>
+            <ul id="inner-nav-overridesubcategory" class='inner-nav'>
                     <li class='nav-item item '>
-                            <a data-target="#inner-nav-methods" class='title' href="#methods"/>
-                            <b class='dropdown-menu-title menu-text'>Methods</b>
-                            <i class='dropdown icon'></i>
-                            </a>
-                            <ul id="inner-nav-methods" class='inner-nav'>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#addmonitor">addMonitor</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#check">check</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#setgate">setGate</a>
-                                    </li>
-                            </ul>
+                            <a class='title solo-title menu-text' href="#id">id</a>
                     </li>
                     <li class='nav-item item '>
-                            <a data-target="#inner-nav-properties" class='title' href="#properties"/>
-                            <b class='dropdown-menu-title menu-text'>Properties</b>
-                            <i class='dropdown icon'></i>
-                            </a>
-                            <ul id="inner-nav-properties" class='inner-nav'>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#gates">gates</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#onchanged">onChanged</a>
-                                    </li>
-                            </ul>
+                            <a class='title solo-title menu-text' href="#app">app</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#replaceexisting">replaceExisting</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#defined-in">Defined in</a>

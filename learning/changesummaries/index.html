@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
@@ -106,7 +108,7 @@
     <div class='documentation-main'>
         <article id="main" name="main-content">
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > ChangeSummaries</div>
-            <div class="edit-link"><span title="Page edit feature coming soon">Edit this page</span></div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/ChangeSummaries.md">Edit this page</a></div>
             <h1 id="change summaries">Change Summaries</h1>
 <p><em>Change Summaries</em> are summaries of changes of ECInstances in an <em>iModel Changeset</em>.</p>
 <h2 class="h-generating-change-summaries">Generating Change Summaries<a id="generating-change-summaries" class="heading-anchor" href="#generating-change-summaries"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
@@ -167,11 +169,10 @@ The following two ECSQL statements are equivalent:</p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT ... FROM MySchema.MyClass.Changes(12, &apos;AfterInsert&apos;)</code></pre>
 <blockquote>
 <p>Notes when specifying <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/changedvaluestate/#beforeupdate'>ChangedValueState.BeforeUpdate</a> or <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/changedvaluestate/#afterupdate'>ChangedValueState.AfterUpdate</a>:</p>
-<p>For any property in the ECSQL select clause the value of which has not changed in the specified change summary,
-the <strong>value of the current state of the file</strong> is returned. The function does <strong>NOT</strong> return the value it was at the
-revision the change summary referred to.</p>
-<p>If the row in the current state does not exist anymore (because it was deleted in subsequent changesets), <em>null</em> will be returned
-for the unchanged values.</p>
+<p>For any property in the ECSQL select clause, the value of which has not changed in the specified change summary,
+the <strong>value of the current state of the file</strong> is returned. The function does <strong>NOT</strong> return the value it had in the
+version the change summary referred to.</p>
+<p>If the row in the current state does not exist anymore (because it was deleted in subsequent changesets), <em>null</em> will be returned for the unchanged values.</p>
 </blockquote>
 <h2 class="h-example-scenario">Example Scenario<a id="example-scenario" class="heading-anchor" href="#example-scenario"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The following ECSchema is used to illustrate the example.</p>
@@ -505,7 +506,7 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
 </tbody></table></blockquote>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 October, 2018</span>
+                <span class='date-updated'>15 October, 2018</span>
             </p>
 
             

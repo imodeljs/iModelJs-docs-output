@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
@@ -131,7 +133,6 @@
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/" class="table-of-contents-link">iModels</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/" class="table-of-contents-link">RPC Interface</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/" class="table-of-contents-link">ECSQL</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/featuregates/" class="table-of-contents-link">Feature Gates</a></li>
         <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/all/" class="table-of-contents-link">All</a></li>
         </ul>
         <hr>
@@ -182,7 +183,27 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/rendering/">Rendering</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/rendering/featuresymbology/">FeatureSymbology</a> > FeatureSymbology.Overrides</div>
             
             <h2 class="h-featuresymbologyoverrides">FeatureSymbology.Overrides <span class="badge badge-pill badge-primary badge-class">Class</span><a id="featuresymbologyoverrides" class="heading-anchor" href="#featuresymbologyoverrides"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Specifies a set of per-Feature symbology overrides.</p>
+<p>Allows a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a> to customize the appearance of individual <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/feature'>Feature</a>s within it.</p>
+<p>The ViewState computes its base Overrides based on the following:</p>
+<ul>
+<li>The set of categories enabled for display in its <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/categoryselectorstate'>CategorySelectorState</a>. Every <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/subcategory'>SubCategory</a> belonging to an enabled <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/category'>Category</a> is added to the set of visible subcategories - all other subcategories are assumed to be invisible.</li>
+<li>For the set of visible subcategories, any <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryoverride'>SubCategoryOverride</a>s defined by the view&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/displaystylestate'>DisplayStyleState</a> are applied. This may render some subcategories invisible, and change the symbology of others.</li>
+<li>The visibility of each <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/geometryclass'>GeometryClass</a> is set based on the view&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a>.</li>
+<li>The line weight is overridden to 1 pixel for all Features if line weight has been disabled by the view&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a>.</li>
+<li>The sets of elements which are always drawn and never drawn are initialized from the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a>&apos;s sets.
+An application can further customize the symbology of any Features by specifying an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/addfeatureoverrides'>AddFeatureOverrides</a> function on a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>. That function will be invoked
+whenever the Overrides need to be regenerated.</li>
+</ul>
+<p>To override the symbology of <em>most</em> Features within a view, specify a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.overrides/#defaultoverrides'>FeatureSymbology.Overrides.defaultOverrides</a> to be applied to any Feature not explicitly overridden.
+If default overrides are defined and some Features should draw normally without being affected by the default overrides, override that Feature with
+an Appearance which defines no overrides.</p>
+<p>It is possible to override multiple aspects of a Feature. For example, you might specify that all elements belonging to subcategory &quot;A&quot; should be drawn in red, and
+that the element with ID &quot;0x123&quot; should be drawn with 0.25 transparency. In this case, when drawing a Feature with subcategory &quot;A&quot; and element ID &quot;0x123&quot;, the two overrides will
+be merged, causing the Feature&apos;s geometry to draw 25% transparent red. On the other hand, if subcategory &quot;A&quot; is specified to draw in red and element &quot;0x123&quot; to draw in green,
+the color specified by the element override will take precedence over that specified for the subcategory, resulting in a green Feature.</p>
+<p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate/setfeatureoverridesdirty'>ViewState.setFeatureOverridesDirty</a> for explicitly regenerating a view&apos;s Overrides.</p>
+<p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate/alwaysdrawn'>ViewState.alwaysDrawn</a></p>
+<p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate/neverdrawn'>ViewState.neverDrawn</a></p>
 <h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -190,86 +211,59 @@
 </tr>
 <tr>
 <td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">view?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.overrides'>FeatureSymbology.Overrides</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>Create an Overrides based on the supplied <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a>.</td>
 </tr>
 <tr>
 <td class="h-clearelementoverrides"><span class="method-name">clearElementOverrides</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="clearelementoverrides" class="heading-anchor" href="#clearelementoverrides"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>Remove any overrides applied to an element specified by ID.</td>
 </tr>
 <tr>
 <td class="h-clearmodeloverrides"><span class="method-name">clearModelOverrides</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="clearmodeloverrides" class="heading-anchor" href="#clearmodeloverrides"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>Remove any overrides for elements belonging to a model specified by ID.</td>
 </tr>
 <tr>
 <td class="h-clearsubcategoryoverrides"><span class="method-name">clearSubCategoryOverrides</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="clearsubcategoryoverrides" class="heading-anchor" href="#clearsubcategoryoverrides"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>Remove any overrides applied to a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/subcategory'>SubCategory</a> specified by ID.</td>
 </tr>
 <tr>
 <td class="h-getappearance"><span class="method-name">getAppearance</span><span class="method-parenthesis">(</span><span class="method-parameters">feature: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/feature'>Feature</a>, modelId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, type: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/batchtype'>BatchType</a> = BatchType.Primary</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a> | undefined</span><a id="getappearance" class="heading-anchor" href="#getappearance"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Returns the feature&apos;s Appearance overrides, or undefined if the feature is not visible.</td>
 </tr>
 <tr>
-<td class="h-getelementoverrides"><span class="method-name">getElementOverrides</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a> | undefined</span><a id="getelementoverrides" class="heading-anchor" href="#getelementoverrides"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-getmodeloverrides"><span class="method-name">getModelOverrides</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a> | undefined</span><a id="getmodeloverrides" class="heading-anchor" href="#getmodeloverrides"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-getsubcategoryoverrides"><span class="method-name">getSubCategoryOverrides</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a> | undefined</span><a id="getsubcategoryoverrides" class="heading-anchor" href="#getsubcategoryoverrides"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-initfromview"><span class="method-name">initFromView</span><span class="method-parenthesis">(</span><span class="method-parameters">view: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="initfromview" class="heading-anchor" href="#initfromview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-isalwaysdrawn"><span class="method-name">isAlwaysDrawn</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="isalwaysdrawn" class="heading-anchor" href="#isalwaysdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-isclassvisible"><span class="method-name">isClassVisible</span><span class="method-parenthesis">(</span><span class="method-parameters">geomClass: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/geometryclass'>GeometryClass</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="isclassvisible" class="heading-anchor" href="#isclassvisible"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-isfeaturevisible"><span class="method-name">isFeatureVisible</span><span class="method-parenthesis">(</span><span class="method-parameters">feature: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/feature'>Feature</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="isfeaturevisible" class="heading-anchor" href="#isfeaturevisible"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-isneverdrawn"><span class="method-name">isNeverDrawn</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="isneverdrawn" class="heading-anchor" href="#isneverdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>Returns true if the specified Feature is visible within a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a> to which these Overrides are applied.</td>
 </tr>
 <tr>
 <td class="h-issubcategoryvisible"><span class="method-name">isSubCategoryVisible</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="issubcategoryvisible" class="heading-anchor" href="#issubcategoryvisible"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>Returns true if the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/subcategory'>SubCategory</a> specified by ID is in the set of visible subcategories.</td>
 </tr>
 <tr>
-<td class="h-overrideelement"><span class="method-name">overrideElement</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, app: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a>, replaceExisting: boolean = true</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="overrideelement" class="heading-anchor" href="#overrideelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td class="h-overrideelement"><span class="method-name"><a href="overrideelement">overrideElement</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, app: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a>, replaceExisting: boolean = true</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="overrideelement" class="heading-anchor" href="#overrideelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Specify overrides for all geometry originating from the specified element.</td>
 </tr>
 <tr>
-<td class="h-overridemodel"><span class="method-name">overrideModel</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, app: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a>, replaceExisting: boolean = true</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="overridemodel" class="heading-anchor" href="#overridemodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td class="h-overridemodel"><span class="method-name"><a href="overridemodel">overrideModel</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, app: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a>, replaceExisting: boolean = true</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="overridemodel" class="heading-anchor" href="#overridemodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Specify overrides for all elements within the specified model.</td>
 </tr>
 <tr>
-<td class="h-overridesubcategory"><span class="method-name">overrideSubCategory</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, app: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a>, replaceExisting: boolean = true</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="overridesubcategory" class="heading-anchor" href="#overridesubcategory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td class="h-overridesubcategory"><span class="method-name"><a href="overridesubcategory">overrideSubCategory</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, app: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a>, replaceExisting: boolean = true</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="overridesubcategory" class="heading-anchor" href="#overridesubcategory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Specify overrides for all geometry belonging to the specified <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/subcategory'>SubCategory</a>.</td>
 </tr>
 <tr>
 <td class="h-setalwaysdrawn"><span class="method-name">setAlwaysDrawn</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setalwaysdrawn" class="heading-anchor" href="#setalwaysdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>Specify the ID of an element which should always be drawn in this view.</td>
 </tr>
 <tr>
-<td class="h-setdefaultoverrides"><span class="method-name">setDefaultOverrides</span><span class="method-parenthesis">(</span><span class="method-parameters">appearance: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a>, replaceExisting: boolean = true</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setdefaultoverrides" class="heading-anchor" href="#setdefaultoverrides"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td class="h-setdefaultoverrides"><span class="method-name"><a href="setdefaultoverrides">setDefaultOverrides</a></span><span class="method-parenthesis">(</span><span class="method-parameters">appearance: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a>, replaceExisting: boolean = true</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setdefaultoverrides" class="heading-anchor" href="#setdefaultoverrides"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Defines a default Appearance to be applied to any <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/feature'>Feature</a> <em>not</em> explicitly overridden.</td>
 </tr>
 <tr>
 <td class="h-setneverdrawn"><span class="method-name">setNeverDrawn</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setneverdrawn" class="heading-anchor" href="#setneverdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>Specify the ID of an element which should never be drawn in this view.</td>
 </tr>
 <tr>
 <td class="h-setvisiblesubcategory"><span class="method-name">setVisibleSubCategory</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setvisiblesubcategory" class="heading-anchor" href="#setvisiblesubcategory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Add a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/subcategory'>SubCategory</a> to the set of visible subcategories.</td>
 </tr>
 </tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -324,11 +318,11 @@
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
-<li><span class="defined-in"><span title="Page edit feature coming soon">render/FeatureSymbology.ts</span></span></li>
+<li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/frontend/src/render/FeatureSymbology.ts">render/FeatureSymbology.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 October, 2018</span>
+                <span class='date-updated'>15 October, 2018</span>
             </p>
 
             
@@ -369,28 +363,7 @@
                                             <a class='title solo-title menu-text' href="#getappearance">getAppearance</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#getelementoverrides">getElementOverrides</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#getmodeloverrides">getModelOverrides</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#getsubcategoryoverrides">getSubCategoryOverrides</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#initfromview">initFromView</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#isalwaysdrawn">isAlwaysDrawn</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#isclassvisible">isClassVisible</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#isfeaturevisible">isFeatureVisible</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#isneverdrawn">isNeverDrawn</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#issubcategoryvisible">isSubCategoryVisible</a>
