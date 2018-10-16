@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
+
 #main-landing-wrapper {
   margin-bottom: 0em !important;
   background-color: #EFF8FF;
@@ -5,6 +10,13 @@
 
 #main-landing-wrapper #middle-content-wrapper {
   margin: 2em 5% !important;
+}
+
+#navbar7 li:hover {
+  height: 35px;
+  border-bottom-color: white;
+  border-bottom: 2px solid white;
+  transition: all .15s ease-in-out;
 }
 
 .imodeljs-header-tagline {
@@ -20,7 +32,7 @@
   line-height: 1.5em;
   font-size: 48px;
   text-align: center;
-  text-shadow: 0px 2px 4.5px rgba(0, 42, 68, 0.004);
+  text-shadow: 0px 2px 4.5px rgba(0, 42, 68, 1);
 }
 
 p.digital-twin {
@@ -46,12 +58,9 @@ p.digital-twin {
 }
 
 .example-view-demonstrator {
-  opacity: 0.3;
   display: block;
-  width: 100%;
-  height: auto;
-  transition: .5s ease;
-  backface-visibility: hidden;
+  width: 690px;
+  height: 431px;
 }
 
 .iframe-viewer {
@@ -65,17 +74,32 @@ p.digital-twin {
   background-color: #6c757d;
   background-image: none;
   color: white;
+  max-width: 500px;
+  white-space: normal;
 }
 
 .nav-landing-container .navbar-nav {
   background: #002A44C0;
-  border-radius: 25px;
+  border-radius: 10px;
+}
+
+.middle-content-group {
+  margin-bottom: 2em;
 }
 
 .middle-content-image {
-  width: 25%;
-  height: 25%;
+  width: 21%;
   margin-bottom: 3em;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.feature-header {
+  color: #335569;
+}
+
+ul.list-unstyled.list-inline {
+  margin-bottom: 0;
 }
 
 .middle-content-text {
@@ -83,10 +107,25 @@ p.digital-twin {
   min-width: 300px;
 }
 
+span.gradient {
+  background: linear-gradient(90deg, #038cd6 0%, #67b225 43%, #EFF8FF 100%) !important;
+}
+
 @media screen and (max-width: 767px) {
   .nav-landing-container .navbar-nav {
     padding-right: 15px;
     max-width: 38%;
+  }
+  .middle-content-image {
+    width: 40%;
+  }
+  .iframe-viewer {
+    width: 500px;
+    height: 313px;
+  }
+  .example-view-demonstrator {
+    width: 500px;
+    height: 313px;
   }
 }
 
@@ -97,5 +136,13 @@ p.digital-twin {
   }
   .imodeljs-header-tagline p {
     font-size: 29px;
+  }
+  .iframe-viewer {
+    width: 300px;
+    height: 188px;
+  }
+  .example-view-demonstrator {
+    width: 300px;
+    height: 188px;
   }
 }
