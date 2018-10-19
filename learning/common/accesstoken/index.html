@@ -27,9 +27,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -110,11 +110,12 @@
             <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/">common</a> > AccessToken</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/common/AccessToken.md">Edit this page</a></div>
             <h1 id="accesstoken">AccessToken</h1>
-<p>An application must have an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a> to access an iModel on the iModelHub. AccessTokens are JSON Web Tokens, and based on the OAuth 2.0 protocol. The iModel.js API uses the OAuth 2.0 protocol for both authentication and authorization. The implementation conforms to the <a href="https://openid.net/connect/">OpenID Connect</a> specification, and is built on <a href="http://docs.identityserver.io/en/release/">IdentityServer4</a> framework, an officially <a href="https://openid.net/certification/">certified</a> implementation of OpenID Connect.</p>
+<p>An application must fetch an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a> from the Bentley Authorization Server to access various services including the iModelHub. AccessTokens are <a href="https://jwt.io/">JSON Web Tokens</a> - they are time constrained and scoped down to restrict access to only specific services. The iModel.js API uses the <a href="https://openid.net/connect/">OpenID Connect</a> specification for <em>authentication</em> - i.e., determining &quot;who&quot; the user is, and the OAuth 2.0 protocol is used for <em>authorization</em> - i.e., delegating the application to talk to services like the iModelHub on behalf of the user. The OpenID Connect specification is really just an extension of the OAuth 2.0 protocol.</p>
+<p>The Bentley Authorization Service is built on the <a href="http://docs.identityserver.io/en/release/">IdentityServer4</a> framework, an officially <a href="https://openid.net/certification/">certified</a> implementation of OpenID Connect.</p>
 <h2 class="h-using-oauth-20-to-access-imodeljs-apis">Using OAuth 2.0 to Access iModel.js APIs<a id="using-oauth-20-to-access-imodeljs-apis" class="heading-anchor" href="#using-oauth-20-to-access-imodeljs-apis"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The API supports common OAuth 2.0 scenarios of Web Frontend Applications, Agent or Service Applications, Desktop and Mobile Applications. All applications need to follow the same basic pattern:</p>
 <h3 class="h-1-register-the-application-to-obtain-oauth-20-credentials">1. Register the application to obtain OAuth 2.0 credentials.<a id="1-register-the-application-to-obtain-oauth-20-credentials" class="heading-anchor" href="#1-register-the-application-to-obtain-oauth-20-credentials"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>Use the <a href="https://imodeljs.github.io/iModelJs-docs-output/getting-started/#developer-registration">developer registration page</a> to register your applications and get the credentials. In the case of Frontend, Desktop and Mobile Applications, the credentials will include just a Client Id. In the case of Agent or Service Applications it will include a client Id, client secret, a service user name and a service user password.</p>
+<p>Use the <a href='https://imodeljs.github.io/iModelJs-docs-output//getting-started//#developer-registration'>developer registration page</a> to register your applications and get the credentials. In the case of Frontend, Desktop and Mobile Applications, the credentials will include just a Client Id. In the case of Agent or Service Applications it will include a client Id, client secret, a service user name and a service user password.</p>
 <h3 class="h-2-obtain-an-access-token-from-the-bentley-authorization-server">2. Obtain an access token from the Bentley Authorization Server<a id="2-obtain-an-access-token-from-the-bentley-authorization-server" class="heading-anchor" href="#2-obtain-an-access-token-from-the-bentley-authorization-server"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>Before your application can access an iModel on the iModelHub, it must obtain an access token that grants the required access. The way you make the request depends on the application you are building.</p>
 <p>For Web Frontend Applications, the means of authenticating the user is commonly referred to as an &quot;implicit&quot; flow. You will use the iModel.js OpenID Connect Frontend API that will internally redirect the browser to the Bentley Authorization Server. The user then logs in through the browser, and is shown a <em>user consent</em> screen and asked whether they are willing to grant permissions that your application is requesting. Once the user grants the permission, the Bentley Authorization Server sends your application an access token.</p>
@@ -126,7 +127,7 @@
 <p>The imodelJs API calls required to refresh the access token are different in Web Frontend Applications and Agent or Service Applications.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 October, 2018</span>
+                <span class='date-updated'>19 October, 2018</span>
             </p>
 
             

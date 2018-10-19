@@ -27,9 +27,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -193,10 +193,11 @@
                   <label for="AdditionalRedirectURIs">Additional Redirect URIs: <br />
                     <em>Your applications callback URI which specifies where we redirect<br />
                       users after they have chosen whether or not to authenticate your application.<br />
-                      Enter as many as you like. Must be over HTTPS.</em></label>
+                      Enter as many as you like. <br />
+                      Must be over HTTPS unless registered as a localhost.</em></label>
                 </td>
                 <td>
-                  <textarea id="AdditionalRedirectURIs" name="AdditionalRedirectURIs" rows="5" cols="40"></textarea>
+                  <textarea id="AdditionalRedirectURIs" name="AdditionalRedirectURIs" rows="5" cols="40" placeholder="Example: http://localhost:3000/signin-callback"></textarea>
                 </td>
               </tr>
               <tr>
@@ -209,11 +210,12 @@
               </tr>
               <tr>
                 <td>
-                  <label for="NewPostLogoutURI">New Post Logout URI: <br /><em>Where users can be returned to after
-                      logging out. This must be HTTPS.</em></label>
+                  <label for="NewPostLogoutURI">New Post Logout URIs: <br /><em>Where users can be returned to after
+                      logging out.<br />
+                      Must be over HTTPS unless registered as a localhost.</em></label>
                 </td>
                 <td>
-                  <input id="NewPostLogoutURI" name="NewPostLogoutURI" placeholder="Optional" size="35" />
+                  <textarea id="NewPostLogoutURI" name="NewPostLogoutURI" rows="5" cols="40" placeholder="Example: http://localhost:3000/signout-callback"></textarea>
                 </td>
               </tr>
             </table>

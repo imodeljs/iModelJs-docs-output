@@ -27,9 +27,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -161,8 +161,8 @@
 <p>Different domains and organizations have different ways of <em>encoding</em> business information into the <em>Code</em>, which they can express as <a href="#codespec">Code Specifications</a>.</p>
 <h2 class="h-codevalue-property">CodeValue Property<a id="codevalue-property" class="heading-anchor" href="#codevalue-property"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Each <code>Element</code> has a (nullable) <code>CodeValue</code> string property that holds its <em>Code</em>.</p>
-<p>When present, a <code>CodeValue</code> should be a human-understandable string, <em>not</em> a Guid--<code>FederationGuid</code> fulfills that purpose.</p>
-<p>Examples uses for Code include:</p>
+<p>When present, a <code>CodeValue</code> should be a human-understandable string.</p>
+<h3 class="h-examples-uses-for-code">Examples uses for Code<a id="examples-uses-for-code" class="heading-anchor" href="#examples-uses-for-code"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li>Asset Tracking Number</li>
 <li>Tag Number</li>
@@ -180,6 +180,12 @@
 <p>When the identified entity is physical in nature, it will often have its <em>code</em> physically affixed to it (as in the VIN Number on a car or the Manufacturer&#x2019;s Serial Number on an instrument).
 When the identified entity is non-physical, it may have its <em>code</em> semi-permanently attached to a related physical entity.
 For example, a physical valve will have its serial number permanently affixed to it. The &quot;Tag Number&quot; of the &quot;function&quot; that the valve is performing in the process is stamped onto a &quot;Tag&quot; attached to the valve with a wire. If the valve is replaced with a new one (with a new serial number) the Tag holding function&apos;s &quot;Tag Number&quot; will be moved to the new valve.</p>
+<h3 class="h-example-misuses-of-code">Example misuses of Code<a id="example-misuses-of-code" class="heading-anchor" href="#example-misuses-of-code"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<ul>
+<li>A <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">Guid</a> is not human-understandable and does not encode business meaning, so should not be used as a <code>CodeValue</code>--<a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals/#federationguid'>FederationGuid</a> fulfills that purpose.</li>
+<li>A <a href="https://en.wikipedia.org/wiki/Hash_function">Hash</a> should not be used as a <code>CodeValue</code> for the same reasons as above.</li>
+<li>A <code>CodeValue</code> that is hundreds of characters long would also be very difficult for a human to understand, so should be avoided. In fact, a code management service may enforce a hard limit on the length of the <code>CodeValue</code>. For example, iModelHub currently has a hard limit of 350 characters.</li>
+</ul>
 <h2 class="h-codespec">CodeSpec<a id="codespec" class="heading-anchor" href="#codespec"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>A <code>CodeSpec</code> (aka <strong>Code Specification</strong>) captures the rules for encoding and decoding significant business information into and from a Code.
 A <code>CodeSpec</code> is associated to an Element subclass via configuration of the system that edits the BIS Repository, such as the iModel.js library, which can collaborate with a shared service (e.g. by an &apos;Identification Code Service&apos;) to generate and validate Codes.</p>
@@ -200,7 +206,7 @@ In this example, the Building instance is providing the CodeScope for the Floor.
 </blockquote>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>16 October, 2018</span>
+                <span class='date-updated'>19 October, 2018</span>
             </p>
 
             
@@ -214,7 +220,18 @@ In this example, the Building instance is providing the CodeScope for the Floor.
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
               <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#codevalue-property">CodeValue Property</a>
+            <a data-target="#inner-nav-codevalue-property" class='title' href="#codevalue-property"/>
+            <b class='dropdown-menu-title menu-text'>CodeValue Property</b>
+            <i class='dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-codevalue-property" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#examples-uses-for-code">Examples uses for Code</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#example-misuses-of-code">Example misuses of Code</a>
+                    </li>
+            </ul>
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#codespec">CodeSpec</a>

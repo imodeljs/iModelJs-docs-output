@@ -27,9 +27,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -207,25 +207,27 @@
                       where we redirect users after they have chosen <br />
                       whether or not to authenticate your application.<br />
                       Enter as many as you would like. <br />
-                      Must be over HTTPS. </em> </label>
+                      Must be over HTTPS unless registered as a localhost. </em> </label>
                 </td>
                 <td>
-                  <textarea id="RedirectURIs" name="RedirectURIs" cols="37" rows="5" required></textarea>
+                  <textarea id="RedirectURIs" name="RedirectURIs" cols="40" rows="5" required placeholder="Example: http://localhost:3000/signin-callback"></textarea>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <label for="PostLogoutURI">Post Logout URI: <br /><em>Where users can be returned to after logging
+                  <label for="PostLogoutURI">Post Logout URIs: <br /><em>Where users can be returned to after logging
                       out.<br />
-                      This must be HTTPS.</em></label>
+                      Must be over HTTPS unless registered as a localhost.</em></label>
                 </td>
                 <td>
-                  <input id="PostLogoutURI" name="PostLogoutURI" placeholder="Optional" size="35" />
+                  <textarea id="PostLogoutURI" name="PostLogoutURI" placeholder="Example: http://localhost:3000/signout-callback"
+                    cols="40" rows="5"></textarea>
                 </td>
               </tr>
             </table>
           </fieldset>
-          <button class="button-success pure-button button-xlarge">Submit</button>
+          <button class="
+                    button-success pure-button button-xlarge">Submit</button>
         </div>
 
         <div class="thankyou_message" style="display:none;">
