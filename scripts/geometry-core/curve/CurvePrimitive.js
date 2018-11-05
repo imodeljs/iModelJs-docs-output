@@ -1,9 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
-* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
-*--------------------------------------------------------------------------------------------*/
+|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
+ *--------------------------------------------------------------------------------------------*/
 /** @module Curve */
 const Geometry_1 = require("../Geometry");
 const BezierPolynomials_1 = require("../numerics/BezierPolynomials");
@@ -100,34 +99,10 @@ class CurveLocationDetail {
         result = result ? result : new CurveLocationDetail();
         result.curve = curve;
         result.fraction = fraction;
-        result.point.setFromPoint3d(point);
+        result.point = point.clone();
         result.vector.set(0, 0, 0);
         result.a = 0.0;
         return result;
-    }
-    /** create with CurvePrimitive pointer, fraction, and point coordinates.
-     */
-    static createCurveFractionPointDistance(curve, fraction, point, a, result) {
-        result = result ? result : new CurveLocationDetail();
-        result.curve = curve;
-        result.fraction = fraction;
-        result.point.setFromPoint3d(point);
-        result.vector.set(0, 0, 0);
-        result.a = a;
-        return result;
-    }
-    /** update or create if closer than current contents.
-     * @param curve candidate curve
-     * @param fraction candidate fraction
-     * @param point candidate point
-     * @param a candidate distance
-     * @returns true if the given distance is smaller (and hence this detail was updated.)
-     */
-    updateIfCloserCurveFractionPointDistance(curve, fraction, point, a) {
-        if (this.a < a)
-            return false;
-        CurveLocationDetail.createCurveFractionPointDistance(curve, fraction, point, a, this);
-        return true;
     }
 }
 exports.CurveLocationDetail = CurveLocationDetail;

@@ -47,7 +47,7 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
                         <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
                     </a>
@@ -56,7 +56,7 @@
                     </button>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//ChangeHistory">Change History</a></li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <span class='search-bar'>
@@ -180,7 +180,7 @@
         </ul>    </div>
     <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/">geometry-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/numerics/">Numerics</a> > BezierPolynomialAlgebra</div>
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/">geometry-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/numerics/">Numerics</a> > BezierPolynomialAlgebra</div>
             
             <h2 class="h-bezierpolynomialalgebra">BezierPolynomialAlgebra <span class="badge badge-pill badge-primary badge-class">Class</span><a id="bezierpolynomialalgebra" class="heading-anchor" href="#bezierpolynomialalgebra"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Static methods to operate on univariate beizer polynomials, with coefficients in simple Float64Array or as components of blocked arrays.</p>
@@ -194,20 +194,28 @@
 <td><em> Univariate bezierA has its coefficients in dataA[i]<br></em> Univariate bezierB has its coefficients in resultB[i]<br><em> add (with no scaling) bezierA to bezierB<br></em> Take no action if resultB.length is other than dataA.length.</td>
 </tr>
 <tr>
-<td class="h-accumulateproduct"><span class="method-name">accumulateProduct</span><span class="method-parenthesis">(</span><span class="method-parameters">product: Float64Array, dataA: Float64Array, dataB: Float64Array</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="accumulateproduct" class="heading-anchor" href="#accumulateproduct"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><em> Univariate bezierA has its coefficients in dataA[i]<br></em> Univariate bezierB has its coefficients in dataB[i]<br><em> return the product coefficients for polynominalA(s) </em> polynomialB(s)<br>* Take no action if product length is other than <code>orderA + orderB - 1</code></td>
+<td class="h-accumulateproduct"><span class="method-name">accumulateProduct</span><span class="method-parenthesis">(</span><span class="method-parameters">product: Float64Array, dataA: Float64Array, dataB: Float64Array, scale: number = 1</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="accumulateproduct" class="heading-anchor" href="#accumulateproduct"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><em> Univariate bezierA has its coefficients in dataA[i]<br></em> Univariate bezierB has its coefficients in dataB[i]<br><em> return the product coefficients for polynominalA(s) </em> polynomialB(s) <em> scale<br></em> Take no action if product length is other than <code>orderA + orderB - 1</code></td>
 </tr>
 <tr>
-<td class="h-accumulateshiftedcomponenttimescomponentdelta"><span class="method-name"><a href="accumulateshiftedcomponenttimescomponentdelta">accumulateShiftedComponentTimesComponentDelta</a></span><span class="method-parenthesis">(</span><span class="method-parameters">product: Float64Array, data: Float64Array, dataBlockSize: number, dataOrder: number, indexA: number, constA: number, indexB: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="accumulateshiftedcomponenttimescomponentdelta" class="heading-anchor" href="#accumulateshiftedcomponenttimescomponentdelta"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-accumulateproductwithdifferences"><span class="method-name">accumulateProductWithDifferences</span><span class="method-parenthesis">(</span><span class="method-parameters">product: Float64Array, dataA: Float64Array, dataB: Float64Array, scale: number = 1</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="accumulateproductwithdifferences" class="heading-anchor" href="#accumulateproductwithdifferences"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><em> Univariate bezierA has its coefficients in dataA[i]<br></em> Univariate bezierB has its coefficients in dataB[i]<br><em> return the product coefficients for polynominalADifferencs(s) </em> polynomialB(s) <em> scale<br></em> Take no action if product length is other than <code>orderA + orderB - 2</code></td>
+</tr>
+<tr>
+<td class="h-accumulatescaledshiftedcomponenttimescomponentdelta"><span class="method-name"><a href="accumulatescaledshiftedcomponenttimescomponentdelta">accumulateScaledShiftedComponentTimesComponentDelta</a></span><span class="method-parenthesis">(</span><span class="method-parameters">product: Float64Array, data: Float64Array, dataBlockSize: number, dataOrder: number, scale: number, indexA: number, constA: number, indexB: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="accumulatescaledshiftedcomponenttimescomponentdelta" class="heading-anchor" href="#accumulatescaledshiftedcomponenttimescomponentdelta"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>* Univariate bezierA has its coefficients at offset indexA in each block within the array of blocks.</td>
+</tr>
+<tr>
+<td class="h-componentdifference"><span class="method-name"><a href="componentdifference">componentDifference</a></span><span class="method-parenthesis">(</span><span class="method-parameters">difference: Float64Array, data: Float64Array, dataBlockSize: number, dataOrder: number, index: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="componentdifference" class="heading-anchor" href="#componentdifference"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>* Univariate bezier has its coefficients at offset index in each block within the array of blocks.</td>
 </tr>
 <tr>
 <td class="h-scaledcomponentsum"><span class="method-name"><a href="scaledcomponentsum">scaledComponentSum</a></span><span class="method-parenthesis">(</span><span class="method-parameters">sum: Float64Array, data: Float64Array, dataBlockSize: number, dataOrder: number, indexA: number, constA: number, indexB: number, constB: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="scaledcomponentsum" class="heading-anchor" href="#scaledcomponentsum"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>* Univariate bezierA has its coefficients at offset indexA in each block within the array of blocks.</td>
 </tr>
 <tr>
-<td class="h-univariatedifference"><span class="method-name">univariateDifference</span><span class="method-parenthesis">(</span><span class="method-parameters">dataA: Float64Array, dataB: Float64Array, order: number, difference: Float64Array</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="univariatedifference" class="heading-anchor" href="#univariatedifference"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><em> Univariate bezierA has its coefficients in dataA[i]<br></em> Univariate bezierB has its coefficients in dataB[i]<br><em> return the product coefficients for polynominalA(s) </em> polynomialB(s)<br>* Take no action if product length is other than <code>orderA + orderB - 1</code></td>
+<td class="h-univariatedifference"><span class="method-name"><a href="univariatedifference">univariateDifference</a></span><span class="method-parenthesis">(</span><span class="method-parameters">data: Float64Array, difference: Float64Array</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="univariatedifference" class="heading-anchor" href="#univariatedifference"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><em> Univariate bezier has its coefficients in data[i]<br></em> return the diference data[i+1]-data[i] in difference.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -215,7 +223,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 October, 2018</span>
+                <span class='date-updated'>05 November, 2018</span>
             </p>
 
             
@@ -247,7 +255,13 @@
                                             <a class='title solo-title menu-text' href="#accumulateproduct">accumulateProduct</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#accumulateshiftedcomponenttimescomponentdelta">accumulateShiftedComponentTimesComponentDelta</a>
+                                            <a class='title solo-title menu-text' href="#accumulateproductwithdifferences">accumulateProductWithDifferences</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#accumulatescaledshiftedcomponenttimescomponentdelta">accumulateScaledShiftedComponentTimesComponentDelta</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#componentdifference">componentDifference</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#scaledcomponentsum">scaledComponentSum</a>

@@ -1,10 +1,6 @@
 "use strict";
-/*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
-* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
-*--------------------------------------------------------------------------------------------*/
-Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Serialization */
+Object.defineProperty(exports, "__esModule", { value: true });
 const Geometry_1 = require("../Geometry");
 const AnalyticGeometry_1 = require("../AnalyticGeometry");
 const PointVector_1 = require("../PointVector");
@@ -354,7 +350,6 @@ class Sample {
     static createSimplePointStrings() {
         const p1 = [[PointVector_1.Point3d.create(0, 10, 0)], [PointVector_1.Point3d.create(6, 10, 0)], [PointVector_1.Point3d.create(6, 10, 0), [PointVector_1.Point3d.create(6, 10, 0)]]];
         const simplePaths = [
-            PointString3d_1.PointString3d.create(PointVector_1.Point3d.create(1, 2, 0)),
             PointString3d_1.PointString3d.create(PointVector_1.Point3d.create(0, 0, 0), PointVector_1.Point3d.create(10, 0, 0)),
             PointString3d_1.PointString3d.create(PointVector_1.Point3d.create(10, 0, 0), PointVector_1.Point3d.create(10, 5, 0)),
             PointString3d_1.PointString3d.create(p1)

@@ -1,8 +1,7 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
-* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
-*--------------------------------------------------------------------------------------------*/
+|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
+ *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Numerics */
 // import { Angle, AngleSweep, Geometry } from "../Geometry";
@@ -43,7 +42,7 @@ class BezierCoffs {
      * The base implementation makes a generic Bezier of the same order.
      */
     createPeer() {
-        const peer = new UnivariateBezier(this.order);
+        const peer = new Bezier(this.order);
         return peer;
     }
     /** The order (number of coefficients) as a readable property  */
@@ -77,9 +76,9 @@ class BezierCoffs {
      * * Order-specific implementations apply special case  analytic logic, e.g. for degree 1,2,3,4.
      */
     roots(targetValue, _restrictTo01) {
-        const bezier = UnivariateBezier.create(this);
+        const bezier = Bezier.create(this);
         bezier.addInPlace(-targetValue);
-        return UnivariateBezier.deflateRoots01(bezier);
+        return Bezier.deflateRoots01(bezier);
     }
     /** Given an array of numbers, optionally remove those not in the 0..1 interval.
      * @param roots candidate values
@@ -106,7 +105,9 @@ class BezierCoffs {
         }
         return undefined;
     }
-    zero() { this.coffs.fill(0); }
+    zero() { for (let i = 0; i < this.coffs.length; i++) {
+        this.coffs[i] = 0.0;
+    } }
     /** Subdivide -- write results into caller-supplied bezier coffs (which must be of the same order) */
     subdivide(u, left, right) {
         const order = this.order;
@@ -124,7 +125,6 @@ class BezierCoffs {
         }
         return true;
     }
-    /** Return the maximum absolute difference between coefficients of two sets of BezierCoffs */
     static maxAbsDiff(dataA, dataB) {
         const order = dataA.order;
         if (dataB.order !== order)
@@ -141,106 +141,8 @@ class BezierCoffs {
 }
 exports.BezierCoffs = BezierCoffs;
 /**
- * Static methods to operate on univariate beizer polynomials, with coefficients in simple Float64Array or as components of blocked arrays.
- */
-class BezierPolynomialAlgebra {
-    /**
-     * * Univariate bezierA has its coefficients at offset indexA in each block within the array of blocks.
-     * * Symbolically:   `product(s) = (constA - polynomialA(s)) *polynomialB(s)`
-     * * Where coefficients of polynomialA(s) are in column indexA and coefficients of polynominalB(s) are differences within column indexB.
-     * * Treating data as 2-dimensional array:   `product = sum (iA) sum (iB)    (constA - basisFunction[iA} data[indexA][iA]) * basisFunction[iB] * (dataOrder-1)(data[iB + 1][indexB] - data[iB][indexB])`
-     * * Take no action if product length is other than `dataOrder + dataOrder - 2`
-     */
-    static accumulateShiftedComponentTimesComponentDelta(product, data, dataBlockSize, dataOrder, indexA, constA, indexB) {
-        const orderB = dataOrder - 1; // coefficients of the first difference are implicitly present as differences of adjacent entries.
-        const orderA = dataOrder;
-        const orderC = dataOrder + orderB - 1;
-        if (product.length !== orderC)
-            return;
-        const coffA = PascalCoefficients_1.PascalCoefficients.getRow(orderA - 1);
-        const coffB = PascalCoefficients_1.PascalCoefficients.getRow(orderB - 1);
-        const coffC = PascalCoefficients_1.PascalCoefficients.getRow(orderC - 1);
-        let qA;
-        for (let a = 0; a < orderA; a++) {
-            qA = (constA + data[indexA + a * dataBlockSize]) * coffA[a];
-            for (let b = 0, k = indexB; b < orderB; b++, k += dataBlockSize) {
-                product[a + b] += qA * coffB[b] * (data[k + dataBlockSize] - data[k]) / coffC[a + b];
-            }
-        }
-    }
-    /**
-     * * Univariate bezierA has its coefficients at offset indexA in each block within the array of blocks.
-     * * Univariate bezierB has its coefficients at offset indexB in each block within the array of blocks.
-     * * return the sum coefficients for `constA * polynominalA + constB * polynomialB`
-     * * Symbolically:   `product(s) = (constA * polynomialA(s) + constB * polynominalB(s)`
-     * * The two polyomials are the same order, so this just direct sum of scaled coefficients.
-     *
-     * * Take no action if product length is other than `dataOrder + dataOrder - 2`
-     */
-    static scaledComponentSum(sum, data, dataBlockSize, dataOrder, indexA, constA, indexB, constB) {
-        const orderA = dataOrder;
-        if (sum.length !== orderA)
-            return;
-        for (let a = 0, rowBase = 0; a < orderA; a++, rowBase += dataBlockSize) {
-            sum[a] = constA * data[rowBase + indexA] + constB * data[rowBase + indexB];
-        }
-    }
-    /**
-     * * Univariate bezierA has its coefficients in dataA[i]
-     * * Univariate bezierB has its coefficients in dataB[i]
-     * * return the product coefficients for polynominalA(s) * polynomialB(s)
-     * * Take no action if product length is other than `orderA + orderB - 1`
-     */
-    static accumulateProduct(product, dataA, dataB) {
-        const orderA = dataA.length;
-        const orderB = dataB.length;
-        const orderC = orderA + orderB - 1;
-        if (product.length !== orderC)
-            return;
-        let a;
-        let b;
-        let qA;
-        const coffA = PascalCoefficients_1.PascalCoefficients.getRow(orderA - 1);
-        const coffB = PascalCoefficients_1.PascalCoefficients.getRow(orderB - 1);
-        const coffC = PascalCoefficients_1.PascalCoefficients.getRow(orderC - 1);
-        for (a = 0; a < orderA; a++) {
-            qA = coffA[a] * dataA[a];
-            for (b = 0; b < orderB; b++) {
-                product[a + b] += qA * coffB[b] * dataB[b] / coffC[a + b];
-            }
-        }
-    }
-    /**
-     * * Univariate bezierA has its coefficients in dataA[i]
-     * * Univariate bezierB has its coefficients in dataB[i]
-     * * return the product coefficients for polynominalA(s) * polynomialB(s)
-     * * Take no action if product length is other than `orderA + orderB - 1`
-     */
-    static univariateDifference(dataA, dataB, order, difference) {
-        if (difference.length !== order)
-            return;
-        for (let i = 0; i < order; i++) {
-            difference[i] = dataA[i] - dataB[i];
-        }
-    }
-    /**
-     * * Univariate bezierA has its coefficients in dataA[i]
-     * * Univariate bezierB has its coefficients in resultB[i]
-     * * add (with no scaling) bezierA to bezierB
-     * * Take no action if resultB.length is other than dataA.length.
-     */
-    static accumulate(dataA, orderA, resultB) {
-        if (resultB.length !== orderA)
-            return;
-        for (let i = 0; i < orderA; i++) {
-            resultB[i] += dataA[i];
-        }
-    }
-}
-exports.BezierPolynomialAlgebra = BezierPolynomialAlgebra;
-/**
- * * The UnivariateBezier class is a univariate bezier polynomial with no particular order.
- * * More specific classes -- Order2Bezier, Order3Bezier, Order4Bezier -- can be used when a fixed order is known and the more specialized implementations are appropriate.
+ * * The Bezier class is an one-dimensional bezier polynomial with no particular order.
+ * * More specific classes -- Order2Bezier, Order3Bezier, Order4Bezier -- should be used when a fixed order is known.
  * * When working with xy and xyz curves whose order is the common 2,3,4, various queries (e.g. project point to curve)
  *     generate higher order one-dimensional bezier polynomials with order that is a small multiple of the
  *     curve order.   Hence those polynomials commonly reach degree 8 to 12.
@@ -249,7 +151,7 @@ exports.BezierPolynomialAlgebra = BezierPolynomialAlgebra;
  *     Pascal triangle coefficients becomes inaccurate because IEEE doubles cannot represent integers that
  *     large.
  */
-class UnivariateBezier extends BezierCoffs {
+class Bezier extends BezierCoffs {
     get order() { return this._order; }
     constructor(order) {
         super(order);
@@ -258,11 +160,11 @@ class UnivariateBezier extends BezierCoffs {
     /** Return a copy, optionally with coffs array length reduced to actual order. */
     clone(compressToMinimalAllocation = false) {
         if (compressToMinimalAllocation) {
-            const result1 = new UnivariateBezier(this.order);
+            const result1 = new Bezier(this.order);
             result1.coffs = this.coffs.slice(0, this.order);
             return result1;
         }
-        const result = new UnivariateBezier(this.coffs.length);
+        const result = new Bezier(this.coffs.length);
         result._order = this._order;
         result.coffs = this.coffs.slice();
         return result;
@@ -272,7 +174,7 @@ class UnivariateBezier extends BezierCoffs {
      * @param other coefficients to copy.
      */
     static create(other) {
-        const result = new UnivariateBezier(other.order);
+        const result = new Bezier(other.order);
         result.coffs = other.coffs.slice();
         return result;
     }
@@ -281,7 +183,7 @@ class UnivariateBezier extends BezierCoffs {
      * @param coffs coefficients for bezier
      */
     static createCoffs(coffs) {
-        const result = new UnivariateBezier(coffs.length);
+        const result = new Bezier(coffs.length);
         for (let i = 0; i < coffs.length; i++)
             result.coffs[i] = coffs[i];
         return result;
@@ -292,7 +194,7 @@ class UnivariateBezier extends BezierCoffs {
      * @param bezierB
      */
     static createProduct(bezierA, bezierB) {
-        const result = new UnivariateBezier(bezierA.order + bezierB.order - 1);
+        const result = new Bezier(bezierA.order + bezierB.order - 1);
         const pascalA = PascalCoefficients_1.PascalCoefficients.getRow(bezierA.order - 1);
         const pascalB = PascalCoefficients_1.PascalCoefficients.getRow(bezierB.order - 1);
         const pascalC = PascalCoefficients_1.PascalCoefficients.getRow(bezierA.order + bezierB.order - 2);
@@ -365,34 +267,20 @@ class UnivariateBezier extends BezierCoffs {
             }
         }
     }
-    /**
-     * Given (multidimensional) control points, sum the control points weighted by the basis fucntion values at parameter u.
-     * @param u bezier parameter
-     * @param polygon Array with coefficients in blocks.
-     * @param blockSize size of blocks
-     * @param result `blockSize` summed values.
-     */
-    sumBasisFunctions(u, polygon, blockSize, result) {
+    sumBasisFunctions(u, polygon, n, result) {
         const order = this._order;
         if (!result)
             result = new Float64Array(order);
         this._basisValues = PascalCoefficients_1.PascalCoefficients.getBezierBasisValues(this.order, u, this._basisValues);
-        UnivariateBezier.sumWeightedBlocks(this._basisValues, order, polygon, blockSize, result);
+        Bezier.sumWeightedBlocks(this._basisValues, order, polygon, n, result);
         return result;
     }
-    /**
-     * Given (multidimensional) control points, sum the control points weighted by the basis function derivative values at parameter u.
-     * @param u bezier parameter
-     * @param polygon Array with coefficients in blocks.
-     * @param blockSize size of blocks
-     * @param result `blockSize` summed values.
-     */
-    sumBasisFunctionDerivatives(u, polygon, blockSize, result) {
+    sumBasisFunctionDerivatives(u, polygon, n, result) {
         const order = this._order;
         if (!result)
             result = new Float64Array(order);
         this._basisValues = PascalCoefficients_1.PascalCoefficients.getBezierBasisDerivatives(this.order, u, this._basisValues);
-        UnivariateBezier.sumWeightedBlocks(this._basisValues, order, polygon, blockSize, result);
+        Bezier.sumWeightedBlocks(this._basisValues, order, polygon, n, result);
         return result;
     }
     /**
@@ -519,14 +407,14 @@ class UnivariateBezier extends BezierCoffs {
         const coffs = this.coffs;
         const orderD = order - 1;
         for (let iterations = 0; iterations++ < 10;) {
-            UnivariateBezier._basisBuffer = PascalCoefficients_1.PascalCoefficients.getBezierBasisValues(order, u, UnivariateBezier._basisBuffer);
+            Bezier._basisBuffer = PascalCoefficients_1.PascalCoefficients.getBezierBasisValues(order, u, Bezier._basisBuffer);
             f = 0;
             for (let i = 0; i < order; i++)
-                f += coffs[i] * UnivariateBezier._basisBuffer[i];
-            UnivariateBezier._basisBuffer1 = PascalCoefficients_1.PascalCoefficients.getBezierBasisValues(orderD, u, UnivariateBezier._basisBuffer1);
+                f += coffs[i] * Bezier._basisBuffer[i];
+            Bezier._basisBuffer1 = PascalCoefficients_1.PascalCoefficients.getBezierBasisValues(orderD, u, Bezier._basisBuffer1);
             df = 0;
             for (let i = 0; i < orderD; i++)
-                df += (coffs[i + 1] - coffs[i]) * UnivariateBezier._basisBuffer1[i];
+                df += (coffs[i + 1] - coffs[i]) * Bezier._basisBuffer1[i];
             df *= derivativeFactor;
             if (Math.abs(f) > bigStep * Math.abs(df))
                 return undefined;
@@ -600,7 +488,7 @@ class UnivariateBezier extends BezierCoffs {
         return roots;
     }
 }
-exports.UnivariateBezier = UnivariateBezier;
+exports.Bezier = Bezier;
 /** Bezier polynomial specialized to order 2 (2 coefficients, straight line function) */
 class Order2Bezier extends BezierCoffs {
     constructor(f0 = 0.0, f1 = 0.0) {

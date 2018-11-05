@@ -4,7 +4,7 @@ import { Point4d, Matrix4d } from "../numerics/Geometry4d";
 import { Range3d } from "../Range";
 import { Transform } from "../Transform";
 import { Ray3d, Plane3dByOriginAndVectors } from "../AnalyticGeometry";
-import { CurvePrimitive, CurveLocationDetail } from "../curve/CurvePrimitive";
+import { CurvePrimitive } from "../curve/CurvePrimitive";
 import { StrokeOptions } from "../curve/StrokeOptions";
 import { Plane3dByOriginAndUnitNormal } from "../AnalyticGeometry";
 import { GeometryHandler, IStrokeHandler } from "../GeometryHandler";
@@ -155,10 +155,6 @@ export declare class BezierCurve3dH extends BezierCurveBase {
      * */
     getPolePoint3d(i: number, result?: Point3d): Point3d | undefined;
     /**
-     * @returns true if all weights are within tolerance of 1.0
-     */
-    isUnitWeight(tolerance?: number): boolean;
-    /**
      * Capture a polygon as the data for a new `BezierCurve3dH`
      * @param polygon complete packed data and order.
      */
@@ -176,7 +172,7 @@ export declare class BezierCurve3dH extends BezierCurveBase {
     /** Load order * 4 doubles from data[3 * spanIndex] as poles (with added weight) */
     loadSpan3dPolesWithWeight(data: Float64Array, spanIndex: number, weight: number): void;
     /** Load order * 4 doubles from data[3 * spanIndex] as poles (with added weight) */
-    loadSpan4dPoles(data: Float64Array, spanIndex: number): void;
+    loadSpan4dPolesWithWeight(data: Float64Array, spanIndex: number): void;
     clone(): BezierCurve3dH;
     /**
      * Return a curve after transform.
@@ -211,26 +207,6 @@ export declare class BezierCurve3dH extends BezierCurveBase {
      * @param aw w coefficient
      */
     poleProductsXYZW(products: Float64Array, ax: number, ay: number, az: number, aw: number): void;
-    private _workBezier?;
-    private _workCoffsA?;
-    private _workCoffsB?;
-    /**
-     * set up the _workBezier members with specific order.
-     * * Try to reuse existing members if their sizes match.
-     * * Ignore members corresponding to args that are 0 or negative.
-     * @param primaryBezierOrder order of expected bezier
-     * @param orderA length of _workCoffsA (simple array)
-     * @param orderB length of _workdCoffsB (simple array)
-     */
-    private allocateAndZeroBezierWorkData;
-    /** Find the closest point within the bezier span, using true perpendicular test (but no endpoint test)
-     * * If closer than previously recorded, update the CurveLocationDetail
-     * * This assumes this bezier is saturated.
-     * @param spacePoint point being projected
-     * @param detail pre-allocated detail to record (evolving) closest point.
-     * @returns true if an updated occured, false if either (a) no perpendicular projections or (b) perpendiculars were not closer.
-     */
-    updateClosestPointByTruePerpendicular(spacePoint: Point3d, detail: CurveLocationDetail): boolean;
 }
 /** 3d curve (unweighted) */
 export declare class BezierCurve3d extends BezierCurveBase {

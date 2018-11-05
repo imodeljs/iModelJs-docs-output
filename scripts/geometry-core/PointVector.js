@@ -1,8 +1,7 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
-* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
-*--------------------------------------------------------------------------------------------*/
+|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
+ *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module CartesianGeometry */
 const Geometry_1 = require("./Geometry");
@@ -271,7 +270,6 @@ class XYZ {
     freeze() { Object.freeze(this); }
 }
 exports.XYZ = XYZ;
-/** 3D vector with x,y,z properties */
 class Point3d extends XYZ {
     /** Constructor for Point3d */
     constructor(x = 0, y = 0, z = 0) { super(x, y, z); }
@@ -281,7 +279,7 @@ class Point3d extends XYZ {
     /** Create a new Point3d with given coordinates
      * @param x x part
      * @param y y part
-     * @param z z partpubli
+     * @param z z part
      */
     static create(x = 0, y = 0, z = 0, result) {
         if (result) {

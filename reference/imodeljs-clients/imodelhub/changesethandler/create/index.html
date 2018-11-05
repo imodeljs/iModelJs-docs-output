@@ -47,7 +47,7 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
                         <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
                     </a>
@@ -56,7 +56,7 @@
                     </button>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//ChangeHistory">Change History</a></li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <span class='search-bar'>
@@ -180,12 +180,12 @@
         </ul>    </div>
     <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/">imodeljs-clients</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/imodelhub/">iModelHub</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/imodelhub/changesethandler/">ChangeSetHandler</a> > create</div>
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/">imodeljs-clients</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/imodelhub/">iModelHub</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/imodelhub/changesethandler/">ChangeSetHandler</a> > create</div>
             
             <h2 class="h-create">create <span class="badge badge-pill badge-primary badge-method">Method</span><a id="create" class="heading-anchor" href="#create"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Upload a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a> file. If you want to <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#push'>push</a> your changes to iModelHub, use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/pushchanges'>IModelDb.pushChanges</a> instead. This method is only a part of that workflow.</p>
 <p>ChangeSets have to be uploaded in a linear order. If another user is uploading, or changeSet.parentId does not point to the latest ChangeSet on iModelHub, this method will fail. User will have to download all of the newer ChangeSets, merge them into their <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/briefcase'>Briefcase</a> and calculate a new ChangeSet id.</p>
-<p><span class="method-name">create</span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, imodelId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guid'>Guid</a>, changeSet: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a>, changeSetPathname: string, progressCallback?: (progress: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/progressinfo'>ProgressInfo</a>) =&gt; void</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a>&gt;</span></p>
+<p><span class="method-name">create</span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, imodelId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guidstring'>GuidString</a>, changeSet: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a>, changeSetPathname: string, progressCallback?: (progress: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/progressinfo'>ProgressInfo</a>) =&gt; void</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a>&gt;</span></p>
 <p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelhubstatus/#briefcasedoesnotbelongtouser'>IModelHubStatus.BriefcaseDoesNotBelongToUser</a> if Briefcase specified by changeSet.briefcaseId belongs to another user.</p>
 <p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelhubstatus/#anotheruserpushing'>IModelHubStatus.AnotherUserPushing</a> if another user is currently uploading a ChangeSet.</p>
 <p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelhubstatus/#pullisrequired'>IModelHubStatus.PullIsRequired</a> if there are newer ChangeSets on iModelHub, that need to be downloaded and merged, before upload is possible.</p>
@@ -200,7 +200,7 @@
 <tr>
 <td class="h-alctx"><span class="parameter-name">alctx</span><a id="alctx" class="heading-anchor" href="#alctx"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a></span></td>
-<td></td>
+<td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-token"><span class="parameter-name">token</span><a id="token" class="heading-anchor" href="#token"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -209,7 +209,7 @@
 </tr>
 <tr>
 <td class="h-imodelid"><span class="parameter-name">imodelId</span><a id="imodelid" class="heading-anchor" href="#imodelid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guid'>Guid</a></span></td>
+<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guidstring'>GuidString</a></span></td>
 <td>Id of the iModel. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/hubimodel'>HubIModel</a>.</td>
 </tr>
 <tr>
@@ -233,7 +233,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 October, 2018</span>
+                <span class='date-updated'>05 November, 2018</span>
             </p>
 
             

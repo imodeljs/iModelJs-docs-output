@@ -1,8 +1,7 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
-* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
-*--------------------------------------------------------------------------------------------*/
+|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
+ *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Serialization */
 // import { Geometry, Angle, AxisOrder, BSIJSONValues } from "../Geometry";
@@ -302,22 +301,6 @@ var IModelJson;
                 }
             }
         }
-        static parsePolyfaceAuxData(data) {
-            if (!Array.isArray(data.channels) || !Array.isArray(data.indices))
-                return undefined;
-            const outChannels = [];
-            for (const inChannel of data.channels) {
-                if (Array.isArray(inChannel.data) && inChannel.hasOwnProperty("dataType")) {
-                    const outChannelData = [];
-                    for (const inChannelData of inChannel.data) {
-                        if (inChannelData.hasOwnProperty("input") && Array.isArray(inChannelData.values))
-                            outChannelData.push(new Polyface_1.AuxChannelData(inChannelData.input, inChannelData.values));
-                    }
-                    outChannels.push(new Polyface_1.AuxChannel(outChannelData, inChannel.dataType, inChannel.name, inChannel.inputName));
-                }
-            }
-            return new Polyface_1.PolyfaceAuxData(outChannels, data.indices);
-        }
         static parseIndexedMesh(data) {
             // {Coord:[[x,y,z],. . . ],   -- simple xyz for each ponit
             // CoordIndex[1,2,3,0]    -- zero-terminated, one based !!!
@@ -360,8 +343,6 @@ var IModelJson;
                 if (data.hasOwnProperty("colorIndex")) {
                     Reader.addZeroBasedIndicesFromSignedOneBased(data.colorIndex, (x) => { polyface.addColorIndex(x); });
                 }
-                if (data.hasOwnProperty("auxData"))
-                    polyface.data.auxData = Reader.parsePolyfaceAuxData(data.auxData);
                 return polyface;
             }
             return undefined;
@@ -929,26 +910,6 @@ var IModelJson;
                 out.box.topY = box.getTopY();
             return out;
         }
-        handlePolyfaceAuxData(auxData) {
-            const contents = {};
-            contents.indices = auxData.indices.slice(0);
-            contents.channels = [];
-            for (const inChannel of auxData.channels) {
-                const outChannel = {};
-                outChannel.dataType = inChannel.dataType;
-                outChannel.name = inChannel.name;
-                outChannel.inputName = inChannel.inputName;
-                outChannel.data = [];
-                for (const inData of inChannel.data) {
-                    const outData = {};
-                    outData.input = inData.input;
-                    outData.values = inData.values.slice(0);
-                    outChannel.data.push(outData);
-                }
-                contents.channels.push(outChannel);
-            }
-            return contents;
-        }
         handleIndexedPolyface(pf) {
             const points = [];
             const pointIndex = [];
@@ -1004,8 +965,6 @@ var IModelJson;
             }
             // assemble the contents in alphabetical order.
             const contents = {};
-            if (pf.data.auxData)
-                contents.auxData = this.handlePolyfaceAuxData(pf.data.auxData);
             if (pf.data.color)
                 contents.color = colors;
             if (pf.data.colorIndex)

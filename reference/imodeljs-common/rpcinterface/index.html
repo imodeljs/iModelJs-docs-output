@@ -47,7 +47,7 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
                         <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
                     </a>
@@ -56,7 +56,7 @@
                     </button>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//ChangeHistory">Change History</a></li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <span class='search-bar'>
@@ -180,7 +180,7 @@
         </ul>    </div>
     <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/">imodeljs-common</a> > RpcInterface</div>
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/">imodeljs-common</a> > RpcInterface</div>
             
             <h1 id="rpcinterface">RpcInterface</h1>
 <p>Classes for working with <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/rpcinterface'>RpcInterfaces</a>.</p>
@@ -270,6 +270,10 @@
 <td>RPC interface management is concerned with coordination of access and configuration for RPC interfaces.</td>
 </tr>
 <tr>
+<td class="h-rpcmultipart"><a href="rpcmultipart">RpcMultipart</a><a id="rpcmultipart" class="heading-anchor" href="#rpcmultipart"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Support for transporting RPC values using the HTTP multipart content type.</td>
+</tr>
+<tr>
 <td class="h-rpcnotfoundresponse"><a href="rpcnotfoundresponse">RpcNotFoundResponse</a><a id="rpcnotfoundresponse" class="heading-anchor" href="#rpcnotfoundresponse"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>A RPC operation response .</td>
 </tr>
@@ -284,6 +288,10 @@
 <tr>
 <td class="h-rpcoperationpolicy"><a href="rpcoperationpolicy">RpcOperationPolicy</a><a id="rpcoperationpolicy" class="heading-anchor" href="#rpcoperationpolicy"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>The policy for an RPC operation.</td>
+</tr>
+<tr>
+<td class="h-rpcpendingqueue"><a href="rpcpendingqueue">RpcPendingQueue</a><a id="rpcpendingqueue" class="heading-anchor" href="#rpcpendingqueue"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Manages pending RPC requests and responses.</td>
 </tr>
 <tr>
 <td class="h-rpcpendingresponse"><a href="rpcpendingresponse">RpcPendingResponse</a><a id="rpcpendingresponse" class="heading-anchor" href="#rpcpendingresponse"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -307,6 +315,7 @@
 </tr>
 <tr>
 <td class="h-webapprpcrequest"><a href="webapprpcrequest">WebAppRpcRequest</a><a id="webapprpcrequest" class="heading-anchor" href="#webapprpcrequest"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>A web application RPC request.</td>
 </tr>
 </tbody></table><h2 class="h-enumerations">Enumerations<a id="enumerations" class="heading-anchor" href="#enumerations"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <table class="table table-responsive"><tbody><tr>
@@ -314,8 +323,20 @@
 <th>Description</th>
 </tr>
 <tr>
+<td class="h-rpccontenttype"><a href="rpccontenttype">RpcContentType</a><a id="rpccontenttype" class="heading-anchor" href="#rpccontenttype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>RPC content types.</td>
+</tr>
+<tr>
+<td class="h-rpcendpoint"><a href="rpcendpoint">RpcEndpoint</a><a id="rpcendpoint" class="heading-anchor" href="#rpcendpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Endpoints for RPC protocols..</td>
+</tr>
+<tr>
 <td class="h-rpcmarshalingdirective"><a href="rpcmarshalingdirective">RpcMarshalingDirective</a><a id="rpcmarshalingdirective" class="heading-anchor" href="#rpcmarshalingdirective"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>RPC interface type marshaling directives.</td>
+</tr>
+<tr>
+<td class="h-rpcmobileplatform"><a href="rpcmobileplatform">RpcMobilePlatform</a><a id="rpcmobileplatform" class="heading-anchor" href="#rpcmobileplatform"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>RPC supported mobile platforms.</td>
 </tr>
 <tr>
 <td class="h-rpcprotocolevent"><a href="rpcprotocolevent">RpcProtocolEvent</a><a id="rpcprotocolevent" class="heading-anchor" href="#rpcprotocolevent"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -330,8 +351,8 @@
 <td>The status of an RPC operation request.</td>
 </tr>
 <tr>
-<td class="h-rpcresponsetype"><a href="rpcresponsetype">RpcResponseType</a><a id="rpcresponsetype" class="heading-anchor" href="#rpcresponsetype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>RPC request response types.</td>
+<td class="h-rpcresponsecachecontrol"><a href="rpcresponsecachecontrol">RpcResponseCacheControl</a><a id="rpcresponsecachecontrol" class="heading-anchor" href="#rpcresponsecachecontrol"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Describes available options for RPC response caching.</td>
 </tr>
 </tbody></table><h2 class="h-interfaces">Interfaces<a id="interfaces" class="heading-anchor" href="#interfaces"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <table class="table table-responsive"><tbody><tr>
@@ -348,11 +369,11 @@
 </tr>
 <tr>
 <td class="h-httpserverrequest"><a href="httpserverrequest">HttpServerRequest</a><a id="httpserverrequest" class="heading-anchor" href="#httpserverrequest"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>An http server request object.</td>
+<td>An HTTP server request object.</td>
 </tr>
 <tr>
 <td class="h-httpserverresponse"><a href="httpserverresponse">HttpServerResponse</a><a id="httpserverresponse" class="heading-anchor" href="#httpserverresponse"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>An http server response object.</td>
+<td>An HTTP server response object.</td>
 </tr>
 <tr>
 <td class="h-openapicontentmap"><a href="openapicontentmap">OpenAPIContentMap</a><a id="openapicontentmap" class="heading-anchor" href="#openapicontentmap"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -426,6 +447,18 @@
 <td class="h-serializedrpcrequest"><a href="serializedrpcrequest">SerializedRpcRequest</a><a id="serializedrpcrequest" class="heading-anchor" href="#serializedrpcrequest"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>A serialized RPC operation request.</td>
 </tr>
+</tbody></table><h2 class="h-namespaces">Namespaces<a id="namespaces" class="heading-anchor" href="#namespaces"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+<tr>
+<td class="h-marshalingbinarymarker"><a href="marshalingbinarymarker">MarshalingBinaryMarker</a><a id="marshalingbinarymarker" class="heading-anchor" href="#marshalingbinarymarker"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-rpcserializedvalue"><a href="rpcserializedvalue">RpcSerializedValue</a><a id="rpcserializedvalue" class="heading-anchor" href="#rpcserializedvalue"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+</tr>
 </tbody></table><h2 class="h-type-aliases">Type Aliases<a id="type-aliases" class="heading-anchor" href="#type-aliases"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -475,9 +508,13 @@
 <td class="h-rpcrequesttokensupplier_t"><a href="rpcrequesttokensupplier_t">RpcRequestTokenSupplier_T</a><a id="rpcrequesttokensupplier_t" class="heading-anchor" href="#rpcrequesttokensupplier_t"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Supplies an IModelToken for an RPC request.</td>
 </tr>
+<tr>
+<td class="h-rpcresponsecachingcallback_t"><a href="rpcresponsecachingcallback_t">RpcResponseCachingCallback_T</a><a id="rpcresponsecachingcallback_t" class="heading-anchor" href="#rpcresponsecachingcallback_t"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Determines if caching is permitted for a RPC response.</td>
+</tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 October, 2018</span>
+                <span class='date-updated'>05 November, 2018</span>
             </p>
 
             
@@ -557,6 +594,9 @@
                             <a class='title solo-title menu-text' href="#rpcmanager">RpcManager</a>
                     </li>
                     <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#rpcmultipart">RpcMultipart</a>
+                    </li>
+                    <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#rpcnotfoundresponse">RpcNotFoundResponse</a>
                     </li>
                     <li class='nav-item item '>
@@ -567,6 +607,9 @@
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#rpcoperationpolicy">RpcOperationPolicy</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#rpcpendingqueue">RpcPendingQueue</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#rpcpendingresponse">RpcPendingResponse</a>
@@ -595,7 +638,16 @@
             </a>
             <ul id="inner-nav-enumerations" class='inner-nav'>
                     <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#rpccontenttype">RpcContentType</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#rpcendpoint">RpcEndpoint</a>
+                    </li>
+                    <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#rpcmarshalingdirective">RpcMarshalingDirective</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#rpcmobileplatform">RpcMobilePlatform</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#rpcprotocolevent">RpcProtocolEvent</a>
@@ -607,7 +659,7 @@
                             <a class='title solo-title menu-text' href="#rpcrequeststatus">RpcRequestStatus</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#rpcresponsetype">RpcResponseType</a>
+                            <a class='title solo-title menu-text' href="#rpcresponsecachecontrol">RpcResponseCacheControl</a>
                     </li>
             </ul>
     </li>
@@ -686,6 +738,20 @@
             </ul>
     </li>
        <li class='nav-item item '>
+            <a data-target="#inner-nav-namespaces" class='title' href="#namespaces"/>
+            <b class='dropdown-menu-title menu-text'>Namespaces</b>
+            <i class='dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-namespaces" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#marshalingbinarymarker">MarshalingBinaryMarker</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#rpcserializedvalue">RpcSerializedValue</a>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
             <a data-target="#inner-nav-type-aliases" class='title' href="#type-aliases"/>
             <b class='dropdown-menu-title menu-text'>Type Aliases</b>
             <i class='dropdown icon'></i>
@@ -723,6 +789,9 @@
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#rpcrequesttokensupplier_t">RpcRequestTokenSupplier_T</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#rpcresponsecachingcallback_t">RpcResponseCachingCallback_T</a>
                     </li>
             </ul>
     </li>

@@ -1,8 +1,7 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
-* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
-*--------------------------------------------------------------------------------------------*/
+|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
+ *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 const GeometryHandler_1 = require("../GeometryHandler");
 const CurvePrimitive_1 = require("./CurvePrimitive");
@@ -317,7 +316,7 @@ class CurveCurveIntersectXY extends GeometryHandler_1.NullGeometryHandler {
             const orderF = cpB.order; // order of the beziers for simple coordinates
             const orderG = 2 * orderF - 1; // order of the (single) bezier for squared coordinates.
             const coffF = new Float64Array(orderF);
-            const univariateBezierG = new BezierPolynomials_1.UnivariateBezier(orderG);
+            const univariateBezierG = new BezierPolynomials_1.Bezier(orderG);
             const axx = matrixAinverse.at(0, 0);
             const axy = matrixAinverse.at(0, 1);
             const axz = 0.0;
@@ -476,8 +475,8 @@ class CurveCurveIntersectXY extends GeometryHandler_1.NullGeometryHandler {
         const rangeB = this.getRanges(bezierSpanB);
         const orderA = bcurveA.order;
         const orderB = bcurveB.order;
-        const univariateCoffsA = new BezierPolynomials_1.UnivariateBezier(orderA);
-        const univairateCoffsB = new BezierPolynomials_1.UnivariateBezier(orderB);
+        const univariateCoffsA = new BezierPolynomials_1.Bezier(orderA);
+        const univairateCoffsB = new BezierPolynomials_1.Bezier(orderB);
         for (let a = 0; a < numA; a++) {
             for (let b = 0; b < numB; b++) {
                 if (rangeA[a].intersectsRangeXY(rangeB[b])) {

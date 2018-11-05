@@ -102,9 +102,6 @@ export declare class Range3d extends RangeBase implements LowAndHighXYZ, BeJSONF
     /** multiply the point x,y,z by transform and use the coordinate to extend this range.
      */
     extendTransformedXYZ(transform: Transform, x: number, y: number, z: number): void;
-    /** multiply the point x,y,z,w by transform and use the coordinate to extend this range.
-     */
-    extendTransformedXYZW(transform: Transform, x: number, y: number, z: number, w: number): void;
     /** multiply the point x,y,z by transform and use the coordinate to extend this range.
      */
     extendInverseTransformedXYZ(transform: Transform, x: number, y: number, z: number): boolean;
@@ -180,8 +177,6 @@ export declare class Range3d extends RangeBase implements LowAndHighXYZ, BeJSONF
     distanceToRange(other: Range3d): number;
     /** Expand this range by distances a (possibly signed) in all directions */
     extendXYZ(x: number, y: number, z: number): void;
-    /** Expand this range by distances a (weighted and possibly signed) in all directions */
-    extendXYZW(x: number, y: number, z: number, w: number): void;
     /** Expand this range to include a point. */
     extendPoint(point: Point3d): void;
     /** Expand this range to include a transformed point. */

@@ -1,3 +1,4 @@
+/** @module Numerics */
 import { Point2d, Point3d } from "../PointVector";
 import { GrowableBlockedArray, GrowableXYZArray } from "../GrowableArray";
 export declare class ClusterableArray extends GrowableBlockedArray {

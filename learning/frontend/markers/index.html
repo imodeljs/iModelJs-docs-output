@@ -47,7 +47,7 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
                         <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
                     </a>
@@ -56,7 +56,7 @@
                     </button>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//ChangeHistory">Change History</a></li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <span class='search-bar'>
@@ -107,9 +107,10 @@
         </ul>    </div>
     <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/">frontend</a> > Markers</div>
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/">frontend</a> > Markers</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/frontend/Markers.md">Edit this page</a></div>
-            <h1 id="markers">Markers</h1>
+            <p><img src=".././markers_sample.png" alt="markerset sample" title="Example showing a set of Markers"></p>
+<h1 id="markers">Markers</h1>
 <p>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/marker'>Marker</a> is a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/canvasdecoration'>CanvasDecoration</a>, whose position follows a fixed location in world space. Markers draw on top of all scene graphics, and provide visual cues about locations of interest. The name and the concept derive from the same type in the <a href="https://developers.google.com/maps/documentation/javascript/markers">Google Maps api</a>.</p>
 <p>Markers are often used to show locations in physical space where records from an external data source are located. They provide a way for applications to show additional information from the external source as the cursor hovers over them, and  actions to be performed when they are clicked.</p>
 <p>Sometimes Markers are used to show the location of elements within an iModel that are of interest. In that case the location of the Marker can be established from the origin, center, or perhaps other points derived from the element&apos;s properties.</p>
@@ -118,9 +119,147 @@
 <blockquote>
 <p>Note: Only Markers from the same MarkerSet will be clustered. Independent Markers or Markers from different MarkerSets will not cluster.</p>
 </blockquote>
+<p>The following example illustrates creating a marker set using random locations within the ProjectExtents:</p>
+<pre class="no-line-numbers"><code class="language-typescript">/** Example Marker to show an *incident*. Each incident has an *id*, a *severity*, and an *icon*. */
+class IncidentMarker extends Marker {
+  private static _size = Point2d.create(30, 30);
+  private static _imageSize = Point2d.create(40, 40);
+  private static _imageOffset = Point2d.create(0, 30);
+  private static _amber = new ColorDef(ColorByName.amber);
+
+  /** Get a color based on severity by interpolating Green(0) -&gt; Amber(15) -&gt; Red(30)  */
+  public static makeColor(severity: number): ColorDef {
+    return (severity &lt;= 16 ? ColorDef.green.lerp(this._amber, (severity - 1) / 15.) :
+      this._amber.lerp(ColorDef.red, (severity - 16) / 14.));
+  }
+
+  /** Create a new IncidentMarker */
+  constructor(location: XYAndZ, public severity: number, public id: number, icon: Promise&lt;HTMLImageElement&gt;) {
+    super(location, IncidentMarker._size);
+    this.setImage(icon); // save icon
+    this.imageOffset = IncidentMarker._imageOffset; // move icon up by 30 pixels
+    this.imageSize = IncidentMarker._imageSize; // 40x40
+    this.labelFont = &quot;italic 14px san-serif&quot;; // use italic so incidents look different than Clusters
+    this.title = &quot;Severity: &quot; + severity + &quot;&lt;br&gt;Id: &quot; + id; // tooltip
+    this.setScaleFactor({ low: .2, high: 1.4 }); // make size 20% at back of frustum and 140% at front of frustum (if camera is on)
+  }
+}
+
+/** A Marker used to show a cluster of incidents */
+class IncidentClusterMarker extends Marker {
+  private _clusterColor: string;
+
+  // draw the cluster as a white circle with an outline color based on what&apos;s in the cluster
+  public drawFunc(ctx: CanvasRenderingContext2D) {
+    ctx.beginPath();
+    ctx.strokeStyle = this._clusterColor;
+    ctx.fillStyle = &quot;white&quot;;
+    ctx.lineWidth = 5;
+    ctx.arc(0, 0, 13, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+  }
+
+  /** Create a new cluster marker with label and color based on the content of the cluster */
+  constructor(location: XYAndZ, size: XAndY, cluster: Cluster&lt;IncidentMarker&gt;, image: Promise&lt;MarkerImage&gt;) {
+    super(location, size);
+
+    // get the top 10 incidents by severity
+    const sorted: IncidentMarker[] = [];
+    const maxLen = 10;
+    cluster.markers.forEach((marker) =&gt; {
+      if (maxLen &gt; sorted.length || marker.severity &gt; sorted[sorted.length - 1].severity) {
+        const index = sorted.findIndex((val) =&gt; val.severity &lt; marker.severity);
+        if (index === -1)
+          sorted.push(marker);
+        else
+          sorted.splice(index, 0, marker);
+        if (sorted.length &gt; maxLen)
+          sorted.length = maxLen;
+      }
+    });
+
+    this.imageOffset = new Point3d(0, 28);
+    this.imageSize = new Point2d(30, 30);
+    this.label = cluster.markers.length.toLocaleString();
+    this.labelColor = &quot;black&quot;;
+    this.labelFont = &quot;bold 14px san-serif&quot;;
+
+    let title = &quot;&quot;;
+    sorted.forEach((marker) =&gt; {
+      if (title !== &quot;&quot;)
+        title += &quot;&lt;br&gt;&quot;;
+      title += &quot;Severity: &quot; + marker.severity + &quot; Id: &quot; + marker.id;
+    });
+    if (cluster.markers.length &gt; maxLen)
+      title += &quot;&lt;br&gt;...&quot;;
+
+    this.title = title;
+    this._clusterColor = IncidentMarker.makeColor(sorted[0].severity).toHexString();
+    this.setImage(image);
+  }
+}
+
+/** A MarkerSet to hold incidents. This class supplies to `getClusterMarker` method to create IncidentClusterMarkers. */
+class IncidentMarkerSet extends MarkerSet&lt;IncidentMarker&gt; {
+  protected getClusterMarker(cluster: Cluster&lt;IncidentMarker&gt;): Marker {
+    return IncidentClusterMarker.makeFrom(cluster.markers[0], cluster, IncidentMarkerDemo.warningSign);
+  }
+}
+
+/** This demo shows how to use MarkerSets to cluster markers that overlap on the screen. It creates a set of 500
+ * &quot;incidents&quot; at random locations within the ProjectExtents. For each incident, it creates an IncidentMarker with an Id and
+ * with a random value between 1-30 for &quot;severity&quot;, and one of 5 possible icons.
+ */
+export class IncidentMarkerDemo {
+  public static warningSign?: HTMLImageElement;
+  private _incidents = new IncidentMarkerSet();
+  private static _decorator?: IncidentMarkerDemo; // static variable just so we can tell if the demo is active.
+
+  public constructor(iModel: IModelConnection) {
+    const makerIcons = [
+      imageElementFromUrl(&quot;Hazard_biological.svg&quot;),
+      imageElementFromUrl(&quot;Hazard_electric.svg&quot;),
+      imageElementFromUrl(&quot;Hazard_flammable.svg&quot;),
+      imageElementFromUrl(&quot;Hazard_toxic.svg&quot;),
+      imageElementFromUrl(&quot;Hazard_tripping.svg&quot;),
+    ];
+
+    if (undefined === IncidentMarkerDemo.warningSign)
+      imageElementFromUrl(&quot;Warning_sign.svg&quot;).then((image) =&gt; IncidentMarkerDemo.warningSign = image);
+
+    const extents = iModel!.projectExtents;
+    const pos = new Point3d();
+    for (let i = 0; i &lt; 500; ++i) {
+      pos.x = extents.low.x + (Math.random() * extents.xLength());
+      pos.y = extents.low.y + (Math.random() * extents.yLength());
+      pos.z = extents.low.z + (Math.random() * extents.zLength());
+      this._incidents.markers.add(new IncidentMarker(pos, 1 + Math.round(Math.random() * 29), i, makerIcons[i % makerIcons.length]));
+    }
+  }
+
+  /** We added this class as a ViewManager.decorator below. This method is called to ask for our decorations. We add the MarkerSet. */
+  public decorate(context: DecorateContext) {
+    if (context.viewport.view.isSpatialView())
+      this._incidents.addDecoration(context);
+  }
+
+  /** Turn the markers on and off. Each time it runs it creates a new random set of incidents. */
+  public static toggle(iModel: IModelConnection) {
+    if (undefined === IncidentMarkerDemo._decorator) {
+      // start the demo by creating the demo object and adding it as a ViewManager decorator.
+      IncidentMarkerDemo._decorator = new IncidentMarkerDemo(iModel);
+      IModelApp.viewManager.addDecorator(IncidentMarkerDemo._decorator);
+    } else {
+      // stop the demo
+      IModelApp.viewManager.dropDecorator(IncidentMarkerDemo._decorator);
+      IncidentMarkerDemo._decorator = undefined;
+    }
+  }
+}</code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 October, 2018</span>
+                <span class='date-updated'>05 November, 2018</span>
             </p>
 
             

@@ -47,7 +47,7 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
                         <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
                     </a>
@@ -56,7 +56,7 @@
                     </button>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//ChangeHistory">Change History</a></li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <span class='search-bar'>
@@ -107,7 +107,7 @@
         </ul>    </div>
     <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > WriteABridge</div>
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > WriteABridge</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/WriteABridge.md">Edit this page</a></div>
             <h1 id="write an imodel bridge">Write an iModel Bridge</h1>
 <p>As explained in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/imodel-bridges'>overview</a>, a &quot;bridge&quot; is a program that:</p>
@@ -137,7 +137,7 @@
 </ul>
 <h2 class="h-writing-a-bridge">Writing a bridge<a id="writing-a-bridge" class="heading-anchor" href="#writing-a-bridge"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>A bridge would import the following packages:</p>
-<pre class="no-line-numbers"><code class="language-typescript">import { ActivityLoggingContext, Guid, Id64 } from &quot;@bentley/bentleyjs-core&quot;;
+<pre class="no-line-numbers"><code class="language-typescript">import { ActivityLoggingContext, Guid, Id64String } from &quot;@bentley/bentleyjs-core&quot;;
 import { AccessToken, HubIModel } from &quot;@bentley/imodeljs-clients&quot;;
 import { IModelDb, BriefcaseManager, ConcurrencyControl, OpenParams, IModelHost, Subject } from &quot;@bentley/imodeljs-backend&quot;;
 import { ColorByName, ColorDef } from &quot;@bentley/imodeljs-common&quot;;
@@ -253,7 +253,7 @@ interface RobotWorldProps {
 // In this simple example, the source format is assumed to be JSON. It could be anything that the bridge
 // can read. In this simple example, the conversion does not involve any alignment transformations. In general,
 // the bridge&apos;s logic would perform non-trivial alignment of the source data into a BIS industry domain schema.
-function convertToBis(briefcase: IModelDb, modelId: Id64, data: RobotWorldProps) {
+function convertToBis(briefcase: IModelDb, modelId: Id64String, data: RobotWorldProps) {
   for (const barrier of data.barriers) {
     RobotWorldEngine.insertBarrier(briefcase, modelId, Point3d.fromJSON(barrier.location), Angle.fromJSON(barrier.angle), barrier.length);
   }
@@ -313,7 +313,7 @@ function convertToBis(briefcase: IModelDb, modelId: Id64, data: RobotWorldProps)
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 October, 2018</span>
+                <span class='date-updated'>05 November, 2018</span>
             </p>
 
             

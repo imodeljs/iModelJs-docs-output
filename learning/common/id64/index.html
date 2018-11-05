@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Working with 64-bit Ids - iModel.js</title>
+    <meta name="og:title" content="Working with 64-bit Ids - iModel.js">
+    <meta name="twitter:title" content="Working with 64-bit Ids - iModel.js">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
+
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
+    <span id="contentLoader">
+        <p>Woah! This page has a great deal of content... Give us a second to load it.</p>
+    </span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+
+
+
+        <header id="main-header">
+            <div class='nav-header-container'>
+                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
+                    <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+                        <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar5">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
+                        <ul class="navbar-nav mb-0" id="doc-site-tabs">
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//ChangeHistory">Change History</a></li>
+                        </ul>
+                        <ul class="navbar-nav ml-auto">
+                            <span class='search-bar'>
+                              <li>
+                                <div id='search-container'>
+                                </div>
+                              </li>
+                              <script>
+                                (function() {
+                                  var cx = '000629069474334212860:yxwzhn4umym';
+                                  var gcse = document.createElement('script');
+                                  gcse.type = 'text/javascript';
+                                  gcse.async = true;
+                                  gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                                  var s = document.getElementsByTagName('script')[0];
+                                  s.parentNode.insertBefore(gcse, s);
+                                })();
+                              </script>
+                              <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+                            </span>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+<div id='main-wrapper'>
+    <div id='table-of-contents'>
+        <ul id='main-navigation-list'>
+            <html><head></head><body><h3 id="the imodel.js library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModel.js Library</a></h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
+        </ul>
+        <hr>
+        <p>&#xA0;</p>
+        <h3 id="helpful links">Helpful links</h3>
+        <ul>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
+        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
+        </ul>
+        </body></html>
+        </ul>    </div>
+    <div class='documentation-main'>
+        <article id="main" name="main-content">
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/">common</a> > Id64</div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/common/Id64.md">Edit this page</a></div>
+            <h1 id="working with 64-bit ids">Working with 64-bit Ids</h1>
+<p>Every <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity'>Entity</a> within an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a> is identified by a unique 64-bit integer Id. Since JavaScript does not natively support 64-bit integers, 64-bit Ids are instead represented as strings. Strings containing 64-bit Ids are distinguished from ordinary strings through use of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a> type alias. For example, a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/viewdefinition'>ViewDefinition</a> element has <code>Id64String</code> members called <code>categorySelectorId</code> and <code>displayStyleId</code> that specify the Ids of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/categoryselector'>CategorySelector</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/displaystyle'>DisplayStyle</a> elements associated with the view.</p>
+<p>Ids are particularly important in communication between the front-end and the back-end. For example, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection/#queryentityids'>IModelConnection.queryEntityIds</a> executes a query and returns the Ids of those entities satisfying the query; while <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection.elements/#getprops'>IModelConnection.Elements.getProps</a> accepts a set of element Ids and returns a JSON representation of each specified element.</p>
+<p>The 64 bits of an Id are divided into two parts:</p>
+<ul>
+<li>The upper 24 bits contain the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/briefcaseid'>BriefcaseId</a> identifying the briefcase that originally created the entity.</li>
+<li>The lower 40 bits contain the entity&apos;s <em>local Id</em>, unique and sequentially assigned within a single BriefcaseId. A local Id of 0 is illegal.</li>
+</ul>
+<p>An Id is considered either &quot;valid&quot; (identifies an existing entity) or &quot;invalid&quot; (does not identify any existing entity). The latter is represented by the 64-bit value <code>0</code>. An invalid Id does not necessarily indicate an error - for example, an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a> that has no parent element stores an invalid Id as its parentId.</p>
+<p>A BriefcaseId of 0xffffff indicates &quot;no briefcase&quot;. It is used instead to produce &quot;transient&quot; Ids that refer to non-persistent entities. Transient Ids are chiefly used by <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/decorator'>Decorator</a>s to produce decoration graphics with which the user can interact by clicking on our mousing over them. <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection/#transientids'>IModelConnection.transientIds</a> supplies a mechanism for obtaining a unique transient Id.</p>
+<h2 class="h-typescript-representation-of-a-64-bit-id">TypeScript representation of a 64-bit Id<a id="typescript-representation-of-a-64-bit-id" class="heading-anchor" href="#typescript-representation-of-a-64-bit-id"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>A <code>string</code> must meet either of the following criteria to be considered a well-formed (i.e. normalized) representation of an Id:</p>
+<ul>
+<li>It holds the <strong>exact</strong> string &quot;0&quot;, indicating an invalid Id (note, no leading &quot;0x&quot;); or</li>
+<li>It holds a well-formed hexadecimal representation of a non-zero 64-bit integer, indicating a valid Id.</li>
+</ul>
+<p>A well-formed <em>valid</em> Id string meets the following criteria:</p>
+<ul>
+<li>Contains no uppercase letters.</li>
+<li>Contains no spaces.</li>
+<li>Begins with the prefix &quot;0x&quot;.</li>
+<li>The first hexadecimal digit following the prefix is a <em>non-zero</em>  hexadecimal digit (i.e., in the range [a-z1-9] (no leading zeros).</li>
+<li>If no briefcase Id is present, the remainder of the string consists of no more than 9 hexadecimal digits.</li>
+<li>If a briefcase Id is present, the remainder of the string consists of the briefcase Id as no more than 5 hexadecimal digits, followed by exactly 10 hexadecimal digits representing the local Id, of which one must be non-zero.</li>
+</ul>
+<h2 class="h-id64string">Id64String<a id="id64string" class="heading-anchor" href="#id64string"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The type alias <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a> is used extensively throughout the iModel.js API to indicate that a function argument, return type, or object property is assumed to be a well-formed Id string according to the above criteria.</p>
+<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a> namespace supplies functions for working with <code>Id64String</code>s.</p>
+<p>The following <code>Id64</code> functions can produce well-formed Id64Strings:</p>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64/id64.fromjson'>Id64.fromJSON</a> produces an Id64String from its JSON representation.</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64/id64.fromstring'>Id64.fromString</a> normalizes a string value into a well-formed Id64String.</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64/id64.fromlocalandbriefcaseids'>Id64.fromLocalAndBriefcaseIds</a> concatenates integer briefcase and local Ids into an Id64String.</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64/id64.fromuint32pair'>Id64.fromUint32Pair</a> concatenates a pair of 32-bit integers into an Id64String.</li>
+</ul>
+<p><code>Id64.fromJSON</code> and <code>Id64.fromString</code> should be used when your code has a string value that may represent an Id but may not be well-formed - e.g., it may contain uppercase hexadecimal digits, leading or trailing whitespace, and so on. Examples include strings originating from user input or from some web service. Ids originating from calls to the back-end can be expected to be well-formed.</p>
+<p><code>Id64</code> also provides functions for interrogating Id strings:</p>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64/id64.isvalid'>Id64.isValid</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64/id64.isinvalid'>Id64.isInvalid</a>, and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64/id64.istransient'>Id64.isTransient</a> determine the type of Id represented by a well-formed Id string.</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64/id64.isid64'>Id64.isId64</a> determines whether an arbitrary string value contains a well-formed Id string.</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64/id64.getlocalid'>Id64.getLocalId</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64/id64.getbriefcaseid'>Id64.getBriefcaseId</a> extract the local and briefcase Ids from a well-formed Id string.</li>
+</ul>
+<h2 class="h-id64set-id64array-and-id64arg">Id64Set, Id64Array, and Id64Arg<a id="id64set-id64array-and-id64arg" class="heading-anchor" href="#id64set-id64array-and-id64arg"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>It is often necessary to refer to a group of Ids. There are two type aliases for this purpose:</p>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64set'>Id64Set</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64array'>Id64Array</a></li>
+</ul>
+<p>An Id64Array is more efficient memory-wise and insertion-wise, but does not enforce uniqueness (i.e. the same entry may appear multiple times in the group.) Id64Set enforces uniqueness and is more efficient for searching.</p>
+<blockquote>
+<p>Note that both Id64Set and Id64Array are merely groups of strings. The type aliases simply indicate that the group <em>should</em> only contain well-formed Id strings.</p>
+</blockquote>
+<p>Sometimes functions can accept one or more Ids. In this case the argument type is often declared to be <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64arg'>Id64Arg</a>. Id64Arg is merely a type alias for <code>Id64String | Id64Array | Id64Set</code> so that callers may supply either a single Id or a group of Ids. There is a convenience function <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64/id64.toidset'>Id64.toIdSet</a> that converts an Id64Arg into an Id64Set. Then, is it simple to process the arguments with code like:</p>
+<pre class="no-line-numbers"><code class="language-typescript"> public addCategories(arg: Id64Arg) { Id64.toIdSet(arg).forEach((id) =&gt; this.categories.add(id)); }</code></pre>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>05 November, 2018</span>
+            </p>
+
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div id='inner-table-of-contents'>
+       <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#typescript-representation-of-a-64-bit-id">TypeScript representation of a 64-bit Id</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#id64string">Id64String</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#id64set-id64array-and-id64arg">Id64Set, Id64Array, and Id64Arg</a>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color pt-1 pb-3">
+  <!-- Footer Links Container -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row d-flex align-items-center mt-2">
+
+      <!-- Grid column -->
+      <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
+
+        <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+        </a>
+        <small style="color: white; margin-right: 7px;"> powered by </small>
+        <a href="https://www.bentley.com">
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
+        </a>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-5 col-lg-4 ml-lg-0">
+
+        <!-- Social buttons -->
+        <div class="text-center text-md-right">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://twitter.com/imodeljs" target="_blank">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://github.com/imodeljs" target="_blank">
+                <i class="fa fa-github"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://stackoverflow.com/tags/imodeljs"
+                target="_blank">
+                <i class="fa fa-stack-overflow"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links Container -->
+
+</footer>
+<!-- Footer -->
+
+</div>
+<a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
+</body>
+
+</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

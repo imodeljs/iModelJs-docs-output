@@ -47,7 +47,7 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
                         <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
                     </a>
@@ -56,7 +56,7 @@
                     </button>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li>
+                                <li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//ChangeHistory">Change History</a></li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <span class='search-bar'>
@@ -91,7 +91,7 @@
     <article id="main" class='main-content'>
       <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/getting-started/update-application.md">Edit this page</a></div>
 
-      <form class="gform pure-form pure-form-stacked" method="POST" action="https://script.google.com/macros/s/AKfycby4TvSEAREx01P9anh-iTBOnQT4a660Yg4Frm5O7xxELknYSi0/exec">
+      <form class="gform pure-form pure-form-stacked" method="POST" action="https://script.google.com/macros/s/AKfycbzJdhCJyHUC7yDkJ3aXrlmtRZjGZOPNL6ip7_cmW_oRZHw2m2KW/exec">
         <div class="form-elements">
           <h2>Update an application you have already registered with Bentley</h2>
 
@@ -101,21 +101,17 @@
               <tr>
                 <td>
                   <label for="DeveloperName">Developer Name: <br />
-                    <em>Note: Must match a valid <a href="https://imsoidc.bentley.com" target="_blank">Bentley
-                        profile.</a></em></label>
                 </td>
                 <td>
-                  <input id="DeveloperName" name="DeveloperName" required size="30" /><!-- TODO: Get from IMS. Prepopulate. Disable.-->
+                  <input id="DeveloperName" name="DeveloperName" required size="30" disabled="disabled" />
                 </td>
               </tr>
               <tr>
                 <td>
                   <label for="DeveloperEmail">Developer Email: <br />
-                    <em>Note: Must match a valid <a href="https://imsoidc.bentley.com" target="_blank">Bentley
-                        profile.</a></em></label>
                 </td>
                 <td>
-                  <input id="DeveloperEmail" name="DeveloperEmail" type="email" value="" required size="30" /><!-- TODO: Get from IMS. Prepopulate. Disable.-->
+                  <input id="DeveloperEmail" name="DeveloperEmail" type="email" value="" required size="30" disabled="disabled" />
                   <span class="email-invalid" style="display:none">
                     Must be a valid email address</span>
                 </td>
@@ -147,7 +143,7 @@
               <tr>
                 <td>
                   <label for="AppHomepageURL">App Homepage URL:<br />
-                    <em>This may be displayed to potential users of your application. <br />(SPA clients only)</em>
+                    <em>This may be displayed to potential users of your application. <br />(Browser clients only)</em>
                   </label>
                 </td>
                 <td>
@@ -157,7 +153,7 @@
               <tr>
                 <td>
                   <label for="ClientLogoURL">Client Logo URL:<br />
-                    <em>Will be shown on consent screen. <br /> (SPA clients only)</em> </label>
+                    <em>Will be shown on consent screen. <br /> (Browser clients only)</em> </label>
                 </td>
                 <td>
                   <input id="ClientLogoURL" name="ClientLogoURL" size="40" placeholder="Optional" />
@@ -166,7 +162,7 @@
               <tr>
                 <td>
                   <label for="LinkToAppPrivacyPolicy">Link To Application Privacy Policy:<br />
-                    <em>Will be shown on consent screen. <br /> (SPA clients only)</em> </label>
+                    <em>Will be shown on consent screen. <br /> (Browser clients only)</em> </label>
                 </td>
                 <td>
                   <input id="LinkToAppPrivacyPolicy" name="LinkToAppPrivacyPolicy" size="40" placeholder="Optional" />
@@ -175,7 +171,7 @@
               <tr>
                 <td>
                   <label for="LinkToAppTOS">Link To Application Terms Of Service:<br />
-                    <em>Will be shown on consent screen. <br /> (SPA clients only)</em> </label>
+                    <em>Will be shown on consent screen. <br /> (Browser clients only)</em> </label>
                 </td>
                 <td>
                   <input id="LinkToAppTOS" name="LinkToAppTOS" size="40" placeholder="Optional" />
@@ -197,7 +193,7 @@
                       Must be over HTTPS unless registered as a localhost.</em></label>
                 </td>
                 <td>
-                  <textarea id="AdditionalRedirectURIs" name="AdditionalRedirectURIs" rows="5" cols="40" placeholder="Example: http://localhost:3000/signin-callback"></textarea>
+                  <textarea id="AdditionalRedirectURIs" name="AdditionalRedirectURIs" rows="5" cols="40">http://localhost:3000/signin-callback</textarea>
                 </td>
               </tr>
               <tr>
@@ -215,11 +211,18 @@
                       Must be over HTTPS unless registered as a localhost.</em></label>
                 </td>
                 <td>
-                  <textarea id="NewPostLogoutURI" name="NewPostLogoutURI" rows="5" cols="40" placeholder="Example: http://localhost:3000/signout-callback"></textarea>
+                  <textarea id="NewPostLogoutURI" name="NewPostLogoutURI" rows="5" cols="40">http://localhost:3000/signout-callback</textarea>
                 </td>
               </tr>
             </table>
           </fieldset>
+
+          <div class="hidden">
+            <input id="Environment" name="Environment" style="display:none;" value="https://imodeljs.github.io/iModelJs-docs-output//" />
+            <input id="formGoogleSheetName" name="formGoogleSheetName" style="display:none;" value="UpdateApplication" />
+            <input id="honeypot" type="text" name="honeypot" value="" style="display:none;" />
+          </div>
+
           <button class="button-success pure-button button-xlarge">Submit</button>
         </div>
 
@@ -227,7 +230,20 @@
           <h2>We are processing your request. You can expect an email response from
             iModeljs.App.Registration@bentley.com within 24 hours.</h2>
           <button onclick="location.href='https://imodeljs.github.io/iModelJs-docs-output//getting-started'" type="button">Back</button>
+        </div>        <div class="error_message" style="display:none;">
+          <h2>There was an error processing the request. Please retry or contact <a id="emailLink" href="#">iModeljs.App.Registration@bentley.com</a>
+            directly regarding your request.</h2>
+          <button onclick="location.href='https://imodeljs.github.io/iModelJs-docs-output//getting-started'" type="button">Back</button>
         </div>
+        
+        <script>
+          $(function () {
+            $("#emailLink").click(function (e) {
+              e.preventDefault();
+              generateEmail('gform', 'iModeljs.App.Registration@bentley.com', 'UpdateApplication');
+            });
+          });
+        </script>
       </form>
 
       
@@ -242,7 +258,11 @@
 </div>
 
 <script data-cfasync="false" type="text/javascript" src="https://imodeljs.github.io/iModelJs-docs-output//getting-started/scripts/form-submission-handler.js"></script>
-
+<script data-cfasync="false" type="text/javascript" src="https://imodeljs.github.io/iModelJs-docs-output//scripts/static/js/auth_main.js"></script>
+<script data-cfasync="false" type="text/javascript" src="https://imodeljs.github.io/iModelJs-docs-output//scripts/static/js/auth_runtime.js"></script>
+<script data-cfasync="false" type="text/javascript" src="https://imodeljs.github.io/iModelJs-docs-output//scripts/static/js/auth_vendors.js"></script>
+<link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//scripts/static/css/auth_vendors.css">
+<link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//scripts/static/css/auth_main.css">
 <!-- Footer -->
 <footer class="page-footer font-small mdb-color pt-1 pb-3">
   <!-- Footer Links Container -->

@@ -47,7 +47,7 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
                         <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
                     </a>
@@ -56,7 +56,7 @@
                     </button>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//ChangeHistory">Change History</a></li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <span class='search-bar'>
@@ -107,10 +107,40 @@
         </ul>    </div>
     <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/">geometry</a> > CurvePrimitive</div>
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/">geometry</a> > CurvePrimitive</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/geometry/CurvePrimitive.md">Edit this page</a></div>
             <h1 id="curve primitives">Curve Primitives</h1>
-<p>A CurvePrimitive is a bounded continuous curve.</p>
+<ul>
+<li>A CurvePrimitive is a bounded continuous curve.</li>
+<li>Each curve primitive type (LineSegment3d, LineString3d, Arc3d, bsplines, etc) has a <em>fraction parameterization</em> determined by its particular equations.</li>
+<li>The fraction parameterization must have<ul>
+<li><code>fraction=0</code> is the startof the primitive</li>
+<li><code>fraction=1</code> is the end of the primitive</li>
+<li>increasing fractions always move forward along the primitive.</li>
+</ul>
+</li>
+<li>The &quot;forward&quot; <em>distance</em> movement for increasing fraction is <em>not</em> required to be proportional to fraction.</li>
+<li>Fractional and distance-along position are proportional only in very special cases:<ul>
+<li>LineSegment</li>
+<li>circular arc</li>
+<li>transition spiral curves.</li>
+</ul>
+</li>
+<li>Other curve types that have more complicated (non-proportional) fraction-to-distance relations are<ul>
+<li>elliptic arcs</li>
+<li>bspline curves</li>
+<li>linestrings</li>
+</ul>
+</li>
+<li>When movement &quot;by distance&quot; is required, it can be done by<ul>
+<li>Using method calls that explicitly take distance as ain input.</li>
+<li>Wrap a curve primitive (or chain of curve primitives) in a CurvePrimitiveWithDistanceIndex.<ul>
+<li>The CurvePrimitiveWithDistanceIndex has cached distance data to facilitate repeated queries by distance, and to make &quot;fractional position along&quot; the composite curve act like proportional distance.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h2 class="h-linesegment">lineSegment<a id="linesegment" class="heading-anchor" href="#linesegment"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ul>
 <li>A line segment is a portion of an infinite line.</li>
@@ -128,9 +158,25 @@ Point X(f) at fractional position f along the lineSegment is
 </ul>
 <h2 class="h-linestring">lineString<a id="linestring" class="heading-anchor" href="#linestring"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ul>
-<li>Typescript object:<pre><code>      const myLineString = LineString.create ([point0, point1, point2 ....]);</code></pre><h2 class="h-arcs-circular-and-elliptic">arcs (circular and elliptic)<a id="arcs-circular-and-elliptic" class="heading-anchor" href="#arcs-circular-and-elliptic"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<li>A LineString is an array of points that are to be connected by straight lines.</li>
+<li>Json Fragment:
+<img src=".././figs/CurvePrimitives/LineString.png" alt="&gt;"></li>
+<li>Typescript object:<pre><code>      const myLineString = LineString.create ([point0, point1, point2 ....]);</code></pre></li>
+<li>Fractional Parameterization</li>
+</ul>
+<p>Having both individual line segments and the composite linestring complicates parameterization.</p>
+<ul>
+<li><ul>
+<li>As with all CurvePrimitives, the fractional parameterization for the complete linestring must have <code>fraction=0</code> at the start and <code>fraction=1</code> at the end.</li>
+<li>The fractional positions of each inerior vertex are then defined at <em>equal intervals in the fraction space</em>.</li>
+<li><img src=".././figs/CurvePrimitives/LineStringFractions.png" alt="&gt;"></li>
+<li>Hence in the example, with 4 segments the vertex fractions increment by one quarter.</li>
+<li>Within each segment, the fraction interval is mapped as if it were a line segment.</li>
+<li>Note that having uniform vertex-to-vertex fraction means that the distance-along-the-linestring is <em>not proportional to fraction-along-entire-linestring</em>.   Fraction and distance changes are only proportional within individual segments.</li>
+</ul>
 </li>
 </ul>
+<h2 class="h-arcs-circular-and-elliptic">arcs (circular and elliptic)<a id="arcs-circular-and-elliptic" class="heading-anchor" href="#arcs-circular-and-elliptic"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>An arc primitive is a portion of a circular or ellipticla arc.   The equations for a complete elliptic arc require a center point and two vectors.   The start and end of a partial arc are controlled by two angles.</p>
 <p>The equational forms for circular and elliptic cases are identical.  Telling whether a given arc is true circular requires examination of the vector coordinates.</p>
 <p>The stroking equation that maps  an angle to a coordinates to points around a (full) elliptic (or circular) arc is</p>
@@ -175,7 +221,7 @@ Point X(f) at fractional position f along the lineSegment is
 <p><img src=".././figs/CurvePrimitives/EllipticAxisVariants.png" alt="&gt;"></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 October, 2018</span>
+                <span class='date-updated'>05 November, 2018</span>
             </p>
 
             

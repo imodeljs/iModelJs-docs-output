@@ -47,7 +47,7 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
                         <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
                     </a>
@@ -56,7 +56,7 @@
                     </button>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//ChangeHistory">Change History</a></li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <span class='search-bar'>
@@ -180,19 +180,19 @@
         </ul>    </div>
     <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/">imodeljs-backend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/codes/">Codes</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/codes/codespecs/">CodeSpecs</a> > insert</div>
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/">imodeljs-backend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/codes/">Codes</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/codes/codespecs/">CodeSpecs</a> > insert</div>
             
             <h2 class="h-insert">insert <span class="badge badge-pill badge-primary badge-method">Method</span><a id="insert" class="heading-anchor" href="#insert"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Add a new CodeSpec to the IModelDb.</p>
 <p></p><p><em>Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">    // Create and insert a new CodeSpec with the name &quot;CodeSpec1&quot;. In this example, we choose to make a model-scoped CodeSpec.
-    const codeSpec: CodeSpec = new CodeSpec(testImodel, new Id64(), &quot;CodeSpec1&quot;, CodeScopeSpec.Type.Model);
-    const codeSpecId: Id64 = testImodel.codeSpecs.insert(codeSpec);
+    const codeSpec: CodeSpec = new CodeSpec(testImodel, Id64.invalid, &quot;CodeSpec1&quot;, CodeScopeSpec.Type.Model);
+    const codeSpecId: Id64String = testImodel.codeSpecs.insert(codeSpec);
     assert.deepEqual(codeSpecId, codeSpec.id);
 
     // Should not be able to insert a duplicate.
     try {
-      const codeSpecDup: CodeSpec = new CodeSpec(testImodel, new Id64(), &quot;CodeSpec1&quot;, CodeScopeSpec.Type.Model);
+      const codeSpecDup: CodeSpec = new CodeSpec(testImodel, Id64.invalid, &quot;CodeSpec1&quot;, CodeScopeSpec.Type.Model);
       testImodel.codeSpecs.insert(codeSpecDup); // throws in case of error
       assert.fail();
     } catch (err) {
@@ -200,11 +200,11 @@
     }
 
     // We should be able to insert another CodeSpec with a different name.
-    const codeSpec2: CodeSpec = new CodeSpec(testImodel, new Id64(), &quot;CodeSpec2&quot;, CodeScopeSpec.Type.Model, CodeScopeSpec.ScopeRequirement.FederationGuid);
-    const codeSpec2Id: Id64 = testImodel.codeSpecs.insert(codeSpec2);
+    const codeSpec2: CodeSpec = new CodeSpec(testImodel, Id64.invalid, &quot;CodeSpec2&quot;, CodeScopeSpec.Type.Model, CodeScopeSpec.ScopeRequirement.FederationGuid);
+    const codeSpec2Id: Id64String = testImodel.codeSpecs.insert(codeSpec2);
     assert.deepEqual(codeSpec2Id, codeSpec2.id);
     assert.notDeepEqual(codeSpec2Id, codeSpecId);</code></pre>
-<p><span class="method-name">insert</span><span class="method-parenthesis">(</span><span class="method-parameters">codeSpec: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/codespec'>CodeSpec</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span></p>
+<p><span class="method-name">insert</span><span class="method-parenthesis">(</span><span class="method-parameters">codeSpec: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/codespec'>CodeSpec</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span></p>
 <p><span class="badge badge-pill badge-primary badge-note">note</span> If successful, this method will assign a valid CodeSpecId to the supplied CodeSpec</p>
 <p><span class="badge badge-pill badge-primary badge-throws">throws</span> IModelError if the insertion fails</p>
 <table class="table table-responsive"><tbody><tr>
@@ -224,7 +224,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 October, 2018</span>
+                <span class='date-updated'>05 November, 2018</span>
             </p>
 
             

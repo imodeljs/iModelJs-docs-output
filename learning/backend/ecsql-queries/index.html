@@ -47,7 +47,7 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
                         <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
                     </a>
@@ -56,7 +56,7 @@
                     </button>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//ChangeHistory">Change History</a></li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <span class='search-bar'>
@@ -107,12 +107,12 @@
         </ul>    </div>
     <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/">backend</a> > ECSQL-queries</div>
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/">backend</a> > ECSQL-queries</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/backend/ECSQL-queries.md">Edit this page</a></div>
             <h1 id="useful ecsql queries">Useful ECSQL Queries</h1>
 <p>The following ECSQL select statements are examples of useful queries that an app backend or a service might want to perform. They are written in a form that can be executed in backend code.</p>
 <h2 class="h-select-elements-in-a-particular-model">Select Elements in a particular Model<a id="select-elements-in-a-particular-model" class="heading-anchor" href="#select-elements-in-a-particular-model"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<pre class="no-line-numbers"><code class="language-typescript">    const modelId: Id64 = IModelDb.repositoryModelId;
+<pre class="no-line-numbers"><code class="language-typescript">    const modelId: Id64String = IModelDb.repositoryModelId;
     iModel.withPreparedStatement(`SELECT ECInstanceId AS id FROM ${Element.classFullName} WHERE Model.Id=:modelId`, (statement: ECSqlStatement) =&gt; {
       statement.bindId(&quot;modelId&quot;, modelId);
       while (DbResult.BE_SQLITE_ROW === statement.step()) {
@@ -120,7 +120,7 @@
       }
     });</code></pre>
 <h2 class="h-select-top-level-elements-in-a-particular-model">Select Top-Level Elements in a particular Model<a id="select-top-level-elements-in-a-particular-model" class="heading-anchor" href="#select-top-level-elements-in-a-particular-model"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<pre class="no-line-numbers"><code class="language-typescript">    const modelId: Id64 = IModelDb.repositoryModelId;
+<pre class="no-line-numbers"><code class="language-typescript">    const modelId: Id64String = IModelDb.repositoryModelId;
     iModel.withPreparedStatement(`SELECT ECInstanceId AS id FROM ${Element.classFullName} WHERE Model.Id=:modelId AND Parent.Id IS NULL`, (statement: ECSqlStatement) =&gt; {
       statement.bindId(&quot;modelId&quot;, modelId);
       while (DbResult.BE_SQLITE_ROW === statement.step()) {
@@ -128,7 +128,7 @@
       }
     });</code></pre>
 <h2 class="h-select-child-elements">Select Child Elements<a id="select-child-elements" class="heading-anchor" href="#select-child-elements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<pre class="no-line-numbers"><code class="language-typescript">    const parentId: Id64 = IModelDb.rootSubjectId;
+<pre class="no-line-numbers"><code class="language-typescript">    const parentId: Id64String = IModelDb.rootSubjectId;
     iModel.withPreparedStatement(`SELECT ECInstanceId AS id FROM ${Element.classFullName} WHERE Parent.Id=:parentId`, (statement: ECSqlStatement) =&gt; {
       statement.bindId(&quot;parentId&quot;, parentId);
       while (DbResult.BE_SQLITE_ROW === statement.step()) {
@@ -154,9 +154,9 @@
       where
         partition.codevalue=:partitionName and partition.parent.id = parent.ecinstanceid;
     `, (stmt: ECSqlStatement) =&gt; {
-        stmt.bindString(&quot;parentName&quot;, &quot;Subject1&quot;);
-        stmt.bindString(&quot;partitionName&quot;, &quot;Physical&quot;);
-        const ids: Id64Set = new Set&lt;string&gt;();
+        stmt.bindValue(&quot;parentName&quot;, &quot;Subject1&quot;);
+        stmt.bindValue(&quot;partitionName&quot;, &quot;Physical&quot;);
+        const ids: Id64Set = new Set&lt;Id64String&gt;();
         while (stmt.step() === DbResult.BE_SQLITE_ROW)
           ids.add(stmt.getValue(0).getId());
         return ids;
@@ -170,7 +170,7 @@
 <p>As an alternative, you can use the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/queryentityids'>IModelDb.queryEntityIds</a> convenience method for simple cases.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 October, 2018</span>
+                <span class='date-updated'>05 November, 2018</span>
             </p>
 
             

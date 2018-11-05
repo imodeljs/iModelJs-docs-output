@@ -5,7 +5,7 @@ import { CoordinateXYZ } from "../curve/CurvePrimitive";
 import { CurveCollection } from "../curve/CurveChain";
 import { TransitionSpiral3d } from "../curve/TransitionSpiral";
 import { Path, Loop, ParityRegion, UnionRegion, BagOfCurves } from "../curve/CurveChain";
-import { IndexedPolyface, PolyfaceAuxData } from "../polyface/Polyface";
+import { IndexedPolyface } from "../polyface/Polyface";
 import { BSplineCurve3d } from "../bspline/BSplineCurve";
 import { BSplineSurface3d, BSplineSurface3dH } from "../bspline/BSplineSurface";
 import { Sphere } from "../solid/Sphere";
@@ -400,7 +400,6 @@ export declare namespace IModelJson {
         static parseBcurve(data?: any): BSplineCurve3d | BSplineCurve3dH | undefined;
         static parseArray(data?: any): any[] | undefined;
         private static addZeroBasedIndicesFromSignedOneBased;
-        static parsePolyfaceAuxData(data?: any): PolyfaceAuxData | undefined;
         static parseIndexedMesh(data?: any): any | undefined;
         static parseCurveCollectionMembers(result: CurveCollection, data?: any): CurveCollection | undefined;
         static parseBsurf(data?: any): BSplineSurface3d | BSplineSurface3dH | undefined;
@@ -466,7 +465,6 @@ export declare namespace IModelJson {
         handleRuledSweep(data: RuledSweep): any;
         handleRotationalSweep(data: RotationalSweep): any;
         handleBox(box: Box): any;
-        private handlePolyfaceAuxData;
         handleIndexedPolyface(pf: IndexedPolyface): any;
         handleBSplineCurve3d(curve: BSplineCurve3d): any;
         handleBSplineCurve3dH(curve: BSplineCurve3dH): any;

@@ -47,7 +47,7 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
                         <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
                     </a>
@@ -56,7 +56,7 @@
                     </button>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//ChangeHistory">Change History</a></li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <span class='search-bar'>
@@ -107,7 +107,7 @@
         </ul>    </div>
     <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/">backend</a> > CreateElements</div>
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/">backend</a> > CreateElements</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/backend/CreateElements.md">Edit this page</a></div>
             <h1 id="creating elements">Creating Elements</h1>
 <p>Use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb.elements/insertelement'>IModelDb.Elements.insertElement</a> to insert a new element into an IModelDb. This method takes as its input an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a> or a subclass of it, which defines the class and all required properties of the new element. The pattern is:</p>
@@ -115,7 +115,7 @@
   classFullName: bisFullClassName
   ... other required props ...
 };
-const newElementId: Id64 = iModel.elements.insertElement(elementProps);</code></pre>
+const newElementId: Id64String = iModel.elements.insertElement(elementProps);</code></pre>
 <p>The type of the &quot;props&quot; object is chosen as appropriate for the particular Element subclass that is to be instanced. There are <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/informationpartitionelementprops'>InformationPartitionElementProps</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/subjectprops'>SubjectProps</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/geometricelement3dprops'>GeometricElement3dProps</a>, and many more. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/'>Wire Formats</a> for the complete list of props interfaces defined in iModel.js. Domains may define their own &quot;props&quot; subclasses.</p>
 <p>Why &quot;props&quot;?</p>
 <p>As explained in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/schemasandelementsintypescript'>article on elements and schemas</a>, an element is always an instance of a class in the BIS hierarchy. The BIS class of an element defines what the element is, so that it accurately represents an entity in the real world, according to a well thought out classification scheme that is appropriate to the modeling problem at hand. To that end, domains define many subclasses of Element. These BIS classes support strong modeling semantics. At the same time, it is very convenient to work with BIS classes in iModel.js apps. In particular, there is no need to write a TypeScript class for every BIS class that you may work with.</p>
@@ -125,7 +125,7 @@ const newElementId: Id64 = iModel.elements.insertElement(elementProps);</code></
 <h2 class="h-examples">Examples<a id="examples" class="heading-anchor" href="#examples"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Here are examples of creating various specific types of elements:</p>
 <h2 class="h-informationpartitionelement">InformationPartitionElement<a id="informationpartitionelement" class="heading-anchor" href="#informationpartitionelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<pre class="no-line-numbers"><code class="language-typescript">export function insertDefinitionModel(parentSubject: Subject, modelName: string): Id64 {
+<pre class="no-line-numbers"><code class="language-typescript">export function insertDefinitionModel(parentSubject: Subject, modelName: string): Id64String {
   const iModelDb = parentSubject.iModel;
   const partitionProps: InformationPartitionElementProps = {
     classFullName: DefinitionPartition.classFullName,
@@ -136,7 +136,7 @@ const newElementId: Id64 = iModel.elements.insertElement(elementProps);</code></
     },
     code: DefinitionPartition.createCode(iModelDb, parentSubject.id, modelName),
   };
-  const partitionId: Id64 = iModelDb.elements.insertElement(partitionProps);
+  const partitionId: Id64String = iModelDb.elements.insertElement(partitionProps);
   const model: DefinitionModel = iModelDb.models.createModel({
     classFullName: DefinitionModel.classFullName,
     modeledElement: { id: partitionId },
@@ -185,14 +185,14 @@ export function generateGeometry(radius: number = 0.1): GeometryStreamProps {
 </code></pre>
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/geometrystreambuilder'>GeometryStreamBuilder</a></p>
 <h2 class="h-spatialcategory">SpatialCategory<a id="spatialcategory" class="heading-anchor" href="#spatialcategory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<pre class="no-line-numbers"><code class="language-typescript">export function insertSpatialCategory(iModelDb: IModelDb, modelId: Id64, name: string, color: ColorDef): Id64 {
+<pre class="no-line-numbers"><code class="language-typescript">export function insertSpatialCategory(iModelDb: IModelDb, modelId: Id64String, name: string, color: ColorDef): Id64String {
   const categoryProps: CategoryProps = {
     classFullName: SpatialCategory.classFullName,
     model: modelId,
     code: SpatialCategory.createCode(iModelDb, modelId, name),
     isPrivate: false,
   };
-  const categoryId: Id64 = iModelDb.elements.insertElement(categoryProps);
+  const categoryId: Id64String = iModelDb.elements.insertElement(categoryProps);
   const category: SpatialCategory = iModelDb.elements.getElement(categoryId) as SpatialCategory;
   category.setDefaultAppearance(new SubCategoryAppearance({ color }));
   iModelDb.elements.updateElement(category);
@@ -202,7 +202,7 @@ export function generateGeometry(radius: number = 0.1): GeometryStreamProps {
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/spatialcategory'>SpatialCategory</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/categoryprops'>CategoryProps</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryappearance'>SubCategoryAppearance</a>.</p>
 <p>Also see <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb.elements/updateelement'>IModelDb.Elements.updateElement</a>.</p>
 <h2 class="h-modelselector">ModelSelector<a id="modelselector" class="heading-anchor" href="#modelselector"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<pre class="no-line-numbers"><code class="language-typescript">export function insertModelSelector(iModelDb: IModelDb, modelId: Id64, models: string[]): Id64 {
+<pre class="no-line-numbers"><code class="language-typescript">export function insertModelSelector(iModelDb: IModelDb, modelId: Id64String, models: string[]): Id64String {
   const modelSelectorProps: ModelSelectorProps = {
     classFullName: ModelSelector.classFullName,
     model: modelId,
@@ -214,7 +214,7 @@ export function generateGeometry(radius: number = 0.1): GeometryStreamProps {
 </code></pre>
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/modelselector'>ModelSelector</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/modelselectorprops'>ModelSelectorProps</a></p>
 <h2 class="h-categoryselector">CategorySelector<a id="categoryselector" class="heading-anchor" href="#categoryselector"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<pre class="no-line-numbers"><code class="language-typescript">export function insertCategorySelector(iModelDb: IModelDb, modelId: Id64, categories: string[]): Id64 {
+<pre class="no-line-numbers"><code class="language-typescript">export function insertCategorySelector(iModelDb: IModelDb, modelId: Id64String, categories: string[]): Id64String {
   const categorySelectorProps: CategorySelectorProps = {
     classFullName: CategorySelector.classFullName,
     model: modelId,
@@ -226,7 +226,7 @@ export function generateGeometry(radius: number = 0.1): GeometryStreamProps {
 </code></pre>
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/categoryselector'>CategorySelector</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/categoryselectorprops'>CategorySelectorProps</a></p>
 <h2 class="h-displaystyle3d">DisplayStyle3d<a id="displaystyle3d" class="heading-anchor" href="#displaystyle3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<pre class="no-line-numbers"><code class="language-typescript">export function insertDisplayStyle3d(iModelDb: IModelDb, modelId: Id64): Id64 {
+<pre class="no-line-numbers"><code class="language-typescript">export function insertDisplayStyle3d(iModelDb: IModelDb, modelId: Id64String): Id64String {
   const displayStyleProps: DefinitionElementProps = {
     classFullName: DisplayStyle3d.classFullName,
     model: modelId,
@@ -240,14 +240,14 @@ export function generateGeometry(radius: number = 0.1): GeometryStreamProps {
 <h2 class="h-orthographicviewdefinition">OrthographicViewDefinition<a id="orthographicviewdefinition" class="heading-anchor" href="#orthographicviewdefinition"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <pre class="no-line-numbers"><code class="language-typescript">export function insertOrthographicViewDefinition(
   iModelDb: IModelDb,
-  modelId: Id64,
+  modelId: Id64String,
   viewName: string,
-  modelSelectorId: Id64,
-  categorySelectorId: Id64,
-  displayStyleId: Id64,
+  modelSelectorId: Id64String,
+  categorySelectorId: Id64String,
+  displayStyleId: Id64String,
   origin: XYZProps,
   extents: XYZProps,
-): Id64 {
+): Id64String {
   const viewDefinitionProps: SpatialViewDefinitionProps = {
     classFullName: OrthographicViewDefinition.classFullName,
     model: modelId,
@@ -266,7 +266,7 @@ export function generateGeometry(radius: number = 0.1): GeometryStreamProps {
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/viewdefinition/createcode'>ViewDefinition.createCode</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/orthographicviewdefinition'>OrthographicViewDefinition</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/spatialviewdefinitionprops'>SpatialViewDefinitionProps</a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 October, 2018</span>
+                <span class='date-updated'>05 November, 2018</span>
             </p>
 
             

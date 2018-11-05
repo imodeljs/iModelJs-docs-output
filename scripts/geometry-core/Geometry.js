@@ -1,59 +1,12 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
-* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
-*--------------------------------------------------------------------------------------------*/
+|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
+ *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module CartesianGeometry */
 // import { Point2d } from "./Geometry2d";
 /* tslint:disable:variable-name jsdoc-format no-empty*/
 const PointVector_1 = require("./PointVector");
-/** Enumeration of the 6 possible orderings of XYZ axis order */
-var AxisOrder;
-(function (AxisOrder) {
-    /** Right handed system, X then Y then Z */
-    AxisOrder[AxisOrder["XYZ"] = 0] = "XYZ";
-    /** Right handed system, Y then Z then X */
-    AxisOrder[AxisOrder["YZX"] = 1] = "YZX";
-    /** Right handed system, Z then X then Y */
-    AxisOrder[AxisOrder["ZXY"] = 2] = "ZXY";
-    /** Left handed system, X then Z then Y */
-    AxisOrder[AxisOrder["XZY"] = 4] = "XZY";
-    /** Left handed system, Y then X then Z */
-    AxisOrder[AxisOrder["YXZ"] = 5] = "YXZ";
-    /** Left handed system, Z then Y then X */
-    AxisOrder[AxisOrder["ZYX"] = 6] = "ZYX";
-})(AxisOrder = exports.AxisOrder || (exports.AxisOrder = {}));
-/* Enumeration of the 3 axes AxisIndex.X, AxisIndex.Y, AxisIndex.Z */
-var AxisIndex;
-(function (AxisIndex) {
-    AxisIndex[AxisIndex["X"] = 0] = "X";
-    AxisIndex[AxisIndex["Y"] = 1] = "Y";
-    AxisIndex[AxisIndex["Z"] = 2] = "Z";
-})(AxisIndex = exports.AxisIndex || (exports.AxisIndex = {}));
-/* Standard views.   Used in `Matrix3d.createStandardViewAxes (index: StandardViewIndex, worldToView :boolean)`
-*/
-var StandardViewIndex;
-(function (StandardViewIndex) {
-    StandardViewIndex[StandardViewIndex["Top"] = 1] = "Top";
-    StandardViewIndex[StandardViewIndex["Bottom"] = 2] = "Bottom";
-    StandardViewIndex[StandardViewIndex["Left"] = 3] = "Left";
-    StandardViewIndex[StandardViewIndex["Right"] = 4] = "Right";
-    StandardViewIndex[StandardViewIndex["Front"] = 5] = "Front";
-    StandardViewIndex[StandardViewIndex["Back"] = 6] = "Back";
-    StandardViewIndex[StandardViewIndex["Iso"] = 7] = "Iso";
-    StandardViewIndex[StandardViewIndex["RightIso"] = 8] = "RightIso";
-})(StandardViewIndex = exports.StandardViewIndex || (exports.StandardViewIndex = {}));
-/** Enumeration among choice for how a coordinate transformation should incorporate scaling. */
-var AxisScaleSelect;
-(function (AxisScaleSelect) {
-    /** All axes of unit length. */
-    AxisScaleSelect[AxisScaleSelect["Unit"] = 0] = "Unit";
-    /** On each axis, the vector length matches the longest side of the range of the data. */
-    AxisScaleSelect[AxisScaleSelect["LongestRangeDirection"] = 1] = "LongestRangeDirection";
-    /** On each axis, the vector length matches he length of the corresponding edge of the range. */
-    AxisScaleSelect[AxisScaleSelect["NonUniformRangeContainment"] = 2] = "NonUniformRangeContainment";
-})(AxisScaleSelect = exports.AxisScaleSelect || (exports.AxisScaleSelect = {}));
 class Geometry {
     /** Points and vectors can be emitted in two forms:
       *

@@ -1,3 +1,4 @@
+/** @module ArraysAndInterfaces */
 import { XYAndZ, Point3d, Vector3d } from "./PointVector";
 import { Range3d } from "./Range";
 import { Transform } from "./Transform";

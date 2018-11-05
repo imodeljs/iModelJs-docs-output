@@ -65,17 +65,6 @@ export declare class CurveLocationDetail {
     /** create with CurvePrimitive pointer, fraction, and point coordinates.
      */
     static createCurveFractionPoint(curve: CurvePrimitive, fraction: number, point: Point3d, result?: CurveLocationDetail): CurveLocationDetail;
-    /** create with CurvePrimitive pointer, fraction, and point coordinates.
-     */
-    static createCurveFractionPointDistance(curve: CurvePrimitive, fraction: number, point: Point3d, a: number, result?: CurveLocationDetail): CurveLocationDetail;
-    /** update or create if closer than current contents.
-     * @param curve candidate curve
-     * @param fraction candidate fraction
-     * @param point candidate point
-     * @param a candidate distance
-     * @returns true if the given distance is smaller (and hence this detail was updated.)
-     */
-    updateIfCloserCurveFractionPointDistance(curve: CurvePrimitive, fraction: number, point: Point3d, a: number): boolean;
 }
 /** A pair of CurveLocationDetail. */
 export declare class CurveLocationDetailPair {

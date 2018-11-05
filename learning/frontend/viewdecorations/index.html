@@ -47,7 +47,7 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
                         <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
                     </a>
@@ -56,7 +56,7 @@
                     </button>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//ChangeHistory">Change History</a></li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <span class='search-bar'>
@@ -107,7 +107,7 @@
         </ul>    </div>
     <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/">frontend</a> > ViewDecorations</div>
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/">frontend</a> > ViewDecorations</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/frontend/ViewDecorations.md">Edit this page</a></div>
             <h1 id="view decorations">View Decorations</h1>
 <p>A View Decoration shows application-generated graphics in a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport'>ScreenViewport</a> <em>in addition to</em> the persistent (i.e. <em>scene</em>) geometry displayed by the Viewport itself. In contrast to the graphics from the persistent geometry (e.g. the Model), View Decorations must be re-evaluated <em>every time</em> a frame is rendered. In this sense, they <em>decorate</em> the frame with graphics that are only valid for a single frame.</p>
@@ -115,6 +115,7 @@
 <p>The process of creating View Decorations starts by adding an object that implements the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/decorator'>Decorator</a> interface to the <code>ViewManager</code> via the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager/adddecorator'>ViewManager.addDecorator</a> method. The most important part of the <code>Decorate</code> interface is the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/decorator/#decorate'>Decorator.decorate</a> method, which is called every time iModel.js renders a frame <em>for any ScreenViewport</em>. The argument to the <code>decorate</code> method is a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/decoratecontext'>DecorateContext</a> that supplies information about the ScreenViewport being rendered, as well as methods to create and save decoration graphics. The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/decoratecontext/#viewport'>DecorateContext.viewport</a> member holds the target viewport. If you wish to decorate only a single viewport, you must test this member against your intended viewport.</p>
 <p>The job of the <code>decorate</code> method is to supply the graphics (the <em>Decorations</em>) for a single frame of a single ScreenViewport.</p>
 <p>A <code>Decorator</code> remains active until you call <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager/dropdecorator'>ViewManager.dropDecorator</a> (Note: ViewManager.addDecorator returns a method that calls this for you if you wish to use it.)</p>
+<p>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool'>InteractiveTool</a> can also show decorations and does <em>not</em> need to call the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager/adddecorator'>ViewManager.addDecorator</a> method to add itself. <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/decorate'>InteractiveTool.decorate</a> is called for the <em>active</em> tool to add it&apos;s decorations, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/decorate'>InteractiveTool.decorate</a> is not called when the tool is paused by another tool such as a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/viewtool'>ViewTool</a>. To show decorations while paused, a tool can implement <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/decoratesuspended'>InteractiveTool.decorateSuspended</a>.</p>
 <h2 class="h-categories-of-view-decorations">Categories of View Decorations<a id="categories-of-view-decorations" class="heading-anchor" href="#categories-of-view-decorations"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Sometimes decorations are meant to <em>intersperse</em> with the scene geometry, and sometimes they are meant to display atop of it. For this reason, there are 3 broad categories of View Decorations:</p>
 <ul>
@@ -139,6 +140,21 @@
 </blockquote>
 <p>You create View Graphic Decorations by calling <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/decoratecontext/#creategraphicbuilder'>DecorateContext.createGraphicBuilder</a> on the context supplied to <code>decorate</code>, supplying the appropriate <code>GraphicType</code>.
 You then add one or more graphics to the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbuilder'>GraphicBuilder</a> using its methods. Finally, you add the completed graphics to the frame by calling <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/decoratecontext/adddecorationfrombuilder'>DecorateContext.addDecorationFromBuilder</a>.</p>
+<p>The following example illustrates creating a view graphic decoration to show the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/projectextents'>IModel.projectExtents</a> in spatial views:</p>
+<pre class="no-line-numbers"><code class="language-typescript">  /** Add a world decoration to display 3d graphics showing the project extents interspersed with the scene graphics. */
+  public decorate(context: DecorateContext): void {
+    // Check view type, project extents is only applicable to show in spatial views.
+    const vp = context.viewport;
+    if (!vp.view.isSpatialView())
+      return;
+
+    const builder = context.createGraphicBuilder(GraphicType.WorldDecoration, undefined);
+    // Set edge color to white or black depending on current view background color and set line weight to 2.
+    builder.setSymbology(vp.getContrastToBackgroundColor(), ColorDef.black, 2);
+    // Add range box edge geometry to builder.
+    builder.addRangeBox(vp.iModel.projectExtents);
+    context.addDecorationFromBuilder(builder);
+  }</code></pre>
 <h4 class="h-pickable-view-graphic-decorations">Pickable View Graphic Decorations<a id="pickable-view-graphic-decorations" class="heading-anchor" href="#pickable-view-graphic-decorations"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p>View Graphic Decorations are drawn into or atop the scene. To make your View Graphic Decorations <em>pickable</em> (i.e. allow the user to click on them to perform an action, or to give feedback when the cursor hovers over them), you must:</p>
 <ul>
@@ -147,11 +163,66 @@ You then add one or more graphics to the <a href='https://imodeljs.github.io/iMo
 <li>Implement <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/decorator/testdecorationhit'>Decorator.testDecorationHit</a> to return <code>true</code> when the supplied Id matches your decoration&apos;s Id.</li>
 <li>Implement <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/decorator/getdecorationtooltip'>Decorator.getDecorationToolTip</a> and/or   <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/decorator/ondecorationbuttonevent'>Decorator.onDecorationButtonEvent</a> to supply a tooltip and perform an action when your decoration is clicked.</li>
 </ul>
+<p>The following example illustrates creating a pickable view graphic decoration in order to supply a tooltip message when under the cursor:</p>
+<pre class="no-line-numbers"><code class="language-typescript">  protected _decoId?: string;
+
+  /** Add a pickable decoration that will display interspersed with the scene graphics. */
+  public decorate(context: DecorateContext): void {
+    const vp = context.viewport;
+    if (!vp.view.isSpatialView())
+      return;
+
+    // Get next available Id to represent our decoration for it&apos;s life span.
+    if (undefined === this._decoId)
+      this._decoId = vp.iModel.transientIds.next;
+
+    const builder = context.createGraphicBuilder(GraphicType.WorldDecoration, undefined, this._decoId);
+    builder.setSymbology(vp.getContrastToBackgroundColor(), ColorDef.black, 2);
+    builder.addRangeBox(vp.iModel.projectExtents);
+    context.addDecorationFromBuilder(builder);
+  }
+
+  /** Return true if supplied Id represents a pickable decoration created by this decorator. */
+  public testDecorationHit(id: string): boolean { return id === this._decoId; }
+
+  /** Return localized tooltip message for the decoration identified by HitDetail.sourceId. */
+  public async getDecorationToolTip(_hit: HitDetail): Promise&lt;HTMLElement | string&gt; { return &quot;Project Extents&quot;; }</code></pre>
 <h3 class="h-canvas-decorations">Canvas Decorations<a id="canvas-decorations" class="heading-anchor" href="#canvas-decorations"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/canvasdecoration'>CanvasDecoration</a> is drawn atop the scene using <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a>.
 To add a CanvasDecoration, call <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/decoratecontext/#addcanvasdecoration'>DecorateContext.addCanvasDecoration</a> from your <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/decorator/#decorate'>Decorator.decorate</a> method.</p>
 <p>CanvasDecorators must implement <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/canvasdecoration/drawdecoration'>CanvasDecoration.drawDecoration</a> to supply visible graphics, by calling methods on CanvasRenderingContext2D.</p>
 <p>CanvasDecorators may optionally include the member <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/canvasdecoration/position'>CanvasDecoration.position</a>, that becomes the 0,0 point for your CanvasRenderingContext2D calls.</p>
+<p>The following example illustrates creating a canvas decoration to show a plus symbol at the center of the view:</p>
+<pre class="no-line-numbers"><code class="language-typescript">  /** Add a canvas decoration using CanvasRenderingContext2D to show a plus symbol. */
+  public decorate(context: DecorateContext): void {
+    const vp = context.viewport;
+    const size = Math.floor(vp.pixelsPerInch * 0.25) + 0.5;
+    const sizeOutline = size + 1;
+    const position = context.viewport.npcToView(NpcCenter); position.x = Math.floor(position.x) + 0.5; position.y = Math.floor(position.y) + 0.5;
+    const drawDecoration = (ctx: CanvasRenderingContext2D) =&gt; {
+      // Show black outline (with shadow) around white line for good visibility regardless of view background color.
+      ctx.beginPath();
+      ctx.strokeStyle = &quot;rgba(0,0,0,.5)&quot;;
+      ctx.lineWidth = 3;
+      ctx.moveTo(-sizeOutline, 0);
+      ctx.lineTo(sizeOutline, 0);
+      ctx.moveTo(0, -sizeOutline);
+      ctx.lineTo(0, sizeOutline);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.strokeStyle = &quot;white&quot;;
+      ctx.lineWidth = 1;
+      ctx.shadowColor = &quot;black&quot;;
+      ctx.shadowBlur = 5;
+      ctx.moveTo(-size, 0);
+      ctx.lineTo(size, 0);
+      ctx.moveTo(0, -size);
+      ctx.lineTo(0, size);
+      ctx.stroke();
+    };
+    context.addCanvasDecoration({ position, drawDecoration });
+  }</code></pre>
 <blockquote>
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/frontend/markers'>Markers</a> are a type of Canvas Decoration</p>
 </blockquote>
@@ -184,7 +255,7 @@ All children of that Div are removed every frame, so you must re-add your HTML D
 <p>Within a decoration type, the last decoration drawn is on top of earlier decorations.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 October, 2018</span>
+                <span class='date-updated'>05 November, 2018</span>
             </p>
 
             

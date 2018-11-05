@@ -47,7 +47,7 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
                         <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
                     </a>
@@ -56,7 +56,7 @@
                     </button>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//ChangeHistory">Change History</a></li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <span class='search-bar'>
@@ -107,7 +107,7 @@
         </ul>    </div>
     <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/">geometry</a> > Transform</div>
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/">geometry</a> > Transform</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/geometry/Transform.md">Edit this page</a></div>
             <h1 id="transform and matrix3d operations">Transform and Matrix3d operations</h1>
 <h2 class="h-types">Types<a id="types" class="heading-anchor" href="#types"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
@@ -153,7 +153,8 @@
 </ul>
 </li>
 <li>Uniform scaling: the matrix expands or contracts everything uniformly about the origin.<ul>
-<li>This matrix structure is simple:  the scale factor appears on the diagonal:</li>
+<li>This matrix structure is simple:  the scale factor appears on the diagonal.
+<img src=".././figs/Equations/DiagonalScale.png" alt="&gt;"></li>
 </ul>
 </li>
 </ul>
@@ -246,6 +247,25 @@
 <td></td>
 </tr>
 <tr>
+<td></td>
+<td>matrix.setColumn (columnIndex, U)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>copy xyz parts from Point4d to columns.</td>
+<td>matrix.setColumnsPoint4dXYZ (U,V,W)</td>
+<td></td>
+</tr>
+<tr>
+<td>set row</td>
+<td>matrix.setRow (rowIndex, U)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>create by origin and matrix.</td>
 <td></td>
 <td></td>
@@ -314,180 +334,122 @@
 <td></td>
 <td></td>
 </tr>
-</tbody></table><h1 id="simple queries">Simple Queries</h1>
+</tbody></table><h1 id="simple queries with matrix rows and columns">Simple Queries with matrix rows and columns</h1>
 <table class="table table-responsive"><tbody><tr>
 <th>category</th>
 <th>Matrix3d</th>
-<th></th>
-<th>Transform</th>
-<th></th>
 </tr>
 <tr>
 <td>clone individual columns</td>
 <td>vector = matrix.columnX ()</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td></td>
 <td>vector = matrix.columnY ()</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td></td>
 <td>vector = matrix.columnZ ()</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>individual column magnitude</td>
 <td>a : number = matrix.columnXMagnitude ()</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td></td>
 <td>a : number = matrix.columnYMagnitude ()</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td></td>
 <td>vector = matrix.columnXMagnitude ()</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>individual column magnitude squared</td>
 <td>a : number = matrix.columnXMagnitudeSquared ()</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td></td>
 <td>a : number = matrix.columnYMagnitudeSquared ()</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td></td>
 <td>a : number = matrix.columnXMagnitudeSquared ()</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>dot a vector with a specific column</td>
 <td>a : number = matrix.dotColumnX (vector)</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td></td>
 <td>a : number = matrix.dotColumnY (vector)</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td></td>
 <td>a : number = matrix.dotColumnZ (vector)</td>
-<td></td>
-<td></td>
-<td></td>
+</tr>
+<tr>
+<td>cross a vector with a specific column</td>
+<td>vector = matrix.columnzZCrossVector(vector)</td>
 </tr>
 <tr>
 <td>clone individual rows</td>
 <td>vector = matrix.rowX ()</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td></td>
 <td>vector = matrix.rowY ()</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td></td>
 <td>vector = matrix.rowZ ()</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>individual row magnitude</td>
 <td>a : number = matrix.rowXMagnitude ()</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td></td>
 <td>a : number = matrix.rowYMagnitude ()</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td></td>
 <td>a : number = matrix.rowXMagnitude ()</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>individual row magnitude squared</td>
 <td>a : number = matrix.rowXMagnitudeSquared ()</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td></td>
 <td>a : number = matrix.rowYMagnitudeSquared ()</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td></td>
 <td>a : number = matrix.rowXMagnitudeSquared ()</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>dot a vector with a specific row</td>
 <td>a : number = matrix.dotRowX (vector)</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td></td>
 <td>a : number = matrix.dotRowY (vector)</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td></td>
 <td>a : number = matrix.dotRowZ (vector)</td>
+</tr>
+<tr>
+<td>dot product within the matrix</td>
+<td>a: number = matrix.columnXDotColumnY ()</td>
+</tr>
+<tr>
+<td>get row or column</td>
+<td>vector = matrix.getColumn (columnIndex, result?)</td>
+</tr>
+<tr>
 <td></td>
-<td></td>
+<td>vector= matrix.getRow (columnIndex, result)</td>
 </tr>
 </tbody></table><h1 id="rigid matrix constructions">Rigid Matrix constructions</h1>
 <p>These methods return individual vectors with special perpendicular conditions related to the input vector and the global axes.  These constructions are central to constructing a rigid axis matrix that has a &quot;heads up&quot; sense.</p>
@@ -501,8 +463,8 @@
 <td>newVector = RotMatrix.createPerpendicularVectorFavorXYPlane (zVector)</td>
 </tr>
 <tr>
-<td>return a &quot;heads up&quot; vector perpendicular to input.</td>
-<td>newVector = RotMatrix.createPerpendicularVectorFavorXYPlane (zVector)</td>
+<td>return a vector which is (a) perpendicular to the input and (b) close to the z axis.</td>
+<td>newVector = RotMatrix.createHeadsUpPerpendicularNearZ (zVector)</td>
 </tr>
 </tbody></table><h1 id="complex queries">Complex queries</h1>
 <table class="table table-responsive"><tbody><tr>
@@ -516,9 +478,73 @@
 <td>Rigit axis matrix</td>
 <td>rigidMatrix-&gt;getAxisAndAngleOfRotation () : {axis: Vector3d, angle: Angle, ok: boolean}</td>
 </tr>
+</tbody></table><h1 id="multiplying points and vectors">Multiplying points and vectors</h1>
+<table class="table table-responsive"><tbody><tr>
+<th>method</th>
+<th>remarks</th>
+</tr>
+<tr>
+<td>matrix.mutliplyVector(vector, result)?:Vector3d</td>
+</tr>
+<tr>
+<td>matrix.multiplyVectorArrayInPlace (dta: XYZ[])</td>
+</tr>
+<tr>
+<td>Matrix3d.XYZMinusMatrixTimesXYZ (origin: XYZ, matrix, vector: XYZ) : Point3d</td>
+<td><img src=".././figs/Equations/XYZMinusMatrixTimesXYZ.png" alt="&gt;"></td>
+</tr>
+<tr>
+<td>Matrix3d.XYZPlusMatrixTimesXYZ (origin: XYZ, matrix, vector: XYZ) : Point3d</td>
+<td><img src=".././figs/Equations/XYZPlusMatrixTimesXYZ.png" alt="&gt;"></td>
+</tr>
+<tr>
+<td>Matrix3d.XYZPlusMatrixTimesCoordinates (origin: XYZ, matrix, x,y,z) : Point3d</td>
+<td><img src=".././figs/Equations/XYZPlusMatrixTimesCoordinates.png" alt="&gt;"></td>
+</tr>
+<tr>
+<td>Matrix3d.XYPlusMatrixTimesXY (origin: XAndY, matrix, vector: XAndyY): Point2d</td>
+<td><img src=".././figs/Equations/XYPlusMatrixTimesXY.png" alt="&gt;"></td>
+</tr>
+<tr>
+<td>Matrix3d.XYZPlusMatrixTimesWeightedCoordinates (origin: XAndY, matrix, x,y,z,w): Point4d</td>
+<td><img src=".././figs/Equations/XYZPlusMatrixTimesWeightedCoordinates.png" alt="&gt;"></td>
+</tr>
+<tr>
+<td>matrix.multiplyTransposeVector (vector): Vector3d</td>
+<td><img src=".././figs/Equations/multiplyTransposeVector.png" alt="&gt;"></td>
+</tr>
+<tr>
+<td>matrix.multiplyTransposeXYZ (vector): Vector3d</td>
+<td><img src=".././figs/Equations/multiplyTransposeXYZ.png" alt="&gt;"></td>
+</tr>
+<tr>
+<td>matrix.multiplyTransposeVectorInPlace (vector): Vector3d</td>
+<td><img src=".././figs/Equations/multiplyTransposeVectorInPlace.png" alt="&gt;"></td>
+</tr>
+<tr>
+<td>matrix.multiplyXYZ (x,y,z): Vector3d</td>
+<td><img src=".././figs/Equations/multiplyXYZ.png" alt="&gt;"></td>
+</tr>
+<tr>
+<td>matrix.multiplyVectorInPlace (vector): Vector3d</td>
+<td><img src=".././figs/Equations/multiplyVectorInPlace.png" alt="&gt;"></td>
+</tr>
+<tr>
+<td>multiplyXYZtoXYZ (xyz, result)</td>
+<td><img src=".././figs/Equations/multiplyXYZtoXYZ.png" alt="&gt;"></td>
+<td>(required output, caller can force type to Point3d)</td>
+</tr>
+<tr>
+<td>matrix.multiplyXY (x,y): Vector3d</td>
+<td><img src=".././figs/Equations/multiplyXY.png" alt="&gt;"></td>
+</tr>
+<tr>
+<td>matrix.originPlusMatrixTimesXY (x,y): Vector3d</td>
+<td><img src=".././figs/Equations/originPlusMatrixTimesXY.png" alt="&gt;"></td>
+</tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 October, 2018</span>
+                <span class='date-updated'>05 November, 2018</span>
             </p>
 
             

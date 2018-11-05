@@ -204,7 +204,6 @@ export declare class XYZ implements XYAndZ {
     /** Freeze this XYZ */
     freeze(): void;
 }
-/** 3D vector with x,y,z properties */
 export declare class Point3d extends XYZ {
     /** Constructor for Point3d */
     constructor(x?: number, y?: number, z?: number);
@@ -214,7 +213,7 @@ export declare class Point3d extends XYZ {
     /** Create a new Point3d with given coordinates
      * @param x x part
      * @param y y part
-     * @param z z partpubli
+     * @param z z part
      */
     static create(x?: number, y?: number, z?: number, result?: Point3d): Point3d;
     /** Copy contents from another Point3d, Point2d, Vector2d, or Vector3d */

@@ -47,7 +47,7 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
                         <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
                     </a>
@@ -56,7 +56,7 @@
                     </button>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//ChangeHistory">Change History</a></li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <span class='search-bar'>
@@ -180,9 +180,10 @@
         </ul>    </div>
     <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/">geometry-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/polyface/">Polyface</a> > AuxChannelDataType</div>
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/">geometry-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/polyface/">Polyface</a> > AuxChannelDataType</div>
             
             <h2 class="h-auxchanneldatatype">AuxChannelDataType <span class="badge badge-pill badge-primary badge-enumeration">Enumeration</span><a id="auxchanneldatatype" class="heading-anchor" href="#auxchanneldatatype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The data types of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/auxchannel'>AuxChannel</a>.  The scalar types are used to produce thematic  vertex colors.</p>
 <h3 class="h-members">Members<a id="members" class="heading-anchor" href="#members"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -192,26 +193,22 @@
 <tr>
 <td class="h-scalar"><span class="enum-name">Scalar</span><a id="scalar" class="heading-anchor" href="#scalar"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value">0</span></td>
-<td></td>
+<td>General scalar type - no scaling is applied if associated <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyface'>Polyface</a> is transformed.</td>
 </tr>
 <tr>
 <td class="h-distance"><span class="enum-name">Distance</span><a id="distance" class="heading-anchor" href="#distance"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value">1</span></td>
-<td></td>
+<td>Distance (scalar) scaling is applied if associated <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyface'>Polyface</a> is scaled. 3 Data values (x,y.z) per entry.</td>
 </tr>
 <tr>
 <td class="h-vector"><span class="enum-name">Vector</span><a id="vector" class="heading-anchor" href="#vector"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value">2</span></td>
-<td></td>
+<td>Displacement added to  vertex position.  Transformed and scaled with associated <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyface'>Polyface</a>. 3 Data values (x,y.z) per entry.,</td>
 </tr>
 <tr>
 <td class="h-normal"><span class="enum-name">Normal</span><a id="normal" class="heading-anchor" href="#normal"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value">3</span></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-point"><span class="enum-name">Point</span><a id="point" class="heading-anchor" href="#point"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="enum-value">4</span></td>
+<td>Normal -- replaces vertex normal.  Rotated with associated <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyface'>Polyface</a> transformation. 3 Data values (x,y.z) per entry.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -219,7 +216,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 October, 2018</span>
+                <span class='date-updated'>05 November, 2018</span>
             </p>
 
             
@@ -255,9 +252,6 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#normal">Normal</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#point">Point</a>
                                     </li>
                             </ul>
                     </li>

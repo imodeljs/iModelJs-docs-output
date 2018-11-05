@@ -1,6 +1,6 @@
 /** @module Polyface */
 import { Point3d, Vector3d, Point2d } from "../PointVector";
-import { Range3d, Range2d, Range1d } from "../Range";
+import { Range3d, Range2d } from "../Range";
 import { Transform } from "../Transform";
 import { GrowableXYZArray } from "../GrowableArray";
 import { GeometryQuery } from "../curve/CurvePrimitive";
@@ -35,32 +35,6 @@ export declare class FacetFaceData {
      */
     setParamDistanceRangeFromNewFaceData(polyface: IndexedPolyface, facetStart: number, facetEnd: number): boolean;
 }
-export declare enum AuxChannelDataType {
-    Scalar = 0,
-    Distance = 1,
-    Vector = 2,
-    Normal = 3,
-    Point = 4
-}
-export declare class AuxChannelData {
-    input: number;
-    values: number[];
-    constructor(input: number, values: number[]);
-}
-export declare class AuxChannel {
-    data: AuxChannelData[];
-    dataType: AuxChannelDataType;
-    name?: string;
-    inputName?: string;
-    constructor(data: AuxChannelData[], dataType: AuxChannelDataType, name?: string, inputName?: string);
-    readonly isScalar: boolean;
-    readonly scalarRange: Range1d | undefined;
-}
-export declare class PolyfaceAuxData {
-    channels: AuxChannel[];
-    indices: number[];
-    constructor(channels: AuxChannel[], indices: number[]);
-}
 /**
  * PolyfaceData carries data arrays for point, normal, param, color and their indices.
  *
@@ -80,7 +54,6 @@ export declare class PolyfaceData {
     colorIndex: number[] | undefined;
     /** Face data will remain empty until a face is specified. */
     face: FacetFaceData[];
-    auxData: PolyfaceAuxData | undefined;
     constructor(needNormals?: boolean, needParams?: boolean, needColors?: boolean);
     clone(): PolyfaceData;
     isAlmostEqual(other: PolyfaceData): boolean;

@@ -1,0 +1,25 @@
+<script>
+  // Our redirection.
+  var hash = window.location.hash.substr(1);
+
+  var result = hash.split('&').reduce(function (result, item) {
+    var parts = item.split('=');
+    result[parts[0]] = parts[1];
+    return result;
+  }, {});
+
+  function getCookie(name) {
+    const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+    if (match) return match[2];
+    return;
+  }
+
+  if (result.access_token !== undefined) {
+    document.cookie = "access_token=" + result.access_token + ";path=/";
+  }
+
+  // Get last visited auth page.
+  var lastVisited = getCookie("last_visited_auth_page");
+
+  window.location.href = lastVisited;
+</script>

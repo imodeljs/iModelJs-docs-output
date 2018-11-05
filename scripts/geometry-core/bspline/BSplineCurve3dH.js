@@ -1,8 +1,7 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
-* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
-*--------------------------------------------------------------------------------------------*/
+|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
+ *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Bspline */
 // import { Point2d } from "../Geometry2d";
@@ -217,7 +216,7 @@ class BSplineCurve3dH extends BSplineCurve_1.BSplineCurve3dBase {
         if (result === undefined || !(result instanceof BezierCurve_1.BezierCurve3d) || result.order !== order)
             result = BezierCurve_1.BezierCurve3dH.createOrder(order);
         const bezier = result;
-        bezier.loadSpan4dPoles(this._bcurve.packedData, spanIndex);
+        bezier.loadSpan3dPolesWithWeight(this._bcurve.packedData, spanIndex, 1.0);
         bezier.saturateInPlace(this._bcurve.knots, spanIndex);
         return result;
     }
@@ -233,16 +232,7 @@ class BSplineCurve3dH extends BSplineCurve_1.BSplineCurve3dBase {
         return handler.handleBSplineCurve3dH(this);
     }
     extendRange(rangeToExtend, transform) {
-        const buffer = this._bcurve.packedData;
-        const n = buffer.length - 3;
-        if (transform) {
-            for (let i0 = 0; i0 < n; i0 += 4)
-                rangeToExtend.extendTransformedXYZW(transform, buffer[i0], buffer[i0 + 1], buffer[i0 + 2], buffer[i0 + 3]);
-        }
-        else {
-            for (let i0 = 0; i0 < n; i0 += 4)
-                rangeToExtend.extendXYZW(buffer[i0], buffer[i0 + 1], buffer[i0 + 2], buffer[i0 + 3]);
-        }
+        this._bcurve.extendRange(rangeToExtend, transform);
     }
 }
 exports.BSplineCurve3dH = BSplineCurve3dH;

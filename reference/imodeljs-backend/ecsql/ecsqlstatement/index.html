@@ -47,7 +47,7 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
                         <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
                     </a>
@@ -56,7 +56,7 @@
                     </button>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//ChangeHistory">Change History</a></li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <span class='search-bar'>
@@ -180,7 +180,7 @@
         </ul>    </div>
     <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/">imodeljs-backend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/ecsql/">ECSQL</a> > ECSqlStatement</div>
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/">imodeljs-backend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/ecsql/">ECSQL</a> > ECSqlStatement</div>
             
             <h2 class="h-ecsqlstatement">ECSqlStatement <span class="badge badge-pill badge-primary badge-class">Class</span><a id="ecsqlstatement" class="heading-anchor" href="#ecsqlstatement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Executes ECSQL statements.</p>
@@ -223,7 +223,7 @@ The key to making this strategy work is to phrase a statement in a general way a
 <td>Binds an array value to the specified ECSQL parameter.</td>
 </tr>
 <tr>
-<td class="h-bindblob"><span class="method-name"><a href="bindblob">bindBlob</a></span><span class="method-parenthesis">(</span><span class="method-parameters">parameter: number | string, blob: string | ArrayBuffer | SharedArrayBuffer</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="bindblob" class="heading-anchor" href="#bindblob"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-bindblob"><span class="method-name"><a href="bindblob">bindBlob</a></span><span class="method-parenthesis">(</span><span class="method-parameters">parameter: number | string, blob: string | Uint8Array | ArrayBuffer | SharedArrayBuffer</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="bindblob" class="heading-anchor" href="#bindblob"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Binds a BLOB value to the specified ECSQL parameter.</td>
 </tr>
 <tr>
@@ -239,7 +239,7 @@ The key to making this strategy work is to phrase a statement in a general way a
 <td>Binds a double value to the specified ECSQL parameter.</td>
 </tr>
 <tr>
-<td class="h-bindguid"><span class="method-name"><a href="bindguid">bindGuid</a></span><span class="method-parenthesis">(</span><span class="method-parameters">parameter: number | string, val: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guidprops'>GuidProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="bindguid" class="heading-anchor" href="#bindguid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-bindguid"><span class="method-name"><a href="bindguid">bindGuid</a></span><span class="method-parenthesis">(</span><span class="method-parameters">parameter: number | string, val: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guidstring'>GuidString</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="bindguid" class="heading-anchor" href="#bindguid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Binds an GUID value to the specified ECSQL parameter.</td>
 </tr>
 <tr>
@@ -277,6 +277,10 @@ The key to making this strategy work is to phrase a statement in a general way a
 <tr>
 <td class="h-bindstruct"><span class="method-name"><a href="bindstruct">bindStruct</a></span><span class="method-parenthesis">(</span><span class="method-parameters">parameter: number | string, val: object</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="bindstruct" class="heading-anchor" href="#bindstruct"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Binds a struct property value to the specified ECSQL parameter.</td>
+</tr>
+<tr>
+<td class="h-bindvalue"><span class="method-name"><a href="bindvalue">bindValue</a></span><span class="method-parenthesis">(</span><span class="method-parameters">parameter: number | string, val: any</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="bindvalue" class="heading-anchor" href="#bindvalue"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Binds the specified value to the specified ECSQL parameter.</td>
 </tr>
 <tr>
 <td class="h-bindvalues"><span class="method-name"><a href="bindvalues">bindValues</a></span><span class="method-parenthesis">(</span><span class="method-parameters">values: any[] | any</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="bindvalues" class="heading-anchor" href="#bindvalues"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -339,7 +343,7 @@ The key to making this strategy work is to phrase a statement in a general way a
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 October, 2018</span>
+                <span class='date-updated'>05 November, 2018</span>
             </p>
 
             
@@ -414,6 +418,9 @@ The key to making this strategy work is to phrase a statement in a general way a
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#bindstruct">bindStruct</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#bindvalue">bindValue</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#bindvalues">bindValues</a>

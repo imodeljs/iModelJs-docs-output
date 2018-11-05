@@ -47,7 +47,7 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
                         <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
                     </a>
@@ -56,7 +56,7 @@
                     </button>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//ChangeHistory">Change History</a></li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <span class='search-bar'>
@@ -180,9 +180,14 @@
         </ul>    </div>
     <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/">geometry-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/polyface/">Polyface</a> > PolyfaceAuxData</div>
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/">geometry-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/polyface/">Polyface</a> > PolyfaceAuxData</div>
             
             <h2 class="h-polyfaceauxdata">PolyfaceAuxData <span class="badge badge-pill badge-primary badge-class">Class</span><a id="polyfaceauxdata" class="heading-anchor" href="#polyfaceauxdata"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The <code>PolyfaceAuxData</code> structure contains one or more analytical data channels for each vertex of a <code>Polyface</code>.
+Typically a <code>Polyface</code> will contain only vertex data required for its basic display,the vertex position, normal
+and possibly texture parameter.  The <code>PolyfaceAuxData</code> structure contains supplemental data that is generally computed
+ in an analysis program or other external data source.  This can be scalar data used to either overide the vertex colors through <em>Thematic Colorization</em> or
+ XYZ data used to deform the mesh by adjusting the vertex postions or normals.</p>
 <h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -190,6 +195,19 @@
 </tr>
 <tr>
 <td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">channels: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/auxchannel'>AuxChannel</a>[], indices: number[]</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyfaceauxdata'>PolyfaceAuxData</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-clone"><span class="method-name">clone</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyfaceauxdata'>PolyfaceAuxData</a></span><a id="clone" class="heading-anchor" href="#clone"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-createforvisitor"><span class="method-name">createForVisitor</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyfaceauxdata'>PolyfaceAuxData</a></span><a id="createforvisitor" class="heading-anchor" href="#createforvisitor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-isalmostequal"><span class="method-name">isAlmostEqual</span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyfaceauxdata'>PolyfaceAuxData</a>, tol?: number</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="isalmostequal" class="heading-anchor" href="#isalmostequal"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -200,11 +218,12 @@
 <tr>
 <td class="h-channels"><span class="property-name">channels</span><a id="channels" class="heading-anchor" href="#channels"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/auxchannel'>AuxChannel</a>[]</span></td>
-<td></td>
+<td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-indices"><span class="property-name">indices</span><a id="indices" class="heading-anchor" href="#indices"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">number[]</span></td>
+<td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -212,7 +231,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 October, 2018</span>
+                <span class='date-updated'>05 November, 2018</span>
             </p>
 
             
@@ -239,6 +258,15 @@
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#constructor">constructor</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#clone">clone</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createforvisitor">createForVisitor</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isalmostequal">isAlmostEqual</a>
                                     </li>
                             </ul>
                     </li>

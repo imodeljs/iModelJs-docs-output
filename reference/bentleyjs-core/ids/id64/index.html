@@ -47,7 +47,7 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
                         <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
                     </a>
@@ -56,7 +56,7 @@
                     </button>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//ChangeHistory">Change History</a></li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <span class='search-bar'>
@@ -180,113 +180,86 @@
         </ul>    </div>
     <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/bentleyjs-core/">bentleyjs-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/bentleyjs-core/ids/">Ids</a> > Id64</div>
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/bentleyjs-core/">bentleyjs-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/bentleyjs-core/ids/">Ids</a> > Id64</div>
             
-            <h2 class="h-id64">Id64 <span class="badge badge-pill badge-primary badge-class">Class</span><a id="id64" class="heading-anchor" href="#id64"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>A 64 bit Id, stored as a hex string. This is necessary since JavaScript does not intrinsically support 64-bit integers.</p>
-<p><span class="badge badge-pill badge-primary badge-note">note</span> If invalid, value will be &quot;0&quot;.</p>
-<p><span class="badge badge-pill badge-primary badge-note">note</span> Id64 is an immutable class. Its value cannot be changed.</p>
-<h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+            <h2 class="h-id64">Id64 <span class="badge badge-pill badge-primary badge-namespace">Namespace</span><a id="id64" class="heading-anchor" href="#id64"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The Id64 namespace provides facilities for working with 64-bit identifiers. These Ids are stored as 64-bit integers inside an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a>, but must be represented
+as strings in JavaScript because JavaScript does not intrinsically support 64-bit integers.</p>
+<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a> type alias is used to indicate function arguments, return types, and variables which are known to contain a well-formed representation of a 64-bit Id.</p>
+<p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/common/id64'>Working with Ids</a> for a detailed description and code examples.</p>
+<h3 class="h-variable">Variable<a id="variable" class="heading-anchor" href="#variable"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
-<th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
-</tr>
-<tr>
-<td class="h-constructor"><span class="method-name"><a href="constructor">constructor</a></span><span class="method-parenthesis">(</span><span class="method-parameters">prop?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a> | number[]</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Constructor for Id64</td>
-</tr>
-<tr>
-<td class="h-equals"><span class="method-name"><a href="equals">equals</a></span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="equals" class="heading-anchor" href="#equals"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Test whether two Id64s are the same</td>
-</tr>
-<tr>
-<td class="h-gethigh"><span class="method-name"><a href="gethigh">getHigh</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="gethigh" class="heading-anchor" href="#gethigh"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Get the &quot;high&quot; part of this Id64.</td>
-</tr>
-<tr>
-<td class="h-gethighuint32"><span class="method-name"><a href="gethighuint32">getHighUint32</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="gethighuint32" class="heading-anchor" href="#gethighuint32"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Extract an unsigned 32-bit integer from the high 4 bytes of an Id64&apos;s value.</td>
-</tr>
-<tr>
-<td class="h-getlow"><span class="method-name"><a href="getlow">getLow</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="getlow" class="heading-anchor" href="#getlow"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Get the &quot;low&quot; part of this Id64.</td>
-</tr>
-<tr>
-<td class="h-getlowuint32"><span class="method-name"><a href="getlowuint32">getLowUint32</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="getlowuint32" class="heading-anchor" href="#getlowuint32"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Extract an unsigned 32-bit integer from the low 4 bytes of an Id64&apos;s value.</td>
-</tr>
-<tr>
-<td class="h-tojson"><span class="method-name">toJSON</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> string</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="tojson" class="heading-anchor" href="#tojson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
-<td class="h-tostring"><span class="method-name">toString</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> string</span><a id="tostring" class="heading-anchor" href="#tostring"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Convert this Id64 to a string</td>
-</tr>
-<tr>
-<td class="h-areequal"><span class="method-name"><a href="areequal">areEqual</a></span><span class="method-parenthesis">(</span><span class="method-parameters">a?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, b?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="areequal" class="heading-anchor" href="#areequal"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Compare two (potentially undefined) Id64 strings.</td>
-</tr>
-<tr>
-<td class="h-fromjson"><span class="method-name"><a href="fromjson">fromJSON</a></span><span class="method-parenthesis">(</span><span class="method-parameters">val?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="fromjson" class="heading-anchor" href="#fromjson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Create an Id64 from a json object.</td>
-</tr>
-<tr>
-<td class="h-fromuint32pair"><span class="method-name"><a href="fromuint32pair">fromUint32Pair</a></span><span class="method-parenthesis">(</span><span class="method-parameters">lowBytes: number, highBytes: number</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="fromuint32pair" class="heading-anchor" href="#fromuint32pair"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Create an Id64 from a pair of unsigned 32-bit integers.</td>
-</tr>
-<tr>
-<td class="h-gethigh-1"><span class="method-name"><a href="gethigh">getHigh</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="gethigh-1" class="heading-anchor" href="#gethigh-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Get the &quot;high&quot; part of an Id64 string.</td>
-</tr>
-<tr>
-<td class="h-gethighuint32-1"><span class="method-name"><a href="gethighuint32">getHighUint32</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="gethighuint32-1" class="heading-anchor" href="#gethighuint32-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Extract an unsigned 32-bit integer from the high 4 bytes of an Id64 string.</td>
-</tr>
-<tr>
-<td class="h-getlow-1"><span class="method-name"><a href="getlow">getLow</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="getlow-1" class="heading-anchor" href="#getlow-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Get the &quot;low&quot; part of an Id64 string.</td>
-</tr>
-<tr>
-<td class="h-getlowuint32-1"><span class="method-name"><a href="getlowuint32">getLowUint32</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="getlowuint32-1" class="heading-anchor" href="#getlowuint32-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Extract an unsigned 32-bit integer from the low 4 bytes of an Id64 string.</td>
-</tr>
-<tr>
-<td class="h-isinvalidid"><span class="method-name">isInvalidId</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="isinvalidid" class="heading-anchor" href="#isinvalidid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Return true if the supplied id string represents an invalid ID.</td>
-</tr>
-<tr>
-<td class="h-istransientid"><span class="method-name"><a href="istransientid">isTransientId</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="istransientid" class="heading-anchor" href="#istransientid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Return whether the supplied id string is a transient Id64.</td>
-</tr>
-<tr>
-<td class="h-toidset"><span class="method-name"><a href="toidset">toIdSet</a></span><span class="method-parenthesis">(</span><span class="method-parameters">arg: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64arg'>Id64Arg</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64set'>Id64Set</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="toidset" class="heading-anchor" href="#toidset"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Convert an Id64Arg into an Id64Set.</td>
-</tr>
-</tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<table class="table table-responsive"><tbody><tr>
-<th>Name</th>
-<th>Type</th>
 <th>Description</th>
 </tr>
 <tr>
-<td class="h-invalidid"><span class="property-name">invalidId</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="invalidid" class="heading-anchor" href="#invalidid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64'>Id64</a></span></td>
-<td>Obtain an Id64 instance with an invalid value.</td>
+<td class="h-id64invalid"><a href="id64.invalid">Id64.invalid</a><a id="id64invalid" class="heading-anchor" href="#id64invalid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>The string representation of an invalid Id.</td>
+</tr>
+</tbody></table><h3 class="h-function">Function<a id="function" class="heading-anchor" href="#function"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Description</th>
 </tr>
 <tr>
-<td class="h-istransient"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64/istransient'>isTransient</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="istransient" class="heading-anchor" href="#istransient"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> boolean</span></td>
-<td>Return whether this is a transient Id64.</td>
+<td class="h-id64fromjson"><a href="id64.fromjson">Id64.fromJSON</a><a id="id64fromjson" class="heading-anchor" href="#id64fromjson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-isvalid"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64/isvalid'>isValid</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isvalid" class="heading-anchor" href="#isvalid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> boolean</span></td>
-<td>Determine whether this Id64 is valid.</td>
+<td class="h-id64fromlocalandbriefcaseids"><a href="id64.fromlocalandbriefcaseids">Id64.fromLocalAndBriefcaseIds</a><a id="id64fromlocalandbriefcaseids" class="heading-anchor" href="#id64fromlocalandbriefcaseids"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-value"><span class="property-name">value</span><a id="value" class="heading-anchor" href="#value"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output">string</span></td>
+<td class="h-id64fromstring"><a href="id64.fromstring">Id64.fromString</a><a id="id64fromstring" class="heading-anchor" href="#id64fromstring"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-id64fromuint32pair"><a href="id64.fromuint32pair">Id64.fromUint32Pair</a><a id="id64fromuint32pair" class="heading-anchor" href="#id64fromuint32pair"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-id64getbriefcaseid"><a href="id64.getbriefcaseid">Id64.getBriefcaseId</a><a id="id64getbriefcaseid" class="heading-anchor" href="#id64getbriefcaseid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-id64getlocalid"><a href="id64.getlocalid">Id64.getLocalId</a><a id="id64getlocalid" class="heading-anchor" href="#id64getlocalid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-id64getloweruint32"><a href="id64.getloweruint32">Id64.getLowerUint32</a><a id="id64getloweruint32" class="heading-anchor" href="#id64getloweruint32"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-id64getupperuint32"><a href="id64.getupperuint32">Id64.getUpperUint32</a><a id="id64getupperuint32" class="heading-anchor" href="#id64getupperuint32"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-id64isid64"><a href="id64.isid64">Id64.isId64</a><a id="id64isid64" class="heading-anchor" href="#id64isid64"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-id64isinvalid"><a href="id64.isinvalid">Id64.isInvalid</a><a id="id64isinvalid" class="heading-anchor" href="#id64isinvalid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-id64istransient"><a href="id64.istransient">Id64.isTransient</a><a id="id64istransient" class="heading-anchor" href="#id64istransient"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-id64istransientid64"><a href="id64.istransientid64">Id64.isTransientId64</a><a id="id64istransientid64" class="heading-anchor" href="#id64istransientid64"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-id64isvalid"><a href="id64.isvalid">Id64.isValid</a><a id="id64isvalid" class="heading-anchor" href="#id64isvalid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-id64isvalidid64"><a href="id64.isvalidid64">Id64.isValidId64</a><a id="id64isvalidid64" class="heading-anchor" href="#id64isvalidid64"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-id64toidset"><a href="id64.toidset">Id64.toIdSet</a><a id="id64toidset" class="heading-anchor" href="#id64toidset"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -294,7 +267,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 October, 2018</span>
+                <span class='date-updated'>05 November, 2018</span>
             </p>
 
             
@@ -314,84 +287,66 @@
             </a>
             <ul id="inner-nav-id64" class='inner-nav'>
                     <li class='nav-item item '>
-                            <a data-target="#inner-nav-methods" class='title' href="#methods"/>
-                            <b class='dropdown-menu-title menu-text'>Methods</b>
+                            <a data-target="#inner-nav-variable" class='title' href="#variable"/>
+                            <b class='dropdown-menu-title menu-text'>Variable</b>
                             <i class='dropdown icon'></i>
                             </a>
-                            <ul id="inner-nav-methods" class='inner-nav'>
+                            <ul id="inner-nav-variable" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#constructor">constructor</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#equals">equals</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#gethigh">getHigh</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#gethighuint32">getHighUint32</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#getlow">getLow</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#getlowuint32">getLowUint32</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#tojson">toJSON</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#tostring">toString</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#areequal">areEqual</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#fromjson">fromJSON</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#fromuint32pair">fromUint32Pair</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#gethigh-1">getHigh</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#gethighuint32-1">getHighUint32</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#getlow-1">getLow</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#getlowuint32-1">getLowUint32</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#isinvalidid">isInvalidId</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#istransientid">isTransientId</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#toidset">toIdSet</a>
+                                            <a class='title solo-title menu-text' href="#id64invalid">Id64.invalid</a>
                                     </li>
                             </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a data-target="#inner-nav-properties" class='title' href="#properties"/>
-                            <b class='dropdown-menu-title menu-text'>Properties</b>
+                            <a data-target="#inner-nav-function" class='title' href="#function"/>
+                            <b class='dropdown-menu-title menu-text'>Function</b>
                             <i class='dropdown icon'></i>
                             </a>
-                            <ul id="inner-nav-properties" class='inner-nav'>
+                            <ul id="inner-nav-function" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#invalidid">invalidId</a>
+                                            <a class='title solo-title menu-text' href="#id64fromjson">Id64.fromJSON</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#istransient">isTransient</a>
+                                            <a class='title solo-title menu-text' href="#id64fromlocalandbriefcaseids">Id64.fromLocalAndBriefcaseIds</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#isvalid">isValid</a>
+                                            <a class='title solo-title menu-text' href="#id64fromstring">Id64.fromString</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#value">value</a>
+                                            <a class='title solo-title menu-text' href="#id64fromuint32pair">Id64.fromUint32Pair</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#id64getbriefcaseid">Id64.getBriefcaseId</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#id64getlocalid">Id64.getLocalId</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#id64getloweruint32">Id64.getLowerUint32</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#id64getupperuint32">Id64.getUpperUint32</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#id64isid64">Id64.isId64</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#id64isinvalid">Id64.isInvalid</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#id64istransient">Id64.isTransient</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#id64istransientid64">Id64.isTransientId64</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#id64isvalid">Id64.isValid</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#id64isvalidid64">Id64.isValidId64</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#id64toidset">Id64.toIdSet</a>
                                     </li>
                             </ul>
                     </li>

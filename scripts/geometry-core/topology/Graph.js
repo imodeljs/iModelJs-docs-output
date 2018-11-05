@@ -1,7 +1,6 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
-* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Topology */
@@ -652,24 +651,4 @@ class HalfEdgeGraph {
     countNodes() { return this.allHalfEdges.length; }
 }
 exports.HalfEdgeGraph = HalfEdgeGraph;
-var HalfEdgeMask;
-(function (HalfEdgeMask) {
-    HalfEdgeMask[HalfEdgeMask["EXTERIOR"] = 1] = "EXTERIOR";
-    HalfEdgeMask[HalfEdgeMask["BOUNDARY"] = 2] = "BOUNDARY";
-    HalfEdgeMask[HalfEdgeMask["CONSTU_MASK"] = 4] = "CONSTU_MASK";
-    HalfEdgeMask[HalfEdgeMask["CONSTV_MASK"] = 8] = "CONSTV_MASK";
-    HalfEdgeMask[HalfEdgeMask["USEAM_MASK"] = 16] = "USEAM_MASK";
-    HalfEdgeMask[HalfEdgeMask["VSEAM_MASK"] = 32] = "VSEAM_MASK";
-    HalfEdgeMask[HalfEdgeMask["BOUNDARY_VERTEX_MASK"] = 64] = "BOUNDARY_VERTEX_MASK";
-    HalfEdgeMask[HalfEdgeMask["PRIMARY_VERTEX_MASK"] = 128] = "PRIMARY_VERTEX_MASK";
-    HalfEdgeMask[HalfEdgeMask["DIRECTED_EDGE_MASK"] = 256] = "DIRECTED_EDGE_MASK";
-    HalfEdgeMask[HalfEdgeMask["PRIMARY_EDGE"] = 512] = "PRIMARY_EDGE";
-    HalfEdgeMask[HalfEdgeMask["HULL_MASK"] = 1024] = "HULL_MASK";
-    HalfEdgeMask[HalfEdgeMask["SECTION_EDGE_MASK"] = 2048] = "SECTION_EDGE_MASK";
-    HalfEdgeMask[HalfEdgeMask["POLAR_LOOP_MASK"] = 4096] = "POLAR_LOOP_MASK";
-    HalfEdgeMask[HalfEdgeMask["VISITED"] = 8192] = "VISITED";
-    HalfEdgeMask[HalfEdgeMask["TRIANGULATED_NODE_MASK"] = 16384] = "TRIANGULATED_NODE_MASK";
-    HalfEdgeMask[HalfEdgeMask["NULL_MASK"] = 0] = "NULL_MASK";
-    HalfEdgeMask[HalfEdgeMask["ALL_MASK"] = 4294967295] = "ALL_MASK";
-})(HalfEdgeMask = exports.HalfEdgeMask || (exports.HalfEdgeMask = {}));
 //# sourceMappingURL=Graph.js.map

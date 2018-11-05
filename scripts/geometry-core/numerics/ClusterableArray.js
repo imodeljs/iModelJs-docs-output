@@ -1,10 +1,6 @@
 "use strict";
-/*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
-* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
-*--------------------------------------------------------------------------------------------*/
-Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Numerics */
+Object.defineProperty(exports, "__esModule", { value: true });
 const Geometry_1 = require("../Geometry");
 const PointVector_1 = require("../PointVector");
 const GrowableArray_1 = require("../GrowableArray");

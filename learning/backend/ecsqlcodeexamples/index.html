@@ -47,7 +47,7 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
                         <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
                     </a>
@@ -56,7 +56,7 @@
                     </button>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//ChangeHistory">Change History</a></li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <span class='search-bar'>
@@ -107,7 +107,7 @@
         </ul>    </div>
     <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/">backend</a> > ECSQLCodeExamples</div>
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/">backend</a> > ECSQLCodeExamples</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/backend/ECSQLCodeExamples.md">Edit this page</a></div>
             <h1 id="ecsql code examples">ECSQL Code Examples</h1>
 <blockquote>
@@ -130,7 +130,7 @@ with <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imode
 <h4 class="h-named-parameters">Named parameters<a id="named-parameters" class="heading-anchor" href="#named-parameters"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <pre class="no-line-numbers"><code class="language-typescript">  iModel.withPreparedStatement(&quot;SELECT ECInstanceId,ECClassId,Parent,LastMod FROM bis.Element WHERE CodeValue=:code AND LastMod&gt;=:lastmod&quot;, (stmt: ECSqlStatement) =&gt; {
     stmt.bindString(&quot;code&quot;, &quot;MyCode&quot;);
-    stmt.bindDateTime(&quot;lastmod&quot;, &quot;2018-01-01T12:00:00&quot;);
+    stmt.bindDateTime(&quot;lastmod&quot;, &quot;2018-01-01T12:00:00Z&quot;);
 
     while (stmt.step() === DbResult.BE_SQLITE_ROW) {
       // do something with the query result
@@ -142,7 +142,7 @@ parameters at once.</p>
 <h4 class="h-positional-parameters-1">Positional parameters<a id="positional-parameters-1" class="heading-anchor" href="#positional-parameters-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <pre class="no-line-numbers"><code class="language-typescript">  iModel.withPreparedStatement(&quot;SELECT ECInstanceId,ECClassId,Parent,LastMod FROM bis.Element WHERE CodeValue=? AND LastMod&gt;=?&quot;,
     (stmt: ECSqlStatement) =&gt; {
-      stmt.bindValues([&quot;MyCode&quot;, { type: ECSqlStringType.DateTime, value: &quot;2018-01-01T12:00:00&quot; }]);
+      stmt.bindValues([&quot;MyCode&quot;, &quot;2018-01-01T12:00:00Z&quot;]);
 
       while (stmt.step() === DbResult.BE_SQLITE_ROW) {
         // do something with the query result
@@ -151,7 +151,7 @@ parameters at once.</p>
 <h4 class="h-named-parameters-1">Named parameters<a id="named-parameters-1" class="heading-anchor" href="#named-parameters-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <pre class="no-line-numbers"><code class="language-typescript">  iModel.withPreparedStatement(&quot;SELECT ECInstanceId,ECClassId,Parent,LastMod FROM bis.Element WHERE CodeValue=:code AND LastMod&gt;=:lastmod&quot;,
     (stmt: ECSqlStatement) =&gt; {
-      stmt.bindValues({ code: &quot;MyCode&quot;, lastmod: { type: ECSqlStringType.DateTime, value: &quot;2018-01-01T12:00:00&quot; } });
+      stmt.bindValues({ code: &quot;MyCode&quot;, lastmod: &quot;2018-01-01T12:00:00Z&quot; });
 
       while (stmt.step() === DbResult.BE_SQLITE_ROW) {
         // do something with the query result
@@ -161,21 +161,21 @@ parameters at once.</p>
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql/#navigation-properties'>Navigation properties</a> are structs made up of the Id of the related instance and the backing
 ECRelationshipClass. The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/navigationbindingvalue'>NavigationBindingValue</a> interface is used to bind values to navigation property parameters.</p>
 <pre class="no-line-numbers"><code class="language-typescript">  iModel.withPreparedStatement(&quot;SELECT ECInstanceId FROM bis.Element WHERE Parent=?&quot;, (stmt: ECSqlStatement) =&gt; {
-    stmt.bindNavigation(1, { id: new Id64(&quot;0x132&quot;) });
+    stmt.bindNavigation(1, { id: &quot;0x132&quot; });
     // ...
   });</code></pre>
 <pre class="no-line-numbers"><code class="language-typescript">  iModel.withPreparedStatement(&quot;SELECT ECInstanceId FROM bis.Element WHERE Parent=?&quot;, (stmt: ECSqlStatement) =&gt; {
-    stmt.bindValues([{ id: new Id64(&quot;0x132&quot;) }]);
+    stmt.bindValues([{ id: &quot;0x132&quot; }]);
     // ...
   });</code></pre>
 <p>Because of the struct nature of navigation properties, you can also use its members in the ECSQL. The two following examples illustrate
 this by specifying the <strong>Id</strong> member of a navigation property.</p>
 <pre class="no-line-numbers"><code class="language-typescript">  iModel.withPreparedStatement(&quot;SELECT ECInstanceId FROM bis.Element WHERE Parent.Id=?&quot;, (stmt: ECSqlStatement) =&gt; {
-    stmt.bindId(1, new Id64(&quot;0x132&quot;));
+    stmt.bindId(1, &quot;0x132&quot;);
     // ...
   });</code></pre>
 <pre class="no-line-numbers"><code class="language-typescript">  iModel.withPreparedStatement(&quot;SELECT ECInstanceId FROM bis.Element WHERE Parent.Id=?&quot;, (stmt: ECSqlStatement) =&gt; {
-    stmt.bindValues([new Id64(&quot;0x132&quot;)]);
+    stmt.bindValues([&quot;0x132&quot;]);
     // ...
   });</code></pre>
 <h3 class="h-struct-properties">Struct properties<a id="struct-properties" class="heading-anchor" href="#struct-properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -233,7 +233,7 @@ Using the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/
 <p>The following example is intended to illustrate the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlrowformat'>ECSQL row format</a>:</p>
 <pre class="no-line-numbers"><code class="language-typescript">  iModel.withPreparedStatement(&quot;SELECT ECInstanceId,ECClassId,Parent,LastMod FROM bis.Element WHERE Model.Id=?&quot;, (stmt: ECSqlStatement) =&gt; {
 
-    stmt.bindId(1, new Id64(&quot;0x113&quot;));
+    stmt.bindId(1, &quot;0x113&quot;);
 
     while (stmt.step() === DbResult.BE_SQLITE_ROW) {
       const row: any = stmt.getRow();
@@ -253,13 +253,13 @@ transformed according to the rules described in the <a href='https://imodeljs.gi
 <p>The following example illustrates how to work with the ECSQL row JavaScript literal:</p>
 <pre class="no-line-numbers"><code class="language-typescript">  iModel.withPreparedStatement(&quot;SELECT ECInstanceId,ECClassId,Parent,LastMod FROM bis.Element WHERE Model.Id=?&quot;, (stmt: ECSqlStatement) =&gt; {
 
-    stmt.bindId(1, new Id64(&quot;0x113&quot;));
+    stmt.bindId(1, &quot;0x113&quot;);
 
     console.log(&quot;ECInstanceId | ClassName | Parent Id | Parent RelClassName | LastMod&quot;);
 
     while (stmt.step() === DbResult.BE_SQLITE_ROW) {
       const row: any = stmt.getRow();
-      const id: string = row.id;
+      const id: Id64String = row.id;
       const className: string = row.className;
       const parent: NavigationValue = row.parent;
       const lastMod: string = row.lastMod;
@@ -298,7 +298,7 @@ transformed according to the rules described in the <a href='https://imodeljs.gi
 </tr>
 </tbody></table><h3 class="h-column-by-column">Column by column<a id="column-by-column" class="heading-anchor" href="#column-by-column"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <pre class="no-line-numbers"><code class="language-typescript">  iModel.withPreparedStatement(&quot;SELECT ECInstanceId,ECClassId,Parent,LastMod FROM bis.Element WHERE Model.Id=?&quot;, (stmt: ECSqlStatement) =&gt; {
-    stmt.bindId(1, new Id64(&quot;0x113&quot;));
+    stmt.bindId(1, &quot;0x113&quot;);
 
     console.log(&quot;ECInstanceId | ClassName | Parent Id | Parent RelClassName | LastMod&quot;);
 
@@ -308,7 +308,7 @@ transformed according to the rules described in the <a href='https://imodeljs.gi
       const parentValue: ECSqlValue = stmt.getValue(2);
       const lastModValue: ECSqlValue = stmt.getValue(3);
 
-      const id: string = idValue.getId();
+      const id: Id64String = idValue.getId();
       const className: string = classIdValue.getClassNameForClassId();
       const parent: NavigationValue = parentValue.getNavigation();
       const lastMod: string = lastModValue.getDateTime();
@@ -351,7 +351,7 @@ transformed according to the rules described in the <a href='https://imodeljs.gi
 <p>The following example illustrates the flexibility of the column by column approach by preserving the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql/#ecinstanceid-and-ecclassid'>ECClassId</a>
 as id instead of having it converted to a class name.</p>
 <pre class="no-line-numbers"><code class="language-typescript">  iModel.withPreparedStatement(&quot;SELECT ECClassId,Parent.RelECClassId FROM bis.Element WHERE Model.Id=?&quot;, (stmt: ECSqlStatement) =&gt; {
-    stmt.bindId(1, new Id64(&quot;0x113&quot;));
+    stmt.bindId(1, &quot;0x113&quot;);
 
     console.log(&quot;ECClassId | Parent RelECClassId&quot;);
     while (stmt.step() === DbResult.BE_SQLITE_ROW) {
@@ -383,7 +383,7 @@ as id instead of having it converted to a class name.</p>
 </tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 October, 2018</span>
+                <span class='date-updated'>05 November, 2018</span>
             </p>
 
             

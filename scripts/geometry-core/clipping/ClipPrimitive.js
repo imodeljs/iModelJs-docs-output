@@ -1,8 +1,7 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
-* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
-*--------------------------------------------------------------------------------------------*/
+|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
+ *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module CartesianGeometry */
 const ClipPlane_1 = require("./ClipPlane");
@@ -14,22 +13,6 @@ const Geometry_1 = require("../Geometry");
 const PointHelpers_1 = require("../PointHelpers");
 const UnionOfConvexClipPlaneSets_1 = require("./UnionOfConvexClipPlaneSets");
 const Triangulation_1 = require("../topology/Triangulation");
-/**
- * Bit mask type for easily keeping track of defined vs undefined values and which parts of a clipping shape
- * should or should not be used.
- */
-var ClipMask;
-(function (ClipMask) {
-    ClipMask[ClipMask["None"] = 0] = "None";
-    ClipMask[ClipMask["XLow"] = 1] = "XLow";
-    ClipMask[ClipMask["XHigh"] = 2] = "XHigh";
-    ClipMask[ClipMask["YLow"] = 4] = "YLow";
-    ClipMask[ClipMask["YHigh"] = 8] = "YHigh";
-    ClipMask[ClipMask["ZLow"] = 16] = "ZLow";
-    ClipMask[ClipMask["ZHigh"] = 32] = "ZHigh";
-    ClipMask[ClipMask["XAndY"] = 15] = "XAndY";
-    ClipMask[ClipMask["All"] = 63] = "All";
-})(ClipMask = exports.ClipMask || (exports.ClipMask = {}));
 /** Internal helper class holding XYZ components that serves as a representation of polygon edges defined by clip planes */
 class PolyEdge {
     constructor(origin, next, normal, z) {

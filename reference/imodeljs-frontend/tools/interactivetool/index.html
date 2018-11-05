@@ -47,7 +47,7 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
                         <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
                     </a>
@@ -56,7 +56,7 @@
                     </button>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//ChangeHistory">Change History</a></li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <span class='search-bar'>
@@ -180,7 +180,7 @@
         </ul>    </div>
     <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/tools/">Tools</a> > InteractiveTool</div>
+            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/tools/">Tools</a> > InteractiveTool</div>
             
             <h2 class="h-interactivetool">InteractiveTool <span class="badge badge-pill badge-primary badge-class">Class</span><a id="interactivetool" class="heading-anchor" href="#interactivetool"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>A Tool that may be installed, via <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/tooladmin'>ToolAdmin</a>, to handle user input. The ToolAdmin manages the currently installed ViewingTool, PrimitiveTool,
@@ -194,6 +194,7 @@ InputCollector, and IdleTool. Each must derive from this class and there may onl
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/viewtool'>ViewTool</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/idletool'>IdleTool</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/primitivetool'>PrimitiveTool</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/inputcollector'>InputCollector</a></li>
 </ul>
 <h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -202,11 +203,15 @@ InputCollector, and IdleTool. Each must derive from this class and there may onl
 </tr>
 <tr>
 <td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">..._args: any[]</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool'>InteractiveTool</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-begindynamics"><span class="method-name"><a href="begindynamics">beginDynamics</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="begindynamics" class="heading-anchor" href="#begindynamics"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Call to initialize dynamics mode.</td>
+</tr>
+<tr>
+<td class="h-changelocatestate"><span class="method-name"><a href="changelocatestate">changeLocateState</a></span><span class="method-parenthesis">(</span><span class="method-parameters">enableLocate: boolean, enableSnap?: true | false, cursor?: string, coordLockOvr?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/coordinatelockoverrides'>CoordinateLockOverrides</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="changelocatestate" class="heading-anchor" href="#changelocatestate"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Helper method to keep the view cursor, display of locate circle, and coordinate lock overrides consistent with <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/accusnap/#islocateenabled'>AccuSnap.isLocateEnabled</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/accusnap/#issnapenabled'>AccuSnap.isSnapEnabled</a>.</td>
 </tr>
 <tr>
 <td class="h-decorate"><span class="method-name"><a href="decorate">decorate</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_context: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/decoratecontext'>DecorateContext</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="decorate" class="heading-anchor" href="#decorate"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -222,7 +227,11 @@ InputCollector, and IdleTool. Each must derive from this class and there may onl
 </tr>
 <tr>
 <td class="h-exittool"><span class="method-name">exitTool</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="exittool" class="heading-anchor" href="#exittool"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-filterhit"><span class="method-name"><a href="filterhit">filterHit</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_hit: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/hitdetail'>HitDetail</a>, _out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/locateresponse'>LocateResponse</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/locatefilterstatus'>LocateFilterStatus</a>&gt;</span><a id="filterhit" class="heading-anchor" href="#filterhit"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Invoked to allow tools to filter which elements can be located.</td>
 </tr>
 <tr>
 <td class="h-getcurrentbuttonevent"><span class="method-name">getCurrentButtonEvent</span><span class="method-parenthesis">(</span><span class="method-parameters">ev: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/bebuttonevent'>BeButtonEvent</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="getcurrentbuttonevent" class="heading-anchor" href="#getcurrentbuttonevent"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -233,16 +242,20 @@ InputCollector, and IdleTool. Each must derive from this class and there may onl
 <td>Called to allow snapping to pickable decoration geometry.</td>
 </tr>
 <tr>
-<td class="h-gettooltip"><span class="method-name"><a href="gettooltip">getToolTip</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_hit: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/hitdetail'>HitDetail</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;string&gt;</span><a id="gettooltip" class="heading-anchor" href="#gettooltip"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-gettooltip"><span class="method-name"><a href="gettooltip">getToolTip</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_hit: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/hitdetail'>HitDetail</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;HTMLElement | string&gt;</span><a id="gettooltip" class="heading-anchor" href="#gettooltip"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Invoked before the locate tooltip is displayed to retrieve the information about the located element.</td>
 </tr>
 <tr>
+<td class="h-initlocateelements"><span class="method-name"><a href="initlocateelements">initLocateElements</a></span><span class="method-parenthesis">(</span><span class="method-parameters">enableLocate: boolean = true, enableSnap?: true | false, cursor?: string, coordLockOvr?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/coordinatelockoverrides'>CoordinateLockOverrides</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="initlocateelements" class="heading-anchor" href="#initlocateelements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Helper method for tools that need to locate existing elements.</td>
+</tr>
+<tr>
 <td class="h-iscompatibleviewport"><span class="method-name">isCompatibleViewport</span><span class="method-parenthesis">(</span><span class="method-parameters">_vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>, _isSelectedViewChange: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="iscompatibleviewport" class="heading-anchor" href="#iscompatibleviewport"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-isvalidlocation"><span class="method-name">isValidLocation</span><span class="method-parenthesis">(</span><span class="method-parameters">_ev: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/bebuttonevent'>BeButtonEvent</a>, _isButtonEvent: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="isvalidlocation" class="heading-anchor" href="#isvalidlocation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-oncleanup"><span class="method-name">onCleanup</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="oncleanup" class="heading-anchor" href="#oncleanup"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -469,7 +482,7 @@ InputCollector, and IdleTool. Each must derive from this class and there may onl
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 October, 2018</span>
+                <span class='date-updated'>05 November, 2018</span>
             </p>
 
             
@@ -507,6 +520,9 @@ InputCollector, and IdleTool. Each must derive from this class and there may onl
                                             <a class='title solo-title menu-text' href="#begindynamics">beginDynamics</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#changelocatestate">changeLocateState</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#decorate">decorate</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -519,6 +535,9 @@ InputCollector, and IdleTool. Each must derive from this class and there may onl
                                             <a class='title solo-title menu-text' href="#exittool">exitTool</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#filterhit">filterHit</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#getcurrentbuttonevent">getCurrentButtonEvent</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -526,6 +545,9 @@ InputCollector, and IdleTool. Each must derive from this class and there may onl
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#gettooltip">getToolTip</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#initlocateelements">initLocateElements</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#iscompatibleviewport">isCompatibleViewport</a>

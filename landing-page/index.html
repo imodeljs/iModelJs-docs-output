@@ -46,7 +46,7 @@
       </button>
       <div class="navbar-collapse collapse justify-content-stretch" id="navbar7">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li>
+          <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//ChangeHistory">Change History</a></li>
         </ul>
       </div>
     </nav>
@@ -143,6 +143,8 @@
                 if (isIE || isEdge) {
                   document.getElementById("viewiModelBtn").innerHTML = "Sorry, the browser you are using is not supported. Please open the iModel.js viewer with one of the following browsers:<br>Firefox, Chrome, Safari";
                 } else {
+                  var page = document.location.pathname + "/landing-page-public-viewer-demonstrator";
+                  ga('send', 'pageview', page);
                   document.getElementById("demo-container").innerHTML = "<iframe src='./learning/public-viewer-demonstrator/' class='iframe-viewer'></iframe>";
                 }
                 e.preventDefault();

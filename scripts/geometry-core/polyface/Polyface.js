@@ -1,8 +1,7 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 - present Bentley Systems, Incorporated. All rights reserved.
-* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
-*--------------------------------------------------------------------------------------------*/
+|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
+ *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Polyface */
 // import { Point2d } from "./Geometry2d";
@@ -207,47 +206,6 @@ class FacetFaceData {
     }
 }
 exports.FacetFaceData = FacetFaceData;
-var AuxChannelDataType;
-(function (AuxChannelDataType) {
-    AuxChannelDataType[AuxChannelDataType["Scalar"] = 0] = "Scalar";
-    AuxChannelDataType[AuxChannelDataType["Distance"] = 1] = "Distance";
-    AuxChannelDataType[AuxChannelDataType["Vector"] = 2] = "Vector";
-    AuxChannelDataType[AuxChannelDataType["Normal"] = 3] = "Normal";
-    AuxChannelDataType[AuxChannelDataType["Point"] = 4] = "Point";
-})(AuxChannelDataType = exports.AuxChannelDataType || (exports.AuxChannelDataType = {}));
-class AuxChannelData {
-    constructor(input, values) {
-        this.input = input;
-        this.values = values;
-    }
-}
-exports.AuxChannelData = AuxChannelData;
-class AuxChannel {
-    constructor(data, dataType, name, inputName) {
-        this.data = data;
-        this.dataType = dataType;
-        this.name = name;
-        this.inputName = inputName;
-    }
-    get isScalar() { return this.dataType === AuxChannelDataType.Distance || this.dataType === AuxChannelDataType.Scalar; }
-    get scalarRange() {
-        if (!this.isScalar)
-            return undefined;
-        const range = Range_1.Range1d.createNull();
-        for (const data of this.data) {
-            range.extendArray(data.values);
-        }
-        return range;
-    }
-}
-exports.AuxChannel = AuxChannel;
-class PolyfaceAuxData {
-    constructor(channels, indices) {
-        this.channels = channels;
-        this.indices = indices;
-    }
-}
-exports.PolyfaceAuxData = PolyfaceAuxData;
 /**
  * PolyfaceData carries data arrays for point, normal, param, color and their indices.
  *
