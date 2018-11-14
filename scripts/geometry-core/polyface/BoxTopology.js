@@ -1,10 +1,11 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Polyface */
-const PointVector_1 = require("../PointVector");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
 //
 //      2------------------3
 //      | \     F4       / |
@@ -26,14 +27,14 @@ class BoxTopology {
  * * The point indices for the z edges are (0 to 4), (1 to 5), (2 to 6), (3 to 7)
  */
 BoxTopology.points = [
-    PointVector_1.Point3d.create(0, 0, 0),
-    PointVector_1.Point3d.create(1, 0, 0),
-    PointVector_1.Point3d.create(0, 1, 0),
-    PointVector_1.Point3d.create(1, 1, 0),
-    PointVector_1.Point3d.create(0, 0, 1),
-    PointVector_1.Point3d.create(1, 0, 1),
-    PointVector_1.Point3d.create(0, 1, 1),
-    PointVector_1.Point3d.create(1, 1, 1),
+    Point3dVector3d_1.Point3d.create(0, 0, 0),
+    Point3dVector3d_1.Point3d.create(1, 0, 0),
+    Point3dVector3d_1.Point3d.create(0, 1, 0),
+    Point3dVector3d_1.Point3d.create(1, 1, 0),
+    Point3dVector3d_1.Point3d.create(0, 0, 1),
+    Point3dVector3d_1.Point3d.create(1, 0, 1),
+    Point3dVector3d_1.Point3d.create(0, 1, 1),
+    Point3dVector3d_1.Point3d.create(1, 1, 1),
 ];
 BoxTopology.primaryCapId = -1;
 // cornerIndexCCW[face][*] = vertices around face

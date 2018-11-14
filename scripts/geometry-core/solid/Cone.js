@@ -1,14 +1,16 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
-const Transform_1 = require("../Transform");
+const Transform_1 = require("../geometry3d/Transform");
+const Matrix3d_1 = require("../geometry3d/Matrix3d");
 const Geometry_1 = require("../Geometry");
 const SolidPrimitive_1 = require("./SolidPrimitive");
 const StrokeOptions_1 = require("../curve/StrokeOptions");
-const CurveChain_1 = require("../curve/CurveChain");
-const AnalyticGeometry_1 = require("../AnalyticGeometry");
+const Loop_1 = require("../curve/Loop");
+const Plane3dByOriginAndVectors_1 = require("../geometry3d/Plane3dByOriginAndVectors");
 const Arc3d_1 = require("../curve/Arc3d");
 const LineString3d_1 = require("../curve/LineString3d");
 /**
@@ -64,7 +66,7 @@ class Cone extends SolidPrimitive_1.SolidPrimitive {
         // at least one must be nonzero.
         if (radiusA + radiusB === 0.0)
             return undefined;
-        const matrix = Transform_1.Matrix3d.createRigidHeadsUp(zDirection);
+        const matrix = Matrix3d_1.Matrix3d.createRigidHeadsUp(zDirection);
         matrix.scaleColumns(1.0, 1.0, a, matrix);
         const localToWorld = Transform_1.Transform.createOriginAndMatrix(centerA, matrix);
         return new Cone(localToWorld, radiusA, radiusB, capped);
@@ -144,7 +146,7 @@ class Cone extends SolidPrimitive_1.SolidPrimitive {
         const center = transform.multiplyXYZ(0, 0, vFraction);
         const vector0 = transform.matrix.multiplyXYZ(r, 0, 0);
         const vector90 = transform.matrix.multiplyXYZ(0, r, 0);
-        return CurveChain_1.Loop.create(Arc3d_1.Arc3d.create(center, vector0, vector90));
+        return Loop_1.Loop.create(Arc3d_1.Arc3d.create(center, vector0, vector90));
     }
     extendRange(range, transform) {
         const arc0 = this.constantVSection(0.0);
@@ -166,7 +168,7 @@ class Cone extends SolidPrimitive_1.SolidPrimitive {
         const cosTheta = Math.cos(theta);
         const sinTheta = Math.sin(theta);
         const fTheta = 2.0 * Math.PI;
-        return AnalyticGeometry_1.Plane3dByOriginAndVectors.createOriginAndVectors(this._localToWorld.multiplyXYZ(r * cosTheta, r * sinTheta, vFraction), this._localToWorld.multiplyVectorXYZ(-r * sinTheta * fTheta, r * cosTheta * fTheta, 0), this._localToWorld.multiplyVectorXYZ(drdv * cosTheta, drdv * sinTheta, 1.0), result);
+        return Plane3dByOriginAndVectors_1.Plane3dByOriginAndVectors.createOriginAndVectors(this._localToWorld.multiplyXYZ(r * cosTheta, r * sinTheta, vFraction), this._localToWorld.multiplyVectorXYZ(-r * sinTheta * fTheta, r * cosTheta * fTheta, 0), this._localToWorld.multiplyVectorXYZ(drdv * cosTheta, drdv * sinTheta, 1.0), result);
     }
 }
 exports.Cone = Cone;

@@ -1,10 +1,11 @@
 /** @module Polyface */
 import { IndexedPolyface } from "./Polyface";
-import { GrowableFloat64Array } from "../GrowableArray";
-import { Point3d, Vector3d, Point2d } from "../PointVector";
-import { Transform } from "../Transform";
+import { GrowableFloat64Array } from "../geometry3d/GrowableArray";
+import { Point2d } from "../geometry3d/Point2dVector2d";
+import { Point3d, Vector3d } from "../geometry3d/Point3dVector3d";
+import { Transform } from "../geometry3d/Transform";
 import { StrokeOptions } from "../curve/StrokeOptions";
-import { GeometryQuery } from "../curve/CurvePrimitive";
+import { GeometryQuery } from "../curve/GeometryQuery";
 import { Cone } from "../solid/Cone";
 import { Sphere } from "../solid/Sphere";
 import { TorusPipe } from "../solid/TorusPipe";
@@ -15,7 +16,7 @@ import { RuledSweep } from "../solid/RuledSweep";
 import { AnyCurve } from "../curve/CurveChain";
 import { LineString3d } from "../curve/LineString3d";
 import { HalfEdgeGraph, HalfEdgeToBooleanFunction } from "../topology/Graph";
-import { NullGeometryHandler, UVSurface } from "../GeometryHandler";
+import { NullGeometryHandler, UVSurface } from "../geometry3d/GeometryHandler";
 /**
  *
  * * Simple construction for strongly typed GeometryQuery objects:

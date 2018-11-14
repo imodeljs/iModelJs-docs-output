@@ -1,5 +1,6 @@
-import { Range1d } from "../Range";
-import { GrowableFloat64Array } from "../GrowableArray";
+/** @module Numerics */
+import { Range1d } from "../geometry3d/Range";
+import { GrowableFloat64Array } from "../geometry3d/GrowableArray";
 /**
  * A Range1d array is a set of intervals, such as occur when a line is clipped to a (nonconvex) polygon
  */

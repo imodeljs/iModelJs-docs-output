@@ -1,12 +1,17 @@
 /** @module Curve */
 import { BeJSONFunctions, PlaneAltitudeEvaluator } from "../Geometry";
-import { Point3d } from "../PointVector";
-import { Range3d } from "../Range";
-import { Transform } from "../Transform";
-import { Plane3dByOriginAndUnitNormal, Ray3d, Plane3dByOriginAndVectors } from "../AnalyticGeometry";
-import { GeometryHandler, IStrokeHandler } from "../GeometryHandler";
-import { StrokeOptions } from "../curve/StrokeOptions";
-import { CurvePrimitive, GeometryQuery, CurveLocationDetail, AnnounceNumberNumberCurvePrimitive } from "./CurvePrimitive";
+import { Point3d } from "../geometry3d/Point3dVector3d";
+import { Range3d } from "../geometry3d/Range";
+import { Transform } from "../geometry3d/Transform";
+import { Plane3dByOriginAndUnitNormal } from "../geometry3d/Plane3dByOriginAndUnitNormal";
+import { Ray3d } from "../geometry3d/Ray3d";
+import { Plane3dByOriginAndVectors } from "../geometry3d/Plane3dByOriginAndVectors";
+import { GeometryHandler, IStrokeHandler } from "../geometry3d/GeometryHandler";
+import { StrokeOptions } from "./StrokeOptions";
+import { CurvePrimitive } from "./CurvePrimitive";
+import { GeometryQuery } from "./GeometryQuery";
+import { CurveLocationDetail } from "./CurveLocationDetail";
+import { AnnounceNumberNumberCurvePrimitive } from "./CurvePrimitive";
 import { LineString3d } from "./LineString3d";
 import { Clipper } from "../clipping/ClipUtils";
 /**
@@ -27,6 +32,15 @@ export declare class LineSegment3d extends CurvePrimitive implements BeJSONFunct
     private _point1;
     readonly point0Ref: Point3d;
     readonly point1Ref: Point3d;
+    /**
+     * A LineSegment3d extends along its infinite line.
+     */
+    readonly isExtensibleFractionSpace: boolean;
+    /**
+     * CAPTURE point references as a `LineSegment3d`
+     * @param point0
+     * @param point1
+     */
     private constructor();
     /** Set the start and endpoints by capturing input references. */
     setRefs(point0: Point3d, point1: Point3d): void;
@@ -73,6 +87,7 @@ export declare class LineSegment3d extends CurvePrimitive implements BeJSONFunct
     /** @returns Return the point at fractional position along the line segment. */
     fractionToPoint(fraction: number, result?: Point3d): Point3d;
     curveLength(): number;
+    curveLengthBetweenFractions(fraction0: number, fraction1: number): number;
     quickLength(): number;
     /**
      * @param spacePoint point in space
@@ -80,6 +95,7 @@ export declare class LineSegment3d extends CurvePrimitive implements BeJSONFunct
      * @returns Returns a curve location detail with both xyz and fractional coordinates of the closest point.
      */
     closestPoint(spacePoint: Point3d, extend: boolean, result?: CurveLocationDetail): CurveLocationDetail;
+    /** swap the endpoint references. */
     reverseInPlace(): void;
     tryTransformInPlace(transform: Transform): boolean;
     isInPlane(plane: Plane3dByOriginAndUnitNormal): boolean;
@@ -101,6 +117,8 @@ export declare class LineSegment3d extends CurvePrimitive implements BeJSONFunct
      * @param json data to parse.
      */
     setFromJSON(json?: any): void;
+    /** A simple line segment's fraction and distance are proportional. */
+    getFractionToDistanceScale(): number | undefined;
     /**
      * Place the lineSegment3d start and points in a json object
      * @return {*} [[x,y,z],[x,y,z]]

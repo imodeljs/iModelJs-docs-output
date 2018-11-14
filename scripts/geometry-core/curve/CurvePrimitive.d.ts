@@ -1,117 +1,20 @@
 /** @module Curve */
 import { PlaneAltitudeEvaluator } from "../Geometry";
 import { StrokeOptions } from "./StrokeOptions";
-import { Point3d, Vector3d } from "../PointVector";
-import { Range3d } from "../Range";
-import { Transform } from "../Transform";
-import { Plane3dByOriginAndUnitNormal, Ray3d, Plane3dByOriginAndVectors } from "../AnalyticGeometry";
-import { GeometryHandler, IStrokeHandler } from "../GeometryHandler";
+import { Point3d } from "../geometry3d/Point3dVector3d";
+import { Transform } from "../geometry3d/Transform";
+import { Plane3dByOriginAndUnitNormal } from "../geometry3d/Plane3dByOriginAndUnitNormal";
+import { Ray3d } from "../geometry3d/Ray3d";
+import { Plane3dByOriginAndVectors } from "../geometry3d/Plane3dByOriginAndVectors";
+import { IStrokeHandler } from "../geometry3d/GeometryHandler";
 import { LineString3d } from "./LineString3d";
 import { Clipper } from "../clipping/ClipUtils";
-/**
- * An enumeration of special conditions being described by a CurveLocationDetail.
- */
-export declare enum CurveIntervalRole {
-    /** This point is an isolated point NOT at a primary vertex. */
-    isolated = 0,
-    /**  This point is an isolated vertex hit */
-    isolatedAtVertex = 1,
-    /** This is the beginning of an interval */
-    intervalStart = 10,
-    /** This is an interior point of an interval. */
-    intervalInterior = 11,
-    /** This is the end of an interval */
-    intervalEnd = 12
-}
+import { CurveLocationDetail } from "./CurveLocationDetail";
+import { GeometryQuery } from "./GeometryQuery";
 /** Type for callback function which announces a pair of numbers, such as a fractional interval, along with a containing CurvePrimitive. */
 export declare type AnnounceNumberNumberCurvePrimitive = (a0: number, a1: number, cp: CurvePrimitive) => void;
 export declare type AnnounceNumberNumber = (a0: number, a1: number) => void;
 export declare type AnnounceCurvePrimitive = (cp: CurvePrimitive) => void;
-/**
- * CurveLocationDetail carries point and paramter data about a point evaluated on a curve.
- */
-export declare class CurveLocationDetail {
-    /** The curve being evaluated */
-    curve?: CurvePrimitive;
-    /** The fractional position along the curve */
-    fraction: number;
-    /** Deail condition of the role this point has in some context */
-    intervalRole?: CurveIntervalRole;
-    /** The point on the curve */
-    point: Point3d;
-    /** A vector (e.g. tangent vector) in context */
-    vector: Vector3d;
-    /** A context-specific numeric value.  (E.g. a distance) */
-    a: number;
-    /** A context-specific addtional point */
-    pointQ: Point3d;
-    constructor();
-    /** Set the (optional) intervalRole field */
-    setIntervalRole(value: CurveIntervalRole): void;
-    /** test if this is an isolated point. This is true if intervalRole is any of (undefined, isolated, isolatedAtVertex) */
-    readonly isIsolated: boolean;
-    /** @returns Return a complete copy */
-    clone(result?: CurveLocationDetail): CurveLocationDetail;
-    setFP(fraction: number, point: Point3d, vector?: Vector3d, a?: number): void;
-    setFR(fraction: number, ray: Ray3d, a?: number): void;
-    /** Set the CurvePrimitive pointer, leaving all other properties untouched.
-     */
-    setCurve(curve: CurvePrimitive): void;
-    /** record the distance from the CurveLocationDetail's point to the parameter point. */
-    setDistanceTo(point: Point3d): void;
-    /** create with a CurvePrimitive pointer but no coordinate data.
-     */
-    static create(curve: CurvePrimitive, result?: CurveLocationDetail): CurveLocationDetail;
-    /** create with CurvePrimitive pointer, fraction, and point coordinates.
-     */
-    static createCurveFractionPoint(curve: CurvePrimitive, fraction: number, point: Point3d, result?: CurveLocationDetail): CurveLocationDetail;
-}
-/** A pair of CurveLocationDetail. */
-export declare class CurveLocationDetailPair {
-    detailA: CurveLocationDetail;
-    detailB: CurveLocationDetail;
-    constructor();
-    /** Create a curve detail pair using references to two CurveLocationDetails */
-    static createDetailRef(detailA: CurveLocationDetail, detailB: CurveLocationDetail, result?: CurveLocationDetailPair): CurveLocationDetailPair;
-    /** Make a deep copy of this CurveLocationDetailPair */
-    clone(result?: CurveLocationDetailPair): CurveLocationDetailPair;
-}
-/** Queries to be supported by Curve, Surface, and Solid objects */
-export declare abstract class GeometryQuery {
-    /** return the range of the entire (tree) GeometryQuery */
-    range(transform?: Transform, result?: Range3d): Range3d;
-    /** extend rangeToExtend by the range of this geometry multiplied by the transform */
-    abstract extendRange(rangeToExtend: Range3d, transform?: Transform): void;
-    /** Attempt to transform in place.
-     *
-     * * LineSegment3d, Arc3d, LineString3d, BsplineCurve3d always succeed.
-     * * Some geometry types may fail if scaling is non-uniform.
-     */
-    abstract tryTransformInPlace(transform: Transform): boolean;
-    /** try to move the geometry by dx,dy,dz */
-    tryTranslateInPlace(dx: number, dy?: number, dz?: number): boolean;
-    /** return a transformed clone.
-     */
-    abstract cloneTransformed(transform: Transform): GeometryQuery | undefined;
-    /** return a clone */
-    abstract clone(): GeometryQuery | undefined;
-    /** return GeometryQuery children for recursive queries.
-     *
-     * * leaf classes do not need to implement.
-     */
-    readonly children: GeometryQuery[] | undefined;
-    /** test if (other instanceof this.Type).  REQUIRED IN ALL CONCRETE CLASSES */
-    abstract isSameGeometryClass(other: GeometryQuery): boolean;
-    /** test for exact structure and nearly identical geometry.
-     *
-     * *  Leaf classes must implement !!!
-     * *  base class implementation recurses through children.
-     * *  base implementation is complete for classes with children and no properties.
-     * *  classes with both children and properties must implement for properties, call super for children.
-     */
-    isAlmostEqual(other: GeometryQuery): boolean;
-    abstract dispatchToGeometryHandler(handler: GeometryHandler): any;
-}
 /**
  * A curve primitive is bounded
  * A curve primitive maps fractions in 0..1 to points in space.
@@ -170,6 +73,83 @@ export declare abstract class CurvePrimitive extends GeometryQuery {
      */
     curveLength(): number;
     /**
+     *
+     * * Curve length is always positive.
+     * @returns Returns a (high accuracy) length of the curve between fractional positions
+     */
+    curveLengthBetweenFractions(fraction0: number, fraction1: number): number;
+    /**
+     *
+     * * Run an integration (with a default gaussian quadrature) with a fixed fractional step
+     * * This is typically called by specific curve type implementations of curveLengthBetweenFrations.
+     *   * For example, in Arc3d implementation of curveLengthBetweenFrations:
+     *     * If the Arc3d is true circular, it the arc is true circular, use the direct `arcLength = radius * sweepRadians`
+     *     * If the Arc3d is not true circular, call this method with an interval count appropriate to eccentricity and sweepRadians.
+     * @returns Returns an integral estimated by numerical quadrature between the fractional positions.
+     * @param fraction0 start fraction for integration
+     * @param fraction1 end fraction for integration
+     * @param numInterval number of quadrature intervals
+     */
+    curveLengthWithFixedIntervalCountQuadrature(fraction0: number, fraction1: number, numInterval: number, numGauss?: number): number;
+    /**
+     *
+     * * (Attempt to) find a position on the curve at a signed distance from start fraction.
+     * * Return the postion as a CurveLocationDetail.
+     * * In the `CurveLocationDetail`, record:
+     *   * `fractional` position
+     *   * `fraction` = coordinates of the point
+     *   * `search
+     *   * `a` = (signed!) distance moved.   If `allowExtension` is false and the move reached the start or end of the curve, this distance is smaller than the requested signedDistance.
+     *   * `curveSearchStatus` indicates one of:
+     *     * `error` (unusual) computation failed not supported for this curve.
+     *     * `success` full movement completed
+     *     * `stoppedAtBoundary` partial movement completed. This can be due to either
+     *        * `allowExtendsion` parameter sent as `false`
+     *        * the curve type (e.g. bspline) does not support extended range.
+     * * if `allowExtension` is true, movement may still end at the startpoint or endpoint for curves that do not support extended geometry (specifically bsplines)
+     * * if the curve returns a value (i.e. not `undefined`) for `curve.getFractionToDistanceScale()`, the base class carries out the computation
+     *    and returns a final location.
+     *   * LineSegment3d relies on this.
+     * * If the curve does not implement the computation or the curve has zero length, the returned `CurveLocationDetail` has
+     *    * `fraction` = the value of `startFraction`
+     *    * `point` = result of `curve.fractionToPoint(startFraction)`
+     *    * `a` = 0
+     *    * `curveStartState` = `CurveSearchStatus.error`
+     * @param startFraction fractional position where the move starts
+     * @param signedDistance distance to move.   Negative distance is backwards in the fraction space
+     * @param allowExtension if true, all the move to go beyond the startpoint or endpoint of the curve.  If false, do not allow movement beyond the startpoint or endpoint
+     * @param result optional result.
+     * @returns A CurveLocationDetail annotated as above.  Note that if the curve does not support the calculation, there is still a result which contains the point at the input startFraction, with failure indicated in the `curveStartState` member
+     */
+    moveSignedDistanceFromFraction(startFraction: number, signedDistance: number, allowExtension: boolean, result?: CurveLocationDetail): CurveLocationDetail;
+    /**
+     * Generic algorithm to search for point at signed distance from a fractional start point.
+     * * This will work for well for smooth curves.
+     * * Curves with tangent or other low-order-derivative discontinuities may need to implement specialized algorithms.
+     * * We need to find an endFraction which is the end-of-interval (usually upper) limit of integration of the tangent magnitude from startFraction to endFraction
+     * * That integral is a function of endFraction.
+     * * The derivative of that integral with respect to end fraction is the tangent magnitude at end fraction.
+     * * Use that function and (easily evaluated!) derivative for a Newton iteration
+     * * TO ALL WHO HAVE FUZZY MEMORIES OF CALCULUS CLASS: "The derivative of the integral wrt upper limit is the value of the integrand there" is the
+     *       fundamental theorem of integral calculus !!! The fundeamental theorem is not just an abstraction !!! It is being used
+     *       here in its barest possible form !!!
+     * * See https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus
+     * @param startFraction
+     * @param signedDistance
+     * @param _allowExtension
+     * @param result
+     */
+    protected moveSignedDistanceFromFractionGeneric(startFraction: number, signedDistance: number, allowExtension: boolean, result?: CurveLocationDetail): CurveLocationDetail;
+    /**
+     * * Returns true if the curve's fraction queries extend beyond 0..1.
+     * * Base class default implementation returns false.
+     * * These class (and perhaps others in the future) will return true:
+     *   * LineSegment3d
+     *   * LineString3d
+     *   * Arc3d
+     */
+    readonly isExtensibleFractionSpace: boolean;
+    /**
      * Compute a length which may be an fast approximation to the true length.
      * This is expected to be either (a) exact or (b) larger than the actual length, but by no more than
      * a small multiple, perhaps up to PI/2, but commonly much closer to 1.
@@ -202,6 +182,20 @@ export declare abstract class CurvePrimitive extends GeometryQuery {
      * @param _fractionB [in] end fraction
      */
     clonePartialCurve(_fractionA: number, _fractionB: number): CurvePrimitive | undefined;
+    /**
+     * * If the curve primitive has distance-along-curve strictly proportional to curve fraction, return true
+     * * If distance-along-the-curve is not proportional, return undefined.
+     * * When defined, the scale factor is alwyas the length of the curve.
+     * * This scale factor is typically available for these curve types:
+     * * * All `LineSegment3d`
+     * * * Arc3d which is a true circular arc (axes perpendicular and of equal length).
+     * * * CurveChainWithDistanceIndex
+     * * This scale factor is undefined for these curve types:
+     * * * Arc3d which is a true ellipse, i.e. unequal lengths of defining vectors or non-perpendicular defining vectors.
+     * * * bspline and bezier curves
+     * @returns scale factor or undefined
+     */
+    getFractionToDistanceScale(): number | undefined;
     /** Reverse the curve's data so that its fractional stroking moves in the opposite direction. */
     abstract reverseInPlace(): void;
     /**
@@ -229,40 +223,5 @@ export declare abstract class CurvePrimitive extends GeometryQuery {
      * See IStrokeHandler for description of the sequence of the method calls.
      */
     abstract emitStrokableParts(dest: IStrokeHandler, options?: StrokeOptions): void;
-}
-/** A Coordinate is a persistable Point3d */
-export declare class CoordinateXYZ extends GeometryQuery {
-    private _xyz;
-    readonly point: Point3d;
-    /**
-     * @param xyz point to be CAPTURED.
-     */
-    private constructor();
-    static create(point: Point3d): CoordinateXYZ;
-    /** return the range of the point */
-    range(): Range3d;
-    extendRange(rangeToExtend: Range3d, transform?: Transform): void;
-    /** Apply transform to the Coordinate's point. */
-    tryTransformInPlace(transform: Transform): boolean;
-    /** return a transformed clone.
-     */
-    cloneTransformed(transform: Transform): GeometryQuery | undefined;
-    /** return a clone */
-    clone(): GeometryQuery | undefined;
-    /** return GeometryQuery children for recursive queries.
-     *
-     * * leaf classes do not need to implement.
-     */
-    /** test if (other instanceof Coordinate).  */
-    isSameGeometryClass(other: GeometryQuery): boolean;
-    /** test for exact structure and nearly identical geometry.
-     *
-     * *  Leaf classes must implement !!!
-     * *  base class implementation recurses through children.
-     * *  base implementation is complete for classes with children and no properties.
-     * *  classes with both children and properties must implement for properties, call super for children.
-     */
-    isAlmostEqual(other: GeometryQuery): boolean;
-    dispatchToGeometryHandler(handler: GeometryHandler): any;
 }
 //# sourceMappingURL=CurvePrimitive.d.ts.map

@@ -1,14 +1,17 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
-const Transform_1 = require("../Transform");
+const Transform_1 = require("../geometry3d/Transform");
 const Geometry_1 = require("../Geometry");
+const AngleSweep_1 = require("../geometry3d/AngleSweep");
 const SolidPrimitive_1 = require("./SolidPrimitive");
-const CurveChain_1 = require("../curve/CurveChain");
+const Loop_1 = require("../curve/Loop");
+const Path_1 = require("../curve/Path");
 const Arc3d_1 = require("../curve/Arc3d");
-const AnalyticGeometry_1 = require("../AnalyticGeometry");
+const Plane3dByOriginAndVectors_1 = require("../geometry3d/Plane3dByOriginAndVectors");
 /**
  * the stored form of the torus pipe is oriented for positive volume:
  *
@@ -122,7 +125,7 @@ class TorusPipe extends SolidPrimitive_1.SolidPrimitive {
         const center = this._localToWorld.multiplyXYZ(majorRadius * c0, majorRadius * s0, 0);
         const vector0 = this._localToWorld.multiplyVectorXYZ(minorRadius * c0, minorRadius * s0, 0);
         const vector90 = this._localToWorld.multiplyVectorXYZ(0, 0, minorRadius);
-        return CurveChain_1.Loop.create(Arc3d_1.Arc3d.create(center, vector0, vector90));
+        return Loop_1.Loop.create(Arc3d_1.Arc3d.create(center, vector0, vector90));
     }
     constantUSection(uFraction) {
         const theta1Radians = this._sweep.radians;
@@ -135,7 +138,7 @@ class TorusPipe extends SolidPrimitive_1.SolidPrimitive {
         const rxy = majorRadius + minorRadius * Math.cos(phiRadians);
         const vector0 = axes.multiplyXYZ(rxy, 0, 0);
         const vector90 = axes.multiplyXYZ(0, rxy, 0);
-        return CurveChain_1.Path.create(Arc3d_1.Arc3d.create(center, vector0, vector90, Geometry_1.AngleSweep.createStartEndRadians(0.0, theta1Radians)));
+        return Path_1.Path.create(Arc3d_1.Arc3d.create(center, vector0, vector90, AngleSweep_1.AngleSweep.createStartEndRadians(0.0, theta1Radians)));
     }
     extendRange(range, transform) {
         const theta1Radians = this._sweep.radians;
@@ -216,7 +219,7 @@ class TorusPipe extends SolidPrimitive_1.SolidPrimitive {
         const rxy = this.getMajorRadius() + Math.cos(phiRadians) * minorRadius;
         const rSinPhi = minorRadius * sinPhi;
         const rCosPhi = minorRadius * cosPhi; // appears only as derivative of rSinPhi.
-        return AnalyticGeometry_1.Plane3dByOriginAndVectors.createOriginAndVectors(this._localToWorld.multiplyXYZ(cosTheta * rxy, sinTheta * rxy, rSinPhi), this._localToWorld.multiplyVectorXYZ(-rxy * sinTheta * fTheta, rxy * cosTheta * fTheta, 0), this._localToWorld.multiplyVectorXYZ(-cosTheta * rSinPhi * fPhi, -sinTheta * rSinPhi * fPhi, rCosPhi * fPhi), result);
+        return Plane3dByOriginAndVectors_1.Plane3dByOriginAndVectors.createOriginAndVectors(this._localToWorld.multiplyXYZ(cosTheta * rxy, sinTheta * rxy, rSinPhi), this._localToWorld.multiplyVectorXYZ(-rxy * sinTheta * fTheta, rxy * cosTheta * fTheta, 0), this._localToWorld.multiplyVectorXYZ(-cosTheta * rSinPhi * fPhi, -sinTheta * rSinPhi * fPhi, rCosPhi * fPhi), result);
     }
 }
 exports.TorusPipe = TorusPipe;

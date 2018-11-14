@@ -1,9 +1,9 @@
 /** @module CartesianGeometry */
-import { Point3d, Vector3d } from "../PointVector";
-import { Range3d } from "../Range";
-import { Transform } from "../Transform";
-import { Matrix4d } from "../numerics/Geometry4d";
-import { Angle } from "../Geometry";
+import { Point3d, Vector3d } from "../geometry3d/Point3dVector3d";
+import { Range3d } from "../geometry3d/Range";
+import { Transform } from "../geometry3d/Transform";
+import { Matrix4d } from "../geometry4d/Matrix4d";
+import { Angle } from "../geometry3d/Angle";
 import { Arc3d } from "../curve/Arc3d";
 import { ClipPlane } from "./ClipPlane";
 import { ClipPlaneContainment, Clipper } from "./ClipUtils";
@@ -12,7 +12,7 @@ import { AnnounceNumberNumberCurvePrimitive } from "../curve/CurvePrimitive";
  * A ConvexClipPlaneSet is a collection of ClipPlanes, often used for bounding regions of space.
  */
 export declare class ConvexClipPlaneSet implements Clipper {
-    static readonly hugeVal: number;
+    static readonly hugeVal = 1e+37;
     private _planes;
     private constructor();
     toJSON(): any;

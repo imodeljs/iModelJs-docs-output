@@ -1,14 +1,15 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
-/** @module Solid */
-const PointVector_1 = require("../PointVector");
-const Transform_1 = require("../Transform");
-const CurveChain_1 = require("../curve/CurveChain");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
+const Transform_1 = require("../geometry3d/Transform");
+const Loop_1 = require("../curve/Loop");
+const Path_1 = require("../curve/Path");
 const LineString3d_1 = require("../curve/LineString3d");
-const PointHelpers_1 = require("../PointHelpers");
+const PointHelpers_1 = require("../geometry3d/PointHelpers");
 const SweepContour_1 = require("./SweepContour");
 const SolidPrimitive_1 = require("./SolidPrimitive");
 /**
@@ -47,8 +48,8 @@ class LinearSweep extends SolidPrimitive_1.SolidPrimitive {
             if (area * zSweep < 0.0)
                 xyz.points.reverse();
         }
-        const contour = capped ? CurveChain_1.Loop.create(xyz) : CurveChain_1.Path.create(xyz);
-        return LinearSweep.create(contour, PointVector_1.Vector3d.create(0, 0, zSweep), capped);
+        const contour = capped ? Loop_1.Loop.create(xyz) : Path_1.Path.create(xyz);
+        return LinearSweep.create(contour, Point3dVector3d_1.Vector3d.create(0, 0, zSweep), capped);
     }
     getCurvesRef() { return this._contour.curves; }
     getSweepContourRef() { return this._contour; }

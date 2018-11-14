@@ -1,15 +1,21 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Curve */
 const Geometry_1 = require("../Geometry");
-const PointVector_1 = require("../PointVector");
-const Transform_1 = require("../Transform");
+const AngleSweep_1 = require("../geometry3d/AngleSweep");
+const Angle_1 = require("../geometry3d/Angle");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
+const Segment1d_1 = require("../geometry3d/Segment1d");
+const Transform_1 = require("../geometry3d/Transform");
+const Matrix3d_1 = require("../geometry3d/Matrix3d");
 const Quadrature_1 = require("../numerics/Quadrature");
 const CurvePrimitive_1 = require("./CurvePrimitive");
-const AnalyticGeometry_1 = require("../AnalyticGeometry");
+const Ray3d_1 = require("../geometry3d/Ray3d");
+const Plane3dByOriginAndVectors_1 = require("../geometry3d/Plane3dByOriginAndVectors");
 const LineString3d_1 = require("./LineString3d");
 // import {} from "./";
 /** A transition spiral is a curve defined by its curvature, with the curvature function symmetric about midpoint.
@@ -74,11 +80,11 @@ class TransitionConditionalProperties {
         if (this.curveLength === undefined || this.radius0 === undefined || this.radius1 === undefined)
             return false;
         if (this.bearing0) { // bearing 1 is undefined
-            this.bearing1 = Geometry_1.Angle.createRadians(this.bearing0.radians + TransitionSpiral3d.radiusRadiusLengthToSweepRadians(this.radius0, this.radius1, this.curveLength));
+            this.bearing1 = Angle_1.Angle.createRadians(this.bearing0.radians + TransitionSpiral3d.radiusRadiusLengthToSweepRadians(this.radius0, this.radius1, this.curveLength));
             return true;
         }
         if (this.bearing1) { // bearing 0 is undefined
-            this.bearing0 = Geometry_1.Angle.createRadians(this.bearing1.radians - TransitionSpiral3d.radiusRadiusLengthToSweepRadians(this.radius0, this.radius1, this.curveLength));
+            this.bearing0 = Angle_1.Angle.createRadians(this.bearing1.radians - TransitionSpiral3d.radiusRadiusLengthToSweepRadians(this.radius0, this.radius1, this.curveLength));
             return true;
         }
         return false;
@@ -128,7 +134,7 @@ class TransitionSpiral3d extends CurvePrimitive_1.CurvePrimitive {
         this._arcLength01 = arcLength;
         this._strokes = LineString3d_1.LineString3d.create();
         // initialize for compiler -- but this will be recomputed in refreshComputeProperties ...
-        this._curvature01 = PointVector_1.Segment1d.create(0, 1);
+        this._curvature01 = Segment1d_1.Segment1d.create(0, 1);
         this.refreshComputedProperties();
         this._properties = properties;
     }
@@ -207,9 +213,9 @@ class TransitionSpiral3d extends CurvePrimitive_1.CurvePrimitive {
         }
     }
     refreshComputedProperties() {
-        this._curvature01 = PointVector_1.Segment1d.create(TransitionSpiral3d.radiusToCurvature(this.radius01.x0), TransitionSpiral3d.radiusToCurvature(this.radius01.x1));
+        this._curvature01 = Segment1d_1.Segment1d.create(TransitionSpiral3d.radiusToCurvature(this.radius01.x0), TransitionSpiral3d.radiusToCurvature(this.radius01.x1));
         this._strokes.clear();
-        const currentPoint = PointVector_1.Point3d.create();
+        const currentPoint = Point3dVector3d_1.Point3d.create();
         this._strokes.appendStrokePoint(currentPoint);
         const numInterval = 8;
         const fractionStep = 1.0 / numInterval;
@@ -249,15 +255,17 @@ class TransitionSpiral3d extends CurvePrimitive_1.CurvePrimitive {
         if (!data.tryResolveAnySingleUnknown())
             return undefined;
         if (fractionInterval === undefined)
-            fractionInterval = PointVector_1.Segment1d.create(0, 1);
-        return new TransitionSpiral3d(spiralType, PointVector_1.Segment1d.create(data.radius0, data.radius1), Geometry_1.AngleSweep.createStartEnd(data.bearing0, data.bearing1), fractionInterval ? fractionInterval.clone() : PointVector_1.Segment1d.create(0, 1), localToWorld, data.curveLength, data1);
+            fractionInterval = Segment1d_1.Segment1d.create(0, 1);
+        return new TransitionSpiral3d(spiralType, Segment1d_1.Segment1d.create(data.radius0, data.radius1), AngleSweep_1.AngleSweep.createStartEnd(data.bearing0, data.bearing1), fractionInterval ? fractionInterval.clone() : Segment1d_1.Segment1d.create(0, 1), localToWorld, data.curveLength, data1);
     }
     setFrom(other) {
         this.localToWorld.setFrom(other.localToWorld);
         this.radius01.setFrom(other.radius01);
-        this.radius01.setFrom(other.radius01);
+        this._curvature01.setFrom(other._curvature01);
         this.bearing01.setFrom(other.bearing01);
         this.localToWorld.setFrom(other.localToWorld);
+        this.activeFractionInterval.setFrom(other.activeFractionInterval);
+        this._arcLength01 = other._arcLength01;
         return this;
     }
     clone() {
@@ -300,7 +308,7 @@ class TransitionSpiral3d extends CurvePrimitive_1.CurvePrimitive {
         const numStrokes = this._strokes.points.length - 1;
         const index0 = Math.trunc(fraction * numStrokes); // This indexes the point to the left of the query
         const fraction0 = index0 / numStrokes;
-        result = result ? result : new PointVector_1.Point3d();
+        result = result ? result : new Point3dVector3d_1.Point3d();
         result.setFrom(this._strokes.points[index0]);
         const globalFraction0 = this.activeFractionInterval.fractionToPoint(fraction0);
         const globalFraction1 = this.activeFractionInterval.fractionToPoint(fraction);
@@ -309,7 +317,7 @@ class TransitionSpiral3d extends CurvePrimitive_1.CurvePrimitive {
         return result;
     }
     fractionToPointAndDerivative(fraction, result) {
-        result = result ? result : AnalyticGeometry_1.Ray3d.createZero();
+        result = result ? result : Ray3d_1.Ray3d.createZero();
         this.fractionToPoint(fraction, result.origin);
         const radians = this.fractionToBearingRadians(fraction);
         const a = this._arcLength01;
@@ -320,7 +328,7 @@ class TransitionSpiral3d extends CurvePrimitive_1.CurvePrimitive {
     fractionToFrenetFrame(fraction, result) {
         result = result ? result : Transform_1.Transform.createIdentity();
         result.origin.setFrom(this.fractionToPoint(fraction));
-        Transform_1.Matrix3d.createRigidFromMatrix3d(this.localToWorld.matrix, 0 /* XYZ */, result.matrix);
+        Matrix3d_1.Matrix3d.createRigidFromMatrix3d(this.localToWorld.matrix, 0 /* XYZ */, result.matrix);
         const radians = this.fractionToBearingRadians(fraction);
         const c = Math.cos(radians);
         const s = Math.sin(radians);
@@ -341,7 +349,7 @@ class TransitionSpiral3d extends CurvePrimitive_1.CurvePrimitive {
         const vectorX = this.localToWorld.matrix.multiplyXY(c, s);
         const vectorY = this.localToWorld.matrix.multiplyXY(-s, c);
         vectorY.scaleInPlace(this.fractionToCurvature(fraction));
-        return AnalyticGeometry_1.Plane3dByOriginAndVectors.createCapture(origin, vectorX, vectorY, result);
+        return Plane3dByOriginAndVectors_1.Plane3dByOriginAndVectors.createCapture(origin, vectorX, vectorY, result);
     }
     dispatchToGeometryHandler(handler) {
         return handler.handleTransitionSpiral(this);
@@ -355,6 +363,7 @@ class TransitionSpiral3d extends CurvePrimitive_1.CurvePrimitive {
                 && this.bearing01.isAlmostEqualAllowPeriodShift(other.bearing01)
                 && this.localToWorld.isAlmostEqual(other.localToWorld)
                 && Geometry_1.Geometry.isSameCoordinate(this._arcLength01, other._arcLength01)
+                && this.activeFractionInterval.isAlmostEqual(other.activeFractionInterval)
                 && this._curvature01.isAlmostEqual(other._curvature01);
         }
         return false;

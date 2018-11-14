@@ -47,83 +47,94 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-                        <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo-small" class="site-logo-small" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-icon.svg" style="display:none;"/> 
                     </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar5">
-                        <span class="navbar-toggler-icon"></span>
+                    <button class="navbar-toggler no-user-select mr-auto" type="button" data-toggle="collapse" data-target="#navbar5">
+                        <span class="navbar-toggler-header"></span>
                     </button>
+                    <ul class="navbar-nav ml-auto pr-0 nav-search">
+                        <span class='search-bar'>
+                          <li>
+                            <div id='search-container'>
+                            </div>
+                          </li>
+                          <script>
+                            (function() {
+                              var cx = '000629069474334212860:yxwzhn4umym';
+                              var gcse = document.createElement('script');
+                              gcse.type = 'text/javascript';
+                              gcse.async = true;
+                              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                              var s = document.getElementsByTagName('script')[0];
+                              s.parentNode.insertBefore(gcse, s);
+                            })();
+                          </script>
+                          <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+                        </span>
+                    </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
                                 <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">Change History</a></li>
-                        </ul>
-                        <ul class="navbar-nav ml-auto">
-                            <span class='search-bar'>
-                              <li>
-                                <div id='search-container'>
-                                </div>
-                              </li>
-                              <script>
-                                (function() {
-                                  var cx = '000629069474334212860:yxwzhn4umym';
-                                  var gcse = document.createElement('script');
-                                  gcse.type = 'text/javascript';
-                                  gcse.async = true;
-                                  gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-                                  var s = document.getElementsByTagName('script')[0];
-                                  s.parentNode.insertBefore(gcse, s);
-                                })();
-                              </script>
-                              <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
-                            </span>
                         </ul>
                     </div>
                 </nav>
             </div>
         </header>
 <div id='main-wrapper'>
-    <div id='table-of-contents'>
-        <ul id='main-navigation-list'>
-            <html><head></head><body><h3 id="the imodel.js library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModel.js Library</a></h3>
-        <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
-        </ul>
-        <hr>
-        <p>&#xA0;</p>
-        <h3 id="helpful links">Helpful links</h3>
-        <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
-        </ul>
-        </body></html>
-        </ul>    </div>
-    <div class='documentation-main'>
+    <nav id='sidebar'>
+        <div id='table-of-contents'>
+            <div id="dismiss">
+                <i class="icon icon-chevron-left no-user-select"></i>
+            </div>
+            <hr class='sm-only'>
+            <ul id='main-navigation-list'>
+                <html><head></head><body><h3 id="the imodel.js library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModel.js Library</a></h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
+    </ul>
+    <hr>
+    <p>&#xA0;</p>
+    <h3 id="helpful links">Helpful links</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
+    </ul>
+    </body></html>
+            </ul>
+        </div>
+    </nav>    <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/">geometry</a> > CurvePrimitive</div>
+            <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/">geometry</a> > CurvePrimitive</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/geometry/CurvePrimitive.md">Edit this page</a></div>
             <h1 id="curve primitives">Curve Primitives</h1>
 <ul>
 <li>A CurvePrimitive is a bounded continuous curve.</li>
-<li>Each curve primitive type (LineSegment3d, LineString3d, Arc3d, bsplines, etc) has a <em>fraction parameterization</em> determined by its particular equations.</li>
-<li>The fraction parameterization must have<ul>
+<li>All curves implement methods (e.g. <code>fractionToPoint</code> to refer to &quot;fraction&quot; position along the curve.<ul>
 <li><code>fraction=0</code> is the startof the primitive</li>
 <li><code>fraction=1</code> is the end of the primitive</li>
 <li>increasing fractions always move forward along the primitive.</li>
+<li>curves implment their equations with the fraction representing the parameter in their most natural equations.</li>
 </ul>
 </li>
-<li>The &quot;forward&quot; <em>distance</em> movement for increasing fraction is <em>not</em> required to be proportional to fraction.</li>
-<li>Fractional and distance-along position are proportional only in very special cases:<ul>
-<li>LineSegment</li>
-<li>circular arc</li>
-<li>transition spiral curves.</li>
+<li>All curves also support methods to deal with <em>true distance</em> along the curve. These include<ul>
+<li><code>curve.curveLengthBetweenFractions (startFraction, endFraction)</code></li>
+<li><code>curve.moveByDistanceFromFracton (startFracton, distance)</code></li>
+<li>Fraction position along the curve is strictly proportional to true distance along the curve only for a limited number of curve types:<ul>
+<li>LineSegment3d</li>
+<li>Arc3d</li>
+<li>TransitionSpiral</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Other curve types that have more complicated (non-proportional) fraction-to-distance relations are<ul>
@@ -132,14 +143,7 @@
 <li>linestrings</li>
 </ul>
 </li>
-<li>When movement &quot;by distance&quot; is required, it can be done by<ul>
-<li>Using method calls that explicitly take distance as ain input.</li>
-<li>Wrap a curve primitive (or chain of curve primitives) in a CurvePrimitiveWithDistanceIndex.<ul>
-<li>The CurvePrimitiveWithDistanceIndex has cached distance data to facilitate repeated queries by distance, and to make &quot;fractional position along&quot; the composite curve act like proportional distance.</li>
-</ul>
-</li>
-</ul>
-</li>
+<li>When movement &quot;by distance&quot; along a chain of curves (of varying types) is required, the <code>CurveChainWithDistanceIndex</code> will act like a single curve (starting and ending at fractions 0 and 1), with the fraction mapped to true distance along the chain.</li>
 </ul>
 <h2 class="h-linesegment">lineSegment<a id="linesegment" class="heading-anchor" href="#linesegment"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ul>
@@ -215,13 +219,193 @@ Point X(f) at fractional position f along the lineSegment is
 | (0 to 135) | 135 | <img src=".././figs/CurvePrimitives/E0to135.png" alt="&gt;"> |
 | (270 to 495) | 225 | <img src=".././figs/CurvePrimitives/E270to495.png" alt="&gt;"> |
 | (90 to 270) | 180 | <img src=".././figs/CurvePrimitives/E90to270.png" alt="&gt;"> |
-| (90 to 405) | 315 | <img src=".././figs/CurvePrimitives/E90to405.png" alt="&gt;"> |Ex</p>
+| (90 to 405) | 315 | <img src=".././figs/CurvePrimitives/E90to405.png" alt="&gt;"> |</p>
 <p>Examples with json fragments
 <img src=".././figs/CurvePrimitives/ArcJsonFragments.png" alt="&gt;"></p>
 <p><img src=".././figs/CurvePrimitives/EllipticAxisVariants.png" alt="&gt;"></p>
+<h1 id="bspline curves">bspline curves</h1>
+<p>A BSplineCurve3d (or BSplineCurve3dH) is a curve that (loosely) follows a sequence of control points.</p>
+<p>Internally, the curve is a is a sequence of polynomial curves that join together smoothly.  Call each of those separate pieces a <em>span</em>.</p>
+<p>The &quot;control point&quot; structure has remarkable properties for computation:</p>
+<ul>
+<li>The curve never leaves the overall xyz range of the control points.</li>
+<li>This bounding propery applies &quot;from any veiwpoint&quot;, not just in the coordinate system where they are given.</li>
+<li>Even tighter, the curve is contained within the convex hull of the control points.</li>
+<li>No plane can intersect the curve more often than it intersects the control polygon.<ul>
+<li>that is, the polygon may overestimate the number of intersections, (i.e. suggest false intersections), but it never underestimates.</li>
+</ul>
+</li>
+<li>Inspection of the control polygon gives similar &quot;never understimate&quot; statements can be made about other propperties such as<ul>
+<li>the number of inflections.</li>
+<li>the number of minima and maxima of the curve and its derivatives.</li>
+</ul>
+</li>
+<li>The use of &quot;weights&quot; on the control points allows a bspline curve to exactly trace circular and elliptic arcs without use of trig functions.</li>
+</ul>
+<h2 class="h-references">References<a id="references" class="heading-anchor" href="#references"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>There are innumerable books and web pages explaining splines.  There is a high level of consistency of the concepts -- control points, basis functions, knots, and order.  But be very careful about subtle deatils of indexing.   Correct presentations may superficially appear to differ depending on whether the writer has consdiders <code>n</code> indices to run</p>
+<ul>
+<li>C-style, <code>0 &lt;= i &lt; n</code> (with index <code>n</code> <em>not</em> part of the sequence)</li>
+<li>Fortran style , <code>1&lt;=i&lt;n</code></li>
+<li>(rare) <code>0&lt;=i&lt;=n</code></li>
+</ul>
+<p>Some typcial descriptions are:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/B-spline">https://en.wikipedia.org/wiki/B-spline</a></li>
+<li><a href="http://web.mit.edu/hyperbook/Patrikalakis-Maekawa-Cho/node17.html">http://web.mit.edu/hyperbook/Patrikalakis-Maekawa-Cho/node17.html</a></li>
+<li><a href="https://www.cs.unc.edu/~dm/UNC/COMP258/LECTURES/B-spline.pdf">https://www.cs.unc.edu/~dm/UNC/COMP258/LECTURES/B-spline.pdf</a></li>
+</ul>
+<p>Be especially careful about the number of knot counts, which can differ by 2 as described in the &quot;overclamping&quot; section.</p>
+<p>The <code>order</code> of the bspline is the number of control points that are &quot;in effect&quot; over an individual span.</p>
+<ul>
+<li>The first span is controlled by the first <code>order</code> control points, i.e. those indexed <code>0, 1, .. (order-1)</code>.</li>
+<li>The next span is controled by control points indexed <code>1,2,..order</code>.<ul>
+<li>That is, there is a &quot;moving window&quot; of <code>order</code> points that control successive spans.</li>
+<li>When moving from one cluster of <code>order</code> control points to the next, the first (left) point of the first cluster is dropped and a new one is added at the right.</li>
+</ul>
+</li>
+<li>The sharing of control points provide the critical properties for the curve:<ul>
+<li>No matter how many control points there are (think dozens to hundreds), each individual span is controled by only <code>order</code> points.</li>
+<li>this &quot;local control&quot; prevents changes &quot;far away&quot; in the control points from causing unexpected global changes in the curve.</li>
+<li>The sharing of <code>order-1</code> points works into the formulas to guarantee smoothness of the curve.</li>
+<li>Specifically, for a bspline of given <code>order</code>:<ul>
+<li>If the knots are strictly increasing (no duplicates) the curve has <code>order-2</code> (i.e. <code>degree-1</code>) continuous derivatives.</li>
+<li>Introducing repeated knots reduces the continuity.  In particular, with <code>order-1</code> repeated knots there is a cusp (abrupt slope change) at that knot.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="h-summary">Summary<a id="summary" class="heading-anchor" href="#summary"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The required data for a bspline curve is:
+|-----|-----|------|
+| name | type | remarks |
+| control points | array of N points |
+| order | number | the most common orders are 2 through 4;  higher order gives smoother curves, but with performance cost. |
+|  | | Order higher than 10 is discouraged |
+| | |  3 (quaratic curve, degree 2)
+|  | |or 4 (cubic curve, degree 3) |
+| knots    | array of <code>(N + order - 2)</code> numbers | See knot paragraph |</p>
+<h2 class="h-order">order<a id="order" class="heading-anchor" href="#order"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<ul>
+<li>The <code>order</code> is the number of control points that affect each span of the curve.</li>
+<li>Bspline equations hypothetically allow any integer <code>order</code>.</li>
+<li>For practical use the common orders are quite low - 2,3,4, with occasional 5 through 8<ul>
+<li><code>order=2</code> - the Bspline is a collection of straight lines (degree 1)</li>
+<li><code>order=3</code>  - the Bspline is a collection of quadratic curves. (degree = 2)   (Quadratic curves with weights can exactly trace circular and elliptic arcs)</li>
+<li><code>order=4</code> - the Bspline is a collection of cubic spans. These can have inflections within a span.</li>
+<li>many graphics systems focus on cubic (<code>order=4, degree=3</code> bsplines.   These are a good balance of curve flexibility and computational cost.</li>
+</ul>
+</li>
+<li>Conversationally, if one is thinking of &quot;quadratic&quot; cubic &quot;curves&quot;, it is common to refer to the <code>degree</code>, which is one less than the order<ul>
+<li>the <code>degree</code> is the highest power appearing in the polynomial</li>
+<li>A conventional polynomial form would have coefficients of terms with power 1,2, through <code>degree</code>.</li>
+<li>That polynomial would alwo include a constant term that does not muliply a power of x.</li>
+<li>Hence there is <em>one more coefficient</em> than the degree.</li>
+<li>textbook algebra discussions prefer reference to the highest power (<code>degree</code>) because that is short indicator of complexity</li>
+<li>Bspline discussion prefers reference to <code>order</code> rather than <code>degree</code> because all of the internal matrix manipulations must account for that many coefficients.</li>
+</ul>
+</li>
+</ul>
+<h2 class="h-knots">knots<a id="knots" class="heading-anchor" href="#knots"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<ul>
+<li>The knots are an array of sorted numbers.</li>
+<li>If there are K knots:<ul>
+<li>Each cluster of <code>2*order-2</code> knots (i.e. <code>2*degree</code> knots affects a single span</li>
+<li>The knots index at <code>knots[i]</code> through <code>knots[i+2*order-3]</code> (inclusive) affect span <code>i</code>.</li>
+<li>That knot values for that span are from <code>knots[i+order-2]</code> through <code>knots[i+2*order-2]</code>.</li>
+</ul>
+</li>
+<li>Within the knots sequence, the values must never go down.</li>
+</ul>
+<h3 class="h-clamping">Clamping<a id="clamping" class="heading-anchor" href="#clamping"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<ul>
+<li>If knot values are strictly increasing -- e.g. 1,2,3,4,5, -- all the way to the end, the curve does <em>not</em> pass through the first and last control points.</li>
+<li>Having the right number of identical knot values &quot;at the ends&quot; makes the curve (a) pass through the end control points and (b) have tangent direction towards the immeidate neighbor.</li>
+<li>Specifically, for a curve of given <code>degree</code>, exactly that number of repeated knots creates the usual &quot;clamped&quot; effects.<ul>
+<li>For instance, for a cubic curve, the knots <code>[0,0,0,0.25,0.5,0.75,1.1.1]</code> will<ul>
+<li>Pass through both end points, with tangent along the end segment of the polygon</li>
+<li>have interior knot breaks at 0.25, 0.5 and 0.75.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 class="h-overclamping">OVERCLAMPING<a id="overclamping" class="heading-anchor" href="#overclamping"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li>An important point for exchanging knots with legacy graphics systems (including Microstation and Parsolid) is that there is a long-established (an unneccessary) practice of having <em>one extra (unused) knot at each end</em>.</li>
+<li>That is, the <em>overclamped</em> cubic knot sequence with breaks at 0.25, 0.5, and 0.75 would be  <code>[0,0,0,0,0.25,0.5,0.75,1.1.1,1]</code>.</li>
+<li>The equations for the bsplne will never reference the extra knots at the beginning and end.</li>
+<li>In the overclamping convention, the relation of counts of control points (N) and (overclampled) knots is
+...<pre><code>      numberOfKnotsWithOverclamping = N + order = numberOfControlPoints + order</code></pre>...</li>
+</ul>
+<p>In <code>imodeljs</code></p>
+<ul>
+<li>the spline classes (<code>BsplineCurve3d</code>, <code>BSplineCurve3dH</code> and surface partners) <em>internally</em> do <em>not</em> overclamp.</li>
+<li>The API for constructing splines accepts both styles of input.  The order, knot count, and control point counts distinguish which style is being used.<ul>
+<li>If <code>numberOfControlPoints === numberOfKnots + order</code> the curve is overclamped, so the first and last knot values are not saved in the bspline curve object</li>
+<li>If <code>numberOfControlPoints === numberOfKnots + order - 2</code> the knots are all used.</li>
+</ul>
+</li>
+<li>The curve objects have method
+...
+  curve.copyKnots(includeExtraEndKnot: boolean)
+...
+to extract knots.  The caller can indicate if they prefer overlcamped knots by passing <code>true</code> for the <code>includeExtraEndKnot</code> parameter.</li>
+<li>When knots are written in <code>iModelJson</code> objects, they are written with overclamp.</li>
+</ul>
+<h2 class="h-example-order-2-linear-bspline-curve">Example: Order 2 (linear) bspline curve<a id="example-order-2-linear-bspline-curve" class="heading-anchor" href="#example-order-2-linear-bspline-curve"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<ul>
+<li>An order 2 bspline curve has degree 1, i.e. is straight lines</li>
+<li>The circles in the figure for order 2 bspline are both control points and span breaks.<ul>
+<li>This is the only order for which the span breaks occur at the control points.</li>
+</ul>
+</li>
+<li>The direction (first derivative) changes at control point</li>
+<li>Hence there are sharp corners exactly at the control points.</li>
+</ul>
+<p><img src=".././figs/BCurves/order2.png" alt="&gt;"></p>
+<h2 class="h-example-order-3-quadratic-bspline-curve">Example: Order 3 (quadratic) bspline curve<a id="example-order-3-quadratic-bspline-curve" class="heading-anchor" href="#example-order-3-quadratic-bspline-curve"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<ul>
+<li>An order 3 bspline curve has degree 2, i.e. is piecewise quadratic</li>
+<li>The curve does <em>not</em> pass through the control points (dark)</li>
+<li>There are (for uniform interior knots) span breaks (circles) at midpoints of interior edges.</li>
+<li>Span changes (circles) are exactly at the midpoints of polygon edges.</li>
+<li>Direction (slope, first derivative) is continuous at each span change (circles)</li>
+<li>The concavity (second derivative) changes abruptly at each span change (circles)<ul>
+<li>This concavity change is not always visually obvious.</li>
+<li>These curves are not as smooth as your eye thinks.</li>
+</ul>
+</li>
+<li>There are no concavity changes within any single span.</li>
+<li>Clamping (2 identical knots at start, 2 identical knots at end) makes the curve pass throught the end control points and point at neighbors.</li>
+</ul>
+<p><img src=".././figs/BCurves/order3.png" alt="&gt;"></p>
+<h2 class="h-example-order-4-cubic-bspline-curve">Example: Order 4 (cubic) bspline curve<a id="example-order-4-cubic-bspline-curve" class="heading-anchor" href="#example-order-4-cubic-bspline-curve"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<ul>
+<li>An order 4 bspline curve has degree 3, i.e. is piecewise cubic</li>
+<li>The curve does <em>not</em> pass through the control points (dark).</li>
+<li>The curve does <em>not</em> pass through particular points of the polygon edges.</li>
+<li>Span changes (circles) are generally &quot;off the polygon&quot;</li>
+<li>Direction and concavity are both continuous at span changes.</li>
+<li>There can be one concavity change within a span.</li>
+<li>Clamping (3 identical knots at start, 3 identical knots at end) makes the curve pass throught the end control points and point at neighbors.</li>
+</ul>
+<p><img src=".././figs/BCurves/order4.png" alt="&gt;"></p>
+<h2 class="h-example-order-5-quartic-bspline-curve">Example: Order 5 (quartic) bspline curve<a id="example-order-5-quartic-bspline-curve" class="heading-anchor" href="#example-order-5-quartic-bspline-curve"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<ul>
+<li>An order 5 bspline curve has degree 4, i.e. is piecewise quartic</li>
+<li>The curve does <em>not</em> pass through the control points (dark).</li>
+<li>The curve does <em>not</em> pass through particular points of the polygon edges.</li>
+<li>Span changes (circles) are generally &quot;off the polygon&quot;</li>
+<li>Direction, concavity, and one more derivative are all continuous at span changes.</li>
+<li>There can be two concavity change within a span.</li>
+<li>Clamping (4 identical knots at start, 4 identical knots at end) makes the curve pass throught the end control points and point at neighbors.</li>
+</ul>
+<p><img src=".././figs/BCurves/order5.png" alt="&gt;"></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>05 November, 2018</span>
+                <span class='date-updated'>14 November, 2018</span>
             </p>
 
             
@@ -229,8 +413,9 @@ Point X(f) at fractional position f along the lineSegment is
             
             </script>        </article>
     </div>
+    <div class="overlay"></div>
     <div id='inner-table-of-contents'>
-       <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+        <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
   <h4 class='heading'>On this page</h4>
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
@@ -256,6 +441,46 @@ Point X(f) at fractional position f along the lineSegment is
                             <a class='title solo-title menu-text' href="#angular-limits">Angular limits</a>
                     </li>
             </ul>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#references">References</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#summary">Summary</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#order">order</a>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-knots" class='title' href="#knots"/>
+            <b class='dropdown-menu-title menu-text'>knots</b>
+            <i class='dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-knots" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-clamping" class='title' href="#clamping"/>
+                            <b class='dropdown-menu-title menu-text'>Clamping</b>
+                            <i class='dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-clamping" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#overclamping">OVERCLAMPING</a>
+                                    </li>
+                            </ul>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#example-order-2-linear-bspline-curve">Example: Order 2 (linear) bspline curve</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#example-order-3-quadratic-bspline-curve">Example: Order 3 (quadratic) bspline curve</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#example-order-4-cubic-bspline-curve">Example: Order 4 (cubic) bspline curve</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#example-order-5-quartic-bspline-curve">Example: Order 5 (quartic) bspline curve</a>
     </li>
  
       </ul>

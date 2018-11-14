@@ -1,7 +1,8 @@
 /** @module Numerics */
-import { Point2d, Vector2d, Point3d, Vector3d } from "../PointVector";
-import { OptionalGrowableFloat64Array, GrowableFloat64Array } from "../GrowableArray";
-import { Point4d } from "./Geometry4d";
+import { Point2d, Vector2d } from "../geometry3d/Point2dVector2d";
+import { Point3d, Vector3d } from "../geometry3d/Point3dVector3d";
+import { OptionalGrowableFloat64Array, GrowableFloat64Array } from "../geometry3d/GrowableArray";
+import { Point4d } from "../geometry4d/Point4d";
 export declare class Degree2PowerPolynomial {
     coffs: number[];
     constructor(c0?: number, c1?: number, c2?: number);
@@ -112,10 +113,10 @@ export declare class SphereImplicit {
  *
  */
 export declare class AnalyticRoots {
-    static readonly EQN_EPS: number;
-    static readonly s_safeDivideFactor: number;
-    static readonly s_quadricRelTol: number;
-    static readonly sTestWindow: number;
+    static readonly EQN_EPS = 1e-9;
+    static readonly s_safeDivideFactor = 1e-14;
+    static readonly s_quadricRelTol = 1e-14;
+    static readonly sTestWindow = 0.000001;
     /** Absolute zero test with a tolerance that has worked well for the analytic root use case . . . */
     static IsZero(x: number): boolean;
     /** Without actually doing a division, test if (x/y) is small.
@@ -195,7 +196,7 @@ export declare class TrigPolynomial {
     static readonly WW: Float64Array;
     static readonly CCminusSS: Float64Array;
     static SolveAngles(coff: Float64Array, nominalDegree: number, referenceCoefficient: number, radians: number[]): boolean;
-    static readonly coeffientRelTol: number;
+    static readonly coeffientRelTol = 1e-12;
     static SolveUnitCircleImplicitQuadricIntersection(axx: number, axy: number, ayy: number, ax: number, ay: number, a1: number, radians: number[]): boolean;
     static SolveUnitCircleEllipseIntersection(cx: number, cy: number, ux: number, uy: number, vx: number, vy: number, ellipseRadians: number[], circleRadians: number[]): boolean;
     static SolveUnitCircleHomogeneousEllipseIntersection(cx: number, cy: number, cw: number, ux: number, uy: number, uw: number, vx: number, vy: number, vw: number, ellipseRadians: number[], circleRadians: number[]): boolean;

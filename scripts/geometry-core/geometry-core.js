@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
@@ -15,7 +16,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // for and display them when the mouse hovers over the class name.
 /**
  * @docs-package-description
- * The geometry-core package contains classes for workiing with CAD geometry:  points, vectors, curves, surfaces, and analytic solids
+ * The geometry-core package contains classes for working with CAD geometry:  points, vectors, curves, surfaces, and analytic solids
  */
 /**
  * @docs-group-description CartesianGeometry
@@ -34,11 +35,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * * Angles
  * * * Angle -- a strongly typed angle object whose method names make it clear whether input and outputs are degrees or radians.
  * * * AngleSweep -- an angular interval
- * * * YawPitchAndRollAngles -- 3 angles that define a rotated coordinte system.
+ * * * YawPitchAndRollAngles -- 3 angles that define a rotated coordinate system.
  * * Utility classes
  * * * FrameBuilder -- construction of coordinate frames from mixed data sources.
  * * * ClipPlane -- a single plane
- * * * ConvexClipPlaneSet -- an array of planes bounding a convex volumne
+ * * * ConvexClipPlaneSet -- an array of planes bounding a convex volume
  * * * ClipPlaneSet -- an array of ConvexClipPlaneSet, defining the union of their volumes
  * * * Constant -- various numeric values exported as readonly constants
  */
@@ -50,7 +51,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * * * GrowableArray -- A carrier for a Float64Array, with methods that hide reallocation of the underlying array as contents are added.
  * * * Point2dArray, Point3dArray, Point4dArray, Vector3dArray -- miscellaneous operations on arrays of 2d and 3d points.
  * * Interfaces
- * * * GeometryHandler -- a double-dispatch protocal used for efficient implementation of algorithms that work on many geometry types.
+ * * * GeometryHandler -- a double-dispatch protocol used for efficient implementation of algorithms that work on many geometry types.
  *
  */
 // doc:export class ArraysAndInterfacesDoc { }
@@ -100,7 +101,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * * Sphere -- a sphere
  * * Cone -- a cone or cylinder
  * * TorusPipe -- a pipe elbow
- * * LinearSweep -- a linar sweep of a base contour
+ * * LinearSweep -- a linear sweep of a base contour
  * * RotationalSweep -- a rotational sweep of a base contour
  * * RuledSweep -- two or more similarly structured contours joined by linear rule lines.
  */
@@ -117,13 +118,25 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * The Topology classes provide adjacency structures used in triangulations.
  */
 // doc:export class TopologyDoc { }
-__export(require("./PointVector"));
-__export(require("./PointHelpers"));
+__export(require("./geometry3d/Point2dVector2d"));
+__export(require("./geometry3d/Point3dVector3d"));
+__export(require("./geometry3d/PointHelpers"));
+__export(require("./geometry3d/Transform"));
+__export(require("./geometry3d/Matrix3d"));
+__export(require("./geometry3d/Range"));
+__export(require("./geometry3d/GrowableArray"));
+__export(require("./geometry3d/FrameBuilder"));
+__export(require("./geometry3d/GeometryHandler"));
+__export(require("./geometry3d/IndexedXYZCollection"));
+__export(require("./geometry3d/OrderedRotationAngles"));
+__export(require("./geometry3d/Ray3d"));
+__export(require("./geometry3d/Plane3dByOriginAndUnitNormal"));
+__export(require("./geometry3d/Plane3dByOriginAndVectors"));
 __export(require("./Geometry"));
-__export(require("./Transform"));
-__export(require("./Range"));
+__export(require("./geometry3d/Angle"));
+__export(require("./geometry3d/YawPitchRollAngles"));
+__export(require("./geometry3d/AngleSweep"));
 __export(require("./Constant"));
-__export(require("./GrowableArray"));
 __export(require("./clipping/ClipPlane"));
 __export(require("./clipping/ConvexClipPlaneSet"));
 __export(require("./clipping/UnionOfConvexClipPlaneSets"));
@@ -131,8 +144,11 @@ __export(require("./clipping/ClipPrimitive"));
 __export(require("./clipping/ClipVector"));
 __export(require("./clipping/ClipUtils"));
 __export(require("./numerics/ConvexPolygon2d"));
-__export(require("./numerics/Geometry4d"));
-__export(require("./numerics/Moments"));
+__export(require("./geometry4d/PlaneByOriginAndVectors4d"));
+__export(require("./geometry4d/Point4d"));
+__export(require("./geometry4d/Matrix4d"));
+__export(require("./geometry4d/Map4d"));
+__export(require("./geometry4d/MomentData"));
 __export(require("./numerics/Newton"));
 __export(require("./numerics/Complex"));
 __export(require("./numerics/Polynomials"));
@@ -141,9 +157,16 @@ __export(require("./numerics/Range1dArray"));
 __export(require("./numerics/TriDiagonalSystem"));
 __export(require("./curve/Arc3d"));
 __export(require("./curve/ConstructCurveBetweenCurves"));
-__export(require("./curve/CurveChain"));
+__export(require("./curve/CurveCollection"));
+__export(require("./curve/Loop"));
+__export(require("./curve/ParityRegion"));
+__export(require("./curve/Path"));
+__export(require("./curve/UnionRegion"));
 __export(require("./curve/CurveCurveIntersectXY"));
 __export(require("./curve/CurvePrimitive"));
+__export(require("./curve/CurveLocationDetail"));
+__export(require("./curve/CoordinateXYZ"));
+__export(require("./curve/GeometryQuery"));
 __export(require("./curve/CurveProcessor"));
 __export(require("./curve/LineSegment3d"));
 __export(require("./curve/LineString3d"));
@@ -160,6 +183,8 @@ __export(require("./solid/Sphere"));
 __export(require("./solid/SweepContour"));
 __export(require("./solid/TorusPipe"));
 __export(require("./bspline/BSplineCurve"));
+__export(require("./bspline/BSpline1dNd"));
+__export(require("./bspline/BSplineCurve3dH"));
 __export(require("./bspline/BSplineSurface"));
 __export(require("./bspline/KnotVector"));
 __export(require("./polyface/BoxTopology"));

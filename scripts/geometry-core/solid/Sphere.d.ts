@@ -1,15 +1,16 @@
 /** @module Solid */
-import { Point3d, Vector3d } from "../PointVector";
-import { Range3d } from "../Range";
-import { Transform, Matrix3d } from "../Transform";
-import { GeometryQuery } from "../curve/CurvePrimitive";
+import { Point3d, Vector3d } from "../geometry3d/Point3dVector3d";
+import { Range3d } from "../geometry3d/Range";
+import { Transform } from "../geometry3d/Transform";
+import { Matrix3d } from "../geometry3d/Matrix3d";
+import { GeometryQuery } from "../curve/GeometryQuery";
 import { StrokeOptions } from "../curve/StrokeOptions";
-import { AngleSweep } from "../Geometry";
-import { GeometryHandler, UVSurface } from "../GeometryHandler";
+import { AngleSweep } from "../geometry3d/AngleSweep";
+import { GeometryHandler, UVSurface } from "../geometry3d/GeometryHandler";
 import { SolidPrimitive } from "./SolidPrimitive";
-import { CurveCollection } from "../curve/CurveChain";
+import { CurveCollection } from "../curve/CurveCollection";
 import { LineString3d } from "../curve/LineString3d";
-import { Plane3dByOriginAndVectors } from "../AnalyticGeometry";
+import { Plane3dByOriginAndVectors } from "../geometry3d/Plane3dByOriginAndVectors";
 /**
  * A Sphere is
  *

@@ -1,5 +1,4 @@
-/** @module Curve */
-import { Angle } from "../Geometry";
+import { Angle } from "../geometry3d/Angle";
 /** tolerance blob for various stroking methods.
  *
  * * Across many applications, the critical concepts are:   chordTol, angleTol, maxEdgeLength

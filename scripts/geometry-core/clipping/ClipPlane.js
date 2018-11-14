@@ -1,14 +1,15 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module CartesianGeometry */
-const PointVector_1 = require("../PointVector");
-const Geometry4d_1 = require("../numerics/Geometry4d");
-const AnalyticGeometry_1 = require("../AnalyticGeometry");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
+const Point4d_1 = require("../geometry4d/Point4d");
+const Plane3dByOriginAndUnitNormal_1 = require("../geometry3d/Plane3dByOriginAndUnitNormal");
 const Geometry_1 = require("../Geometry");
-const GrowableArray_1 = require("../GrowableArray");
+const GrowableArray_1 = require("../geometry3d/GrowableArray");
 const Polynomials_1 = require("../numerics/Polynomials");
 const ClipUtils_1 = require("./ClipUtils");
 /** A ClipPlane is a single plane represented as
@@ -104,7 +105,7 @@ class ClipPlane {
      * * The stored distance for the plane is the dot product of the point with the normal (i.e. treat the point's xyz as a vector from the origin.)
      */
     static createNormalAndPointXYZXYZ(normalX, normalY, normalZ, originX, originY, originZ, invisible = false, interior = false) {
-        const normal = PointVector_1.Vector3d.create(normalX, normalY, normalZ);
+        const normal = Point3dVector3d_1.Vector3d.create(normalX, normalY, normalZ);
         const normalized = normal.normalizeInPlace();
         if (normalized) {
             const distance = normal.dotProductXYZ(originX, originY, originZ);
@@ -128,9 +129,9 @@ class ClipPlane {
     }
     static fromJSON(json, result) {
         if (json && json.normal && Number.isFinite(json.dist)) {
-            return ClipPlane.createNormalAndDistance(PointVector_1.Vector3d.fromJSON(json.normal), json.dist, !!json.invisible, !!json.interior);
+            return ClipPlane.createNormalAndDistance(Point3dVector3d_1.Vector3d.fromJSON(json.normal), json.dist, !!json.invisible, !!json.interior);
         }
-        return ClipPlane.createNormalAndDistance(PointVector_1.Vector3d.unitZ(), 0, false, false, result);
+        return ClipPlane.createNormalAndDistance(Point3dVector3d_1.Vector3d.unitZ(), 0, false, false, result);
     }
     setFlags(invisible, interior) {
         this._invisible = invisible;
@@ -142,11 +143,11 @@ class ClipPlane {
     get interior() { return this._interior; }
     get invisible() { return this._invisible; }
     static createEdgeAndUpVector(point0, point1, upVector, tiltAngle, result) {
-        const edgeVector = PointVector_1.Vector3d.createFrom(point1.minus(point0));
+        const edgeVector = Point3dVector3d_1.Vector3d.createFrom(point1.minus(point0));
         let normal = (upVector.crossProduct(edgeVector)).normalize();
         if (normal) {
             if (!tiltAngle.isAlmostZero) {
-                const tiltNormal = PointVector_1.Vector3d.createRotateVectorAroundVector(normal, edgeVector, tiltAngle);
+                const tiltNormal = Point3dVector3d_1.Vector3d.createRotateVectorAroundVector(normal, edgeVector, tiltAngle);
                 if (tiltNormal) {
                     normal = tiltNormal.clone();
                 }
@@ -157,7 +158,7 @@ class ClipPlane {
         return undefined;
     }
     static createEdgeXY(point0, point1, result) {
-        const normal = PointVector_1.Vector3d.create(point0.y - point1.y, point1.x - point0.x);
+        const normal = Point3dVector3d_1.Vector3d.create(point0.y - point1.y, point1.x - point0.x);
         if (normal.normalizeInPlace())
             return ClipPlane.createNormalAndPoint(normal, point0, false, false, result);
         return undefined;
@@ -165,10 +166,10 @@ class ClipPlane {
     getPlane3d() {
         const d = this._distanceFromOrigin;
         // Normal should be normalized, will not return undefined
-        return AnalyticGeometry_1.Plane3dByOriginAndUnitNormal.create(PointVector_1.Point3d.create(this._inwardNormal.x * d, this._inwardNormal.y * d, this._inwardNormal.z * d), this._inwardNormal);
+        return Plane3dByOriginAndUnitNormal_1.Plane3dByOriginAndUnitNormal.create(Point3dVector3d_1.Point3d.create(this._inwardNormal.x * d, this._inwardNormal.y * d, this._inwardNormal.z * d), this._inwardNormal);
     }
     getPlane4d() {
-        return Geometry4d_1.Point4d.create(this._inwardNormal.x, this._inwardNormal.y, this._inwardNormal.z, -this._distanceFromOrigin);
+        return Point4d_1.Point4d.create(this._inwardNormal.x, this._inwardNormal.y, this._inwardNormal.z, -this._distanceFromOrigin);
     }
     setPlane4d(plane) {
         const a = Math.sqrt(plane.x * plane.x + plane.y * plane.y + plane.z * plane.z);
@@ -296,7 +297,7 @@ class ClipPlane {
                 }
                 if (a1 >= 0.0)
                     work.push(xyz1);
-                xyz0 = PointVector_1.Point3d.createFrom(xyz1);
+                xyz0 = Point3dVector3d_1.Point3d.createFrom(xyz1);
                 a0 = a1;
             }
         }
@@ -326,7 +327,7 @@ class ClipPlane {
                 if (a1 === 0.0) { // IMPORTANT -- every point is directly tested here
                     crossings.push(xyz1);
                 }
-                xyz0 = PointVector_1.Point3d.createFrom(xyz1);
+                xyz0 = Point3dVector3d_1.Point3d.createFrom(xyz1);
                 a0 = a1;
             }
         }
@@ -365,7 +366,7 @@ class ClipPlane {
                     xyzIn.push(xyz1);
                 if (a1 <= 0.0 || nearZero)
                     xyzOut.push(xyz1);
-                xyz0 = PointVector_1.Point3d.createFrom(xyz1);
+                xyz0 = Point3dVector3d_1.Point3d.createFrom(xyz1);
                 a0 = a1;
             }
         }

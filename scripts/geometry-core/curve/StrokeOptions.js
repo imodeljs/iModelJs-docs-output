@@ -1,10 +1,12 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Curve */
 const Geometry_1 = require("../Geometry");
+const Angle_1 = require("../geometry3d/Angle");
 /* tslint:disable:variable-name no-empty */
 /** tolerance blob for various stroking methods.
  *
@@ -100,12 +102,12 @@ class StrokeOptions {
     }
     static createForCurves() {
         const options = new StrokeOptions();
-        options.angleTol = Geometry_1.Angle.createDegrees(15.0);
+        options.angleTol = Angle_1.Angle.createDegrees(15.0);
         return options;
     }
     static createForFacets() {
         const options = new StrokeOptions();
-        options.angleTol = Geometry_1.Angle.createDegrees(22.5);
+        options.angleTol = Angle_1.Angle.createDegrees(22.5);
         return options;
     }
 }

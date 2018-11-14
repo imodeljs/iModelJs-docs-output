@@ -1,5 +1,6 @@
 /** @module Numerics */
-import { BeJSONFunctions, Angle } from "../Geometry";
+import { BeJSONFunctions } from "../Geometry";
+import { Angle } from "../geometry3d/Angle";
 export declare class Complex implements BeJSONFunctions {
     private _myX;
     x: any;

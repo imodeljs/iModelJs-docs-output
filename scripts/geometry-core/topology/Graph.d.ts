@@ -1,5 +1,6 @@
 /** @module Topology */
-import { Vector2d, Vector3d } from "../PointVector";
+import { Vector2d } from "../geometry3d/Point2dVector2d";
+import { Vector3d } from "../geometry3d/Point3dVector3d";
 import { LineSegment3d } from "../curve/LineSegment3d";
 export declare type NodeFunction = (node: HalfEdge) => any;
 export declare type NodeToNumberFunction = (node: HalfEdge) => number;

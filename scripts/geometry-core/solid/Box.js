@@ -1,14 +1,15 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Solid */
-const PointVector_1 = require("../PointVector");
-const Transform_1 = require("../Transform");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
+const Transform_1 = require("../geometry3d/Transform");
 const SolidPrimitive_1 = require("./SolidPrimitive");
 const Geometry_1 = require("../Geometry");
-const CurveChain_1 = require("../curve/CurveChain");
+const Loop_1 = require("../curve/Loop");
 const LineString3d_1 = require("../curve/LineString3d");
 /**
  */
@@ -72,6 +73,21 @@ class Box extends SolidPrimitive_1.SolidPrimitive {
     static createDgnBoxWithAxes(baseOrigin, axes, topOrigin, baseX, baseY, topX, topY, capped) {
         return Box.createDgnBox(baseOrigin, axes.columnX(), axes.columnY(), topOrigin, baseX, baseY, topX, topY, capped);
     }
+    /**
+     * @param range range corners Origin of base rectangle
+     * @param capped true to define top and bottom closure caps
+     */
+    static createRange(range, capped) {
+        if (!range.isNull) {
+            const lowPoint = range.low;
+            const xSize = range.xLength();
+            const ySize = range.yLength();
+            const zPoint = range.low.clone();
+            zPoint.z = zPoint.z + range.zLength();
+            return Box.createDgnBox(lowPoint, Point3dVector3d_1.Vector3d.unitX(), Point3dVector3d_1.Vector3d.unitY(), zPoint, xSize, ySize, xSize, ySize, capped);
+        }
+        return undefined;
+    }
     getBaseX() { return this._baseX; }
     getBaseY() { return this._baseY; }
     getTopX() { return this._topX; }
@@ -103,7 +119,7 @@ class Box extends SolidPrimitive_1.SolidPrimitive {
         const ay = Geometry_1.Geometry.interpolate(this._baseY, zFraction, this._topY);
         const result = LineString3d_1.LineString3d.create();
         const transform = this._localToWorld;
-        const workPoint = PointVector_1.Point3d.create();
+        const workPoint = Point3dVector3d_1.Point3d.create();
         transform.multiplyXYZ(0, 0, zFraction, workPoint);
         result.addPoint(workPoint);
         transform.multiplyXYZ(ax, 0, zFraction, workPoint);
@@ -118,7 +134,7 @@ class Box extends SolidPrimitive_1.SolidPrimitive {
     }
     constantVSection(zFraction) {
         const ls = this.strokeConstantVSection(zFraction);
-        return CurveChain_1.Loop.create(ls);
+        return Loop_1.Loop.create(ls);
     }
     extendRange(range, transform) {
         const boxTransform = this._localToWorld;

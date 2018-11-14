@@ -1,7 +1,8 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Numerics */
 /** Support class for quadrature -- approximate integrals by summing weighted function values.
@@ -34,6 +35,10 @@ class Quadrature {
             wMapped[i] = h * wRef[i];
         }
         return n;
+    }
+    /* Install 1 (ONE) x and weight values for quadrature from xA to xB. */
+    static setupGauss1(xA, xB, xMapped, wMapped) {
+        return Quadrature.mapWeights(xA, xB - xA, Quadrature.gaussX1Interval01, Quadrature.gaussW1Interval01, xMapped, wMapped);
     }
     /* Install 2 (TWO) x and weight values for quadrature from xA to xB. */
     static setupGauss2(xA, xB, xMapped, wMapped) {
@@ -105,6 +110,8 @@ class Quadrature {
         return sum;
     }
 }
+Quadrature.gaussX1Interval01 = new Float64Array([0.5]);
+Quadrature.gaussW1Interval01 = new Float64Array([1.0]);
 Quadrature.gaussX2Interval01 = new Float64Array([0.21132486540518708, 0.7886751345948129]);
 Quadrature.gaussW2Interval01 = new Float64Array([0.5, 0.5]);
 Quadrature.gaussX3Interval01 = new Float64Array([0.1127016653792583, 0.5, 0.8872983346207417]);

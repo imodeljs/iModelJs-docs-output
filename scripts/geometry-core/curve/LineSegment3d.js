@@ -1,14 +1,17 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Curve */
 const Geometry_1 = require("../Geometry");
 const BezierPolynomials_1 = require("../numerics/BezierPolynomials");
-const PointVector_1 = require("../PointVector");
-const AnalyticGeometry_1 = require("../AnalyticGeometry");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
+const Ray3d_1 = require("../geometry3d/Ray3d");
+const Plane3dByOriginAndVectors_1 = require("../geometry3d/Plane3dByOriginAndVectors");
 const CurvePrimitive_1 = require("./CurvePrimitive");
+const CurveLocationDetail_1 = require("./CurveLocationDetail");
 const LineString3d_1 = require("./LineString3d");
 /* tslint:disable:variable-name no-empty*/
 /**
@@ -27,6 +30,15 @@ class LineSegment3d extends CurvePrimitive_1.CurvePrimitive {
     isSameGeometryClass(other) { return other instanceof LineSegment3d; }
     get point0Ref() { return this._point0; }
     get point1Ref() { return this._point1; }
+    /**
+     * A LineSegment3d extends along its infinite line.
+     */
+    get isExtensibleFractionSpace() { return true; }
+    /**
+     * CAPTURE point references as a `LineSegment3d`
+     * @param point0
+     * @param point1
+     */
     constructor(point0, point1) { super(); this._point0 = point0; this._point1 = point1; }
     /** Set the start and endpoints by capturing input references. */
     setRefs(point0, point1) { this._point0 = point0; this._point1 = point1; }
@@ -52,7 +64,7 @@ class LineSegment3d extends CurvePrimitive_1.CurvePrimitive {
     }
     /** @returns Return the point at fractional position along the line segment. */
     fractionToPointAndDerivative(fraction, result) {
-        result = result ? result : AnalyticGeometry_1.Ray3d.createZero();
+        result = result ? result : Ray3d_1.Ray3d.createZero();
         result.direction.setStartEnd(this._point0, this._point1);
         this._point0.interpolate(fraction, this._point1, result.origin);
         return result;
@@ -63,7 +75,7 @@ class LineSegment3d extends CurvePrimitive_1.CurvePrimitive {
      * * y axis is the second derivative, i.e. 000
      */
     fractionToPointAnd2Derivatives(fraction, result) {
-        result = result ? result : AnalyticGeometry_1.Plane3dByOriginAndVectors.createXYPlane();
+        result = result ? result : Plane3dByOriginAndVectors_1.Plane3dByOriginAndVectors.createXYPlane();
         result.vectorU.setStartEnd(this._point0, this._point1);
         result.vectorV.set(0, 0, 0);
         this._point0.interpolate(fraction, this._point1, result.origin);
@@ -99,7 +111,7 @@ class LineSegment3d extends CurvePrimitive_1.CurvePrimitive {
             result._point1.set(x1, y1, z);
             return result;
         }
-        return new LineSegment3d(PointVector_1.Point3d.create(x0, y0, z), PointVector_1.Point3d.create(x1, y1, z));
+        return new LineSegment3d(Point3dVector3d_1.Point3d.create(x0, y0, z), Point3dVector3d_1.Point3d.create(x1, y1, z));
     }
     /** create a LineSegment3d from xy coordinates of start and end, with common z.
      * @param x0 start point x coordinate.
@@ -115,11 +127,14 @@ class LineSegment3d extends CurvePrimitive_1.CurvePrimitive {
             result._point1.set(x1, y1, z1);
             return result;
         }
-        return new LineSegment3d(PointVector_1.Point3d.create(x0, y0, z0), PointVector_1.Point3d.create(x1, y1, z1));
+        return new LineSegment3d(Point3dVector3d_1.Point3d.create(x0, y0, z0), Point3dVector3d_1.Point3d.create(x1, y1, z1));
     }
     /** @returns Return the point at fractional position along the line segment. */
     fractionToPoint(fraction, result) { return this._point0.interpolate(fraction, this._point1, result); }
     curveLength() { return this._point0.distance(this._point1); }
+    curveLengthBetweenFractions(fraction0, fraction1) {
+        return Math.abs(fraction1 - fraction0) * this._point0.distance(this._point1);
+    }
     quickLength() { return this.curveLength(); }
     /**
      * @param spacePoint point in space
@@ -134,13 +149,16 @@ class LineSegment3d extends CurvePrimitive_1.CurvePrimitive {
             else if (fraction < 0.0)
                 fraction = 0.0;
         }
-        result = CurvePrimitive_1.CurveLocationDetail.create(this, result);
+        result = CurveLocationDetail_1.CurveLocationDetail.create(this, result);
+        // remark: This can be done by result.setFP (fraction, thePoint, undefined, a)
+        //   but that creates a temporary point.
         result.fraction = fraction;
         this._point0.interpolate(fraction, this._point1, result.point);
-        this._point0.vectorTo(this._point1, result.vector);
+        result.vectorInCurveLocationDetail = undefined;
         result.a = result.point.distance(spacePoint);
         return result;
     }
+    /** swap the endpoint references. */
     reverseInPlace() {
         const a = this._point0;
         this._point0 = this._point1;
@@ -162,7 +180,7 @@ class LineSegment3d extends CurvePrimitive_1.CurvePrimitive {
         let numIntersection = 0;
         if (fraction !== undefined) {
             numIntersection++;
-            result.push(CurvePrimitive_1.CurveLocationDetail.createCurveFractionPoint(this, fraction, this.fractionToPoint(fraction)));
+            result.push(CurveLocationDetail_1.CurveLocationDetail.createCurveFractionPoint(this, fraction, this.fractionToPoint(fraction)));
         }
         return numIntersection;
     }
@@ -207,13 +225,15 @@ class LineSegment3d extends CurvePrimitive_1.CurvePrimitive {
             this._point1.setFromJSON(json[1]);
         }
     }
+    /** A simple line segment's fraction and distance are proportional. */
+    getFractionToDistanceScale() { return this.curveLength(); }
     /**
      * Place the lineSegment3d start and points in a json object
      * @return {*} [[x,y,z],[x,y,z]]
      */
     toJSON() { return [this._point0.toJSON(), this._point1.toJSON()]; }
     static fromJSON(json) {
-        const result = new LineSegment3d(PointVector_1.Point3d.createZero(), PointVector_1.Point3d.create());
+        const result = new LineSegment3d(Point3dVector3d_1.Point3d.createZero(), Point3dVector3d_1.Point3d.create());
         result.setFromJSON(json);
         return result;
     }

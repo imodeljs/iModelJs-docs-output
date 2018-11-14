@@ -1,10 +1,12 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Topology */
-const PointVector_1 = require("../PointVector");
+const Point2dVector2d_1 = require("../geometry3d/Point2dVector2d");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
 const LineSegment3d_1 = require("../curve/LineSegment3d");
 const Geometry_1 = require("../Geometry");
 /**
@@ -348,11 +350,11 @@ class HalfEdge {
     static nodeToXY(node) { return [node.x, node.y]; }
     /** @returns Return Vector2d to face successor, with only xy coordinates */
     vectorToFaceSuccessorXY(result) {
-        return PointVector_1.Vector2d.create(this.faceSuccessor.x - this.x, this.faceSuccessor.y - this.y, result);
+        return Point2dVector2d_1.Vector2d.create(this.faceSuccessor.x - this.x, this.faceSuccessor.y - this.y, result);
     }
     /** @returns Return Vector3d to face successor */
     vectorToFaceSuccessor(result) {
-        return PointVector_1.Vector3d.create(this.faceSuccessor.x - this.x, this.faceSuccessor.y - this.y, this.faceSuccessor.z - this.z, result);
+        return Point3dVector3d_1.Vector3d.create(this.faceSuccessor.x - this.x, this.faceSuccessor.y - this.y, this.faceSuccessor.z - this.z, result);
     }
     /** @returns Returns true if the node does NOT have Mask.EXTERIOR_MASK set. */
     static testNodeMaskNotExterior(node) { return !node.isMaskSet(1 /* EXTERIOR */); }
@@ -561,7 +563,7 @@ class HalfEdgeGraph {
         const segments = [];
         for (const node of this.allHalfEdges) {
             if (node.id < node.edgeMate.id)
-                segments.push(LineSegment3d_1.LineSegment3d.create(PointVector_1.Point3d.create(node.x, node.y), PointVector_1.Point3d.create(node.faceSuccessor.x, node.faceSuccessor.y)));
+                segments.push(LineSegment3d_1.LineSegment3d.create(Point3dVector3d_1.Point3d.create(node.x, node.y), Point3dVector3d_1.Point3d.create(node.faceSuccessor.x, node.faceSuccessor.y)));
         }
         return segments;
     }
@@ -651,4 +653,24 @@ class HalfEdgeGraph {
     countNodes() { return this.allHalfEdges.length; }
 }
 exports.HalfEdgeGraph = HalfEdgeGraph;
+var HalfEdgeMask;
+(function (HalfEdgeMask) {
+    HalfEdgeMask[HalfEdgeMask["EXTERIOR"] = 1] = "EXTERIOR";
+    HalfEdgeMask[HalfEdgeMask["BOUNDARY"] = 2] = "BOUNDARY";
+    HalfEdgeMask[HalfEdgeMask["CONSTU_MASK"] = 4] = "CONSTU_MASK";
+    HalfEdgeMask[HalfEdgeMask["CONSTV_MASK"] = 8] = "CONSTV_MASK";
+    HalfEdgeMask[HalfEdgeMask["USEAM_MASK"] = 16] = "USEAM_MASK";
+    HalfEdgeMask[HalfEdgeMask["VSEAM_MASK"] = 32] = "VSEAM_MASK";
+    HalfEdgeMask[HalfEdgeMask["BOUNDARY_VERTEX_MASK"] = 64] = "BOUNDARY_VERTEX_MASK";
+    HalfEdgeMask[HalfEdgeMask["PRIMARY_VERTEX_MASK"] = 128] = "PRIMARY_VERTEX_MASK";
+    HalfEdgeMask[HalfEdgeMask["DIRECTED_EDGE_MASK"] = 256] = "DIRECTED_EDGE_MASK";
+    HalfEdgeMask[HalfEdgeMask["PRIMARY_EDGE"] = 512] = "PRIMARY_EDGE";
+    HalfEdgeMask[HalfEdgeMask["HULL_MASK"] = 1024] = "HULL_MASK";
+    HalfEdgeMask[HalfEdgeMask["SECTION_EDGE_MASK"] = 2048] = "SECTION_EDGE_MASK";
+    HalfEdgeMask[HalfEdgeMask["POLAR_LOOP_MASK"] = 4096] = "POLAR_LOOP_MASK";
+    HalfEdgeMask[HalfEdgeMask["VISITED"] = 8192] = "VISITED";
+    HalfEdgeMask[HalfEdgeMask["TRIANGULATED_NODE_MASK"] = 16384] = "TRIANGULATED_NODE_MASK";
+    HalfEdgeMask[HalfEdgeMask["NULL_MASK"] = 0] = "NULL_MASK";
+    HalfEdgeMask[HalfEdgeMask["ALL_MASK"] = 4294967295] = "ALL_MASK";
+})(HalfEdgeMask = exports.HalfEdgeMask || (exports.HalfEdgeMask = {}));
 //# sourceMappingURL=Graph.js.map

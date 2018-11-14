@@ -1,14 +1,16 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
-const FrameBuilder_1 = require("../FrameBuilder");
+const FrameBuilder_1 = require("../geometry3d/FrameBuilder");
 const PolyfaceBuilder_1 = require("../polyface/PolyfaceBuilder");
 const Triangulation_1 = require("../topology/Triangulation");
 const LineString3d_1 = require("../curve/LineString3d");
-const CurveChain_1 = require("../curve/CurveChain");
-const PointHelpers_1 = require("../PointHelpers");
+const ParityRegion_1 = require("../curve/ParityRegion");
+const Loop_1 = require("../curve/Loop");
+const PointHelpers_1 = require("../geometry3d/PointHelpers");
 /**
  * Sweepable contour with Transform for local to world interaction.
  */
@@ -59,9 +61,9 @@ class SweepContour {
      */
     buildFacets(_builder, options) {
         if (!this._facets) {
-            if (this.curves instanceof CurveChain_1.Loop) {
+            if (this.curves instanceof Loop_1.Loop) {
                 this._xyStrokes = this.curves.cloneStroked(options);
-                if (this._xyStrokes instanceof CurveChain_1.Loop && this._xyStrokes.children.length === 1) {
+                if (this._xyStrokes instanceof Loop_1.Loop && this._xyStrokes.children.length === 1) {
                     const children = this._xyStrokes.children;
                     const linestring = children[0];
                     const points = linestring.points;
@@ -74,9 +76,9 @@ class SweepContour {
                     this._facets.tryTransformInPlace(this.localToWorld);
                 }
             }
-            else if (this.curves instanceof CurveChain_1.ParityRegion) {
+            else if (this.curves instanceof ParityRegion_1.ParityRegion) {
                 this._xyStrokes = this.curves.cloneStroked(options);
-                if (this._xyStrokes instanceof (CurveChain_1.ParityRegion)) {
+                if (this._xyStrokes instanceof (ParityRegion_1.ParityRegion)) {
                     this._xyStrokes.tryTransformInPlace(this.localToWorld);
                     const strokes = [];
                     for (const childLoop of this._xyStrokes.children) {

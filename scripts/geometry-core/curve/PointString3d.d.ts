@@ -1,11 +1,11 @@
 /** @module Curve */
 import { BeJSONFunctions } from "../Geometry";
-import { Point3d } from "../PointVector";
-import { Range3d } from "../Range";
-import { Transform } from "../Transform";
-import { Plane3dByOriginAndUnitNormal } from "../AnalyticGeometry";
-import { GeometryHandler } from "../GeometryHandler";
-import { GeometryQuery } from "./CurvePrimitive";
+import { Point3d } from "../geometry3d/Point3dVector3d";
+import { Range3d } from "../geometry3d/Range";
+import { Transform } from "../geometry3d/Transform";
+import { Plane3dByOriginAndUnitNormal } from "../geometry3d/Plane3dByOriginAndUnitNormal";
+import { GeometryHandler } from "../geometry3d/GeometryHandler";
+import { GeometryQuery } from "./GeometryQuery";
 /**
  * A PointString3d is an array of points.
  * * PointString3D is first class (displayable) geometry derived from the GeometryQuery base class.

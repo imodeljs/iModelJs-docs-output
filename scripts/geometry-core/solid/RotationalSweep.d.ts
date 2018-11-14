@@ -1,10 +1,11 @@
-import { Range3d } from "../Range";
-import { Transform } from "../Transform";
-import { CurveCollection } from "../curve/CurveChain";
-import { GeometryQuery } from "../curve/CurvePrimitive";
-import { Ray3d } from "../AnalyticGeometry";
-import { Angle } from "../Geometry";
-import { GeometryHandler } from "../GeometryHandler";
+/** @module Solid */
+import { Range3d } from "../geometry3d/Range";
+import { Transform } from "../geometry3d/Transform";
+import { CurveCollection } from "../curve/CurveCollection";
+import { GeometryQuery } from "../curve/GeometryQuery";
+import { Ray3d } from "../geometry3d/Ray3d";
+import { Angle } from "../geometry3d/Angle";
+import { GeometryHandler } from "../geometry3d/GeometryHandler";
 import { SweepContour } from "./SweepContour";
 import { SolidPrimitive } from "./SolidPrimitive";
 export declare class RotationalSweep extends SolidPrimitive {

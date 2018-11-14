@@ -1,20 +1,21 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Curve */
 const Geometry_1 = require("../Geometry");
-const PointVector_1 = require("../PointVector");
-const PointHelpers_1 = require("../PointHelpers");
-const CurvePrimitive_1 = require("./CurvePrimitive");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
+const PointHelpers_1 = require("../geometry3d/PointHelpers");
+const GeometryQuery_1 = require("./GeometryQuery");
 /* tslint:disable:variable-name no-empty*/
 /**
  * A PointString3d is an array of points.
  * * PointString3D is first class (displayable) geometry derived from the GeometryQuery base class.
  * * The varous points in the PointString3d are NOT connected by line segments for display or other calculations.
  */
-class PointString3d extends CurvePrimitive_1.GeometryQuery {
+class PointString3d extends GeometryQuery_1.GeometryQuery {
     isSameGeometryClass(other) { return other instanceof PointString3d; }
     /** return the points array (cloned). */
     get points() { return this._points; }
@@ -42,7 +43,7 @@ class PointString3d extends CurvePrimitive_1.GeometryQuery {
     addPoints(...points) {
         const toAdd = PointString3d.flattenArray(points);
         for (const p of toAdd) {
-            if (p instanceof PointVector_1.Point3d)
+            if (p instanceof Point3dVector3d_1.Point3d)
                 this._points.push(p);
         }
     }
@@ -67,7 +68,7 @@ class PointString3d extends CurvePrimitive_1.GeometryQuery {
     static createFloat64Array(xyzData) {
         const ps = new PointString3d();
         for (let i = 0; i + 3 <= xyzData.length; i += 3)
-            ps._points.push(PointVector_1.Point3d.create(xyzData[i], xyzData[i + 1], xyzData[i + 2]));
+            ps._points.push(Point3dVector3d_1.Point3d.create(xyzData[i], xyzData[i + 1], xyzData[i + 2]));
         return ps;
     }
     clone() {
@@ -80,7 +81,7 @@ class PointString3d extends CurvePrimitive_1.GeometryQuery {
         if (Array.isArray(json)) {
             let xyz;
             for (xyz of json)
-                this._points.push(PointVector_1.Point3d.fromJSON(xyz));
+                this._points.push(Point3dVector3d_1.Point3d.fromJSON(xyz));
         }
     }
     /**
@@ -132,7 +133,7 @@ class PointString3d extends CurvePrimitive_1.GeometryQuery {
     }
     /** Return the index and coordinates of the closest point to spacepoint. */
     closestPoint(spacePoint) {
-        const result = { index: -1, xyz: PointVector_1.Point3d.create() };
+        const result = { index: -1, xyz: Point3dVector3d_1.Point3d.create() };
         const index = PointHelpers_1.Point3dArray.closestPointIndex(this._points, spacePoint);
         if (index >= 0) {
             result.index = index;

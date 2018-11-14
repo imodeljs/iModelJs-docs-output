@@ -1,16 +1,17 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module CartesianGeometry */
-const PointVector_1 = require("../PointVector");
-const Range_1 = require("../Range");
-const Range_2 = require("../Range");
-const Transform_1 = require("../Transform");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
+const Range_1 = require("../geometry3d/Range");
+const Range_2 = require("../geometry3d/Range");
+const Matrix3d_1 = require("../geometry3d/Matrix3d");
 const Geometry_1 = require("../Geometry");
-const PointHelpers_1 = require("../PointHelpers");
-const GrowableArray_1 = require("../GrowableArray");
+const PointHelpers_1 = require("../geometry3d/PointHelpers");
+const GrowableArray_1 = require("../geometry3d/GrowableArray");
 const ClipPlane_1 = require("./ClipPlane");
 const ClipUtils_1 = require("./ClipUtils");
 /**
@@ -102,10 +103,10 @@ class ConvexClipPlaneSet {
     static createXYBox(x0, y0, x1, y1, result) {
         result = result ? result : new ConvexClipPlaneSet();
         result._planes.length = 0;
-        const clip0 = ClipPlane_1.ClipPlane.createNormalAndDistance(PointVector_1.Vector3d.create(-1, 0, 0), -x1, false, true);
-        const clip1 = ClipPlane_1.ClipPlane.createNormalAndDistance(PointVector_1.Vector3d.create(1, 0, 0), x0, false, true);
-        const clip2 = ClipPlane_1.ClipPlane.createNormalAndDistance(PointVector_1.Vector3d.create(0, -1, 0), -y1, false, true);
-        const clip3 = ClipPlane_1.ClipPlane.createNormalAndDistance(PointVector_1.Vector3d.create(0, 1, 0), y0, false, true);
+        const clip0 = ClipPlane_1.ClipPlane.createNormalAndDistance(Point3dVector3d_1.Vector3d.create(-1, 0, 0), -x1, false, true);
+        const clip1 = ClipPlane_1.ClipPlane.createNormalAndDistance(Point3dVector3d_1.Vector3d.create(1, 0, 0), x0, false, true);
+        const clip2 = ClipPlane_1.ClipPlane.createNormalAndDistance(Point3dVector3d_1.Vector3d.create(0, -1, 0), -y1, false, true);
+        const clip3 = ClipPlane_1.ClipPlane.createNormalAndDistance(Point3dVector3d_1.Vector3d.create(0, 1, 0), y0, false, true);
         if (clip0 && clip1 && clip2 && clip3) {
             result._planes.push(clip0, clip1, clip2, clip3);
         }
@@ -115,7 +116,7 @@ class ConvexClipPlaneSet {
         result = result ? result : new ConvexClipPlaneSet();
         result._planes.length = 0;
         for (let i0 = 0; (i0 + 1) < points.length; i0++) {
-            const edgeVector = PointVector_1.Vector3d.createStartEnd(points[i0], points[i0 + 1]);
+            const edgeVector = Point3dVector3d_1.Vector3d.createStartEnd(points[i0], points[i0 + 1]);
             const perp = edgeVector.unitPerpendicularXY();
             perp.z = 0.0;
             if (!leftIsInside)
@@ -138,7 +139,7 @@ class ConvexClipPlaneSet {
         result = result ? result : new ConvexClipPlaneSet();
         result._planes.length = 0;
         for (let i0 = 0; (i0 + 1) < points.length; i0++) {
-            const edgeVector = PointVector_1.Vector3d.createStartEnd(points[i0], points[i0 + 1]);
+            const edgeVector = Point3dVector3d_1.Vector3d.createStartEnd(points[i0], points[i0 + 1]);
             const perp = edgeVector.unitPerpendicularXY();
             perp.z = 0.0;
             const perpNormalized = perp.normalize();
@@ -405,8 +406,8 @@ class ConvexClipPlaneSet {
             const xyz1 = points[i1];
             if (xyz0.isAlmostEqual(xyz1))
                 continue;
-            const edgeVector = PointVector_1.Vector3d.createStartEnd(xyz0, xyz1);
-            const inwardNormal = PointVector_1.Vector3d.createCrossProduct(sweepDirection.x, sweepDirection.y, sweepDirection.z, edgeVector.x, edgeVector.y, edgeVector.z);
+            const edgeVector = Point3dVector3d_1.Vector3d.createStartEnd(xyz0, xyz1);
+            const inwardNormal = Point3dVector3d_1.Vector3d.createCrossProduct(sweepDirection.x, sweepDirection.y, sweepDirection.z, edgeVector.x, edgeVector.y, edgeVector.z);
             const inwardNormalNormalized = inwardNormal.normalize();
             let distance;
             if (inwardNormalNormalized) { // Should never fail... simply a check due to the format of the normalize function return
@@ -438,7 +439,7 @@ class ConvexClipPlaneSet {
      * Note: If given a range for output, this will overwrite it, NOT extend it.
      */
     getRangeOfAlignedPlanes(transform, result) {
-        const idMatrix = Transform_1.Matrix3d.createIdentity();
+        const idMatrix = Matrix3d_1.Matrix3d.createIdentity();
         const bigRange = Range_2.Range3d.createXYZXYZ(-Number.MAX_VALUE, -Number.MAX_VALUE, -Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE);
         const range = bigRange.clone(result);
         for (const clipPlane of this._planes) {
@@ -488,9 +489,9 @@ class ConvexClipPlaneSet {
     }
     addZClipPlanes(invisible, zLow, zHigh) {
         if (zLow !== undefined)
-            this._planes.push(ClipPlane_1.ClipPlane.createNormalAndDistance(PointVector_1.Vector3d.create(0, 0, 1), zLow, invisible));
+            this._planes.push(ClipPlane_1.ClipPlane.createNormalAndDistance(Point3dVector3d_1.Vector3d.create(0, 0, 1), zLow, invisible));
         if (zHigh !== undefined)
-            this._planes.push(ClipPlane_1.ClipPlane.createNormalAndDistance(PointVector_1.Vector3d.create(0, 0, -1), -zHigh, invisible));
+            this._planes.push(ClipPlane_1.ClipPlane.createNormalAndDistance(Point3dVector3d_1.Vector3d.create(0, 0, -1), -zHigh, invisible));
     }
 }
 ConvexClipPlaneSet.hugeVal = 1e37;

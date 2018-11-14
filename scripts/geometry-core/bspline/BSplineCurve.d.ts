@@ -1,57 +1,64 @@
 /** @module Bspline */
-import { Point3d } from "../PointVector";
-import { Range3d } from "../Range";
-import { Transform } from "../Transform";
-import { Ray3d, Plane3dByOriginAndVectors } from "../AnalyticGeometry";
+import { Point3d } from "../geometry3d/Point3dVector3d";
+import { Range3d } from "../geometry3d/Range";
+import { Transform } from "../geometry3d/Transform";
+import { Ray3d } from "../geometry3d/Ray3d";
+import { Plane3dByOriginAndVectors } from "../geometry3d/Plane3dByOriginAndVectors";
 import { CurvePrimitive } from "../curve/CurvePrimitive";
+import { CurveLocationDetail } from "../curve/CurveLocationDetail";
 import { StrokeOptions } from "../curve/StrokeOptions";
-import { Plane3dByOriginAndUnitNormal } from "../AnalyticGeometry";
-import { GeometryHandler, IStrokeHandler } from "../GeometryHandler";
+import { PlaneAltitudeEvaluator } from "../Geometry";
+import { Plane3dByOriginAndUnitNormal } from "../geometry3d/Plane3dByOriginAndUnitNormal";
+import { GeometryHandler, IStrokeHandler } from "../geometry3d/GeometryHandler";
 import { KnotVector } from "./KnotVector";
 import { LineString3d } from "../curve/LineString3d";
-import { BezierCurve3dH, BezierCurveBase } from "./BezierCurve";
-/** Bspline knots and poles for 1d-to-Nd. */
-export declare class BSpline1dNd {
-    knots: KnotVector;
-    packedData: Float64Array;
-    poleLength: number;
-    readonly degree: number;
-    readonly order: number;
-    readonly numSpan: number;
-    readonly numPoles: number;
-    getPoint3dPole(i: number, result?: Point3d): Point3d | undefined;
-    basisBuffer: Float64Array;
-    poleBuffer: Float64Array;
-    basisBuffer1: Float64Array;
-    basisBuffer2: Float64Array;
-    poleBuffer1: Float64Array;
-    poleBuffer2: Float64Array;
-    /**
-     * initialize arrays for given spline dimensions.
-     * @param numPoles number of poles
-     * @param poleLength number of coordinates per pole (e.g.. 3 for 3D unweighted, 4 for 3d weighted, 2 for 2d unweighted, 3 for 2d weigthed)
-     * @param order number of poles in support for a section of the bspline
-     */
-    protected constructor(numPoles: number, poleLength: number, order: number, knots: KnotVector);
-    extendRange(rangeToExtend: Range3d, transform?: Transform): void;
-    static create(numPoles: number, poleLength: number, order: number, knots: KnotVector): BSpline1dNd | undefined;
-    spanFractionToKnot(span: number, localFraction: number): number;
-    evaluateBasisFunctionsInSpan(spanIndex: number, spanFraction: number, f: Float64Array, df?: Float64Array, ddf?: Float64Array): void;
-    evaluateBuffersInSpan(spanIndex: number, spanFraction: number): void;
-    evaluateBuffersInSpan1(spanIndex: number, spanFraction: number): void;
-    /** sum poles by the weights in the basisBuffer, using poles for given span */
-    sumPoleBufferForSpan(spanIndex: number): void;
-    /** sum poles by the weights in the basisBuffer, using poles for given span */
-    sumPoleBuffer1ForSpan(spanIndex: number): void;
-    /** sum poles by the weights in the basisBuffer, using poles for given span */
-    sumPoleBuffer2ForSpan(spanIndex: number): void;
-    evaluateBuffersAtKnot(u: number, numDerivative?: number): void;
-    reverseInPlace(): void;
-}
+import { BezierCurveBase } from "./BezierCurveBase";
+import { BezierCurve3dH } from "./BezierCurve3dH";
+import { BSpline1dNd } from "./BSpline1dNd";
+import { Point4d } from "../geometry4d/Point4d";
 /**
  * Base class for BSplineCurve3d and BSplineCurve3dH.
+ * * A bspline curve consists of a set of knots and a set of poles.
+ * * The bspline curve is a function of the independent "knot axis" variable
+ * * The curve "follows" the poles loosely.
+ * * The is a set of polynomial spans.
+ * * The polynomial spans all have same `degree`.
+ * * Within each span, the polynomial of that `degree` is controlled by `order = degree + 1` contiguous points called poles.
+ * * The is a strict relationship between knot and poles counts:  `numPoles + order = numKnots + 2'
+ * * The number of spans is `numSpan = numPoles - degree`
+ * * For a given `spanIndex`:
+ * * * The `order` poles begin at index `spanIndex`.
+ * * * The `2*order` knots begin as span index
+ * * * The knot interval for this span is from `knot[degree+span-1] to knot[degree+span]`
+ * * The active part of the knot axis is `knot[degree-1] < knot < knot[degree-1 + numSpan]` i.e. `knot[degree-1] < knot < knot[numPoles]
+ *
+ * Nearly all bsplines are "clamped ".
+ * * Clamping make the curve pass through its first and last poles, with tangents directed along the first and last edges of the control polygon.
+ * * The knots for a clampled bspline have `degree` copies of the lowest knot value and `degree` copies of the highest knot value.
+ * * For instance, the knot vector `[0,0,0,1,2,3,3,3]
+ * * * can be evaluated from `0<=knot<=3`
+ * * * has 3 spans: 0 to 1, 1 to 2, 2 to 3
+ * * * has 6 poles
+ * * * passes through its first and last poles.
+ * * `create` methods may allow classic convention that has an extra knot at the beginning and end of the knot vector.
+ * * * The extra knots (first and last) were never referenced by the bspline recurrance relations.
+ * * * When the `ceate` methods recognize the classic setup (`numPoles + order = numKnots`), the extra knot is not saved with the BSplineCurve3dBase knots.
+ *
  * * The weighted variant has the problem that CurvePrimitive 3d typing does not allow undefined result where Point4d has zero weight.
  * * The convention for these is to return 000 in such places.
+ *
+ * * Note the class relationships:
+ * * * BSpline1dNd knows the bspline reucurrance relations for control points (poles) with no physical meaning.
+ * * * BsplineCurve3dBase owns a protected BSpline1dNd
+ * * * BsplineCurve3dBase is derived from CurvePrimitive, which creates obligation to act as a 3D curve, such as
+ * * * * evaluate fraction to point and derivatives wrt fraction
+ * * * * compute intersection with plane
+ * * * BSplineCurve3d and BSplineCurve3dH have variant logic driven by whether or not there are "weights" on the poles.
+ * * * * For `BSplineCurve3d`, the xyz value of pole calculations are "final" values for 3d evaluation
+ * * * * For `BSplineCurve3dH`, various `BSpline1dNd` results with xyzw have to be normalized back to xyz.
+ *
+ * * These classes do not support "periodic" variants.
+ * * * Periodic curves need to have certain leading knots and poles replicated at the end
  */
 export declare abstract class BSplineCurve3dBase extends CurvePrimitive {
     protected _bcurve: BSpline1dNd;
@@ -91,8 +98,18 @@ export declare abstract class BSplineCurve3dBase extends CurvePrimitive {
      * * y axis is the second derivative
      */
     fractionToPointAnd2Derivatives(fraction: number, result?: Plane3dByOriginAndVectors): Plane3dByOriginAndVectors;
+    /**
+     * Return the start point of hte curve.
+     */
     startPoint(): Point3d;
+    /**
+     * Return the end point of the curve
+     */
     endPoint(): Point3d;
+    /** Reverse the curve in place.
+     * * Poles are reversed
+     * * knot values are mirrored around the middle of the
+     */
     reverseInPlace(): void;
     /**
      * Return an array with this curve's bezier fragments.
@@ -105,11 +122,47 @@ export declare abstract class BSplineCurve3dBase extends CurvePrimitive {
       * @param result optional reusable curve.  This will only be reused if it is a BezierCurve3d with matching order.
       */
     abstract getSaturatedBezierSpan3dOr3dH(spanIndex: number, prefer3dH: boolean, result?: BezierCurveBase): BezierCurveBase | undefined;
+    /** Return a specified pole as a Point4d.
+     * * BSplineCurve3d appends weight 1 to its xyz
+     * * BSplineCurve3dH with pole whose "normalized" point is (x,y,z) but has weight w returns its weighted (wx,wy,wz,w)
+     */
+    abstract getPolePoint4d(poleIndex: number, result?: Point4d): Point4d | undefined;
+    /** Return a specified pole as a Point3d
+     * * BSplineCurve3d returns its simple xyz
+     * * BSplineCurve3dH attempts to normalize its (wx,wy,wz,w) back to (x,y,z), and returns undefined if weight is zero.
+     * @param poleIndex
+     * @param result optional result
+     */
+    abstract getPolePoint3d(poleIndex: number, result?: Point3d): Point3d | undefined;
+    /** Given a pole index, return the starting index for the contiguous array. */
+    poleIndexToDataIndex(poleIndex: number): number | undefined;
+    /** Search for the curve point that is closest to the spacePoint.
+     *
+     * * If the space point is exactly on the curve, this is the reverse of fractionToPoint.
+     * * Since CurvePrimitive should always have start and end available as candidate points, this method should always succeed
+     * @param spacePoint point in space
+     * @param extend true to extend the curve (if possible)
+     * @returns Returns a CurveLocationDetail structure that holds the details of the close point.
+     */
+    closestPoint(spacePoint: Point3d, _extend: boolean): CurveLocationDetail | undefined;
+    /** Implement `CurvePrimitive.appendPlaneIntersections`
+     * @param plane A plane (e.g. specific type Plane3dByOriginAndUnitNormal or Point4d)
+     * @param result growing array of plane intersections
+     * @return number of intersections appended to the array.
+    */
+    appendPlaneIntersectionPoints(plane: PlaneAltitudeEvaluator, result: CurveLocationDetail[]): number;
 }
+/**
+ * A BSplineCurve3d is a bspline curve whose poles are Point3d.
+ * See BSplineCurve3dBase for description of knots, order, degree.
+ */
 export declare class BSplineCurve3d extends BSplineCurve3dBase {
+    private _workBezier?;
+    private initializeWorkBezier;
     isSameGeometryClass(other: any): boolean;
     tryTransformInPlace(transform: Transform): boolean;
-    getPole(i: number, result?: Point3d): Point3d | undefined;
+    getPolePoint3d(poleIndex: number, result?: Point3d): Point3d | undefined;
+    getPolePoint4d(poleIndex: number, result?: Point4d): Point4d | undefined;
     spanFractionToKnot(span: number, localFraction: number): number;
     private constructor();
     /** Return a simple array of arrays with the control points as `[[x,y,z],[x,y,z],..]` */
@@ -156,8 +209,8 @@ export declare class BSplineCurve3d extends BSplineCurve3dBase {
     isAlmostEqual(other: any): boolean;
     isInPlane(plane: Plane3dByOriginAndUnitNormal): boolean;
     quickLength(): number;
-    emitStrokableParts(handler: IStrokeHandler, _options?: StrokeOptions): void;
-    emitStrokes(dest: LineString3d, _options?: StrokeOptions): void;
+    emitStrokableParts(handler: IStrokeHandler, options?: StrokeOptions): void;
+    emitStrokes(dest: LineString3d, options?: StrokeOptions): void;
     /**
      * return true if the spline is (a) unclamped with (degree-1) matching knot intervals,
      * (b) (degree-1) wrapped points,

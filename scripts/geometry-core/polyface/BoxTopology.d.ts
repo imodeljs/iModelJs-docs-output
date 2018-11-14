@@ -1,5 +1,5 @@
 /** @module Polyface */
-import { Point3d } from "../PointVector";
+import { Point3d } from "../geometry3d/Point3dVector3d";
 export declare class BoxTopology {
     /**
      * static readonly array with the coordinates of the 8 unit cube corners in standard order, which is:
@@ -9,7 +9,7 @@ export declare class BoxTopology {
      * * The point indices for the z edges are (0 to 4), (1 to 5), (2 to 6), (3 to 7)
      */
     static readonly points: Point3d[];
-    static readonly primaryCapId: number;
+    static readonly primaryCapId = -1;
     static readonly cornerIndexCCW: number[][];
     static readonly partnerFace: number[][];
     static readonly faceId: number[][];

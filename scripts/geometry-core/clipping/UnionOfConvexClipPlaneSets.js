@@ -1,12 +1,13 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 /** @module CartesianGeometry */
 Object.defineProperty(exports, "__esModule", { value: true });
-const PointVector_1 = require("../PointVector");
-const Range_1 = require("../Range");
-const GrowableArray_1 = require("../GrowableArray");
+const Segment1d_1 = require("../geometry3d/Segment1d");
+const Range_1 = require("../geometry3d/Range");
+const GrowableArray_1 = require("../geometry3d/GrowableArray");
 const ClipUtils_1 = require("./ClipUtils");
 const ConvexClipPlaneSet_1 = require("./ConvexClipPlaneSet");
 /**
@@ -132,7 +133,7 @@ class UnionOfConvexClipPlaneSets {
     /** Returns the fractions of the segment that pass through the set region, as 1 dimensional pieces */
     appendIntervalsFromSegment(segment, intervals) {
         for (const convexSet of this._convexSets) {
-            convexSet.announceClippedSegmentIntervals(0.0, 1.0, segment.point0Ref, segment.point1Ref, (fraction0, fraction1) => intervals.push(PointVector_1.Segment1d.create(fraction0, fraction1)));
+            convexSet.announceClippedSegmentIntervals(0.0, 1.0, segment.point0Ref, segment.point1Ref, (fraction0, fraction1) => intervals.push(Segment1d_1.Segment1d.create(fraction0, fraction1)));
         }
     }
     transformInPlace(transform) {

@@ -1,7 +1,6 @@
-/** @module Curve */
-import { GeometryQuery } from "./CurvePrimitive";
-import { CurveLocationDetail } from "./CurvePrimitive";
-import { Matrix4d } from "../numerics/Geometry4d";
+import { GeometryQuery } from "./GeometryQuery";
+import { CurveLocationDetail } from "./CurveLocationDetail";
+import { Matrix4d } from "../geometry4d/Matrix4d";
 /**
  * Data bundle for a pair of arrays of CurveLocationDetail structures such as produced by CurveCurve,IntersectXY and
  * CurveCurve.ClosestApproach

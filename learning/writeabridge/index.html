@@ -47,67 +47,74 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-                        <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo-small" class="site-logo-small" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-icon.svg" style="display:none;"/> 
                     </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar5">
-                        <span class="navbar-toggler-icon"></span>
+                    <button class="navbar-toggler no-user-select mr-auto" type="button" data-toggle="collapse" data-target="#navbar5">
+                        <span class="navbar-toggler-header"></span>
                     </button>
+                    <ul class="navbar-nav ml-auto pr-0 nav-search">
+                        <span class='search-bar'>
+                          <li>
+                            <div id='search-container'>
+                            </div>
+                          </li>
+                          <script>
+                            (function() {
+                              var cx = '000629069474334212860:yxwzhn4umym';
+                              var gcse = document.createElement('script');
+                              gcse.type = 'text/javascript';
+                              gcse.async = true;
+                              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                              var s = document.getElementsByTagName('script')[0];
+                              s.parentNode.insertBefore(gcse, s);
+                            })();
+                          </script>
+                          <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+                        </span>
+                    </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
                                 <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">Change History</a></li>
-                        </ul>
-                        <ul class="navbar-nav ml-auto">
-                            <span class='search-bar'>
-                              <li>
-                                <div id='search-container'>
-                                </div>
-                              </li>
-                              <script>
-                                (function() {
-                                  var cx = '000629069474334212860:yxwzhn4umym';
-                                  var gcse = document.createElement('script');
-                                  gcse.type = 'text/javascript';
-                                  gcse.async = true;
-                                  gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-                                  var s = document.getElementsByTagName('script')[0];
-                                  s.parentNode.insertBefore(gcse, s);
-                                })();
-                              </script>
-                              <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
-                            </span>
                         </ul>
                     </div>
                 </nav>
             </div>
         </header>
 <div id='main-wrapper'>
-    <div id='table-of-contents'>
-        <ul id='main-navigation-list'>
-            <html><head></head><body><h3 id="the imodel.js library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModel.js Library</a></h3>
-        <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
-        </ul>
-        <hr>
-        <p>&#xA0;</p>
-        <h3 id="helpful links">Helpful links</h3>
-        <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
-        </ul>
-        </body></html>
-        </ul>    </div>
-    <div class='documentation-main'>
+    <nav id='sidebar'>
+        <div id='table-of-contents'>
+            <div id="dismiss">
+                <i class="icon icon-chevron-left no-user-select"></i>
+            </div>
+            <hr class='sm-only'>
+            <ul id='main-navigation-list'>
+                <html><head></head><body><h3 id="the imodel.js library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModel.js Library</a></h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
+    </ul>
+    <hr>
+    <p>&#xA0;</p>
+    <h3 id="helpful links">Helpful links</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
+    </ul>
+    </body></html>
+            </ul>
+        </div>
+    </nav>    <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > WriteABridge</div>
+            <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > WriteABridge</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/WriteABridge.md">Edit this page</a></div>
             <h1 id="write an imodel bridge">Write an iModel Bridge</h1>
 <p>As explained in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/imodel-bridges'>overview</a>, a &quot;bridge&quot; is a program that:</p>
@@ -139,8 +146,8 @@
 <p>A bridge would import the following packages:</p>
 <pre class="no-line-numbers"><code class="language-typescript">import { ActivityLoggingContext, Guid, Id64String } from &quot;@bentley/bentleyjs-core&quot;;
 import { AccessToken, HubIModel } from &quot;@bentley/imodeljs-clients&quot;;
-import { IModelDb, BriefcaseManager, ConcurrencyControl, OpenParams, IModelHost, Subject } from &quot;@bentley/imodeljs-backend&quot;;
-import { ColorByName, ColorDef } from &quot;@bentley/imodeljs-common&quot;;
+import { BriefcaseManager, CategorySelector, ConcurrencyControl, DefinitionModel, DisplayStyle3d, IModelDb, IModelHost, ModelSelector, OpenParams, OrthographicViewDefinition, PhysicalModel, SpatialCategory, Subject } from &quot;@bentley/imodeljs-backend&quot;;
+import { ColorByName, ColorDef, IModel } from &quot;@bentley/imodeljs-common&quot;;
 </code></pre>
 <p>When the bridge runs for the very first time, it would look like the following. This example revolves around the fictitious &quot;RobotWorld&quot; schema. RobotWorld consists of Robots and Barriers. The details of RobotWorld and its schema are not important. The steps, such as importing a schema, reserving codes, pushing changesets, creating definition models, etc., are the important points to see in the example code.</p>
 <pre class="no-line-numbers"><code class="language-typescript">async function runBridgeFirstTime(accessToken: AccessToken, iModelId: string, projectId: string, assetsDir: string) {
@@ -166,17 +173,17 @@ import { ColorByName, ColorDef } from &quot;@bentley/imodeljs-common&quot;;
   //    To keep things organized and to avoid name collisions with other bridges and apps,
   //    a bridge should normally create its own unique subject and then scope its models and
   //    definitions under that.
-  const jobSubject = insertSubject(briefcase.elements.getRootSubject(), &quot;RobotWorld&quot;); // Job subject name must be unique among job subjects
-  const defModelId = insertDefinitionModel(jobSubject, &quot;definitions&quot;);
+  const jobSubjectId = Subject.insert(briefcase, IModel.rootSubjectId, &quot;RobotWorld&quot;); // Job subject name must be unique among job subjects
+  const defModelId = DefinitionModel.insert(briefcase, jobSubjectId, &quot;definitions&quot;);
 
   //  Create the spatial categories that will be used by the Robots and Barriers that will be imported.
-  insertSpatialCategory(briefcase, defModelId, Robot.classFullName, new ColorDef(ColorByName.silver));
-  insertSpatialCategory(briefcase, defModelId, Barrier.classFullName, new ColorDef(ColorByName.brown));
+  SpatialCategory.insert(briefcase, defModelId, Robot.classFullName, { color: new ColorDef(ColorByName.silver) });
+  SpatialCategory.insert(briefcase, defModelId, Barrier.classFullName, { color: new ColorDef(ColorByName.brown) });
 
   // 2. Convert elements, aspects, etc.
 
   // For this example, we&apos;ll put all of the in-coming elements in a single model.
-  const spatialModelId = insertSpatialModel(jobSubject, &quot;spatial model 1&quot;);
+  const spatialModelId = PhysicalModel.insert(briefcase, jobSubjectId, &quot;spatial model 1&quot;);
 
   //  Pretend that I connected to a datasource and read it.
   //  In this simple example, the source format is JSON. It could be anything.
@@ -194,13 +201,13 @@ import { ColorByName, ColorDef } from &quot;@bentley/imodeljs-common&quot;;
   // 3. Create views.
   //    Note that the view definition and helper objects go into the definition model, not the spatial model.
   //    Note how Element IDs are captured as strings.
-  const modelSelectorId = insertModelSelector(briefcase, defModelId, [spatialModelId.toString()]);
-  const spatialCategoryIds = [Robot.getCategory(briefcase).id.toString(), Barrier.getCategory(briefcase).id.toString()];
-  const categorySelectorId = insertCategorySelector(briefcase, defModelId, spatialCategoryIds);
-  const displayStyleId = insertDisplayStyle3d(briefcase, defModelId);
-  const viewOrigin = { x: 0, y: 0, z: 0 };
-  const viewExtents = { x: 10, y: 10, z: 1 }; // Note that you could compute the extents from the imported geometry. But real-world assets have known extents.
-  insertOrthographicViewDefinition(briefcase, defModelId, &quot;Test Robot View&quot;, modelSelectorId, categorySelectorId, displayStyleId, viewOrigin, viewExtents);
+  const viewName = &quot;Test Robot View&quot;;
+  const modelSelectorId = ModelSelector.insert(briefcase, defModelId, viewName, [spatialModelId]);
+  const spatialCategoryIds = [Robot.getCategory(briefcase).id, Barrier.getCategory(briefcase).id];
+  const categorySelectorId = CategorySelector.insert(briefcase, defModelId, viewName, spatialCategoryIds);
+  const displayStyleId = DisplayStyle3d.insert(briefcase, defModelId, viewName);
+  const viewRange = new Range3d(0, 0, 0, 10, 10, 1); // Note that you could compute the extents from the imported geometry. But real-world assets have known extents.
+  OrthographicViewDefinition.insert(briefcase, defModelId, viewName, modelSelectorId, categorySelectorId, displayStyleId, viewRange);
 
   //  III. Push the data changes to iModel Server
 
@@ -224,8 +231,8 @@ import { ColorByName, ColorDef } from &quot;@bentley/imodeljs-common&quot;;
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/pullandmergechanges'>IModelDb.pullAndMergeChanges</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/pushchanges'>IModelDb.pushChanges</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/concurrencycontrol'>ConcurrencyControl</a></li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/createmodels/#definitionmodel'>Insert a DefinitionModel</a></li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/createmodels/#physicalmodel'>Insert a PhysicalModel</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/models/definitionmodel/insert'>DefinitionModel.insert</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/models/physicalmodel/insert'>PhysicalModel.insert</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/createelements/#subject'>Insert a Subject element</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/createelements/#modelselector'>Insert a ModelSelector element</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/createelements/#categoryselector'>Insert a CategorySelector element</a></li>
@@ -313,7 +320,7 @@ function convertToBis(briefcase: IModelDb, modelId: Id64String, data: RobotWorld
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>05 November, 2018</span>
+                <span class='date-updated'>14 November, 2018</span>
             </p>
 
             
@@ -321,8 +328,9 @@ function convertToBis(briefcase: IModelDb, modelId: Id64String, data: RobotWorld
             
             </script>        </article>
     </div>
+    <div class="overlay"></div>
     <div id='inner-table-of-contents'>
-       <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+        <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
   <h4 class='heading'>On this page</h4>
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>

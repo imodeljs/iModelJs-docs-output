@@ -1,6 +1,6 @@
-import { Point3d } from "../PointVector";
-import { Range1d } from "../Range";
-import { GrowableFloat64Array, GrowableXYZArray } from "../GrowableArray";
+import { Point3d } from "../geometry3d/Point3dVector3d";
+import { Range1d } from "../geometry3d/Range";
+import { GrowableFloat64Array, GrowableXYZArray } from "../geometry3d/GrowableArray";
 import { Arc3d } from "../curve/Arc3d";
 import { UnionOfConvexClipPlaneSets } from "./UnionOfConvexClipPlaneSets";
 import { CurvePrimitive, AnnounceNumberNumber, AnnounceNumberNumberCurvePrimitive } from "../curve/CurvePrimitive";

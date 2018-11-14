@@ -1,7 +1,7 @@
 /** @module Solid */
-import { CurveCollection } from "../curve/CurveChain";
-import { GeometryQuery } from "../curve/CurvePrimitive";
-import { Transform } from "../Transform";
+import { CurveCollection } from "../curve/CurveCollection";
+import { GeometryQuery } from "../curve/GeometryQuery";
+import { Transform } from "../geometry3d/Transform";
 /**
  * Base class for SolidPrimitve variants.
  *

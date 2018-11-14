@@ -47,49 +47,56 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-                        <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo-small" class="site-logo-small" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-icon.svg" style="display:none;"/> 
                     </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar5">
-                        <span class="navbar-toggler-icon"></span>
+                    <button class="navbar-toggler no-user-select mr-auto" type="button" data-toggle="collapse" data-target="#navbar5">
+                        <span class="navbar-toggler-header"></span>
                     </button>
+                    <ul class="navbar-nav ml-auto pr-0 nav-search">
+                        <span class='search-bar'>
+                          <li>
+                            <div id='search-container'>
+                            </div>
+                          </li>
+                          <script>
+                            (function() {
+                              var cx = '000629069474334212860:yxwzhn4umym';
+                              var gcse = document.createElement('script');
+                              gcse.type = 'text/javascript';
+                              gcse.async = true;
+                              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                              var s = document.getElementsByTagName('script')[0];
+                              s.parentNode.insertBefore(gcse, s);
+                            })();
+                          </script>
+                          <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+                        </span>
+                    </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
                                 <li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">Change History</a></li>
-                        </ul>
-                        <ul class="navbar-nav ml-auto">
-                            <span class='search-bar'>
-                              <li>
-                                <div id='search-container'>
-                                </div>
-                              </li>
-                              <script>
-                                (function() {
-                                  var cx = '000629069474334212860:yxwzhn4umym';
-                                  var gcse = document.createElement('script');
-                                  gcse.type = 'text/javascript';
-                                  gcse.async = true;
-                                  gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-                                  var s = document.getElementsByTagName('script')[0];
-                                  s.parentNode.insertBefore(gcse, s);
-                                })();
-                              </script>
-                              <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
-                            </span>
                         </ul>
                     </div>
                 </nav>
             </div>
         </header>
 <div id='main-wrapper'>
-    <div id='table-of-contents'>
-        <ul id='main-navigation-list'>
-            
-        </ul>    </div>
-    <div class='documentation-main'>
+    <nav id='sidebar'>
+        <div id='table-of-contents'>
+            <div id="dismiss">
+                <i class="icon icon-chevron-left no-user-select"></i>
+            </div>
+            <hr class='sm-only'>
+            <ul id='main-navigation-list'>
+                
+            </ul>
+        </div>
+    </nav>    <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'>Getting Started</div>
+            <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'>Getting Started</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/getting-started/index.md">Edit this page</a></div>
             <h1 id="getting started with imodel.js">Getting Started With iModel.js</h1>
 <h2 class="h-required-tools">Required Tools<a id="required-tools" class="heading-anchor" href="#required-tools"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
@@ -171,7 +178,7 @@
 <p>Please see the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/communityresources'>Community Resources</a> page for the best places to get more help.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>05 November, 2018</span>
+                <span class='date-updated'>14 November, 2018</span>
             </p>
 
             
@@ -179,8 +186,9 @@
             
             </script>        </article>
     </div>
+    <div class="overlay"></div>
     <div id='inner-table-of-contents'>
-       <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+        <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
   <h4 class='heading'>On this page</h4>
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>

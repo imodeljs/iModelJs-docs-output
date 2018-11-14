@@ -9,9 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Running a Primitive Tool - iModel.js</title>
-    <meta name="og:title" content="Running a Primitive Tool - iModel.js">
-    <meta name="twitter:title" content="Running a Primitive Tool - iModel.js">
+    <title>Writing a PrimitiveTool - iModel.js</title>
+    <meta name="og:title" content="Writing a PrimitiveTool - iModel.js">
+    <meta name="twitter:title" content="Writing a PrimitiveTool - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -47,70 +47,79 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-                        <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo-small" class="site-logo-small" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-icon.svg" style="display:none;"/> 
                     </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar5">
-                        <span class="navbar-toggler-icon"></span>
+                    <button class="navbar-toggler no-user-select mr-auto" type="button" data-toggle="collapse" data-target="#navbar5">
+                        <span class="navbar-toggler-header"></span>
                     </button>
+                    <ul class="navbar-nav ml-auto pr-0 nav-search">
+                        <span class='search-bar'>
+                          <li>
+                            <div id='search-container'>
+                            </div>
+                          </li>
+                          <script>
+                            (function() {
+                              var cx = '000629069474334212860:yxwzhn4umym';
+                              var gcse = document.createElement('script');
+                              gcse.type = 'text/javascript';
+                              gcse.async = true;
+                              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                              var s = document.getElementsByTagName('script')[0];
+                              s.parentNode.insertBefore(gcse, s);
+                            })();
+                          </script>
+                          <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+                        </span>
+                    </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
                                 <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">Change History</a></li>
-                        </ul>
-                        <ul class="navbar-nav ml-auto">
-                            <span class='search-bar'>
-                              <li>
-                                <div id='search-container'>
-                                </div>
-                              </li>
-                              <script>
-                                (function() {
-                                  var cx = '000629069474334212860:yxwzhn4umym';
-                                  var gcse = document.createElement('script');
-                                  gcse.type = 'text/javascript';
-                                  gcse.async = true;
-                                  gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-                                  var s = document.getElementsByTagName('script')[0];
-                                  s.parentNode.insertBefore(gcse, s);
-                                })();
-                              </script>
-                              <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
-                            </span>
                         </ul>
                     </div>
                 </nav>
             </div>
         </header>
 <div id='main-wrapper'>
-    <div id='table-of-contents'>
-        <ul id='main-navigation-list'>
-            <html><head></head><body><h3 id="the imodel.js library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModel.js Library</a></h3>
-        <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
-        </ul>
-        <hr>
-        <p>&#xA0;</p>
-        <h3 id="helpful links">Helpful links</h3>
-        <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
-        </ul>
-        </body></html>
-        </ul>    </div>
-    <div class='documentation-main'>
+    <nav id='sidebar'>
+        <div id='table-of-contents'>
+            <div id="dismiss">
+                <i class="icon icon-chevron-left no-user-select"></i>
+            </div>
+            <hr class='sm-only'>
+            <ul id='main-navigation-list'>
+                <html><head></head><body><h3 id="the imodel.js library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModel.js Library</a></h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
+    </ul>
+    <hr>
+    <p>&#xA0;</p>
+    <h3 id="helpful links">Helpful links</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
+    </ul>
+    </body></html>
+            </ul>
+        </div>
+    </nav>    <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/">frontend</a> > PrimitiveTools</div>
+            <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/">frontend</a> > PrimitiveTools</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/frontend/PrimitiveTools.md">Edit this page</a></div>
-            <h1 id="running a primitive tool">Running a Primitive Tool</h1>
-<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/primitivetool'>PrimitiveTool</a> class serves as the base class for tools that need to create or modify geometric elements. Because Primitive tools often target a specific type of element, it may be undesirable to install a given Primitive tool as the <em>active</em> tool without first checking if all required conditions are being met.</p>
+            <h1 id="writing a primitivetool">Writing a PrimitiveTool</h1>
+<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/primitivetool'>PrimitiveTool</a> class serves as the base class for tools that need to create or modify geometric elements. An application&apos;s Primitive tools are often very specialized with each serving a single and specific purpose. Understanding of PrimitiveTool methods and what is expected from sub-classes is necessary for creating tools that conform to user expectations and exhibit consistent behavior.</p>
+<h2 class="h-running-the-tool">Running the tool<a id="running-the-tool" class="heading-anchor" href="#running-the-tool"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Because Primitive tools often target a specific type of element, it may be undesirable to install a given Primitive tool as the <em>active</em> tool without first checking if all required conditions are being met.</p>
 <p>When <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/toolregistry/run'>ToolRegistry.run</a> is called for a Primitive tool, the following sequence of tool methods are called:</p>
 <ul>
 <li><a href="#iscompatibleviewport">isCompatibleViewport</a></li>
@@ -156,9 +165,12 @@
 </blockquote>
 <h2 class="h-onpostinstall">onPostInstall<a id="onpostinstall" class="heading-anchor" href="#onpostinstall"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>After becoming the active tool, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/#onpostinstall'>InteractiveTool.onPostInstall</a> is used to establish the initial tool state. This may include enabling <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/accusnap'>AccuSnap</a>, sending <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/accudraw/accudraw'>AccuDraw</a> hints, and showing user prompts. Because onPostInstall is paired with <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/#oncleanup'>InteractiveTool.onCleanup</a>, it&apos;s also a good place to register listeners for events.</p>
-<p>Refer to <a href="#accusnap-and-accudraw">AccuSnap and AccuDraw</a> for examples of different types of Primitive tools.</p>
+<p>Refer to <a href="#accusnap">AccuSnap</a> and <a href="#accudraw">AccuDraw</a> for examples showing how different types of Primitive tools can leverage these drawing aides.</p>
 <h2 class="h-onrestarttool">onRestartTool<a id="onrestarttool" class="heading-anchor" href="#onrestarttool"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>A Primitive tool is required to provide an implementation for <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/primitivetool/onrestarttool'>PrimitiveTool.onRestartTool</a>. This method will be called to notify the tool after iModel changes made outside of the tool&apos;s perview have occured which <em>may</em> have invalidated the current tool state. For example, the user requests an undo of their previous action, an element the tool is currently modifying was created in the last transaction and as such no longer exists. The tool is expected to either install a new tool instance, or exit in response to this event.</p>
+<p>A Primitive tool is required to provide an implementation for <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/primitivetool/onrestarttool'>PrimitiveTool.onRestartTool</a>. This method will be called to notify the tool after iModel changes made outside of the tool&apos;s perview have occured which <em>may</em> have invalidated the current tool state.</p>
+<ul>
+<li>For example, the user requests an undo of their previous action, an element the tool is currently modifying was created in the last transaction and as such no longer exists. The tool is expected to either install a new tool instance, or exit in response to this event.</li>
+</ul>
 <p>Example of typical implementation for onRestartTool:</p>
 <pre class="no-line-numbers"><code class="language-typescript">  public onRestartTool(): void {
     const tool = new SamplePrimitiveTool();
@@ -168,17 +180,17 @@
 <blockquote>
 <p>The default implementation of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/onselectedviewportchanged'>InteractiveTool.onSelectedViewportChanged</a> also calls onRestartTool to handle <a href="#iscompatibleviewport">isCompatibleViewport</a> returning false. It&apos;s expected that the tool will restart with target from the new viewport if compatible, and call <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/#exittool'>InteractiveTool.exitTool</a> otherwise.</p>
 </blockquote>
-<h2 class="h-accusnap-and-accudraw">AccuSnap and AccuDraw<a id="accusnap-and-accudraw" class="heading-anchor" href="#accusnap-and-accudraw"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>AccuSnap is a aide for identifying elements and pickable decorations under the cursor. A tool can choose to enable locate, snapping, or both.</p>
+<h2 class="h-accusnap">AccuSnap<a id="accusnap" class="heading-anchor" href="#accusnap"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/accusnap'>AccuSnap</a> is a aide for identifying elements and pickable decorations under the cursor. A tool can choose to enable locate, snapping, or both.</p>
 <h3 class="h-snapping">Snapping<a id="snapping" class="heading-anchor" href="#snapping"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><img src=".././accusnap.png" alt="snapping example" title="Example of AccuSnap with snapping enabled"></p>
-<p>Tools that override <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/ondatabuttondown'>InteractiveTool.onDataButtonDown</a> or <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/ondatabuttonup'>InteractiveTool.onDataButtonUp</a> and use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/bebuttonevent/point'>BeButtonEvent.point</a> directly, in particular those that create new or modify existing elements, should call <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/accusnap/#enablesnap'>AccuSnap.enableSnap</a> with true to enable snapping. Snapping allows the user to identity locations of interest to them on existing elements or pickable decorations by choosing a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/snapmode'>SnapMode</a> and snap divisor.</p>
+<p>Tools that override <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/ondatabuttondown'>InteractiveTool.onDataButtonDown</a> or <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/ondatabuttonup'>InteractiveTool.onDataButtonUp</a> and use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/bebuttonevent/point'>BeButtonEvent.point</a> directly, in particular those that create new or modify existing elements, should call <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/accusnap/#enablesnap'>AccuSnap.enableSnap</a> with true to enable snapping. Snapping allows the user to identity locations of interest to them on existing elements or pickable decorations by choosing a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/snapmode'>SnapMode</a> and snap divisor. Snapping is used to identify points, <em>not</em> elements.</p>
 <blockquote>
 <p>To be considered active, both tool and user must enable snapping; <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/accusnap/#issnapenabled'>AccuSnap.isSnapEnabled</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/accusnap/issnapenabledbyuser'>AccuSnap.isSnapEnabledByUser</a> must both return true. The user that disables snapping through AccuSnap is choosing to identify snap locatations using <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/tentativepoint'>TentativePoint</a> instead. The default <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/idletool'>IdleTool</a> behavior of a middle mouse button click is to perform a tentative snap.</p>
 </blockquote>
 <p><img src=".././tentative.png" alt="tentative example" title="Example showing Tentative snap to element"></p>
 <blockquote>
-<p>A tool with an understanding of connection points and how things fit together <em>should not</em> enable AccuSnap. For example, a tool to place a valve on a pipe knows to only choose pipe end points of a given diameter, it should not require the user to choose an appropriate snap point at the end of a correct pipe or try to influence AccuSnap to only generative <em>key points</em> it deems appropriate, it can already freely do this soley based on the identified <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/hitdetail'>HitDetail</a>; AccuSnap does not add value in this scenario and only <a href="#locate">locate</a> should be enabled instead.</p>
+<p>A tool with an understanding of connection points and how things fit together <em>should not</em> enable AccuSnap. For example, a tool to place a valve on a pipe knows to only choose pipe end points of a given diameter, it should not require the user to choose an appropriate snap point at the end of a correct pipe or try to influence AccuSnap to only generative <em>key points</em> it deems appropriate. This is case where <a href="#locate">locate</a> should be enabled instead.</p>
 </blockquote>
 <p>Example from a simple sketching tool that uses AccuSnap to create and show a linestring in dynamics:</p>
 <pre class="no-line-numbers"><code class="language-typescript">  public readonly points: Point3d[] = [];
@@ -221,20 +233,94 @@
 <p>Unlike snapping, only the tool needs to enable locate to make it active. By giving the user feedback about the element under the cursor <em>before</em> they click on it, tools are able to complete with less clicks as the need for an explicit accept/reject step after identifying the element through a button event is eliminated.</p>
 </blockquote>
 <p>In addition to enabling AccuSnap locate, the tool should set an appropriate view cursor as well as enable the display of the locate circle. A convenient helper method is provided to set up everything a tool needs to begin locating elements, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/initlocateelements'>InteractiveTool.initLocateElements</a>.</p>
-<p>Example from a simple tool that locates elements to add to the selection set:</p>
-<p>TODO - Include filterHit and onDataButtonDown...</p>
-<pre class="no-line-numbers"><code class="language-typescript">  public onPostInstall() {
+<p>Example from a simple tool that locates elements and makes them the current selection set:</p>
+<pre class="no-line-numbers"><code class="language-typescript">  public async filterHit(hit: HitDetail, _out?: LocateResponse): Promise&lt;LocateFilterStatus&gt; {
+    // Check that element is valid for the tool operation, ex. query backend to test class, etc.
+    // For this example we&apos;ll just test the element&apos;s selected status.
+    const isSelected = this.iModel.selectionSet.has(hit.sourceId);
+    return isSelected ? LocateFilterStatus.Reject : LocateFilterStatus.Accept; // Reject element that is already selected
+  }
+
+  public async onDataButtonDown(ev: BeButtonEvent): Promise&lt;EventHandled&gt; {
+    const hit = await IModelApp.locateManager.doLocate(new LocateResponse(), true, ev.point, ev.viewport, ev.inputSource);
+    if (hit !== undefined)
+      this.iModel.selectionSet.replace(hit.sourceId); // Replace current selection set with accepted element
+
+    return EventHandled.No;
+  }
+
+  public onPostInstall() {
     super.onPostInstall();
     this.initLocateElements(); // Enable AccuSnap locate, set view cursor, add CoordinateLockOverrides to disable unwanted pre-locate point adjustments...
   }</code></pre>
-<h3 class="h-accudraw">AccuDraw<a id="accudraw" class="heading-anchor" href="#accudraw"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h2 class="h-accudraw">AccuDraw<a id="accudraw" class="heading-anchor" href="#accudraw"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p><img src=".././accudraw.png" alt="AccuDraw example" title="Example of AccuDraw using axis lock to constrain snapped point"></p>
-<p>TODO - AccuDraw explanation
-Accudraw is an aide for entering coordinate data.</p>
-<p>TODO - Example using AccuDraw</p>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/accudraw/accudraw'>AccuDraw</a> is an aide for entering coordinate data. By using <em>shortcuts</em> to position and orient the AccuDraw compass, locking a direction, or entering distance and angle values, the user is able to accurately enter points. AccuDraw isn&apos;t strictly controlled by the user however, the tool is also able to provide additional context to AccuDraw in the form of <em>hints</em> to make the tool easier to use.</p>
+<p>Some examples of AccuDraw tool hints:</p>
+<ul>
+<li>Send AccuDraw hint to use polar mode when defining a sweep angle.</li>
+<li>Send AccuDraw hint to set origin to opposite end point of line segment being modified and orient to segment direction, a new line length can be now easily specified.</li>
+</ul>
+<p>Upon installing a new Primitive tool as the active tool, AccuDraw&apos;s default state is initialized to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/accudraw/currentstate/#inactive'>CurrentState.Inactive</a>. AccuDraw will upgrade it&apos;s internal state to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/accudraw/currentstate/#active'>CurrentState.Active</a> automatically if the tool calls <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/begindynamics'>InteractiveTool.beginDynamics</a>. Tools that won&apos;t start dynamics (might only use view decorations) but still wish to support AccuDraw can explicitly enable it by calling by calling <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/accudraw/accudraw/#activate'>AccuDraw.activate</a> or using <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/accudraw/accudrawhintbuilder'>AccuDrawHintBuilder</a>. Conversely, tools that show dynamics, but do not want AccuDraw, are required to explicitly disable it by calling <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/accudraw/accudraw/#deactivate'>AccuDraw.deactivate</a>.</p>
+<blockquote>
+<p>Using the example of a tool that places a valve on a pipe again, the tool doesn&apos;t require the user to orient the valve on the closest pipe end point, it can get this information from the pipe element. As AccuDraw doesn&apos;t need to be enabled by the tool in this situation, but the tool does wish to preview the valve placment using dynamics, it should disable AccuDraw&apos;s automatic activation.</p>
+</blockquote>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/accudraw/accudrawhintbuilder'>AccuDrawHintBuilder</a> is a helper class tools can use to send hints to AccuDraw. A tool will typically send hints from <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/ondatabuttondown'>InteractiveTool.onDataButtonDown</a>, the hints are often accompanied by new tool prompts explaining what input is expected next.</p>
+<blockquote>
+<p>Tools that enable AccuDraw, either through automatic or explicit activation, should still not rely on AccuDraw or it&apos;s hints for point adjustment. The user may choose to disable AccuDraw completely, set a preference to ignore tool hints in favor of manually controlling the AccuDraw compass, or use shortcuts to override the tool&apos;s hints. If for example a tool requires the input point be projected to a particular plane in the view, even after enabling AccuDraw and sending hints to set the compass origin and rotation to define the plane, it must still correct <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/bebuttonevent/point'>BeButtonEvent.point</a> to ensure it lies on the plane for the reasons previously mentioned.</p>
+</blockquote>
+<p>Example from a simple sketching tool that uses AccuDrawHintBuilder to facilitate drawing orthogonal segments:</p>
+<pre class="no-line-numbers"><code class="language-typescript">  public readonly points: Point3d[] = [];
+
+  public setupAndPromptForNextAction(): void {
+    // NOTE: Tool should call IModelApp.notifications.outputPromptByKey or IModelApp.notifications.outputPrompt to tell user what to do.
+    IModelApp.accuSnap.enableSnap(true); // Enable AccuSnap so that linestring can be created by snapping to existing geometry
+
+    if (0 === this.points.length)
+      return;
+
+    const hints = new AccuDrawHintBuilder();
+    hints.enableSmartRotation = true; // Set initial AccuDraw orientation based on snapped geometry (ex. sketch on face of a solid)
+
+    if (this.points.length &gt; 1 &amp;&amp; !(this.points[this.points.length - 1].isAlmostEqual(this.points[this.points.length - 2])))
+      hints.setXAxis(Vector3d.createStartEnd(this.points[this.points.length - 2], this.points[this.points.length - 1])); // Align AccuDraw with last accepted segment
+
+    hints.setOrigin(this.points[this.points.length - 1]); // Set compass origin to last accepted point.
+    hints.sendHints();
+  }
+
+  public onDynamicFrame(ev: BeButtonEvent, context: DynamicsContext): void {
+    if (this.points.length &lt; 1)
+      return;
+
+    const tmpPoints = this.points.slice(); // Create shallow copy of accepted points
+    tmpPoints.push(ev.point.clone()); // Include current cursor location
+
+    const builder = context.createGraphicBuilder(GraphicType.Scene);
+    builder.setSymbology(context.viewport.getContrastToBackgroundColor(), ColorDef.black, 1);
+    builder.addLineString(tmpPoints);
+    context.addGraphic(builder.finish()); // Show linestring in view
+  }
+
+  public async onDataButtonDown(ev: BeButtonEvent): Promise&lt;EventHandled&gt; {
+    this.points.push(ev.point.clone()); // Accumulate accepted points, ev.point has been adjusted by AccuSnap and locks
+    this.setupAndPromptForNextAction();
+
+    if (!this.isDynamicsStarted)
+      this.beginDynamics(); // Start dynamics on first data button so that onDynamicFrame will be called
+
+    return EventHandled.No;
+  }
+
+  public async onResetButtonUp(_ev: BeButtonEvent): Promise&lt;EventHandled&gt; {
+    this.onReinitialize(); // Complete current linestring
+    return EventHandled.No;
+  }
+
+  public onPostInstall() { super.onPostInstall(); this.setupAndPromptForNextAction(); }</code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>05 November, 2018</span>
+                <span class='date-updated'>14 November, 2018</span>
             </p>
 
             
@@ -242,12 +328,16 @@ Accudraw is an aide for entering coordinate data.</p>
             
             </script>        </article>
     </div>
+    <div class="overlay"></div>
     <div id='inner-table-of-contents'>
-       <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+        <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
   <h4 class='heading'>On this page</h4>
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
               <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#running-the-tool">Running the tool</a>
+    </li>
+       <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#iscompatibleviewport">isCompatibleViewport</a>
     </li>
        <li class='nav-item item '>
@@ -260,21 +350,21 @@ Accudraw is an aide for entering coordinate data.</p>
             <a class='title solo-title menu-text' href="#onrestarttool">onRestartTool</a>
     </li>
        <li class='nav-item item '>
-            <a data-target="#inner-nav-accusnap-and-accudraw" class='title' href="#accusnap-and-accudraw"/>
-            <b class='dropdown-menu-title menu-text'>AccuSnap and AccuDraw</b>
+            <a data-target="#inner-nav-accusnap" class='title' href="#accusnap"/>
+            <b class='dropdown-menu-title menu-text'>AccuSnap</b>
             <i class='dropdown icon'></i>
             </a>
-            <ul id="inner-nav-accusnap-and-accudraw" class='inner-nav'>
+            <ul id="inner-nav-accusnap" class='inner-nav'>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#snapping">Snapping</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#locate">Locate</a>
                     </li>
-                    <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#accudraw">AccuDraw</a>
-                    </li>
             </ul>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#accudraw">AccuDraw</a>
     </li>
  
       </ul>

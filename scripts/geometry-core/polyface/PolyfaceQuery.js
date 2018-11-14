@@ -1,29 +1,31 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Polyface */
 // import { Point2d } from "./Geometry2d";
 /* tslint:disable:variable-name jsdoc-format no-empty*/
 // import { Point3d, Vector3d, Point2d } from "./PointVector";
-const PointVector_1 = require("../PointVector");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
 const Polyface_1 = require("./Polyface");
-const Geometry4d_1 = require("../numerics/Geometry4d");
-const CurveChain_1 = require("../curve/CurveChain");
+const Matrix4d_1 = require("../geometry4d/Matrix4d");
+const CurveCollection_1 = require("../curve/CurveCollection");
+const Loop_1 = require("../curve/Loop");
 const LineString3d_1 = require("../curve/LineString3d");
-const PointHelpers_1 = require("../PointHelpers");
-const Moments_1 = require("../numerics/Moments");
+const PointHelpers_1 = require("../geometry3d/PointHelpers");
+const MomentData_1 = require("../geometry4d/MomentData");
 /** PolyfaceQuery is a static class whose methods implement queries on a polyface or polyface visitor provided as a parameter to each mtehod. */
 class PolyfaceQuery {
     /** copy the points from a visitor into a Linestring3d in a Loop object */
     static VisitorToLoop(visitor) {
         const ls = LineString3d_1.LineString3d.createPoints(visitor.point.getPoint3dArray());
-        return CurveChain_1.Loop.create(ls);
+        return Loop_1.Loop.create(ls);
     }
     /** Create a linestring loop for each facet of the polyface. */
     static IndexedPolyfaceToLoops(polyface) {
-        const result = CurveChain_1.BagOfCurves.create();
+        const result = CurveCollection_1.BagOfCurves.create();
         const visitor = polyface.createVisitor(1);
         while (visitor.moveToNextFacet()) {
             const loop = PolyfaceQuery.VisitorToLoop(visitor);
@@ -55,9 +57,9 @@ class PolyfaceQuery {
             return PolyfaceQuery.sumTetrahedralVolumes(source.createVisitor(0), origin);
         let myOrigin = origin;
         const visitor = source;
-        const facetOrigin = PointVector_1.Point3d.create();
-        const targetA = PointVector_1.Point3d.create();
-        const targetB = PointVector_1.Point3d.create();
+        const facetOrigin = Point3dVector3d_1.Point3d.create();
+        const targetA = Point3dVector3d_1.Point3d.create();
+        const targetB = Point3dVector3d_1.Point3d.create();
         visitor.reset();
         while (visitor.moveToNextFacet()) {
             if (myOrigin === undefined)
@@ -75,7 +77,7 @@ class PolyfaceQuery {
     static SumFacetSecondAreaMomentProducts(source, origin) {
         if (source instanceof Polyface_1.Polyface)
             return PolyfaceQuery.SumFacetSecondAreaMomentProducts(source.createVisitor(0), origin);
-        const products = Geometry4d_1.Matrix4d.createZero();
+        const products = Matrix4d_1.Matrix4d.createZero();
         const visitor = source;
         visitor.reset();
         while (visitor.moveToNextFacet()) {
@@ -93,7 +95,7 @@ class PolyfaceQuery {
         if (!origin)
             return undefined;
         const inertiaProducts = PolyfaceQuery.SumFacetSecondAreaMomentProducts(source, origin);
-        return Moments_1.MomentData.inertiaProductsToPrincipalAxes(origin, inertiaProducts);
+        return MomentData_1.MomentData.inertiaProductsToPrincipalAxes(origin, inertiaProducts);
     }
 }
 exports.PolyfaceQuery = PolyfaceQuery;

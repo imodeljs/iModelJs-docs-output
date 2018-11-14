@@ -1,11 +1,16 @@
 /** @module Serialization */
 import { AngleProps, AngleSweepProps } from "../Geometry";
-import { Point3d, XYProps, XYZProps, YawPitchRollProps } from "../PointVector";
-import { CoordinateXYZ } from "../curve/CurvePrimitive";
-import { CurveCollection } from "../curve/CurveChain";
+import { XYProps, XYZProps } from "../geometry3d/XYZProps";
+import { Point3d } from "../geometry3d/Point3dVector3d";
+import { YawPitchRollProps } from "../geometry3d/YawPitchRollAngles";
+import { CoordinateXYZ } from "../curve/CoordinateXYZ";
 import { TransitionSpiral3d } from "../curve/TransitionSpiral";
-import { Path, Loop, ParityRegion, UnionRegion, BagOfCurves } from "../curve/CurveChain";
-import { IndexedPolyface } from "../polyface/Polyface";
+import { UnionRegion } from "../curve/UnionRegion";
+import { BagOfCurves } from "../curve/CurveCollection";
+import { ParityRegion } from "../curve/ParityRegion";
+import { Loop } from "../curve/Loop";
+import { Path } from "../curve/Path";
+import { IndexedPolyface, PolyfaceAuxData } from "../polyface/Polyface";
 import { BSplineCurve3d } from "../bspline/BSplineCurve";
 import { BSplineSurface3d, BSplineSurface3dH } from "../bspline/BSplineSurface";
 import { Sphere } from "../solid/Sphere";
@@ -15,12 +20,15 @@ import { TorusPipe } from "../solid/TorusPipe";
 import { LinearSweep } from "../solid/LinearSweep";
 import { RotationalSweep } from "../solid/RotationalSweep";
 import { RuledSweep } from "../solid/RuledSweep";
-import { GeometryHandler } from "../GeometryHandler";
+import { GeometryHandler } from "../geometry3d/GeometryHandler";
 import { LineString3d } from "../curve/LineString3d";
 import { PointString3d } from "../curve/PointString3d";
 import { Arc3d } from "../curve/Arc3d";
 import { LineSegment3d } from "../curve/LineSegment3d";
 import { BSplineCurve3dH } from "../bspline/BSplineCurve3dH";
+import { CurveCollection } from "../curve/CurveCollection";
+import { BezierCurve3dH } from "../bspline/BezierCurve3dH";
+import { BezierCurve3d } from "../bspline/BezierCurve3d";
 export declare namespace IModelJson {
     interface GeometryProps extends CurvePrimitiveProps, SolidPrimitiveProps {
         indexedMesh?: IndexedMeshProps;
@@ -214,6 +222,7 @@ export declare namespace IModelJson {
         startRadius?: number;
         endRadius?: number;
         curveLength?: number;
+        fractionInterval?: number[];
         /** TransitionSpiral type.   Default is `"clothoid"` */
         type?: string;
         /** A fractional portion of the spiral may be selected.
@@ -400,6 +409,7 @@ export declare namespace IModelJson {
         static parseBcurve(data?: any): BSplineCurve3d | BSplineCurve3dH | undefined;
         static parseArray(data?: any): any[] | undefined;
         private static addZeroBasedIndicesFromSignedOneBased;
+        static parsePolyfaceAuxData(data?: any): PolyfaceAuxData | undefined;
         static parseIndexedMesh(data?: any): any | undefined;
         static parseCurveCollectionMembers(result: CurveCollection, data?: any): CurveCollection | undefined;
         static parseBsurf(data?: any): BSplineSurface3d | BSplineSurface3dH | undefined;
@@ -465,10 +475,13 @@ export declare namespace IModelJson {
         handleRuledSweep(data: RuledSweep): any;
         handleRotationalSweep(data: RotationalSweep): any;
         handleBox(box: Box): any;
+        private handlePolyfaceAuxData;
         handleIndexedPolyface(pf: IndexedPolyface): any;
         handleBSplineCurve3d(curve: BSplineCurve3d): any;
+        handleBezierCurve3d(curve: BezierCurve3d): any;
         handleBSplineCurve3dH(curve: BSplineCurve3dH): any;
         handleBSplineSurface3d(surface: BSplineSurface3d): any;
+        handleBezierCurve3dH(curve: BezierCurve3dH): any;
         handleBSplineSurface3dH(surface: BSplineSurface3dH): any;
         emitArray(data: object[]): any;
         emit(data: any): any;

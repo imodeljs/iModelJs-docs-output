@@ -1,6 +1,6 @@
-/** @module Numerics */
-import { Point2d, Point3d } from "../PointVector";
-import { GrowableBlockedArray, GrowableXYZArray } from "../GrowableArray";
+import { Point2d } from "../geometry3d/Point2dVector2d";
+import { Point3d } from "../geometry3d/Point3dVector3d";
+import { GrowableBlockedArray, GrowableXYZArray } from "../geometry3d/GrowableArray";
 export declare class ClusterableArray extends GrowableBlockedArray {
     private static readonly _vectorFactor;
     static sortVectorComponent(index: number): number;
@@ -37,7 +37,7 @@ export declare class ClusterableArray extends GrowableBlockedArray {
     /** Set a single extra data value */
     setExtraData(blockIndex: number, i: number, value: number): void;
     /** this value is used as cluster terminator in the Uint232rray of indcies. */
-    static readonly clusterTerminator: number;
+    static readonly clusterTerminator = 4294967295;
     static isClusterTerminator(x: number): boolean;
     /** Return an array giving clusters of blocks with similar coordinates.
      *

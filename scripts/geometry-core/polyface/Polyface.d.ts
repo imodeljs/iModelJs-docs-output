@@ -1,10 +1,11 @@
 /** @module Polyface */
-import { Point3d, Vector3d, Point2d } from "../PointVector";
-import { Range3d, Range2d } from "../Range";
-import { Transform } from "../Transform";
-import { GrowableXYZArray } from "../GrowableArray";
-import { GeometryQuery } from "../curve/CurvePrimitive";
-import { GeometryHandler } from "../GeometryHandler";
+import { Point2d } from "../geometry3d/Point2dVector2d";
+import { Point3d, Vector3d } from "../geometry3d/Point3dVector3d";
+import { Range3d, Range2d, Range1d } from "../geometry3d/Range";
+import { Transform } from "../geometry3d/Transform";
+import { GrowableXYZArray } from "../geometry3d/GrowableArray";
+import { GeometryQuery } from "../curve/GeometryQuery";
+import { GeometryHandler } from "../geometry3d/GeometryHandler";
 /**
  * Data for a face in a polyface containing facets.
  * This is built up cooperatively by the PolyfaceBuilder and its
@@ -35,6 +36,68 @@ export declare class FacetFaceData {
      */
     setParamDistanceRangeFromNewFaceData(polyface: IndexedPolyface, facetStart: number, facetEnd: number): boolean;
 }
+/** The data types of [[AuxChannel]].  The scalar types are used to produce thematic  vertex colors. */
+export declare enum AuxChannelDataType {
+    /** General scalar type - no scaling is applied if associated [[Polyface]] is transformed. */
+    Scalar = 0,
+    /** Distance (scalar) scaling is applied if associated [[Polyface]] is scaled. 3 Data values (x,y.z) per entry. */
+    Distance = 1,
+    /** Displacement added to  vertex position.  Transformed and scaled with associated [[Polyface]]. 3 Data values (x,y.z) per entry.,*/
+    Vector = 2,
+    /** Normal -- replaces vertex normal.  Rotated with associated [[Polyface]] transformation. 3 Data values (x,y.z) per entry. */
+    Normal = 3
+}
+/**  Represents the [[AuxChannel]] data at a single input value. */
+export declare class AuxChannelData {
+    /** The input value for this data. */
+    input: number;
+    /** The vertex values for this data.  A single value per vertex for scalar types and 3 values (x,y,z) for normal or vector channels. */
+    values: number[];
+    /** Construct a new [[AuxChannelData]] from input value and vertex values. */
+    constructor(input: number, values: number[]);
+    copyValues(other: AuxChannelData, thisIndex: number, otherIndex: number, blockSize: number): void;
+    clone(): AuxChannelData;
+    isAlmostEqual(other: AuxChannelData, tol?: number): boolean;
+}
+/**  Represents a single [[PolyfaceAuxData]] channel. A channel  may represent a single scalar value such as stress or temperature or may represent displacements from vertex position or replacements for normals. */
+export declare class AuxChannel {
+    /** An array of [[AuxChannelData]] that represents the vertex data at one or more input values. */
+    data: AuxChannelData[];
+    dataType: AuxChannelDataType;
+    /** The channel name. This is used to present the [[AuxChannel]] to the user and also to select the [[AuxChannel]] for display from [[AnalysisStyle]] */
+    name?: string;
+    /** The input name. */
+    inputName?: string;
+    /** create a [[AuxChannel]] */
+    constructor(data: AuxChannelData[], dataType: AuxChannelDataType, name?: string, inputName?: string);
+    clone(): AuxChannel;
+    isAlmostEqual(other: AuxChannel, tol?: number): boolean;
+    /** return true if the data for this channel is of scalar type (single data entry per value) */
+    readonly isScalar: boolean;
+    /** return the number of data values per entry (1 for scalar, 3 for point or vector */
+    readonly entriesPerValue: number;
+    /** return value count */
+    readonly valueCount: number;
+    /** return the range of the scalar data. (undefined if not scalar) */
+    readonly scalarRange: Range1d | undefined;
+}
+/**  The `PolyfaceAuxData` structure contains one or more analytical data channels for each vertex of a `Polyface`.
+ * Typically a `Polyface` will contain only vertex data required for its basic display,the vertex position, normal
+ * and possibly texture parameter.  The `PolyfaceAuxData` structure contains supplemental data that is generally computed
+ *  in an analysis program or other external data source.  This can be scalar data used to either overide the vertex colors through *Thematic Colorization* or
+ *  XYZ data used to deform the mesh by adjusting the vertex postions or normals.
+ */
+export declare class PolyfaceAuxData {
+    /** @param channels Array with one or more channels of auxilliary data for the associated polyface.
+     * @param indices The indices (shared by all data in all channels) mapping the data to the mesh facets.
+     */
+    channels: AuxChannel[];
+    indices: number[];
+    constructor(channels: AuxChannel[], indices: number[]);
+    clone(): PolyfaceAuxData;
+    isAlmostEqual(other: PolyfaceAuxData, tol?: number): boolean;
+    createForVisitor(): PolyfaceAuxData;
+}
 /**
  * PolyfaceData carries data arrays for point, normal, param, color and their indices.
  *
@@ -42,7 +105,7 @@ export declare class FacetFaceData {
  * * IndexedPolyfaceVisitor uses PolyfaceData as a base class.
  */
 export declare class PolyfaceData {
-    static readonly planarityLocalRelTol: number;
+    static readonly planarityLocalRelTol = 1e-13;
     point: GrowableXYZArray;
     pointIndex: number[];
     edgeVisible: boolean[];
@@ -54,6 +117,7 @@ export declare class PolyfaceData {
     colorIndex: number[] | undefined;
     /** Face data will remain empty until a face is specified. */
     face: FacetFaceData[];
+    auxData: PolyfaceAuxData | undefined;
     constructor(needNormals?: boolean, needParams?: boolean, needColors?: boolean);
     clone(): PolyfaceData;
     isAlmostEqual(other: PolyfaceData): boolean;
@@ -234,6 +298,7 @@ export interface PolyfaceVisitor extends PolyfaceData {
     clientParamIndex(i: number): number;
     clientNormalIndex(i: number): number;
     clientColorIndex(i: number): number;
+    clientAuxIndex(i: number): number;
 }
 export declare class IndexedPolyfaceVisitor extends PolyfaceData implements PolyfaceVisitor {
     private _currentFacetIndex;
@@ -262,5 +327,6 @@ export declare class IndexedPolyfaceVisitor extends PolyfaceData implements Poly
     clientParamIndex(i: number): number;
     clientNormalIndex(i: number): number;
     clientColorIndex(i: number): number;
+    clientAuxIndex(i: number): number;
 }
 //# sourceMappingURL=Polyface.d.ts.map

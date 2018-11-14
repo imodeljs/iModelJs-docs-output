@@ -1,10 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 /** @module Numerics */
 const Geometry_1 = require("../Geometry");
+const Angle_1 = require("../geometry3d/Angle");
 class Complex {
     set x(value) { this._myX = value; }
     get x() { return this._myX; }
@@ -33,7 +35,7 @@ class Complex {
         return Complex.create(this.x * x - this.y * y, this.x * y + this.y * x, result);
     }
     magnitude() { return Math.hypot(this.x, this.y); }
-    angle() { return Geometry_1.Angle.createAtan2(this.y, this.x); }
+    angle() { return Angle_1.Angle.createAtan2(this.y, this.x); }
     distance(other) {
         return Math.hypot(this.x - other.x, this.y - other.y);
     }

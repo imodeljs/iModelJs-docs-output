@@ -1,12 +1,13 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module CartesianGeometry */
 const ClipPrimitive_1 = require("./ClipPrimitive");
-const Range_1 = require("../Range");
-const Transform_1 = require("../Transform");
+const Range_1 = require("../geometry3d/Range");
+const Transform_1 = require("../geometry3d/Transform");
 const Geometry_1 = require("../Geometry");
 const LineSegment3d_1 = require("../curve/LineSegment3d");
 /** Class holding an array structure of shapes defined by clip plane sets */

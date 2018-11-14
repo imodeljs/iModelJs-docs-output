@@ -1,25 +1,29 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
-const GeometryHandler_1 = require("../GeometryHandler");
-const CurvePrimitive_1 = require("./CurvePrimitive");
+/** @module Curve */
+const GeometryHandler_1 = require("../geometry3d/GeometryHandler");
+const CurveLocationDetail_1 = require("./CurveLocationDetail");
+const CurveLocationDetail_2 = require("./CurveLocationDetail");
 const Geometry_1 = require("../Geometry");
 const LineSegment3d_1 = require("./LineSegment3d");
 const LineString3d_1 = require("./LineString3d");
 // import { Arc3d } from "./Arc3d";
-const PointVector_1 = require("../PointVector");
+const Point2dVector2d_1 = require("../geometry3d/Point2dVector2d");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
 // import { LineString3d } from "./LineString3d";
 const Polynomials_1 = require("../numerics/Polynomials");
-const Geometry4d_1 = require("../numerics/Geometry4d");
-const Transform_1 = require("../Transform");
+const Point4d_1 = require("../geometry4d/Point4d");
+const Matrix3d_1 = require("../geometry3d/Matrix3d");
 const Arc3d_1 = require("./Arc3d");
-const GrowableArray_1 = require("../GrowableArray");
+const GrowableArray_1 = require("../geometry3d/GrowableArray");
 const BSplineCurve_1 = require("../bspline/BSplineCurve");
 const BezierPolynomials_1 = require("../numerics/BezierPolynomials");
 const Newton_1 = require("../numerics/Newton");
-const AnalyticGeometry_1 = require("../AnalyticGeometry");
+const Ray3d_1 = require("../geometry3d/Ray3d");
 /**
  * * Private class for refining bezier-bezier intersections.
  * * The inputs are assumed pre-transoformed so that the target condition is to match x and y coordinates.
@@ -29,8 +33,8 @@ class BezierBezierIntersectionXYRRToRRD extends Newton_1.NewtonEvaluatorRRtoRRD 
         super();
         this._curveA = curveA;
         this._curveB = curveB;
-        this._rayA = AnalyticGeometry_1.Ray3d.createZero();
-        this._rayB = AnalyticGeometry_1.Ray3d.createZero();
+        this._rayA = Ray3d_1.Ray3d.createZero();
+        this._rayB = Ray3d_1.Ray3d.createZero();
     }
     evaluate(fractionA, fractionB) {
         this._curveA.fractionToPointAndDerivative(fractionA, this._rayA);
@@ -114,10 +118,10 @@ class CurveCurveIntersectXY extends GeometryHandler_1.NullGeometryHandler {
                     return;
             }
         }
-        const detailA = CurvePrimitive_1.CurveLocationDetail.createCurveFractionPoint(cpA, globalFractionA, cpA.fractionToPoint(globalFractionA));
-        detailA.setIntervalRole(CurvePrimitive_1.CurveIntervalRole.isolated);
-        const detailB = CurvePrimitive_1.CurveLocationDetail.createCurveFractionPoint(cpB, globalFractionB, cpB.fractionToPoint(globalFractionB));
-        detailB.setIntervalRole(CurvePrimitive_1.CurveIntervalRole.isolated);
+        const detailA = CurveLocationDetail_1.CurveLocationDetail.createCurveFractionPoint(cpA, globalFractionA, cpA.fractionToPoint(globalFractionA));
+        detailA.setIntervalRole(CurveLocationDetail_2.CurveIntervalRole.isolated);
+        const detailB = CurveLocationDetail_1.CurveLocationDetail.createCurveFractionPoint(cpB, globalFractionB, cpB.fractionToPoint(globalFractionB));
+        detailB.setIntervalRole(CurveLocationDetail_2.CurveIntervalRole.isolated);
         if (reversed) {
             this._results.dataA.push(detailB);
             this._results.dataB.push(detailA);
@@ -276,14 +280,14 @@ class CurveCurveIntersectXY extends GeometryHandler_1.NullGeometryHandler {
         if (this._worldToLocalPerspective) {
             const dataA = cpA.toTransformedPoint4d(this._worldToLocalPerspective);
             const dataB = cpB.toTransformedPoint4d(this._worldToLocalPerspective);
-            matrixA = Transform_1.Matrix3d.createColumnsXYW(dataA.vector0, dataA.vector0.w, dataA.vector90, dataA.vector90.w, dataA.center, dataA.center.w);
-            matrixB = Transform_1.Matrix3d.createColumnsXYW(dataB.vector0, dataB.vector0.w, dataB.vector90, dataA.vector90.w, dataB.center, dataB.center.w);
+            matrixA = Matrix3d_1.Matrix3d.createColumnsXYW(dataA.vector0, dataA.vector0.w, dataA.vector90, dataA.vector90.w, dataA.center, dataA.center.w);
+            matrixB = Matrix3d_1.Matrix3d.createColumnsXYW(dataB.vector0, dataB.vector0.w, dataB.vector90, dataA.vector90.w, dataB.center, dataB.center.w);
         }
         else {
             const dataA = cpA.toTransformedVectors(this._worldToLocalAffine);
             const dataB = cpB.toTransformedVectors(this._worldToLocalAffine);
-            matrixA = Transform_1.Matrix3d.createColumnsXYW(dataA.vector0, 0, dataA.vector90, 0, dataA.center, 1);
-            matrixB = Transform_1.Matrix3d.createColumnsXYW(dataB.vector0, 0, dataB.vector90, 0, dataB.center, 1);
+            matrixA = Matrix3d_1.Matrix3d.createColumnsXYW(dataA.vector0, 0, dataA.vector90, 0, dataA.center, 1);
+            matrixB = Matrix3d_1.Matrix3d.createColumnsXYW(dataB.vector0, 0, dataB.vector90, 0, dataB.center, 1);
         }
         const conditionA = matrixA.conditionNumber();
         const conditionB = matrixB.conditionNumber();
@@ -301,11 +305,11 @@ class CurveCurveIntersectXY extends GeometryHandler_1.NullGeometryHandler {
         let matrixA;
         if (this._worldToLocalPerspective) {
             const dataA = cpA.toTransformedPoint4d(this._worldToLocalPerspective);
-            matrixA = Transform_1.Matrix3d.createColumnsXYW(dataA.vector0, dataA.vector0.w, dataA.vector90, dataA.vector90.w, dataA.center, dataA.center.w);
+            matrixA = Matrix3d_1.Matrix3d.createColumnsXYW(dataA.vector0, dataA.vector0.w, dataA.vector90, dataA.vector90.w, dataA.center, dataA.center.w);
         }
         else {
             const dataA = cpA.toTransformedVectors(this._worldToLocalAffine);
-            matrixA = Transform_1.Matrix3d.createColumnsXYW(dataA.vector0, 0, dataA.vector90, 0, dataA.center, 1);
+            matrixA = Matrix3d_1.Matrix3d.createColumnsXYW(dataA.vector0, 0, dataA.vector90, 0, dataA.center, 1);
         }
         // The worldToLocal has moved the arc vectors into screen space.
         // matrixA captures the xyw parts (ignoring z)
@@ -316,7 +320,7 @@ class CurveCurveIntersectXY extends GeometryHandler_1.NullGeometryHandler {
             const orderF = cpB.order; // order of the beziers for simple coordinates
             const orderG = 2 * orderF - 1; // order of the (single) bezier for squared coordinates.
             const coffF = new Float64Array(orderF);
-            const univariateBezierG = new BezierPolynomials_1.Bezier(orderG);
+            const univariateBezierG = new BezierPolynomials_1.UnivariateBezier(orderG);
             const axx = matrixAinverse.at(0, 0);
             const axy = matrixAinverse.at(0, 1);
             const axz = 0.0;
@@ -388,13 +392,13 @@ class CurveCurveIntersectXY extends GeometryHandler_1.NullGeometryHandler {
     dispatchBezierBezierStrokeFirst(bezierA, bcurveA, strokeCountA, bezierB, bcurveB, _strokeCOuntB, univariateBezierB, // caller-allocated for univariate coefficients.
     reversed) {
         if (!this._xyzwA0)
-            this._xyzwA0 = Geometry4d_1.Point4d.create();
+            this._xyzwA0 = Point4d_1.Point4d.create();
         if (!this._xyzwA1)
-            this._xyzwA1 = Geometry4d_1.Point4d.create();
+            this._xyzwA1 = Point4d_1.Point4d.create();
         if (!this._xyzwPlane)
-            this._xyzwPlane = Geometry4d_1.Point4d.create();
+            this._xyzwPlane = Point4d_1.Point4d.create();
         if (!this._xyzwB)
-            this._xyzwB = Geometry4d_1.Point4d.create();
+            this._xyzwB = Point4d_1.Point4d.create();
         /*
     
                   const roots = univariateBezierG.roots(0.0, true);
@@ -415,11 +419,12 @@ class CurveCurveIntersectXY extends GeometryHandler_1.NullGeometryHandler {
         bezierA.fractionToPoint4d(0.0, this._xyzwA0);
         let f0 = 0.0;
         let f1 = 1.0;
+        const intervalTolerance = 1.0e-5;
         const df = 1.0 / strokeCountA;
         for (let i = 1; i <= strokeCountA; i++, f0 = f1, this._xyzwA0.setFrom(this._xyzwA1)) {
             f1 = i * df;
             bezierA.fractionToPoint4d(f1, this._xyzwA1);
-            Geometry4d_1.Point4d.createPlanePointPointZ(this._xyzwA0, this._xyzwA1, this._xyzwPlane);
+            Point4d_1.Point4d.createPlanePointPointZ(this._xyzwA0, this._xyzwA1, this._xyzwPlane);
             bezierB.poleProductsXYZW(univariateBezierB.coffs, this._xyzwPlane.x, this._xyzwPlane.y, this._xyzwPlane.z, this._xyzwPlane.w);
             let errors = 0;
             const roots = univariateBezierB.roots(0.0, true);
@@ -428,7 +433,7 @@ class CurveCurveIntersectXY extends GeometryHandler_1.NullGeometryHandler {
                     let bezierBFraction = r;
                     bezierB.fractionToPoint4d(bezierBFraction, this._xyzwB);
                     const segmentAFraction = Polynomials_1.SmallSystem.lineSegment3dHXYClosestPointUnbounded(this._xyzwA0, this._xyzwA1, this._xyzwB);
-                    if (segmentAFraction && Geometry_1.Geometry.isIn01(segmentAFraction)) {
+                    if (segmentAFraction && Geometry_1.Geometry.isIn01WithTolerance(segmentAFraction, intervalTolerance)) {
                         let bezierAFraction = Geometry_1.Geometry.interpolate(f0, segmentAFraction, f1);
                         const xyMatchingFunction = new BezierBezierIntersectionXYRRToRRD(bezierA, bezierB);
                         const newtonSearcher = new Newton_1.Newton2dUnboundedWithDerivative(xyMatchingFunction);
@@ -475,8 +480,8 @@ class CurveCurveIntersectXY extends GeometryHandler_1.NullGeometryHandler {
         const rangeB = this.getRanges(bezierSpanB);
         const orderA = bcurveA.order;
         const orderB = bcurveB.order;
-        const univariateCoffsA = new BezierPolynomials_1.Bezier(orderA);
-        const univairateCoffsB = new BezierPolynomials_1.Bezier(orderB);
+        const univariateCoffsA = new BezierPolynomials_1.UnivariateBezier(orderA);
+        const univairateCoffsB = new BezierPolynomials_1.UnivariateBezier(orderB);
         for (let a = 0; a < numA; a++) {
             for (let b = 0; b < numB; b++) {
                 if (rangeA[a].intersectsRangeXY(rangeB[b])) {
@@ -500,7 +505,7 @@ class CurveCurveIntersectXY extends GeometryHandler_1.NullGeometryHandler {
             return this._worldToLocalPerspective.multiplyPoint3d(xyz, w);
         if (this._worldToLocalAffine)
             return this._worldToLocalAffine.multiplyXYZW(xyz.x, xyz.y, xyz.z, w);
-        return Geometry4d_1.Point4d.createFromPointAndWeight(xyz, w);
+        return Point4d_1.Point4d.createFromPointAndWeight(xyz, w);
     }
     mapNPCPlaneToWorld(npcPlane, worldPlane) {
         // for NPC pointY, Y^ * H = 0 is "on" plane H.  (Hat is tranpose)
@@ -524,7 +529,7 @@ class CurveCurveIntersectXY extends GeometryHandler_1.NullGeometryHandler {
     dispatchSegmentBsplineCurve(cpA, extendA0, pointA0, fractionA0, pointA1, fractionA1, extendA1, bcurve, extendB, reversed) {
         const pointA0H = this.projectPoint(pointA0);
         const pointA1H = this.projectPoint(pointA1);
-        const planeCoffs = Geometry4d_1.Point4d.createPlanePointPointZ(pointA0H, pointA1H);
+        const planeCoffs = Point4d_1.Point4d.createPlanePointPointZ(pointA0H, pointA1H);
         this.mapNPCPlaneToWorld(planeCoffs, planeCoffs);
         // NOW .. we have a plane in world space.  Intersect it with the bspline:
         const intersections = [];
@@ -707,19 +712,19 @@ class CurveCurveIntersectXY extends GeometryHandler_1.NullGeometryHandler {
         return undefined;
     }
 }
-CurveCurveIntersectXY._workVector2dA = PointVector_1.Vector2d.create();
-CurveCurveIntersectXY._workPointA0H = Geometry4d_1.Point4d.create();
-CurveCurveIntersectXY._workPointA1H = Geometry4d_1.Point4d.create();
-CurveCurveIntersectXY._workPointB0H = Geometry4d_1.Point4d.create();
-CurveCurveIntersectXY._workPointB1H = Geometry4d_1.Point4d.create();
-CurveCurveIntersectXY._workPointAA0 = PointVector_1.Point3d.create();
-CurveCurveIntersectXY._workPointAA1 = PointVector_1.Point3d.create();
-CurveCurveIntersectXY._workPointBB0 = PointVector_1.Point3d.create();
-CurveCurveIntersectXY._workPointBB1 = PointVector_1.Point3d.create();
-CurveCurveIntersectXY._workPointA0 = PointVector_1.Point3d.create();
-CurveCurveIntersectXY._workPointA1 = PointVector_1.Point3d.create();
-CurveCurveIntersectXY._workPointB0 = PointVector_1.Point3d.create();
-CurveCurveIntersectXY._workPointB1 = PointVector_1.Point3d.create();
+CurveCurveIntersectXY._workVector2dA = Point2dVector2d_1.Vector2d.create();
+CurveCurveIntersectXY._workPointA0H = Point4d_1.Point4d.create();
+CurveCurveIntersectXY._workPointA1H = Point4d_1.Point4d.create();
+CurveCurveIntersectXY._workPointB0H = Point4d_1.Point4d.create();
+CurveCurveIntersectXY._workPointB1H = Point4d_1.Point4d.create();
+CurveCurveIntersectXY._workPointAA0 = Point3dVector3d_1.Point3d.create();
+CurveCurveIntersectXY._workPointAA1 = Point3dVector3d_1.Point3d.create();
+CurveCurveIntersectXY._workPointBB0 = Point3dVector3d_1.Point3d.create();
+CurveCurveIntersectXY._workPointBB1 = Point3dVector3d_1.Point3d.create();
+CurveCurveIntersectXY._workPointA0 = Point3dVector3d_1.Point3d.create();
+CurveCurveIntersectXY._workPointA1 = Point3dVector3d_1.Point3d.create();
+CurveCurveIntersectXY._workPointB0 = Point3dVector3d_1.Point3d.create();
+CurveCurveIntersectXY._workPointB1 = Point3dVector3d_1.Point3d.create();
 class CurveCurve {
     /**
      * Return xy intersections of 2 curves.

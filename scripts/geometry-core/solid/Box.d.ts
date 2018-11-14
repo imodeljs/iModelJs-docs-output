@@ -1,12 +1,12 @@
 /** @module Solid */
-import { Point3d, Vector3d } from "../PointVector";
-import { Matrix3d } from "../Transform";
-import { Range3d } from "../Range";
-import { Transform } from "../Transform";
-import { GeometryQuery } from "../curve/CurvePrimitive";
+import { Point3d, Vector3d } from "../geometry3d/Point3dVector3d";
+import { Matrix3d } from "../geometry3d/Matrix3d";
+import { Range3d } from "../geometry3d/Range";
+import { Transform } from "../geometry3d/Transform";
+import { GeometryQuery } from "../curve/GeometryQuery";
 import { SolidPrimitive } from "./SolidPrimitive";
-import { GeometryHandler } from "../GeometryHandler";
-import { CurveCollection } from "../curve/CurveChain";
+import { GeometryHandler } from "../geometry3d/GeometryHandler";
+import { CurveCollection } from "../curve/CurveCollection";
 import { LineString3d } from "../curve/LineString3d";
 /**
  */
@@ -51,6 +51,11 @@ export declare class Box extends SolidPrimitive {
      * @param capped true to define top and bottom closure caps
      */
     static createDgnBoxWithAxes(baseOrigin: Point3d, axes: Matrix3d, topOrigin: Point3d, baseX: number, baseY: number, topX: number, topY: number, capped: boolean): Box | undefined;
+    /**
+     * @param range range corners Origin of base rectangle
+     * @param capped true to define top and bottom closure caps
+     */
+    static createRange(range: Range3d, capped: boolean): Box | undefined;
     getBaseX(): number;
     getBaseY(): number;
     getTopX(): number;

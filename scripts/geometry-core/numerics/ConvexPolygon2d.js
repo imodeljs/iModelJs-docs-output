@@ -1,11 +1,12 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Numerics */
-const PointVector_1 = require("../PointVector");
-const Range_1 = require("../Range");
+const Point2dVector2d_1 = require("../geometry3d/Point2dVector2d");
+const Range_1 = require("../geometry3d/Range");
 const Geometry_1 = require("../Geometry");
 class Ray2d {
     constructor(origin, direction) {
@@ -183,7 +184,7 @@ class ConvexPolygon2d {
                     return false;
                 }
                 perpB = edgeB.rotate90CWXY();
-                const offsetBisector = PointVector_1.Vector2d.createOffsetBisector(perpA, perpB, distance);
+                const offsetBisector = Point2dVector2d_1.Vector2d.createOffsetBisector(perpA, perpB, distance);
                 if (offsetBisector === undefined) {
                     return false;
                 }

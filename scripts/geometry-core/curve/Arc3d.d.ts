@@ -1,15 +1,25 @@
 /** @module Curve */
-import { Angle, AngleSweep, BeJSONFunctions, PlaneAltitudeEvaluator } from "../Geometry";
-import { Point3d, Vector3d, XYAndZ } from "../PointVector";
-import { Range3d } from "../Range";
-import { Transform, Matrix3d } from "../Transform";
-import { Plane3dByOriginAndUnitNormal, Ray3d, Plane3dByOriginAndVectors } from "../AnalyticGeometry";
-import { GeometryHandler, IStrokeHandler } from "../GeometryHandler";
-import { CurvePrimitive, GeometryQuery, CurveLocationDetail, AnnounceNumberNumberCurvePrimitive } from "./CurvePrimitive";
-import { StrokeOptions } from "../curve/StrokeOptions";
+import { BeJSONFunctions, PlaneAltitudeEvaluator } from "../Geometry";
+import { AngleSweep } from "../geometry3d/AngleSweep";
+import { Angle } from "../geometry3d/Angle";
+import { XYAndZ } from "../geometry3d/XYZProps";
+import { Point3d, Vector3d } from "../geometry3d/Point3dVector3d";
+import { Range3d } from "../geometry3d/Range";
+import { Transform } from "../geometry3d/Transform";
+import { Matrix3d } from "../geometry3d/Matrix3d";
+import { Plane3dByOriginAndUnitNormal } from "../geometry3d/Plane3dByOriginAndUnitNormal";
+import { Ray3d } from "../geometry3d/Ray3d";
+import { Plane3dByOriginAndVectors } from "../geometry3d/Plane3dByOriginAndVectors";
+import { GeometryHandler, IStrokeHandler } from "../geometry3d/GeometryHandler";
+import { CurvePrimitive } from "./CurvePrimitive";
+import { GeometryQuery } from "./GeometryQuery";
+import { CurveLocationDetail } from "./CurveLocationDetail";
+import { AnnounceNumberNumberCurvePrimitive } from "./CurvePrimitive";
+import { StrokeOptions } from "./StrokeOptions";
 import { Clipper } from "../clipping/ClipUtils";
 import { LineString3d } from "./LineString3d";
-import { Matrix4d, Point4d } from "../numerics/Geometry4d";
+import { Matrix4d } from "../geometry4d/Matrix4d";
+import { Point4d } from "../geometry4d/Point4d";
 /**
  * Circular or elliptic arc.
  *
@@ -20,7 +30,6 @@ import { Matrix4d, Point4d } from "../numerics/Geometry4d";
  * * Non-perpendicular vectors are always elliptic.
  * *  vectors of unequal length are always elliptic.
  * * To create an ellipse in the common "major and minor axis" form of an ellipse:
- *
  * ** vector0 is the vector from the center to the major axis extreme.
  * ** vector90 is the vector from the center to the minor axis extreme.
  * ** note the constructing the vectors to the extreme points makes them perpendicular.
@@ -32,6 +41,8 @@ export declare class Arc3d extends CurvePrimitive implements BeJSONFunctions {
     private _center;
     private _matrix;
     private _sweep;
+    private static _workPointA;
+    private static _workPointB;
     /**
      * read property for (clone of) center
      */
@@ -49,6 +60,10 @@ export declare class Arc3d extends CurvePrimitive implements BeJSONFunctions {
      */
     readonly matrix: Matrix3d;
     sweep: AngleSweep;
+    /**
+     * An Arc3d extends along its complete elliptic arc
+     */
+    readonly isExtensibleFractionSpace: boolean;
     private constructor();
     cloneTransformed(transform: Transform): CurvePrimitive;
     setRefs(center: Point3d, matrix: Matrix3d, sweep: AngleSweep): void;
@@ -58,10 +73,19 @@ export declare class Arc3d extends CurvePrimitive implements BeJSONFunctions {
     static createRefs(center: Point3d, matrix: Matrix3d, sweep: AngleSweep, result?: Arc3d): Arc3d;
     static createScaledXYColumns(center: Point3d, matrix: Matrix3d, radius0: number, radius90: number, sweep: AngleSweep, result?: Arc3d): Arc3d;
     static create(center: Point3d, vector0: Vector3d, vector90: Vector3d, sweep?: AngleSweep, result?: Arc3d): Arc3d;
+    /**
+     * Return a quick estimate of the eccentricity of the ellipse.
+     * * The estimator is the cross magnitude of the product of vectors U and V, divided by square of the larger magnitude
+     * * for typical Arc3d with perpendicular UV, this is exactly the small axis divided by large.
+     * * note that the eccentricity is AT MOST ONE.
+     */
+    quickEccentricity(): number;
     /** Create a circular arc defined by start point, any intermediate point, and end point.
      * If the points are colinear, assemble them into a linestring.
      */
     static createCircularStartMiddleEnd(pointA: XYAndZ, pointB: XYAndZ, pointC: XYAndZ, result?: Arc3d): Arc3d | LineString3d | undefined;
+    /** The arc has simple proportional arc length if and only if it is a circular arc. */
+    getFractionToDistanceScale(): number | undefined;
     fractionToPoint(fraction: number, result?: Point3d): Point3d;
     fractionToPointAndDerivative(fraction: number, result?: Ray3d): Ray3d;
     /** Construct a plane with
@@ -75,8 +99,34 @@ export declare class Arc3d extends CurvePrimitive implements BeJSONFunctions {
     angleToPointAndDerivative(theta: Angle, result?: Ray3d): Ray3d;
     startPoint(result?: Point3d): Point3d;
     endPoint(result?: Point3d): Point3d;
+    /** * If this is a circular arc, return the simple length derived from radius and sweep.
+     * * Otherwise (i.e. if this elliptical) fall through to CurvePrimitive base implementation which
+     *     Uses quadrature.
+     */
     curveLength(): number;
+    static readonly quadratureGuassCount = 5;
+    /** In quadrature for arc length, use this interval (divided by quickEccentricity) */
+    static readonly quadratureIntervalAngleDegrees = 10;
+    /** * If this is a circular arc, return the simple length derived from radius and sweep.
+     * * Otherwise (i.e. if this elliptical) fall through CurvePrimitive integrator.
+     */
+    curveLengthBetweenFractions(fraction0: number, fraction1: number): number;
+    /**
+     * Return an approximate (but easy to compute) arc length.
+     * The estimate is:
+     * * Form 8 chords on full circle, proportionally fewer for partials.  (But 2 extras if less than half circle.)
+     * * sum the chord lengths
+     * * For a circle, we know this crude approximation has to be increased by a factor (theta/(2 sin (theta/2)))
+     * * Apply that factor.
+     * * Experiments confirm that this is within 3 percent for a variety of eccentricities and arc sweeps.
+     */
     quickLength(): number;
+    /**
+     * * See extended comments on `CurvePrimitive.moveSignedDistanceFromFraction`
+     * * A zero length line generates `CurveSearchStatus.error`
+     * * Nonzero length line generates `CurveSearchStatus.success` or `CurveSearchStatus.stoppedAtBoundary`
+     */
+    moveSignedDistanceFromFraction(startFraction: number, signedDistance: number, allowExtension: false, result?: CurveLocationDetail): CurveLocationDetail;
     allPerpendicularAngles(spacePoint: Point3d, _extend?: boolean, _endpoints?: boolean): number[];
     closestPoint(spacePoint: Point3d, extend: boolean, result?: CurveLocationDetail): CurveLocationDetail;
     reverseInPlace(): void;

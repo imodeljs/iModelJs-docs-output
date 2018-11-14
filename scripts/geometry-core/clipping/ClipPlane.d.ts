@@ -1,11 +1,12 @@
 /** @module CartesianGeometry */
-import { Point3d, Vector3d } from "../PointVector";
-import { Range1d } from "../Range";
-import { Transform } from "../Transform";
-import { Point4d, Matrix4d } from "../numerics/Geometry4d";
-import { Plane3dByOriginAndUnitNormal } from "../AnalyticGeometry";
-import { Angle } from "../Geometry";
-import { GrowableFloat64Array } from "../GrowableArray";
+import { Point3d, Vector3d } from "../geometry3d/Point3dVector3d";
+import { Range1d } from "../geometry3d/Range";
+import { Transform } from "../geometry3d/Transform";
+import { Matrix4d } from "../geometry4d/Matrix4d";
+import { Point4d } from "../geometry4d/Point4d";
+import { Plane3dByOriginAndUnitNormal } from "../geometry3d/Plane3dByOriginAndUnitNormal";
+import { Angle } from "../geometry3d/Angle";
+import { GrowableFloat64Array } from "../geometry3d/GrowableArray";
 import { Arc3d } from "../curve/Arc3d";
 import { Clipper } from "./ClipUtils";
 import { AnnounceNumberNumberCurvePrimitive } from "../curve/CurvePrimitive";

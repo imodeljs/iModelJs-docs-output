@@ -1,13 +1,14 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Bspline */
 // import { Point2d } from "../Geometry2d";
 /* tslint:disable:variable-name jsdoc-format no-empty no-console*/
 const Geometry_1 = require("../Geometry");
-const PointHelpers_1 = require("../PointHelpers");
+const PointHelpers_1 = require("../geometry3d/PointHelpers");
 /**
  * Array of non-decreasing numbers acting as a knot array for bsplines.
  *
@@ -265,6 +266,10 @@ class KnotVector {
                 return i; // testing against right side skips over multiple knot cases???
         return lastLeftKnot;
     }
+    /**
+     * Given a span index, return the index of the knot at its left.
+     * @param spanIndex index of span
+     */
     spanIndexToLeftKnotIndex(spanIndex) {
         const d = this.degree;
         if (spanIndex <= 0.0)
@@ -274,6 +279,16 @@ class KnotVector {
     spanIndexToSpanLength(spanIndex) {
         const k = this.spanIndexToLeftKnotIndex(spanIndex);
         return this.knots[k + 1] - this.knots[k];
+    }
+    /**
+     * Given a span index, test if it is withn range and has nonzero length.
+     * * note that a false return does not imply there are no more spans.  This may be a double knot (zero length span) followed by more real spans
+     * @param spanIndex index of span to test.
+     */
+    isIndexOfRealSpan(spanIndex) {
+        if (spanIndex >= 0 && spanIndex < this.knots.length - this.degree)
+            return !Geometry_1.Geometry.isSmallMetricDistance(this.spanIndexToSpanLength(spanIndex));
+        return false;
     }
     reflectKnots() {
         const a = this.leftKnot;

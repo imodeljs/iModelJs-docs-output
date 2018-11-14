@@ -1,13 +1,13 @@
 /** @module Solid */
-import { Point3d, Vector3d } from "../PointVector";
-import { Range3d } from "../Range";
-import { Transform } from "../Transform";
-import { GeometryQuery } from "../curve/CurvePrimitive";
-import { GeometryHandler, UVSurface } from "../GeometryHandler";
+import { Point3d, Vector3d } from "../geometry3d/Point3dVector3d";
+import { Range3d } from "../geometry3d/Range";
+import { Transform } from "../geometry3d/Transform";
+import { GeometryQuery } from "../curve/GeometryQuery";
+import { GeometryHandler, UVSurface } from "../geometry3d/GeometryHandler";
 import { SolidPrimitive } from "./SolidPrimitive";
 import { StrokeOptions } from "../curve/StrokeOptions";
-import { CurveCollection } from "../curve/CurveChain";
-import { Plane3dByOriginAndVectors } from "../AnalyticGeometry";
+import { CurveCollection } from "../curve/CurveCollection";
+import { Plane3dByOriginAndVectors } from "../geometry3d/Plane3dByOriginAndVectors";
 import { LineString3d } from "../curve/LineString3d";
 /**
  * A cone with axis along the z axis of a (possibly skewed) local coordinate system.

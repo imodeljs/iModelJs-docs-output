@@ -1,9 +1,10 @@
 /** @module Polyface */
-import { Point3d } from "../PointVector";
+import { Point3d } from "../geometry3d/Point3dVector3d";
 import { Polyface, PolyfaceVisitor } from "./Polyface";
-import { Matrix4d } from "../numerics/Geometry4d";
-import { Loop, BagOfCurves } from "../curve/CurveChain";
-import { MomentData } from "../numerics/Moments";
+import { Matrix4d } from "../geometry4d/Matrix4d";
+import { BagOfCurves } from "../curve/CurveCollection";
+import { Loop } from "../curve/Loop";
+import { MomentData } from "../geometry4d/MomentData";
 /** PolyfaceQuery is a static class whose methods implement queries on a polyface or polyface visitor provided as a parameter to each mtehod. */
 export declare class PolyfaceQuery {
     /** copy the points from a visitor into a Linestring3d in a Loop object */

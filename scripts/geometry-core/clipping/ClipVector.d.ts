@@ -1,10 +1,11 @@
 /** @module CartesianGeometry */
 import { ClipShape } from "./ClipPrimitive";
 import { ClipPlaneContainment } from "./ClipUtils";
-import { Point3d, Segment1d } from "../PointVector";
-import { Range3d } from "../Range";
-import { Transform } from "../Transform";
-import { Matrix4d } from "../numerics/Geometry4d";
+import { Point3d } from "../geometry3d/Point3dVector3d";
+import { Segment1d } from "../geometry3d/Segment1d";
+import { Range3d } from "../geometry3d/Range";
+import { Transform } from "../geometry3d/Transform";
+import { Matrix4d } from "../geometry4d/Matrix4d";
 /** Class holding an array structure of shapes defined by clip plane sets */
 export declare class ClipVector {
     private _clips;

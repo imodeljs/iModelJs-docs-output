@@ -1,8 +1,10 @@
-import { Range3d } from "../Range";
-import { Transform } from "../Transform";
-import { CurveCollection } from "../curve/CurveChain";
-import { GeometryQuery } from "../curve/CurvePrimitive";
-import { GeometryHandler } from "../GeometryHandler";
+/** @module Solid */
+import { Range3d } from "../geometry3d/Range";
+import { Transform } from "../geometry3d/Transform";
+import { CurveCollection } from "../curve/CurveCollection";
+import { GeometryQuery } from "../curve/GeometryQuery";
+import { CurvePrimitive } from "../curve/CurvePrimitive";
+import { GeometryHandler } from "../geometry3d/GeometryHandler";
 import { SolidPrimitive } from "./SolidPrimitive";
 import { SweepContour } from "./SweepContour";
 export declare class RuledSweep extends SolidPrimitive {
@@ -31,5 +33,9 @@ export declare class RuledSweep extends SolidPrimitive {
      */
     constantVSection(vFraction: number): CurveCollection | undefined;
     extendRange(rangeToExtend: Range3d, transform?: Transform): void;
+    /** Construct a CurveCollection with the same structure as collectionA and collectionB, with primitives constructed by the caller-supplied primitiveMutator function.
+     * @returns Returns undefined if there is any type mismatch between the two collections.
+     */
+    static mutatePartners(collectionA: CurveCollection, collectionB: CurveCollection, primitiveMutator: (primitiveA: CurvePrimitive, primitiveB: CurvePrimitive) => CurvePrimitive | undefined): CurveCollection | undefined;
 }
 //# sourceMappingURL=RuledSweep.d.ts.map

@@ -1,13 +1,17 @@
-/** @module Curve */
-import { AngleSweep, Angle } from "../Geometry";
-import { Segment1d, Point3d } from "../PointVector";
-import { Range3d } from "../Range";
-import { Transform } from "../Transform";
-import { GeometryHandler } from "../GeometryHandler";
-import { StrokeOptions } from "../curve/StrokeOptions";
-import { CurvePrimitive, GeometryQuery } from "./CurvePrimitive";
-import { Plane3dByOriginAndUnitNormal, Ray3d, Plane3dByOriginAndVectors } from "../AnalyticGeometry";
-import { IStrokeHandler } from "../GeometryHandler";
+import { AngleSweep } from "../geometry3d/AngleSweep";
+import { Angle } from "../geometry3d/Angle";
+import { Point3d } from "../geometry3d/Point3dVector3d";
+import { Segment1d } from "../geometry3d/Segment1d";
+import { Range3d } from "../geometry3d/Range";
+import { Transform } from "../geometry3d/Transform";
+import { GeometryHandler } from "../geometry3d/GeometryHandler";
+import { StrokeOptions } from "./StrokeOptions";
+import { CurvePrimitive } from "./CurvePrimitive";
+import { GeometryQuery } from "./GeometryQuery";
+import { Plane3dByOriginAndUnitNormal } from "../geometry3d/Plane3dByOriginAndUnitNormal";
+import { Ray3d } from "../geometry3d/Ray3d";
+import { Plane3dByOriginAndVectors } from "../geometry3d/Plane3dByOriginAndVectors";
+import { IStrokeHandler } from "../geometry3d/GeometryHandler";
 import { LineString3d } from "./LineString3d";
 /** A transition spiral is a curve defined by its curvature, with the curvature function symmetric about midpoint.
  * * The symmetry condition creates a relationship among the following 4 quantities:
@@ -75,7 +79,7 @@ export declare class TransitionSpiral3d extends CurvePrimitive {
     constructor(spiralType: string | undefined, radius01: Segment1d, bearing01: AngleSweep, activeFractionInterval: Segment1d, localToWorld: Transform, arcLength: number, properties: TransitionConditionalProperties | undefined);
     /** Return the origial defining properties (if any) saved by the constructor. */
     readonly originalProperties: TransitionConditionalProperties | undefined;
-    static readonly defaultSpiralType: string;
+    static readonly defaultSpiralType = "clothoid";
     /** return the spiral type as a string (undefined resolves to default type "clothoid") */
     getSpiralType(): string;
     /** Return the bearing at given fraction .... */

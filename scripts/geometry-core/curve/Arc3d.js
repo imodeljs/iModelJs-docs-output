@@ -1,16 +1,21 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Curve */
 const Geometry_1 = require("../Geometry");
+const AngleSweep_1 = require("../geometry3d/AngleSweep");
+const Angle_1 = require("../geometry3d/Angle");
 const Polynomials_1 = require("../numerics/Polynomials");
-const PointVector_1 = require("../PointVector");
-const Transform_1 = require("../Transform");
-const AnalyticGeometry_1 = require("../AnalyticGeometry");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
+const Matrix3d_1 = require("../geometry3d/Matrix3d");
+const Ray3d_1 = require("../geometry3d/Ray3d");
+const Plane3dByOriginAndVectors_1 = require("../geometry3d/Plane3dByOriginAndVectors");
 const CurvePrimitive_1 = require("./CurvePrimitive");
-const StrokeOptions_1 = require("../curve/StrokeOptions");
+const CurveLocationDetail_1 = require("./CurveLocationDetail");
+const StrokeOptions_1 = require("./StrokeOptions");
 const LineString3d_1 = require("./LineString3d");
 /* tslint:disable:variable-name no-empty*/
 /**
@@ -23,7 +28,6 @@ const LineString3d_1 = require("./LineString3d");
  * * Non-perpendicular vectors are always elliptic.
  * *  vectors of unequal length are always elliptic.
  * * To create an ellipse in the common "major and minor axis" form of an ellipse:
- *
  * ** vector0 is the vector from the center to the major axis extreme.
  * ** vector90 is the vector from the center to the minor axis extreme.
  * ** note the constructing the vectors to the extreme points makes them perpendicular.
@@ -31,6 +35,13 @@ const LineString3d_1 = require("./LineString3d");
  * * The unrestricted form is much easier to work with for common calculations -- stroking, projection to 2d, intersection with plane.
  */
 class Arc3d extends CurvePrimitive_1.CurvePrimitive {
+    // constructor copies the pointers !!!
+    constructor(center, matrix, sweep) {
+        super();
+        this._center = center;
+        this._matrix = matrix;
+        this._sweep = sweep;
+    }
     isSameGeometryClass(other) { return other instanceof Arc3d; }
     /**
      * read property for (clone of) center
@@ -50,13 +61,10 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
     get matrix() { return this._matrix.clone(); }
     get sweep() { return this._sweep; }
     set sweep(value) { this._sweep.setFrom(value); }
-    // constructor copies the pointers !!!
-    constructor(center, matrix, sweep) {
-        super();
-        this._center = center;
-        this._matrix = matrix;
-        this._sweep = sweep;
-    }
+    /**
+     * An Arc3d extends along its complete elliptic arc
+     */
+    get isExtensibleFractionSpace() { return true; }
     cloneTransformed(transform) {
         const c = this.clone();
         c.tryTransformInPlace(transform);
@@ -68,7 +76,7 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
         this._sweep = sweep;
     }
     set(center, matrix, sweep) {
-        this.setRefs(center.clone(), matrix.clone(), sweep ? sweep.clone() : Geometry_1.AngleSweep.create360());
+        this.setRefs(center.clone(), matrix.clone(), sweep ? sweep.clone() : AngleSweep_1.AngleSweep.create360());
     }
     setFrom(other) {
         this._center.setFrom(other._center);
@@ -92,19 +100,32 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
     }
     static create(center, vector0, vector90, sweep, result) {
         const normal = vector0.unitCrossProductWithDefault(vector90, 0, 0, 0); // normal will be 000 for degenerate case ! !!
-        const matrix = Transform_1.Matrix3d.createColumns(vector0, vector90, normal);
+        const matrix = Matrix3d_1.Matrix3d.createColumns(vector0, vector90, normal);
         if (result) {
-            result.setRefs(center.clone(), matrix, sweep ? sweep.clone() : Geometry_1.AngleSweep.create360());
+            result.setRefs(center.clone(), matrix, sweep ? sweep.clone() : AngleSweep_1.AngleSweep.create360());
             return result;
         }
-        return new Arc3d(center.clone(), matrix, sweep ? sweep.clone() : Geometry_1.AngleSweep.create360());
+        return new Arc3d(center.clone(), matrix, sweep ? sweep.clone() : AngleSweep_1.AngleSweep.create360());
+    }
+    /**
+     * Return a quick estimate of the eccentricity of the ellipse.
+     * * The estimator is the cross magnitude of the product of vectors U and V, divided by square of the larger magnitude
+     * * for typical Arc3d with perpendicular UV, this is exactly the small axis divided by large.
+     * * note that the eccentricity is AT MOST ONE.
+     */
+    quickEccentricity() {
+        const magX = this._matrix.columnXMagnitude();
+        const magY = this._matrix.columnYMagnitude();
+        const jacobian = this._matrix.columnXYCrossProductMagnitude();
+        const largeAxis = Geometry_1.Geometry.maxXY(magX, magY);
+        return jacobian / (largeAxis * largeAxis);
     }
     /** Create a circular arc defined by start point, any intermediate point, and end point.
      * If the points are colinear, assemble them into a linestring.
      */
     static createCircularStartMiddleEnd(pointA, pointB, pointC, result) {
-        const vectorAB = PointVector_1.Vector3d.createStartEnd(pointA, pointB);
-        const vectorAC = PointVector_1.Vector3d.createStartEnd(pointA, pointC);
+        const vectorAB = Point3dVector3d_1.Vector3d.createStartEnd(pointA, pointB);
+        const vectorAC = Point3dVector3d_1.Vector3d.createStartEnd(pointA, pointC);
         const ab = vectorAB.magnitude();
         const bc = vectorAC.magnitude();
         const normal = vectorAB.sizedCrossProduct(vectorAC, Math.sqrt(ab * bc));
@@ -113,17 +134,24 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
             0.5 * ab * ab, // vectorToCenter DOT vectorBA = 0.5 * vectorBA DOT vectorBA  (Rayleigh quotient)
             0.5 * bc * bc); // vectorToCenter DOT vectorBC = 0.5 * vectorBC DOT vectorBC  (Rayleigh quotient)
             if (vectorToCenter) {
-                const center = PointVector_1.Point3d.create(pointA.x, pointA.y, pointA.z).plus(vectorToCenter);
-                const vectorX = PointVector_1.Vector3d.createStartEnd(center, pointA);
-                const vectorY = PointVector_1.Vector3d.createRotateVectorAroundVector(vectorX, normal, Geometry_1.Angle.createDegrees(90));
+                const center = Point3dVector3d_1.Point3d.create(pointA.x, pointA.y, pointA.z).plus(vectorToCenter);
+                const vectorX = Point3dVector3d_1.Vector3d.createStartEnd(center, pointA);
+                const vectorY = Point3dVector3d_1.Vector3d.createRotateVectorAroundVector(vectorX, normal, Angle_1.Angle.createDegrees(90));
                 if (vectorY) {
-                    const vectorCenterToC = PointVector_1.Vector3d.createStartEnd(center, pointC);
+                    const vectorCenterToC = Point3dVector3d_1.Vector3d.createStartEnd(center, pointC);
                     const sweepAngle = vectorX.signedAngleTo(vectorCenterToC, normal);
-                    return Arc3d.create(center, vectorX, vectorY, Geometry_1.AngleSweep.createStartEndRadians(0.0, sweepAngle.radians), result);
+                    return Arc3d.create(center, vectorX, vectorY, AngleSweep_1.AngleSweep.createStartEndRadians(0.0, sweepAngle.radians), result);
                 }
             }
         }
         return LineString3d_1.LineString3d.create(pointA, pointB, pointC);
+    }
+    /** The arc has simple proportional arc length if and only if it is a circular arc. */
+    getFractionToDistanceScale() {
+        const radius = this.circularRadius();
+        if (radius !== undefined)
+            return Math.abs(radius * this._sweep.sweepRadians);
+        return undefined;
     }
     fractionToPoint(fraction, result) {
         const radians = this._sweep.fractionToRadians(fraction);
@@ -143,7 +171,7 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
     fractionToPointAnd2Derivatives(fraction, result) {
         const radians = this._sweep.fractionToRadians(fraction);
         if (!result)
-            result = AnalyticGeometry_1.Plane3dByOriginAndVectors.createXYPlane();
+            result = Plane3dByOriginAndVectors_1.Plane3dByOriginAndVectors.createXYPlane();
         const c = Math.cos(radians);
         const s = Math.sin(radians);
         this._matrix.originPlusMatrixTimesXY(this._center, c, s, result.origin);
@@ -154,7 +182,7 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
         return result;
     }
     radiansToPointAndDerivative(radians, result) {
-        result = result ? result : AnalyticGeometry_1.Ray3d.createZero();
+        result = result ? result : Ray3d_1.Ray3d.createZero();
         const c = Math.cos(radians);
         const s = Math.sin(radians);
         this._matrix.originPlusMatrixTimesXY(this._center, c, s, result.origin);
@@ -162,7 +190,7 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
         return result;
     }
     angleToPointAndDerivative(theta, result) {
-        result = result ? result : AnalyticGeometry_1.Ray3d.createZero();
+        result = result ? result : Ray3d_1.Ray3d.createZero();
         const c = theta.cos();
         const s = theta.sin();
         this._matrix.originPlusMatrixTimesXY(this._center, c, s, result.origin);
@@ -171,15 +199,86 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
     }
     startPoint(result) { return this.fractionToPoint(0.0, result); }
     endPoint(result) { return this.fractionToPoint(1.0, result); }
+    /** * If this is a circular arc, return the simple length derived from radius and sweep.
+     * * Otherwise (i.e. if this elliptical) fall through to CurvePrimitive base implementation which
+     *     Uses quadrature.
+     */
     curveLength() {
-        const r = this.circularRadius();
-        if (r !== undefined) {
-            return Math.abs(this._sweep.sweepRadians * r);
-        }
-        // fall through for true ellipse . .. stroke and accumulate quadrature ...
-        return super.curveLength();
+        return this.curveLengthBetweenFractions(0, 1);
     }
-    quickLength() { return this._sweep.sweepRadians * Math.sqrt(this._matrix.columnXMagnitude() * this._matrix.columnYMagnitude()); }
+    /** * If this is a circular arc, return the simple length derived from radius and sweep.
+     * * Otherwise (i.e. if this elliptical) fall through CurvePrimitive integrator.
+     */
+    curveLengthBetweenFractions(fraction0, fraction1) {
+        const simpleLength = this.getFractionToDistanceScale();
+        if (simpleLength !== undefined)
+            return simpleLength * Math.abs(fraction1 - fraction0);
+        // fall through for true ellipse . .. stroke and accumulate quadrature with typical count .  ..
+        let f0 = fraction0;
+        let f1 = fraction1;
+        if (fraction0 > fraction1) {
+            f0 = fraction1;
+            f1 = fraction0;
+        }
+        const sweepDegrees = (f1 - f0) * this._sweep.sweepDegrees;
+        let eccentricity = this.quickEccentricity();
+        if (eccentricity < 0.00001)
+            eccentricity = 0.00001;
+        let numInterval = Math.ceil(sweepDegrees / (eccentricity * Arc3d.quadratureIntervalAngleDegrees));
+        if (numInterval > 400)
+            numInterval = 400;
+        if (numInterval < 1)
+            numInterval = 1;
+        return super.curveLengthWithFixedIntervalCountQuadrature(f0, f1, numInterval, Arc3d.quadratureGuassCount);
+    }
+    /**
+     * Return an approximate (but easy to compute) arc length.
+     * The estimate is:
+     * * Form 8 chords on full circle, proportionally fewer for partials.  (But 2 extras if less than half circle.)
+     * * sum the chord lengths
+     * * For a circle, we know this crude approximation has to be increased by a factor (theta/(2 sin (theta/2)))
+     * * Apply that factor.
+     * * Experiments confirm that this is within 3 percent for a variety of eccentricities and arc sweeps.
+     */
+    quickLength() {
+        const totalSweep = Math.abs(this._sweep.sweepRadians);
+        let numInterval = Math.ceil(4 * totalSweep / Math.PI);
+        if (numInterval < 1)
+            numInterval = 1;
+        if (numInterval < 4)
+            numInterval += 3;
+        else if (numInterval < 6)
+            numInterval += 2; // force extras for short arcs
+        const pointA = Arc3d._workPointA;
+        const pointB = Arc3d._workPointB;
+        let chordSum = 0.0;
+        this.fractionToPoint(0.0, pointA);
+        for (let i = 1; i <= numInterval; i++) {
+            this.fractionToPoint(i / numInterval, pointB);
+            chordSum += pointA.distance(pointB);
+            pointA.setFromPoint3d(pointB);
+        }
+        // The chord sum is always shorter.
+        // if it is a true circular arc, the ratio of correct over sum is easy ...
+        const dTheta = totalSweep / numInterval;
+        const factor = dTheta / (2.0 * Math.sin(0.5 * dTheta));
+        return chordSum * factor;
+    }
+    /**
+     * * See extended comments on `CurvePrimitive.moveSignedDistanceFromFraction`
+     * * A zero length line generates `CurveSearchStatus.error`
+     * * Nonzero length line generates `CurveSearchStatus.success` or `CurveSearchStatus.stoppedAtBoundary`
+     */
+    moveSignedDistanceFromFraction(startFraction, signedDistance, allowExtension, result) {
+        if (!this.isCircular) // suppress extension !!!
+            return super.moveSignedDistanceFromFractionGeneric(startFraction, signedDistance, allowExtension, result);
+        const totalLength = this.curveLength();
+        const signedFractionMove = Geometry_1.Geometry.conditionalDivideFraction(signedDistance, totalLength);
+        if (signedFractionMove === undefined) {
+            return CurveLocationDetail_1.CurveLocationDetail.createCurveFractionPointDistanceCurveSearchStatus(this, startFraction, this.fractionToPoint(startFraction), 0.0, CurveLocationDetail_1.CurveSearchStatus.error);
+        }
+        return CurveLocationDetail_1.CurveLocationDetail.createConditionalMoveSignedDistance(allowExtension, this, startFraction, startFraction + signedFractionMove, signedDistance, result);
+    }
     allPerpendicularAngles(spacePoint, _extend = false, _endpoints = false) {
         const radians = [];
         const vectorQ = spacePoint.vectorTo(this.center);
@@ -190,14 +289,14 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
         return radians;
     }
     closestPoint(spacePoint, extend, result) {
-        result = CurvePrimitive_1.CurveLocationDetail.create(this, result);
+        result = CurveLocationDetail_1.CurveLocationDetail.create(this, result);
         const allRadians = this.allPerpendicularAngles(spacePoint);
         if (!extend && !this._sweep.isFullCircle) {
             allRadians.push(this._sweep.startRadians);
             allRadians.push(this._sweep.endRadians);
         }
         // hm... logically there must at least two angles there ...  but if it happens return the start point ...
-        const workRay = AnalyticGeometry_1.Ray3d.createZero();
+        const workRay = Ray3d_1.Ray3d.createZero();
         if (allRadians.length === 0) {
             result.setFR(0.0, this.radiansToPointAndDerivative(this._sweep.startRadians, workRay));
             result.a = spacePoint.distance(result.point);
@@ -238,7 +337,7 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
         const axx = this._matrix.columnXMagnitudeSquared();
         const ayy = this._matrix.columnYMagnitudeSquared();
         const axy = this._matrix.columnXDotColumnY();
-        return Geometry_1.Angle.isPerpendicularDotSet(axx, ayy, axy) && Geometry_1.Geometry.isSameCoordinateSquared(axx, ayy);
+        return Angle_1.Angle.isPerpendicularDotSet(axx, ayy, axy) && Geometry_1.Geometry.isSameCoordinateSquared(axx, ayy);
     }
     /** If the arc is circular, return its radius.  Otherwise return undefined */
     circularRadius() {
@@ -259,7 +358,7 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
             for (xy of trigPoints) {
                 const radians = Math.atan2(xy.y, xy.x);
                 const fraction = this._sweep.radiansToPositivePeriodicFraction(radians);
-                result.push(CurvePrimitive_1.CurveLocationDetail.createCurveFractionPoint(this, fraction, this.fractionToPoint(fraction)));
+                result.push(CurveLocationDetail_1.CurveLocationDetail.createCurveFractionPoint(this, fraction, this.fractionToPoint(fraction)));
             }
         }
         return numIntersection;
@@ -267,36 +366,36 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
     extendRange(range) {
         const df = 1.0 / 32;
         // KLUDGE --- evaluate lots of points ...
-        let point = PointVector_1.Point3d.create();
+        let point = Point3dVector3d_1.Point3d.create();
         for (let fraction = 0; fraction <= 1.001; fraction += df) {
             point = this.fractionToPoint(fraction, point);
             range.extendPoint(point);
         }
     }
     static createUnitCircle() {
-        return Arc3d.createRefs(PointVector_1.Point3d.create(0, 0, 0), Transform_1.Matrix3d.createIdentity(), Geometry_1.AngleSweep.create360());
+        return Arc3d.createRefs(Point3dVector3d_1.Point3d.create(0, 0, 0), Matrix3d_1.Matrix3d.createIdentity(), AngleSweep_1.AngleSweep.create360());
     }
     /**
      * @param center center of arc
      * @param radius radius of arc
      * @param sweep sweep limits.  defaults to full circle.
      */
-    static createXY(center, radius, sweep = Geometry_1.AngleSweep.create360()) {
-        return new Arc3d(center.clone(), Transform_1.Matrix3d.createScale(radius, radius, 1.0), sweep);
+    static createXY(center, radius, sweep = AngleSweep_1.AngleSweep.create360()) {
+        return new Arc3d(center.clone(), Matrix3d_1.Matrix3d.createScale(radius, radius, 1.0), sweep);
     }
-    static createXYEllipse(center, radiusA, radiusB, sweep = Geometry_1.AngleSweep.create360()) {
-        return new Arc3d(center.clone(), Transform_1.Matrix3d.createScale(radiusA, radiusB, 1.0), sweep);
+    static createXYEllipse(center, radiusA, radiusB, sweep = AngleSweep_1.AngleSweep.create360()) {
+        return new Arc3d(center.clone(), Matrix3d_1.Matrix3d.createScale(radiusA, radiusB, 1.0), sweep);
     }
     setVector0Vector90(vector0, vector90) {
         this._matrix.setColumns(vector0, vector90, vector0.unitCrossProductWithDefault(vector90, 0, 0, 0));
     }
     toScaledMatrix3d() {
-        const angleData = Geometry_1.Angle.dotProductsToHalfAngleTrigValues(this._matrix.columnXMagnitudeSquared(), this._matrix.columnYMagnitudeSquared(), this._matrix.columnXDotColumnY(), true);
+        const angleData = Angle_1.Angle.dotProductsToHalfAngleTrigValues(this._matrix.columnXMagnitudeSquared(), this._matrix.columnYMagnitudeSquared(), this._matrix.columnXDotColumnY(), true);
         const vector0A = this._matrix.multiplyXY(angleData.c, angleData.s);
         const vector90A = this._matrix.multiplyXY(-angleData.s, angleData.c);
-        const axes = Transform_1.Matrix3d.createRigidFromColumns(vector0A, vector90A, 0 /* XYZ */);
+        const axes = Matrix3d_1.Matrix3d.createRigidFromColumns(vector0A, vector90A, 0 /* XYZ */);
         return {
-            axes: (axes ? axes : Transform_1.Matrix3d.createIdentity()),
+            axes: (axes ? axes : Matrix3d_1.Matrix3d.createIdentity()),
             center: this._center,
             r0: vector0A.magnitude(),
             r90: vector90A.magnitude(),
@@ -342,8 +441,8 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
     setFromJSON(json) {
         if (json && json.center && json.vector0 && json.vector90 && json.sweep) {
             this._center.setFromJSON(json.center);
-            const vector0 = PointVector_1.Vector3d.create();
-            const vector90 = PointVector_1.Vector3d.create();
+            const vector0 = Point3dVector3d_1.Vector3d.create();
+            const vector90 = Point3dVector3d_1.Vector3d.create();
             vector0.setFromJSON(json.vector0);
             vector90.setFromJSON(json.vector90);
             this.setVector0Vector90(vector0, vector90);
@@ -351,7 +450,7 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
         }
         else {
             this._center.set(0, 0, 0);
-            this._matrix.setFrom(Transform_1.Matrix3d.identity);
+            this._matrix.setFrom(Matrix3d_1.Matrix3d.identity);
             this._sweep.setStartEndRadians();
         }
     }
@@ -430,5 +529,10 @@ class Arc3d extends CurvePrimitive_1.CurvePrimitive {
         return clipper.announceClippedArcIntervals(this, announce);
     }
 }
+Arc3d._workPointA = Point3dVector3d_1.Point3d.create();
+Arc3d._workPointB = Point3dVector3d_1.Point3d.create();
+Arc3d.quadratureGuassCount = 5;
+/** In quadrature for arc length, use this interval (divided by quickEccentricity) */
+Arc3d.quadratureIntervalAngleDegrees = 10.0;
 exports.Arc3d = Arc3d;
 //# sourceMappingURL=Arc3d.js.map

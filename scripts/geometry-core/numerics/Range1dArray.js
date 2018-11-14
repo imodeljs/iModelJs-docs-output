@@ -1,10 +1,12 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
-const Range_1 = require("../Range");
-const GrowableArray_1 = require("../GrowableArray");
+/** @module Numerics */
+const Range_1 = require("../geometry3d/Range");
+const GrowableArray_1 = require("../geometry3d/GrowableArray");
 /**
  * A Range1d array is a set of intervals, such as occur when a line is clipped to a (nonconvex) polygon
  */

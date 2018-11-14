@@ -1,9 +1,24 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
-const PointVector_1 = require("../PointVector");
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
+/** Enumerated type for describing where geometry lies with respect to clipping planes. */
+var ClipPlaneContainment;
+(function (ClipPlaneContainment) {
+    ClipPlaneContainment[ClipPlaneContainment["StronglyInside"] = 1] = "StronglyInside";
+    ClipPlaneContainment[ClipPlaneContainment["Ambiguous"] = 2] = "Ambiguous";
+    ClipPlaneContainment[ClipPlaneContainment["StronglyOutside"] = 3] = "StronglyOutside";
+})(ClipPlaneContainment = exports.ClipPlaneContainment || (exports.ClipPlaneContainment = {}));
+/** Enumerated type for describing what must yet be done to clip a piece of geometry. */
+var ClipStatus;
+(function (ClipStatus) {
+    ClipStatus[ClipStatus["ClipRequired"] = 0] = "ClipRequired";
+    ClipStatus[ClipStatus["TrivialReject"] = 1] = "TrivialReject";
+    ClipStatus[ClipStatus["TrivialAccept"] = 2] = "TrivialAccept";
+})(ClipStatus = exports.ClipStatus || (exports.ClipStatus = {}));
 /** Static class whose various methods are functions for clipping geometry. */
 class ClipUtilities {
     static selectIntervals01(curve, unsortedFractions, clipper, announce) {
@@ -73,8 +88,8 @@ class ClipUtilities {
             for (const plane of convexSet.planes) {
                 let numInside = 0, numOutside = 0;
                 const planeDistance = plane.distance - tolerance;
-                const currPt = PointVector_1.Point3d.create();
-                const currVec = PointVector_1.Vector3d.create();
+                const currPt = Point3dVector3d_1.Point3d.create();
+                const currVec = Point3dVector3d_1.Vector3d.create();
                 for (let i = 0; i < points.length; i++) {
                     points.getPoint3dAt(i, currPt);
                     currVec.setFrom(currPt);
@@ -94,6 +109,6 @@ class ClipUtilities {
         return 1 /* TrivialReject */;
     }
 }
-ClipUtilities._selectIntervals01TestPoint = PointVector_1.Point3d.create();
+ClipUtilities._selectIntervals01TestPoint = Point3dVector3d_1.Point3d.create();
 exports.ClipUtilities = ClipUtilities;
 //# sourceMappingURL=ClipUtils.js.map

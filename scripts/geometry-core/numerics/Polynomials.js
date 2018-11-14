@@ -1,13 +1,15 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Numerics */
-const PointVector_1 = require("../PointVector");
+const Point2dVector2d_1 = require("../geometry3d/Point2dVector2d");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
 // import { Angle, AngleSweep, Geometry } from "../Geometry";
 const Geometry_1 = require("../Geometry");
-const GrowableArray_1 = require("../GrowableArray");
+const GrowableArray_1 = require("../geometry3d/GrowableArray");
 // import { Arc3d } from "../curve/Arc3d";
 /* tslint:disable:variable-name*/
 class Degree2PowerPolynomial {
@@ -194,7 +196,7 @@ class TorusImplicit {
         // theta=0 point
         const x0 = this.majorRadius + this.minorRadius * Math.cos(phi);
         const z0 = this.minorRadius * Math.sin(phi);
-        return PointVector_1.Point3d.create(c * x0, s * x0, z0);
+        return Point3dVector3d_1.Point3d.create(c * x0, s * x0, z0);
     }
     evaluateDerivativesThetaPhi(theta, phi, dxdTheta, dxdPhi) {
         const cTheta = Math.cos(theta);
@@ -202,8 +204,8 @@ class TorusImplicit {
         const bx = this.minorRadius * Math.cos(phi);
         const bz = this.minorRadius * Math.sin(phi);
         const x0 = this.majorRadius + bx;
-        PointVector_1.Vector3d.create(-x0 * sTheta, x0 * cTheta, 0.0, dxdTheta);
-        PointVector_1.Vector3d.create(-cTheta * bz, -sTheta * bz, bx, dxdPhi);
+        Point3dVector3d_1.Vector3d.create(-x0 * sTheta, x0 * cTheta, 0.0, dxdTheta);
+        Point3dVector3d_1.Vector3d.create(-cTheta * bz, -sTheta * bz, bx, dxdPhi);
     }
     evaluateThetaPhiDistance(theta, phi, distance) {
         const c = Math.cos(theta);
@@ -211,7 +213,7 @@ class TorusImplicit {
         // theta=0 point
         const x0 = this.majorRadius + distance * Math.cos(phi);
         const z0 = distance * Math.sin(phi);
-        return PointVector_1.Point3d.create(c * x0, s * x0, z0);
+        return Point3dVector3d_1.Point3d.create(c * x0, s * x0, z0);
     }
     /** Given an xyz coordinate in the local system of the toroid, compute the torus parametrization
      * * theta = angular coordinate in xy plane
@@ -228,14 +230,14 @@ class TorusImplicit {
         let majorCirclePoint;
         if (majorRadiusFactor) {
             safeMajor = true;
-            majorCirclePoint = PointVector_1.Point3d.create(majorRadiusFactor * xyz.x, majorRadiusFactor * xyz.y, 0.0);
+            majorCirclePoint = Point3dVector3d_1.Point3d.create(majorRadiusFactor * xyz.x, majorRadiusFactor * xyz.y, 0.0);
         }
         else {
             safeMajor = false;
-            majorCirclePoint = PointVector_1.Point3d.create(xyz.x, xyz.y, 0.0);
+            majorCirclePoint = Point3dVector3d_1.Point3d.create(xyz.x, xyz.y, 0.0);
         }
         const theta = safeMajor ? Math.atan2(xyz.y, xyz.x) : 0.0;
-        const vectorFromMajorCircle = PointVector_1.Vector3d.createStartEnd(majorCirclePoint, xyz);
+        const vectorFromMajorCircle = Point3dVector3d_1.Vector3d.createStartEnd(majorCirclePoint, xyz);
         const distance = vectorFromMajorCircle.magnitude();
         const drho = rho - this.majorRadius;
         let safePhi;
@@ -324,7 +326,7 @@ class SphereImplicit {
         const rs = this.radius * Math.sin(thetaRadians);
         const cosPhi = Math.cos(phiRadians);
         const sinPhi = Math.sin(phiRadians);
-        return PointVector_1.Point3d.create(rc * cosPhi, rs * cosPhi, this.radius * sinPhi);
+        return Point3dVector3d_1.Point3d.create(rc * cosPhi, rs * cosPhi, this.radius * sinPhi);
     }
     // Compute derivatives of the point on the surface at specified angles
     // @param [in] theta major circle angle.
@@ -336,8 +338,8 @@ class SphereImplicit {
         const rs = this.radius * Math.sin(theta);
         const cosPhi = Math.cos(phi);
         const sinPhi = Math.sin(phi);
-        PointVector_1.Vector3d.create(-rs * cosPhi, rc * cosPhi, 0.0, dxdTheta);
-        PointVector_1.Vector3d.create(-rc * sinPhi, -rs * sinPhi, this.radius * cosPhi, dxdPhi);
+        Point3dVector3d_1.Vector3d.create(-rs * cosPhi, rc * cosPhi, 0.0, dxdTheta);
+        Point3dVector3d_1.Vector3d.create(-rc * sinPhi, -rs * sinPhi, this.radius * cosPhi, dxdPhi);
     }
 }
 exports.SphereImplicit = SphereImplicit;
@@ -1134,7 +1136,7 @@ class SmallSystem {
             const beta1 = Geometry_1.Geometry.tripleProduct(hB0.x, hB1.x, hA1.x, hB0.y, hB1.y, hA1.y, hB0.w, hB1.w, hA1.w);
             const fractionA = Geometry_1.Geometry.conditionalDivideFraction(-beta0, beta1 - beta0);
             if (fractionA !== undefined)
-                return PointVector_1.Vector2d.create(fractionA, fractionB, result);
+                return Point2dVector2d_1.Vector2d.create(fractionA, fractionB, result);
         }
         return undefined;
     }
@@ -1247,7 +1249,7 @@ class SmallSystem {
         const t = Geometry_1.Geometry.conditionalDivideFraction(detXCZ, detXYZ);
         const u = Geometry_1.Geometry.conditionalDivideFraction(detXYC, detXYZ);
         if (s !== undefined && t !== undefined && t !== undefined) {
-            return PointVector_1.Vector3d.create(s, t, u, result);
+            return Point3dVector3d_1.Vector3d.create(s, t, u, result);
         }
         return undefined;
     }

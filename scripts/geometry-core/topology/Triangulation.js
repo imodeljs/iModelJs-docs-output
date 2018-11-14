@@ -1,13 +1,14 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Topology */
 const Graph_1 = require("./Graph");
-const PointVector_1 = require("../PointVector");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
 const Geometry_1 = require("../Geometry");
-const Range_1 = require("../Range");
+const Range_1 = require("../geometry3d/Range");
 class Triangulator {
     /** Given the six nodes that make up two bordering triangles, "pinch" and relocate the nodes to flip them */
     static flipTriangles(a, b, c, d, e, f) {
@@ -218,7 +219,7 @@ class Triangulator {
         let i;
         // Add the starting nodes as the boundary, and apply initial masks to the primary edge and exteriors
         let baseNode;
-        const xyz = PointVector_1.Point3d.create();
+        const xyz = Point3dVector3d_1.Point3d.create();
         for (i = 0; i < data.length; i++) {
             data.atPoint3dIndex(i, xyz);
             baseNode = Triangulator.interiorEdgeSplit(graph, baseNode, xyz);

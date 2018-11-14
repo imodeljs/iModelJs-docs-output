@@ -1,11 +1,12 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Numerics */
 const Geometry_1 = require("../Geometry");
-const PointVector_1 = require("../PointVector");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
 // Enumerated type lies outside of TriDiagonalSystem, as TSLint prevented declaration within class
 var DataState;
 (function (DataState) {
@@ -99,7 +100,7 @@ class TriDiagonalSystem {
     MultiplyAXPoints(pointX, pointB) {
         pointB.length = 0;
         while (pointB.length < pointX.length)
-            pointB.push(PointVector_1.Point3d.create());
+            pointB.push(Point3dVector3d_1.Point3d.create());
         pointB.length = pointX.length;
         if (this._dataState === DataState.FactorFailed) {
             return false;
@@ -108,9 +109,9 @@ class TriDiagonalSystem {
             const n = this._aDiag.length;
             const nm1 = n - 1;
             for (let i = 0; i < nm1; i++) {
-                PointVector_1.Point3d.createAdd2Scaled(pointX[i], this._aDiag[i], pointX[i + 1], this._aRight[i], pointB[i]);
+                Point3dVector3d_1.Point3d.createAdd2Scaled(pointX[i], this._aDiag[i], pointX[i + 1], this._aRight[i], pointB[i]);
             }
-            PointVector_1.Point3d.createScale(pointX[nm1], this._aDiag[nm1], pointB[nm1]);
+            Point3dVector3d_1.Point3d.createScale(pointX[nm1], this._aDiag[nm1], pointB[nm1]);
             for (let i = nm1; i > 0; i--) {
                 pointB[i].plusScaled(pointB[i - 1], this._aLeft[i], pointB[i]);
             }
@@ -119,12 +120,12 @@ class TriDiagonalSystem {
         else {
             const n = this._aDiag.length;
             const nm1 = n - 1;
-            PointVector_1.Point3d.createAdd2Scaled(pointX[0], this._aDiag[0], pointX[1], this._aRight[0], pointB[0]);
+            Point3dVector3d_1.Point3d.createAdd2Scaled(pointX[0], this._aDiag[0], pointX[1], this._aRight[0], pointB[0]);
             let i;
             for (i = 1; i < nm1; i++) {
-                PointVector_1.Point3d.createAdd3Scaled(pointX[i - 1], this._aLeft[i], pointX[i], this._aDiag[i], pointX[i + 1], this._aRight[i], pointB[i]);
+                Point3dVector3d_1.Point3d.createAdd3Scaled(pointX[i - 1], this._aLeft[i], pointX[i], this._aDiag[i], pointX[i + 1], this._aRight[i], pointB[i]);
             }
-            PointVector_1.Point3d.createAdd2Scaled(pointX[n - 2], this._aLeft[nm1], pointX[nm1], this._aDiag[nm1], pointB[nm1]);
+            Point3dVector3d_1.Point3d.createAdd2Scaled(pointX[n - 2], this._aLeft[nm1], pointX[nm1], this._aDiag[nm1], pointB[nm1]);
             return true;
         }
     }
@@ -194,7 +195,7 @@ class TriDiagonalSystem {
         if (vectorB.length < n)
             return false;
         while (vectorX.length < n)
-            vectorX.push(PointVector_1.Point3d.create(0, 0, 0));
+            vectorX.push(Point3dVector3d_1.Point3d.create(0, 0, 0));
         vectorX.length = n;
         const n1 = n - 1;
         if (!this.Factor())

@@ -1,12 +1,13 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Numerics */
 const Geometry_1 = require("../Geometry");
-const PointVector_1 = require("../PointVector");
-const AnalyticGeometry_1 = require("../AnalyticGeometry");
+const Point2dVector2d_1 = require("../geometry3d/Point2dVector2d");
+const Plane3dByOriginAndVectors_1 = require("../geometry3d/Plane3dByOriginAndVectors");
 const Polynomials_1 = require("./Polynomials");
 /** base class for Newton iterations in various dimensions.
  * Dimension-specific classes carry all dimension-related data and answer generalized queries
@@ -128,7 +129,7 @@ class NewtonEvaluatorRRtoRRD {
      * * This creates a crrentF object to (repeatedly) receive function and derivatives.
      */
     constructor() {
-        this.currentF = AnalyticGeometry_1.Plane3dByOriginAndVectors.createXYPlane();
+        this.currentF = Plane3dByOriginAndVectors_1.Plane3dByOriginAndVectors.createXYPlane();
     }
 }
 exports.NewtonEvaluatorRRtoRRD = NewtonEvaluatorRRtoRRD;
@@ -139,8 +140,8 @@ class Newton2dUnboundedWithDerivative extends AbstractNewtonIterator {
     constructor(func) {
         super();
         this._func = func;
-        this._currentStep = PointVector_1.Vector2d.createZero();
-        this._currentUV = PointVector_1.Point2d.createZero();
+        this._currentStep = Point2dVector2d_1.Vector2d.createZero();
+        this._currentUV = Point2dVector2d_1.Point2d.createZero();
     }
     setUV(x, y) { this._currentUV.set(x, y); return true; }
     getU() { return this._currentUV.x; }

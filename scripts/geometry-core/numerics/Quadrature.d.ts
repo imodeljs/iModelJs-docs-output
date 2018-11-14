@@ -8,6 +8,8 @@
  * The method installs particular x and weight values.
  */
 export declare class Quadrature {
+    static readonly gaussX1Interval01: Float64Array;
+    static readonly gaussW1Interval01: Float64Array;
     static readonly gaussX2Interval01: Float64Array;
     static readonly gaussW2Interval01: Float64Array;
     static readonly gaussX3Interval01: Float64Array;
@@ -31,6 +33,7 @@ export declare class Quadrature {
      * @param wMapped weights for evaluated integrands
      */
     static mapWeights(xA: number, h: number, xRef: Float64Array, wRef: Float64Array, xMapped: Float64Array, wMapped: Float64Array): number;
+    static setupGauss1(xA: number, xB: number, xMapped: Float64Array, wMapped: Float64Array): number;
     static setupGauss2(xA: number, xB: number, xMapped: Float64Array, wMapped: Float64Array): number;
     static setupGauss3(xA: number, xB: number, xMapped: Float64Array, wMapped: Float64Array): number;
     /** Caller allocates and passes Float6dArray of length

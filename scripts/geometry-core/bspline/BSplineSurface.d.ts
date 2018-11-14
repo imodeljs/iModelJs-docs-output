@@ -1,11 +1,12 @@
-import { Point3d } from "../PointVector";
-import { Range3d } from "../Range";
-import { Transform } from "../Transform";
-import { Plane3dByOriginAndUnitNormal, Plane3dByOriginAndVectors } from "../AnalyticGeometry";
+import { Point3d } from "../geometry3d/Point3dVector3d";
+import { Range3d } from "../geometry3d/Range";
+import { Transform } from "../geometry3d/Transform";
+import { Plane3dByOriginAndUnitNormal } from "../geometry3d/Plane3dByOriginAndUnitNormal";
+import { Plane3dByOriginAndVectors } from "../geometry3d/Plane3dByOriginAndVectors";
 import { KnotVector } from "./KnotVector";
-import { Point4d } from "../numerics/Geometry4d";
-import { GeometryQuery } from "../curve/CurvePrimitive";
-import { GeometryHandler } from "../GeometryHandler";
+import { Point4d } from "../geometry4d/Point4d";
+import { GeometryQuery } from "../curve/GeometryQuery";
+import { GeometryHandler } from "../geometry3d/GeometryHandler";
 /**
  * UVSelect is an integer indicating uDirection (0) or vDirection (1) in a bspline surface parameterization.
  */

@@ -1,14 +1,16 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
-const CurveChain_1 = require("../curve/CurveChain");
+const CurveCollection_1 = require("../curve/CurveCollection");
 const CurvePrimitive_1 = require("../curve/CurvePrimitive");
 const Geometry_1 = require("../Geometry");
 const SolidPrimitive_1 = require("./SolidPrimitive");
 const SweepContour_1 = require("./SweepContour");
 const ConstructCurveBetweenCurves_1 = require("../curve/ConstructCurveBetweenCurves");
+const CurveCollection_2 = require("../curve/CurveCollection");
 class RuledSweep extends SolidPrimitive_1.SolidPrimitive {
     constructor(contours, capped) {
         super(capped);
@@ -100,7 +102,7 @@ class RuledSweep extends SolidPrimitive_1.SolidPrimitive {
             section0 = numSection - 2;
         const section1 = section0 + 1;
         const localFraction = Geometry_1.Geometry.clampToStartEnd(q - section0, 0, 1);
-        return CurveChain_1.CurveCollection.mutatePartners(this._contours[section0].curves, this._contours[section1].curves, (primitive0, primitive1) => {
+        return RuledSweep.mutatePartners(this._contours[section0].curves, this._contours[section1].curves, (primitive0, primitive1) => {
             const newPrimitive = ConstructCurveBetweenCurves_1.ConstructCurveBetweenCurves.InterpolateBetween(primitive0, localFraction, primitive1);
             if (newPrimitive instanceof CurvePrimitive_1.CurvePrimitive)
                 return newPrimitive;
@@ -110,6 +112,56 @@ class RuledSweep extends SolidPrimitive_1.SolidPrimitive {
     extendRange(rangeToExtend, transform) {
         for (const contour of this._contours)
             contour.curves.extendRange(rangeToExtend, transform);
+    }
+    /** Construct a CurveCollection with the same structure as collectionA and collectionB, with primitives constructed by the caller-supplied primitiveMutator function.
+     * @returns Returns undefined if there is any type mismatch between the two collections.
+     */
+    static mutatePartners(collectionA, collectionB, primitiveMutator) {
+        if (!collectionA.isSameGeometryClass(collectionB))
+            return undefined;
+        if (collectionA instanceof CurveCollection_2.CurveChain && collectionB instanceof CurveCollection_2.CurveChain) {
+            const chainA = collectionA;
+            const chainB = collectionB;
+            const chainC = chainA.cloneEmptyPeer();
+            const childrenA = chainA.children;
+            const childrenB = chainB.children;
+            if (childrenA.length !== childrenA.length)
+                return undefined;
+            for (let i = 0; i < childrenA.length; i++) {
+                const newChild = primitiveMutator(childrenA[i], childrenB[i]);
+                if (!newChild)
+                    return undefined;
+                chainC.children.push(newChild);
+            }
+            return chainC;
+        }
+        else if (collectionA instanceof CurveCollection_1.CurveCollection && collectionB instanceof CurveCollection_1.CurveCollection) {
+            const collectionC = collectionA.cloneEmptyPeer();
+            const childrenA = collectionA.children;
+            const childrenB = collectionB.children;
+            const childrenC = collectionC.children;
+            if (!childrenA || !childrenB || !childrenC)
+                return undefined;
+            for (let i = 0; i < childrenA.length; i++) {
+                const childA = childrenA[i];
+                const childB = childrenB[i];
+                if (childA instanceof CurvePrimitive_1.CurvePrimitive && childB instanceof CurvePrimitive_1.CurvePrimitive) {
+                    const newPrimitive = primitiveMutator(childA, childB);
+                    if (!newPrimitive)
+                        return undefined;
+                    childrenC.push(newPrimitive);
+                }
+                else if (childA instanceof CurveCollection_1.CurveCollection && childB instanceof CurveCollection_1.CurveCollection) {
+                    const newChild = this.mutatePartners(childA, childB, primitiveMutator);
+                    if (!newChild)
+                        return undefined;
+                    if (newChild instanceof CurveCollection_1.CurveCollection)
+                        childrenC.push(newChild);
+                }
+            }
+            return collectionC;
+        }
+        return undefined;
     }
 }
 exports.RuledSweep = RuledSweep;

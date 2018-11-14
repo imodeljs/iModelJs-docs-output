@@ -1,9 +1,10 @@
 /** @module CartesianGeometry */
-import { Point3d } from "../PointVector";
+import { Point3d } from "../geometry3d/Point3dVector3d";
 import { ClipPlane } from "./ClipPlane";
 import { ConvexClipPlaneSet } from "./ConvexClipPlaneSet";
-import { CurvePrimitive, CurveLocationDetailPair } from "../curve/CurvePrimitive";
-import { CurveCollection } from "../curve/CurveChain";
+import { CurvePrimitive } from "../curve/CurvePrimitive";
+import { CurveLocationDetailPair } from "../curve/CurveLocationDetail";
+import { CurveCollection } from "../curve/CurveCollection";
 /**
  * An AlternatingConvexClipTreeNode is a node in a tree structure in which
  *   <ul>

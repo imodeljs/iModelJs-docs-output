@@ -1,16 +1,18 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
-const PointVector_1 = require("../PointVector");
-const Transform_1 = require("../Transform");
-const PointHelpers_1 = require("../PointHelpers");
-const AnalyticGeometry_1 = require("../AnalyticGeometry");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
+const Transform_1 = require("../geometry3d/Transform");
+const Matrix3d_1 = require("../geometry3d/Matrix3d");
+const PointHelpers_1 = require("../geometry3d/PointHelpers");
+const Plane3dByOriginAndVectors_1 = require("../geometry3d/Plane3dByOriginAndVectors");
 const KnotVector_1 = require("./KnotVector");
 const Geometry_1 = require("../Geometry");
-const Geometry4d_1 = require("../numerics/Geometry4d");
-const CurvePrimitive_1 = require("../curve/CurvePrimitive");
+const Point4d_1 = require("../geometry4d/Point4d");
+const GeometryQuery_1 = require("../curve/GeometryQuery");
 /**
  * UVSelect is an integer indicating uDirection (0) or vDirection (1) in a bspline surface parameterization.
  */
@@ -37,7 +39,7 @@ var WeightStyle;
 /** Bspline knots and poles for 2d-to-Nd.
  * * This abstract class in not independently instantiable -- GeometryQuery methods must be implemented by derived classes.
  */
-class BSpline2dNd extends CurvePrimitive_1.GeometryQuery {
+class BSpline2dNd extends GeometryQuery_1.GeometryQuery {
     degreeUV(select) { return this.knots[select].degree; }
     orderUV(select) { return this.knots[select].degree + 1; }
     numSpanUV(select) { return this._numPoles[select] - this.knots[select].degree; }
@@ -45,11 +47,11 @@ class BSpline2dNd extends CurvePrimitive_1.GeometryQuery {
     numPolesUV(select) { return this._numPoles[select]; }
     poleStepUV(select) { return select === 0 ? 1 : this._numPoles[0]; }
     getPoint3dPole(i, j, result) {
-        return PointVector_1.Point3d.createFromPacked(this.coffs, i + j * this._numPoles[0], result);
+        return Point3dVector3d_1.Point3d.createFromPacked(this.coffs, i + j * this._numPoles[0], result);
     }
     // Get a pole (from i,j indices) as Point3d, assuming data is stored xyzw
     getPoint3dPoleXYZW(i, j, result) {
-        return PointVector_1.Point3d.createFromPackedXYZW(this.coffs, i + j * this._numPoles[0], result);
+        return Point3dVector3d_1.Point3d.createFromPackedXYZW(this.coffs, i + j * this._numPoles[0], result);
     }
     /**
      * @param value numeric value to convert to strict 0 or 1.
@@ -106,8 +108,8 @@ class BSpline2dNd extends CurvePrimitive_1.GeometryQuery {
         const skewVectors = this.fractionToPointAndDerivatives(fractionU, fractionV);
         if (!skewVectors)
             return undefined;
-        const axes = Transform_1.Matrix3d.createColumnsInAxisOrder(0 /* XYZ */, skewVectors.vectorU, skewVectors.vectorV, undefined);
-        const axes1 = Transform_1.Matrix3d.createRigidFromMatrix3d(axes, 0 /* XYZ */, axes);
+        const axes = Matrix3d_1.Matrix3d.createColumnsInAxisOrder(0 /* XYZ */, skewVectors.vectorU, skewVectors.vectorV, undefined);
+        const axes1 = Matrix3d_1.Matrix3d.createRigidFromMatrix3d(axes, 0 /* XYZ */, axes);
         if (axes1)
             result = Transform_1.Transform.createOriginAndMatrix(skewVectors.origin, axes1, result);
         return result;
@@ -440,12 +442,12 @@ class BSplineSurface3d extends BSpline2dNd {
      */
     knotToPoint(u, v) {
         this.evaluateBuffersAtKnot(u, v);
-        return PointVector_1.Point3d.createFrom(this._poleBuffer);
+        return Point3dVector3d_1.Point3d.createFrom(this._poleBuffer);
     }
     /** Evaluate at a position given by a knot value.  */
     knotToPointAndDerivatives(u, v, result) {
         this.evaluateBuffersAtKnot(u, v, 1);
-        return AnalyticGeometry_1.Plane3dByOriginAndVectors.createOriginAndVectorsArrays(this._poleBuffer, this._poleBuffer1UV[0], this._poleBuffer1UV[1], result);
+        return Plane3dByOriginAndVectors_1.Plane3dByOriginAndVectors.createOriginAndVectorsArrays(this._poleBuffer, this._poleBuffer1UV[0], this._poleBuffer1UV[1], result);
     }
     /** Evalute at a position given by fractional coordinte in each direction.
        * @param fractionU u coordinate, as a fraction of the knot range.
@@ -537,7 +539,7 @@ class BSplineSurface3dH extends BSpline2dNd {
     /** Return a simple array of the control points. */
     copyPoints4d() { return PointHelpers_1.Point4dArray.unpackToPoint4dArray(this.coffs); }
     /** Return a simple array of the control points. */
-    copyPointsAndWeights(points, weights, formatter = PointVector_1.Point3d.create) {
+    copyPointsAndWeights(points, weights, formatter = Point3dVector3d_1.Point3d.create) {
         PointHelpers_1.Point4dArray.unpackFloat64ArrayToPointsAndWeights(this.coffs, points, weights, formatter);
     }
     /**
@@ -669,12 +671,12 @@ class BSplineSurface3dH extends BSpline2dNd {
     /** Evaluate at a position given by a knot value.  */
     knotToPoint4d(u, v) {
         this.evaluateBuffersAtKnot(u, v);
-        return Geometry4d_1.Point4d.createFromPackedXYZW(this._poleBuffer, 0);
+        return Point4d_1.Point4d.createFromPackedXYZW(this._poleBuffer, 0);
     }
     /** Evaluate at a position given by a knot value.  */
     knotToPointAndDerivatives(u, v, result) {
         this.evaluateBuffersAtKnot(u, v, 1);
-        return AnalyticGeometry_1.Plane3dByOriginAndVectors.createOriginAndVectorsWeightedArrays(this._poleBuffer, this._poleBuffer1UV[0], this._poleBuffer1UV[1], result);
+        return Plane3dByOriginAndVectors_1.Plane3dByOriginAndVectors.createOriginAndVectorsWeightedArrays(this._poleBuffer, this._poleBuffer1UV[0], this._poleBuffer1UV[1], result);
     }
     fractionToPoint4d(fractionU, fractionV) {
         return this.knotToPoint4d(this.knots[0].fractionToKnot(fractionU), this.knots[1].fractionToKnot(fractionV));

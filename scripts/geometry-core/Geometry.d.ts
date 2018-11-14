@@ -1,7 +1,9 @@
 /** @module CartesianGeometry */
-import { Point3d, Vector3d, Point2d, Vector2d, XAndY, XY, XYZ } from "./PointVector";
-import { GrowableFloat64Array } from "./GrowableArray";
-import { Point4d } from "./numerics/Geometry4d";
+import { Point2d, Vector2d, XY } from "./geometry3d/Point2dVector2d";
+import { XAndY } from "./geometry3d/XYZProps";
+import { Point3d, Vector3d, XYZ } from "./geometry3d/Point3dVector3d";
+import { Point4d } from "./geometry4d/Point4d";
+import { AngleSweep } from "./geometry3d/AngleSweep";
 /** Enumeration of the 6 possible orderings of XYZ axis order */
 export declare const enum AxisOrder {
     /** Right handed system, X then Y then Z */
@@ -69,6 +71,11 @@ export interface PlaneAltitudeEvaluator {
      * @param point point for evaluation
      */
     velocityXYZ(x: number, y: number, z: number): number;
+    /**
+     * Return the weighted altitude
+     * @param point xyzw data.
+     */
+    weightedAltitude(point: Point4d): number;
 }
 export interface BeJSONFunctions {
     /**
@@ -103,11 +110,11 @@ export declare type AngleSweepProps = AngleSweep | {
     radians: [number, number];
 } | [number, number];
 export declare class Geometry {
-    static readonly smallMetricDistance: number;
-    static readonly smallMetricDistanceSquared: number;
-    static readonly smallAngleRadians: number;
-    static readonly smallAngleRadiansSquared: number;
-    static readonly largeFractionResult: number;
+    static readonly smallMetricDistance = 0.000001;
+    static readonly smallMetricDistanceSquared = 1e-12;
+    static readonly smallAngleRadians = 1e-12;
+    static readonly smallAngleRadiansSquared = 1e-24;
+    static readonly largeFractionResult = 10000000000;
     static readonly fullCircleRadiansMinusSmallAngle: number;
     /** Points and vectors can be emitted in two forms:
       *
@@ -136,12 +143,12 @@ export declare class Geometry {
     /**
      * Lexical comparison of (a.x,a.y) (b.x,b.y) with x as first test, y second.
      */
-    static lexicalXYLessThan(a: XY | XYZ, b: XY | XYZ): 0 | 1 | -1;
+    static lexicalXYLessThan(a: XY | XYZ, b: XY | XYZ): 1 | 0 | -1;
     /**
      * Lexical comparison of (a.x,a.y) (b.x,b.y) with y as first test, x second.
      */
-    static lexicalYXLessThan(a: XY | XYZ, b: XY | XYZ): 0 | 1 | -1;
-    static lexicalXYZLessThan(a: XYZ, b: XYZ): 0 | 1 | -1;
+    static lexicalYXLessThan(a: XY | XYZ, b: XY | XYZ): 1 | 0 | -1;
+    static lexicalXYZLessThan(a: XYZ, b: XYZ): 1 | 0 | -1;
     static isSmallRelative(value: number): boolean;
     static isSmallAngleRadians(value: number): boolean;
     static isAlmostEqualNumber(a: number, b: number): boolean;
@@ -261,7 +268,7 @@ export declare class Geometry {
     static safeDivideFraction(numerator: number, denominator: number, defaultResult: number): number;
     /** For a line f(x) whose function values at x0 and x1 are f0 and f1, return the x value at which f(x)=fTarget;
      */
-    static inverseInterpolate(x0: number, f0: number, x1: number, f1: number, targetF?: number): number | undefined;
+    static inverseInterpolate(x0: number, f0: number, x1: number, f1: number, targetF?: number, defaultResult?: number): number | undefined;
     /** For a line f(x) whose function values at x=0 and x=1 are f0 and f1, return the x value at which f(x)=fTarget;
      */
     static inverseInterpolate01(f0: number, f1: number, targetF?: number): number | undefined;
@@ -280,318 +287,17 @@ export declare class Geometry {
      * @param apply01 if false, accept all x.
      */
     static isIn01(x: number, apply01?: boolean): boolean;
-}
-/**
- * Carries the numeric value of an angle.
- * * The numeric value is private, and callers should not know or care whether it is in degrees or radians.
- * * The various access method are named so that callers can specify whether untyped numbers passed in or out are degrees or radians.
- */
-export declare class Angle implements BeJSONFunctions {
-    static readonly piOver4Radians: number;
-    static readonly piOver2Radians: number;
-    static readonly piRadians: number;
-    static readonly pi2Radians: number;
-    static readonly degreesPerRadian: number;
-    static readonly radiansPerDegree: number;
-    static readonly piOver12Radians: number;
-    private _radians;
-    private _degrees?;
-    private constructor();
-    clone(): Angle;
+    /** Test if x is in simple 0..1 interval.  But optionally skip the test.  (this odd behavior is very convenient for code that sometimes does not do the filtering.)
+     * @param x value to test.
+     * @param apply01 if false, accept all x.
+     */
+    static isIn01WithTolerance(x: number, tolerance: number): boolean;
     /**
-     * Return a new Angle object for angle given in degrees.
-     * @param degrees angle in degrees
+     * restrict x so it is in the interval `[a,b]`, allowing a,b to be in either order.
+     * @param x
+     * @param a (usually the lower) interval limit
+     * @param b (usually the upper) interval limit
      */
-    static createDegrees(degrees: number): Angle;
-    /**
-     * Return a (new) Angle object for a value given in radians.
-     * @param radians angle in radians
-     */
-    static createRadians(radians: number): Angle;
-    /**
-     * Set this angle to a value given in radians.
-     * @param radians angle given in radians
-     */
-    setRadians(radians: number): void;
-    /**
-     * Set this angle to a value given in degrees.
-     * @param degrees angle given in degrees.
-     */
-    setDegrees(degrees: number): void;
-    /** Create an angle for a full circle. */
-    static create360(): Angle;
-    /**
-     * @return a (strongly typed) Angle whose tangent is `numerator/denominator`, using the signs of both in determining the (otherwise ambiguous)
-     * quadrant.
-     * @param numerator numerator for tangent
-     * @param denominator denominator for tangent
-     */
-    static createAtan2(numerator: number, denominator: number): Angle;
-    /**
-     * Copy all contents of `other` to this Angle.
-     * @param other source data
-     */
-    setFrom(other: Angle): void;
-    /**
-     * Create an Angle from a JSON object
-     * @param json object from JSON.parse. If a number, value is in *DEGREES*
-     * @param defaultValRadians if json is undefined, default value in radians.
-     * @return a new Angle
-     */
-    static fromJSON(json?: AngleProps, defaultValRadians?: number): Angle;
-    /**
-     * set an Angle from a JSON object
-     * * A simple number is degrees.
-     * * specified `json.degrees` or `json._degrees` is degree value.
-     * * specified `son.radians` or `json._radians` is radians value.
-     * @param json object from JSON.parse. If a number, value is in *DEGREES*
-     * @param defaultValRadians if json is undefined, default value in radians.
-     */
-    setFromJSON(json?: AngleProps, defaultValRadians?: number): void;
-    /** Convert an Angle to a JSON object as a number in degrees */
-    toJSON(): AngleProps;
-    toJSONRadians(): AngleProps;
-    /** @returns Return the angle measured in radians. */
-    readonly radians: number;
-    /** @returns Return the angle measured in degrees. */
-    readonly degrees: number;
-    /**
-     * Convert an angle in degrees to radians.
-     * @param degrees angle in degrees
-     */
-    static degreesToRadians(degrees: number): number;
-    /**
-     * Convert an angle in radians to degrees.
-     * @param degrees angle in radians
-     */
-    static radiansToDegrees(radians: number): number;
-    /**
-     * @returns Return the cosine of this Angle object's angle.
-     */
-    cos(): number;
-    /**
-     * @returns Return the sine of this Angle object's angle.
-     */
-    sin(): number;
-    /**
-     * @returns Return the tangent of this Angle object's angle.
-     */
-    tan(): number;
-    static isFullCircleRadians(radians: number): boolean;
-    readonly isFullCircle: boolean;
-    /** Adjust a radians value so it is positive in 0..360 */
-    static adjustDegrees0To360(degrees: number): number;
-    /** Adjust a radians value so it is positive in -180..180 */
-    static adjustDegreesSigned180(degrees: number): number;
-    /** Adjust a radians value so it is positive in 0..2Pi */
-    static adjustRadians0To2Pi(radians: number): number;
-    /** Adjust a radians value so it is positive in -PI..PI */
-    static adjustRadiansMinusPiPlusPi(radians: number): number;
-    static zero(): Angle;
-    readonly isExactZero: boolean;
-    readonly isAlmostZero: boolean;
-    /** Create an angle object with degrees adjusted into 0..360. */
-    static createDegreesAdjustPositive(degrees: number): Angle;
-    /** Create an angle object with degrees adjusted into -180..180. */
-    static createDegreesAdjustSigned180(degrees: number): Angle;
-    /**
-     * Test if two radians values are equivalent, allowing shift by full circle (i.e. by a multiple of `2*PI`)
-     * @param radiansA first radians value
-     * @param radiansB second radians value
-     */
-    static isAlmostEqualRadiansAllowPeriodShift(radiansA: number, radiansB: number): boolean;
-    /**
-     * Test if this angle and other are equivalent, allowing shift by full circle (i.e. by a multiple of 360 degrees)
-     */
-    isAlmostEqualAllowPeriodShift(other: Angle): boolean;
-    /**
-     * Test if two this angle and other are almost equal, NOT allowing shift by full circle multiples of 360 degrees.
-     */
-    isAlmostEqualNoPeriodShift(other: Angle): boolean;
-    /**
-     * Test if two angle (in radians)  almost equal, NOT allowing shift by full circle multiples of `2 * PI`.
-     */
-    static isAlmostEqualRadiansNoPeriodShift(radiansA: number, radiansB: number): boolean;
-    /**
-     * Test if dot product values indicate non-zero length perpendicular vectors.
-     * @param dotUU dot product of vectorU with itself
-     * @param dotVV dot product of vectorV with itself
-     * @param dotUV dot product of vectorU with vectorV
-     */
-    static isPerpendicularDotSet(dotUU: number, dotVV: number, dotUV: number): boolean;
-    /**
-     * Return cosine, sine, and radians for the half angle of a cosine,sine pair.
-     * @param rCos2A cosine value (scaled by radius) for initial angle.
-     * @param rSin2A sine value (scaled by radius) for final angle.
-     */
-    static trigValuesToHalfAngleTrigValues(rCos2A: number, rSin2A: number): TrigValues;
-    /** If value is close to -1, -0.5, 0, 0.5, 1, adjust it to the exact value. */
-    static cleanupTrigValue(value: number, tolerance?: number): number;
-    /**
-       * Return the half angle cosine, sine, and radians for given dot products between vectors.
-       * @param dotUU dot product of vectorU with itself
-       * @param dotVV dot product of vectorV with itself
-       * @param dotUV dot product of vectorU with vectorV
-       */
-    static dotProductsToHalfAngleTrigValues(dotUU: number, dotVV: number, dotUV: number, favorZero?: boolean): TrigValues;
-    /**
-     * * The returned angle is between 0 and PI
-     * @return the angle between two vectors, with the vectors given as xyz components
-     * @param ux x component of vector u
-     * @param uy y component of vector u
-     * @param uz z component of vector u
-     * @param vx x component of vector v
-     * @param vy y component of vector v
-     * @param vz z component of vector v
-     */
-    static radiansBetweenVectorsXYZ(ux: number, uy: number, uz: number, vx: number, vy: number, vz: number): number;
-}
-/**
- * An AngleSweep is a pair of angles at start and end of an interval.
- *
- * *  For stroking purposes, the "included interval" is all angles numerically reached by theta = start + f*(end-start), where f is between 0 and 1.
- * *  This stroking formula is simple numbers -- 2PI shifts are not involved.
- * *  2PI shifts do become important in the reverse mapping of an angle to a fraction.
- * *  If (start < end) the angle proceeds CCW around the unit circle.
- * *  If (end < start) the angle proceeds CW around the unit circle.
- * *  Angles beyond 360 are fine as endpoints.
- *
- * **  (350,370) covers the same unit angles as (-10,10).
- * **  (370,350) covers the same unit angles as (10,-10).
- */
-export declare class AngleSweep implements BeJSONFunctions {
-    private _radians0;
-    private _radians1;
-    /** Read-property for degrees at the start of this AngleSweep. */
-    readonly startDegrees: number;
-    /** Read-property for degrees at the end of this AngleSweep. */
-    readonly endDegrees: number;
-    /** Read-property for signed start-to-end sweep in degrees. */
-    readonly sweepDegrees: number;
-    /** Read-property for degrees at the start of this AngleSweep. */
-    readonly startRadians: number;
-    /** Read-property for degrees at the end of this AngleSweep. */
-    readonly endRadians: number;
-    /** Read-property for signed start-to-end sweep in radians. */
-    readonly sweepRadians: number;
-    /** Return the (strongly typed) start angle */
-    readonly startAngle: Angle;
-    /** Return the (strongly typed) end angle */
-    readonly endAngle: Angle;
-    /** (private) constructor with start and end angles in radians.
-     *  * Use explicitly named static methods to clarify intent and units of inputs:
-     *
-     * * createStartEndRadians (startRadians:number, endRadians:number)
-     * * createStartEndDegrees (startDegrees:number, endDegrees:number)
-     * * createStartEnd (startAngle:Angle, endAngle:Angle)
-     * * createStartSweepRadians (startRadians:number, sweepRadians:number)
-     * * createStartSweepDegrees (startDegrees:number, sweepDegrees:number)
-     * * createStartSweep (startAngle:Angle, sweepAngle:Angle)
-    */
-    private constructor();
-    /** create an AngleSweep from start and end angles given in radians. */
-    static createStartEndRadians(startRadians?: number, endRadians?: number, result?: AngleSweep): AngleSweep;
-    /** Return the angle obtained by subtracting radians from this angle. */
-    cloneMinusRadians(radians: number): AngleSweep;
-    /** create an AngleSweep from start and end angles given in degrees. */
-    static createStartEndDegrees(startDegrees?: number, endDegrees?: number, result?: AngleSweep): AngleSweep;
-    /** create an angle sweep from strongly typed start and end angles */
-    static createStartEnd(startAngle: Angle, endAngle: Angle, result?: AngleSweep): AngleSweep;
-    /** Create an angle sweep with limits given as (strongly typed) angles for start and sweep */
-    static createStartSweep(startAngle: Angle, sweepAngle: Angle, result?: AngleSweep): AngleSweep;
-    /** @returns Return a sweep with limits interpolated between this and other. */
-    interpolate(fraction: number, other: AngleSweep): AngleSweep;
-    /** create an AngleSweep from start and end angles given in radians. */
-    static createStartSweepRadians(startRadians?: number, sweepRadians?: number, result?: AngleSweep): AngleSweep;
-    /** create an AngleSweep from start and sweep given in degrees.  */
-    static createStartSweepDegrees(startDegrees?: number, sweepDegrees?: number, result?: AngleSweep): AngleSweep;
-    /** directly set the start and end angles in radians */
-    setStartEndRadians(startRadians?: number, endRadians?: number): void;
-    /** directly set the start and end angles in degrees */
-    setStartEndDegrees(startDegrees?: number, endDegrees?: number): void;
-    /** copy from other AngleSweep. */
-    setFrom(other: AngleSweep): void;
-    /** create a full circle sweep (CCW). startRadians defaults to 0 */
-    static create360(startRadians?: number): AngleSweep;
-    /** create a sweep from the south pole to the north pole. */
-    static createFullLatitude(): AngleSweep;
-    /** Reverse the start and end angle in place. */
-    reverseInPlace(): void;
-    /** Restrict start and end angles into the range (-90,+90) in degrees. */
-    capLatitudeInPlace(): void;
-    /** Ask if the sweep is counterclockwise, i.e. positive sweep */
-    readonly isCCW: boolean;
-    /** Ask if the sweep is a full circle. */
-    readonly isFullCircle: boolean;
-    /** Ask if the sweep is a full sweep from south pole to north pole. */
-    readonly isFullLatitudeSweep: boolean;
-    /** return a clone of this sweep. */
-    clone(): AngleSweep;
-    /** Convert fractional position in the sweep to radians. */
-    fractionToRadians(fraction: number): number;
-    /** Convert fractional position in the sweep to strongly typed Angle object. */
-    fractionToAngle(fraction: number): Angle;
-    /** return 2PI divided by the sweep radians (i.e. 360 degrees divided by sweep angle).
-     * This is the number of fractional intervals required to cover a whole circle.
-     */
-    fractionPeriod(): number;
-    /** return the fractional ized position of the angle,
-     * computed without consideration of 2PI period.
-     * That is, an angle that is numerically much beyond than the end angle
-     * will produce a large fraction and an angle much beyond the start angle
-     * will produce a large negative fraction.
-     *
-     */
-    angleToUnboundedFraction(theta: Angle): number;
-    /** map an angle to a fractional coordinate which is:
-    *
-    * *  the start angle is at fraction 0
-    * *  the end angle is at fraction 1
-    * *  interior angles are between 0 and 1
-    * *  all exterior angles are at fractions greater than 1
-    * *  the periodic jump is at full wraparound to the start angle
-     */
-    angleToPositivePeriodicFraction(theta: Angle): number;
-    /**
-     * Convert each value in an array from radians to fraction.
-     * @param data array that is input as radians, output as fractions
-     */
-    radiansArraytoPositivePeriodicFractions(data: GrowableFloat64Array): void;
-    radiansToPositivePeriodicFraction(radians: number): number;
-    /** map an angle to a fractional coordinate which is:
-    *
-    * *  the start angle is at fraction 0
-    * *  the end angle is at fraction 1
-    * *  interior angles are between 0 and 1
-    * *  small negative for angles just "before" the start angle
-    * *  more than one for angles just "after" the end angle
-    * *  the periodic jump is at the middle of the "outside" interval
-    */
-    angleToSignedPeriodicFraction(theta: Angle): number;
-    radiansToSignedPeriodicFraction(radians: number): number;
-    /** test if an angle is within the sweep */
-    isAngleInSweep(angle: Angle): boolean;
-    /** test if radians are within sweep  */
-    isRadiansInSweep(radians: number): boolean;
-    /** set this AngleSweep from various sources:
-     *
-     * * if json is undefined, a full-circle sweep is returned.
-     * * If json is an AngleSweep object it is is cloned
-     * * If json is an array of 2 numbers, those numbers are start and end angles in degrees.
-     * * If `json.degrees` is an array of 2 numbers, those numbers are start and end angles in degrees.
-     * * If `json.radians` is an array of 2 numbers, those numbers are start and end angles in radians.
-     */
-    setFromJSON(json?: any): void;
-    /** create an AngleSweep from a json object. */
-    static fromJSON(json?: AngleSweepProps): AngleSweep;
-    /**
-     * Convert an AngleSweep to a JSON object.
-     * @return {*} {degrees: [startAngleInDegrees, endAngleInDegrees}
-     */
-    toJSON(): any;
-    /** test if start and end angles match, with no test for 360-degree shifts. */
-    isAlmostEqualAllowPeriodShift(other: AngleSweep): boolean;
-    /** test if start and end angles match, allowing for 360-degree shifts. */
-    isAlmostEqualNoPeriodShift(other: AngleSweep): boolean;
+    static restrictToInterval(x: number, a: number, b: number): number;
 }
 //# sourceMappingURL=Geometry.d.ts.map

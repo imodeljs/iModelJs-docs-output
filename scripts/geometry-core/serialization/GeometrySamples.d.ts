@@ -1,14 +1,25 @@
-/** @module Serialization */
-import { Angle, AngleSweep } from "../Geometry";
-import { Plane3dByOriginAndUnitNormal, Ray3d } from "../AnalyticGeometry";
-import { Point3d, Vector3d, Point2d, Vector2d } from "../PointVector";
-import { Transform, Matrix3d } from "../Transform";
-import { Range1d, Range2d, Range3d } from "../Range";
-import { CurvePrimitive, GeometryQuery } from "../curve/CurvePrimitive";
-import { Point4d, Matrix4d, Map4d } from "../numerics/Geometry4d";
-import { Path, Loop, ParityRegion, UnionRegion, BagOfCurves } from "../curve/CurveChain";
+import { AngleSweep } from "../geometry3d/AngleSweep";
+import { Angle } from "../geometry3d/Angle";
+import { Plane3dByOriginAndUnitNormal } from "../geometry3d/Plane3dByOriginAndUnitNormal";
+import { Ray3d } from "../geometry3d/Ray3d";
+import { Point2d, Vector2d } from "../geometry3d/Point2dVector2d";
+import { Point3d, Vector3d } from "../geometry3d/Point3dVector3d";
+import { Segment1d } from "../geometry3d/Segment1d";
+import { Transform } from "../geometry3d/Transform";
+import { Matrix3d } from "../geometry3d/Matrix3d";
+import { Range1d, Range2d, Range3d } from "../geometry3d/Range";
+import { CurvePrimitive } from "../curve/CurvePrimitive";
+import { GeometryQuery } from "../curve/GeometryQuery";
+import { Map4d } from "../geometry4d/Map4d";
+import { Matrix4d } from "../geometry4d/Matrix4d";
+import { Point4d } from "../geometry4d/Point4d";
+import { UnionRegion } from "../curve/UnionRegion";
+import { BagOfCurves } from "../curve/CurveCollection";
+import { ParityRegion } from "../curve/ParityRegion";
+import { Loop } from "../curve/Loop";
+import { Path } from "../curve/Path";
 import { IndexedPolyface } from "../polyface/Polyface";
-import { BSplineCurve3d } from "../bspline/BSplineCurve";
+import { BSplineCurve3d, BSplineCurve3dBase } from "../bspline/BSplineCurve";
 import { BSplineSurface3d, BSplineSurface3dH } from "../bspline/BSplineSurface";
 import { Sphere } from "../solid/Sphere";
 import { Cone } from "../solid/Cone";
@@ -22,9 +33,10 @@ import { TransitionSpiral3d } from "../curve/TransitionSpiral";
 import { LineString3d } from "../curve/LineString3d";
 import { PointString3d } from "../curve/PointString3d";
 import { ClipPlane } from "../clipping/ClipPlane";
-import { GrowableFloat64Array, GrowableXYZArray } from "../GrowableArray";
+import { GrowableFloat64Array, GrowableXYZArray } from "../geometry3d/GrowableArray";
 import { UnionOfConvexClipPlaneSets } from "../clipping/UnionOfConvexClipPlaneSets";
 import { BSplineCurve3dH } from "../bspline/BSplineCurve3dH";
+import { CurveChainWithDistanceIndex } from "../curve/CurveChainWithDistanceIndex";
 export declare class Sample {
     static readonly point2d: Point2d[];
     static readonly point3d: Point3d[];
@@ -50,8 +62,19 @@ export declare class Sample {
      * * Three squares -- first, second and fourtn quarant unit squares
      */
     static createClipPlaneSets(): UnionOfConvexClipPlaneSets[];
-    static createBsplineCurves(): BSplineCurve3d[];
+    /** Create (unweighted) bspline curves.
+     * order varies from 2 to 5
+     */
+    static createBsplineCurves(includeMultipleKnots?: boolean): BSplineCurve3d[];
+    /** Create weighted bspline curves.
+     * order varies from 2 to 5
+     */
     static createBspline3dHCurves(): BSplineCurve3dH[];
+    /**
+     * Create both unweigthed and weighted bspline curves.
+     * (This is the combined results from createBsplineCurves and createBspline3dHCurves)
+     */
+    static createMixedBsplineCurves(): BSplineCurve3dBase[];
     static createPlane(x: number, y: number, z: number, u: number, v: number, w: number): Plane3dByOriginAndUnitNormal;
     static createRay(x: number, y: number, z: number, u: number, v: number, w: number): Ray3d;
     static readonly plane3dByOriginAndUnitNormal: Plane3dByOriginAndUnitNormal[];
@@ -92,7 +115,7 @@ export declare class Sample {
     /**
      * Return a single rigid transform with all terms nonzero.
      */
-    static createMessyRigidTransform(): Transform;
+    static createMessyRigidTransform(fixedPoint?: Point3d): Transform;
     static createRigidAxes(): Matrix3d[];
     static createMatrix4ds(includeIrregular?: boolean): Matrix4d[];
     static createMap4ds(): Map4d[];
@@ -210,5 +233,16 @@ export declare class Sample {
     static createTriangleWithSplitEdges(numSplitAB: number, numSplitBC: number, numSplitCA: number, wrap?: boolean, xyzA?: Point3d, xyzB?: Point3d, xyzC?: Point3d): Point3d[];
     static createCenteredBoxEdges(ax?: number, ay?: number, az?: number, cx?: number, cy?: number, cz?: number, geometry?: GeometryQuery[]): GeometryQuery[];
     static createSimpleTransitionSpirals(): TransitionSpiral3d[];
+    static createTwistingBezier(order: number, x0: number, y0: number, r: number, thetaStepper: AngleSweep, phiStepper: AngleSweep, weightInterval?: Segment1d): CurvePrimitive | undefined;
+    /**
+     * Create various curve chains with distance indexing.
+     * * LineSegment
+     * * CircularArc
+     * * LineString
+     * * order 3 bspline
+     * * order 4 bspline
+     * * alternating lines and arcs
+     */
+    static createCurveChainWithDistanceIndex(): CurveChainWithDistanceIndex[];
 }
 //# sourceMappingURL=GeometrySamples.d.ts.map

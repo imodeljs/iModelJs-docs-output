@@ -1,17 +1,19 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module CartesianGeometry */
-const PointVector_1 = require("../PointVector");
-const Range_1 = require("../Range");
-const Geometry_1 = require("../Geometry");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
+const Range_1 = require("../geometry3d/Range");
+const Angle_1 = require("../geometry3d/Angle");
 const ClipPlane_1 = require("./ClipPlane");
 const ConvexClipPlaneSet_1 = require("./ConvexClipPlaneSet");
-const PointHelpers_1 = require("../PointHelpers");
+const PointHelpers_1 = require("../geometry3d/PointHelpers");
 const CurvePrimitive_1 = require("../curve/CurvePrimitive");
-const CurveChain_1 = require("../curve/CurveChain");
+const CurveLocationDetail_1 = require("../curve/CurveLocationDetail");
+const CurveCollection_1 = require("../curve/CurveCollection");
 const LineSegment3d_1 = require("../curve/LineSegment3d");
 const Arc3d_1 = require("../curve/Arc3d");
 const LineString3d_1 = require("../curve/LineString3d");
@@ -231,7 +233,7 @@ class AlternatingCCTreeBuilder {
                 let k1 = stack[i + 1];
                 if (k1 === this.indexAfter(k0)) {
                     // two original points in sequence -- need a clip plane right here!!!
-                    const plane = ClipPlane_1.ClipPlane.createEdgeAndUpVector(points[k0], points[k1], PointVector_1.Vector3d.create(0, 0, 1), Geometry_1.Angle.createRadians(0));
+                    const plane = ClipPlane_1.ClipPlane.createEdgeAndUpVector(points[k0], points[k1], Point3dVector3d_1.Vector3d.create(0, 0, 1), Angle_1.Angle.createRadians(0));
                     if (plane !== undefined) {
                         if (isPositiveArea)
                             plane.negateInPlace();
@@ -392,7 +394,7 @@ class AlternatingCCTreeNodeCurveClipper {
             const f1 = interval.high;
             const xyz0 = curve.fractionToPoint(f0);
             const xyz1 = curve.fractionToPoint(f1);
-            insideIntervals.push(CurvePrimitive_1.CurveLocationDetailPair.createDetailRef(CurvePrimitive_1.CurveLocationDetail.createCurveFractionPoint(curve, f0, xyz0), CurvePrimitive_1.CurveLocationDetail.createCurveFractionPoint(curve, f1, xyz1)));
+            insideIntervals.push(CurveLocationDetail_1.CurveLocationDetailPair.createDetailRef(CurveLocationDetail_1.CurveLocationDetail.createCurveFractionPoint(curve, f0, xyz0), CurveLocationDetail_1.CurveLocationDetail.createCurveFractionPoint(curve, f1, xyz1)));
         }
         this.popSegmentFrame();
     }
@@ -404,7 +406,7 @@ class AlternatingCCTreeNodeCurveClipper {
         for (const cp of curve.children) {
             if (cp instanceof CurvePrimitive_1.CurvePrimitive)
                 this.appendSingleClipPrimitive(root, cp, insideIntervals, outsideIntervals);
-            else if (cp instanceof CurveChain_1.CurveCollection)
+            else if (cp instanceof CurveCollection_1.CurveCollection)
                 this.appendCurveCollectionClip(root, cp, insideIntervals, outsideIntervals);
         }
     }

@@ -1,7 +1,7 @@
 /** @module Topology */
 import { HalfEdge, HalfEdgeGraph } from "./Graph";
-import { XAndY } from "../PointVector";
-import { GrowableXYZArray } from "../GrowableArray";
+import { XAndY } from "../geometry3d/XYZProps";
+import { GrowableXYZArray } from "../geometry3d/GrowableArray";
 export declare class Triangulator {
     private static _returnGraph;
     /** Given the six nodes that make up two bordering triangles, "pinch" and relocate the nodes to flip them */

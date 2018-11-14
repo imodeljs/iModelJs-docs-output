@@ -1,4 +1,4 @@
-import { Plane3dByOriginAndVectors } from "../AnalyticGeometry";
+import { Plane3dByOriginAndVectors } from "../geometry3d/Plane3dByOriginAndVectors";
 /** base class for Newton iterations in various dimensions.
  * Dimension-specific classes carry all dimension-related data and answer generalized queries
  * from this base class.

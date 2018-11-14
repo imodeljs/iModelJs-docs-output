@@ -1,4 +1,4 @@
-import { GrowableFloat64Array } from "../GrowableArray";
+import { GrowableFloat64Array } from "../geometry3d/GrowableArray";
 import { Degree3PowerPolynomial, Degree4PowerPolynomial } from "./Polynomials";
 /**
  * * BezierCoffs is an abstract base class for one-dimensional (u to f(u)) Bezier polynomials.
@@ -19,6 +19,12 @@ export declare abstract class BezierCoffs {
      * * If `data` is a number array, its values are copied.
      */
     constructor(data: number | Float64Array | number[]);
+    /**
+     * * Ensure the coefficient array size matches order.  (Reallocate as needed)
+     * * fill with zeros.
+     * @param order required order
+     */
+    protected allocateToOrder(order: number): void;
     /** evaluate the basis fucntions at specified u.
      * @param u bezier parameter for evaluation.
      * @param buffer optional destination for values.   ASSUMED large enough for order.
@@ -79,11 +85,69 @@ export declare abstract class BezierCoffs {
     zero(): void;
     /** Subdivide -- write results into caller-supplied bezier coffs (which must be of the same order) */
     subdivide(u: number, left: BezierCoffs, right: BezierCoffs): boolean;
+    /** Return the maximum absolute difference between coefficients of two sets of BezierCoffs */
     static maxAbsDiff(dataA: BezierCoffs, dataB: BezierCoffs): number | undefined;
 }
 /**
- * * The Bezier class is an one-dimensional bezier polynomial with no particular order.
- * * More specific classes -- Order2Bezier, Order3Bezier, Order4Bezier -- should be used when a fixed order is known.
+ * Static methods to operate on univariate beizer polynomials, with coefficients in simple Float64Array or as components of blocked arrays.
+ */
+export declare class BezierPolynomialAlgebra {
+    /**
+     * * Univariate bezierA has its coefficients at offset indexA in each block within the array of blocks.
+     * * Symbolically:   `product(s) += scale * (constA - polynomialA(s)) *polynomialB(s)`
+     * * Where coefficients of polynomialA(s) are in column indexA and coefficients of polynominalB(s) are differences within column indexB.
+     * * Treating data as 2-dimensional array:   `product = sum (iA) sum (iB)    (constA - basisFunction[iA} data[indexA][iA]) * basisFunction[iB] * (dataOrder-1)(data[iB + 1][indexB] - data[iB][indexB])`
+     * * Take no action if product length is other than `dataOrder + dataOrder - 2`
+     */
+    static accumulateScaledShiftedComponentTimesComponentDelta(product: Float64Array, data: Float64Array, dataBlockSize: number, dataOrder: number, scale: number, indexA: number, constA: number, indexB: number): void;
+    /**
+     * * Univariate bezierA has its coefficients at offset indexA in each block within the array of blocks.
+     * * Univariate bezierB has its coefficients at offset indexB in each block within the array of blocks.
+     * * return the sum coefficients for `constA * polynominalA + constB * polynomialB`
+     * * Symbolically:   `product(s) = (constA * polynomialA(s) + constB * polynominalB(s)`
+     * * The two polyomials are the same order, so this just direct sum of scaled coefficients.
+     *
+     * * Take no action if product length is other than `dataOrder + dataOrder - 2`
+     */
+    static scaledComponentSum(sum: Float64Array, data: Float64Array, dataBlockSize: number, dataOrder: number, indexA: number, constA: number, indexB: number, constB: number): void;
+    /**
+     * * Univariate bezier has its coefficients at offset index in each block within the array of blocks.
+     * * return the (dataOrder - 1) differences,
+     *
+     * * Take no action if difference length is other than `dataOrder - 1`
+     */
+    static componentDifference(difference: Float64Array, data: Float64Array, dataBlockSize: number, dataOrder: number, index: number): void;
+    /**
+     * * Univariate bezierA has its coefficients in dataA[i]
+     * * Univariate bezierB has its coefficients in dataB[i]
+     * * return the product coefficients for polynominalA(s) * polynomialB(s) * scale
+     * * Take no action if product length is other than `orderA + orderB - 1`
+     */
+    static accumulateProduct(product: Float64Array, dataA: Float64Array, dataB: Float64Array, scale?: number): void;
+    /**
+     * * Univariate bezierA has its coefficients in dataA[i]
+     * * Univariate bezierB has its coefficients in dataB[i]
+     * * return the product coefficients for polynominalADifferencs(s) * polynomialB(s) * scale
+     * * Take no action if product length is other than `orderA + orderB - 2`
+     */
+    static accumulateProductWithDifferences(product: Float64Array, dataA: Float64Array, dataB: Float64Array, scale?: number): void;
+    /**
+     * * Univariate bezier has its coefficients in data[i]
+     * * return the diference data[i+1]-data[i] in difference.
+     * * Take no action if product length is other than `orderA + orderB - 1`
+     */
+    static univariateDifference(data: Float64Array, difference: Float64Array): void;
+    /**
+     * * Univariate bezierA has its coefficients in dataA[i]
+     * * Univariate bezierB has its coefficients in resultB[i]
+     * * add (with no scaling) bezierA to bezierB
+     * * Take no action if resultB.length is other than dataA.length.
+     */
+    static accumulate(dataA: Float64Array, orderA: number, resultB: Float64Array): void;
+}
+/**
+ * * The UnivariateBezier class is a univariate bezier polynomial with no particular order.
+ * * More specific classes -- Order2Bezier, Order3Bezier, Order4Bezier -- can be used when a fixed order is known and the more specialized implementations are appropriate.
  * * When working with xy and xyz curves whose order is the common 2,3,4, various queries (e.g. project point to curve)
  *     generate higher order one-dimensional bezier polynomials with order that is a small multiple of the
  *     curve order.   Hence those polynomials commonly reach degree 8 to 12.
@@ -92,28 +156,42 @@ export declare abstract class BezierCoffs {
  *     Pascal triangle coefficients becomes inaccurate because IEEE doubles cannot represent integers that
  *     large.
  */
-export declare class Bezier extends BezierCoffs {
+export declare class UnivariateBezier extends BezierCoffs {
     private _order;
     readonly order: number;
-    constructor(order: number);
+    constructor(data: number | Float64Array | number[]);
+    /** (Re) initialize with given order (and all coffs zero) */
+    allocateOrder(order: number): void;
     /** Return a copy, optionally with coffs array length reduced to actual order. */
-    clone(compressToMinimalAllocation?: boolean): Bezier;
+    clone(compressToMinimalAllocation?: boolean): UnivariateBezier;
     /** Create a new bezier which is a copy of other.
      * * Note that `other` may be a more specialized class such as `Order2Bezier`, but the result is general `Bezier`
      * @param other coefficients to copy.
      */
-    static create(other: BezierCoffs): Bezier;
+    static create(other: BezierCoffs): UnivariateBezier;
     /**
      * copy coefficients into a new bezier.
      * @param coffs coefficients for bezier
      */
-    static createCoffs(coffs: number[]): Bezier;
+    static createCoffs(data: number | number[] | Float64Array): UnivariateBezier;
+    /**
+     * copy coefficients into a new bezier.
+     * * if result is omitted, a new UnivariateBezier is allocated and returned.
+     * * if result is present but has other order, its coefficients are reallocated
+     * * if result is present and has matching order, the values are replace.
+     * @param coffs coefficients for bezier
+     * @param index0 first index to access
+     * @param order number of coefficients, i.e. order for the result
+     * @param result optional result.
+     *
+     */
+    static createArraySubset(coffs: number[] | Float64Array, index0: number, order: number, result?: UnivariateBezier): UnivariateBezier;
     /**
      * Create a product of 2 bezier polynomials.
      * @param bezierA
      * @param bezierB
      */
-    static createProduct(bezierA: BezierCoffs, bezierB: BezierCoffs): Bezier;
+    static createProduct(bezierA: BezierCoffs, bezierB: BezierCoffs): UnivariateBezier;
     /**
      * Add a sqaured bezier polynomial (given as simple coffs)
      * @param coffA coefficients of bezier to square
@@ -135,8 +213,22 @@ export declare class Bezier extends BezierCoffs {
      * @param numPerBlock
      */
     private static sumWeightedBlocks;
-    sumBasisFunctions(u: number, polygon: Float64Array, n: number, result?: Float64Array): Float64Array;
-    sumBasisFunctionDerivatives(u: number, polygon: Float64Array, n: number, result?: Float64Array): Float64Array;
+    /**
+     * Given (multidimensional) control points, sum the control points weighted by the basis fucntion values at parameter u.
+     * @param u bezier parameter
+     * @param polygon Array with coefficients in blocks.
+     * @param blockSize size of blocks
+     * @param result `blockSize` summed values.
+     */
+    sumBasisFunctions(u: number, polygon: Float64Array, blockSize: number, result?: Float64Array): Float64Array;
+    /**
+     * Given (multidimensional) control points, sum the control points weighted by the basis function derivative values at parameter u.
+     * @param u bezier parameter
+     * @param polygon Array with coefficients in blocks.
+     * @param blockSize size of blocks
+     * @param result `blockSize` summed values.
+     */
+    sumBasisFunctionDerivatives(u: number, polygon: Float64Array, blockSize: number, result?: Float64Array): Float64Array;
     /**
      * Evaluate the bezier function at a parameter value.  (i.e. summ the basis functions times coefficients)
      * @param u parameter for evaluation
@@ -171,7 +263,7 @@ export declare class Bezier extends BezierCoffs {
      * @returns final fraction of iteration if converged.  undefined if iteration failed to converge.
      */
     runNewton(startFraction: number, tolerance?: number): number | undefined;
-    static deflateRoots01(bezier: Bezier): number[] | undefined;
+    static deflateRoots01(bezier: UnivariateBezier): number[] | undefined;
 }
 /** Bezier polynomial specialized to order 2 (2 coefficients, straight line function) */
 export declare class Order2Bezier extends BezierCoffs {

@@ -1,8 +1,8 @@
 /** @module Solid */
-import { Vector3d } from "../PointVector";
-import { Transform } from "../Transform";
-import { CurveCollection } from "../curve/CurveChain";
-import { Ray3d } from "../AnalyticGeometry";
+import { Vector3d } from "../geometry3d/Point3dVector3d";
+import { Transform } from "../geometry3d/Transform";
+import { CurveCollection } from "../curve/CurveCollection";
+import { Ray3d } from "../geometry3d/Ray3d";
 import { PolyfaceBuilder } from "../polyface/PolyfaceBuilder";
 import { StrokeOptions } from "../curve/StrokeOptions";
 /**

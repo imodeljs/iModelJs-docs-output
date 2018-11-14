@@ -1,13 +1,13 @@
 /** @module Solid */
-import { Point3d, Vector3d } from "../PointVector";
-import { Range3d } from "../Range";
-import { Transform } from "../Transform";
-import { GeometryQuery } from "../curve/CurvePrimitive";
-import { Angle } from "../Geometry";
-import { GeometryHandler, UVSurface } from "../GeometryHandler";
+import { Point3d, Vector3d } from "../geometry3d/Point3dVector3d";
+import { Range3d } from "../geometry3d/Range";
+import { Transform } from "../geometry3d/Transform";
+import { GeometryQuery } from "../curve/GeometryQuery";
+import { Angle } from "../geometry3d/Angle";
+import { GeometryHandler, UVSurface } from "../geometry3d/GeometryHandler";
 import { SolidPrimitive } from "./SolidPrimitive";
-import { CurveCollection } from "../curve/CurveChain";
-import { Plane3dByOriginAndVectors } from "../AnalyticGeometry";
+import { CurveCollection } from "../curve/CurveCollection";
+import { Plane3dByOriginAndVectors } from "../geometry3d/Plane3dByOriginAndVectors";
 /**
  * the stored form of the torus pipe is oriented for positive volume:
  *

@@ -1,14 +1,15 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Topology */
 const Geometry_1 = require("../Geometry");
-const PointVector_1 = require("../PointVector");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
 const LineSegment3d_1 = require("../curve/LineSegment3d");
 const Graph_1 = require("./Graph");
-const GrowableArray_1 = require("../GrowableArray");
+const GrowableArray_1 = require("../geometry3d/GrowableArray");
 const ClusterableArray_1 = require("../numerics/ClusterableArray");
 class SweepEvent {
     constructor(node0, node1) {
@@ -118,11 +119,11 @@ class Merger {
             let theta0 = Math.atan2((segment.point1Ref.y - segment.point0Ref.y), (segment.point1Ref.x - segment.point0Ref.x));
             if (theta0 < 0)
                 theta0 = theta0 + 2 * Math.PI;
-            const point0 = PointVector_1.Point3d.create(segment.point0Ref.x, segment.point0Ref.y, theta0);
+            const point0 = Point3dVector3d_1.Point3d.create(segment.point0Ref.x, segment.point0Ref.y, theta0);
             let theta1 = Math.atan2(-(segment.point1Ref.y - segment.point0Ref.y), -(segment.point1Ref.x - segment.point0Ref.x));
             if (theta1 < 0)
                 theta1 = theta1 + 2 * Math.PI;
-            const point1 = PointVector_1.Point3d.create(segment.point1Ref.x, segment.point1Ref.y, theta1);
+            const point1 = Point3dVector3d_1.Point3d.create(segment.point1Ref.x, segment.point1Ref.y, theta1);
             const node0 = returnGraph.createEdgeXYZXYZ(point0.x, point0.y, point0.z, idxCounter, point1.x, point1.y, point1.z, idxCounter + 1);
             const node1 = node0.edgeMate;
             idxCounter += 2;
@@ -149,7 +150,7 @@ class Merger {
         }
         const x = (b2 * c1 - b1 * c2) / det;
         const y = (a1 * c2 - a2 * c1) / det;
-        const intersection = PointVector_1.Point3d.create(x, y);
+        const intersection = Point3dVector3d_1.Point3d.create(x, y);
         if (checkInBounds) {
             // Ensure the point is within bounds of both segments
             if ((intersection.x >= Merger.getLeftValueOfSegment(seg1) && intersection.x <= Merger.getRightValueOfSegment(seg1) &&

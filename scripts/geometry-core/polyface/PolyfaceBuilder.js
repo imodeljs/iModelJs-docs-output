@@ -1,21 +1,24 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Polyface */
 // import { Geometry, AxisOrder, Angle, AngleSweep, BSIJSONValues } from "./Geometry";
 const Polyface_1 = require("./Polyface");
-const GrowableArray_1 = require("../GrowableArray");
-const PointVector_1 = require("../PointVector");
-const Transform_1 = require("../Transform");
+const GrowableArray_1 = require("../geometry3d/GrowableArray");
+const Point2dVector2d_1 = require("../geometry3d/Point2dVector2d");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
+const Transform_1 = require("../geometry3d/Transform");
+const Matrix3d_1 = require("../geometry3d/Matrix3d");
 const BoxTopology_1 = require("./BoxTopology");
 const StrokeOptions_1 = require("../curve/StrokeOptions");
-const CurveChain_1 = require("../curve/CurveChain");
+const CurveCollection_1 = require("../curve/CurveCollection");
 const Geometry_1 = require("../Geometry");
 const LineString3d_1 = require("../curve/LineString3d");
 const Graph_1 = require("../topology/Graph");
-const GeometryHandler_1 = require("../GeometryHandler");
+const GeometryHandler_1 = require("../geometry3d/GeometryHandler");
 /**
  *
  * * Simple construction for strongly typed GeometryQuery objects:
@@ -199,7 +202,7 @@ class PolyfaceBuilder extends GeometryHandler_1.NullGeometryHandler {
     getUVTransformForTriangleFacet(pointA, pointB, pointC) {
         const vectorAB = pointA.vectorTo(pointB);
         const vectorAC = pointA.vectorTo(pointC);
-        const unitAxes = Transform_1.Matrix3d.createRigidFromColumns(vectorAB, vectorAC, 0 /* XYZ */);
+        const unitAxes = Matrix3d_1.Matrix3d.createRigidFromColumns(vectorAB, vectorAC, 0 /* XYZ */);
         const localToWorld = Transform_1.Transform.createOriginAndMatrix(pointA, unitAxes);
         return localToWorld.inverse();
     }
@@ -208,7 +211,7 @@ class PolyfaceBuilder extends GeometryHandler_1.NullGeometryHandler {
         const vectorAB = pointA.vectorTo(pointB);
         const vectorAC = pointA.vectorTo(pointC);
         let normal = vectorAB.crossProduct(vectorAC).normalize();
-        normal = normal ? normal : PointVector_1.Vector3d.create();
+        normal = normal ? normal : Point3dVector3d_1.Vector3d.create();
         return normal;
     }
     // ###: Consider case where normals will be reversed and point through the other end of the facet
@@ -233,13 +236,13 @@ class PolyfaceBuilder extends GeometryHandler_1.NullGeometryHandler {
             else {
                 const paramTransform = this.getUVTransformForTriangleFacet(points[0], points[1], points[2]);
                 if (paramTransform === undefined) {
-                    param0 = param1 = param2 = param3 = PointVector_1.Point2d.createZero();
+                    param0 = param1 = param2 = param3 = Point2dVector2d_1.Point2d.createZero();
                 }
                 else {
-                    param0 = PointVector_1.Point2d.createFrom(paramTransform.multiplyPoint3d(points[0]));
-                    param1 = PointVector_1.Point2d.createFrom(paramTransform.multiplyPoint3d(points[1]));
-                    param2 = PointVector_1.Point2d.createFrom(paramTransform.multiplyPoint3d(points[2]));
-                    param3 = PointVector_1.Point2d.createFrom(paramTransform.multiplyPoint3d(points[3]));
+                    param0 = Point2dVector2d_1.Point2d.createFrom(paramTransform.multiplyPoint3d(points[0]));
+                    param1 = Point2dVector2d_1.Point2d.createFrom(paramTransform.multiplyPoint3d(points[1]));
+                    param2 = Point2dVector2d_1.Point2d.createFrom(paramTransform.multiplyPoint3d(points[2]));
+                    param3 = Point2dVector2d_1.Point2d.createFrom(paramTransform.multiplyPoint3d(points[3]));
                 }
             }
         }
@@ -366,9 +369,9 @@ class PolyfaceBuilder extends GeometryHandler_1.NullGeometryHandler {
             }
             else { // Compute params
                 const paramTransform = this.getUVTransformForTriangleFacet(points[0], points[1], points[2]);
-                idx0 = this._polyface.addParam(PointVector_1.Point2d.createFrom(paramTransform ? paramTransform.multiplyPoint3d(points[0]) : undefined));
-                idx1 = this._polyface.addParam(PointVector_1.Point2d.createFrom(paramTransform ? paramTransform.multiplyPoint3d(points[1]) : undefined));
-                idx2 = this._polyface.addParam(PointVector_1.Point2d.createFrom(paramTransform ? paramTransform.multiplyPoint3d(points[2]) : undefined));
+                idx0 = this._polyface.addParam(Point2dVector2d_1.Point2d.createFrom(paramTransform ? paramTransform.multiplyPoint3d(points[0]) : undefined));
+                idx1 = this._polyface.addParam(Point2dVector2d_1.Point2d.createFrom(paramTransform ? paramTransform.multiplyPoint3d(points[1]) : undefined));
+                idx2 = this._polyface.addParam(Point2dVector2d_1.Point2d.createFrom(paramTransform ? paramTransform.multiplyPoint3d(points[2]) : undefined));
             }
             this.addIndexedTriangleParamIndexes(idx0, idx1, idx2);
         }
@@ -510,7 +513,7 @@ class PolyfaceBuilder extends GeometryHandler_1.NullGeometryHandler {
         if (dataA instanceof LineString3d_1.LineString3d && dataB instanceof LineString3d_1.LineString3d) {
             this.addBetweenLineStrings(dataA, dataB, false);
         }
-        else if (dataA instanceof CurveChain_1.CurveChain && dataB instanceof CurveChain_1.CurveChain) {
+        else if (dataA instanceof CurveCollection_1.CurveChain && dataB instanceof CurveCollection_1.CurveChain) {
             const chainA = dataA.children;
             const chainB = dataB.children;
             if (chainA.length === chainB.length) {
@@ -557,8 +560,8 @@ class PolyfaceBuilder extends GeometryHandler_1.NullGeometryHandler {
     addLinearSweepLineStrings(contour, vector) {
         if (contour instanceof LineString3d_1.LineString3d) {
             const ls = contour;
-            let pointA = PointVector_1.Point3d.create();
-            let pointB = PointVector_1.Point3d.create();
+            let pointA = Point3dVector3d_1.Point3d.create();
+            let pointB = Point3dVector3d_1.Point3d.create();
             let indexA0 = 0;
             let indexA1 = 0;
             let indexB0 = 0;
@@ -576,7 +579,7 @@ class PolyfaceBuilder extends GeometryHandler_1.NullGeometryHandler {
                 indexB0 = indexB1;
             }
         }
-        else if (contour instanceof CurveChain_1.CurveChain) {
+        else if (contour instanceof CurveCollection_1.CurveChain) {
             for (const ls of contour.children) {
                 this.addLinearSweepLineStrings(ls, vector);
             }
@@ -754,7 +757,7 @@ class PolyfaceBuilder extends GeometryHandler_1.NullGeometryHandler {
         let indexSwap;
         index0.ensureCapacity(numU);
         index1.ensureCapacity(numU);
-        const xyz = PointVector_1.Point3d.create();
+        const xyz = Point3dVector3d_1.Point3d.create();
         const du = 1.0 / numU;
         const dv = 1.0 / numV;
         for (let v = 0; v <= numV; v++) {
@@ -773,7 +776,7 @@ class PolyfaceBuilder extends GeometryHandler_1.NullGeometryHandler {
                     index1.push(this.findOrAddPoint(xyz));
                 }
                 if (this._options.needParams) {
-                    this._polyface.addParam(new PointVector_1.Point2d(uFrac, vFrac));
+                    this._polyface.addParam(new Point2dVector2d_1.Point2d(uFrac, vFrac));
                 }
             }
             if (createFanInCaps && (v === 0 || v === numV)) {
@@ -796,7 +799,7 @@ class PolyfaceBuilder extends GeometryHandler_1.NullGeometryHandler {
         index1.clear();
     }
 }
-PolyfaceBuilder._workPointFindOrAdd = PointVector_1.Point3d.create();
+PolyfaceBuilder._workPointFindOrAdd = Point3dVector3d_1.Point3d.create();
 PolyfaceBuilder._index0 = new GrowableArray_1.GrowableFloat64Array();
 PolyfaceBuilder._index1 = new GrowableArray_1.GrowableFloat64Array();
 exports.PolyfaceBuilder = PolyfaceBuilder;

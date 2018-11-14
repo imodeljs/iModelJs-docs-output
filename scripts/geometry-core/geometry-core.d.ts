@@ -1,7 +1,7 @@
 /** @module Utility */
 /**
  * @docs-package-description
- * The geometry-core package contains classes for workiing with CAD geometry:  points, vectors, curves, surfaces, and analytic solids
+ * The geometry-core package contains classes for working with CAD geometry:  points, vectors, curves, surfaces, and analytic solids
  */
 /**
  * @docs-group-description CartesianGeometry
@@ -20,11 +20,11 @@
  * * Angles
  * * * Angle -- a strongly typed angle object whose method names make it clear whether input and outputs are degrees or radians.
  * * * AngleSweep -- an angular interval
- * * * YawPitchAndRollAngles -- 3 angles that define a rotated coordinte system.
+ * * * YawPitchAndRollAngles -- 3 angles that define a rotated coordinate system.
  * * Utility classes
  * * * FrameBuilder -- construction of coordinate frames from mixed data sources.
  * * * ClipPlane -- a single plane
- * * * ConvexClipPlaneSet -- an array of planes bounding a convex volumne
+ * * * ConvexClipPlaneSet -- an array of planes bounding a convex volume
  * * * ClipPlaneSet -- an array of ConvexClipPlaneSet, defining the union of their volumes
  * * * Constant -- various numeric values exported as readonly constants
  */
@@ -35,7 +35,7 @@
  * * * GrowableArray -- A carrier for a Float64Array, with methods that hide reallocation of the underlying array as contents are added.
  * * * Point2dArray, Point3dArray, Point4dArray, Vector3dArray -- miscellaneous operations on arrays of 2d and 3d points.
  * * Interfaces
- * * * GeometryHandler -- a double-dispatch protocal used for efficient implementation of algorithms that work on many geometry types.
+ * * * GeometryHandler -- a double-dispatch protocol used for efficient implementation of algorithms that work on many geometry types.
  *
  */
 /**
@@ -79,7 +79,7 @@
  * * Sphere -- a sphere
  * * Cone -- a cone or cylinder
  * * TorusPipe -- a pipe elbow
- * * LinearSweep -- a linar sweep of a base contour
+ * * LinearSweep -- a linear sweep of a base contour
  * * RotationalSweep -- a rotational sweep of a base contour
  * * RuledSweep -- two or more similarly structured contours joined by linear rule lines.
  */
@@ -93,13 +93,26 @@
  * @docs-group-description Topology
  * The Topology classes provide adjacency structures used in triangulations.
  */
-export * from "./PointVector";
-export * from "./PointHelpers";
+export * from "./geometry3d/Point2dVector2d";
+export * from "./geometry3d/Point3dVector3d";
+export * from "./geometry3d/XYZProps";
+export * from "./geometry3d/PointHelpers";
+export * from "./geometry3d/Transform";
+export * from "./geometry3d/Matrix3d";
+export * from "./geometry3d/Range";
+export * from "./geometry3d/GrowableArray";
+export * from "./geometry3d/FrameBuilder";
+export * from "./geometry3d/GeometryHandler";
+export * from "./geometry3d/IndexedXYZCollection";
+export * from "./geometry3d/OrderedRotationAngles";
+export * from "./geometry3d/Ray3d";
+export * from "./geometry3d/Plane3dByOriginAndUnitNormal";
+export * from "./geometry3d/Plane3dByOriginAndVectors";
 export * from "./Geometry";
-export * from "./Transform";
-export * from "./Range";
+export * from "./geometry3d/Angle";
+export * from "./geometry3d/YawPitchRollAngles";
+export * from "./geometry3d/AngleSweep";
 export * from "./Constant";
-export * from "./GrowableArray";
 export * from "./clipping/ClipPlane";
 export * from "./clipping/ConvexClipPlaneSet";
 export * from "./clipping/UnionOfConvexClipPlaneSets";
@@ -107,8 +120,11 @@ export * from "./clipping/ClipPrimitive";
 export * from "./clipping/ClipVector";
 export * from "./clipping/ClipUtils";
 export * from "./numerics/ConvexPolygon2d";
-export * from "./numerics/Geometry4d";
-export * from "./numerics/Moments";
+export * from "./geometry4d/PlaneByOriginAndVectors4d";
+export * from "./geometry4d/Point4d";
+export * from "./geometry4d/Matrix4d";
+export * from "./geometry4d/Map4d";
+export * from "./geometry4d/MomentData";
 export * from "./numerics/Newton";
 export * from "./numerics/Complex";
 export * from "./numerics/Polynomials";
@@ -117,9 +133,17 @@ export * from "./numerics/Range1dArray";
 export * from "./numerics/TriDiagonalSystem";
 export * from "./curve/Arc3d";
 export * from "./curve/ConstructCurveBetweenCurves";
+export * from "./curve/CurveCollection";
 export * from "./curve/CurveChain";
+export * from "./curve/Loop";
+export * from "./curve/ParityRegion";
+export * from "./curve/Path";
+export * from "./curve/UnionRegion";
 export * from "./curve/CurveCurveIntersectXY";
 export * from "./curve/CurvePrimitive";
+export * from "./curve/CurveLocationDetail";
+export * from "./curve/CoordinateXYZ";
+export * from "./curve/GeometryQuery";
 export * from "./curve/CurveProcessor";
 export * from "./curve/LineSegment3d";
 export * from "./curve/LineString3d";
@@ -136,6 +160,8 @@ export * from "./solid/Sphere";
 export * from "./solid/SweepContour";
 export * from "./solid/TorusPipe";
 export * from "./bspline/BSplineCurve";
+export * from "./bspline/BSpline1dNd";
+export * from "./bspline/BSplineCurve3dH";
 export * from "./bspline/BSplineSurface";
 export * from "./bspline/KnotVector";
 export * from "./polyface/BoxTopology";

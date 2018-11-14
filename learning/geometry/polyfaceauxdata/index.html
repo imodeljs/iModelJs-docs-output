@@ -47,87 +47,163 @@
 
         <header id="main-header">
             <div class='nav-header-container'>
-                <nav class="navbar nav-main-header navbar-expand-lg fixed-top navbar-light pb-0">
+                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
                     <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-                        <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo-small" class="site-logo-small" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-icon.svg" style="display:none;"/> 
                     </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar5">
-                        <span class="navbar-toggler-icon"></span>
+                    <button class="navbar-toggler no-user-select mr-auto" type="button" data-toggle="collapse" data-target="#navbar5">
+                        <span class="navbar-toggler-header"></span>
                     </button>
+                    <ul class="navbar-nav ml-auto pr-0 nav-search">
+                        <span class='search-bar'>
+                          <li>
+                            <div id='search-container'>
+                            </div>
+                          </li>
+                          <script>
+                            (function() {
+                              var cx = '000629069474334212860:yxwzhn4umym';
+                              var gcse = document.createElement('script');
+                              gcse.type = 'text/javascript';
+                              gcse.async = true;
+                              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                              var s = document.getElementsByTagName('script')[0];
+                              s.parentNode.insertBefore(gcse, s);
+                            })();
+                          </script>
+                          <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+                        </span>
+                    </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
                                 <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">Change History</a></li>
-                        </ul>
-                        <ul class="navbar-nav ml-auto">
-                            <span class='search-bar'>
-                              <li>
-                                <div id='search-container'>
-                                </div>
-                              </li>
-                              <script>
-                                (function() {
-                                  var cx = '000629069474334212860:yxwzhn4umym';
-                                  var gcse = document.createElement('script');
-                                  gcse.type = 'text/javascript';
-                                  gcse.async = true;
-                                  gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-                                  var s = document.getElementsByTagName('script')[0];
-                                  s.parentNode.insertBefore(gcse, s);
-                                })();
-                              </script>
-                              <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
-                            </span>
                         </ul>
                     </div>
                 </nav>
             </div>
         </header>
 <div id='main-wrapper'>
-    <div id='table-of-contents'>
-        <ul id='main-navigation-list'>
-            <html><head></head><body><h3 id="the imodel.js library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModel.js Library</a></h3>
-        <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
-        </ul>
-        <hr>
-        <p>&#xA0;</p>
-        <h3 id="helpful links">Helpful links</h3>
-        <ul>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
-        <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
-        </ul>
-        </body></html>
-        </ul>    </div>
-    <div class='documentation-main'>
+    <nav id='sidebar'>
+        <div id='table-of-contents'>
+            <div id="dismiss">
+                <i class="icon icon-chevron-left no-user-select"></i>
+            </div>
+            <hr class='sm-only'>
+            <ul id='main-navigation-list'>
+                <html><head></head><body><h3 id="the imodel.js library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModel.js Library</a></h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
+    </ul>
+    <hr>
+    <p>&#xA0;</p>
+    <h3 id="helpful links">Helpful links</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
+    </ul>
+    </body></html>
+            </ul>
+        </div>
+    </nav>    <div class='documentation-main'>
         <article id="main" name="main-content">
-            <div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/">geometry</a> > PolyfaceAuxData</div>
+            <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/">geometry</a> > PolyfaceAuxData</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/geometry/PolyfaceAuxData.md">Edit this page</a></div>
             <h1 id="polyface analytical data visualization">Polyface Analytical Data Visualization</h1>
-<p>The <code>PolyfaceAuxData</code> structure contains one or more analytical data channels for each vertex of a <code>Polyface</code>.  Typically a <code>Polyface</code> will contain only vertex data required for its basic display,the vertex position, normal and possibly texture parameter.  The <code>PolyfaceAuxData</code> structure contains supplemental data that is generally computed in an analysis program or other external data source.  This can be scalar data used to either overide the vertex colors through <em>Thematic Colorization</em> or XYZ data used to deform the mesh by adjusting the vertex postions or normals.</p>
+<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyfaceauxdata'>PolyfaceAuxData</a> structure contains one or more analytical data channels for each vertex of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyface'>Polyface</a>.  Typically a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyface'>Polyface</a> will contain only vertex data required for its basic display, the vertex position, normal and possibly texture parameter.  The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyfaceauxdata'>PolyfaceAuxData</a> structure contains supplemental data that is generally computed in an analysis program or extracted from an external data source.  This can be scalar data used to overide the vertex colors through <em>Thematic Colorization</em> or XYZ data used to deform the mesh by adjusting the vertex postions. The figure below represents a cantilever beam under a single point load.  The stress is represented through thematic colorization and the deflection is also displayed (exaggerated 100X by applying <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/analysisstyle'>AnalysisStyle</a> with displacementScale: 100.</p>
+<p><img src=".././figs/PolyfaceAuxData/Cantilever.gif" alt="&gt;"></p>
 <p>Analytical Data Channels.
--
-The <code>PolyfaceAuxData</code> structure contains an array of <code>Polyface::AuxChannel</code> structures that may each represent a separate quantity (temperature, stress, displacement etc.).  A channel will include one or more input values and a set of vertex values for each input value.  If more than one input value is included then it is possible to animate the visualization as the input changes.  The input would typically be either elapsed time or an external input such as load.  Each input channel is independent and only a single channel of a type (scalar, displacement or normal) may be displayed at a time.</p>
+-</p>
+<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyfaceauxdata'>PolyfaceAuxData</a> structure contains an array of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/auxchannel'>AuxChannel</a> structures that may each represent a separate quantity (temperature, stress, displacement etc.).  A channel will include one or more input values and a set of vertex values for each input value.  If more than one input value is included then it is possible to animate the visualization as the input changes.  The input would typically be either elapsed time or an external input such as load.  Each input channel is independent and only a single channel of a type (scalar, displacement or normal) may be displayed at a time.</p>
 <p>Thematic Colorization
--
-Visualization of scalar vertex data is achieved by using the vertex values to map into a color gradient.  The gradients used to colorize the data are stored in view  <em>DisplayStyles</em> so the same data can be viewed with different color schemes or gradient styles.</p>
+-</p>
+<p>Visualization of scalar vertex data is achieved by using the values to map into a color gradient. The gradients can be controlled through the Gradient.ThematicSettings member of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/analysisstyle'>AnalysisStyle</a>.</p>
 <p>Display Styles and Analysis Style.
-  -
-In IModelJS a <code>DisplayStyle</code> contains a group of display settings.  A single <code>DisplayStyle</code> can be shared by on or more views.  The <code>AnalysisStyle</code> member of <code>DisplayStyle</code> contains settings that control the display of <code>PolyfaceAuxData</code>.  An <code>AnalysisStyle</code> may include:</p>
+  -</p>
+<p>In IModelJS <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/displaystylesettings'>DisplayStyleSettings</a> contains a group of display settings.  A single <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/displaystylesettings'>DisplayStyleSettings</a> can be shared by on or more views.  The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/analysisstyle'>AnalysisStyle</a> member of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/displaystylesettings'>DisplayStyleSettings</a> contains settings that control the display of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyfaceauxdata'>PolyfaceAuxData</a>.  An <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/analysisstyle'>AnalysisStyle</a> may include:</p>
 <ul>
-<li>A single displacement channel.</li>
-<li>A single normal channel.</li>
-<li>A single scalar channel, the scalar channel range and the thematic gradient to display the scalar data (<code>Gradient.ThematicSettings</code>).</li>
+<li>A single displacement channel. A displacementScale may be included to exaggerate or attenuate the displacement.</li>
+<li>A single scalar channel, the scalar channel range and the thematic gradient to display the scalar data (<code>Gradient.ThematicSettings</code>).  In the images below the same mesh is displayed with two different <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/analysisstyle'>AnalysisStyle</a>s.</li>
 </ul>
+<hr>
+<pre><code> Scalar Height with Sea-Mountain Gradient                   Scalar Slope with Blue-Red Gradient</code></pre><p><img src=".././figs/PolyfaceAuxData/RadialWaveHeight.gif" alt="&gt;"> <img src="./figs/PolyfaceAuxData/RadialWaveSlope.gif" alt="&gt;"></p>
+<h2 class="h-example">Example<a id="example" class="heading-anchor" href="#example"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>An example creating a fictitious analytical mesh is included in the &quot;analysis-importer&quot; test application.  The application begins by creating the flat rectangular <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyface'>Polyface</a> with 100 rows and columns...</p>
+<pre class="no-line-numbers"><code class="language-typescript">    const options = StrokeOptions.createForFacets();
+    options.shouldTriangulate = true;
+    const builder = PolyfaceBuilder.create(options);
+    const nDimensions = 100;
+    const spacing = 1.0;
+
+    /** Create a simple flat mesh with 10,000 points (100x100) */
+    for (let iRow = 0; iRow &lt; nDimensions - 1; iRow++) {
+        for (let iColumn = 0; iColumn &lt; nDimensions - 1; iColumn++) {
+            const quad = [Point3d.create(iRow * spacing, iColumn * spacing, 0.0),
+            Point3d.create((iRow + 1) * spacing, iColumn * spacing, 0.0),
+            Point3d.create((iRow + 1) * spacing, (iColumn + 1) * spacing, 0.0),
+            Point3d.create(iRow * spacing, (iColumn + 1) * spacing)];
+            builder.addQuadFacet(quad);
+        }
+    }
+`</code></pre>
+<p>Once the mesh is created the scalar and displacement data is created as number arrays.  For the purpose of this example we create a zero channel so that the initial state of the mesh has no displacement and zero scalar values and then produce a scalar channels representing the displacement with a radial wave super imposed on the mesh as well as scalar channels that represent the height and slope of the mesh.  Note that a single value is pushed for scalar channel data, while the displacement requires 3 values.</p>
+<pre class="no-line-numbers"><code class="language-typescript">    const zeroScalarData = [],
+        zeroDisplacementData = [],
+        radialHeightData = [],
+        radialSlopeData = [],
+    const radius = nDimensions * spacing / 2.0;
+    const center = new Point3d(radius, radius, 0.0);
+    const maxHeight = radius / 4.0;
+    const auxChannels = [];
+
+    /** Create a radial wave - start and return to zero  */
+    for (let i = 0; i &lt; polyface.data.point.length; i++) {
+        const angle = Angle.pi2Radians * polyface.data.point.distanceIndexToPoint(i, center) / radius;
+        const height = maxHeight * Math.sin(angle);
+        const slope = Math.abs(Math.cos(angle));
+
+        zeroScalarData.push(0.0);
+        zeroDisplacementData.push(0.0);
+        zeroDisplacementData.push(0.0);
+        zeroDisplacementData.push(0.0);
+
+        radialHeightData.push(height);
+        radialSlopeData.push(slope);
+        radialDisplacementData.push(0.0);
+        radialDisplacementData.push(0.0);
+        radialDisplacementData.push(height);
+    }</code></pre>
+<p>Next we take the channel data and create an array <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/auxchanneldata'>AuxChannelData</a> entries for aach channel.   The first argument of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/auxchanneldata'>AuxChannelData</a> constructor is the &quot;input&quot; value.  This represents the external input value that produces this data.  This may be a quantity such as force in a stress analysis application or time in a simple animation.</p>
+<pre class="no-line-numbers"><code class="language-typescript">    const radialDisplacementDataVector =
+        [new AuxChannelData(0.0, zeroDisplacementData),
+        new AuxChannelData(1.0, radialDisplacementData),
+        new AuxChannelData(2.0, zeroDisplacementData)];
+    const radialHeightDataVector =
+        [new AuxChannelData(0.0, zeroScalarData),
+        new AuxChannelData(1.0, radialHeightData),
+        new AuxChannelData(2.0, zeroScalarData)];
+    const radialSlopeDataVector =
+        [new AuxChannelData(0.0, zeroScalarData),
+        new AuxChannelData(1.0, radialSlopeData),
+        new AuxChannelData(2.0, zeroScalarData)];</code></pre>
+<p>  We next create the AuxChannels.  The channel names provideed in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/auxchannel'>AuxChannel</a> constructor are used to present the channel to the user as well as keys to select the channel from <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/analysisstyle'>AnalysisStyle</a>s.</p>
+<pre class="no-line-numbers"><code class="language-typescript">    auxChannels.push(new AuxChannel(radialDisplacementDataVector, AuxChannelDataType.Vector, &quot;Radial Displacement&quot;, &quot;Radial: Time&quot;));
+    auxChannels.push(new AuxChannel(radialHeightDataVector, AuxChannelDataType.Distance, &quot;Radial Height&quot;, &quot;Radial: Time&quot;));
+    auxChannels.push(new AuxChannel(radialSlopeDataVector, AuxChannelDataType.Scalar, &quot;Radial Slope&quot;, &quot;Radial: Time&quot;));
+</code></pre>
+<p>The final step is to create <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyfaceauxdata'>PolyfaceAuxData</a> and associate it to our base `Polyface&apos;.  A set of indices is required to map the channel data values into the facets.  In our case, we have produced the channel data in parallel with the mesh points so that we can simply use point indices &quot;polyface.data.pointIndex&quot;, but this is not required and alternate indexing could also be used.  Not e that only a single index structure is supplied and shared by all channels and their data, therefore all channels data arrays must have same number of values and indexing.</p>
+<pre class="no-line-numbers"><code class="language-typescript">    polyface.data.auxData = new PolyfaceAuxData(auxChannels, polyface.data.pointIndex);</code></pre>
+<p>Run the example by entering &quot;node test-apps/analysis-importer/lib/Main.js&quot; in a command shell with CWD set to repository root.  The output is &quot;test-apps/analysis-importer/lib/output/AnalysisExample.bim&quot;.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>05 November, 2018</span>
+                <span class='date-updated'>14 November, 2018</span>
             </p>
 
             
@@ -135,8 +211,20 @@ In IModelJS a <code>DisplayStyle</code> contains a group of display settings.  A
             
             </script>        </article>
     </div>
+    <div class="overlay"></div>
     <div id='inner-table-of-contents'>
-       <!--  
+        <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#example">Example</a>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
  -->
     </div>
 </div>

@@ -1,184 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 /** @module Curve */
 const Geometry_1 = require("../Geometry");
 const BezierPolynomials_1 = require("../numerics/BezierPolynomials");
-const PointVector_1 = require("../PointVector");
-const Range_1 = require("../Range");
-const Transform_1 = require("../Transform");
-const AnalyticGeometry_1 = require("../AnalyticGeometry");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
+const Transform_1 = require("../geometry3d/Transform");
+const Matrix3d_1 = require("../geometry3d/Matrix3d");
+const Ray3d_1 = require("../geometry3d/Ray3d");
 const Newton_1 = require("../numerics/Newton");
 const Quadrature_1 = require("../numerics/Quadrature");
-/**
- * An enumeration of special conditions being described by a CurveLocationDetail.
- */
-var CurveIntervalRole;
-(function (CurveIntervalRole) {
-    /** This point is an isolated point NOT at a primary vertex. */
-    CurveIntervalRole[CurveIntervalRole["isolated"] = 0] = "isolated";
-    /**  This point is an isolated vertex hit */
-    CurveIntervalRole[CurveIntervalRole["isolatedAtVertex"] = 1] = "isolatedAtVertex";
-    /** This is the beginning of an interval */
-    CurveIntervalRole[CurveIntervalRole["intervalStart"] = 10] = "intervalStart";
-    /** This is an interior point of an interval. */
-    CurveIntervalRole[CurveIntervalRole["intervalInterior"] = 11] = "intervalInterior";
-    /** This is the end of an interval */
-    CurveIntervalRole[CurveIntervalRole["intervalEnd"] = 12] = "intervalEnd";
-})(CurveIntervalRole = exports.CurveIntervalRole || (exports.CurveIntervalRole = {}));
-/**
- * CurveLocationDetail carries point and paramter data about a point evaluated on a curve.
- */
-class CurveLocationDetail {
-    constructor() {
-        this.pointQ = PointVector_1.Point3d.createZero();
-        this.fraction = 0;
-        this.point = PointVector_1.Point3d.createZero();
-        this.vector = PointVector_1.Vector3d.unitX();
-        this.a = 0.0;
-    }
-    /** Set the (optional) intervalRole field */
-    setIntervalRole(value) {
-        this.intervalRole = value;
-    }
-    /** test if this is an isolated point. This is true if intervalRole is any of (undefined, isolated, isolatedAtVertex) */
-    get isIsolated() {
-        return this.intervalRole === undefined
-            || this.intervalRole === CurveIntervalRole.isolated
-            || this.intervalRole === CurveIntervalRole.isolatedAtVertex;
-    }
-    /** @returns Return a complete copy */
-    clone(result) {
-        if (result === this)
-            return result;
-        result = result ? result : new CurveLocationDetail();
-        result.curve = this.curve;
-        result.fraction = this.fraction;
-        result.point = this.point;
-        result.vector = this.vector;
-        result.a = this.a;
-        return result;
-    }
-    // Set the fraction, point, with optional vector and number.
-    // (curve is unchanged)
-    setFP(fraction, point, vector, a) {
-        this.fraction = fraction;
-        this.point.setFrom(point);
-        if (vector)
-            this.vector.setFrom(vector);
-        else
-            this.vector.set(0, 0, 0);
-        this.a = a ? a : 0;
-    }
-    // Set the fraction, point, and vector
-    setFR(fraction, ray, a) {
-        this.fraction = fraction;
-        this.point.setFrom(ray.origin);
-        this.vector.setFrom(ray.direction);
-        this.a = a ? a : 0;
-    }
-    /** Set the CurvePrimitive pointer, leaving all other properties untouched.
-     */
-    setCurve(curve) { this.curve = curve; }
-    /** record the distance from the CurveLocationDetail's point to the parameter point. */
-    setDistanceTo(point) {
-        this.a = this.point.distance(point);
-    }
-    /** create with a CurvePrimitive pointer but no coordinate data.
-     */
-    static create(curve, result) {
-        result = result ? result : new CurveLocationDetail();
-        result.curve = curve;
-        return result;
-    }
-    /** create with CurvePrimitive pointer, fraction, and point coordinates.
-     */
-    static createCurveFractionPoint(curve, fraction, point, result) {
-        result = result ? result : new CurveLocationDetail();
-        result.curve = curve;
-        result.fraction = fraction;
-        result.point = point.clone();
-        result.vector.set(0, 0, 0);
-        result.a = 0.0;
-        return result;
-    }
-}
-exports.CurveLocationDetail = CurveLocationDetail;
-/** A pair of CurveLocationDetail. */
-class CurveLocationDetailPair {
-    constructor() {
-        this.detailA = new CurveLocationDetail();
-        this.detailB = new CurveLocationDetail();
-    }
-    /** Create a curve detail pair using references to two CurveLocationDetails */
-    static createDetailRef(detailA, detailB, result) {
-        result = result ? result : new CurveLocationDetailPair();
-        result.detailA = detailA;
-        result.detailB = detailB;
-        return result;
-    }
-    /** Make a deep copy of this CurveLocationDetailPair */
-    clone(result) {
-        result = result ? result : new CurveLocationDetailPair();
-        result.detailA = this.detailA.clone();
-        result.detailB = this.detailB.clone();
-        return result;
-    }
-}
-exports.CurveLocationDetailPair = CurveLocationDetailPair;
-/** Queries to be supported by Curve, Surface, and Solid objects */
-class GeometryQuery {
-    /** return the range of the entire (tree) GeometryQuery */
-    range(transform, result) {
-        if (result)
-            result.setNull();
-        const range = result ? result : Range_1.Range3d.createNull();
-        this.extendRange(range, transform);
-        return range;
-    }
-    /** try to move the geometry by dx,dy,dz */
-    tryTranslateInPlace(dx, dy = 0.0, dz = 0.0) {
-        return this.tryTransformInPlace(Transform_1.Transform.createTranslationXYZ(dx, dy, dz));
-    }
-    /** return GeometryQuery children for recursive queries.
-     *
-     * * leaf classes do not need to implement.
-     */
-    get children() { return undefined; }
-    /** test for exact structure and nearly identical geometry.
-     *
-     * *  Leaf classes must implement !!!
-     * *  base class implementation recurses through children.
-     * *  base implementation is complete for classes with children and no properties.
-     * *  classes with both children and properties must implement for properties, call super for children.
-     */
-    isAlmostEqual(other) {
-        if (this.isSameGeometryClass(other)) {
-            const childrenA = this.children;
-            const childrenB = other.children;
-            if (childrenA && childrenB) {
-                if (childrenA.length !== childrenB.length)
-                    return false;
-                for (let i = 0; i < childrenA.length; i++) {
-                    if (!childrenA[i].isAlmostEqual(childrenB[i]))
-                        return false;
-                }
-                return true;
-            }
-            else if (childrenA || childrenB) {
-                return false; // plainly different .
-            }
-            else {
-                // both children null. call it equal?   This class should probably have implemented.
-                return true;
-            }
-        }
-        return false;
-    }
-}
-exports.GeometryQuery = GeometryQuery;
+const CurveLocationDetail_1 = require("./CurveLocationDetail");
+const GeometryQuery_1 = require("./GeometryQuery");
 /**
  * A curve primitive is bounded
  * A curve primitive maps fractions in 0..1 to points in space.
@@ -192,7 +28,7 @@ exports.GeometryQuery = GeometryQuery;
  *
  * For fractions outside 0..1, the curve primitive class may either (a) return the near endpoint or (b) evaluate an extended curve.
  */
-class CurvePrimitive extends GeometryQuery {
+class CurvePrimitive extends GeometryQuery_1.GeometryQuery {
     constructor() { super(); }
     /**
      *
@@ -215,12 +51,12 @@ class CurvePrimitive extends GeometryQuery {
         const plane = this.fractionToPointAnd2Derivatives(fraction);
         if (!plane)
             return undefined;
-        let axes = Transform_1.Matrix3d.createRigidFromColumns(plane.vectorU, plane.vectorV, 0 /* XYZ */);
+        let axes = Matrix3d_1.Matrix3d.createRigidFromColumns(plane.vectorU, plane.vectorV, 0 /* XYZ */);
         if (axes)
             return Transform_1.Transform.createRefs(plane.origin, axes, result);
         // 2nd derivative not distinct -- do arbitrary headsup ...
-        const perpVector = Transform_1.Matrix3d.createPerpendicularVectorFavorXYPlane(plane.vectorU, plane.vectorV);
-        axes = Transform_1.Matrix3d.createRigidFromColumns(plane.vectorU, perpVector, 0 /* XYZ */);
+        const perpVector = Matrix3d_1.Matrix3d.createPerpendicularVectorFavorXYPlane(plane.vectorU, plane.vectorV);
+        axes = Matrix3d_1.Matrix3d.createRigidFromColumns(plane.vectorU, perpVector, 0 /* XYZ */);
         if (axes)
             return Transform_1.Transform.createRefs(plane.origin, axes, result);
         return undefined;
@@ -236,6 +72,165 @@ class CurvePrimitive extends GeometryQuery {
         this.emitStrokableParts(context);
         return context.getSum();
     }
+    /**
+     *
+     * * Curve length is always positive.
+     * @returns Returns a (high accuracy) length of the curve between fractional positions
+     */
+    curveLengthBetweenFractions(fraction0, fraction1) {
+        if (fraction0 === fraction1)
+            return 0.0;
+        const scale = this.getFractionToDistanceScale();
+        if (scale !== undefined) {
+            // We are in luck! simple proportions determine it all  !!!
+            // (for example, a LineSegment3d or a circular arc)
+            const totalLength = this.curveLength();
+            return Math.abs((fraction1 - fraction0) * totalLength);
+        }
+        const context = new CurveLengthContext(fraction0, fraction1);
+        this.emitStrokableParts(context);
+        return Math.abs(context.getSum());
+    }
+    /**
+     *
+     * * Run an integration (with a default gaussian quadrature) with a fixed fractional step
+     * * This is typically called by specific curve type implementations of curveLengthBetweenFrations.
+     *   * For example, in Arc3d implementation of curveLengthBetweenFrations:
+     *     * If the Arc3d is true circular, it the arc is true circular, use the direct `arcLength = radius * sweepRadians`
+     *     * If the Arc3d is not true circular, call this method with an interval count appropriate to eccentricity and sweepRadians.
+     * @returns Returns an integral estimated by numerical quadrature between the fractional positions.
+     * @param fraction0 start fraction for integration
+     * @param fraction1 end fraction for integration
+     * @param numInterval number of quadrature intervals
+     */
+    curveLengthWithFixedIntervalCountQuadrature(fraction0, fraction1, numInterval, numGauss = 5) {
+        if (fraction0 > fraction1) {
+            const fSave = fraction0;
+            fraction0 = fraction1;
+            fraction1 = fSave;
+        }
+        const context = new CurveLengthContext(fraction0, fraction1, numGauss);
+        context.announceIntervalForUniformStepStrokes(this, numInterval, fraction0, fraction1);
+        return Math.abs(context.getSum());
+    }
+    /**
+     *
+     * * (Attempt to) find a position on the curve at a signed distance from start fraction.
+     * * Return the postion as a CurveLocationDetail.
+     * * In the `CurveLocationDetail`, record:
+     *   * `fractional` position
+     *   * `fraction` = coordinates of the point
+     *   * `search
+     *   * `a` = (signed!) distance moved.   If `allowExtension` is false and the move reached the start or end of the curve, this distance is smaller than the requested signedDistance.
+     *   * `curveSearchStatus` indicates one of:
+     *     * `error` (unusual) computation failed not supported for this curve.
+     *     * `success` full movement completed
+     *     * `stoppedAtBoundary` partial movement completed. This can be due to either
+     *        * `allowExtendsion` parameter sent as `false`
+     *        * the curve type (e.g. bspline) does not support extended range.
+     * * if `allowExtension` is true, movement may still end at the startpoint or endpoint for curves that do not support extended geometry (specifically bsplines)
+     * * if the curve returns a value (i.e. not `undefined`) for `curve.getFractionToDistanceScale()`, the base class carries out the computation
+     *    and returns a final location.
+     *   * LineSegment3d relies on this.
+     * * If the curve does not implement the computation or the curve has zero length, the returned `CurveLocationDetail` has
+     *    * `fraction` = the value of `startFraction`
+     *    * `point` = result of `curve.fractionToPoint(startFraction)`
+     *    * `a` = 0
+     *    * `curveStartState` = `CurveSearchStatus.error`
+     * @param startFraction fractional position where the move starts
+     * @param signedDistance distance to move.   Negative distance is backwards in the fraction space
+     * @param allowExtension if true, all the move to go beyond the startpoint or endpoint of the curve.  If false, do not allow movement beyond the startpoint or endpoint
+     * @param result optional result.
+     * @returns A CurveLocationDetail annotated as above.  Note that if the curve does not support the calculation, there is still a result which contains the point at the input startFraction, with failure indicated in the `curveStartState` member
+     */
+    moveSignedDistanceFromFraction(startFraction, signedDistance, allowExtension, result) {
+        const scale = this.getFractionToDistanceScale();
+        if (scale !== undefined) {
+            // We are in luck! simple proportions determine it all  !!!
+            // (for example, a LineSegment3d or a circular arc)
+            const totalLength = this.curveLength();
+            const signedFractionMove = Geometry_1.Geometry.conditionalDivideFraction(signedDistance, totalLength);
+            if (signedFractionMove === undefined) {
+                return CurveLocationDetail_1.CurveLocationDetail.createCurveFractionPointDistanceCurveSearchStatus(this, startFraction, this.fractionToPoint(startFraction), 0.0, CurveLocationDetail_1.CurveSearchStatus.error);
+            }
+            return CurveLocationDetail_1.CurveLocationDetail.createConditionalMoveSignedDistance(allowExtension, this, startFraction, startFraction + signedFractionMove, signedDistance, result);
+        }
+        return this.moveSignedDistanceFromFractionGeneric(startFraction, signedDistance, allowExtension, result);
+    }
+    /**
+     * Generic algorithm to search for point at signed distance from a fractional start point.
+     * * This will work for well for smooth curves.
+     * * Curves with tangent or other low-order-derivative discontinuities may need to implement specialized algorithms.
+     * * We need to find an endFraction which is the end-of-interval (usually upper) limit of integration of the tangent magnitude from startFraction to endFraction
+     * * That integral is a function of endFraction.
+     * * The derivative of that integral with respect to end fraction is the tangent magnitude at end fraction.
+     * * Use that function and (easily evaluated!) derivative for a Newton iteration
+     * * TO ALL WHO HAVE FUZZY MEMORIES OF CALCULUS CLASS: "The derivative of the integral wrt upper limit is the value of the integrand there" is the
+     *       fundamental theorem of integral calculus !!! The fundeamental theorem is not just an abstraction !!! It is being used
+     *       here in its barest possible form !!!
+     * * See https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus
+     * @param startFraction
+     * @param signedDistance
+     * @param _allowExtension
+     * @param result
+     */
+    moveSignedDistanceFromFractionGeneric(startFraction, signedDistance, allowExtension, result) {
+        const limitFraction = signedDistance > 0.0 ? 1.0 : 0.0;
+        const absDistance = Math.abs(signedDistance);
+        const directionFactor = signedDistance < 0.0 ? -1.0 : 1.0;
+        const availableLength = this.curveLengthBetweenFractions(startFraction, limitFraction); // that is always positive
+        if (availableLength < absDistance && !allowExtension)
+            return CurveLocationDetail_1.CurveLocationDetail.createConditionalMoveSignedDistance(allowExtension, this, startFraction, limitFraction, signedDistance, result);
+        const fractionStep = absDistance / availableLength;
+        let fractionB = Geometry_1.Geometry.interpolate(startFraction, fractionStep, limitFraction);
+        let fractionA = startFraction;
+        let distanceA = 0.0;
+        const tol = 1.0e-12 * availableLength;
+        let numConverged = 0;
+        const tangent = Ray3d_1.Ray3d.createXAxis();
+        // on each loop entry:
+        // fractionA is the most recent endOfInterval.  (It may have been reached by a mixtrueo forward and backward step.)
+        // distanceA is the distance to (the point at) fractionA
+        // fractionB is the next end fraction
+        for (let iterations = 0; iterations < 10; iterations++) {
+            const distanceAB = this.curveLengthBetweenFractions(fractionA, fractionB);
+            const directionAB = fractionB > fractionA ? directionFactor : -directionFactor;
+            const distance0B = distanceA + directionAB * distanceAB;
+            const distanceError = absDistance - distance0B;
+            if (Math.abs(distanceError) < tol) {
+                numConverged++;
+                if (numConverged > 1)
+                    break;
+            }
+            else {
+                numConverged = 0;
+            }
+            this.fractionToPointAndDerivative(fractionB, tangent);
+            const tangentMagnitude = tangent.direction.magnitude();
+            fractionA = fractionB;
+            fractionB = fractionA + directionFactor * distanceError / tangentMagnitude;
+            if (fractionA === fractionB) { // YES -- that is an exact equality test.   When it happens, there's no need for confirming with another iteration.
+                numConverged = 100;
+                break;
+            }
+            distanceA = distance0B;
+        }
+        if (numConverged > 1)
+            return CurveLocationDetail_1.CurveLocationDetail.createConditionalMoveSignedDistance(false, this, startFraction, fractionB, signedDistance, result);
+        result = CurveLocationDetail_1.CurveLocationDetail.createCurveEvaluatedFraction(this, startFraction, result);
+        result.a = 0.0;
+        result.curveSearchStatus = CurveLocationDetail_1.CurveSearchStatus.error;
+        return result;
+    }
+    /**
+     * * Returns true if the curve's fraction queries extend beyond 0..1.
+     * * Base class default implementation returns false.
+     * * These class (and perhaps others in the future) will return true:
+     *   * LineSegment3d
+     *   * LineString3d
+     *   * Arc3d
+     */
+    get isExtensibleFractionSpace() { return false; }
     /** Search for the curve point that is closest to the spacePoint.
      *
      * * If the space point is exactly on the curve, this is the reverse of fractionToPoint.
@@ -267,6 +262,20 @@ class CurvePrimitive extends GeometryQuery {
         return undefined;
     }
     /**
+     * * If the curve primitive has distance-along-curve strictly proportional to curve fraction, return true
+     * * If distance-along-the-curve is not proportional, return undefined.
+     * * When defined, the scale factor is alwyas the length of the curve.
+     * * This scale factor is typically available for these curve types:
+     * * * All `LineSegment3d`
+     * * * Arc3d which is a true circular arc (axes perpendicular and of equal length).
+     * * * CurveChainWithDistanceIndex
+     * * This scale factor is undefined for these curve types:
+     * * * Arc3d which is a true ellipse, i.e. unequal lengths of defining vectors or non-perpendicular defining vectors.
+     * * * bspline and bezier curves
+     * @returns scale factor or undefined
+     */
+    getFractionToDistanceScale() { return undefined; }
+    /**
      * Compute intersections with a plane.
      * The intersections are appended to the result array.
      * The base class implementation emits strokes to an AppendPlaneIntersectionStrokeHandler object, which uses a Newton iteration to get
@@ -294,7 +303,11 @@ class NewtonRotRStrokeHandler extends Newton_1.NewtonEvaluatorRtoR {
         super();
         this._parentCurvePrimitive = undefined;
     }
-    /** retain the parentCurvePrimitive */
+    /** retain the parentCurvePrimitive.
+     * * Calling this method tells the handler that the parent curve is to be used for detail searches.
+     * * Example: Transition spiral search is based on linestring first, then the exact spiral.
+     * * Example: CurveChainWithDistanceIndex does NOT do this announcement -- the constituents act independently.
+     */
     startParentCurvePrimitive(curve) { this._parentCurvePrimitive = curve; }
     /** Forget the parentCurvePrimitive */
     endParentCurvePrimitive(_curve) { this._parentCurvePrimitive = undefined; }
@@ -312,7 +325,7 @@ class AppendPlaneIntersectionStrokeHandler extends NewtonRotRStrokeHandler {
         this._plane = plane;
         this._intersections = intersections;
         this.startCurvePrimitive(undefined);
-        this._ray = AnalyticGeometry_1.Ray3d.createZero();
+        this._ray = Ray3d_1.Ray3d.createZero();
         this._newtonSolver = new Newton_1.Newton1dUnboundedApproximateDerivative(this);
     }
     // Return the first defined curve among: this.parentCurvePrimitive, this.curve;
@@ -359,9 +372,10 @@ class AppendPlaneIntersectionStrokeHandler extends NewtonRotRStrokeHandler {
         }
     }
     announceSolutionFraction(fraction) {
-        if (this._curve) {
-            this._ray = this._curve.fractionToPointAndDerivative(fraction, this._ray);
-            this._intersections.push(CurveLocationDetail.createCurveFractionPoint(this._curve, fraction, this._ray.origin));
+        const curve = this.effectiveCurve();
+        if (curve) {
+            this._ray = curve.fractionToPointAndDerivative(fraction, this._ray);
+            this._intersections.push(CurveLocationDetail_1.CurveLocationDetail.createCurveFractionPoint(curve, fraction, this._ray.origin));
         }
     }
     evaluate(fraction) {
@@ -423,14 +437,41 @@ class CurveLengthContext {
         return this._ray.direction.magnitude();
     }
     getSum() { return this._summedLength; }
-    constructor() {
+    constructor(fraction0 = 0.0, fraction1 = 1.0, numGaussPoints = 5) {
         this.startCurvePrimitive(undefined);
         this._summedLength = 0.0;
-        this._ray = AnalyticGeometry_1.Ray3d.createZero();
-        const maxGauss = 7;
+        this._ray = Ray3d_1.Ray3d.createZero();
+        if (fraction0 < fraction1) {
+            this._fraction0 = fraction0;
+            this._fraction1 = fraction1;
+        }
+        else {
+            this._fraction0 = fraction1;
+            this._fraction1 = fraction0;
+        }
+        const maxGauss = 7; // (As of Nov 2 2018, 7 is a fluffy overallocation-- the quadrature class only handles up to 5.)
         this._gaussX = new Float64Array(maxGauss);
         this._gaussW = new Float64Array(maxGauss);
-        this._gaussMapper = Quadrature_1.Quadrature.setupGauss5;
+        // This sets the number of gauss points.  This intgetes exactly for polynomials of (degree 2*numGauss - 1).
+        if (numGaussPoints > 5 || numGaussPoints < 1)
+            numGaussPoints = 5;
+        switch (numGaussPoints) {
+            case 1:
+                this._gaussMapper = Quadrature_1.Quadrature.setupGauss1;
+                break;
+            case 2:
+                this._gaussMapper = Quadrature_1.Quadrature.setupGauss2;
+                break;
+            case 3:
+                this._gaussMapper = Quadrature_1.Quadrature.setupGauss3;
+                break;
+            case 4:
+                this._gaussMapper = Quadrature_1.Quadrature.setupGauss4;
+                break;
+            default:
+                this._gaussMapper = Quadrature_1.Quadrature.setupGauss5;
+                break;
+        }
     }
     startCurvePrimitive(curve) {
         this._curve = curve;
@@ -439,21 +480,40 @@ class CurveLengthContext {
     endParentCurvePrimitive(_curve) { }
     endCurvePrimitive() { }
     announceIntervalForUniformStepStrokes(cp, numStrokes, fraction0, fraction1) {
-        this.startCurvePrimitive(cp);
-        if (numStrokes < 1)
-            numStrokes = 1;
-        const df = 1.0 / numStrokes;
-        for (let i = 1; i <= numStrokes; i++) {
-            const fractionA = Geometry_1.Geometry.interpolate(fraction0, (i - 1) * df, fraction1);
-            const fractionB = i === numStrokes ? fraction1 : Geometry_1.Geometry.interpolate(fraction0, (i) * df, fraction1);
-            const numGauss = this._gaussMapper(fractionA, fractionB, this._gaussX, this._gaussW);
-            for (let k = 0; k < numGauss; k++) {
-                this._summedLength += this._gaussW[k] * this.tangentMagnitude(this._gaussX[k]);
+        if (fraction0 < this._fraction0)
+            fraction0 = this._fraction0;
+        if (fraction1 > this._fraction1)
+            fraction1 = this._fraction1;
+        if (fraction1 > fraction0) {
+            this.startCurvePrimitive(cp);
+            if (numStrokes < 1)
+                numStrokes = 1;
+            const df = 1.0 / numStrokes;
+            for (let i = 1; i <= numStrokes; i++) {
+                const fractionA = Geometry_1.Geometry.interpolate(fraction0, (i - 1) * df, fraction1);
+                const fractionB = i === numStrokes ? fraction1 : Geometry_1.Geometry.interpolate(fraction0, (i) * df, fraction1);
+                const numGauss = this._gaussMapper(fractionA, fractionB, this._gaussX, this._gaussW);
+                for (let k = 0; k < numGauss; k++) {
+                    this._summedLength += this._gaussW[k] * this.tangentMagnitude(this._gaussX[k]);
+                }
             }
         }
     }
-    announceSegmentInterval(_cp, point0, point1, _numStrokes, _fraction0, _fraction1) {
-        this._summedLength += point0.distance(point1);
+    announceSegmentInterval(_cp, point0, point1, _numStrokes, fraction0, fraction1) {
+        const segmentLength = point0.distance(point1);
+        if (this._fraction0 <= fraction0 && fraction1 <= this._fraction1)
+            this._summedLength += segmentLength;
+        else {
+            let g0 = fraction0;
+            let g1 = fraction1;
+            if (g0 < this._fraction0)
+                g0 = this._fraction0;
+            if (g1 > this._fraction1)
+                g1 = this._fraction1;
+            if (g1 > g0) {
+                this._summedLength += segmentLength * (g1 - g0) / (fraction1 - fraction0);
+            }
+        }
     }
     announcePointTangent(_xyz, _fraction, _tangent) {
         // uh oh -- need to retain point for next interval
@@ -469,8 +529,8 @@ class ClosestPointStrokeHandler extends NewtonRotRStrokeHandler {
         this._fractionB = 0;
         this._numThisCurve = 0;
         this._spacePoint = spacePoint;
-        this._workPoint = PointVector_1.Point3d.create();
-        this._workRay = AnalyticGeometry_1.Ray3d.createZero();
+        this._workPoint = Point3dVector3d_1.Point3d.create();
+        this._workRay = Ray3d_1.Ray3d.createZero();
         this._closestPoint = undefined;
         this._extend = extend;
         this.startCurvePrimitive(undefined);
@@ -507,7 +567,7 @@ class ClosestPointStrokeHandler extends NewtonRotRStrokeHandler {
         const distance = this._spacePoint.distance(point);
         if (this._closestPoint && distance > this._closestPoint.a)
             return;
-        this._closestPoint = CurveLocationDetail.createCurveFractionPoint(cp, fraction, point, this._closestPoint);
+        this._closestPoint = CurveLocationDetail_1.CurveLocationDetail.createCurveFractionPoint(cp, fraction, point, this._closestPoint);
         this._closestPoint.a = distance;
         if (this._parentCurvePrimitive !== undefined)
             this._closestPoint.curve = this._parentCurvePrimitive;
@@ -575,64 +635,4 @@ class ClosestPointStrokeHandler extends NewtonRotRStrokeHandler {
         this.announceRay(fraction, this._workRay);
     }
 }
-/** A Coordinate is a persistable Point3d */
-class CoordinateXYZ extends GeometryQuery {
-    get point() { return this._xyz; }
-    /**
-     * @param xyz point to be CAPTURED.
-     */
-    constructor(xyz) {
-        super();
-        this._xyz = xyz;
-    }
-    static create(point) {
-        return new CoordinateXYZ(point.clone());
-    }
-    /** return the range of the point */
-    range() { return Range_1.Range3d.create(this._xyz); }
-    extendRange(rangeToExtend, transform) {
-        if (transform)
-            rangeToExtend.extendTransformedXYZ(transform, this._xyz.x, this._xyz.y, this._xyz.z);
-        else
-            rangeToExtend.extend(this._xyz);
-    }
-    /** Apply transform to the Coordinate's point. */
-    tryTransformInPlace(transform) {
-        transform.multiplyPoint3d(this._xyz, this._xyz);
-        return true;
-    }
-    /** return a transformed clone.
-     */
-    cloneTransformed(transform) {
-        const result = new CoordinateXYZ(this._xyz.clone());
-        result.tryTransformInPlace(transform);
-        return result;
-    }
-    /** return a clone */
-    clone() {
-        return new CoordinateXYZ(this._xyz.clone());
-    }
-    /** return GeometryQuery children for recursive queries.
-     *
-     * * leaf classes do not need to implement.
-     */
-    /** test if (other instanceof Coordinate).  */
-    isSameGeometryClass(other) {
-        return other instanceof CoordinateXYZ;
-    }
-    /** test for exact structure and nearly identical geometry.
-     *
-     * *  Leaf classes must implement !!!
-     * *  base class implementation recurses through children.
-     * *  base implementation is complete for classes with children and no properties.
-     * *  classes with both children and properties must implement for properties, call super for children.
-     */
-    isAlmostEqual(other) {
-        return (other instanceof CoordinateXYZ) && this._xyz.isAlmostEqual(other._xyz);
-    }
-    dispatchToGeometryHandler(handler) {
-        return handler.handleCoordinateXYZ(this);
-    }
-}
-exports.CoordinateXYZ = CoordinateXYZ;
 //# sourceMappingURL=CurvePrimitive.js.map

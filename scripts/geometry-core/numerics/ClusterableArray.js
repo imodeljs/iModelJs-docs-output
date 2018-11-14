@@ -1,9 +1,14 @@
 "use strict";
-/** @module Numerics */
+/*---------------------------------------------------------------------------------------------
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
+/** @module Numerics */
 const Geometry_1 = require("../Geometry");
-const PointVector_1 = require("../PointVector");
-const GrowableArray_1 = require("../GrowableArray");
+const Point2dVector2d_1 = require("../geometry3d/Point2dVector2d");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
+const GrowableArray_1 = require("../geometry3d/GrowableArray");
 class ClusterableArray extends GrowableArray_1.GrowableBlockedArray {
     /**
      * @param numCoordinatePerPoint number of coordinates per point
@@ -75,11 +80,11 @@ class ClusterableArray extends GrowableArray_1.GrowableBlockedArray {
     }
     getPoint2d(blockIndex, result) {
         const i0 = this.blockIndexToDoubleIndex(blockIndex);
-        return PointVector_1.Point2d.create(this._data[i0 + 1], this._data[i0 + 2], result);
+        return Point2dVector2d_1.Point2d.create(this._data[i0 + 1], this._data[i0 + 2], result);
     }
     getPoint3d(blockIndex, result) {
         const i0 = this.blockIndexToDoubleIndex(blockIndex);
-        return PointVector_1.Point3d.create(this._data[i0 + 1], this._data[i0 + 2], this._data[i0 + 3], result);
+        return Point3dVector3d_1.Point3d.create(this._data[i0 + 1], this._data[i0 + 2], this._data[i0 + 3], result);
     }
     /** Return a single extra data value */
     getExtraData(blockIndex, i) {
@@ -321,7 +326,7 @@ class ClusterableArray extends GrowableArray_1.GrowableBlockedArray {
      */
     static clusterGrowablePoint3dArray(source, tolerance = Geometry_1.Geometry.smallMetricDistance) {
         const clusterArray = new ClusterableArray(3, 0, source.length);
-        const p = PointVector_1.Point3d.create();
+        const p = Point3dVector3d_1.Point3d.create();
         const numSourcePoint = source.length;
         for (let i = 0; i < numSourcePoint; i++) {
             source.getPoint3dAt(i, p);

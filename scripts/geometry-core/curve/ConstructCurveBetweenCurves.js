@@ -1,12 +1,13 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
-const GeometryHandler_1 = require("../GeometryHandler");
+const GeometryHandler_1 = require("../geometry3d/GeometryHandler");
 const LineSegment3d_1 = require("./LineSegment3d");
 const Arc3d_1 = require("./Arc3d");
-const PointVector_1 = require("../PointVector");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
 const LineString3d_1 = require("./LineString3d");
 /**
  * Context for constructing a curve that is interpolated between two other curves.
@@ -42,9 +43,9 @@ class ConstructCurveBetweenCurves extends GeometryHandler_1.NullGeometryHandler 
             const ls1 = this._geometry1;
             if (ls0.numPoints() === ls1.numPoints()) {
                 const ls = LineString3d_1.LineString3d.create();
-                const workPoint = PointVector_1.Point3d.create();
-                const workPoint0 = PointVector_1.Point3d.create();
-                const workPoint1 = PointVector_1.Point3d.create();
+                const workPoint = Point3dVector3d_1.Point3d.create();
+                const workPoint0 = Point3dVector3d_1.Point3d.create();
+                const workPoint1 = Point3dVector3d_1.Point3d.create();
                 for (let i = 0; i < ls0.numPoints(); i++) {
                     ls0.pointAt(i, workPoint0);
                     ls1.pointAt(i, workPoint1);

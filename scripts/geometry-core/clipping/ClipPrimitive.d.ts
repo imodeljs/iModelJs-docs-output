@@ -1,8 +1,8 @@
 import { ClipPlaneContainment } from "./ClipUtils";
-import { Point3d } from "../PointVector";
-import { Range3d } from "../Range";
-import { Transform } from "../Transform";
-import { Matrix4d } from "../numerics/Geometry4d";
+import { Point3d } from "../geometry3d/Point3dVector3d";
+import { Range3d } from "../geometry3d/Range";
+import { Transform } from "../geometry3d/Transform";
+import { Matrix4d } from "../geometry4d/Matrix4d";
 import { BSplineCurve3d } from "../bspline/BSplineCurve";
 import { UnionOfConvexClipPlaneSets } from "./UnionOfConvexClipPlaneSets";
 /**

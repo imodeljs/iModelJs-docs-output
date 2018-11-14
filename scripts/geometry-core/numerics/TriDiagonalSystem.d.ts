@@ -1,4 +1,4 @@
-import { Point3d } from "../PointVector";
+import { Point3d } from "../geometry3d/Point3dVector3d";
 export declare class TriDiagonalSystem {
     private _aLeft;
     private _aRight;

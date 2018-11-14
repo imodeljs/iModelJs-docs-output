@@ -1,10 +1,13 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
-const Transform_1 = require("../Transform");
+const Transform_1 = require("../geometry3d/Transform");
+const Matrix3d_1 = require("../geometry3d/Matrix3d");
 const Geometry_1 = require("../Geometry");
+const Angle_1 = require("../geometry3d/Angle");
 const SweepContour_1 = require("./SweepContour");
 const SolidPrimitive_1 = require("./SolidPrimitive");
 class RotationalSweep extends SolidPrimitive_1.SolidPrimitive {
@@ -30,7 +33,7 @@ class RotationalSweep extends SolidPrimitive_1.SolidPrimitive {
      */
     getConstructiveFrame() {
         const contourPerpendicular = this._contour.localToWorld.matrix.columnZ();
-        const axes = Transform_1.Matrix3d.createRigidFromColumns(contourPerpendicular, this._normalizedAxis.direction, 1 /* YZX */);
+        const axes = Matrix3d_1.Matrix3d.createRigidFromColumns(contourPerpendicular, this._normalizedAxis.direction, 1 /* YZX */);
         if (axes) {
             return Transform_1.Transform.createOriginAndMatrix(this._normalizedAxis.origin, axes);
         }
@@ -69,7 +72,7 @@ class RotationalSweep extends SolidPrimitive_1.SolidPrimitive {
     }
     getFractionalRotationTransform(vFraction, result) {
         const radians = this._sweepAngle.radians * vFraction;
-        const rotation = Transform_1.Transform.createOriginAndMatrix(this._normalizedAxis.origin, Transform_1.Matrix3d.createRotationAroundVector(this._normalizedAxis.direction, Geometry_1.Angle.createRadians(radians), result ? result.matrix : undefined));
+        const rotation = Transform_1.Transform.createOriginAndMatrix(this._normalizedAxis.origin, Matrix3d_1.Matrix3d.createRotationAroundVector(this._normalizedAxis.direction, Angle_1.Angle.createRadians(radians), result ? result.matrix : undefined));
         return rotation;
     }
     /**

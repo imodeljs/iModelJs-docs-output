@@ -1,19 +1,33 @@
 /** @module Curve */
 import { BeJSONFunctions, PlaneAltitudeEvaluator } from "../Geometry";
-import { Point3d, XAndY } from "../PointVector";
-import { Range3d } from "../Range";
-import { Transform } from "../Transform";
-import { Plane3dByOriginAndUnitNormal, Plane3dByOriginAndVectors, Ray3d } from "../AnalyticGeometry";
-import { GrowableXYZArray, GrowableFloat64Array } from "../GrowableArray";
-import { GeometryHandler, IStrokeHandler } from "../GeometryHandler";
-import { StrokeOptions } from "../curve/StrokeOptions";
-import { CurvePrimitive, GeometryQuery, CurveLocationDetail, AnnounceNumberNumberCurvePrimitive } from "./CurvePrimitive";
+import { XAndY } from "../geometry3d/XYZProps";
+import { Point3d, Vector3d } from "../geometry3d/Point3dVector3d";
+import { Range3d } from "../geometry3d/Range";
+import { Transform } from "../geometry3d/Transform";
+import { Plane3dByOriginAndUnitNormal } from "../geometry3d/Plane3dByOriginAndUnitNormal";
+import { Ray3d } from "../geometry3d/Ray3d";
+import { Plane3dByOriginAndVectors } from "../geometry3d/Plane3dByOriginAndVectors";
+import { GrowableXYZArray, GrowableFloat64Array } from "../geometry3d/GrowableArray";
+import { GeometryHandler, IStrokeHandler } from "../geometry3d/GeometryHandler";
+import { StrokeOptions } from "./StrokeOptions";
+import { CurvePrimitive, AnnounceNumberNumberCurvePrimitive } from "./CurvePrimitive";
+import { GeometryQuery } from "./GeometryQuery";
+import { CurveLocationDetail } from "./CurveLocationDetail";
 import { Clipper } from "../clipping/ClipUtils";
+import { LineSegment3d } from "./LineSegment3d";
+/**
+ * * A LineString3d (sometimes called a PolyLine) is a sequence of xyz coordinates that are to be joined by line segments.
+ * * The point coordinates are stored in a GrowableXYZArray.
+ */
 export declare class LineString3d extends CurvePrimitive implements BeJSONFunctions {
     private static _workPointA;
     private static _workPointB;
     private static _workPointC;
     isSameGeometryClass(other: GeometryQuery): boolean;
+    /**
+     * A LineString3d extends along its first and final segments.
+     */
+    readonly isExtensibleFractionSpace: boolean;
     private _points;
     /** return the points array (cloned). */
     readonly points: Point3d[];
@@ -74,12 +88,28 @@ export declare class LineString3d extends CurvePrimitive implements BeJSONFuncti
     /** Return a frenet frame, using nearby points to estimate a plane. */
     fractionToFrenetFrame(fraction: number, result?: Transform): Transform;
     startPoint(): Point3d;
+    /** If i is a valid index, return that point. */
     pointAt(i: number, result?: Point3d): Point3d | undefined;
+    /** If i and j are both valid indices, return the vector from point i to point j
+     */
+    vectorBetween(i: number, j: number, result?: Vector3d): Vector3d | undefined;
     numPoints(): number;
     endPoint(): Point3d;
     reverseInPlace(): void;
     tryTransformInPlace(transform: Transform): boolean;
     curveLength(): number;
+    curveLengthBetweenFractions(fraction0: number, fraction1: number): number;
+    /**
+     * * Implementation of `CurvePrimitive.moveSignedDistanceFromFraction`.  (see comments there!)
+     * * Find the segment that contains the start fraction
+     * * Move point-by-point from that position to the start or end (respectively for negative or positive signedDistance)
+     * * Optionally extrapolate
+     * @param startFraction
+     * @param signedDistance
+     * @param allowExtension
+     * @param result
+     */
+    moveSignedDistanceFromFraction(startFraction: number, signedDistance: number, allowExtension: false, result?: CurveLocationDetail): CurveLocationDetail;
     quickLength(): number;
     closestPoint(spacePoint: Point3d, extend: boolean, result?: CurveLocationDetail): CurveLocationDetail;
     isInPlane(plane: Plane3dByOriginAndUnitNormal): boolean;
@@ -130,6 +160,8 @@ export declare class LineString3d extends CurvePrimitive implements BeJSONFuncti
      * @param fractionB [in] end fraction
      */
     clonePartialCurve(fractionA: number, fractionB: number): CurvePrimitive | undefined;
+    /** Return (if possible) a specific segment of the linestring */
+    getIndexedSegment(index: number): LineSegment3d | undefined;
 }
 /** An AnnotatedLineString3d is a linestring with additional data attached to each point
  * * This is useful in facet construction.

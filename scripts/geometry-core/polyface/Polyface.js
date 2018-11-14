@@ -1,17 +1,19 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
- *--------------------------------------------------------------------------------------------*/
+* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Polyface */
 // import { Point2d } from "./Geometry2d";
 /* tslint:disable:variable-name jsdoc-format no-empty*/
 // import { Geometry } from "./Geometry";
-const PointVector_1 = require("../PointVector");
-const Range_1 = require("../Range");
-const PointHelpers_1 = require("../PointHelpers");
-const GrowableArray_1 = require("../GrowableArray");
-const CurvePrimitive_1 = require("../curve/CurvePrimitive");
+const Point2dVector2d_1 = require("../geometry3d/Point2dVector2d");
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
+const Range_1 = require("../geometry3d/Range");
+const PointHelpers_1 = require("../geometry3d/PointHelpers");
+const GrowableArray_1 = require("../geometry3d/GrowableArray");
+const GeometryQuery_1 = require("../curve/GeometryQuery");
 const ClusterableArray_1 = require("../numerics/ClusterableArray");
 /**
  * Check validity of indices into a data array.
@@ -122,7 +124,7 @@ class FacetFaceData {
     }
     /** Return distance-based parameter from stored parameter value. */
     convertParamToDistance(param, result) {
-        result = result ? result : PointVector_1.Point2d.create();
+        result = result ? result : Point2dVector2d_1.Point2d.create();
         const paramDelta = this._paramRange.high.minus(this._paramRange.low);
         result.x = (0 === paramDelta.x) ? param.x : (this._paramDistanceRange.low.x + (param.x - this._paramRange.low.x)
             * (this._paramDistanceRange.high.x - this._paramDistanceRange.low.x) / paramDelta.x);
@@ -132,7 +134,7 @@ class FacetFaceData {
     }
     /** Return normalized (0-1) parameter from stored parameter value. */
     convertParamToNormalized(param, result) {
-        result = result ? result : PointVector_1.Point2d.create();
+        result = result ? result : Point2dVector2d_1.Point2d.create();
         const paramDelta = this._paramRange.high.minus(this._paramRange.low);
         result.x = (0.0 === paramDelta.x) ? param.x : ((param.x - this._paramRange.low.x) / paramDelta.x);
         result.y = (0.0 === paramDelta.y) ? param.y : ((param.y - this._paramRange.low.y) / paramDelta.y);
@@ -151,8 +153,8 @@ class FacetFaceData {
      * Returns true on success, false otherwise.
      */
     setParamDistanceRangeFromNewFaceData(polyface, facetStart, facetEnd) {
-        const dSTotal = PointVector_1.Point2d.create();
-        const dSSquaredTotal = PointVector_1.Point2d.create();
+        const dSTotal = Point2dVector2d_1.Point2d.create();
+        const dSSquaredTotal = Point2dVector2d_1.Point2d.create();
         let aveTotal = 0;
         const visitor = IndexedPolyfaceVisitor.create(polyface, 0);
         if (!visitor.moveToReadIndex(facetStart))
@@ -175,13 +177,13 @@ class FacetFaceData {
                     const delta1 = visitorPoints.getPoint3dAt(trianglePointIndexes[1]).minus(visitorPoints.getPoint3dAt(trianglePointIndexes[2]));
                     const uvCross = Math.abs(dUV0.x * dUV1.y - dUV1.x * dUV0.y);
                     if (uvCross) {
-                        const dwDu = PointVector_1.Point3d.createFrom(delta0);
+                        const dwDu = Point3dVector3d_1.Point3d.createFrom(delta0);
                         dwDu.scaleInPlace(dUV1.y);
                         dwDu.addScaledInPlace(delta1, -dUV0.y);
-                        const dwDv = PointVector_1.Point3d.createFrom(delta1);
+                        const dwDv = Point3dVector3d_1.Point3d.createFrom(delta1);
                         dwDv.scaleInPlace(dUV0.x);
                         dwDv.addScaledInPlace(delta0, -dUV1.x);
-                        const dS = PointVector_1.Point2d.create(dwDu.magnitude() / uvCross, dwDv.magnitude() / uvCross);
+                        const dS = Point2dVector2d_1.Point2d.create(dwDu.magnitude() / uvCross, dwDv.magnitude() / uvCross);
                         dSTotal.x += dS.x;
                         dSTotal.y += dS.y;
                         dSSquaredTotal.x += dS.x * dS.x;
@@ -196,8 +198,8 @@ class FacetFaceData {
             }
         } while (visitor.moveToNextFacet() && visitor.currentReadIndex() < facetEnd);
         if (aveTotal !== 0) {
-            const dS = PointVector_1.Point2d.create(dSTotal.x / aveTotal, dSTotal.y / aveTotal);
-            const standardDeviation = PointVector_1.Point2d.create(Math.sqrt(Math.abs((dSSquaredTotal.x / aveTotal) - dS.x * dS.x)), Math.sqrt(Math.abs((dSSquaredTotal.y / aveTotal) - dS.y * dS.y)));
+            const dS = Point2dVector2d_1.Point2d.create(dSTotal.x / aveTotal, dSTotal.y / aveTotal);
+            const standardDeviation = Point2dVector2d_1.Point2d.create(Math.sqrt(Math.abs((dSSquaredTotal.x / aveTotal) - dS.x * dS.x)), Math.sqrt(Math.abs((dSSquaredTotal.y / aveTotal) - dS.y * dS.y)));
             // TR# 268980 - Add standard deviation to match QV....
             this._paramDistanceRange.low.set(0, 0);
             this._paramDistanceRange.high.set((dS.x + standardDeviation.x) * (this._paramRange.high.x - this._paramRange.low.x), (dS.y + standardDeviation.y) * (this._paramRange.high.y - this._paramRange.low.y));
@@ -206,6 +208,120 @@ class FacetFaceData {
     }
 }
 exports.FacetFaceData = FacetFaceData;
+/** The data types of [[AuxChannel]].  The scalar types are used to produce thematic  vertex colors. */
+var AuxChannelDataType;
+(function (AuxChannelDataType) {
+    /** General scalar type - no scaling is applied if associated [[Polyface]] is transformed. */
+    AuxChannelDataType[AuxChannelDataType["Scalar"] = 0] = "Scalar";
+    /** Distance (scalar) scaling is applied if associated [[Polyface]] is scaled. 3 Data values (x,y.z) per entry. */
+    AuxChannelDataType[AuxChannelDataType["Distance"] = 1] = "Distance";
+    /** Displacement added to  vertex position.  Transformed and scaled with associated [[Polyface]]. 3 Data values (x,y.z) per entry.,*/
+    AuxChannelDataType[AuxChannelDataType["Vector"] = 2] = "Vector";
+    /** Normal -- replaces vertex normal.  Rotated with associated [[Polyface]] transformation. 3 Data values (x,y.z) per entry. */
+    AuxChannelDataType[AuxChannelDataType["Normal"] = 3] = "Normal";
+})(AuxChannelDataType = exports.AuxChannelDataType || (exports.AuxChannelDataType = {}));
+/**  Represents the [[AuxChannel]] data at a single input value. */
+class AuxChannelData {
+    /** Construct a new [[AuxChannelData]] from input value and vertex values. */
+    constructor(input, values) {
+        this.input = input;
+        this.values = values;
+    }
+    copyValues(other, thisIndex, otherIndex, blockSize) {
+        for (let i = 0; i < blockSize; i++)
+            this.values[thisIndex * blockSize + i] = other.values[otherIndex * blockSize + i];
+    }
+    clone() {
+        return new AuxChannelData(this.input, this.values.slice());
+    }
+    isAlmostEqual(other, tol) {
+        const tolerance = tol ? tol : 1.0E-8;
+        return Math.abs(this.input - other.input) < tolerance && PointHelpers_1.NumberArray.isAlmostEqual(this.values, other.values, tolerance);
+    }
+}
+exports.AuxChannelData = AuxChannelData;
+/**  Represents a single [[PolyfaceAuxData]] channel. A channel  may represent a single scalar value such as stress or temperature or may represent displacements from vertex position or replacements for normals. */
+class AuxChannel {
+    /** create a [[AuxChannel]] */
+    constructor(data, dataType, name, inputName) {
+        this.data = data;
+        this.dataType = dataType;
+        this.name = name;
+        this.inputName = inputName;
+    }
+    clone() {
+        const clonedData = [];
+        for (const data of this.data)
+            clonedData.push(data.clone());
+        return new AuxChannel(clonedData, this.dataType, this.name, this.inputName);
+    }
+    isAlmostEqual(other, tol) {
+        if (this.dataType !== other.dataType ||
+            this.name !== other.name ||
+            this.inputName !== other.inputName ||
+            this.data.length !== other.data.length)
+            return false;
+        for (let i = 0; i < this.data.length; i++)
+            if (!this.data[i].isAlmostEqual(other.data[i], tol))
+                return false;
+        return true;
+    }
+    /** return true if the data for this channel is of scalar type (single data entry per value) */
+    get isScalar() { return this.dataType === AuxChannelDataType.Distance || this.dataType === AuxChannelDataType.Scalar; }
+    /** return the number of data values per entry (1 for scalar, 3 for point or vector */
+    get entriesPerValue() { return this.isScalar ? 1 : 3; }
+    /** return value count */
+    get valueCount() { return 0 === this.data.length ? 0 : this.data[0].values.length / this.entriesPerValue; }
+    /** return the range of the scalar data. (undefined if not scalar) */
+    get scalarRange() {
+        if (!this.isScalar)
+            return undefined;
+        const range = Range_1.Range1d.createNull();
+        for (const data of this.data) {
+            range.extendArray(data.values);
+        }
+        return range;
+    }
+}
+exports.AuxChannel = AuxChannel;
+/**  The `PolyfaceAuxData` structure contains one or more analytical data channels for each vertex of a `Polyface`.
+ * Typically a `Polyface` will contain only vertex data required for its basic display,the vertex position, normal
+ * and possibly texture parameter.  The `PolyfaceAuxData` structure contains supplemental data that is generally computed
+ *  in an analysis program or other external data source.  This can be scalar data used to either overide the vertex colors through *Thematic Colorization* or
+ *  XYZ data used to deform the mesh by adjusting the vertex postions or normals.
+ */
+class PolyfaceAuxData {
+    constructor(channels, indices) {
+        this.channels = channels;
+        this.indices = indices;
+    }
+    clone() {
+        const clonedChannels = [];
+        for (const channel of this.channels)
+            clonedChannels.push(channel.clone());
+        return new PolyfaceAuxData(clonedChannels, this.indices.slice());
+    }
+    isAlmostEqual(other, tol) {
+        if (!PointHelpers_1.NumberArray.isExactEqual(this.indices, other.indices) || this.channels.length !== other.channels.length)
+            return false;
+        for (let i = 0; i < this.channels.length; i++)
+            if (!this.channels[i].isAlmostEqual(other.channels[i], tol))
+                return false;
+        return true;
+    }
+    createForVisitor() {
+        const visitorChannels = [];
+        for (const parentChannel of this.channels) {
+            const visitorChannelData = [];
+            for (const parentChannelData of parentChannel.data) {
+                visitorChannelData.push(new AuxChannelData(parentChannelData.input, []));
+            }
+            visitorChannels.push(new AuxChannel(visitorChannelData, parentChannel.dataType, parentChannel.name, parentChannel.inputName));
+        }
+        return new PolyfaceAuxData(visitorChannels, []);
+    }
+}
+exports.PolyfaceAuxData = PolyfaceAuxData;
 /**
  * PolyfaceData carries data arrays for point, normal, param, color and their indices.
  *
@@ -249,6 +365,8 @@ class PolyfaceData {
             result.paramIndex = this.paramIndex.slice();
         if (this.colorIndex)
             result.colorIndex = this.colorIndex.slice();
+        if (this.auxData)
+            result.auxData = this.auxData.clone();
         return result;
     }
     isAlmostEqual(other) {
@@ -283,9 +401,9 @@ class PolyfaceData {
     /** return indexed point. This is a copy of the coordinates, not a reference. */
     getPoint(i) { return this.point.getPoint3dAt(i); }
     /** return indexed normal. This is the REFERENCE to the normal, not a copy. */
-    getNormal(i) { return this.normal ? this.normal[i] : PointVector_1.Vector3d.create(); }
+    getNormal(i) { return this.normal ? this.normal[i] : Point3dVector3d_1.Vector3d.create(); }
     /** return indexed param. This is the REFERENCE to the param, not a copy. */
-    getParam(i) { return this.param ? this.param[i] : PointVector_1.Point2d.create(); }
+    getParam(i) { return this.param ? this.param[i] : Point2dVector2d_1.Point2d.create(); }
     /** return indexed color */
     getColor(i) { return this.color ? this.color[i] : 0; }
     /** return indexed visibility */
@@ -358,6 +476,27 @@ class PolyfaceData {
             for (let i = 0; i < numWrap; i++)
                 this.colorIndex[numEdge + i] = this.colorIndex[i];
         }
+        if (this.auxData && other.auxData && this.auxData.channels.length === other.auxData.channels.length) {
+            for (let iChannel = 0; iChannel < this.auxData.channels.length; iChannel++) {
+                const thisChannel = this.auxData.channels[iChannel];
+                const otherChannel = other.auxData.channels[iChannel];
+                const blockSize = thisChannel.entriesPerValue;
+                if (thisChannel.data.length === otherChannel.data.length) {
+                    for (let iData = 0; iData < thisChannel.data.length; iData++) {
+                        const thisData = thisChannel.data[iData];
+                        const otherData = otherChannel.data[iData];
+                        for (let i = 0; i < numEdge; i++)
+                            thisData.copyValues(otherData, i, index0 + i, blockSize);
+                        for (let i = 0; i < numWrap; i++)
+                            thisData.copyValues(thisData, numEdge + i, i, blockSize);
+                    }
+                }
+            }
+            for (let i = 0; i < numEdge; i++)
+                this.auxData.indices[i] = other.auxData.indices[index0 + i];
+            for (let i = 0; i < numWrap; i++)
+                this.auxData.indices[numEdge + i] = this.auxData.indices[i];
+        }
     }
     static trimArray(data, length) { if (data && length < data.length)
         data.length = length; }
@@ -367,24 +506,39 @@ class PolyfaceData {
         PolyfaceData.trimArray(this.normalIndex, length);
         PolyfaceData.trimArray(this.colorIndex, length);
         PolyfaceData.trimArray(this.edgeVisible, length);
+        if (this.auxData) {
+            PolyfaceData.trimArray(this.auxData.indices, length);
+            for (const channel of this.auxData.channels) {
+                for (const data of channel.data)
+                    PolyfaceData.trimArray(data.values, channel.entriesPerValue * length);
+            }
+        }
     }
     resizeAllDataArrays(length) {
         if (length > this.point.length) {
             while (this.point.length < length)
-                this.point.push(PointVector_1.Point3d.create());
+                this.point.push(Point3dVector3d_1.Point3d.create());
             while (this.pointIndex.length < length)
                 this.pointIndex.push(-1);
             while (this.edgeVisible.length < length)
                 this.edgeVisible.push(false);
             if (this.normal)
                 while (this.normal.length < length)
-                    this.normal.push(PointVector_1.Vector3d.create());
+                    this.normal.push(Point3dVector3d_1.Vector3d.create());
             if (this.param)
                 while (this.param.length < length)
-                    this.param.push(PointVector_1.Point2d.create());
+                    this.param.push(Point2dVector2d_1.Point2d.create());
             if (this.color)
                 while (this.color.length < length)
                     this.color.push(0);
+            if (this.auxData) {
+                for (const channel of this.auxData.channels) {
+                    for (const channelData of channel.data) {
+                        while (channelData.values.length < length * channel.entriesPerValue)
+                            channelData.values.push(0);
+                    }
+                }
+            }
         }
         else if (length < this.point.length) {
             this.point.resize(length);
@@ -396,6 +550,13 @@ class PolyfaceData {
                 this.param.length = length;
             if (this.color)
                 this.color.length = length;
+            if (this.auxData) {
+                for (const channel of this.auxData.channels) {
+                    for (const channelData of channel.data) {
+                        channelData.values.length = length * channel.entriesPerValue;
+                    }
+                }
+            }
         }
     }
     range(result, transform) {
@@ -463,7 +624,7 @@ exports.PolyfaceData = PolyfaceData;
  * A Polyface is n abstract mesh structure (of unspecified implementation) that provides a PolyfaceVisitor
  * to iterate over its facets.
  */
-class Polyface extends CurvePrimitive_1.GeometryQuery {
+class Polyface extends GeometryQuery_1.GeometryQuery {
     constructor(data) {
         super();
         this._twoSided = false;
@@ -536,7 +697,7 @@ class IndexedPolyface extends Polyface {
         const sourceToDestPointIndex = new GrowableArray_1.GrowableFloat64Array();
         sourceToDestPointIndex.ensureCapacity(source.data.pointCount);
         const sourcePoints = source.data.point;
-        const xyz = PointVector_1.Point3d.create();
+        const xyz = Point3dVector3d_1.Point3d.create();
         for (let i = 0, n = source.data.point.length; i < n; i++) {
             sourcePoints.getPoint3dAt(i, xyz);
             if (transform) {
@@ -663,7 +824,7 @@ class IndexedPolyface extends Polyface {
     /** add a point.
      * @returns Returns the zero-based index of the added point.
      */
-    addPointXYZ(x, y, z) { this.data.point.push(PointVector_1.Point3d.create(x, y, z)); return this.data.point.length - 1; }
+    addPointXYZ(x, y, z) { this.data.point.push(Point3dVector3d_1.Point3d.create(x, y, z)); return this.data.point.length - 1; }
     addParam(param) {
         if (!this.data.param)
             this.data.param = [];
@@ -673,7 +834,7 @@ class IndexedPolyface extends Polyface {
     addParamXY(x, y) {
         if (!this.data.param)
             this.data.param = [];
-        this.data.param.push(PointVector_1.Point2d.create(x, y));
+        this.data.param.push(Point2dVector2d_1.Point2d.create(x, y));
         return this.data.param.length - 1;
     }
     addNormal(normal) {
@@ -685,7 +846,7 @@ class IndexedPolyface extends Polyface {
     addNormalXYZ(x, y, z) {
         if (!this.data.normal)
             this.data.normal = [];
-        this.data.normal.push(PointVector_1.Vector3d.create(x, y, z));
+        this.data.normal.push(Point3dVector3d_1.Vector3d.create(x, y, z));
         return this.data.normal.length - 1;
     }
     addColor(color) {
@@ -835,6 +996,8 @@ class IndexedPolyfaceVisitor extends PolyfaceData {
         super(facets.data.normalCount > 0, facets.data.paramCount > 0, facets.data.colorCount > 0);
         this._polyface = facets;
         this._numWrap = numWrap;
+        if (facets.data.auxData)
+            this.auxData = facets.data.auxData.createForVisitor();
         this.reset();
         this._numEdges = 0;
         this._nextFacetIndex = 0;
@@ -897,6 +1060,7 @@ class IndexedPolyfaceVisitor extends PolyfaceData {
     clientParamIndex(i) { return this.paramIndex ? this.paramIndex[i] : -1; }
     clientNormalIndex(i) { return this.normalIndex ? this.normalIndex[i] : -1; }
     clientColorIndex(i) { return this.colorIndex ? this.colorIndex[i] : -1; }
+    clientAuxIndex(i) { return this.auxData ? this.auxData.indices[i] : -1; }
 }
 exports.IndexedPolyfaceVisitor = IndexedPolyfaceVisitor;
 //# sourceMappingURL=Polyface.js.map
