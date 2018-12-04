@@ -63,7 +63,7 @@
                           </li>
                           <script>
                             (function() {
-                              var cx = '000629069474334212860:yxwzhn4umym';
+                              var cx = '018053174497532353467:v_gnrjjlqwc';
                               var gcse = document.createElement('script');
                               gcse.type = 'text/javascript';
                               gcse.async = true;
@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">Change History</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">0.171.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -85,11 +85,11 @@
         </header>
 <div id='main-wrapper'>
     <nav id='sidebar'>
-        <div id='table-of-contents'>
+        <div id='table-of-contents' class="custom-scrollbar">
             <div id="dismiss">
-                <i class="icon icon-chevron-left no-user-select"></i>
+                <i id="dismiss-arrow" class="icon icon-chevron-left no-user-select"></i>
             </div>
-            <hr class='sm-only'>
+            <hr id="dismiss-hr" class='sm-only'>
             <ul id='main-navigation-list'>
                 <html><head></head><body><h2 id="imodel.js packages">iModel.js Packages</h2>
     <hr>
@@ -186,7 +186,7 @@
             </ul>
         </div>
     </nav>    <div class='documentation-main'>
-        <article id="main" name="main-content">
+        <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/">geometry-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/bspline/">Bspline</a> > BSpline1dNd</div>
             
             <h2 class="h-bspline1dnd">BSpline1dNd <span class="badge badge-pill badge-primary badge-class">Class</span><a id="bspline1dnd" class="heading-anchor" href="#bspline1dnd"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
@@ -239,6 +239,10 @@
 <tr>
 <td class="h-sumpolebufferforspan"><span class="method-name">sumPoleBufferForSpan</span><span class="method-parenthesis">(</span><span class="method-parameters">spanIndex: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="sumpolebufferforspan" class="heading-anchor" href="#sumpolebufferforspan"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>sum poles by the weights in the basisBuffer, using poles for given span</td>
+</tr>
+<tr>
+<td class="h-testcloseablepolygon"><span class="method-name"><a href="testcloseablepolygon">testCloseablePolygon</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="testcloseablepolygon" class="heading-anchor" href="#testcloseablepolygon"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Test if the leading and trailing polygon coordinates are replicated in the manner of a &quot;closed&quot; bspline polygon which has been expanded<br>to act as a normal bspline.</td>
 </tr>
 <tr>
 <td class="h-create"><span class="method-name">create</span><span class="method-parenthesis">(</span><span class="method-parameters">numPoles: number, poleLength: number, order: number, knots: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/bspline/knotvector'>KnotVector</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/bspline/bspline1dnd'>BSpline1dNd</a> | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="create" class="heading-anchor" href="#create"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -321,7 +325,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 November, 2018</span>
+                <span class='date-updated'>03 December, 2018</span>
             </p>
 
             
@@ -331,7 +335,7 @@
     </div>
     <div class="overlay"></div>
     <div id='inner-table-of-contents'>
-        <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+       <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
   <h4 class='heading'>On this page</h4>
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
@@ -379,6 +383,9 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#sumpolebufferforspan">sumPoleBufferForSpan</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#testcloseablepolygon">testCloseablePolygon</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#create">create</a>

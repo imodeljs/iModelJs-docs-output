@@ -63,7 +63,7 @@
                           </li>
                           <script>
                             (function() {
-                              var cx = '000629069474334212860:yxwzhn4umym';
+                              var cx = '018053174497532353467:v_gnrjjlqwc';
                               var gcse = document.createElement('script');
                               gcse.type = 'text/javascript';
                               gcse.async = true;
@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">Change History</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">0.171.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -85,11 +85,11 @@
         </header>
 <div id='main-wrapper'>
     <nav id='sidebar'>
-        <div id='table-of-contents'>
+        <div id='table-of-contents' class="custom-scrollbar">
             <div id="dismiss">
-                <i class="icon icon-chevron-left no-user-select"></i>
+                <i id="dismiss-arrow" class="icon icon-chevron-left no-user-select"></i>
             </div>
-            <hr class='sm-only'>
+            <hr id="dismiss-hr" class='sm-only'>
             <ul id='main-navigation-list'>
                 <html><head></head><body><h3 id="bis">BIS</h3>
     <ul>
@@ -154,12 +154,13 @@
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-unitsystem" class="table-of-contents-link">UnitSystem</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-format" class="table-of-contents-link">Format</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-name" class="table-of-contents-link">ECName</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/differences-between-ec2-and-ec3" class="table-of-contents-link">Changes Between ECObjects 2 and 3</a></li>
     </ul>
     </body></html>
             </ul>
         </div>
     </nav>    <div class='documentation-main'>
-        <article id="main" name="main-content">
+        <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">Base Infrastructure Schema</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/intro/">intro</a> > modeling-perspectives</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/bis/intro/modeling-perspectives.md">Edit this page</a></div>
             <h1 id="modeling perspectives">Modeling Perspectives</h1>
@@ -191,7 +192,7 @@
 Some `Model` subclasses do not correspond to modeling perspectives. `RepositoryModel` is one case.
 -->
 <h3 class="h-modeling-perspective-consistency-of-partitions-models-and-elements">Modeling Perspective Consistency of Partitions, Models and Elements<a id="modeling-perspective-consistency-of-partitions-models-and-elements" class="heading-anchor" href="#modeling-perspective-consistency-of-partitions-models-and-elements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>As is described in <a href="top-of-the-world">Top of the World</a>, for every Subject, there may be zero or more <code>InformationPartitionElement</code> child <code>Element</code>s. Each of those <code>InformationPartitionElement</code>s is effectively a declaration of modeling perspective and starts a <code>Model</code> hierarchy that is of that the declared modeling perspective.</p>
+<p>As is described in <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/top-of-the-world'>Top of the World</a>, for every Subject, there may be zero or more <code>InformationPartitionElement</code> child <code>Element</code>s. Each of those <code>InformationPartitionElement</code>s is effectively a declaration of modeling perspective and starts a <code>Model</code> hierarchy that is of that the declared modeling perspective.</p>
 <p>Each <code>InformationPartitionElement</code> breaks down into a <code>Model</code> that is of the same modeling perspective. That <code>Model</code> in turn contains only <code>Element</code>s of the same modeling perspective. Some of those <code>Element</code>s will have breakdown <code>Model</code>s; the breakdown <code>Model</code>s must be of the same modeling perspective as the <code>Element</code> they break down.</p>
 <p>These modeling perspective rules enforce a minimum level of logical data consistency. For example, they prevent the placement of a physical fire hydrant <code>Element</code> into a section drawing <code>Model</code>.</p>
 <!-- I have intentionally avoided complicating this discussion with Elements of a compatible modeling perspective. Until we decide what that is, I don't think we should attempt to document it -->
@@ -312,7 +313,7 @@ This allows `Document` elements to be organized by how they relate to the parent
 <p>Hydraulic Analysis, on the other hand, does require a custom modeling perspective. This perspective will model reality as a system that transports and stores water. Reality will be simplified into a network of conduits and other items, with properties and relationships appropriate for hydraulic analysis.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 November, 2018</span>
+                <span class='date-updated'>03 December, 2018</span>
             </p>
 
             
@@ -322,7 +323,7 @@ This allows `Document` elements to be organized by how they relate to the parent
     </div>
     <div class="overlay"></div>
     <div id='inner-table-of-contents'>
-        <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+       <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
   <h4 class='heading'>On this page</h4>
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>

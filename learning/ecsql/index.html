@@ -63,7 +63,7 @@
                           </li>
                           <script>
                             (function() {
-                              var cx = '000629069474334212860:yxwzhn4umym';
+                              var cx = '018053174497532353467:v_gnrjjlqwc';
                               var gcse = document.createElement('script');
                               gcse.type = 'text/javascript';
                               gcse.async = true;
@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">Change History</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">0.171.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -85,11 +85,11 @@
         </header>
 <div id='main-wrapper'>
     <nav id='sidebar'>
-        <div id='table-of-contents'>
+        <div id='table-of-contents' class="custom-scrollbar">
             <div id="dismiss">
-                <i class="icon icon-chevron-left no-user-select"></i>
+                <i id="dismiss-arrow" class="icon icon-chevron-left no-user-select"></i>
             </div>
-            <hr class='sm-only'>
+            <hr id="dismiss-hr" class='sm-only'>
             <ul id='main-navigation-list'>
                 <html><head></head><body><h3 id="the imodel.js library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModel.js Library</a></h3>
     <ul>
@@ -113,7 +113,7 @@
             </ul>
         </div>
     </nav>    <div class='documentation-main'>
-        <article id="main" name="main-content">
+        <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > ECSQL</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/ECSQL.md">Edit this page</a></div>
             <h1 id="ecsql">ECSQL</h1>
@@ -123,7 +123,7 @@
 <h2 class="h-what-is-ecsql">What is ECSQL<a id="what-is-ecsql" class="heading-anchor" href="#what-is-ecsql"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>ECSQL is a text-based command language for CRUD (create, read, update, delete) operations against
 the business data in an iModel or ECDb file.</p>
-<p>ECSQL is an implementation of SQL &#x2014; a proven, well-adopted text-based command language. It sticks to
+<p>ECSQL is an implementation of SQL &#x2014; a proven, well-adopted text-based command language. It adheres to
 standard SQL (SQL-92 and SQL-99) wherever possible.</p>
 <p>Especially the SQL-99 standard came with a lot of features ECSchemas have too: boolean, date time, binary
 data types, structs, arrays, polymorphism. This allows ECSQL to deviate only in very few exceptions from
@@ -364,7 +364,10 @@ following system properties:</p>
 <td>ECClassId of the instance on the <em>target</em> end of the relationship</td>
 </tr>
 </tbody></table><blockquote>
-<p>If the ECRelationshipClass is backed by a <a href="#navigation-properties">Navigation property</a>, it is usually much easier to use the navigation property in your ECSQL than the ECRelationshipClass.</p>
+<ul>
+<li>If the ECRelationshipClass is backed by a <a href="#navigation-properties">Navigation property</a>, it is usually much easier to use the navigation property in your ECSQL than the ECRelationshipClass.</li>
+<li><code>SourceECClassId</code> and <code>TargetECClassId</code> are skipped when performing a <code>SELECT * FROM</code> statement or an <code>INSERT INTO</code> statement without a property name list.</li>
+</ul>
 </blockquote>
 <h3 class="h-examples-4">Examples<a id="examples-4" class="heading-anchor" href="#examples-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -434,7 +437,7 @@ returned.</p>
 <p>ECSQL has a number of <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/geometrysqlfuncs'>built-in geometry functions</a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 November, 2018</span>
+                <span class='date-updated'>03 December, 2018</span>
             </p>
 
             
@@ -444,7 +447,7 @@ returned.</p>
     </div>
     <div class="overlay"></div>
     <div id='inner-table-of-contents'>
-        <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+       <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
   <h4 class='heading'>On this page</h4>
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>

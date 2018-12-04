@@ -63,7 +63,7 @@
                           </li>
                           <script>
                             (function() {
-                              var cx = '000629069474334212860:yxwzhn4umym';
+                              var cx = '018053174497532353467:v_gnrjjlqwc';
                               var gcse = document.createElement('script');
                               gcse.type = 'text/javascript';
                               gcse.async = true;
@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">Change History</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">0.171.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -85,11 +85,11 @@
         </header>
 <div id='main-wrapper'>
     <nav id='sidebar'>
-        <div id='table-of-contents'>
+        <div id='table-of-contents' class="custom-scrollbar">
             <div id="dismiss">
-                <i class="icon icon-chevron-left no-user-select"></i>
+                <i id="dismiss-arrow" class="icon icon-chevron-left no-user-select"></i>
             </div>
-            <hr class='sm-only'>
+            <hr id="dismiss-hr" class='sm-only'>
             <ul id='main-navigation-list'>
                 <html><head></head><body><h2 id="imodel.js packages">iModel.js Packages</h2>
     <hr>
@@ -186,7 +186,7 @@
             </ul>
         </div>
     </nav>    <div class='documentation-main'>
-        <article id="main" name="main-content">
+        <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/">imodeljs-backend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/relationships/">Relationships</a> > ElementGroupsMembers</div>
             
             <h2 class="h-elementgroupsmembers">ElementGroupsMembers <span class="badge badge-pill badge-primary badge-class">Class</span><a id="elementgroupsmembers" class="heading-anchor" href="#elementgroupsmembers"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
@@ -198,7 +198,7 @@
 <h3 class="h-implements">Implements<a id="implements" class="heading-anchor" href="#implements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/entityprops'>EntityProps</a></li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/linktablerelationshipprops'>LinkTableRelationshipProps</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationshipprops'>RelationshipProps</a></li>
 </ul>
 <h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -206,8 +206,12 @@
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-create"><span class="method-name"><a href="create">create</a></span><span class="method-parenthesis">(</span><span class="method-parameters">iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a>, sourceId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, targetId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, classFullName: string = ElementGroupsMembers.classFullName, memberPriority: number = 0</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/elementgroupsmembers'>ElementGroupsMembers</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="create" class="heading-anchor" href="#create"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Create an instance of the ElementGroupsMembers relationship.</td>
+<td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/elementgroupsmembersprops'>ElementGroupsMembersProps</a>, iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/elementgroupsmembers'>ElementGroupsMembers</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-createt-extends-elementreferstoelements"><span class="method-name">create</span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/elementreferstoelements'>ElementRefersToElements</a></span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a>, sourceId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, targetId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, memberPriority: number = 0</span><span class="method-parenthesis">):</span><span class="method-output"> T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/elementreferstoelements'>ElementRefersToElements</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createt-extends-elementreferstoelements" class="heading-anchor" href="#createt-extends-elementreferstoelements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-inherited-methods"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited methods<a id="inherited-methods" class="heading-anchor" href="#inherited-methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -216,8 +220,8 @@
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-buildconcurrencycontrolrequest"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/linktablerelationship/buildconcurrencycontrolrequest'>buildConcurrencyControlRequest</a></span><span class="method-parenthesis">(</span><span class="method-parameters">opcode: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/besqlite/dbopcode'>DbOpcode</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="buildconcurrencycontrolrequest" class="heading-anchor" href="#buildconcurrencycontrolrequest"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/linktablerelationship'>LinkTableRelationship</a></span></td>
+<td class="h-buildconcurrencycontrolrequest"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationship/buildconcurrencycontrolrequest'>buildConcurrencyControlRequest</a></span><span class="method-parenthesis">(</span><span class="method-parameters">opcode: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/besqlite/dbopcode'>DbOpcode</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="buildconcurrencycontrolrequest" class="heading-anchor" href="#buildconcurrencycontrolrequest"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationship'>Relationship</a></span></td>
 <td>Add a request for the locks that would be needed to carry out the specified operation.</td>
 </tr>
 <tr>
@@ -226,9 +230,49 @@
 <td>Make a deep copy of this Entity</td>
 </tr>
 <tr>
+<td class="h-delete"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationship/#delete'>delete</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="delete" class="heading-anchor" href="#delete"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationship'>Relationship</a></span></td>
+<td>Delete this Relationship from the iModel.</td>
+</tr>
+<tr>
 <td class="h-foreachproperty"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity/foreachproperty'>forEachProperty</a></span><span class="method-parenthesis">(</span><span class="method-parameters">func: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/propertycallback'>PropertyCallback</a>, includeCustom: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="foreachproperty" class="heading-anchor" href="#foreachproperty"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/entity'>Entity</a></span></td>
 <td>Call a function for each property of this Entity.</td>
+</tr>
+<tr>
+<td class="h-insert"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationship/#insert'>insert</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><a id="insert" class="heading-anchor" href="#insert"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationship'>Relationship</a></span></td>
+<td>Insert this Relationship into the iModel.</td>
+</tr>
+<tr>
+<td class="h-update"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationship/#update'>update</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="update" class="heading-anchor" href="#update"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationship'>Relationship</a></span></td>
+<td>Update this Relationship in the iModel.</td>
+</tr>
+<tr>
+<td class="h-getinstancet-extends-relationship"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationship/#getinstance'>getInstance</a></span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationship'>Relationship</a></span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a>, criteria: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/sourceandtarget'>SourceAndTarget</a></span><span class="method-parenthesis">):</span><span class="method-output"> T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationship'>Relationship</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="getinstancet-extends-relationship" class="heading-anchor" href="#getinstancet-extends-relationship"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationship'>Relationship</a></span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-insertt-extends-elementreferstoelements"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/elementreferstoelements/insert'>insert</a></span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/elementreferstoelements'>ElementRefersToElements</a></span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a>, sourceId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, targetId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="insertt-extends-elementreferstoelements" class="heading-anchor" href="#insertt-extends-elementreferstoelements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/elementreferstoelements'>ElementRefersToElements</a></span></td>
+<td>Insert a new instance of the Relationship.</td>
+</tr>
+<tr>
+<td class="h-ondeleteddependency"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationship/#ondeleteddependency'>onDeletedDependency</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationshipprops'>RelationshipProps</a>, _iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="ondeleteddependency" class="heading-anchor" href="#ondeleteddependency"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationship'>Relationship</a></span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-onrootchanged"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationship/#onrootchanged'>onRootChanged</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationshipprops'>RelationshipProps</a>, _iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="onrootchanged" class="heading-anchor" href="#onrootchanged"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationship'>Relationship</a></span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-onvalidateoutput"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationship/#onvalidateoutput'>onValidateOutput</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationshipprops'>RelationshipProps</a>, _iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="onvalidateoutput" class="heading-anchor" href="#onvalidateoutput"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationship'>Relationship</a></span></td>
+<td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -291,36 +335,24 @@
 <td>Get the name of the schema that defines this class</td>
 </tr>
 <tr>
-<td class="h-sourceclassname"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/linktablerelationship/#sourceclassname'>sourceClassName</a></span><a id="sourceclassname" class="heading-anchor" href="#sourceclassname"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output">undefined | string</span></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/linktablerelationship'>LinkTableRelationship</a></span></td>
-<td>&#xA0;</td>
-</tr>
-<tr>
-<td class="h-sourceid"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/linktablerelationship/#sourceid'>sourceId</a></span><a id="sourceid" class="heading-anchor" href="#sourceid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-sourceid"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationship/#sourceid'>sourceId</a></span><a id="sourceid" class="heading-anchor" href="#sourceid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/linktablerelationship'>LinkTableRelationship</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationship'>Relationship</a></span></td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-targetclassname"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/linktablerelationship/#targetclassname'>targetClassName</a></span><a id="targetclassname" class="heading-anchor" href="#targetclassname"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output">undefined | string</span></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/linktablerelationship'>LinkTableRelationship</a></span></td>
-<td>&#xA0;</td>
-</tr>
-<tr>
-<td class="h-targetid"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/linktablerelationship/#targetid'>targetId</a></span><a id="targetid" class="heading-anchor" href="#targetid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-targetid"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationship/#targetid'>targetId</a></span><a id="targetid" class="heading-anchor" href="#targetid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/linktablerelationship'>LinkTableRelationship</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/relationship'>Relationship</a></span></td>
 <td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
-<li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/backend/src/LinkTableRelationship.ts">LinkTableRelationship.ts</a></span></li>
+<li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/backend/src/Relationship.ts">Relationship.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 November, 2018</span>
+                <span class='date-updated'>03 December, 2018</span>
             </p>
 
             
@@ -330,7 +362,7 @@
     </div>
     <div class="overlay"></div>
     <div id='inner-table-of-contents'>
-        <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+       <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
   <h4 class='heading'>On this page</h4>
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
@@ -353,6 +385,9 @@
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constructor">constructor</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#create">create</a>
                                     </li>
                             </ul>
@@ -370,7 +405,31 @@
                                             <a class='title solo-title menu-text' href="#clone">clone</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#delete">delete</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#foreachproperty">forEachProperty</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#insert">insert</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#update">update</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getinstance">getInstance</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#insert-1">insert</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#ondeleteddependency">onDeletedDependency</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#onrootchanged">onRootChanged</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#onvalidateoutput">onValidateOutput</a>
                                     </li>
                             </ul>
                     </li>
@@ -413,13 +472,7 @@
                                             <a class='title solo-title menu-text' href="#schemaname">schemaName</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#sourceclassname">sourceClassName</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#sourceid">sourceId</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#targetclassname">targetClassName</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#targetid">targetId</a>

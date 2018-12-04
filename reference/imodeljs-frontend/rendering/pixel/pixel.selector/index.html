@@ -63,7 +63,7 @@
                           </li>
                           <script>
                             (function() {
-                              var cx = '000629069474334212860:yxwzhn4umym';
+                              var cx = '018053174497532353467:v_gnrjjlqwc';
                               var gcse = document.createElement('script');
                               gcse.type = 'text/javascript';
                               gcse.async = true;
@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">Change History</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">0.171.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -85,11 +85,11 @@
         </header>
 <div id='main-wrapper'>
     <nav id='sidebar'>
-        <div id='table-of-contents'>
+        <div id='table-of-contents' class="custom-scrollbar">
             <div id="dismiss">
-                <i class="icon icon-chevron-left no-user-select"></i>
+                <i id="dismiss-arrow" class="icon icon-chevron-left no-user-select"></i>
             </div>
-            <hr class='sm-only'>
+            <hr id="dismiss-hr" class='sm-only'>
             <ul id='main-navigation-list'>
                 <html><head></head><body><h2 id="imodel.js packages">iModel.js Packages</h2>
     <hr>
@@ -186,7 +186,7 @@
             </ul>
         </div>
     </nav>    <div class='documentation-main'>
-        <article id="main" name="main-content">
+        <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/rendering/">Rendering</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/rendering/pixel/">Pixel</a> > Pixel.Selector</div>
             
             <h2 class="h-pixelselector">Pixel.Selector <span class="badge badge-pill badge-primary badge-enumeration">Enumeration</span><a id="pixelselector" class="heading-anchor" href="#pixelselector"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
@@ -204,28 +204,18 @@ Aspects not specified will be omitted from the returned data.</p>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-elementid"><span class="enum-name">ElementId</span><a id="elementid" class="heading-anchor" href="#elementid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-feature"><span class="enum-name">Feature</span><a id="feature" class="heading-anchor" href="#feature"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value"> 1 &lt;&lt; 0</span></td>
-<td>Select the ID of the element which produced each pixel.</td>
-</tr>
-<tr>
-<td class="h-distance"><span class="enum-name">Distance</span><a id="distance" class="heading-anchor" href="#distance"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="enum-value"> 1 &lt;&lt; 1</span></td>
-<td>For each pixel, select the fraction of its distance between the near and far planes.</td>
-</tr>
-<tr>
-<td class="h-geometry"><span class="enum-name">Geometry</span><a id="geometry" class="heading-anchor" href="#geometry"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="enum-value"> 1 &lt;&lt; 2</span></td>
-<td>Select the type and planarity of geometry which produced each pixel.</td>
+<td>Select the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/pixel/pixel.selector/#feature'>Pixel.Selector.Feature</a> which produced each pixel.</td>
 </tr>
 <tr>
 <td class="h-geometryanddistance"><span class="enum-name">GeometryAndDistance</span><a id="geometryanddistance" class="heading-anchor" href="#geometryanddistance"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="enum-value"> Geometry | Distance</span></td>
-<td>Select geometry type/planarity and distance fraction associated with each pixel.</td>
+<td><span class="enum-value"> 1 &lt;&lt; 2</span></td>
+<td>Select the type and planarity of geometry which produced each pixel as well as the fraction of its distance between the near and far planes.</td>
 </tr>
 <tr>
 <td class="h-all"><span class="enum-name">All</span><a id="all" class="heading-anchor" href="#all"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="enum-value"> GeometryAndDistance | ElementId</span></td>
+<td><span class="enum-value"> GeometryAndDistance | Feature</span></td>
 <td>Select all aspects of each pixel.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -234,7 +224,7 @@ Aspects not specified will be omitted from the returned data.</p>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 November, 2018</span>
+                <span class='date-updated'>03 December, 2018</span>
             </p>
 
             
@@ -244,7 +234,7 @@ Aspects not specified will be omitted from the returned data.</p>
     </div>
     <div class="overlay"></div>
     <div id='inner-table-of-contents'>
-        <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+       <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
   <h4 class='heading'>On this page</h4>
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
@@ -264,13 +254,7 @@ Aspects not specified will be omitted from the returned data.</p>
                                             <a class='title solo-title menu-text' href="#none">None</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#elementid">ElementId</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#distance">Distance</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#geometry">Geometry</a>
+                                            <a class='title solo-title menu-text' href="#feature">Feature</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#geometryanddistance">GeometryAndDistance</a>

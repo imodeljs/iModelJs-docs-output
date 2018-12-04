@@ -48,7 +48,7 @@
       </button>
       <div class="navbar-collapse collapse justify-content-stretch" id="navbar7">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">Change History</a></li>
+          <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">0.171.0</a></li>
         </ul>
       </div>
     </nav>
@@ -157,7 +157,18 @@
               onclick="replaceViewer(event)">Open iModel.js Viewer Example</a>
         
           </div>
-        </div>        <ul id="bottom-content-container">
+        </div>
+        
+        <script>
+          // LaunchDarkly script for turning off the viewer.
+          $(document).ready(function () {
+            var shouldShow = ldclient.variation(featureFlags.LandingPageViewer, false);
+            if (!shouldShow) {
+              $('#viewiModelBtn').html('Under Construction').addClass('disabled').removeAttr('href').removeAttr('onclick');
+              $('.try-imodeljs-text').html('<h4> We are working on it. Check back later. </h4>');
+            }
+          });
+        </script>        <ul id="bottom-content-container">
                 <li class="landing-bottom-content-item">
                     <div class="feature-icon">
                         <img src="landing-page/assets/bullet-aligned.svg" />

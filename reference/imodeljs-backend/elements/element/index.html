@@ -63,7 +63,7 @@
                           </li>
                           <script>
                             (function() {
-                              var cx = '000629069474334212860:yxwzhn4umym';
+                              var cx = '018053174497532353467:v_gnrjjlqwc';
                               var gcse = document.createElement('script');
                               gcse.type = 'text/javascript';
                               gcse.async = true;
@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">Change History</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">0.171.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -85,11 +85,11 @@
         </header>
 <div id='main-wrapper'>
     <nav id='sidebar'>
-        <div id='table-of-contents'>
+        <div id='table-of-contents' class="custom-scrollbar">
             <div id="dismiss">
-                <i class="icon icon-chevron-left no-user-select"></i>
+                <i id="dismiss-arrow" class="icon icon-chevron-left no-user-select"></i>
             </div>
-            <hr class='sm-only'>
+            <hr id="dismiss-hr" class='sm-only'>
             <ul id='main-navigation-list'>
                 <html><head></head><body><h2 id="imodel.js packages">iModel.js Packages</h2>
     <hr>
@@ -186,7 +186,7 @@
             </ul>
         </div>
     </nav>    <div class='documentation-main'>
-        <article id="main" name="main-content">
+        <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/">imodeljs-backend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/elements/">Elements</a> > Element</div>
             
             <h2 class="h-element">Element <span class="badge badge-pill badge-primary badge-class">Class</span><a id="element" class="heading-anchor" href="#element"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
@@ -231,6 +231,10 @@ uniqueness of id, code, and federationGuid.</p>
 <td>Add a request for locks, code reservations, and anything else that would be needed to carry out the specified operation.</td>
 </tr>
 <tr>
+<td class="h-delete"><span class="method-name">delete</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="delete" class="heading-anchor" href="#delete"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Delete this Element from the iModel.</td>
+</tr>
+<tr>
 <td class="h-getclassmetadata"><span class="method-name">getClassMetaData</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/entitymetadata'>EntityMetaData</a> | undefined</span><a id="getclassmetadata" class="heading-anchor" href="#getclassmetadata"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Get the class metadata for this element.</td>
 </tr>
@@ -251,6 +255,10 @@ uniqueness of id, code, and federationGuid.</p>
 <td>Get a set of JSON user properties by namespace</td>
 </tr>
 <tr>
+<td class="h-insert"><span class="method-name">insert</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> string</span><a id="insert" class="heading-anchor" href="#insert"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Insert this Element into the iModel.</td>
+</tr>
+<tr>
 <td class="h-removeuserproperties"><span class="method-name">removeUserProperties</span><span class="method-parenthesis">(</span><span class="method-parameters">nameSpace: string</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="removeuserproperties" class="heading-anchor" href="#removeuserproperties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Remove a set of JSON user properties, specified by namespace, from this Element</td>
 </tr>
@@ -263,27 +271,39 @@ uniqueness of id, code, and federationGuid.</p>
 <td>Change a set of user JSON properties of this Element by namespace.</td>
 </tr>
 <tr>
-<td class="h-ondelete"><span class="method-name">onDelete</span><span class="method-parenthesis">(</span><span class="method-parameters">_props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelstatus'>IModelStatus</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="ondelete" class="heading-anchor" href="#ondelete"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-update"><span class="method-name">update</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="update" class="heading-anchor" href="#update"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Update this Element in the iModel.</td>
+</tr>
+<tr>
+<td class="h-onallinputshandled"><span class="method-name">onAllInputsHandled</span><span class="method-parenthesis">(</span><span class="method-parameters">_id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, _iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="onallinputshandled" class="heading-anchor" href="#onallinputshandled"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-ondeleted"><span class="method-name">onDeleted</span><span class="method-parenthesis">(</span><span class="method-parameters">_props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="ondeleted" class="heading-anchor" href="#ondeleted"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-onbeforeoutputshandled"><span class="method-name">onBeforeOutputsHandled</span><span class="method-parenthesis">(</span><span class="method-parameters">_id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, _iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="onbeforeoutputshandled" class="heading-anchor" href="#onbeforeoutputshandled"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-oninsert"><span class="method-name">onInsert</span><span class="method-parenthesis">(</span><span class="method-parameters">_props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelstatus'>IModelStatus</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="oninsert" class="heading-anchor" href="#oninsert"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-ondelete"><span class="method-name">onDelete</span><span class="method-parenthesis">(</span><span class="method-parameters">_props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a>, _iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelstatus'>IModelStatus</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="ondelete" class="heading-anchor" href="#ondelete"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-oninserted"><span class="method-name">onInserted</span><span class="method-parenthesis">(</span><span class="method-parameters">_id: string</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="oninserted" class="heading-anchor" href="#oninserted"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-ondeleted"><span class="method-name">onDeleted</span><span class="method-parenthesis">(</span><span class="method-parameters">_props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a>, _iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="ondeleted" class="heading-anchor" href="#ondeleted"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-onupdate"><span class="method-name">onUpdate</span><span class="method-parenthesis">(</span><span class="method-parameters">_props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelstatus'>IModelStatus</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="onupdate" class="heading-anchor" href="#onupdate"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-oninsert"><span class="method-name">onInsert</span><span class="method-parenthesis">(</span><span class="method-parameters">_props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a>, _iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelstatus'>IModelStatus</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="oninsert" class="heading-anchor" href="#oninsert"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-onupdated"><span class="method-name">onUpdated</span><span class="method-parenthesis">(</span><span class="method-parameters">_props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="onupdated" class="heading-anchor" href="#onupdated"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-oninserted"><span class="method-name">onInserted</span><span class="method-parenthesis">(</span><span class="method-parameters">_props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a>, _iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="oninserted" class="heading-anchor" href="#oninserted"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-onupdate"><span class="method-name">onUpdate</span><span class="method-parenthesis">(</span><span class="method-parameters">_props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a>, _iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelstatus'>IModelStatus</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="onupdate" class="heading-anchor" href="#onupdate"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-onupdated"><span class="method-name">onUpdated</span><span class="method-parenthesis">(</span><span class="method-parameters">_props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a>, _iModel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="onupdated" class="heading-anchor" href="#onupdated"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-inherited-methods"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited methods<a id="inherited-methods" class="heading-anchor" href="#inherited-methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -393,7 +413,7 @@ uniqueness of id, code, and federationGuid.</p>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 November, 2018</span>
+                <span class='date-updated'>03 December, 2018</span>
             </p>
 
             
@@ -403,7 +423,7 @@ uniqueness of id, code, and federationGuid.</p>
     </div>
     <div class="overlay"></div>
     <div id='inner-table-of-contents'>
-        <!--  <div id='sticky-container' style="top: 76px; position: fixed;">
+       <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
   <h4 class='heading'>On this page</h4>
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
@@ -432,6 +452,9 @@ uniqueness of id, code, and federationGuid.</p>
                                             <a class='title solo-title menu-text' href="#buildconcurrencycontrolrequest">buildConcurrencyControlRequest</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#delete">delete</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#getclassmetadata">getClassMetaData</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -447,6 +470,9 @@ uniqueness of id, code, and federationGuid.</p>
                                             <a class='title solo-title menu-text' href="#getuserproperties">getUserProperties</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#insert">insert</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#removeuserproperties">removeUserProperties</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -454,6 +480,15 @@ uniqueness of id, code, and federationGuid.</p>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#setuserproperties">setUserProperties</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#update">update</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#onallinputshandled">onAllInputsHandled</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#onbeforeoutputshandled">onBeforeOutputsHandled</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#ondelete">onDelete</a>
