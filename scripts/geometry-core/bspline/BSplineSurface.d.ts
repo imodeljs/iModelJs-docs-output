@@ -114,6 +114,7 @@ export declare abstract class BSpline2dNd extends GeometryQuery {
     numPolesTotal(): number;
     numPolesUV(select: UVSelect): number;
     poleStepUV(select: UVSelect): number;
+    static validOrderAndPoleCounts(orderU: number, numPolesU: number, orderV: number, numPolesV: number, numUV: number): boolean;
     getPoint3dPole(i: number, j: number, result?: Point3d): Point3d | undefined;
     getPoint3dPoleXYZW(i: number, j: number, result?: Point3d): Point3d | undefined;
     /**
@@ -171,6 +172,12 @@ export declare abstract class BSpline2dNd extends GeometryQuery {
      * Set the flag indicating the bspline might be suitable for having wrapped "closed" interpretation.
      */
     setWrappable(select: UVSelect, value: boolean): void;
+    /**
+     * Test if `degree` leading and trailing (one of U or V) blocks match, as if the data is an unwrapped closed spline in the slected direction.
+     * @param select select U or V direction
+     * @returns true if coordinates matched.
+     */
+    isClosable(select: UVSelect): boolean;
 }
 /**  BSplineSurface3d is a parametric surface in xyz space.
  * * This (BSplineSurface3d) is an unweighted surface.   Use the separate class BSplineSurface3dH for a weighted surface.
@@ -276,12 +283,6 @@ export declare class BSplineSurface3d extends BSpline2dNd implements BSplineSurf
     fractionToPointAndDerivatives(fractionU: number, fractionV: number, result?: Plane3dByOriginAndVectors): Plane3dByOriginAndVectors;
     isAlmostEqual(other: any): boolean;
     isInPlane(plane: Plane3dByOriginAndUnitNormal): boolean;
-    /**
-     * return true if the spline is (a) unclamped with (degree-1) matching knot intervals,
-     * (b) (degree-1) wrapped points,
-     * (c) marked wrappable from construction time.
-     */
-    isClosable(select: UVSelect): boolean;
     dispatchToGeometryHandler(handler: GeometryHandler): any;
     extendRange(rangeToExtend: Range3d, transform?: Transform): void;
 }
@@ -370,12 +371,6 @@ export declare class BSplineSurface3dH extends BSpline2dNd implements BSplineSur
     fractionToPointAndDerivatives(fractionU: number, fractionV: number, result?: Plane3dByOriginAndVectors): Plane3dByOriginAndVectors;
     isAlmostEqual(other: any): boolean;
     isInPlane(plane: Plane3dByOriginAndUnitNormal): boolean;
-    /**
-     * return true if the spline is (a) unclamped with (degree-1) matching knot intervals,
-     * (b) (degree-1) wrapped points,
-     * (c) marked wrappable from construction time.
-     */
-    isClosable(select: UVSelect): boolean;
     /**
      * Pass `this` (strongly typed) to `handler.handleBsplineSurface3dH(this)`.
      * @param handler double dispatch handler.

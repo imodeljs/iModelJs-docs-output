@@ -258,19 +258,19 @@ class Transform {
         return result;
     }
     /**
-     * *  for each point:   multiply    transform * point
-     * *  if result is given, resize to match source and replace each corresponding pi
-     * *  if result is not given, return a new array.
+     * *  for each point in source:   multiply    transformInverse * point  in place inthe point.
+     * * return false if not invertible.
      */
     multiplyInversePoint3dArrayInPlace(source) {
         if (!this._matrix.computeCachedInverse(true))
-            return undefined;
+            return false;
         const originX = this.origin.x;
         const originY = this.origin.y;
         const originZ = this.origin.z;
         const n = source.length;
         for (let i = 0; i < n; i++)
             this._matrix.multiplyInverseXYZAsPoint3d(source[i].x - originX, source[i].y - originY, source[i].z - originZ, source[i]);
+        return true;
     }
     // modify destination so it has non-null points for the same length as the source.
     // (ASSUME existing elements of dest are non-null, and that parameters are given as either Point2d or Point3d arrays)

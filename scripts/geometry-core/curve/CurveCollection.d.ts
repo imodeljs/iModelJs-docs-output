@@ -6,7 +6,7 @@ import { Transform } from "../geometry3d/Transform";
 import { RecursiveCurveProcessor } from "./CurveProcessor";
 import { AnyCurve } from "./CurveChain";
 import { CurvePrimitive } from "./CurvePrimitive";
-import { GrowableXYZArray } from "../geometry3d/GrowableArray";
+import { GrowableXYZArray } from "../geometry3d/GrowableXYZArray";
 import { GeometryHandler } from "../geometry3d/GeometryHandler";
 /**
  * * A `CurveCollection` is an abstract (non-instantiable) class for various sets of curves with particular structures:

@@ -41,7 +41,6 @@ const Arc3d_1 = require("../curve/Arc3d");
 const LineSegment3d_1 = require("../curve/LineSegment3d");
 const BSplineCurve3dH_1 = require("../bspline/BSplineCurve3dH");
 const Point4d_1 = require("../geometry4d/Point4d");
-const CurveCollection_2 = require("../curve/CurveCollection");
 /* tslint:disable: object-literal-key-quotes no-console*/
 var IModelJson;
 (function (IModelJson) {
@@ -140,7 +139,7 @@ var IModelJson;
                     const result = [];
                     for (const contourData of value) {
                         const contour = Reader.parse(contourData);
-                        if (contour instanceof CurveCollection_2.CurveCollection) {
+                        if (contour instanceof CurveCollection_1.CurveCollection) {
                             result.push(contour);
                         }
                     }
@@ -1133,9 +1132,36 @@ var IModelJson;
         handleBSplineSurface3d(surface) {
             // ASSUME -- if the curve originated "closed" the knot and pole replication are unchanged,
             // so first and last knots can be re-assigned, and last (degree - 1) poles can be deleted.
-            if (surface.isClosable(0)
-                || surface.isClosable(1)) {
-                // TODO
+            const periodicU = surface.isClosable(0);
+            const periodicV = surface.isClosable(1);
+            if (periodicU || periodicV) {
+                let numUPoles = surface.numPolesUV(0);
+                let numVPoles = surface.numPolesUV(1);
+                if (periodicU)
+                    numUPoles -= surface.degreeUV(0);
+                if (periodicV)
+                    numVPoles -= surface.degreeUV(1);
+                const xyz = Point3dVector3d_1.Point3d.create();
+                const grid = [];
+                for (let j = 0; j < numVPoles; j++) {
+                    const stringer = [];
+                    for (let i = 0; i < numUPoles; i++) {
+                        surface.getPoint3dPole(i, j, xyz);
+                        stringer.push([xyz.x, xyz.y, xyz.z]);
+                    }
+                    grid.push(stringer);
+                }
+                return {
+                    "bsurf": {
+                        "points": grid,
+                        "uKnots": surface.copyKnots(0, true),
+                        "vKnots": surface.copyKnots(1, true),
+                        "orderU": surface.orderUV(0),
+                        "orderV": surface.orderUV(1),
+                        "closedU": periodicU,
+                        "closedV": periodicV,
+                    },
+                };
             }
             else {
                 return {

@@ -7,7 +7,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Curve */
 const GeometryHandler_1 = require("../geometry3d/GeometryHandler");
 const CurveLocationDetail_1 = require("./CurveLocationDetail");
-const CurveLocationDetail_2 = require("./CurveLocationDetail");
 const Geometry_1 = require("../Geometry");
 const LineSegment3d_1 = require("./LineSegment3d");
 const LineString3d_1 = require("./LineString3d");
@@ -19,7 +18,7 @@ const Polynomials_1 = require("../numerics/Polynomials");
 const Point4d_1 = require("../geometry4d/Point4d");
 const Matrix3d_1 = require("../geometry3d/Matrix3d");
 const Arc3d_1 = require("./Arc3d");
-const GrowableArray_1 = require("../geometry3d/GrowableArray");
+const GrowableFloat64Array_1 = require("../geometry3d/GrowableFloat64Array");
 const BSplineCurve_1 = require("../bspline/BSplineCurve");
 const BezierPolynomials_1 = require("../numerics/BezierPolynomials");
 const Newton_1 = require("../numerics/Newton");
@@ -119,9 +118,9 @@ class CurveCurveIntersectXY extends GeometryHandler_1.NullGeometryHandler {
             }
         }
         const detailA = CurveLocationDetail_1.CurveLocationDetail.createCurveFractionPoint(cpA, globalFractionA, cpA.fractionToPoint(globalFractionA));
-        detailA.setIntervalRole(CurveLocationDetail_2.CurveIntervalRole.isolated);
+        detailA.setIntervalRole(CurveLocationDetail_1.CurveIntervalRole.isolated);
         const detailB = CurveLocationDetail_1.CurveLocationDetail.createCurveFractionPoint(cpB, globalFractionB, cpB.fractionToPoint(globalFractionB));
-        detailB.setIntervalRole(CurveLocationDetail_2.CurveIntervalRole.isolated);
+        detailB.setIntervalRole(CurveLocationDetail_1.CurveIntervalRole.isolated);
         if (reversed) {
             this._results.dataA.push(detailB);
             this._results.dataB.push(detailA);
@@ -199,9 +198,9 @@ class CurveCurveIntersectXY extends GeometryHandler_1.NullGeometryHandler {
             const alpha = Geometry_1.Geometry.tripleProductPoint4dXYW(pointA0H, pointA1H, data.center);
             const beta = Geometry_1.Geometry.tripleProductPoint4dXYW(pointA0H, pointA1H, data.vector0);
             const gamma = Geometry_1.Geometry.tripleProductPoint4dXYW(pointA0H, pointA1H, data.vector90);
-            const cosines = new GrowableArray_1.GrowableFloat64Array(2);
-            const sines = new GrowableArray_1.GrowableFloat64Array(2);
-            const radians = new GrowableArray_1.GrowableFloat64Array(2);
+            const cosines = new GrowableFloat64Array_1.GrowableFloat64Array(2);
+            const sines = new GrowableFloat64Array_1.GrowableFloat64Array(2);
+            const radians = new GrowableFloat64Array_1.GrowableFloat64Array(2);
             const numRoots = Polynomials_1.AnalyticRoots.appendImplicitLineUnitCircleIntersections(alpha, beta, gamma, cosines, sines, radians);
             for (let i = 0; i < numRoots; i++) {
                 const arcPoint = data.center.plus2Scaled(data.vector0, cosines.at(i), data.vector90, sines.at(i));
@@ -223,9 +222,9 @@ class CurveCurveIntersectXY extends GeometryHandler_1.NullGeometryHandler {
             const alpha = Geometry_1.Geometry.tripleProductXYW(pointA0Local, 1, pointA1Local, 1, data.center, 1);
             const beta = Geometry_1.Geometry.tripleProductXYW(pointA0Local, 1, pointA1Local, 1, data.vector0, 0);
             const gamma = Geometry_1.Geometry.tripleProductXYW(pointA0Local, 1, pointA1Local, 1, data.vector90, 0);
-            const cosines = new GrowableArray_1.GrowableFloat64Array(2);
-            const sines = new GrowableArray_1.GrowableFloat64Array(2);
-            const radians = new GrowableArray_1.GrowableFloat64Array(2);
+            const cosines = new GrowableFloat64Array_1.GrowableFloat64Array(2);
+            const sines = new GrowableFloat64Array_1.GrowableFloat64Array(2);
+            const radians = new GrowableFloat64Array_1.GrowableFloat64Array(2);
             const numRoots = Polynomials_1.AnalyticRoots.appendImplicitLineUnitCircleIntersections(alpha, beta, gamma, cosines, sines, radians);
             for (let i = 0; i < numRoots; i++) {
                 const arcPoint = data.center.plus2Scaled(data.vector0, cosines.at(i), data.vector90, sines.at(i));

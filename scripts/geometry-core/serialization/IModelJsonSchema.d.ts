@@ -6,7 +6,7 @@ import { YawPitchRollProps } from "../geometry3d/YawPitchRollAngles";
 import { CoordinateXYZ } from "../curve/CoordinateXYZ";
 import { TransitionSpiral3d } from "../curve/TransitionSpiral";
 import { UnionRegion } from "../curve/UnionRegion";
-import { BagOfCurves } from "../curve/CurveCollection";
+import { BagOfCurves, CurveCollection } from "../curve/CurveCollection";
 import { ParityRegion } from "../curve/ParityRegion";
 import { Loop } from "../curve/Loop";
 import { Path } from "../curve/Path";
@@ -26,11 +26,10 @@ import { PointString3d } from "../curve/PointString3d";
 import { Arc3d } from "../curve/Arc3d";
 import { LineSegment3d } from "../curve/LineSegment3d";
 import { BSplineCurve3dH } from "../bspline/BSplineCurve3dH";
-import { CurveCollection } from "../curve/CurveCollection";
 import { BezierCurve3dH } from "../bspline/BezierCurve3dH";
 import { BezierCurve3d } from "../bspline/BezierCurve3d";
 export declare namespace IModelJson {
-    interface GeometryProps extends CurvePrimitiveProps, SolidPrimitiveProps {
+    interface GeometryProps extends CurvePrimitiveProps, SolidPrimitiveProps, CurveCollectionProps {
         indexedMesh?: IndexedMeshProps;
         point?: XYZProps;
         bsurf?: BSplineSurfaceProps;

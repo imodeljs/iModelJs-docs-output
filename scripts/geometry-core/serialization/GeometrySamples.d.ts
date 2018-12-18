@@ -29,11 +29,13 @@ import { LinearSweep } from "../solid/LinearSweep";
 import { RotationalSweep } from "../solid/RotationalSweep";
 import { RuledSweep } from "../solid/RuledSweep";
 import { LineSegment3d } from "../curve/LineSegment3d";
+import { Arc3d } from "../curve/Arc3d";
 import { TransitionSpiral3d } from "../curve/TransitionSpiral";
 import { LineString3d } from "../curve/LineString3d";
 import { PointString3d } from "../curve/PointString3d";
 import { ClipPlane } from "../clipping/ClipPlane";
-import { GrowableFloat64Array, GrowableXYZArray } from "../geometry3d/GrowableArray";
+import { GrowableFloat64Array } from "../geometry3d/GrowableFloat64Array";
+import { GrowableXYZArray } from "../geometry3d/GrowableXYZArray";
 import { UnionOfConvexClipPlaneSets } from "../clipping/UnionOfConvexClipPlaneSets";
 import { BSplineCurve3dH } from "../bspline/BSplineCurve3dH";
 import { CurveChainWithDistanceIndex } from "../curve/CurveChainWithDistanceIndex";
@@ -161,6 +163,15 @@ export declare class Sample {
     static createTriangularUnitGridPolyface(origin: Point3d, vectorX: Vector3d, vectorY: Vector3d, numXVertices: number, numYVertices: number, createParams?: boolean, createNormals?: boolean, createColors?: boolean): IndexedPolyface;
     static createXYGrid(numU: number, numV: number, dX?: number, dY?: number): Point3d[];
     static createXYGridBsplineSurface(numU: number, numV: number, orderU: number, orderV: number): BSplineSurface3d | undefined;
+    /**
+     * @param radiusU major radius
+     * @param radiusV minor radius
+     * @param numU number of facets around major hoop
+     * @param numV number of facets around minor hoop
+     * @param orderU major hoop order
+     * @param orderV minor hoop order
+     */
+    static createPseudoTorusBsplineSurface(radiusU: number, radiusV: number, numU: number, numV: number, orderU: number, orderV: number): BSplineSurface3d | undefined;
     static createWeightedXYGridBsplineSurface(numU: number, numV: number, orderU: number, orderV: number, weight00?: number, weight10?: number, weight01?: number, weight11?: number): BSplineSurface3dH | undefined;
     static createSimpleLinearSweeps(): LinearSweep[];
     /**
@@ -244,5 +255,18 @@ export declare class Sample {
      * * alternating lines and arcs
      */
     static createCurveChainWithDistanceIndex(): CurveChainWithDistanceIndex[];
+    /**
+     * Create various elliptic arcs
+     * * circle with vector0, vector90 aligned with x,y
+     * * circle with axes rotated
+     * *
+     * @param radiusRatio = vector90.magnitude / vector0.magnitude
+     */
+    static createArcs(radiusRatio?: number, sweep?: AngleSweep): Arc3d[];
+    /**
+     * Create many arcs, optionally including skews
+     * * @param skewFactor array of skew factors.  for each skew factor, all base arcs are replicated with vector90 shifted by the factor times vector0
+     */
+    static createManyArcs(skewFactors?: number[]): Arc3d[];
 }
 //# sourceMappingURL=GeometrySamples.d.ts.map

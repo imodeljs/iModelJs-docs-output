@@ -9,7 +9,7 @@ const Geometry_1 = require("../Geometry");
 const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
 const LineSegment3d_1 = require("../curve/LineSegment3d");
 const Graph_1 = require("./Graph");
-const GrowableArray_1 = require("../geometry3d/GrowableArray");
+const GrowableFloat64Array_1 = require("../geometry3d/GrowableFloat64Array");
 const ClusterableArray_1 = require("../numerics/ClusterableArray");
 class SweepEvent {
     constructor(node0, node1) {
@@ -173,7 +173,7 @@ class Merger {
     static sortAndFilterCrossings(arr) {
         if (arr.length === 0)
             return arr;
-        arr.sort(GrowableArray_1.GrowableFloat64Array.compare);
+        arr.sort(GrowableFloat64Array_1.GrowableFloat64Array.compare);
         let r = 0;
         for (let i = 1; i < arr.length; i++) {
             if (!Geometry_1.Geometry.isSameCoordinate(arr[r], arr[i])) {

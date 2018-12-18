@@ -175,7 +175,7 @@ export declare class BSplineCurve3d extends BSplineCurve3dBase {
      */
     copyKnots(includeExtraEndKnot: boolean): number[];
     /** Create a bspline with uniform knots. */
-    static createUniformKnots(poles: Point3d[], order: number): BSplineCurve3d | undefined;
+    static createUniformKnots(poles: Point3d[] | Float64Array, order: number): BSplineCurve3d | undefined;
     /** Create a bspline with given knots.
      *
      * *  Two count conditions are recognized:

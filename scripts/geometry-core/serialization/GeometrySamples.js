@@ -41,12 +41,14 @@ const LineString3d_1 = require("../curve/LineString3d");
 const PointString3d_1 = require("../curve/PointString3d");
 const ClipPlane_1 = require("../clipping/ClipPlane");
 const ConvexClipPlaneSet_1 = require("../clipping/ConvexClipPlaneSet");
-const GrowableArray_1 = require("../geometry3d/GrowableArray");
+const GrowableFloat64Array_1 = require("../geometry3d/GrowableFloat64Array");
+const GrowableXYZArray_1 = require("../geometry3d/GrowableXYZArray");
 const UnionOfConvexClipPlaneSets_1 = require("../clipping/UnionOfConvexClipPlaneSets");
 const BSplineCurve3dH_1 = require("../bspline/BSplineCurve3dH");
 const BezierCurve3d_1 = require("../bspline/BezierCurve3d");
 const BezierCurve3dH_1 = require("../bspline/BezierCurve3dH");
 const CurveChainWithDistanceIndex_1 = require("../curve/CurveChainWithDistanceIndex");
+const KnotVector_1 = require("../bspline/KnotVector");
 /* tslint:disable:no-console */
 /** Access the last point in the array. push another shifted by dx,dy,dz */
 function pushMove(data, dx, dy, dz = 0.0) {
@@ -640,6 +642,41 @@ class Sample {
     static createXYGridBsplineSurface(numU, numV, orderU, orderV) {
         return BSplineSurface_1.BSplineSurface3d.create(Sample.createXYGrid(numU, numV, 1.0, 1.0), numU, orderU, undefined, numV, orderV, undefined);
     }
+    /**
+     * @param radiusU major radius
+     * @param radiusV minor radius
+     * @param numU number of facets around major hoop
+     * @param numV number of facets around minor hoop
+     * @param orderU major hoop order
+     * @param orderV minor hoop order
+     */
+    static createPseudoTorusBsplineSurface(radiusU, radiusV, numU, numV, orderU, orderV) {
+        const points = [];
+        const numUPole = numU + orderU - 1;
+        const numVPole = numV + orderV - 1;
+        const uKnots = KnotVector_1.KnotVector.createUniformWrapped(numU, orderU - 1, 0, 1);
+        const vKnots = KnotVector_1.KnotVector.createUniformWrapped(numV, orderV - 1, 0, 1);
+        const dURadians = 2.0 * Math.PI / numU;
+        const dVRadians = 2.0 * Math.PI / numV;
+        for (let iV = 0; iV < numVPole; iV++) {
+            const vRadians = iV * dVRadians;
+            const cV = Math.cos(vRadians);
+            const sV = Math.sin(vRadians);
+            for (let iU = 0; iU < numUPole; iU++) {
+                const uRadians = iU * dURadians;
+                const cU = Math.cos(uRadians);
+                const sU = Math.sin(uRadians);
+                const rho = radiusU + cV * radiusV;
+                points.push(Point3dVector3d_1.Point3d.create(rho * cU, rho * sU, sV * radiusV));
+            }
+        }
+        const result = BSplineSurface_1.BSplineSurface3d.create(points, numUPole, orderU, uKnots.knots, numVPole, orderV, vKnots.knots);
+        if (result) {
+            result.setWrappable(0, true);
+            result.setWrappable(1, true);
+        }
+        return result;
+    }
     static createWeightedXYGridBsplineSurface(numU, numV, orderU, orderV, weight00 = 1.0, weight10 = 1.0, weight01 = 1.0, weight11 = 1.0) {
         const xyzPoles = Sample.createXYGrid(numU, numV, 1.0, 1.0);
         const weights = [];
@@ -816,7 +853,7 @@ class Sample {
      * @param n number of entries
      */
     static createGrowableArrayCountedSteps(a0, delta, n) {
-        const data = new GrowableArray_1.GrowableFloat64Array(n);
+        const data = new GrowableFloat64Array_1.GrowableFloat64Array(n);
         for (let i = 0; i < n; i++)
             data.push(a0 + i * delta);
         return data;
@@ -829,7 +866,7 @@ class Sample {
      */
     static createGrowableArrayCirclePoints(radius, numEdge, closed = false, centerX = 0, centerY = 0, data) {
         if (!data)
-            data = new GrowableArray_1.GrowableXYZArray();
+            data = new GrowableXYZArray_1.GrowableXYZArray();
         data.ensureCapacity(numEdge + (closed ? 1 : 0));
         const delta = 2.0 * Math.PI / numEdge;
         for (let i = 0; i < numEdge; i++) {
@@ -1065,6 +1102,49 @@ class Sample {
         result.push(CurveChainWithDistanceIndex_1.CurveChainWithDistanceIndex.createCapture(Path_1.Path.create(BSplineCurve_1.BSplineCurve3d.createUniformKnots(pointsA, 3))));
         result.push(CurveChainWithDistanceIndex_1.CurveChainWithDistanceIndex.createCapture(Path_1.Path.create(BSplineCurve_1.BSplineCurve3d.createUniformKnots(pointsA, 4))));
         result.push(CurveChainWithDistanceIndex_1.CurveChainWithDistanceIndex.createCapture(Path_1.Path.create(LineSegment3d_1.LineSegment3d.create(pointsA[0], pointsA[1]), Arc3d_1.Arc3d.createCircularStartMiddleEnd(pointsA[1], pointsA[2], pointsA[3]), LineSegment3d_1.LineSegment3d.create(pointsA[3], pointsA[4]))));
+        return result;
+    }
+    /**
+     * Create various elliptic arcs
+     * * circle with vector0, vector90 aligned with x,y
+     * * circle with axes rotated
+     * *
+     * @param radiusRatio = vector90.magnitude / vector0.magnitude
+     */
+    static createArcs(radiusRatio = 1.0, sweep = AngleSweep_1.AngleSweep.create360()) {
+        const arcs = [];
+        const center0 = Point3dVector3d_1.Point3d.create(0, 0, 0);
+        const a = 1.0;
+        const b = radiusRatio;
+        const direction0 = Point3dVector3d_1.Vector3d.createPolar(a, Angle_1.Angle.createDegrees(35.0));
+        const direction90 = direction0.rotate90CCWXY();
+        direction90.scaleInPlace(radiusRatio);
+        arcs.push(Arc3d_1.Arc3d.create(center0, Point3dVector3d_1.Vector3d.create(a, 0, 0), Point3dVector3d_1.Vector3d.create(0, b, 0), sweep));
+        arcs.push(Arc3d_1.Arc3d.create(center0, direction0, direction90, sweep));
+        return arcs;
+    }
+    /**
+     * Create many arcs, optionally including skews
+     * * @param skewFactor array of skew factors.  for each skew factor, all base arcs are replicated with vector90 shifted by the factor times vector0
+     */
+    static createManyArcs(skewFactors = []) {
+        const result = [];
+        const sweep1 = AngleSweep_1.AngleSweep.createStartEndDegrees(-10, 75);
+        const sweep2 = AngleSweep_1.AngleSweep.createStartEndDegrees(160.0, 380.0);
+        for (const arcs of [
+            Sample.createArcs(1.0), Sample.createArcs(0.5),
+            Sample.createArcs(1.0, sweep1), Sample.createArcs(0.3, sweep2)
+        ]) {
+            for (const arc of arcs)
+                result.push(arc);
+        }
+        const numBase = result.length;
+        for (const skewFactor of skewFactors) {
+            for (let i = 0; i < numBase; i++) {
+                const originalArc = result[i];
+                result.push(Arc3d_1.Arc3d.create(originalArc.center, originalArc.vector0, originalArc.vector90.plusScaled(originalArc.vector0, skewFactor), originalArc.sweep));
+            }
+        }
         return result;
     }
 }

@@ -27,8 +27,15 @@ export declare class BSplineCurve3dH extends BSplineCurve3dBase {
     copyPoints(): any[];
     /** Return a simple array of the control points coordinates */
     copyPointsFloat64Array(): Float64Array;
-    /** Create a bspline with uniform knots. */
-    static createUniformKnots(poles: Point3d[] | Point4d[], order: number): BSplineCurve3dH | undefined;
+    /** Create a bspline with uniform knots.
+     * * Control points may be supplied as:
+     *   * array of Point4d, with weight already multiplied into the `[wx,wy,wz,w]`
+     *   * array of Point3d, with implied weight 1.
+     *   * Float64Array, blocked as xyzw, i.e. 4 doubles per control point.
+     * @param controlPoints pole data in array form as noted above.
+     * @param order  curve order (1 more than degree)
+     */
+    static createUniformKnots(controlPoints: Point3d[] | Point4d[] | Float64Array, order: number): BSplineCurve3dH | undefined;
     /** Create a bspline with given knots.
      *
      * *  Two count conditions are recognized:
@@ -38,7 +45,7 @@ export declare class BSplineCurve3dH extends BSplineCurve3dBase {
      * ** If poleArray.length + order == knotArray.length + 2, the knots are in modern form.
      *
      */
-    static create(poleArray: Float64Array | Point4d[], knotArray: Float64Array | number[], order: number): BSplineCurve3dH | undefined;
+    static create(controlPoints: Float64Array | Point4d[] | Point3d[], knotArray: Float64Array | number[], order: number): BSplineCurve3dH | undefined;
     clone(): BSplineCurve3dH;
     cloneTransformed(transform: Transform): BSplineCurve3dH;
     /** Evaluate at a position given by fractional position within a span. */

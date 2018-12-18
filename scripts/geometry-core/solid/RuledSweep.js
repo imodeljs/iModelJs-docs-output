@@ -10,7 +10,6 @@ const Geometry_1 = require("../Geometry");
 const SolidPrimitive_1 = require("./SolidPrimitive");
 const SweepContour_1 = require("./SweepContour");
 const ConstructCurveBetweenCurves_1 = require("../curve/ConstructCurveBetweenCurves");
-const CurveCollection_2 = require("../curve/CurveCollection");
 class RuledSweep extends SolidPrimitive_1.SolidPrimitive {
     constructor(contours, capped) {
         super(capped);
@@ -119,7 +118,7 @@ class RuledSweep extends SolidPrimitive_1.SolidPrimitive {
     static mutatePartners(collectionA, collectionB, primitiveMutator) {
         if (!collectionA.isSameGeometryClass(collectionB))
             return undefined;
-        if (collectionA instanceof CurveCollection_2.CurveChain && collectionB instanceof CurveCollection_2.CurveChain) {
+        if (collectionA instanceof CurveCollection_1.CurveChain && collectionB instanceof CurveCollection_1.CurveChain) {
             const chainA = collectionA;
             const chainB = collectionB;
             const chainC = chainA.cloneEmptyPeer();

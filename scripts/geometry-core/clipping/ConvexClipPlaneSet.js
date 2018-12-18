@@ -7,11 +7,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /** @module CartesianGeometry */
 const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
 const Range_1 = require("../geometry3d/Range");
-const Range_2 = require("../geometry3d/Range");
 const Matrix3d_1 = require("../geometry3d/Matrix3d");
 const Geometry_1 = require("../Geometry");
 const PointHelpers_1 = require("../geometry3d/PointHelpers");
-const GrowableArray_1 = require("../geometry3d/GrowableArray");
+const GrowableFloat64Array_1 = require("../geometry3d/GrowableFloat64Array");
 const ClipPlane_1 = require("./ClipPlane");
 const ClipUtils_1 = require("./ClipUtils");
 /**
@@ -440,7 +439,7 @@ class ConvexClipPlaneSet {
      */
     getRangeOfAlignedPlanes(transform, result) {
         const idMatrix = Matrix3d_1.Matrix3d.createIdentity();
-        const bigRange = Range_2.Range3d.createXYZXYZ(-Number.MAX_VALUE, -Number.MAX_VALUE, -Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE);
+        const bigRange = Range_1.Range3d.createXYZXYZ(-Number.MAX_VALUE, -Number.MAX_VALUE, -Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE);
         const range = bigRange.clone(result);
         for (const clipPlane of this._planes) {
             if (transform)
@@ -495,6 +494,6 @@ class ConvexClipPlaneSet {
     }
 }
 ConvexClipPlaneSet.hugeVal = 1e37;
-ConvexClipPlaneSet._clipArcFractionArray = new GrowableArray_1.GrowableFloat64Array();
+ConvexClipPlaneSet._clipArcFractionArray = new GrowableFloat64Array_1.GrowableFloat64Array();
 exports.ConvexClipPlaneSet = ConvexClipPlaneSet;
 //# sourceMappingURL=ConvexClipPlaneSet.js.map

@@ -31,7 +31,11 @@ export declare class Point2dArray {
      * @param data source data
      */
     static clonePoint2dArray(data: Point2d[]): Point2d[];
-    static lengthWithoutWraparound(data: XAndY[]): number;
+    /**
+     * Return the number of points when trailing points that match point 0 are excluded.
+     * @param data array of XAndY points.
+     */
+    static pointCountExcludingTrailingWraparound(data: XAndY[]): number;
 }
 export declare class Vector3dArray {
     static isAlmostEqual(dataA: undefined | Vector3d[], dataB: undefined | Vector3d[]): boolean;
@@ -81,14 +85,18 @@ export declare class Point3dArray {
     /** return simple average of all coordinates.   (000 if empty array) */
     static centroid(points: IndexedXYZCollection, result?: Point3d): Point3d;
     /** Return the index of the point most distant from spacePoint */
-    static vectorToMostDistantPoint(points: Point3d[], spacePoint: XYZ, farVector: Vector3d): number;
+    static indexOfMostDistantPoint(points: Point3d[], spacePoint: XYZ, farVector: Vector3d): number | undefined;
     /** return the index of the point whose vector from space point has the largest magnitude of cross product with given vector. */
-    static vectorToPointWithMaxCrossProductMangitude(points: Point3d[], spacePoint: Point3d, vector: Vector3d, farVector: Vector3d): number;
+    static indexOfPointWithMaxCrossProductMagnitude(points: Point3d[], spacePoint: Point3d, vector: Vector3d, farVector: Vector3d): number | undefined;
     /** Return the index of the closest point in the array (full xyz) */
     static closestPointIndex(data: XYAndZ[], spacePoint: XYAndZ): number;
     /** return true iff all points' altitudes are within tolerance of the plane.*/
     static isCloseToPlane(data: Point3d[] | Float64Array, plane: Plane3dByOriginAndUnitNormal, tolerance?: number): boolean;
-    static sumLengths(data: Point3d[] | Float64Array): number;
+    /**
+     * Sum lengths of edges.
+     * @param data points.
+     */
+    static sumEdgeLengths(data: Point3d[] | Float64Array, addClosureEdge?: boolean): number;
     /**
      * @returns return an array containing clones of the Point3d data[]
      * @param data source data
@@ -133,7 +141,7 @@ export declare class PolygonOps {
     /** return the projected XY area of the polygon (assuming planar) */
     static areaXY(points: Point3d[]): number;
     static centroidAreaNormal(points: Point3d[]): Ray3d | undefined;
-    static centroidAndArea(points: Point2d[], centroid: Point2d): number | undefined;
+    static centroidAndAreaXY(points: Point2d[], centroid: Point2d): number | undefined;
     /**
      *
      * @param points array of points around the polygon.  This is assumed to NOT have closure edge.

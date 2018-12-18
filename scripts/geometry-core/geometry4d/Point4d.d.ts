@@ -4,6 +4,7 @@ import { XYAndZ } from "../geometry3d/XYZProps";
 import { Point3d, Vector3d } from "../geometry3d/Point3dVector3d";
 import { Ray3d } from "../geometry3d/Ray3d";
 import { Plane3dByOriginAndVectors } from "../geometry3d/Plane3dByOriginAndVectors";
+import { Plane3dByOriginAndUnitNormal } from "../geometry3d/Plane3dByOriginAndUnitNormal";
 export declare type Point4dProps = number[];
 /**
  *
@@ -44,6 +45,14 @@ export declare class Point4d implements BeJSONFunctions {
     static fromJSON(json?: Point4dProps): Point4d;
     isAlmostEqual(other: Point4d): boolean;
     /**
+     * Test for same coordinate by direct x,y,z,w args
+     * @param x x to test
+     * @param y y to test
+     * @param z z to test
+     * @param w w to test
+     */
+    isAlmostEqualXYZW(x: number, y: number, z: number, w: number): boolean;
+    /**
      * Convert an Angle to a JSON object.
      * @return {*} [[x,y,z,w]
      */
@@ -67,6 +76,8 @@ export declare class Point4d implements BeJSONFunctions {
     maxAbs(): number;
     /**  @returns Returns the magnitude including all 4 components x,y,z,w */
     magnitudeXYZW(): number;
+    /**  @returns Returns the magnitude of the leading xyz components */
+    magnitudeSquaredXYZ(): number;
     /** @returns Return the difference (this-other) using all 4 components x,y,z,w */
     minus(other: Point4d, result?: Point4d): Point4d;
     /** @returns Return `((other.w * this) -  (this.w * other))` */
@@ -189,5 +200,17 @@ export declare class Point4d implements BeJSONFunctions {
      * * Use normalizeWeight to divide by the w component.
      */
     normalizeXYZW(result?: Point4d): Point4d | undefined;
+    /**
+     * Return the determinant of the 3x3 matrix using components i,j,k of the 3 inputs.
+     */
+    static determinantIndexed3X3(pointA: Point4d, pointB: Point4d, pointC: Point4d, i: number, j: number, k: number): number;
+    /**
+     * Return a Point4d perpendicular to all 3 inputs. (A higher level cross product concept)
+     * @param pointA first point
+     * @param pointB second point
+     * @param pointC third point
+     */
+    static perpendicularPoint4dPlane(pointA: Point4d, pointB: Point4d, pointC: Point4d): Point4d;
+    toPlane3dByOriginAndUnitNormal(result?: Plane3dByOriginAndUnitNormal): Plane3dByOriginAndUnitNormal | undefined;
 }
 //# sourceMappingURL=Point4d.d.ts.map

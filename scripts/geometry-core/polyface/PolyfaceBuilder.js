@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Polyface */
 // import { Geometry, AxisOrder, Angle, AngleSweep, BSIJSONValues } from "./Geometry";
 const Polyface_1 = require("./Polyface");
-const GrowableArray_1 = require("../geometry3d/GrowableArray");
+const GrowableFloat64Array_1 = require("../geometry3d/GrowableFloat64Array");
 const Point2dVector2d_1 = require("../geometry3d/Point2dVector2d");
 const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
 const Transform_1 = require("../geometry3d/Transform");
@@ -800,7 +800,7 @@ class PolyfaceBuilder extends GeometryHandler_1.NullGeometryHandler {
     }
 }
 PolyfaceBuilder._workPointFindOrAdd = Point3dVector3d_1.Point3d.create();
-PolyfaceBuilder._index0 = new GrowableArray_1.GrowableFloat64Array();
-PolyfaceBuilder._index1 = new GrowableArray_1.GrowableFloat64Array();
+PolyfaceBuilder._index0 = new GrowableFloat64Array_1.GrowableFloat64Array();
+PolyfaceBuilder._index1 = new GrowableFloat64Array_1.GrowableFloat64Array();
 exports.PolyfaceBuilder = PolyfaceBuilder;
 //# sourceMappingURL=PolyfaceBuilder.js.map

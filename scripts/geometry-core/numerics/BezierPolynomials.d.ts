@@ -1,4 +1,4 @@
-import { GrowableFloat64Array } from "../geometry3d/GrowableArray";
+import { GrowableFloat64Array } from "../geometry3d/GrowableFloat64Array";
 import { Degree3PowerPolynomial, Degree4PowerPolynomial } from "./Polynomials";
 /**
  * * BezierCoffs is an abstract base class for one-dimensional (u to f(u)) Bezier polynomials.

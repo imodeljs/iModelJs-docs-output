@@ -1,6 +1,7 @@
 import { Point2d } from "../geometry3d/Point2dVector2d";
 import { Point3d } from "../geometry3d/Point3dVector3d";
-import { GrowableBlockedArray, GrowableXYZArray } from "../geometry3d/GrowableArray";
+import { GrowableBlockedArray } from "../geometry3d/GrowableBlockedArray";
+import { GrowableXYZArray } from "../geometry3d/GrowableXYZArray";
 export declare class ClusterableArray extends GrowableBlockedArray {
     private static readonly _vectorFactor;
     static sortVectorComponent(index: number): number;

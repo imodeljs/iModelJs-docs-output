@@ -37,5 +37,11 @@ export declare class BSpline1dNd {
     sumPoleBuffer2ForSpan(spanIndex: number): void;
     evaluateBuffersAtKnot(u: number, numDerivative?: number): void;
     reverseInPlace(): void;
+    /**
+     * Test if the leading and trailing polygon coordinates are replicated in the manner of a "closed" bspline polygon which has been expanded
+     * to act as a normal bspline.
+     * @returns true if `degree` leading and trailing polygon blocks match
+     */
+    testCloseablePolygon(): boolean;
 }
 //# sourceMappingURL=BSpline1dNd.d.ts.map

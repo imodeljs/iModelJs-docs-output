@@ -8,8 +8,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Geometry_1 = require("../Geometry");
 const Point2dVector2d_1 = require("../geometry3d/Point2dVector2d");
 const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
-const GrowableArray_1 = require("../geometry3d/GrowableArray");
-class ClusterableArray extends GrowableArray_1.GrowableBlockedArray {
+const GrowableBlockedArray_1 = require("../geometry3d/GrowableBlockedArray");
+const GrowableXYZArray_1 = require("../geometry3d/GrowableXYZArray");
+class ClusterableArray extends GrowableBlockedArray_1.GrowableBlockedArray {
     /**
      * @param numCoordinatePerPoint number of coordinates per point
      * @param  numExtraDataPerPoint of extra data values per point.
@@ -335,7 +336,7 @@ class ClusterableArray extends GrowableArray_1.GrowableBlockedArray {
         const order = clusterArray.clusterIndicesLexical(tolerance);
         const result = new PackedPointsWithIndex(source.length);
         const numPackedPoints = clusterArray.countClusters(order);
-        result.growablePackedPoints = new GrowableArray_1.GrowableXYZArray(numPackedPoints);
+        result.growablePackedPoints = new GrowableXYZArray_1.GrowableXYZArray(numPackedPoints);
         let currentClusterIndex = 0;
         let numThisCluster = 0;
         order.forEach((k) => {

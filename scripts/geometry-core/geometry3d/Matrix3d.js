@@ -150,7 +150,15 @@ class Matrix3d {
         return this._identity;
     }
     /** Freeze this Matrix3d. */
-    freeze() { this.computeCachedInverse(true); Object.freeze(this); }
+    freeze() {
+        this.computeCachedInverse(true);
+        /* hm.. can't freeze the Float64Arrays . . .
+        Object.freeze(this.coffs);
+        if (this.inverseCoffs)
+          Object.freeze(this.inverseCoffs);
+        */
+        Object.freeze(this);
+    }
     /** Return a json object containing the 9 numeric entries as a single array in row major order,
      * `[ [1, 2, 3],[ 4, 5, 6], [7, 8, 9] ]`
      */
@@ -255,14 +263,11 @@ class Matrix3d {
     static createColumnsInAxisOrder(axisOrder, columnA, columnB, columnC, result) {
         if (!result)
             result = new Matrix3d();
-        if (axisOrder === 0 /* XYZ */) {
-            result.setColumns(columnA, columnB, columnC);
-        }
-        else if (axisOrder === 1 /* YZX */) {
-            result.setColumns(columnB, columnC, columnA);
+        if (axisOrder === 1 /* YZX */) {
+            result.setColumns(columnC, columnA, columnB);
         }
         else if (axisOrder === 2 /* ZXY */) {
-            result.setColumns(columnC, columnA, columnB);
+            result.setColumns(columnB, columnC, columnA);
         }
         else if (axisOrder === 4 /* XZY */) {
             result.setColumns(columnA, columnC, columnB);
@@ -273,7 +278,7 @@ class Matrix3d {
         else if (axisOrder === 6 /* ZYX */) {
             result.setColumns(columnC, columnB, columnA);
         }
-        else { // should not happen -- go to default
+        else { // fallthrough should only happen for AxisOrder.XYZ
             result.setColumns(columnA, columnB, columnC);
         }
         return result;
@@ -475,9 +480,6 @@ class Matrix3d {
      */
     static createStandardWorldToView(index, invert = false, result) {
         switch (index) {
-            case 1 /* Top */:
-                result = Matrix3d.createIdentity(result);
-                break;
             case 2 /* Bottom */:
                 result = Matrix3d.createRowValues(1, 0, 0, 0, -1, 0, 0, 0, -1);
                 break;
@@ -499,6 +501,7 @@ class Matrix3d {
             case 8 /* RightIso */:
                 result = Matrix3d.createRowValues(0.707106781186548, 0.70710678118654757, 0.00000000000000000, -0.408248290463863, 0.40824829046386302, 0.81649658092772603, 0.577350269189626, -0.57735026918962573, 0.57735026918962573);
                 break;
+            case 1 /* Top */:
             default:
                 result = Matrix3d.createIdentity(result);
         }
@@ -615,15 +618,18 @@ class Matrix3d {
                 return { axis: Point3dVector3d_1.Vector3d.create(0, 0, 1), angle: theta180, ok: true };
             }
             // 180 degree flip around some other axis ...
+            // eigenvalues will have 1.0 once, -1.0 twice.
+            // These cases look for each place (x,y,z) that the 1.0 might appear.
+            // But fastSymmetricEigenvalues reliably always seems to put the 1.0 as the x eigenvalue.
+            // so only the getColumn(0) return seems reachable in unit tests.
             const eigenvectors = Matrix3d.createIdentity();
             const eigenvalues = Point3dVector3d_1.Vector3d.create(0, 0, 0);
             if (this.fastSymmetricEigenvalues(eigenvectors, eigenvalues)) {
-                if (Geometry_1.Geometry.isAlmostEqualNumber(1, eigenvalues.x))
-                    return { axis: eigenvectors.getColumn(0), angle: theta180, ok: true };
-                if (Geometry_1.Geometry.isAlmostEqualNumber(1, eigenvalues.y))
-                    return { axis: eigenvectors.getColumn(1), angle: theta180, ok: true };
-                if (Geometry_1.Geometry.isAlmostEqualNumber(1, eigenvalues.z))
-                    return { axis: eigenvectors.getColumn(2), angle: theta180, ok: true };
+                for (let axisIndex = 0; axisIndex < 2; axisIndex++) {
+                    const lambda = eigenvalues.at(axisIndex);
+                    if (Geometry_1.Geometry.isAlmostEqualNumber(1, lambda))
+                        return { axis: eigenvectors.getColumn(axisIndex), angle: theta180, ok: true };
+                }
                 // Don't know if this can be reached ....
                 return { axis: Point3dVector3d_1.Vector3d.create(0, 0, 1), angle: Angle_1.Angle.createRadians(0), ok: false };
             }

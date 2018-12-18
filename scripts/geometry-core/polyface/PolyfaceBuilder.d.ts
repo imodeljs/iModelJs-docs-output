@@ -1,6 +1,6 @@
 /** @module Polyface */
 import { IndexedPolyface } from "./Polyface";
-import { GrowableFloat64Array } from "../geometry3d/GrowableArray";
+import { GrowableFloat64Array } from "../geometry3d/GrowableFloat64Array";
 import { Point2d } from "../geometry3d/Point2dVector2d";
 import { Point3d, Vector3d } from "../geometry3d/Point3dVector3d";
 import { Transform } from "../geometry3d/Transform";

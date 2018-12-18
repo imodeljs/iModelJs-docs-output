@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.172.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.178.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -216,6 +216,11 @@
 <td>Called after a schema and all its references are deserialized,<br>but <em>before</em> any of its items or custom attributes have been deserialized.</td>
 </tr>
 <tr>
+<td class="h-visitemptyschemasync"><span class="property-name">visitEmptySchemaSync</span><a id="visitemptyschemasync" class="heading-anchor" href="#visitemptyschemasync"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">undefined | (schema: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/schema/schema'>Schema</a>) =&gt; void</span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-visitenumeration"><span class="property-name">visitEnumeration</span><a id="visitenumeration" class="heading-anchor" href="#visitenumeration"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | (enumeration: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/enumeration/enumeration'>Enumeration</a>) =&gt; Promise&lt;void&gt;</span></td>
 <td>Called after an Enumeration and all its Enumerators have been deserialized.</td>
@@ -229,6 +234,11 @@
 <td class="h-visitfullschema"><span class="property-name">visitFullSchema</span><a id="visitfullschema" class="heading-anchor" href="#visitfullschema"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | (schema: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/schema/schema'>Schema</a>) =&gt; Promise&lt;void&gt;</span></td>
 <td>Called after a schema and all its references, items, and custom attributes have been deserialized,</td>
+</tr>
+<tr>
+<td class="h-visitfullschemasync"><span class="property-name">visitFullSchemaSync</span><a id="visitfullschemasync" class="heading-anchor" href="#visitfullschemasync"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">undefined | (schema: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/schema/schema'>Schema</a>) =&gt; void</span></td>
+<td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-visitinvertedunit"><span class="property-name">visitInvertedUnit</span><a id="visitinvertedunit" class="heading-anchor" href="#visitinvertedunit"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -260,13 +270,80 @@
 <td><span class="method-output">undefined | (unitSystem: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/unitsystem/unitsystem'>UnitSystem</a>) =&gt; Promise&lt;void&gt;</span></td>
 <td>Called after a UnitSystem has been deserialized.</td>
 </tr>
+</tbody></table><h3 class="h-inherited-properties"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited properties<a id="inherited-properties" class="heading-anchor" href="#inherited-properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Inherited from</th>
+<th>Description</th>
+</tr>
+<tr>
+<td class="h-visitclasssync"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/interfaces/schemaitemvisitor/#visitclasssync'>visitClassSync</a></span><a id="visitclasssync" class="heading-anchor" href="#visitclasssync"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">undefined | (ecClass: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/interfaces/anyclass'>AnyClass</a>) =&gt; void</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/interfaces/schemaitemvisitor'>SchemaItemVisitor</a></span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-visitconstantsync"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/interfaces/schemaitemvisitor/#visitconstantsync'>visitConstantSync</a></span><a id="visitconstantsync" class="heading-anchor" href="#visitconstantsync"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">undefined | (constant: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/constant/constant'>Constant</a>) =&gt; void</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/interfaces/schemaitemvisitor'>SchemaItemVisitor</a></span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-visitenumerationsync"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/interfaces/schemaitemvisitor/#visitenumerationsync'>visitEnumerationSync</a></span><a id="visitenumerationsync" class="heading-anchor" href="#visitenumerationsync"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">undefined | (enumeration: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/enumeration/enumeration'>Enumeration</a>) =&gt; void</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/interfaces/schemaitemvisitor'>SchemaItemVisitor</a></span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-visitformatsync"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/interfaces/schemaitemvisitor/#visitformatsync'>visitFormatSync</a></span><a id="visitformatsync" class="heading-anchor" href="#visitformatsync"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">undefined | (format: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/format/format'>Format</a>) =&gt; void</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/interfaces/schemaitemvisitor'>SchemaItemVisitor</a></span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-visitinvertedunitsync"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/interfaces/schemaitemvisitor/#visitinvertedunitsync'>visitInvertedUnitSync</a></span><a id="visitinvertedunitsync" class="heading-anchor" href="#visitinvertedunitsync"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">undefined | (invertedUnit: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/invertedunit/invertedunit'>InvertedUnit</a>) =&gt; void</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/interfaces/schemaitemvisitor'>SchemaItemVisitor</a></span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-visitkindofquantitysync"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/interfaces/schemaitemvisitor/#visitkindofquantitysync'>visitKindOfQuantitySync</a></span><a id="visitkindofquantitysync" class="heading-anchor" href="#visitkindofquantitysync"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">undefined | (koq: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/kindofquantity/kindofquantity'>KindOfQuantity</a>) =&gt; void</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/interfaces/schemaitemvisitor'>SchemaItemVisitor</a></span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-visitphenomenonsync"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/interfaces/schemaitemvisitor/#visitphenomenonsync'>visitPhenomenonSync</a></span><a id="visitphenomenonsync" class="heading-anchor" href="#visitphenomenonsync"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">undefined | (phenomenon: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/phenomenon/phenomenon'>Phenomenon</a>) =&gt; void</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/interfaces/schemaitemvisitor'>SchemaItemVisitor</a></span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-visitpropertycategorysync"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/interfaces/schemaitemvisitor/#visitpropertycategorysync'>visitPropertyCategorySync</a></span><a id="visitpropertycategorysync" class="heading-anchor" href="#visitpropertycategorysync"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">undefined | (category: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/propertycategory/propertycategory'>PropertyCategory</a>) =&gt; void</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/interfaces/schemaitemvisitor'>SchemaItemVisitor</a></span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-visitunitsync"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/interfaces/schemaitemvisitor/#visitunitsync'>visitUnitSync</a></span><a id="visitunitsync" class="heading-anchor" href="#visitunitsync"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">undefined | (unit: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/unit/unit'>Unit</a>) =&gt; void</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/interfaces/schemaitemvisitor'>SchemaItemVisitor</a></span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-visitunitsystemsync"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/interfaces/schemaitemvisitor/#visitunitsystemsync'>visitUnitSystemSync</a></span><a id="visitunitsystemsync" class="heading-anchor" href="#visitunitsystemsync"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">undefined | (unitSystem: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/unitsystem/unitsystem'>UnitSystem</a>) =&gt; void</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/interfaces/schemaitemvisitor'>SchemaItemVisitor</a></span></td>
+<td>&#xA0;</td>
+</tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/ecschema-metadata/src/Interfaces.ts">Interfaces.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>06 December, 2018</span>
+                <span class='date-updated'>17 December, 2018</span>
             </p>
 
             
@@ -274,7 +351,7 @@
             
             </script>        </article>
     </div>
-    <div class="overlay"></div>
+    <div class="toc-overlay"></div>
     <div id='inner-table-of-contents'>
        <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
   <h4 class='heading'>On this page</h4>
@@ -305,6 +382,9 @@
                                             <a class='title solo-title menu-text' href="#visitemptyschema">visitEmptySchema</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#visitemptyschemasync">visitEmptySchemaSync</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#visitenumeration">visitEnumeration</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -312,6 +392,9 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#visitfullschema">visitFullSchema</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#visitfullschemasync">visitFullSchemaSync</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#visitinvertedunit">visitInvertedUnit</a>
@@ -330,6 +413,44 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#visitunitsystem">visitUnitSystem</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-inherited-properties" class='title' href="#inherited-properties"/>
+                            <b class='dropdown-menu-title menu-text'>Inherited properties</b>
+                            <i class='dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-inherited-properties" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#visitclasssync">visitClassSync</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#visitconstantsync">visitConstantSync</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#visitenumerationsync">visitEnumerationSync</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#visitformatsync">visitFormatSync</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#visitinvertedunitsync">visitInvertedUnitSync</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#visitkindofquantitysync">visitKindOfQuantitySync</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#visitphenomenonsync">visitPhenomenonSync</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#visitpropertycategorysync">visitPropertyCategorySync</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#visitunitsync">visitUnitSync</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#visitunitsystemsync">visitUnitSystemSync</a>
                                     </li>
                             </ul>
                     </li>

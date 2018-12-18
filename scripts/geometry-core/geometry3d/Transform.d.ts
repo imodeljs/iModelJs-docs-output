@@ -3,10 +3,8 @@ import { AxisOrder, BeJSONFunctions } from "../Geometry";
 import { Point4d } from "../geometry4d/Point4d";
 import { Range3d } from "./Range";
 import { Point2d } from "./Point2dVector2d";
-import { XYAndZ } from "./XYZProps";
-import { Point3d, Vector3d } from "./Point3dVector3d";
-import { XAndY, TransformProps } from "./XYZProps";
-import { XYZ } from "./Point3dVector3d";
+import { XAndY, XYAndZ, TransformProps } from "./XYZProps";
+import { XYZ, Point3d, Vector3d } from "./Point3dVector3d";
 import { Matrix3d } from "./Matrix3d";
 /** A transform is an origin and a Matrix3d.
  *
@@ -123,11 +121,10 @@ export declare class Transform implements BeJSONFunctions {
      */
     multiplyInversePoint3dArray(source: Point3d[], result?: Point3d[]): Point3d[] | undefined;
     /**
-     * *  for each point:   multiply    transform * point
-     * *  if result is given, resize to match source and replace each corresponding pi
-     * *  if result is not given, return a new array.
+     * *  for each point in source:   multiply    transformInverse * point  in place inthe point.
+     * * return false if not invertible.
      */
-    multiplyInversePoint3dArrayInPlace(source: Point3d[]): void;
+    multiplyInversePoint3dArrayInPlace(source: Point3d[]): boolean;
     static matchArrayLengths(source: any[], dest: any[], constructionFunction: () => any): number;
     /**
      * *  for each point:   multiply    transform * point

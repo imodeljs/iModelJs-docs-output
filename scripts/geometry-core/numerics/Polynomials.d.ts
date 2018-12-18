@@ -1,7 +1,7 @@
 /** @module Numerics */
 import { Point2d, Vector2d } from "../geometry3d/Point2dVector2d";
 import { Point3d, Vector3d } from "../geometry3d/Point3dVector3d";
-import { OptionalGrowableFloat64Array, GrowableFloat64Array } from "../geometry3d/GrowableArray";
+import { OptionalGrowableFloat64Array, GrowableFloat64Array } from "../geometry3d/GrowableFloat64Array";
 import { Point4d } from "../geometry4d/Point4d";
 export declare class Degree2PowerPolynomial {
     coffs: number[];
@@ -159,7 +159,7 @@ export declare class AnalyticRoots {
      * @param values array to expand
      */
     static appendLinearRoot(c0: number, c1: number, values: GrowableFloat64Array): void;
-    private static mostDistantFromMean;
+    static mostDistantFromMean(data: GrowableFloat64Array | undefined): number;
     /**
      * Append 0, 1, or 2 solutions of a quadratic to the values array.
      * @param c array of coefficients for quadratic `c[0] + c[1] * x + c[2] * x*x`

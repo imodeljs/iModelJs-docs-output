@@ -12,10 +12,9 @@ const Transform_1 = require("../geometry3d/Transform");
 const Matrix3d_1 = require("../geometry3d/Matrix3d");
 const Ray3d_1 = require("../geometry3d/Ray3d");
 const Plane3dByOriginAndVectors_1 = require("../geometry3d/Plane3dByOriginAndVectors");
-const GrowableArray_1 = require("../geometry3d/GrowableArray");
+const GrowableXYZArray_1 = require("../geometry3d/GrowableXYZArray");
 const CurvePrimitive_1 = require("./CurvePrimitive");
 const CurveLocationDetail_1 = require("./CurveLocationDetail");
-const CurveLocationDetail_2 = require("./CurveLocationDetail");
 const LineSegment3d_1 = require("./LineSegment3d");
 /* tslint:disable:variable-name no-empty*/
 /**
@@ -77,6 +76,8 @@ class MoveByDistanceContext {
     announceExtrapolation(points, index0, index1, fraction0, fraction1) {
         const residual = this.targetDistance - this.distance0;
         const d01 = points.distance(index0, index1);
+        if (!d01)
+            return false;
         const extensionFraction = Geometry_1.Geometry.conditionalDivideFraction(residual, d01);
         if (extensionFraction === undefined)
             return false;
@@ -126,7 +127,7 @@ function accumulateGoodUnitPerpendicular(points, vectorA, baseIndex, stepDirecti
 class LineString3d extends CurvePrimitive_1.CurvePrimitive {
     constructor() {
         super();
-        this._points = new GrowableArray_1.GrowableXYZArray();
+        this._points = new GrowableXYZArray_1.GrowableXYZArray();
     }
     isSameGeometryClass(other) { return other instanceof LineString3d; }
     /**
@@ -160,7 +161,7 @@ class LineString3d extends CurvePrimitive_1.CurvePrimitive {
         }
         if (enforceClosure && points.length > 1) {
             const distance = xyz.distance(0, xyz.length - 1);
-            if (distance !== 0.0) {
+            if (distance !== undefined && distance !== 0.0) {
                 if (Geometry_1.Geometry.isSameCoordinate(0, distance)) {
                     xyz.pop(); // nonzero but small distance -- to be replaced by point 0 exactly.
                     const xyzA = xyz.front();
@@ -168,7 +169,6 @@ class LineString3d extends CurvePrimitive_1.CurvePrimitive {
                 }
             }
         }
-        result.addPoints(points);
         return result;
     }
     addPoints(...points) {
@@ -196,12 +196,11 @@ class LineString3d extends CurvePrimitive_1.CurvePrimitive {
      * If the linestring is not already closed, add a closure point.
      */
     addClosurePoint() {
-        const n = this._points.length;
-        if (n > 1) {
-            if (!Geometry_1.Geometry.isSameCoordinate(0, this._points.distance(0, n - 1)))
-                this._points.pushWrap(1);
-        }
+        const distance = this._points.distance(0, this._points.length - 1);
+        if (distance !== undefined && !Geometry_1.Geometry.isSameCoordinate(distance, 0))
+            this._points.pushWrap(1);
     }
+    /** Elminate (but do not return!!) the final point of the linestring */
     popPoint() {
         this._points.pop();
     }
@@ -428,7 +427,7 @@ class LineString3d extends CurvePrimitive_1.CurvePrimitive {
     /** If i and j are both valid indices, return the vector from point i to point j
      */
     vectorBetween(i, j, result) {
-        return this._points.getVector3dBetweenIndices(i, j, result);
+        return this._points.vectorIndexIndex(i, j, result);
     }
     numPoints() { return this._points.length; }
     endPoint() {
@@ -475,7 +474,7 @@ class LineString3d extends CurvePrimitive_1.CurvePrimitive {
             // there is leading partial interval, 0 or more complete segments, and a trailing partial interval.
             // (either or both partial may be zero length)
             let sum = localFraction0 * this._points.distance(index0 - 1, index0)
-                + localFraction1 * this._points.distance(index1, index1 + 1);
+                + localFraction1 * (this._points.distance(index1, index1 + 1));
             for (let i = index0; i < index1; i++)
                 sum += this._points.distance(i, i + 1);
             return sum;
@@ -567,15 +566,15 @@ class LineString3d extends CurvePrimitive_1.CurvePrimitive {
         const detail = CurveLocationDetail_1.CurveLocationDetail.createCurveFractionPoint(cp, fraction, point);
         result.push(detail);
         if (counter === 0) {
-            detail.setIntervalRole(CurveLocationDetail_2.CurveIntervalRole.isolatedAtVertex);
+            detail.setIntervalRole(CurveLocationDetail_1.CurveIntervalRole.isolatedAtVertex);
         }
         else if (counter === 1) { // last entry must be isolatedAtVertex !!!
-            result[result.length - 2].setIntervalRole(CurveLocationDetail_2.CurveIntervalRole.intervalStart);
-            detail.setIntervalRole(CurveLocationDetail_2.CurveIntervalRole.intervalEnd);
+            result[result.length - 2].setIntervalRole(CurveLocationDetail_1.CurveIntervalRole.intervalStart);
+            detail.setIntervalRole(CurveLocationDetail_1.CurveIntervalRole.intervalEnd);
         }
         else {
-            result[result.length - 2].setIntervalRole(CurveLocationDetail_2.CurveIntervalRole.intervalInterior);
-            detail.setIntervalRole(CurveLocationDetail_2.CurveIntervalRole.intervalEnd);
+            result[result.length - 2].setIntervalRole(CurveLocationDetail_1.CurveIntervalRole.intervalInterior);
+            detail.setIntervalRole(CurveLocationDetail_1.CurveIntervalRole.intervalEnd);
         }
     }
     /** find intersections with a plane.
@@ -606,7 +605,7 @@ class LineString3d extends CurvePrimitive_1.CurvePrimitive {
                     segmentFraction = hA / (hA - hB); // this division is safe because the signs are different.
                     pointA.interpolate(segmentFraction, pointB, pointC);
                     const detail = CurveLocationDetail_1.CurveLocationDetail.createCurveFractionPoint(this, (i - 1 + segmentFraction) / divisor, pointC);
-                    detail.setIntervalRole(CurveLocationDetail_2.CurveIntervalRole.isolated);
+                    detail.setIntervalRole(CurveLocationDetail_1.CurveIntervalRole.isolated);
                     result.push(detail);
                     numConsecutiveZero = 0;
                 }
@@ -618,7 +617,7 @@ class LineString3d extends CurvePrimitive_1.CurvePrimitive {
     isAlmostEqual(other) {
         if (!(other instanceof LineString3d))
             return false;
-        if (!GrowableArray_1.GrowableXYZArray.isAlmostEqual(this._points, other._points))
+        if (!GrowableXYZArray_1.GrowableXYZArray.isAlmostEqual(this._points, other._points))
             return false;
         return true;
     }

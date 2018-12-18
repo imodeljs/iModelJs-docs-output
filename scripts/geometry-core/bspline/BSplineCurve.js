@@ -278,16 +278,22 @@ class BSplineCurve3d extends BSplineCurve3dBase {
     copyKnots(includeExtraEndKnot) { return this._bcurve.knots.copyKnots(includeExtraEndKnot); }
     /** Create a bspline with uniform knots. */
     static createUniformKnots(poles, order) {
-        const numPoles = poles.length;
+        const numPoles = poles instanceof Float64Array ? poles.length / 3 : poles.length;
         if (order < 1 || numPoles < order)
             return undefined;
         const knots = KnotVector_1.KnotVector.createUniformClamped(poles.length, order - 1, 0.0, 1.0);
-        const curve = new BSplineCurve3d(poles.length, order, knots);
-        let i = 0;
-        for (const p of poles) {
-            curve._bcurve.packedData[i++] = p.x;
-            curve._bcurve.packedData[i++] = p.y;
-            curve._bcurve.packedData[i++] = p.z;
+        const curve = new BSplineCurve3d(numPoles, order, knots);
+        if (poles instanceof Float64Array) {
+            for (let i = 0; i < 3 * numPoles; i++)
+                curve._bcurve.packedData[i] = poles[i];
+        }
+        else {
+            let i = 0;
+            for (const p of poles) {
+                curve._bcurve.packedData[i++] = p.x;
+                curve._bcurve.packedData[i++] = p.y;
+                curve._bcurve.packedData[i++] = p.z;
+            }
         }
         return curve;
     }
@@ -400,7 +406,7 @@ class BSplineCurve3d extends BSplineCurve3dBase {
     isInPlane(plane) {
         return PointHelpers_1.Point3dArray.isCloseToPlane(this._bcurve.packedData, plane);
     }
-    quickLength() { return PointHelpers_1.Point3dArray.sumLengths(this._bcurve.packedData); }
+    quickLength() { return PointHelpers_1.Point3dArray.sumEdgeLengths(this._bcurve.packedData); }
     emitStrokableParts(handler, options) {
         const needBeziers = handler.announceBezierCurve !== undefined;
         const workBezier = this.initializeWorkBezier();
@@ -436,22 +442,10 @@ class BSplineCurve3d extends BSplineCurve3dBase {
     get isClosable() {
         if (!this._bcurve.knots.wrappable)
             return false;
-        const degree = this.degree;
-        const leftKnotIndex = this._bcurve.knots.leftKnotIndex;
-        const rightKnotIndex = this._bcurve.knots.rightKnotIndex;
-        const period = this._bcurve.knots.rightKnot - this._bcurve.knots.leftKnot;
-        const indexDelta = rightKnotIndex - leftKnotIndex;
-        for (let k0 = leftKnotIndex - degree + 1; k0 < leftKnotIndex + degree - 1; k0++) {
-            const k1 = k0 + indexDelta;
-            if (!Geometry_1.Geometry.isSameCoordinate(this._bcurve.knots.knots[k0] + period, this._bcurve.knots.knots[k1]))
-                return false;
-        }
-        const poleIndexDelta = this.numPoles - this.degree;
-        for (let p0 = 0; p0 + 1 < degree; p0++) {
-            const p1 = p0 + poleIndexDelta;
-            if (!Geometry_1.Geometry.isSamePoint3d(this.getPolePoint3d(p0), this.getPolePoint3d(p1)))
-                return false;
-        }
+        if (!this._bcurve.knots.testClosable())
+            return false;
+        if (!this._bcurve.testCloseablePolygon())
+            return false;
         return true;
     }
     /**

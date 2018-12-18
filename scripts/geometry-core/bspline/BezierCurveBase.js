@@ -30,8 +30,16 @@ class BezierCurveBase extends CurvePrimitive_1.CurvePrimitive {
     /** reverse the poles in place */
     reverseInPlace() { this._polygon.reverseInPlace(); }
     /** saturate the pole in place, using knot intervals from `spanIndex` of the `knotVector` */
-    saturateInPlace(knotVector, spanIndex) { return this._polygon.saturateInPlace(knotVector, spanIndex); }
-    get degree() { return this._polygon.order - 1; }
+    saturateInPlace(knotVector, spanIndex) {
+        const boolstat = this._polygon.saturateInPlace(knotVector, spanIndex);
+        if (boolstat) {
+            this.setInterval(knotVector.spanFractionToFraction(spanIndex, 0.0), knotVector.spanFractionToFraction(spanIndex, 1.0));
+        }
+        return boolstat;
+    }
+    get degree() {
+        return this._polygon.order - 1;
+    }
     get order() { return this._polygon.order; }
     get numPoles() { return this._polygon.order; }
     setInterval(a, b) { this._polygon.setInterval(a, b); }
@@ -61,7 +69,7 @@ class BezierCurveBase extends CurvePrimitive_1.CurvePrimitive {
             if (!point)
                 return true;
             if (!plane.isPointInPlane(point))
-                return false;
+                break; // which gets to return false, which isotherwise unreachable . . .
         }
         return false;
     }
@@ -77,32 +85,14 @@ class BezierCurveBase extends CurvePrimitive_1.CurvePrimitive {
         return sum;
     }
     startPoint() {
-        const result = this.getPolePoint3d(0);
-        if (!result)
-            return Point3dVector3d_1.Point3d.createZero();
+        const result = this.getPolePoint3d(0); // ASSUME non-trivial pole set -- if null comes back, it bubbles out
         return result;
     }
     endPoint() {
-        const result = this.getPolePoint3d(this.order - 1);
-        if (!result)
-            return Point3dVector3d_1.Point3d.createZero();
+        const result = this.getPolePoint3d(this.order - 1); // ASSUME non-trivial pole set
         return result;
     }
     quickLength() { return this.polygonLength(); }
-    /** Extend range by all poles.  */
-    extendRange(rangeToExtend, transform) {
-        let i = 0;
-        if (transform) {
-            while (this.getPolePoint3d(i++, this._workPoint0)) {
-                rangeToExtend.extendTransformedPoint(transform, this._workPoint0);
-            }
-        }
-        else {
-            while (this.getPolePoint3d(i++, this._workPoint0)) {
-                rangeToExtend.extend(this._workPoint0);
-            }
-        }
-    }
     /**
      * set up the _workBezier members with specific order.
      * * Try to reuse existing members if their sizes match.

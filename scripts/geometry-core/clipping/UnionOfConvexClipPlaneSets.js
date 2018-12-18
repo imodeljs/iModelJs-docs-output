@@ -7,7 +7,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Segment1d_1 = require("../geometry3d/Segment1d");
 const Range_1 = require("../geometry3d/Range");
-const GrowableArray_1 = require("../geometry3d/GrowableArray");
+const GrowableFloat64Array_1 = require("../geometry3d/GrowableFloat64Array");
 const ClipUtils_1 = require("./ClipUtils");
 const ConvexClipPlaneSet_1 = require("./ConvexClipPlaneSet");
 /**
@@ -229,6 +229,6 @@ class UnionOfConvexClipPlaneSets {
         }
     }
 }
-UnionOfConvexClipPlaneSets._clipArcFractionArray = new GrowableArray_1.GrowableFloat64Array();
+UnionOfConvexClipPlaneSets._clipArcFractionArray = new GrowableFloat64Array_1.GrowableFloat64Array();
 exports.UnionOfConvexClipPlaneSets = UnionOfConvexClipPlaneSets;
 //# sourceMappingURL=UnionOfConvexClipPlaneSets.js.map

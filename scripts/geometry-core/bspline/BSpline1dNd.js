@@ -8,6 +8,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // import { Point2d } from "../Geometry2d";
 /* tslint:disable:variable-name jsdoc-format no-empty no-console*/
 const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
+const Geometry_1 = require("../Geometry");
 /** Bspline knots and poles for 1d-to-Nd. */
 class BSpline1dNd {
     get degree() { return this.knots.degree; }
@@ -120,6 +121,23 @@ class BSpline1dNd {
             }
         }
         this.knots.reflectKnots();
+    }
+    /**
+     * Test if the leading and trailing polygon coordinates are replicated in the manner of a "closed" bspline polygon which has been expanded
+     * to act as a normal bspline.
+     * @returns true if `degree` leading and trailing polygon blocks match
+     */
+    testCloseablePolygon() {
+        const degree = this.degree;
+        const blockSize = this.poleLength;
+        const indexDelta = (this.numPoles - this.degree) * blockSize;
+        const data = this.packedData;
+        const numValuesToTest = degree * blockSize;
+        for (let i0 = 0; i0 < numValuesToTest; i0++) {
+            if (!Geometry_1.Geometry.isSameCoordinate(data[i0], data[i0 + indexDelta]))
+                return false;
+        }
+        return true;
     }
 }
 exports.BSpline1dNd = BSpline1dNd;

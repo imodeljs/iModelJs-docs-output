@@ -1,6 +1,6 @@
 /** @module Numerics */
 import { Range1d } from "../geometry3d/Range";
-import { GrowableFloat64Array } from "../geometry3d/GrowableArray";
+import { GrowableFloat64Array } from "../geometry3d/GrowableFloat64Array";
 /**
  * A Range1d array is a set of intervals, such as occur when a line is clipped to a (nonconvex) polygon
  */
@@ -38,10 +38,15 @@ export declare class Range1dArray {
      * * This considers all intervals-- i.e. does not expect or take advantage of sorting.
      */
     static testParity(data: Range1d[], value: number): boolean;
-    /** return an array with all the low and high values of all the ranges.
-     * * the coordinates are not sorted.
+    /** linear search to count number of intervals which contain `value`.
      */
-    static getBreaks(data: Range1d[], result?: GrowableFloat64Array): GrowableFloat64Array;
+    static countContainingRanges(data: Range1d[], value: number): number;
+    /** return an array with all the low and high values of all the ranges.
+     * @param data array of ranges.
+     * @param sort optionally request immediate sort.
+     * @param compress optionally request removal of duplicates.
+     */
+    static getBreaks(data: Range1d[], result?: GrowableFloat64Array, sort?: boolean, compress?: boolean): GrowableFloat64Array;
     /** sum the lengths of all ranges */
     static sumLengths(data: Range1d[]): number;
     /**
@@ -51,4 +56,6 @@ export declare class Range1dArray {
      */
     static isSorted(data: Range1d[], strict?: boolean): boolean;
 }
+/** Checks low's first, then high's */
+export declare function compareRange1dLexicalLowHigh(a: Range1d, b: Range1d): number;
 //# sourceMappingURL=Range1dArray.d.ts.map

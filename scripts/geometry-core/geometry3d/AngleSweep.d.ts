@@ -1,4 +1,4 @@
-import { GrowableFloat64Array } from "./GrowableArray";
+import { GrowableFloat64Array } from "./GrowableFloat64Array";
 import { Angle } from "./Angle";
 import { BeJSONFunctions, AngleSweepProps } from "../Geometry";
 /**

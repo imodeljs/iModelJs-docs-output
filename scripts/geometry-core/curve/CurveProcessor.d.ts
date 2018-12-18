@@ -2,11 +2,10 @@
 import { CurvePrimitive } from "./CurvePrimitive";
 import { AnyCurve } from "./CurveChain";
 import { UnionRegion } from "./UnionRegion";
-import { BagOfCurves } from "./CurveCollection";
+import { BagOfCurves, CurveCollection } from "./CurveCollection";
 import { ParityRegion } from "./ParityRegion";
 import { Loop } from "./Loop";
 import { Path } from "./Path";
-import { CurveCollection } from "./CurveCollection";
 /** base class for detailed traversal of curve artifacts.  This recurses to children in the quickest way (no records of path)
  * Use the RecursiveCurveProcessorWithStack to record the path along the visit.
  */

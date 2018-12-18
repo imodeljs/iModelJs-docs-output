@@ -38,6 +38,8 @@ export declare class KnotVector {
     private setupFixedValues;
     /** @returns Return the total knot distance from beginning to end. */
     readonly knotLength01: number;
+    /** @returns true if all numeric values have wraparound conditions for "closed" knotVector. */
+    testClosable(): boolean;
     isAlmostEqual(other: KnotVector): boolean;
     setKnots(knots: number[] | Float64Array, skipFirstAndLast?: boolean): void;
     /**
@@ -48,6 +50,14 @@ export declare class KnotVector {
      * @param a1 right knot value for active interval
      */
     static createUniformClamped(numPoles: number, degree: number, a0: number, a1: number): KnotVector;
+    /**
+     * Create knot vector with {degree-1} replicated knots at start and end, and uniform knots between.
+     * @param  numInterval number of intervals in knot space.  (NOT POLE COUNT)
+     * @param degree degree of polynomial
+     * @param a0 left knot value for active interval
+     * @param a1 right knot value for active interval
+     */
+    static createUniformWrapped(numInterval: number, degree: number, a0: number, a1: number): KnotVector;
     /**
      * Create knot vector with given knot values and degree.
      * @param knotArray knot values

@@ -9,7 +9,7 @@ const Point2dVector2d_1 = require("../geometry3d/Point2dVector2d");
 const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
 // import { Angle, AngleSweep, Geometry } from "../Geometry";
 const Geometry_1 = require("../Geometry");
-const GrowableArray_1 = require("../geometry3d/GrowableArray");
+const GrowableFloat64Array_1 = require("../geometry3d/GrowableFloat64Array");
 // import { Arc3d } from "../curve/Arc3d";
 /* tslint:disable:variable-name*/
 class Degree2PowerPolynomial {
@@ -264,14 +264,12 @@ class SphereImplicit {
     evaluateImplicitFunction(x, y, z) {
         return x * x + y * y + z * z - this.radius * this.radius;
     }
-    // Evaluate the implicit function at weighted space point (wx/w, wy/w, wz/w)
+    // Evaluate the implicit function at weighted space point (wx, wy, wz, w)
     // @param [in] wx (preweighted) x coordinate
     // @param [in] wy (preweighted) y coordinate
     // @param [in] wz (preweighted) z coordinate
     // @param [in] w  weight
     evaluateImplicitFunctionXYZW(wx, wy, wz, w) {
-        if (w === 0.0)
-            return 0.0;
         return (wx * wx + wy * wy + wz * wz) - this.radius * this.radius * w * w;
     }
     XYZToThetaPhiR(xyz) {
@@ -362,7 +360,11 @@ class AnalyticRoots {
     }
     // @returns the principal (always real) cube root of x.
     static cbrt(x) {
-        return ((x) > 0.0 ? Math.pow((x), 1.0 / 3.0) : ((x) < 0.0 ? -Math.pow(-(x), 1.0 / 3.0) : 0.0));
+        return ((x) > 0.0
+            ? Math.pow((x), 1.0 / 3.0)
+            : ((x) < 0.0
+                ? -Math.pow(-(x), 1.0 / 3.0)
+                : 0.0));
     }
     /**
      * Try to divide `numerator/denominator` and place the result (or defaultValue) in `values[offset]`
@@ -481,7 +483,7 @@ class AnalyticRoots {
         let result = data.at(0);
         for (let i = 0; i < data.length; i++) {
             const d = Math.abs(data.at(i) - a);
-            if (d < dMax) {
+            if (d > dMax) {
                 dMax = d;
                 result = data.at(i);
             }
@@ -588,6 +590,7 @@ class AnalyticRoots {
             results.push(origin + t * Math.cos(phi));
             results.push(origin - t * Math.cos(phi + Math.PI / 3));
             results.push(origin - t * Math.cos(phi - Math.PI / 3));
+            this.improveSortedRoots(c, 3, results);
             return;
         }
         else { // One real solution
@@ -595,6 +598,7 @@ class AnalyticRoots {
             const u = this.cbrt(sqrt_D - q);
             const v = -(this.cbrt(sqrt_D + q));
             results.push(origin + u + v);
+            this.improveSortedRoots(c, 3, results);
             return;
         }
     }
@@ -631,7 +635,7 @@ class AnalyticRoots {
         p = -3.0 / 8 * sq_A + B;
         q = 0.125 * sq_A * A - 0.5 * A * B + C;
         r = -3.0 / 256 * sq_A * sq_A + 1.0 / 16 * sq_A * B - 1.0 / 4 * A * C + D;
-        const tempStack = new GrowableArray_1.GrowableFloat64Array();
+        const tempStack = new GrowableFloat64Array_1.GrowableFloat64Array();
         if (this.IsZero(r)) {
             // no absolute term: y(y^3 + py + q) = 0
             coeffs[0] = q;
@@ -875,11 +879,11 @@ class TrigPolynomial {
         }
         const coffTol = relTol * maxCoff;
         let degree = nominalDegree;
-        while (degree > 0 && (Math.abs(coff[degree - 1]) <= coffTol)) {
+        while (degree > 0 && (Math.abs(coff[degree]) <= coffTol)) {
             degree--;
         }
         // let bstat = false;
-        const roots = new GrowableArray_1.GrowableFloat64Array();
+        const roots = new GrowableFloat64Array_1.GrowableFloat64Array();
         if (degree === -1) {
             // Umm.   Dunno.   Nothing there.
             // bstat = false;

@@ -64,8 +64,8 @@ export declare abstract class BezierCurveBase extends CurvePrimitive {
     startPoint(): Point3d;
     endPoint(): Point3d;
     quickLength(): number;
-    /** Extend range by all poles.  */
-    extendRange(rangeToExtend: Range3d, transform?: Transform): void;
+    /** Concrete classes must implement extendRange . . .  */
+    abstract extendRange(rangeToExtend: Range3d, transform?: Transform): void;
     protected _workBezier?: UnivariateBezier;
     protected _workCoffsA?: Float64Array;
     protected _workCoffsB?: Float64Array;

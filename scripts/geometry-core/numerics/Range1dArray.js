@@ -6,7 +6,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Numerics */
 const Range_1 = require("../geometry3d/Range");
-const GrowableArray_1 = require("../geometry3d/GrowableArray");
+const GrowableFloat64Array_1 = require("../geometry3d/GrowableFloat64Array");
 /**
  * A Range1d array is a set of intervals, such as occur when a line is clipped to a (nonconvex) polygon
  */
@@ -152,19 +152,19 @@ class Range1dArray {
         for (const range of dataB)
             retVal.push(range.clone());
         // Sort the array
-        retVal.sort(compareRange1d);
+        retVal.sort(compareRange1dLexicalLowHigh);
         Range1dArray.simplifySortParity(retVal, true);
         return retVal;
     }
     /** Uses the Range1d specific compare function for sorting the array of ranges */
     static sort(data) {
-        data.sort(compareRange1d);
+        data.sort(compareRange1dLexicalLowHigh);
     }
     /** Cleans up the array, compressing any overlapping ranges. If removeZeroLengthRanges is set to true, will also remove any Ranges in the form (x, x) */
     static simplifySortUnion(data, removeZeroLengthRanges = false) {
         if (data.length < 2)
             return;
-        data.sort(compareRange1d);
+        data.sort(compareRange1dLexicalLowHigh);
         let currIdx = 0;
         let toInsert = false;
         for (let i = 0; i < data.length; i++) {
@@ -229,11 +229,7 @@ class Range1dArray {
      * * This considers all intervals-- i.e. does not expect or take advantage of sorting.
      */
     static testUnion(data, value) {
-        for (const range of data) {
-            if (range.containsX(value))
-                return true;
-        }
-        return false;
+        return this.countContainingRanges(data, value) > 0;
     }
     /** test if value is "in" by parity rules.
      * * This considers all intervals-- i.e. does not expect or take advantage of sorting.
@@ -246,16 +242,33 @@ class Range1dArray {
         }
         return inside;
     }
-    /** return an array with all the low and high values of all the ranges.
-     * * the coordinates are not sorted.
+    /** linear search to count number of intervals which contain `value`.
      */
-    static getBreaks(data, result) {
+    static countContainingRanges(data, value) {
+        let n = 0;
+        for (const range of data) {
+            if (range.containsX(value))
+                n++;
+        }
+        return n;
+    }
+    /** return an array with all the low and high values of all the ranges.
+     * @param data array of ranges.
+     * @param sort optionally request immediate sort.
+     * @param compress optionally request removal of duplicates.
+     */
+    static getBreaks(data, result, sort = false, compress = false) {
         if (!result)
-            result = new GrowableArray_1.GrowableFloat64Array(2 * data.length);
+            result = new GrowableFloat64Array_1.GrowableFloat64Array(2 * data.length);
+        result.clear();
         for (const range of data) {
             result.push(range.low);
             result.push(range.high);
         }
+        if (sort)
+            result.sort();
+        if (compress)
+            result.compressAdjcentDuplicates();
         return result;
     }
     /** sum the lengths of all ranges */
@@ -290,7 +303,7 @@ class Range1dArray {
 }
 exports.Range1dArray = Range1dArray;
 /** Checks low's first, then high's */
-function compareRange1d(a, b) {
+function compareRange1dLexicalLowHigh(a, b) {
     if (a.low < b.low)
         return -1;
     if (a.low > b.low)
@@ -301,4 +314,5 @@ function compareRange1d(a, b) {
         return 1;
     return 0;
 }
+exports.compareRange1dLexicalLowHigh = compareRange1dLexicalLowHigh;
 //# sourceMappingURL=Range1dArray.js.map

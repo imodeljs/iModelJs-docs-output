@@ -9,7 +9,7 @@ const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
 const Point4d_1 = require("../geometry4d/Point4d");
 const Plane3dByOriginAndUnitNormal_1 = require("../geometry3d/Plane3dByOriginAndUnitNormal");
 const Geometry_1 = require("../Geometry");
-const GrowableArray_1 = require("../geometry3d/GrowableArray");
+const GrowableFloat64Array_1 = require("../geometry3d/GrowableFloat64Array");
 const Polynomials_1 = require("../numerics/Polynomials");
 const ClipUtils_1 = require("./ClipUtils");
 /** A ClipPlane is a single plane represented as
@@ -410,6 +410,6 @@ class ClipPlane {
 }
 // Static variable from original native c++ function ConvexPolygonClipInPlace
 ClipPlane.fractionTol = 1.0e-8;
-ClipPlane._clipArcFractionArray = new GrowableArray_1.GrowableFloat64Array();
+ClipPlane._clipArcFractionArray = new GrowableFloat64Array_1.GrowableFloat64Array();
 exports.ClipPlane = ClipPlane;
 //# sourceMappingURL=ClipPlane.js.map

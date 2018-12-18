@@ -2,10 +2,8 @@ import { AxisOrder, AxisIndex, BeJSONFunctions, StandardViewIndex } from "../Geo
 import { Angle } from "./Angle";
 import { Point4d } from "../geometry4d/Point4d";
 import { Point2d } from "./Point2dVector2d";
-import { XYAndZ } from "./XYZProps";
-import { Point3d, Vector3d } from "./Point3dVector3d";
-import { XAndY, Matrix3dProps } from "./XYZProps";
-import { XYZ } from "./Point3dVector3d";
+import { XYAndZ, XAndY, Matrix3dProps } from "./XYZProps";
+import { XYZ, Point3d, Vector3d } from "./Point3dVector3d";
 import { Transform } from "./Transform";
 /** A Matrix3d is tagged indicating one of the following states:
  * * unknown: it is not know if the matrix is invertible.

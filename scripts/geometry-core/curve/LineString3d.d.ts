@@ -7,7 +7,8 @@ import { Transform } from "../geometry3d/Transform";
 import { Plane3dByOriginAndUnitNormal } from "../geometry3d/Plane3dByOriginAndUnitNormal";
 import { Ray3d } from "../geometry3d/Ray3d";
 import { Plane3dByOriginAndVectors } from "../geometry3d/Plane3dByOriginAndVectors";
-import { GrowableXYZArray, GrowableFloat64Array } from "../geometry3d/GrowableArray";
+import { GrowableFloat64Array } from "../geometry3d/GrowableFloat64Array";
+import { GrowableXYZArray } from "../geometry3d/GrowableXYZArray";
 import { GeometryHandler, IStrokeHandler } from "../geometry3d/GeometryHandler";
 import { StrokeOptions } from "./StrokeOptions";
 import { CurvePrimitive, AnnounceNumberNumberCurvePrimitive } from "./CurvePrimitive";
@@ -53,6 +54,7 @@ export declare class LineString3d extends CurvePrimitive implements BeJSONFuncti
      * If the linestring is not already closed, add a closure point.
      */
     addClosurePoint(): void;
+    /** Elminate (but do not return!!) the final point of the linestring */
     popPoint(): void;
     static createRectangleXY(point0: Point3d, ax: number, ay: number, closed?: boolean): LineString3d;
     /**
