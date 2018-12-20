@@ -27,9 +27,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.178.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.179.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -137,17 +137,9 @@
 <hr>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Return the actual Element subclass of the <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            Element
-            </a> with id 0x10000000021.</p>
+<p><em>Goal:</em> Return the actual Element subclass of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a> with id 0x10000000020.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECClassId, CodeValue FROM bis.Element WHERE ECInstanceId=0x10000000021</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECClassId, CodeValue FROM bis.Element WHERE ECInstanceId=0x10000000020</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>ECClassId</th>
@@ -164,15 +156,7 @@
 <p>For Boolean types ECSQL supports the literals <code>True</code> and <code>False</code>.</p>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Find out which <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            Model
-            </a> are private or not.</p>
+<p><em>Goal:</em> Find out which <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#model'>Model</a> are private or not.</p>
 <p><em>ECSQL</em></p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, ECClassId, IsPrivate FROM bis.Model</code></pre>
 <p><em>Result</em></p>
@@ -197,27 +181,32 @@
 <td>true</td>
 </tr>
 <tr>
-<td>0x10000000011</td>
+<td>0x10000000002</td>
 <td>BisCore.PhysicalModel</td>
 <td>false</td>
 </tr>
 <tr>
-<td>0x10000000030</td>
+<td>0x10000000003</td>
 <td>BisCore.DocumentListModel</td>
 <td>false</td>
 </tr>
 <tr>
-<td>0x10000000031</td>
+<td>0x10000000004</td>
+<td>BisCore.DefinitionModel</td>
+<td>false</td>
+</tr>
+<tr>
+<td>0x10000000037</td>
 <td>BisCore.DrawingModel</td>
 <td>false</td>
 </tr>
 <tr>
-<td>0x10000000039</td>
+<td>0x1000000003d</td>
 <td>BisCore.DrawingModel</td>
 <td>false</td>
 </tr>
 <tr>
-<td>0x10000000040</td>
+<td>0x10000000042</td>
 <td>BisCore.DrawingModel</td>
 <td>false</td>
 </tr>
@@ -226,15 +215,7 @@
 boolean value already.</p>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Find private <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            Model
-            </a>s.</p>
+<p><em>Goal:</em> Find private <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#model'>Model</a>s.</p>
 <p><em>ECSQL</em></p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,ECClassId FROM bis.Model WHERE IsPrivate = True</code></pre>
 <p>and</p>
@@ -257,15 +238,7 @@ boolean value already.</p>
 <p>And the same example with <code>False</code>:</p>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Find non-private <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            Model
-            </a>s.</p>
+<p><em>Goal:</em> Find non-private <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#model'>Model</a>s.</p>
 <p><em>ECSQL</em></p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,ECClassId FROM bis.Model WHERE IsPrivate = False</code></pre>
 <p>and</p>
@@ -281,77 +254,49 @@ boolean value already.</p>
 <td>BisCore.RepositoryModel</td>
 </tr>
 <tr>
-<td>0x10000000011</td>
+<td>0x10000000002</td>
 <td>BisCore.PhysicalModel</td>
 </tr>
 <tr>
-<td>0x10000000030</td>
+<td>0x10000000003</td>
 <td>BisCore.DocumentListModel</td>
 </tr>
 <tr>
-<td>0x10000000031</td>
+<td>0x10000000004</td>
+<td>BisCore.DefinitionModel</td>
+</tr>
+<tr>
+<td>0x10000000037</td>
 <td>BisCore.DrawingModel</td>
 </tr>
 <tr>
-<td>0x10000000039</td>
+<td>0x1000000003d</td>
 <td>BisCore.DrawingModel</td>
 </tr>
 <tr>
-<td>0x10000000040</td>
+<td>0x10000000042</td>
 <td>BisCore.DrawingModel</td>
 </tr>
 </tbody></table></blockquote>
 <h2 class="h-datetime">DateTime<a id="datetime" class="heading-anchor" href="#datetime"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>ECSQL supports both dates without time (<code>DATE</code>) and dates with time (<code>TIMESTAMP</code>).</p>
+<p>ECSQL supports dates without time (<code>DATE</code>), dates with time (<code>TIMESTAMP</code>), and times without date (<code>TIME</code>).</p>
 <blockquote>
 <p>ECSQL does not support time zone conversions. Time zone conversions are to be handled by the application.</p>
 </blockquote>
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql/#datetime'>ECSQL Reference</a> for details.</p>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Find all <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a>s which were modified before June, 1st, 2018.</p>
+<p><em>Goal:</em> Find all <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a>s which were modified between 4pm and 6pm UTC on December, 18th 2018.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT CodeValue,LastMod FROM MyDomain.Device WHERE LastMod &lt; DATE &apos;2018-06-01&apos;</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT CodeValue,LastMod FROM mydomain.Device WHERE LastMod BETWEEN TIMESTAMP &apos;2018-12-18T16:00:00Z&apos; AND TIMESTAMP &apos;2018-12-18T18:00:00Z&apos;</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>CodeValue</th>
 <th>LastMod</th>
 </tr>
 <tr>
-<td>DEV-A-G-1</td>
-<td>2018-05-29T13:43:42.185Z</td>
-</tr>
-<tr>
-<td>DEV-A-G-2</td>
-<td>2018-05-29T13:43:42.186Z</td>
-</tr>
-<tr>
-<td>DEV-A-1-1</td>
-<td>2018-05-29T19:00:00.029Z</td>
-</tr>
-<tr>
-<td>DEV-A-2-1</td>
-<td>2018-05-29T19:00:00.029Z</td>
-</tr>
-</tbody></table></blockquote>
-<hr>
-<blockquote>
-<p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Find all <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a>s which were modified between 8am and 6pm UTC on May, 29th 2018.</p>
-<p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT CodeValue,LastMod FROM bis.Element WHERE LastMod BETWEEN TIMESTAMP &apos;2018-05-29T08:00:00Z&apos; AND TIMESTAMP &apos;2018-05-29T18:00:00Z&apos;</code></pre>
-<p><em>Result</em></p>
-<table class="table table-responsive"><tbody><tr>
-<th>CodeValue</th>
-<th>LastMod</th>
-</tr>
-<tr>
-<td>DEV-A-G-1</td>
-<td>2018-05-29T13:43:42.185Z</td>
-</tr>
-<tr>
-<td>DEV-A-G-2</td>
-<td>2018-05-29T13:43:42.186Z</td>
+<td>DEV-A-G-4</td>
+<td>2018-12-18T16:03:15.206Z</td>
 </tr>
 </tbody></table></blockquote>
 <h2 class="h-points">Points<a id="points" class="heading-anchor" href="#points"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
@@ -418,15 +363,7 @@ following system properties (See <a href='https://imodeljs.github.io/iModelJs-do
 <hr>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Return the parent <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            Element
-            </a> for the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#space'>Space</a> with code value <em>A-G-2</em>.</p>
+<p><em>Goal:</em> Return the parent <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a> for the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#space'>Space</a> with code value <em>A-G-2</em>.</p>
 <p><em>ECSQL</em></p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT Parent FROM MyDomain.Space WHERE CodeValue=&apos;A-G-2&apos;</code></pre>
 <p><em>Result</em></p>
@@ -434,22 +371,14 @@ following system properties (See <a href='https://imodeljs.github.io/iModelJs-do
 <th>Parent</th>
 </tr>
 <tr>
-<td>{&quot;id&quot;:&quot;0x10000000013&quot;,&quot;relClassName&quot;:&quot;BisCore.ElementOwnsChildElements&quot;}</td>
+<td>{&quot;id&quot;:&quot;0x1000000001e&quot;,&quot;relClassName&quot;:&quot;BisCore.ElementOwnsChildElements&quot;}</td>
 <td></td>
 </tr>
 </tbody></table></blockquote>
 <hr>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Return the id of the parent <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            Element
-            </a> for the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#space'>Space</a> with code value <em>A-G-2</em>.</p>
+<p><em>Goal:</em> Return the id of the parent <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a> for the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#space'>Space</a> with code value <em>A-G-2</em>.</p>
 <p><em>ECSQL</em></p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT Parent.Id FROM MyDomain.Space WHERE CodeValue=&apos;A-G-2&apos;</code></pre>
 <p><em>Result</em></p>
@@ -457,22 +386,14 @@ following system properties (See <a href='https://imodeljs.github.io/iModelJs-do
 <th>Parent.Id</th>
 </tr>
 <tr>
-<td>0x10000000013</td>
+<td>0x1000000001e</td>
 <td></td>
 </tr>
 </tbody></table></blockquote>
 <hr>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Return the id and RelECClassId of the parent <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            Element
-            </a> separately for the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#space'>Space</a> with code value <em>A-G-2</em>.</p>
+<p><em>Goal:</em> Return the id and RelECClassId of the parent <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a> separately for the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#space'>Space</a> with code value <em>A-G-2</em>.</p>
 <p><em>ECSQL</em></p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT Parent.Id, Parent.RelECClassId FROM MyDomain.Space WHERE CodeValue=&apos;A-G-2&apos;</code></pre>
 <p><em>Result</em></p>
@@ -481,7 +402,7 @@ following system properties (See <a href='https://imodeljs.github.io/iModelJs-do
 <th>Parent.RelECClassId</th>
 </tr>
 <tr>
-<td>0x10000000013</td>
+<td>0x1000000001e</td>
 <td>BisCore.ElementOwnsChildElements</td>
 </tr>
 </tbody></table></blockquote>
@@ -489,22 +410,82 @@ following system properties (See <a href='https://imodeljs.github.io/iModelJs-do
 <h2 class="h-structs">Structs<a id="structs" class="heading-anchor" href="#structs"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>In ECSQL you can refer to a struct ECProperty either as a whole or by just referring to some of its members.
 The operator for referencing members of structs in an ECSQL is the &apos;.&apos;.</p>
+<p>The sample iModel does not have struct properties. However, the Change Summaries of the iModel have them.
+Follow the steps in the sections <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/changesummaryqueries/#generate-the-change-summaries'>Generate Change Summaries</a> and
+<a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/changesummaryqueries/#attach-the-change-summaries'>Attach Change Summaries</a>, before you run the following queries.</p>
 <blockquote>
-<p>As there are no struct properties in the sample iModel (structs are generally rarely used), you cannot try that out with this
-tutorial. However, you will find ECSQL examples in the respective section of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql/#structs'>ECSQL Reference</a>.</p>
-</blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return ChangedInstance struct (of type <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbchange.ecschema/#instancekey'>InstanceKey</a>) as a whole and OpCode for the InstanceChange object <code>0x36</code>.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ChangedInstance,OpCode FROM change.InstanceChange WHERE ECInstanceId=0x36</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>ChangedInstance</th>
+<th>OpCode</th>
+</tr>
+<tr>
+<td>{&quot;classId&quot;:&quot;0x100&quot;,&quot;id&quot;:&quot;0x20000000002&quot;}</td>
+<td>Update</td>
+</tr>
+</tbody></table></blockquote>
+<p>And here is an example where individual members of the struct are used.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return the ids of changed instances (structs of type <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbchange.ecschema/#instancekey'>InstanceKey</a>) that are <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a>s (ECClass <code>0x100</code>) and the corresponding Change Summary id and OpCode.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT Summary.Id,ChangedInstance.Id,OpCode FROM change.InstanceChange WHERE ChangedInstance.ClassId=0x100</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>Summary.Id</th>
+<th>ChangedInstance.Id</th>
+<th>OpCode</th>
+</tr>
+<tr>
+<td>0x1</td>
+<td>0x20000000001</td>
+<td>Delete</td>
+</tr>
+<tr>
+<td>0x35</td>
+<td>0x20000000001</td>
+<td>Update</td>
+</tr>
+<tr>
+<td>0x35</td>
+<td>0x20000000002</td>
+<td>Insert</td>
+</tr>
+<tr>
+<td>0x6c</td>
+<td>0x20000000001</td>
+<td>Insert</td>
+</tr>
+</tbody></table></blockquote>
+<p>You can find more ECSQL examples in the respective section of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql/#structs'>ECSQL Reference</a>.</p>
 <h2 class="h-arrays">Arrays<a id="arrays" class="heading-anchor" href="#arrays"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>In ECSQL you can refer to Array ECProperties only as a whole.</p>
 <blockquote>
-<p>The sample iModel does not use array properties for its data. However, arrays are used when querying ECSchemas.
-That topic is covered as advanced lesson: <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/metaqueries'>Querying ECSchemas (Meta queries)</a>
-You will also find ECSQL examples in the respective section of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql/#arrays'>ECSQL Reference</a>.</p>
-</blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return the ECEnumeration values for the ECEnumeration <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#flamedetectiontechnique'>FlameDetectionTechnique</a>. The ECEnumeration values are stored
+in the array property <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbmeta.ecschema/#ecenumerationdef'>ECEnumerationDef.EnumValues</a>.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT Name, EnumValues FROM meta.ECEnumerationDef WHERE Name=&apos;FlameDetectionTechnique&apos;</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>EnumValues</th>
+</tr>
+<tr>
+<td>FlameDetectionTechnique</td>
+<td>[{&quot;name&quot;: &quot;Optical&quot;, &quot;intValue&quot;:0},{&quot;name&quot;:&quot;Ultraviolet&quot;, &quot;intValue&quot;:1},{&quot;name&quot;:&quot;Infrared&quot;, &quot;intValue&quot;:2}]</td>
+</tr>
+</tbody></table></blockquote>
+<p>You can find more ECSQL examples in the respective section of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql/#arrays'>ECSQL Reference</a>.</p>
 <hr>
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/firstexamples'><strong>&lt; Previous</strong></a> &#xA0; | &#xA0; <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/joins'><strong>Next &gt;</strong></a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>17 December, 2018</span>
+                <span class='date-updated'>20 December, 2018</span>
             </p>
 
             

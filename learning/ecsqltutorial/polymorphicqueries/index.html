@@ -27,9 +27,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.178.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.179.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -124,158 +124,138 @@
 <p>We begin the lesson by using a simple ECSQL similar to the ones used at the beginning of the tutorial.</p>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Return the id and class id of all <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            SpatialElement
-            </a>s.</p>
+<p><em>Goal:</em> Return the code and class id of all <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a>s.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, ECClassId FROM bis.SpatialElement</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT CodeValue, ECClassId FROM bis.SpatialElement</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
-<th>ECInstanceId</th>
+<th>CodeValue</th>
 <th>ECClassId</th>
 </tr>
 <tr>
-<td>0x10000000012</td>
+<td>Building A</td>
 <td>MyDomain.Building</td>
 </tr>
 <tr>
-<td>0x10000000021</td>
+<td>DEV-&gt; A-G-1</td>
 <td>MyDomain.Device</td>
 </tr>
 <tr>
-<td>0x10000000022</td>
+<td>DEV-&gt; A-G-2</td>
 <td>MyDomain.Device</td>
 </tr>
 <tr>
-<td>0x10000000023</td>
+<td>DEV-&gt; A-1-1</td>
 <td>MyDomain.Device</td>
 </tr>
 <tr>
-<td>0x10000000024</td>
+<td>DEV-&gt; A-2-1</td>
 <td>MyDomain.Device</td>
 </tr>
 <tr>
-<td>0x10000000025</td>
+<td>DEV-&gt; A-2-2</td>
 <td>MyDomain.Device</td>
 </tr>
 <tr>
-<td>0x10000000026</td>
+<td>DEV-&gt; A-2-3</td>
 <td>MyDomain.Device</td>
 </tr>
 <tr>
-<td>0x10000000027</td>
+<td>DEV-&gt; A-2-4</td>
 <td>MyDomain.Device</td>
 </tr>
 <tr>
-<td>0x10000000028</td>
+<td>DEV-&gt; A-2-5</td>
 <td>MyDomain.Device</td>
 </tr>
 <tr>
-<td>0x10000000029</td>
+<td>DEV-&gt; A-2-6</td>
 <td>MyDomain.Device</td>
 </tr>
 <tr>
-<td>0x1000000002a</td>
+<td>DEV-&gt; A-2-7</td>
 <td>MyDomain.Device</td>
 </tr>
 <tr>
-<td>0x1000000002b</td>
+<td>DEV-&gt; A-2-8</td>
 <td>MyDomain.Device</td>
 </tr>
 <tr>
-<td>0x10000000014</td>
+<td>DEV-&gt; A-G-4</td>
+<td>MyDomain.Device</td>
+</tr>
+<tr>
+<td>A-G-1</td>
 <td>MyDomain.Space</td>
 </tr>
 <tr>
-<td>0x10000000015</td>
+<td>A-G-2</td>
 <td>MyDomain.Space</td>
 </tr>
 <tr>
-<td>0x10000000017</td>
+<td>A-1-1</td>
 <td>MyDomain.Space</td>
 </tr>
 <tr>
-<td>0x10000000019</td>
+<td>A-2-1</td>
 <td>MyDomain.Space</td>
 </tr>
 <tr>
-<td>0x1000000001a</td>
+<td>A-2-2</td>
 <td>MyDomain.Space</td>
 </tr>
 <tr>
-<td>0x1000000001b</td>
+<td>A-2-3</td>
 <td>MyDomain.Space</td>
 </tr>
 <tr>
-<td>0x1000000001c</td>
+<td>A-2-4</td>
 <td>MyDomain.Space</td>
 </tr>
 <tr>
-<td>0x1000000001d</td>
+<td>A-2-5</td>
 <td>MyDomain.Space</td>
 </tr>
 <tr>
-<td>0x1000000001e</td>
+<td>A-2-6</td>
 <td>MyDomain.Space</td>
 </tr>
 <tr>
-<td>0x1000000001f</td>
+<td>A-2-7</td>
 <td>MyDomain.Space</td>
 </tr>
 <tr>
-<td>0x10000000020</td>
+<td>A-2-8</td>
 <td>MyDomain.Space</td>
 </tr>
 <tr>
-<td>0x10000000013</td>
+<td>A-G</td>
 <td>MyDomain.Story</td>
 </tr>
 <tr>
-<td>0x10000000016</td>
+<td>A-1</td>
 <td>MyDomain.Story</td>
 </tr>
 <tr>
-<td>0x10000000018</td>
+<td>A-2</td>
 <td>MyDomain.Story</td>
 </tr>
 </tbody></table></blockquote>
 <p>This example illustrates that polymorphism is pretty obvious. All examples throughout the tutorial up to here were polymorphic queries, and we did not have to mention or even explain it. It has worked intuitively. If we now take a closer look at what the ECSQL does, you can notice this:</p>
 <ul>
-<li>The <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            SpatialElement
-            </a> ECClass is an abstract class, i.e. it cannot have any instances. However you can query against it, and because of polymorphism the query intuitively returns instances of all subclasses of <code>SpatialElement</code>.</li>
+<li>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a> ECClass is an abstract class, i.e. it cannot have any instances. However you can query against it, and because of polymorphism the query intuitively returns instances of all subclasses of <code>SpatialElement</code>.</li>
 <li>Returning the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/ecsqldatatypes/#ecinstanceid-and-ecclassid'>ECClassId</a> in the query only makes sense because of polymorphism. If the query was not polymorphic, the returned ECClassId would always be the same.</li>
 <li>Consequently, the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/ecsqldatatypes/#ecinstanceid-and-ecclassid'>ECClassId</a> is key when you need to know about the subclasses of a polymorphic query.</li>
 </ul>
 <p>Now let&apos;s turn the query into a non-polymorphic one.</p>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Return the id and class id of instances of only the <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            SpatialElement
-            </a> class</p>
+<p><em>Goal:</em> Return the code and class id of instances of only the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a> class</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, ECClassId FROM ONLY bis.SpatialElement</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT CodeValue, ECClassId FROM ONLY bis.SpatialElement</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
-<th>ECInstanceId</th>
+<th>CodeValue</th>
 <th>ECClassId</th>
 </tr>
 <tr>
@@ -283,26 +263,10 @@
 <td></td>
 </tr>
 </tbody></table></blockquote>
-<p>As expected the query does not return anything, because <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            SpatialElement
-            </a> is an abstract class, and hence cannot have any instances. It is more meaningful to query against a non-abstract class.</p>
+<p>As expected the query does not return anything, because <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a> is an abstract class, and hence cannot have any instances. It is more meaningful to query against a non-abstract class.</p>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Return the code of instances of only the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> class (which is a subclass of <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            SpatialElement
-            </a>)</p>
+<p><em>Goal:</em> Return the code of instances of only the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> class (which is a subclass of <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a>)</p>
 <p><em>ECSQL</em></p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, CodeValue FROM ONLY MyDomain.Device</code></pre>
 <p><em>Result</em></p>
@@ -311,7 +275,7 @@
 <th>CodeValue</th>
 </tr>
 <tr>
-<td>0x10000000021</td>
+<td>0x10000000020</td>
 <td>DEV-A-G-1</td>
 </tr>
 <tr>
@@ -319,56 +283,52 @@
 <td>DEV-A-G-2</td>
 </tr>
 <tr>
-<td>0x10000000023</td>
+<td>0x10000000025</td>
 <td>DEV-A-1-1</td>
 </tr>
 <tr>
-<td>0x10000000024</td>
+<td>0x10000000028</td>
 <td>DEV-A-2-1</td>
 </tr>
 <tr>
-<td>0x10000000025</td>
+<td>0x1000000002a</td>
 <td>DEV-A-2-2</td>
 </tr>
 <tr>
-<td>0x10000000026</td>
+<td>0x1000000002c</td>
 <td>DEV-A-2-3</td>
 </tr>
 <tr>
-<td>0x10000000027</td>
+<td>0x1000000002e</td>
 <td>DEV-A-2-4</td>
 </tr>
 <tr>
-<td>0x10000000028</td>
+<td>0x10000000030</td>
 <td>DEV-A-2-5</td>
 </tr>
 <tr>
-<td>0x10000000029</td>
+<td>0x10000000032</td>
 <td>DEV-A-2-6</td>
 </tr>
 <tr>
-<td>0x1000000002a</td>
+<td>0x10000000034</td>
 <td>DEV-A-2-7</td>
 </tr>
 <tr>
-<td>0x1000000002b</td>
+<td>0x10000000036</td>
 <td>DEV-A-2-8</td>
+</tr>
+<tr>
+<td>0x20000000002</td>
+<td>DEV-A-G-4</td>
 </tr>
 </tbody></table></blockquote>
 <p>Let&apos;s go back to explore more how to work with the ECClassId to tell between subclasses of a polymorphic query.</p>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Return the code and class id of all <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            SpatialElement
-            </a>s that are either <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#space'>Space</a> (ECClassId 244) or <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#story'>Story</a> (ECClassId 245) classes.</p>
+<p><em>Goal:</em> Return the code and class id of all <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a>s that are either <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#space'>Space</a> (ECClassId 261) or <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#story'>Story</a> (ECClassId 261) classes.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT CodeValue, ECClassId FROM bis.SpatialElement WHERE ECClassId IN (244,245)</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT CodeValue, ECClassId FROM bis.SpatialElement WHERE ECClassId IN (261,262)</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>CodeValue</th>
@@ -434,15 +394,7 @@
 <p>As usually the class ids are not known, you need to look them up first. You can do so by joining to the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbmeta.ecschema'>ECDbMeta ECSchema</a>. This allows you to specify the subclasses by name rather than by id. The <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbmeta.ecschema'>ECDbMeta ECSchema</a> is covered in more detail in the advanced lesson about <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/metaqueries'>Meta queries</a>.</p>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Return the code and class id of all <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            SpatialElement
-            </a>s that are either <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#space'>Space</a> or <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#story'>Story</a> classes.</p>
+<p><em>Goal:</em> Return the code and class id of all <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a>s that are either <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#space'>Space</a> or <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#story'>Story</a> classes.</p>
 <p><em>ECSQL</em></p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT SpatialElement.CodeValue, SpatialElement.ECClassId FROM bis.SpatialElement JOIN meta.ECClassDef ON SpatialElement.ECClassId=ECClassDef.ECInstanceId WHERE ECClassDef.Name IN (&apos;Space&apos;,&apos;Story&apos;)</code></pre>
 <p><em>Result</em></p>
@@ -507,34 +459,10 @@
 <td>MyDomain.Story</td>
 </tr>
 </tbody></table></blockquote>
-<p>The following shows how you can perform simple statistics on the distribution of instances across the <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            SpatialElement
-            </a> subclasses.</p>
+<p>The following shows how you can perform simple statistics on the distribution of instances across the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a> subclasses.</p>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Return Element count per <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            SpatialElement
-            </a> subclass for all <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            SpatialElement
-            </a>s in the iModel.</p>
+<p><em>Goal:</em> Return Element count per <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a> subclass for all <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a>s in the iModel.</p>
 <p><em>ECSQL</em></p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT ECClassId, count(*) ElementCount FROM bis.SpatialElement GROUP BY ECClassId</code></pre>
 <p><em>Result</em></p>
@@ -548,7 +476,7 @@
 </tr>
 <tr>
 <td>MyDomain.Device</td>
-<td>11</td>
+<td>12</td>
 </tr>
 <tr>
 <td>MyDomain.Space</td>
@@ -563,7 +491,7 @@
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/joins'><strong>&lt; Previous</strong></a> &#xA0; | &#xA0; <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/spatialqueries'><strong>Next &gt;</strong></a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>17 December, 2018</span>
+                <span class='date-updated'>20 December, 2018</span>
             </p>
 
             

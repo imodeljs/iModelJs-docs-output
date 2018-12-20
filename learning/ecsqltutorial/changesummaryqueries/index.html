@@ -27,9 +27,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.178.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.179.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -118,12 +118,628 @@
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/ECSQLTutorial/ChangeSummaryQueries.md">Edit this page</a></div>
             <h1 id="querying change summaries">Querying Change Summaries</h1>
 <p><em>Change Summaries</em> are summaries of changes of ECInstances in an <em>iModel Changeset</em>. <strong>Please read <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/changesummaries'>Change Summaries</a> first, before doing this section of the tutorial.</strong></p>
-<p>Exercises for this lesson are not yet available. <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/changesummaries'>Change Summaries</a> contains meaningful ECSQL examples as well though.</p>
+<h2 class="h-generate-the-change-summaries">Generate the Change Summaries<a id="generate-the-change-summaries" class="heading-anchor" href="#generate-the-change-summaries"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>In case the Change Summaries have not be generated yet for the tutorial&apos;s iModel, you have to do that first.</p>
+<p>In the iModelConsole run the following commands:</p>
+<p>Close the iModel first and re-open it read-write, so that you can generate the Change Summaries:</p>
+<pre><code>.close
+.open -project:ECSQL -mode:readwrite
+.change extractsummaries</code></pre><p>Now close the iModel again and re-open it read-only.</p>
+<pre><code>.close
+.open -project:ECSQL</code></pre><h2 class="h-attach-the-change-summaries">Attach the Change Summaries<a id="attach-the-change-summaries" class="heading-anchor" href="#attach-the-change-summaries"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>As explained in <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/changesummaries'>Change Summaries</a>, you need to attach the file that contains
+the generated Change Summaries to this iModel by running this command in the iModelConsole:</p>
+<pre><code>.change attachcache</code></pre><h2 class="h-sample-change-history">Sample Change History<a id="sample-change-history" class="heading-anchor" href="#sample-change-history"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>To keep this section as simple as possible, the iModel has three changesets, each with simple changes. They are described
+here in text to help understand the following queries.</p>
+<h3 class="h-changeset-1">Changeset 1<a id="changeset-1" class="heading-anchor" href="#changeset-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>Operations:</p>
+<ul>
+<li>Insert a new <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> with code <code>DEV-A-G-3</code> and User Label &apos;Fire detector&apos;</li>
+</ul>
+<p>Result:</p>
+<table class="table table-responsive"><tbody><tr>
+<th>ECInstanceId</th>
+<th>CodeValue</th>
+<th>UserLabel</th>
+</tr>
+<tr>
+<td>0x20000000001</td>
+<td>DEV-A-G-3</td>
+<td>Fire detector</td>
+</tr>
+</tbody></table><h3 class="h-changeset-2">Changeset 2<a id="changeset-2" class="heading-anchor" href="#changeset-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>Operations:</p>
+<ul>
+<li>Update the User Label of <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> <code>DEV-A-G-3</code> to &apos;Fire extinguisher&apos;</li>
+<li>Insert a new <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> with code <code>DEV-A-G-4</code> and User Label &apos;Fire detector&apos;</li>
+</ul>
+<p>Result:</p>
+<table class="table table-responsive"><tbody><tr>
+<th>ECInstanceId</th>
+<th>CodeValue</th>
+<th>UserLabel</th>
+</tr>
+<tr>
+<td>0x20000000001</td>
+<td>DEV-A-G-3</td>
+<td>Fire extinguisher</td>
+</tr>
+<tr>
+<td>0x20000000002</td>
+<td>DEV-A-G-4</td>
+<td>Fire detector</td>
+</tr>
+</tbody></table><h3 class="h-changeset-3">Changeset 3<a id="changeset-3" class="heading-anchor" href="#changeset-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>Operations:</p>
+<ul>
+<li>Delete <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> <code>DEV-A-G-3</code> again</li>
+</ul>
+<p>Result:</p>
+<table class="table table-responsive"><tbody><tr>
+<th>ECInstanceId</th>
+<th>CodeValue</th>
+<th>UserLabel</th>
+</tr>
+<tr>
+<td>0x20000000002</td>
+<td>DEV-A-G-4</td>
+<td>Fire detector</td>
+</tr>
+</tbody></table><h2 class="h-mining-the-change-summaries">Mining the Change Summaries<a id="mining-the-change-summaries" class="heading-anchor" href="#mining-the-change-summaries"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>There are two main ways to mine Change Summary information:</p>
+<ol>
+<li>Find out <strong>what</strong> classes, <strong>what</strong> instances, <strong>what</strong> property values have changed</li>
+<li>Find out <strong>how</strong> property values of certain instances have changed</li>
+</ol>
+<p>The following examples will run through both of them.</p>
+<h2 class="h-explore-what-has-changed">Explore <em>what</em> has changed<a id="explore-what-has-changed" class="heading-anchor" href="#explore-what-has-changed"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Generally there are three main classes in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbchange.ecschema'>ECDbChange ECSchema</a> to explore what has changed:</p>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbchange.ecschema/#changesummary'>ChangeSummary</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbchange.ecschema/#instancechange'>InstanceChange</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbchange.ecschema/#propertyvaluechange'>PropertyValueChange</a></li>
+</ul>
+<p>Additionally the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/imodelchange.ecschema'>IModelChange ECSchema</a> contains the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/imodelchange.ecschema/#changeset'>ChangeSet</a> ECClass that links a Change Summary to the changeset from which it was generated.</p>
+<p>The following examples will run through all of them.</p>
+<h3 class="h-what-change-summaries-are-there">What Change Summaries are there<a id="what-change-summaries-are-there" class="heading-anchor" href="#what-change-summaries-are-there"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>Let&apos;s first find some information about the changesets for which Change Summaries have been generated. The query
+also serves to return the ECInstanceIds of the corresponding Change Summaries which we will need for all other queries.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return the ECInstanceId of the Change Summaries and information about the corresponding changesets,
+ordered from oldest to newest.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT Summary.Id, WsgId, Description, PushDate, Author, ParentWsgId FROM imodelchange.Changeset ORDER BY PushDate</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>Summary.Id</th>
+<th>WsgId</th>
+<th>Description</th>
+<th>PushDate</th>
+<th>Author</th>
+<th>ParentWsgId</th>
+</tr>
+<tr>
+<td>0x6c</td>
+<td>f7c220138713044a89f4e5fa479564863516b53b</td>
+<td>Inserted new Device &apos;DEV-A-G-3&apos;.</td>
+<td>2018-12-18T16:03:08.373Z</td>
+<td>some email address</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>0x35</td>
+<td>9c4239a1fef7cc7136fcef1f6a7472a3b0ffbd7d</td>
+<td>Fixed user label of Device &apos;DEV-A-G-3&apos;. Inserted new Device &apos;DEV-A-G-4&apos;.</td>
+<td>2018-12-18T16:03:19.763Z</td>
+<td>some email address</td>
+<td>f7c220138713044a89f4e5fa479564863516b53b</td>
+</tr>
+<tr>
+<td>0x1</td>
+<td>1264417d6364c79d3d1c8d6a45ee6e3ee79188c4</td>
+<td>Removed Device &apos;DEV-A-G-3&apos; again.</td>
+<td>2018-12-18T16:03:27.140Z</td>
+<td>some email address</td>
+<td>9c4239a1fef7cc7136fcef1f6a7472a3b0ffbd7d</td>
+</tr>
+</tbody></table></blockquote>
+<h3 class="h-what-instances-have-changed-in-a-change-summary">What instances have changed in a Change Summary<a id="what-instances-have-changed-in-a-change-summary" class="heading-anchor" href="#what-instances-have-changed-in-a-change-summary"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>Now that we know what changesets there are, let us look what instances were changed in one of them.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return the id and class id of all instances that have changed in Change Summary <code>0x35</code>, including the op code
+for each change.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId, ChangedInstance.Id, ChangedInstance.ClassId, OpCode FROM ecchange.change.InstanceChange WHERE Summary.Id=0x35</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>ECInstanceId</th>
+<th>ChangedInstance.Id</th>
+<th>ChangedInstance.ClassId</th>
+<th>OpCode</th>
+</tr>
+<tr>
+<td>0x36</td>
+<td>0x20000000002</td>
+<td>0x100</td>
+<td>Insert</td>
+</tr>
+<tr>
+<td>0x48</td>
+<td>0x20000000001</td>
+<td>0x100</td>
+<td>Update</td>
+</tr>
+<tr>
+<td>0x52</td>
+<td>0x20000000002</td>
+<td>0x9b</td>
+<td>Insert</td>
+</tr>
+<tr>
+<td>0x57</td>
+<td>0x20000000002</td>
+<td>0xbd</td>
+<td>Insert</td>
+</tr>
+<tr>
+<td>0x5c</td>
+<td>0x20000000002</td>
+<td>0x4f</td>
+<td>Insert</td>
+</tr>
+<tr>
+<td>0x61</td>
+<td>0x20000000002</td>
+<td>0x56</td>
+<td>Insert</td>
+</tr>
+<tr>
+<td>0x66</td>
+<td>0x20000000002</td>
+<td>0x58</td>
+<td>Insert</td>
+</tr>
+</tbody></table></blockquote>
+<p>For the sake of readability we modify the query by joining to the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/metaqueries'>ECDbMeta ECSchema</a> so that the class names of the changed instances are output.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return the id and class name of all instances that have changed in Change Summary <code>0x35</code>, including the op code
+for each change.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ic.ECInstanceId, ic.ChangedInstance.Id,  s.Name || &apos;.&apos; || c.Name ChangedClass, ic.OpCode FROM ecchange.change.InstanceChange ic
+JOIN main.meta.ECClassDef c ON ic.ChangedInstance.ClassId=c.ECInstanceId
+JOIN main.meta.ECSchemaDef s ON c.Schema.Id=s.ECInstanceId WHERE ic.Summary.Id=0x35</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>ECInstanceId</th>
+<th>ChangedInstance.Id</th>
+<th>ChangedClass</th>
+<th>OpCode</th>
+</tr>
+<tr>
+<td>0x36</td>
+<td>0x20000000002</td>
+<td>MyDomain.Device</td>
+<td>Insert</td>
+</tr>
+<tr>
+<td>0x48</td>
+<td>0x20000000001</td>
+<td>MyDomain.Device</td>
+<td>Update</td>
+</tr>
+<tr>
+<td>0x52</td>
+<td>0x20000000002</td>
+<td>BisCore.GeometricElement3dIsInCategory</td>
+<td>Insert</td>
+</tr>
+<tr>
+<td>0x57</td>
+<td>0x20000000002</td>
+<td>BisCore.PhysicalElementIsOfType</td>
+<td>Insert</td>
+</tr>
+<tr>
+<td>0x5c</td>
+<td>0x20000000002</td>
+<td>BisCore.ModelContainsElements</td>
+<td>Insert</td>
+</tr>
+<tr>
+<td>0x61</td>
+<td>0x20000000002</td>
+<td>BisCore.CodeSpecSpecifiesCode</td>
+<td>Insert</td>
+</tr>
+<tr>
+<td>0x66</td>
+<td>0x20000000002</td>
+<td>BisCore.ElementScopesCode</td>
+<td>Insert</td>
+</tr>
+</tbody></table></blockquote>
+<h4 class="h-how-to-read-the-result-of-this-query">How to read the result of this query<a id="how-to-read-the-result-of-this-query" class="heading-anchor" href="#how-to-read-the-result-of-this-query"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>Here is the gist of what you can read from this query:</p>
+<ul>
+<li>7 instances were changed in Change Summary 0x35.</li>
+<li>1 instance (a Device) was modified in that changeset.</li>
+<li>6 instances were added to the iModel in that changeset.</li>
+<li>The <a href="#sample-change-history">change history&apos;s description</a> states that one device was modified and one was added in this changeset. Why are there 5 more changes in this changeset? Inserting a device implicitly sets all its relationships, too. This is what the other 5 changes represent.</li>
+</ul>
+<h3 class="h-what-properties-have-changed-for-a-changed-instance">What properties have changed for a changed instance<a id="what-properties-have-changed-for-a-changed-instance" class="heading-anchor" href="#what-properties-have-changed-for-a-changed-instance"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>Now that we know that <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> <code>0x36</code> was modified in Change Summary <code>0x35</code> we might want to find
+out what properties were modified.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return the names of the properties that were modified in the InstanceChange <code>0x48</code>.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT AccessString FROM change.PropertyValueChange WHERE InstanceChange.Id=0x48</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>AccessString</th>
+</tr>
+<tr>
+<td>LastMod</td>
+<td></td>
+</tr>
+<tr>
+<td>UserLabel</td>
+<td></td>
+</tr>
+</tbody></table></blockquote>
+<p>As we know from the <a href="#sample-change-history">change history&apos;s description</a>, the modification of <code>UserLabel</code> is expected. Why was <code>LastMod</code> modified as well? This again is an implicit change, caused by a trigger on the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element.LastMod</a> property which sets it to the current time whenever
+the element is modified.</p>
+<p>Here we used the ECInstanceId <code>0x48</code> of the respective InstanceChange object that represents the update of Device <code>0x20000000001</code>
+from the previous query. As always we can use a join, if we only know the id of the changed device, but not the id of the actual change object:</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return the names of the properties that were modified in Device <code>0x20000000001</code> in Change Summary <code>0x35</code>.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT AccessString FROM change.PropertyValueChange pc JOIN change.InstanceChange ic ON pc.InstanceChange.Id=ic.ECInstanceId WHERE ic.ChangedInstance.Id=0x20000000001 AND ic.ChangedInstance.ClassId=0x100 AND ic.Summary.Id=0x35</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>AccessString</th>
+</tr>
+<tr>
+<td>LastMod</td>
+<td></td>
+</tr>
+<tr>
+<td>UserLabel</td>
+<td></td>
+</tr>
+</tbody></table></blockquote>
+<p>To deepen the understanding of Change Summaries, let&apos;s look why we have to add the <code>AND ic.Summary.Id=0x35</code> expression to the WHERE clause in the above query. If we forgot to add it, the query would return many more rows than just the expected two. The reason for that is simply that an instance can be changed in different change summaries. In fact, if you look at the <a href="#sample-change-history">change history&apos;s description</a> again, we notice that Device <code>0x20000000001</code> is modified in all three changesets. First, it is inserted, then it is modified, and finally it is deleted. The query then returns all properties that have changed in all changesets.</p>
+<p>Now that we looked at this, let&apos;s modify the previous query and use the Change Summary of the last changeset:</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return the names of the properties of Device <code>0x20000000001</code> that were affected in Change Summary <code>0x1</code>.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT AccessString FROM change.PropertyValueChange pc JOIN change.InstanceChange ic ON pc.InstanceChange.Id=ic.ECInstanceId WHERE ic.ChangedInstance.Id=0x20000000001 AND ic.ChangedInstance.ClassId=0x100 AND ic.Summary.Id=0x1</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>AccessString</th>
+</tr>
+<tr>
+<td>BBoxHigh.X</td>
+<td></td>
+</tr>
+<tr>
+<td>BBoxHigh.Y</td>
+<td></td>
+</tr>
+<tr>
+<td>BBoxHigh.Z</td>
+<td></td>
+</tr>
+<tr>
+<td>BBoxLow.X</td>
+<td></td>
+</tr>
+<tr>
+<td>BBoxLow.Y</td>
+<td></td>
+</tr>
+<tr>
+<td>BBoxLow.Z</td>
+<td></td>
+</tr>
+<tr>
+<td>Category.Id</td>
+<td></td>
+</tr>
+<tr>
+<td>CodeScope.Id</td>
+<td></td>
+</tr>
+<tr>
+<td>CodeSpec.Id</td>
+<td></td>
+</tr>
+<tr>
+<td>CodeValue</td>
+<td></td>
+</tr>
+<tr>
+<td>FederationGuid</td>
+<td></td>
+</tr>
+<tr>
+<td>GeometryStream</td>
+<td></td>
+</tr>
+<tr>
+<td>InSpatialIndex</td>
+<td></td>
+</tr>
+<tr>
+<td>LastMod</td>
+<td></td>
+</tr>
+<tr>
+<td>Model.Id</td>
+<td></td>
+</tr>
+<tr>
+<td>Origin.X</td>
+<td></td>
+</tr>
+<tr>
+<td>Origin.Y</td>
+<td></td>
+</tr>
+<tr>
+<td>Origin.Z</td>
+<td></td>
+</tr>
+<tr>
+<td>Pitch</td>
+<td></td>
+</tr>
+<tr>
+<td>Roll</td>
+<td></td>
+</tr>
+<tr>
+<td>TypeDefinition.Id</td>
+<td></td>
+</tr>
+<tr>
+<td>TypeDefinition.RelECClassId</td>
+<td></td>
+</tr>
+<tr>
+<td>UserLabel</td>
+<td></td>
+</tr>
+<tr>
+<td>Yaw</td>
+<td></td>
+</tr>
+</tbody></table></blockquote>
+<p>The query indicates that all properties of the Device were modified in that changeset. Why? Let&apos;s quickly run a query
+that tells us what kind of change this was, i.e. what the OpCode of that change was:</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return the OpCode for the change of Device <code>0x20000000001</code> in Change Summary <code>0x1</code>.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT OpCode FROM change.InstanceChange WHERE Summary.Id=0x1 AND ChangedInstance.Id=0x20000000001 AND ChangedInstance.ClassId=0x100</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>OpCode</th>
+</tr>
+<tr>
+<td>Delete</td>
+<td></td>
+</tr>
+</tbody></table></blockquote>
+<p>Now we can explain why the query before returned all properties: As Device <code>0x20000000001</code> was deleted in that changeset, all its property values were deleted as well. Consequently, the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecdbchange.ecschema/#propertyvaluechange'>PropertyValueChange</a> ECClass records all properties of the class as being deleted.
+The same is true for <code>Inserts</code>. You can try that out yourself if you replace the Change Summary id in the previous queries with <code>0x6c</code>.</p>
+<h2 class="h-explore-how-data-has-changed">Explore <em>how</em> data has changed<a id="explore-how-data-has-changed" class="heading-anchor" href="#explore-how-data-has-changed"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>In order to see how the property values of instances have changed in a given changeset, the ECSQL function <code>Changes</code> can be used.</p>
+<h3 class="h-changes-function-syntax">Changes Function Syntax<a id="changes-function-syntax" class="heading-anchor" href="#changes-function-syntax"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ... FROM MySchema.MyClass.Changes(ChangeSummaryId, ChangedValueState) ...</code></pre>
+<ul>
+<li><code>ChangeSummaryId</code>: The ECInstanceId of the Change Summary.</li>
+<li><code>ChangedValueState</code>: corresponds to the values of the enum <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/changedvaluestate'>ChangedValueState</a>.</li>
+</ul>
+<h3 class="h-walking-through-the-history">Walking through the history<a id="walking-through-the-history" class="heading-anchor" href="#walking-through-the-history"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>Before looking at how the Devices have changed over the time, let&apos;s look at the current state.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return id, CodeValue and UserLabel of all Devices.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,CodeValue,UserLabel FROM mydomain.Device</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>ECInstanceId</th>
+<th>CodeValue</th>
+<th>UserLabel</th>
+</tr>
+<tr>
+<td>0x10000000020</td>
+<td>DEV-A-G-1</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>0x10000000022</td>
+<td>DEV-A-G-2</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>0x10000000025</td>
+<td>DEV-A-1-1</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>0x10000000028</td>
+<td>DEV-A-2-1</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>0x1000000002a</td>
+<td>DEV-A-2-2</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>0x1000000002c</td>
+<td>DEV-A-2-3</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>0x1000000002e</td>
+<td>DEV-A-2-4</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>0x10000000030</td>
+<td>DEV-A-2-5</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>0x10000000032</td>
+<td>DEV-A-2-6</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>0x10000000034</td>
+<td>DEV-A-2-7</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>0x10000000036</td>
+<td>DEV-A-2-8</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>0x20000000002</td>
+<td>DEV-A-G-4</td>
+<td>Fire detector</td>
+</tr>
+</tbody></table></blockquote>
+<h4 class="h-changes-in-the-first-changeset">Changes in the first changeset<a id="changes-in-the-first-changeset" class="heading-anchor" href="#changes-in-the-first-changeset"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return id, CodeValue and UserLabel of the Devices that were <strong>inserted</strong> in Change Summary <code>0x6c</code>.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,CodeValue,UserLabel FROM mydomain.Device.Changes(0x6c,&apos;AfterInsert&apos;)</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>ECInstanceId</th>
+<th>CodeValue</th>
+<th>UserLabel</th>
+</tr>
+<tr>
+<td>0x20000000001</td>
+<td>DEV-A-G-3</td>
+<td>Fire detector</td>
+</tr>
+</tbody></table></blockquote>
+<p>This example returns the Devices inserted in the first changeset. The returned Device does no longer exist (as it was deleted in the latest changeset), but you can find it with the help of Change Summaries.</p>
+<p>Now let&apos;s change the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/changedvaluestate'>ChangedValueState</a> argument in the query.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return id, CodeValue and UserLabel of the Devices that were <strong>updated</strong> in Change Summary <code>0x6c</code>.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,CodeValue,UserLabel FROM mydomain.Device.Changes(0x6c,&apos;AfterUpdate&apos;)</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>ECInstanceId</th>
+<th>CodeValue</th>
+<th>UserLabel</th>
+</tr>
+<tr>
+<td>no rows</td>
+<td></td>
+</tr>
+</tbody></table></blockquote>
+<p>The query not returning anything just means that no Devices were updated in that changeset - which we already know from
+the <a href="#sample-change-history">change history&apos;s description</a> and the previous queries.</p>
+<p>Consequently, the same result is obtained when using <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/changedvaluestate/#beforeupdate'>ChangedValueState.BeforeUpdate</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/changedvaluestate/#beforedelete'>ChangedValueState.BeforeDelete</a>.</p>
+<h4 class="h-changes-in-the-second-changeset">Changes in the second changeset<a id="changes-in-the-second-changeset" class="heading-anchor" href="#changes-in-the-second-changeset"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>From the previous queries we know that in this changeset a new Device with code <code>DEV-A-G-4</code> was inserted and an existing one&apos;s user label was modified.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return id, CodeValue and UserLabel of the Devices that were <strong>inserted</strong> in Change Summary <code>0x35</code>.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,CodeValue,UserLabel FROM mydomain.Device.Changes(0x35,&apos;AfterInsert&apos;)</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>ECInstanceId</th>
+<th>CodeValue</th>
+<th>UserLabel</th>
+</tr>
+<tr>
+<td>0x20000000002</td>
+<td>DEV-A-G-4</td>
+<td>Fire detector</td>
+</tr>
+</tbody></table></blockquote>
+<p>When examining updated instances, we can look at the values <strong>before and after</strong> the update.
+Note: <code>NULL</code> is returned for <code>CodeValue</code> because it was not affected by this changeset.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return id, CodeValue and UserLabel of the Devices <strong>before</strong> they were <strong>updated</strong> in Change Summary <code>0x35</code>.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,CodeValue,UserLabel FROM mydomain.Device.Changes(0x35,&apos;BeforeUpdate&apos;)</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>ECInstanceId</th>
+<th>CodeValue</th>
+<th>UserLabel</th>
+</tr>
+<tr>
+<td>0x20000000001</td>
+<td>NULL</td>
+<td>Fire detector</td>
+</tr>
+</tbody></table></blockquote>
+<hr>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return id, CodeValue and UserLabel of the Devices <strong>after</strong> they were <strong>updated</strong> in Change Summary <code>0x35</code>.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,CodeValue,UserLabel FROM mydomain.Device.Changes(0x35,&apos;AfterUpdate&apos;)</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>ECInstanceId</th>
+<th>CodeValue</th>
+<th>UserLabel</th>
+</tr>
+<tr>
+<td>0x20000000001</td>
+<td>NULL</td>
+<td>Fire extinguisher</td>
+</tr>
+</tbody></table></blockquote>
+<h4 class="h-changes-in-the-third-changeset">Changes in the third changeset<a id="changes-in-the-third-changeset" class="heading-anchor" href="#changes-in-the-third-changeset"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>In the third changeset the Device with code <code>DEV-A-G-3</code> which was inserted in the first changeset was deleted again.</p>
+<blockquote>
+<p><strong>Try it yourself</strong></p>
+<p><em>Goal:</em> Return id, CodeValue and UserLabel of the Devices <strong>before</strong> they were <strong>deleted</strong> in Change Summary <code>0x1</code>.</p>
+<p><em>ECSQL</em></p>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId,CodeValue,UserLabel FROM mydomain.Device.Changes(0x1,&apos;BeforeDelete&apos;)</code></pre>
+<p><em>Result</em></p>
+<table class="table table-responsive"><tbody><tr>
+<th>ECInstanceId</th>
+<th>CodeValue</th>
+<th>UserLabel</th>
+</tr>
+<tr>
+<td>0x20000000001</td>
+<td>DEV-A-G-3</td>
+<td>Fire extinguisher</td>
+</tr>
+</tbody></table></blockquote>
 <hr>
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/metaqueries'><strong>&lt; Previous</strong></a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>17 December, 2018</span>
+                <span class='date-updated'>20 December, 2018</span>
             </p>
 
             
@@ -133,7 +749,94 @@
     </div>
     <div class="toc-overlay"></div>
     <div id='inner-table-of-contents'>
-       <!-- 
+       <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#generate-the-change-summaries">Generate the Change Summaries</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#attach-the-change-summaries">Attach the Change Summaries</a>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-sample-change-history" class='title' href="#sample-change-history"/>
+            <b class='dropdown-menu-title menu-text'>Sample Change History</b>
+            <i class='dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-sample-change-history" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#changeset-1">Changeset 1</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#changeset-2">Changeset 2</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#changeset-3">Changeset 3</a>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#mining-the-change-summaries">Mining the Change Summaries</a>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-explore-what-has-changed" class='title' href="#explore-what-has-changed"/>
+            <b class='dropdown-menu-title menu-text'>Explore what has changed</b>
+            <i class='dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-explore-what-has-changed" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#what-change-summaries-are-there">What Change Summaries are there</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-what-instances-have-changed-in-a-change-summary" class='title' href="#what-instances-have-changed-in-a-change-summary"/>
+                            <b class='dropdown-menu-title menu-text'>What instances have changed in a Change Summary</b>
+                            <i class='dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-what-instances-have-changed-in-a-change-summary" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#how-to-read-the-result-of-this-query">How to read the result of this query</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#what-properties-have-changed-for-a-changed-instance">What properties have changed for a changed instance</a>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-explore-how-data-has-changed" class='title' href="#explore-how-data-has-changed"/>
+            <b class='dropdown-menu-title menu-text'>Explore how data has changed</b>
+            <i class='dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-explore-how-data-has-changed" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#changes-function-syntax">Changes Function Syntax</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-walking-through-the-history" class='title' href="#walking-through-the-history"/>
+                            <b class='dropdown-menu-title menu-text'>Walking through the history</b>
+                            <i class='dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-walking-through-the-history" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#changes-in-the-first-changeset">Changes in the first changeset</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#changes-in-the-second-changeset">Changes in the second changeset</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#changes-in-the-third-changeset">Changes in the third changeset</a>
+                                    </li>
+                            </ul>
+                    </li>
+            </ul>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
  -->
     </div>
 </div>
