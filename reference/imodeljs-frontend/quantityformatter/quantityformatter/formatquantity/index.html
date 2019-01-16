@@ -27,9 +27,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.179.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.187.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -190,8 +190,8 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/quantityformatter/">QuantityFormatter</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/quantityformatter/quantityformatter/">QuantityFormatter</a> > formatQuantity</div>
             
             <h2 class="h-formatquantity">formatQuantity <span class="badge badge-pill badge-primary badge-method">Method</span><a id="formatquantity" class="heading-anchor" href="#formatquantity"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Generates a formatted string for a quantity given its magnitude and quantity type..</p>
-<p><span class="method-name">formatQuantity</span><span class="method-parenthesis">(</span><span class="method-parameters">magnitude: number, type: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/quantityformatter/quantitytype'>QuantityType</a></span><span class="method-parenthesis">):</span><span class="method-output"> string | undefined</span></p>
+<p>Generates a formatted string for a quantity given its format spec.</p>
+<p><span class="method-name">formatQuantity</span><span class="method-parenthesis">(</span><span class="method-parameters">magnitude: number, formatSpec: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-quantity/format/formatterspec'>FormatterSpec</a></span><span class="method-parenthesis">):</span><span class="method-output"> string</span></p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
 <th>Type</th>
@@ -203,20 +203,41 @@
 <td>The magnitude of the quantity.</td>
 </tr>
 <tr>
-<td class="h-type"><span class="parameter-name">type</span><a id="type" class="heading-anchor" href="#type"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/quantityformatter/quantitytype'>QuantityType</a></span></td>
-<td>One of the standard QuantityTypes.</td>
+<td class="h-formatspec"><span class="parameter-name">formatSpec</span><a id="formatspec" class="heading-anchor" href="#formatspec"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-quantity/format/formatterspec'>FormatterSpec</a></span></td>
+<td>The format specification. See methods getFormatterSpecByQuantityType and findFormatterSpecByQuantityType.</td>
 </tr>
-</tbody></table><p><strong>Returns</strong> - the formatted string or undefined if no FormatterSpec has been registered for the QuantityType.</p>
+</tbody></table><p><strong>Returns</strong> - the formatted string.</p>
 <h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/frontend/src/QuantityFormatter.ts">QuantityFormatter.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>20 December, 2018</span>
+                <span class='date-updated'>15 January, 2019</span>
             </p>
-
+            <div id="imodeljs-github-comments">
+            </div>
+            
+            <script>
+              $(document).ready(function () {
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                if (shouldShow) {
+                  // Verbose but necessary.
+                  var s = document.createElement('script');
+                  s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
+                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('issue-term', 'title');
+                  s.setAttribute('crossorigin', 'anonymous');
+                  s.setAttribute('theme', 'github-light');
+                  s.async = true;
+            
+                  document.getElementById("imodeljs-github-comments").appendChild(s);
+                }
+            
+              });
+            </script>
             
             <script type="text/javascript">
             
@@ -238,7 +259,7 @@
                             <a class='title solo-title menu-text' href="#magnitude">magnitude</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#type">type</a>
+                            <a class='title solo-title menu-text' href="#formatspec">formatSpec</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#defined-in">Defined in</a>

@@ -27,9 +27,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.179.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.187.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -202,6 +202,10 @@ The user supplies a key comparison function to the constructor, that must meet t
 </ul>
 <p>Modifying a key in a way that affects the comparison function will produce unpredictable results, the
 most likely of which is that keys will cease to map to the values with which they were initially inserted.</p>
+<h3 class="h-implements">Implements<a id="implements" class="heading-anchor" href="#implements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<ul>
+<li>Iterable&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/collections/dictionaryentry'>DictionaryEntry</a>&lt;K, V&gt;&gt;</li>
+</ul>
 <h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -212,11 +216,15 @@ most likely of which is that keys will cease to map to the values with which the
 <td>Construct a new Dictionary&lt;K, V&gt;.</td>
 </tr>
 <tr>
+<td class="h-__iterator"><span class="method-name"><a href="__@iterator">__@iterator</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> Iterator&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/collections/dictionaryentry'>DictionaryEntry</a>&lt;K, V&gt;&gt;</span><a id="__iterator" class="heading-anchor" href="#__iterator"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Returns an iterator over the key-value pairs in the Dictionary suitable for use in <code>for-of</code> loops.</td>
+</tr>
+<tr>
 <td class="h-clear"><span class="method-name">clear</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="clear" class="heading-anchor" href="#clear"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Removes all entries from this dictionary</td>
 </tr>
 <tr>
-<td class="h-delete"><span class="method-name"><a href="delete">delete</a></span><span class="method-parenthesis">(</span><span class="method-parameters">key: K</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="delete" class="heading-anchor" href="#delete"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-delete"><span class="method-name"><a href="delete">delete</a></span><span class="method-parenthesis">(</span><span class="method-parameters">key: K</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="delete" class="heading-anchor" href="#delete"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Deletes a value using its key.</td>
 </tr>
 <tr>
@@ -226,6 +234,10 @@ most likely of which is that keys will cease to map to the values with which the
 <tr>
 <td class="h-extractpairs"><span class="method-name"><a href="extractpairs">extractPairs</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> Array&lt;object&gt;</span><a id="extractpairs" class="heading-anchor" href="#extractpairs"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Extracts the contents of this dictionary as an array of { key, value } pairs, and empties this dictionary.</td>
+</tr>
+<tr>
+<td class="h-foreach"><span class="method-name"><a href="foreach">forEach</a></span><span class="method-parenthesis">(</span><span class="method-parameters">func: (key: K, value: V) =&gt; void</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="foreach" class="heading-anchor" href="#foreach"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Apply a function to each (key, value) pair in the dictionary, in sorted order.</td>
 </tr>
 <tr>
 <td class="h-get"><span class="method-name"><a href="get">get</a></span><span class="method-parenthesis">(</span><span class="method-parameters">key: K</span><span class="method-parenthesis">):</span><span class="method-output"> V | undefined</span><a id="get" class="heading-anchor" href="#get"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -285,9 +297,30 @@ most likely of which is that keys will cease to map to the values with which the
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>20 December, 2018</span>
+                <span class='date-updated'>15 January, 2019</span>
             </p>
-
+            <div id="imodeljs-github-comments">
+            </div>
+            
+            <script>
+              $(document).ready(function () {
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                if (shouldShow) {
+                  // Verbose but necessary.
+                  var s = document.createElement('script');
+                  s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
+                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('issue-term', 'title');
+                  s.setAttribute('crossorigin', 'anonymous');
+                  s.setAttribute('theme', 'github-light');
+                  s.async = true;
+            
+                  document.getElementById("imodeljs-github-comments").appendChild(s);
+                }
+            
+              });
+            </script>
             
             <script type="text/javascript">
             
@@ -306,6 +339,9 @@ most likely of which is that keys will cease to map to the values with which the
             </a>
             <ul id="inner-nav-dictionary" class='inner-nav'>
                     <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#implements">Implements</a>
+                    </li>
+                    <li class='nav-item item '>
                             <a data-target="#inner-nav-methods" class='title' href="#methods"/>
                             <b class='dropdown-menu-title menu-text'>Methods</b>
                             <i class='dropdown icon'></i>
@@ -313,6 +349,9 @@ most likely of which is that keys will cease to map to the values with which the
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#constructor">constructor</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#__iterator">__@iterator</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#clear">clear</a>
@@ -325,6 +364,9 @@ most likely of which is that keys will cease to map to the values with which the
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#extractpairs">extractPairs</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#foreach">forEach</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#get">get</a>

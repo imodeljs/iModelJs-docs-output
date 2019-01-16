@@ -27,9 +27,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.179.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.187.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -210,14 +210,14 @@ also serves to return the ECInstanceIds of the corresponding Change Summaries wh
 <p><em>Goal:</em> Return the ECInstanceId of the Change Summaries and information about the corresponding changesets,
 ordered from oldest to newest.</p>
 <p><em>ECSQL</em></p>
-<pre class="no-line-numbers"><code class="language-sql">SELECT Summary.Id, WsgId, Description, PushDate, Author, ParentWsgId FROM imodelchange.Changeset ORDER BY PushDate</code></pre>
+<pre class="no-line-numbers"><code class="language-sql">SELECT Summary.Id, WsgId, Description, PushDate, UserCreated, ParentWsgId FROM imodelchange.Changeset ORDER BY PushDate</code></pre>
 <p><em>Result</em></p>
 <table class="table table-responsive"><tbody><tr>
 <th>Summary.Id</th>
 <th>WsgId</th>
 <th>Description</th>
 <th>PushDate</th>
-<th>Author</th>
+<th>UserCreated</th>
 <th>ParentWsgId</th>
 </tr>
 <tr>
@@ -225,7 +225,7 @@ ordered from oldest to newest.</p>
 <td>f7c220138713044a89f4e5fa479564863516b53b</td>
 <td>Inserted new Device &apos;DEV-A-G-3&apos;.</td>
 <td>2018-12-18T16:03:08.373Z</td>
-<td>some email address</td>
+<td>some user id</td>
 <td>NULL</td>
 </tr>
 <tr>
@@ -233,7 +233,7 @@ ordered from oldest to newest.</p>
 <td>9c4239a1fef7cc7136fcef1f6a7472a3b0ffbd7d</td>
 <td>Fixed user label of Device &apos;DEV-A-G-3&apos;. Inserted new Device &apos;DEV-A-G-4&apos;.</td>
 <td>2018-12-18T16:03:19.763Z</td>
-<td>some email address</td>
+<td>some user id</td>
 <td>f7c220138713044a89f4e5fa479564863516b53b</td>
 </tr>
 <tr>
@@ -241,7 +241,7 @@ ordered from oldest to newest.</p>
 <td>1264417d6364c79d3d1c8d6a45ee6e3ee79188c4</td>
 <td>Removed Device &apos;DEV-A-G-3&apos; again.</td>
 <td>2018-12-18T16:03:27.140Z</td>
-<td>some email address</td>
+<td>some user id</td>
 <td>9c4239a1fef7cc7136fcef1f6a7472a3b0ffbd7d</td>
 </tr>
 </tbody></table></blockquote>
@@ -739,9 +739,30 @@ Note: <code>NULL</code> is returned for <code>CodeValue</code> because it was no
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/metaqueries'><strong>&lt; Previous</strong></a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>20 December, 2018</span>
+                <span class='date-updated'>15 January, 2019</span>
             </p>
-
+            <div id="imodeljs-github-comments">
+            </div>
+            
+            <script>
+              $(document).ready(function () {
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                if (shouldShow) {
+                  // Verbose but necessary.
+                  var s = document.createElement('script');
+                  s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
+                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('issue-term', 'title');
+                  s.setAttribute('crossorigin', 'anonymous');
+                  s.setAttribute('theme', 'github-light');
+                  s.async = true;
+            
+                  document.getElementById("imodeljs-github-comments").appendChild(s);
+                }
+            
+              });
+            </script>
             
             <script type="text/javascript">
             
