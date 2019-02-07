@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -237,7 +236,7 @@
 <td>Clear all xyz data, but leave capacity unchanged.</td>
 </tr>
 <tr>
-<td class="h-clone"><span class="method-name"><a href="clone">clone</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/arraysandinterfaces/growablexyzarray'>GrowableXYZArray</a></span><a id="clone" class="heading-anchor" href="#clone"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-clone"><span class="method-name"><a href="clone">clone</a></span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/arraysandinterfaces/growablexyzarray'>GrowableXYZArray</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/arraysandinterfaces/growablexyzarray'>GrowableXYZArray</a></span><a id="clone" class="heading-anchor" href="#clone"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Make a copy of the (active) points in this array.</td>
 </tr>
 <tr>
@@ -261,7 +260,7 @@
 <td>Return the distance between two points in the array.</td>
 </tr>
 <tr>
-<td class="h-distanceindextopoint"><span class="method-name">distanceIndexToPoint</span><span class="method-parenthesis">(</span><span class="method-parameters">i: number, spacePoint: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> number | undefined</span><a id="distanceindextopoint" class="heading-anchor" href="#distanceindextopoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-distanceindextopoint"><span class="method-name">distanceIndexToPoint</span><span class="method-parenthesis">(</span><span class="method-parameters">i: number, spacePoint: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a></span><span class="method-parenthesis">):</span><span class="method-output"> number | undefined</span><a id="distanceindextopoint" class="heading-anchor" href="#distanceindextopoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Return the distance between an array point and the input point.</td>
 </tr>
 <tr>
@@ -303,6 +302,10 @@
 <tr>
 <td class="h-isindexvalid"><span class="method-name"><a href="isindexvalid">isIndexValid</a></span><span class="method-parenthesis">(</span><span class="method-parameters">index: number</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="isindexvalid" class="heading-anchor" href="#isindexvalid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Test if index is valid for an xyz (point or vector) withibn this array</td>
+</tr>
+<tr>
+<td class="h-multiplyandrenormalizematrix3dinversetransposeinplace"><span class="method-name"><a href="multiplyandrenormalizematrix3dinversetransposeinplace">multiplyAndRenormalizeMatrix3dInverseTransposeInPlace</a></span><span class="method-parenthesis">(</span><span class="method-parameters">matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="multiplyandrenormalizematrix3dinversetransposeinplace" class="heading-anchor" href="#multiplyandrenormalizematrix3dinversetransposeinplace"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>multiply each xyz (as a vector) by matrix inverse transpse, renormalize the vector, replace values.</td>
 </tr>
 <tr>
 <td class="h-multiplymatrix3dinplace"><span class="method-name">multiplyMatrix3dInPlace</span><span class="method-parenthesis">(</span><span class="method-parameters">matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="multiplymatrix3dinplace" class="heading-anchor" href="#multiplymatrix3dinplace"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -406,20 +409,17 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -428,6 +428,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -444,7 +460,7 @@
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-growablexyzarray" class='title' href="#growablexyzarray"/>
             <b class='dropdown-menu-title menu-text'>GrowableXYZArray</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-growablexyzarray" class='inner-nav'>
                     <li class='nav-item item '>
@@ -453,7 +469,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-methods" class='title' href="#methods"/>
                             <b class='dropdown-menu-title menu-text'>Methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -535,6 +551,9 @@
                                             <a class='title solo-title menu-text' href="#isindexvalid">isIndexValid</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplyandrenormalizematrix3dinversetransposeinplace">multiplyAndRenormalizeMatrix3dInverseTransposeInPlace</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#multiplymatrix3dinplace">multiplyMatrix3dInPlace</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -599,7 +618,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-properties" class='title' href="#properties"/>
                             <b class='dropdown-menu-title menu-text'>Properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
                                     <li class='nav-item item '>

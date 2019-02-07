@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -198,7 +197,7 @@
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-create"><span class="method-name"><a href="create">create</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, contextId: string, name: string, pathName: string, description?: string, progressCallback?: (progress: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/progressinfo'>ProgressInfo</a>) =&gt; void, timeOutInMilliseconds: number = 120000</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/hubimodel'>HubIModel</a>&gt;</span><a id="create" class="heading-anchor" href="#create"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-create"><span class="method-name"><a href="create">create</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, contextId: string, name: string, path?: string, description?: string, progressCallback?: (progress: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/progressinfo'>ProgressInfo</a>) =&gt; void, timeOutInMilliseconds: number = 120000</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/hubimodel'>HubIModel</a>&gt;</span><a id="create" class="heading-anchor" href="#create"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Create an iModel from given seed file.</td>
 </tr>
 <tr>
@@ -206,7 +205,7 @@
 <td>Delete an iModel with specified id from a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/connectservices/project'>Project</a>.</td>
 </tr>
 <tr>
-<td class="h-download"><span class="method-name"><a href="download">download</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, imodelId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guidstring'>GuidString</a>, downloadToPathname: string, progressCallback?: (progress: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/progressinfo'>ProgressInfo</a>) =&gt; void</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span><a id="download" class="heading-anchor" href="#download"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-download"><span class="method-name"><a href="download">download</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, imodelId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guidstring'>GuidString</a>, path: string, progressCallback?: (progress: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/progressinfo'>ProgressInfo</a>) =&gt; void</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span><a id="download" class="heading-anchor" href="#download"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Method to download the seed file for iModel.</td>
 </tr>
 <tr>
@@ -227,20 +226,17 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -249,6 +245,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -265,13 +277,13 @@
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-imodelshandler" class='title' href="#imodelshandler"/>
             <b class='dropdown-menu-title menu-text'>IModelsHandler</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-imodelshandler" class='inner-nav'>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-methods" class='title' href="#methods"/>
                             <b class='dropdown-menu-title menu-text'>Methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>

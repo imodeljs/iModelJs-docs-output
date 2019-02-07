@@ -22,7 +22,6 @@
     crossorigin="anonymous"></script>
 
   <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-  <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
   <!-- fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -162,14 +161,21 @@
         <script>
           // LaunchDarkly script for turning off the viewer.
           $(document).ready(function () {
-            ldclient.on('ready', function () {
-              var shouldShow = ldclient.variation(featureFlags.LandingPageViewer, false);
-              if (!shouldShow) {
-                $('#viewiModelBtn').html('Under Construction').addClass('disabled').removeAttr('href').removeAttr('onclick');
-                $('.try-imodeljs-text').html('<h4> We are working on it. Check back later. </h4>');
-              }
-            });
-          })
+            var shouldShow = ldclient.variation(featureFlags.LandingPageViewer, false);
+            if (shouldShow === undefined) {
+              ldclient.on('ready', function () {
+                shouldShow = ldclient.variation(featureFlags.LandingPageViewer);
+                if (!shouldShow) {
+                  $('#viewiModelBtn').html('Under Construction').addClass('disabled').removeAttr('href').removeAttr('onclick');
+                  $('.try-imodeljs-text').html('<h4> We are working on it. Check back later. </h4>');
+                }
+              });
+            }
+            else if (!shouldShow) {
+              $('#viewiModelBtn').html('Under Construction').addClass('disabled').removeAttr('href').removeAttr('onclick');
+              $('.try-imodeljs-text').html('<h4> We are working on it. Check back later. </h4>');
+            }
+          });
         </script>        <ul id="bottom-content-container">
                 <li class="landing-bottom-content-item">
                     <div class="feature-icon">

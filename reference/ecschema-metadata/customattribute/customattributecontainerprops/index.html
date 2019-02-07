@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -192,13 +191,21 @@
             <h2 class="h-customattributecontainerprops">CustomAttributeContainerProps <span class="badge badge-pill badge-primary badge-interface">Interface</span><a id="customattributecontainerprops" class="heading-anchor" href="#customattributecontainerprops"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <h3 class="h-implemented-by">Implemented by<a id="implemented-by" class="heading-anchor" href="#implemented-by"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/property/arrayproperty'>ArrayProperty</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/customattributeclass/customattributeclass'>CustomAttributeClass</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/class/ecclass'>ECClass</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/entityclass/entityclass'>EntityClass</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/property/enumerationproperty'>EnumerationProperty</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/mixin/mixin'>Mixin</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/property/navigationproperty'>NavigationProperty</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/property/primitiveorenumpropertybase'>PrimitiveOrEnumPropertyBase</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/property/primitiveproperty'>PrimitiveProperty</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/property/property'>Property</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/relationshipclass/relationshipclass'>RelationshipClass</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/relationshipclass/relationshipconstraint'>RelationshipConstraint</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/schema/schema'>Schema</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/class/structclass'>StructClass</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/property/structproperty'>StructProperty</a></li>
 </ul>
 <h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -211,26 +218,33 @@
 <td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/customattribute/customattributeset'>CustomAttributeSet</a></span></td>
 <td>&#xA0;</td>
 </tr>
+<tr>
+<td class="h-fullname"><span class="property-name">fullName</span><a id="fullname" class="heading-anchor" href="#fullname"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">string</span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-schema"><span class="property-name">schema</span><a id="schema" class="heading-anchor" href="#schema"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/schema/schema'>Schema</a></span></td>
+<td>&#xA0;</td>
+</tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/ecschema-metadata/src/Metadata/CustomAttribute.ts">Metadata/CustomAttribute.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -239,6 +253,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -255,7 +285,7 @@
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-customattributecontainerprops" class='title' href="#customattributecontainerprops"/>
             <b class='dropdown-menu-title menu-text'>CustomAttributeContainerProps</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-customattributecontainerprops" class='inner-nav'>
                     <li class='nav-item item '>
@@ -264,11 +294,17 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-properties" class='title' href="#properties"/>
                             <b class='dropdown-menu-title menu-text'>Properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#customattributes">customAttributes</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#fullname">fullName</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#schema">schema</a>
                                     </li>
                             </ul>
                     </li>

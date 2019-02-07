@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -512,20 +511,17 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
 </tbody></table></blockquote>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -534,6 +530,22 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -553,7 +565,7 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
        <li class='nav-item item '>
             <a data-target="#inner-nav-working-with-change-summaries" class='title' href="#working-with-change-summaries"/>
             <b class='dropdown-menu-title menu-text'>Working with Change Summaries</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-working-with-change-summaries" class='inner-nav'>
                     <li class='nav-item item '>
@@ -565,7 +577,7 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-find-out-what-has-changed" class='title' href="#find-out-what-has-changed"/>
                             <b class='dropdown-menu-title menu-text'>Find out what has changed</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-find-out-what-has-changed" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -576,7 +588,7 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-find-out-how-values-have-changed" class='title' href="#find-out-how-values-have-changed"/>
                             <b class='dropdown-menu-title menu-text'>Find out how values have changed</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-find-out-how-values-have-changed" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -589,7 +601,7 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
        <li class='nav-item item '>
             <a data-target="#inner-nav-example-scenario" class='title' href="#example-scenario"/>
             <b class='dropdown-menu-title menu-text'>Example Scenario</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-example-scenario" class='inner-nav'>
                     <li class='nav-item item '>
@@ -604,7 +616,7 @@ ECInstanceId of the respective class is returned as well as the OpCode.</p>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-ecsql-examples" class='title' href="#ecsql-examples"/>
                             <b class='dropdown-menu-title menu-text'>ECSQL Examples</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-ecsql-examples" class='inner-nav'>
                                     <li class='nav-item item '>

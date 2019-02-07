@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -739,20 +738,17 @@ Note: <code>NULL</code> is returned for <code>CodeValue</code> because it was no
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/metaqueries'><strong>&lt; Previous</strong></a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -761,6 +757,22 @@ Note: <code>NULL</code> is returned for <code>CodeValue</code> because it was no
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -783,7 +795,7 @@ Note: <code>NULL</code> is returned for <code>CodeValue</code> because it was no
        <li class='nav-item item '>
             <a data-target="#inner-nav-sample-change-history" class='title' href="#sample-change-history"/>
             <b class='dropdown-menu-title menu-text'>Sample Change History</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-sample-change-history" class='inner-nav'>
                     <li class='nav-item item '>
@@ -803,7 +815,7 @@ Note: <code>NULL</code> is returned for <code>CodeValue</code> because it was no
        <li class='nav-item item '>
             <a data-target="#inner-nav-explore-what-has-changed" class='title' href="#explore-what-has-changed"/>
             <b class='dropdown-menu-title menu-text'>Explore what has changed</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-explore-what-has-changed" class='inner-nav'>
                     <li class='nav-item item '>
@@ -812,7 +824,7 @@ Note: <code>NULL</code> is returned for <code>CodeValue</code> because it was no
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-what-instances-have-changed-in-a-change-summary" class='title' href="#what-instances-have-changed-in-a-change-summary"/>
                             <b class='dropdown-menu-title menu-text'>What instances have changed in a Change Summary</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-what-instances-have-changed-in-a-change-summary" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -828,7 +840,7 @@ Note: <code>NULL</code> is returned for <code>CodeValue</code> because it was no
        <li class='nav-item item '>
             <a data-target="#inner-nav-explore-how-data-has-changed" class='title' href="#explore-how-data-has-changed"/>
             <b class='dropdown-menu-title menu-text'>Explore how data has changed</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-explore-how-data-has-changed" class='inner-nav'>
                     <li class='nav-item item '>
@@ -837,7 +849,7 @@ Note: <code>NULL</code> is returned for <code>CodeValue</code> because it was no
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-walking-through-the-history" class='title' href="#walking-through-the-history"/>
                             <b class='dropdown-menu-title menu-text'>Walking through the history</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-walking-through-the-history" class='inner-nav'>
                                     <li class='nav-item item '>

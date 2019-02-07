@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -244,7 +243,7 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 <td>Open the toolTip window in this ScreenViewport with the supplied message and location.</td>
 </tr>
 <tr>
-<td class="h-picknearestvisiblegeometry"><span class="method-name"><a href="picknearestvisiblegeometry">pickNearestVisibleGeometry</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pickPoint: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>, radius: number, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a> | undefined</span><a id="picknearestvisiblegeometry" class="heading-anchor" href="#picknearestvisiblegeometry"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-picknearestvisiblegeometry"><span class="method-name"><a href="picknearestvisiblegeometry">pickNearestVisibleGeometry</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pickPoint: Point3d, radius: number, allowNonLocatable: boolean = true, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> Point3d | undefined</span><a id="picknearestvisiblegeometry" class="heading-anchor" href="#picknearestvisiblegeometry"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Find a point on geometry visible in this Viewport, within a radius of supplied pick point.</td>
 </tr>
 <tr>
@@ -274,6 +273,16 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
+<td class="h-clearalwaysdrawn"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/clearalwaysdrawn'>clearAlwaysDrawn</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="clearalwaysdrawn" class="heading-anchor" href="#clearalwaysdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
+<td>Clear the set of always-drawn elements.</td>
+</tr>
+<tr>
+<td class="h-clearneverdrawn"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/clearneverdrawn'>clearNeverDrawn</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="clearneverdrawn" class="heading-anchor" href="#clearneverdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
+<td>Clear the set of never-drawn elements.</td>
+</tr>
+<tr>
 <td class="h-determinevisibledepthrange"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/determinevisibledepthrange'>determineVisibleDepthRange</a></span><span class="method-parenthesis">(</span><span class="method-parameters">rect?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/depthrangenpc'>DepthRangeNpc</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/depthrangenpc'>DepthRangeNpc</a> | undefined</span><a id="determinevisibledepthrange" class="heading-anchor" href="#determinevisibledepthrange"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Computes the range of npc depth values for a region of the screen</td>
@@ -284,7 +293,7 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-getauxcoordorigin"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#getauxcoordorigin'>getAuxCoordOrigin</a></span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="getauxcoordorigin" class="heading-anchor" href="#getauxcoordorigin"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-getauxcoordorigin"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#getauxcoordorigin'>getAuxCoordOrigin</a></span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> Point3d</span><a id="getauxcoordorigin" class="heading-anchor" href="#getauxcoordorigin"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>&#xA0;</td>
 </tr>
@@ -304,17 +313,17 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 <td>Get an 8-point Frustum corresponding to the 8 corners of the Viewport in the specified coordinate system.</td>
 </tr>
 <tr>
-<td class="h-getpixeldatanpcpoint"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#getpixeldatanpcpoint'>getPixelDataNpcPoint</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pixels: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/pixel/pixel.buffer'>Pixel.Buffer</a>, x: number, y: number, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a> | undefined</span><a id="getpixeldatanpcpoint" class="heading-anchor" href="#getpixeldatanpcpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-getpixeldatanpcpoint"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#getpixeldatanpcpoint'>getPixelDataNpcPoint</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pixels: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/pixel/pixel.buffer'>Pixel.Buffer</a>, x: number, y: number, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> Point3d | undefined</span><a id="getpixeldatanpcpoint" class="heading-anchor" href="#getpixeldatanpcpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Get the point at the specified x and y location in the pixel buffer in npc coordinates</td>
 </tr>
 <tr>
-<td class="h-getpixeldataworldpoint"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#getpixeldataworldpoint'>getPixelDataWorldPoint</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pixels: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/pixel/pixel.buffer'>Pixel.Buffer</a>, x: number, y: number, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a> | undefined</span><a id="getpixeldataworldpoint" class="heading-anchor" href="#getpixeldataworldpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-getpixeldataworldpoint"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#getpixeldataworldpoint'>getPixelDataWorldPoint</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pixels: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/pixel/pixel.buffer'>Pixel.Buffer</a>, x: number, y: number, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> Point3d | undefined</span><a id="getpixeldataworldpoint" class="heading-anchor" href="#getpixeldataworldpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Get the point at the specified x and y location in the pixel buffer in world coordinates</td>
 </tr>
 <tr>
-<td class="h-getpixelsizeatpoint"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/getpixelsizeatpoint'>getPixelSizeAtPoint</a></span><span class="method-parenthesis">(</span><span class="method-parameters">point?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="getpixelsizeatpoint" class="heading-anchor" href="#getpixelsizeatpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-getpixelsizeatpoint"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/getpixelsizeatpoint'>getPixelSizeAtPoint</a></span><span class="method-parenthesis">(</span><span class="method-parameters">point?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="getpixelsizeatpoint" class="heading-anchor" href="#getpixelsizeatpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Get the width of a pixel (a unit vector in the x direction in view coordinates) at a given point in world coordinates, returning the result in meters (world units).</td>
 </tr>
@@ -324,22 +333,22 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 <td>Get a copy of the current (adjusted) frustum of this viewport, in world coordinates.</td>
 </tr>
 <tr>
-<td class="h-npctoview"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/npctoview'>npcToView</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pt: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="npctoview" class="heading-anchor" href="#npctoview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-npctoview"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/npctoview'>npcToView</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pt: Point3d, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> Point3d</span><a id="npctoview" class="heading-anchor" href="#npctoview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Convert a point from CoordSystem.Npc to CoordSystem.View</td>
 </tr>
 <tr>
-<td class="h-npctoviewarray"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#npctoviewarray'>npcToViewArray</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="npctoviewarray" class="heading-anchor" href="#npctoviewarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-npctoviewarray"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#npctoviewarray'>npcToViewArray</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pts: Point3d[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="npctoviewarray" class="heading-anchor" href="#npctoviewarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Convert an array of points from CoordSystem.Npc to CoordSystem.View</td>
 </tr>
 <tr>
-<td class="h-npctoworld"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/npctoworld'>npcToWorld</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pt: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="npctoworld" class="heading-anchor" href="#npctoworld"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-npctoworld"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/npctoworld'>npcToWorld</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pt: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> Point3d</span><a id="npctoworld" class="heading-anchor" href="#npctoworld"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Convert a point from CoordSystem.Npc to CoordSystem.World</td>
 </tr>
 <tr>
-<td class="h-npctoworldarray"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#npctoworldarray'>npcToWorldArray</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="npctoworldarray" class="heading-anchor" href="#npctoworldarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-npctoworldarray"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#npctoworldarray'>npcToWorldArray</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pts: Point3d[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="npctoworldarray" class="heading-anchor" href="#npctoworldarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Convert an array of points from CoordSystem.Npc to CoordSystem.World</td>
 </tr>
@@ -349,19 +358,29 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 <td>Converts inches to pixels based on screen DPI.</td>
 </tr>
 <tr>
-<td class="h-readimage"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/readimage'>readImage</a></span><span class="method-parenthesis">(</span><span class="method-parameters">rect: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a> = new ViewRect(0, 0, -1, -1), targetSize: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a> = Point2d.createZero(), flipVertically: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/imagebuffer'>ImageBuffer</a> | undefined</span><a id="readimage" class="heading-anchor" href="#readimage"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-readimage"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/readimage'>readImage</a></span><span class="method-parenthesis">(</span><span class="method-parameters">rect: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a> = new ViewRect(0, 0, -1, -1), targetSize: Point2d = Point2d.createZero(), flipVertically: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/imagebuffer'>ImageBuffer</a> | undefined</span><a id="readimage" class="heading-anchor" href="#readimage"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Read the current image from this viewport from the rendering system.</td>
 </tr>
 <tr>
-<td class="h-readpixels"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/readpixels'>readPixels</a></span><span class="method-parenthesis">(</span><span class="method-parameters">rect: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a>, selector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/pixel/pixel.selector'>Pixel.Selector</a>, receiver: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/pixel/pixel.receiver'>Pixel.Receiver</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="readpixels" class="heading-anchor" href="#readpixels"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-readpixels"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/readpixels'>readPixels</a></span><span class="method-parenthesis">(</span><span class="method-parameters">rect: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a>, selector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/pixel/pixel.selector'>Pixel.Selector</a>, receiver: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/pixel/pixel.receiver'>Pixel.Receiver</a>, excludeNonLocatable: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="readpixels" class="heading-anchor" href="#readpixels"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Read selected data about each pixel within a rectangular region of this Viewport.</td>
 </tr>
 <tr>
-<td class="h-scroll"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/scroll'>scroll</a></span><span class="method-parenthesis">(</span><span class="method-parameters">screenDist: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a>, options?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewchangeoptions'>ViewChangeOptions</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="scroll" class="heading-anchor" href="#scroll"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-scroll"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/scroll'>scroll</a></span><span class="method-parenthesis">(</span><span class="method-parameters">screenDist: Point2d, options?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewchangeoptions'>ViewChangeOptions</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="scroll" class="heading-anchor" href="#scroll"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Scroll the view by a given number of pixels.</td>
+</tr>
+<tr>
+<td class="h-setalwaysdrawn"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/setalwaysdrawn'>setAlwaysDrawn</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ids: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64set'>Id64Set</a>, exclusive: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setalwaysdrawn" class="heading-anchor" href="#setalwaysdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
+<td>Specify the IDs of a set of elements which should always be rendered within this view, regardless of category and subcategory visibility.</td>
+</tr>
+<tr>
+<td class="h-setneverdrawn"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/setneverdrawn'>setNeverDrawn</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ids: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64set'>Id64Set</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setneverdrawn" class="heading-anchor" href="#setneverdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
+<td>Specify the IDs of a set of elements which should never be rendered within this view.</td>
 </tr>
 <tr>
 <td class="h-setstandardrotation"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#setstandardrotation'>setStandardRotation</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/standardviewid'>StandardViewId</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setstandardrotation" class="heading-anchor" href="#setstandardrotation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -384,47 +403,47 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 <td>Turn the camera on if it is currently off.</td>
 </tr>
 <tr>
-<td class="h-view4dtoworld"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/view4dtoworld'>view4dToWorld</a></span><span class="method-parenthesis">(</span><span class="method-parameters">input: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/point4d'>Point4d</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="view4dtoworld" class="heading-anchor" href="#view4dtoworld"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-view4dtoworld"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/view4dtoworld'>view4dToWorld</a></span><span class="method-parenthesis">(</span><span class="method-parameters">input: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/point4d'>Point4d</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> Point3d</span><a id="view4dtoworld" class="heading-anchor" href="#view4dtoworld"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Convert a point from CoordSystem.View as a Point4d to CoordSystem.View</td>
 </tr>
 <tr>
-<td class="h-view4dtoworldarray"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#view4dtoworldarray'>view4dToWorldArray</a></span><span class="method-parenthesis">(</span><span class="method-parameters">viewPts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/point4d'>Point4d</a>[], worldPts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="view4dtoworldarray" class="heading-anchor" href="#view4dtoworldarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-view4dtoworldarray"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#view4dtoworldarray'>view4dToWorldArray</a></span><span class="method-parenthesis">(</span><span class="method-parameters">viewPts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/point4d'>Point4d</a>[], worldPts: Point3d[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="view4dtoworldarray" class="heading-anchor" href="#view4dtoworldarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Convert an array of points from CoordSystem.View as Point4ds to CoordSystem.World</td>
 </tr>
 <tr>
-<td class="h-viewtonpc"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/viewtonpc'>viewToNpc</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pt: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="viewtonpc" class="heading-anchor" href="#viewtonpc"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-viewtonpc"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/viewtonpc'>viewToNpc</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pt: Point3d, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> Point3d</span><a id="viewtonpc" class="heading-anchor" href="#viewtonpc"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Convert a point from CoordSystem.View to CoordSystem.Npc</td>
 </tr>
 <tr>
-<td class="h-viewtonpcarray"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#viewtonpcarray'>viewToNpcArray</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="viewtonpcarray" class="heading-anchor" href="#viewtonpcarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-viewtonpcarray"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#viewtonpcarray'>viewToNpcArray</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pts: Point3d[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="viewtonpcarray" class="heading-anchor" href="#viewtonpcarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Convert an array of points from CoordSystem.View to CoordSystem.Npc</td>
 </tr>
 <tr>
-<td class="h-viewtoworld"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/viewtoworld'>viewToWorld</a></span><span class="method-parenthesis">(</span><span class="method-parameters">input: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="viewtoworld" class="heading-anchor" href="#viewtoworld"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-viewtoworld"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/viewtoworld'>viewToWorld</a></span><span class="method-parenthesis">(</span><span class="method-parameters">input: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> Point3d</span><a id="viewtoworld" class="heading-anchor" href="#viewtoworld"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Convert a point from CoordSystem.View to CoordSystem.World</td>
 </tr>
 <tr>
-<td class="h-viewtoworldarray"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#viewtoworldarray'>viewToWorldArray</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="viewtoworldarray" class="heading-anchor" href="#viewtoworldarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-viewtoworldarray"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#viewtoworldarray'>viewToWorldArray</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pts: Point3d[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="viewtoworldarray" class="heading-anchor" href="#viewtoworldarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Convert an array of points from CoordSystem.View to CoordSystem.World</td>
 </tr>
 <tr>
-<td class="h-worldtonpc"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/worldtonpc'>worldToNpc</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pt: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="worldtonpc" class="heading-anchor" href="#worldtonpc"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-worldtonpc"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/worldtonpc'>worldToNpc</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pt: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> Point3d</span><a id="worldtonpc" class="heading-anchor" href="#worldtonpc"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Convert a point from CoordSystem.World to CoordSystem.Npc</td>
 </tr>
 <tr>
-<td class="h-worldtonpcarray"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#worldtonpcarray'>worldToNpcArray</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="worldtonpcarray" class="heading-anchor" href="#worldtonpcarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-worldtonpcarray"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#worldtonpcarray'>worldToNpcArray</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pts: Point3d[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="worldtonpcarray" class="heading-anchor" href="#worldtonpcarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Convert an array of points from CoordSystem.World to CoordSystem.Npc</td>
 </tr>
 <tr>
-<td class="h-worldtoview"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/worldtoview'>worldToView</a></span><span class="method-parenthesis">(</span><span class="method-parameters">input: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="worldtoview" class="heading-anchor" href="#worldtoview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-worldtoview"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/worldtoview'>worldToView</a></span><span class="method-parenthesis">(</span><span class="method-parameters">input: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> Point3d</span><a id="worldtoview" class="heading-anchor" href="#worldtoview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Convert a point from CoordSystem.World to CoordSystem.View</td>
 </tr>
@@ -434,17 +453,17 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 <td>Convert a point from CoordSystem.World to CoordSystem.View as Point4d</td>
 </tr>
 <tr>
-<td class="h-worldtoview4darray"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#worldtoview4darray'>worldToView4dArray</a></span><span class="method-parenthesis">(</span><span class="method-parameters">worldPts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[], viewPts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/point4d'>Point4d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="worldtoview4darray" class="heading-anchor" href="#worldtoview4darray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-worldtoview4darray"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#worldtoview4darray'>worldToView4dArray</a></span><span class="method-parenthesis">(</span><span class="method-parameters">worldPts: Point3d[], viewPts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/point4d'>Point4d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="worldtoview4darray" class="heading-anchor" href="#worldtoview4darray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Convert an array of points from CoordSystem.World to CoordSystem.View, as Point4ds</td>
 </tr>
 <tr>
-<td class="h-worldtoviewarray"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#worldtoviewarray'>worldToViewArray</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="worldtoviewarray" class="heading-anchor" href="#worldtoviewarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-worldtoviewarray"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#worldtoviewarray'>worldToViewArray</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pts: Point3d[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="worldtoviewarray" class="heading-anchor" href="#worldtoviewarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Convert an array of points from CoordSystem.World to CoordSystem.View</td>
 </tr>
 <tr>
-<td class="h-zoom"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/zoom'>zoom</a></span><span class="method-parenthesis">(</span><span class="method-parameters">newCenter: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a> | undefined, factor: number, options?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewchangeoptions'>ViewChangeOptions</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="zoom" class="heading-anchor" href="#zoom"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-zoom"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/zoom'>zoom</a></span><span class="method-parenthesis">(</span><span class="method-parameters">newCenter: Point3d | undefined, factor: number, options?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewchangeoptions'>ViewChangeOptions</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="zoom" class="heading-anchor" href="#zoom"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Zoom the view by a scale factor, placing the new center at the projection of the given point (world coordinates)<br>on the focal plane.</td>
 </tr>
@@ -522,6 +541,12 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 <th>Description</th>
 </tr>
 <tr>
+<td class="h-alwaysdrawn"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/alwaysdrawn'>alwaysDrawn</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="alwaysdrawn" class="heading-anchor" href="#alwaysdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64set'>Id64Set</a> | undefined</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
+<td>IDs of a set of elements which should always be rendered within this view, regardless of category and subcategory visibility.<br>If the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#isalwaysdrawnexclusive'>Viewport.isAlwaysDrawnExclusive</a> flag is also set, <em>only</em> those elements in this set will be drawn.</td>
+</tr>
+<tr>
 <td class="h-auxcoordsystem"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#auxcoordsystem'>auxCoordSystem</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="auxcoordsystem" class="heading-anchor" href="#auxcoordsystem"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/auxcoordsystemstate'>AuxCoordSystemState</a></span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
@@ -532,6 +557,12 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 <td><span class="method-output"> DebugBoundingBoxes</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Determines what type (if any) of debug graphics will be displayed to visualize Tile volumes.</td>
+</tr>
+<tr>
+<td class="h-featureoverrideprovider"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/featureoverrideprovider'>featureOverrideProvider</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="featureoverrideprovider" class="heading-anchor" href="#featureoverrideprovider"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/featureoverrideprovider'>FeatureOverrideProvider</a> | undefined</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
+<td>Get the current FeatureOverrideProvider for this viewport if defined.</td>
 </tr>
 <tr>
 <td class="h-hilite"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#hilite'>hilite</a></span><a id="hilite" class="heading-anchor" href="#hilite"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -546,16 +577,34 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 <td>The iModel of this Viewport</td>
 </tr>
 <tr>
+<td class="h-isalwaysdrawnexclusive"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#isalwaysdrawnexclusive'>isAlwaysDrawnExclusive</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isalwaysdrawnexclusive" class="heading-anchor" href="#isalwaysdrawnexclusive"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> boolean</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
+<td>Returns true if the set of elements in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/alwaysdrawn'>Viewport.alwaysDrawn</a> set are the <em>only</em> elements rendered within this view.</td>
+</tr>
+<tr>
 <td class="h-iscameraon"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#iscameraon'>isCameraOn</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="iscameraon" class="heading-anchor" href="#iscameraon"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> boolean</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>True if this is a 3d view with the camera turned on.</td>
 </tr>
 <tr>
+<td class="h-isfadeoutactive"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/isfadeoutactive'>isFadeOutActive</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="isfadeoutactive" class="heading-anchor" href="#isfadeoutactive"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> boolean</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
+<td>Enables or disables &quot;fade-out&quot; mode. When this mode is enabled, transparent graphics are rendered with a flat alpha weight,<br>causing them to appear de-emphasized. This is typically used in contexts in which a handful of elements are to be emphasized in the view,<br>while the rest of the graphics are drawn transparently.</td>
+</tr>
+<tr>
 <td class="h-isgridon"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/isgridon'>isGridOn</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isgridon" class="heading-anchor" href="#isgridon"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> boolean</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
 <td>Determine whether the Grid display is currently enabled in this Viewport.</td>
+</tr>
+<tr>
+<td class="h-neverdrawn"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/neverdrawn'>neverDrawn</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="neverdrawn" class="heading-anchor" href="#neverdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64set'>Id64Set</a> | undefined</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span></td>
+<td>IDs of a set of elements which should not be rendered within this view.</td>
 </tr>
 <tr>
 <td class="h-numreadytiles"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/numreadytiles'>numReadyTiles</a></span><a id="numreadytiles" class="heading-anchor" href="#numreadytiles"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -629,20 +678,17 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -651,6 +697,22 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -667,7 +729,7 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-screenviewport" class='title' href="#screenviewport"/>
             <b class='dropdown-menu-title menu-text'>ScreenViewport</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-screenviewport" class='inner-nav'>
                     <li class='nav-item item '>
@@ -679,7 +741,7 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-methods" class='title' href="#methods"/>
                             <b class='dropdown-menu-title menu-text'>Methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -723,9 +785,15 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-inherited-methods" class='title' href="#inherited-methods"/>
                             <b class='dropdown-menu-title menu-text'>Inherited methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-inherited-methods" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#clearalwaysdrawn">clearAlwaysDrawn</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#clearneverdrawn">clearNeverDrawn</a>
+                                    </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#determinevisibledepthrange">determineVisibleDepthRange</a>
                                     </li>
@@ -779,6 +847,12 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#scroll">scroll</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setalwaysdrawn">setAlwaysDrawn</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setneverdrawn">setNeverDrawn</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#setstandardrotation">setStandardRotation</a>
@@ -848,7 +922,7 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-properties" class='title' href="#properties"/>
                             <b class='dropdown-menu-title menu-text'>Properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -880,14 +954,20 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-inherited-properties" class='title' href="#inherited-properties"/>
                             <b class='dropdown-menu-title menu-text'>Inherited properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-inherited-properties" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#alwaysdrawn">alwaysDrawn</a>
+                                    </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#auxcoordsystem">auxCoordSystem</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#debugboundingboxes">debugBoundingBoxes</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#featureoverrideprovider">featureOverrideProvider</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#hilite">hilite</a>
@@ -896,10 +976,19 @@ This is achieved by invoking the viewport&apos;s dispose() method. ViewManager.d
                                             <a class='title solo-title menu-text' href="#imodel">iModel</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isalwaysdrawnexclusive">isAlwaysDrawnExclusive</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#iscameraon">isCameraOn</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isfadeoutactive">isFadeOutActive</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#isgridon">isGridOn</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#neverdrawn">neverDrawn</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#numreadytiles">numReadyTiles</a>

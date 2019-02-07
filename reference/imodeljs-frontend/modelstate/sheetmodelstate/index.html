@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -218,12 +217,12 @@
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-clonet-extends-entitystate"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/elementstate/entitystate/#clone'>clone</a></span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/elementstate/entitystate'>EntityState</a></span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> T</span><a id="clonet-extends-entitystate" class="heading-anchor" href="#clonet-extends-entitystate"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-clone"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/elementstate/entitystate/#clone'>clone</a></span><span class="method-parenthesis">(</span><span class="method-parameters">iModel?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span><span class="method-parenthesis">):</span><span class="method-output"> this</span><a id="clone" class="heading-anchor" href="#clone"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/elementstate/entitystate'>EntityState</a></span></td>
 <td>Make an independent copy of this EntityState</td>
 </tr>
 <tr>
-<td class="h-equals"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/elementstate/entitystate/#equals'>equals</a></span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/elementstate/entitystate'>EntityState</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="equals" class="heading-anchor" href="#equals"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-equals"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/elementstate/entitystate/#equals'>equals</a></span><span class="method-parenthesis">(</span><span class="method-parameters">other: this</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="equals" class="heading-anchor" href="#equals"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/elementstate/entitystate'>EntityState</a></span></td>
 <td>&#xA0;</td>
 </tr>
@@ -263,7 +262,7 @@
 </tr>
 <tr>
 <td class="h-globalorigin"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/geometricmodel2dstate/#globalorigin'>globalOrigin</a></span><a id="globalorigin" class="heading-anchor" href="#globalorigin"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a></span></td>
+<td><span class="method-output">Point2d</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/geometricmodel2dstate'>GeometricModel2dState</a></span></td>
 <td>&#xA0;</td>
 </tr>
@@ -345,20 +344,17 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -367,6 +363,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -383,7 +395,7 @@
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-sheetmodelstate" class='title' href="#sheetmodelstate"/>
             <b class='dropdown-menu-title menu-text'>SheetModelState</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-sheetmodelstate" class='inner-nav'>
                     <li class='nav-item item '>
@@ -395,7 +407,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-methods" class='title' href="#methods"/>
                             <b class='dropdown-menu-title menu-text'>Methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -406,7 +418,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-inherited-methods" class='title' href="#inherited-methods"/>
                             <b class='dropdown-menu-title menu-text'>Inherited methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-inherited-methods" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -429,7 +441,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-inherited-properties" class='title' href="#inherited-properties"/>
                             <b class='dropdown-menu-title menu-text'>Inherited properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-inherited-properties" class='inner-nav'>
                                     <li class='nav-item item '>

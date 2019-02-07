@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -214,8 +213,8 @@
 <td>Create a RenderGraphic consisting of a list of Graphics to be drawn together.</td>
 </tr>
 <tr>
-<td class="h-creatematerial"><span class="method-name"><a href="creatematerial">createMaterial</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_params: Params, _imodel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendermaterial'>RenderMaterial</a> | undefined</span><a id="creatematerial" class="heading-anchor" href="#creatematerial"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Create a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendermaterial'>RenderMaterial</a> from parameters<br>If the parameters include a non-empty key, and no previously-created material already exists with that key, the newly-created material will be cached on the IModelConnection such<br>that it can later be retrieved by the same key using <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendersystem/findmaterial'>RenderSystem.findMaterial</a>.</td>
+<td class="h-creatematerial"><span class="method-name"><a href="creatematerial">createMaterial</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_params: Params, _imodel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span><span class="method-parenthesis">):</span><span class="method-output"> RenderMaterial | undefined</span><a id="creatematerial" class="heading-anchor" href="#creatematerial"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Create a RenderMaterial from parameters<br>If the parameters include a non-empty key, and no previously-created material already exists with that key, the newly-created material will be cached on the IModelConnection such<br>that it can later be retrieved by the same key using <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendersystem/findmaterial'>RenderSystem.findMaterial</a>.</td>
 </tr>
 <tr>
 <td class="h-createtexturefromimage"><span class="method-name"><a href="createtexturefromimage">createTextureFromImage</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_image: HTMLImageElement, _hasAlpha: boolean, _imodel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a> | undefined, _params: Params</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendertexture'>RenderTexture</a> | undefined</span><a id="createtexturefromimage" class="heading-anchor" href="#createtexturefromimage"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -230,8 +229,8 @@
 <td>Create a new texture from an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/imagesource'>ImageSource</a>.</td>
 </tr>
 <tr>
-<td class="h-findmaterial"><span class="method-name"><a href="findmaterial">findMaterial</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_key: string, _imodel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendermaterial'>RenderMaterial</a> | undefined</span><a id="findmaterial" class="heading-anchor" href="#findmaterial"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Find a previously-created <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendermaterial'>RenderMaterial</a> by its ID.</td>
+<td class="h-findmaterial"><span class="method-name"><a href="findmaterial">findMaterial</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_key: string, _imodel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span><span class="method-parenthesis">):</span><span class="method-output"> RenderMaterial | undefined</span><a id="findmaterial" class="heading-anchor" href="#findmaterial"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Find a previously-created RenderMaterial by its ID.</td>
 </tr>
 <tr>
 <td class="h-findtexture"><span class="method-name"><a href="findtexture">findTexture</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_key: string, _imodel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendertexture'>RenderTexture</a> | undefined</span><a id="findtexture" class="heading-anchor" href="#findtexture"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -255,20 +254,17 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -277,6 +273,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -293,7 +305,7 @@
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-rendersystem" class='title' href="#rendersystem"/>
             <b class='dropdown-menu-title menu-text'>RenderSystem</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-rendersystem" class='inner-nav'>
                     <li class='nav-item item '>
@@ -302,7 +314,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-methods" class='title' href="#methods"/>
                             <b class='dropdown-menu-title menu-text'>Methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>

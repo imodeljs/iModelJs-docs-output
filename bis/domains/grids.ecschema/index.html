@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -801,20 +800,17 @@
 </tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -823,6 +819,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -839,7 +851,7 @@
               <li class='nav-item item '>
             <a data-target="#inner-nav-entity-classes" class='title' href="#entity-classes"/>
             <b class='dropdown-menu-title menu-text'>Entity Classes</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-entity-classes" class='inner-nav'>
                     <li class='nav-item item '>
@@ -848,7 +860,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-elevationgrid" class='title' href="#elevationgrid"/>
                             <b class='dropdown-menu-title menu-text'>ElevationGrid</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-elevationgrid" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -859,7 +871,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-elevationgridsurface" class='title' href="#elevationgridsurface"/>
                             <b class='dropdown-menu-title menu-text'>ElevationGridSurface</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-elevationgridsurface" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -891,7 +903,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-gridaxis" class='title' href="#gridaxis"/>
                             <b class='dropdown-menu-title menu-text'>GridAxis</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-gridaxis" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -905,7 +917,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-gridcurvebundle" class='title' href="#gridcurvebundle"/>
                             <b class='dropdown-menu-title menu-text'>GridCurveBundle</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-gridcurvebundle" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -931,7 +943,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-gridsurface" class='title' href="#gridsurface"/>
                             <b class='dropdown-menu-title menu-text'>GridSurface</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-gridsurface" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -948,7 +960,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-orthogonalgrid" class='title' href="#orthogonalgrid"/>
                             <b class='dropdown-menu-title menu-text'>OrthogonalGrid</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-orthogonalgrid" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -959,7 +971,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-plancartesiangridsurface" class='title' href="#plancartesiangridsurface"/>
                             <b class='dropdown-menu-title menu-text'>PlanCartesianGridSurface</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-plancartesiangridsurface" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -970,7 +982,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-plancircumferentialgridsurface" class='title' href="#plancircumferentialgridsurface"/>
                             <b class='dropdown-menu-title menu-text'>PlanCircumferentialGridSurface</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-plancircumferentialgridsurface" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -981,7 +993,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-plangrid" class='title' href="#plangrid"/>
                             <b class='dropdown-menu-title menu-text'>PlanGrid</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-plangrid" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -1001,7 +1013,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-planradialgridsurface" class='title' href="#planradialgridsurface"/>
                             <b class='dropdown-menu-title menu-text'>PlanRadialGridSurface</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-planradialgridsurface" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -1015,7 +1027,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-radialgrid" class='title' href="#radialgrid"/>
                             <b class='dropdown-menu-title menu-text'>RadialGrid</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-radialgrid" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -1026,7 +1038,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-sketcharcgridsurface" class='title' href="#sketcharcgridsurface"/>
                             <b class='dropdown-menu-title menu-text'>SketchArcGridSurface</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-sketcharcgridsurface" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -1040,7 +1052,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-sketchlinegridsurface" class='title' href="#sketchlinegridsurface"/>
                             <b class='dropdown-menu-title menu-text'>SketchLineGridSurface</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-sketchlinegridsurface" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -1051,7 +1063,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-sketchsplinegridsurface" class='title' href="#sketchsplinegridsurface"/>
                             <b class='dropdown-menu-title menu-text'>SketchSplineGridSurface</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-sketchsplinegridsurface" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -1064,13 +1076,13 @@
        <li class='nav-item item '>
             <a data-target="#inner-nav-relationship-classes" class='title' href="#relationship-classes"/>
             <b class='dropdown-menu-title menu-text'>Relationship Classes</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-relationship-classes" class='inner-nav'>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-gridaxiscontainsgridsurfaces" class='title' href="#gridaxiscontainsgridsurfaces"/>
                             <b class='dropdown-menu-title menu-text'>GridAxisContainsGridSurfaces</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-gridaxiscontainsgridsurfaces" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -1084,7 +1096,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-gridcurvebundlecreatesgridcurve" class='title' href="#gridcurvebundlecreatesgridcurve"/>
                             <b class='dropdown-menu-title menu-text'>GridCurveBundleCreatesGridCurve</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-gridcurvebundlecreatesgridcurve" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -1098,7 +1110,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-gridcurvebundlereferstogridcurvesset" class='title' href="#gridcurvebundlereferstogridcurvesset"/>
                             <b class='dropdown-menu-title menu-text'>GridCurveBundleRefersToGridCurvesSet</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-gridcurvebundlereferstogridcurvesset" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -1112,7 +1124,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-griddrivesgridsurface" class='title' href="#griddrivesgridsurface"/>
                             <b class='dropdown-menu-title menu-text'>GridDrivesGridSurface</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-griddrivesgridsurface" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -1126,7 +1138,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-gridhasaxes" class='title' href="#gridhasaxes"/>
                             <b class='dropdown-menu-title menu-text'>GridHasAxes</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-gridhasaxes" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -1140,7 +1152,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-gridsurfacedrivesgridcurvebundle" class='title' href="#gridsurfacedrivesgridcurvebundle"/>
                             <b class='dropdown-menu-title menu-text'>GridSurfaceDrivesGridCurveBundle</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-gridsurfacedrivesgridcurvebundle" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -1156,13 +1168,13 @@
        <li class='nav-item item '>
             <a data-target="#inner-nav-mixin-classes" class='title' href="#mixin-classes"/>
             <b class='dropdown-menu-title menu-text'>Mixin Classes</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-mixin-classes" class='inner-nav'>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-iplangridsurface" class='title' href="#iplangridsurface"/>
                             <b class='dropdown-menu-title menu-text'>IPlanGridSurface</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-iplangridsurface" class='inner-nav'>
                                     <li class='nav-item item '>

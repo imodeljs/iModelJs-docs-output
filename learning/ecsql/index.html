@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -460,20 +459,17 @@ returned.</p>
 <p>ECSQL has a number of <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/geometrysqlfuncs'>built-in geometry functions</a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -482,6 +478,22 @@ returned.</p>
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -504,7 +516,7 @@ returned.</p>
        <li class='nav-item item '>
             <a data-target="#inner-nav-fully-qualifying-ecclasses-in-ecsql" class='title' href="#fully-qualifying-ecclasses-in-ecsql"/>
             <b class='dropdown-menu-title menu-text'>Fully qualifying ECClasses in ECSQL</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-fully-qualifying-ecclasses-in-ecsql" class='inner-nav'>
                     <li class='nav-item item '>
@@ -515,7 +527,7 @@ returned.</p>
        <li class='nav-item item '>
             <a data-target="#inner-nav-ecsql-parameters" class='title' href="#ecsql-parameters"/>
             <b class='dropdown-menu-title menu-text'>ECSQL Parameters</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-ecsql-parameters" class='inner-nav'>
                     <li class='nav-item item '>
@@ -526,7 +538,7 @@ returned.</p>
        <li class='nav-item item '>
             <a data-target="#inner-nav-ecinstanceid-and-ecclassid" class='title' href="#ecinstanceid-and-ecclassid"/>
             <b class='dropdown-menu-title menu-text'>ECInstanceId and ECClassId</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-ecinstanceid-and-ecclassid" class='inner-nav'>
                     <li class='nav-item item '>
@@ -537,13 +549,13 @@ returned.</p>
        <li class='nav-item item '>
             <a data-target="#inner-nav-basic-data-types-in-ecsql" class='title' href="#basic-data-types-in-ecsql"/>
             <b class='dropdown-menu-title menu-text'>Basic data types in ECSQL</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-basic-data-types-in-ecsql" class='inner-nav'>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-boolean" class='title' href="#boolean"/>
                             <b class='dropdown-menu-title menu-text'>Boolean</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-boolean" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -554,7 +566,7 @@ returned.</p>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-datetime" class='title' href="#datetime"/>
                             <b class='dropdown-menu-title menu-text'>DateTime</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-datetime" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -571,7 +583,7 @@ returned.</p>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-points" class='title' href="#points"/>
                             <b class='dropdown-menu-title menu-text'>Points</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-points" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -584,7 +596,7 @@ returned.</p>
        <li class='nav-item item '>
             <a data-target="#inner-nav-structs" class='title' href="#structs"/>
             <b class='dropdown-menu-title menu-text'>Structs</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-structs" class='inner-nav'>
                     <li class='nav-item item '>
@@ -595,7 +607,7 @@ returned.</p>
        <li class='nav-item item '>
             <a data-target="#inner-nav-arrays" class='title' href="#arrays"/>
             <b class='dropdown-menu-title menu-text'>Arrays</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-arrays" class='inner-nav'>
                     <li class='nav-item item '>
@@ -606,7 +618,7 @@ returned.</p>
        <li class='nav-item item '>
             <a data-target="#inner-nav-navigation-properties" class='title' href="#navigation-properties"/>
             <b class='dropdown-menu-title menu-text'>Navigation Properties</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-navigation-properties" class='inner-nav'>
                     <li class='nav-item item '>
@@ -617,7 +629,7 @@ returned.</p>
        <li class='nav-item item '>
             <a data-target="#inner-nav-ecrelationshipclasses" class='title' href="#ecrelationshipclasses"/>
             <b class='dropdown-menu-title menu-text'>ECRelationshipClasses</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-ecrelationshipclasses" class='inner-nav'>
                     <li class='nav-item item '>
@@ -628,7 +640,7 @@ returned.</p>
        <li class='nav-item item '>
             <a data-target="#inner-nav-joins" class='title' href="#joins"/>
             <b class='dropdown-menu-title menu-text'>Joins</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-joins" class='inner-nav'>
                     <li class='nav-item item '>
@@ -639,7 +651,7 @@ returned.</p>
        <li class='nav-item item '>
             <a data-target="#inner-nav-polymorphic-queries" class='title' href="#polymorphic-queries"/>
             <b class='dropdown-menu-title menu-text'>Polymorphic Queries</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-polymorphic-queries" class='inner-nav'>
                     <li class='nav-item item '>
@@ -650,7 +662,7 @@ returned.</p>
        <li class='nav-item item '>
             <a data-target="#inner-nav-limit-and-offset" class='title' href="#limit-and-offset"/>
             <b class='dropdown-menu-title menu-text'>LIMIT and OFFSET</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-limit-and-offset" class='inner-nav'>
                     <li class='nav-item item '>
@@ -661,7 +673,7 @@ returned.</p>
        <li class='nav-item item '>
             <a data-target="#inner-nav-sql-functions" class='title' href="#sql-functions"/>
             <b class='dropdown-menu-title menu-text'>SQL Functions</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-sql-functions" class='inner-nav'>
                     <li class='nav-item item '>

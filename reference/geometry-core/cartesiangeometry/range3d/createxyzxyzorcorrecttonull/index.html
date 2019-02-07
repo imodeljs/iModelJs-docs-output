@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -191,7 +190,7 @@
             
             <h2 class="h-createxyzxyzorcorrecttonull">createXYZXYZOrCorrectToNull <span class="badge badge-pill badge-primary badge-method">Method</span><span class="badge badge-pill badge-primary badge-static">Static</span><a id="createxyzxyzorcorrecttonull" class="heading-anchor" href="#createxyzxyzorcorrecttonull"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Create a box with 2 pairs of xyz candidates. If any direction has order flip, create null.</p>
-<p><span class="method-name">createXYZXYZOrCorrectToNull</span><span class="method-parenthesis">(</span><span class="method-parameters">xA: number, yA: number, zA: number, xB: number, yB: number, zB: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span></p>
+<p><span class="method-name">createXYZXYZOrCorrectToNull</span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">xA: number, yA: number, zA: number, xB: number, yB: number, zB: number, result?: T</span><span class="method-parenthesis">):</span><span class="method-output"> T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span></p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
 <th>Type</th>
@@ -229,7 +228,7 @@
 </tr>
 <tr>
 <td class="h-result"><span class="parameter-name">result</span><a id="result" class="heading-anchor" href="#result"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span></td>
+<td><span class="parameter-type">T</span></td>
 <td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -238,20 +237,17 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -260,6 +256,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -276,7 +288,7 @@
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-createxyzxyzorcorrecttonull" class='title' href="#createxyzxyzorcorrecttonull"/>
             <b class='dropdown-menu-title menu-text'>createXYZXYZOrCorrectToNull</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-createxyzxyzorcorrecttonull" class='inner-nav'>
                     <li class='nav-item item '>

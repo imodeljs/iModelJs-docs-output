@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -213,6 +212,10 @@
 <td>&#xA0;</td>
 </tr>
 <tr>
+<td class="h-freeze"><span class="method-name">freeze</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="freeze" class="heading-anchor" href="#freeze"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-isalmostequal"><span class="method-name"><a href="isalmostequal">isAlmostEqual</a></span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/angle/angle'>Angle</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="isalmostequal" class="heading-anchor" href="#isalmostequal"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Test if two angle (in radians)  almost equal, NOT allowing shift by full circle multiples of <code>2 * PI</code>.</td>
 </tr>
@@ -325,6 +328,10 @@
 <td>&#xA0;</td>
 </tr>
 <tr>
+<td class="h-ishalfcircleradians"><span class="method-name">isHalfCircleRadians</span><span class="method-parenthesis">(</span><span class="method-parameters">radians: number</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="ishalfcircleradians" class="heading-anchor" href="#ishalfcircleradians"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Test if the radians value  is a cmoplete circle</td>
+</tr>
+<tr>
 <td class="h-isperpendiculardotset"><span class="method-name"><a href="isperpendiculardotset">isPerpendicularDotSet</a></span><span class="method-parenthesis">(</span><span class="method-parameters">dotUU: number, dotVV: number, dotUV: number</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="isperpendiculardotset" class="heading-anchor" href="#isperpendiculardotset"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Test if dot product values indicate non-zero length perpendicular vectors.</td>
 </tr>
@@ -373,7 +380,12 @@
 <tr>
 <td class="h-isfullcircle"><span class="property-name">isFullCircle</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isfullcircle" class="heading-anchor" href="#isfullcircle"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> boolean</span></td>
-<td>&#xA0;</td>
+<td>test if the angle is aa full circle</td>
+</tr>
+<tr>
+<td class="h-ishalfcircle"><span class="property-name">isHalfCircle</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="ishalfcircle" class="heading-anchor" href="#ishalfcircle"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> boolean</span></td>
+<td>test if the angle is a half circle (in either direction)</td>
 </tr>
 <tr>
 <td class="h-pi2radians"><span class="property-name">pi2Radians</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="pi2radians" class="heading-anchor" href="#pi2radians"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -416,20 +428,17 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -438,6 +447,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -454,7 +479,7 @@
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-angle" class='title' href="#angle"/>
             <b class='dropdown-menu-title menu-text'>Angle</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-angle" class='inner-nav'>
                     <li class='nav-item item '>
@@ -463,7 +488,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-methods" class='title' href="#methods"/>
                             <b class='dropdown-menu-title menu-text'>Methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -471,6 +496,9 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#cos">cos</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#freeze">freeze</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#isalmostequal">isAlmostEqual</a>
@@ -557,6 +585,9 @@
                                             <a class='title solo-title menu-text' href="#isfullcircleradians">isFullCircleRadians</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#ishalfcircleradians">isHalfCircleRadians</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#isperpendiculardotset">isPerpendicularDotSet</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -576,7 +607,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-properties" class='title' href="#properties"/>
                             <b class='dropdown-menu-title menu-text'>Properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -593,6 +624,9 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#isfullcircle">isFullCircle</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#ishalfcircle">isHalfCircle</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#pi2radians">pi2Radians</a>

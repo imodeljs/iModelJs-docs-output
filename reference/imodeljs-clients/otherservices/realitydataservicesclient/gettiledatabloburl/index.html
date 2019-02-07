@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -191,7 +190,7 @@
             
             <h2 class="h-gettiledatabloburl">getTileDataBlobUrl <span class="badge badge-pill badge-primary badge-method">Method</span><a id="gettiledatabloburl" class="heading-anchor" href="#gettiledatabloburl"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Gets a tileset&apos;s tile data blob key url</p>
-<p><span class="method-name">getTileDataBlobUrl</span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, projectId: string, tilesId: string, name: string</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;string&gt;</span></p>
+<p><span class="method-name">getTileDataBlobUrl</span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, projectId: string, tilesId: string</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;string&gt;</span></p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
 <th>Type</th>
@@ -217,11 +216,6 @@
 <td><span class="parameter-type">string</span></td>
 <td>realityDataInstance id, called tilesId when returned from tile generator job</td>
 </tr>
-<tr>
-<td class="h-name"><span class="parameter-name">name</span><a id="name" class="heading-anchor" href="#name"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="parameter-type">string</span></td>
-<td>name or path of tile</td>
-</tr>
 </tbody></table><p><strong>Returns</strong> - a string url</p>
 <h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -229,20 +223,17 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -251,6 +242,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -267,7 +274,7 @@
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-gettiledatabloburl" class='title' href="#gettiledatabloburl"/>
             <b class='dropdown-menu-title menu-text'>getTileDataBlobUrl</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-gettiledatabloburl" class='inner-nav'>
                     <li class='nav-item item '>
@@ -281,9 +288,6 @@
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#tilesid">tilesId</a>
-                    </li>
-                    <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#name">name</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#defined-in">Defined in</a>

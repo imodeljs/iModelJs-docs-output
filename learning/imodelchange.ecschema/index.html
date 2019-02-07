@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -117,10 +116,13 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > IModelChange.ecschema</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/IModelChange.ecschema.md">Edit this page</a></div>
             <h1 id="imodelchange ecschema">IModelChange ECSchema</h1>
-<h2 class="h-classes">Classes<a id="classes" class="heading-anchor" href="#classes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p><strong>alias:</strong> imodelchange</p>
+<p><strong>version:</strong> 2.0.0</p>
+<h2 class="h-entity-classes">Entity Classes<a id="entity-classes" class="heading-anchor" href="#entity-classes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <h3 class="h-changeset">ChangeSet<a id="changeset" class="heading-anchor" href="#changeset"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> EntityClass</p>
-<p><strong>Class Properties:</strong></p>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<h4 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -130,7 +132,7 @@
 <tr>
 <td align="left">Summary</td>
 <td align="left"></td>
-<td align="left"></td>
+<td align="left"><a href="imodelchange.ecschema.md#changesummaryisextractedfromchangeset">navigation</a></td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -162,40 +164,41 @@
 <td align="left"></td>
 <td align="left">string</td>
 </tr>
-</tbody></table><h3 class="h-changesummaryisextractedfromchangeset">ChangeSummaryIsExtractedFromChangeset<a id="changesummaryisextractedfromchangeset" class="heading-anchor" href="#changesummaryisextractedfromchangeset"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> RelationshipClass</p>
-<p><strong>Relationship Class:</strong></p>
-<table class="table table-responsive"><tbody><tr>
-<th align="left"></th>
-<th align="left">ConstraintClasses</th>
-<th align="left">Multiplicity</th>
-</tr>
-<tr>
-<td align="left"><strong>Source</strong></td>
-<td align="left">ChangeSummary</td>
-<td align="left">(1..1)</td>
-</tr>
-<tr>
-<td align="left"><strong>Target</strong></td>
-<td align="left">ChangeSet</td>
-<td align="left">(0..1)</td>
-</tr>
-</tbody></table>
+</tbody></table><h2 class="h-relationship-classes">Relationship Classes<a id="relationship-classes" class="heading-anchor" href="#relationship-classes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-changesummaryisextractedfromchangeset">ChangeSummaryIsExtractedFromChangeset<a id="changesummaryisextractedfromchangeset" class="heading-anchor" href="#changesummaryisextractedfromchangeset"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source">Source<a id="source" class="heading-anchor" href="#source"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is created from</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbchange.ecschema.md#changesummary">ChangeSummary</a></li>
+</ul>
+<h4 class="h-target">Target<a id="target" class="heading-anchor" href="#target"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is source of</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="imodelchange.ecschema.md#changeset">ChangeSet</a></li>
+</ul>
+
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -204,6 +207,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -218,16 +237,43 @@
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
               <li class='nav-item item '>
-            <a data-target="#inner-nav-classes" class='title' href="#classes"/>
-            <b class='dropdown-menu-title menu-text'>Classes</b>
-            <i class='dropdown icon'></i>
+            <a data-target="#inner-nav-entity-classes" class='title' href="#entity-classes"/>
+            <b class='dropdown-menu-title menu-text'>Entity Classes</b>
+            <i class='nav-list-dropdown icon'></i>
             </a>
-            <ul id="inner-nav-classes" class='inner-nav'>
+            <ul id="inner-nav-entity-classes" class='inner-nav'>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#changeset">ChangeSet</a>
+                            <a data-target="#inner-nav-changeset" class='title' href="#changeset"/>
+                            <b class='dropdown-menu-title menu-text'>ChangeSet</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-changeset" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties">Properties</a>
+                                    </li>
+                            </ul>
                     </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-relationship-classes" class='title' href="#relationship-classes"/>
+            <b class='dropdown-menu-title menu-text'>Relationship Classes</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-relationship-classes" class='inner-nav'>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#changesummaryisextractedfromchangeset">ChangeSummaryIsExtractedFromChangeset</a>
+                            <a data-target="#inner-nav-changesummaryisextractedfromchangeset" class='title' href="#changesummaryisextractedfromchangeset"/>
+                            <b class='dropdown-menu-title menu-text'>ChangeSummaryIsExtractedFromChangeset</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-changesummaryisextractedfromchangeset" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target">Target</a>
+                                    </li>
+                            </ul>
                     </li>
             </ul>
     </li>

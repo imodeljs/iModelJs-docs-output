@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -209,8 +208,8 @@
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-pointsetsingleclipstatus"><span class="method-name">pointSetSingleClipStatus</span><span class="method-parenthesis">(</span><span class="method-parameters">points: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/arraysandinterfaces/growablexyzarray'>GrowableXYZArray</a>, planeSet: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/unionofconvexclipplanesets'>UnionOfConvexClipPlaneSets</a>, tolerance: number</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cliputils/clipstatus'>ClipStatus</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="pointsetsingleclipstatus" class="heading-anchor" href="#pointsetsingleclipstatus"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Given an array of points, return whether or not processing is required to clip to a ClipPlaneSet region.</td>
+<td class="h-pointsetsingleclipstatus"><span class="method-name"><a href="pointsetsingleclipstatus">pointSetSingleClipStatus</a></span><span class="method-parenthesis">(</span><span class="method-parameters">points: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/arraysandinterfaces/growablexyzarray'>GrowableXYZArray</a>, planeSet: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/unionofconvexclipplanesets'>UnionOfConvexClipPlaneSets</a>, tolerance: number</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cliputils/clipstatus'>ClipStatus</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="pointsetsingleclipstatus" class="heading-anchor" href="#pointsetsingleclipstatus"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Given an array of points, test for trivial containment conditions.</td>
 </tr>
 <tr>
 <td class="h-selectintervals01"><span class="method-name">selectIntervals01</span><span class="method-parenthesis">(</span><span class="method-parameters">curve: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive'>CurvePrimitive</a>, unsortedFractions: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/arraysandinterfaces/growablefloat64array'>GrowableFloat64Array</a>, clipper: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cliputils/clipper'>Clipper</a>, announce?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/announcenumbernumbercurveprimitive'>AnnounceNumberNumberCurvePrimitive</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="selectintervals01" class="heading-anchor" href="#selectintervals01"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -222,20 +221,17 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -244,6 +240,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -260,13 +272,13 @@
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-cliputilities" class='title' href="#cliputilities"/>
             <b class='dropdown-menu-title menu-text'>ClipUtilities</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-cliputilities" class='inner-nav'>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-methods" class='title' href="#methods"/>
                             <b class='dropdown-menu-title menu-text'>Methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>

@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -262,6 +261,10 @@
 <td></td>
 </tr>
 <tr>
+<td class="h-logentryconverter"><a href="logentryconverter">LogEntryConverter</a><a id="logentryconverter" class="heading-anchor" href="#logentryconverter"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
 <td class="h-oidcclient"><a href="oidcclient">OidcClient</a><a id="oidcclient" class="heading-anchor" href="#oidcclient"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
@@ -274,25 +277,26 @@
 <td></td>
 </tr>
 <tr>
+<td class="h-ulasclient"><a href="ulasclient">UlasClient</a><a id="ulasclient" class="heading-anchor" href="#ulasclient"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
 <td class="h-all"><a href="all">All</a><a id="all" class="heading-anchor" href="#all"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Displays the contents of all topics in this package.</td>
 </tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -301,6 +305,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -317,7 +337,7 @@
               <li class='nav-item item '>
             <a data-target="#inner-nav-topics" class='title' href="#topics"/>
             <b class='dropdown-menu-title menu-text'>Topics</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-topics" class='inner-nav'>
                     <li class='nav-item item '>
@@ -369,6 +389,9 @@
                             <a class='title solo-title menu-text' href="#imsclients">ImsClients</a>
                     </li>
                     <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#logentryconverter">LogEntryConverter</a>
+                    </li>
+                    <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#oidcclient">OidcClient</a>
                     </li>
                     <li class='nav-item item '>
@@ -376,6 +399,9 @@
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#settings">Settings</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#ulasclient">UlasClient</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#all">All</a>

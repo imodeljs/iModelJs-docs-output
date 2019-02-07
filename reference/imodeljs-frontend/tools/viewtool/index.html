@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -199,6 +198,7 @@
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/viewmanip'>ViewManip</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/fitviewtool'>FitViewTool</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/standardviewtool'>StandardViewTool</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/windowareatool'>WindowAreaTool</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/viewundotool'>ViewUndoTool</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/viewredotool'>ViewRedoTool</a></li>
@@ -210,7 +210,7 @@
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">..._args: any[]</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/viewtool'>ViewTool</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">viewport?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport'>ScreenViewport</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/viewtool'>ViewTool</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -233,11 +233,20 @@
 <td class="h-run"><span class="method-name">run</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="run" class="heading-anchor" href="#run"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 </tr>
+<tr>
+<td class="h-showprompt"><span class="method-name">showPrompt</span><span class="method-parenthesis">(</span><span class="method-parameters">prompt: string</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="showprompt" class="heading-anchor" href="#showprompt"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
 </tbody></table><h3 class="h-inherited-methods"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited methods<a id="inherited-methods" class="heading-anchor" href="#inherited-methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
 <th>Inherited from</th>
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
+</tr>
+<tr>
+<td class="h-applytoolsettingpropertychange"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/applytoolsettingpropertychange'>applyToolSettingPropertyChange</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_updatedValue: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/properties/toolsettingspropertysyncitem'>ToolSettingsPropertySyncItem</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="applytoolsettingpropertychange" class="heading-anchor" href="#applytoolsettingpropertychange"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool'>InteractiveTool</a></span></td>
+<td>Used to receive property changes from UI.</td>
 </tr>
 <tr>
 <td class="h-begindynamics"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/begindynamics'>beginDynamics</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="begindynamics" class="heading-anchor" href="#begindynamics"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -440,6 +449,16 @@
 <td>Notification of a ViewTool or InputCollector exiting and this tool is being unsuspended.</td>
 </tr>
 <tr>
+<td class="h-supplytoolsettingsproperties"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/supplytoolsettingsproperties'>supplyToolSettingsProperties</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/properties/toolsettingspropertyrecord'>ToolSettingsPropertyRecord</a>[] | undefined</span><a id="supplytoolsettingsproperties" class="heading-anchor" href="#supplytoolsettingsproperties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool'>InteractiveTool</a></span></td>
+<td>Used to supply list of properties that can be used to generate ToolSettings.</td>
+</tr>
+<tr>
+<td class="h-synctoolsettingsproperties"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/synctoolsettingsproperties'>syncToolSettingsProperties</a></span><span class="method-parenthesis">(</span><span class="method-parameters">syncData: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/properties/toolsettingspropertysyncitem'>ToolSettingsPropertySyncItem</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="synctoolsettingsproperties" class="heading-anchor" href="#synctoolsettingsproperties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool'>InteractiveTool</a></span></td>
+<td>Called by tool to synchronize the UI with property changes made by tool.</td>
+</tr>
+<tr>
 <td class="h-testdecorationhit"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/#testdecorationhit'>testDecorationHit</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_id: string</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="testdecorationhit" class="heading-anchor" href="#testdecorationhit"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool'>InteractiveTool</a></span></td>
 <td>Called to support operations on pickable decorations, like snapping.</td>
@@ -458,6 +477,11 @@
 <tr>
 <td class="h-indynamicupdate"><span class="property-name">inDynamicUpdate</span><a id="indynamicupdate" class="heading-anchor" href="#indynamicupdate"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">boolean</span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-viewport"><span class="property-name">viewport</span> <span class="badge badge-pill badge-primary badge-constructorproperty">ConstructorProperty</span><a id="viewport" class="heading-anchor" href="#viewport"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport'>ScreenViewport</a></span></td>
 <td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-inherited-properties"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited properties<a id="inherited-properties" class="heading-anchor" href="#inherited-properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -545,20 +569,17 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -567,6 +588,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -583,7 +620,7 @@
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-viewtool" class='title' href="#viewtool"/>
             <b class='dropdown-menu-title menu-text'>ViewTool</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-viewtool" class='inner-nav'>
                     <li class='nav-item item '>
@@ -595,7 +632,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-methods" class='title' href="#methods"/>
                             <b class='dropdown-menu-title menu-text'>Methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -616,14 +653,20 @@
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#run">run</a>
                                     </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#showprompt">showPrompt</a>
+                                    </li>
                             </ul>
                     </li>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-inherited-methods" class='title' href="#inherited-methods"/>
                             <b class='dropdown-menu-title menu-text'>Inherited methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-inherited-methods" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#applytoolsettingpropertychange">applyToolSettingPropertyChange</a>
+                                    </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#begindynamics">beginDynamics</a>
                                     </li>
@@ -745,6 +788,12 @@
                                             <a class='title solo-title menu-text' href="#onunsuspend">onUnsuspend</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#supplytoolsettingsproperties">supplyToolSettingsProperties</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#synctoolsettingsproperties">syncToolSettingsProperties</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#testdecorationhit">testDecorationHit</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -755,18 +804,21 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-properties" class='title' href="#properties"/>
                             <b class='dropdown-menu-title menu-text'>Properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#indynamicupdate">inDynamicUpdate</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#viewport">viewport</a>
                                     </li>
                             </ul>
                     </li>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-inherited-properties" class='title' href="#inherited-properties"/>
                             <b class='dropdown-menu-title menu-text'>Inherited properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-inherited-properties" class='inner-nav'>
                                     <li class='nav-item item '>

@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -226,6 +225,10 @@ True distance along the curve is not always strictly proportional to fraction.</
 <td>&#xA0;</td>
 </tr>
 <tr>
+<td class="h-addmappedstrokestolinestring3d"><span class="method-name"><a href="addmappedstrokestolinestring3d">addMappedStrokesToLineString3D</a></span><span class="method-parenthesis">(</span><span class="method-parameters">map: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/strokecountmap/strokecountmap'>StrokeCountMap</a>, linestring: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/linestring3d'>LineString3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="addmappedstrokestolinestring3d" class="heading-anchor" href="#addmappedstrokestolinestring3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>* evaluate strokes at fractions indicated in a StrokeCountMap.</td>
+</tr>
+<tr>
 <td class="h-announceclipintervals"><span class="method-name"><a href="announceclipintervals">announceClipIntervals</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_clipper: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cliputils/clipper'>Clipper</a>, _announce?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/announcenumbernumbercurveprimitive'>AnnounceNumberNumberCurvePrimitive</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="announceclipintervals" class="heading-anchor" href="#announceclipintervals"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Find intervals of this curvePrimitive that are interior to a clipper</td>
 </tr>
@@ -240,6 +243,14 @@ True distance along the curve is not always strictly proportional to fraction.</
 <tr>
 <td class="h-closestpoint"><span class="method-name"><a href="closestpoint">closestPoint</a></span><span class="method-parenthesis">(</span><span class="method-parameters">spacePoint: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>, extend: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curvelocationdetail'>CurveLocationDetail</a> | undefined</span><a id="closestpoint" class="heading-anchor" href="#closestpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Search for the curve point that is closest to the spacePoint.</td>
+</tr>
+<tr>
+<td class="h-computeandattachrecursivestrokecounts"><span class="method-name"><a href="computeandattachrecursivestrokecounts">computeAndAttachRecursiveStrokeCounts</a></span><span class="method-parenthesis">(</span><span class="method-parameters">options?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/strokeoptions'>StrokeOptions</a>, parentMap?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/strokecountmap/strokecountmap'>StrokeCountMap</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="computeandattachrecursivestrokecounts" class="heading-anchor" href="#computeandattachrecursivestrokecounts"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>attach StrokeCountMap structure to this primitive (and recursively to any children)<br>* Base class implementation (here) gets the simple count from computeStrokeCountForOptions and attaches it.</td>
+</tr>
+<tr>
+<td class="h-computestrokecountforoptions"><span class="method-name"><a href="computestrokecountforoptions">computeStrokeCountForOptions</a></span><span class="method-parenthesis">(</span><span class="method-parameters">options?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/strokeoptions'>StrokeOptions</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="computestrokecountforoptions" class="heading-anchor" href="#computestrokecountforoptions"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>return the stroke count required for given options.</td>
 </tr>
 <tr>
 <td class="h-curvelength"><span class="method-name"><a href="curvelength">curveLength</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="curvelength" class="heading-anchor" href="#curvelength"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -313,6 +324,10 @@ True distance along the curve is not always strictly proportional to fraction.</
 <td class="h-startpoint"><span class="method-name"><a href="startpoint">startPoint</a></span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="startpoint" class="heading-anchor" href="#startpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>return the start point of the primitive.</td>
 </tr>
+<tr>
+<td class="h-installstrokecountmap"><span class="method-name"><a href="installstrokecountmap">installStrokeCountMap</a></span><span class="method-parenthesis">(</span><span class="method-parameters">curve: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive'>CurvePrimitive</a>, curveMap: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/strokecountmap/strokecountmap'>StrokeCountMap</a>, parentMap?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/strokecountmap/strokecountmap'>StrokeCountMap</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="installstrokecountmap" class="heading-anchor" href="#installstrokecountmap"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>final install step to save curveMap in curve.</td>
+</tr>
 </tbody></table><h3 class="h-inherited-methods"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited methods<a id="inherited-methods" class="heading-anchor" href="#inherited-methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -375,6 +390,11 @@ True distance along the curve is not always strictly proportional to fraction.</
 <td><span class="method-output"> boolean</span></td>
 <td>* Returns true if the curve&apos;s fraction queries extend beyond 0..1.</td>
 </tr>
+<tr>
+<td class="h-strokedata"><span class="property-name">strokeData</span><a id="strokedata" class="heading-anchor" href="#strokedata"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/strokecountmap/strokecountmap'>StrokeCountMap</a></span></td>
+<td>data attached during stroking for facets.</td>
+</tr>
 </tbody></table><h3 class="h-inherited-properties"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited properties<a id="inherited-properties" class="heading-anchor" href="#inherited-properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -394,20 +414,17 @@ True distance along the curve is not always strictly proportional to fraction.</
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -416,6 +433,22 @@ True distance along the curve is not always strictly proportional to fraction.</
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -432,7 +465,7 @@ True distance along the curve is not always strictly proportional to fraction.</
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-curveprimitive" class='title' href="#curveprimitive"/>
             <b class='dropdown-menu-title menu-text'>CurvePrimitive</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-curveprimitive" class='inner-nav'>
                     <li class='nav-item item '>
@@ -444,11 +477,14 @@ True distance along the curve is not always strictly proportional to fraction.</
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-methods" class='title' href="#methods"/>
                             <b class='dropdown-menu-title menu-text'>Methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#constructor">constructor</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#addmappedstrokestolinestring3d">addMappedStrokesToLineString3D</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#announceclipintervals">announceClipIntervals</a>
@@ -461,6 +497,12 @@ True distance along the curve is not always strictly proportional to fraction.</
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#closestpoint">closestPoint</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#computeandattachrecursivestrokecounts">computeAndAttachRecursiveStrokeCounts</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#computestrokecountforoptions">computeStrokeCountForOptions</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#curvelength">curveLength</a>
@@ -516,12 +558,15 @@ True distance along the curve is not always strictly proportional to fraction.</
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#startpoint">startPoint</a>
                                     </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#installstrokecountmap">installStrokeCountMap</a>
+                                    </li>
                             </ul>
                     </li>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-inherited-methods" class='title' href="#inherited-methods"/>
                             <b class='dropdown-menu-title menu-text'>Inherited methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-inherited-methods" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -556,18 +601,21 @@ True distance along the curve is not always strictly proportional to fraction.</
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-properties" class='title' href="#properties"/>
                             <b class='dropdown-menu-title menu-text'>Properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#isextensiblefractionspace">isExtensibleFractionSpace</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#strokedata">strokeData</a>
                                     </li>
                             </ul>
                     </li>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-inherited-properties" class='title' href="#inherited-properties"/>
                             <b class='dropdown-menu-title menu-text'>Inherited properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-inherited-properties" class='inner-nav'>
                                     <li class='nav-item item '>

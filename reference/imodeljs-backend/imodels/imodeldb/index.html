@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -211,7 +210,7 @@
 <td>Abandon pending changes in this iModel</td>
 </tr>
 <tr>
-<td class="h-cancelsnap"><span class="method-name">cancelSnap</span><span class="method-parenthesis">(</span><span class="method-parameters">connectionId: string</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="cancelsnap" class="heading-anchor" href="#cancelsnap"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-cancelsnap"><span class="method-name">cancelSnap</span><span class="method-parenthesis">(</span><span class="method-parameters">sessionId: string</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="cancelsnap" class="heading-anchor" href="#cancelsnap"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Cancel a previously requested snap.</td>
 </tr>
 <tr>
@@ -319,7 +318,7 @@
 <td>Reinstate a previously reversed set of changes</td>
 </tr>
 <tr>
-<td class="h-requestsnap"><span class="method-name">requestSnap</span><span class="method-parenthesis">(</span><span class="method-parameters">activity: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, connectionId: string, props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/snaprequestprops'>SnapRequestProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/snapresponseprops'>SnapResponseProps</a>&gt;</span><a id="requestsnap" class="heading-anchor" href="#requestsnap"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-requestsnap"><span class="method-name">requestSnap</span><span class="method-parenthesis">(</span><span class="method-parameters">activity: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, sessionId: string, props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/snaprequestprops'>SnapRequestProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/snapresponseprops'>SnapResponseProps</a>&gt;</span><a id="requestsnap" class="heading-anchor" href="#requestsnap"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -379,10 +378,6 @@
 <td>Invoke a callback on each property of the specified class, optionally including superclass properties.</td>
 </tr>
 <tr>
-<td class="h-loadnativeasset"><span class="method-name"><a href="loadnativeasset">loadNativeAsset</a></span><span class="method-parenthesis">(</span><span class="method-parameters">assetName: string</span><span class="method-parenthesis">):</span><span class="method-output"> Uint8Array</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="loadnativeasset" class="heading-anchor" href="#loadnativeasset"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Load a file from the <em>Assets</em> directory of imodeljs-native</td>
-</tr>
-<tr>
 <td class="h-open"><span class="method-name"><a href="open">open</a></span><span class="method-parenthesis">(</span><span class="method-parameters">activity: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, accessToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, contextId: string, iModelId: string, openParams: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/openparams'>OpenParams</a> = OpenParams.pullAndPush(), version: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodelversion'>IModelVersion</a> = IModelVersion.latest()</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a>&gt;</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="open" class="heading-anchor" href="#open"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Open an iModel from iModelHub.</td>
 </tr>
@@ -397,19 +392,19 @@
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-cartographictospatial"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/cartographictospatial'>cartographicToSpatial</a></span><span class="method-parenthesis">(</span><span class="method-parameters">cartographic: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/cartographic'>Cartographic</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="cartographictospatial" class="heading-anchor" href="#cartographictospatial"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-cartographictospatialfromecef"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/cartographictospatialfromecef'>cartographicToSpatialFromEcef</a></span><span class="method-parenthesis">(</span><span class="method-parameters">cartographic: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/cartographic'>Cartographic</a>, result?: Point3d</span><span class="method-parenthesis">):</span><span class="method-output"> Point3d</span><a id="cartographictospatialfromecef" class="heading-anchor" href="#cartographictospatialfromecef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
-<td>Convert a ($Cartographic$refLinkSource=imodeljs-backend/D:/vsts_a/3/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@163) to a point in this iModel&apos;s Spatial coordinates using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/vsts_a/3/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@163">ecefLocation</a>.</td>
+<td>Convert a ($Cartographic$refLinkSource=imodeljs-backend/D:/vsts_a/1/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@163) to a point in this iModel&apos;s Spatial coordinates using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/vsts_a/1/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@163">ecefLocation</a>.</td>
 </tr>
 <tr>
-<td class="h-eceftospatial"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/eceftospatial'>ecefToSpatial</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ecef: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="eceftospatial" class="heading-anchor" href="#eceftospatial"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-eceftospatial"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/eceftospatial'>ecefToSpatial</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ecef: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, result?: Point3d</span><span class="method-parenthesis">):</span><span class="method-output"> Point3d</span><a id="eceftospatial" class="heading-anchor" href="#eceftospatial"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
-<td>Convert a point in ECEF coordinates to a point in this iModel&apos;s Spatial coordinates using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/vsts_a/3/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@146">ecefLocation</a>.</td>
+<td>Convert a point in ECEF coordinates to a point in this iModel&apos;s Spatial coordinates using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/vsts_a/1/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@146">ecefLocation</a>.</td>
 </tr>
 <tr>
 <td class="h-geteceftransform"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/geteceftransform'>getEcefTransform</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><a id="geteceftransform" class="heading-anchor" href="#geteceftransform"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
-<td>Get the Transform from this iModel&apos;s Spatial coordinates to ECEF coordinates using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/vsts_a/3/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@129">ecefLocation</a>.</td>
+<td>Get the Transform from this iModel&apos;s Spatial coordinates to ECEF coordinates using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/vsts_a/1/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@129">ecefLocation</a>.</td>
 </tr>
 <tr>
 <td class="h-seteceflocation"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/#seteceflocation'>setEcefLocation</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ecef: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/eceflocationprops'>EcefLocationProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="seteceflocation" class="heading-anchor" href="#seteceflocation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -417,14 +412,14 @@
 <td>Set the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#eceflocation'>EcefLocation</a> for this iModel.</td>
 </tr>
 <tr>
-<td class="h-spatialtocartographic"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/spatialtocartographic'>spatialToCartographic</a></span><span class="method-parenthesis">(</span><span class="method-parameters">spatial: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/cartographic'>Cartographic</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/cartographic'>Cartographic</a></span><a id="spatialtocartographic" class="heading-anchor" href="#spatialtocartographic"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-spatialtocartographicfromecef"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/spatialtocartographicfromecef'>spatialToCartographicFromEcef</a></span><span class="method-parenthesis">(</span><span class="method-parameters">spatial: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/cartographic'>Cartographic</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/cartographic'>Cartographic</a></span><a id="spatialtocartographicfromecef" class="heading-anchor" href="#spatialtocartographicfromecef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
-<td>Convert a point in this iModel&apos;s Spatial coordinates to a ($Cartographic$refLinkSource=imodeljs-backend/D:/vsts_a/3/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@154)  using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/vsts_a/3/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@154">ecefLocation</a>.</td>
+<td>Convert a point in this iModel&apos;s Spatial coordinates to a ($Cartographic$refLinkSource=imodeljs-backend/D:/vsts_a/1/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@154) using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/vsts_a/1/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@154">ecefLocation</a>.</td>
 </tr>
 <tr>
-<td class="h-spatialtoecef"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/spatialtoecef'>spatialToEcef</a></span><span class="method-parenthesis">(</span><span class="method-parameters">spatial: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="spatialtoecef" class="heading-anchor" href="#spatialtoecef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-spatialtoecef"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/spatialtoecef'>spatialToEcef</a></span><span class="method-parenthesis">(</span><span class="method-parameters">spatial: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, result?: Point3d</span><span class="method-parenthesis">):</span><span class="method-output"> Point3d</span><a id="spatialtoecef" class="heading-anchor" href="#spatialtoecef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
-<td>Convert a point in this iModel&apos;s Spatial coordinates to an ECEF point using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/vsts_a/3/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@137">ecefLocation</a>.</td>
+<td>Convert a point in this iModel&apos;s Spatial coordinates to an ECEF point using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/vsts_a/1/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@137">ecefLocation</a>.</td>
 </tr>
 <tr>
 <td class="h-getdefaultsubcategoryid"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/#getdefaultsubcategoryid'>getDefaultSubCategoryId</a></span><span class="method-parenthesis">(</span><span class="method-parameters">categoryId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="getdefaultsubcategoryid" class="heading-anchor" href="#getdefaultsubcategoryid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -568,7 +563,7 @@
 </tr>
 <tr>
 <td class="h-globalorigin"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/#globalorigin'>globalOrigin</a></span><a id="globalorigin" class="heading-anchor" href="#globalorigin"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span></td>
+<td><span class="method-output">Point3d</span></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
 <td>An offset to be applied to all spatial coordinates.</td>
 </tr>
@@ -620,20 +615,17 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -642,6 +634,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -658,7 +666,7 @@
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-imodeldb" class='title' href="#imodeldb"/>
             <b class='dropdown-menu-title menu-text'>IModelDb</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-imodeldb" class='inner-nav'>
                     <li class='nav-item item '>
@@ -670,7 +678,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-methods" class='title' href="#methods"/>
                             <b class='dropdown-menu-title menu-text'>Methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -803,9 +811,6 @@
                                             <a class='title solo-title menu-text' href="#foreachmetadata">forEachMetaData</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#loadnativeasset">loadNativeAsset</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#open">open</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -816,11 +821,11 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-inherited-methods" class='title' href="#inherited-methods"/>
                             <b class='dropdown-menu-title menu-text'>Inherited methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-inherited-methods" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#cartographictospatial">cartographicToSpatial</a>
+                                            <a class='title solo-title menu-text' href="#cartographictospatialfromecef">cartographicToSpatialFromEcef</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#eceftospatial">ecefToSpatial</a>
@@ -832,7 +837,7 @@
                                             <a class='title solo-title menu-text' href="#seteceflocation">setEcefLocation</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#spatialtocartographic">spatialToCartographic</a>
+                                            <a class='title solo-title menu-text' href="#spatialtocartographicfromecef">spatialToCartographicFromEcef</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#spatialtoecef">spatialToEcef</a>
@@ -845,7 +850,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-properties" class='title' href="#properties"/>
                             <b class='dropdown-menu-title menu-text'>Properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -919,7 +924,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-inherited-properties" class='title' href="#inherited-properties"/>
                             <b class='dropdown-menu-title menu-text'>Inherited properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-inherited-properties" class='inner-nav'>
                                     <li class='nav-item item '>

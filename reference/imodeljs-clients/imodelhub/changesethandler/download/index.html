@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -192,7 +191,7 @@
             <h2 class="h-download">download <span class="badge badge-pill badge-primary badge-method">Method</span><a id="download" class="heading-anchor" href="#download"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Download the specified <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a>s. If you want to <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#pull'>pull</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#merge'>merge</a> ChangeSets from iModelHub to your <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/briefcase'>Briefcase</a>, you should use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/pullandmergechanges'>IModelDb.pullAndMergeChanges</a> instead.</p>
 <p>This method creates the directory containing the ChangeSets if necessary. If there is an error in downloading some of the ChangeSets, all partially downloaded ChangeSets are deleted from disk.</p>
-<p><span class="method-name">download</span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, changeSets: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a>[], downloadToPath: string, progressCallback?: (progress: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/progressinfo'>ProgressInfo</a>) =&gt; void</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span></p>
+<p><span class="method-name">download</span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, changeSets: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a>[], path: string, progressCallback?: (progress: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/progressinfo'>ProgressInfo</a>) =&gt; void</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span></p>
 <p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/imodelhubclienterror'>IModelHubClientError</a> with <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelhubstatus/#undefinedargumenterror'>IModelHubStatus.UndefinedArgumentError</a>, if one of the required arguments is undefined or empty.</p>
 <p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/responseerror'>ResponseError</a> if the download fails.</p>
 <table class="table table-responsive"><tbody><tr>
@@ -211,9 +210,9 @@
 <td>ChangeSets to download. These need to include a download link. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changesetquery/selectdownloadurl'>ChangeSetQuery.selectDownloadUrl</a>.</td>
 </tr>
 <tr>
-<td class="h-downloadtopath"><span class="parameter-name">downloadToPath</span><a id="downloadtopath" class="heading-anchor" href="#downloadtopath"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-path"><span class="parameter-name">path</span><a id="path" class="heading-anchor" href="#path"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="parameter-type">string</span></td>
-<td>Directory where the ChangeSets should be downloaded.</td>
+<td>Path of directory where the ChangeSets should be downloaded.</td>
 </tr>
 <tr>
 <td class="h-progresscallback"><span class="parameter-name">progressCallback</span><a id="progresscallback" class="heading-anchor" href="#progresscallback"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -226,20 +225,17 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -248,6 +244,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -264,7 +276,7 @@
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-download" class='title' href="#download"/>
             <b class='dropdown-menu-title menu-text'>download</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-download" class='inner-nav'>
                     <li class='nav-item item '>
@@ -274,7 +286,7 @@
                             <a class='title solo-title menu-text' href="#changesets">changeSets</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#downloadtopath">downloadToPath</a>
+                            <a class='title solo-title menu-text' href="#path">path</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#progresscallback">progressCallback</a>

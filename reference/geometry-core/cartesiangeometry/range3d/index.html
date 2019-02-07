@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -209,7 +208,7 @@
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-clone"><span class="method-name">clone</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><a id="clone" class="heading-anchor" href="#clone"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-clone"><span class="method-name">clone</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: this</span><span class="method-parenthesis">):</span><span class="method-output"> this</span><a id="clone" class="heading-anchor" href="#clone"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -247,6 +246,10 @@
 <tr>
 <td class="h-distancetorange"><span class="method-name">distanceToRange</span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="distancetorange" class="heading-anchor" href="#distancetorange"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>returns 0 if the ranges have any overlap, otherwise the shortest absolute distance from one to the other.</td>
+</tr>
+<tr>
+<td class="h-ensureminlengths"><span class="method-name"><a href="ensureminlengths">ensureMinLengths</a></span><span class="method-parenthesis">(</span><span class="method-parameters">min: number = 0.001</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="ensureminlengths" class="heading-anchor" href="#ensureminlengths"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Ensure that the length of each dimension of this AxisAlignedBox3d is at least a minimum size.</td>
 </tr>
 <tr>
 <td class="h-expandinplace"><span class="method-name"><a href="expandinplace">expandInPlace</a></span><span class="method-parenthesis">(</span><span class="method-parameters">delta: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="expandinplace" class="heading-anchor" href="#expandinplace"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -409,55 +412,55 @@
 <td>Return a range large enough to include the supplied points.</td>
 </tr>
 <tr>
-<td class="h-createarray"><span class="method-name">createArray</span><span class="method-parenthesis">(</span><span class="method-parameters">points: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[], result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createarray" class="heading-anchor" href="#createarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-createarrayt-extends-range3d"><span class="method-name">createArray</span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">points: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[], result?: T</span><span class="method-parenthesis">):</span><span class="method-output"> T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createarrayt-extends-range3d" class="heading-anchor" href="#createarrayt-extends-range3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Create a range around an array of points.</td>
 </tr>
 <tr>
-<td class="h-createfrom"><span class="method-name">createFrom</span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createfrom" class="heading-anchor" href="#createfrom"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-createfromt-extends-range3d"><span class="method-name">createFrom</span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a>, result?: T</span><span class="method-parenthesis">):</span><span class="method-output"> T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createfromt-extends-range3d" class="heading-anchor" href="#createfromt-extends-range3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-createinversetransformedarray"><span class="method-name">createInverseTransformedArray</span><span class="method-parenthesis">(</span><span class="method-parameters">transform: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, points: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createinversetransformedarray" class="heading-anchor" href="#createinversetransformedarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-createinversetransformedarrayt-extends-range3d"><span class="method-name">createInverseTransformedArray</span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">transform: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, points: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createinversetransformedarrayt-extends-range3d" class="heading-anchor" href="#createinversetransformedarrayt-extends-range3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>create a Range3d enclosing the points after inverse transform.</td>
 </tr>
 <tr>
-<td class="h-createnull"><span class="method-name">createNull</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createnull" class="heading-anchor" href="#createnull"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-createnullt-extends-range3d"><span class="method-name">createNull</span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: T</span><span class="method-parenthesis">):</span><span class="method-output"> T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createnullt-extends-range3d" class="heading-anchor" href="#createnullt-extends-range3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Return a range initialized to have no content.</td>
 </tr>
 <tr>
-<td class="h-createrange2d"><span class="method-name">createRange2d</span><span class="method-parenthesis">(</span><span class="method-parameters">range: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range2d'>Range2d</a>, z: number = 0, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createrange2d" class="heading-anchor" href="#createrange2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-createrange2dt-extends-range3d"><span class="method-name">createRange2d</span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">range: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range2d'>Range2d</a>, z: number = 0, result?: T</span><span class="method-parenthesis">):</span><span class="method-output"> T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createrange2dt-extends-range3d" class="heading-anchor" href="#createrange2dt-extends-range3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Creates a 3d range from a 2d range&apos;s low and high members, setting the corresponding z values to the value given.</td>
 </tr>
 <tr>
-<td class="h-createtransformed"><span class="method-name">createTransformed</span><span class="method-parenthesis">(</span><span class="method-parameters">transform: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, ...point: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createtransformed" class="heading-anchor" href="#createtransformed"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-createtransformedt-extends-range3d"><span class="method-name">createTransformed</span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">transform: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, ...point: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createtransformedt-extends-range3d" class="heading-anchor" href="#createtransformedt-extends-range3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>create a Range3d enclosing the transformed points.</td>
 </tr>
 <tr>
-<td class="h-createtransformedarray"><span class="method-name">createTransformedArray</span><span class="method-parenthesis">(</span><span class="method-parameters">transform: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, points: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createtransformedarray" class="heading-anchor" href="#createtransformedarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-createtransformedarrayt-extends-range3d"><span class="method-name">createTransformedArray</span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">transform: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, points: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createtransformedarrayt-extends-range3d" class="heading-anchor" href="#createtransformedarrayt-extends-range3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>create a Range3d enclosing the transformed points.</td>
 </tr>
 <tr>
-<td class="h-createxyz"><span class="method-name">createXYZ</span><span class="method-parenthesis">(</span><span class="method-parameters">x: number, y: number, z: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createxyz" class="heading-anchor" href="#createxyz"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-createxyzt-extends-range3d"><span class="method-name">createXYZ</span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">x: number, y: number, z: number, result?: T</span><span class="method-parenthesis">):</span><span class="method-output"> T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createxyzt-extends-range3d" class="heading-anchor" href="#createxyzt-extends-range3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Create a single point range</td>
 </tr>
 <tr>
-<td class="h-createxyzxyz"><span class="method-name"><a href="createxyzxyz">createXYZXYZ</a></span><span class="method-parenthesis">(</span><span class="method-parameters">xA: number, yA: number, zA: number, xB: number, yB: number, zB: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createxyzxyz" class="heading-anchor" href="#createxyzxyz"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-createxyzxyzt-extends-range3d"><span class="method-name"><a href="createxyzxyz">createXYZXYZ</a></span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">xA: number, yA: number, zA: number, xB: number, yB: number, zB: number, result?: T</span><span class="method-parenthesis">):</span><span class="method-output"> T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createxyzxyzt-extends-range3d" class="heading-anchor" href="#createxyzxyzt-extends-range3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Create a box with 2 pairs of xyz candidates.</td>
 </tr>
 <tr>
-<td class="h-createxyzxyzorcorrecttonull"><span class="method-name"><a href="createxyzxyzorcorrecttonull">createXYZXYZOrCorrectToNull</a></span><span class="method-parenthesis">(</span><span class="method-parameters">xA: number, yA: number, zA: number, xB: number, yB: number, zB: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createxyzxyzorcorrecttonull" class="heading-anchor" href="#createxyzxyzorcorrecttonull"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-createxyzxyzorcorrecttonullt-extends-range3d"><span class="method-name"><a href="createxyzxyzorcorrecttonull">createXYZXYZOrCorrectToNull</a></span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">xA: number, yA: number, zA: number, xB: number, yB: number, zB: number, result?: T</span><span class="method-parenthesis">):</span><span class="method-output"> T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createxyzxyzorcorrecttonullt-extends-range3d" class="heading-anchor" href="#createxyzxyzorcorrecttonullt-extends-range3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Create a box with 2 pairs of xyz candidates.</td>
 </tr>
 <tr>
-<td class="h-fromarraybuffer"><span class="method-name"><a href="fromarraybuffer">fromArrayBuffer</a></span><span class="method-parenthesis">(</span><span class="method-parameters">buffer: ArrayBuffer</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="fromarraybuffer" class="heading-anchor" href="#fromarraybuffer"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-fromarraybuffert-extends-range3d"><span class="method-name"><a href="fromarraybuffer">fromArrayBuffer</a></span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">buffer: ArrayBuffer</span><span class="method-parenthesis">):</span><span class="method-output"> T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="fromarraybuffert-extends-range3d" class="heading-anchor" href="#fromarraybuffert-extends-range3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Construct a Range3d from an un-typed array.</td>
 </tr>
 <tr>
-<td class="h-fromfloat64array"><span class="method-name"><a href="fromfloat64array">fromFloat64Array</a></span><span class="method-parenthesis">(</span><span class="method-parameters">f64: Float64Array</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="fromfloat64array" class="heading-anchor" href="#fromfloat64array"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-fromfloat64arrayt-extends-range3d"><span class="method-name"><a href="fromfloat64array">fromFloat64Array</a></span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">f64: Float64Array</span><span class="method-parenthesis">):</span><span class="method-output"> T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="fromfloat64arrayt-extends-range3d" class="heading-anchor" href="#fromfloat64arrayt-extends-range3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Construct a Range3d from an array of double-precision values</td>
 </tr>
 <tr>
-<td class="h-fromjson"><span class="method-name">fromJSON</span><span class="method-parenthesis">(</span><span class="method-parameters">json?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3dprops'>Range3dProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="fromjson" class="heading-anchor" href="#fromjson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-fromjsont-extends-range3d"><span class="method-name">fromJSON</span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">json?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3dprops'>Range3dProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="fromjsont-extends-range3d" class="heading-anchor" href="#fromjsont-extends-range3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -511,6 +514,36 @@
 <th>Description</th>
 </tr>
 <tr>
+<td class="h-back"><span class="property-name">back</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="back" class="heading-anchor" href="#back"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> number</span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-bottom"><span class="property-name">bottom</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="bottom" class="heading-anchor" href="#bottom"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> number</span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-center"><span class="property-name">center</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="center" class="heading-anchor" href="#center"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span></td>
+<td>Get the center point of this Range3d</td>
+</tr>
+<tr>
+<td class="h-depth"><span class="property-name">depth</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="depth" class="heading-anchor" href="#depth"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> number</span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-front"><span class="property-name">front</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="front" class="heading-anchor" href="#front"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> number</span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-height"><span class="property-name">height</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="height" class="heading-anchor" href="#height"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> number</span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-high"><span class="property-name">high</span><a id="high" class="heading-anchor" href="#high"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span></td>
 <td>&#xA0;</td>
@@ -541,8 +574,28 @@
 <td>Test of the range contains a single point.</td>
 </tr>
 <tr>
+<td class="h-left"><span class="property-name">left</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="left" class="heading-anchor" href="#left"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> number</span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-low"><span class="property-name">low</span><a id="low" class="heading-anchor" href="#low"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-right"><span class="property-name">right</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="right" class="heading-anchor" href="#right"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> number</span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-top"><span class="property-name">top</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="top" class="heading-anchor" href="#top"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> number</span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-width"><span class="property-name">width</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="width" class="heading-anchor" href="#width"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> number</span></td>
 <td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-inherited-properties"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited properties<a id="inherited-properties" class="heading-anchor" href="#inherited-properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -570,20 +623,17 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -592,6 +642,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -608,7 +674,7 @@
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-range3d" class='title' href="#range3d"/>
             <b class='dropdown-menu-title menu-text'>Range3d</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-range3d" class='inner-nav'>
                     <li class='nav-item item '>
@@ -620,7 +686,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-methods" class='title' href="#methods"/>
                             <b class='dropdown-menu-title menu-text'>Methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -655,6 +721,9 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#distancetorange">distanceToRange</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#ensureminlengths">ensureMinLengths</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#expandinplace">expandInPlace</a>
@@ -826,7 +895,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-inherited-methods" class='title' href="#inherited-methods"/>
                             <b class='dropdown-menu-title menu-text'>Inherited methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-inherited-methods" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -852,9 +921,27 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-properties" class='title' href="#properties"/>
                             <b class='dropdown-menu-title menu-text'>Properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#back">back</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#bottom">bottom</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#center">center</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#depth">depth</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#front">front</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#height">height</a>
+                                    </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#high">high</a>
                                     </li>
@@ -874,14 +961,26 @@
                                             <a class='title solo-title menu-text' href="#issinglepoint">isSinglePoint</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#left">left</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#low">low</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#right">right</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#top">top</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#width">width</a>
                                     </li>
                             </ul>
                     </li>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-inherited-properties" class='title' href="#inherited-properties"/>
                             <b class='dropdown-menu-title menu-text'>Inherited properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-inherited-properties" class='inner-nav'>
                                     <li class='nav-item item '>

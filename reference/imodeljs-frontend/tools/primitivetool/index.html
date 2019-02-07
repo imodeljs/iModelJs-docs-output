@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -230,6 +229,10 @@
 <td>Checks that the adjusted point from the supplied button event is within the project extents for spatial views.</td>
 </tr>
 <tr>
+<td class="h-onredopreviousstep"><span class="method-name"><a href="onredopreviousstep">onRedoPreviousStep</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;boolean&gt;</span><a id="onredopreviousstep" class="heading-anchor" href="#onredopreviousstep"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Called to reinstate to a previous tool state (ex.</td>
+</tr>
+<tr>
 <td class="h-onreinitialize"><span class="method-name"><a href="onreinitialize">onReinitialize</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="onreinitialize" class="heading-anchor" href="#onreinitialize"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Called to reset tool to initial state.</td>
 </tr>
@@ -243,7 +246,7 @@
 </tr>
 <tr>
 <td class="h-onundopreviousstep"><span class="method-name"><a href="onundopreviousstep">onUndoPreviousStep</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;boolean&gt;</span><a id="onundopreviousstep" class="heading-anchor" href="#onundopreviousstep"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Called to revert to a previous tool state (ex.</td>
+<td>Called to reverse to a previous tool state (ex.</td>
 </tr>
 <tr>
 <td class="h-requirewriteabletarget"><span class="method-name">requireWriteableTarget</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="requirewriteabletarget" class="heading-anchor" href="#requirewriteabletarget"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -257,15 +260,16 @@
 <td class="h-savechanges"><span class="method-name"><a href="savechanges">saveChanges</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span><a id="savechanges" class="heading-anchor" href="#savechanges"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Tools need to call SaveChanges to commit any elements they have added/changes they have made.</td>
 </tr>
-<tr>
-<td class="h-undopreviousstep"><span class="method-name">undoPreviousStep</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;boolean&gt;</span><a id="undopreviousstep" class="heading-anchor" href="#undopreviousstep"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
-</tr>
 </tbody></table><h3 class="h-inherited-methods"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited methods<a id="inherited-methods" class="heading-anchor" href="#inherited-methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
 <th>Inherited from</th>
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
+</tr>
+<tr>
+<td class="h-applytoolsettingpropertychange"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/applytoolsettingpropertychange'>applyToolSettingPropertyChange</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_updatedValue: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/properties/toolsettingspropertysyncitem'>ToolSettingsPropertySyncItem</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="applytoolsettingpropertychange" class="heading-anchor" href="#applytoolsettingpropertychange"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool'>InteractiveTool</a></span></td>
+<td>Used to receive property changes from UI.</td>
 </tr>
 <tr>
 <td class="h-begindynamics"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/begindynamics'>beginDynamics</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="begindynamics" class="heading-anchor" href="#begindynamics"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -453,6 +457,16 @@
 <td>Notification of a ViewTool or InputCollector exiting and this tool is being unsuspended.</td>
 </tr>
 <tr>
+<td class="h-supplytoolsettingsproperties"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/supplytoolsettingsproperties'>supplyToolSettingsProperties</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/properties/toolsettingspropertyrecord'>ToolSettingsPropertyRecord</a>[] | undefined</span><a id="supplytoolsettingsproperties" class="heading-anchor" href="#supplytoolsettingsproperties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool'>InteractiveTool</a></span></td>
+<td>Used to supply list of properties that can be used to generate ToolSettings.</td>
+</tr>
+<tr>
+<td class="h-synctoolsettingsproperties"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/synctoolsettingsproperties'>syncToolSettingsProperties</a></span><span class="method-parenthesis">(</span><span class="method-parameters">syncData: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/properties/toolsettingspropertysyncitem'>ToolSettingsPropertySyncItem</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="synctoolsettingsproperties" class="heading-anchor" href="#synctoolsettingsproperties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool'>InteractiveTool</a></span></td>
+<td>Called by tool to synchronize the UI with property changes made by tool.</td>
+</tr>
+<tr>
 <td class="h-testdecorationhit"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/#testdecorationhit'>testDecorationHit</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_id: string</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="testdecorationhit" class="heading-anchor" href="#testdecorationhit"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool'>InteractiveTool</a></span></td>
 <td>Called to support operations on pickable decorations, like snapping.</td>
@@ -573,20 +587,17 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -595,6 +606,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -611,7 +638,7 @@
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-primitivetool" class='title' href="#primitivetool"/>
             <b class='dropdown-menu-title menu-text'>PrimitiveTool</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-primitivetool" class='inner-nav'>
                     <li class='nav-item item '>
@@ -623,7 +650,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-methods" class='title' href="#methods"/>
                             <b class='dropdown-menu-title menu-text'>Methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -643,6 +670,9 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#isvalidlocation">isValidLocation</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#onredopreviousstep">onRedoPreviousStep</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#onreinitialize">onReinitialize</a>
@@ -665,17 +695,17 @@
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#savechanges">saveChanges</a>
                                     </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#undopreviousstep">undoPreviousStep</a>
-                                    </li>
                             </ul>
                     </li>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-inherited-methods" class='title' href="#inherited-methods"/>
                             <b class='dropdown-menu-title menu-text'>Inherited methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-inherited-methods" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#applytoolsettingpropertychange">applyToolSettingPropertyChange</a>
+                                    </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#begindynamics">beginDynamics</a>
                                     </li>
@@ -788,6 +818,12 @@
                                             <a class='title solo-title menu-text' href="#onunsuspend">onUnsuspend</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#supplytoolsettingsproperties">supplyToolSettingsProperties</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#synctoolsettingsproperties">syncToolSettingsProperties</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#testdecorationhit">testDecorationHit</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -798,7 +834,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-properties" class='title' href="#properties"/>
                             <b class='dropdown-menu-title menu-text'>Properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -818,7 +854,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-inherited-properties" class='title' href="#inherited-properties"/>
                             <b class='dropdown-menu-title menu-text'>Inherited properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-inherited-properties" class='inner-nav'>
                                     <li class='nav-item item '>

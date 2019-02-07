@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -117,10 +116,15 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > ECDbChange.ecschema</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/ECDbChange.ecschema.md">Edit this page</a></div>
             <h1 id="ecdbchange ecschema">ECDbChange ECSchema</h1>
-<h2 class="h-classes">Classes<a id="classes" class="heading-anchor" href="#classes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p><strong>alias:</strong> change</p>
+<p><strong>version:</strong> 1.0.1</p>
+<p><strong>displayLabel:</strong> ECDb Change</p>
+<h2 class="h-entity-classes">Entity Classes<a id="entity-classes" class="heading-anchor" href="#entity-classes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <h3 class="h-changesummary">ChangeSummary<a id="changesummary" class="heading-anchor" href="#changesummary"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> EntityClass</p>
-<p><strong>Class Properties:</strong></p>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>displayLabel:</strong> Summary</p>
+<p><strong>modifier:</strong> Sealed</p>
+<h4 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -133,37 +137,12 @@
 <td align="left">string</td>
 <td align="left">Json</td>
 </tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-</tbody></table><h3 class="h-changesummarycontainsinstancechanges">ChangeSummaryContainsInstanceChanges<a id="changesummarycontainsinstancechanges" class="heading-anchor" href="#changesummarycontainsinstancechanges"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> RelationshipClass</p>
-<p><strong>Relationship Class:</strong></p>
-<table class="table table-responsive"><tbody><tr>
-<th align="left"></th>
-<th align="left">ConstraintClasses</th>
-<th align="left">Multiplicity</th>
-</tr>
-<tr>
-<td align="left"><strong>Source</strong></td>
-<td align="left">ChangeSummary</td>
-<td align="left">(1..1)</td>
-</tr>
-<tr>
-<td align="left"><strong>Target</strong></td>
-<td align="left">InstanceChange</td>
-<td align="left">(0..*)</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
 </tbody></table><h3 class="h-instancechange">InstanceChange<a id="instancechange" class="heading-anchor" href="#instancechange"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
 <p>Represents an instance change in a change summary</p>
-<p><strong>Class Type:</strong> EntityClass</p>
-<p><strong>Class Properties:</strong></p>
+<p><strong>displayLabel:</strong> Instance Change</p>
+<p><strong>modifier:</strong> Sealed</p>
+<h4 class="h-properties-1">Properties<a id="properties-1" class="heading-anchor" href="#properties-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -173,13 +152,13 @@
 <tr>
 <td align="left">Summary</td>
 <td align="left"></td>
-<td align="left"></td>
+<td align="left"><a href="ecdbchange.ecschema.md#changesummarycontainsinstancechanges">navigation</a></td>
 <td align="left"></td>
 </tr>
 <tr>
 <td align="left">ChangedInstance</td>
 <td align="left">Key of the change instance</td>
-<td align="left"></td>
+<td align="left">struct</td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -192,65 +171,13 @@
 <td align="left">IsIndirect</td>
 <td align="left">Change happened due to a foreign key action or trigger</td>
 <td align="left">boolean</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-</tbody></table><h3 class="h-instancechangeownspropertyvaluechanges">InstanceChangeOwnsPropertyValueChanges<a id="instancechangeownspropertyvaluechanges" class="heading-anchor" href="#instancechangeownspropertyvaluechanges"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> RelationshipClass</p>
-<p><strong>Relationship Class:</strong></p>
-<table class="table table-responsive"><tbody><tr>
-<th align="left"></th>
-<th align="left">ConstraintClasses</th>
-<th align="left">Multiplicity</th>
-</tr>
-<tr>
-<td align="left"><strong>Source</strong></td>
-<td align="left">InstanceChange</td>
-<td align="left">(1..1)</td>
-</tr>
-<tr>
-<td align="left"><strong>Target</strong></td>
-<td align="left">PropertyValueChange</td>
-<td align="left">(0..*)</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-</tbody></table><h3 class="h-instancekey">InstanceKey<a id="instancekey" class="heading-anchor" href="#instancekey"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> StructClass</p>
-<p><strong>Class Properties:</strong></p>
-<table class="table table-responsive"><tbody><tr>
-<th align="left">Name</th>
-<th align="left">Description</th>
-<th align="left">Type</th>
-<th align="left">Extended Type</th>
-</tr>
-<tr>
-<td align="left">Id</td>
-<td align="left"></td>
-<td align="left">long</td>
-<td align="left">Id</td>
-</tr>
-<tr>
-<td align="left">ClassId</td>
-<td align="left"></td>
-<td align="left">long</td>
-<td align="left">Id</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
 </tr>
 </tbody></table><h3 class="h-propertyvaluechange">PropertyValueChange<a id="propertyvaluechange" class="heading-anchor" href="#propertyvaluechange"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
 <p>Represents an property value change of an instance change in a change summary</p>
-<p><strong>Class Type:</strong> EntityClass</p>
-<p><strong>Class Properties:</strong></p>
+<p><strong>displayLabel:</strong> Property Value Change</p>
+<p><strong>modifier:</strong> Sealed</p>
+<h4 class="h-properties-2">Properties<a id="properties-2" class="heading-anchor" href="#properties-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -260,7 +187,7 @@
 <tr>
 <td align="left">InstanceChange</td>
 <td align="left"></td>
-<td align="left"></td>
+<td align="left"><a href="ecdbchange.ecschema.md#instancechangeownspropertyvaluechanges">navigation</a></td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -279,29 +206,113 @@
 <td align="left">RawNewValue</td>
 <td align="left">Untyped new value</td>
 <td align="left">binary</td>
-<td align="left"></td>
+</tr>
+</tbody></table><h2 class="h-relationship-classes">Relationship Classes<a id="relationship-classes" class="heading-anchor" href="#relationship-classes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-changesummarycontainsinstancechanges">ChangeSummaryContainsInstanceChanges<a id="changesummarycontainsinstancechanges" class="heading-anchor" href="#changesummarycontainsinstancechanges"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source">Source<a id="source" class="heading-anchor" href="#source"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> has</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbchange.ecschema.md#changesummary">ChangeSummary</a></li>
+</ul>
+<h4 class="h-target">Target<a id="target" class="heading-anchor" href="#target"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is contained in</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbchange.ecschema.md#instancechange">InstanceChange</a></li>
+</ul>
+<h3 class="h-instancechangeownspropertyvaluechanges">InstanceChangeOwnsPropertyValueChanges<a id="instancechangeownspropertyvaluechanges" class="heading-anchor" href="#instancechangeownspropertyvaluechanges"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-1">Source<a id="source-1" class="heading-anchor" href="#source-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbchange.ecschema.md#instancechange">InstanceChange</a></li>
+</ul>
+<h4 class="h-target-1">Target<a id="target-1" class="heading-anchor" href="#target-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is contained in</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbchange.ecschema.md#propertyvaluechange">PropertyValueChange</a></li>
+</ul>
+<h2 class="h-enumerations">Enumerations<a id="enumerations" class="heading-anchor" href="#enumerations"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-opcode">OpCode<a id="opcode" class="heading-anchor" href="#opcode"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> Enumeration</p>
+<p><strong>Backing Type:</strong> int</p>
+<p><strong>Strict:</strong> true</p>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Label</th>
+<th align="left">Value</th>
 </tr>
 <tr>
+<td align="left">Insert</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">Update</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">Delete</td>
+<td align="left">4</td>
+</tr>
+</tbody></table><h3 class="h-instancekey">InstanceKey<a id="instancekey" class="heading-anchor" href="#instancekey"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> StructClass</p>
+<p><strong>displayLabel:</strong> InstanceKey</p>
+<p><strong>modifier:</strong> Sealed</p>
+<h4 class="h-properties-3">Properties<a id="properties-3" class="heading-anchor" href="#properties-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Label</th>
+<th align="left">Category</th>
+<th align="left">Read Only</th>
+<th align="left">Priority</th>
+</tr>
+<tr>
+<td align="left">Id</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
+<td align="left">false</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">ClassId</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">false</td>
+<td align="left">0</td>
 </tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -310,6 +321,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -324,28 +351,101 @@
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
               <li class='nav-item item '>
-            <a data-target="#inner-nav-classes" class='title' href="#classes"/>
-            <b class='dropdown-menu-title menu-text'>Classes</b>
-            <i class='dropdown icon'></i>
+            <a data-target="#inner-nav-entity-classes" class='title' href="#entity-classes"/>
+            <b class='dropdown-menu-title menu-text'>Entity Classes</b>
+            <i class='nav-list-dropdown icon'></i>
             </a>
-            <ul id="inner-nav-classes" class='inner-nav'>
+            <ul id="inner-nav-entity-classes" class='inner-nav'>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#changesummary">ChangeSummary</a>
+                            <a data-target="#inner-nav-changesummary" class='title' href="#changesummary"/>
+                            <b class='dropdown-menu-title menu-text'>ChangeSummary</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-changesummary" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties">Properties</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#changesummarycontainsinstancechanges">ChangeSummaryContainsInstanceChanges</a>
+                            <a data-target="#inner-nav-instancechange" class='title' href="#instancechange"/>
+                            <b class='dropdown-menu-title menu-text'>InstanceChange</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-instancechange" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-1">Properties</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#instancechange">InstanceChange</a>
+                            <a data-target="#inner-nav-propertyvaluechange" class='title' href="#propertyvaluechange"/>
+                            <b class='dropdown-menu-title menu-text'>PropertyValueChange</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-propertyvaluechange" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-2">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-relationship-classes" class='title' href="#relationship-classes"/>
+            <b class='dropdown-menu-title menu-text'>Relationship Classes</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-relationship-classes" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-changesummarycontainsinstancechanges" class='title' href="#changesummarycontainsinstancechanges"/>
+                            <b class='dropdown-menu-title menu-text'>ChangeSummaryContainsInstanceChanges</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-changesummarycontainsinstancechanges" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target">Target</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#instancechangeownspropertyvaluechanges">InstanceChangeOwnsPropertyValueChanges</a>
+                            <a data-target="#inner-nav-instancechangeownspropertyvaluechanges" class='title' href="#instancechangeownspropertyvaluechanges"/>
+                            <b class='dropdown-menu-title menu-text'>InstanceChangeOwnsPropertyValueChanges</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-instancechangeownspropertyvaluechanges" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-1">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-1">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-enumerations" class='title' href="#enumerations"/>
+            <b class='dropdown-menu-title menu-text'>Enumerations</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-enumerations" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#opcode">OpCode</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#instancekey">InstanceKey</a>
-                    </li>
-                    <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#propertyvaluechange">PropertyValueChange</a>
+                            <a data-target="#inner-nav-instancekey" class='title' href="#instancekey"/>
+                            <b class='dropdown-menu-title menu-text'>InstanceKey</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-instancekey" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-3">Properties</a>
+                                    </li>
+                            </ul>
                     </li>
             </ul>
     </li>

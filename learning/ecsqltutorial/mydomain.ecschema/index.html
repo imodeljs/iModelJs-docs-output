@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -117,17 +116,23 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ecsqltutorial/">ecsqltutorial</a> > MyDomain.ecschema</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/ECSQLTutorial/MyDomain.ecschema.md">Edit this page</a></div>
             <h1 id="mydomain ecschema">MyDomain ECSchema</h1>
-<h2 class="h-classes">Classes<a id="classes" class="heading-anchor" href="#classes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p><strong>alias:</strong> mydomain</p>
+<p><strong>version:</strong> 1.0.0</p>
+<h2 class="h-entity-classes">Entity Classes<a id="entity-classes" class="heading-anchor" href="#entity-classes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <h3 class="h-building">Building<a id="building" class="heading-anchor" href="#building"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> EntityClass</p>
-<p><strong>Base class:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatiallocationelement'>BisCore:SpatialLocationElement</a></p>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>baseClass:</strong> <a href="biscore.ecschema.md#spatiallocationelement">BisCore:SpatialLocationElement</a></p>
 <h3 class="h-device">Device<a id="device" class="heading-anchor" href="#device"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> EntityClass</p>
-<p><strong>Base class:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#physicalelement'>BisCore:PhysicalElement</a></p>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>baseClass:</strong> <a href="biscore.ecschema.md#physicalelement">BisCore:PhysicalElement</a></p>
 <h3 class="h-devicetype">DeviceType<a id="devicetype" class="heading-anchor" href="#devicetype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> EntityClass</p>
-<p><strong>Base class:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#physicaltype'>BisCore:PhysicalType</a></p>
-<p><strong>Class Properties:</strong></p>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>displayLabel:</strong> Device Type</p>
+<p><strong>modifier:</strong> Abstract</p>
+<p><strong>baseClass:</strong> <a href="biscore.ecschema.md#physicaltype">BisCore:PhysicalType</a></p>
+<h4 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -138,32 +143,47 @@
 <td align="left">ManufacturerName</td>
 <td align="left"></td>
 <td align="left">string</td>
-<td align="left"></td>
+</tr>
+</tbody></table><h3 class="h-flamedetectortype">FlameDetectorType<a id="flamedetectortype" class="heading-anchor" href="#flamedetectortype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>displayLabel:</strong> Flame Detector Type</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>baseClass:</strong> <a href="#devicetype">MyDomain:DeviceType</a></p>
+<h4 class="h-properties-1">Properties<a id="properties-1" class="heading-anchor" href="#properties-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
 </tr>
 <tr>
-<td align="left">Description</td>
+<td align="left">FlameDetectionTechnique</td>
+<td align="left"></td>
+<td align="left">FlameDetectionTechnique</td>
+</tr>
+</tbody></table><h3 class="h-notemultiaspect">NoteMultiAspect<a id="notemultiaspect" class="heading-anchor" href="#notemultiaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>displayLabel:</strong> Note</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>baseClass:</strong> <a href="biscore.ecschema.md#elementmultiaspect">BisCore:ElementMultiAspect</a></p>
+<h4 class="h-properties-2">Properties<a id="properties-2" class="heading-anchor" href="#properties-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">Note</td>
 <td align="left"></td>
 <td align="left">string</td>
 </tr>
-</tbody></table><h3 class="h-flamedetectortype">FlameDetectorType<a id="flamedetectortype" class="heading-anchor" href="#flamedetectortype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> EntityClass</p>
-<p><strong>Base class:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#devicetype'>MyDomain:DeviceType</a></p>
-<p><strong>Class Properties:</strong></p>
-<table class="table table-responsive"><tbody><tr>
-<th align="left">Name</th>
-<th align="left">Description</th>
-<th align="left">Type</th>
-<th align="left">Extended Type</th>
-</tr>
-<tr>
-<td align="left">FlameDetectionTechnique</td>
-<td align="left"></td>
-<td align="left">FlameDetectionTechnique</td>
-</tr>
 </tbody></table><h3 class="h-smokedetectortype">SmokeDetectorType<a id="smokedetectortype" class="heading-anchor" href="#smokedetectortype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> EntityClass</p>
-<p><strong>Base class:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#devicetype'>MyDomain:DeviceType</a></p>
-<p><strong>Class Properties:</strong></p>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>displayLabel:</strong> Smoke Detector Type</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>baseClass:</strong> <a href="#devicetype">MyDomain:DeviceType</a></p>
+<h4 class="h-properties-3">Properties<a id="properties-3" class="heading-anchor" href="#properties-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -174,94 +194,116 @@
 <td align="left">SmokeDetectionTechnique</td>
 <td align="left"></td>
 <td align="left">SmokeDetectionTechnique</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
 </tr>
 </tbody></table><h3 class="h-space">Space<a id="space" class="heading-anchor" href="#space"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> EntityClass</p>
-<p><strong>Base class:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatiallocationelement'>BisCore:SpatialLocationElement</a></p>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>baseClass:</strong> <a href="biscore.ecschema.md#spatiallocationelement">BisCore:SpatialLocationElement</a></p>
 <h3 class="h-story">Story<a id="story" class="heading-anchor" href="#story"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> EntityClass</p>
-<p><strong>Base class:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatiallocationelement'>BisCore:SpatialLocationElement</a></p>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>baseClass:</strong> <a href="biscore.ecschema.md#spatiallocationelement">BisCore:SpatialLocationElement</a></p>
+<h3 class="h-syncinfoaspect">SyncInfoAspect<a id="syncinfoaspect" class="heading-anchor" href="#syncinfoaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>displayLabel:</strong> Provenance</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>baseClass:</strong> <a href="biscore.ecschema.md#elementuniqueaspect">BisCore:ElementUniqueAspect</a></p>
+<h4 class="h-properties-4">Properties<a id="properties-4" class="heading-anchor" href="#properties-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">SyncId</td>
+<td align="left"></td>
+<td align="left">string</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Checksum</td>
+<td align="left"></td>
+<td align="left">string</td>
+</tr>
+</tbody></table><h2 class="h-relationship-classes">Relationship Classes<a id="relationship-classes" class="heading-anchor" href="#relationship-classes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-storyhasgenerateddrawing">StoryHasGeneratedDrawing<a id="storyhasgenerateddrawing" class="heading-anchor" href="#storyhasgenerateddrawing"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p>Tracks the relationship between a Story and a Drawing generated from that Story.</p>
+<p><strong>modifier:</strong> None</p>
+<p><strong>baseClass:</strong> <a href="biscore.ecschema.md#elementreferstoelements">BisCore:ElementRefersToElements</a></p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source">Source<a id="source" class="heading-anchor" href="#source"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> has generated</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="mydomain.ecschema.md#story">Story</a></li>
+</ul>
+<h4 class="h-target">Target<a id="target" class="heading-anchor" href="#target"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> is generated from</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="biscore.ecschema.md#drawing">Drawing</a></li>
+</ul>
 <h2 class="h-enumerations">Enumerations<a id="enumerations" class="heading-anchor" href="#enumerations"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <h3 class="h-flamedetectiontechnique">FlameDetectionTechnique<a id="flamedetectiontechnique" class="heading-anchor" href="#flamedetectiontechnique"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Enumeration Properties:</strong></p>
+<p><strong>typeName:</strong> Enumeration</p>
+<p><strong>Backing Type:</strong> int</p>
+<p><strong>Strict:</strong> true</p>
 <table class="table table-responsive"><tbody><tr>
-<th>Name</th>
-<th>Type</th>
-<th>IsStrict</th>
+<th align="left">Label</th>
+<th align="left">Value</th>
 </tr>
 <tr>
-<td>FlameDetectionTechnique</td>
-<td>int</td>
-<td>true</td>
-</tr>
-</tbody></table><p><strong>Enumerators:</strong></p>
-<table class="table table-responsive"><tbody><tr>
-<th>Name</th>
-<th>Value</th>
+<td align="left"></td>
+<td align="left">0</td>
 </tr>
 <tr>
-<td>Optical</td>
-<td>0</td>
+<td align="left"></td>
+<td align="left">1</td>
 </tr>
 <tr>
-<td>Ultraviolet</td>
-<td>1</td>
-</tr>
-<tr>
-<td>Infrared</td>
-<td>2</td>
+<td align="left"></td>
+<td align="left">2</td>
 </tr>
 </tbody></table><h3 class="h-smokedetectiontechnique">SmokeDetectionTechnique<a id="smokedetectiontechnique" class="heading-anchor" href="#smokedetectiontechnique"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Enumeration Properties:</strong></p>
+<p><strong>typeName:</strong> Enumeration</p>
+<p><strong>Backing Type:</strong> int</p>
+<p><strong>Strict:</strong> true</p>
 <table class="table table-responsive"><tbody><tr>
-<th>Name</th>
-<th>Type</th>
-<th>IsStrict</th>
+<th align="left">Label</th>
+<th align="left">Value</th>
 </tr>
 <tr>
-<td>SmokeDetectionTechnique</td>
-<td>int</td>
-<td>true</td>
-</tr>
-</tbody></table><p><strong>Enumerators:</strong></p>
-<table class="table table-responsive"><tbody><tr>
-<th>Name</th>
-<th>Value</th>
+<td align="left"></td>
+<td align="left">0</td>
 </tr>
 <tr>
-<td>Photoelectric</td>
-<td>0</td>
+<td align="left"></td>
+<td align="left">1</td>
 </tr>
 <tr>
-<td>Ionization</td>
-<td>1</td>
-</tr>
-<tr>
-<td>Combination</td>
-<td>2</td>
+<td align="left"></td>
+<td align="left">2</td>
 </tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -270,6 +312,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -284,11 +342,11 @@
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
               <li class='nav-item item '>
-            <a data-target="#inner-nav-classes" class='title' href="#classes"/>
-            <b class='dropdown-menu-title menu-text'>Classes</b>
-            <i class='dropdown icon'></i>
+            <a data-target="#inner-nav-entity-classes" class='title' href="#entity-classes"/>
+            <b class='dropdown-menu-title menu-text'>Entity Classes</b>
+            <i class='nav-list-dropdown icon'></i>
             </a>
-            <ul id="inner-nav-classes" class='inner-nav'>
+            <ul id="inner-nav-entity-classes" class='inner-nav'>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#building">Building</a>
                     </li>
@@ -296,13 +354,48 @@
                             <a class='title solo-title menu-text' href="#device">Device</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#devicetype">DeviceType</a>
+                            <a data-target="#inner-nav-devicetype" class='title' href="#devicetype"/>
+                            <b class='dropdown-menu-title menu-text'>DeviceType</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-devicetype" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties">Properties</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#flamedetectortype">FlameDetectorType</a>
+                            <a data-target="#inner-nav-flamedetectortype" class='title' href="#flamedetectortype"/>
+                            <b class='dropdown-menu-title menu-text'>FlameDetectorType</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-flamedetectortype" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-1">Properties</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#smokedetectortype">SmokeDetectorType</a>
+                            <a data-target="#inner-nav-notemultiaspect" class='title' href="#notemultiaspect"/>
+                            <b class='dropdown-menu-title menu-text'>NoteMultiAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-notemultiaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-2">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-smokedetectortype" class='title' href="#smokedetectortype"/>
+                            <b class='dropdown-menu-title menu-text'>SmokeDetectorType</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-smokedetectortype" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-3">Properties</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#space">Space</a>
@@ -310,12 +403,45 @@
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#story">Story</a>
                     </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-syncinfoaspect" class='title' href="#syncinfoaspect"/>
+                            <b class='dropdown-menu-title menu-text'>SyncInfoAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-syncinfoaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-4">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-relationship-classes" class='title' href="#relationship-classes"/>
+            <b class='dropdown-menu-title menu-text'>Relationship Classes</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-relationship-classes" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-storyhasgenerateddrawing" class='title' href="#storyhasgenerateddrawing"/>
+                            <b class='dropdown-menu-title menu-text'>StoryHasGeneratedDrawing</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-storyhasgenerateddrawing" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
             </ul>
     </li>
        <li class='nav-item item '>
             <a data-target="#inner-nav-enumerations" class='title' href="#enumerations"/>
             <b class='dropdown-menu-title menu-text'>Enumerations</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-enumerations" class='inner-nav'>
                     <li class='nav-item item '>

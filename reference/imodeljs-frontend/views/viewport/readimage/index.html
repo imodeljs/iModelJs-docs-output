@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -191,7 +190,7 @@
             
             <h2 class="h-readimage">readImage <span class="badge badge-pill badge-primary badge-method">Method</span><a id="readimage" class="heading-anchor" href="#readimage"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Read the current image from this viewport from the rendering system. If a view rectangle outside the actual view is specified, the entire view is captured.</p>
-<p><span class="method-name">readImage</span><span class="method-parenthesis">(</span><span class="method-parameters">rect: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a> = new ViewRect(0, 0, -1, -1), targetSize: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a> = Point2d.createZero(), flipVertically: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/imagebuffer'>ImageBuffer</a> | undefined</span></p>
+<p><span class="method-name">readImage</span><span class="method-parenthesis">(</span><span class="method-parameters">rect: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a> = new ViewRect(0, 0, -1, -1), targetSize: Point2d = Point2d.createZero(), flipVertically: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/imagebuffer'>ImageBuffer</a> | undefined</span></p>
 <p><span class="badge badge-pill badge-primary badge-note">note</span> By default the image is returned upside-down. Pass <code>true</code> for <code>flipVertically</code> to flip it along the x-axis.</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -205,7 +204,7 @@
 </tr>
 <tr>
 <td class="h-targetsize"><span class="parameter-name">targetSize</span><a id="targetsize" class="heading-anchor" href="#targetsize"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a></span></td>
+<td><span class="parameter-type">Point2d</span></td>
 <td>The size of the image to be returned. The size can be larger or smaller than the original view.</td>
 </tr>
 <tr>
@@ -220,20 +219,17 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -242,6 +238,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -258,7 +270,7 @@
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-readimage" class='title' href="#readimage"/>
             <b class='dropdown-menu-title menu-text'>readImage</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-readimage" class='inner-nav'>
                     <li class='nav-item item '>

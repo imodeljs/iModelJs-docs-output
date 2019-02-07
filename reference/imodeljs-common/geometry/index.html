@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -197,24 +196,12 @@
 <th>Description</th>
 </tr>
 <tr>
-<td class="h-axisalignedbox3d"><a href="axisalignedbox3d">AxisAlignedBox3d</a><a id="axisalignedbox3d" class="heading-anchor" href="#axisalignedbox3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>A Range3d that is aligned with the axes of a coordinate space.</td>
-</tr>
-<tr>
 <td class="h-cartographic"><a href="cartographic">Cartographic</a><a id="cartographic" class="heading-anchor" href="#cartographic"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>A position on the earth defined by longitude, latitude, and height above the WSG84 ellipsoid .</td>
 </tr>
 <tr>
 <td class="h-cartographicrange"><a href="cartographicrange">CartographicRange</a><a id="cartographicrange" class="heading-anchor" href="#cartographicrange"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>A cartographic range representing a rectangular region if low longitude/latitude &gt; high then area crossing seam is indicated.</td>
-</tr>
-<tr>
-<td class="h-elementalignedbox2d"><a href="elementalignedbox2d">ElementAlignedBox2d</a><a id="elementalignedbox2d" class="heading-anchor" href="#elementalignedbox2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>A bounding box aligned to the orientation of a 2d Element</td>
-</tr>
-<tr>
-<td class="h-elementalignedbox3d"><a href="elementalignedbox3d">ElementAlignedBox3d</a><a id="elementalignedbox3d" class="heading-anchor" href="#elementalignedbox3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>A bounding box aligned to the orientation of a 3d Element</td>
 </tr>
 <tr>
 <td class="h-geometrystreambuilder"><a href="geometrystreambuilder">GeometryStreamBuilder</a><a id="geometrystreambuilder" class="heading-anchor" href="#geometrystreambuilder"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -295,25 +282,38 @@
 <th>Description</th>
 </tr>
 <tr>
+<td class="h-axisalignedbox3d"><a href="axisalignedbox3d">AxisAlignedBox3d</a><a id="axisalignedbox3d" class="heading-anchor" href="#axisalignedbox3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>A Range3d that is aligned with the axes of spatial coordinates.</td>
+</tr>
+<tr>
+<td class="h-elementalignedbox2d"><a href="elementalignedbox2d">ElementAlignedBox2d</a><a id="elementalignedbox2d" class="heading-anchor" href="#elementalignedbox2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>A bounding box aligned to the orientation of a 2d Element</td>
+</tr>
+<tr>
+<td class="h-elementalignedbox3d"><a href="elementalignedbox3d">ElementAlignedBox3d</a><a id="elementalignedbox3d" class="heading-anchor" href="#elementalignedbox3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>A bounding box aligned to the orientation of a 3d Element</td>
+</tr>
+<tr>
 <td class="h-geometrystreamprops"><a href="geometrystreamprops">GeometryStreamProps</a><a id="geometrystreamprops" class="heading-anchor" href="#geometrystreamprops"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/geometricelement'>GeometricElement</a>&apos;s GeometryStream is represented by an array of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/geometrystreamentryprops'>GeometryStreamEntryProps</a>.</td>
 </tr>
+<tr>
+<td class="h-localalignedbox3d"><a href="localalignedbox3d">LocalAlignedBox3d</a><a id="localalignedbox3d" class="heading-anchor" href="#localalignedbox3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>A bounding box aligned to a local coordinate system</td>
+</tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -322,6 +322,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -338,23 +354,14 @@
               <li class='nav-item item '>
             <a data-target="#inner-nav-classes" class='title' href="#classes"/>
             <b class='dropdown-menu-title menu-text'>Classes</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-classes" class='inner-nav'>
-                    <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#axisalignedbox3d">AxisAlignedBox3d</a>
-                    </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#cartographic">Cartographic</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#cartographicrange">CartographicRange</a>
-                    </li>
-                    <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#elementalignedbox2d">ElementAlignedBox2d</a>
-                    </li>
-                    <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#elementalignedbox3d">ElementAlignedBox3d</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#geometrystreambuilder">GeometryStreamBuilder</a>
@@ -379,7 +386,7 @@
        <li class='nav-item item '>
             <a data-target="#inner-nav-interfaces" class='title' href="#interfaces"/>
             <b class='dropdown-menu-title menu-text'>Interfaces</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-interfaces" class='inner-nav'>
                     <li class='nav-item item '>
@@ -411,7 +418,7 @@
        <li class='nav-item item '>
             <a data-target="#inner-nav-namespaces" class='title' href="#namespaces"/>
             <b class='dropdown-menu-title menu-text'>Namespaces</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-namespaces" class='inner-nav'>
                     <li class='nav-item item '>
@@ -425,11 +432,23 @@
        <li class='nav-item item '>
             <a data-target="#inner-nav-type-aliases" class='title' href="#type-aliases"/>
             <b class='dropdown-menu-title menu-text'>Type Aliases</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-type-aliases" class='inner-nav'>
                     <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#axisalignedbox3d">AxisAlignedBox3d</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#elementalignedbox2d">ElementAlignedBox2d</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#elementalignedbox3d">ElementAlignedBox3d</a>
+                    </li>
+                    <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#geometrystreamprops">GeometryStreamProps</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#localalignedbox3d">LocalAlignedBox3d</a>
                     </li>
             </ul>
     </li>

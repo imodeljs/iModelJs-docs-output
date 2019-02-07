@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -204,12 +203,12 @@
 <td>given an axisOrder (e.g.</td>
 </tr>
 <tr>
-<td class="h-clamp"><span class="method-name">clamp</span><span class="method-parenthesis">(</span><span class="method-parameters">value: number, min: number, max: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="clamp" class="heading-anchor" href="#clamp"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td class="h-clamp"><span class="method-name"><a href="clamp">clamp</a></span><span class="method-parenthesis">(</span><span class="method-parameters">value: number, min: number, max: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="clamp" class="heading-anchor" href="#clamp"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Clamp value to (min,max) with no test for order of (min,max)</td>
 </tr>
 <tr>
-<td class="h-clamptostartend"><span class="method-name">clampToStartEnd</span><span class="method-parenthesis">(</span><span class="method-parameters">x: number, a: number, b: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="clamptostartend" class="heading-anchor" href="#clamptostartend"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td class="h-clamptostartend"><span class="method-name"><a href="clamptostartend">clampToStartEnd</a></span><span class="method-parenthesis">(</span><span class="method-parameters">x: number, a: number, b: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="clamptostartend" class="heading-anchor" href="#clamptostartend"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Clamp to (min(a,b), max(a,b))</td>
 </tr>
 <tr>
 <td class="h-conditionaldividefraction"><span class="method-name"><a href="conditionaldividefraction">conditionalDivideFraction</a></span><span class="method-parenthesis">(</span><span class="method-parameters">numerator: number, denominator: number</span><span class="method-parenthesis">):</span><span class="method-output"> number | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="conditionaldividefraction" class="heading-anchor" href="#conditionaldividefraction"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -408,6 +407,10 @@
 <td>Return (a modulo period), e.g.</td>
 </tr>
 <tr>
+<td class="h-resolvenumber"><span class="method-name">resolveNumber</span><span class="method-parenthesis">(</span><span class="method-parameters">value: number | undefined, defaultValue: number = 0</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="resolvenumber" class="heading-anchor" href="#resolvenumber"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-restricttointerval"><span class="method-name"><a href="restricttointerval">restrictToInterval</a></span><span class="method-parenthesis">(</span><span class="method-parameters">x: number, a: number, b: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="restricttointerval" class="heading-anchor" href="#restricttointerval"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>restrict x so it is in the interval <code>[a,b]</code>, allowing a,b to be in either order.</td>
 </tr>
@@ -481,20 +484,17 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -503,6 +503,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -519,13 +535,13 @@
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-geometry" class='title' href="#geometry"/>
             <b class='dropdown-menu-title menu-text'>Geometry</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-geometry" class='inner-nav'>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-methods" class='title' href="#methods"/>
                             <b class='dropdown-menu-title menu-text'>Methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -688,6 +704,9 @@
                                             <a class='title solo-title menu-text' href="#modulo">modulo</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#resolvenumber">resolveNumber</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#restricttointerval">restrictToInterval</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -716,7 +735,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-properties" class='title' href="#properties"/>
                             <b class='dropdown-menu-title menu-text'>Properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
                                     <li class='nav-item item '>

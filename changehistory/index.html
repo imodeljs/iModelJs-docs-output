@@ -9,13 +9,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>0.186.0 Change Notes - iModel.js</title>
-    <meta name="og:title" content="0.186.0 Change Notes - iModel.js">
-    <meta name="twitter:title" content="0.186.0 Change Notes - iModel.js">
+    <title>0.187.0 Change Notes - iModel.js</title>
+    <meta name="og:title" content="0.187.0 Change Notes - iModel.js">
+    <meta name="twitter:title" content="0.187.0 Change Notes - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -95,12 +94,8 @@
     <hr>
     <h3 id="versions">Versions</h3>
     <ul>
-    <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/0.186.0" class="table-of-contents-link">0.186.0</a></p>
+    <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/0.187.0" class="table-of-contents-link">0.187.0</a></p>
     </li>
-    <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/0.183.0" class="table-of-contents-link">0.183.0</a></p>
-    </li>
-    </ul>
-    <ul>
     <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/0.171.0" class="table-of-contents-link">0.171.0</a></p>
     </li>
     <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/0.163.0" class="table-of-contents-link">0.163.0</a></p>
@@ -113,7 +108,26 @@
         <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'>Change History</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/changehistory/index.md">Edit this page</a></div>
-            <h1 id="0.186.0 change notes">0.186.0 Change Notes</h1>
+            <h1 id="0.187.0 change notes">0.187.0 Change Notes</h1>
+<h2 class="h-new-signature-for-rpcinterfaceforward">New signature for RpcInterface.forward<a id="new-signature-for-rpcinterfaceforward" class="heading-anchor" href="#new-signature-for-rpcinterfaceforward"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>To support stricter type checking of apply, call, and bind usage in upcoming versions of the typescript compiler, the signature of RpcInterface.forward is now (parameters: IArguments). This is not a breaking change for most use cases within RPC interfaces that invoke forward via apply. However, it is now possible and preferable with the new signature to directly invoke this.foward(arguments) in RPC interfaces instead of using apply.</p>
+<h2 class="h-node-10">Node 10<a id="node-10" class="heading-anchor" href="#node-10"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The iModel.js backend now requires <a href="https://nodejs.org">Node version 10</a> or later. If you run the backend, please install it before running this version.</p>
+<p>If you build the iModel.js packages from the monorepo, you should follow these steps:</p>
+<ol>
+<li><code>rush clean</code></li>
+<li><code>rush unlink</code></li>
+<li>uninstall current version of Node (on Windows, via &quot;add or remove programs&quot;)</li>
+<li>install latest version of Node 10</li>
+<li><code>npm install -g @microsoft/rush</code></li>
+<li><code>git pull</code></li>
+<li><code>rush install</code><ul>
+<li>if you get an error about npm versions, do <code>npm uninstall -g npm</code></li>
+</ul>
+</li>
+<li><code>rush build</code></li>
+<li><code>rush test</code></li>
+</ol>
 <h2 class="h-allowed-backend-applications-to-specify-https_proxy">Allowed backend applications to specify HTTPS_PROXY<a id="allowed-backend-applications-to-specify-https_proxy" class="heading-anchor" href="#allowed-backend-applications-to-specify-https_proxy"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Applications can now configure backend HTTP requests to go through a firewall proxy server with the HTTPS_PROXY environment.
 To enable this, the backend application must call the following API as part of it&apos;s initialization:
@@ -133,20 +147,17 @@ To enable this, the backend application must call the following API as part of i
 <p>For long running operations like AutoPush, the developer must explicitly supply an <code>IAccessTokenManager</code> to keep the token current.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -155,6 +166,22 @@ To enable this, the backend application must call the following API as part of i
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -169,6 +196,12 @@ To enable this, the backend application must call the following API as part of i
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
               <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#new-signature-for-rpcinterfaceforward">New signature for RpcInterface.forward</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#node-10">Node 10</a>
+    </li>
+       <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#allowed-backend-applications-to-specify-https_proxy">Allowed backend applications to specify HTTPS_PROXY</a>
     </li>
        <li class='nav-item item '>

@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SortableEdge - geometry-core</title>
+    <meta name="og:title" content="SortableEdge - geometry-core">
+    <meta name="twitter:title" content="SortableEdge - geometry-core">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
+
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
+    <span id="contentLoader">
+        <p>Woah! This page has a great deal of content... Give us a second to load it.</p>
+    </span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+
+
+
+        <header id="main-header">
+            <div class='nav-header-container'>
+                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                    <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo-small" class="site-logo-small" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-icon.svg" style="display:none;"/> 
+                    </a>
+                    <button class="navbar-toggler no-user-select mr-auto" type="button" data-toggle="collapse" data-target="#navbar5">
+                        <span class="navbar-toggler-header"></span>
+                    </button>
+                    <ul class="navbar-nav ml-auto pr-0 nav-search">
+                        <span class='search-bar'>
+                          <li>
+                            <div id='search-container'>
+                            </div>
+                          </li>
+                          <script>
+                            (function() {
+                              var cx = '018053174497532353467:v_gnrjjlqwc';
+                              var gcse = document.createElement('script');
+                              gcse.type = 'text/javascript';
+                              gcse.async = true;
+                              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                              var s = document.getElementsByTagName('script')[0];
+                              s.parentNode.insertBefore(gcse, s);
+                            })();
+                          </script>
+                          <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+                        </span>
+                    </ul>
+                    <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
+                        <ul class="navbar-nav mb-0" id="doc-site-tabs">
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.187.0</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+<div id='main-wrapper'>
+    <nav id='sidebar'>
+        <div id='table-of-contents' class="custom-scrollbar">
+            <div id="dismiss">
+                <i id="dismiss-arrow" class="icon icon-chevron-left no-user-select"></i>
+            </div>
+            <hr id="dismiss-hr" class='sm-only'>
+            <ul id='main-navigation-list'>
+                <html><head></head><body><h2 id="imodel.js packages">iModel.js Packages</h2>
+    <hr>
+    <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/&apos;&gt;imodeljs-backend&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/" class="table-of-contents-link">imodeljs-backend</a></h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodelhost/" class="table-of-contents-link">IModelHost</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/" class="table-of-contents-link">iModels</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/" class="table-of-contents-link">Schema</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/models/" class="table-of-contents-link">Models</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/" class="table-of-contents-link">Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/codes/" class="table-of-contents-link">Codes</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/" class="table-of-contents-link">View Definitions</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/relationships/" class="table-of-contents-link">Relationships</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elementaspects/" class="table-of-contents-link">Element Aspects</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/" class="table-of-contents-link">Categories</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/symbology/" class="table-of-contents-link">Symbology</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/ecdb/" class="table-of-contents-link">ECDb</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/ecsql/" class="table-of-contents-link">ECSQL</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/portability/" class="table-of-contents-link">Portability</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/all/" class="table-of-contents-link">All</a></li>
+    </ul>
+    <hr>
+    <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/&apos;&gt;imodeljs-frontend&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/" class="table-of-contents-link">imodeljs-frontend</a></h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/" class="table-of-contents-link">IModelApp</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/" class="table-of-contents-link">IModelConnection</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/elementstate/" class="table-of-contents-link">ElementState</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/" class="table-of-contents-link">ModelState</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/" class="table-of-contents-link">Tools</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/" class="table-of-contents-link">Views</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/" class="table-of-contents-link">Locating Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/accudraw/" class="table-of-contents-link">AccuDraw</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/notifications/" class="table-of-contents-link">Notifications</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/selectionset/" class="table-of-contents-link">Selection Set</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/" class="table-of-contents-link">Rendering</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/all/" class="table-of-contents-link">All</a></li>
+    </ul>
+    <hr>
+    <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/&apos;&gt;imodeljs-common&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/" class="table-of-contents-link">imodeljs-common</a></h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/" class="table-of-contents-link">Wire Formats</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/" class="table-of-contents-link">Codes</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/" class="table-of-contents-link">Geometry</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/" class="table-of-contents-link">Views</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/" class="table-of-contents-link">Symbology</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/" class="table-of-contents-link">Rendering</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/" class="table-of-contents-link">iModels</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/" class="table-of-contents-link">RPC Interface</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/ecsql/" class="table-of-contents-link">ECSQL</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/all/" class="table-of-contents-link">All</a></li>
+    </ul>
+    <hr>
+    <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/&apos;&gt;imodeljs-clients&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/" class="table-of-contents-link">imodeljs-clients</a></h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/" class="table-of-contents-link">Authentication</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/" class="table-of-contents-link">Base Clients</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/connectservices/" class="table-of-contents-link">Connect Services</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/" class="table-of-contents-link">iModel Hub</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/" class="table-of-contents-link">iModel Hub Events</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/" class="table-of-contents-link">iModel Hub Global Events</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodels/" class="table-of-contents-link">iModels</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/otherservices/" class="table-of-contents-link">Other Services</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/" class="table-of-contents-link">Utils</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/all/" class="table-of-contents-link">All</a></li>
+    </ul>
+    <p>&#xA0;</p>
+    <h2 id="support packages">Support Packages</h2>
+    <hr>
+    <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/&apos;&gt;bentleyjs-core&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/" class="table-of-contents-link">bentleyjs-core</a></h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/besqlite/" class="table-of-contents-link">BeSQLite</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/" class="table-of-contents-link">Errors</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/" class="table-of-contents-link">Events</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/" class="table-of-contents-link">Ids</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/" class="table-of-contents-link">Logging</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/" class="table-of-contents-link">Utils</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/all/" class="table-of-contents-link">All</a></li>
+    </ul>
+    <hr>
+    <h3 id="&lt;a href=&apos;https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/&apos;&gt;geometry-core&lt;/a&gt;"><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/" class="table-of-contents-link">geometry-core</a></h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/" class="table-of-contents-link">Cartesian Geometry</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/arraysandinterfaces/" class="table-of-contents-link">Arrays &amp; Interfaces</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/bspline/" class="table-of-contents-link">Bspline</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/" class="table-of-contents-link">Curve</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/" class="table-of-contents-link">Numerics</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/" class="table-of-contents-link">Polyface</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/serialization/" class="table-of-contents-link">Serialization</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/solid/" class="table-of-contents-link">Solid</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/" class="table-of-contents-link">Topology</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/all/" class="table-of-contents-link">All</a></li>
+    </ul>
+    </body></html>
+            </ul>
+        </div>
+    </nav>    <div class='documentation-main'>
+        <article id="main" class="main-content">
+            <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/">geometry-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/polyface/">Polyface</a> > SortableEdge</div>
+            
+            <h2 class="h-sortableedge">SortableEdge <span class="badge badge-pill badge-primary badge-class">Class</span><a id="sortableedge" class="heading-anchor" href="#sortableedge"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<ul>
+<li>For boundary sorting, an edge is a (packed!) Float64Array.</li>
+<li>Fixed entry positions are:<ul>
+<li>[0] is start vertex index (in CCW order around its facet)</li>
+<li>[1] is end vertex index (in CCW order around its facet)</li>
+<li>[2] is facet index.</li>
+</ul>
+</li>
+</ul>
+<h3 class="h-extends">Extends<a id="extends" class="heading-anchor" href="#extends"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<ul>
+<li>Float64Array</li>
+</ul>
+<h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
+</tr>
+<tr>
+<td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">vertexA: number, vertexB: number, facetIndex: number</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/sortableedge'>SortableEdge</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-tojson"><span class="method-name">toJSON</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> any</span><a id="tojson" class="heading-anchor" href="#tojson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-aredirectedpartners"><span class="method-name">areDirectedPartners</span><span class="method-parenthesis">(</span><span class="method-parameters">edgeA: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/sortableedge'>SortableEdge</a>, edgeB: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/sortableedge'>SortableEdge</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="aredirectedpartners" class="heading-anchor" href="#aredirectedpartners"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Return true if the vertices edgeA and edgeB are the same vertex indices in opposite order</td>
+</tr>
+<tr>
+<td class="h-areundirectedpartners"><span class="method-name">areUndirectedPartners</span><span class="method-parenthesis">(</span><span class="method-parameters">edgeA: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/sortableedge'>SortableEdge</a>, edgeB: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/sortableedge'>SortableEdge</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="areundirectedpartners" class="heading-anchor" href="#areundirectedpartners"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Return true if the vertices edgeA and edgeB are the same vertex indices with no consideration of order</td>
+</tr>
+<tr>
+<td class="h-clusterarraytojson"><span class="method-name">clusterArrayToJSON</span><span class="method-parenthesis">(</span><span class="method-parameters">data: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/sortableedgecluster'>SortableEdgeCluster</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> any[]</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="clusterarraytojson" class="heading-anchor" href="#clusterarraytojson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-clustertojson"><span class="method-name">clusterToJSON</span><span class="method-parenthesis">(</span><span class="method-parameters">data: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/sortableedgecluster'>SortableEdgeCluster</a></span><span class="method-parenthesis">):</span><span class="method-output"> any</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="clustertojson" class="heading-anchor" href="#clustertojson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-lessthan"><span class="method-name"><a href="lessthan">lessThan</a></span><span class="method-parenthesis">(</span><span class="method-parameters">edgeA: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/sortableedge'>SortableEdge</a>, edgeB: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/sortableedge'>SortableEdge</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="lessthan" class="heading-anchor" href="#lessthan"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>lexical comparison of two edges.</td>
+</tr>
+</tbody></table><h3 class="h-inherited-methods"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited methods<a id="inherited-methods" class="heading-anchor" href="#inherited-methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Inherited from</th>
+<th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
+</tr>
+<tr>
+<td class="h-__iterator"><span class="inherited-method-name"><a href="$CROSS_PACKAGE_REFERENCE.Float64Array.%5BSymbol">__@iterator</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> IterableIterator&lt;number&gt;</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="__iterator" class="heading-anchor" href="#__iterator"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">[Float64Array.Symbol</span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-copywithin"><span class="inherited-method-name">copyWithin</span><span class="method-parenthesis">(</span><span class="method-parameters">target: number, start: number, end?: number</span><span class="method-parenthesis">):</span><span class="method-output"> this</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="copywithin" class="heading-anchor" href="#copywithin"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Returns the this object after copying a section of the array identified by start and end<br>to the same array starting at position target</td>
+</tr>
+<tr>
+<td class="h-entries"><span class="inherited-method-name">entries</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> IterableIterator&lt;[number, number]&gt;</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="entries" class="heading-anchor" href="#entries"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Returns an array of key, value pairs for every entry in the array</td>
+</tr>
+<tr>
+<td class="h-every"><span class="inherited-method-name">every</span><span class="method-parenthesis">(</span><span class="method-parameters">callbackfn: (value: number, index: number, array: Float64Array) =&gt; boolean, thisArg?: any</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="every" class="heading-anchor" href="#every"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Determines whether all the members of an array satisfy the specified test.</td>
+</tr>
+<tr>
+<td class="h-fill"><span class="inherited-method-name">fill</span><span class="method-parenthesis">(</span><span class="method-parameters">value: number, start?: number, end?: number</span><span class="method-parenthesis">):</span><span class="method-output"> this</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="fill" class="heading-anchor" href="#fill"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Returns the this object after filling the section identified by start and end with value</td>
+</tr>
+<tr>
+<td class="h-filter"><span class="inherited-method-name">filter</span><span class="method-parenthesis">(</span><span class="method-parameters">callbackfn: (value: number, index: number, array: Float64Array) =&gt; any, thisArg?: any</span><span class="method-parenthesis">):</span><span class="method-output"> Float64Array</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="filter" class="heading-anchor" href="#filter"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Returns the elements of an array that meet the condition specified in a callback function.</td>
+</tr>
+<tr>
+<td class="h-find"><span class="inherited-method-name">find</span><span class="method-parenthesis">(</span><span class="method-parameters">predicate: (value: number, index: number, obj: Float64Array) =&gt; boolean, thisArg?: any</span><span class="method-parenthesis">):</span><span class="method-output"> number | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="find" class="heading-anchor" href="#find"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Returns the value of the first element in the array where predicate is true, and undefined<br>otherwise.</td>
+</tr>
+<tr>
+<td class="h-findindex"><span class="inherited-method-name">findIndex</span><span class="method-parenthesis">(</span><span class="method-parameters">predicate: (value: number, index: number, obj: Float64Array) =&gt; boolean, thisArg?: any</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="findindex" class="heading-anchor" href="#findindex"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Returns the index of the first element in the array where predicate is true, and -1<br>otherwise.</td>
+</tr>
+<tr>
+<td class="h-foreach"><span class="inherited-method-name">forEach</span><span class="method-parenthesis">(</span><span class="method-parameters">callbackfn: (value: number, index: number, array: Float64Array) =&gt; void, thisArg?: any</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="foreach" class="heading-anchor" href="#foreach"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Performs the specified action for each element in an array.</td>
+</tr>
+<tr>
+<td class="h-includes"><span class="inherited-method-name">includes</span><span class="method-parenthesis">(</span><span class="method-parameters">searchElement: number, fromIndex?: number</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="includes" class="heading-anchor" href="#includes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Determines whether an array includes a certain element, returning true or false as appropriate.</td>
+</tr>
+<tr>
+<td class="h-indexof"><span class="inherited-method-name">indexOf</span><span class="method-parenthesis">(</span><span class="method-parameters">searchElement: number, fromIndex?: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="indexof" class="heading-anchor" href="#indexof"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Returns the index of the first occurrence of a value in an array.</td>
+</tr>
+<tr>
+<td class="h-join"><span class="inherited-method-name">join</span><span class="method-parenthesis">(</span><span class="method-parameters">separator?: string</span><span class="method-parenthesis">):</span><span class="method-output"> string</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="join" class="heading-anchor" href="#join"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Adds all the elements of an array separated by the specified separator string.</td>
+</tr>
+<tr>
+<td class="h-keys"><span class="inherited-method-name">keys</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> IterableIterator&lt;number&gt;</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="keys" class="heading-anchor" href="#keys"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Returns an list of keys in the array</td>
+</tr>
+<tr>
+<td class="h-lastindexof"><span class="inherited-method-name">lastIndexOf</span><span class="method-parenthesis">(</span><span class="method-parameters">searchElement: number, fromIndex?: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="lastindexof" class="heading-anchor" href="#lastindexof"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Returns the index of the last occurrence of a value in an array.</td>
+</tr>
+<tr>
+<td class="h-map"><span class="inherited-method-name">map</span><span class="method-parenthesis">(</span><span class="method-parameters">callbackfn: (value: number, index: number, array: Float64Array) =&gt; number, thisArg?: any</span><span class="method-parenthesis">):</span><span class="method-output"> Float64Array</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="map" class="heading-anchor" href="#map"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Calls a defined callback function on each element of an array, and returns an array that<br>contains the results.</td>
+</tr>
+<tr>
+<td class="h-reduce"><span class="inherited-method-name">reduce</span><span class="method-parenthesis">(</span><span class="method-parameters">callbackfn: (previousValue: number, currentValue: number, currentIndex: number, array: Float64Array) =&gt; number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="reduce" class="heading-anchor" href="#reduce"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Calls the specified callback function for all the elements in an array.</td>
+</tr>
+<tr>
+<td class="h-reduce-1"><span class="inherited-method-name">reduce</span><span class="method-parenthesis">(</span><span class="method-parameters">callbackfn: (previousValue: number, currentValue: number, currentIndex: number, array: Float64Array) =&gt; number, initialValue: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="reduce-1" class="heading-anchor" href="#reduce-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-reduceu"><span class="inherited-method-name">reduce</span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">U</span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">callbackfn: (previousValue: U, currentValue: number, currentIndex: number, array: Float64Array) =&gt; U, initialValue: U</span><span class="method-parenthesis">):</span><span class="method-output"> U</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="reduceu" class="heading-anchor" href="#reduceu"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Calls the specified callback function for all the elements in an array.</td>
+</tr>
+<tr>
+<td class="h-reduceright"><span class="inherited-method-name">reduceRight</span><span class="method-parenthesis">(</span><span class="method-parameters">callbackfn: (previousValue: number, currentValue: number, currentIndex: number, array: Float64Array) =&gt; number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="reduceright" class="heading-anchor" href="#reduceright"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Calls the specified callback function for all the elements in an array, in descending order.</td>
+</tr>
+<tr>
+<td class="h-reduceright-1"><span class="inherited-method-name">reduceRight</span><span class="method-parenthesis">(</span><span class="method-parameters">callbackfn: (previousValue: number, currentValue: number, currentIndex: number, array: Float64Array) =&gt; number, initialValue: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="reduceright-1" class="heading-anchor" href="#reduceright-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-reducerightu"><span class="inherited-method-name">reduceRight</span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">U</span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">callbackfn: (previousValue: U, currentValue: number, currentIndex: number, array: Float64Array) =&gt; U, initialValue: U</span><span class="method-parenthesis">):</span><span class="method-output"> U</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="reducerightu" class="heading-anchor" href="#reducerightu"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Calls the specified callback function for all the elements in an array, in descending order.</td>
+</tr>
+<tr>
+<td class="h-reverse"><span class="inherited-method-name">reverse</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> Float64Array</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="reverse" class="heading-anchor" href="#reverse"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Reverses the elements in an Array.</td>
+</tr>
+<tr>
+<td class="h-set"><span class="inherited-method-name">set</span><span class="method-parenthesis">(</span><span class="method-parameters">array: ArrayLike&lt;number&gt;, offset?: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="set" class="heading-anchor" href="#set"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Sets a value or an array of values.</td>
+</tr>
+<tr>
+<td class="h-slice"><span class="inherited-method-name">slice</span><span class="method-parenthesis">(</span><span class="method-parameters">start?: number, end?: number</span><span class="method-parenthesis">):</span><span class="method-output"> Float64Array</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="slice" class="heading-anchor" href="#slice"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Returns a section of an array.</td>
+</tr>
+<tr>
+<td class="h-some"><span class="inherited-method-name">some</span><span class="method-parenthesis">(</span><span class="method-parameters">callbackfn: (value: number, index: number, array: Float64Array) =&gt; boolean, thisArg?: any</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="some" class="heading-anchor" href="#some"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Determines whether the specified callback function returns true for any element of an array.</td>
+</tr>
+<tr>
+<td class="h-sort"><span class="inherited-method-name">sort</span><span class="method-parenthesis">(</span><span class="method-parameters">compareFn?: (a: number, b: number) =&gt; number</span><span class="method-parenthesis">):</span><span class="method-output"> this</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="sort" class="heading-anchor" href="#sort"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Sorts an array.</td>
+</tr>
+<tr>
+<td class="h-subarray"><span class="inherited-method-name">subarray</span><span class="method-parenthesis">(</span><span class="method-parameters">begin: number, end?: number</span><span class="method-parenthesis">):</span><span class="method-output"> Float64Array</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="subarray" class="heading-anchor" href="#subarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Gets a new Float64Array view of the ArrayBuffer store for this array, referencing the elements<br>at begin, inclusive, up to end, exclusive.</td>
+</tr>
+<tr>
+<td class="h-tolocalestring"><span class="inherited-method-name">toLocaleString</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> string</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="tolocalestring" class="heading-anchor" href="#tolocalestring"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Converts a number to a string by using the current locale.</td>
+</tr>
+<tr>
+<td class="h-tostring"><span class="inherited-method-name">toString</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> string</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="tostring" class="heading-anchor" href="#tostring"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Returns a string representation of an array.</td>
+</tr>
+<tr>
+<td class="h-values"><span class="inherited-method-name">values</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> IterableIterator&lt;number&gt;</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="values" class="heading-anchor" href="#values"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>Returns an list of values in the array</td>
+</tr>
+</tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td class="h-facetindex"><span class="property-name">facetIndex</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="facetindex" class="heading-anchor" href="#facetindex"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> number</span></td>
+<td>Return the facet index.</td>
+</tr>
+<tr>
+<td class="h-float64array"><span class="property-name">Float64Array</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="float64array" class="heading-anchor" href="#float64array"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">Float64ArrayConstructor</span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-highvertexindex"><span class="property-name">highVertexIndex</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="highvertexindex" class="heading-anchor" href="#highvertexindex"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> number</span></td>
+<td>Return the vertex index with higher numeric value</td>
+</tr>
+<tr>
+<td class="h-islowhigh"><span class="property-name">islowHigh</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="islowhigh" class="heading-anchor" href="#islowhigh"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> boolean</span></td>
+<td>return true if vertexIndexA is less than vertexIndexB</td>
+</tr>
+<tr>
+<td class="h-isnulledge"><span class="property-name">isNullEdge</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isnulledge" class="heading-anchor" href="#isnulledge"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> boolean</span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-lowvertexindex"><span class="property-name">lowVertexIndex</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="lowvertexindex" class="heading-anchor" href="#lowvertexindex"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> number</span></td>
+<td>Return the vertex index with lower numeric value</td>
+</tr>
+<tr>
+<td class="h-vertexindexa"><span class="property-name">vertexIndexA</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="vertexindexa" class="heading-anchor" href="#vertexindexa"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> number</span></td>
+<td>Return the vertex index that appears first in the order stored.</td>
+</tr>
+<tr>
+<td class="h-vertexindexb"><span class="property-name">vertexIndexB</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="vertexindexb" class="heading-anchor" href="#vertexindexb"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> number</span></td>
+<td>Return the vertex index that appears seccond in the order stored.</td>
+</tr>
+</tbody></table><h3 class="h-inherited-properties"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited properties<a id="inherited-properties" class="heading-anchor" href="#inherited-properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Inherited from</th>
+<th>Description</th>
+</tr>
+<tr>
+<td class="h-__tostringtag"><span class="inherited-property-name"><a href="$CROSS_PACKAGE_REFERENCE.Float64Array.%5BSymbol">__@toStringTag</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="__tostringtag" class="heading-anchor" href="#__tostringtag"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">&quot;Float64Array&quot; = undefined</span></td>
+<td><span class="inherited-from">[Float64Array.Symbol</span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-buffer"><span class="inherited-property-name">buffer</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="buffer" class="heading-anchor" href="#buffer"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">ArrayBufferLike</span></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>The ArrayBuffer instance referenced by the array.</td>
+</tr>
+<tr>
+<td class="h-bytelength"><span class="inherited-property-name">byteLength</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="bytelength" class="heading-anchor" href="#bytelength"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">number</span></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>The length in bytes of the array.</td>
+</tr>
+<tr>
+<td class="h-byteoffset"><span class="inherited-property-name">byteOffset</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="byteoffset" class="heading-anchor" href="#byteoffset"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">number</span></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>The offset in bytes of the array.</td>
+</tr>
+<tr>
+<td class="h-bytes_per_element"><span class="inherited-property-name">BYTES_PER_ELEMENT</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="bytes_per_element" class="heading-anchor" href="#bytes_per_element"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">number</span></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>The size in bytes of each element in the array.</td>
+</tr>
+<tr>
+<td class="h-length"><span class="inherited-property-name">length</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="length" class="heading-anchor" href="#length"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">number</span></td>
+<td><span class="inherited-from">Float64Array</span></td>
+<td>The length of the array.</td>
+</tr>
+</tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<ul>
+<li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/geometry/src/polyface/IndexedEdgeMatcher.ts">polyface/IndexedEdgeMatcher.ts</a></span></li>
+</ul>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>07 February, 2019</span>
+            </p>
+            <div id="imodeljs-github-comments">
+            </div>
+            
+            <script>
+              $(document).ready(function () {
+                function initializeComments(repo) {
+                  var s = document.createElement('script');
+                  s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
+                  s.setAttribute('repo', repo);
+                  s.setAttribute('issue-term', 'title');
+                  s.setAttribute('crossorigin', 'anonymous');
+                  s.setAttribute('theme', 'github-light');
+                  s.async = true;
+            
+                  document.getElementById("imodeljs-github-comments").appendChild(s);
+                }
+            
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
+              });
+            </script>
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div class="toc-overlay"></div>
+    <div id='inner-table-of-contents'>
+       <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item active typeDocHeader'>
+            <a data-target="#inner-nav-sortableedge" class='title' href="#sortableedge"/>
+            <b class='dropdown-menu-title menu-text'>SortableEdge</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-sortableedge" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#extends">Extends</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-methods" class='title' href="#methods"/>
+                            <b class='dropdown-menu-title menu-text'>Methods</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-methods" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constructor">constructor</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#tojson">toJSON</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#aredirectedpartners">areDirectedPartners</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#areundirectedpartners">areUndirectedPartners</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#clusterarraytojson">clusterArrayToJSON</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#clustertojson">clusterToJSON</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#lessthan">lessThan</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-inherited-methods" class='title' href="#inherited-methods"/>
+                            <b class='dropdown-menu-title menu-text'>Inherited methods</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-inherited-methods" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#__iterator">__@iterator</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#copywithin">copyWithin</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#entries">entries</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#every">every</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#fill">fill</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#filter">filter</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#find">find</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#findindex">findIndex</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#foreach">forEach</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#includes">includes</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#indexof">indexOf</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#join">join</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#keys">keys</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#lastindexof">lastIndexOf</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#map">map</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#reduce">reduce</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#reduce-1">reduce</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#reduce-2">reduce</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#reduceright">reduceRight</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#reduceright-1">reduceRight</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#reduceright-2">reduceRight</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#reverse">reverse</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#set">set</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#slice">slice</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#some">some</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#sort">sort</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#subarray">subarray</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#tolocalestring">toLocaleString</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#tostring">toString</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#values">values</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-properties" class='title' href="#properties"/>
+                            <b class='dropdown-menu-title menu-text'>Properties</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-properties" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#facetindex">facetIndex</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#float64array">Float64Array</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#highvertexindex">highVertexIndex</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#islowhigh">islowHigh</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isnulledge">isNullEdge</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#lowvertexindex">lowVertexIndex</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#vertexindexa">vertexIndexA</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#vertexindexb">vertexIndexB</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-inherited-properties" class='title' href="#inherited-properties"/>
+                            <b class='dropdown-menu-title menu-text'>Inherited properties</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-inherited-properties" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#__tostringtag">__@toStringTag</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#buffer">buffer</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#bytelength">byteLength</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#byteoffset">byteOffset</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#bytes_per_element">BYTES_PER_ELEMENT</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#length">length</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#defined-in">Defined in</a>
+                    </li>
+            </ul>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color pt-1 pb-3">
+  <!-- Footer Links Container -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row d-flex align-items-center mt-2">
+
+      <!-- Grid column -->
+      <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
+
+        <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+        </a>
+        <small style="color: white; margin-right: 7px;"> powered by </small>
+        <a href="https://www.bentley.com">
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
+        </a>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-5 col-lg-4 ml-lg-0">
+
+        <!-- Social buttons -->
+        <div class="text-center text-md-right">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://twitter.com/imodeljs" target="_blank">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://github.com/imodeljs" target="_blank">
+                <i class="fa fa-github"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://stackoverflow.com/tags/imodeljs"
+                target="_blank">
+                <i class="fa fa-stack-overflow"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links Container -->
+
+</footer>
+<!-- Footer -->
+
+</div>
+<a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
+</body>
+
+</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

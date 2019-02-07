@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -190,7 +189,7 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/views/">Views</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/views/viewstate/">ViewState</a> > changeCategoryDisplay</div>
             
             <h2 class="h-changecategorydisplay">changeCategoryDisplay <span class="badge badge-pill badge-primary badge-method">Method</span><a id="changecategorydisplay" class="heading-anchor" href="#changecategorydisplay"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Enable or disable display of elements belonging to a set of categories specified by ID.
+<p>Enable or disable display of elements belonging to a set of categories specified by Id.
 Visibility of individual subcategories belonging to a category can be controlled separately through the use of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryoverride'>SubCategoryOverride</a>s.
 By default, enabling display of a category does not affect display of subcategories thereof which have been overridden to be invisible.</p>
 <p><span class="method-name">changeCategoryDisplay</span><span class="method-parenthesis">(</span><span class="method-parameters">categories: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64arg'>Id64Arg</a>, display: boolean, enableAllSubCategories: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></p>
@@ -202,7 +201,7 @@ By default, enabling display of a category does not affect display of subcategor
 <tr>
 <td class="h-categories"><span class="parameter-name">categories</span><a id="categories" class="heading-anchor" href="#categories"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64arg'>Id64Arg</a></span></td>
-<td>The ID(s) of the categories to which the change should be applied. No other categories will be affected.</td>
+<td>The Id(s) of the categories to which the change should be applied. No other categories will be affected.</td>
 </tr>
 <tr>
 <td class="h-display"><span class="parameter-name">display</span><a id="display" class="heading-anchor" href="#display"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -220,20 +219,17 @@ By default, enabling display of a category does not affect display of subcategor
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -242,6 +238,22 @@ By default, enabling display of a category does not affect display of subcategor
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -258,7 +270,7 @@ By default, enabling display of a category does not affect display of subcategor
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-changecategorydisplay" class='title' href="#changecategorydisplay"/>
             <b class='dropdown-menu-title menu-text'>changeCategoryDisplay</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-changecategorydisplay" class='inner-nav'>
                     <li class='nav-item item '>

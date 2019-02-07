@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -117,78 +116,15 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > ECDbMeta.ecschema</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/ECDbMeta.ecschema.md">Edit this page</a></div>
             <h1 id="ecdbmeta ecschema">ECDbMeta ECSchema</h1>
-<h2 class="h-classes">Classes<a id="classes" class="heading-anchor" href="#classes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<h3 class="h-classhasallbaseclasses">ClassHasAllBaseClasses<a id="classhasallbaseclasses" class="heading-anchor" href="#classhasallbaseclasses"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>Relates a given ECClassId (Source) to all its base classes (recursively) (Target). For optimization reasons this ECRelationshipClass also holds a row for each ECClass that points to itself. Base class id order: class itself, then base classes in breadth first manner.</p>
-<p><strong>Class Type:</strong> RelationshipClass</p>
-<p><strong>Relationship Class:</strong></p>
-<table class="table table-responsive"><tbody><tr>
-<th align="left"></th>
-<th align="left">ConstraintClasses</th>
-<th align="left">Multiplicity</th>
-</tr>
-<tr>
-<td align="left"><strong>Source</strong></td>
-<td align="left">ECClassDef</td>
-<td align="left">(0..*)</td>
-</tr>
-<tr>
-<td align="left"><strong>Target</strong></td>
-<td align="left">ECClassDef</td>
-<td align="left">(0..*)</td>
-</tr>
-</tbody></table><h3 class="h-classhasbaseclasses">ClassHasBaseClasses<a id="classhasbaseclasses" class="heading-anchor" href="#classhasbaseclasses"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> RelationshipClass</p>
-<p><strong>Relationship Class:</strong></p>
-<table class="table table-responsive"><tbody><tr>
-<th align="left"></th>
-<th align="left">ConstraintClasses</th>
-<th align="left">Multiplicity</th>
-</tr>
-<tr>
-<td align="left"><strong>Source</strong></td>
-<td align="left">ECClassDef</td>
-<td align="left">(0..*)</td>
-</tr>
-<tr>
-<td align="left"><strong>Target</strong></td>
-<td align="left">ECClassDef</td>
-<td align="left">(0..*)</td>
-</tr>
-</tbody></table><p><strong>Class Properties:</strong></p>
-<table class="table table-responsive"><tbody><tr>
-<th align="left">Name</th>
-<th align="left">Description</th>
-<th align="left">Type</th>
-<th align="left">Extended Type</th>
-</tr>
-<tr>
-<td align="left">Ordinal</td>
-<td align="left"></td>
-<td align="left">int</td>
-</tr>
-</tbody></table><h3 class="h-classownslocalproperties">ClassOwnsLocalProperties<a id="classownslocalproperties" class="heading-anchor" href="#classownslocalproperties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> RelationshipClass</p>
-<p><strong>Relationship Class:</strong></p>
-<table class="table table-responsive"><tbody><tr>
-<th align="left"></th>
-<th align="left">ConstraintClasses</th>
-<th align="left">Multiplicity</th>
-</tr>
-<tr>
-<td align="left"><strong>Source</strong></td>
-<td align="left">ECClassDef</td>
-<td align="left">(1..1)</td>
-</tr>
-<tr>
-<td align="left"><strong>Target</strong></td>
-<td align="left">ECPropertyDef</td>
-<td align="left">(0..*)</td>
-</tr>
-</tbody></table><h3 class="h-ecclassdef">ECClassDef<a id="ecclassdef" class="heading-anchor" href="#ecclassdef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>alias:</strong> meta</p>
+<p><strong>version:</strong> 4.0.1</p>
+<h2 class="h-entity-classes">Entity Classes<a id="entity-classes" class="heading-anchor" href="#entity-classes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-ecclassdef">ECClassDef<a id="ecclassdef" class="heading-anchor" href="#ecclassdef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
 <p>ECClass</p>
-<p><strong>Class Type:</strong> EntityClass</p>
-<p><strong>Class Properties:</strong></p>
+<p><strong>displayLabel:</strong> ECClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<h4 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -198,7 +134,7 @@
 <tr>
 <td align="left">Schema</td>
 <td align="left"></td>
-<td align="left"></td>
+<td align="left"><a href="ecdbmeta.ecschema.md#schemaownsclasses">navigation</a></td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -249,9 +185,11 @@
 <td align="left">ECRelationshipDirection</td>
 </tr>
 </tbody></table><h3 class="h-ecenumerationdef">ECEnumerationDef<a id="ecenumerationdef" class="heading-anchor" href="#ecenumerationdef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
 <p>ECEnumeration</p>
-<p><strong>Class Type:</strong> EntityClass</p>
-<p><strong>Class Properties:</strong></p>
+<p><strong>displayLabel:</strong> ECEnumeration</p>
+<p><strong>modifier:</strong> Sealed</p>
+<h4 class="h-properties-1">Properties<a id="properties-1" class="heading-anchor" href="#properties-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -261,7 +199,7 @@
 <tr>
 <td align="left">Schema</td>
 <td align="left"></td>
-<td align="left"></td>
+<td align="left"><a href="ecdbmeta.ecschema.md#schemaownsenumerations">navigation</a></td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -297,62 +235,14 @@
 <tr>
 <td align="left">EnumValues</td>
 <td align="left"></td>
-<td align="left"><a href="#ECEnumeratorDef">ECEnumeratorDef</a>[]</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-</tbody></table><h3 class="h-ecenumeratordef">ECEnumeratorDef<a id="ecenumeratordef" class="heading-anchor" href="#ecenumeratordef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> StructClass</p>
-<p><strong>Class Properties:</strong></p>
-<table class="table table-responsive"><tbody><tr>
-<th align="left">Name</th>
-<th align="left">Description</th>
-<th align="left">Type</th>
-<th align="left">Extended Type</th>
-</tr>
-<tr>
-<td align="left">Name</td>
-<td align="left"></td>
-<td align="left">string</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">DisplayLabel</td>
-<td align="left"></td>
-<td align="left">string</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">Description</td>
-<td align="left"></td>
-<td align="left">string</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">IntValue</td>
-<td align="left"></td>
-<td align="left">int</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">StringValue</td>
-<td align="left"></td>
-<td align="left">string</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">struct array</td>
 </tr>
 </tbody></table><h3 class="h-ecpropertydef">ECPropertyDef<a id="ecpropertydef" class="heading-anchor" href="#ecpropertydef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
 <p>ECProperty</p>
-<p><strong>Class Type:</strong> EntityClass</p>
-<p><strong>Class Properties:</strong></p>
+<p><strong>displayLabel:</strong> ECProperty</p>
+<p><strong>modifier:</strong> Sealed</p>
+<h4 class="h-properties-2">Properties<a id="properties-2" class="heading-anchor" href="#properties-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -362,7 +252,7 @@
 <tr>
 <td align="left">Class</td>
 <td align="left"></td>
-<td align="left"></td>
+<td align="left"><a href="ecdbmeta.ecschema.md#classownslocalproperties">navigation</a></td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -440,7 +330,7 @@
 <tr>
 <td align="left">Enumeration</td>
 <td align="left">ECPropertyKind::Primitive: Id of this property&apos;s ECEnumerationDef.</td>
-<td align="left"></td>
+<td align="left"><a href="ecdbmeta.ecschema.md#propertyhasenumeration">navigation</a></td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -452,19 +342,19 @@
 <tr>
 <td align="left">StructClass</td>
 <td align="left">ECPropertyKind::Struct: ECClassId of property&apos;s struct type. ECPropertyKind::StructArray: ECClassId of array element struct type.</td>
-<td align="left"></td>
+<td align="left"><a href="ecdbmeta.ecschema.md#propertyhasstructtype">navigation</a></td>
 <td align="left"></td>
 </tr>
 <tr>
 <td align="left">KindOfQuantity</td>
 <td align="left">ECPropertyKind::Primitive or ECPropertyKind::PrimitiveArray: Id of this property&apos;s KindOfQuantityDef.</td>
-<td align="left"></td>
+<td align="left"><a href="ecdbmeta.ecschema.md#propertyhaskindofquantity">navigation</a></td>
 <td align="left"></td>
 </tr>
 <tr>
 <td align="left">Category</td>
 <td align="left">Id of this property&apos;s PropertyCategoryDef.</td>
-<td align="left"></td>
+<td align="left"><a href="ecdbmeta.ecschema.md#propertyhascategory">navigation</a></td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -482,23 +372,18 @@
 <tr>
 <td align="left">NavigationRelationshipClass</td>
 <td align="left">ECPropertyKind::Navigation: ECClassId of property&apos;s relationship class.</td>
-<td align="left"></td>
+<td align="left"><a href="ecdbmeta.ecschema.md#propertyhasnavigationrelationshipclassid">navigation</a></td>
 <td align="left"></td>
 </tr>
 <tr>
 <td align="left">NavigationDirection</td>
 <td align="left">ECPropertyKind::Navigation: Direction to follow the relationship defined in NonPrimitiveTypeClassId.</td>
 <td align="left">ECRelationshipDirection</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
 </tr>
 </tbody></table><h3 class="h-ecrelationshipconstraintdef">ECRelationshipConstraintDef<a id="ecrelationshipconstraintdef" class="heading-anchor" href="#ecrelationshipconstraintdef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> EntityClass</p>
-<p><strong>Class Properties:</strong></p>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<h4 class="h-properties-3">Properties<a id="properties-3" class="heading-anchor" href="#properties-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -508,7 +393,7 @@
 <tr>
 <td align="left">RelationshipClass</td>
 <td align="left"></td>
-<td align="left"></td>
+<td align="left"><a href="ecdbmeta.ecschema.md#relationshiphasconstraints">navigation</a></td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -544,18 +429,14 @@
 <tr>
 <td align="left">AbstractConstraintClass</td>
 <td align="left">ECClassId of base class for constraint classes of this constraint</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left"><a href="ecdbmeta.ecschema.md#relationshipconstrainthasabstractconstraintclass">navigation</a></td>
 </tr>
 </tbody></table><h3 class="h-ecschemadef">ECSchemaDef<a id="ecschemadef" class="heading-anchor" href="#ecschemadef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
 <p>ECSchema</p>
-<p><strong>Class Type:</strong> EntityClass</p>
-<p><strong>Class Properties:</strong></p>
+<p><strong>displayLabel:</strong> ECSchema</p>
+<p><strong>modifier:</strong> Sealed</p>
+<h4 class="h-properties-4">Properties<a id="properties-4" class="heading-anchor" href="#properties-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -605,14 +486,57 @@
 <td align="left"></td>
 </tr>
 <tr>
+<td align="left">OriginalECXmlVersionMajor</td>
 <td align="left"></td>
-<td align="left"></td>
+<td align="left">int</td>
 <td align="left"></td>
 </tr>
-</tbody></table><h3 class="h-kindofquantitydef">KindOfQuantityDef<a id="kindofquantitydef" class="heading-anchor" href="#kindofquantitydef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>KindOfQuantity</p>
-<p><strong>Class Type:</strong> EntityClass</p>
-<p><strong>Class Properties:</strong></p>
+<tr>
+<td align="left">OriginalECXmlVersionMinor</td>
+<td align="left"></td>
+<td align="left">int</td>
+</tr>
+</tbody></table><h3 class="h-formatcompositeunitdef">FormatCompositeUnitDef<a id="formatcompositeunitdef" class="heading-anchor" href="#formatcompositeunitdef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
+<p>FormatCompositeUnit</p>
+<p><strong>displayLabel:</strong> FormatCompositeUnit</p>
+<p><strong>modifier:</strong> Sealed</p>
+<h4 class="h-properties-5">Properties<a id="properties-5" class="heading-anchor" href="#properties-5"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">Format</td>
+<td align="left"></td>
+<td align="left"><a href="ecdbmeta.ecschema.md#formatownscompositeunits">navigation</a></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Label</td>
+<td align="left"></td>
+<td align="left">string</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Unit</td>
+<td align="left"></td>
+<td align="left"><a href="ecdbmeta.ecschema.md#compositeunitreferstounit">navigation</a></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Ordinal</td>
+<td align="left">Position of the Composite Unit in its Format</td>
+<td align="left">int</td>
+</tr>
+</tbody></table><h3 class="h-formatdef">FormatDef<a id="formatdef" class="heading-anchor" href="#formatdef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
+<p>Format</p>
+<p><strong>displayLabel:</strong> Format</p>
+<p><strong>modifier:</strong> Sealed</p>
+<h4 class="h-properties-6">Properties<a id="properties-6" class="heading-anchor" href="#properties-6"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -622,7 +546,55 @@
 <tr>
 <td align="left">Schema</td>
 <td align="left"></td>
+<td align="left"><a href="ecdbmeta.ecschema.md#schemaownsformats">navigation</a></td>
 <td align="left"></td>
+</tr>
+<tr>
+<td align="left">Name</td>
+<td align="left"></td>
+<td align="left">string</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">DisplayLabel</td>
+<td align="left"></td>
+<td align="left">string</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Description</td>
+<td align="left"></td>
+<td align="left">string</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">NumericSpec</td>
+<td align="left"></td>
+<td align="left">string</td>
+<td align="left">JSON</td>
+</tr>
+<tr>
+<td align="left">CompositeSpec</td>
+<td align="left">CompositeSpec without units. Composite units are held by FormatCompositeUnitDef</td>
+<td align="left">string</td>
+<td align="left">JSON</td>
+</tr>
+</tbody></table><h3 class="h-kindofquantitydef">KindOfQuantityDef<a id="kindofquantitydef" class="heading-anchor" href="#kindofquantitydef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
+<p>KindOfQuantity</p>
+<p><strong>displayLabel:</strong> KindOfQuantity</p>
+<p><strong>modifier:</strong> Sealed</p>
+<h4 class="h-properties-7">Properties<a id="properties-7" class="heading-anchor" href="#properties-7"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">Schema</td>
+<td align="left"></td>
+<td align="left"><a href="ecdbmeta.ecschema.md#schemaownskindofquantities">navigation</a></td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -658,18 +630,14 @@
 <tr>
 <td align="left">PresentationUnits</td>
 <td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">string array</td>
 </tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-</tbody></table><h3 class="h-propertycategorydef">PropertyCategoryDef<a id="propertycategorydef" class="heading-anchor" href="#propertycategorydef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>PropertyCategory</p>
-<p><strong>Class Type:</strong> EntityClass</p>
-<p><strong>Class Properties:</strong></p>
+</tbody></table><h3 class="h-phenomenondef">PhenomenonDef<a id="phenomenondef" class="heading-anchor" href="#phenomenondef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
+<p>Phenomenon</p>
+<p><strong>displayLabel:</strong> Phenomenon</p>
+<p><strong>modifier:</strong> Sealed</p>
+<h4 class="h-properties-8">Properties<a id="properties-8" class="heading-anchor" href="#properties-8"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -679,7 +647,48 @@
 <tr>
 <td align="left">Schema</td>
 <td align="left"></td>
+<td align="left"><a href="ecdbmeta.ecschema.md#schemaownsphenomena">navigation</a></td>
 <td align="left"></td>
+</tr>
+<tr>
+<td align="left">Name</td>
+<td align="left"></td>
+<td align="left">string</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">DisplayLabel</td>
+<td align="left"></td>
+<td align="left">string</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Description</td>
+<td align="left"></td>
+<td align="left">string</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Definition</td>
+<td align="left"></td>
+<td align="left">string</td>
+</tr>
+</tbody></table><h3 class="h-propertycategorydef">PropertyCategoryDef<a id="propertycategorydef" class="heading-anchor" href="#propertycategorydef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
+<p>PropertyCategory</p>
+<p><strong>displayLabel:</strong> PropertyCategory</p>
+<p><strong>modifier:</strong> Sealed</p>
+<h4 class="h-properties-9">Properties<a id="properties-9" class="heading-anchor" href="#properties-9"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">Schema</td>
+<td align="left"></td>
+<td align="left"><a href="ecdbmeta.ecschema.md#schemaownspropertycategories">navigation</a></td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -704,320 +713,967 @@
 <td align="left">Priority</td>
 <td align="left"></td>
 <td align="left">int</td>
+</tr>
+</tbody></table><h3 class="h-unitdef">UnitDef<a id="unitdef" class="heading-anchor" href="#unitdef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
+<p>Unit</p>
+<p><strong>displayLabel:</strong> Unit</p>
+<p><strong>modifier:</strong> Sealed</p>
+<h4 class="h-properties-10">Properties<a id="properties-10" class="heading-anchor" href="#properties-10"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">Schema</td>
+<td align="left"></td>
+<td align="left"><a href="ecdbmeta.ecschema.md#schemaownsunits">navigation</a></td>
 <td align="left"></td>
 </tr>
 <tr>
+<td align="left">Name</td>
 <td align="left"></td>
-<td align="left"></td>
+<td align="left">string</td>
 <td align="left"></td>
 </tr>
-</tbody></table><h3 class="h-propertyhascategory">PropertyHasCategory<a id="propertyhascategory" class="heading-anchor" href="#propertyhascategory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<tr>
+<td align="left">DisplayLabel</td>
+<td align="left"></td>
+<td align="left">string</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Description</td>
+<td align="left"></td>
+<td align="left">string</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">UnitSystem</td>
+<td align="left"></td>
+<td align="left"><a href="ecdbmeta.ecschema.md#unitsystemhasunits">navigation</a></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Phenomenon</td>
+<td align="left"></td>
+<td align="left"><a href="ecdbmeta.ecschema.md#phenomenonownsunits">navigation</a></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Definition</td>
+<td align="left"></td>
+<td align="left">string</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Numerator</td>
+<td align="left"></td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Denominator</td>
+<td align="left"></td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Offset</td>
+<td align="left"></td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">IsConstant</td>
+<td align="left"></td>
+<td align="left">boolean</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">InvertingUnit</td>
+<td align="left">If this property is set, this UnitDef is an inverted unit. It inverts the unit specified by this property.</td>
+<td align="left"><a href="ecdbmeta.ecschema.md#unithasinvertedunit">navigation</a></td>
+</tr>
+</tbody></table><h3 class="h-unitsystemdef">UnitSystemDef<a id="unitsystemdef" class="heading-anchor" href="#unitsystemdef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
+<p>UnitSystem</p>
+<p><strong>displayLabel:</strong> UnitSystem</p>
+<p><strong>modifier:</strong> Sealed</p>
+<h4 class="h-properties-11">Properties<a id="properties-11" class="heading-anchor" href="#properties-11"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">Schema</td>
+<td align="left"></td>
+<td align="left"><a href="ecdbmeta.ecschema.md#schemaownsunitsystems">navigation</a></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Name</td>
+<td align="left"></td>
+<td align="left">string</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">DisplayLabel</td>
+<td align="left"></td>
+<td align="left">string</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Description</td>
+<td align="left"></td>
+<td align="left">string</td>
+</tr>
+</tbody></table><h2 class="h-relationship-classes">Relationship Classes<a id="relationship-classes" class="heading-anchor" href="#relationship-classes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-classhasallbaseclasses">ClassHasAllBaseClasses<a id="classhasallbaseclasses" class="heading-anchor" href="#classhasallbaseclasses"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p>Relates a given ECClassId (Source) to all its base classes (recursively) (Target). For optimization reasons this ECRelationshipClass also holds a row for each ECClass that points to itself. Base class id order: class itself, then base classes in breadth first manner.</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source">Source<a id="source" class="heading-anchor" href="#source"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is a</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecclassdef">ECClassDef</a></li>
+</ul>
+<h4 class="h-target">Target<a id="target" class="heading-anchor" href="#target"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is ancestor of</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecclassdef">ECClassDef</a></li>
+</ul>
+<h3 class="h-classhasbaseclasses">ClassHasBaseClasses<a id="classhasbaseclasses" class="heading-anchor" href="#classhasbaseclasses"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-1">Source<a id="source-1" class="heading-anchor" href="#source-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is subclass of</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecclassdef">ECClassDef</a></li>
+</ul>
+<h4 class="h-target-1">Target<a id="target-1" class="heading-anchor" href="#target-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is base class of</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecclassdef">ECClassDef</a></li>
+</ul>
+<h3 class="h-classownslocalproperties">ClassOwnsLocalProperties<a id="classownslocalproperties" class="heading-anchor" href="#classownslocalproperties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-2">Source<a id="source-2" class="heading-anchor" href="#source-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> locally defines</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecclassdef">ECClassDef</a></li>
+</ul>
+<h4 class="h-target-2">Target<a id="target-2" class="heading-anchor" href="#target-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is defined in</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecpropertydef">ECPropertyDef</a></li>
+</ul>
+<h3 class="h-compositeunitreferstounit">CompositeUnitRefersToUnit<a id="compositeunitreferstounit" class="heading-anchor" href="#compositeunitreferstounit"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-3">Source<a id="source-3" class="heading-anchor" href="#source-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> refers to</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#formatcompositeunitdef">FormatCompositeUnitDef</a></li>
+</ul>
+<h4 class="h-target-3">Target<a id="target-3" class="heading-anchor" href="#target-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is referred to by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#unitdef">UnitDef</a></li>
+</ul>
+<h3 class="h-formatownscompositeunits">FormatOwnsCompositeUnits<a id="formatownscompositeunits" class="heading-anchor" href="#formatownscompositeunits"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-4">Source<a id="source-4" class="heading-anchor" href="#source-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> contains</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#formatdef">FormatDef</a></li>
+</ul>
+<h4 class="h-target-4">Target<a id="target-4" class="heading-anchor" href="#target-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is defined in</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#formatcompositeunitdef">FormatCompositeUnitDef</a></li>
+</ul>
+<h3 class="h-phenomenonownsunits">PhenomenonOwnsUnits<a id="phenomenonownsunits" class="heading-anchor" href="#phenomenonownsunits"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-5">Source<a id="source-5" class="heading-anchor" href="#source-5"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> has</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#phenomenondef">PhenomenonDef</a></li>
+</ul>
+<h4 class="h-target-5">Target<a id="target-5" class="heading-anchor" href="#target-5"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is of</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#unitdef">UnitDef</a></li>
+</ul>
+<h3 class="h-propertyhascategory">PropertyHasCategory<a id="propertyhascategory" class="heading-anchor" href="#propertyhascategory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
 <p>Relates the property to its PropertyCategory.</p>
-<p><strong>Class Type:</strong> RelationshipClass</p>
-<p><strong>Relationship Class:</strong></p>
-<table class="table table-responsive"><tbody><tr>
-<th align="left"></th>
-<th align="left">ConstraintClasses</th>
-<th align="left">Multiplicity</th>
-</tr>
-<tr>
-<td align="left"><strong>Source</strong></td>
-<td align="left">ECPropertyDef</td>
-<td align="left">(0..*)</td>
-</tr>
-<tr>
-<td align="left"><strong>Target</strong></td>
-<td align="left">PropertyCategoryDef</td>
-<td align="left">(0..1)</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-</tbody></table><h3 class="h-propertyhasenumeration">PropertyHasEnumeration<a id="propertyhasenumeration" class="heading-anchor" href="#propertyhasenumeration"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-6">Source<a id="source-6" class="heading-anchor" href="#source-6"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is in</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecpropertydef">ECPropertyDef</a></li>
+</ul>
+<h4 class="h-target-6">Target<a id="target-6" class="heading-anchor" href="#target-6"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is used by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#propertycategorydef">PropertyCategoryDef</a></li>
+</ul>
+<h3 class="h-propertyhasenumeration">PropertyHasEnumeration<a id="propertyhasenumeration" class="heading-anchor" href="#propertyhasenumeration"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
 <p>ECPropertyKind::Enumeration: relates the property to its ECEnumeration.</p>
-<p><strong>Class Type:</strong> RelationshipClass</p>
-<p><strong>Relationship Class:</strong></p>
-<table class="table table-responsive"><tbody><tr>
-<th align="left"></th>
-<th align="left">ConstraintClasses</th>
-<th align="left">Multiplicity</th>
-</tr>
-<tr>
-<td align="left"><strong>Source</strong></td>
-<td align="left">ECPropertyDef</td>
-<td align="left">(0..*)</td>
-</tr>
-<tr>
-<td align="left"><strong>Target</strong></td>
-<td align="left">ECEnumerationDef</td>
-<td align="left">(0..1)</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-</tbody></table><h3 class="h-propertyhaskindofquantity">PropertyHasKindOfQuantity<a id="propertyhaskindofquantity" class="heading-anchor" href="#propertyhaskindofquantity"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-7">Source<a id="source-7" class="heading-anchor" href="#source-7"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is of type</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecpropertydef">ECPropertyDef</a></li>
+</ul>
+<h4 class="h-target-7">Target<a id="target-7" class="heading-anchor" href="#target-7"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is type of</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecenumerationdef">ECEnumerationDef</a></li>
+</ul>
+<h3 class="h-propertyhaskindofquantity">PropertyHasKindOfQuantity<a id="propertyhaskindofquantity" class="heading-anchor" href="#propertyhaskindofquantity"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
 <p>ECPropertyKind::Primitive or ECPropertyKind::PrimitiveArray: relates the property to its KindOfQuantity.</p>
-<p><strong>Class Type:</strong> RelationshipClass</p>
-<p><strong>Relationship Class:</strong></p>
-<table class="table table-responsive"><tbody><tr>
-<th align="left"></th>
-<th align="left">ConstraintClasses</th>
-<th align="left">Multiplicity</th>
-</tr>
-<tr>
-<td align="left"><strong>Source</strong></td>
-<td align="left">ECPropertyDef</td>
-<td align="left">(0..*)</td>
-</tr>
-<tr>
-<td align="left"><strong>Target</strong></td>
-<td align="left">KindOfQuantityDef</td>
-<td align="left">(0..1)</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-</tbody></table><h3 class="h-propertyhasnavigationrelationshipclassid">PropertyHasNavigationRelationshipClassId<a id="propertyhasnavigationrelationshipclassid" class="heading-anchor" href="#propertyhasnavigationrelationshipclassid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-8">Source<a id="source-8" class="heading-anchor" href="#source-8"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> has</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecpropertydef">ECPropertyDef</a></li>
+</ul>
+<h4 class="h-target-8">Target<a id="target-8" class="heading-anchor" href="#target-8"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is used by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#kindofquantitydef">KindOfQuantityDef</a></li>
+</ul>
+<h3 class="h-propertyhasnavigationrelationshipclassid">PropertyHasNavigationRelationshipClassId<a id="propertyhasnavigationrelationshipclassid" class="heading-anchor" href="#propertyhasnavigationrelationshipclassid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
 <p>ECPropertyKind::Navigation: relates the navigation property to its backing RelationshipECClass.</p>
-<p><strong>Class Type:</strong> RelationshipClass</p>
-<p><strong>Relationship Class:</strong></p>
-<table class="table table-responsive"><tbody><tr>
-<th align="left"></th>
-<th align="left">ConstraintClasses</th>
-<th align="left">Multiplicity</th>
-</tr>
-<tr>
-<td align="left"><strong>Source</strong></td>
-<td align="left">ECPropertyDef</td>
-<td align="left">(0..*)</td>
-</tr>
-<tr>
-<td align="left"><strong>Target</strong></td>
-<td align="left">ECClassDef</td>
-<td align="left">(0..1)</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-</tbody></table><h3 class="h-propertyhasstructtype">PropertyHasStructType<a id="propertyhasstructtype" class="heading-anchor" href="#propertyhasstructtype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-9">Source<a id="source-9" class="heading-anchor" href="#source-9"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is backed by</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecpropertydef">ECPropertyDef</a></li>
+</ul>
+<h4 class="h-target-9">Target<a id="target-9" class="heading-anchor" href="#target-9"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is ECRelationshipClass of</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecclassdef">ECClassDef</a></li>
+</ul>
+<h3 class="h-propertyhasstructtype">PropertyHasStructType<a id="propertyhasstructtype" class="heading-anchor" href="#propertyhasstructtype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
 <p>ECPropertyKind::Struct: relates the struct property to its struct ECClass. ECPropertyKind::StructArray: relates the struct array property to its array element type.</p>
-<p><strong>Class Type:</strong> RelationshipClass</p>
-<p><strong>Relationship Class:</strong></p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-10">Source<a id="source-10" class="heading-anchor" href="#source-10"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is of type</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecpropertydef">ECPropertyDef</a></li>
+</ul>
+<h4 class="h-target-10">Target<a id="target-10" class="heading-anchor" href="#target-10"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is type of</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecclassdef">ECClassDef</a></li>
+</ul>
+<h3 class="h-relationshipconstrainthasabstractconstraintclass">RelationshipConstraintHasAbstractConstraintClass<a id="relationshipconstrainthasabstractconstraintclass" class="heading-anchor" href="#relationshipconstrainthasabstractconstraintclass"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-11">Source<a id="source-11" class="heading-anchor" href="#source-11"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> defines</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecrelationshipconstraintdef">ECRelationshipConstraintDef</a></li>
+</ul>
+<h4 class="h-target-11">Target<a id="target-11" class="heading-anchor" href="#target-11"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is abstract constraint class of</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecclassdef">ECClassDef</a></li>
+</ul>
+<h3 class="h-relationshipconstrainthasclasses">RelationshipConstraintHasClasses<a id="relationshipconstrainthasclasses" class="heading-anchor" href="#relationshipconstrainthasclasses"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-12">Source<a id="source-12" class="heading-anchor" href="#source-12"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> contains</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecrelationshipconstraintdef">ECRelationshipConstraintDef</a></li>
+</ul>
+<h4 class="h-target-12">Target<a id="target-12" class="heading-anchor" href="#target-12"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is constraint class of</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecclassdef">ECClassDef</a></li>
+</ul>
+<h3 class="h-relationshiphasconstraints">RelationshipHasConstraints<a id="relationshiphasconstraints" class="heading-anchor" href="#relationshiphasconstraints"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-13">Source<a id="source-13" class="heading-anchor" href="#source-13"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> defines</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecclassdef">ECClassDef</a></li>
+</ul>
+<h4 class="h-target-13">Target<a id="target-13" class="heading-anchor" href="#target-13"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is defined by</p>
+<p><strong>multiplicity:</strong> (2..2)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecrelationshipconstraintdef">ECRelationshipConstraintDef</a></li>
+</ul>
+<h3 class="h-schemahasschemareferences">SchemaHasSchemaReferences<a id="schemahasschemareferences" class="heading-anchor" href="#schemahasschemareferences"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-14">Source<a id="source-14" class="heading-anchor" href="#source-14"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> references</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecschemadef">ECSchemaDef</a></li>
+</ul>
+<h4 class="h-target-14">Target<a id="target-14" class="heading-anchor" href="#target-14"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is referenced by</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecschemadef">ECSchemaDef</a></li>
+</ul>
+<h3 class="h-schemaownsclasses">SchemaOwnsClasses<a id="schemaownsclasses" class="heading-anchor" href="#schemaownsclasses"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-15">Source<a id="source-15" class="heading-anchor" href="#source-15"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> contains</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecschemadef">ECSchemaDef</a></li>
+</ul>
+<h4 class="h-target-15">Target<a id="target-15" class="heading-anchor" href="#target-15"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is defined in</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecclassdef">ECClassDef</a></li>
+</ul>
+<h3 class="h-schemaownsenumerations">SchemaOwnsEnumerations<a id="schemaownsenumerations" class="heading-anchor" href="#schemaownsenumerations"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-16">Source<a id="source-16" class="heading-anchor" href="#source-16"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> contains</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecschemadef">ECSchemaDef</a></li>
+</ul>
+<h4 class="h-target-16">Target<a id="target-16" class="heading-anchor" href="#target-16"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is defined in</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecenumerationdef">ECEnumerationDef</a></li>
+</ul>
+<h3 class="h-schemaownsformats">SchemaOwnsFormats<a id="schemaownsformats" class="heading-anchor" href="#schemaownsformats"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-17">Source<a id="source-17" class="heading-anchor" href="#source-17"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> contains</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecschemadef">ECSchemaDef</a></li>
+</ul>
+<h4 class="h-target-17">Target<a id="target-17" class="heading-anchor" href="#target-17"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is defined in</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#formatdef">FormatDef</a></li>
+</ul>
+<h3 class="h-schemaownskindofquantities">SchemaOwnsKindOfQuantities<a id="schemaownskindofquantities" class="heading-anchor" href="#schemaownskindofquantities"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-18">Source<a id="source-18" class="heading-anchor" href="#source-18"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> contains</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecschemadef">ECSchemaDef</a></li>
+</ul>
+<h4 class="h-target-18">Target<a id="target-18" class="heading-anchor" href="#target-18"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is defined in</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#kindofquantitydef">KindOfQuantityDef</a></li>
+</ul>
+<h3 class="h-schemaownsphenomena">SchemaOwnsPhenomena<a id="schemaownsphenomena" class="heading-anchor" href="#schemaownsphenomena"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-19">Source<a id="source-19" class="heading-anchor" href="#source-19"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> contains</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecschemadef">ECSchemaDef</a></li>
+</ul>
+<h4 class="h-target-19">Target<a id="target-19" class="heading-anchor" href="#target-19"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is defined in</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#phenomenondef">PhenomenonDef</a></li>
+</ul>
+<h3 class="h-schemaownspropertycategories">SchemaOwnsPropertyCategories<a id="schemaownspropertycategories" class="heading-anchor" href="#schemaownspropertycategories"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-20">Source<a id="source-20" class="heading-anchor" href="#source-20"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> contains</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecschemadef">ECSchemaDef</a></li>
+</ul>
+<h4 class="h-target-20">Target<a id="target-20" class="heading-anchor" href="#target-20"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is defined in</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#propertycategorydef">PropertyCategoryDef</a></li>
+</ul>
+<h3 class="h-schemaownsunitsystems">SchemaOwnsUnitSystems<a id="schemaownsunitsystems" class="heading-anchor" href="#schemaownsunitsystems"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-21">Source<a id="source-21" class="heading-anchor" href="#source-21"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> contains</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecschemadef">ECSchemaDef</a></li>
+</ul>
+<h4 class="h-target-21">Target<a id="target-21" class="heading-anchor" href="#target-21"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is defined in</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#unitsystemdef">UnitSystemDef</a></li>
+</ul>
+<h3 class="h-schemaownsunits">SchemaOwnsUnits<a id="schemaownsunits" class="heading-anchor" href="#schemaownsunits"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-22">Source<a id="source-22" class="heading-anchor" href="#source-22"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> contains</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#ecschemadef">ECSchemaDef</a></li>
+</ul>
+<h4 class="h-target-22">Target<a id="target-22" class="heading-anchor" href="#target-22"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is defined in</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#unitdef">UnitDef</a></li>
+</ul>
+<h3 class="h-unithasinvertedunit">UnitHasInvertedUnit<a id="unithasinvertedunit" class="heading-anchor" href="#unithasinvertedunit"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-23">Source<a id="source-23" class="heading-anchor" href="#source-23"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is inverted by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#unitdef">UnitDef</a></li>
+</ul>
+<h4 class="h-target-23">Target<a id="target-23" class="heading-anchor" href="#target-23"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> inverts</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#unitdef">UnitDef</a></li>
+</ul>
+<h3 class="h-unitsystemhasunits">UnitSystemHasUnits<a id="unitsystemhasunits" class="heading-anchor" href="#unitsystemhasunits"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-24">Source<a id="source-24" class="heading-anchor" href="#source-24"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> has</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#unitsystemdef">UnitSystemDef</a></li>
+</ul>
+<h4 class="h-target-24">Target<a id="target-24" class="heading-anchor" href="#target-24"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is defined in</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="ecdbmeta.ecschema.md#unitdef">UnitDef</a></li>
+</ul>
+<h2 class="h-enumerations">Enumerations<a id="enumerations" class="heading-anchor" href="#enumerations"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-ecclassmodifier">ECClassModifier<a id="ecclassmodifier" class="heading-anchor" href="#ecclassmodifier"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> Enumeration</p>
+<p><strong>Backing Type:</strong> int</p>
+<p><strong>Strict:</strong> true</p>
 <table class="table table-responsive"><tbody><tr>
-<th align="left"></th>
-<th align="left">ConstraintClasses</th>
-<th align="left">Multiplicity</th>
+<th align="left">Label</th>
+<th align="left">Value</th>
 </tr>
 <tr>
-<td align="left"><strong>Source</strong></td>
-<td align="left">ECPropertyDef</td>
-<td align="left">(0..*)</td>
+<td align="left">None</td>
+<td align="left">0</td>
 </tr>
 <tr>
-<td align="left"><strong>Target</strong></td>
-<td align="left">ECClassDef</td>
-<td align="left">(0..1)</td>
+<td align="left">Abstract</td>
+<td align="left">1</td>
 </tr>
 <tr>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">Sealed</td>
+<td align="left">2</td>
 </tr>
-</tbody></table><h3 class="h-relationshipconstrainthasabstractconstraintclass">RelationshipConstraintHasAbstractConstraintClass<a id="relationshipconstrainthasabstractconstraintclass" class="heading-anchor" href="#relationshipconstrainthasabstractconstraintclass"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> RelationshipClass</p>
-<p><strong>Relationship Class:</strong></p>
+</tbody></table><h3 class="h-ecclasstype">ECClassType<a id="ecclasstype" class="heading-anchor" href="#ecclasstype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> Enumeration</p>
+<p><strong>Backing Type:</strong> int</p>
+<p><strong>Strict:</strong> true</p>
 <table class="table table-responsive"><tbody><tr>
-<th align="left"></th>
-<th align="left">ConstraintClasses</th>
-<th align="left">Multiplicity</th>
+<th align="left">Label</th>
+<th align="left">Value</th>
 </tr>
 <tr>
-<td align="left"><strong>Source</strong></td>
-<td align="left">ECRelationshipConstraintDef</td>
-<td align="left">(0..*)</td>
+<td align="left">Entity</td>
+<td align="left">0</td>
 </tr>
 <tr>
-<td align="left"><strong>Target</strong></td>
-<td align="left">ECClassDef</td>
-<td align="left">(0..1)</td>
+<td align="left">Relationship</td>
+<td align="left">1</td>
 </tr>
 <tr>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">Struct</td>
+<td align="left">2</td>
 </tr>
-</tbody></table><h3 class="h-relationshipconstrainthasclasses">RelationshipConstraintHasClasses<a id="relationshipconstrainthasclasses" class="heading-anchor" href="#relationshipconstrainthasclasses"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> RelationshipClass</p>
-<p><strong>Relationship Class:</strong></p>
+<tr>
+<td align="left">CustomAttribute</td>
+<td align="left">3</td>
+</tr>
+</tbody></table><h3 class="h-eccustomattributecontainertype">ECCustomAttributeContainerType<a id="eccustomattributecontainertype" class="heading-anchor" href="#eccustomattributecontainertype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> Enumeration</p>
+<p><strong>Backing Type:</strong> int</p>
+<p><strong>Strict:</strong> true</p>
 <table class="table table-responsive"><tbody><tr>
-<th align="left"></th>
-<th align="left">ConstraintClasses</th>
-<th align="left">Multiplicity</th>
+<th align="left">Label</th>
+<th align="left">Value</th>
 </tr>
 <tr>
-<td align="left"><strong>Source</strong></td>
-<td align="left">ECRelationshipConstraintDef</td>
-<td align="left">(0..*)</td>
+<td align="left">Schema</td>
+<td align="left">1</td>
 </tr>
 <tr>
-<td align="left"><strong>Target</strong></td>
-<td align="left">ECClassDef</td>
-<td align="left">(0..*)</td>
+<td align="left">EntityClass</td>
+<td align="left">2</td>
 </tr>
 <tr>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">CustomAttributeClass</td>
+<td align="left">4</td>
 </tr>
-</tbody></table><h3 class="h-relationshiphasconstraints">RelationshipHasConstraints<a id="relationshiphasconstraints" class="heading-anchor" href="#relationshiphasconstraints"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> RelationshipClass</p>
-<p><strong>Relationship Class:</strong></p>
+<tr>
+<td align="left">StructClass</td>
+<td align="left">8</td>
+</tr>
+<tr>
+<td align="left">RelationshipClass</td>
+<td align="left">16</td>
+</tr>
+<tr>
+<td align="left">AnyClass</td>
+<td align="left">30</td>
+</tr>
+<tr>
+<td align="left">PrimitiveProperty</td>
+<td align="left">32</td>
+</tr>
+<tr>
+<td align="left">StructProperty</td>
+<td align="left">64</td>
+</tr>
+<tr>
+<td align="left">PrimitiveArrayProperty</td>
+<td align="left">128</td>
+</tr>
+<tr>
+<td align="left">StructArrayProperty</td>
+<td align="left">256</td>
+</tr>
+<tr>
+<td align="left">NavigationProperty</td>
+<td align="left">512</td>
+</tr>
+<tr>
+<td align="left">AnyProperty</td>
+<td align="left">992</td>
+</tr>
+<tr>
+<td align="left">SourceRelationshipConstraint</td>
+<td align="left">1024</td>
+</tr>
+<tr>
+<td align="left">TargetRelationshipConstraint</td>
+<td align="left">2048</td>
+</tr>
+<tr>
+<td align="left">AnyRelationshipConstraint</td>
+<td align="left">3072</td>
+</tr>
+<tr>
+<td align="left">Any</td>
+<td align="left">4095</td>
+</tr>
+</tbody></table><h3 class="h-ecpropertykind">ECPropertyKind<a id="ecpropertykind" class="heading-anchor" href="#ecpropertykind"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> Enumeration</p>
+<p><strong>Backing Type:</strong> int</p>
+<p><strong>Strict:</strong> true</p>
 <table class="table table-responsive"><tbody><tr>
-<th align="left"></th>
-<th align="left">ConstraintClasses</th>
-<th align="left">Multiplicity</th>
+<th align="left">Label</th>
+<th align="left">Value</th>
 </tr>
 <tr>
-<td align="left"><strong>Source</strong></td>
-<td align="left">ECClassDef</td>
-<td align="left">(1..1)</td>
+<td align="left">Primitive</td>
+<td align="left">0</td>
 </tr>
 <tr>
-<td align="left"><strong>Target</strong></td>
-<td align="left">ECRelationshipConstraintDef</td>
-<td align="left">(2..2)</td>
+<td align="left">Struct</td>
+<td align="left">1</td>
 </tr>
 <tr>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">PrimitiveArray</td>
+<td align="left">2</td>
 </tr>
-</tbody></table><h3 class="h-schemahasschemareferences">SchemaHasSchemaReferences<a id="schemahasschemareferences" class="heading-anchor" href="#schemahasschemareferences"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> RelationshipClass</p>
-<p><strong>Relationship Class:</strong></p>
+<tr>
+<td align="left">StructArray</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">Navigation</td>
+<td align="left">4</td>
+</tr>
+</tbody></table><h3 class="h-ecrelationshipdirection">ECRelationshipDirection<a id="ecrelationshipdirection" class="heading-anchor" href="#ecrelationshipdirection"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> Enumeration</p>
+<p><strong>Backing Type:</strong> int</p>
+<p><strong>Strict:</strong> true</p>
 <table class="table table-responsive"><tbody><tr>
-<th align="left"></th>
-<th align="left">ConstraintClasses</th>
-<th align="left">Multiplicity</th>
+<th align="left">Label</th>
+<th align="left">Value</th>
 </tr>
 <tr>
-<td align="left"><strong>Source</strong></td>
-<td align="left">ECSchemaDef</td>
-<td align="left">(0..*)</td>
+<td align="left">Forward</td>
+<td align="left">1</td>
 </tr>
 <tr>
-<td align="left"><strong>Target</strong></td>
-<td align="left">ECSchemaDef</td>
-<td align="left">(0..*)</td>
+<td align="left">Backward</td>
+<td align="left">2</td>
 </tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-</tbody></table><h3 class="h-schemaownsclasses">SchemaOwnsClasses<a id="schemaownsclasses" class="heading-anchor" href="#schemaownsclasses"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> RelationshipClass</p>
-<p><strong>Relationship Class:</strong></p>
+</tbody></table><h3 class="h-ecrelationshipend">ECRelationshipEnd<a id="ecrelationshipend" class="heading-anchor" href="#ecrelationshipend"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> Enumeration</p>
+<p><strong>Backing Type:</strong> int</p>
+<p><strong>Strict:</strong> true</p>
 <table class="table table-responsive"><tbody><tr>
-<th align="left"></th>
-<th align="left">ConstraintClasses</th>
-<th align="left">Multiplicity</th>
+<th align="left">Label</th>
+<th align="left">Value</th>
 </tr>
 <tr>
-<td align="left"><strong>Source</strong></td>
-<td align="left">ECSchemaDef</td>
-<td align="left">(1..1)</td>
+<td align="left">Source</td>
+<td align="left">0</td>
 </tr>
 <tr>
-<td align="left"><strong>Target</strong></td>
-<td align="left">ECClassDef</td>
-<td align="left">(0..*)</td>
+<td align="left">Target</td>
+<td align="left">1</td>
 </tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-</tbody></table><h3 class="h-schemaownsenumerations">SchemaOwnsEnumerations<a id="schemaownsenumerations" class="heading-anchor" href="#schemaownsenumerations"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> RelationshipClass</p>
-<p><strong>Relationship Class:</strong></p>
+</tbody></table><h3 class="h-ecrelationshipstrength">ECRelationshipStrength<a id="ecrelationshipstrength" class="heading-anchor" href="#ecrelationshipstrength"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> Enumeration</p>
+<p><strong>Backing Type:</strong> int</p>
+<p><strong>Strict:</strong> true</p>
 <table class="table table-responsive"><tbody><tr>
-<th align="left"></th>
-<th align="left">ConstraintClasses</th>
-<th align="left">Multiplicity</th>
+<th align="left">Label</th>
+<th align="left">Value</th>
 </tr>
 <tr>
-<td align="left"><strong>Source</strong></td>
-<td align="left">ECSchemaDef</td>
-<td align="left">(1..1)</td>
+<td align="left">Referencing</td>
+<td align="left">0</td>
 </tr>
 <tr>
-<td align="left"><strong>Target</strong></td>
-<td align="left">ECEnumerationDef</td>
-<td align="left">(0..*)</td>
+<td align="left">Holding</td>
+<td align="left">1</td>
 </tr>
 <tr>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">Embedding</td>
+<td align="left">2</td>
 </tr>
-</tbody></table><h3 class="h-schemaownskindofquantities">SchemaOwnsKindOfQuantities<a id="schemaownskindofquantities" class="heading-anchor" href="#schemaownskindofquantities"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> RelationshipClass</p>
-<p><strong>Relationship Class:</strong></p>
+</tbody></table><h3 class="h-primitivetype">PrimitiveType<a id="primitivetype" class="heading-anchor" href="#primitivetype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> Enumeration</p>
+<p><strong>Backing Type:</strong> int</p>
+<p><strong>Strict:</strong> true</p>
 <table class="table table-responsive"><tbody><tr>
-<th align="left"></th>
-<th align="left">ConstraintClasses</th>
-<th align="left">Multiplicity</th>
+<th align="left">Label</th>
+<th align="left">Value</th>
 </tr>
 <tr>
-<td align="left"><strong>Source</strong></td>
-<td align="left">ECSchemaDef</td>
-<td align="left">(1..1)</td>
+<td align="left">Binary</td>
+<td align="left">257</td>
 </tr>
 <tr>
-<td align="left"><strong>Target</strong></td>
-<td align="left">KindOfQuantityDef</td>
-<td align="left">(0..*)</td>
+<td align="left">Boolean</td>
+<td align="left">513</td>
 </tr>
 <tr>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">DateTime</td>
+<td align="left">769</td>
 </tr>
-</tbody></table><h3 class="h-schemaownspropertycategories">SchemaOwnsPropertyCategories<a id="schemaownspropertycategories" class="heading-anchor" href="#schemaownspropertycategories"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>Class Type:</strong> RelationshipClass</p>
-<p><strong>Relationship Class:</strong></p>
+<tr>
+<td align="left">Double</td>
+<td align="left">1025</td>
+</tr>
+<tr>
+<td align="left">Integer</td>
+<td align="left">1281</td>
+</tr>
+<tr>
+<td align="left">Long</td>
+<td align="left">1537</td>
+</tr>
+<tr>
+<td align="left">Point2d</td>
+<td align="left">1793</td>
+</tr>
+<tr>
+<td align="left">Point3d</td>
+<td align="left">2049</td>
+</tr>
+<tr>
+<td align="left">String</td>
+<td align="left">2305</td>
+</tr>
+<tr>
+<td align="left">IGeometry</td>
+<td align="left">2561</td>
+</tr>
+</tbody></table><h3 class="h-ecenumeratordef">ECEnumeratorDef<a id="ecenumeratordef" class="heading-anchor" href="#ecenumeratordef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> StructClass</p>
+<p><strong>modifier:</strong> Sealed</p>
+<h4 class="h-properties-12">Properties<a id="properties-12" class="heading-anchor" href="#properties-12"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
-<th align="left"></th>
-<th align="left">ConstraintClasses</th>
-<th align="left">Multiplicity</th>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Label</th>
+<th align="left">Category</th>
+<th align="left">Read Only</th>
+<th align="left">Priority</th>
 </tr>
 <tr>
-<td align="left"><strong>Source</strong></td>
-<td align="left">ECSchemaDef</td>
-<td align="left">(1..1)</td>
-</tr>
-<tr>
-<td align="left"><strong>Target</strong></td>
-<td align="left">PropertyCategoryDef</td>
-<td align="left">(0..*)</td>
-</tr>
-<tr>
+<td align="left">Name</td>
 <td align="left"></td>
 <td align="left"></td>
+<td align="left"></td>
+<td align="left">false</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">DisplayLabel</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">false</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">Description</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">false</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">IntValue</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">false</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">StringValue</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">false</td>
+<td align="left">0</td>
 </tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -1026,6 +1682,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -1040,82 +1712,543 @@
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
               <li class='nav-item item '>
-            <a data-target="#inner-nav-classes" class='title' href="#classes"/>
-            <b class='dropdown-menu-title menu-text'>Classes</b>
-            <i class='dropdown icon'></i>
+            <a data-target="#inner-nav-entity-classes" class='title' href="#entity-classes"/>
+            <b class='dropdown-menu-title menu-text'>Entity Classes</b>
+            <i class='nav-list-dropdown icon'></i>
             </a>
-            <ul id="inner-nav-classes" class='inner-nav'>
+            <ul id="inner-nav-entity-classes" class='inner-nav'>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#classhasallbaseclasses">ClassHasAllBaseClasses</a>
+                            <a data-target="#inner-nav-ecclassdef" class='title' href="#ecclassdef"/>
+                            <b class='dropdown-menu-title menu-text'>ECClassDef</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-ecclassdef" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties">Properties</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#classhasbaseclasses">ClassHasBaseClasses</a>
+                            <a data-target="#inner-nav-ecenumerationdef" class='title' href="#ecenumerationdef"/>
+                            <b class='dropdown-menu-title menu-text'>ECEnumerationDef</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-ecenumerationdef" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-1">Properties</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#classownslocalproperties">ClassOwnsLocalProperties</a>
+                            <a data-target="#inner-nav-ecpropertydef" class='title' href="#ecpropertydef"/>
+                            <b class='dropdown-menu-title menu-text'>ECPropertyDef</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-ecpropertydef" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-2">Properties</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#ecclassdef">ECClassDef</a>
+                            <a data-target="#inner-nav-ecrelationshipconstraintdef" class='title' href="#ecrelationshipconstraintdef"/>
+                            <b class='dropdown-menu-title menu-text'>ECRelationshipConstraintDef</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-ecrelationshipconstraintdef" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-3">Properties</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#ecenumerationdef">ECEnumerationDef</a>
+                            <a data-target="#inner-nav-ecschemadef" class='title' href="#ecschemadef"/>
+                            <b class='dropdown-menu-title menu-text'>ECSchemaDef</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-ecschemadef" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-4">Properties</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#ecenumeratordef">ECEnumeratorDef</a>
+                            <a data-target="#inner-nav-formatcompositeunitdef" class='title' href="#formatcompositeunitdef"/>
+                            <b class='dropdown-menu-title menu-text'>FormatCompositeUnitDef</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-formatcompositeunitdef" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-5">Properties</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#ecpropertydef">ECPropertyDef</a>
+                            <a data-target="#inner-nav-formatdef" class='title' href="#formatdef"/>
+                            <b class='dropdown-menu-title menu-text'>FormatDef</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-formatdef" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-6">Properties</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#ecrelationshipconstraintdef">ECRelationshipConstraintDef</a>
+                            <a data-target="#inner-nav-kindofquantitydef" class='title' href="#kindofquantitydef"/>
+                            <b class='dropdown-menu-title menu-text'>KindOfQuantityDef</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-kindofquantitydef" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-7">Properties</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#ecschemadef">ECSchemaDef</a>
+                            <a data-target="#inner-nav-phenomenondef" class='title' href="#phenomenondef"/>
+                            <b class='dropdown-menu-title menu-text'>PhenomenonDef</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-phenomenondef" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-8">Properties</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#kindofquantitydef">KindOfQuantityDef</a>
+                            <a data-target="#inner-nav-propertycategorydef" class='title' href="#propertycategorydef"/>
+                            <b class='dropdown-menu-title menu-text'>PropertyCategoryDef</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-propertycategorydef" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-9">Properties</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#propertycategorydef">PropertyCategoryDef</a>
+                            <a data-target="#inner-nav-unitdef" class='title' href="#unitdef"/>
+                            <b class='dropdown-menu-title menu-text'>UnitDef</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-unitdef" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-10">Properties</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#propertyhascategory">PropertyHasCategory</a>
+                            <a data-target="#inner-nav-unitsystemdef" class='title' href="#unitsystemdef"/>
+                            <b class='dropdown-menu-title menu-text'>UnitSystemDef</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-unitsystemdef" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-11">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-relationship-classes" class='title' href="#relationship-classes"/>
+            <b class='dropdown-menu-title menu-text'>Relationship Classes</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-relationship-classes" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-classhasallbaseclasses" class='title' href="#classhasallbaseclasses"/>
+                            <b class='dropdown-menu-title menu-text'>ClassHasAllBaseClasses</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-classhasallbaseclasses" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target">Target</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#propertyhasenumeration">PropertyHasEnumeration</a>
+                            <a data-target="#inner-nav-classhasbaseclasses" class='title' href="#classhasbaseclasses"/>
+                            <b class='dropdown-menu-title menu-text'>ClassHasBaseClasses</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-classhasbaseclasses" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-1">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-1">Target</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#propertyhaskindofquantity">PropertyHasKindOfQuantity</a>
+                            <a data-target="#inner-nav-classownslocalproperties" class='title' href="#classownslocalproperties"/>
+                            <b class='dropdown-menu-title menu-text'>ClassOwnsLocalProperties</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-classownslocalproperties" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-2">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-2">Target</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#propertyhasnavigationrelationshipclassid">PropertyHasNavigationRelationshipClassId</a>
+                            <a data-target="#inner-nav-compositeunitreferstounit" class='title' href="#compositeunitreferstounit"/>
+                            <b class='dropdown-menu-title menu-text'>CompositeUnitRefersToUnit</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-compositeunitreferstounit" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-3">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-3">Target</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#propertyhasstructtype">PropertyHasStructType</a>
+                            <a data-target="#inner-nav-formatownscompositeunits" class='title' href="#formatownscompositeunits"/>
+                            <b class='dropdown-menu-title menu-text'>FormatOwnsCompositeUnits</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-formatownscompositeunits" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-4">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-4">Target</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#relationshipconstrainthasabstractconstraintclass">RelationshipConstraintHasAbstractConstraintClass</a>
+                            <a data-target="#inner-nav-phenomenonownsunits" class='title' href="#phenomenonownsunits"/>
+                            <b class='dropdown-menu-title menu-text'>PhenomenonOwnsUnits</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-phenomenonownsunits" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-5">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-5">Target</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#relationshipconstrainthasclasses">RelationshipConstraintHasClasses</a>
+                            <a data-target="#inner-nav-propertyhascategory" class='title' href="#propertyhascategory"/>
+                            <b class='dropdown-menu-title menu-text'>PropertyHasCategory</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-propertyhascategory" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-6">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-6">Target</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#relationshiphasconstraints">RelationshipHasConstraints</a>
+                            <a data-target="#inner-nav-propertyhasenumeration" class='title' href="#propertyhasenumeration"/>
+                            <b class='dropdown-menu-title menu-text'>PropertyHasEnumeration</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-propertyhasenumeration" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-7">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-7">Target</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#schemahasschemareferences">SchemaHasSchemaReferences</a>
+                            <a data-target="#inner-nav-propertyhaskindofquantity" class='title' href="#propertyhaskindofquantity"/>
+                            <b class='dropdown-menu-title menu-text'>PropertyHasKindOfQuantity</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-propertyhaskindofquantity" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-8">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-8">Target</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#schemaownsclasses">SchemaOwnsClasses</a>
+                            <a data-target="#inner-nav-propertyhasnavigationrelationshipclassid" class='title' href="#propertyhasnavigationrelationshipclassid"/>
+                            <b class='dropdown-menu-title menu-text'>PropertyHasNavigationRelationshipClassId</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-propertyhasnavigationrelationshipclassid" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-9">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-9">Target</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#schemaownsenumerations">SchemaOwnsEnumerations</a>
+                            <a data-target="#inner-nav-propertyhasstructtype" class='title' href="#propertyhasstructtype"/>
+                            <b class='dropdown-menu-title menu-text'>PropertyHasStructType</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-propertyhasstructtype" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-10">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-10">Target</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#schemaownskindofquantities">SchemaOwnsKindOfQuantities</a>
+                            <a data-target="#inner-nav-relationshipconstrainthasabstractconstraintclass" class='title' href="#relationshipconstrainthasabstractconstraintclass"/>
+                            <b class='dropdown-menu-title menu-text'>RelationshipConstraintHasAbstractConstraintClass</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-relationshipconstrainthasabstractconstraintclass" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-11">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-11">Target</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#schemaownspropertycategories">SchemaOwnsPropertyCategories</a>
+                            <a data-target="#inner-nav-relationshipconstrainthasclasses" class='title' href="#relationshipconstrainthasclasses"/>
+                            <b class='dropdown-menu-title menu-text'>RelationshipConstraintHasClasses</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-relationshipconstrainthasclasses" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-12">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-12">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-relationshiphasconstraints" class='title' href="#relationshiphasconstraints"/>
+                            <b class='dropdown-menu-title menu-text'>RelationshipHasConstraints</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-relationshiphasconstraints" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-13">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-13">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-schemahasschemareferences" class='title' href="#schemahasschemareferences"/>
+                            <b class='dropdown-menu-title menu-text'>SchemaHasSchemaReferences</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-schemahasschemareferences" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-14">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-14">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-schemaownsclasses" class='title' href="#schemaownsclasses"/>
+                            <b class='dropdown-menu-title menu-text'>SchemaOwnsClasses</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-schemaownsclasses" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-15">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-15">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-schemaownsenumerations" class='title' href="#schemaownsenumerations"/>
+                            <b class='dropdown-menu-title menu-text'>SchemaOwnsEnumerations</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-schemaownsenumerations" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-16">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-16">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-schemaownsformats" class='title' href="#schemaownsformats"/>
+                            <b class='dropdown-menu-title menu-text'>SchemaOwnsFormats</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-schemaownsformats" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-17">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-17">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-schemaownskindofquantities" class='title' href="#schemaownskindofquantities"/>
+                            <b class='dropdown-menu-title menu-text'>SchemaOwnsKindOfQuantities</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-schemaownskindofquantities" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-18">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-18">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-schemaownsphenomena" class='title' href="#schemaownsphenomena"/>
+                            <b class='dropdown-menu-title menu-text'>SchemaOwnsPhenomena</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-schemaownsphenomena" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-19">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-19">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-schemaownspropertycategories" class='title' href="#schemaownspropertycategories"/>
+                            <b class='dropdown-menu-title menu-text'>SchemaOwnsPropertyCategories</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-schemaownspropertycategories" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-20">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-20">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-schemaownsunitsystems" class='title' href="#schemaownsunitsystems"/>
+                            <b class='dropdown-menu-title menu-text'>SchemaOwnsUnitSystems</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-schemaownsunitsystems" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-21">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-21">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-schemaownsunits" class='title' href="#schemaownsunits"/>
+                            <b class='dropdown-menu-title menu-text'>SchemaOwnsUnits</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-schemaownsunits" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-22">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-22">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-unithasinvertedunit" class='title' href="#unithasinvertedunit"/>
+                            <b class='dropdown-menu-title menu-text'>UnitHasInvertedUnit</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-unithasinvertedunit" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-23">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-23">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-unitsystemhasunits" class='title' href="#unitsystemhasunits"/>
+                            <b class='dropdown-menu-title menu-text'>UnitSystemHasUnits</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-unitsystemhasunits" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-24">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-24">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-enumerations" class='title' href="#enumerations"/>
+            <b class='dropdown-menu-title menu-text'>Enumerations</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-enumerations" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#ecclassmodifier">ECClassModifier</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#ecclasstype">ECClassType</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#eccustomattributecontainertype">ECCustomAttributeContainerType</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#ecpropertykind">ECPropertyKind</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#ecrelationshipdirection">ECRelationshipDirection</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#ecrelationshipend">ECRelationshipEnd</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#ecrelationshipstrength">ECRelationshipStrength</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#primitivetype">PrimitiveType</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-ecenumeratordef" class='title' href="#ecenumeratordef"/>
+                            <b class='dropdown-menu-title menu-text'>ECEnumeratorDef</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-ecenumeratordef" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-12">Properties</a>
+                                    </li>
+                            </ul>
                     </li>
             </ul>
     </li>

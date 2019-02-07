@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -284,7 +283,7 @@ Markers draw on top of all scene graphics, and show visual cues about locations 
 </tr>
 <tr>
 <td class="h-_scalefactor"><span class="property-name">_scaleFactor</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="_scalefactor" class="heading-anchor" href="#_scalefactor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a></span></td>
+<td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point2d'>Point2d</a></span></td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -339,7 +338,7 @@ Markers draw on top of all scene graphics, and show visual cues about locations 
 </tr>
 <tr>
 <td class="h-position"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/marker/position'>position</a></span><a id="position" class="heading-anchor" href="#position"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span></td>
+<td><span class="method-output">Point3d</span></td>
 <td>The current position for the marker, in view coordinates (pixels).</td>
 </tr>
 <tr>
@@ -349,7 +348,7 @@ Markers draw on top of all scene graphics, and show visual cues about locations 
 </tr>
 <tr>
 <td class="h-size"><span class="property-name">size</span><a id="size" class="heading-anchor" href="#size"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a></span></td>
+<td><span class="method-output">Point2d</span></td>
 <td>The size of this Marker, in pixels.</td>
 </tr>
 <tr>
@@ -374,7 +373,7 @@ Markers draw on top of all scene graphics, and show visual cues about locations 
 </tr>
 <tr>
 <td class="h-worldlocation"><span class="property-name">worldLocation</span><a id="worldlocation" class="heading-anchor" href="#worldlocation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span></td>
+<td><span class="method-output">Point3d</span></td>
 <td>The location of this Marker in world coordinates.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -383,20 +382,17 @@ Markers draw on top of all scene graphics, and show visual cues about locations 
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -405,6 +401,22 @@ Markers draw on top of all scene graphics, and show visual cues about locations 
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -421,7 +433,7 @@ Markers draw on top of all scene graphics, and show visual cues about locations 
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-marker" class='title' href="#marker"/>
             <b class='dropdown-menu-title menu-text'>Marker</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-marker" class='inner-nav'>
                     <li class='nav-item item '>
@@ -430,7 +442,7 @@ Markers draw on top of all scene graphics, and show visual cues about locations 
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-methods" class='title' href="#methods"/>
                             <b class='dropdown-menu-title menu-text'>Methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -486,7 +498,7 @@ Markers draw on top of all scene graphics, and show visual cues about locations 
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-properties" class='title' href="#properties"/>
                             <b class='dropdown-menu-title menu-text'>Properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
                                     <li class='nav-item item '>

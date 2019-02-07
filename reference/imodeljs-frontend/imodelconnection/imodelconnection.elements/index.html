@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -197,10 +196,6 @@
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-formatelements"><span class="method-name">formatElements</span><span class="method-parenthesis">(</span><span class="method-parameters">elementIds: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64arg'>Id64Arg</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;any[]&gt;</span><a id="formatelements" class="heading-anchor" href="#formatelements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Ask the backend to format (for presentation) the specified list of element ids.</td>
-</tr>
-<tr>
 <td class="h-getprops"><span class="method-name">getProps</span><span class="method-parenthesis">(</span><span class="method-parameters">arg: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64arg'>Id64Arg</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a>[]&gt;</span><a id="getprops" class="heading-anchor" href="#getprops"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Get an array of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/elementprops'>ElementProps</a> given one or more element ids.</td>
 </tr>
@@ -229,20 +224,17 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -251,6 +243,22 @@
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -267,18 +275,15 @@
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-imodelconnectionelements" class='title' href="#imodelconnectionelements"/>
             <b class='dropdown-menu-title menu-text'>IModelConnection.Elements</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-imodelconnectionelements" class='inner-nav'>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-methods" class='title' href="#methods"/>
                             <b class='dropdown-menu-title menu-text'>Methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#formatelements">formatElements</a>
-                                    </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#getprops">getProps</a>
                                     </li>
@@ -293,7 +298,7 @@
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-properties" class='title' href="#properties"/>
                             <b class='dropdown-menu-title menu-text'>Properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
                                     <li class='nav-item item '>

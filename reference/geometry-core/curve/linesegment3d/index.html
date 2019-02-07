@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -241,6 +240,10 @@ parameterized with fraction 0 at the start and fraction 1 at the end, i.e. eithe
 <td>&#xA0;</td>
 </tr>
 <tr>
+<td class="h-computestrokecountforoptions"><span class="method-name"><a href="computestrokecountforoptions">computeStrokeCountForOptions</a></span><span class="method-parenthesis">(</span><span class="method-parameters">options?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/strokeoptions'>StrokeOptions</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="computestrokecountforoptions" class="heading-anchor" href="#computestrokecountforoptions"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>return the stroke count required for given options.</td>
+</tr>
+<tr>
 <td class="h-curvelength"><span class="method-name">curveLength</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="curvelength" class="heading-anchor" href="#curvelength"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 </tr>
@@ -355,6 +358,16 @@ parameterized with fraction 0 at the start and fraction 1 at the end, i.e. eithe
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
+<td class="h-addmappedstrokestolinestring3d"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive/addmappedstrokestolinestring3d'>addMappedStrokesToLineString3D</a></span><span class="method-parenthesis">(</span><span class="method-parameters">map: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/strokecountmap/strokecountmap'>StrokeCountMap</a>, linestring: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/linestring3d'>LineString3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="addmappedstrokestolinestring3d" class="heading-anchor" href="#addmappedstrokestolinestring3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive'>CurvePrimitive</a></span></td>
+<td>* evaluate strokes at fractions indicated in a StrokeCountMap.</td>
+</tr>
+<tr>
+<td class="h-computeandattachrecursivestrokecounts"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive/computeandattachrecursivestrokecounts'>computeAndAttachRecursiveStrokeCounts</a></span><span class="method-parenthesis">(</span><span class="method-parameters">options?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/strokeoptions'>StrokeOptions</a>, parentMap?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/strokecountmap/strokecountmap'>StrokeCountMap</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="computeandattachrecursivestrokecounts" class="heading-anchor" href="#computeandattachrecursivestrokecounts"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive'>CurvePrimitive</a></span></td>
+<td>attach StrokeCountMap structure to this primitive (and recursively to any children)<br>* Base class implementation (here) gets the simple count from computeStrokeCountForOptions and attaches it.</td>
+</tr>
+<tr>
 <td class="h-curvelengthwithfixedintervalcountquadrature"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive/curvelengthwithfixedintervalcountquadrature'>curveLengthWithFixedIntervalCountQuadrature</a></span><span class="method-parenthesis">(</span><span class="method-parameters">fraction0: number, fraction1: number, numInterval: number, numGauss: number = 5</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="curvelengthwithfixedintervalcountquadrature" class="heading-anchor" href="#curvelengthwithfixedintervalcountquadrature"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive'>CurvePrimitive</a></span></td>
 <td><em> Run an integration (with a default gaussian quadrature) with a fixed fractional step<br></em> This is typically called by specific curve type implementations of curveLengthBetweenFrations.</td>
@@ -388,6 +401,11 @@ parameterized with fraction 0 at the start and fraction 1 at the end, i.e. eithe
 <td class="h-trytranslateinplace"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/geometryquery/#trytranslateinplace'>tryTranslateInPlace</a></span><span class="method-parenthesis">(</span><span class="method-parameters">dx: number, dy: number = 0, dz: number = 0</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="trytranslateinplace" class="heading-anchor" href="#trytranslateinplace"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/geometryquery'>GeometryQuery</a></span></td>
 <td>try to move the geometry by dx,dy,dz</td>
+</tr>
+<tr>
+<td class="h-installstrokecountmap"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive/installstrokecountmap'>installStrokeCountMap</a></span><span class="method-parenthesis">(</span><span class="method-parameters">curve: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive'>CurvePrimitive</a>, curveMap: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/strokecountmap/strokecountmap'>StrokeCountMap</a>, parentMap?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/strokecountmap/strokecountmap'>StrokeCountMap</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="installstrokecountmap" class="heading-anchor" href="#installstrokecountmap"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive'>CurvePrimitive</a></span></td>
+<td>final install step to save curveMap in curve.</td>
 </tr>
 </tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -423,26 +441,29 @@ parameterized with fraction 0 at the start and fraction 1 at the end, i.e. eithe
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/geometryquery'>GeometryQuery</a></span></td>
 <td>return GeometryQuery children for recursive queries.<br><br>* leaf classes do not need to implement.</td>
 </tr>
+<tr>
+<td class="h-strokedata"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive/#strokedata'>strokeData</a></span><a id="strokedata" class="heading-anchor" href="#strokedata"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/strokecountmap/strokecountmap'>StrokeCountMap</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive'>CurvePrimitive</a></span></td>
+<td>data attached during stroking for facets.</td>
+</tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/geometry/src/curve/LineSegment3d.ts">curve/LineSegment3d.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -451,6 +472,22 @@ parameterized with fraction 0 at the start and fraction 1 at the end, i.e. eithe
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -467,7 +504,7 @@ parameterized with fraction 0 at the start and fraction 1 at the end, i.e. eithe
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-linesegment3d" class='title' href="#linesegment3d"/>
             <b class='dropdown-menu-title menu-text'>LineSegment3d</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-linesegment3d" class='inner-nav'>
                     <li class='nav-item item '>
@@ -479,7 +516,7 @@ parameterized with fraction 0 at the start and fraction 1 at the end, i.e. eithe
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-methods" class='title' href="#methods"/>
                             <b class='dropdown-menu-title menu-text'>Methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -502,6 +539,9 @@ parameterized with fraction 0 at the start and fraction 1 at the end, i.e. eithe
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#closestpoint">closestPoint</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#computestrokecountforoptions">computeStrokeCountForOptions</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#curvelength">curveLength</a>
@@ -589,9 +629,15 @@ parameterized with fraction 0 at the start and fraction 1 at the end, i.e. eithe
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-inherited-methods" class='title' href="#inherited-methods"/>
                             <b class='dropdown-menu-title menu-text'>Inherited methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-inherited-methods" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#addmappedstrokestolinestring3d">addMappedStrokesToLineString3D</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#computeandattachrecursivestrokecounts">computeAndAttachRecursiveStrokeCounts</a>
+                                    </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#curvelengthwithfixedintervalcountquadrature">curveLengthWithFixedIntervalCountQuadrature</a>
                                     </li>
@@ -613,12 +659,15 @@ parameterized with fraction 0 at the start and fraction 1 at the end, i.e. eithe
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#trytranslateinplace">tryTranslateInPlace</a>
                                     </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#installstrokecountmap">installStrokeCountMap</a>
+                                    </li>
                             </ul>
                     </li>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-properties" class='title' href="#properties"/>
                             <b class='dropdown-menu-title menu-text'>Properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -635,11 +684,14 @@ parameterized with fraction 0 at the start and fraction 1 at the end, i.e. eithe
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-inherited-properties" class='title' href="#inherited-properties"/>
                             <b class='dropdown-menu-title menu-text'>Inherited properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-inherited-properties" class='inner-nav'>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#children">children</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#strokedata">strokeData</a>
                                     </li>
                             </ul>
                     </li>

@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -202,7 +201,7 @@ All geometry of a GeometricElement are relative to its placement.</p>
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">origin: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>, angles: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/yawpitchrollangles'>YawPitchRollAngles</a>, bbox: <a href="$imodeljs-common$refLinkSource=imodeljs-common/D:/vsts_a/3/s/core/common/node_modules/@bentley/geometry-core/lib/geometry3d/Range.d.ts@60">ElementAlignedBox3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/placement3d'>Placement3d</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">origin: Point3d, angles: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/yawpitchrollangles'>YawPitchRollAngles</a>, bbox: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/elementalignedbox3d'>ElementAlignedBox3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/placement3d'>Placement3d</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -234,7 +233,7 @@ All geometry of a GeometricElement are relative to its placement.</p>
 </tr>
 <tr>
 <td class="h-bbox"><span class="property-name">bbox</span> <span class="badge badge-pill badge-primary badge-constructorproperty">ConstructorProperty</span><a id="bbox" class="heading-anchor" href="#bbox"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"><a href="$imodeljs-common$refLinkSource=imodeljs-common/D:/vsts_a/3/s/core/common/node_modules/@bentley/geometry-core/lib/geometry3d/Range.d.ts@60">ElementAlignedBox3d</a></span></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/elementalignedbox3d'>ElementAlignedBox3d</a></span></td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -244,7 +243,7 @@ All geometry of a GeometricElement are relative to its placement.</p>
 </tr>
 <tr>
 <td class="h-origin"><span class="property-name">origin</span> <span class="badge badge-pill badge-primary badge-constructorproperty">ConstructorProperty</span><a id="origin" class="heading-anchor" href="#origin"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span></td>
+<td><span class="method-output">Point3d</span></td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -259,24 +258,21 @@ All geometry of a GeometricElement are relative to its placement.</p>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
-<li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/common/src/geometry/Primitives.ts">geometry/Primitives.ts</a></span></li>
+<li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/common/src/geometry/Placement.ts">geometry/Placement.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -285,6 +281,22 @@ All geometry of a GeometricElement are relative to its placement.</p>
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -301,7 +313,7 @@ All geometry of a GeometricElement are relative to its placement.</p>
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-placement3d" class='title' href="#placement3d"/>
             <b class='dropdown-menu-title menu-text'>Placement3d</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-placement3d" class='inner-nav'>
                     <li class='nav-item item '>
@@ -310,7 +322,7 @@ All geometry of a GeometricElement are relative to its placement.</p>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-methods" class='title' href="#methods"/>
                             <b class='dropdown-menu-title menu-text'>Methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -333,7 +345,7 @@ All geometry of a GeometricElement are relative to its placement.</p>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-properties" class='title' href="#properties"/>
                             <b class='dropdown-menu-title menu-text'>Properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
                                     <li class='nav-item item '>

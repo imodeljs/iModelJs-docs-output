@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -192,7 +191,7 @@
             <h2 class="h-isorigininview">isOriginInView <span class="badge badge-pill badge-primary badge-method">Method</span><span class="badge badge-pill badge-primary badge-static">Static</span><a id="isorigininview" class="heading-anchor" href="#isorigininview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Given an origin point, returns whether the point falls within the view or not. If adjustOrigin is set to true, a point outside
 the view will be modified to fall within the appropriate range.</p>
-<p><span class="method-name">isOriginInView</span><span class="method-parenthesis">(</span><span class="method-parameters">drawOrigin: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>, viewport: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>, adjustOrigin: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></p>
+<p><span class="method-name">isOriginInView</span><span class="method-parenthesis">(</span><span class="method-parameters">drawOrigin: Point3d, viewport: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>, adjustOrigin: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
 <th>Type</th>
@@ -200,7 +199,7 @@ the view will be modified to fall within the appropriate range.</p>
 </tr>
 <tr>
 <td class="h-draworigin"><span class="parameter-name">drawOrigin</span><a id="draworigin" class="heading-anchor" href="#draworigin"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span></td>
+<td><span class="parameter-type">Point3d</span></td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -219,20 +218,17 @@ the view will be modified to fall within the appropriate range.</p>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -241,6 +237,22 @@ the view will be modified to fall within the appropriate range.</p>
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -257,7 +269,7 @@ the view will be modified to fall within the appropriate range.</p>
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-isorigininview" class='title' href="#isorigininview"/>
             <b class='dropdown-menu-title menu-text'>isOriginInView</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-isorigininview" class='inner-nav'>
                     <li class='nav-item item '>

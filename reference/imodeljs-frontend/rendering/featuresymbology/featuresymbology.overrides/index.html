@@ -15,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/prism.css">
 
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -198,7 +197,7 @@
 <li>The visibility of each <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/geometryclass'>GeometryClass</a> is set based on the view&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a>.</li>
 <li>The line weight is overridden to 1 pixel for all Features if line weight has been disabled by the view&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a>.</li>
 <li>The sets of elements which are always drawn and never drawn are initialized from the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a>&apos;s sets.
-An application can further customize the symbology of any Features by specifying an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/addfeatureoverrides'>AddFeatureOverrides</a> function on a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>. That function will be invoked
+An application can further customize the symbology of any Features by specifying an AddFeatureOverrides function on a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>. That function will be invoked
 whenever the Overrides need to be regenerated.</li>
 </ul>
 <p>To override the symbology of <em>most</em> Features within a view, specify a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.overrides/#defaultoverrides'>FeatureSymbology.Overrides.defaultOverrides</a> to be applied to any Feature not explicitly overridden.
@@ -209,8 +208,8 @@ that the element with ID &quot;0x123&quot; should be drawn with 0.25 transparenc
 be merged, causing the Feature&apos;s geometry to draw 25% transparent red. On the other hand, if subcategory &quot;A&quot; is specified to draw in red and element &quot;0x123&quot; to draw in green,
 the color specified by the element override will take precedence over that specified for the subcategory, resulting in a green Feature.</p>
 <p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate/setfeatureoverridesdirty'>ViewState.setFeatureOverridesDirty</a> for explicitly regenerating a view&apos;s Overrides.</p>
-<p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate/alwaysdrawn'>ViewState.alwaysDrawn</a></p>
-<p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate/neverdrawn'>ViewState.neverDrawn</a></p>
+<p><span class="badge badge-pill badge-primary badge-see">see</span> ViewState.alwaysDrawn</p>
+<p><span class="badge badge-pill badge-primary badge-see">see</span> ViewState.neverDrawn</p>
 <h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -249,8 +248,8 @@ the color specified by the element override will take precedence over that speci
 <td>Returns true if the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/subcategory'>SubCategory</a> specified by ID is in the set of visible subcategories.</td>
 </tr>
 <tr>
-<td class="h-overridebatch"><span class="method-name"><a href="overridebatch">overrideBatch</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: number, app: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="overridebatch" class="heading-anchor" href="#overridebatch"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Specify overrides for all geometry originating from the specified batch.</td>
+<td class="h-overrideanimationnode"><span class="method-name"><a href="overrideanimationnode">overrideAnimationNode</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: number, app: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="overrideanimationnode" class="heading-anchor" href="#overrideanimationnode"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Specify overrides for all geometry originating from the specified animation node.</td>
 </tr>
 <tr>
 <td class="h-overrideelement"><span class="method-name"><a href="overrideelement">overrideElement</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, app: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a>, replaceExisting: boolean = true</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="overrideelement" class="heading-anchor" href="#overrideelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -269,8 +268,12 @@ the color specified by the element override will take precedence over that speci
 <td>Specify the ID of an element which should always be drawn in this view.</td>
 </tr>
 <tr>
-<td class="h-setbatchneverdrawn"><span class="method-name">setBatchNeverDrawn</span><span class="method-parenthesis">(</span><span class="method-parameters">id: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setbatchneverdrawn" class="heading-anchor" href="#setbatchneverdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Specify the ID of a batch which should never be drawn in this view.</td>
+<td class="h-setalwaysdrawnset"><span class="method-name">setAlwaysDrawnSet</span><span class="method-parenthesis">(</span><span class="method-parameters">ids: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64set'>Id64Set</a>, exclusive: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setalwaysdrawnset" class="heading-anchor" href="#setalwaysdrawnset"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Specify the IDs of elements which should always be drawn in this view.</td>
+</tr>
+<tr>
+<td class="h-setanimationnodeneverdrawn"><span class="method-name">setAnimationNodeNeverDrawn</span><span class="method-parenthesis">(</span><span class="method-parameters">id: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setanimationnodeneverdrawn" class="heading-anchor" href="#setanimationnodeneverdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Specify the ID of a animation node which should never be drawn in this view.</td>
 </tr>
 <tr>
 <td class="h-setdefaultoverrides"><span class="method-name"><a href="setdefaultoverrides">setDefaultOverrides</a></span><span class="method-parenthesis">(</span><span class="method-parameters">appearance: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a>, replaceExisting: boolean = true</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setdefaultoverrides" class="heading-anchor" href="#setdefaultoverrides"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -279,6 +282,10 @@ the color specified by the element override will take precedence over that speci
 <tr>
 <td class="h-setneverdrawn"><span class="method-name">setNeverDrawn</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setneverdrawn" class="heading-anchor" href="#setneverdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Specify the ID of an element which should never be drawn in this view.</td>
+</tr>
+<tr>
+<td class="h-setneverdrawnset"><span class="method-name">setNeverDrawnSet</span><span class="method-parenthesis">(</span><span class="method-parameters">ids: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64set'>Id64Set</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setneverdrawnset" class="heading-anchor" href="#setneverdrawnset"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Specify the IDs of elements which should never be drawn in this view.</td>
 </tr>
 <tr>
 <td class="h-setvisiblesubcategory"><span class="method-name">setVisibleSubCategory</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setvisiblesubcategory" class="heading-anchor" href="#setvisiblesubcategory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -366,20 +373,17 @@ the color specified by the element override will take precedence over that speci
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>15 January, 2019</span>
+                <span class='date-updated'>07 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
             
             <script>
               $(document).ready(function () {
-                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
-                var gitRepo = ldclient.variation(featureFlags.GitRepo);
-                if (shouldShow) {
-                  // Verbose but necessary.
+                function initializeComments(repo) {
                   var s = document.createElement('script');
                   s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
-                  s.setAttribute('repo', gitRepo);
+                  s.setAttribute('repo', repo);
                   s.setAttribute('issue-term', 'title');
                   s.setAttribute('crossorigin', 'anonymous');
                   s.setAttribute('theme', 'github-light');
@@ -388,6 +392,22 @@ the color specified by the element override will take precedence over that speci
                   document.getElementById("imodeljs-github-comments").appendChild(s);
                 }
             
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
               });
             </script>
             
@@ -404,13 +424,13 @@ the color specified by the element override will take precedence over that speci
               <li class='nav-item item active typeDocHeader'>
             <a data-target="#inner-nav-featuresymbologyoverrides" class='title' href="#featuresymbologyoverrides"/>
             <b class='dropdown-menu-title menu-text'>FeatureSymbology.Overrides</b>
-            <i class='dropdown icon'></i>
+            <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-featuresymbologyoverrides" class='inner-nav'>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-methods" class='title' href="#methods"/>
                             <b class='dropdown-menu-title menu-text'>Methods</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
@@ -438,7 +458,7 @@ the color specified by the element override will take precedence over that speci
                                             <a class='title solo-title menu-text' href="#issubcategoryvisible">isSubCategoryVisible</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#overridebatch">overrideBatch</a>
+                                            <a class='title solo-title menu-text' href="#overrideanimationnode">overrideAnimationNode</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#overrideelement">overrideElement</a>
@@ -453,13 +473,19 @@ the color specified by the element override will take precedence over that speci
                                             <a class='title solo-title menu-text' href="#setalwaysdrawn">setAlwaysDrawn</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#setbatchneverdrawn">setBatchNeverDrawn</a>
+                                            <a class='title solo-title menu-text' href="#setalwaysdrawnset">setAlwaysDrawnSet</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setanimationnodeneverdrawn">setAnimationNodeNeverDrawn</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#setdefaultoverrides">setDefaultOverrides</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#setneverdrawn">setNeverDrawn</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setneverdrawnset">setNeverDrawnSet</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#setvisiblesubcategory">setVisibleSubCategory</a>
@@ -469,7 +495,7 @@ the color specified by the element override will take precedence over that speci
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-properties" class='title' href="#properties"/>
                             <b class='dropdown-menu-title menu-text'>Properties</b>
-                            <i class='dropdown icon'></i>
+                            <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
                                     <li class='nav-item item '>
