@@ -189,8 +189,8 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/">geometry-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/polyface/">Polyface</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/polyface/polyfacebuilder/">PolyfaceBuilder</a> > findOrAddParamInLineString</div>
             
             <h2 class="h-findoraddparaminlinestring">findOrAddParamInLineString <span class="badge badge-pill badge-primary badge-method">Method</span><a id="findoraddparaminlinestring" class="heading-anchor" href="#findoraddparaminlinestring"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Announce param coordinates, taking u from linestring and v from parameter.  The implemetation is free to either create a new param or (if knonw) return indxex of a prior point with the same coordinates.</p>
-<p><span class="method-name">findOrAddParamInLineString</span><span class="method-parenthesis">(</span><span class="method-parameters">ls: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/linestring3d'>LineString3d</a>, index: number, v: number</span><span class="method-parenthesis">):</span><span class="method-output"> number | undefined</span></p>
+<p>Announce param coordinates, taking u from ls.fractions and v from parameter.  The implemetation is free to either create a new param or (if knonw) return indxex of a prior point with the same coordinates.</p>
+<p><span class="method-name">findOrAddParamInLineString</span><span class="method-parenthesis">(</span><span class="method-parameters">ls: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/linestring3d'>LineString3d</a>, index: number, v: number, priorIndexA?: number, priorIndexB?: number</span><span class="method-parenthesis">):</span><span class="method-output"> number | undefined</span></p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
 <th>Type</th>
@@ -211,6 +211,16 @@
 <td><span class="parameter-type">number</span></td>
 <td>&#xA0;</td>
 </tr>
+<tr>
+<td class="h-priorindexa"><span class="parameter-name">priorIndexA</span><a id="priorindexa" class="heading-anchor" href="#priorindexa"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="parameter-type">number</span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-priorindexb"><span class="parameter-name">priorIndexB</span><a id="priorindexb" class="heading-anchor" href="#priorindexb"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="parameter-type">number</span></td>
+<td>&#xA0;</td>
+</tr>
 </tbody></table><p><strong>Returns</strong> - Returns the point index in the Polyface.</p>
 <h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -218,7 +228,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 February, 2019</span>
+                <span class='date-updated'>19 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -280,6 +290,12 @@
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#v">v</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#priorindexa">priorIndexA</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#priorindexb">priorIndexB</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#defined-in">Defined in</a>

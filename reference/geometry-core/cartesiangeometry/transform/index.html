@@ -350,6 +350,10 @@ take care of determining the appropriate origin coordinates.</li>
 <td>Return an identity transform, optionally filling existing transform.</td>
 </tr>
 <tr>
+<td class="h-creatematrixpickupputdown"><span class="method-name">createMatrixPickupPutdown</span><span class="method-parenthesis">(</span><span class="method-parameters">matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a>, pointA: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>, pointB: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="creatematrixpickupputdown" class="heading-anchor" href="#creatematrixpickupputdown"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Create a transform with the specified matrix, acting on any <code>pointX</code>via<br><code>pointY = matrix * (pointX - pointA) + pointB</code><br>so that the fixedPoint maps back to itself.</td>
+</tr>
+<tr>
 <td class="h-createoriginandmatrix"><span class="method-name">createOriginAndMatrix</span><span class="method-parenthesis">(</span><span class="method-parameters">origin: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a> | undefined, matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/matrix3d/matrix3d'>Matrix3d</a> | undefined, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createoriginandmatrix" class="heading-anchor" href="#createoriginandmatrix"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Create by directly installing origin and matrix<br>this is a the appropriate construction when the columns of the matrix are coordinate axes of a local-to-global mapping<br>Note there is a closely related createFixedPointAndMatrix whose point input is the fixed point of the global-to-global transformation.</td>
 </tr>
@@ -425,7 +429,7 @@ take care of determining the appropriate origin coordinates.</li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 February, 2019</span>
+                <span class='date-updated'>19 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -592,6 +596,9 @@ take care of determining the appropriate origin coordinates.</li>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#createidentity">createIdentity</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#creatematrixpickupputdown">createMatrixPickupPutdown</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#createoriginandmatrix">createOriginAndMatrix</a>

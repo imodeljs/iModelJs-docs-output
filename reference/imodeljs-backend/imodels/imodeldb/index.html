@@ -199,6 +199,7 @@
 <h3 class="h-implements">Implements<a id="implements" class="heading-anchor" href="#implements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodelprops'>IModelProps</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/pagableecsql'>PagableECSql</a></li>
 </ul>
 <h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -294,6 +295,10 @@
 <td>Push changes to iModelHub</td>
 </tr>
 <tr>
+<td class="h-query"><span class="method-name"><a href="query">query</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ecsql: string, bindings?: any[] | any, options?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/pageoptions'>PageOptions</a></span><span class="method-parenthesis">):</span><span class="method-output"> AsyncIterableIterator&lt;any&gt;</span><a id="query" class="heading-anchor" href="#query"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Execute a pagable query.</td>
+</tr>
+<tr>
 <td class="h-queryentityids"><span class="method-name"><a href="queryentityids">queryEntityIds</a></span><span class="method-parenthesis">(</span><span class="method-parameters">params: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/entityqueryparams'>EntityQueryParams</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64set'>Id64Set</a></span><a id="queryentityids" class="heading-anchor" href="#queryentityids"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Query for a set of entity ids, given an EntityQueryParams</td>
 </tr>
@@ -308,6 +313,14 @@
 <tr>
 <td class="h-querynextavailablefileproperty"><span class="method-name"><a href="querynextavailablefileproperty">queryNextAvailableFileProperty</a></span><span class="method-parenthesis">(</span><span class="method-parameters">prop: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/filepropertyprops'>FilePropertyProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="querynextavailablefileproperty" class="heading-anchor" href="#querynextavailablefileproperty"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Query for the next available major id for a &quot;file property&quot; from this iModel.</td>
+</tr>
+<tr>
+<td class="h-querypage"><span class="method-name"><a href="querypage">queryPage</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ecsql: string, bindings?: any[] | any, options?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/pageoptions'>PageOptions</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;any[]&gt;</span><a id="querypage" class="heading-anchor" href="#querypage"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Execute a query agaisnt this ECDb<br>The result of the query is returned as an array of JavaScript objects where every array element represents an<br><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlrowformat'>ECSQL row</a>.</td>
+</tr>
+<tr>
+<td class="h-queryrowcount"><span class="method-name"><a href="queryrowcount">queryRowCount</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ecsql: string, bindings?: any[] | any</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;number&gt;</span><a id="queryrowcount" class="heading-anchor" href="#queryrowcount"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Compute number of rows that would be returned by the ECSQL.</td>
 </tr>
 <tr>
 <td class="h-readfontjson"><span class="method-name">readFontJson</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> string</span><a id="readfontjson" class="heading-anchor" href="#readfontjson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -362,7 +375,7 @@
 <td>Use a prepared ECSQL statement.</td>
 </tr>
 <tr>
-<td class="h-create"><span class="method-name">create</span><span class="method-parenthesis">(</span><span class="method-parameters">activity: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, accessToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, contextId: string, fileName: string, args: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/createimodelprops'>CreateIModelProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a>&gt;</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="create" class="heading-anchor" href="#create"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-create"><span class="method-name">create</span><span class="method-parenthesis">(</span><span class="method-parameters">activity: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, accessToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, contextId: string, iModelName: string, args: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/createimodelprops'>CreateIModelProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a>&gt;</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="create" class="heading-anchor" href="#create"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Create an iModel on iModelHub</td>
 </tr>
 <tr>
@@ -394,17 +407,17 @@
 <tr>
 <td class="h-cartographictospatialfromecef"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/cartographictospatialfromecef'>cartographicToSpatialFromEcef</a></span><span class="method-parenthesis">(</span><span class="method-parameters">cartographic: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/cartographic'>Cartographic</a>, result?: Point3d</span><span class="method-parenthesis">):</span><span class="method-output"> Point3d</span><a id="cartographictospatialfromecef" class="heading-anchor" href="#cartographictospatialfromecef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
-<td>Convert a ($Cartographic$refLinkSource=imodeljs-backend/D:/vsts_a/1/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@163) to a point in this iModel&apos;s Spatial coordinates using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/vsts_a/1/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@163">ecefLocation</a>.</td>
+<td>Convert a ($Cartographic$refLinkSource=imodeljs-backend/D:/vsts_b/3/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@178) to a point in this iModel&apos;s Spatial coordinates using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/vsts_b/3/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@178">ecefLocation</a>.</td>
 </tr>
 <tr>
 <td class="h-eceftospatial"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/eceftospatial'>ecefToSpatial</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ecef: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, result?: Point3d</span><span class="method-parenthesis">):</span><span class="method-output"> Point3d</span><a id="eceftospatial" class="heading-anchor" href="#eceftospatial"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
-<td>Convert a point in ECEF coordinates to a point in this iModel&apos;s Spatial coordinates using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/vsts_a/1/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@146">ecefLocation</a>.</td>
+<td>Convert a point in ECEF coordinates to a point in this iModel&apos;s Spatial coordinates using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/vsts_b/3/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@161">ecefLocation</a>.</td>
 </tr>
 <tr>
 <td class="h-geteceftransform"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/geteceftransform'>getEcefTransform</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><a id="geteceftransform" class="heading-anchor" href="#geteceftransform"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
-<td>Get the Transform from this iModel&apos;s Spatial coordinates to ECEF coordinates using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/vsts_a/1/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@129">ecefLocation</a>.</td>
+<td>Get the Transform from this iModel&apos;s Spatial coordinates to ECEF coordinates using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/vsts_b/3/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@144">ecefLocation</a>.</td>
 </tr>
 <tr>
 <td class="h-seteceflocation"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/#seteceflocation'>setEcefLocation</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ecef: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/eceflocationprops'>EcefLocationProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="seteceflocation" class="heading-anchor" href="#seteceflocation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -414,12 +427,12 @@
 <tr>
 <td class="h-spatialtocartographicfromecef"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/spatialtocartographicfromecef'>spatialToCartographicFromEcef</a></span><span class="method-parenthesis">(</span><span class="method-parameters">spatial: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/cartographic'>Cartographic</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/cartographic'>Cartographic</a></span><a id="spatialtocartographicfromecef" class="heading-anchor" href="#spatialtocartographicfromecef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
-<td>Convert a point in this iModel&apos;s Spatial coordinates to a ($Cartographic$refLinkSource=imodeljs-backend/D:/vsts_a/1/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@154) using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/vsts_a/1/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@154">ecefLocation</a>.</td>
+<td>Convert a point in this iModel&apos;s Spatial coordinates to a ($Cartographic$refLinkSource=imodeljs-backend/D:/vsts_b/3/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@169) using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/vsts_b/3/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@169">ecefLocation</a>.</td>
 </tr>
 <tr>
 <td class="h-spatialtoecef"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/spatialtoecef'>spatialToEcef</a></span><span class="method-parenthesis">(</span><span class="method-parameters">spatial: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, result?: Point3d</span><span class="method-parenthesis">):</span><span class="method-output"> Point3d</span><a id="spatialtoecef" class="heading-anchor" href="#spatialtoecef"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a></span></td>
-<td>Convert a point in this iModel&apos;s Spatial coordinates to an ECEF point using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/vsts_a/1/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@137">ecefLocation</a>.</td>
+<td>Convert a point in this iModel&apos;s Spatial coordinates to an ECEF point using its <a href="$IModel$refLinkSource=imodeljs-backend/D:/vsts_b/3/s/core/backend/node_modules/@bentley/imodeljs-common/lib/IModel.d.ts@152">ecefLocation</a>.</td>
 </tr>
 <tr>
 <td class="h-getdefaultsubcategoryid"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel/#getdefaultsubcategoryid'>getDefaultSubCategoryId</a></span><span class="method-parenthesis">(</span><span class="method-parameters">categoryId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="getdefaultsubcategoryid" class="heading-anchor" href="#getdefaultsubcategoryid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -481,11 +494,6 @@
 <td class="h-models"><span class="property-name">models</span><a id="models" class="heading-anchor" href="#models"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb.models'>IModelDb.Models</a></span></td>
 <td>&#xA0;</td>
-</tr>
-<tr>
-<td class="h-nativedb"><span class="property-name">nativeDb</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="nativedb" class="heading-anchor" href="#nativedb"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> DgnDb</span></td>
-<td>Get the in-memory handle of the native Db</td>
 </tr>
 <tr>
 <td class="h-onbeforeclose"><span class="property-name">onBeforeClose</span><a id="onbeforeclose" class="heading-anchor" href="#onbeforeclose"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -615,7 +623,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 February, 2019</span>
+                <span class='date-updated'>19 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -748,6 +756,9 @@
                                             <a class='title solo-title menu-text' href="#pushchanges">pushChanges</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#query">query</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#queryentityids">queryEntityIds</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -758,6 +769,12 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#querynextavailablefileproperty">queryNextAvailableFileProperty</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#querypage">queryPage</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#queryrowcount">queryRowCount</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#readfontjson">readFontJson</a>
@@ -882,9 +899,6 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#models">models</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#nativedb">nativeDb</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#onbeforeclose">onBeforeClose</a>

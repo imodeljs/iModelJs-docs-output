@@ -212,12 +212,24 @@
 <td>construct array of arrays of <code>StrokeCountMap</code>s</td>
 </tr>
 <tr>
-<td class="h-enforcecompatibility"><span class="method-name"><a href="enforcecompatibility">enforceCompatibility</a></span><span class="method-parenthesis">(</span><span class="method-parameters">sections: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/strokecountchain/strokecountsection'>StrokeCountSection</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="enforcecompatibility" class="heading-anchor" href="#enforcecompatibility"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-enforcecompatibledistancesums"><span class="method-name"><a href="enforcecompatibledistancesums">enforceCompatibleDistanceSums</a></span><span class="method-parenthesis">(</span><span class="method-parameters">sections: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/strokecountchain/strokecountsection'>StrokeCountSection</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="enforcecompatibledistancesums" class="heading-anchor" href="#enforcecompatibledistancesums"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>* Confirm that all sections in the array have the same structure.</td>
+</tr>
+<tr>
+<td class="h-enforcestrokecountcompatibility"><span class="method-name"><a href="enforcestrokecountcompatibility">enforceStrokeCountCompatibility</a></span><span class="method-parenthesis">(</span><span class="method-parameters">sections: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/strokecountchain/strokecountsection'>StrokeCountSection</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="enforcestrokecountcompatibility" class="heading-anchor" href="#enforcestrokecountcompatibility"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>* Confirm that all sections in the array have the same structure.</td>
 </tr>
 <tr>
 <td class="h-extenddistancerangebetweenstrokes"><span class="method-name"><a href="extenddistancerangebetweenstrokes">extendDistanceRangeBetweenStrokes</a></span><span class="method-parenthesis">(</span><span class="method-parameters">strokeA: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/anycurve'>AnyCurve</a>, strokeB: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/anycurve'>AnyCurve</a>, rangeToExtend: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range1d'>Range1d</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="extenddistancerangebetweenstrokes" class="heading-anchor" href="#extenddistancerangebetweenstrokes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Given two compatibile stroke sets (as returned by getStrokes) extend a range<br>with the distances between corresponding points.</td>
+</tr>
+<tr>
+<td class="h-remapa0a1withineachchain"><span class="method-name"><a href="remapa0a1withineachchain">remapa0a1WithinEachChain</a></span><span class="method-parenthesis">(</span><span class="method-parameters">sections: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/strokecountchain/strokecountsection'>StrokeCountSection</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="remapa0a1withineachchain" class="heading-anchor" href="#remapa0a1withineachchain"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Within each section, sweep accumulate curveLength field, recording entry and exit sum in each map.</td>
+</tr>
+<tr>
+<td class="h-runmultipassvisitoratcorrespondingprimitives"><span class="method-name"><a href="runmultipassvisitoratcorrespondingprimitives">runMultiPassVisitorAtCorrespondingPrimitives</a></span><span class="method-parenthesis">(</span><span class="method-parameters">sections: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/strokecountchain/strokecountsection'>StrokeCountSection</a>[], callback: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/strokecountchain/strokecountmapmultipassvisitor'>StrokeCountMapMultipassVisitor</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="runmultipassvisitoratcorrespondingprimitives" class="heading-anchor" href="#runmultipassvisitoratcorrespondingprimitives"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Walk through the sections, emitting callbacks delimiting groups of corresponding primitives.</td>
 </tr>
 </tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -241,7 +253,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 February, 2019</span>
+                <span class='date-updated'>19 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -311,10 +323,19 @@
                                             <a class='title solo-title menu-text' href="#createforparityregionorchain">createForParityRegionOrChain</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#enforcecompatibility">enforceCompatibility</a>
+                                            <a class='title solo-title menu-text' href="#enforcecompatibledistancesums">enforceCompatibleDistanceSums</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#enforcestrokecountcompatibility">enforceStrokeCountCompatibility</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#extenddistancerangebetweenstrokes">extendDistanceRangeBetweenStrokes</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#remapa0a1withineachchain">remapa0a1WithinEachChain</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#runmultipassvisitoratcorrespondingprimitives">runMultiPassVisitorAtCorrespondingPrimitives</a>
                                     </li>
                             </ul>
                     </li>

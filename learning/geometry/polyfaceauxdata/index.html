@@ -117,7 +117,7 @@
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/geometry/PolyfaceAuxData.md">Edit this page</a></div>
             <h1 id="polyface analytical data visualization">Polyface Analytical Data Visualization</h1>
 <p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyfaceauxdata'>PolyfaceAuxData</a> structure contains one or more analytical data channels for each vertex of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyface'>Polyface</a>.  Typically a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyface'>Polyface</a> will contain only vertex data required for its basic display, the vertex position, normal and possibly texture parameter.  The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyfaceauxdata'>PolyfaceAuxData</a> structure contains supplemental data that is generally computed in an analysis program or extracted from an external data source.  This can be scalar data used to overide the vertex colors through <em>Thematic Colorization</em> or XYZ data used to deform the mesh by adjusting the vertex postions. The figure below represents a cantilever beam under a single point load.  The stress is represented through thematic colorization and the deflection is also displayed (exaggerated 100X by applying <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/analysisstyle'>AnalysisStyle</a> with displacementScale: 100.</p>
-<p><img src=".././figs/PolyfaceAuxData/Cantilever.gif" alt="&gt;"></p>
+<p><img data-gifffer=".././figs/PolyfaceAuxData/Cantilever.gif" alt="&gt;"></p>
 <p>Analytical Data Channels.
 -</p>
 <p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyfaceauxdata'>PolyfaceAuxData</a> structure contains an array of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/auxchannel'>AuxChannel</a> structures that may each represent a separate quantity (temperature, stress, displacement etc.).  A channel will include one or more input values and a set of vertex values for each input value.  If more than one input value is included then it is possible to animate the visualization as the input changes.  The input would typically be either elapsed time or an external input such as load.  Each input channel is independent and only a single channel of a type (scalar, displacement or normal) may be displayed at a time.</p>
@@ -132,7 +132,7 @@
 <li>A single scalar channel, the scalar channel range and the thematic gradient to display the scalar data (<code>Gradient.ThematicSettings</code>).  In the images below the same mesh is displayed with two different <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/analysisstyle'>AnalysisStyle</a>s.</li>
 </ul>
 <hr>
-<pre><code> Scalar Height with Sea-Mountain Gradient                   Scalar Slope with Blue-Red Gradient</code></pre><p><img src=".././figs/PolyfaceAuxData/RadialWaveHeight.gif" alt="&gt;"> <img src="./figs/PolyfaceAuxData/RadialWaveSlope.gif" alt="&gt;"></p>
+<pre><code> Scalar Height with Sea-Mountain Gradient                   Scalar Slope with Blue-Red Gradient</code></pre><p><img data-gifffer=".././figs/PolyfaceAuxData/RadialWaveHeight.gif" alt="&gt;"> <img src="./figs/PolyfaceAuxData/RadialWaveSlope.gif" alt="&gt;"></p>
 <h2 class="h-example">Example<a id="example" class="heading-anchor" href="#example"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>An example creating a fictitious analytical mesh is included in the &quot;analysis-importer&quot; test application.  The application begins by creating the flat rectangular <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyface'>Polyface</a> with 100 rows and columns...</p>
 <pre class="no-line-numbers"><code class="language-typescript">    const options = StrokeOptions.createForFacets();
@@ -200,9 +200,9 @@
 <p>The final step is to create <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyfaceauxdata'>PolyfaceAuxData</a> and associate it to our base `Polyface&apos;.  A set of indices is required to map the channel data values into the facets.  In our case, we have produced the channel data in parallel with the mesh points so that we can simply use point indices &quot;polyface.data.pointIndex&quot;, but this is not required and alternate indexing could also be used.  Not e that only a single index structure is supplied and shared by all channels and their data, therefore all channels data arrays must have same number of values and indexing.</p>
 <pre class="no-line-numbers"><code class="language-typescript">    polyface.data.auxData = new PolyfaceAuxData(auxChannels, polyface.data.pointIndex);</code></pre>
 <p>Run the example by entering &quot;node test-apps/analysis-importer/lib/Main.js&quot; in a command shell with CWD set to repository root.  The output is &quot;test-apps/analysis-importer/lib/output/AnalysisExample.bim&quot;.</p>
-
+<script>$(document).ready(function () { Gifffer(); })</script>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 February, 2019</span>
+                <span class='date-updated'>19 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

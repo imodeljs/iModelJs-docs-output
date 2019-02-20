@@ -198,7 +198,7 @@ save previously prepared SqliteStatements for reuse.</p>
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">maxCount: number = 20</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/sqlite/sqlitestatementcache'>SqliteStatementCache</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">maxCount: number = Config.App.getNumber(&quot;imjs_sqlite_cache_size&quot;, 40)</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/sqlite/sqlitestatementcache'>SqliteStatementCache</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -225,6 +225,10 @@ save previously prepared SqliteStatements for reuse.</p>
 <td class="h-removeunusedstatementsifnecessary"><span class="method-name">removeUnusedStatementsIfNecessary</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="removeunusedstatementsifnecessary" class="heading-anchor" href="#removeunusedstatementsifnecessary"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 </tr>
+<tr>
+<td class="h-replace"><span class="method-name">replace</span><span class="method-parenthesis">(</span><span class="method-parameters">str: string, stmt: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/sqlite/sqlitestatement'>SqliteStatement</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="replace" class="heading-anchor" href="#replace"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
 </tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -242,7 +246,7 @@ save previously prepared SqliteStatements for reuse.</p>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 February, 2019</span>
+                <span class='date-updated'>19 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -322,6 +326,9 @@ save previously prepared SqliteStatements for reuse.</p>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#removeunusedstatementsifnecessary">removeUnusedStatementsIfNecessary</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#replace">replace</a>
                                     </li>
                             </ul>
                     </li>

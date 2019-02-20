@@ -197,30 +197,32 @@
 <th>Description</th>
 </tr>
 <tr>
-<td class="h-abstractconstraintmustnarrowbaseconstraints">AbstractConstraintMustNarrowBaseConstraints<a id="abstractconstraintmustnarrowbaseconstraints" class="heading-anchor" href="#abstractconstraintmustnarrowbaseconstraints"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>` Diagnostic.createSchemaItemDiagnosticClass&lt;RelationshipClass, [string, string, string, string]&gt;(Diagnostic.DiagnosticCode.AbstractConstraintMustNarrowBaseConstraints,</td>
+<td class="h-abstractconstraintmustexistwithmultipleconstraints">AbstractConstraintMustExistWithMultipleConstraints<a id="abstractconstraintmustexistwithmultipleconstraints" class="heading-anchor" href="#abstractconstraintmustexistwithmultipleconstraints"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>` Diagnostic.createRelationshipConstraintDiagnosticClass&lt;[string, string]&gt;(DiagnosticCodes.AbstractConstraintMustExistWithMultipleConstraints,</td>
 </tr>
-</tbody></table><pre><code>&quot;The abstract constraint class &apos;{0}&apos; on the {1}-Constraint of &apos;{2}&apos; is not supported by the base class constraint in &apos;{3}&apos;.&quot;)` | Required message parameters: abstract constraint class name, relationship end (source/target), relationship name, base relationship name |</code></pre><p>| AtLeastOneConstraintClassDefined | <code>Diagnostic.createRelationshipConstraintDiagnosticClass&lt;[string, string]&gt;(Diagnostic.DiagnosticCode.AtLeastOneConstraintClassDefined,
+</tbody></table><pre><code>&quot;The {0}-Constraint of &apos;{1}&apos; has multiple constraint classes which requires an abstract constraint to be defined.&quot;)` | Required message parameters: relationship end (source/target), relationship name |</code></pre><p>| AbstractConstraintMustNarrowBaseConstraints | <code>Diagnostic.createSchemaItemDiagnosticClass&lt;RelationshipClass, [string, string, string, string]&gt;(DiagnosticCodes.AbstractConstraintMustNarrowBaseConstraints,
+    &quot;The abstract constraint class &apos;{0}&apos; on the {1}-Constraint of &apos;{2}&apos; is not supported by the base class constraint in &apos;{3}&apos;.&quot;)</code> | Required message parameters: abstract constraint class name, relationship end (source/target), relationship name, base relationship name |
+| AtLeastOneConstraintClassDefined | <code>Diagnostic.createRelationshipConstraintDiagnosticClass&lt;[string, string]&gt;(DiagnosticCodes.AtLeastOneConstraintClassDefined,
     &quot;The {0}-Constraint of &apos;{1}&apos; does not contain any constraint classes.&quot;)</code> | Required message parameters: relationship end (source/target), relationship name |
-| BaseClassIsOfDifferentType | <code>Diagnostic.createClassDiagnosticClass&lt;[string, string, string]&gt;(Diagnostic.DiagnosticCode.BaseClassOfDifferentType,
+| BaseClassIsOfDifferentType | <code>Diagnostic.createClassDiagnosticClass&lt;[string, string, string]&gt;(DiagnosticCodes.BaseClassOfDifferentType,
     &quot;Class &apos;{0}&apos; cannot derive from base class &apos;{1}&apos; of type &apos;{2}&apos;.&quot;)</code> | Required message parameters: childClass.FullName, baseClass.FullName, baseClass.schemaItemType |
-| BaseClassIsSealed | <code>Diagnostic.createClassDiagnosticClass&lt;[string, string]&gt;(Diagnostic.DiagnosticCode.BaseClassIsSealed,
+| BaseClassIsSealed | <code>Diagnostic.createClassDiagnosticClass&lt;[string, string]&gt;(DiagnosticCodes.BaseClassIsSealed,
     &quot;Class &apos;{0}&apos; cannot derive from sealed base class &apos;{1}&apos;.&quot;)</code> | Required message parameters: childClass.FullName, baseClass.FullName |
-| ConstraintClassesDeriveFromAbstractContraint | <code>Diagnostic.createSchemaItemDiagnosticClass&lt;RelationshipClass, [string, string, string, string]&gt;(Diagnostic.DiagnosticCode.ConstraintClassesDeriveFromAbstractContraint,
+| ConstraintClassesDeriveFromAbstractContraint | <code>Diagnostic.createSchemaItemDiagnosticClass&lt;RelationshipClass, [string, string, string, string]&gt;(DiagnosticCodes.ConstraintClassesDeriveFromAbstractContraint,
     &quot;The constraint class &apos;{0}&apos; on the {1}-Constraint of &apos;{2}&apos; is not derived from the abstract constraint class &apos;{3}&apos;.&quot;)</code> | Required message parameters: constraint class name, relationship end (source/target), relationship name, abstract constraint class name |
-| CustomAttributeNotOfConcreteClass | <code>Diagnostic.createCustomAttributeContainerDiagnosticClass&lt;[string, string]&gt;(Diagnostic.DiagnosticCode.CustomAttributeNotOfConcreteClass,
+| CustomAttributeNotOfConcreteClass | <code>Diagnostic.createCustomAttributeContainerDiagnosticClass&lt;[string, string]&gt;(DiagnosticCodes.CustomAttributeNotOfConcreteClass,
     &quot;The CustomAttribute container &apos;{0}&apos; has a CustomAttribute with the class &apos;{1}&apos; which is not a concrete class.&quot;)</code> | Required message parameters: CustomAttribute container name and CustomAttributeClass name. |
-| DerivedConstraintsMustNarrowBaseConstraints | <code>Diagnostic.createSchemaItemDiagnosticClass&lt;RelationshipClass, [string, string, string, string]&gt;(Diagnostic.DiagnosticCode.DerivedConstraintsMustNarrowBaseConstraints,
+| DerivedConstraintsMustNarrowBaseConstraints | <code>Diagnostic.createSchemaItemDiagnosticClass&lt;RelationshipClass, [string, string, string, string]&gt;(DiagnosticCodes.DerivedConstraintsMustNarrowBaseConstraints,
     &quot;The constraint class &apos;{0}&apos; on the {1}-Constraint of &apos;{2}&apos; is not supported by the base class constraint in &apos;{3}&apos;.&quot;)</code> | Required message parameters: constraint class name, relationship end (source/target), relationship name, base relationship name |
-| IncompatibleTypePropertyOverride | <code>Diagnostic.createPropertyDiagnosticClass&lt;[string, string, string, string, string]&gt;(Diagnostic.DiagnosticCode.IncompatibleTypePropertyOverride,
-    &quot;The ECProperty &apos;{0}:{1}&apos; has a base property &apos;{2}:{1}&apos; with a type of {3} which is incompatible with the type of {4}.&quot;)</code> | Required message parameters: childClass.FullName, property name, baseClass.FullName, base property type, child property type |
-| IncompatibleUnitPropertyOverride | <code>Diagnostic.createPropertyDiagnosticClass&lt;[string, string, string, string, string, string, string]&gt;(Diagnostic.DiagnosticCode.IncompatibleUnitPropertyOverride,
-    &quot;The ECProperty &apos;{0}:{1}&apos; has a base property &apos;{2}:{1}&apos; with KindOfQuantity &apos;{3}&apos; with persistence unit &apos;{4}&apos; which is not the same as the persistence unit &apos;{5}&apos; of the provided KindOfQuantity &apos;{6}&apos;.&quot;)</code> | Required message parameters: childClass.Name, property name, baseClass.Name, baseClass Koq name, baseClass Koq persistence unit name, child class Koq persistence unit name, child class Koq name |
-| IncompatibleValueTypePropertyOverride | <code>Diagnostic.createPropertyDiagnosticClass&lt;[string, string, string, string, string]&gt;(Diagnostic.DiagnosticCode.IncompatibleValueTypePropertyOverride,
-    &quot;The ECProperty &apos;{0}:{1}&apos; has a base property &apos;{2}:{1}&apos; with a value type of {3} which is incompatible with the value type of {4}.&quot;)</code> | Required message parameters: childClass.FullName, property name, baseClass.FullName, base value type, child value type |
-| InvalidEnumerationType | <code>Diagnostic.createSchemaItemDiagnosticClass&lt;Enumeration, [string]&gt;(Diagnostic.DiagnosticCode.InvalidEnumerationType,
+| EnumerationTypeUnsupported | <code>Diagnostic.createSchemaItemDiagnosticClass&lt;Enumeration, [string]&gt;(DiagnosticCodes.EnumerationTypeUnsupported,
     &quot;Enumeration &apos;{0}&apos; has invalid primitive type.&quot;)</code> | Required message parameters: Enumeration name |
-| MixinAppliedToClassMustDeriveFromConstraint | <code>Diagnostic.createSchemaItemDiagnosticClass&lt;EntityClass, [string, string, string]&gt;(Diagnostic.DiagnosticCode.MixinAppliedToClassMustDeriveFromConstraint,
+| IncompatibleTypePropertyOverride | <code>Diagnostic.createPropertyDiagnosticClass&lt;[string, string, string, string, string]&gt;(DiagnosticCodes.IncompatibleTypePropertyOverride,
+    &quot;The ECProperty &apos;{0}:{1}&apos; has a base property &apos;{2}:{1}&apos; with a type of {3} which is incompatible with the type of {4}.&quot;)</code> | Required message parameters: childClass.FullName, property name, baseClass.FullName, base property type, child property type |
+| IncompatibleUnitPropertyOverride | <code>Diagnostic.createPropertyDiagnosticClass&lt;[string, string, string, string, string, string, string]&gt;(DiagnosticCodes.IncompatibleUnitPropertyOverride,
+    &quot;The ECProperty &apos;{0}:{1}&apos; has a base property &apos;{2}:{1}&apos; with KindOfQuantity &apos;{3}&apos; with persistence unit &apos;{4}&apos; which is not the same as the persistence unit &apos;{5}&apos; of the provided KindOfQuantity &apos;{6}&apos;.&quot;)</code> | Required message parameters: childClass.Name, property name, baseClass.Name, baseClass Koq name, baseClass Koq persistence unit name, child class Koq persistence unit name, child class Koq name |
+| IncompatibleValueTypePropertyOverride | <code>Diagnostic.createPropertyDiagnosticClass&lt;[string, string, string, string, string]&gt;(DiagnosticCodes.IncompatibleValueTypePropertyOverride,
+    &quot;The ECProperty &apos;{0}:{1}&apos; has a base property &apos;{2}:{1}&apos; with a value type of {3} which is incompatible with the value type of {4}.&quot;)</code> | Required message parameters: childClass.FullName, property name, baseClass.FullName, base value type, child value type |
+| MixinAppliedToClassMustDeriveFromConstraint | <code>Diagnostic.createSchemaItemDiagnosticClass&lt;EntityClass, [string, string, string]&gt;(DiagnosticCodes.MixinAppliedToClassMustDeriveFromConstraint,
     &quot;Mixin &apos;{0}&apos; cannot be applied to the class &apos;{1}&apos; because it does not satisfy the applies to constraint &apos;{2}&apos;.&quot;)</code> | Required message parameters: mixin class fullName, class fullName, applies to constraint class fullName |</p>
 <h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -228,7 +230,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 February, 2019</span>
+                <span class='date-updated'>19 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -289,7 +291,7 @@
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#abstractconstraintmustnarrowbaseconstraints">AbstractConstraintMustNarrowBaseConstraints</a>
+                                            <a class='title solo-title menu-text' href="#abstractconstraintmustexistwithmultipleconstraints">AbstractConstraintMustExistWithMultipleConstraints</a>
                                     </li>
                             </ul>
                     </li>

@@ -131,8 +131,8 @@
 <p>If a category name has a &quot;.&quot; in it, then the part to the left is interpreted as the parent category and the part to the right is the child. If you pass a parent category to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/logger/setlevel'>Logger.setLevel</a>, then the specified level filter will be applied to all children of that level. If you call <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/logger/setlevel'>Logger.setLevel</a> on a specific child category, then the level you specify will apply to that child, while the parent&apos;s level will apply to all other children. Children can be nested.</p>
 <h2 class="h-controlling-the-destination-of-logging-messages">Controlling the Destination of Logging Messages<a id="controlling-the-destination-of-logging-messages" class="heading-anchor" href="#controlling-the-destination-of-logging-messages"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The app controls how to handle log messages by supplying to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/logger/initialize'>Logger.initialize</a> the functions that handle messages for each log level. These functions are called &quot;streams&quot;. See the convenience method <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/logger/initializetoconsole'>Logger.initializeToConsole</a> for a simple way to direct logging output to the console.
-<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/bunyanloggerconfig'>BunyanLoggerConfig</a> will direct logging to the Bunyan logging system.
-<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/seqloggerconfig'>SeqLoggerConfig</a> will direct logging to the seq logging server. <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/fluentdbunyanloggerconfig'>FluentdBunyanLoggerConfig</a> will direct loging to fluentd.</p>
+BunyanLoggerConfig will direct logging to the Bunyan logging system.
+SeqLoggerConfig will direct logging to the seq logging server. FluentdBunyanLoggerConfig will direct loging to fluentd.</p>
 <h2 class="h-controlling-what-is-logged">Controlling What is Logged<a id="controlling-what-is-logged" class="heading-anchor" href="#controlling-what-is-logged"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The app that produces logging output can apply filters at runtime to control which messages are actually sent to the destination.</p>
 <p>The simplest way to turn off logging at a particular log level is for the app simply not to supply a stream for that level. Or, the app can supply a stream that does its own internal filtering.</p>
@@ -151,11 +151,10 @@ Logger.setLevel(&quot;Diagnostics&quot;, LogLevel.None);</code></pre><p>This app
 <pre><code>Logger.initializeToConsole();
 Logger.setLevel(&quot;MyCategory&quot;, LogLevel.Info);</code></pre><p>This approach is useful when you want to monitor the activity in a small number of known modules, where you already know the names of the categories that they use.</p>
 <h2 class="h-configuration-files">Configuration Files<a id="configuration-files" class="heading-anchor" href="#configuration-files"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>A service typically initializes and configures logging in its startup logic. Configuration can be based on the configuration parameters of the service, which may be set by the deployment mechanism. The simplest way to do this is to use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/loggerlevelsconfig'>LoggerLevelsConfig</a>. This is normally used in conjunction with a stream config, for example, a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/seqconfig'>SeqConfig</a>. Both are normally stored in a config file that is deployed with the service. Finally, some specific configuration parameters are normally set at runtime, based on deployment parameters using <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/envmacrosubst'>EnvMacroSubst</a> to do macro substitution.</p>
+<p>A service typically initializes and configures logging in its startup logic. Configuration can be based on the configuration parameters of the service, which may be set by the deployment mechanism. The simplest way to do this is to use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/loggerlevelsconfig'>LoggerLevelsConfig</a>. This is normally used in conjunction with a stream config, for example, a SeqConfig. Both are normally stored in a config file that is deployed with the service. Finally, some specific configuration parameters are normally set at runtime, based on deployment parameters using <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/envmacrosubst'>EnvMacroSubst</a> to do macro substitution.</p>
 <p><em>Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">import { Logger, LoggerLevelsConfig, EnvMacroSubst, BentleyError, IModelStatus } from &quot;@bentley/bentleyjs-core&quot;;
-import { BunyanLoggerConfig } from &quot;@bentley/bentleyjs-core/lib/BunyanLoggerConfig&quot;;
-import { SeqLoggerConfig, SeqConfig } from &quot;@bentley/bentleyjs-core/lib/SeqLoggerConfig&quot;;
+import { BunyanLoggerConfig, SeqConfig, SeqLoggerConfig } from &quot;@bentley/logger-config&quot;;
 
 export function initializeLogging(): void {
   // Read the configuration parameters for my service. Some config
@@ -210,7 +209,7 @@ export function initializeLogging(): void {
 <p>Backend code must cooperate with iModel.js to <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/rpcinterface/#logging-and-activityids'>manage the ActivityLoggingContext</a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 February, 2019</span>
+                <span class='date-updated'>19 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
