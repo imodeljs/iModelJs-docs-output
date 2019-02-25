@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -207,6 +207,11 @@
 <td>The path where the cache of briefcases are stored.</td>
 </tr>
 <tr>
+<td class="h-defaulttilerequesttimeout"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodelhost/imodelhostconfiguration/defaulttilerequesttimeout'>defaultTileRequestTimeout</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="defaulttilerequesttimeout" class="heading-anchor" href="#defaulttilerequesttimeout"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">number</span></td>
+<td>The default time, in milliseconds, used for <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodelhost/imodelhostconfiguration/#tiletreerequesttimeout'>IModelHostConfiguration.tileTreeRequestTimeout</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodelhost/imodelhostconfiguration/#tilecontentrequesttimeout'>IModelHostConfiguration.tileContentRequestTimeout</a>.</td>
+</tr>
+<tr>
 <td class="h-imodelclient"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodelhost/imodelhostconfiguration/imodelclient'>imodelClient</a></span><a id="imodelclient" class="heading-anchor" href="#imodelclient"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodels/imodelclient'>IModelClient</a></span></td>
 <td>The kind of iModel server to use.</td>
@@ -216,13 +221,23 @@
 <td><span class="method-output">undefined | any</span></td>
 <td>The native platform to use -- normally, the app should leave this undefined.</td>
 </tr>
+<tr>
+<td class="h-tilecontentrequesttimeout"><span class="property-name">tileContentRequestTimeout</span><a id="tilecontentrequesttimeout" class="heading-anchor" href="#tilecontentrequesttimeout"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">number</span></td>
+<td>The time, in milliseconds, for which <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/imodeltilerpcinterface/#requesttilecontent'>IModelTileRpcInterface.requestTileContent</a> should wait before returning a &quot;pending&quot; status.</td>
+</tr>
+<tr>
+<td class="h-tiletreerequesttimeout"><span class="property-name">tileTreeRequestTimeout</span><a id="tiletreerequesttimeout" class="heading-anchor" href="#tiletreerequesttimeout"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">number</span></td>
+<td>The time, in milliseconds, for which <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/imodeltilerpcinterface/#requesttiletreeprops'>IModelTileRpcInterface.requestTileTreeProps</a> should wait before returning a &quot;pending&quot; status.</td>
+</tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/backend/src/IModelHost.ts">IModelHost.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 February, 2019</span>
+                <span class='date-updated'>25 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -289,10 +304,19 @@
                                             <a class='title solo-title menu-text' href="#briefcasecachedir">briefcaseCacheDir</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#defaulttilerequesttimeout">defaultTileRequestTimeout</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#imodelclient">imodelClient</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#nativeplatform">nativePlatform</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#tilecontentrequesttimeout">tileContentRequestTimeout</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#tiletreerequesttimeout">tileTreeRequestTimeout</a>
                                     </li>
                             </ul>
                     </li>

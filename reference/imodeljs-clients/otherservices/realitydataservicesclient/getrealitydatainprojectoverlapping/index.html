@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -189,9 +189,7 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/">imodeljs-clients</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/otherservices/">OtherServices</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/otherservices/realitydataservicesclient/">RealityDataServicesClient</a> > getRealityDataInProjectOverlapping</div>
             
             <h2 class="h-getrealitydatainprojectoverlapping">getRealityDataInProjectOverlapping <span class="badge badge-pill badge-primary badge-method">Method</span><a id="getrealitydatainprojectoverlapping" class="heading-anchor" href="#getrealitydatainprojectoverlapping"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>#TODO Alain Robert - Need to use the LatLong interface instead of XY but it is only defined in backend currently.</p>
-<h2 class="h-also-note-that-no-filtering-per-type-is-performed-this-would-be-required">also note that no  filtering per type is performed. This would be required.<a id="also-note-that-no-filtering-per-type-is-performed-this-would-be-required" class="heading-anchor" href="#also-note-that-no-filtering-per-type-is-performed-this-would-be-required"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Gets reality data for each data that has a footprint defined that overlaps the given area. Reality Data returned must be accessible by user
+<p>Gets all reality data that has a footprint defined that overlaps the given area and that are associated with the project. Reality Data returned must be accessible by user
 as public, enterprise data, private or accessible through context RBAC rights attributed to user.</p>
 <p><span class="method-name">getRealityDataInProjectOverlapping</span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, projectId: string, range: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range2d'>Range2d</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/otherservices/realitydata'>RealityData</a>[]&gt;</span></p>
 <table class="table table-responsive"><tbody><tr>
@@ -217,7 +215,7 @@ as public, enterprise data, private or accessible through context RBAC rights at
 <tr>
 <td class="h-range"><span class="parameter-name">range</span><a id="range" class="heading-anchor" href="#range"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range2d'>Range2d</a></span></td>
-<td>The range to search for given as a range 2d where X repesentents the longitude in radians and Y the latitude in radians<br>longitude can be in the range -2P to 2PI but the minimum value must be smaller numerically to the maximum.<br>Note that usually the longitudes are usually by convention in the range of -PI to PI except<br>for ranges that overlap the -PI/+PI frontier in which case either representation is acceptable.</td>
+<td>The range to search for given as a range 2d where X repesentents the longitude in radians and Y the latitude in radians<br>longitude can be in the range -2P to 2PI but the minimum value must be smaller numerically to the maximum.<br>Note that the longitudes are usually by convention in the range of -PI to PI except<br>for ranges that overlap the -PI/+PI frontier in which case either representation is acceptable.</td>
 </tr>
 </tbody></table><p><strong>Returns</strong> - an array of RealityData</p>
 <h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -226,7 +224,7 @@ as public, enterprise data, private or accessible through context RBAC rights at
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 February, 2019</span>
+                <span class='date-updated'>25 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

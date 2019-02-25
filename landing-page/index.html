@@ -16,9 +16,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- bootstrap -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
 
   <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -26,8 +28,8 @@
   <!-- fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">
   <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">
+  <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">
   <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' />
   <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
   <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -60,7 +62,8 @@
     <a id="viewDocumentationBtn" class="btn btn-primary mb-2" href="https://imodeljs.github.io/iModelJs-docs-output///learning" role="button">View
       Documentation
     </a>
-    <a id="viewOnGitHubBtn" class="btn btn-outline-secondary mb-2" href="https://github.com/imodeljs/imodeljs" target="_blank">View
+    <a id="viewOnGitHubBtn" class="btn btn-outline-secondary mb-2" href="https://github.com/imodeljs/imodeljs"
+      target="_blank">View
       on GitHub
     </a>
   </div>
@@ -71,25 +74,24 @@
         <!-- Loop through all middleContents. If even, the img goes first. Content first if odd. -->
         <div id="middle-content-wrapper">
           <div class="middle-content-group" style="order:1">
-            <div class="middle-content-media" style="order:2;">
-              <devsite-youtube ds-is="youtube" autohide="1" showinfo="0" video-id="mWl45NkFBOc">
-                <iframe class='middle-content-youtube' src="https://www.youtube.com/embed/5iglYhQmv6U" frameborder="0"
-                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </devsite-youtube>
-            </div>
+        
             <div class="middle-content-text" style="order:2;">
-              <h4> About iModel.js </h4>
+              <h4 style="font-size:24px;"> About iModel.js </h4>
               <span class="gradient"></span>
               <p>
                 <b>A Library of Tools for Infrastructure Digital Twins</b> <br/> iModel.js is a library for creating, accessing, leveraging and integrating infrastructure digital twins. An Infrastructure digital twin is a digital representation of an asset or system and the context and controls of its surrounding environment. Infrastructure owners and operators are embracing digital twins for better planning, delivery, operation and maintenance of their assets. <br/> <br/> Infrastructure digital twins can be based upon a relational database—known as an iModel—that contains components that comprise a digital twin. Changes to an iModel can be managed by iModelHub and synchronized with distributed copies—creating a distributed database. The iModel.js library can be used to integrate your infrastructure digital twin into your digital workflows, and contains tools for creating, visualizing, querying, mining, synchronizing, aligning, and securing your digital twin. <br/> <br/> <b>Open for Business and Innovation</b> <br/> iModel.js was designed to be both flexible and open, so that it can be easily used and integrated with other systems. The library makes use of standard cloud and web technologies chosen to reduce input impedance with your codebase, and to preserve flexibility over time. A primary reason for open-sourcing the iModel.js library is to foster innovation and novel uses of the technology. The opportunities for connecting infrastructure digital twins are vast and diverse, and we strongly encourage your involvement and suggestions for enhancing iModel.js and the iModel.js community.
               </p>
             </div>
+            <div class="middle-content-media" style="order:2;">
+              <iframe class='middle-content-youtube' src="https://www.youtube.com/embed/5iglYhQmv6U" frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
           </div>
         </div>
-        <div class="try-imodeljs-text">
-          <h4> Try iModel.js now </h4>
-        </div>
         <div id="demo-container">
+          <div class="try-imodeljs-text">
+            <h4> Try iModel.js now </h4>
+          </div>
           <img src="landing-page/assets/placeholder_viewer_690x431.png" class="example-view-demonstrator">
           <div class="overlay">
             <script>
@@ -136,7 +138,7 @@
         <script>
           // LaunchDarkly script for turning off the viewer.
           $(document).ready(function () {
-            var shouldShow = ldclient.variation(featureFlags.LandingPageViewer, false);
+            var shouldShow = ldclient.variation(featureFlags.LandingPageViewer);
             if (shouldShow === undefined) {
               ldclient.on('ready', function () {
                 shouldShow = ldclient.variation(featureFlags.LandingPageViewer);

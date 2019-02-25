@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -116,17 +116,17 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/">frontend</a> > Plugins</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/frontend/Plugins.md">Edit this page</a></div>
             <h1 id="imodel.js plugins">iModel.js Plugins</h1>
-<p>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugin/plugin'>Plugin</a> is a separately webpacked JavaScript module that is loaded on demand into a browser (or Electron) running the the frontend iModel.js environment.</p>
-<p>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugin/plugin'>Plugin</a> is typically written in Typescript. It has access to all classes in the iModel.js host environment. In all such hosts, that will always include
+<p>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a> is a separately webpacked JavaScript module that is loaded on demand into a browser (or Electron) running the the frontend iModel.js environment.</p>
+<p>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a> is typically written in Typescript. It has access to all classes in the iModel.js host environment. In all such hosts, that will always include
 bentleyjs-core, geometry-core, imodeljs-i18n, imodeljs-clients, imodeljs-common, imodeljs-quantity, and imodeljs-frontend. In hosts that use the iModel.js user interface
 classes, it will also include ui-core, ui-components, ui-ninezone, and ui-framework. In hosts that are designed to format and display EC data, the presentation-common,
-presentation-components, and presentation-frontend modules will be available as well. An example host is Navigator, which includes all of the modules above.</p>
+presentation-components, and presentation-frontend modules will be available as well. An example host is Design Review, which includes all of the modules above.</p>
 <h2 class="h-loading-plugins">Loading Plugins<a id="loading-plugins" class="heading-anchor" href="#loading-plugins"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugin/plugin'>Plugin</a> can be loaded by calling the <code>loadPlugin</code> static method of the PluginAdministrator class. An ImmediateTool is provided that allows
-a user to initiate <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugin/plugin'>Plugin</a> loading using the &quot;Plugin \&lt;pluginName&gt; [argument list]&quot; keyin.</p>
-<p>When the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugin/pluginadmin'>PluginAdmin</a> loadPlugin method is called, it initiates loading of the designated <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugin/plugin'>Plugin</a>. The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugin/plugin'>Plugin</a> is loaded as a typical JavaScript script,
-so any code that is outside the definition of a function or class is immediately executed. By convention, a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugin/plugin'>Plugin</a> defines a &quot;main&quot; function and executes that main function as the
-last line in the script. Generally, the only responsibility of the main function is to instantiate the subclass of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugin/plugin'>Plugin</a> defined therein and register it with the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugin/pluginadmin'>PluginAdmin</a>. Here is an example:</p>
+<p>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a> can be loaded by calling the <code>loadPlugin</code> static method of the PluginAdministrator class. An ImmediateTool is provided that allows
+a user to initiate <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a> loading using the &quot;Plugin \&lt;pluginName&gt; [argument list]&quot; keyin.</p>
+<p>When the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/pluginadmin'>PluginAdmin</a> loadPlugin method is called, it initiates loading of the designated <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a>. The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a> is loaded as a typical JavaScript script,
+so any code that is outside the definition of a function or class is immediately executed. By convention, a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a> defines a &quot;main&quot; function and executes that main function as the
+last line in the script. Generally, the only responsibility of the main function is to instantiate the subclass of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a> defined therein and register it with the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/pluginadmin'>PluginAdmin</a>. Here is an example:</p>
 <pre class="no-line-numbers"><code class="language-typescript">declare var IMODELJS_VERSIONS_REQUIRED: string;
 declare var PLUGIN_NAME: string;
 
@@ -136,24 +136,24 @@ function main() {
 }
 
 main();</code></pre>
-<p>In the code above, note the declaration of IMODELJS_VERSIONS_REQUIRED and PLUGIN_NAME. These variables are converted to actual strings when your <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugin/plugin'>Plugin</a> is webpack&apos;ed as described below.
-PLUGIN_NAME is used by the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugin/pluginadmin'>PluginAdmin</a> to keep track of loaded Plugins, and IMODELJS_VERSIONS_REQUIRED is used to validate that the runtime environment has the iModel.js modules
-that the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugin/plugin'>Plugin</a> needs and that the versions loaded are compatible with those required by the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugin/plugin'>Plugin</a>.</p>
+<p>In the code above, note the declaration of IMODELJS_VERSIONS_REQUIRED and PLUGIN_NAME. These variables are converted to actual strings when your <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a> is webpack&apos;ed as described below.
+PLUGIN_NAME is used by the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/pluginadmin'>PluginAdmin</a> to keep track of loaded Plugins, and IMODELJS_VERSIONS_REQUIRED is used to validate that the runtime environment has the iModel.js modules
+that the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a> needs and that the versions loaded are compatible with those required by the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a>.</p>
 <h2 class="h-building-plugins">Building Plugins<a id="building-plugins" class="heading-anchor" href="#building-plugins"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>The code for the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugin/plugin'>Plugin</a> is typically transpiled to JavaScript and then converted to a loadable module with <a href="https://webpack.js.org">webpack</a>. iModel.js provides a
+<p>The code for the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a> is typically transpiled to JavaScript and then converted to a loadable module with <a href="https://webpack.js.org">webpack</a>. iModel.js provides a
 webpack configuration file, webpackModule.config.js, in the modules directory of the webpack-tools package. You provide arguments to webpack-cli that are passed to webpackModule.config.js :</p>
 <ul>
-<li>--env.outdir=[outdir] specifies the output directory for the webpacked <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugin/plugin'>Plugin</a>.</li>
+<li>--env.outdir=[outdir] specifies the output directory for the webpacked <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a>.</li>
 <li>--env.entry=[entryScript] specifies the (transpiled) source for the entry point of the Plugin.</li>
 <li>--env.bundlename=[moduleName] specifies the name of webpacked the output file.</li>
-<li>--env.isplugin tells webpackModule.config.js that you are creating a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugin/plugin'>Plugin</a>, which configures webpack to define the PLUGIN_NAME and IMODELJS_VERSIONS_REQUIRED variables that are used
+<li>--env.isplugin tells webpackModule.config.js that you are creating a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a>, which configures webpack to define the PLUGIN_NAME and IMODELJS_VERSIONS_REQUIRED variables that are used
 in the startup code as shown above.</li>
 </ul>
 <p>The versions of iModel.js packages that are required by the <a href="%frontend">Plugin</a> are extracted from the &quot;dependencies&quot; key in the package.json file that is in the root directory of the package that contains the Plugin source. Each iModel.js module from which classes or functions are imported should appear in that dependencies key, along with the version number as is required by <a href="https://docs.npmjs.org">npm</a>. A string that contains each such dependency is generated by webpack and replaces every occurrence of IMODELJS_VERSIONS_REQUIRED in the output JavaScript module.</p>
 <h2 class="h-plugin-startup">Plugin startup<a id="plugin-startup" class="heading-anchor" href="#plugin-startup"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Plugins are loaded by the PluginAdmin class. The &quot;main&quot; function in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugin/plugin'>Plugin</a> code should instantiate and register the Plugin as illustrated above. The PluginAdmin.register method
-checks whether the iModel.js runtime environment is compatible with the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugin/plugin'>Plugin</a>&apos;s requirements. If not, an error is displayed to the user (and a list of the errors encountered is
-returned from the call to PluginAdmin.register) and the Plugin can proceed no further. If the validation succeeds, the <code>onLoad</code> method of your <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugin/plugin'>Plugin</a> subclass is called. The argument to the onLoad and onExecute method is an array of strings. The first member of the array is the plugin name. A typical use of the <code>onLoad</code> method is to register any tools that the Plugin provides. Here is a simple subclass of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugin/plugin'>Plugin</a>:</p>
+<p>Plugins are loaded by the PluginAdmin class. The &quot;main&quot; function in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a> code should instantiate and register the Plugin as illustrated above. The PluginAdmin.register method
+checks whether the iModel.js runtime environment is compatible with the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a>&apos;s requirements. If not, an error is displayed to the user (and a list of the errors encountered is
+returned from the call to PluginAdmin.register) and the Plugin can proceed no further. If the validation succeeds, the <code>onLoad</code> method of your <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a> subclass is called. The argument to the onLoad and onExecute method is an array of strings. The first member of the array is the plugin name. A typical use of the <code>onLoad</code> method is to register any tools that the Plugin provides. Here is a simple subclass of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a>:</p>
 <pre class="no-line-numbers"><code class="language-typescript">class MeasurePointsPlugin extends Plugin {
   private _measureNamespace: I18NNamespace | undefined;
 
@@ -178,10 +178,10 @@ returned from the call to PluginAdmin.register) and the Plugin can proceed no fu
   }
 }</code></pre>
 <p>The Plugin subclass&apos; onExecute method is called immediately after the call to <code>onLoad</code>. The difference between <code>onLoad</code> and <code>onExecute</code> is that <code>onExecute</code> is called each time
-<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugin/pluginadmin'>PluginAdmin</a>.loadPlugin is called for the same plugin. Therefore, anything that need be done only once (such as registering a Tool), should go into the <code>onLoad</code> method and everything that should be done each time the Plugin is loaded (in this case, starting the registered Tool), should be done in the <code>onExecute</code> method.</p>
+<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/pluginadmin'>PluginAdmin</a>.loadPlugin is called for the same plugin. Therefore, anything that need be done only once (such as registering a Tool), should go into the <code>onLoad</code> method and everything that should be done each time the Plugin is loaded (in this case, starting the registered Tool), should be done in the <code>onExecute</code> method.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 February, 2019</span>
+                <span class='date-updated'>25 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

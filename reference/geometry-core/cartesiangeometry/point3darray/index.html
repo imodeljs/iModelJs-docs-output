@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -211,6 +211,18 @@
 <td>Return the index of the closest point in the array (full xyz)</td>
 </tr>
 <tr>
+<td class="h-evaluatetrilinearderivativetransform"><span class="method-name"><a href="evaluatetrilinearderivativetransform">evaluateTrilinearDerivativeTransform</a></span><span class="method-parenthesis">(</span><span class="method-parameters">points: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[], u: number, v: number, w: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="evaluatetrilinearderivativetransform" class="heading-anchor" href="#evaluatetrilinearderivativetransform"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Compute a point and derivatives wrt uvw by trilinear mapping.</td>
+</tr>
+<tr>
+<td class="h-evaluatetrilinearpoint"><span class="method-name"><a href="evaluatetrilinearpoint">evaluateTrilinearPoint</a></span><span class="method-parenthesis">(</span><span class="method-parameters">points: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[], u: number, v: number, w: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="evaluatetrilinearpoint" class="heading-anchor" href="#evaluatetrilinearpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Compute a point by trilinear mapping.</td>
+</tr>
+<tr>
+<td class="h-evaluatetrilinearweights"><span class="method-name"><a href="evaluatetrilinearweights">evaluateTrilinearWeights</a></span><span class="method-parenthesis">(</span><span class="method-parameters">weights: Float64Array, u0: number, u1: number, v0: number, v1: number, w0: number, w1: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="evaluatetrilinearweights" class="heading-anchor" href="#evaluatetrilinearweights"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Compute the 8 weights of trilinear mapping<br>By appropriate choice of weights, this can be usef for both point and derivative mappints.</td>
+</tr>
+<tr>
 <td class="h-indexofmostdistantpoint"><span class="method-name">indexOfMostDistantPoint</span><span class="method-parenthesis">(</span><span class="method-parameters">points: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[], spacePoint: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a>, farVector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> number | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="indexofmostdistantpoint" class="heading-anchor" href="#indexofmostdistantpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Return the index of the point most distant from spacePoint</td>
 </tr>
@@ -239,6 +251,18 @@
 <td>Sum lengths of edges.</td>
 </tr>
 <tr>
+<td class="h-sumweightedx"><span class="method-name"><a href="sumweightedx">sumWeightedX</a></span><span class="method-parenthesis">(</span><span class="method-parameters">weights: Float64Array, points: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="sumweightedx" class="heading-anchor" href="#sumweightedx"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>sum the weighted x components from a point array.</td>
+</tr>
+<tr>
+<td class="h-sumweightedy"><span class="method-name"><a href="sumweightedy">sumWeightedY</a></span><span class="method-parenthesis">(</span><span class="method-parameters">weights: Float64Array, points: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="sumweightedy" class="heading-anchor" href="#sumweightedy"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>sum the weighted x components from a point array.</td>
+</tr>
+<tr>
+<td class="h-sumweightedz"><span class="method-name"><a href="sumweightedz">sumWeightedZ</a></span><span class="method-parenthesis">(</span><span class="method-parameters">weights: Float64Array, points: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="sumweightedz" class="heading-anchor" href="#sumweightedz"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>sum the weighted x components from a point array.</td>
+</tr>
+<tr>
 <td class="h-unpacknumberstonestedarrays"><span class="method-name"><a href="unpacknumberstonestedarrays">unpackNumbersToNestedArrays</a></span><span class="method-parenthesis">(</span><span class="method-parameters">data: Float64Array, numPerBlock: number</span><span class="method-parenthesis">):</span><span class="method-output"> any[]</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="unpacknumberstonestedarrays" class="heading-anchor" href="#unpacknumberstonestedarrays"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>return an 2-dimensional array containing all the values of <code>data</code> in arrays of numPerBlock</td>
 </tr>
@@ -256,7 +280,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 February, 2019</span>
+                <span class='date-updated'>25 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -329,6 +353,15 @@
                                             <a class='title solo-title menu-text' href="#closestpointindex">closestPointIndex</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#evaluatetrilinearderivativetransform">evaluateTrilinearDerivativeTransform</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#evaluatetrilinearpoint">evaluateTrilinearPoint</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#evaluatetrilinearweights">evaluateTrilinearWeights</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#indexofmostdistantpoint">indexOfMostDistantPoint</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -348,6 +381,15 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#sumedgelengths">sumEdgeLengths</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#sumweightedx">sumWeightedX</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#sumweightedy">sumWeightedY</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#sumweightedz">sumWeightedZ</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#unpacknumberstonestedarrays">unpackNumbersToNestedArrays</a>

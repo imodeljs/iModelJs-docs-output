@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -203,6 +203,10 @@
 <td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">configuration: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/electronrpcconfiguration'>ElectronRpcConfiguration</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/electronrpcprotocol'>ElectronRpcProtocol</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Constructs an Electron protocol.</td>
 </tr>
+<tr>
+<td class="h-obtaininstance"><span class="method-name">obtainInstance</span><span class="method-parenthesis">(</span><span class="method-parameters">request: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/serializedrpcrequest'>SerializedRpcRequest</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/electronrpcprotocol'>ElectronRpcProtocol</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="obtaininstance" class="heading-anchor" href="#obtaininstance"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+</tr>
 </tbody></table><h3 class="h-inherited-methods"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited methods<a id="inherited-methods" class="heading-anchor" href="#inherited-methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -246,9 +250,19 @@
 <th>Description</th>
 </tr>
 <tr>
+<td class="h-instances"><span class="property-name">instances</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="instances" class="heading-anchor" href="#instances"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">Map&lt;string, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/electronrpcprotocol'>ElectronRpcProtocol</a>&gt;</span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-requesttype"><span class="property-name">requestType</span><a id="requesttype" class="heading-anchor" href="#requesttype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/electronrpcrequest'>ElectronRpcRequest</a></span></td>
 <td>The RPC request class for this protocol.</td>
+</tr>
+<tr>
+<td class="h-transferchunkthreshold"><span class="property-name">transferChunkThreshold</span><a id="transferchunkthreshold" class="heading-anchor" href="#transferchunkthreshold"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">number</span></td>
+<td>Specifies where to break large binary request payloads.</td>
 </tr>
 </tbody></table><h3 class="h-inherited-properties"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited properties<a id="inherited-properties" class="heading-anchor" href="#inherited-properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -305,7 +319,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 February, 2019</span>
+                <span class='date-updated'>25 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -371,6 +385,9 @@
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#constructor">constructor</a>
                                     </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#obtaininstance">obtainInstance</a>
+                                    </li>
                             </ul>
                     </li>
                     <li class='nav-item item '>
@@ -406,7 +423,13 @@
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#instances">instances</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#requesttype">requestType</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#transferchunkthreshold">transferChunkThreshold</a>
                                     </li>
                             </ul>
                     </li>

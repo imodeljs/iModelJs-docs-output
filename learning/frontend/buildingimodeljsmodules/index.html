@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Building iModel.js Modules - iModel.js</title>
+    <meta name="og:title" content="Building iModel.js Modules - iModel.js">
+    <meta name="twitter:title" content="Building iModel.js Modules - iModel.js">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
+
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
+    <span id="contentLoader">
+        <p>Woah! This page has a great deal of content... Give us a second to load it.</p>
+    </span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+
+
+
+        <header id="main-header">
+            <div class='nav-header-container'>
+                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                    <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo-small" class="site-logo-small" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-icon.svg" style="display:none;"/> 
+                    </a>
+                    <button class="navbar-toggler no-user-select mr-auto" type="button" data-toggle="collapse" data-target="#navbar5">
+                        <span class="navbar-toggler-header"></span>
+                    </button>
+                    <ul class="navbar-nav ml-auto pr-0 nav-search">
+                        <span class='search-bar'>
+                          <li>
+                            <div id='search-container'>
+                            </div>
+                          </li>
+                          <script>
+                            (function() {
+                              var cx = '018053174497532353467:v_gnrjjlqwc';
+                              var gcse = document.createElement('script');
+                              gcse.type = 'text/javascript';
+                              gcse.async = true;
+                              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                              var s = document.getElementsByTagName('script')[0];
+                              s.parentNode.insertBefore(gcse, s);
+                            })();
+                          </script>
+                          <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+                        </span>
+                    </ul>
+                    <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
+                        <ul class="navbar-nav mb-0" id="doc-site-tabs">
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.187.0</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+<div id='main-wrapper'>
+    <nav id='sidebar'>
+        <div id='table-of-contents' class="custom-scrollbar">
+            <div id="dismiss">
+                <i id="dismiss-arrow" class="icon icon-chevron-left no-user-select"></i>
+            </div>
+            <hr id="dismiss-hr" class='sm-only'>
+            <ul id='main-navigation-list'>
+                <html><head></head><body><h3 id="the imodel.js library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModel.js Library</a></h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
+    </ul>
+    <hr>
+    <p>&#xA0;</p>
+    <h3 id="helpful links">Helpful links</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
+    </ul>
+    </body></html>
+            </ul>
+        </div>
+    </nav>    <div class='documentation-main'>
+        <article id="main" class="main-content">
+            <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/">frontend</a> > BuildingIModelJsModules</div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/frontend/BuildingIModelJsModules.md">Edit this page</a></div>
+            <h1 id="building imodel.js modules">Building iModel.js Modules</h1>
+<p>This article describes the tools provided by iModel.js to build frontend modules. In this context, frontend modules are JavaScript files (transpiled and webpacked from TypeScript source files) that are intended to run in either a browser or in an Electron application. Some background on iModel.js modules is provided in <a href="../ModularizingIModelJs">Modularizing iModel.js</a>.</p>
+<h2 class="h-types-of-modules">Types of Modules<a id="types-of-modules" class="heading-anchor" href="#types-of-modules"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>There are four types of modules in the iModel.js frontend ecosystem :</p>
+<ol>
+<li><p>System modules. The iModel.js frontend system is composed of a set of modules that perform functions such as geometry calculations, user interface customization, and coordinating remote procedure calls to iModel.js backend functions. Each such module is built using the technique described here.</p>
+</li>
+<li><p>Application modules. An iModel.js application consists of a module that contains the code for its unique functionality, with calls into the iModel.js system modules that take advantage of the classes and methods provided by iModel.js. An application module is loaded by the browser (or Electron) at startup.</p>
+</li>
+<li><p>Plugins. A plugin is a module that is designed to be loaded into an iModel.js application in a browser or Electron application that is already executing. The Plugin registers with the iModel.js system, and then has full access to the iModel.js API. A Plugin can be used in multiple iModel.js applications. See the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/frontend/plugins'>iModel.js Plugins</a> article for more information.</p>
+</li>
+<li><p>Web Workers. <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers">Web Workers</a> are also loaded at runtime, but they run in a separate JavaScript thread in the browser or Electron. Web Workers are used to offload computationally intensive tasks from the main JavaScript thread. They are restricted in the APIs that are available to them, and in particular, they are not allowed access to iModel.js APIs.</p>
+</li>
+</ol>
+<h2 class="h-copying-vs-symlinking">Copying vs Symlinking<a id="copying-vs-symlinking" class="heading-anchor" href="#copying-vs-symlinking"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Applications need files that are built in other packages, including external modules, localization files, cursors, fonts, and other assets. These other files can be either copied or symlinked into the application&apos;s webresources directory. The default is to copy those files. However, if you are working on files within the iModel.js mono repository, symlinking is much better because you don&apos;t have to remember to rebuild the application after changing one of the modules that it uses. To use symlinking, set the environment variable BUILDIMODEL_SYMLINKS to any value.</p>
+<h2 class="h-building-a-module">Building a Module<a id="building-a-module" class="heading-anchor" href="#building-a-module"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>All three types of modules are built using the buildIModelJsModule script. The package.json file is used to invoke the buildIModelJsModule script and to configure its operation.</p>
+<h2 class="h-invoking-the-buildimodeljsmodule-script">Invoking the buildIModelJsModule script<a id="invoking-the-buildimodeljsmodule-script" class="heading-anchor" href="#invoking-the-buildimodeljsmodule-script"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>As you are already aware, your package.json file includes a &quot;scripts&quot; property that is used by the &quot;npm run&quot; command to select a script. The &quot;scripts&quot; property is an object whose properties are the short names of the scripts, each of which has a value that is the actual command that npm launches. To use the buildIModelJsBuild.js script, the &quot;@bentley/webpack-tools&quot; package is included in the &quot;devDependencies&quot; property, and &quot;buildIModelJsModule&quot; is the value of the &quot;build&quot; property. For example:</p>
+<pre class="no-line-numbers"><code class="language-json">{
+  &quot;name&quot;: &quot;your-app&quot;,
+  ...
+  &quot;scripts&quot;: {
+    &quot;build&quot;: &quot;buildIModelJsModule&quot;,
+    ...
+  },
+  ...
+  &quot;devDependencies&quot;: {
+    &quot;@bentley/webpack-tools&quot;: &quot;0.189.0-dev.16&quot;,
+    ...
+  },
+...
+}</code></pre>
+<p>When you run the &quot;npm install&quot; command, it puts two files, &quot;buildIModelJsConfig&quot; and &quot;buildIModelJsConfig.cmd&quot; in the package&apos;s node_modules/.bin directory. That is where npm finds it. To invoke the buildIModelJsModule script to build your module, use the shell command:</p>
+<pre class="no-line-numbers"><code class="language-bashell">npm run build</code></pre>
+<p>Note:</p>
+<p>For modules that are in the iModel.js rush repository, using &quot;buildIModelJsModule&quot; alone will not work, because rush&apos;s symbolic linking mechanism doesn&apos;t put the &quot;./bin&quot; scripts from within the mono repository into the common/temp/node_modules/.bin directory. So the correct build entry for modules within that mono repository is:</p>
+<pre class="no-line-numbers"><code class="language-json">    &quot;build&quot;: &quot;node ./node_modules/@bentley/webpack-tools/bin/buildIModelJsModule.js&quot;</code></pre>
+<p>In that case, you use &quot;rush build&quot; as you would expect.</p>
+<h2 class="h-module-build-steps">Module Build Steps<a id="module-build-steps" class="heading-anchor" href="#module-build-steps"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>There are several steps in building a module, which are sequenced by the buildIModelJsModule script:</p>
+<ol>
+<li>Transpiling the TypeScript source code to JavaScript. Generally, TypeScript files in the &quot;src&quot; directory are transpiled into a parallel &quot;lib&quot; directory.</li>
+<li>Copying any resources that are needed by the webpack step into the &quot;lib&quot; directory structure. Examples include style sheets, svg files, etc.</li>
+<li>Webpacking the module.</li>
+<li>For application modules, copying the external modules required into the directory from which the web server delivers files in response to HTTP requests.</li>
+<li>For applications, building any Plugins or other submodules that are in the same package as the main application.</li>
+<li>For Bentley applications only, creating the configuration file that accompanies the system modules.</li>
+<li>For application localization testing, create pseudo-localized files to make it easy to spot strings that are not localizable.</li>
+</ol>
+<p>Not all steps are required by every module. In particular, application modules are more complicated, and they are usually the only ones that require the last four steps.</p>
+<h2 class="h-packagejson-properties-that-control-the-module-build">Package.json properties that control the module build<a id="packagejson-properties-that-control-the-module-build" class="heading-anchor" href="#packagejson-properties-that-control-the-module-build"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The build is controlled by the contents of an iModelJs.buildModule property in package.json. That property is an object with one required property and a number of optional properties.</p>
+<p>The required property is type, and it must have a string containing &quot;application&quot;, &quot;system&quot;, &quot;plugin&quot;, or &quot;webworker&quot;. Here is an example of the start of an iModel.js module build specification in package.json:</p>
+<pre class="no-line-numbers"><code class="language-json">{
+  ...
+  &quot;iModelJs&quot;: {
+    &quot;buildModule&quot;: {
+      &quot;type&quot;: &quot;application&quot;,
+      ...
+    }
+  }
+  ...
+}</code></pre>
+<h3 class="h-transpiling-typescript-files">Transpiling TypeScript files<a id="transpiling-typescript-files" class="heading-anchor" href="#transpiling-typescript-files"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>The buildIModelJsModule script always attempts to transpile the typescript files in your project using the &quot;tsc&quot; command. The version of the TypeScript transpiler is defined by the &quot;typescript&quot; property in the &quot;devDependencies&quot; property of your package.json. Bentley recommends that you use the same version of TypeScript as is used by the iModel.js system modules. Generally, the files that are transpiled and the transpiler options are defined in a file called tsconfig.json in the root directory of your package (the directory where package.json resides). Bentley recommends that you examine the tsconfig.cfg files that are used for the iModel.js system modules and adopt the same pattern. To use the same transpile options that iModel.js uses, make an &quot;extends&quot; property in your tsconfig.json and set it to &quot;../node_modules/@bentley/build-tools/tsconfig-base.json&quot;.</p>
+<pre class="no-line-numbers"><code class="language-json">tsconfig.json
+
+{
+  &quot;extends&quot;: &quot;../node_modules/@bentley/build-tools/tsconfig-base.json&quot;,
+  ...
+}</code></pre>
+<p>You can specify arguments to the &quot;tsc&quot; command by adding a &quot;tscOptions&quot; property. For example:</p>
+<pre class="no-line-numbers"><code class="language-json">package.json
+
+{
+  ...
+  &quot;iModelJs&quot;: {
+    &quot;buildModule&quot;: {
+      ...
+      &quot;tscOptions&quot;: &quot;-b ./src/test&quot;,
+      ...
+      }
+    }
+  },
+  ...
+}</code></pre>
+<p>could be used to specify that you want to compile the ./src/test/tsconfig.json project with the TypeScript &quot;build&quot; option. Most of the time, all the options to the TypeScript transpiler are contained in tsconfig.json, and the tscOption option is not needed.</p>
+<h3 class="h-copying-source-resources">Copying Source Resources<a id="copying-source-resources" class="heading-anchor" href="#copying-source-resources"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>Often, some files from the source directory will have to be placed into the directory where the transpiled JavaScript files reside so that webpack can find them in the same relative path. For applications, files may need to be copied from source directories to the directory where web resources are staged. The &quot;sourceResources&quot; property specifies the source and destination for those files, which are either copied or symbolically linked from the source to the destination. The &quot;sourceResources&quot; property is an array of objects, each of which has a &quot;source&quot; and &quot;dest&quot; property. For example:</p>
+<pre class="no-line-numbers"><code class="language-json">  &quot;iModelJs&quot;: {
+    &quot;buildModule&quot;: {
+      &quot;type&quot;: &quot;application&quot;,
+      &quot;sourceResources&quot;: [
+        {
+          &quot;source&quot;: &quot;./src/**/*.scss&quot;,
+          &quot;dest&quot;: &quot;./lib&quot;
+        },
+        {
+          &quot;source&quot;: &quot;./public/**/*&quot;,
+          &quot;dest&quot;: &quot;./lib/webresources&quot;
+        }
+     ],
+     ...
+    }
+  },</code></pre>
+<p>This copies or symlinks all the .scss files in all subdirectories of the src directory to parallel directories in the lib directory, and copies or symlinks all of the files in all subdirectories of the public directory into the lib/webresources directory. In some cases, you might prefer that the resources be copied rather than linked even if the BUILDIMODEL_SYMLINKS environment variable is set. In that case, add a boolean &quot;copy&quot; property alongside the &quot;source&quot; and &quot;dest&quot; properties and set it to true. If the resource specified with a &quot;copy&quot; property would also be included in a sourceResources entry with a glob specification, make sure it appears earlier in the array of sourceResources.</p>
+<h3 class="h-webpacking">Webpacking<a id="webpacking" class="heading-anchor" href="#webpacking"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>Webpacking consolidates the source files that make up a module into a single file and generates the code necessary to import symbols from external modules. Webpacking has a confusing array of options that control how the code is generated, but the buildIModelJsModule script configures all of those for you. All you have to provide a &quot;webpack&quot; property that specifies the entry point for your module, where the output is to be put, and the name of the bundle created by webpack. For applications, the bundleName should always be &quot;main&quot;. For system modules, bundleName matches the name of the &quot;barrel&quot; file that consolidates the imports for the module. The bundleName for plugins should be something descriptive. For example:</p>
+<pre class="no-line-numbers"><code class="language-json">   &quot;iModelJs&quot;: {
+    &quot;buildModule&quot;: {
+      &quot;type&quot;: &quot;application&quot;,
+      ...
+      &quot;webpack&quot;: {
+        &quot;entry&quot;: &quot;./lib/frontend/index.js&quot;,
+        &quot;dest&quot;: &quot;./lib/webresources&quot;,
+        &quot;bundleName&quot;: &quot;main&quot;,
+        &quot;styleSheets&quot;: true,
+        &quot;htmlTemplate&quot;: &quot;./src/frontend/index.html&quot;
+      },
+    ...
+    }
+   }</code></pre>
+<p>In this case, there are two optional properties.  &quot;styleSheets&quot; is a boolean property that is usable for all module types. If true, it indicates that webpack should add processing for .scss files.  &quot;htmlTemplate&quot; is a property used only by application modules. It must point to the source for an html template file that is processed by webpack to encode the system modules required for the application and their versions (information that is used at runtime to load those system modules). For example, here is a typical index.html file:</p>
+<pre class="no-line-numbers"><code class="language-html">index.html
+
+&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;&gt;
+  &lt;meta name=&quot;theme-color&quot; content=&quot;#000000&quot;&gt;
+  &lt;link rel=&quot;shortcut icon&quot; href=&quot;favicon.ico&quot;&gt;
+  &lt;link rel=&quot;manifest&quot; href=&quot;manifest.json&quot;&gt;
+  &lt;link href=&quot;themes.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;all&quot;&gt;
+  &lt;title&gt;iModel.js Application&lt;/title&gt;
+  &lt;style&gt;
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+    }
+
+    #root {
+      height: 100%;
+    }
+  &lt;/style&gt;
+  &lt;!-- use the webpack-generated runtime.js to get our modules to share dependencies. --&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;runtime.js&quot;&gt;&lt;/script&gt;
+  &lt;!-- Use the IModelJs loader to load the system modules in the correct order --&gt;
+  &lt;!-- The lodash template in the next line is replaced by webpack with the name and versions of imodeljs frontend packages --&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;IModelJsLoader.js&quot; data-imjsversions= &apos;&lt;%= htmlWebpackPlugin.options.imjsVersions %&gt;&apos;&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;noscript&gt;
+    You need to enable JavaScript to run this app.
+  &lt;/noscript&gt;
+  &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;
+  &lt;!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+    --&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+<p>As you can see from the comments in the file, the script tag that invokes IModelJsLoader contains a template that is replaced by webpack with a list of iModel.js system modules that are needed and their versions.</p>
+<h3 class="h-copying-external-modules-to-the-web-resources-directory">Copying External Modules to the Web resources directory<a id="copying-external-modules-to-the-web-resources-directory" class="heading-anchor" href="#copying-external-modules-to-the-web-resources-directory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>For application modules only, buildIModelJsModule copies or symlinks all the external modules that are needed into the &quot;dest&quot; directory of the webpack property. No specific buildModule properties are needed for this step.</p>
+<h3 class="h-building-submodules-in-the-same-package">Building Submodules in the same package<a id="building-submodules-in-the-same-package" class="heading-anchor" href="#building-submodules-in-the-same-package"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>Sometimes, it might be desirable to put certain submodules, such as Plugins or Webworkers, in the same package as the application itself. The buildImodelJsModule script addresses this requirement through the use of a subModules property. It is an array of objects, each of which has &quot;dest&quot;, &quot;entry&quot;,  and &quot;bundleName&quot; properties. Optionally, there can be a &quot;type&quot; property that can have the value &quot;plugin&quot; (the default), &quot;webworker&quot;, or &quot;system&quot;. Another optional property, &quot;styleSheets&quot;, can appear as in the &quot;webpack&quot; property above. For example, the following plugins property specifies that a MeasurePoints plugin is built alongside the application.</p>
+<pre class="no-line-numbers"><code class="language-json">  &quot;iModelJs&quot;: {
+    &quot;buildModule&quot;: {
+      &quot;type&quot;: &quot;application&quot;,
+      ...
+      &quot;plugins&quot;: [
+        {
+          &quot;dest&quot;: &quot;./lib/webresources&quot;,
+          &quot;entry&quot;: &quot;./lib/frontend/plugins/MeasurePoints.js&quot;,
+          &quot;bundleName&quot;: &quot;MeasurePoints&quot;,
+          &quot;type&quot;: &quot;plugin&quot;
+        }
+      ],
+      ...
+    }
+  },
+  ...</code></pre>
+<h3 class="h-creating-a-configuration-file">Creating a Configuration file<a id="creating-a-configuration-file" class="heading-anchor" href="#creating-a-configuration-file"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>For Bentley applications only, the &quot;makeConfig&quot; property is specified to create a config.json file that configures the server with the variables specified in the unpublished @bentley/imodeljs-config package. See examples in the rush repository for usage.</p>
+<h3 class="h-pseudolocalizing-json-locale-files">PseudoLocalizing json locale files<a id="pseudolocalizing-json-locale-files" class="heading-anchor" href="#pseudolocalizing-json-locale-files"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>For localization, iModel.js uses the popular i18next package. Localizable strings are defined in json files where the keys are the property names and the localizable strings are the values. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/frontend/localization'>Localization in iModel.js</a> for an explanation. While an application is under development, it is useful to be able to easily tell whether a string that appears in the user interface has been properly set up for localization before sending the localization json files out for translation. A way of doing that while somewhat preserving readability of the UI is called pseudoLocalization. In that process, a separate locale, &quot;en-pseudo&quot; is created and all the vowels in the original strings are replaced with various accented variations. The buildIModelJsModule script performs that step if a &quot;pseudoLocalize&quot; property is provided. It should be an object with a &quot;source&quot; and &quot;dest&quot; property. For example:</p>
+<pre class="no-line-numbers"><code class="language-html">  &quot;iModelJs&quot;: {
+    &quot;buildModule&quot;: {
+      &quot;type&quot;: &quot;application&quot;,
+      ...
+      &quot;pseudoLocalize&quot;: {
+        &quot;source&quot;: &quot;./lib/webresources/locales/en&quot;,
+        &quot;dest&quot;: &quot;./lib/webresources/locales/en-pseudo&quot;
+      },
+      ...
+    }
+  },</code></pre>
+<p>tells the script to process all of the source files in the ./lib/webresources/locales/en directory and put the output files into ./lib/webresource/locales/en-pseudo. Generally, the &quot;pseudoLocalize&quot; property makes sense only for application and plugin modules.</p>
+<h2 class="h-passing-arguments-to-buildimodeljsmodule">Passing Arguments to buildIModelJsModule<a id="passing-arguments-to-buildimodeljsmodule" class="heading-anchor" href="#passing-arguments-to-buildimodeljsmodule"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The buildIModelJsModule script takes these arguments</p>
+<pre class="no-line-numbers"><code class="language-bashell">Options:
+  --version                 Show version number                                                  [boolean]
+  --production, --prod, -p  Build production version of module                                   [boolean]
+  --verbose, -v             Show detail level 1                                                  [boolean]
+  --detail, -d              Sets detail level (0 to 4) to reveal more about the build process    [number]
+  --stats, -s               Creates the webpack stats json file for system modules               [boolean]
+  --help                    Show help                                                            [boolean]</code></pre>
+<p>Most of these options are self-explanatory. The &quot;--production&quot; argument tells the build script to create the production build of the module. The differences between a production build and the development build (which is the default) arise during the webpack step. Production builds are minified (eliminating comments and carriage returns, shortening variable names, etc.) and all the calls to the assert function imported from @bentleyjs-core are eliminated. Development builds of system modules are put into the &quot;dev&quot; subdirectory of the designated &quot;dest&quot; directory, while production builds are put into the &quot;prod&quot; subdirectory. Builds of application modules copy or symlink the required system modules from the appropriate subdirectory based on build type.</p>
+<p>The &quot;--detail&quot; argument requires a number between 0 and 4, (e.g., --detail=2). Detail level 1 logs the start and end of each build step (although the output can be a little confusing because some steps are executed in parallel). Detail level 2 additionally shows the output of the webpack process, detail level 3 adds a report of skipped steps, and detail level 4 shows substeps such as the copying or symlinking of individual files. Errors are always displayed, and cause the process exit code to be non-zero.</p>
+<p>The &quot;--stats&quot; argument affects the webpack step by passing the &quot;--json&quot; argument to it and directing webpack&apos;s output to a file called &quot;webpackStats.json&quot; in the same directory as the module. That can be useful for analyzing the packages used by the module as well as other webpack performance information. A downside to using that argument is that webpack also directs all errors to the webpackStats.json file, so if you encounter a webpack error with the --stats argument, look in webpackStat.json to get more information about the error.</p>
+<p>For packages that are not in the iModel.js mono repository, the build command is generally invoked using the &quot;npm run build&quot; command. To pass arguments to the script that npm invokes rather than to npm inself, you must put in a &quot;separator&quot; argument, &quot;--&quot; before the arguments that should be passed to the builIModelJsModule script. For example, to build a production version and show detail level 1, you would use this command:</p>
+<pre class="no-line-numbers"><code class="language-bashell">npm run build -- --production --detail=1</code></pre>
+<p>For packages that are in the iModel.js rush mono repository, the build process is sequenced by the &quot;rush build&quot; command. In that case, the command line options that can be passed to the build command are determined by the rush configuration file &quot;command-line.json&quot;. There are some restrictions in how the arguments can be structured, and arguments cannot be used that conflict with those that are processed by rush itself. That means that you must spell out the full &quot;--production&quot; argument rather than using the &quot;-p&quot; shortcut. To see the arguments using rush, execute &quot;rush build --help&quot;, and this message is displayed:</p>
+<pre class="no-line-numbers"><code class="language-bashell">Found configuration in D:\bentleyjs\imodeljs\rush.json
+
+
+Rush Multi-Project Build Tool 5.5.4 - https://rushjs.io
+
+Found configuration in D:\bentleyjs\imodeljs\rush.json
+
+usage: rush build [-h] [-p COUNT] [-t PROJECT1]
+                  [--to-version-policy VERSION_POLICY_NAME] [-f PROJECT2] [-v]
+                  [-o] [--production] [-s] [-d {0,1,2,3,4}]
+
+
+This command is similar to &quot;rush rebuild&quot;, except that &quot;rush build&quot; performs
+an incremental build. In other words, it only builds projects whose source
+files have changed since the last successful build. The analysis requires a
+Git working tree, and only considers source files that are tracked by Git and
+whose path is under the project folder. (For more details about this
+algorithm, see the documentation for the &quot;package-deps-hash&quot; NPM package.)
+The incremental build state is tracked in a file &quot;package-deps.json&quot; which
+should NOT be added to Git. The build command is tracked by the &quot;arguments&quot;
+field in this JSON file; a full rebuild is forced whenever the command has
+changed (e.g. &quot;--production&quot; or not).
+
+Optional arguments:
+  -h, --help            Show this help message and exit.
+  -p COUNT, --parallelism COUNT
+                        Specify the number of concurrent build processes The
+                        value &quot;max&quot; can be specified to indicate the number
+                        of CPU cores. If this parameter omitted, the default
+                        value depends on the operating system and number of
+                        CPU cores.
+  -t PROJECT1, --to PROJECT1
+                        Run command in the specified project and all of its
+                        dependencies
+  --to-version-policy VERSION_POLICY_NAME
+                        Run command in all projects with the specified
+                        version policy and all of their dependencies
+  -f PROJECT2, --from PROJECT2
+                        Run command in all projects that directly or
+                        indirectly depend on the specified project
+  -v, --verbose         Display the logs during the build, rather than just
+                        displaying the build status summary
+  -o, --changed-projects-only
+                        If specified, the incremental build will only rebuild
+                        projects that have changed, but not any projects that
+                        directly or indirectly depend on the changed package.
+  --production          Sets production build for iModelJs modules
+  -s, --stats           Stores the webpack json stats for iModelJs system
+                        modules
+  -d {0,1,2,3,4}, --detail {0,1,2,3,4}
+                        Selects the level of output when building iModelJs
+                        modules. The default value is &quot;0&quot;.</code></pre>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>25 February, 2019</span>
+            </p>
+            <div id="imodeljs-github-comments">
+            </div>
+            
+            <script>
+              $(document).ready(function () {
+                function initializeComments(repo) {
+                  var s = document.createElement('script');
+                  s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
+                  s.setAttribute('repo', repo);
+                  s.setAttribute('issue-term', 'title');
+                  s.setAttribute('crossorigin', 'anonymous');
+                  s.setAttribute('theme', 'github-light');
+                  s.async = true;
+            
+                  document.getElementById("imodeljs-github-comments").appendChild(s);
+                }
+            
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
+              });
+            </script>
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div class="toc-overlay"></div>
+    <div id='inner-table-of-contents'>
+       <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#types-of-modules">Types of Modules</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#copying-vs-symlinking">Copying vs Symlinking</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#building-a-module">Building a Module</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#invoking-the-buildimodeljsmodule-script">Invoking the buildIModelJsModule script</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#module-build-steps">Module Build Steps</a>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-packagejson-properties-that-control-the-module-build" class='title' href="#packagejson-properties-that-control-the-module-build"/>
+            <b class='dropdown-menu-title menu-text'>Package.json properties that control the module build</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-packagejson-properties-that-control-the-module-build" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#transpiling-typescript-files">Transpiling TypeScript files</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#copying-source-resources">Copying Source Resources</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#webpacking">Webpacking</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#copying-external-modules-to-the-web-resources-directory">Copying External Modules to the Web resources directory</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#building-submodules-in-the-same-package">Building Submodules in the same package</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#creating-a-configuration-file">Creating a Configuration file</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#pseudolocalizing-json-locale-files">PseudoLocalizing json locale files</a>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#passing-arguments-to-buildimodeljsmodule">Passing Arguments to buildIModelJsModule</a>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color pt-1 pb-3">
+  <!-- Footer Links Container -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row d-flex align-items-center mt-2">
+
+      <!-- Grid column -->
+      <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
+
+        <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+        </a>
+        <small style="color: white; margin-right: 7px;"> powered by </small>
+        <a href="https://www.bentley.com">
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
+        </a>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-5 col-lg-4 ml-lg-0">
+
+        <!-- Social buttons -->
+        <div class="text-center text-md-right">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://twitter.com/imodeljs" target="_blank">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://github.com/imodeljs" target="_blank">
+                <i class="fa fa-github"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://stackoverflow.com/tags/imodeljs"
+                target="_blank">
+                <i class="fa fa-stack-overflow"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links Container -->
+
+</footer>
+<!-- Footer -->
+
+</div>
+<a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
+</body>
+
+</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

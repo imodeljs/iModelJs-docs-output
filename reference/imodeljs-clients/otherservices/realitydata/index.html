@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -189,12 +189,49 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/">imodeljs-clients</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/otherservices/">OtherServices</a> > RealityData</div>
             
             <h2 class="h-realitydata">RealityData <span class="badge badge-pill badge-primary badge-class">Class</span><a id="realitydata" class="heading-anchor" href="#realitydata"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>RealityData</p>
+<p>RealityData
+This class implements a Reality Data stored in ProjectWise Context Share (Reality Data Service)
+Data is accessed directly through methods of the reality data instance.
+Access to the data required a properly entitled token though the access to the blob is controled through
+an Azure blob URL, the token may be required to obtain this Azure blob URL or refresh it.
+The Azure blob URL is considered valid for an hour and is refreshed after 50 minutes.
+In addition to the reality data properties, and Azure blob URL and internal states, a reality data also contains
+the identification of the CONNECT project to identify the context(used for access permissions resolution) and
+may contain a RealityDataClient to obtain the WSG client specialisation to communicate with ProjectWise Context Share (to obtain the Azure blob URL).</p>
 <h3 class="h-extends">Extends<a id="extends" class="heading-anchor" href="#extends"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/wsginstance'>WsgInstance</a></li>
 </ul>
-<h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
+</tr>
+<tr>
+<td class="h-getblobstringurl"><span class="method-name"><a href="getblobstringurl">getBlobStringUrl</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, name: string, nameRelativeToRootDocumentPath: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;string&gt;</span><a id="getblobstringurl" class="heading-anchor" href="#getblobstringurl"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Gets string url to fetch blob data from</td>
+</tr>
+<tr>
+<td class="h-getbloburl"><span class="method-name"><a href="getbloburl">getBlobUrl</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;URL&gt;</span><a id="getbloburl" class="heading-anchor" href="#getbloburl"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Gets a tile access url URL object</td>
+</tr>
+<tr>
+<td class="h-getmodeldata"><span class="method-name"><a href="getmodeldata">getModelData</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, name: string, nameRelativeToRootDocumentPath: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;any&gt;</span><a id="getmodeldata" class="heading-anchor" href="#getmodeldata"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Gets a tileset&apos;s tile data</td>
+</tr>
+<tr>
+<td class="h-getrootdocumentjson"><span class="method-name"><a href="getrootdocumentjson">getRootDocumentJson</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;any&gt;</span><a id="getrootdocumentjson" class="heading-anchor" href="#getrootdocumentjson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Gets a reality data root document json</td>
+</tr>
+<tr>
+<td class="h-gettilecontent"><span class="method-name"><a href="gettilecontent">getTileContent</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, name: string, nameRelativeToRootDocumentPath: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;any&gt;</span><a id="gettilecontent" class="heading-anchor" href="#gettilecontent"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Gets tile content</td>
+</tr>
+<tr>
+<td class="h-gettilejson"><span class="method-name"><a href="gettilejson">getTileJson</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, name: string, nameRelativeToRootDocumentPath: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;any&gt;</span><a id="gettilejson" class="heading-anchor" href="#gettilejson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Gets a tileset&apos;s app data json</td>
+</tr>
+</tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
 <th>Type</th>
@@ -208,6 +245,11 @@
 <tr>
 <td class="h-classification"><span class="property-name">classification</span><a id="classification" class="heading-anchor" href="#classification"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | string</span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-client"><span class="property-name">client</span><a id="client" class="heading-anchor" href="#client"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/otherservices/realitydataservicesclient'>RealityDataServicesClient</a></span></td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -287,6 +329,11 @@
 </tr>
 <tr>
 <td class="h-ownedby"><span class="property-name">ownedBy</span><a id="ownedby" class="heading-anchor" href="#ownedby"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">undefined | string</span></td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-projectid"><span class="property-name">projectId</span><a id="projectid" class="heading-anchor" href="#projectid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | string</span></td>
 <td>&#xA0;</td>
 </tr>
@@ -377,7 +424,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>19 February, 2019</span>
+                <span class='date-updated'>25 February, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -435,6 +482,32 @@
                             <a class='title solo-title menu-text' href="#extends">Extends</a>
                     </li>
                     <li class='nav-item item '>
+                            <a data-target="#inner-nav-methods" class='title' href="#methods"/>
+                            <b class='dropdown-menu-title menu-text'>Methods</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-methods" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getblobstringurl">getBlobStringUrl</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getbloburl">getBlobUrl</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getmodeldata">getModelData</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getrootdocumentjson">getRootDocumentJson</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#gettilecontent">getTileContent</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#gettilejson">getTileJson</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
                             <a data-target="#inner-nav-properties" class='title' href="#properties"/>
                             <b class='dropdown-menu-title menu-text'>Properties</b>
                             <i class='nav-list-dropdown icon'></i>
@@ -445,6 +518,9 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#classification">classification</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#client">client</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#containername">containerName</a>
@@ -493,6 +569,9 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#ownedby">ownedBy</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#projectid">projectId</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#resolutioninmeters">resolutionInMeters</a>
