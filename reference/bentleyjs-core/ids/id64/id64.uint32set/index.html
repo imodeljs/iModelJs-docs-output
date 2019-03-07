@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.187.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.189.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -189,11 +189,11 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/bentleyjs-core/">bentleyjs-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/bentleyjs-core/ids/">Ids</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/bentleyjs-core/ids/id64/">Id64</a> > Id64.Uint32Set</div>
             
             <h2 class="h-id64uint32set">Id64.Uint32Set <span class="badge badge-pill badge-primary badge-class">Class</span><a id="id64uint32set" class="heading-anchor" href="#id64uint32set"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>A specialized replacement for Set<id64string> optimized for performance-critical code which represents large sets of 64-bit IDs as pairs of
-32-bit integers.
+<h3 class="h-a-specialized-replacement-for-set-optimized-for-performance-critical-code-which-represents-large-sets-of-64-bit-ids-as-pairs-of">A specialized replacement for Set<id64string> optimized for performance-critical code which represents large sets of 64-bit IDs as pairs of</id64string><a id="a-specialized-replacement-for-set-optimized-for-performance-critical-code-which-represents-large-sets-of-64-bit-ids-as-pairs-of" class="heading-anchor" href="#a-specialized-replacement-for-set-optimized-for-performance-critical-code-which-represents-large-sets-of-64-bit-ids-as-pairs-of"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>32-bit integers.
 The internal representation is a Map&lt;number, Set<number>&gt; where the Map key is the upper 4 bytes of the IDs and the Set elements are the lower 4 bytes of the IDs.
 Because the upper 4 bytes store the 24-bit briefcase ID plus the upper 8 bits of the local ID, there will be a very small distribution of unique Map keys.
-To further optimize this data type, the following assumptions are made regarding the { lower, upper } inputs, and no validation is performed to confirm them:</number></id64string></p>
+To further optimize this data type, the following assumptions are made regarding the { lower, upper } inputs, and no validation is performed to confirm them:</number></p>
 <ul>
 <li>The inputs are unsigned 32-bit integers;</li>
 <li>The inputs represent a valid Id64String (e.g., local ID is not zero).</li>
@@ -203,55 +203,67 @@ To further optimize this data type, the following assumptions are made regarding
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
+<th></th>
 </tr>
 <tr>
 <td class="h-add"><span class="method-name">add</span><span class="method-parenthesis">(</span><span class="method-parameters">low: number, high: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="add" class="heading-anchor" href="#add"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Add an Id to the set.</td>
+<td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-addid"><span class="method-name">addId</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="addid" class="heading-anchor" href="#addid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Add an Id to the set.</td>
+<td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-clear"><span class="method-name">clear</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="clear" class="heading-anchor" href="#clear"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Remove all contents of this set.</td>
+<td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-has"><span class="method-name">has</span><span class="method-parenthesis">(</span><span class="method-parameters">low: number, high: number</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="has" class="heading-anchor" href="#has"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Returns true if the set contains the specified Id.</td>
+<td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-hasid"><span class="method-name">hasId</span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="hasid" class="heading-anchor" href="#hasid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Returns true if the set contains the specified Id.</td>
+<td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-toid64array"><span class="method-name">toId64Array</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64array'>Id64Array</a></span><a id="toid64array" class="heading-anchor" href="#toid64array"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Populates and returns an array of all Ids contained in the set.</td>
+<td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-toid64set"><span class="method-name">toId64Set</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64set'>Id64Set</a></span><a id="toid64set" class="heading-anchor" href="#toid64set"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Populates and returns a set of all Ids contained in the set.</td>
+<td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
 <th>Type</th>
 <th>Description</th>
+<th></th>
 </tr>
 <tr>
 <td class="h-_map"><span class="property-name">_map</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="_map" class="heading-anchor" href="#_map"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">Map&lt;number, Set&lt;number&gt;&gt;</span></td>
+<td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-isempty"><span class="property-name">isEmpty</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isempty" class="heading-anchor" href="#isempty"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> boolean</span></td>
 <td>Returns true if the set contains no Ids.</td>
+<td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-size"><span class="property-name">size</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="size" class="heading-anchor" href="#size"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> number</span></td>
 <td>Returns the number of Ids contained in the set.</td>
+<td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -259,7 +271,7 @@ To further optimize this data type, the following assumptions are made regarding
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>26 February, 2019</span>
+                <span class='date-updated'>07 March, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

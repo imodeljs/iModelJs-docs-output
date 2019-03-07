@@ -9,9 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>0.187.0 Change Notes - iModel.js</title>
-    <meta name="og:title" content="0.187.0 Change Notes - iModel.js">
-    <meta name="twitter:title" content="0.187.0 Change Notes - iModel.js">
+    <title>0.189.0 Change Notes - iModel.js</title>
+    <meta name="og:title" content="0.189.0 Change Notes - iModel.js">
+    <meta name="twitter:title" content="0.189.0 Change Notes - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.187.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.189.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -94,6 +94,8 @@
     <hr>
     <h3 id="versions">Versions</h3>
     <ul>
+    <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/0.189.0" class="table-of-contents-link">0.189.0</a></p>
+    </li>
     <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/0.187.0" class="table-of-contents-link">0.187.0</a></p>
     </li>
     <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/0.171.0" class="table-of-contents-link">0.171.0</a></p>
@@ -108,46 +110,56 @@
         <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'>Change History</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/changehistory/index.md">Edit this page</a></div>
-            <h1 id="0.187.0 change notes">0.187.0 Change Notes</h1>
-<h2 class="h-new-signature-for-rpcinterfaceforward">New signature for RpcInterface.forward<a id="new-signature-for-rpcinterfaceforward" class="heading-anchor" href="#new-signature-for-rpcinterfaceforward"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>To support stricter type checking of apply, call, and bind usage in upcoming versions of the typescript compiler, the signature of RpcInterface.forward is now (parameters: IArguments). This is not a breaking change for most use cases within RPC interfaces that invoke forward via apply. However, it is now possible and preferable with the new signature to directly invoke this.foward(arguments) in RPC interfaces instead of using apply.</p>
-<h2 class="h-node-10">Node 10<a id="node-10" class="heading-anchor" href="#node-10"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>The iModel.js backend now requires <a href="https://nodejs.org">Node version 10</a> or later. If you run the backend, please install it before running this version.</p>
-<p>If you build the iModel.js packages from the monorepo, you should follow these steps:</p>
-<ol>
-<li><code>rush clean</code></li>
-<li><code>rush unlink</code></li>
-<li>uninstall current version of Node (on Windows, via &quot;add or remove programs&quot;)</li>
-<li>install latest version of Node 10</li>
-<li><code>npm install -g @microsoft/rush</code></li>
-<li><code>git pull</code></li>
-<li><code>rush install</code><ul>
-<li>if you get an error about npm versions, do <code>npm uninstall -g npm</code></li>
-</ul>
-</li>
-<li><code>rush build</code></li>
-<li><code>rush test</code></li>
-</ol>
-<h2 class="h-allowed-backend-applications-to-specify-https_proxy">Allowed backend applications to specify HTTPS_PROXY<a id="allowed-backend-applications-to-specify-https_proxy" class="heading-anchor" href="#allowed-backend-applications-to-specify-https_proxy"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Applications can now configure backend HTTP requests to go through a firewall proxy server with the HTTPS_PROXY environment.
-To enable this, the backend application must call the following API as part of it&apos;s initialization:
-  <code>imodeljs-clients-backend: RequestHost.initialize();</code></p>
-<h2 class="h-more-diagnostics-and-trace-logging-of-all-http-requests">More diagnostics and trace logging of all HTTP requests<a id="more-diagnostics-and-trace-logging-of-all-http-requests" class="heading-anchor" href="#more-diagnostics-and-trace-logging-of-all-http-requests"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+            <h1 id="0.189.0 change notes">0.189.0 Change Notes</h1>
+<h2 class="h-imodelhub-file-handlers-have-been-moved-to-imodeljs-clients-backend">iModelHub file handlers have been moved to imodeljs-clients-backend<a id="imodelhub-file-handlers-have-been-moved-to-imodeljs-clients-backend" class="heading-anchor" href="#imodelhub-file-handlers-have-been-moved-to-imodeljs-clients-backend"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Moved AzureFileHandler, IOSAzureFileHandler, UrlFileHandler and the iModelHub tests to the imodeljs-clients-backend package. This removes the dependency of imodeljs-clients on the &quot;fs&quot; module, and turns it into a browser only package.</p>
+<p>To fix related build errors, update imports for these utilities from
+<code>import {AzureFileHandler, IOSAzureFileHandler, UrlFileHandler} from &quot;@bentley/imodels-clients&quot;;</code>
+to
+<code>import {AzureFileHandler, IOSAzureFileHandler, UrlFileHandler} from &quot;@bentley/imodels-clients-backend&quot;;</code></p>
+<h2 class="h-prevented-partial-downloads-of-changesets-and-briefcases">Prevented partial downloads of ChangeSets and Briefcases<a id="prevented-partial-downloads-of-changesets-and-briefcases" class="heading-anchor" href="#prevented-partial-downloads-of-changesets-and-briefcases"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Backend ChangeSet and Briefcase downloads are atomic - i.e., will not be partially downloaded, and can simultaneously happen in multiple machines.</p>
+<h2 class="h-changes-to-imodelconnection">Changes to IModelConnection<a id="changes-to-imodelconnection" class="heading-anchor" href="#changes-to-imodelconnection"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ul>
-<li><p>Added API to detect and use fiddler proxy (if available) at the backend to route requests for troubleshooting.
-To enable this, the backend application must call the following API as part of it&apos;s initialization:
-<code>imodeljs-clients-backend: RequestHost.initialize();</code></p>
-<p>The API is called automatically when opening iModel-s, but must be typically setup by backend applications at startup.</p>
-</li>
-<li><p>Setup trace logs of all requests made through the Request API. To enable this, do:
- <code>Logger.setLevel(&quot;imodeljs-clients.Request&quot;, LogLevel.Trace);</code></p>
-</li>
+<li>In the case of ReadWrite connections, IModelConnection.close() now always disposes the briefcase held at the backend. Applications must ensure that any changes are saved and pushed out to the iModelHub before making this call.</li>
+<li>IModelConnection.connectionTimeout is now public, allowing applications to customize this in the case of slow networks.</li>
+<li>Removed unique id per connection: IModelConnection.connectionId</li>
+<li>Removed <code>executeQuery</code> which could not page the result and therefore cannot stream results from backend. This is now replaced with <code>query</code>. Code can be updated as following.</li>
 </ul>
-<h2 class="h-removed-imodeldbs-cache-of-accesstoken">Removed IModelDb&apos;s cache of accessToken<a id="removed-imodeldbs-cache-of-accesstoken" class="heading-anchor" href="#removed-imodeldbs-cache-of-accesstoken"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>For long running operations like AutoPush, the developer must explicitly supply an <code>IAccessTokenManager</code> to keep the token current.</p>
-
+<pre><code>  const rows = await conn.executeQuery(&quot;SELECT ECInstanceId FROM bis.Element&quot;);</code></pre><p>can be change to following async iterator call</p>
+<pre><code>  for await (const row of conn.query(&quot;SELECT ECInstanceId FROM bis.Element&quot;)) {
+    /* process row */
+  }</code></pre><p>in case user want to control paging manually like in case of virtual grid</p>
+<pre><code>  const pageSize = 500; // Numer of rows per page
+  const pageNo = 20;    // Page of interest
+  const pageOptions = {size: noOfRowsPerPage, start: pageNo};
+  const rows = await conn.queryPage (&quot;SELECT ECInstanceId FROM bis.Element&quot;, undefined, pageOptions);
+  // rows will contain 0 to pageSize rows.
+  if (rows.length &gt; 0 ){
+    // process rows
+  } else {
+    // empty page mean there is no rows in that page and next page would also return no rows.
+  }</code></pre><p>in addition to above following can get the maximum number of rows returned by the query</p>
+<pre><code>  const numberOfRows = await conn.queryRowCount(&quot;SELECT ECInstanceId FROM bis.Element&quot;);
+  // initialize grid scrollbar according to expected number of rows that can be returned by query.</code></pre><p>All above can also be used with <code>ECDb</code> and <code>IModelDb</code> on backend.</p>
+<h2 class="h-changes-to-imodelapp">Changes to IModelApp<a id="changes-to-imodelapp" class="heading-anchor" href="#changes-to-imodelapp"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Added unique id per session: IModelApp.sessionId</p>
+<h2 class="h-authentication-and-authorization-related-changes-openid-connect-oauth">Authentication and Authorization related changes (OpenID Connect, OAuth)<a id="authentication-and-authorization-related-changes-openid-connect-oauth" class="heading-anchor" href="#authentication-and-authorization-related-changes-openid-connect-oauth"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Fixes to OidcDelegationClient-s. Backend applications can now exchange -</p>
+<ul>
+<li>OIDC Jason Web Tokens (JWT) for other JWT tokens with additional scope.</li>
+<li>JWT tokens for legacy SAML tokens for legacy applications.</li>
+</ul>
+<h2 class="h-logger-configuration-changes">Logger Configuration Changes<a id="logger-configuration-changes" class="heading-anchor" href="#logger-configuration-changes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The BunyanLoggerConfig, FluentdBunyanLoggerConfig, FluentdLoggerStream, and SeqLoggerConfig classes have been moved out of @bentley/bentleyjs-core and into the new @bentley/logger-config package.</p>
+<h2 class="h-removed-rbacclient">Removed RbacClient<a id="removed-rbacclient" class="heading-anchor" href="#removed-rbacclient"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The RBAC API is considered internal and has been removed from the iModel.js stack. More comments on the individual methods that have been removed below.</p>
+<pre><code>RbacClient.getProjects() // Use ConnectClient.getProjects() instead
+RbacClient.getIModelHubPermissions() // The plan is for iModelHub to support this API.
+RbacClient.getUsers() // This method is little used. Bentley internal clients can make the necessary REST API calls directly.
+</code></pre>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>26 February, 2019</span>
+                <span class='date-updated'>07 March, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -196,19 +208,25 @@ To enable this, the backend application must call the following API as part of i
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
               <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#new-signature-for-rpcinterfaceforward">New signature for RpcInterface.forward</a>
+            <a class='title solo-title menu-text' href="#imodelhub-file-handlers-have-been-moved-to-imodeljs-clients-backend">iModelHub file handlers have been moved to imodeljs-clients-backend</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#node-10">Node 10</a>
+            <a class='title solo-title menu-text' href="#prevented-partial-downloads-of-changesets-and-briefcases">Prevented partial downloads of ChangeSets and Briefcases</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#allowed-backend-applications-to-specify-https_proxy">Allowed backend applications to specify HTTPS_PROXY</a>
+            <a class='title solo-title menu-text' href="#changes-to-imodelconnection">Changes to IModelConnection</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#more-diagnostics-and-trace-logging-of-all-http-requests">More diagnostics and trace logging of all HTTP requests</a>
+            <a class='title solo-title menu-text' href="#changes-to-imodelapp">Changes to IModelApp</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#removed-imodeldbs-cache-of-accesstoken">Removed IModelDb's cache of accessToken</a>
+            <a class='title solo-title menu-text' href="#authentication-and-authorization-related-changes-openid-connect-oauth">Authentication and Authorization related changes (OpenID Connect, OAuth)</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#logger-configuration-changes">Logger Configuration Changes</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#removed-rbacclient">Removed RbacClient</a>
     </li>
  
       </ul>

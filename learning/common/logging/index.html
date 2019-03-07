@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.187.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.189.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -151,7 +151,7 @@ Logger.setLevel(&quot;Diagnostics&quot;, LogLevel.None);</code></pre><p>This app
 <pre><code>Logger.initializeToConsole();
 Logger.setLevel(&quot;MyCategory&quot;, LogLevel.Info);</code></pre><p>This approach is useful when you want to monitor the activity in a small number of known modules, where you already know the names of the categories that they use.</p>
 <h2 class="h-configuration-files">Configuration Files<a id="configuration-files" class="heading-anchor" href="#configuration-files"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>A service typically initializes and configures logging in its startup logic. Configuration can be based on the configuration parameters of the service, which may be set by the deployment mechanism. The simplest way to do this is to use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/loggerlevelsconfig'>LoggerLevelsConfig</a>. This is normally used in conjunction with a stream config, for example, a SeqConfig. Both are normally stored in a config file that is deployed with the service. Finally, some specific configuration parameters are normally set at runtime, based on deployment parameters using <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/envmacrosubst'>EnvMacroSubst</a> to do macro substitution.</p>
+<p>A service typically initializes and configures logging in its startup logic. Configuration can be based on the configuration parameters of the service, which may be set by the deployment mechanism. The simplest way to do this is to use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/loggerlevelsconfig'>LoggerLevelsConfig</a>. This is normally used in conjunction with a stream config, for example, a SeqConfig. Both are normally stored in a config file that is deployed with the service. Finally, some specific configuration parameters are normally set at runtime, based on deployment parameters using EnvMacroSubst to do macro substitution.</p>
 <p><em>Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">import { Logger, LoggerLevelsConfig, EnvMacroSubst, BentleyError, IModelStatus } from &quot;@bentley/bentleyjs-core&quot;;
 import { BunyanLoggerConfig, SeqConfig, SeqLoggerConfig } from &quot;@bentley/logger-config&quot;;
@@ -209,7 +209,7 @@ export function initializeLogging(): void {
 <p>Backend code must cooperate with iModel.js to <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/rpcinterface/#logging-and-activityids'>manage the ActivityLoggingContext</a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>26 February, 2019</span>
+                <span class='date-updated'>07 March, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

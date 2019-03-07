@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.187.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.189.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -141,7 +141,7 @@ This means that the API item is part of the <em>supported contract</em> and affe
 Third parties are encouraged to try it and provide feedback.
 However, <em>beta</em> API items should <strong>NOT</strong> be used in production as they still may change going forward.
 <em>Beta</em> API items are not part of the <em>supported contract</em> and changes to these API items do not follow the normal semantic versioning rules.
-<em>Beta</em> API items are included in the public SDK documentation.</p>
+<em>Beta</em> API items and the comment after the <code>@beta</code> tag are included in the public SDK documentation.</p>
 <h3 class="h-alpha">@alpha<a id="alpha" class="heading-anchor" href="#alpha"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>The <code>@alpha</code> release tag indicates that an API item is eventually intended to be public, but currently is in an early stage of development.
 Third parties should not use <em>alpha</em> APIs in production or otherwise as they are likely to change going forward.
@@ -163,7 +163,7 @@ The distinction is that <em>internal</em> indicates that the API item is never m
 <p>The <code>@deprecated</code> release tags is used for API items that were formerly <code>@public</code> but are no longer optimal.
 Third parties should avoid <em>deprecated</em> API items if possible as they will likely be removed in the next major release.
 From the maintainer perspective, <em>deprecated</em> API items follow the same rules as <em>public</em> API items within the current major release.
-<em>Deprecated</em> API items are included in the public SDK documentation.</p>
+<em>Deprecated</em> API items and the comment after the <code>@deprecated</code> tag are included in the public SDK documentation.</p>
 <h3 class="h-release-tag-summary">Release Tag Summary<a id="release-tag-summary" class="heading-anchor" href="#release-tag-summary"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>The following table summarizes the affects of each release tag:</p>
 <table class="table table-responsive"><tbody><tr>
@@ -277,23 +277,23 @@ The <em>deprecated</em> API item must be maintained for the current major releas
  * @public
  */</code></pre>
 <p><em>Internal</em> API items should include documentation that indicates why it is not <em>public</em> and what third parties should use instead.</p>
-<pre class="no-line-numbers"><code class="language-typescript">/** Explanation of why the API item is marked internal.
+<pre class="no-line-numbers"><code class="language-typescript">/** Private explanation of why the API item is marked internal as a reminder to the maintainer or notice to someone perusing the source code.
  * @see Other public API item that third parties should use instead.
- * @internal
+ * @internal Comments can also go here.
  */</code></pre>
 <p>Likewise, <em>deprecated</em> API items should include documentation that indicates what third parties should use instead.</p>
-<pre class="no-line-numbers"><code class="language-typescript">/** Explanation of why the API item has been marked deprecated.
+<pre class="no-line-numbers"><code class="language-typescript">/** Original documentation comment is typically maintained here.
  * @see Other public API item that third parties should use instead.
- * @deprecated
+ * @deprecated Comment describing reason API item is deprecated and what should be done instead.
  */</code></pre>
 <p><em>Beta</em> and <em>alpha</em> API items should include a short reason for that classification.</p>
-<pre class="no-line-numbers"><code class="language-typescript">/** Sample description of an exported API item.
- * @beta Waiting for feedback from...
+<pre class="no-line-numbers"><code class="language-typescript">/** Sample description of a beta API item.
+ * @beta Comment describing reason API item is beta that will be included in the public SDK documentation.
  */</code></pre>
-<pre class="no-line-numbers"><code class="language-typescript"> /** @alpha Prototype code. Not sure if this is the right approach or not. */</code></pre>
+<pre class="no-line-numbers"><code class="language-typescript"> /** @alpha Private comment reminding maintainer why API item was marked alpha. */</code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>26 February, 2019</span>
+                <span class='date-updated'>07 March, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
