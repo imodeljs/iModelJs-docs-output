@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.189.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.190.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -189,9 +189,15 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/modelstate/">ModelState</a> > TileTreeModelState</div>
             
             <h2 class="h-tiletreemodelstate">TileTreeModelState <span class="badge badge-pill badge-primary badge-interface">Interface</span><a id="tiletreemodelstate" class="heading-anchor" href="#tiletreemodelstate"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-"><span class="badge badge-pill badge-primary badge-beta">Beta</span><a id class="heading-anchor" href="#"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>Interface adopted by an object which can supply a tile tree for display within a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a>.
+Typically tile trees are obtained from geometric models, but they may also originate from display style settings
+such as a background map provider or a set of &quot;context&quot; reality models not directly embedded into the iModel.
+An application typically does not interact directly with tile trees; instead it interacts with a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a> or <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a> which
+coordinates with tile trees on its behalf.</p>
 <h3 class="h-implemented-by">Implemented by<a id="implemented-by" class="heading-anchor" href="#implemented-by"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/contextrealitymodelstate'>ContextRealityModelState</a></li>
+<li>ContextRealityModelState</li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/drawingmodelstate'>DrawingModelState</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/geometricmodel2dstate'>GeometricModel2dState</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/modelstate/geometricmodel3dstate'>GeometricModel3dState</a></li>
@@ -207,7 +213,7 @@
 <th></th>
 </tr>
 <tr>
-<td class="h-loadtiletree"><span class="method-name">loadTileTree</span><span class="method-parenthesis">(</span><span class="method-parameters">edgesRequired: boolean, animationId?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, asClassifier?: true | false, classifierExpansion?: number</span><span class="method-parenthesis">):</span><span class="method-output"> LoadStatus</span><a id="loadtiletree" class="heading-anchor" href="#loadtiletree"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-loadtiletree"><span class="method-name">loadTileTree</span><span class="method-parenthesis">(</span><span class="method-parameters">edgesRequired: boolean, animationId?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, asClassifier?: true | false, classifierExpansion?: number</span><span class="method-parenthesis">):</span><span class="method-output"> TileTree.LoadStatus</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="loadtiletree" class="heading-anchor" href="#loadtiletree"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
@@ -219,19 +225,19 @@
 <th></th>
 </tr>
 <tr>
-<td class="h-loadstatus"><span class="property-name">loadStatus</span><a id="loadstatus" class="heading-anchor" href="#loadstatus"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output">LoadStatus</span></td>
+<td class="h-loadstatus"><span class="property-name">loadStatus</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="loadstatus" class="heading-anchor" href="#loadstatus"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">TileTree.LoadStatus</span></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-tiletree"><span class="property-name">tileTree</span><a id="tiletree" class="heading-anchor" href="#tiletree"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-tiletree"><span class="property-name">tileTree</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="tiletree" class="heading-anchor" href="#tiletree"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">TileTree | undefined</span></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-treemodelid"><span class="property-name">treeModelId</span><a id="treemodelid" class="heading-anchor" href="#treemodelid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-treemodelid"><span class="property-name">treeModelId</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="treemodelid" class="heading-anchor" href="#treemodelid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
@@ -242,7 +248,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 March, 2019</span>
+                <span class='date-updated'>14 March, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -296,6 +302,9 @@
             <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-tiletreemodelstate" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#"></a>
+                    </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#implemented-by">Implemented by</a>
                     </li>

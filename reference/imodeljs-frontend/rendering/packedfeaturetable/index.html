@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.189.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.190.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -198,6 +198,11 @@ wherein each feature occupies 3 32-bit integers.</p>
 <th></th>
 </tr>
 <tr>
+<td class="h-constructor"><span class="method-name"><a href="constructor">constructor</a></span><span class="method-parenthesis">(</span><span class="method-parameters">data: Uint32Array, modelId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, numFeatures: number, maxFeatures: number, type: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/batchtype'>BatchType</a>, animationNodeIds?: Uint8Array | Uint16Array | Uint32Array</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/packedfeaturetable'>PackedFeatureTable</a></span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Construct a PackedFeatureTable from the packed binary data.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-findelementid"><span class="method-name">findElementId</span><span class="method-parenthesis">(</span><span class="method-parameters">featureIndex: number</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a> | undefined</span><a id="findelementid" class="heading-anchor" href="#findelementid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Returns the element ID of the Feature associated with the specified index, or undefined if the index is out of range.</td>
 <td>&#xA0;</td>
@@ -208,8 +213,23 @@ wherein each feature occupies 3 32-bit integers.</p>
 <td>&#xA0;</td>
 </tr>
 <tr>
+<td class="h-getanimationnodeid"><span class="method-name">getAnimationNodeId</span><span class="method-parenthesis">(</span><span class="method-parameters">featureIndex: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="getanimationnodeid" class="heading-anchor" href="#getanimationnodeid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-getelementidpair"><span class="method-name">getElementIdPair</span><span class="method-parenthesis">(</span><span class="method-parameters">featureIndex: number</span><span class="method-parenthesis">):</span><span class="method-output"> Uint32Pair</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="getelementidpair" class="heading-anchor" href="#getelementidpair"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-getfeature"><span class="method-name">getFeature</span><span class="method-parenthesis">(</span><span class="method-parameters">featureIndex: number</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/feature'>Feature</a></span><a id="getfeature" class="heading-anchor" href="#getfeature"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Retrieve the Feature associated with the specified index.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-getpackedfeature"><span class="method-name">getPackedFeature</span><span class="method-parenthesis">(</span><span class="method-parameters">featureIndex: number</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/packedfeature'>PackedFeature</a></span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="getpackedfeature" class="heading-anchor" href="#getpackedfeature"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -289,7 +309,7 @@ wherein each feature occupies 3 32-bit integers.</p>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 March, 2019</span>
+                <span class='date-updated'>14 March, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -350,13 +370,25 @@ wherein each feature occupies 3 32-bit integers.</p>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constructor">constructor</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#findelementid">findElementId</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#findfeature">findFeature</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getanimationnodeid">getAnimationNodeId</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getelementidpair">getElementIdPair</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#getfeature">getFeature</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getpackedfeature">getPackedFeature</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#unpack">unpack</a>

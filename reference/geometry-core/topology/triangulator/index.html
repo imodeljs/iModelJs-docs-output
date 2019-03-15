@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.189.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.190.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -196,33 +196,23 @@
 <th></th>
 </tr>
 <tr>
-<td class="h-cleanuptriangulation"><span class="method-name">cleanupTriangulation</span><span class="method-parenthesis">(</span><span class="method-parameters">graph: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedgegraph'>HalfEdgeGraph</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="cleanuptriangulation" class="heading-anchor" href="#cleanuptriangulation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><em>  Visit each node of the graph array<br> </em>  If a flip would be possible, test the results of flipping using incircle condition<br> *  If revealed to be an improvement, conduct the flip, mark involved nodes as unvisited, and repeat until all nodes are visited</td>
+<td class="h-triangulateallpositiveareafaces"><span class="method-name">triangulateAllPositiveAreaFaces</span><span class="method-parenthesis">(</span><span class="method-parameters">graph: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedgegraph'>HalfEdgeGraph</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="triangulateallpositiveareafaces" class="heading-anchor" href="#triangulateallpositiveareafaces"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Triangulate all faces of a graph.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-createfaceloopfromindexedxyzcollection"><span class="method-name">createFaceLoopFromIndexedXYZCollection</span><span class="method-parenthesis">(</span><span class="method-parameters">data: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/arraysandinterfaces/growablexyzarray'>GrowableXYZArray</a>, returnPositiveAreaLoop: boolean, markExterior: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedge'>HalfEdge</a> | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createfaceloopfromindexedxyzcollection" class="heading-anchor" href="#createfaceloopfromindexedxyzcollection"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>create a circular doubly linked list of internal and external nodes from polygon points in the specified winding order</td>
+<td class="h-createtriangulatedgraphfromloops"><span class="method-name"><a href="createtriangulatedgraphfromloops">createTriangulatedGraphFromLoops</a></span><span class="method-parenthesis">(</span><span class="method-parameters">loops: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/arraysandinterfaces/growablexyzarray'>GrowableXYZArray</a>[] | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xandy'>XAndY</a>[][]</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedgegraph'>HalfEdgeGraph</a> | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createtriangulatedgraphfromloops" class="heading-anchor" href="#createtriangulatedgraphfromloops"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>* Only one outer loop permitted.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-earcutouterandinnerloops"><span class="method-name"><a href="earcutouterandinnerloops">earcutOuterAndInnerLoops</a></span><span class="method-parenthesis">(</span><span class="method-parameters">loops: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xandy'>XAndY</a>[][]</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedgegraph'>HalfEdgeGraph</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="earcutouterandinnerloops" class="heading-anchor" href="#earcutouterandinnerloops"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Triangulate the polygon made up of multiple loops.</td>
-<td>&#xA0;</td>
-</tr>
-<tr>
-<td class="h-earcutsingleloop"><span class="method-name"><a href="earcutsingleloop">earcutSingleLoop</a></span><span class="method-parenthesis">(</span><span class="method-parameters">data: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xandy'>XAndY</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedgegraph'>HalfEdgeGraph</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="earcutsingleloop" class="heading-anchor" href="#earcutsingleloop"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-createtriangulatedgraphfromsingleloop"><span class="method-name"><a href="createtriangulatedgraphfromsingleloop">createTriangulatedGraphFromSingleLoop</a></span><span class="method-parenthesis">(</span><span class="method-parameters">data: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xandy'>XAndY</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedgegraph'>HalfEdgeGraph</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createtriangulatedgraphfromsingleloop" class="heading-anchor" href="#createtriangulatedgraphfromsingleloop"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Triangulate the polygon made up of by a series of points.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-setandreturnheaptrigger"><span class="method-name"><a href="setandreturnheaptrigger">setAndReturnHeapTrigger</a></span><span class="method-parenthesis">(</span><span class="method-parameters">trigger: number | undefined</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="setandreturnheaptrigger" class="heading-anchor" href="#setandreturnheaptrigger"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>* Triangulation has a trigger value for using a sort heap for earcut searches.</td>
-<td>&#xA0;</td>
-</tr>
-<tr>
-<td class="h-triangulatestrokedloops"><span class="method-name"><a href="triangulatestrokedloops">triangulateStrokedLoops</a></span><span class="method-parenthesis">(</span><span class="method-parameters">strokedLoops: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/arraysandinterfaces/growablexyzarray'>GrowableXYZArray</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedgegraph'>HalfEdgeGraph</a> | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="triangulatestrokedloops" class="heading-anchor" href="#triangulatestrokedloops"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td class="h-fliptriangles"><span class="method-name">flipTriangles</span><span class="method-parenthesis">(</span><span class="method-parameters">graph: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedgegraph'>HalfEdgeGraph</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="fliptriangles" class="heading-anchor" href="#fliptriangles"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><em>  Visit each node of the graph array<br> </em>  If a flip would be possible, test the results of flipping using incircle condition<br> *  If revealed to be an improvement, conduct the flip, mark involved nodes as unvisited, and repeat until all nodes are visited</td>
 <td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -231,7 +221,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 March, 2019</span>
+                <span class='date-updated'>14 March, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -292,22 +282,16 @@
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#cleanuptriangulation">cleanupTriangulation</a>
+                                            <a class='title solo-title menu-text' href="#triangulateallpositiveareafaces">triangulateAllPositiveAreaFaces</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#createfaceloopfromindexedxyzcollection">createFaceLoopFromIndexedXYZCollection</a>
+                                            <a class='title solo-title menu-text' href="#createtriangulatedgraphfromloops">createTriangulatedGraphFromLoops</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#earcutouterandinnerloops">earcutOuterAndInnerLoops</a>
+                                            <a class='title solo-title menu-text' href="#createtriangulatedgraphfromsingleloop">createTriangulatedGraphFromSingleLoop</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#earcutsingleloop">earcutSingleLoop</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#setandreturnheaptrigger">setAndReturnHeapTrigger</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#triangulatestrokedloops">triangulateStrokedLoops</a>
+                                            <a class='title solo-title menu-text' href="#fliptriangles">flipTriangles</a>
                                     </li>
                             </ul>
                     </li>

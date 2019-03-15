@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.189.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.190.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -190,7 +190,14 @@
             
             <h2 class="h-rendersystem">RenderSystem <span class="badge badge-pill badge-primary badge-class">Class</span><a id="rendersystem" class="heading-anchor" href="#rendersystem"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <h3 class="h-a-rendersystem-provides-access-to-resources-used-by-the-internal-webgl-based-rendering-system">A RenderSystem provides access to resources used by the internal WebGL-based rendering system.<a id="a-rendersystem-provides-access-to-resources-used-by-the-internal-webgl-based-rendering-system" class="heading-anchor" href="#a-rendersystem-provides-access-to-resources-used-by-the-internal-webgl-based-rendering-system"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>An application rarely interacts directly with the RenderSystem; instead it interacts with types like <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a> which
+coordinate with the RenderSystem on the application&apos;s behalf.</p>
 <p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/#rendersystem'>IModelApp.renderSystem</a>.</p>
+<h3 class="h-extended-by">Extended by<a id="extended-by" class="heading-anchor" href="#extended-by"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<ul>
+<li>NullRenderSystem</li>
+<li>MockRender.System</li>
+</ul>
 <h3 class="h-implements">Implements<a id="implements" class="heading-anchor" href="#implements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/idisposable'>IDisposable</a></li>
@@ -200,6 +207,11 @@
 <th>Name</th>
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 <th></th>
+</tr>
+<tr>
+<td class="h-createbatch"><span class="method-name">createBatch</span><span class="method-parenthesis">(</span><span class="method-parameters">graphic: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a>, features: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/packedfeaturetable'>PackedFeatureTable</a>, range: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/elementalignedbox3d'>ElementAlignedBox3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a></span> <span class="badge badge-pill badge-primary badge-external">External</span><span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="createbatch" class="heading-anchor" href="#createbatch"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Create a RenderGraphic consisting of batched RenderSystem.Features.</td>
+<td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-createbranch"><span class="method-name">createBranch</span><span class="method-parenthesis">(</span><span class="method-parameters">branch: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphicbranch'>GraphicBranch</a>, transform: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, clips?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/renderclipvolume'>RenderClipVolume</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a></span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="createbranch" class="heading-anchor" href="#createbranch"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -217,8 +229,63 @@
 <td>&#xA0;</td>
 </tr>
 <tr>
+<td class="h-createindexedpolylines"><span class="method-name">createIndexedPolylines</span><span class="method-parenthesis">(</span><span class="method-parameters">args: PolylineArgs, instances?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/instancedgraphicparams'>InstancedGraphicParams</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a> | undefined</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="createindexedpolylines" class="heading-anchor" href="#createindexedpolylines"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-creatematerial"><span class="method-name"><a href="creatematerial">createMaterial</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_params: Params, _imodel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span><span class="method-parenthesis">):</span><span class="method-output"> RenderMaterial | undefined</span><a id="creatematerial" class="heading-anchor" href="#creatematerial"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Create a RenderMaterial from parameters<br>If the parameters include a non-empty key, and no previously-created material already exists with that key, the newly-created material will be cached on the IModelConnection such<br>that it can later be retrieved by the same key using <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendersystem/findmaterial'>RenderSystem.findMaterial</a>.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-createmesh"><span class="method-name">createMesh</span><span class="method-parenthesis">(</span><span class="method-parameters">_params: MeshParams, _instances?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/instancedgraphicparams'>InstancedGraphicParams</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a> | undefined</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="createmesh" class="heading-anchor" href="#createmesh"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-createoffscreentarget"><span class="method-name">createOffscreenTarget</span><span class="method-parenthesis">(</span><span class="method-parameters">rect: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a></span><span class="method-parenthesis">):</span><span class="method-output"> RenderTarget</span> <span class="badge badge-pill badge-primary badge-external">External</span><span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="createoffscreentarget" class="heading-anchor" href="#createoffscreentarget"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-createpointcloud"><span class="method-name">createPointCloud</span><span class="method-parenthesis">(</span><span class="method-parameters">_args: PointCloudArgs, _imodel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a> | undefined</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="createpointcloud" class="heading-anchor" href="#createpointcloud"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-createpointstring"><span class="method-name">createPointString</span><span class="method-parenthesis">(</span><span class="method-parameters">_params: PointStringParams, _instances?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/instancedgraphicparams'>InstancedGraphicParams</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a> | undefined</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="createpointstring" class="heading-anchor" href="#createpointstring"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-createpolyline"><span class="method-name">createPolyline</span><span class="method-parenthesis">(</span><span class="method-parameters">_params: PolylineParams, _instances?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/instancedgraphicparams'>InstancedGraphicParams</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a> | undefined</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="createpolyline" class="heading-anchor" href="#createpolyline"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-createsheettile"><span class="method-name">createSheetTile</span><span class="method-parenthesis">(</span><span class="method-parameters">_tile: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendertexture'>RenderTexture</a>, _polyfaces: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/indexedpolyface'>IndexedPolyface</a>[], _tileColor: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/symbology/colordef'>ColorDef</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphiclist'>GraphicList</a></span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="createsheettile" class="heading-anchor" href="#createsheettile"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-createsheettilepolyfaces"><span class="method-name">createSheetTilePolyfaces</span><span class="method-parenthesis">(</span><span class="method-parameters">_corners: Point3d[], _clip?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/indexedpolyface'>IndexedPolyface</a>[]</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="createsheettilepolyfaces" class="heading-anchor" href="#createsheettilepolyfaces"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-createskybox"><span class="method-name">createSkyBox</span><span class="method-parenthesis">(</span><span class="method-parameters">_params: SkyBox.CreateParams</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a> | undefined</span><a id="createskybox" class="heading-anchor" href="#createskybox"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Create a Graphic for a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/skybox'>SkyBox</a> which encompasses the entire scene, rotating with the camera.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-createtarget"><span class="method-name">createTarget</span><span class="method-parenthesis">(</span><span class="method-parameters">canvas: HTMLCanvasElement</span><span class="method-parenthesis">):</span><span class="method-output"> RenderTarget</span> <span class="badge badge-pill badge-primary badge-external">External</span><span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="createtarget" class="heading-anchor" href="#createtarget"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-createtexturefromcubeimages"><span class="method-name">createTextureFromCubeImages</span><span class="method-parenthesis">(</span><span class="method-parameters">_posX: HTMLImageElement, _negX: HTMLImageElement, _posY: HTMLImageElement, _negY: HTMLImageElement, _posZ: HTMLImageElement, _negZ: HTMLImageElement, _imodel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a>, _params: Params</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendertexture'>RenderTexture</a> | undefined</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="createtexturefromcubeimages" class="heading-anchor" href="#createtexturefromcubeimages"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Create a new texture from a cube of HTML images.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -237,6 +304,26 @@
 <td>&#xA0;</td>
 </tr>
 <tr>
+<td class="h-createtile"><span class="method-name">createTile</span><span class="method-parenthesis">(</span><span class="method-parameters">tileTexture: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendertexture'>RenderTexture</a>, corners: Point3d[]</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a> | undefined</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="createtile" class="heading-anchor" href="#createtile"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-createtrimesh"><span class="method-name">createTriMesh</span><span class="method-parenthesis">(</span><span class="method-parameters">args: MeshArgs, instances?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/instancedgraphicparams'>InstancedGraphicParams</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a> | undefined</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="createtrimesh" class="heading-anchor" href="#createtrimesh"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-dispose"><span class="method-name">dispose</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-external">External</span><span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="dispose" class="heading-anchor" href="#dispose"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-enablediagnostics"><span class="method-name">enableDiagnostics</span><span class="method-parenthesis">(</span><span class="method-parameters">_enable: RenderDiagnostics</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="enablediagnostics" class="heading-anchor" href="#enablediagnostics"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-findmaterial"><span class="method-name"><a href="findmaterial">findMaterial</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_key: string, _imodel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span><span class="method-parenthesis">):</span><span class="method-output"> RenderMaterial | undefined</span><a id="findmaterial" class="heading-anchor" href="#findmaterial"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Find a previously-created RenderMaterial by its ID.</td>
 <td>&#xA0;</td>
@@ -244,6 +331,11 @@
 <tr>
 <td class="h-findtexture"><span class="method-name"><a href="findtexture">findTexture</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_key: string, _imodel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendertexture'>RenderTexture</a> | undefined</span><a id="findtexture" class="heading-anchor" href="#findtexture"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Find a previously-created <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendertexture'>RenderTexture</a> by its ID.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-getclipvolume"><span class="method-name">getClipVolume</span><span class="method-parenthesis">(</span><span class="method-parameters">_clipVector: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a>, _imodel: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/renderclipvolume'>RenderClipVolume</a> | undefined</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="getclipvolume" class="heading-anchor" href="#getclipvolume"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -261,13 +353,37 @@
 <td>Load a texture image given the ID of a texture element.</td>
 <td>&#xA0;</td>
 </tr>
+<tr>
+<td class="h-oninitialized"><span class="method-name">onInitialized</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="oninitialized" class="heading-anchor" href="#oninitialized"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+</tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th></th>
+</tr>
+<tr>
+<td class="h-isvalid"><span class="property-name">isValid</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-external">External</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isvalid" class="heading-anchor" href="#isvalid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> boolean</span></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-maxtexturesize"><span class="property-name">maxTextureSize</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-external">External</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="maxtexturesize" class="heading-anchor" href="#maxtexturesize"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> number</span></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/frontend/src/render/System.ts">render/System.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 March, 2019</span>
+                <span class='date-updated'>14 March, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -322,6 +438,9 @@
             </a>
             <ul id="inner-nav-rendersystem" class='inner-nav'>
                     <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#extended-by">Extended by</a>
+                    </li>
+                    <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#implements">Implements</a>
                     </li>
                     <li class='nav-item item '>
@@ -330,6 +449,9 @@
                             <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createbatch">createBatch</a>
+                                    </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#createbranch">createBranch</a>
                                     </li>
@@ -340,7 +462,40 @@
                                             <a class='title solo-title menu-text' href="#creategraphiclist">createGraphicList</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createindexedpolylines">createIndexedPolylines</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#creatematerial">createMaterial</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createmesh">createMesh</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createoffscreentarget">createOffscreenTarget</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createpointcloud">createPointCloud</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createpointstring">createPointString</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createpolyline">createPolyline</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createsheettile">createSheetTile</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createsheettilepolyfaces">createSheetTilePolyfaces</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createskybox">createSkyBox</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createtarget">createTarget</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createtexturefromcubeimages">createTextureFromCubeImages</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#createtexturefromimage">createTextureFromImage</a>
@@ -352,10 +507,25 @@
                                             <a class='title solo-title menu-text' href="#createtexturefromimagesource">createTextureFromImageSource</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createtile">createTile</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createtrimesh">createTriMesh</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#dispose">dispose</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#enablediagnostics">enableDiagnostics</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#findmaterial">findMaterial</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#findtexture">findTexture</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getclipvolume">getClipVolume</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#getgradienttexture">getGradientTexture</a>
@@ -365,6 +535,23 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#loadtextureimage">loadTextureImage</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#oninitialized">onInitialized</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-properties" class='title' href="#properties"/>
+                            <b class='dropdown-menu-title menu-text'>Properties</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-properties" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isvalid">isValid</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#maxtexturesize">maxTextureSize</a>
                                     </li>
                             </ul>
                     </li>

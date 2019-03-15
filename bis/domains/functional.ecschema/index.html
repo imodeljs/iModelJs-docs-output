@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.189.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.190.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -164,30 +164,24 @@
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/bis/domains/Functional.ecschema.md">Edit this page</a></div>
             <h1 id="functional">Functional</h1>
 <p><strong>alias:</strong> func</p>
-<p><strong>version:</strong> 1.0.0</p>
+<p><strong>version:</strong> 1.0.1</p>
+<p>The Functional schema defines common base classes to be used by discipline-specific functional domains.</p>
 <h2 class="h-entity-classes">Entity Classes<a id="entity-classes" class="heading-anchor" href="#entity-classes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<h3 class="h-functionalbreakdownelement">FunctionalBreakdownElement<a id="functionalbreakdownelement" class="heading-anchor" href="#functionalbreakdownelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h3 class="h-functionalbreakdownelement-functional-breakdown-abstract"><strong>FunctionalBreakdownElement</strong> (Functional Breakdown) <em>Abstract</em><a id="functionalbreakdownelement-functional-breakdown-abstract" class="heading-anchor" href="#functionalbreakdownelement-functional-breakdown-abstract"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p>A Functional Breakdown is a &apos;folder&apos; node in the functional hierarchy.</p>
-<p><strong>displayLabel:</strong> Functional Breakdown</p>
-<p><strong>modifier:</strong> Abstract</p>
+<p><strong>description:</strong> A func:FunctionalBreakdownElement is a &apos;folder&apos; node in the functional hierarchy.</p>
 <p><strong>baseClass:</strong> <a href="#functionalelement">Functional:FunctionalElement</a></p>
-<h3 class="h-functionalcomponentelement">FunctionalComponentElement<a id="functionalcomponentelement" class="heading-anchor" href="#functionalcomponentelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h3 class="h-functionalcomponentelement-functional-component-abstract"><strong>FunctionalComponentElement</strong> (Functional Component) <em>Abstract</em><a id="functionalcomponentelement-functional-component-abstract" class="heading-anchor" href="#functionalcomponentelement-functional-component-abstract"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p>A Functional Component is a &apos;leaf&apos; node in the functional hierarchy.</p>
-<p><strong>displayLabel:</strong> Functional Component</p>
-<p><strong>modifier:</strong> Abstract</p>
+<p><strong>description:</strong> A func:FunctionalComponentElement is a &apos;leaf&apos; node in the functional hierarchy.</p>
 <p><strong>baseClass:</strong> <a href="#functionalelement">Functional:FunctionalElement</a></p>
-<h3 class="h-functionalcomposite">FunctionalComposite<a id="functionalcomposite" class="heading-anchor" href="#functionalcomposite"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h3 class="h-functionalcomposite-functional-composite"><strong>FunctionalComposite</strong> (Functional Composite)<a id="functionalcomposite-functional-composite" class="heading-anchor" href="#functionalcomposite-functional-composite"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>displayLabel:</strong> Functional Composite</p>
-<p><strong>modifier:</strong> None</p>
+<p><strong>description:</strong> A func:FunctionalComposite is a func:FunctionalElement composed of several other func:FunctionalElement instances.</p>
 <p><strong>baseClass:</strong> <a href="#functionalbreakdownelement">Functional:FunctionalBreakdownElement</a></p>
-<h3 class="h-functionalelement">FunctionalElement<a id="functionalelement" class="heading-anchor" href="#functionalelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h3 class="h-functionalelement-functional-element-abstract"><strong>FunctionalElement</strong> (Functional Element) <em>Abstract</em><a id="functionalelement-functional-element-abstract" class="heading-anchor" href="#functionalelement-functional-element-abstract"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p>A Functional Element captures functional requirements that will ultimately be fulfilled by a Physical Element.</p>
-<p><strong>displayLabel:</strong> Functional Element</p>
-<p><strong>modifier:</strong> Abstract</p>
+<p><strong>description:</strong> A func:FunctionalElement captures functional requirements that will ultimately be fulfilled by a bis:PhysicalElement.</p>
 <p><strong>baseClass:</strong> <a href="biscore.ecschema.md#roleelement">BisCore:RoleElement</a></p>
 <h4 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
@@ -201,34 +195,26 @@
 <td align="left"></td>
 <td align="left"><a href="functional.ecschema.md#functionalelementisoftype">navigation</a></td>
 </tr>
-</tbody></table><h3 class="h-functionalmodel">FunctionalModel<a id="functionalmodel" class="heading-anchor" href="#functionalmodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</tbody></table><h3 class="h-functionalmodel-functional-model"><strong>FunctionalModel</strong> (Functional Model)<a id="functionalmodel-functional-model" class="heading-anchor" href="#functionalmodel-functional-model"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p>A container for persisting Functional Elements.</p>
-<p><strong>displayLabel:</strong> Functional Model</p>
-<p><strong>modifier:</strong> None</p>
+<p><strong>description:</strong> A container for persisting func:FunctionalElement instances.</p>
 <p><strong>baseClass:</strong> <a href="biscore.ecschema.md#rolemodel">BisCore:RoleModel</a></p>
-<h3 class="h-functionalpartition">FunctionalPartition<a id="functionalpartition" class="heading-anchor" href="#functionalpartition"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h3 class="h-functionalpartition-functional-partition-sealed"><strong>FunctionalPartition</strong> (Functional Partition) <em>Sealed</em><a id="functionalpartition-functional-partition-sealed" class="heading-anchor" href="#functionalpartition-functional-partition-sealed"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p>A Functional Partition element is a key part of the DgnDb information hierarchy that is always parented to a Subject and broken down by a Functional Model.</p>
-<p><strong>displayLabel:</strong> Functional Partition</p>
-<p><strong>modifier:</strong> Sealed</p>
+<p><strong>description:</strong> A func:FunctionalPartition element is a key part of the information hierarchy that is always parented to a bis:Subject and broken down by a func:FunctionalModel.</p>
 <p><strong>baseClass:</strong> <a href="biscore.ecschema.md#informationpartitionelement">BisCore:InformationPartitionElement</a></p>
-<h3 class="h-functionalportion">FunctionalPortion<a id="functionalportion" class="heading-anchor" href="#functionalportion"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h3 class="h-functionalportion-functional-portion"><strong>FunctionalPortion</strong> (Functional Portion)<a id="functionalportion-functional-portion" class="heading-anchor" href="#functionalportion-functional-portion"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p>A Functional Portion is a Functional Component that will be broken down in more detail in a separate (sub) Functional Model.</p>
-<p><strong>displayLabel:</strong> Functional Portion</p>
-<p><strong>modifier:</strong> None</p>
+<p><strong>description:</strong> DEPRECATED: A Functional Portion is a Functional Component that will be broken down in more detail in a separate (sub) Functional Model.</p>
 <p><strong>baseClass:</strong> <a href="#functionalcomponentelement">Functional:FunctionalComponentElement</a></p>
-<h3 class="h-functionaltype">FunctionalType<a id="functionaltype" class="heading-anchor" href="#functionaltype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h3 class="h-functionaltype-functional-type-abstract"><strong>FunctionalType</strong> (Functional Type) <em>Abstract</em><a id="functionaltype-functional-type-abstract" class="heading-anchor" href="#functionaltype-functional-type-abstract"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p>Defines a set of properties (the &apos;type&apos;) that can be associated with a Functional Element.</p>
-<p><strong>displayLabel:</strong> Functional Type</p>
-<p><strong>modifier:</strong> Abstract</p>
+<p><strong>description:</strong> Defines a shared set of properties (the &apos;type&apos;) that can be associated with a func:FunctionalElement.</p>
 <p><strong>baseClass:</strong> <a href="biscore.ecschema.md#typedefinitionelement">BisCore:TypeDefinitionElement</a></p>
 <h2 class="h-relationship-classes">Relationship Classes<a id="relationship-classes" class="heading-anchor" href="#relationship-classes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<h3 class="h-drawinggraphicrepresentsfunctionalelement">DrawingGraphicRepresentsFunctionalElement<a id="drawinggraphicrepresentsfunctionalelement" class="heading-anchor" href="#drawinggraphicrepresentsfunctionalelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h3 class="h-drawinggraphicrepresentsfunctionalelement"><strong>DrawingGraphicRepresentsFunctionalElement</strong><a id="drawinggraphicrepresentsfunctionalelement" class="heading-anchor" href="#drawinggraphicrepresentsfunctionalelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> RelationshipClass</p>
-<p><strong>modifier:</strong> None</p>
+<p><strong>description:</strong> Relates bis:DrawingGraphic instances to the func:FunctionalElement instances they represent.</p>
 <p><strong>baseClass:</strong> <a href="biscore.ecschema.md#drawinggraphicrepresentselement">BisCore:DrawingGraphicRepresentsElement</a></p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
@@ -248,9 +234,9 @@
 <ul>
 <li><a href="functional.ecschema.md#functionalelement">FunctionalElement</a></li>
 </ul>
-<h3 class="h-functionalelementisoftype">FunctionalElementIsOfType<a id="functionalelementisoftype" class="heading-anchor" href="#functionalelementisoftype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h3 class="h-functionalelementisoftype"><strong>FunctionalElementIsOfType</strong><a id="functionalelementisoftype" class="heading-anchor" href="#functionalelementisoftype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> RelationshipClass</p>
-<p><strong>modifier:</strong> None</p>
+<p><strong>description:</strong> A type-instance relation; one that indicates that the specific func:FunctionalElement is an instance of the defined func:FunctionalType.</p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
 <h4 class="h-source-1">Source<a id="source-1" class="heading-anchor" href="#source-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
@@ -269,9 +255,9 @@
 <ul>
 <li><a href="functional.ecschema.md#functionaltype">FunctionalType</a></li>
 </ul>
-<h3 class="h-physicalelementfulfillsfunction">PhysicalElementFulfillsFunction<a id="physicalelementfulfillsfunction" class="heading-anchor" href="#physicalelementfulfillsfunction"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h3 class="h-physicalelementfulfillsfunction"><strong>PhysicalElementFulfillsFunction</strong><a id="physicalelementfulfillsfunction" class="heading-anchor" href="#physicalelementfulfillsfunction"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> RelationshipClass</p>
-<p><strong>modifier:</strong> None</p>
+<p><strong>description:</strong> Relates func:FunctionalElement instances which define requirements to the bis:PhysicalElement instances that fulfill those requirements.</p>
 <p><strong>baseClass:</strong> <a href="biscore.ecschema.md#elementreferstoelements">BisCore:ElementRefersToElements</a></p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
@@ -293,7 +279,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>07 March, 2019</span>
+                <span class='date-updated'>14 March, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -348,36 +334,36 @@
             </a>
             <ul id="inner-nav-entity-classes" class='inner-nav'>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#functionalbreakdownelement">FunctionalBreakdownElement</a>
+                            <a class='title solo-title menu-text' href="#functionalbreakdownelement-functional-breakdown-abstract">FunctionalBreakdownElement (Functional Breakdown) Abstract</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#functionalcomponentelement">FunctionalComponentElement</a>
+                            <a class='title solo-title menu-text' href="#functionalcomponentelement-functional-component-abstract">FunctionalComponentElement (Functional Component) Abstract</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#functionalcomposite">FunctionalComposite</a>
+                            <a class='title solo-title menu-text' href="#functionalcomposite-functional-composite">FunctionalComposite (Functional Composite)</a>
                     </li>
                     <li class='nav-item item '>
-                            <a data-target="#inner-nav-functionalelement" class='title' href="#functionalelement"/>
-                            <b class='dropdown-menu-title menu-text'>FunctionalElement</b>
+                            <a data-target="#inner-nav-functionalelement-functional-element-abstract" class='title' href="#functionalelement-functional-element-abstract"/>
+                            <b class='dropdown-menu-title menu-text'>FunctionalElement (Functional Element) Abstract</b>
                             <i class='nav-list-dropdown icon'></i>
                             </a>
-                            <ul id="inner-nav-functionalelement" class='inner-nav'>
+                            <ul id="inner-nav-functionalelement-functional-element-abstract" class='inner-nav'>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#properties">Properties</a>
                                     </li>
                             </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#functionalmodel">FunctionalModel</a>
+                            <a class='title solo-title menu-text' href="#functionalmodel-functional-model">FunctionalModel (Functional Model)</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#functionalpartition">FunctionalPartition</a>
+                            <a class='title solo-title menu-text' href="#functionalpartition-functional-partition-sealed">FunctionalPartition (Functional Partition) Sealed</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#functionalportion">FunctionalPortion</a>
+                            <a class='title solo-title menu-text' href="#functionalportion-functional-portion">FunctionalPortion (Functional Portion)</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#functionaltype">FunctionalType</a>
+                            <a class='title solo-title menu-text' href="#functionaltype-functional-type-abstract">FunctionalType (Functional Type) Abstract</a>
                     </li>
             </ul>
     </li>
