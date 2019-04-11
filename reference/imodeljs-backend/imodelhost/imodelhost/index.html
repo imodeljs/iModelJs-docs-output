@@ -198,6 +198,16 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend
 <th></th>
 </tr>
 <tr>
+<td class="h-getaccesstoken"><span class="method-name"><a href="getaccesstoken">getAccessToken</a></span><span class="method-parenthesis">(</span><span class="method-parameters">requestContext: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/clientrequestcontext'>ClientRequestContext</a> = new BackendRequestContext()</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>&gt;</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="getaccesstoken" class="heading-anchor" href="#getaccesstoken"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Get the active authorization/access token for use with various services</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-loadnative"><span class="method-name">loadNative</span><span class="method-parenthesis">(</span><span class="method-parameters">region: number, dir?: string</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-external">External</span><a id="loadnative" class="heading-anchor" href="#loadnative"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-shutdown"><span class="method-name"><a href="shutdown">shutdown</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="shutdown" class="heading-anchor" href="#shutdown"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>This method must be called when an iModel.js services is shut down.</td>
 <td>&#xA0;</td>
@@ -218,6 +228,24 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend
 <td class="h-appassetsdir"><span class="property-name">appAssetsDir</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="appassetsdir" class="heading-anchor" href="#appassetsdir"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> string | undefined</span></td>
 <td>The directory where the app&apos;s assets may be found</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-applicationid"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodelhost/imodelhost/applicationid'>applicationId</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="applicationid" class="heading-anchor" href="#applicationid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">string</span></td>
+<td>The Id of this backend application - needs to be set only if it is an agent application.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-applicationversion"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodelhost/imodelhost/applicationversion'>applicationVersion</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="applicationversion" class="heading-anchor" href="#applicationversion"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">string</span></td>
+<td>The version of this backend application - needs to be set if is an agent application.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-authorizationclient"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodelhost/imodelhost/authorizationclient'>authorizationClient</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="authorizationclient" class="heading-anchor" href="#authorizationclient"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/iauthorizationclient'>IAuthorizationClient</a> | undefined</span></td>
+<td>Implementation of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/iauthorizationclient'>IAuthorizationClient</a> to supply the authorization information for this session - only required for backend applications</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -251,6 +279,12 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend
 <td>&#xA0;</td>
 </tr>
 <tr>
+<td class="h-sessionid"><span class="property-name">sessionId</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="sessionid" class="heading-anchor" href="#sessionid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guidstring'>GuidString</a></span></td>
+<td>A uniqueId for this backend session</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-tilecontentrequesttimeout"><span class="property-name">tileContentRequestTimeout</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="tilecontentrequesttimeout" class="heading-anchor" href="#tilecontentrequesttimeout"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> number</span></td>
 <td>The time, in milliseconds, for which <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/imodeltilerpcinterface/#requesttilecontent'>IModelTileRpcInterface.requestTileContent</a> should wait before returning a &quot;pending&quot; status.</td>
@@ -268,13 +302,19 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend
 <td>If true, requests for tile content will execute on a separate thread pool in order to avoid blocking other, less expensive asynchronous requests such as ECSql queries.</td>
 <td>&#xA0;</td>
 </tr>
+<tr>
+<td class="h-usingexternaltilecache"><span class="property-name">usingExternalTileCache</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="usingexternaltilecache" class="heading-anchor" href="#usingexternaltilecache"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> boolean</span></td>
+<td>Whether external tile caching is active.</td>
+<td>&#xA0;</td>
+</tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/backend/src/IModelHost.ts">IModelHost.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -335,6 +375,12 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getaccesstoken">getAccessToken</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#loadnative">loadNative</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#shutdown">shutdown</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -352,6 +398,15 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend
                                             <a class='title solo-title menu-text' href="#appassetsdir">appAssetsDir</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#applicationid">applicationId</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#applicationversion">applicationVersion</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#authorizationclient">authorizationClient</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#backendversion">backendVersion</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -367,6 +422,9 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend
                                             <a class='title solo-title menu-text' href="#platform">platform</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#sessionid">sessionId</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#tilecontentrequesttimeout">tileContentRequestTimeout</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -374,6 +432,9 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#usetilecontentthreadpool">useTileContentThreadPool</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#usingexternaltilecache">usingExternalTileCache</a>
                                     </li>
                             </ul>
                     </li>
@@ -403,11 +464,13 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -456,5 +519,6 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

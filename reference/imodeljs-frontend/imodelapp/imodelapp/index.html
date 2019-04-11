@@ -206,7 +206,7 @@ implementations of the members.</p>
 <th></th>
 </tr>
 <tr>
-<td class="h-onstartup"><span class="method-name"><a href="onstartup">onStartup</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="onstartup" class="heading-anchor" href="#onstartup"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-onstartup"><span class="method-name"><a href="onstartup">onStartup</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><span class="badge badge-pill badge-primary badge-static">Static</span><a id="onstartup" class="heading-anchor" href="#onstartup"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Implement this method to register your app&apos;s tools, override implementation of managers, and initialize your app-specific members.</td>
 <td>&#xA0;</td>
 </tr>
@@ -216,8 +216,18 @@ implementations of the members.</p>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-startup"><span class="method-name"><a href="startup">startup</a></span><span class="method-parenthesis">(</span><span class="method-parameters">imodelClient?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodels/imodelclient'>IModelClient</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="startup" class="heading-anchor" href="#startup"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-startup"><span class="method-name"><a href="startup">startup</a></span><span class="method-parenthesis">(</span><span class="method-parameters">imodelClient?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodels/imodelclient'>IModelClient</a>, renderSysOpt?: RenderSystem.Options</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="startup" class="heading-anchor" href="#startup"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>This method must be called before any iModel.js frontend services are used.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-supplyi18noptions"><span class="method-name">supplyI18NOptions</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-i18n/appadministration/i18noptions'>I18NOptions</a> | undefined</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-external">External</span><a id="supplyi18noptions" class="heading-anchor" href="#supplyi18noptions"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Implement this method to supply options for the initialization of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-i18n/appadministration/i18n'>I18N</a> system.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-supplyrendersystem"><span class="method-name">supplyRenderSystem</span><span class="method-parenthesis">(</span><span class="method-parameters">options?: RenderSystem.Options</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendersystem'>RenderSystem</a></span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-external">External</span><a id="supplyrendersystem" class="heading-anchor" href="#supplyrendersystem"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Implement this method to supply the RenderSystem that provides display capabilities.</td>
 <td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -226,6 +236,18 @@ implementations of the members.</p>
 <th>Type</th>
 <th>Description</th>
 <th></th>
+</tr>
+<tr>
+<td class="h-_imodelclient"><span class="property-name">_imodelClient</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-external">External</span><a id="_imodelclient" class="heading-anchor" href="#_imodelclient"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodels/imodelclient'>IModelClient</a></span></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-_initialized"><span class="property-name">_initialized</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-external">External</span><a id="_initialized" class="heading-anchor" href="#_initialized"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">boolean</span></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-accudraw"><span class="property-name">accuDraw</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="accudraw" class="heading-anchor" href="#accudraw"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -240,15 +262,57 @@ implementations of the members.</p>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-applicationid"><span class="property-name">applicationId</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="applicationid" class="heading-anchor" href="#applicationid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-applicationid"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/applicationid'>applicationId</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="applicationid" class="heading-anchor" href="#applicationid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">string</span></td>
-<td>The name of this application.</td>
+<td>The Id of this application.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-applicationversion"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/applicationversion'>applicationVersion</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="applicationversion" class="heading-anchor" href="#applicationversion"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">string</span></td>
+<td>The version of this application.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-authorizationclient"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/authorizationclient'>authorizationClient</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="authorizationclient" class="heading-anchor" href="#authorizationclient"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/iauthorizationclient'>IAuthorizationClient</a> | undefined</span></td>
+<td>Implementation of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/iauthorizationclient'>IAuthorizationClient</a> to supply the authorization information for this session</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-features"><span class="property-name">features</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-external">External</span><a id="features" class="heading-anchor" href="#features"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">FeatureGates</span></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-hasrendersystem"><span class="property-name">hasRenderSystem</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-external">External</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="hasrendersystem" class="heading-anchor" href="#hasrendersystem"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> boolean</span></td>
+<td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-i18n"><span class="property-name">i18n</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="i18n" class="heading-anchor" href="#i18n"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-i18n/appadministration/i18n'>I18N</a></span></td>
 <td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-i18n/appadministration/i18n'>I18N</a> for this session.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-imodelclient"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/imodelclient'>iModelClient</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-external">External</span><a id="imodelclient" class="heading-anchor" href="#imodelclient"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodels/imodelclient'>IModelClient</a></span></td>
+<td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodels/imodelclient'>IModelClient</a> for this session.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-initialized"><span class="property-name">initialized</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-external">External</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="initialized" class="heading-anchor" href="#initialized"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> boolean</span></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-locatemanager"><span class="property-name">locateManager</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-external">External</span><a id="locatemanager" class="heading-anchor" href="#locatemanager"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/elementlocatemanager'>ElementLocateManager</a></span></td>
+<td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -282,6 +346,12 @@ implementations of the members.</p>
 <td>&#xA0;</td>
 </tr>
 <tr>
+<td class="h-tentativepoint"><span class="property-name">tentativePoint</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-external">External</span><a id="tentativepoint" class="heading-anchor" href="#tentativepoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/tentativepoint'>TentativePoint</a></span></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-tileadmin"><span class="property-name">tileAdmin</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="tileadmin" class="heading-anchor" href="#tileadmin"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">TileAdmin</span></td>
 <td>The TileAdmin for this session.</td>
@@ -311,7 +381,7 @@ implementations of the members.</p>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -383,6 +453,12 @@ implementations of the members.</p>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#startup">startup</a>
                                     </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#supplyi18noptions">supplyI18NOptions</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#supplyrendersystem">supplyRenderSystem</a>
+                                    </li>
                             </ul>
                     </li>
                     <li class='nav-item item '>
@@ -391,6 +467,12 @@ implementations of the members.</p>
                             <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#_imodelclient">_imodelClient</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#_initialized">_initialized</a>
+                                    </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#accudraw">accuDraw</a>
                                     </li>
@@ -401,7 +483,28 @@ implementations of the members.</p>
                                             <a class='title solo-title menu-text' href="#applicationid">applicationId</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#applicationversion">applicationVersion</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#authorizationclient">authorizationClient</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#features">features</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#hasrendersystem">hasRenderSystem</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#i18n">i18n</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#imodelclient">iModelClient</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#initialized">initialized</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#locatemanager">locateManager</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#notifications">notifications</a>
@@ -417,6 +520,9 @@ implementations of the members.</p>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#settings">settings</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#tentativepoint">tentativePoint</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#tileadmin">tileAdmin</a>
@@ -458,11 +564,13 @@ implementations of the members.</p>
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -511,5 +619,6 @@ implementations of the members.</p>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

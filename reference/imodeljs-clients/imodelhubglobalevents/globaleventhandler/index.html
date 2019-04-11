@@ -202,17 +202,17 @@
 <th></th>
 </tr>
 <tr>
-<td class="h-createlistener"><span class="method-name"><a href="createlistener">createListener</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, authenticationCallback: () =&gt; Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>&gt;, subscriptionInstanceId: string, listener: (event: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/imodelhubglobalevent'>IModelHubGlobalEvent</a>) =&gt; void</span><span class="method-parenthesis">):</span><span class="method-output"> () =&gt; void</span><a id="createlistener" class="heading-anchor" href="#createlistener"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-createlistener"><span class="method-name"><a href="createlistener">createListener</a></span><span class="method-parenthesis">(</span><span class="method-parameters">requestContext: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/authorizedclientrequestcontext'>AuthorizedClientRequestContext</a>, authenticationCallback: () =&gt; Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>&gt;, subscriptionInstanceId: string, listener: (event: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/imodelhubglobalevent'>IModelHubGlobalEvent</a>) =&gt; void</span><span class="method-parenthesis">):</span><span class="method-output"> () =&gt; void</span><a id="createlistener" class="heading-anchor" href="#createlistener"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Create a listener for long polling events from a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/globaleventsubscription'>GlobalEventSubscription</a>.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-getevent"><span class="method-name"><a href="getevent">getEvent</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, sasToken: string, baseAddress: string, subscriptionInstanceId: string, timeout?: number, getOperation: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/geteventoperationtype'>GetEventOperationType</a> = GetEventOperationType.Destructive</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/imodelhubglobalevent'>IModelHubGlobalEvent</a> | undefined&gt;</span><a id="getevent" class="heading-anchor" href="#getevent"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-getevent"><span class="method-name"><a href="getevent">getEvent</a></span><span class="method-parenthesis">(</span><span class="method-parameters">requestContext: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/clientrequestcontext'>ClientRequestContext</a>, sasToken: string, baseAddress: string, subscriptionId: string, timeout?: number, getOperation: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/geteventoperationtype'>GetEventOperationType</a> = GetEventOperationType.Destructive</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/imodelhubglobalevent'>IModelHubGlobalEvent</a> | undefined&gt;</span><a id="getevent" class="heading-anchor" href="#getevent"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Get an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/imodelhubglobalevent'>IModelHubGlobalEvent</a> from the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/globaleventsubscription'>GlobalEventSubscription</a>.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-getsastoken"><span class="method-name"><a href="getsastoken">getSASToken</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/globaleventsas'>GlobalEventSAS</a>&gt;</span><a id="getsastoken" class="heading-anchor" href="#getsastoken"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-getsastoken"><span class="method-name"><a href="getsastoken">getSASToken</a></span><span class="method-parenthesis">(</span><span class="method-parameters">requestContext: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/authorizedclientrequestcontext'>AuthorizedClientRequestContext</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/globaleventsas'>GlobalEventSAS</a>&gt;</span><a id="getsastoken" class="heading-anchor" href="#getsastoken"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Get global event SAS Token.</td>
 <td>&#xA0;</td>
 </tr>
@@ -235,7 +235,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -346,11 +346,13 @@
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -399,5 +401,6 @@
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

@@ -116,35 +116,11 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ecsqltutorial/">ecsqltutorial</a> > SpatialQueries</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/ECSQLTutorial/SpatialQueries.md">Edit this page</a></div>
             <h1 id="spatial queries">Spatial Queries</h1>
-<p>Every instance of the <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            SpatialElement
-            </a> ECClass in an iModel is spatially indexed. The spatial index allows fast look-ups by spatial criteria. Each row in the spatial index is conceptually a bounding cube, plus the ECInstanceId of an element that is enclosed by it.</p>
-<p>The index is exposed to ECSQL via the ECClass <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            BisCore.SpatialIndex
-            </a>. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/spatialqueries'>ECSQL Reference</a> for details.</p>
+<p>Every instance of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a> ECClass in an iModel is spatially indexed. The spatial index allows fast look-ups by spatial criteria. Each row in the spatial index is conceptually a bounding cube, plus the ECInstanceId of an element that is enclosed by it.</p>
+<p>The index is exposed to ECSQL via the ECClass <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialindex'>BisCore.SpatialIndex</a>. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/spatialqueries'>ECSQL Reference</a> for details.</p>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Return all <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            SpatialElement
-            </a>s that are contained or overlap a cube defined by the minimum coordinate (0|0|0) and maximum coordinate (10|10|10).</p>
+<p><em>Goal:</em> Return all <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a>s that are contained or overlap a cube defined by the minimum coordinate (0|0|0) and maximum coordinate (10|10|10).</p>
 <p><em>ECSQL</em></p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT e.ECInstanceId, e.CodeValue FROM bis.SpatialElement e JOIN bis.SpatialIndex i ON e.ECInstanceId=i.ECInstanceId WHERE i.MinX&lt;=10 AND i.MinY&lt;=10 AND i.MinZ&lt;=10 AND i.MaxX&gt;=0 AND i.MaxY&gt;=0 AND i.MaxZ&gt;=0</code></pre>
 <p><em>Result</em></p>
@@ -199,23 +175,7 @@ The function <code>iModel_spatial_overlap_aabb</code> selects all nodes that ove
 <blockquote>
 <p><strong>Try it yourself</strong>
 The argument to the match function can only be passed via an ECSQL parameter. As the iModelConsole does not support parameter values, the following example cannot be tried out with the iModelConsole. You would have to put the sample code into your own playground.</p>
-<p><em>Goal:</em> Return all <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            SpatialElement
-            </a>s which overlap the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#space'>Space</a> with id 0x1000000001f and which are in the <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            Category
-            </a> with id 0x1000000000a.</p>
+<p><em>Goal:</em> Return all <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a>s which overlap the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#space'>Space</a> with id 0x1000000001f and which are in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#category'>Category</a> with id 0x1000000000a.</p>
 <p><em>ECSQL</em></p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT e.ECInstanceId, e.CodeValue FROM bis.SpatialElement e JOIN bis.SpatialIndex i ON e.ECInstanceId=i.ECInstanceId WHERE i.ECInstanceId MATCH iModel_spatial_overlap_aabb(?) AND e.Category.Id=0x1000000000a</code></pre>
 <p><em>Sample code</em></p>
@@ -237,7 +197,7 @@ iModelDb.withPreparedStatement(&quot;SELECT e.ECInstanceId, e.ECClassId, e.CodeV
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/polymorphicqueries'><strong>&lt; Previous</strong></a> &#xA0; | &#xA0; <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/metaqueries'><strong>Next &gt;</strong></a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -298,11 +258,13 @@ iModelDb.withPreparedStatement(&quot;SELECT e.ECInstanceId, e.ECClassId, e.CodeV
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -351,5 +313,6 @@ iModelDb.withPreparedStatement(&quot;SELECT e.ECInstanceId, e.ECClassId, e.CodeV
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

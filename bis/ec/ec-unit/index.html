@@ -162,9 +162,9 @@
         <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">Base Infrastructure Schema</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/ec/">ec</a> > ec-unit</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/bis/ec/ec-unit.md">Edit this page</a></div>
-            <h1 id="unit">Unit</h1>
+            <h2 class="h-unit">Unit<a id="unit" class="heading-anchor" href="#unit"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Defines a Unit of Measure in terms of other Units allowing generation of a conversion factor between it and any other dimensionally compatible unit.  NOTE: Conversions are limited to units in the same Phenomenon.</p>
-<h2 class="h-attributes">Attributes<a id="attributes" class="heading-anchor" href="#attributes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-attributes">Attributes<a id="attributes" class="heading-anchor" href="#attributes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName</strong> Defines the name of this Unit. Must be a valid <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-name'>ECName</a> and be unique among all other items in a schema.</p>
 <p><strong>displayLabel</strong> A display label that will be localized and used instead of the name in a GUI. If not set, the typeName is used.</p>
 <p><strong>description</strong> A user-facing description of the Unit. Localized and may be shown in a UI.</p>
@@ -174,9 +174,9 @@
 <p><strong>numerator</strong> The numerator for the conversion factor which is used in combination with the units definition to convert between units.</p>
 <p><strong>denominator</strong> The denominator for the conversion factor which is used in combination with the units definition to convert between units.</p>
 <p><strong>offset</strong> The offset applied when converting between units.</p>
-<h1 id="inverted unit">Inverted Unit</h1>
+<h2 class="h-inverted-unit">Inverted Unit<a id="inverted-unit" class="heading-anchor" href="#inverted-unit"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Defines a Unit that is the inverse of another Unit.  Only valid for Units whose dimensional derivation is Unit-less (e.g., slope).</p>
-<h2 class="h-attributes-1">Attributes<a id="attributes-1" class="heading-anchor" href="#attributes-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-attributes-1">Attributes<a id="attributes-1" class="heading-anchor" href="#attributes-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName</strong> Defines the name of this Unit. Must be a valid <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-name'>ECName</a> and be unique among all other items in a schema.</p>
 <p><strong>displayLabel</strong> A localized display label that will be used instead of the name in a GUI. If not set, the name is used.</p>
 <p><strong>description</strong> A user-facing description of the Unit. Localized and may be shown in a UI.</p>
@@ -184,7 +184,7 @@
 <p><strong>unitSystem</strong> The UnitSystem this is a member of.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -233,10 +233,26 @@
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
               <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#attributes">Attributes</a>
+            <a data-target="#inner-nav-unit" class='title' href="#unit"/>
+            <b class='dropdown-menu-title menu-text'>Unit</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-unit" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#attributes">Attributes</a>
+                    </li>
+            </ul>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#attributes-1">Attributes</a>
+            <a data-target="#inner-nav-inverted-unit" class='title' href="#inverted-unit"/>
+            <b class='dropdown-menu-title menu-text'>Inverted Unit</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-inverted-unit" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#attributes-1">Attributes</a>
+                    </li>
+            </ul>
     </li>
  
       </ul>
@@ -259,11 +275,13 @@
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -312,5 +330,6 @@
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

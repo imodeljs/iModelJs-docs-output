@@ -121,7 +121,7 @@
 <p>While the focus of this article is on backend and RpcInterface design, in many cases frontend/client design is the other side of the same coin. The <a href="#rpcinterfaces-and-frontend-design">last section</a>  describes some implications for frontends of backend design best practices where applicable.</p>
 <h2 class="h-diagnostics">Diagnostics<a id="diagnostics" class="heading-anchor" href="#diagnostics"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Log all Errors that you throw. Be sure to define the logging-related arguments to the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodelerror'>IModelError</a> constructor.</p>
-<p>Maintain the ActivityLoggingContext so that logging emitted by backend and common code is correlated with frontend requests. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/managingactivityloggingcontext'>the learning article</a>.</p>
+<p>Maintain the ClientRequestContext so that logging emitted by backend and common code is correlated with frontend requests. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/managingclientrequestcontext'>the learning article</a>.</p>
 <h2 class="h-do-not-block-too-long">Do not Block Too Long<a id="do-not-block-too-long" class="heading-anchor" href="#do-not-block-too-long"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Use async functions when an operation is inherently asynchronous. Example: requesting a resource from the Internet or reading a huge image file from disk.</p>
 <p>Break up a long-running synchronous operation into small increments, yielding back to the libuv event loop at regular intervals. You might say that your server must &quot;come up for air&quot; often to remain responsive. The operation becomes a series of asynchronous operations.</p>
@@ -157,7 +157,7 @@ async someServerFunction(many items): Promise&lt;boolean&gt; {
 <!-- TODO: Need more on when this can happen and what to do about it. -->
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -261,11 +261,13 @@ async someServerFunction(many items): Promise&lt;boolean&gt; {
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -314,5 +316,6 @@ async someServerFunction(many items): Promise&lt;boolean&gt; {
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

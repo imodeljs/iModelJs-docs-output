@@ -143,27 +143,26 @@
 </ul>
 <h2 class="h-writing-a-bridge">Writing a bridge<a id="writing-a-bridge" class="heading-anchor" href="#writing-a-bridge"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>A bridge would import the following packages:</p>
-<pre class="no-line-numbers"><code class="language-typescript">import { ActivityLoggingContext, Guid, Id64String } from &quot;@bentley/bentleyjs-core&quot;;
+<pre class="no-line-numbers"><code class="language-typescript">import { Id64String, ClientRequestContext } from &quot;@bentley/bentleyjs-core&quot;;
 import { BriefcaseManager, CategorySelector, ConcurrencyControl, DefinitionModel, DisplayStyle3d, IModelDb, IModelHost, ModelSelector, OpenParams, OrthographicViewDefinition, PhysicalModel, SpatialCategory, Subject } from &quot;@bentley/imodeljs-backend&quot;;
 import { ColorByName, ColorDef, IModel } from &quot;@bentley/imodeljs-common&quot;;
 </code></pre>
 <p>When the bridge runs for the very first time, it would look like the following. This example revolves around the fictitious &quot;RobotWorld&quot; schema. RobotWorld consists of Robots and Barriers. The details of RobotWorld and its schema are not important. The steps, such as importing a schema, reserving codes, pushing changesets, creating definition models, etc., are the important points to see in the example code.</p>
-<pre class="no-line-numbers"><code class="language-typescript">async function runBridgeFirstTime(accessToken: AccessToken, iModelId: string, projectId: string, assetsDir: string) {
+<pre class="no-line-numbers"><code class="language-typescript">async function runBridgeFirstTime(requestContext: AuthorizedClientRequestContext, iModelId: string, projectId: string, assetsDir: string) {
   // Start the IModelHost
   IModelHost.startup();
-  const activityContext = new ActivityLoggingContext(Guid.createValue());
 
-  const briefcase = await IModelDb.open(activityContext, accessToken, projectId, iModelId, OpenParams.pullAndPush());
+  const briefcase = await IModelDb.open(requestContext, projectId, iModelId, OpenParams.pullAndPush());
   briefcase.concurrencyControl.setPolicy(new ConcurrencyControl.OptimisticPolicy());
 
   // I. Import the schema.
-  await briefcase.importSchema(activityContext, path.join(assetsDir, &quot;RobotWorld.ecschema.xml&quot;));
+  await briefcase.importSchema(requestContext, path.join(assetsDir, &quot;RobotWorld.ecschema.xml&quot;));
   //    You must acquire all locks reserve all Codes used before saving or pushing.
-  await briefcase.concurrencyControl.request(activityContext, accessToken);
+  await briefcase.concurrencyControl.request(requestContext);
   //    You *must* push this to the iModel right now.
   briefcase.saveChanges();
-  await briefcase.pullAndMergeChanges(activityContext, accessToken);
-  await briefcase.pushChanges(activityContext, accessToken);
+  await briefcase.pullAndMergeChanges(requestContext);
+  await briefcase.pushChanges(requestContext);
 
   // II. Import data
 
@@ -211,13 +210,13 @@ import { ColorByName, ColorDef, IModel } from &quot;@bentley/imodeljs-common&quo
 
   // 1. Acquire Resources
   //    You must reserve all Codes used before saving or pushing.
-  await briefcase.concurrencyControl.request(activityContext, accessToken);
+  await briefcase.concurrencyControl.request(requestContext);
 
   // 2. Pull and then push.
   //    Note that you pull and merge first, in case another user has pushed.
   briefcase.saveChanges();
-  await briefcase.pullAndMergeChanges(activityContext, accessToken);
-  await briefcase.pushChanges(activityContext, accessToken);
+  await briefcase.pullAndMergeChanges(requestContext);
+  await briefcase.pushChanges(requestContext);
 }
 </code></pre>
 <p>See:</p>
@@ -318,7 +317,7 @@ function convertToBis(briefcase: IModelDb, modelId: Id64String, data: RobotWorld
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -404,11 +403,13 @@ function convertToBis(briefcase: IModelDb, modelId: Id64String, data: RobotWorld
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -457,5 +458,6 @@ function convertToBis(briefcase: IModelDb, modelId: Id64String, data: RobotWorld
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

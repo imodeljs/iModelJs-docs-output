@@ -189,15 +189,15 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/rendering/">Rendering</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/rendering/featuresymbology/">FeatureSymbology</a> > FeatureSymbology.Overrides</div>
             
             <h2 class="h-featuresymbologyoverrides">FeatureSymbology.Overrides <span class="badge badge-pill badge-primary badge-class">Class</span><a id="featuresymbologyoverrides" class="heading-anchor" href="#featuresymbologyoverrides"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<h3 class="h-allows-a-viewstate-to-customize-the-appearance-of-individual-features-within-it">Allows a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a> to customize the appearance of individual <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/feature'>Feature</a>s within it.<a id="allows-a-viewstate-to-customize-the-appearance-of-individual-features-within-it" class="heading-anchor" href="#allows-a-viewstate-to-customize-the-appearance-of-individual-features-within-it"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>The ViewState computes its base Overrides based on the following:</p>
+<p>Allows a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a> to customize the appearance of individual <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/feature'>Feature</a>s within it.</p>
+<p>The Viewport computes its base Overrides based on the following:</p>
 <ul>
 <li>The set of categories enabled for display in its <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/categoryselectorstate'>CategorySelectorState</a>. Every <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/subcategory'>SubCategory</a> belonging to an enabled <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/category'>Category</a> is added to the set of visible subcategories - all other subcategories are assumed to be invisible.</li>
 <li>For the set of visible subcategories, any <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryoverride'>SubCategoryOverride</a>s defined by the view&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/displaystylestate'>DisplayStyleState</a> are applied. This may render some subcategories invisible, and change the symbology of others.</li>
 <li>The visibility of each GeometryClass is set based on the view&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a>.</li>
 <li>The line weight is overridden to 1 pixel for all Features if line weight has been disabled by the view&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a>.</li>
-<li>The sets of elements which are always drawn and never drawn are initialized from the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a>&apos;s sets.
-An application can further customize the symbology of any Features by specifying an AddFeatureOverrides function on a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>. That function will be invoked
+<li>The sets of elements which are always drawn and never drawn are initialized from the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>&apos;s sets.
+An application can further customize the symbology of any Features by registering a FeatureSymbology.Overrides.FeatureOverrideProvider with a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>. That provider&apos;s addFeatureOverrides function will be invoked
 whenever the Overrides need to be regenerated.</li>
 </ul>
 <p>To override the symbology of <em>most</em> Features within a view, specify a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.overrides/#defaultoverrides'>FeatureSymbology.Overrides.defaultOverrides</a> to be applied to any Feature not explicitly overridden.
@@ -207,7 +207,6 @@ an Appearance which defines no overrides.</p>
 that the element with ID &quot;0x123&quot; should be drawn with 0.25 transparency. In this case, when drawing a Feature with subcategory &quot;A&quot; and element ID &quot;0x123&quot;, the two overrides will
 be merged, causing the Feature&apos;s geometry to draw 25% transparent red. On the other hand, if subcategory &quot;A&quot; is specified to draw in red and element &quot;0x123&quot; to draw in green,
 the color specified by the element override will take precedence over that specified for the subcategory, resulting in a green Feature.</p>
-<p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate/setfeatureoverridesdirty'>ViewState.setFeatureOverridesDirty</a> for explicitly regenerating a view&apos;s Overrides.</p>
 <p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/alwaysdrawn'>Viewport.alwaysDrawn</a></p>
 <p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/neverdrawn'>Viewport.neverDrawn</a></p>
 <h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -217,8 +216,8 @@ the color specified by the element override will take precedence over that speci
 <th></th>
 </tr>
 <tr>
-<td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">view?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.overrides'>FeatureSymbology.Overrides</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Create an Overrides based on the supplied <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a>.</td>
+<td class="h-constructor"><span class="method-name"><a href="constructor">constructor</a></span><span class="method-parenthesis">(</span><span class="method-parameters">view?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.overrides'>FeatureSymbology.Overrides</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Construct a new Overrides.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -227,12 +226,12 @@ the color specified by the element override will take precedence over that speci
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-getclassifierappearance"><span class="method-name">getClassifierAppearance</span><span class="method-parenthesis">(</span><span class="method-parameters">elemLo: number, elemHi: number, subcatLo: number, subcatHi: number, modelLo: number, modelHi: number</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a> | undefined</span> <span class="badge badge-pill badge-primary badge-external">External</span><span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="getclassifierappearance" class="heading-anchor" href="#getclassifierappearance"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-getclassifierappearance"><span class="method-name">getClassifierAppearance</span><span class="method-parenthesis">(</span><span class="method-parameters">elemLo: number, elemHi: number, subcatLo: number, subcatHi: number, modelLo: number, modelHi: number</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a> | undefined</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><span class="badge badge-pill badge-primary badge-external">External</span><a id="getclassifierappearance" class="heading-anchor" href="#getclassifierappearance"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Classifiers behave totally differently...in particular they are never invisible unless fully-transparent.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-getelementoverrides"><span class="method-name">getElementOverrides</span><span class="method-parenthesis">(</span><span class="method-parameters">idLo: number, idHi: number, animationNodeId: number</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a> | undefined</span> <span class="badge badge-pill badge-primary badge-external">External</span><span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="getelementoverrides" class="heading-anchor" href="#getelementoverrides"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-getelementoverrides"><span class="method-name">getElementOverrides</span><span class="method-parenthesis">(</span><span class="method-parameters">idLo: number, idHi: number, animationNodeId: number</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a> | undefined</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><span class="badge badge-pill badge-primary badge-external">External</span><a id="getelementoverrides" class="heading-anchor" href="#getelementoverrides"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
@@ -247,7 +246,7 @@ the color specified by the element override will take precedence over that speci
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-getmodeloverrides"><span class="method-name">getModelOverrides</span><span class="method-parenthesis">(</span><span class="method-parameters">idLo: number, idHi: number</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a> | undefined</span> <span class="badge badge-pill badge-primary badge-external">External</span><span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="getmodeloverrides" class="heading-anchor" href="#getmodeloverrides"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-getmodeloverrides"><span class="method-name">getModelOverrides</span><span class="method-parenthesis">(</span><span class="method-parameters">idLo: number, idHi: number</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a> | undefined</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><span class="badge badge-pill badge-primary badge-external">External</span><a id="getmodeloverrides" class="heading-anchor" href="#getmodeloverrides"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
@@ -257,7 +256,7 @@ the color specified by the element override will take precedence over that speci
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-getsubcategoryoverrides"><span class="method-name">getSubCategoryOverrides</span><span class="method-parenthesis">(</span><span class="method-parameters">idLo: number, idHi: number</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a> | undefined</span> <span class="badge badge-pill badge-primary badge-external">External</span><span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="getsubcategoryoverrides" class="heading-anchor" href="#getsubcategoryoverrides"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-getsubcategoryoverrides"><span class="method-name">getSubCategoryOverrides</span><span class="method-parenthesis">(</span><span class="method-parameters">idLo: number, idHi: number</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance'>FeatureSymbology.Appearance</a> | undefined</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><span class="badge badge-pill badge-primary badge-external">External</span><a id="getsubcategoryoverrides" class="heading-anchor" href="#getsubcategoryoverrides"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
@@ -268,11 +267,11 @@ the color specified by the element override will take precedence over that speci
 </tr>
 <tr>
 <td class="h-initfromview"><span class="method-name">initFromView</span><span class="method-parenthesis">(</span><span class="method-parameters">view: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="initfromview" class="heading-anchor" href="#initfromview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Initialize these Overrides based on the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a>&apos;s settings.</td>
+<td>Initialize these Overrides based on a specific view.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-isalwaysdrawn"><span class="method-name">isAlwaysDrawn</span><span class="method-parenthesis">(</span><span class="method-parameters">idLo: number, idHi: number</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-external">External</span><span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="isalwaysdrawn" class="heading-anchor" href="#isalwaysdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-isalwaysdrawn"><span class="method-name">isAlwaysDrawn</span><span class="method-parenthesis">(</span><span class="method-parameters">idLo: number, idHi: number</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><span class="badge badge-pill badge-primary badge-external">External</span><a id="isalwaysdrawn" class="heading-anchor" href="#isalwaysdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
@@ -287,7 +286,7 @@ the color specified by the element override will take precedence over that speci
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-isneverdrawn"><span class="method-name">isNeverDrawn</span><span class="method-parenthesis">(</span><span class="method-parameters">elemIdLo: number, elemIdHi: number, animationNodeId: number</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-external">External</span><span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="isneverdrawn" class="heading-anchor" href="#isneverdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-isneverdrawn"><span class="method-name">isNeverDrawn</span><span class="method-parenthesis">(</span><span class="method-parameters">elemIdLo: number, elemIdHi: number, animationNodeId: number</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><span class="badge badge-pill badge-primary badge-external">External</span><a id="isneverdrawn" class="heading-anchor" href="#isneverdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
@@ -465,7 +464,7 @@ the color specified by the element override will take precedence over that speci
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -693,11 +692,13 @@ the color specified by the element override will take precedence over that speci
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -746,5 +747,6 @@ the color specified by the element override will take precedence over that speci
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

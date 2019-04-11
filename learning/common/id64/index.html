@@ -120,7 +120,7 @@
 <p>Ids are particularly important in communication between the front-end and the back-end. For example, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection/#queryentityids'>IModelConnection.queryEntityIds</a> executes a query and returns the Ids of those entities satisfying the query; while <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection.elements/#getprops'>IModelConnection.Elements.getProps</a> accepts a set of element Ids and returns a JSON representation of each specified element.</p>
 <p>The 64 bits of an Id are divided into two parts:</p>
 <ul>
-<li>The upper 24 bits contain the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/briefcaseid'>BriefcaseId</a> identifying the briefcase that originally created the entity.</li>
+<li>The upper 24 bits contain the BriefcaseId identifying the briefcase that originally created the entity.</li>
 <li>The lower 40 bits contain the entity&apos;s <em>local Id</em>, unique and sequentially assigned within a single BriefcaseId. A local Id of 0 is illegal.</li>
 </ul>
 <p>An Id is considered either &quot;valid&quot; (identifies an existing entity) or &quot;invalid&quot; (does not identify any existing entity). The latter is represented by the 64-bit value <code>0</code>. An invalid Id does not necessarily indicate an error - for example, an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/element'>Element</a> that has no parent element stores an invalid Id as its parentId.</p>
@@ -171,7 +171,7 @@
 <pre class="no-line-numbers"><code class="language-typescript"> public addCategories(arg: Id64Arg) { Id64.toIdSet(arg).forEach((id) =&gt; this.categories.add(id)); }</code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -249,11 +249,13 @@
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -302,5 +304,6 @@
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

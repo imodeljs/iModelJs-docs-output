@@ -160,18 +160,18 @@
 <p>Example:</p>
 <pre class="no-line-numbers"><code class="language-typescript">  const id = &quot;c41580e2-6ac9-473c-9194-2c9a36187dbd&quot;;
   const subscription: GlobalEventSubscription = await imodelHubClient.globalEvents
-    .subscriptions.create(alctx, token, id, [&quot;iModelCreatedEvent&quot;, &quot;NamedVersionCreatedEvent&quot;]);
+    .subscriptions.create(authorizedRequestContext, id, [&quot;iModelCreatedEvent&quot;, &quot;NamedVersionCreatedEvent&quot;]);
 </code></pre>
 <p>After creating the subscription, <code>subscription.wsgId</code> can be used when subscription id is requested. If this id is forgotten, a repeated <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/globaleventsubscriptionhandler/create'>GlobalEventSubscriptionHandler.create</a> with same Guid will return the same subscription instead of creating a new one.</p>
 <p>Each subscription contains its own queue of events. Subscriptions expire after a month of inactivity.</p>
 <h2 class="h-getting-global-events">Getting global events<a id="getting-global-events" class="heading-anchor" href="#getting-global-events"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>To get events, service has to have <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/common/accesstoken'>access token</a> and have a <a href="#creating-global-events-subscription">global event subscription</a>.</p>
 <p>First service has to get an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/globaleventsas'>GlobalEventSAS</a> token.</p>
-<pre class="no-line-numbers"><code class="language-typescript">  const sasToken: GlobalEventSAS = await imodelHubClient.globalEvents.getSASToken(alctx, accessToken);
+<pre class="no-line-numbers"><code class="language-typescript">  const sasToken: GlobalEventSAS = await imodelHubClient.globalEvents.getSASToken(authorizedRequestContext);
 </code></pre>
 <p>Then service can get the first event from its subscription&apos;s queue. This will immediately delete the event from the queue.</p>
 <pre class="no-line-numbers"><code class="language-typescript">  const globalEvent: IModelHubGlobalEvent | undefined = await imodelHubClient.globalEvents
-    .getEvent(alctx, sasToken.sasToken!, sasToken.baseAddress!, subscription.wsgId, 60);
+    .getEvent(requestContext, sasToken.sasToken!, sasToken.baseAddress!, subscription.wsgId, 60);
 </code></pre>
 <p>If <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/globaleventhandler/getevent'>GlobalEventHandler.getEvent</a> is called with a timeout duration specified, this request will perform long polling. If this request didn&apos;t find a global event on the queue, it would wait until one is available or the timeout expires. This way the event reaches the service faster and less requests are sent between the client service and iModelHub.</p>
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/globaleventhandler/getevent'>GlobalEventHandler.getEvent</a> can fail because <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/globaleventsas'>GlobalEventSAS</a> has expired. It can also return undefined if no events have been found.</p>
@@ -180,19 +180,19 @@
 <p>Service will have to delete locked event after they finish processing it. If service doesn&apos;t delete the event in a minute, the lock will expire and the event will reappear in the queue.</p>
 <p>When getting event, service has to specify that they want to use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/geteventoperationtype/#peek'>GetEventOperationType.Peek</a>:</p>
 <pre class="no-line-numbers"><code class="language-typescript">  const globalEventWithLock: IModelHubGlobalEvent | undefined = await imodelHubClient.globalEvents
-    .getEvent(alctx, sasToken.sasToken!, sasToken.baseAddress!, subscription.wsgId, 60, GetEventOperationType.Peek);
+    .getEvent(requestContext, sasToken.sasToken!, sasToken.baseAddress!, subscription.wsgId, 60, GetEventOperationType.Peek);
 </code></pre>
 <p>Then after processing the event, service has to delete it:</p>
-<pre class="no-line-numbers"><code class="language-typescript">  await globalEventWithLock.delete(alctx);
+<pre class="no-line-numbers"><code class="language-typescript">  await globalEventWithLock.delete(authorizedRequestContext);
 </code></pre>
 <h2 class="h-create-a-global-events-listener">Create a Global Events Listener<a id="create-a-global-events-listener" class="heading-anchor" href="#create-a-global-events-listener"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/globaleventhandler/createlistener'>GlobalEventHandler.createListener</a> can be used to handle repeated calls to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/globaleventhandler/getevent'>GlobalEventHandler.getEvent</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/globaleventhandler/getsastoken'>GlobalEventHandler.getSASToken</a>. Listener will use always delete events when retrieving them. If you want to use non-destructive <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/globaleventhandler/getevent'>GlobalEventHandler.getEvent</a>, see <a href="#getting-global-events">getting events</a>.</p>
 <p>Authentication callback example, similar to <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/common/accesstoken'>getting access token</a>. <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/authorizationtoken'>AuthorizationToken</a> could be retrieved from credentials stored somewhere else or refreshed before it expires.</p>
 <pre class="no-line-numbers"><code class="language-typescript">async function authenticate(): Promise&lt;AccessToken&gt; {
-  const alctx: ActivityLoggingContext = new ActivityLoggingContext(Guid.createValue());
+  const requestContext = new ClientRequestContext();
   const authorizationToken: AuthorizationToken = await authorizationClient
-    .getToken(alctx, username, password);
-  return imodelHubClient.getAccessToken(alctx, authorizationToken);
+    .getToken(requestContext, userCredentials);
+  return imodelHubClient.getAccessToken(requestContext, authorizationToken);
 }
 </code></pre>
 <p>Listener callback example. This callback just logs the type of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubglobalevents/imodelhubglobalevent'>IModelHubGlobalEvent</a> received.</p>
@@ -202,7 +202,7 @@
 </code></pre>
 <p>To create the listener itself, user has to have a <a href="#creating-global-events-subscription">global event subscription</a>.</p>
 <pre class="no-line-numbers"><code class="language-typescript">  const deleteCallback = await imodelHubClient.globalEvents // tslint:disable-line:await-promise
-    .createListener(alctx, authenticate, subscription.wsgId, processGlobalEvent);
+    .createListener(authorizedRequestContext, authenticate, subscription.wsgId, processGlobalEvent);
 </code></pre>
 <p>Deleting the listener after it&apos;s no longer necessary is just calling the callback received when creating it.</p>
 <pre class="no-line-numbers"><code class="language-typescript">  // Delete callback when events should be no longer received
@@ -213,7 +213,7 @@
 <p>Listeners for the same subscription will only make a single event request at a time. Listeners for different subscriptions work independently.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -302,11 +302,13 @@
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -355,5 +357,6 @@
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

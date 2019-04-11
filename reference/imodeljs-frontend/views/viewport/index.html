@@ -189,12 +189,28 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/views/">Views</a> > Viewport</div>
             
             <h2 class="h-viewport">Viewport <span class="badge badge-pill badge-primary badge-class">Class</span><a id="viewport" class="heading-anchor" href="#viewport"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<h3 class="h-a-viewport-renders-the-contents-of-one-or-more-models-onto-an-htmlcanvaselement">A Viewport renders the contents of one or more Models onto an <code>HTMLCanvasElement</code>.<a id="a-viewport-renders-the-contents-of-one-or-more-models-onto-an-htmlcanvaselement" class="heading-anchor" href="#a-viewport-renders-the-contents-of-one-or-more-models-onto-an-htmlcanvaselement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>A Viewport renders the contents of one or more Models onto an <code>HTMLCanvasElement</code>.</p>
 <p>It holds a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a> object that defines its viewing parameters. <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/viewtool'>ViewTool</a>s may
 modify the ViewState object. Changes to the ViewState are only reflected in a Viewport after the
 <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#synchwithview'>Viewport.synchWithView</a> method is called.</p>
+<p>In general, because the Viewport essentially takes control of its attached ViewState, changes to the ViewState should be made
+indirectly through the Viewport&apos;s own API. For example:</p>
+<ul>
+<li>To change the set of categories displayed in the Viewport, use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/changecategorydisplay'>Viewport.changeCategoryDisplay</a> rather than modifying the ViewState&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/categoryselectorstate'>CategorySelectorState</a> directly.</li>
+<li>To change the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a>, set <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/viewflags'>Viewport.viewFlags</a> rather than modifying the ViewState&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/displaystylestate'>DisplayStyleState</a> directly.
+Doing so ensures that synchronization between the Viewport and its ViewState is reliable and automatic.</li>
+</ul>
 <p>As changes to ViewState are made, Viewports also hold a stack of <em>previous copies</em> of it, to allow
 for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing tools.</p>
+<p>Changes to a Viewport&apos;s state can be monitored by attaching an event listener to a variety of specific events. Most such events are
+triggered only once per frame, just before the Viewport&apos;s contents are rendered. For example, if the following sequence of events occurs:</p>
+<ul>
+<li>First frame is rendered</li>
+<li>ViewFlags are modified</li>
+<li>ViewFlags are modified again</li>
+<li>Second frame is rendered
+The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/ondisplaystylechanged'>Viewport.onDisplayStyleChanged</a> event will be invoked exactly once, when the second frame is rendered.</li>
+</ul>
 <p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager'>ViewManager</a></p>
 <h3 class="h-extended-by">Extended by<a id="extended-by" class="heading-anchor" href="#extended-by"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -212,7 +228,7 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <th></th>
 </tr>
 <tr>
-<td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">target: RenderTarget</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span> <span class="badge badge-pill badge-primary badge-external">External</span><span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">target: RenderTarget</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a></span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><span class="badge badge-pill badge-primary badge-external">External</span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
@@ -237,13 +253,28 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>&#xA0;</td>
 </tr>
 <tr>
+<td class="h-changecategorydisplay"><span class="method-name"><a href="changecategorydisplay">changeCategoryDisplay</a></span><span class="method-parenthesis">(</span><span class="method-parameters">categories: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64arg'>Id64Arg</a>, display: boolean, enableAllSubCategories: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="changecategorydisplay" class="heading-anchor" href="#changecategorydisplay"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Enable or disable display of elements belonging to a set of categories specified by Id.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-changedynamics"><span class="method-name">changeDynamics</span><span class="method-parenthesis">(</span><span class="method-parameters">dynamics: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/graphiclist'>GraphicList</a> | undefined</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="changedynamics" class="heading-anchor" href="#changedynamics"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
+<td class="h-changemodeldisplay"><span class="method-name"><a href="changemodeldisplay">changeModelDisplay</a></span><span class="method-parenthesis">(</span><span class="method-parameters">models: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64arg'>Id64Arg</a>, display: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="changemodeldisplay" class="heading-anchor" href="#changemodeldisplay"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Add or remove a set of models from those models currently displayed in this viewport.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-changeview"><span class="method-name"><a href="changeview">changeView</a></span><span class="method-parenthesis">(</span><span class="method-parameters">view: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="changeview" class="heading-anchor" href="#changeview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Change the ViewState of this Viewport</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-changeviewedmodels"><span class="method-name"><a href="changeviewedmodels">changeViewedModels</a></span><span class="method-parenthesis">(</span><span class="method-parameters">modelIds: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64arg'>Id64Arg</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="changeviewedmodels" class="heading-anchor" href="#changeviewedmodels"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Attempt to replace the set of models currently viewed by this viewport.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -277,12 +308,17 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>&#xA0;</td>
 </tr>
 <tr>
+<td class="h-dropsubcategoryoverride"><span class="method-name"><a href="dropsubcategoryoverride">dropSubCategoryOverride</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="dropsubcategoryoverride" class="heading-anchor" href="#dropsubcategoryoverride"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Remove any <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryoverride'>SubCategoryOverride</a> for the specified subcategory.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-fromview"><span class="method-name">fromView</span><span class="method-parenthesis">(</span><span class="method-parameters">from: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a>, to?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/xyz'>XYZ</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="fromview" class="heading-anchor" href="#fromview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-getauxcoordorigin"><span class="method-name">getAuxCoordOrigin</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> Point3d</span><a id="getauxcoordorigin" class="heading-anchor" href="#getauxcoordorigin"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-getauxcoordorigin"><span class="method-name">getAuxCoordOrigin</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/primitives/primitives.point3d'>Primitives.Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="getauxcoordorigin" class="heading-anchor" href="#getauxcoordorigin"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
@@ -302,18 +338,33 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-getpixeldatanpcpoint"><span class="method-name">getPixelDataNpcPoint</span><span class="method-parenthesis">(</span><span class="method-parameters">pixels: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/pixel/pixel.buffer'>Pixel.Buffer</a>, x: number, y: number, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> Point3d | undefined</span><a id="getpixeldatanpcpoint" class="heading-anchor" href="#getpixeldatanpcpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-getpixeldatanpcpoint"><span class="method-name">getPixelDataNpcPoint</span><span class="method-parenthesis">(</span><span class="method-parameters">pixels: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/pixel/pixel.buffer'>Pixel.Buffer</a>, x: number, y: number, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/primitives/primitives.point3d'>Primitives.Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a> | undefined</span><a id="getpixeldatanpcpoint" class="heading-anchor" href="#getpixeldatanpcpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Get the point at the specified x and y location in the pixel buffer in npc coordinates</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-getpixeldataworldpoint"><span class="method-name">getPixelDataWorldPoint</span><span class="method-parenthesis">(</span><span class="method-parameters">pixels: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/pixel/pixel.buffer'>Pixel.Buffer</a>, x: number, y: number, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> Point3d | undefined</span><a id="getpixeldataworldpoint" class="heading-anchor" href="#getpixeldataworldpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-getpixeldataworldpoint"><span class="method-name">getPixelDataWorldPoint</span><span class="method-parenthesis">(</span><span class="method-parameters">pixels: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/pixel/pixel.buffer'>Pixel.Buffer</a>, x: number, y: number, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/primitives/primitives.point3d'>Primitives.Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a> | undefined</span><a id="getpixeldataworldpoint" class="heading-anchor" href="#getpixeldataworldpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Get the point at the specified x and y location in the pixel buffer in world coordinates</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-getpixelsizeatpoint"><span class="method-name"><a href="getpixelsizeatpoint">getPixelSizeAtPoint</a></span><span class="method-parenthesis">(</span><span class="method-parameters">point?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="getpixelsizeatpoint" class="heading-anchor" href="#getpixelsizeatpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-getpixelsizeatpoint"><span class="method-name"><a href="getpixelsizeatpoint">getPixelSizeAtPoint</a></span><span class="method-parenthesis">(</span><span class="method-parameters">point?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/primitives/primitives.point3d'>Primitives.Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="getpixelsizeatpoint" class="heading-anchor" href="#getpixelsizeatpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Get the width of a pixel (a unit vector in the x direction in view coordinates) at a given point in world coordinates, returning the result in meters (world units).</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-getsubcategories"><span class="method-name">getSubCategories</span><span class="method-parenthesis">(</span><span class="method-parameters">categoryId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64set'>Id64Set</a> | undefined</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="getsubcategories" class="heading-anchor" href="#getsubcategories"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-getsubcategoryappearance"><span class="method-name"><a href="getsubcategoryappearance">getSubCategoryAppearance</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryappearance'>SubCategoryAppearance</a></span><a id="getsubcategoryappearance" class="heading-anchor" href="#getsubcategoryappearance"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Query the symbology with which geometry belonging to a specific subcategory is rendered within this viewport.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-getsubcategoryoverride"><span class="method-name"><a href="getsubcategoryoverride">getSubCategoryOverride</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryoverride'>SubCategoryOverride</a> | undefined</span><a id="getsubcategoryoverride" class="heading-anchor" href="#getsubcategoryoverride"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Query the symbology overrides applied to geometry belonging to a specific subcategory when rendered within this viewport.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -337,23 +388,38 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-npctoview"><span class="method-name"><a href="npctoview">npcToView</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pt: Point3d, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> Point3d</span><a id="npctoview" class="heading-anchor" href="#npctoview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-issubcategoryvisible"><span class="method-name"><a href="issubcategoryvisible">isSubCategoryVisible</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="issubcategoryvisible" class="heading-anchor" href="#issubcategoryvisible"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Determine whether geometry belonging to a specific SubCategory is visible in this viewport.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-markselectionsetdirty"><span class="method-name">markSelectionSetDirty</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="markselectionsetdirty" class="heading-anchor" href="#markselectionsetdirty"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-npctoview"><span class="method-name"><a href="npctoview">npcToView</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pt: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/primitives/primitives.point3d'>Primitives.Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="npctoview" class="heading-anchor" href="#npctoview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Convert a point from CoordSystem.Npc to CoordSystem.View</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-npctoviewarray"><span class="method-name">npcToViewArray</span><span class="method-parenthesis">(</span><span class="method-parameters">pts: Point3d[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="npctoviewarray" class="heading-anchor" href="#npctoviewarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-npctoviewarray"><span class="method-name">npcToViewArray</span><span class="method-parenthesis">(</span><span class="method-parameters">pts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="npctoviewarray" class="heading-anchor" href="#npctoviewarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Convert an array of points from CoordSystem.Npc to CoordSystem.View</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-npctoworld"><span class="method-name"><a href="npctoworld">npcToWorld</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pt: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> Point3d</span><a id="npctoworld" class="heading-anchor" href="#npctoworld"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-npctoworld"><span class="method-name"><a href="npctoworld">npcToWorld</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pt: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/primitives/primitives.point3d'>Primitives.Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="npctoworld" class="heading-anchor" href="#npctoworld"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Convert a point from CoordSystem.Npc to CoordSystem.World</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-npctoworldarray"><span class="method-name">npcToWorldArray</span><span class="method-parenthesis">(</span><span class="method-parameters">pts: Point3d[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="npctoworldarray" class="heading-anchor" href="#npctoworldarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-npctoworldarray"><span class="method-name">npcToWorldArray</span><span class="method-parenthesis">(</span><span class="method-parameters">pts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="npctoworldarray" class="heading-anchor" href="#npctoworldarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Convert an array of points from CoordSystem.Npc to CoordSystem.World</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-overridesubcategory"><span class="method-name"><a href="overridesubcategory">overrideSubCategory</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, ovr: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryoverride'>SubCategoryOverride</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="overridesubcategory" class="heading-anchor" href="#overridesubcategory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Override the symbology of geometry belonging to a specific subcategory when rendered within this viewport.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -362,12 +428,12 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-pointtogrid"><span class="method-name">pointToGrid</span><span class="method-parenthesis">(</span><span class="method-parameters">point: Point3d</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="pointtogrid" class="heading-anchor" href="#pointtogrid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-pointtogrid"><span class="method-name">pointToGrid</span><span class="method-parenthesis">(</span><span class="method-parameters">point: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="pointtogrid" class="heading-anchor" href="#pointtogrid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-readimage"><span class="method-name"><a href="readimage">readImage</a></span><span class="method-parenthesis">(</span><span class="method-parameters">rect: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a> = new ViewRect(0, 0, -1, -1), targetSize: Point2d = Point2d.createZero(), flipVertically: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/imagebuffer'>ImageBuffer</a> | undefined</span><a id="readimage" class="heading-anchor" href="#readimage"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-readimage"><span class="method-name"><a href="readimage">readImage</a></span><span class="method-parenthesis">(</span><span class="method-parameters">rect: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a> = new ViewRect(0, 0, -1, -1), targetSize: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a> = Point2d.createZero(), flipVertically: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/imagebuffer'>ImageBuffer</a> | undefined</span><a id="readimage" class="heading-anchor" href="#readimage"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Read the current image from this viewport from the rendering system.</td>
 <td>&#xA0;</td>
 </tr>
@@ -387,13 +453,18 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-scroll"><span class="method-name"><a href="scroll">scroll</a></span><span class="method-parenthesis">(</span><span class="method-parameters">screenDist: Point2d, options?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewchangeoptions'>ViewChangeOptions</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="scroll" class="heading-anchor" href="#scroll"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-scroll"><span class="method-name"><a href="scroll">scroll</a></span><span class="method-parenthesis">(</span><span class="method-parameters">screenDist: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a>, options?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewchangeoptions'>ViewChangeOptions</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="scroll" class="heading-anchor" href="#scroll"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Scroll the view by a given number of pixels.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-setalwaysdrawn"><span class="method-name"><a href="setalwaysdrawn">setAlwaysDrawn</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ids: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64set'>Id64Set</a>, exclusive: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setalwaysdrawn" class="heading-anchor" href="#setalwaysdrawn"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Specify the IDs of a set of elements which should always be rendered within this view, regardless of category and subcategory visibility.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-setfeatureoverrideproviderchanged"><span class="method-name">setFeatureOverrideProviderChanged</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setfeatureoverrideproviderchanged" class="heading-anchor" href="#setfeatureoverrideproviderchanged"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Notifies this viewport that the internal state of its <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#featureoverrideprovider'>Viewport.FeatureOverrideProvider</a> has changed such that its<br><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.overrides'>FeatureSymbology.Overrides</a> should be recomputed.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -437,47 +508,52 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-view4dtoworld"><span class="method-name"><a href="view4dtoworld">view4dToWorld</a></span><span class="method-parenthesis">(</span><span class="method-parameters">input: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/point4d'>Point4d</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> Point3d</span><a id="view4dtoworld" class="heading-anchor" href="#view4dtoworld"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-view4dtoworld"><span class="method-name"><a href="view4dtoworld">view4dToWorld</a></span><span class="method-parenthesis">(</span><span class="method-parameters">input: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/point4d'>Point4d</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/primitives/primitives.point3d'>Primitives.Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="view4dtoworld" class="heading-anchor" href="#view4dtoworld"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Convert a point from CoordSystem.View as a Point4d to CoordSystem.View</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-view4dtoworldarray"><span class="method-name">view4dToWorldArray</span><span class="method-parenthesis">(</span><span class="method-parameters">viewPts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/point4d'>Point4d</a>[], worldPts: Point3d[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="view4dtoworldarray" class="heading-anchor" href="#view4dtoworldarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-view4dtoworldarray"><span class="method-name">view4dToWorldArray</span><span class="method-parenthesis">(</span><span class="method-parameters">viewPts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/point4d'>Point4d</a>[], worldPts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="view4dtoworldarray" class="heading-anchor" href="#view4dtoworldarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Convert an array of points from CoordSystem.View as Point4ds to CoordSystem.World</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-viewtonpc"><span class="method-name"><a href="viewtonpc">viewToNpc</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pt: Point3d, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> Point3d</span><a id="viewtonpc" class="heading-anchor" href="#viewtonpc"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-viewtonpc"><span class="method-name"><a href="viewtonpc">viewToNpc</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pt: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/primitives/primitives.point3d'>Primitives.Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="viewtonpc" class="heading-anchor" href="#viewtonpc"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Convert a point from CoordSystem.View to CoordSystem.Npc</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-viewtonpcarray"><span class="method-name">viewToNpcArray</span><span class="method-parenthesis">(</span><span class="method-parameters">pts: Point3d[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="viewtonpcarray" class="heading-anchor" href="#viewtonpcarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-viewtonpcarray"><span class="method-name">viewToNpcArray</span><span class="method-parenthesis">(</span><span class="method-parameters">pts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="viewtonpcarray" class="heading-anchor" href="#viewtonpcarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Convert an array of points from CoordSystem.View to CoordSystem.Npc</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-viewtoworld"><span class="method-name"><a href="viewtoworld">viewToWorld</a></span><span class="method-parenthesis">(</span><span class="method-parameters">input: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> Point3d</span><a id="viewtoworld" class="heading-anchor" href="#viewtoworld"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-viewtoworld"><span class="method-name"><a href="viewtoworld">viewToWorld</a></span><span class="method-parenthesis">(</span><span class="method-parameters">input: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/primitives/primitives.point3d'>Primitives.Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="viewtoworld" class="heading-anchor" href="#viewtoworld"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Convert a point from CoordSystem.View to CoordSystem.World</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-viewtoworldarray"><span class="method-name">viewToWorldArray</span><span class="method-parenthesis">(</span><span class="method-parameters">pts: Point3d[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="viewtoworldarray" class="heading-anchor" href="#viewtoworldarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-viewtoworldarray"><span class="method-name">viewToWorldArray</span><span class="method-parenthesis">(</span><span class="method-parameters">pts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="viewtoworldarray" class="heading-anchor" href="#viewtoworldarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Convert an array of points from CoordSystem.View to CoordSystem.World</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-worldtonpc"><span class="method-name"><a href="worldtonpc">worldToNpc</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pt: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> Point3d</span><a id="worldtonpc" class="heading-anchor" href="#worldtonpc"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-viewsmodel"><span class="method-name">viewsModel</span><span class="method-parenthesis">(</span><span class="method-parameters">modelId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="viewsmodel" class="heading-anchor" href="#viewsmodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Returns true if this Viewport is currently displaying the model with the specified Id.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-worldtonpc"><span class="method-name"><a href="worldtonpc">worldToNpc</a></span><span class="method-parenthesis">(</span><span class="method-parameters">pt: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/primitives/primitives.point3d'>Primitives.Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="worldtonpc" class="heading-anchor" href="#worldtonpc"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Convert a point from CoordSystem.World to CoordSystem.Npc</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-worldtonpcarray"><span class="method-name">worldToNpcArray</span><span class="method-parenthesis">(</span><span class="method-parameters">pts: Point3d[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="worldtonpcarray" class="heading-anchor" href="#worldtonpcarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-worldtonpcarray"><span class="method-name">worldToNpcArray</span><span class="method-parenthesis">(</span><span class="method-parameters">pts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="worldtonpcarray" class="heading-anchor" href="#worldtonpcarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Convert an array of points from CoordSystem.World to CoordSystem.Npc</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-worldtoview"><span class="method-name"><a href="worldtoview">worldToView</a></span><span class="method-parenthesis">(</span><span class="method-parameters">input: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> Point3d</span><a id="worldtoview" class="heading-anchor" href="#worldtoview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-worldtoview"><span class="method-name"><a href="worldtoview">worldToView</a></span><span class="method-parenthesis">(</span><span class="method-parameters">input: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>, out?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/typeconverters/primitives/primitives.point3d'>Primitives.Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="worldtoview" class="heading-anchor" href="#worldtoview"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Convert a point from CoordSystem.World to CoordSystem.View</td>
 <td>&#xA0;</td>
 </tr>
@@ -487,17 +563,17 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-worldtoview4darray"><span class="method-name">worldToView4dArray</span><span class="method-parenthesis">(</span><span class="method-parameters">worldPts: Point3d[], viewPts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/point4d'>Point4d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="worldtoview4darray" class="heading-anchor" href="#worldtoview4darray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-worldtoview4darray"><span class="method-name">worldToView4dArray</span><span class="method-parenthesis">(</span><span class="method-parameters">worldPts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[], viewPts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/point4d'>Point4d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="worldtoview4darray" class="heading-anchor" href="#worldtoview4darray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Convert an array of points from CoordSystem.World to CoordSystem.View, as Point4ds</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-worldtoviewarray"><span class="method-name">worldToViewArray</span><span class="method-parenthesis">(</span><span class="method-parameters">pts: Point3d[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="worldtoviewarray" class="heading-anchor" href="#worldtoviewarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-worldtoviewarray"><span class="method-name">worldToViewArray</span><span class="method-parenthesis">(</span><span class="method-parameters">pts: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="worldtoviewarray" class="heading-anchor" href="#worldtoviewarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Convert an array of points from CoordSystem.World to CoordSystem.View</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-zoom"><span class="method-name"><a href="zoom">zoom</a></span><span class="method-parenthesis">(</span><span class="method-parameters">newCenter: Point3d | undefined, factor: number, options?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewchangeoptions'>ViewChangeOptions</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="zoom" class="heading-anchor" href="#zoom"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-zoom"><span class="method-name"><a href="zoom">zoom</a></span><span class="method-parenthesis">(</span><span class="method-parameters">newCenter: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a> | undefined, factor: number, options?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewchangeoptions'>ViewChangeOptions</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="zoom" class="heading-anchor" href="#zoom"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Zoom the view by a scale factor, placing the new center at the projection of the given point (world coordinates)<br>on the focal plane.</td>
 <td>&#xA0;</td>
 </tr>
@@ -529,7 +605,13 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <th></th>
 </tr>
 <tr>
-<td class="h-_viewrange"><span class="property-name">_viewRange</span> <span class="badge badge-pill badge-primary badge-external">External</span><span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="_viewrange" class="heading-anchor" href="#_viewrange"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-_changeflags"><span class="property-name">_changeFlags</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="_changeflags" class="heading-anchor" href="#_changeflags"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/changeflags'>ChangeFlags</a></span></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-_viewrange"><span class="property-name">_viewRange</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><span class="badge badge-pill badge-primary badge-external">External</span><a id="_viewrange" class="heading-anchor" href="#_viewrange"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewrect'>ViewRect</a></span></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
@@ -574,6 +656,12 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td class="h-debugboundingboxes"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/debugboundingboxes'>debugBoundingBoxes</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="debugboundingboxes" class="heading-anchor" href="#debugboundingboxes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> Tile.DebugBoundingBoxes</span></td>
 <td>Determines what type (if any) of debug graphics will be displayed to visualize Tile volumes.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-displaystyle"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/displaystyle'>displayStyle</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="displaystyle" class="heading-anchor" href="#displaystyle"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/displaystylestate'>DisplayStyleState</a></span></td>
+<td>The display style controller how the contents of this viewport are rendered.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -711,14 +799,32 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <tr>
 <td class="h-onalwaysdrawnchanged"><span class="property-name">onAlwaysDrawnChanged</span><a id="onalwaysdrawnchanged" class="heading-anchor" href="#onalwaysdrawnchanged"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/beevent'>BeEvent</a>&lt;(vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>) =&gt; void&gt;</span></td>
-<td>Event called whenever this viewport&apos;s set of always-drawn elements changes.</td>
-<td>&#xA0;</td>
+<td>Event called on the next frame after this viewport&apos;s set of always-drawn elements changes.</td>
+<td><span class="badge badge-pill badge-primary badge-beta">Beta</span>  <br></td>
+</tr>
+<tr>
+<td class="h-ondisplaystylechanged"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/ondisplaystylechanged'>onDisplayStyleChanged</a></span><a id="ondisplaystylechanged" class="heading-anchor" href="#ondisplaystylechanged"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/beevent'>BeEvent</a>&lt;(vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>) =&gt; void&gt;</span></td>
+<td>Event called on the next frame after this viewport&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/displaystylestate'>DisplayStyleState</a> or its members change.</td>
+<td><span class="badge badge-pill badge-primary badge-beta">Beta</span>  <br></td>
+</tr>
+<tr>
+<td class="h-onfeatureoverrideproviderchanged"><span class="property-name">onFeatureOverrideProviderChanged</span><a id="onfeatureoverrideproviderchanged" class="heading-anchor" href="#onfeatureoverrideproviderchanged"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/beevent'>BeEvent</a>&lt;(vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>) =&gt; void&gt;</span></td>
+<td>Event called on the next frame after this viewport&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/#featureoverrideprovider'>Viewport.FeatureOverrideProvider</a> changes, or the internal state of the provider changes such that the overrides needed to be recomputed.</td>
+<td><span class="badge badge-pill badge-primary badge-beta">Beta</span>  <br></td>
+</tr>
+<tr>
+<td class="h-onfeatureoverrideschanged"><span class="property-name">onFeatureOverridesChanged</span><a id="onfeatureoverrideschanged" class="heading-anchor" href="#onfeatureoverrideschanged"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/beevent'>BeEvent</a>&lt;(vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>) =&gt; void&gt;</span></td>
+<td>Event called on the next frame after this viewport&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.overrides'>FeatureSymbology.Overrides</a> change.</td>
+<td><span class="badge badge-pill badge-primary badge-beta">Beta</span>  <br></td>
 </tr>
 <tr>
 <td class="h-onneverdrawnchanged"><span class="property-name">onNeverDrawnChanged</span><a id="onneverdrawnchanged" class="heading-anchor" href="#onneverdrawnchanged"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/beevent'>BeEvent</a>&lt;(vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>) =&gt; void&gt;</span></td>
-<td>Event called whenever this viewport&apos;s set of never-drawn elements changes.</td>
-<td>&#xA0;</td>
+<td>Event called on the next frame after this viewport&apos;s set of never-drawn elements changes.</td>
+<td><span class="badge badge-pill badge-primary badge-beta">Beta</span>  <br></td>
 </tr>
 <tr>
 <td class="h-onrender"><span class="property-name">onRender</span><a id="onrender" class="heading-anchor" href="#onrender"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -729,8 +835,26 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <tr>
 <td class="h-onviewchanged"><span class="property-name">onViewChanged</span><a id="onviewchanged" class="heading-anchor" href="#onviewchanged"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/beevent'>BeEvent</a>&lt;(vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>) =&gt; void&gt;</span></td>
-<td>Event called whenever this viewport is synchronized with its ViewState.</td>
+<td>Event called whenever this viewport is synchronized with its <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a>.</td>
 <td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-onviewedcategorieschanged"><span class="property-name">onViewedCategoriesChanged</span><a id="onviewedcategorieschanged" class="heading-anchor" href="#onviewedcategorieschanged"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/beevent'>BeEvent</a>&lt;(vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>) =&gt; void&gt;</span></td>
+<td>Event called on the next frame after this viewport&apos;s set of displayed categories changes.</td>
+<td><span class="badge badge-pill badge-primary badge-beta">Beta</span>  <br></td>
+</tr>
+<tr>
+<td class="h-onviewedmodelschanged"><span class="property-name">onViewedModelsChanged</span><a id="onviewedmodelschanged" class="heading-anchor" href="#onviewedmodelschanged"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/beevent'>BeEvent</a>&lt;(vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>) =&gt; void&gt;</span></td>
+<td>Event called on the next frame after this viewport&apos;s set of displayed models changes.</td>
+<td><span class="badge badge-pill badge-primary badge-beta">Beta</span>  <br></td>
+</tr>
+<tr>
+<td class="h-onviewportchanged"><span class="property-name">onViewportChanged</span><a id="onviewportchanged" class="heading-anchor" href="#onviewportchanged"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/beevent'>BeEvent</a>&lt;(vp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a>, changed: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/changeflags'>ChangeFlags</a>) =&gt; void&gt;</span></td>
+<td>Event called on the next frame after any of the viewport&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/changeflags'>ChangeFlags</a> changes.</td>
+<td><span class="badge badge-pill badge-primary badge-beta">Beta</span>  <br></td>
 </tr>
 <tr>
 <td class="h-pixelsperinch"><span class="property-name">pixelsPerInch</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-external">External</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="pixelsperinch" class="heading-anchor" href="#pixelsperinch"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -775,7 +899,7 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-viewflags"><span class="property-name">viewFlags</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="viewflags" class="heading-anchor" href="#viewflags"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-viewflags"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/viewflags'>viewFlags</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="viewflags" class="heading-anchor" href="#viewflags"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a></span></td>
 <td>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags'>ViewFlags</a> that determine how the contents of this Viewport are rendered.</td>
 <td>&#xA0;</td>
@@ -800,13 +924,13 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 </tr>
 <tr>
 <td class="h-wantantialiaslines"><span class="property-name">wantAntiAliasLines</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-external">External</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="wantantialiaslines" class="heading-anchor" href="#wantantialiaslines"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/antialiaspref'>AntiAliasPref</a></span></td>
+<td><span class="method-output"> AntiAliasPref</span></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-wantantialiastext"><span class="property-name">wantAntiAliasText</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-external">External</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="wantantialiastext" class="heading-anchor" href="#wantantialiastext"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/antialiaspref'>AntiAliasPref</a></span></td>
+<td><span class="method-output"> AntiAliasPref</span></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
@@ -822,7 +946,7 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -904,10 +1028,19 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
                                             <a class='title solo-title menu-text' href="#applyviewstate">applyViewState</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#changecategorydisplay">changeCategoryDisplay</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#changedynamics">changeDynamics</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#changemodeldisplay">changeModelDisplay</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#changeview">changeView</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#changeviewedmodels">changeViewedModels</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#clearalwaysdrawn">clearAlwaysDrawn</a>
@@ -926,6 +1059,9 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#dispose">dispose</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#dropsubcategoryoverride">dropSubCategoryOverride</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#fromview">fromView</a>
@@ -952,6 +1088,15 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
                                             <a class='title solo-title menu-text' href="#getpixelsizeatpoint">getPixelSizeAtPoint</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getsubcategories">getSubCategories</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getsubcategoryappearance">getSubCategoryAppearance</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getsubcategoryoverride">getSubCategoryOverride</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#getworldfrustum">getWorldFrustum</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -964,6 +1109,12 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
                                             <a class='title solo-title menu-text' href="#invalidatescene">invalidateScene</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#issubcategoryvisible">isSubCategoryVisible</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#markselectionsetdirty">markSelectionSetDirty</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#npctoview">npcToView</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -974,6 +1125,9 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#npctoworldarray">npcToWorldArray</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#overridesubcategory">overrideSubCategory</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#pixelsfrominches">pixelsFromInches</a>
@@ -998,6 +1152,9 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#setalwaysdrawn">setAlwaysDrawn</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#setfeatureoverrideproviderchanged">setFeatureOverrideProviderChanged</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#setflashed">setFlashed</a>
@@ -1042,6 +1199,9 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
                                             <a class='title solo-title menu-text' href="#viewtoworldarray">viewToWorldArray</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#viewsmodel">viewsModel</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#worldtonpc">worldToNpc</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -1083,6 +1243,9 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#_changeflags">_changeFlags</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#_viewrange">_viewRange</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -1105,6 +1268,9 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#debugboundingboxes">debugBoundingBoxes</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#displaystyle">displayStyle</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#featureoverrideprovider">featureOverrideProvider</a>
@@ -1176,6 +1342,15 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
                                             <a class='title solo-title menu-text' href="#onalwaysdrawnchanged">onAlwaysDrawnChanged</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#ondisplaystylechanged">onDisplayStyleChanged</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#onfeatureoverrideproviderchanged">onFeatureOverrideProviderChanged</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#onfeatureoverrideschanged">onFeatureOverridesChanged</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#onneverdrawnchanged">onNeverDrawnChanged</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -1183,6 +1358,15 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#onviewchanged">onViewChanged</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#onviewedcategorieschanged">onViewedCategoriesChanged</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#onviewedmodelschanged">onViewedModelsChanged</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#onviewportchanged">onViewportChanged</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#pixelsperinch">pixelsPerInch</a>
@@ -1254,11 +1438,13 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -1307,5 +1493,6 @@ for undo/redo (i.e. <em>View Previous</em> and <em>View Next</em>) of viewing to
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

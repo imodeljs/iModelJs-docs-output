@@ -240,23 +240,23 @@
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-countedgesaroundface"><span class="method-name"><a href="countedgesaroundface">countEdgesAroundFace</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="countedgesaroundface" class="heading-anchor" href="#countedgesaroundface"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
-<td>&#xA0;</td>
-</tr>
-<tr>
-<td class="h-countedgesaroundvertex"><span class="method-name"><a href="countedgesaroundvertex">countEdgesAroundVertex</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="countedgesaroundvertex" class="heading-anchor" href="#countedgesaroundvertex"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td class="h-countedgesaroundface"><span class="method-name">countEdgesAroundFace</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="countedgesaroundface" class="heading-anchor" href="#countedgesaroundface"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Returns the number of edges around this face.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-countmaskaroundface"><span class="method-name"><a href="countmaskaroundface">countMaskAroundFace</a></span><span class="method-parenthesis">(</span><span class="method-parameters">mask: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedgemask'>HalfEdgeMask</a>, value: boolean = true</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="countmaskaroundface" class="heading-anchor" href="#countmaskaroundface"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td class="h-countedgesaroundvertex"><span class="method-name">countEdgesAroundVertex</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="countedgesaroundvertex" class="heading-anchor" href="#countedgesaroundvertex"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Returns the number of edges around vertex.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-countmaskaroundvertex"><span class="method-name"><a href="countmaskaroundvertex">countMaskAroundVertex</a></span><span class="method-parenthesis">(</span><span class="method-parameters">mask: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedgemask'>HalfEdgeMask</a>, value: boolean = true</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="countmaskaroundvertex" class="heading-anchor" href="#countmaskaroundvertex"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-countmaskaroundface"><span class="method-name">countMaskAroundFace</span><span class="method-parenthesis">(</span><span class="method-parameters">mask: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedgemask'>HalfEdgeMask</a>, value: boolean = true</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="countmaskaroundface" class="heading-anchor" href="#countmaskaroundface"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Returns the number of nodes found with the given mask value around this vertex loop.</td>
 <td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-countmaskaroundvertex"><span class="method-name">countMaskAroundVertex</span><span class="method-parenthesis">(</span><span class="method-parameters">mask: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedgemask'>HalfEdgeMask</a>, value: boolean = true</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="countmaskaroundvertex" class="heading-anchor" href="#countmaskaroundvertex"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Returns the number of nodes found with the given mask value around this vertex loop.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -270,8 +270,28 @@
 <td>&#xA0;</td>
 </tr>
 <tr>
+<td class="h-facestepy"><span class="method-name">faceStepY</span><span class="method-parenthesis">(</span><span class="method-parameters">numStep: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="facestepy" class="heading-anchor" href="#facestepy"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Take numStep face steps and return y coordinate<br><em> positive steps are through faceSuccessor<br></em> negative steps are through facePredecessor</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-fractionalongandperpendiculartopoint2d"><span class="method-name"><a href="fractionalongandperpendiculartopoint2d">fractionAlongAndPerpendicularToPoint2d</a></span><span class="method-parenthesis">(</span><span class="method-parameters">fractionAlong: number, fractionPerpendicular: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a></span><a id="fractionalongandperpendiculartopoint2d" class="heading-anchor" href="#fractionalongandperpendiculartopoint2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>* interpolate xy coordinates at fractionAlong between this node and its face successor.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-fractiontopoint2d"><span class="method-name"><a href="fractiontopoint2d">fractionToPoint2d</a></span><span class="method-parenthesis">(</span><span class="method-parameters">fraction: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a></span><a id="fractiontopoint2d" class="heading-anchor" href="#fractiontopoint2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>interpolate xy coordinates between this node and its face successor.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-fractiontox"><span class="method-name"><a href="fractiontox">fractionToX</a></span><span class="method-parenthesis">(</span><span class="method-parameters">fraction: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="fractiontox" class="heading-anchor" href="#fractiontox"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-fractiontoy"><span class="method-name"><a href="fractiontoy">fractionToY</a></span><span class="method-parenthesis">(</span><span class="method-parameters">fraction: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="fractiontoy" class="heading-anchor" href="#fractiontoy"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -321,7 +341,7 @@
 </tr>
 <tr>
 <td class="h-testandsetmask"><span class="method-name"><a href="testandsetmask">testAndSetMask</a></span><span class="method-parenthesis">(</span><span class="method-parameters">mask: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedgemask'>HalfEdgeMask</a></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="testandsetmask" class="heading-anchor" href="#testandsetmask"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>Set a mask, and return prior value.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -361,6 +381,11 @@
 </tr>
 <tr>
 <td class="h-horizontalscanfraction"><span class="method-name"><a href="horizontalscanfraction">horizontalScanFraction</a></span><span class="method-parenthesis">(</span><span class="method-parameters">node0: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedge'>HalfEdge</a>, y: number</span><span class="method-parenthesis">):</span><span class="method-output"> number | undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedge'>HalfEdge</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="horizontalscanfraction" class="heading-anchor" href="#horizontalscanfraction"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>* Compute fractional coordintes of the intersection of a horizontal line with an edge.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-horizontalscanfraction01"><span class="method-name"><a href="horizontalscanfraction01">horizontalScanFraction01</a></span><span class="method-parenthesis">(</span><span class="method-parameters">node0: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedge'>HalfEdge</a>, y: number</span><span class="method-parenthesis">):</span><span class="method-output"> number | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="horizontalscanfraction01" class="heading-anchor" href="#horizontalscanfraction01"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>* Compute fractional coordintes of the intersection of a horizontal line with an edge.</td>
 <td>&#xA0;</td>
 </tr>
@@ -447,25 +472,25 @@
 <tr>
 <td class="h-i"><span class="property-name">i</span><a id="i" class="heading-anchor" href="#i"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">number</span></td>
-<td>&#xA0;</td>
+<td>Vertex index in some parent object&apos;s numbering.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-id"><span class="property-name">id</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="id" class="heading-anchor" href="#id"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> any</span></td>
-<td>&#xA0;</td>
+<td>id assigned sequentially during construction --- useful for debugging.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-maskbits"><span class="property-name">maskBits</span><a id="maskbits" class="heading-anchor" href="#maskbits"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">number</span></td>
-<td>&#xA0;</td>
+<td>bitmask bits, used to mark nodes as part of a triangle(idx 0) or visited when flipping(idx 1)</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-sortangle"><span class="property-name">sortAngle</span><a id="sortangle" class="heading-anchor" href="#sortangle"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | number</span></td>
-<td>&#xA0;</td>
+<td>angle used for sort-around-vertex</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -475,33 +500,33 @@
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-vertexpredecessor"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedge/vertexpredecessor'>vertexPredecessor</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="vertexpredecessor" class="heading-anchor" href="#vertexpredecessor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-vertexpredecessor"><span class="property-name">vertexPredecessor</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="vertexpredecessor" class="heading-anchor" href="#vertexpredecessor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedge'>HalfEdge</a></span></td>
-<td>&#xA0;</td>
+<td>Return the next outbound half edge around this vertex in the CW direction</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-vertexsuccessor"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedge/vertexsuccessor'>vertexSuccessor</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="vertexsuccessor" class="heading-anchor" href="#vertexsuccessor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-vertexsuccessor"><span class="property-name">vertexSuccessor</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="vertexsuccessor" class="heading-anchor" href="#vertexsuccessor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedge'>HalfEdge</a></span></td>
-<td>&#xA0;</td>
+<td>Return the next outbound half edge around this vertex in the CCW direction</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-x"><span class="property-name">x</span><a id="x" class="heading-anchor" href="#x"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">number</span></td>
-<td>&#xA0;</td>
+<td>Vertex x coordinate</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-y"><span class="property-name">y</span><a id="y" class="heading-anchor" href="#y"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">number</span></td>
-<td>&#xA0;</td>
+<td>Vertex y coordinate</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-z"><span class="property-name">z</span><a id="z" class="heading-anchor" href="#z"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">number</span></td>
-<td>&#xA0;</td>
+<td>Vertex z coordinate</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -516,7 +541,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -613,7 +638,19 @@
                                             <a class='title solo-title menu-text' href="#distancexy">distanceXY</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#facestepy">faceStepY</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#fractionalongandperpendiculartopoint2d">fractionAlongAndPerpendicularToPoint2d</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#fractiontopoint2d">fractionToPoint2d</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#fractiontox">fractionToX</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#fractiontoy">fractionToY</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#getmask">getMask</a>
@@ -668,6 +705,9 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#horizontalscanfraction">horizontalScanFraction</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#horizontalscanfraction01">horizontalScanFraction01</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#nodetoid">nodeToId</a>
@@ -780,11 +820,13 @@
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -833,5 +875,6 @@
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

@@ -189,20 +189,25 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/">imodeljs-common</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/views/">Views</a> > SubCategoryOverride</div>
             
             <h2 class="h-subcategoryoverride">SubCategoryOverride <span class="badge badge-pill badge-primary badge-class">Class</span><a id="subcategoryoverride" class="heading-anchor" href="#subcategoryoverride"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<h3 class="h-overrides-selected-aspects-of-a-subcategoryappearance-in-the-context-of-a-$viewstate$reflinksourceimodeljs-commonsubcategoryappearancets146">Overrides selected aspects of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryappearance'>SubCategoryAppearance</a> in the context of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a>.<a id="overrides-selected-aspects-of-a-subcategoryappearance-in-the-context-of-a-$viewstate$reflinksourceimodeljs-commonsubcategoryappearancets146" class="heading-anchor" href="#overrides-selected-aspects-of-a-subcategoryappearance-in-the-context-of-a-$viewstate$reflinksourceimodeljs-commonsubcategoryappearancets146"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>When determining how geometry belonging to a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/subcategory'>SubCategory</a> will appear when drawn within a view:</p>
+<p>Overrides selected aspects of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryappearance'>SubCategoryAppearance</a> in the context of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a>.
+When determining how geometry belonging to a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/subcategory'>SubCategory</a> will appear when drawn within a view:</p>
 <ol>
 <li>The base <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryappearance'>SubCategoryAppearance</a> associated with that subcategory is obtained.</li>
 <li>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryoverride'>SubCategoryOverride</a> associated with that subcategory in the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a> is obtained.</li>
 <li>Any aspects of the appearance overridden by the SubCategoryOverride are replaced with the values from the SubCategoryOverride.
 An aspect is overridden by virtue of not being set to &quot;undefined&quot; in the SubCategoryOverride.</li>
 </ol>
-<p><span class="badge badge-pill badge-primary badge-see">see</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate/overridesubcategory'>overrideSubCategory</a></p>
+<p><span class="badge badge-pill badge-primary badge-see">see</span> overrideSubCategory</p>
 <h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 <th></th>
+</tr>
+<tr>
+<td class="h-equals"><span class="method-name">equals</span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryoverride'>SubCategoryOverride</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="equals" class="heading-anchor" href="#equals"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Perform equality comparison against another SubCategoryOverride.</td>
+<td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-override"><span class="method-name">override</span><span class="method-parenthesis">(</span><span class="method-parameters">appearance: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryappearance'>SubCategoryAppearance</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryappearance'>SubCategoryAppearance</a></span><a id="override" class="heading-anchor" href="#override"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -246,7 +251,7 @@ An aspect is overridden by virtue of not being set to &quot;undefined&quot; in t
 </tr>
 <tr>
 <td class="h-invisible"><span class="property-name">invisible</span><a id="invisible" class="heading-anchor" href="#invisible"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output">undefined | true | false</span></td>
+<td><span class="method-output">undefined | false | true</span></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
@@ -259,6 +264,12 @@ An aspect is overridden by virtue of not being set to &quot;undefined&quot; in t
 <tr>
 <td class="h-priority"><span class="property-name">priority</span><a id="priority" class="heading-anchor" href="#priority"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | number</span></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-style"><span class="property-name">style</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="style" class="heading-anchor" href="#style"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
@@ -280,7 +291,7 @@ An aspect is overridden by virtue of not being set to &quot;undefined&quot; in t
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -341,6 +352,9 @@ An aspect is overridden by virtue of not being set to &quot;undefined&quot; in t
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#equals">equals</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#override">override</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -376,6 +390,9 @@ An aspect is overridden by virtue of not being set to &quot;undefined&quot; in t
                                             <a class='title solo-title menu-text' href="#priority">priority</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#style">style</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#transparency">transparency</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -409,11 +426,13 @@ An aspect is overridden by virtue of not being set to &quot;undefined&quot; in t
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -462,5 +481,6 @@ An aspect is overridden by virtue of not being set to &quot;undefined&quot; in t
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

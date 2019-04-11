@@ -202,18 +202,13 @@
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-invocationcallback"><span class="method-name">invocationCallback</span><span class="method-parenthesis">(</span><span class="method-parameters">_invocation: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcinvocation'>RpcInvocation</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="invocationcallback" class="heading-anchor" href="#invocationcallback"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-invocationcallback"><span class="method-name">invocationCallback</span><span class="method-parenthesis">(</span><span class="method-parameters">_invocation: RpcInvocation</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="invocationcallback" class="heading-anchor" href="#invocationcallback"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Called for every operation invocation on the backend.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-requestcallback"><span class="method-name">requestCallback</span><span class="method-parenthesis">(</span><span class="method-parameters">_request: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcrequest'>RpcRequest</a>&lt;any&gt;</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="requestcallback" class="heading-anchor" href="#requestcallback"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Called before every operation request on the frontend is sent.</td>
-<td>&#xA0;</td>
-</tr>
-<tr>
-<td class="h-requestid"><span class="method-name">requestId</span><span class="method-parenthesis">(</span><span class="method-parameters">_request: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcrequest'>RpcRequest</a>&lt;any&gt;</span><span class="method-parenthesis">):</span><span class="method-output"> string</span><a id="requestid" class="heading-anchor" href="#requestid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Supplies the unique identifier for an operation request.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -231,13 +226,26 @@
 <td>Supplies the IModelToken for an operation request.</td>
 <td>&#xA0;</td>
 </tr>
+</tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th></th>
+</tr>
+<tr>
+<td class="h-forcestrictmode"><span class="property-name">forceStrictMode</span><a id="forcestrictmode" class="heading-anchor" href="#forcestrictmode"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output">boolean</span></td>
+<td>Forces RpcConfiguration.strictMode for this operation.</td>
+<td>&#xA0;</td>
+</tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/common/src/rpc/core/RpcOperation.ts">rpc/core/RpcOperation.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -307,9 +315,6 @@
                                             <a class='title solo-title menu-text' href="#requestcallback">requestCallback</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#requestid">requestId</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#retryinterval">retryInterval</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -317,6 +322,17 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#token">token</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-properties" class='title' href="#properties"/>
+                            <b class='dropdown-menu-title menu-text'>Properties</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-properties" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#forcestrictmode">forceStrictMode</a>
                                     </li>
                             </ul>
                     </li>
@@ -346,11 +362,13 @@
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -399,5 +417,6 @@
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

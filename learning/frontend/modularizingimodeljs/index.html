@@ -202,7 +202,7 @@ lodash</code></pre>
 <h2 class="h-building-applications-to-use-external-modules">Building Applications to Use External Modules&gt;<a id="building-applications-to-use-external-modules" class="heading-anchor" href="#building-applications-to-use-external-modules"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>An application that uses the IModel.js external module system should be built in the same way as the IModel.js external modules, so it has the correct webpack runtime. The easiest way to do that is to use the same webpackModule.config.js configuration script. See test-app/ui-test-app/package.json for an example.</p>
 <h2 class="h-loading-modules-at-runtime">Loading Modules at Runtime<a id="loading-modules-at-runtime" class="heading-anchor" href="#loading-modules-at-runtime"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>When a browser application relies on external modules, they must be loaded prior to the application module. A typical way to do that for single page applications (like most IModel.js applications) is to add script tags in the application&apos;s HTML template. The script tags have to be added in the correct order, because all of the dependents of a particular module must be loaded before it is loaded (hence the necessity of an acyclic dependency graph). Loading modules through script tags in that manner would require every application to put script tags for the entire set of modules in the correct sequence, and would require revision to each template HTML file whenever there was a change to the set of external modules, so instead there is an iModelJsLoader module that supervises the loading of all the other external modules. To use that loader, the application inserts two script tags into the <code>&lt;head&gt;</code> section of its HTML template:</p>
+<p>When a browser application relies on external modules, they must be loaded prior to the application module. A typical way to do that for single page applications (like most IModel.js applications) is to add script tags in the application&apos;s HTML template. The script tags have to be added in the correct order, because all of the dependents of a particular module must be loaded before it is loaded (hence the necessity of an acyclic dependency graph). Loading modules through script tags in that manner would require every application to put script tags for the entire set of modules in the correct sequence, and would require revision to each template HTML file whenever there was a change to the set of external modules, so instead there is an IModelJsLoader module that supervises the loading of all the other external modules. To use that loader, the application inserts two script tags into the <code>&lt;head&gt;</code> section of its HTML template:</p>
 <pre class="no-line-numbers"><code class="language-json">  &lt;!-- use the IModelJs loader to load the system iModel.js modules --&gt;
   &lt;script type=&quot;text/javascript&quot; src=&quot;runtime.bundle.js&quot;&gt;&lt;/script&gt;
   &lt;script type=&quot;text/javascript&quot; src=&quot;IModelJsLoader.js&quot; data-imjsversion=&quot;0.170.0&quot; data-uicomponents=&quot;true&quot; data-uiframework=&quot;true&quot;&gt;&lt;/script&gt;</code></pre>
@@ -236,7 +236,7 @@ else
 <p>Once the servers are running, you can open a web browser and navigate to localhost:3000 to run the application.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -346,11 +346,13 @@ else
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -399,5 +401,6 @@ else
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

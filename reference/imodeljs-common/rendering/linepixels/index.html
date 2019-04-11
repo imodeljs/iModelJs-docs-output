@@ -190,7 +190,7 @@
             
             <h2 class="h-linepixels">LinePixels <span class="badge badge-pill badge-primary badge-enumeration">Enumeration</span><a id="linepixels" class="heading-anchor" href="#linepixels"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Enumerates the available patterns for drawing patterned lines.
-Each is a 32-bit pattern in which each bit specifies the on- or off-state of a pixel.</p>
+Each is a 32-bit pattern in which each bit specifies the on- or off-state of a pixel along the line. The pattern repeats along the length of the entire line.</p>
 <h3 class="h-members">Members<a id="members" class="heading-anchor" href="#members"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -200,62 +200,62 @@ Each is a 32-bit pattern in which each bit specifies the on- or off-state of a p
 <tr>
 <td class="h-solid"><span class="enum-name">Solid</span><a id="solid" class="heading-anchor" href="#solid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value">0</span></td>
-<td>&#xA0;</td>
+<td>A solid line.</td>
 </tr>
 <tr>
 <td class="h-invisible"><span class="enum-name">Invisible</span><a id="invisible" class="heading-anchor" href="#invisible"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value">1</span></td>
-<td>&#xA0;</td>
+<td>Barely visible - 1 lit pixel followed by 31 unlit pixels.</td>
 </tr>
 <tr>
 <td class="h-invalid"><span class="enum-name">Invalid</span><a id="invalid" class="heading-anchor" href="#invalid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value"> -1</span></td>
-<td>&#xA0;</td>
+<td>Indicates no valid line style or none specified, depending on context.</td>
 </tr>
 <tr>
 <td class="h-code0"><span class="enum-name">Code0</span><a id="code0" class="heading-anchor" href="#code0"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value"> Solid</span></td>
-<td>&#xA0;</td>
+<td>A solid line.</td>
 </tr>
 <tr>
 <td class="h-code1"><span class="enum-name">Code1</span><a id="code1" class="heading-anchor" href="#code1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value">2155905152</span></td>
-<td>&#xA0;</td>
+<td>1 lit pixel followed by 7 unlit pixels: =&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;=&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;=</td>
 </tr>
 <tr>
 <td class="h-hiddenline"><span class="enum-name">HiddenLine</span><a id="hiddenline" class="heading-anchor" href="#hiddenline"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value">3435973836</span></td>
-<td>&#xA0;</td>
+<td>2 lit pixels followed by 2 unlit pixels - default style for drawing hidden edges: ==&#xA0;&#xA0;==&#xA0;&#xA0;==&#xA0;&#xA0;==</td>
 </tr>
 <tr>
 <td class="h-code5"><span class="enum-name">Code5</span><a id="code5" class="heading-anchor" href="#code5"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value">3772834016</span></td>
-<td>&#xA0;</td>
+<td>3 lit pixels followed by 5 unlit pixels: ===&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;===&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;===</td>
 </tr>
 <tr>
 <td class="h-code6"><span class="enum-name">Code6</span><a id="code6" class="heading-anchor" href="#code6"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value">4169726088</span></td>
-<td>&#xA0;</td>
+<td>5 lit pixels followed by 3 unlit followed by 1 lit followed by 3 unlit followed by 1 lit followed by 3 unlit: =====&#xA0;&#xA0;&#xA0;=&#xA0;&#xA0;&#xA0;=&#xA0;&#xA0;&#xA0;=====</td>
 </tr>
 <tr>
 <td class="h-code2"><span class="enum-name">Code2</span><a id="code2" class="heading-anchor" href="#code2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value">4177066232</span></td>
-<td>&#xA0;</td>
+<td>5 lit pixels followed by 3 unlit pixels: =====&#xA0;&#xA0;&#xA0;=====&#xA0;&#xA0;&#xA0;=====</td>
 </tr>
 <tr>
 <td class="h-code4"><span class="enum-name">Code4</span><a id="code4" class="heading-anchor" href="#code4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value">4262526480</span></td>
-<td>&#xA0;</td>
+<td>7 lit pixels followed by 4 unlit pixels followed by 1 lit pixel followed by 1 lit pixel: =======&#xA0;&#xA0;&#xA0;&#xA0;=&#xA0;&#xA0;&#xA0;&#xA0;=======&#xA0;&#xA0;&#xA0;&#xA0;=</td>
 </tr>
 <tr>
 <td class="h-code7"><span class="enum-name">Code7</span><a id="code7" class="heading-anchor" href="#code7"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value">4279828248</span></td>
-<td>&#xA0;</td>
+<td>8 lit pixels followed by 3 unlit followed by 2 lit followed by 3 unlit: ========&#xA0;&#xA0;&#xA0;==&#xA0;&#xA0;&#xA0;========</td>
 </tr>
 <tr>
 <td class="h-code3"><span class="enum-name">Code3</span><a id="code3" class="heading-anchor" href="#code3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="enum-value">4292935648</span></td>
-<td>&#xA0;</td>
+<td>11 lit pixels followed by 5 unlit pixels: ===========&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;===========</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -263,7 +263,7 @@ Each is a 32-bit pattern in which each bit specifies the on- or off-state of a p
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -387,11 +387,13 @@ Each is a 32-bit pattern in which each bit specifies the on- or off-state of a p
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -440,5 +442,6 @@ Each is a 32-bit pattern in which each bit specifies the on- or off-state of a p
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

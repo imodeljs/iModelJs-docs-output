@@ -118,37 +118,37 @@
             <h1 id="named versions">Named Versions</h1>
 <p>Every <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a> pushed to iModelHub creates a new Version of iModel. To distinguish a specific ChangeSet in iModel&apos;s timeline, that represents an important milestone or significant event for that iModel, its Version can be given a unique human-readable name, creating a Named <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/version'>Version</a>. It will allow Version to be easier to recognize and access. Named Versions can be queried separately from ChangeSets and they get <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/thumbnail'>Thumbnail</a>s rendered.</p>
 <h2 class="h-creating-named-versions">Creating Named Versions<a id="creating-named-versions" class="heading-anchor" href="#creating-named-versions"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Named Version can be created by calling <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/versionhandler/create'>VersionHandler.create</a>. To create a Named Version a ChangeSet id has to be specified. <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/briefcaseentry/changesetid'>BriefcaseEntry.changeSetId</a> provides latest ChangeSet id applied to the briefcase file. It&apos;s also possible to query all ChangeSets through <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changesethandler/get'>ChangeSetHandler.get</a>.</p>
+<p>Named Version can be created by calling <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/versionhandler/create'>VersionHandler.create</a>. To create a Named Version a ChangeSet id has to be specified. You can get ChangeSet ids by querying ChangeSets through <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changesethandler/get'>ChangeSetHandler.get</a>.</p>
 <p>To create a Named Version from a ChangeSet query:</p>
 <pre class="no-line-numbers"><code class="language-typescript">  // Query all ChangeSets
-  const changeSets: ChangeSet[] = await imodelHubClient.changeSets.get(alctx, token, imodelId);
+  const changeSets: ChangeSet[] = await imodelHubClient.changeSets.get(authorizedRequestContext, imodelId);
   // Select one of the resulting ChangeSets
   const changeSetId: string = changeSets[0].id!;
   // Create a Named Version for that ChangeSet
-  const createdVersion: Version = await imodelHubClient.versions.create(alctx, token, imodelId, changeSetId, &quot;Version name&quot;, &quot;Version description&quot;);
+  const createdVersion: Version = await imodelHubClient.versions.create(authorizedRequestContext, imodelId, changeSetId, &quot;Version name&quot;, &quot;Version description&quot;);
 </code></pre>
 <h2 class="h-querying-named-versions">Querying Named Versions<a id="querying-named-versions" class="heading-anchor" href="#querying-named-versions"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>After creating Named Version, its possible to query them by calling <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/versionhandler/get'>VersionHandler.get</a>. Results of this query can be modified by using <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/versionquery'>VersionQuery</a>. Named Versions by default are ordered from the newest ChangeSet to the oldest.</p>
 <pre class="no-line-numbers"><code class="language-typescript">  // Query all Named Versions
-  const allVersions: Version[] = await imodelHubClient.versions.get(alctx, token, imodelId);
+  const allVersions: Version[] = await imodelHubClient.versions.get(authorizedRequestContext, imodelId);
   // Query a single Named Version by its name
   const queryByName: VersionQuery = new VersionQuery().byName(&quot;Version name&quot;);
-  const versionByName: Version[] = await imodelHubClient.versions.get(alctx, token, imodelId, queryByName);
+  const versionByName: Version[] = await imodelHubClient.versions.get(authorizedRequestContext, imodelId, queryByName);
 </code></pre>
 <h2 class="h-downloading-thumbnails">Downloading Thumbnails<a id="downloading-thumbnails" class="heading-anchor" href="#downloading-thumbnails"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Once a Named Version is created, iModelHub generates its <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/thumbnail'>Thumbnail</a> in the background. To get this Thumbnail, a Version query can be specified with <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/versionquery/selectthumbnailid'>VersionQuery.selectThumbnailId</a> or all Thumbnails can be queried through <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/thumbnailhandler/get'>ThumbnailHandler.get</a>.</p>
 <p>Thumbnail might not be immediately available after creating a Named Version, as generating it could take some time. If Thumbnail is not returned after creating Named Version, you can try querying it again later.</p>
 <pre class="no-line-numbers"><code class="language-typescript">  // Query Named Version with its Thumbnail Id
   const thumbnailIdQuery: VersionQuery = new VersionQuery().byName(&quot;Version name&quot;).selectThumbnailId(&quot;Small&quot;);
-  const versionWithThumbnailId: Version[] = await imodelHubClient.versions.get(alctx, token, imodelId, thumbnailIdQuery);
+  const versionWithThumbnailId: Version[] = await imodelHubClient.versions.get(authorizedRequestContext, imodelId, thumbnailIdQuery);
   // Download the Thumbnail
   const thumbnail: SmallThumbnail = new SmallThumbnail();
   thumbnail.id = versionWithThumbnailId[0].smallThumbnailId!;
-  const thumbnailContents: string = await imodelHubClient.thumbnails.download(alctx, token, imodelId, thumbnail);
+  const thumbnailContents: string = await imodelHubClient.thumbnails.download(authorizedRequestContext, imodelId, thumbnail);
 </code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -226,11 +226,13 @@
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -279,5 +281,6 @@
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

@@ -216,6 +216,16 @@ amongst multiple sub-Graphics of a <a href='https://imodeljs.github.io/iModelJs-
 <td>Returns the Feature corresponding to the specified index, or undefined if the index is not present.</td>
 <td>&#xA0;</td>
 </tr>
+<tr>
+<td class="h-getarray"><span class="method-name">getArray</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> Array&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/collections/indexedvalue'>IndexedValue</a>&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/feature'>Feature</a>&gt;&gt;</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="getarray" class="heading-anchor" href="#getarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-insertwithindex"><span class="method-name">insertWithIndex</span><span class="method-parenthesis">(</span><span class="method-parameters">feature: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/feature'>Feature</a>, index: number</span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="insertwithindex" class="heading-anchor" href="#insertwithindex"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
 </tbody></table><h3 class="h-inherited-methods"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited methods<a id="inherited-methods" class="heading-anchor" href="#inherited-methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -250,15 +260,27 @@ amongst multiple sub-Graphics of a <a href='https://imodeljs.github.io/iModelJs-
 <th></th>
 </tr>
 <tr>
-<td class="h-isclassifier"><span class="property-name">isClassifier</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isclassifier" class="heading-anchor" href="#isclassifier"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-anydefined"><span class="property-name">anyDefined</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-external">External</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="anydefined" class="heading-anchor" href="#anydefined"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> boolean</span></td>
-<td>Returns true if this FeatureTable is associated with <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/batchtype/#classifier'>BatchType.Classifier</a> geometry.</td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-isplanarclassifier"><span class="property-name">isPlanarClassifier</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isplanarclassifier" class="heading-anchor" href="#isplanarclassifier"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> boolean</span></td>
+<td>Returns true if this FeatureTable is associated with <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/batchtype/#planarclassifier'>BatchType.PlanarClassifier</a> geometry.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-isuniform"><span class="property-name">isUniform</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isuniform" class="heading-anchor" href="#isuniform"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> boolean</span></td>
 <td>Returns true if this FeatureTable contains exactly one <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/feature'>Feature</a>.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-isvolumeclassifier"><span class="property-name">isVolumeClassifier</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isvolumeclassifier" class="heading-anchor" href="#isvolumeclassifier"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> boolean</span></td>
+<td>Returns true if this FeatureTable is associated with <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/batchtype/#volumeclassifier'>BatchType.VolumeClassifier</a> geometry.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -340,7 +362,7 @@ amongst multiple sub-Graphics of a <a href='https://imodeljs.github.io/iModelJs-
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -412,6 +434,12 @@ amongst multiple sub-Graphics of a <a href='https://imodeljs.github.io/iModelJs-
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#findfeature">findFeature</a>
                                     </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#getarray">getArray</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#insertwithindex">insertWithIndex</a>
+                                    </li>
                             </ul>
                     </li>
                     <li class='nav-item item '>
@@ -441,10 +469,16 @@ amongst multiple sub-Graphics of a <a href='https://imodeljs.github.io/iModelJs-
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#isclassifier">isClassifier</a>
+                                            <a class='title solo-title menu-text' href="#anydefined">anyDefined</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isplanarclassifier">isPlanarClassifier</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#isuniform">isUniform</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#isvolumeclassifier">isVolumeClassifier</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#maxfeatures">maxFeatures</a>
@@ -515,11 +549,13 @@ amongst multiple sub-Graphics of a <a href='https://imodeljs.github.io/iModelJs-
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -568,5 +604,6 @@ amongst multiple sub-Graphics of a <a href='https://imodeljs.github.io/iModelJs-
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

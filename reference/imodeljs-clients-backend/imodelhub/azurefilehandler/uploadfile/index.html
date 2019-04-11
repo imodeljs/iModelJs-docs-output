@@ -189,9 +189,8 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients-backend/">imodeljs-clients-backend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients-backend/imodelhub/">iModelHub</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients-backend/imodelhub/azurefilehandler/">AzureFileHandler</a> > uploadFile</div>
             
             <h2 class="h-uploadfile">uploadFile <span class="badge badge-pill badge-primary badge-method">Method</span><a id="uploadfile" class="heading-anchor" href="#uploadfile"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>### </p>
 <p>Upload a file to AzureBlobStorage for the iModelHub.</p>
-<p><span class="method-name">uploadFile</span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, uploadUrlString: string, uploadFromPathname: string, progressCallback?: (progress: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/progressinfo'>ProgressInfo</a>) =&gt; void</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span></p>
+<p><span class="method-name">uploadFile</span><span class="method-parenthesis">(</span><span class="method-parameters">requestContext: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/authorizedclientrequestcontext'>AuthorizedClientRequestContext</a>, uploadUrlString: string, uploadFromPathname: string, progressCallback?: (progress: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/progressinfo'>ProgressInfo</a>) =&gt; void</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span></p>
 <p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/imodelhubclienterror'>IModelHubClientError</a> with <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelhubstatus/#undefinedargumenterror'>IModelHubStatus.UndefinedArgumentError</a> if one of the arguments is undefined or empty.</p>
 <p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/responseerror'>ResponseError</a> if the file cannot be uploaded.</p>
 <table class="table table-responsive"><tbody><tr>
@@ -200,9 +199,9 @@
 <th>Description</th>
 </tr>
 <tr>
-<td class="h-alctx"><span class="parameter-name">alctx</span><a id="alctx" class="heading-anchor" href="#alctx"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a></span></td>
-<td>The activity logging context</td>
+<td class="h-requestcontext"><span class="parameter-name">requestContext</span><a id="requestcontext" class="heading-anchor" href="#requestcontext"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/authorizedclientrequestcontext'>AuthorizedClientRequestContext</a></span></td>
+<td>The client request context</td>
 </tr>
 <tr>
 <td class="h-uploadurlstring"><span class="parameter-name">uploadUrlString</span><a id="uploadurlstring" class="heading-anchor" href="#uploadurlstring"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -221,11 +220,11 @@
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
-<li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/imodeljs-clients-backend/src/imodelhub/AzureFileHandler.ts">imodelhub/AzureFileHandler.ts</a></span></li>
+<li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/clients-backend/src/imodelhub/AzureFileHandler.ts">imodelhub/AzureFileHandler.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -280,7 +279,7 @@
             </a>
             <ul id="inner-nav-uploadfile" class='inner-nav'>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#alctx">alctx</a>
+                            <a class='title solo-title menu-text' href="#requestcontext">requestContext</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#uploadurlstring">uploadUrlString</a>
@@ -317,11 +316,13 @@
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -370,5 +371,6 @@
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

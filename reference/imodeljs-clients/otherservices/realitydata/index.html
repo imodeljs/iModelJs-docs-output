@@ -192,12 +192,12 @@
 <p>RealityData
 This class implements a Reality Data stored in ProjectWise Context Share (Reality Data Service)
 Data is accessed directly through methods of the reality data instance.
-Access to the data required a properly entitled token though the access to the blob is controled through
+Access to the data required a properly entitled token though the access to the blob is controlled through
 an Azure blob URL, the token may be required to obtain this Azure blob URL or refresh it.
 The Azure blob URL is considered valid for an hour and is refreshed after 50 minutes.
 In addition to the reality data properties, and Azure blob URL and internal states, a reality data also contains
 the identification of the CONNECT project to identify the context(used for access permissions resolution) and
-may contain a RealityDataClient to obtain the WSG client specialisation to communicate with ProjectWise Context Share (to obtain the Azure blob URL).</p>
+may contain a RealityDataClient to obtain the WSG client specialization to communicate with ProjectWise Context Share (to obtain the Azure blob URL).</p>
 <h3 class="h-extends">Extends<a id="extends" class="heading-anchor" href="#extends"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/wsginstance'>WsgInstance</a></li>
@@ -209,32 +209,32 @@ may contain a RealityDataClient to obtain the WSG client specialisation to commu
 <th></th>
 </tr>
 <tr>
-<td class="h-getblobstringurl"><span class="method-name"><a href="getblobstringurl">getBlobStringUrl</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, name: string, nameRelativeToRootDocumentPath: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;string&gt;</span><a id="getblobstringurl" class="heading-anchor" href="#getblobstringurl"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-getblobstringurl"><span class="method-name"><a href="getblobstringurl">getBlobStringUrl</a></span><span class="method-parenthesis">(</span><span class="method-parameters">requestContext: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/authorizedclientrequestcontext'>AuthorizedClientRequestContext</a>, name: string, nameRelativeToRootDocumentPath: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;string&gt;</span><a id="getblobstringurl" class="heading-anchor" href="#getblobstringurl"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Gets string url to fetch blob data from</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-getbloburl"><span class="method-name"><a href="getbloburl">getBlobUrl</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;URL&gt;</span><a id="getbloburl" class="heading-anchor" href="#getbloburl"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-getbloburl"><span class="method-name"><a href="getbloburl">getBlobUrl</a></span><span class="method-parenthesis">(</span><span class="method-parameters">requestContext: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/authorizedclientrequestcontext'>AuthorizedClientRequestContext</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;URL&gt;</span><a id="getbloburl" class="heading-anchor" href="#getbloburl"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Gets a tile access url URL object</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-getmodeldata"><span class="method-name"><a href="getmodeldata">getModelData</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, name: string, nameRelativeToRootDocumentPath: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;any&gt;</span><a id="getmodeldata" class="heading-anchor" href="#getmodeldata"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-getmodeldata"><span class="method-name"><a href="getmodeldata">getModelData</a></span><span class="method-parenthesis">(</span><span class="method-parameters">requestContext: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/authorizedclientrequestcontext'>AuthorizedClientRequestContext</a>, name: string, nameRelativeToRootDocumentPath: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;any&gt;</span><a id="getmodeldata" class="heading-anchor" href="#getmodeldata"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Gets a tileset&apos;s tile data</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-getrootdocumentjson"><span class="method-name"><a href="getrootdocumentjson">getRootDocumentJson</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;any&gt;</span><a id="getrootdocumentjson" class="heading-anchor" href="#getrootdocumentjson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-getrootdocumentjson"><span class="method-name"><a href="getrootdocumentjson">getRootDocumentJson</a></span><span class="method-parenthesis">(</span><span class="method-parameters">requestContext: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/authorizedclientrequestcontext'>AuthorizedClientRequestContext</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;any&gt;</span><a id="getrootdocumentjson" class="heading-anchor" href="#getrootdocumentjson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Gets a reality data root document json</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-gettilecontent"><span class="method-name"><a href="gettilecontent">getTileContent</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, name: string, nameRelativeToRootDocumentPath: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;any&gt;</span><a id="gettilecontent" class="heading-anchor" href="#gettilecontent"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-gettilecontent"><span class="method-name"><a href="gettilecontent">getTileContent</a></span><span class="method-parenthesis">(</span><span class="method-parameters">requestContext: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/authorizedclientrequestcontext'>AuthorizedClientRequestContext</a>, name: string, nameRelativeToRootDocumentPath: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;any&gt;</span><a id="gettilecontent" class="heading-anchor" href="#gettilecontent"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Gets tile content</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-gettilejson"><span class="method-name"><a href="gettilejson">getTileJson</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, name: string, nameRelativeToRootDocumentPath: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;any&gt;</span><a id="gettilejson" class="heading-anchor" href="#gettilejson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-gettilejson"><span class="method-name"><a href="gettilejson">getTileJson</a></span><span class="method-parenthesis">(</span><span class="method-parameters">requestContext: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/authorizedclientrequestcontext'>AuthorizedClientRequestContext</a>, name: string, nameRelativeToRootDocumentPath: boolean = false</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;any&gt;</span><a id="gettilejson" class="heading-anchor" href="#gettilejson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Gets a tileset&apos;s app data json</td>
 <td>&#xA0;</td>
 </tr>
@@ -462,7 +462,7 @@ may contain a RealityDataClient to obtain the WSG client specialisation to commu
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -689,11 +689,13 @@ may contain a RealityDataClient to obtain the WSG client specialisation to commu
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -742,5 +744,6 @@ may contain a RealityDataClient to obtain the WSG client specialisation to commu
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

@@ -189,9 +189,8 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/">imodeljs-clients</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/imodelhub/">iModelHub</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/imodelhub/versionhandler/">VersionHandler</a> > create</div>
             
             <h2 class="h-create">create <span class="badge badge-pill badge-primary badge-method">Method</span><a id="create" class="heading-anchor" href="#create"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>### </p>
 <p>Create a named <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/version'>Version</a> of an iModel.</p>
-<p><span class="method-name">create</span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, imodelId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guidstring'>GuidString</a>, changeSetId: string, name: string, description?: string</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/version'>Version</a>&gt;</span></p>
+<p><span class="method-name">create</span><span class="method-parenthesis">(</span><span class="method-parameters">requestContext: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/authorizedclientrequestcontext'>AuthorizedClientRequestContext</a>, iModelId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guidstring'>GuidString</a>, changeSetId: string, name: string, description?: string</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/version'>Version</a>&gt;</span></p>
 <p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/imodelhuberror'>IModelHubError</a> with <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelhubstatus/#userdoesnothavepermission'>IModelHubStatus.UserDoesNotHavePermission</a> if the user does not have ManageVersions permission.</p>
 <p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/imodelhuberror'>IModelHubError</a> with <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelhubstatus/#changesetdoesnotexist'>IModelHubStatus.ChangeSetDoesNotExist</a> if the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a> with specified changeSetId does not exist.</p>
 <p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/imodelhuberror'>IModelHubError</a> with <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/errors/imodelhubstatus/#versionalreadyexists'>IModelHubStatus.VersionAlreadyExists</a> if a named <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/version'>Version</a> already exists with the specified name.</p>
@@ -203,17 +202,12 @@
 <th>Description</th>
 </tr>
 <tr>
-<td class="h-alctx"><span class="parameter-name">alctx</span><a id="alctx" class="heading-anchor" href="#alctx"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a></span></td>
-<td>&#xA0;</td>
+<td class="h-requestcontext"><span class="parameter-name">requestContext</span><a id="requestcontext" class="heading-anchor" href="#requestcontext"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/authorizedclientrequestcontext'>AuthorizedClientRequestContext</a></span></td>
+<td>The client request context.</td>
 </tr>
 <tr>
-<td class="h-token"><span class="parameter-name">token</span><a id="token" class="heading-anchor" href="#token"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a></span></td>
-<td>Delegation token of the authorized user.</td>
-</tr>
-<tr>
-<td class="h-imodelid"><span class="parameter-name">imodelId</span><a id="imodelid" class="heading-anchor" href="#imodelid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-imodelid"><span class="parameter-name">iModelId</span><a id="imodelid" class="heading-anchor" href="#imodelid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guidstring'>GuidString</a></span></td>
 <td>Id of the iModel. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/hubimodel'>HubIModel</a>.</td>
 </tr>
@@ -239,7 +233,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -294,13 +288,10 @@
             </a>
             <ul id="inner-nav-create" class='inner-nav'>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#alctx">alctx</a>
+                            <a class='title solo-title menu-text' href="#requestcontext">requestContext</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#token">token</a>
-                    </li>
-                    <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#imodelid">imodelId</a>
+                            <a class='title solo-title menu-text' href="#imodelid">iModelId</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#changesetid">changeSetId</a>
@@ -337,11 +328,13 @@
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -390,5 +383,6 @@
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

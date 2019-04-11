@@ -118,7 +118,7 @@
             <h1 id="localization in imodel.js">Localization in iModel.js</h1>
 <p>Presenting information to the user in their preferred locale (language, date and time formatting, number formatting, etc.) is an important consideration for every computer program. iModel.js provides localization capabilities through the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/#i18n'>IModelApp.i18n</a> object.</p>
 <h2 class="h-language-translation">Language translation<a id="language-translation" class="heading-anchor" href="#language-translation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>String localization is handled in a conventional way. Rather than specifying strings directly, a &quot;key&quot; is passed to the IModelApp.i18n.translate method, which retrieves the corresponding string for the current locale for presentation to the user.</p>
+<p>String localization is handled in a conventional way. Rather than specifying strings directly, a &quot;key&quot; is passed to the <code>IModelApp.i18n.translate</code> method, which retrieves the corresponding string for the current locale for presentation to the user.</p>
 <p>For that to work, the localization system needs a dictionary of key-to-string substitutions for each expected locale. That dictionary is spread over a number of JSON files that are placed into a locale-specific directory in the application&apos;s &quot;public&quot; folder on the server. The key consists of a namespace (which identifies the specific JSON file in the locale directory, and thus must be unique across all packages in use), followed by a colon, followed by a period delimited tag that identifies the object within the JSON file.</p>
 <p>For example, suppose you are developing an application called SafetyBase and you want to group information, warning, and error messages into a localization namespace. Name the JSON file SafetyBaseMessages.json, put it into the public/locales/en directory, and put the following JSON in it:</p>
 <pre class="no-line-numbers"><code class="language-json"> {
@@ -182,7 +182,7 @@ PlaceSprinkler.register(toyToolsNS);</code></pre>
 <p>Since your code retrieves those localized strings, they do not have to be subkeys of &quot;tools.Place.Sprinkler&quot;. They could be separate keys in the same JSON file, or could even be in a different JSON file (in which case the namespace would be different). The convention demonstrated in the example above has the advantage of keeping the localizable strings associated with a particular tool all together, but the disadvantage that prompts or messages that might be usable for multiple tools would be duplicated in each tool.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -257,11 +257,13 @@ PlaceSprinkler.register(toyToolsNS);</code></pre>
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -310,5 +312,6 @@ PlaceSprinkler.register(toyToolsNS);</code></pre>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

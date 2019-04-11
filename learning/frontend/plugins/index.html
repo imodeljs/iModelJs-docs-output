@@ -122,7 +122,7 @@ bentleyjs-core, geometry-core, imodeljs-i18n, imodeljs-clients, imodeljs-common,
 classes, it will also include ui-core, ui-components, ui-ninezone, and ui-framework. In hosts that are designed to format and display EC data, the presentation-common,
 presentation-components, and presentation-frontend modules will be available as well. An example host is Design Review, which includes all of the modules above.</p>
 <h2 class="h-loading-plugins">Loading Plugins<a id="loading-plugins" class="heading-anchor" href="#loading-plugins"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a> can be loaded by calling the <code>loadPlugin</code> static method of the PluginAdministrator class. An ImmediateTool is provided that allows
+<p>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a> can be loaded by calling the <code>loadPlugin</code> static method of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/pluginadmin'>PluginAdmin</a> class. An <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/frontend/tools/#immediate-tools'>ImmediateTool</a> is provided that allows
 a user to initiate <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a> loading using the &quot;Plugin \&lt;pluginName&gt; [argument list]&quot; keyin.</p>
 <p>When the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/pluginadmin'>PluginAdmin</a> loadPlugin method is called, it initiates loading of the designated <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a>. The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a> is loaded as a typical JavaScript script,
 so any code that is outside the definition of a function or class is immediately executed. By convention, a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/plugin'>Plugin</a> defines a &quot;main&quot; function and executes that main function as the
@@ -181,7 +181,7 @@ returned from the call to PluginAdmin.register) and the Plugin can proceed no fu
 <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/pluginadmin'>PluginAdmin</a>.loadPlugin is called for the same plugin. Therefore, anything that need be done only once (such as registering a Tool), should go into the <code>onLoad</code> method and everything that should be done each time the Plugin is loaded (in this case, starting the registered Tool), should be done in the <code>onExecute</code> method.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -259,11 +259,13 @@ returned from the call to PluginAdmin.register) and the Plugin can proceed no fu
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -312,5 +314,6 @@ returned from the call to PluginAdmin.register) and the Plugin can proceed no fu
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

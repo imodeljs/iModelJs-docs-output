@@ -189,6 +189,7 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients-backend/">imodeljs-clients-backend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients-backend/oidcbackendclient/">OidcBackendClient</a> > OidcBackendClient</div>
             
             <h2 class="h-oidcbackendclient">OidcBackendClient <span class="badge badge-pill badge-primary badge-class">Class</span><a id="oidcbackendclient" class="heading-anchor" href="#oidcbackendclient"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-"><span class="badge badge-pill badge-primary badge-beta">Beta</span><a id class="heading-anchor" href="#"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>Utility to generate OIDC/OAuth tokens for backend applications</p>
 <h3 class="h-extends">Extends<a id="extends" class="heading-anchor" href="#extends"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -198,7 +199,6 @@
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients-backend/oidcdelegationclient/oidcdelegationclient'>OidcDelegationClient</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients-backend/oidcagentclient/oidcagentclient'>OidcAgentClient</a></li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients-backend/oidcagentclient/oidcagentclientv2'>OidcAgentClientV2</a></li>
 </ul>
 <h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -217,12 +217,17 @@
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-discoverendpoints"><span class="method-name">discoverEndpoints</span><span class="method-parenthesis">(</span><span class="method-parameters">actx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;Issuer&gt;</span><a id="discoverendpoints" class="heading-anchor" href="#discoverendpoints"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-discoverendpoints"><span class="method-name">discoverEndpoints</span><span class="method-parenthesis">(</span><span class="method-parameters">requestContext: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/clientrequestcontext'>ClientRequestContext</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;Issuer&gt;</span><a id="discoverendpoints" class="heading-anchor" href="#discoverendpoints"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Discover the endpoints of the service</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-getclient"><span class="method-name">getClient</span><span class="method-parenthesis">(</span><span class="method-parameters">actx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;OpenIdClient&gt;</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="getclient" class="heading-anchor" href="#getclient"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-getclient"><span class="method-name">getClient</span><span class="method-parenthesis">(</span><span class="method-parameters">requestContext: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/clientrequestcontext'>ClientRequestContext</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;OpenIdClient&gt;</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="getclient" class="heading-anchor" href="#getclient"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-parseuserinfo"><span class="method-name">parseUserInfo</span><span class="method-parenthesis">(</span><span class="method-parameters">jwt: string</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/userinfo'>UserInfo</a> | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="parseuserinfo" class="heading-anchor" href="#parseuserinfo"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
@@ -233,12 +238,12 @@
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-delete"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/client/#delete'>delete</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a>, token: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, relativeUrlPath: string</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="delete" class="heading-anchor" href="#delete"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-delete"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/client/#delete'>delete</a></span><span class="method-parenthesis">(</span><span class="method-parameters">requestContext: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/authorizedclientrequestcontext'>AuthorizedClientRequestContext</a>, relativeUrlPath: string</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="delete" class="heading-anchor" href="#delete"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/client'>Client</a></span></td>
 <td>used by clients to send delete requests</td>
 </tr>
 <tr>
-<td class="h-geturl"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/client/geturl'>getUrl</a></span><span class="method-parenthesis">(</span><span class="method-parameters">alctx: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext'>ActivityLoggingContext</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;string&gt;</span><a id="geturl" class="heading-anchor" href="#geturl"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-geturl"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/client/geturl'>getUrl</a></span><span class="method-parenthesis">(</span><span class="method-parameters">requestContext: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/clientrequestcontext'>ClientRequestContext</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;string&gt;</span><a id="geturl" class="heading-anchor" href="#geturl"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/client'>Client</a></span></td>
 <td>Gets the URL of the service.</td>
 </tr>
@@ -286,11 +291,11 @@
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
-<li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/imodeljs-clients-backend/src/oidc/OidcBackendClient.ts">oidc/OidcBackendClient.ts</a></span></li>
+<li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/clients-backend/src/oidc/OidcBackendClient.ts">oidc/OidcBackendClient.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -345,6 +350,9 @@
             </a>
             <ul id="inner-nav-oidcbackendclient" class='inner-nav'>
                     <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#"></a>
+                    </li>
+                    <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#extends">Extends</a>
                     </li>
                     <li class='nav-item item '>
@@ -367,6 +375,9 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#getclient">getClient</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#parseuserinfo">parseUserInfo</a>
                                     </li>
                             </ul>
                     </li>
@@ -441,11 +452,13 @@
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -494,5 +507,6 @@
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

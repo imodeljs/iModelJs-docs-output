@@ -140,23 +140,7 @@
 </tr>
 </tbody></table><blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Return the child <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            Element
-            </a>s (id and class id) of the parent <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            Element
-            </a> 0x1000000001e</p>
+<p><em>Goal:</em> Return the child <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a>s (id and class id) of the parent <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a> 0x1000000001e</p>
 <p><em>ECSQL</em></p>
 <pre class="no-line-numbers"><code class="language-sql"> SELECT TargetECInstanceId ChildId, TargetECClassId ChildClassId FROM bis.ElementOwnsChildElements WHERE SourceECInstanceId=0x1000000001e</code></pre>
 <p><em>Result</em></p>
@@ -200,15 +184,7 @@ We will also cover examples that compare ECSQL using navigation properties with 
 <p>As explained above using navigation properties instead of joins is preferred. So always double-check whether a navigation property is defined for the ECRelationshipClass you want to navigate. The examples below show how to use navigation properties and how the corresponding ECSQL using ECRelationshipClasses would look like.</p>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Return the <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            Model
-            </a> that contains the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> with code &apos;DEV-A-2-6&apos;.</p>
+<p><em>Goal:</em> Return the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#model'>Model</a> that contains the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> with code &apos;DEV-A-2-6&apos;.</p>
 <p><em>ECSQL</em></p>
 <pre class="no-line-numbers"><code class="language-sql"> SELECT Model FROM MyDomain.Device WHERE CodeValue=&apos;DEV-A-2-6&apos;</code></pre>
 <p><em>Result</em></p>
@@ -220,43 +196,11 @@ We will also cover examples that compare ECSQL using navigation properties with 
 <td></td>
 </tr>
 </tbody></table></blockquote>
-<p>Note that the above ECSQL implies to navigate from the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> ECClass (which is a subclass of <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            Element
-            </a> to the <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            Model
-            </a> ECClass using the ECRelationshipClass <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            ModelContainsElements
-            </a>. But none of that has to be expressed in the ECSQL. It is all hidden behind the navigation property and makes the ECSQL straight-forward.</p>
+<p>Note that the above ECSQL implies to navigate from the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> ECClass (which is a subclass of <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a> to the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#model'>Model</a> ECClass using the ECRelationshipClass <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#modelcontainselements'>ModelContainsElements</a>. But none of that has to be expressed in the ECSQL. It is all hidden behind the navigation property and makes the ECSQL straight-forward.</p>
 <p>The following ECSQL is the same as above but uses joins instead of the navigation property.</p>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Return the <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            Model
-            </a> that contains the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> with code &apos;DEV-A-2-6&apos;.</p>
+<p><em>Goal:</em> Return the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#model'>Model</a> that contains the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> with code &apos;DEV-A-2-6&apos;.</p>
 <p><em>ECSQL</em></p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT rel.SourceECInstanceId ModelId FROM bis.ModelContainsElements rel JOIN bis.Element ON rel.TargetECInstanceId=Element.ECInstanceId WHERE Element.CodeValue=&apos;DEV-A-2-6&apos;</code></pre>
 <p><em>Result</em></p>
@@ -271,15 +215,7 @@ We will also cover examples that compare ECSQL using navigation properties with 
 <p>If you want to return something else than just the id of the related instance, you can still use the navigation property but you need a join to bring in the related instance&apos;s class.</p>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Return the id, the modeled element and the parent model of the <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            Model
-            </a> that contains the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> with code &apos;DEV-A-2-6&apos;.</p>
+<p><em>Goal:</em> Return the id, the modeled element and the parent model of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#model'>Model</a> that contains the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> with code &apos;DEV-A-2-6&apos;.</p>
 <p><em>ECSQL</em></p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT Model.ECInstanceId,Model.ModeledElement.Id ModeledElementId,Model.ParentModel.Id ParentModelId FROM bis.Model JOIN bis.Element ON Element.Model.Id=Model.ECInstanceId WHERE Element.CodeValue=&apos;DEV-A-2-6&apos;</code></pre>
 <p><em>Result</em></p>
@@ -297,15 +233,7 @@ We will also cover examples that compare ECSQL using navigation properties with 
 <p>Again for the purpose of learning, the same ECSQL expressed with relationship classes instead of navigation properties looks like this.</p>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
-<p><em>Goal:</em> Return the id, the modeled element and the parent model of the <a
-            class='missingLink'
-            href='https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema'
-            data-toggle='tooltip'
-            data-html=true
-            data-placement='top'
-            title='<small>Link not found. Attempting: https://imodeljs.github.io/iModelJs-docs-output//bis\domains\biscore.ecschema</small>'>
-            Model
-            </a> that contains the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> with code &apos;DEV-A-2-6&apos;.</p>
+<p><em>Goal:</em> Return the id, the modeled element and the parent model of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#model'>Model</a> that contains the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/mydomain.ecschema/#device'>Device</a> with code &apos;DEV-A-2-6&apos;.</p>
 <p><em>ECSQL</em></p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT Model.ECInstanceId,Model.ModeledElement.Id ModeledElementId,Model.ParentModel.Id ParentModelId FROM MyDomain.Device JOIN bis.ModelContainsElements rel ON Device.ECInstanceId=rel.TargetECInstanceId JOIN bis.Model ON rel.SourceECInstanceId=Model.ECInstanceId WHERE Device.CodeValue=&apos;DEV-A-2-6&apos;</code></pre>
 <p><em>Result</em></p>
@@ -324,7 +252,7 @@ We will also cover examples that compare ECSQL using navigation properties with 
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/ecsqldatatypes'><strong>&lt; Previous</strong></a> &#xA0; | &#xA0; <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/polymorphicqueries'><strong>Next &gt;</strong></a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -419,11 +347,13 @@ We will also cover examples that compare ECSQL using navigation properties with 
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -472,5 +402,6 @@ We will also cover examples that compare ECSQL using navigation properties with 
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

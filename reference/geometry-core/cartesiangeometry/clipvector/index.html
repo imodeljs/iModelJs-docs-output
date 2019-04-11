@@ -197,13 +197,13 @@
 <th></th>
 </tr>
 <tr>
-<td class="h-appendclone"><span class="method-name">appendClone</span><span class="method-parenthesis">(</span><span class="method-parameters">clip: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipshape'>ClipShape</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="appendclone" class="heading-anchor" href="#appendclone"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Append a deep copy of the given ClipShape to this ClipVector.</td>
+<td class="h-appendclone"><span class="method-name">appendClone</span><span class="method-parenthesis">(</span><span class="method-parameters">clip: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipprimitive'>ClipPrimitive</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="appendclone" class="heading-anchor" href="#appendclone"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Append a deep copy of the given ClipPrimitive to this ClipVector.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-appendreference"><span class="method-name">appendReference</span><span class="method-parenthesis">(</span><span class="method-parameters">clip: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipshape'>ClipShape</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="appendreference" class="heading-anchor" href="#appendreference"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Append a reference of the given ClipShape to this ClipVector.</td>
+<td class="h-appendreference"><span class="method-name">appendReference</span><span class="method-parenthesis">(</span><span class="method-parameters">clip: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipprimitive'>ClipPrimitive</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="appendreference" class="heading-anchor" href="#appendreference"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Append a reference of the given ClipPrimitive to this ClipVector.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -228,17 +228,17 @@
 </tr>
 <tr>
 <td class="h-clone"><span class="method-name">clone</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span><a id="clone" class="heading-anchor" href="#clone"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Returns a deep copy of this ClipVector (optionally stores it in the result param rather than create using new())</td>
+<td>Create a deep copy of another ClipVector</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-extractboundaryloops"><span class="method-name"><a href="extractboundaryloops">extractBoundaryLoops</a></span><span class="method-parenthesis">(</span><span class="method-parameters">loopPoints: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[][], transform?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> number[]</span><a id="extractboundaryloops" class="heading-anchor" href="#extractboundaryloops"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>A simple way of packaging this ClipVector&apos;s ClipShape points into a multidimensional array, while also<br>taking into account each ClipShape&apos;s individual transforms.</td>
+<td>A simple way of packaging this ClipVector&apos;s ClipShape points into a multidimensional array, while also<br>taking into account each ClipPrimitive&apos;s individual transforms.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-getrange"><span class="method-name">getRange</span><span class="method-parenthesis">(</span><span class="method-parameters">transform?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a> | undefined</span><a id="getrange" class="heading-anchor" href="#getrange"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Returns the three-dimensional range that this ClipVector spans, which may be null.</td>
+<td>Returns the three-dimensional range of the ClipShapes (ignoring other kinds of clippers) that this ClipVector spans, which may be null.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -252,8 +252,8 @@
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-multiplyplanestimesmatrix"><span class="method-name">multiplyPlanesTimesMatrix</span><span class="method-parenthesis">(</span><span class="method-parameters">matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/matrix4d'>Matrix4d</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="multiplyplanestimesmatrix" class="heading-anchor" href="#multiplyplanestimesmatrix"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Returns true if able to successfully multiply all member ClipShape planes by the matrix given.</td>
+<td class="h-multiplyplanesbymatrix4d"><span class="method-name"><a href="multiplyplanesbymatrix4d">multiplyPlanesByMatrix4d</a></span><span class="method-parenthesis">(</span><span class="method-parameters">matrix: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/matrix4d'>Matrix4d</a>, invert: boolean = true, transpose: boolean = true</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="multiplyplanesbymatrix4d" class="heading-anchor" href="#multiplyplanesbymatrix4d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Multiply all ClipPlanes DPoint4d by matrix.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -287,23 +287,28 @@
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-createclipshapeclones"><span class="method-name">createClipShapeClones</span><span class="method-parenthesis">(</span><span class="method-parameters">clips: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipshape'>ClipShape</a>[], result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createclipshapeclones" class="heading-anchor" href="#createclipshapeclones"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Create a ClipVector from an array of ClipShapes, each one becoming a deep copy.</td>
+<td class="h-create"><span class="method-name">create</span><span class="method-parenthesis">(</span><span class="method-parameters">clips: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipprimitive'>ClipPrimitive</a>[], result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="create" class="heading-anchor" href="#create"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Create a ClipVector from (clones of) an array of ClipPrimitives</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-createclipshaperefs"><span class="method-name">createClipShapeRefs</span><span class="method-parenthesis">(</span><span class="method-parameters">clips: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipshape'>ClipShape</a>[], result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createclipshaperefs" class="heading-anchor" href="#createclipshaperefs"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Create a ClipVector from an array of ClipShapes</td>
+<td class="h-createcapture"><span class="method-name">createCapture</span><span class="method-parenthesis">(</span><span class="method-parameters">clips: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipprimitive'>ClipPrimitive</a>[], result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createcapture" class="heading-anchor" href="#createcapture"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Create a ClipVector from an array of ClipPrimitives (or derived classes) (capture the pointers)</td>
 <td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-createclipshapeclones"><span class="method-name"><a href="createclipshapeclones">createClipShapeClones</a></span><span class="method-parenthesis">(</span><span class="method-parameters">clips: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipshape'>ClipShape</a>[], result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createclipshapeclones" class="heading-anchor" href="#createclipshapeclones"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Create a ClipVector from an array of ClipShapes, each one becoming a deep copy.</td>
+<td><span class="badge badge-pill badge-primary badge-deprecated">Deprecated</span>  <br></td>
+</tr>
+<tr>
+<td class="h-createclipshaperefs"><span class="method-name"><a href="createclipshaperefs">createClipShapeRefs</a></span><span class="method-parenthesis">(</span><span class="method-parameters">clips: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipshape'>ClipShape</a>[], result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createclipshaperefs" class="heading-anchor" href="#createclipshaperefs"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Create a ClipVector from an array of ClipShapes.</td>
+<td><span class="badge badge-pill badge-primary badge-deprecated">Deprecated</span>  <br></td>
 </tr>
 <tr>
 <td class="h-createempty"><span class="method-name">createEmpty</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createempty" class="heading-anchor" href="#createempty"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Create a ClipVector with an empty set of ClipShapes.</td>
-<td>&#xA0;</td>
-</tr>
-<tr>
-<td class="h-createfrom"><span class="method-name">createFrom</span><span class="method-parenthesis">(</span><span class="method-parameters">donor: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipvector'>ClipVector</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createfrom" class="heading-anchor" href="#createfrom"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Create a deep copy of another ClipVector</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -326,14 +331,14 @@
 </tr>
 <tr>
 <td class="h-clips"><span class="property-name">clips</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="clips" class="heading-anchor" href="#clips"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipshape'>ClipShape</a>[]</span></td>
+<td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipprimitive'>ClipPrimitive</a>[]</span></td>
 <td>Returns a reference to the array of ClipShapes.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-isvalid"><span class="property-name">isValid</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isvalid" class="heading-anchor" href="#isvalid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> boolean</span></td>
-<td>Returns true if this ClipVector contains a ClipShape.</td>
+<td>Returns true if this ClipVector contains a ClipPrimitive.</td>
 <td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -342,7 +347,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -436,7 +441,7 @@
                                             <a class='title solo-title menu-text' href="#islinestringcompletelycontained">isLineStringCompletelyContained</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#multiplyplanestimesmatrix">multiplyPlanesTimesMatrix</a>
+                                            <a class='title solo-title menu-text' href="#multiplyplanesbymatrix4d">multiplyPlanesByMatrix4d</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#parseclipplanes">parseClipPlanes</a>
@@ -457,6 +462,12 @@
                                             <a class='title solo-title menu-text' href="#transforminplace">transformInPlace</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#create">create</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#createcapture">createCapture</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#createclipshapeclones">createClipShapeClones</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -464,9 +475,6 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#createempty">createEmpty</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#createfrom">createFrom</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#fromjson">fromJSON</a>
@@ -516,11 +524,13 @@
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -569,5 +579,6 @@
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

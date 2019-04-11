@@ -174,17 +174,17 @@
 <p>Creating subscription requires user to have an <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/common/accesstoken'>access token</a> and have a valid <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/imodelhub/imodels/getimodel'>iModel id</a>.</p>
 <p>Example:</p>
 <pre class="no-line-numbers"><code class="language-typescript">  const subscription: EventSubscription = await imodelHubClient.events
-    .subscriptions.create(alctx, accessToken, imodelId, [&quot;ChangeSetPostPushEvent&quot;, &quot;VersionEvent&quot;]);
+    .subscriptions.create(authorizedRequestContext, imodelId, [&quot;ChangeSetPostPushEvent&quot;, &quot;VersionEvent&quot;]);
 </code></pre>
 <p>After creating the subscription, <code>subscription.wsgId</code> can be used when subscription id is requested.</p>
 <p>Each subscription contains its own queue of events. Subscriptions expire after an hour of inactivity.</p>
 <h2 class="h-getting-events">Getting events<a id="getting-events" class="heading-anchor" href="#getting-events"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>First user has to get an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/eventsas'>EventSAS</a> token.</p>
-<pre class="no-line-numbers"><code class="language-typescript">  const sasToken: EventSAS = await imodelHubClient.events.getSASToken(alctx, accessToken, imodelId);
+<pre class="no-line-numbers"><code class="language-typescript">  const sasToken: EventSAS = await imodelHubClient.events.getSASToken(authorizedRequestContext, imodelId);
 </code></pre>
 <p>Then they can get the first event from their subscription&apos;s queue. This will immediately delete the event from the queue.</p>
 <pre class="no-line-numbers"><code class="language-typescript">  const event: IModelHubEvent | undefined = await imodelHubClient.events
-    .getEvent(alctx, sasToken.sasToken!, sasToken.baseAddress!, subscription.wsgId, 60);
+    .getEvent(requestContext, sasToken.sasToken!, sasToken.baseAddress!, subscription.wsgId, 60);
 </code></pre>
 <p>If <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/eventhandler/getevent'>EventHandler.getEvent</a> is called with a timeout duration specified, this request will perform long polling. If this request didn&apos;t find an event on the queue, it would wait until one is available or the timeout expires. This way the event reaches the client faster and less requests are sent between the client and the service.</p>
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/eventhandler/getevent'>EventHandler.getEvent</a> can fail because <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/eventsas'>EventSAS</a> has expired. It can also return undefined if no events have been found.</p>
@@ -192,10 +192,10 @@
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/eventhandler/createlistener'>EventHandler.createListener</a> can be used to handle repeated calls to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/eventhandler/getevent'>EventHandler.getEvent</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/eventhandler/getsastoken'>EventHandler.getSASToken</a>.</p>
 <p>Authentication callback example, similar to <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/common/accesstoken'>getting access token</a>. <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/authorizationtoken'>AuthorizationToken</a> could be retrieved from credentials stored somewhere else or refreshed before it expires.</p>
 <pre class="no-line-numbers"><code class="language-typescript">async function authenticate(): Promise&lt;AccessToken&gt; {
-  const alctx: ActivityLoggingContext = new ActivityLoggingContext(Guid.createValue());
+  const requestContext = new ClientRequestContext();
   const authorizationToken: AuthorizationToken = await authorizationClient
-    .getToken(alctx, username, password);
-  return imodelHubClient.getAccessToken(alctx, authorizationToken);
+    .getToken(requestContext, userCredentials);
+  return imodelHubClient.getAccessToken(requestContext, authorizationToken);
 }
 </code></pre>
 <p>Listener callback example. This callback just logs the type of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/imodelhubevent'>IModelHubEvent</a> received.</p>
@@ -205,7 +205,7 @@
 </code></pre>
 <p>To create the listener itself, user has to have an <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/imodelhub/imodels/getimodel'>iModel id</a> and have an <a href="#creating-events-subscription">event subscription</a>.</p>
 <pre class="no-line-numbers"><code class="language-typescript">  const deleteCallback = await imodelHubClient.events  // tslint:disable-line:await-promise
-    .createListener(alctx, authenticate, subscription.wsgId, imodelId, processEvent);
+    .createListener(requestContext, authenticate, subscription.wsgId, imodelId, processEvent);
 </code></pre>
 <p>Deleting the listener after it&apos;s no longer necessary is just calling the callback received when creating it.</p>
 <pre class="no-line-numbers"><code class="language-typescript">  deleteCallback();
@@ -215,7 +215,7 @@
 <p>Listeners for the same subscription will only make a single event request at a time. Listeners for different subscriptions work independently.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -296,11 +296,13 @@
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -349,5 +351,6 @@
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

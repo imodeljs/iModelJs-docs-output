@@ -189,10 +189,11 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ecschema-metadata/">ecschema-metadata</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ecschema-metadata/loggingdiagnosticreporter/">LoggingDiagnosticReporter</a> > LoggingDiagnosticReporter</div>
             
             <h2 class="h-loggingdiagnosticreporter">LoggingDiagnosticReporter <span class="badge badge-pill badge-primary badge-class">Class</span><a id="loggingdiagnosticreporter" class="heading-anchor" href="#loggingdiagnosticreporter"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-"><span class="badge badge-pill badge-primary badge-beta">Beta</span><a id class="heading-anchor" href="#"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>An <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnosticreporter/idiagnosticreporter'>IDiagnosticReporter</a> for logging <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnostic/idiagnostic'>IDiagnostic</a> objects.</p>
 <h3 class="h-extends">Extends<a id="extends" class="heading-anchor" href="#extends"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnosticreporter/diagnosticreporterbase'>DiagnosticReporterBase</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnosticreporter/formatdiagnosticreporter'>FormatDiagnosticReporter</a></li>
 </ul>
 <h3 class="h-implements">Implements<a id="implements" class="heading-anchor" href="#implements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -205,8 +206,8 @@
 <th></th>
 </tr>
 <tr>
-<td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">i18n?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-i18n/appadministration/i18n'>I18N</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/loggingdiagnosticreporter/loggingdiagnosticreporter'>LoggingDiagnosticReporter</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td class="h-constructor"><span class="method-name"><a href="constructor">constructor</a></span><span class="method-parenthesis">(</span><span class="method-parameters">suppressions?: Map&lt;string, string[]&gt;, i18n?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-i18n/appadministration/i18n'>I18N</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/loggingdiagnosticreporter/loggingdiagnosticreporter'>LoggingDiagnosticReporter</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Initializes a new FormatDiagnosticReporter</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -221,13 +222,18 @@
 <th><i class="icon hide-description collapse-column icon-chevron-right"></i> Description</th>
 </tr>
 <tr>
-<td class="h-formatstringfromargs"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnosticreporter/diagnosticreporterbase/formatstringfromargs'>formatStringFromArgs</a></span><span class="method-parenthesis">(</span><span class="method-parameters">text: string, args: ArrayLike&lt;string&gt;, baseIndex: number = 0</span><span class="method-parenthesis">):</span><span class="method-output"> string</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="formatstringfromargs" class="heading-anchor" href="#formatstringfromargs"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnosticreporter/diagnosticreporterbase'>DiagnosticReporterBase</a></span></td>
+<td class="h-formatstringfromargs"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnosticreporter/formatdiagnosticreporter/formatstringfromargs'>formatStringFromArgs</a></span><span class="method-parenthesis">(</span><span class="method-parameters">text: string, args: ArrayLike&lt;string&gt;, baseIndex: number = 0</span><span class="method-parenthesis">):</span><span class="method-output"> string</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="formatstringfromargs" class="heading-anchor" href="#formatstringfromargs"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnosticreporter/formatdiagnosticreporter'>FormatDiagnosticReporter</a></span></td>
 <td>Helper method that formats string with provided arguments where the place holders<br>are in the the format &apos;{0}&apos;, &apos;{1}&apos;, etc.</td>
 </tr>
 <tr>
-<td class="h-report"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnosticreporter/diagnosticreporterbase/report'>report</a></span><span class="method-parenthesis">(</span><span class="method-parameters">diagnostic: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnostic/anydiagnostic'>AnyDiagnostic</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="report" class="heading-anchor" href="#report"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnosticreporter/diagnosticreporterbase'>DiagnosticReporterBase</a></span></td>
+<td class="h-report"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnosticreporter/suppressiondiagnosticreporter/report'>report</a></span><span class="method-parenthesis">(</span><span class="method-parameters">diagnostic: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnostic/anydiagnostic'>AnyDiagnostic</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="report" class="heading-anchor" href="#report"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnosticreporter/suppressiondiagnosticreporter'>SuppressionDiagnosticReporter</a></span></td>
+<td>Prior to reporting the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnostic/idiagnostic'>IDiagnostic</a>, the diagnostic message is formatted (with translations)<br>base on arguments contained in the diagnostic.</td>
+</tr>
+<tr>
+<td class="h-reportinternal"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnosticreporter/formatdiagnosticreporter/reportinternal'>reportInternal</a></span><span class="method-parenthesis">(</span><span class="method-parameters">diagnostic: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnostic/anydiagnostic'>AnyDiagnostic</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="reportinternal" class="heading-anchor" href="#reportinternal"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnosticreporter/formatdiagnosticreporter'>FormatDiagnosticReporter</a></span></td>
 <td>Prior to reporting the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnostic/idiagnostic'>IDiagnostic</a>, the diagnostic message is formatted (with translations)<br>base on arguments contained in the diagnostic.</td>
 </tr>
 </tbody></table><h3 class="h-inherited-properties"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited properties<a id="inherited-properties" class="heading-anchor" href="#inherited-properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -238,10 +244,16 @@
 <th>Description</th>
 </tr>
 <tr>
-<td class="h-i18n"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnosticreporter/diagnosticreporterbase/i18n'>i18N</a></span><a id="i18n" class="heading-anchor" href="#i18n"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-i18n"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnosticreporter/formatdiagnosticreporter/i18n'>i18N</a></span><a id="i18n" class="heading-anchor" href="#i18n"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-i18n/appadministration/i18n'>I18N</a></span></td>
-<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnosticreporter/diagnosticreporterbase'>DiagnosticReporterBase</a></span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnosticreporter/formatdiagnosticreporter'>FormatDiagnosticReporter</a></span></td>
 <td>The I18N object to use for message translation.</td>
+</tr>
+<tr>
+<td class="h-suppressions"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnosticreporter/suppressiondiagnosticreporter/suppressions'>suppressions</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="suppressions" class="heading-anchor" href="#suppressions"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> Map&lt;string, string[]&gt; | undefined</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ecschema-metadata/diagnosticreporter/suppressiondiagnosticreporter'>SuppressionDiagnosticReporter</a></span></td>
+<td>Gets the collection of ISchemaDiagnosticSuppression objects that identify<br>rules violations to ignore during validation.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -249,7 +261,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -304,6 +316,9 @@
             </a>
             <ul id="inner-nav-loggingdiagnosticreporter" class='inner-nav'>
                     <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#"></a>
+                    </li>
+                    <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#extends">Extends</a>
                     </li>
                     <li class='nav-item item '>
@@ -335,6 +350,9 @@
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#report">report</a>
                                     </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#reportinternal">reportInternal</a>
+                                    </li>
                             </ul>
                     </li>
                     <li class='nav-item item '>
@@ -345,6 +363,9 @@
                             <ul id="inner-nav-inherited-properties" class='inner-nav'>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#i18n">i18N</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#suppressions">suppressions</a>
                                     </li>
                             </ul>
                     </li>
@@ -374,11 +395,13 @@
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -427,5 +450,6 @@
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

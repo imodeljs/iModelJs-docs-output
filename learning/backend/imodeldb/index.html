@@ -9,9 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Accessing local Briefcases via the IModelDb class - iModel.js</title>
-    <meta name="og:title" content="Accessing local Briefcases via the IModelDb class - iModel.js">
-    <meta name="twitter:title" content="Accessing local Briefcases via the IModelDb class - iModel.js">
+    <title>Opening an iModel via the IModelDb class - iModel.js</title>
+    <meta name="og:title" content="Opening an iModel via the IModelDb class - iModel.js">
+    <meta name="twitter:title" content="Opening an iModel via the IModelDb class - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -115,8 +115,9 @@
         <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/">backend</a> > IModelDb</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/backend/IModelDb.md">Edit this page</a></div>
-            <h1 id="accessing local briefcases via the imodeldb class">Accessing local Briefcases via the IModelDb class</h1>
-<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a> class class provides methods for opening, closing, and accessing a <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#briefcase'>briefcase</a> (i.e. a local copy of an iModel.) An instance of IModelDb in memory holds a briefcase file open.</p>
+            <h1 id="opening an imodel via the imodeldb class">Opening an iModel via the IModelDb class</h1>
+<h2 class="h-opening-a-local-briefcase-of-an-imodel-managed-my-imodelhub">Opening a local <em>briefcase</em> of an iModel managed my iModelHub<a id="opening-a-local-briefcase-of-an-imodel-managed-my-imodelhub" class="heading-anchor" href="#opening-a-local-briefcase-of-an-imodel-managed-my-imodelhub"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a> class provides methods for opening, closing, and accessing a <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary/#briefcase'>briefcase</a> (i.e. a local copy of an iModel.) An instance of IModelDb in memory holds a briefcase file open.</p>
 <p>An IModelDb is used by a service or by the backend of an iModel.js app.</p>
 <p>Use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/open'>IModelDb.open</a> to obtain and open an IModelDb from iModelHub.</p>
 <blockquote>
@@ -127,9 +128,16 @@
 <blockquote>
 <p>Normally, a backend opens an IModelDb at the request of a user who has an AccessToken.</p>
 </blockquote>
+<h2 class="h-opening-a-snapshot-imodel">Opening a <em>snapshot</em> iModel<a id="opening-a-snapshot-imodel" class="heading-anchor" href="#opening-a-snapshot-imodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a> class also provides methods for opening, closing, and accessing a <em>snapshot</em> iModel.
+A <em>snapshot</em> iModel is a file that is disconnected from iModelHub and therefore does not have a change timeline.
+Once created, a <em>snapshot</em> iModel is read-only and cannot be changed.
+This makes <em>snapshot</em> iModels ideal for archival or data transfer purposes.</p>
+<p>Use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/opensnapshot'>IModelDb.openSnapshot</a> to open an existing <em>snapshot</em> iModel.</p>
+<p>Use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/closesnapshot'>IModelDb.closeSnapshot</a> to close the <em>snapshot</em> iModel.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -173,7 +181,21 @@
     </div>
     <div class="toc-overlay"></div>
     <div id='inner-table-of-contents'>
-       <!-- 
+       <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#opening-a-local-briefcase-of-an-imodel-managed-my-imodelhub">Opening a local briefcase of an iModel managed my iModelHub</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#opening-a-snapshot-imodel">Opening a snapshot iModel</a>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
  -->
     </div>
 </div>
@@ -190,11 +212,13 @@
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -243,5 +267,6 @@
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

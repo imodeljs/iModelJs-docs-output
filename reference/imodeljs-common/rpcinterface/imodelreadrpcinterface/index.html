@@ -208,7 +208,7 @@ This interface is not normally used directly. See IModelConnection for higher-le
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-close"><span class="method-name">close</span><span class="method-parenthesis">(</span><span class="method-parameters">_accessToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, _iModelToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodeltoken'>IModelToken</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;boolean&gt;</span><a id="close" class="heading-anchor" href="#close"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-close"><span class="method-name">close</span><span class="method-parenthesis">(</span><span class="method-parameters">_iModelToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodeltoken'>IModelToken</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;boolean&gt;</span><a id="close" class="heading-anchor" href="#close"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
@@ -263,7 +263,7 @@ This interface is not normally used directly. See IModelConnection for higher-le
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-openforread"><span class="method-name">openForRead</span><span class="method-parenthesis">(</span><span class="method-parameters">_accessToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a>, _iModelToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodeltoken'>IModelToken</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a>&gt;</span><a id="openforread" class="heading-anchor" href="#openforread"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-openforread"><span class="method-name">openForRead</span><span class="method-parenthesis">(</span><span class="method-parameters">_iModelToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodeltoken'>IModelToken</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodel'>IModel</a>&gt;</span><a id="openforread" class="heading-anchor" href="#openforread"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
@@ -288,12 +288,12 @@ This interface is not normally used directly. See IModelConnection for higher-le
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-querypage"><span class="method-name">queryPage</span><span class="method-parenthesis">(</span><span class="method-parameters">_iModelToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodeltoken'>IModelToken</a>, _ecsql: string, _bindings?: any[] | any, _options?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/pageoptions'>PageOptions</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;any[]&gt;</span><a id="querypage" class="heading-anchor" href="#querypage"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-querypage"><span class="method-name">queryPage</span><span class="method-parenthesis">(</span><span class="method-parameters">_iModelToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodeltoken'>IModelToken</a>, _ecsql: string, _bindings?: any[] | object, _options?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/pageoptions'>PageOptions</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;any[]&gt;</span><a id="querypage" class="heading-anchor" href="#querypage"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-queryrowcount"><span class="method-name">queryRowCount</span><span class="method-parenthesis">(</span><span class="method-parameters">_iModelToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodeltoken'>IModelToken</a>, _ecsql: string, _bindings?: any[] | any</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;number&gt;</span><a id="queryrowcount" class="heading-anchor" href="#queryrowcount"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-queryrowcount"><span class="method-name">queryRowCount</span><span class="method-parenthesis">(</span><span class="method-parameters">_iModelToken: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodeltoken'>IModelToken</a>, _ecsql: string, _bindings?: any[] | object</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;number&gt;</span><a id="queryrowcount" class="heading-anchor" href="#queryrowcount"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
 </tr>
@@ -313,7 +313,7 @@ This interface is not normally used directly. See IModelConnection for higher-le
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-types"><span class="method-name">types</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/code'>Code</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/imodelnotfoundresponse'>IModelNotFoundResponse</a>[]</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="types" class="heading-anchor" href="#types"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-types"><span class="method-name">types</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodeltoken'>IModelToken</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/vector2d'>Vector2d</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/codes/code'>Code</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/imodelnotfoundresponse'>IModelNotFoundResponse</a>[]</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="types" class="heading-anchor" href="#types"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>The types that can be marshaled by the interface.</td>
 <td>&#xA0;</td>
 </tr>
@@ -359,13 +359,19 @@ This interface is not normally used directly. See IModelConnection for higher-le
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcinterface'>RpcInterface</a></span></td>
 <td>The configuration for the RPC interface.</td>
 </tr>
+<tr>
+<td class="h-configurationsupplier"><span class="inherited-property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcinterface/#configurationsupplier'>configurationSupplier</a></span> <span class="badge badge-pill badge-primary badge-external">External</span><a id="configurationsupplier" class="heading-anchor" href="#configurationsupplier"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcconfigurationsupplier'>RpcConfigurationSupplier</a> | undefined</span></td>
+<td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcinterface'>RpcInterface</a></span></td>
+<td>&#xA0;</td>
+</tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/common/src/rpc/IModelReadRpcInterface.ts">rpc/IModelReadRpcInterface.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -533,6 +539,9 @@ This interface is not normally used directly. See IModelConnection for higher-le
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#configuration">configuration</a>
                                     </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#configurationsupplier">configurationSupplier</a>
+                                    </li>
                             </ul>
                     </li>
                     <li class='nav-item item '>
@@ -561,11 +570,13 @@ This interface is not normally used directly. See IModelConnection for higher-le
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -614,5 +625,6 @@ This interface is not normally used directly. See IModelConnection for higher-le
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

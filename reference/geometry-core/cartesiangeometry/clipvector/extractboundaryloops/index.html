@@ -190,12 +190,13 @@
             
             <h2 class="h-extractboundaryloops">extractBoundaryLoops <span class="badge badge-pill badge-primary badge-method">Method</span><a id="extractboundaryloops" class="heading-anchor" href="#extractboundaryloops"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>A simple way of packaging this ClipVector&apos;s ClipShape points into a multidimensional array, while also
-taking into account each ClipShape&apos;s individual transforms.</p>
+taking into account each ClipPrimitive&apos;s individual transforms.</p>
+<p>ClipPrimitives OTHER THAN ClipShape are ignored.</p>
 <p>Information out:</p>
 <ul>
 <li>All of the loop points are stored in the multidimensional Point3d array given (will return unchanged upon failure)</li>
-<li>If given a transform, will be set from the transformFromClip of the first ClipShape</li>
-<li>The ClipMask of the final ClipShape is stored in the returned array at index 0</li>
+<li>If given a transform, will be set from the transformFromClip of the first ClipPrimitive</li>
+<li>The ClipMask of the final ClipPrimitive is stored in the returned array at index 0</li>
 <li>The last valid zLow found is stored in the returned array at index 1</li>
 <li>The last valid zHigh found is stored in the returned array at index 2</li>
 </ul>
@@ -221,7 +222,7 @@ taking into account each ClipShape&apos;s individual transforms.</p>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -307,11 +308,13 @@ taking into account each ClipShape&apos;s individual transforms.</p>
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -360,5 +363,6 @@ taking into account each ClipShape&apos;s individual transforms.</p>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

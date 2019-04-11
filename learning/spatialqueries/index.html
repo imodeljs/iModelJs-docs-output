@@ -125,22 +125,22 @@
 <p>which selects all nodes that overlap a specified axis-aligned <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/geometrysqlfuncs/#imodel_bbox'>bounding box</a>. Here is an example:</p>
 <pre class="no-line-numbers"><code class="language-sql">SELECT rt.ECInstanceId FROM BisCore.SpatialIndex rt WHERE (rt.ECInstanceId MATCH iModel_spatial_overlap_aabb(:bbox))</code></pre>
 <p>The caller would bind the <code>bbox</code> parameter in this example to an <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/geometrysqlfuncs/#imodel_bbox'>iModel_bbox</a> value. For example:</p>
-<pre class="no-line-numbers"><code class="language-typescript">    public static queryBarriersHitByRobot(iModelDb: IModelDb, rid: Id64String): Id64String[] {
-        const robot1 = iModelDb.elements.getElement(rid) as Robot;
+<pre class="no-line-numbers"><code class="language-typescript">  public static queryBarriersHitByRobot(iModelDb: IModelDb, rid: Id64String): Id64String[] {
+    const robot1 = iModelDb.elements.getElement(rid) as Robot;
 
-        const selStmt =
-            `SELECT rt.ECInstanceId FROM BisCore.SpatialIndex rt WHERE rt.ECInstanceId MATCH iModel_spatial_overlap_aabb(:bbox) AND rt.ECInstanceId &lt;&gt; :thisRobot`;
+    const selStmt =
+      `SELECT rt.ECInstanceId FROM BisCore.SpatialIndex rt WHERE rt.ECInstanceId MATCH iModel_spatial_overlap_aabb(:bbox) AND rt.ECInstanceId &lt;&gt; :thisRobot`;
 
-        return iModelDb.withPreparedStatement(selStmt, (stmt: ECSqlStatement) =&gt; {
-            stmt.bindRange3d(&quot;bbox&quot;, robot1.placement.calculateRange());
-            stmt.bindId(&quot;thisRobot&quot;, rid);
-            const hits: Id64String[] = [];
-            while (stmt.step() === DbResult.BE_SQLITE_ROW) {
-                hits.push(stmt.getValue(0).getId());
-            }
-            return hits;
-        });
-    }</code></pre>
+    return iModelDb.withPreparedStatement(selStmt, (stmt: ECSqlStatement) =&gt; {
+      stmt.bindRange3d(&quot;bbox&quot;, robot1.placement.calculateRange());
+      stmt.bindId(&quot;thisRobot&quot;, rid);
+      const hits: Id64String[] = [];
+      while (stmt.step() === DbResult.BE_SQLITE_ROW) {
+        hits.push(stmt.getValue(0).getId());
+      }
+      return hits;
+    });
+  }</code></pre>
 <p>This example shows how to find all elements with ranges that (may) overlap the range of some seed element. Note how the bbox parameter is bound to the range of the seed element. The additional test in the WHERE filters out the seed element, so that only other overlapping elements are found.</p>
 <p>Often, a spatial query will combine a test on the spatial index with additional filtering criteria in the WHERE clause. As noted in the <a href="https://sqlite.org/rtree.html">SQLite docs</a>, &quot;An R*Tree index does not normally provide the exact answer but merely reduces the set of potential answers from millions to dozens.&quot; The additional filtering criteria are used to refine the answer after the spatial filter has narrowed the possibilities. For example, to select only elements in the specified range that are also in a specified Category:</p>
 <pre><code class="language-`sql">SELECT rt.ECInstanceId FROM BisCore.SpatialIndex rt, BisCore.SpatialElement el WHERE (rt.ECInstanceId MATCH iModel_spatial_overlap_aabb(:bbox)) AND (el.ECInstanceId=rt.ECInstanceId) AND (el.Category = :categoryId)</code></pre>
@@ -148,7 +148,7 @@
 <p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/geometrysqlfuncs'>ECSQL built-in geometry functions</a> are sometimes used along with spatial queries as additional WHERE criteria.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -209,11 +209,13 @@
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -262,5 +264,6 @@
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

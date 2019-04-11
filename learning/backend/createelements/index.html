@@ -133,18 +133,18 @@ const newElementId: Id64String = iModel.elements.insertElement(elementProps);</c
 <h2 class="h-subject">Subject<a id="subject" class="heading-anchor" href="#subject"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/subject/insert'>Subject.insert</a></p>
 <h2 class="h-geometricelement3d">GeometricElement3d<a id="geometricelement3d" class="heading-anchor" href="#geometricelement3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<pre class="no-line-numbers"><code class="language-typescript">    public static insertRobot(iModelDb: IModelDb, modelId: Id64String, name: string, location: Point3d): Id64String {
-        const props: GeometricElement3dProps = {
-            model: modelId,
-            code: Code.createEmpty(),
-            classFullName: RobotWorld.Class.Robot,      // In this example, I know what class and category to use.
-            category: Robot.getCategory(iModelDb).id,
-            geom: Robot.generateGeometry(),             // In this example, I know how to generate geometry, and I know that the placement is empty.
-            placement: { origin: location, angles: new YawPitchRollAngles() },
-            userLabel: name,
-        };
-        return iModelDb.elements.insertElement(props);
-    }</code></pre>
+<pre class="no-line-numbers"><code class="language-typescript">  public static insertRobot(iModelDb: IModelDb, modelId: Id64String, name: string, location: Point3d): Id64String {
+    const props: GeometricElement3dProps = {
+      model: modelId,
+      code: Code.createEmpty(),
+      classFullName: RobotWorld.Class.Robot,      // In this example, I know what class and category to use.
+      category: Robot.getCategory(iModelDb).id,
+      geom: Robot.generateGeometry(),             // In this example, I know how to generate geometry, and I know that the placement is empty.
+      placement: { origin: location, angles: new YawPitchRollAngles() },
+      userLabel: name,
+    };
+    return iModelDb.elements.insertElement(props);
+  }</code></pre>
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/geometricelement3dprops'>GeometricElement3dProps</a>.</p>
 <p>where:</p>
 <pre class="no-line-numbers"><code class="language-typescript">// Simple example of using GeometryStreamBuilder. Note how the building works with
@@ -169,7 +169,7 @@ export function generateGeometry(radius: number = 0.1): GeometryStreamProps {
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/orthographicviewdefinition/insert'>OrthographicViewDefinition.insert</a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -262,11 +262,13 @@ export function generateGeometry(radius: number = 0.1): GeometryStreamProps {
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -315,5 +317,6 @@ export function generateGeometry(radius: number = 0.1): GeometryStreamProps {
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

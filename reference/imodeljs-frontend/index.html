@@ -189,7 +189,7 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > imodeljs-frontend</div>
             
             <h1 id="imodeljs-frontend">imodeljs-frontend <span class="package-changelog-link"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/changelog'>Change Log</a> </span></h1>
-<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/'>imodeljs-frontend</a> package always runs in a web browser. It contains classes for <a href='https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/'>querying iModels and showing views</a>.</p>
+<p> The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/'>imodeljs-frontend</a> package always runs in a web browser. It contains classes for <a href='https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/'>querying iModels and showing views</a>.</p>
 <h2 class="h-topics">Topics<a id="topics" class="heading-anchor" href="#topics"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -248,11 +248,7 @@
 <td>Classes for working with the set of selected elements.</td>
 </tr>
 <tr>
-<td class="h-tile"><a href="tile">Tile</a><a id="tile" class="heading-anchor" href="#tile"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Classes for selecting and drawing tiles in views.</td>
-</tr>
-<tr>
-<td class="h-mockrender"><a href="mockrender">MockRender</a><a id="mockrender" class="heading-anchor" href="#mockrender"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-logging"><a href="logging">Logging</a><a id="logging" class="heading-anchor" href="#logging"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
 <tr>
@@ -260,15 +256,19 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-oidciosclient"><a href="oidciosclient">OidcIOSClient</a><a id="oidciosclient" class="heading-anchor" href="#oidciosclient"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
-</tr>
-<tr>
 <td class="h-quantityformatter"><a href="quantityformatter">QuantityFormatter</a><a id="quantityformatter" class="heading-anchor" href="#quantityformatter"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
 <tr>
+<td class="h-spatialclassification"><a href="spatialclassification">SpatialClassification</a><a id="spatialclassification" class="heading-anchor" href="#spatialclassification"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
 <td class="h-typeconverters"><a href="typeconverters">TypeConverters</a><a id="typeconverters" class="heading-anchor" href="#typeconverters"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-utils"><a href="utils">Utils</a><a id="utils" class="heading-anchor" href="#utils"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 </tr>
 <tr>
@@ -277,7 +277,7 @@
 </tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -371,22 +371,22 @@
                             <a class='title solo-title menu-text' href="#selectionset">SelectionSet</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#tile">Tile</a>
-                    </li>
-                    <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#mockrender">MockRender</a>
+                            <a class='title solo-title menu-text' href="#logging">Logging</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#oidc">OIDC</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#oidciosclient">OidcIOSClient</a>
-                    </li>
-                    <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#quantityformatter">QuantityFormatter</a>
                     </li>
                     <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#spatialclassification">SpatialClassification</a>
+                    </li>
+                    <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#typeconverters">TypeConverters</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#utils">Utils</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#all">All</a>
@@ -414,11 +414,13 @@
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -467,5 +469,6 @@
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

@@ -197,35 +197,32 @@ export abstract class RobotWorldReadRpcInterface extends RpcInterface {
 <p>To write an impl, write a concrete TypeScript class that extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcinterface'>RpcInterface</a> and also implements the interface definition class.</p>
 <p>The impl must override each method in the interface definition class. Each override must perform the intended operation.</p>
 <p>Each impl method must return the operation&apos;s result as a Promise.</p>
-<p>The impl method must obtain the ActivityLoggingContext by calling <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/activityloggingcontext/#current'>ActivityLoggingContext.current</a>. It must then follow the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/managingactivityloggingcontext'>rules of managing the ActivityLoggingContext</a>.</p>
+<p>The impl method must obtain the ClientRequestContext by calling <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/clientrequestcontext/#current'>ClientRequestContext.current</a>. It must then follow the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/managingclientrequestcontext'>rules of managing the ClientRequestContext</a>.</p>
 <p>As noted above, the methods in the impl may have to transform certain argument types, such as IModelTokens, before they can be used.</p>
 <p>A best practice is that an impl should be a thin layer on top of normal classes in the server. Ideally, each method of an impl should be a one-line forwarding call that uses the public backend API of the server. The impl wrapper should be concerned only with transforming types, not with functionality, while backend operation methods should be concerned only with functionality. Backend operation methods should be static, since a server should be stateless. Preferably, backend operation methods should be <a href="#asynchronous-nature-of-rpcInterfaces">synchronous if possible</a>.</p>
 <p><em>Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">import { RpcInterface, IModelToken, RpcInterfaceDefinition } from &quot;@bentley/imodeljs-common&quot;;
-import { Id64String, ActivityLoggingContext } from &quot;@bentley/bentleyjs-core&quot;;
+import { Id64String } from &quot;@bentley/bentleyjs-core&quot;;
 import { IModelDb } from &quot;@bentley/imodeljs-backend&quot;;
 import { RobotWorldEngine } from &quot;./RobotWorldEngine&quot;;
 import { RobotWorldReadRpcInterface } from &quot;../common/RobotWorldRpcInterface&quot;;
 
 // Implement RobotWorldReadRpcInterface
 export class RobotWorldReadRpcImpl extends RpcInterface implements RobotWorldReadRpcInterface {
-    public async countRobotsInArray(iModelToken: IModelToken, elemIds: Id64String[]): Promise&lt;number&gt; {
-        const activityContext = ActivityLoggingContext.current; activityContext.enter();
-        const iModelDb: IModelDb = IModelDb.find(iModelToken);
-        return RobotWorldEngine.countRobotsInArray(iModelDb, elemIds);
-    }
+  public async countRobotsInArray(iModelToken: IModelToken, elemIds: Id64String[]): Promise&lt;number&gt; {
+    const iModelDb: IModelDb = IModelDb.find(iModelToken);
+    return RobotWorldEngine.countRobotsInArray(iModelDb, elemIds);
+  }
 
-    public async countRobots(iModelToken: IModelToken): Promise&lt;number&gt; {
-        const activityContext = ActivityLoggingContext.current; activityContext.enter();
-        const iModelDb: IModelDb = IModelDb.find(iModelToken);
-        return RobotWorldEngine.countRobots(iModelDb);
-    }
+  public async countRobots(iModelToken: IModelToken): Promise&lt;number&gt; {
+    const iModelDb: IModelDb = IModelDb.find(iModelToken);
+    return RobotWorldEngine.countRobots(iModelDb);
+  }
 
-    public async queryObstaclesHitByRobot(iModelToken: IModelToken, rid: Id64String): Promise&lt;Id64String[]&gt; {
-        const activityContext = ActivityLoggingContext.current; activityContext.enter();
-        const iModelDb: IModelDb = IModelDb.find(iModelToken);
-        return RobotWorldEngine.queryObstaclesHitByRobot(iModelDb, rid);
-    }
+  public async queryObstaclesHitByRobot(iModelToken: IModelToken, rid: Id64String): Promise&lt;Id64String[]&gt; {
+    const iModelDb: IModelDb = IModelDb.find(iModelToken);
+    return RobotWorldEngine.queryObstaclesHitByRobot(iModelDb, rid);
+  }
 }</code></pre>
 <p>Impls must be registered at runtime, as explained next.</p>
 <h1 id="rpc configuration">RPC Configuration</h1>
@@ -242,19 +239,19 @@ export class RobotWorldReadRpcImpl extends RpcInterface implements RobotWorldRea
 <h3 class="h-register-impls">Register Impls<a id="register-impls" class="heading-anchor" href="#register-impls"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>The server must call <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/rpcmanager/#registerimpl'>RpcManager.registerImpl</a> to register the impl classes for the interfaces that it implements, if any.</p>
 <p><em>Example:</em></p>
-<pre class="no-line-numbers"><code class="language-typescript">        RpcManager.registerImpl(RobotWorldReadRpcInterface, RobotWorldReadRpcImpl);</code></pre>
+<pre class="no-line-numbers"><code class="language-typescript">    RpcManager.registerImpl(RobotWorldReadRpcInterface, RobotWorldReadRpcImpl);</code></pre>
 <h3 class="h-choose-interfaces">Choose Interfaces<a id="choose-interfaces" class="heading-anchor" href="#choose-interfaces"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>The server must decide which interfaces it wants to expose. A server can expose multiple interfaces. A server can expose both its own implementations, if any, and imported implementations. The server can decide at run time which interfaces to expose, perhaps based on deployment parameters.</p>
 <p><em>Example:</em></p>
-<pre class="no-line-numbers"><code class="language-typescript">    private static chooseInterfacesToExpose(): RpcInterfaceDefinition[] {
-        const interfaces: RpcInterfaceDefinition[] = [IModelReadRpcInterface, RobotWorldReadRpcInterface];
+<pre class="no-line-numbers"><code class="language-typescript">  private static chooseInterfacesToExpose(): RpcInterfaceDefinition[] {
+    const interfaces: RpcInterfaceDefinition[] = [IModelReadRpcInterface, RobotWorldReadRpcInterface];
 
-        if (this._features.check(&quot;robot.imodel.readwrite&quot;)) {
-            interfaces.push(RobotWorldWriteRpcInterface);
-        }
+    if (this._features.check(&quot;robot.imodel.readwrite&quot;)) {
+      interfaces.push(RobotWorldWriteRpcInterface);
+    }
 
-        return interfaces;
-    }</code></pre>
+    return interfaces;
+  }</code></pre>
 <h3 class="h-configure-interfaces">Configure Interfaces<a id="configure-interfaces" class="heading-anchor" href="#configure-interfaces"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>The server must choose the appropriate RPC configuration for the interfaces that it exposes to clients.
 If the server is an app backend, the RPC configuration must correspond to the app configuration.
@@ -264,14 +261,14 @@ A backend should configure its RpcInterfaces in its <a href='https://imodeljs.gi
 <pre class="no-line-numbers"><code class="language-typescript">import { ElectronRpcManager } from &quot;@bentley/imodeljs-common&quot;;
 
 export function initializeRpcImplDesktop(interfaces: RpcInterfaceDefinition[]) {
-    ElectronRpcManager.initializeImpl({}, interfaces);
+  ElectronRpcManager.initializeImpl({}, interfaces);
 }</code></pre>
 <p><em>Web Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">import { BentleyCloudRpcManager, BentleyCloudRpcParams } from &quot;@bentley/imodeljs-common&quot;;
 
 export function initializeRpcImplBentleyCloud(interfaces: RpcInterfaceDefinition[]) {
-    const cloudParams: BentleyCloudRpcParams = { info: { title: &quot;RobotWorldEngine&quot;, version: &quot;v1.0&quot; } };
-    BentleyCloudRpcManager.initializeImpl(cloudParams, interfaces);
+  const cloudParams: BentleyCloudRpcParams = { info: { title: &quot;RobotWorldEngine&quot;, version: &quot;v1.0&quot; } };
+  BentleyCloudRpcManager.initializeImpl(cloudParams, interfaces);
 }</code></pre>
 <h3 class="h-serve-the-interfaces">Serve the Interfaces<a id="serve-the-interfaces" class="heading-anchor" href="#serve-the-interfaces"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>When a backend is configured as a Web app, it must implement a Web server to serve out its interfaces, so that in-coming client requests are forwarded to the implementations. This is always true of all <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/app/#imodel-services'>services</a>. Any Web server technology can be used. Normally, a single function call is all that is required to integrate all configured interfaces with the Web server. For example, if a Web server uses express, it would serve its RpcInterfaces like this:</p>
@@ -338,7 +335,7 @@ export function initializeRpcClientBentleyCloudForApp(interfaces: RpcInterfaceDe
 </ul>
 </li>
 </ul>
-<p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/managingactivityloggingcontext'>managing the ActivityLoggingContext</a> for details.</p>
+<p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/managingclientrequestcontext'>managing the ClientRequestContext</a> for details.</p>
 <h2 class="h-rpcinterface-versioning">RpcInterface Versioning<a id="rpcinterface-versioning" class="heading-anchor" href="#rpcinterface-versioning"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Each RpcInterface has a version. This should not to be confused with the version of the package that implements the interface. The version of an RpcInterface refers to the shape of the interface itself.</p>
 <p>You should change the version of an RpcInterface if you change its shape.
@@ -371,7 +368,7 @@ There are different types of incompatibilities:</p>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -530,11 +527,13 @@ There are different types of incompatibilities:</p>
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -583,5 +582,6 @@ There are different types of incompatibilities:</p>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

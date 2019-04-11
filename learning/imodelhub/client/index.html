@@ -121,7 +121,7 @@
 <p>You should try to reuse <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/imodelhubclient'>IModelHubClient</a> instances, as performance sending multiple requests to iModelHub will be better on the same client instance. It&apos;s not necessary to reuse handler instances.</p>
 </blockquote>
 <h2 class="h-imodelhub-client-on-backend">iModelHub Client on backend<a id="imodelhub-client-on-backend" class="heading-anchor" href="#imodelhub-client-on-backend"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>If you&apos;re working on a backend and require downloading and uploading files, you have to specify an implementation of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/filehandler'>FileHandler</a>. For iModelHub that should be AzureFileHandler</p>
+<p>If you&apos;re working on a backend and require downloading and uploading files, you have to specify an implementation of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/filehandler'>FileHandler</a>. For iModelHub that should be <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients-backend/imodelhub/azurefilehandler'>AzureFileHandler</a></p>
 <p>Example:</p>
 <pre class="no-line-numbers"><code class="language-typescript">import { IModelHubClient } from &quot;@bentley/imodeljs-clients&quot;;
 import { AzureFileHandler } from &quot;@bentley/imodeljs-clients-backend&quot;;
@@ -130,7 +130,7 @@ const imodelHubClient = new IModelHubClient(new AzureFileHandler());
 </code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -202,11 +202,13 @@ const imodelHubClient = new IModelHubClient(new AzureFileHandler());
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -255,5 +257,6 @@ const imodelHubClient = new IModelHubClient(new AzureFileHandler());
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

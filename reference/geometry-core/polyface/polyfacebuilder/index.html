@@ -284,6 +284,11 @@
 <td>&#xA0;</td>
 </tr>
 <tr>
+<td class="h-addgraphfaces"><span class="method-name"><a href="addgraphfaces">addGraphFaces</a></span><span class="method-parenthesis">(</span><span class="method-parameters">_graph: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedgegraph'>HalfEdgeGraph</a>, faces: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedge'>HalfEdge</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="addgraphfaces" class="heading-anchor" href="#addgraphfaces"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><em> Visit all faces<br></em> Test each face with f(node) for any node on the face.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-addindexedpolyface"><span class="method-name">addIndexedPolyface</span><span class="method-parenthesis">(</span><span class="method-parameters">source: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/indexedpolyface'>IndexedPolyface</a>, reversed: boolean, transform?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="addindexedpolyface" class="heading-anchor" href="#addindexedpolyface"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Add a polyface, with optional reverse and transform.</td>
 <td>&#xA0;</td>
@@ -449,6 +454,11 @@
 <td>&#xA0;</td>
 </tr>
 <tr>
+<td class="h-graphfacestopolyface"><span class="method-name">graphFacesToPolyface</span><span class="method-parenthesis">(</span><span class="method-parameters">graph: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedgegraph'>HalfEdgeGraph</a>, faces: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedge'>HalfEdge</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/indexedpolyface'>IndexedPolyface</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="graphfacestopolyface" class="heading-anchor" href="#graphfacestopolyface"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-graphtopolyface"><span class="method-name">graphToPolyface</span><span class="method-parenthesis">(</span><span class="method-parameters">graph: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedgegraph'>HalfEdgeGraph</a>, options?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/strokeoptions'>StrokeOptions</a>, acceptFaceFunction: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/topology/halfedgetobooleanfunction'>HalfEdgeToBooleanFunction</a> = HalfEdge.testNodeMaskNotExterior</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/indexedpolyface'>IndexedPolyface</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="graphtopolyface" class="heading-anchor" href="#graphtopolyface"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>&#xA0;</td>
 <td>&#xA0;</td>
@@ -573,7 +583,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 March, 2019</span>
+                <span class='date-updated'>10 April, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -659,6 +669,9 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#addgraph">addGraph</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#addgraphfaces">addGraphFaces</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#addindexedpolyface">addIndexedPolyface</a>
@@ -758,6 +771,9 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#create">create</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#graphfacestopolyface">graphFacesToPolyface</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#graphtopolyface">graphToPolyface</a>
@@ -866,11 +882,13 @@
       <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
 
         <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
-          <img id="site-logo" class="site-logo" style="zoom:75%;" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
         </a>
         <small style="color: white; margin-right: 7px;"> powered by </small>
         <a href="https://www.bentley.com">
-          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo" style="zoom:75%; width: 162px; height: 37px;"
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
             src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
         </a>
       </div>
@@ -919,5 +937,6 @@
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
 </body>
 
-</html><script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
 <script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>
