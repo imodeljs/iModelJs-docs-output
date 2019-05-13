@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.190.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -116,11 +116,11 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/">frontend</a> > BuildingIModelJsModules</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/frontend/BuildingIModelJsModules.md">Edit this page</a></div>
             <h1 id="building imodel.js modules">Building iModel.js Modules</h1>
-<p>This article describes the tools provided by iModel.js to build frontend modules. In this context, frontend modules are JavaScript files (transpiled and webpacked from TypeScript source files) that are intended to run in either a browser or in an Electron application. Some background on iModel.js modules is provided in <a href="../ModularizingIModelJs">Modularizing iModel.js</a>.</p>
+<p>This article describes the tools provided by iModel.js to build frontend modules. In this context, frontend modules are JavaScript files (transpiled and webpacked from TypeScript source files) that are intended to run in either a browser or in an Electron application. Some background on iModel.js modules is provided in <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/frontend/modularizingimodeljs'>Modularizing iModel.js</a>.</p>
 <h2 class="h-types-of-modules">Types of Modules<a id="types-of-modules" class="heading-anchor" href="#types-of-modules"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>There are four types of modules in the iModel.js frontend ecosystem :</p>
 <ol>
-<li><p>System modules. The iModel.js frontend system is composed of a set of modules that perform functions such as geometry calculations, user interface customization, and coordinating remote procedure calls to iModel.js backend functions. Each such module is built using the technique described here.</p>
+<li><p>System modules. The iModel.js frontend system is composed of a set of modules that perform myriad functions, such as geometry calculations, user interface implementation, and coordinating remote procedure calls to iModel.js backend functions. Each such module is built using the technique described here.</p>
 </li>
 <li><p>Application modules. An iModel.js application consists of a module that contains the code for its unique functionality, with calls into the iModel.js system modules that take advantage of the classes and methods provided by iModel.js. An application module is loaded by the browser (or Electron) at startup.</p>
 </li>
@@ -163,7 +163,7 @@
 <li>Webpacking the module.</li>
 <li>For application modules, copying the external modules required into the directory from which the web server delivers files in response to HTTP requests.</li>
 <li>For applications, building any Plugins or other submodules that are in the same package as the main application.</li>
-<li>For Bentley applications only, creating the configuration file that accompanies the system modules.</li>
+<li>Optionally creating the configuration file that accompanies the system modules.</li>
 <li>For application localization testing, create pseudo-localized files to make it easy to spot strings that are not localizable.</li>
 </ol>
 <p>Not all steps are required by every module. In particular, application modules are more complicated, and they are usually the only ones that require the last four steps.</p>
@@ -224,7 +224,7 @@
   },</code></pre>
 <p>This copies or symlinks all the .scss files in all subdirectories of the src directory to parallel directories in the lib directory, and copies or symlinks all of the files in all subdirectories of the public directory into the lib/webresources directory. In some cases, you might prefer that the resources be copied rather than linked even if the BUILDIMODEL_SYMLINKS environment variable is set. In that case, add a boolean &quot;copy&quot; property alongside the &quot;source&quot; and &quot;dest&quot; properties and set it to true. If the resource specified with a &quot;copy&quot; property would also be included in a sourceResources entry with a glob specification, make sure it appears earlier in the array of sourceResources.</p>
 <h3 class="h-webpacking">Webpacking<a id="webpacking" class="heading-anchor" href="#webpacking"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>Webpacking consolidates the source files that make up a module into a single file and generates the code necessary to import symbols from external modules. Webpacking has a confusing array of options that control how the code is generated, but the buildIModelJsModule script configures all of those for you. All you have to provide a &quot;webpack&quot; property that specifies the entry point for your module, where the output is to be put, and the name of the bundle created by webpack. For applications, the bundleName should always be &quot;main&quot;. For system modules, bundleName matches the name of the &quot;barrel&quot; file that consolidates the imports for the module. The bundleName for plugins should be something descriptive. For example:</p>
+<p>Webpacking consolidates the source files that make up a module into a single file and generates the code necessary to import symbols from external modules. Webpacking has a confusing array of options that control how the code is generated, but the buildIModelJsModule script configures all of those for you. All you have to provide a &quot;webpack&quot; property that specifies the entry point for your module, where the output is to be put, and the name of the bundle created by webpack. For applications, the bundleName should always be &quot;main&quot;. For system modules, bundleName matches the name of the &quot;barrel&quot; file that consolidates the imports for the module. The bundleName for plugins should be something descriptive. Here is an application module example:</p>
 <pre class="no-line-numbers"><code class="language-json">   &quot;iModelJs&quot;: {
     &quot;buildModule&quot;: {
       &quot;type&quot;: &quot;application&quot;,
@@ -306,7 +306,8 @@
   },
   ...</code></pre>
 <h3 class="h-creating-a-configuration-file">Creating a Configuration file<a id="creating-a-configuration-file" class="heading-anchor" href="#creating-a-configuration-file"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>For Bentley applications only, the &quot;makeConfig&quot; property is specified to create a config.json file that configures the server with the variables specified in the unpublished @bentley/imodeljs-config package. See examples in the rush repository for usage.</p>
+<p>The &quot;makeConfig&quot; property can optionally be specified to create a config.json file that is loaded into the frontend at runtime to initialize Config.App singleton instance of the Config class. There are two possible shapes for the makeConfig property. The first shape is used only for Bentley internal applications, which can use the configuration file that is contained in the internal-only imodeljs-config repository. That shape consists of a &quot;dest&quot; property that designates where the created config.json file is put, and an optional &quot;filter&quot; property that is a regexp expression that can be used to select only the entries from the default config file that match the filter.</p>
+<p>The second shape for the makeConfig property consists of the same &quot;dest&quot; property, but that is followed by &quot;sources&quot; property that is an array of {file, filter} pairs. The resulting config file is composed of the entries from each designated file, filtered by the corresponding filter. Entries from later files in the array override entries from earlier files. The filter property can be an empty string to accept all entries. There are two special values for the &quot;file&quot; property - &quot;process.env&quot; to use the variables in your local environment during the build (which is not recommended), and &quot;imodeljs-config&quot; to use the above-mentioned Bentley-internal default configuration file. The source files can be JSON5 files or plain JSON files. Relative paths for the source files can be specified, relative to the directory containing package.json.</p>
 <h3 class="h-pseudolocalizing-json-locale-files">PseudoLocalizing json locale files<a id="pseudolocalizing-json-locale-files" class="heading-anchor" href="#pseudolocalizing-json-locale-files"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>For localization, iModel.js uses the popular i18next package. Localizable strings are defined in json files where the keys are the property names and the localizable strings are the values. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/frontend/localization'>Localization in iModel.js</a> for an explanation. While an application is under development, it is useful to be able to easily tell whether a string that appears in the user interface has been properly set up for localization before sending the localization json files out for translation. A way of doing that while somewhat preserving readability of the UI is called pseudoLocalization. In that process, a separate locale, &quot;en-pseudo&quot; is created and all the vowels in the original strings are replaced with various accented variations. The buildIModelJsModule script performs that step if a &quot;pseudoLocalize&quot; property is provided. It should be an object with a &quot;source&quot; and &quot;dest&quot; property. For example:</p>
 <pre class="no-line-numbers"><code class="language-html">  &quot;iModelJs&quot;: {
@@ -333,7 +334,7 @@
 <p>Most of these options are self-explanatory. The &quot;--production&quot; argument tells the build script to create the production build of the module. The differences between a production build and the development build (which is the default) arise during the webpack step. Production builds are minified (eliminating comments and carriage returns, shortening variable names, etc.) and all the calls to the assert function imported from @bentleyjs-core are eliminated. Development builds of system modules are put into the &quot;dev&quot; subdirectory of the designated &quot;dest&quot; directory, while production builds are put into the &quot;prod&quot; subdirectory. Builds of application modules copy or symlink the required system modules from the appropriate subdirectory based on build type.</p>
 <p>The &quot;--detail&quot; argument requires a number between 0 and 4, (e.g., --detail=2). Detail level 1 logs the start and end of each build step (although the output can be a little confusing because some steps are executed in parallel). Detail level 2 additionally shows the output of the webpack process, detail level 3 adds a report of skipped steps, and detail level 4 shows substeps such as the copying or symlinking of individual files. Errors are always displayed, and cause the process exit code to be non-zero.</p>
 <p>The &quot;--stats&quot; argument affects the webpack step by passing the &quot;--json&quot; argument to it and directing webpack&apos;s output to a file called &quot;webpackStats.json&quot; in the same directory as the module. That can be useful for analyzing the packages used by the module as well as other webpack performance information. A downside to using that argument is that webpack also directs all errors to the webpackStats.json file, so if you encounter a webpack error with the --stats argument, look in webpackStat.json to get more information about the error.</p>
-<p>For packages that are not in the iModel.js mono repository, the build command is generally invoked using the &quot;npm run build&quot; command. To pass arguments to the script that npm invokes rather than to npm inself, you must put in a &quot;separator&quot; argument, &quot;--&quot; before the arguments that should be passed to the builIModelJsModule script. For example, to build a production version and show detail level 1, you would use this command:</p>
+<p>For packages that are not in the iModel.js mono repository, the build command is generally invoked using the &quot;npm run build&quot; command. To pass arguments to the script that npm invokes rather than to npm itself, you must put in a &quot;separator&quot; argument, &quot;--&quot; before the arguments that should be passed to the builIModelJsModule script. For example, to build a production version and show detail level 1, you would use this command:</p>
 <pre class="no-line-numbers"><code class="language-bashell">npm run build -- --production --detail=1</code></pre>
 <p>For packages that are in the iModel.js rush mono repository, the build process is sequenced by the &quot;rush build&quot; command. In that case, the command line options that can be passed to the build command are determined by the rush configuration file &quot;command-line.json&quot;. There are some restrictions in how the arguments can be structured, and arguments cannot be used that conflict with those that are processed by rush itself. That means that you must spell out the full &quot;--production&quot; argument rather than using the &quot;-p&quot; shortcut. To see the arguments using rush, execute &quot;rush build --help&quot;, and this message is displayed:</p>
 <pre class="no-line-numbers"><code class="language-bashell">Found configuration in D:\bentleyjs\imodeljs\rush.json
@@ -348,16 +349,9 @@ usage: rush build [-h] [-p COUNT] [-t PROJECT1]
                   [-o] [--production] [-s] [-d {0,1,2,3,4}]
 
 
-This command is similar to &quot;rush rebuild&quot;, except that &quot;rush build&quot; performs
-an incremental build. In other words, it only builds projects whose source
-files have changed since the last successful build. The analysis requires a
-Git working tree, and only considers source files that are tracked by Git and
-whose path is under the project folder. (For more details about this
-algorithm, see the documentation for the &quot;package-deps-hash&quot; NPM package.)
-The incremental build state is tracked in a file &quot;package-deps.json&quot; which
-should NOT be added to Git. The build command is tracked by the &quot;arguments&quot;
-field in this JSON file; a full rebuild is forced whenever the command has
-changed (e.g. &quot;--production&quot; or not).
+This command is similar to &quot;rush rebuild&quot;, except that &quot;rush build&quot; performs an incremental build. In other words, it only builds projects whose source files have changed since the last successful build. The analysis requires a Git working tree, and only considers source files that are tracked by Git and whose path is under the project folder. (For more details about this algorithm, see the documentation for the &quot;package-deps-hash&quot; NPM package.)
+
+The incremental build state is tracked in a file &quot;package-deps.json&quot; whichshould NOT be added to Git. The build command is tracked by the &quot;arguments&quot; field in this JSON file; a full rebuild is forced whenever the command has changed (e.g. &quot;--production&quot; or not).
 
 Optional arguments:
   -h, --help            Show this help message and exit.
@@ -390,7 +384,7 @@ Optional arguments:
                         modules. The default value is &quot;0&quot;.</code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 April, 2019</span>
+                <span class='date-updated'>13 May, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

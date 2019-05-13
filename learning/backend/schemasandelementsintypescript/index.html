@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.190.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -193,10 +193,11 @@ import { RobotWorld } from &quot;./RobotWorldSchema&quot;;
 /**
  * An example of defining a subclass of SpatialLocationElement.
  * Normally, you would start writing a class like this by generating the TypeScript class
- * definition from the ecschema. Then, you would then hand-edit it to add methods.
+ * definition from the schema. Then, you would then hand-edit it to add methods.
  * In this example, a &quot;robot&quot; is represented as a circle in the X-Y plane.
  */
 export class Robot extends SpatialLocationElement {
+  public static get className(): string { return &quot;Robot&quot;; }
   //  Define the properties added by this subclass
   public radius: number = 0.1;                     // The girth of the robot
 
@@ -241,31 +242,21 @@ import { AuthorizedClientRequestContext } from &quot;@bentley/imodeljs-clients&q
  * definition. You would then edit the generated TypeScript class to add methods.
  */
 export class RobotWorld extends Schema {
+  public static get schemaName(): string { return &quot;RobotWorld&quot;; }
   /** An app must call this to register the RobotWorld schema prior to using it. */
   public static registerSchema() {
+
     // Make sure that this Schema is registered.
     // An app may call this more than once. Make sure that&apos;s harmless.
-    if (Schemas.getRegisteredSchema(RobotWorld.name) !== undefined)
-      return;
-
-    Schemas.registerSchema(new RobotWorld());
-  }
-
-  // Registers all classes of the RobotWorld schema.
-  private constructor() {
-    super();
-    // Register all modules that define classes in this schema.
-    // ClassRegistry detects all classes defined by each module and registers them.
-    ClassRegistry.registerModule(robots, this);
-    ClassRegistry.registerModule(obstacles, this);
-    // ... other modules ...
-  }
-
-  // ...
-</code></pre>
+    if (this !== Schemas.getRegisteredSchema(RobotWorld.name)) {
+      Schemas.registerSchema(this);
+      ClassRegistry.registerModule(robots, this);
+      ClassRegistry.registerModule(obstacles, this);
+    }
+  }</code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 April, 2019</span>
+                <span class='date-updated'>13 May, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

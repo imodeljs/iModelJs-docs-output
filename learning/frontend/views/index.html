@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.190.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -151,7 +151,7 @@ format for User Interfaces. This can be used to present a list of possible views
 <p>For example:</p>
 <pre class="no-line-numbers"><code class="language-typescript">  /** Get the list of Spatial views from the robot iModel. */
   public static async getSpatialViews(): Promise&lt;IModelConnection.ViewSpec[]&gt; {
-    return this._robotIModel.views.getViewList({ from: SpatialViewState.sqlName });
+    return this._robotIModel.views.getViewList({ from: SpatialViewState.classFullName });
   }
 </code></pre>
 <p>Once a view is selected from the list, it may be loaded with:</p>
@@ -196,7 +196,7 @@ to modify the View itself, or to interact with its contents.</p>
   public static async openView(viewDiv: HTMLDivElement) {
     const viewState = await this.loadOneView();
     const viewPort = ScreenViewport.create(viewDiv, viewState);
-    this.viewManager.addViewport(viewPort);
+    IModelApp.viewManager.addViewport(viewPort);
   }
 </code></pre>
 <p>After the viewport is added to the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager'>ViewManager</a>, all HTML events for its canvas are directed to the active <code>Tool</code> class by the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/tooladmin'>ToolAdmin</a>.</p>
@@ -299,7 +299,7 @@ views, or &quot;wide and shallow slices&quot;, etc.) are problematic and disallo
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 April, 2019</span>
+                <span class='date-updated'>13 May, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

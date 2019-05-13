@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.190.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -119,7 +119,7 @@
 <p>Applications frequently need to persist settings across sessions. Examples include user preferences; tool settings; recently accessed models, views, or projects; user interface state; etc. Some settings are application specific, some are Project specific, and some are iModel specific. Settings are often specific to a particular user, but in some cases defaults settings are established that are available to all users.</p>
 <p>In theory, settings that are iModel-specific could be stored in the iModel itself, but in practice that is not optimal, because the transaction model for design data does not fit well with settings data, and it is undesirable to have to commit a new version of an iModel every time a setting is saved. Therefore, the Settings service described here should be used for those settings too.</p>
 <h2 class="h-the-settingsadmin-class">The SettingsAdmin class<a id="the-settingsadmin-class" class="heading-anchor" href="#the-settingsadmin-class"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>iModel.js provides the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/settings/settingsadmin'>SettingsAdmin</a> object, accessed through <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/#settings'>IModelApp.settings</a>, for managing settings. The default implementation of the SettingsAdmin interface stores all settings to a Bentley CONNECT cloud service, but other implementations are possible. The default implementation treats Settings like sensitive data, which can be accessed only by logged-in users with the appropriate permissions.</p>
+<p>iModel.js provides the SettingsAdmin object, accessed through <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/#settings'>IModelApp.settings</a>, for managing settings. The default implementation of the SettingsAdmin interface stores all settings to a Bentley CONNECT cloud service, but other implementations are possible. The default implementation treats Settings like sensitive data, which can be accessed only by logged-in users with the appropriate permissions.</p>
 <p>The methods on SettingsAdmin allow saving and retrieving setting that are either user-specific or for all users. Saving a setting that is not user-specific requires administrator privileges, and is stored as specific to the organization of the user. Any user that belongs to that organization can retrieve the setting.</p>
 <p>Non-user-specific settings can be:</p>
 <ul>
@@ -139,10 +139,10 @@
 <li>Specific only to the user (for example, a list of favorite applications)</li>
 </ul>
 <p>Settings are identified by a namespace, that is specified by the program but should be chosen to be unique, and a name that need only be unique within the namespace.</p>
-<p>All settings are passed as objects to the SettingsAdmin methods, and persisted as JSON strings representing that object. The return value from the SettingsAdmin methods is a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/settings/settingsresult'>SettingsResult</a>, that contains a status property, an error message which might be populated with explanatory information if the status indicates an error, and the retrieved setting object for the settings retrieval methods.</p>
+<p>All settings are passed as objects to the SettingsAdmin methods, and persisted as JSON strings representing that object. The return value from the SettingsAdmin methods is a SettingsResult, that contains a status property, an error message which might be populated with explanatory information if the status indicates an error, and the retrieved setting object for the settings retrieval methods.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 April, 2019</span>
+                <span class='date-updated'>13 May, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

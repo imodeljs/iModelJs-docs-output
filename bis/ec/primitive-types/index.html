@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.190.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -166,7 +166,14 @@
 <ul>
 <li>binary &#x2013; An array of bytes</li>
 <li>boolean (bool) &#x2013; A boolean value</li>
-<li>dateTime &#x2013; A System.DateTime value in .NET and a BentleyGXX.DateTime value in native</li>
+<li>dateTime &#x2013; A DateTime value.<ul>
+<li>Can store a Date, a Time, or a Date and Time.  Use the CoreCustomAttribute &apos;DateTimeInfo&apos; to identify which component of time a DateTime the value is storing and if it is in UTC or Local timezone.<pre class="no-line-numbers"><code class="language-xml">      &lt;DateTimeInfo xmlns=&quot;CoreCustomAttributes.01.00.02&quot;&gt;
+        &lt;DateTimeKind&gt;Utc&lt;/DateTimeKind&gt;
+        &lt;DateTimeComponent&gt;Date&lt;/DateTimeComponent&gt;
+      &lt;/DateTimeInfo&gt;</code></pre>
+</li>
+</ul>
+</li>
 <li>double &#x2013; A double precision float value</li>
 <li>int &#x2013; A 32 bit integer value</li>
 <li>long &#x2013; A 64 bit integer value</li>
@@ -177,7 +184,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 April, 2019</span>
+                <span class='date-updated'>13 May, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

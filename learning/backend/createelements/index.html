@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.190.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -133,15 +133,16 @@ const newElementId: Id64String = iModel.elements.insertElement(elementProps);</c
 <h2 class="h-subject">Subject<a id="subject" class="heading-anchor" href="#subject"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/subject/insert'>Subject.insert</a></p>
 <h2 class="h-geometricelement3d">GeometricElement3d<a id="geometricelement3d" class="heading-anchor" href="#geometricelement3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<pre class="no-line-numbers"><code class="language-typescript">  public static insertRobot(iModelDb: IModelDb, modelId: Id64String, name: string, location: Point3d): Id64String {
+<pre class="no-line-numbers"><code class="language-typescript">  public static insertRobot(iModelDb: IModelDb, modelId: Id64String, name: string, location: Point3d, radius: number = 0.1): Id64String {
     const props: GeometricElement3dProps = {
       model: modelId,
       code: Code.createEmpty(),
       classFullName: RobotWorld.Class.Robot,      // In this example, I know what class and category to use.
       category: Robot.getCategory(iModelDb).id,
-      geom: Robot.generateGeometry(),             // In this example, I know how to generate geometry, and I know that the placement is empty.
+      geom: Robot.generateGeometry(radius),       // In this example, I know how to generate geometry, and I know that the placement is empty.
       placement: { origin: location, angles: new YawPitchRollAngles() },
       userLabel: name,
+      radius,                                     // Add extra, Robot-specific properties. Be sure to spell them correctly, as the compiler won&apos;t help you here.
     };
     return iModelDb.elements.insertElement(props);
   }</code></pre>
@@ -169,7 +170,7 @@ export function generateGeometry(radius: number = 0.1): GeometryStreamProps {
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/orthographicviewdefinition/insert'>OrthographicViewDefinition.insert</a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 April, 2019</span>
+                <span class='date-updated'>13 May, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

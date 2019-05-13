@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.190.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -276,7 +276,7 @@
 <p> <img src=".././OptimisticConcurrencyControl.jpg" alt="optimistic concurrency example workflow"></p>
 <h4 class="h-conflicts">Conflicts<a id="conflicts" class="heading-anchor" href="#conflicts"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p> Working without locks also opens up the possibility that local changes may overlap with in-coming ChangeSets. When ChangeSets are merged into the briefcase, the change-merging algorithm checks for conflicts. The algorithm merges changes and checks for conflicts at the level of individual element properties. In the example above, the two briefcases changed different properties of the same element. That is not a conflict. Likewise, it is not a conflict for two briefcases both to set a property to the same value, or for two briefcases both to delete an element. Conflicts arise if the two briefcases set the same property to different values, or if one briefcase modifies a property and the other deletes the element.</p>
-<p> If conflicts are found, the change-merging algorithm applies the iModel&apos;s conflict-resolution policy. This can be accessed using the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/#concurrencycontrol'>IModelDb.concurrencyControl</a> property. The policy object includes a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/concurrencycontrol.conflictresolutionpolicy'>ConcurrencyControl.ConflictResolutionPolicy</a> that specifies a conflict-handling policy for each combination of changes that could conflict. The handling operations are defined by <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/concurrencycontrol.onconflict'>ConcurrencyControl.OnConflict</a>. The default conflict-resolution policies are:</p>
+<p> If conflicts are found, the change-merging algorithm applies the iModel&apos;s conflict-resolution policy. This can be accessed using the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/concurrencycontrol'>IModelDb.concurrencyControl</a> property. The policy object includes a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/concurrencycontrol.conflictresolutionpolicy'>ConcurrencyControl.ConflictResolutionPolicy</a> that specifies a conflict-handling policy for each combination of changes that could conflict. The handling operations are defined by <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/concurrencycontrol.onconflict'>ConcurrencyControl.OnConflict</a>. The default conflict-resolution policies are:</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Local Change</th>
 <th>RemoteChange</th>
@@ -336,7 +336,7 @@
 <p>After applying a schema ChangeSet, the IModelDb must be closed and reopened.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 April, 2019</span>
+                <span class='date-updated'>13 May, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

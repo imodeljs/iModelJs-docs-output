@@ -9,9 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Software Architecture for iModel.js Apps - iModel.js</title>
-    <meta name="og:title" content="Software Architecture for iModel.js Apps - iModel.js">
-    <meta name="twitter:title" content="Software Architecture for iModel.js Apps - iModel.js">
+    <title>Software Architecture for iModel.js platform - iModel.js</title>
+    <meta name="og:title" content="Software Architecture for iModel.js platform - iModel.js">
+    <meta name="twitter:title" content="Software Architecture for iModel.js platform - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.190.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -115,12 +115,12 @@
         <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > SoftwareArchitecture</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/SoftwareArchitecture.md">Edit this page</a></div>
-            <h1 id="software architecture for imodel.js apps">Software Architecture for iModel.js Apps</h1>
+            <h1 id="software architecture for imodel.js platform">Software Architecture for iModel.js platform</h1>
 <p>The software architecture of iModel.js was driven by the following goals:</p>
 <ul>
-<li>Support iModel-based services running in any cloud or on premises</li>
+<li>Support iModel-based services running in any cloud or on-premise</li>
 <li>Support iModel-based web/desktop/mobile apps</li>
-<li>Re-use business logic across web, desktop, and mobile apps</li>
+<li>Re-use business logic across cloud, web, desktop, and mobile apps</li>
 <li>Re-use HTML GUI across web, desktop, and mobile apps</li>
 </ul>
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//learning/backend/'>Backend</a> Architecture Layers:</p>
@@ -132,7 +132,7 @@
 </ul>
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/'>Frontend</a> Architecture Layers:</p>
 <ul>
-<li>Application Frontend (TypeScript)</li>
+<li>Application Frontend (TypeScript/JavaScript)</li>
 <li>iModel.js Frontend Framework (TypeScript)</li>
 <li>HTML GUI</li>
 <li>Web Browser</li>
@@ -142,8 +142,8 @@
 Node.js provides the <a href="https://developers.google.com/v8/">V8 JavaScript Engine</a> and the <a href="https://github.com/nodejs/abi-stable-node">N-API</a> for writing Node Addons in C++.
 This is how the iModel.js Native Libraries are exposed to the iModel.js backend framework.
 Portable application logic is written in TypeScript and calls TypeScript APIs exposed from the <code>@bentley/imodeljs-backend</code> package.</p>
-<p>Notice that the backend architecture is identical between Agents and interactive Web Applications.</p>
-<p>Web App frontends run in a web browser and use HTML GUI for presentation and APIs exposed from the <code>@bentley/imodeljs-frontend</code> package for <em>Remote Procedure Calls</em> (RPC) into functionality implemented on the backend.</p>
+<p>Notice that the backend architecture is identical between Agents and backends for interactive Web Applications.</p>
+<p>Web App frontends run in a web browser and use HTML GUI for presentation, and APIs exposed from the <code>@bentley/imodeljs-frontend</code> package for <em>Remote Procedure Calls</em> (RPC) to request services from the backend.</p>
 <p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/rpcinterface'>frontend --&gt; backend communication</a> is over HTTPS for interactive web applications.</p>
 <p><img src=".././SoftwareArchitecture-Web.png" alt="SoftwareArchitecture-Web"></p>
 <p><img src=".././next.png" alt="&gt;"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/writeaninteractivewebapp'>Write an interactive Web app</a></p>
@@ -153,8 +153,9 @@ Portable application logic is written in TypeScript and calls TypeScript APIs ex
 <h2 class="h-desktop">Desktop<a id="desktop" class="heading-anchor" href="#desktop"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>iModel.js desktop applications use the <a href="https://electronjs.org/">Electron</a> Framework.
 The backend architecture is the same as with iModel.js Web Apps because Electron also uses Node.js.
-The only difference in the frontend architecture is that an embedded <a href="https://www.chromium.org/Home">Chromium Browser</a> replaces a standalone Web Browser.</p>
-<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/rpcinterface'>frontend --&gt; backend communication</a> is over <em>Inter Process Communication</em> (IPC) as provided by Electron.</p>
+The primary difference in the frontend architecture is that an embedded <a href="https://www.chromium.org/Home">Chromium Browser</a> replaces a standalone Web Browser.</p>
+<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/rpcinterface'>frontend --&gt; backend communication</a> is over <em>Inter Process Communication</em> (IPC) as provided by Electron. Note that iModel.js desktop applications always have at least
+two (one frontend and at least one backend) processes active together.</p>
 <p><img src=".././SoftwareArchitecture-Desktop.png" alt="SoftwareArchitecture-Desktop"></p>
 <p><img src=".././next.png" alt="&gt;"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/writeaninteractivedesktopapp'>Write a desktop app</a></p>
 <h2 class="h-mobile">Mobile<a id="mobile" class="heading-anchor" href="#mobile"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
@@ -167,7 +168,7 @@ The only difference in the frontend architecture is that an embedded <a href="ht
 <p><img src=".././SoftwareArchitecture-Comparison.png" alt="SoftwareArchitecture-Comparison"></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 April, 2019</span>
+                <span class='date-updated'>13 May, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

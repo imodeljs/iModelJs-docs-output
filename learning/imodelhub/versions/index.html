@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.190.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -116,7 +116,7 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/">imodelhub</a> > Versions</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/iModelHub/Versions.md">Edit this page</a></div>
             <h1 id="named versions">Named Versions</h1>
-<p>Every <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a> pushed to iModelHub creates a new Version of iModel. To distinguish a specific ChangeSet in iModel&apos;s timeline, that represents an important milestone or significant event for that iModel, its Version can be given a unique human-readable name, creating a Named <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/version'>Version</a>. It will allow Version to be easier to recognize and access. Named Versions can be queried separately from ChangeSets and they get <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/thumbnail'>Thumbnail</a>s rendered.</p>
+<p>Every <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a> pushed to iModelHub creates a new Version of iModel. To distinguish a specific ChangeSet in iModel&apos;s timeline, that represents an important milestone or significant event for that iModel, its Version can be given a unique human-readable name, creating a Named <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/version'>Version</a>. It will allow Version to be easier to recognize and access. Named Versions can be queried separately from ChangeSets and they get Thumbnails rendered.</p>
 <h2 class="h-creating-named-versions">Creating Named Versions<a id="creating-named-versions" class="heading-anchor" href="#creating-named-versions"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Named Version can be created by calling <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/versionhandler/create'>VersionHandler.create</a>. To create a Named Version a ChangeSet id has to be specified. You can get ChangeSet ids by querying ChangeSets through <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changesethandler/get'>ChangeSetHandler.get</a>.</p>
 <p>To create a Named Version from a ChangeSet query:</p>
@@ -136,7 +136,7 @@
   const versionByName: Version[] = await imodelHubClient.versions.get(authorizedRequestContext, imodelId, queryByName);
 </code></pre>
 <h2 class="h-downloading-thumbnails">Downloading Thumbnails<a id="downloading-thumbnails" class="heading-anchor" href="#downloading-thumbnails"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Once a Named Version is created, iModelHub generates its <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/thumbnail'>Thumbnail</a> in the background. To get this Thumbnail, a Version query can be specified with <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/versionquery/selectthumbnailid'>VersionQuery.selectThumbnailId</a> or all Thumbnails can be queried through <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/thumbnailhandler/get'>ThumbnailHandler.get</a>.</p>
+<p>Once a Named Version is created, iModelHub generates its Thumbnail in the background. To get this Thumbnail, a Version query can be specified with <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/versionquery/selectthumbnailid'>VersionQuery.selectThumbnailId</a> or all Thumbnails can be queried through ThumbnailHandler.get.</p>
 <p>Thumbnail might not be immediately available after creating a Named Version, as generating it could take some time. If Thumbnail is not returned after creating Named Version, you can try querying it again later.</p>
 <pre class="no-line-numbers"><code class="language-typescript">  // Query Named Version with its Thumbnail Id
   const thumbnailIdQuery: VersionQuery = new VersionQuery().byName(&quot;Version name&quot;).selectThumbnailId(&quot;Small&quot;);
@@ -148,7 +148,7 @@
 </code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 April, 2019</span>
+                <span class='date-updated'>13 May, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

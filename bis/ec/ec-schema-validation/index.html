@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>EC Schema Validation - iModel.js</title>
+    <meta name="og:title" content="EC Schema Validation - iModel.js">
+    <meta name="twitter:title" content="EC Schema Validation - iModel.js">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
+
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
+    <span id="contentLoader">
+        <p>Woah! This page has a great deal of content... Give us a second to load it.</p>
+    </span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+
+
+
+        <header id="main-header">
+            <div class='nav-header-container'>
+                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                    <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo-small" class="site-logo-small" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-icon.svg" style="display:none;"/> 
+                    </a>
+                    <button class="navbar-toggler no-user-select mr-auto" type="button" data-toggle="collapse" data-target="#navbar5">
+                        <span class="navbar-toggler-header"></span>
+                    </button>
+                    <ul class="navbar-nav ml-auto pr-0 nav-search">
+                        <span class='search-bar'>
+                          <li>
+                            <div id='search-container'>
+                            </div>
+                          </li>
+                          <script>
+                            (function() {
+                              var cx = '018053174497532353467:v_gnrjjlqwc';
+                              var gcse = document.createElement('script');
+                              gcse.type = 'text/javascript';
+                              gcse.async = true;
+                              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                              var s = document.getElementsByTagName('script')[0];
+                              s.parentNode.insertBefore(gcse, s);
+                            })();
+                          </script>
+                          <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+                        </span>
+                    </ul>
+                    <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
+                        <ul class="navbar-nav mb-0" id="doc-site-tabs">
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+<div id='main-wrapper'>
+    <nav id='sidebar'>
+        <div id='table-of-contents' class="custom-scrollbar">
+            <div id="dismiss">
+                <i id="dismiss-arrow" class="icon icon-chevron-left no-user-select"></i>
+            </div>
+            <hr id="dismiss-hr" class='sm-only'>
+            <ul id='main-navigation-list'>
+                <html><head></head><body><h3 id="bis">BIS</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/" class="table-of-contents-link">Introduction</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-with-bis" class="table-of-contents-link">Modeling with BIS</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/bis-organization" class="table-of-contents-link">BIS Organization</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/fabric-of-the-universe" class="table-of-contents-link">Fabric of the Universe</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals" class="table-of-contents-link">Element Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/codes" class="table-of-contents-link">Codes</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/elementaspect-fundamentals" class="table-of-contents-link">ElementAspect Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/mixins" class="table-of-contents-link">Mixins</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/model-fundamentals" class="table-of-contents-link">Model Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/relationship-fundamentals" class="table-of-contents-link">Relationship Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schemas-domains" class="table-of-contents-link">Schemas (&#x201C;Domains&#x201D;)</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/information-hierarchy" class="table-of-contents-link">Information Hierarchy</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/physical-models-and-elements" class="table-of-contents-link">Physical Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/functional-models-and-elements" class="table-of-contents-link">Functional Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/analysis-models-and-elements" class="table-of-contents-link">Analysis Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/information-models-and-elements" class="table-of-contents-link">Information Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/physical-hierarchy-organization" class="table-of-contents-link">PhysicalModel Hierarchy</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/categories" class="table-of-contents-link">Categories</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-customization" class="table-of-contents-link">Schema Customization</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/appendix-a-data-evolution-across-time" class="table-of-contents-link">Data Evolution Across Time</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-versioning-and-generations" class="table-of-contents-link">Schema Versioning</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary" class="table-of-contents-link">BIS Glossary</a></li>
+    </ul>
+    <!-- TODO: The following are not linked in...?
+    ./domains/*
+    ./intro/appendix-c-bis-domain-design-fundamentals.md
+    ./intro/bis-schema-validation.md
+    ./intro/units.md
+    -->
+    <p>&#xA0;</p>
+    <h3 id="bis naming guidelines">BIS Naming Guidelines</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/rules-and-recommendations" class="table-of-contents-link">Rules and Recommendations</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/special-terms" class="table-of-contents-link">Special Terms</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/summary-of-exceptions" class="table-of-contents-link">Summary of Exceptions</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/standard-abbreviations-and-acronyms" class="table-of-contents-link">Abbreviations and Acronyms</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/standard-relationship-strengths-names" class="table-of-contents-link">Relationship &#x201C;Strengths&#x201D;</a></li>
+    </ul>
+    <p>&#xA0;</p>
+    <h3 id="ec">EC</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-schema" class="table-of-contents-link">ECSchema</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-class" class="table-of-contents-link">ECClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-entity-class" class="table-of-contents-link">ECEntityClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-mixin-class" class="table-of-contents-link">ECMixinClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-struct-class" class="table-of-contents-link">ECStructClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-custom-attribute-class" class="table-of-contents-link">ECCustomAttributeClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-relationship-class" class="table-of-contents-link">ECRelationshipClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-property" class="table-of-contents-link">ECProperty</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-custom-attributes" class="table-of-contents-link">ECCustomAttributes</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-enumeration" class="table-of-contents-link">ECEnumeration</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/kindofquantity" class="table-of-contents-link">KindOfQuantity</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/property-category" class="table-of-contents-link">PropertyCategory</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/primitive-types" class="table-of-contents-link">PrimitiveTypes</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/customattribute-container-types" class="table-of-contents-link">CustomAttribute Container Types</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-unit" class="table-of-contents-link">Unit</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-constant" class="table-of-contents-link">Constant</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-phenomenon" class="table-of-contents-link">Phenomenon</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-unitsystem" class="table-of-contents-link">UnitSystem</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-format" class="table-of-contents-link">Format</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-name" class="table-of-contents-link">ECName</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/differences-between-ec2-and-ec3" class="table-of-contents-link">Changes Between ECObjects 2 and 3</a></li>
+    </ul>
+    </body></html>
+            </ul>
+        </div>
+    </nav>    <div class='documentation-main'>
+        <article id="main" class="main-content">
+            <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">Base Infrastructure Schema</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/ec/">ec</a> > ec-schema-validation</div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/bis/ec/ec-schema-validation.md">Edit this page</a></div>
+            <h1 id="ec schema validation">EC Schema Validation</h1>
+<p>The variability and potential magnitude of schema rules lead to the need for quality control and long-term maintainability over EC schemas.</p>
+<h2 class="h-ec-v3">EC v3<a id="ec-v3" class="heading-anchor" href="#ec-v3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>EC v3 is a more clearly defined and rigorous version of the EC that has been used widely in Bentley over the past 10+ years.</p>
+<p>An <strong><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-schema'>ECSchema</a></strong> describes one &quot;domain&quot;&#x2014;its primary contents are a closely related set of &quot;ECClasses&quot; of various kinds.</p>
+<p>Unless noted otherwise, all references to &#x201C;schema&#x201D;, &#x201C;class&#x201D; and &#x201C;property&#x201D; in this document refer to ECSchema, ECClass and ECProperty.</p>
+<h2 class="h-validation-rules">Validation Rules<a id="validation-rules" class="heading-anchor" href="#validation-rules"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>EC Schemas are validated against a set of rules. If one rule is violated, the whole schema will fail validation.</p>
+<p>The rules are broken into the different parts of the Schema they are validated against.</p>
+<h3 class="h-general-class-rules">General <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-class'>Class</a> Rules<a id="general-class-rules" class="heading-anchor" href="#general-class-rules"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h4 class="h-ec-100">EC-100 <a name="EC-100"></a><a id="ec-100" class="heading-anchor" href="#ec-100"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>A class may not not derive from a sealed base class.</p>
+<h4 class="h-ec-101">EC-101 <a name="EC-101"></a><a id="ec-101" class="heading-anchor" href="#ec-101"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>A class may not derive from a base class of a different EC type (i.e. EntityClass =&gt; RelationshipClass).</p>
+<h3 class="h-customattribute-container-rules"><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/customattribute-container-types'>CustomAttribute Container</a> Rules<a id="customattribute-container-rules" class="heading-anchor" href="#customattribute-container-rules"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h4 class="h-ec-500">EC-500 <a name="EC-500"></a><a id="ec-500" class="heading-anchor" href="#ec-500"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>A CustomAttribute applied to a container must be of a concrete (non-abstract) class.</p>
+<h3 class="h-enumeration-rules"><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-enumeration'>Enumeration</a> Rules<a id="enumeration-rules" class="heading-anchor" href="#enumeration-rules"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h4 class="h-ec-700">EC-700 <a name="EC-700"></a><a id="ec-700" class="heading-anchor" href="#ec-700"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>The type of the enumeration must be either a String or an Integer.</p>
+<h3 class="h-mixin-rules"><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-mixin-class'>Mixin</a> Rules<a id="mixin-rules" class="heading-anchor" href="#mixin-rules"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h4 class="h-ec-1100">EC-1100 <a name="EC-1100"></a><a id="ec-1100" class="heading-anchor" href="#ec-1100"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>The class that a Mixin is applied to must satisfy the Mixin applies to constraint.</p>
+<h3 class="h-property-rules"><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-property'>Property</a> Rules<a id="property-rules" class="heading-anchor" href="#property-rules"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h4 class="h-ec-1300">EC-1300 <a name="EC-1300"></a><a id="ec-1300" class="heading-anchor" href="#ec-1300"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>Property overrides cannot change the property&apos;s value type (ie. String, Integer, Boolean, etc.)</p>
+<h4 class="h-ec-1301">EC-1301 <a name="EC-1301"></a><a id="ec-1301" class="heading-anchor" href="#ec-1301"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>Property overrides cannot change the property&apos;s type (ie. PrimitiveProperty, EnumerationProperty, StructProperty, etc.)</p>
+<h4 class="h-ec-1302">EC-1302 <a name="EC-1302"></a><a id="ec-1302" class="heading-anchor" href="#ec-1302"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>Property overrides cannot change the persistence unit.</p>
+<h3 class="h-relationship-class-rules"><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-relationship-class'>Relationship Class</a> Rules<a id="relationship-class-rules" class="heading-anchor" href="#relationship-class-rules"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h4 class="h-ec-1500">EC-1500 <a name="EC-1500"></a><a id="ec-1500" class="heading-anchor" href="#ec-1500"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>A derived Relationship&apos;s abstract constraint must be supported by the base Relationship class constraint(s).</p>
+<h4 class="h-ec-1501">EC-1501 <a name="EC-1501"></a><a id="ec-1501" class="heading-anchor" href="#ec-1501"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>A derived Relationship&apos;s class constraint(S) must be supported by the base Relationship class constraint(s).</p>
+<h4 class="h-ec-1502">EC-1502 <a name="EC-1502"></a><a id="ec-1502" class="heading-anchor" href="#ec-1502"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>The constraints of a RelationshipClass must derive the the abstract constraint class.</p>
+<h4 class="h-ec-1600">EC-1600 <a name="EC-1600"></a><a id="ec-1600" class="heading-anchor" href="#ec-1600"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>Relationship constraints must contain at least one constraint class.</p>
+<h4 class="h-ec-1601">EC-1601 <a name="EC-1601"></a><a id="ec-1601" class="heading-anchor" href="#ec-1601"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>An abstract constraint is required if a Relationship constraint has multiple constraint classes.</p>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>13 May, 2019</span>
+            </p>
+            <div id="imodeljs-github-comments">
+            </div>
+            
+            <script>
+              $(document).ready(function () {
+                function initializeComments(repo) {
+                  var s = document.createElement('script');
+                  s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
+                  s.setAttribute('repo', repo);
+                  s.setAttribute('issue-term', 'title');
+                  s.setAttribute('crossorigin', 'anonymous');
+                  s.setAttribute('theme', 'github-light');
+                  s.async = true;
+            
+                  document.getElementById("imodeljs-github-comments").appendChild(s);
+                }
+            
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
+              });
+            </script>
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div class="toc-overlay"></div>
+    <div id='inner-table-of-contents'>
+       <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#ec-v3">EC v3</a>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-validation-rules" class='title' href="#validation-rules"/>
+            <b class='dropdown-menu-title menu-text'>Validation Rules</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-validation-rules" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-general-class-rules" class='title' href="#general-class-rules"/>
+                            <b class='dropdown-menu-title menu-text'>General Class Rules</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-general-class-rules" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#ec-100">EC-100</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#ec-101">EC-101</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-customattribute-container-rules" class='title' href="#customattribute-container-rules"/>
+                            <b class='dropdown-menu-title menu-text'>CustomAttribute Container Rules</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-customattribute-container-rules" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#ec-500">EC-500</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-enumeration-rules" class='title' href="#enumeration-rules"/>
+                            <b class='dropdown-menu-title menu-text'>Enumeration Rules</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-enumeration-rules" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#ec-700">EC-700</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-mixin-rules" class='title' href="#mixin-rules"/>
+                            <b class='dropdown-menu-title menu-text'>Mixin Rules</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-mixin-rules" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#ec-1100">EC-1100</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-property-rules" class='title' href="#property-rules"/>
+                            <b class='dropdown-menu-title menu-text'>Property Rules</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-property-rules" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#ec-1300">EC-1300</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#ec-1301">EC-1301</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#ec-1302">EC-1302</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-relationship-class-rules" class='title' href="#relationship-class-rules"/>
+                            <b class='dropdown-menu-title menu-text'>Relationship Class Rules</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-relationship-class-rules" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#ec-1500">EC-1500</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#ec-1501">EC-1501</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#ec-1502">EC-1502</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#ec-1600">EC-1600</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#ec-1601">EC-1601</a>
+                                    </li>
+                            </ul>
+                    </li>
+            </ul>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color pt-1 pb-3">
+  <!-- Footer Links Container -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row d-flex align-items-center mt-2">
+
+      <!-- Grid column -->
+      <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
+
+        <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+        </a>
+        <small style="color: white; margin-right: 7px;"> powered by </small>
+        <a href="https://www.bentley.com">
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
+        </a>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-5 col-lg-4 ml-lg-0">
+
+        <!-- Social buttons -->
+        <div class="text-center text-md-right">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://twitter.com/imodeljs" target="_blank">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://github.com/imodeljs" target="_blank">
+                <i class="fa fa-github"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://stackoverflow.com/tags/imodeljs"
+                target="_blank">
+                <i class="fa fa-stack-overflow"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links Container -->
+
+</footer>
+<!-- Footer -->
+
+</div>
+<a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
+</body>
+
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>
