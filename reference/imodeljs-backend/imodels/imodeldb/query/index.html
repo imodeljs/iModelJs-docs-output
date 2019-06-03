@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -193,7 +193,7 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/">imodeljs-backend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/imodels/">iModels</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/imodels/imodeldb/">IModelDb</a> > query</div>
             
             <h2 class="h-query">query <span class="badge badge-pill badge-primary badge-method">Method</span><a id="query" class="heading-anchor" href="#query"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Execute a pageable query.
+<p>Execute a query and stream its results
 The result of the query is async iterator over the rows. The iterator will get next page automatically once rows in current page has been read.
 <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlrowformat'>ECSQL row</a>.</p>
 <p>See also:</p>
@@ -201,8 +201,8 @@ The result of the query is async iterator over the rows. The iterator will get n
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/executingecsql'>ECSQL Overview</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/ecsqlcodeexamples'>Code Examples</a></li>
 </ul>
-<p><span class="method-name">query</span><span class="method-parenthesis">(</span><span class="method-parameters">ecsql: string, bindings?: any[] | object, options?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/pageoptions'>PageOptions</a></span><span class="method-parenthesis">):</span><span class="method-output"> AsyncIterableIterator&lt;any&gt;</span></p>
-<p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodelerror'>IModelError</a> If the statement is invalid</p>
+<p><span class="method-name">query</span><span class="method-parenthesis">(</span><span class="method-parameters">ecsql: string, bindings?: any[] | object, limitRows?: number, quota?: QueryQuota, priority?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/querypriority'>QueryPriority</a></span><span class="method-parenthesis">):</span><span class="method-output"> AsyncIterableIterator&lt;any&gt;</span></p>
+<p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodelerror'>IModelError</a> If there was any error while submitting, preparing or stepping into query</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
 <th>Type</th>
@@ -219,11 +219,21 @@ The result of the query is async iterator over the rows. The iterator will get n
 <td>The values to bind to the parameters (if the ECSQL has any).<br>Pass an <em>array</em> of values if the parameters are <em>positional</em>.<br>Pass an <em>object of the values keyed on the parameter name</em> for <em>named parameters</em>.<br>The values in either the array or object must match the respective types of the parameters.<br>See &quot;<a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlparametertypes'>iModel.js Types used in ECSQL Parameter Bindings</a>&quot; for details.</td>
 </tr>
 <tr>
-<td class="h-options"><span class="parameter-name">options</span><a id="options" class="heading-anchor" href="#options"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/pageoptions'>PageOptions</a></span></td>
-<td>Provide paging option. Which allow page to start iterating from and also size of the page to use.</td>
+<td class="h-limitrows"><span class="parameter-name">limitRows</span><a id="limitrows" class="heading-anchor" href="#limitrows"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="parameter-type">number</span></td>
+<td>Specify upper limit for rows that can be returned by the query.</td>
 </tr>
-</tbody></table><p><strong>Returns</strong> - Returns the query result as an array of the resulting rows or an empty array if the query has returned no rows.
+<tr>
+<td class="h-quota"><span class="parameter-name">quota</span><a id="quota" class="heading-anchor" href="#quota"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="parameter-type">QueryQuota</span></td>
+<td>Specify non binding quota. These values are constrained by global setting<br>but never the less can be specified to narrow down the quota constraint for the query but staying under global settings.</td>
+</tr>
+<tr>
+<td class="h-priority"><span class="parameter-name">priority</span><a id="priority" class="heading-anchor" href="#priority"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/querypriority'>QueryPriority</a></span></td>
+<td>Specify non binding priority for the query. It can help user to adjust<br>priority of query in queue so that small and quicker queries can be prioritized over others.</td>
+</tr>
+</tbody></table><p><strong>Returns</strong> - Returns the query result as an <em>AsyncIterableIterator<any></any></em>  which lazy load result as needed
 See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlrowformat'>ECSQL row format</a> for details about the format of the returned rows.</p>
 <h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -231,7 +241,7 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlro
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -292,7 +302,13 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlro
                             <a class='title solo-title menu-text' href="#bindings">bindings</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#options">options</a>
+                            <a class='title solo-title menu-text' href="#limitrows">limitRows</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#quota">quota</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#priority">priority</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#defined-in">Defined in</a>

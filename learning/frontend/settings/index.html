@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -121,14 +121,6 @@
 <h2 class="h-the-settingsadmin-class">The SettingsAdmin class<a id="the-settingsadmin-class" class="heading-anchor" href="#the-settingsadmin-class"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>iModel.js provides the SettingsAdmin object, accessed through <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/#settings'>IModelApp.settings</a>, for managing settings. The default implementation of the SettingsAdmin interface stores all settings to a Bentley CONNECT cloud service, but other implementations are possible. The default implementation treats Settings like sensitive data, which can be accessed only by logged-in users with the appropriate permissions.</p>
 <p>The methods on SettingsAdmin allow saving and retrieving setting that are either user-specific or for all users. Saving a setting that is not user-specific requires administrator privileges, and is stored as specific to the organization of the user. Any user that belongs to that organization can retrieve the setting.</p>
-<p>Non-user-specific settings can be:</p>
-<ul>
-<li>Specific to an application (for example, default application preferences)</li>
-<li>Specific to an application and Project (for example, the default iModel for the project when the application is opened)</li>
-<li>Specific to an application and iModel (for example, the default views for the iModel when the application is opened)</li>
-<li>Specific to a Project (for example, a message of the day for all users of that Project)</li>
-<li>Specific to an iModel (for example, default basic preferences relevant to all applications)</li>
-</ul>
 <p>User-specific settings can be:</p>
 <ul>
 <li>Specific to an application (for example, the user&apos;s particular application preferences)</li>
@@ -138,11 +130,21 @@
 <li>Specific to an iModel (for example, the user&apos;s list of favorite views in that iModel)</li>
 <li>Specific only to the user (for example, a list of favorite applications)</li>
 </ul>
+<p>Non-user-specific settings can be:</p>
+<ul>
+<li>Specific to an application (for example, default application preferences)</li>
+<li>Specific to an application and Project (for example, the default iModel for the project when the application is opened)</li>
+<li>Specific to an application and iModel (for example, the default views for the iModel when the application is opened)</li>
+<li>Specific to a Project (for example, a message of the day for all users of that Project)</li>
+<li>Specific to an iModel (for example, default basic preferences relevant to all applications)</li>
+</ul>
+<p>To save a non-user-specific setting, administrative privileges are required. That makes such settings ideal for parameters that should be fixed per-iModel or per-Project by an administrator, and used by every user.</p>
+<p>Shared settings are similar to Non-user-specific settings, except that they can be written or deleted without administrative privileges. That makes them ideal for settings like Named Clip volumes, where users want to be able to create and share clip volumes, and to see clip volumes that were created by other users. There are no shared settings that are dependent only on Application.</p>
 <p>Settings are identified by a namespace, that is specified by the program but should be chosen to be unique, and a name that need only be unique within the namespace.</p>
 <p>All settings are passed as objects to the SettingsAdmin methods, and persisted as JSON strings representing that object. The return value from the SettingsAdmin methods is a SettingsResult, that contains a status property, an error message which might be populated with explanatory information if the status indicates an error, and the retrieved setting object for the settings retrieval methods.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

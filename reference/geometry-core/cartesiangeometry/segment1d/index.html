@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -198,12 +198,12 @@
 <li>The interval is defined by two values x0 and x1.</li>
 <li>The x0 and x1 values can be in either order.<ul>
 <li>if <code>x0 &lt; x1</code> fractional coordinates within the segment move from left to right.</li>
-<li>if <code>x0 &gt; x1</code> fractional coordinatesw within the segment move from right to left.</li>
+<li>if <code>x0 &gt; x1</code> fractional coordinates within the segment move from right to left.</li>
 </ul>
 </li>
 <li>This differs from a Range1d in that:</li>
 <li>For a Range1d the reversed ordering of its limit values means &quot;empty interval&quot;.</li>
-<li>For a Segment1d the reversed ordering is a real interval but fractional positions mvoe backwards.</li>
+<li>For a Segment1d the reversed ordering is a real interval but fractional positions move backwards.</li>
 <li>The segment is parameterized with a fraction</li>
 <li><ul>
 <li>Fraction 0 is the start (<code>x0</code>)</li>
@@ -225,13 +225,18 @@
 <th></th>
 </tr>
 <tr>
+<td class="h-clipby01functionvaluespositive"><span class="method-name"><a href="clipby01functionvaluespositive">clipBy01FunctionValuesPositive</a></span><span class="method-parenthesis">(</span><span class="method-parameters">f0: number, f1: number</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="clipby01functionvaluespositive" class="heading-anchor" href="#clipby01functionvaluespositive"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>On input, <code>this</code> is an interval of a line.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-clone"><span class="method-name">clone</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/segment1d'>Segment1d</a></span><a id="clone" class="heading-anchor" href="#clone"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>clone this Segment1d, return as a separate object.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-fractiontopoint"><span class="method-name"><a href="fractiontopoint">fractionToPoint</a></span><span class="method-parenthesis">(</span><span class="method-parameters">fraction: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="fractiontopoint" class="heading-anchor" href="#fractiontopoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Evalauate the segment at fractional position</td>
+<td>Evaluate the segment at fractional position</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -278,21 +283,21 @@
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-isin01"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/segment1d/isin01'>isIn01</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isin01" class="heading-anchor" href="#isin01"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-isin01"><span class="property-name">isIn01</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isin01" class="heading-anchor" href="#isin01"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> boolean</span></td>
-<td>&#xA0;</td>
+<td>Returns true if both coordinates (<code>x0</code> and <code>x1</code>) are in the 0..1 range.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-x0"><span class="property-name">x0</span><a id="x0" class="heading-anchor" href="#x0"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">number</span></td>
-<td>&#xA0;</td>
+<td>start coordinate</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-x1"><span class="property-name">x1</span><a id="x1" class="heading-anchor" href="#x1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">number</span></td>
-<td>&#xA0;</td>
+<td>end coordinate</td>
 <td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -301,7 +306,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -361,6 +366,9 @@
                             <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#clipby01functionvaluespositive">clipBy01FunctionValuesPositive</a>
+                                    </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#clone">clone</a>
                                     </li>

@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -139,19 +139,34 @@ View are ready. The <a href='https://imodeljs.github.io/iModelJs-docs-output//./
 <ul>
 <li><code>ViewDefinition</code><ul>
 <li><code>SpatialViewDefinition</code> - shows a view of one or more 3d SpatialModels</li>
-<li><code>DrawingViewDefinition</code> - shows a view of a single 2d DrawingModel</li>
-<li><code>SheetViewDefinition</code> - shows a view of a single 2d SheetModel</li>
+<li><code>DrawingViewDefinition</code> - shows a view of a <em>single</em> 2d DrawingModel</li>
+<li><code>SheetViewDefinition</code> - shows a view of a <em>single</em> 2d SheetModel</li>
 </ul>
 </li>
 </ul>
 <p>For each subclass of <code>xxxViewDefinition</code>, there is a corresponding <code>xxxViewState</code> class in the frontend.</p>
+<h2 class="h-using-viewports">Using Viewports<a id="using-viewports" class="heading-anchor" href="#using-viewports"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a> objects hold the state of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/viewdefinition'>ViewDefinition</a> (<em>what</em> is shown in a View) in the frontend.</p>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a> is an abstract class that connects a ViewState to a RenderTarget.</p>
+<p>To connect a ViewState to a rectangular region on a web page, create instances of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport'>ScreenViewport</a> class. The method <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport/create'>ScreenViewport.create</a> takes an <code>HTMLDivElement</code> and a
+(fully loaded) ViewState. In this manner, ScreenViewport forms the connection between a rectangular region on your web page (a &quot;div&quot;) and a set of
+Models in an iModel, a display <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/frustum'>Frustum</a>, a DisplayStyle, and the rendering system.</p>
+<blockquote>
+<p>Note: before creating a ScreenViewport, be sure to call <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/startup'>IModelApp.startup</a>.</p>
+</blockquote>
 <h2 class="h-loading-views-from-an-imodel">Loading Views from an iModel<a id="loading-views-from-an-imodel" class="heading-anchor" href="#loading-views-from-an-imodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>There is a method called <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection.views/getviewlist'>IModelConnection.Views.getViewList</a> that returns an array of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection.viewspec'>IModelConnection.ViewSpec</a>s in a convenient
 format for User Interfaces. This can be used to present a list of possible views by name in a List.</p>
-<p>For example:</p>
-<pre class="no-line-numbers"><code class="language-typescript">  /** Get the list of Spatial views from the robot iModel. */
+<p>For example, to get a list of all spatial views:</p>
+<pre class="no-line-numbers"><code class="language-typescript">  /** Get a list of Spatial views from an iModel. */
   public static async getSpatialViews(): Promise&lt;IModelConnection.ViewSpec[]&gt; {
-    return this._robotIModel.views.getViewList({ from: SpatialViewState.classFullName });
+    return this._iModel.views.getViewList({ from: SpatialViewState.classFullName });
+  }
+</code></pre>
+<p>To get a list of all drawing views:</p>
+<pre class="no-line-numbers"><code class="language-typescript">  /** Get a list of all Drawing views from an iModel. */
+  public static async getDrawingViews(): Promise&lt;IModelConnection.ViewSpec[]&gt; {
+    return this._iModel.views.getViewList({ from: DrawingViewState.classFullName });
   }
 </code></pre>
 <p>Once a view is selected from the list, it may be loaded with:</p>
@@ -173,21 +188,35 @@ format for User Interfaces. This can be used to present a list of possible views
     const viewId: string = await this.pickView(views);
 
     // return a promise for the ViewState of the selected view. Note that caller will have to await this method
-    return this._robotIModel.views.load(viewId);
+    return this._iModel.views.load(viewId);
+  }
+</code></pre>
+<p>Then, you may wish to change one of the existing views to show the contents of the now-loaded view. For example, to switch the
+<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager/#selectedview'>ViewManager.selectedView</a> to show it, use code like:</p>
+<pre class="no-line-numbers"><code class="language-typescript">  /** Show a list of spatial views, allow the user to select one, load its ViewState, and then change the selected ScreenViewport to show it. */
+  public static async showOneView(): Promise&lt;void&gt; {
+    const viewstate = await this.loadOneView();
+    const vp = IModelApp.viewManager.selectedView;
+    if (undefined !== vp)
+      vp.changeView(viewstate);
   }
 </code></pre>
 <blockquote>
-<p>Note that in the examples above, <code>getSpatialViews</code> and <code>loadOneView</code> are <code>async</code>, and you must <code>await</code> them.</p>
+<p>Note that in the examples above, <code>getSpatialViews</code>, <code>loadOneView</code>, and <code>showOneView</code> are <code>async</code>, and you must <code>await</code> them.</p>
 </blockquote>
-<h2 class="h-using-viewports">Using Viewports<a id="using-viewports" class="heading-anchor" href="#using-viewports"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewstate'>ViewState</a> objects hold the state of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/viewdefinition'>ViewDefinition</a> (<em>what</em> is shown in a View) in the frontend.</p>
-<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a> is an abstract class that connects a ViewState to a RenderTarget.</p>
-<p>To connect a ViewState to a rectangular region on a web page , you create instances of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport'>ScreenViewport</a> class. The method <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport/create'>ScreenViewport.create</a> takes an <code>HTMLDivElement</code> and a
-(fully loaded) ViewState. In this manner, ScreenViewport form the connection between a rectangular region on your web page (a &quot;div&quot;) and a set of
-Models in an iModel, a display <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/frustum'>Frustum</a>, a DisplayStyle, and the rendering system.</p>
-<blockquote>
-<p>Note: before creating a ScreenViewport, be sure to call <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/startup'>IModelApp.startup</a>.</p>
-</blockquote>
+<h2 class="h-changing-the-model-displayed-by-a-2d-view">Changing the Model displayed by a 2d view<a id="changing-the-model-displayed-by-a-2d-view" class="heading-anchor" href="#changing-the-model-displayed-by-a-2d-view"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Viewports always display one ViewState. If that ViewState happens to be a ViewState2d, we sometimes call that a &quot;2d view&quot;. Since ViewState2d shows one and only one 2d Model, it is sometimes is desireable to &quot;switch the Model&quot; of an existing 2d view, versus loading a new ViewState2d. This will sometimes
+be appropriate if you <em>know</em> that a set of 2d Models use a common coordinate system and categories, etc.</p>
+<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/changeviewedmodel2d'>Viewport.changeViewedModel2d</a> method can be used to accomplish this:</p>
+<pre class="no-line-numbers"><code class="language-typescript">  /** Change the displayed 2d Model of the selected view, if it is currently showing a 2d Model
+   * @note the categories and displayStyle are unchanged. View is fitted to new model extents.
+   */
+  public static async change2dModel(newModelId: Id64String): Promise&lt;void&gt; {
+    const vp = IModelApp.viewManager.selectedView;
+    if (undefined !== vp)
+      return vp.changeViewedModel2d(newModelId, { doFit: true });
+  }
+</code></pre>
 <h2 class="h-viewmanager">ViewManager<a id="viewmanager" class="heading-anchor" href="#viewmanager"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The Viewport class is responsible for displaying a View, as defined by its ViewState. However, typically the objective of showing a View is to allow users
 to modify the View itself, or to interact with its contents.</p>
@@ -200,7 +229,11 @@ to modify the View itself, or to interact with its contents.</p>
   }
 </code></pre>
 <p>After the viewport is added to the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager'>ViewManager</a>, all HTML events for its canvas are directed to the active <code>Tool</code> class by the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/tooladmin'>ToolAdmin</a>.</p>
-<p>If there is more than one Viewport visible, the ViewManager keeps track of the <em>Selected Viewport</em> and treats it specially.</p>
+<h3 class="h-the-selected-view">The &quot;Selected&quot; View<a id="the-selected-view" class="heading-anchor" href="#the-selected-view"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>It is sometimes necessary to chose a Viewport from inside code that reacts to user input. Absent some other way of determining which Viewport to use, iModel.js applications often default to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager/#selectedview'>ViewManager.selectedView</a>. This will be the last <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport'>ScreenViewport</a> in which the user clicked.  <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager/#selectedview'>ViewManager.selectedView</a> is often the target Viewport for Tools.</p>
+<blockquote>
+<p>Note: If there is only one Viewport visible, that Viewport will always be the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager/#selectedview'>ViewManager.selectedView</a>. If there are no Viewports visible, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager/#selectedview'>ViewManager.selectedView</a> can be undefined.</p>
+</blockquote>
 <h2 class="h-viewing-tools">Viewing Tools<a id="viewing-tools" class="heading-anchor" href="#viewing-tools"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The iModel.js library supplies controls that allow users to modify what is shown in Views via the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/viewtool'>ViewTool</a> classes. You can create instances of the
 supplied classes (e.g. <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/windowareatool'>WindowAreaTool</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/fitviewtool'>FitViewTool</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/walkviewtool'>WalkViewTool</a>, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/rotateviewtool'>RotateViewTool</a>, etc.) or create your own subclasses for
@@ -240,32 +273,14 @@ you can create <code>RealityDataModel</code>s that hold the URL of the Reality D
 <p>Every view may have a thumbnail that shows an approximation of what it contains. This can be helpful for user interfaces that offer a choice of Views.</p>
 <h2 class="h-viewstate-parameters">ViewState Parameters<a id="viewstate-parameters" class="heading-anchor" href="#viewstate-parameters"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p> This is what the parameters to the camera methods, and the values stored by <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/viewdefinition3d'>ViewDefinition3d</a> mean.</p>
-<pre class="no-line-numbers"><code class="language-bash">                 v-- {origin}
-            -----+-------------------------------------- -   [back plane]
-            ^\   .                                    /  ^
-            | \  .                                   /   |        P
-          d |  \ .                                  /    |        o
-          e |   \.         {targetPoint}           /     |        s
-          l |    |---------------+----------------|      |        i    [focus plane]
-          t |     \  ^delta.x    ^               /     b |        t
-          a |      \             |              /      a |        i
-          . |       \            |             /       c |        v
-          z |        \           | f          /        k |        e
-            |         \          | o         /         D |        Z
-            |          \         | c        /          i |        |
-            |           \        | u       /           s |        v
-            v            \       | s      /            t |
-            -     -       -----  | D -----               |   [front plane]
-                  ^              | i                     |
-                  |              | s                     |
-      frontDist -&gt;|              | t                     |
-                  |              |                       |
-                  v           \  v  / &lt;- lens angle      v
-                  -              + {eyePoint}            -     positiveX -&gt;</code></pre>
+<p><img src=".././ViewFrustum-D1.png" width="75%"></p>
+<p><strong></strong></p><center><strong>View Frustum - top view</strong></center><p></p>
+<p><img src=".././ViewFrustum-D2.png" width="75%"></p>
+<p><strong></strong></p><center><strong>View Frustum -  3D view</strong></center><p></p>
+<p><img src=".././ViewFrustum-D3.png" width="75%"></p>
+<p><strong></strong></p><center><strong>View Frustum NPC Corners</strong></center><p></p>
 <h3 class="h-notes">Notes<a id="notes" class="heading-anchor" href="#notes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
-<li><p>Up vector (positiveY) points out of the screen towards you in this diagram. Likewise delta.y.</p>
-</li>
 <li><p>The view origin is in world coordinates. It is the point at the lower left of the rectangle at the focus plane, projected onto the back plane.</p>
 </li>
 <li><p><code>[delta.x,delta.y]</code> are on the focus plane and <code>delta.z</code> is from the back plane to the front plane.</p>
@@ -283,23 +298,18 @@ It should generally be between the front plane and the back plane.</p>
 </li>
 <li><p>targetPoint is not stored in the view parameters. Instead it may be derived from <code>{origin},{eyePoint},[Matrix3d]</code> and <code>focusDist</code>.</p>
 </li>
-<li><p>The view volume is specified by: <code>{origin}&lt;delta&gt;[Matrix3d]</code></p>
-</li>
-<li><p>Perspective is determined by <code>{eyePoint}</code>, which is independent of the view volume. Sometimes the eyepoint is not
-on the rectangle on the focus plane (that is, a vector from the eyepoint along the viewZ does not hit the view
-center.) This creates a 1-point perspective, which can be disconcerting. It is usually best to keep the camera centered.</p>
+<li><p>The ViewState holds the parameters: <code>{origin}{delta}[Matrix3d]</code> from which the View frustum is derived.</p>
 </li>
 <li><p>Cameras hold a &quot;lens angle&quot; value which is defines the field-of-view for the camera in radians.
 The lens angle value is not used to compute the perspective transform for a view.
 Instead, the lens angle value can be used to reposition <code>{eyePoint}</code> when the view volume or target changes.</p>
 </li>
-<li><p>View volumes where one dimension is very small or large relative to the other dimensions (e.g. &quot;long skinny telescope&quot;
-views, or &quot;wide and shallow slices&quot;, etc.) are problematic and disallowed based on ratio limits.</p>
+<li><p>View volumes where one dimension is very small or large relative to the other dimensions (e.g. &quot;long skinny telescope&quot; views, or &quot;wide and shallow slices&quot;, etc.) are problematic and disallowed based on ratio limits.</p>
 </li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -357,13 +367,24 @@ views, or &quot;wide and shallow slices&quot;, etc.) are problematic and disallo
             <a class='title solo-title menu-text' href="#types-of-viewdefinitions">Types of ViewDefinitions</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#loading-views-from-an-imodel">Loading Views from an iModel</a>
-    </li>
-       <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#using-viewports">Using Viewports</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#viewmanager">ViewManager</a>
+            <a class='title solo-title menu-text' href="#loading-views-from-an-imodel">Loading Views from an iModel</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#changing-the-model-displayed-by-a-2d-view">Changing the Model displayed by a 2d view</a>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-viewmanager" class='title' href="#viewmanager"/>
+            <b class='dropdown-menu-title menu-text'>ViewManager</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-viewmanager" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#the-selected-view">The "Selected" View</a>
+                    </li>
+            </ul>
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#viewing-tools">Viewing Tools</a>

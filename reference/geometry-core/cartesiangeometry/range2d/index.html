@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -285,7 +285,7 @@
 </tr>
 <tr>
 <td class="h-freeze"><span class="method-name">freeze</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="freeze" class="heading-anchor" href="#freeze"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>Freeze this instance (and its deep content) so it can be considered read-only</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -300,7 +300,7 @@
 </tr>
 <tr>
 <td class="h-isalmostequal"><span class="method-name">isAlmostEqual</span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range2d'>Range2d</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="isalmostequal" class="heading-anchor" href="#isalmostequal"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>Returns true if this and other have equal low and high parts, or both are null ranges.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -315,7 +315,7 @@
 </tr>
 <tr>
 <td class="h-setfrom"><span class="method-name">setFrom</span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/lowandhighxy'>LowAndHighXY</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setfrom" class="heading-anchor" href="#setfrom"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>copy all content from any <code>other</code> that has low and high xy data.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -325,7 +325,7 @@
 </tr>
 <tr>
 <td class="h-setnull"><span class="method-name">setNull</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setnull" class="heading-anchor" href="#setnull"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>reset the low and high to null range state.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -335,12 +335,12 @@
 </tr>
 <tr>
 <td class="h-tofloat64array"><span class="method-name">toFloat64Array</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> Float64Array</span><a id="tofloat64array" class="heading-anchor" href="#tofloat64array"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>Flatten the low and high coordinates of this instance into an array of 4 doubles</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-tojson"><span class="method-name">toJSON</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range2dprops'>Range2dProps</a></span><a id="tojson" class="heading-anchor" href="#tojson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>return json array with two points as produced by <code>Point2d.toJSON</code></td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -365,7 +365,7 @@
 </tr>
 <tr>
 <td class="h-createfromt-extends-range2d"><span class="method-name">createFrom</span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range2d'>Range2d</a></span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">other: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/lowandhighxy'>LowAndHighXY</a>, result?: T</span><span class="method-parenthesis">):</span><span class="method-output"> T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range2d'>Range2d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createfromt-extends-range2d" class="heading-anchor" href="#createfromt-extends-range2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>create a new Range2d from any <code>other</code> that has low and high xy data.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -400,7 +400,7 @@
 </tr>
 <tr>
 <td class="h-fromjsont-extends-range2d"><span class="method-name">fromJSON</span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range2d'>Range2d</a></span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">json?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range2dprops'>Range2dProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> T extends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range2d'>Range2d</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="fromjsont-extends-range2d" class="heading-anchor" href="#fromjsont-extends-range2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>Use <code>setFromJSON</code> to parse <code>json</code> into a new Range2d instance.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -409,8 +409,8 @@
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-tofloat64array-1"><span class="method-name">toFloat64Array</span><span class="method-parenthesis">(</span><span class="method-parameters">val: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/lowandhighxy'>LowAndHighXY</a></span><span class="method-parenthesis">):</span><span class="method-output"> Float64Array</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="tofloat64array-1" class="heading-anchor" href="#tofloat64array-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td class="h-tofloat64array-1"><span class="method-name"><a href="tofloat64array">toFloat64Array</a></span><span class="method-parenthesis">(</span><span class="method-parameters">val: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/lowandhighxy'>LowAndHighXY</a></span><span class="method-parenthesis">):</span><span class="method-output"> Float64Array</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="tofloat64array-1" class="heading-anchor" href="#tofloat64array-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Flatten the low and high coordinates of any json object with low.x ..</td>
 <td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-inherited-methods"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited methods<a id="inherited-methods" class="heading-anchor" href="#inherited-methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -457,15 +457,15 @@
 <th></th>
 </tr>
 <tr>
-<td class="h-center"><span class="property-name">center</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="center" class="heading-anchor" href="#center"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-center"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range2d/center'>center</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="center" class="heading-anchor" href="#center"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a></span></td>
-<td>&#xA0;</td>
+<td>Return the midpoint of the diagonal.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-high"><span class="property-name">high</span><a id="high" class="heading-anchor" href="#high"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-high"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range2d/high'>high</a></span><a id="high" class="heading-anchor" href="#high"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a></span></td>
-<td>&#xA0;</td>
+<td>low point coordinates.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -493,9 +493,9 @@
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-low"><span class="property-name">low</span><a id="low" class="heading-anchor" href="#low"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-low"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range2d/low'>low</a></span><a id="low" class="heading-anchor" href="#low"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/point2d'>Point2d</a></span></td>
-<td>&#xA0;</td>
+<td>low point coordinates.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -547,7 +547,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

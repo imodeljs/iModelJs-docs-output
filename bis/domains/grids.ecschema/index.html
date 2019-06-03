@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -258,12 +258,6 @@
 <td align="left">Name</td>
 <td align="left"></td>
 <td align="left">string</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">Grid</td>
-<td align="left">Grid this axis belong to</td>
-<td align="left"><a href="grids.ecschema.md#gridhasaxes">navigation</a></td>
 </tr>
 </tbody></table><h3 class="h-gridcurve"><strong>GridCurve</strong> <em>Abstract</em><a id="gridcurve" class="heading-anchor" href="#gridcurve"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
@@ -289,7 +283,29 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> a set which holds GridCurves</p>
 <p><strong>baseClass:</strong> <a href="biscore.ecschema.md#spatiallocationelement">BisCore:SpatialLocationElement</a></p>
-<h3 class="h-gridline"><strong>GridLine</strong><a id="gridline" class="heading-anchor" href="#gridline"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h3 class="h-gridlabel"><strong>GridLabel</strong> <em>Sealed</em><a id="gridlabel" class="heading-anchor" href="#gridlabel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>description:</strong> an element representing label of a grid curve</p>
+<p><strong>baseClass:</strong> <a href="biscore.ecschema.md#informationrecordelement">BisCore:InformationRecordElement</a></p>
+<h4 class="h-properties-4">Properties<a id="properties-4" class="heading-anchor" href="#properties-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">HasLabelAtStart</td>
+<td align="left">label should appear at start of a grid curve</td>
+<td align="left">boolean</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">HasLabelAtEnd</td>
+<td align="left">label should appear at end of a grid curve</td>
+<td align="left">boolean</td>
+</tr>
+</tbody></table><h3 class="h-gridline"><strong>GridLine</strong><a id="gridline" class="heading-anchor" href="#gridline"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> a gridcurve that is a result of 2 planar surfaces</p>
 <p><strong>baseClass:</strong> <a href="#gridcurve">Grids:GridCurve</a></p>
@@ -309,7 +325,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A grid surface element.</p>
 <p><strong>baseClass:</strong> <a href="biscore.ecschema.md#spatiallocationelement">BisCore:SpatialLocationElement</a></p>
-<h4 class="h-properties-4">Properties<a id="properties-4" class="heading-anchor" href="#properties-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-5">Properties<a id="properties-5" class="heading-anchor" href="#properties-5"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -333,7 +349,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> And OrthogonalGrid has all of its&apos; surfaces orthogonal in either X or Y direction</p>
 <p><strong>baseClass:</strong> <a href="#plangrid">Grids:PlanGrid</a></p>
-<h4 class="h-properties-5">Properties<a id="properties-5" class="heading-anchor" href="#properties-5"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-6">Properties<a id="properties-6" class="heading-anchor" href="#properties-6"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -379,7 +395,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A planar plan grid surface that is perpendicular to the grid&#x2019;s x-axis or y-axis.</p>
 <p><strong>baseClass:</strong> <a href="#plangridplanarsurface">Grids:PlanGridPlanarSurface</a></p>
-<h4 class="h-properties-6">Properties<a id="properties-6" class="heading-anchor" href="#properties-6"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-7">Properties<a id="properties-7" class="heading-anchor" href="#properties-7"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -407,7 +423,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> An PlanGridArcSurface that is centered on the Grid&#x2019;s origin.</p>
 <p><strong>baseClass:</strong> <a href="#plangridarcsurface">Grids:PlanGridArcSurface</a></p>
-<h4 class="h-properties-7">Properties<a id="properties-7" class="heading-anchor" href="#properties-7"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-8">Properties<a id="properties-8" class="heading-anchor" href="#properties-8"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -435,7 +451,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> a grid whose surfaces are curves parallel to the local x-y plane extruded along the local z-axis</p>
 <p><strong>baseClass:</strong> <a href="#grid">Grids:Grid</a></p>
-<h4 class="h-properties-8">Properties<a id="properties-8" class="heading-anchor" href="#properties-8"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-9">Properties<a id="properties-9" class="heading-anchor" href="#properties-9"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -469,7 +485,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A PlanGridPlanarSurface whose infinite plane contains the PlanGrid&#x2019;s origin.</p>
 <p><strong>baseClass:</strong> <a href="#plangridplanarsurface">Grids:PlanGridPlanarSurface</a></p>
-<h4 class="h-properties-9">Properties<a id="properties-9" class="heading-anchor" href="#properties-9"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-10">Properties<a id="properties-10" class="heading-anchor" href="#properties-10"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -501,7 +517,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A RadialGrid consists either of arcsurfaces in radial axis or planarsurfaces in circular axis</p>
 <p><strong>baseClass:</strong> <a href="#plangrid">Grids:PlanGrid</a></p>
-<h4 class="h-properties-10">Properties<a id="properties-10" class="heading-anchor" href="#properties-10"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-11">Properties<a id="properties-11" class="heading-anchor" href="#properties-11"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -547,7 +563,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> An extruded arc gridsurface element.</p>
 <p><strong>baseClass:</strong> <a href="#plangridarcsurface">Grids:PlanGridArcSurface</a></p>
-<h4 class="h-properties-11">Properties<a id="properties-11" class="heading-anchor" href="#properties-11"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-12">Properties<a id="properties-12" class="heading-anchor" href="#properties-12"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -567,7 +583,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> An extruded line gridsurface element.</p>
 <p><strong>baseClass:</strong> <a href="#plangridplanarsurface">Grids:PlanGridPlanarSurface</a></p>
-<h4 class="h-properties-12">Properties<a id="properties-12" class="heading-anchor" href="#properties-12"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-13">Properties<a id="properties-13" class="heading-anchor" href="#properties-13"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -583,7 +599,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> An extruded spline gridsurface element.</p>
 <p><strong>baseClass:</strong> <a href="#plangridsplinesurface">Grids:PlanGridSplineSurface</a></p>
-<h4 class="h-properties-13">Properties<a id="properties-13" class="heading-anchor" href="#properties-13"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-14">Properties<a id="properties-14" class="heading-anchor" href="#properties-14"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -682,34 +698,13 @@
 <ul>
 <li><a href="grids.ecschema.md#gridsurface">GridSurface</a></li>
 </ul>
-<h3 class="h-gridhasaxes"><strong>GridHasAxes</strong><a id="gridhasaxes" class="heading-anchor" href="#gridhasaxes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> RelationshipClass</p>
-<p><strong>description:</strong> maps grid to its axes</p>
-<p><strong>Strength:</strong> Embedding</p>
-<p><strong>strengthDirection:</strong> Forward</p>
-<h4 class="h-source-4">Source<a id="source-4" class="heading-anchor" href="#source-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
-<p><strong>isPolymorphic:</strong> true</p>
-<p><strong>roleLabel:</strong> Has Axis</p>
-<p><strong>multiplicity:</strong> (1..1)</p>
-<h5 id="constraint classes">Constraint Classes</h5>
-<ul>
-<li><a href="grids.ecschema.md#grid">Grid</a></li>
-</ul>
-<h4 class="h-target-4">Target<a id="target-4" class="heading-anchor" href="#target-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
-<p><strong>isPolymorphic:</strong> true</p>
-<p><strong>roleLabel:</strong> is axis of</p>
-<p><strong>multiplicity:</strong> (0..*)</p>
-<h5 id="constraint classes">Constraint Classes</h5>
-<ul>
-<li><a href="grids.ecschema.md#gridaxis">GridAxis</a></li>
-</ul>
 <h3 class="h-gridsurfacedrivesgridcurvebundle"><strong>GridSurfaceDrivesGridCurveBundle</strong><a id="gridsurfacedrivesgridcurvebundle" class="heading-anchor" href="#gridsurfacedrivesgridcurvebundle"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> RelationshipClass</p>
 <p><strong>description:</strong> a driving relationship which tells that gridsurface influences the creation of GridCurve</p>
 <p><strong>baseClass:</strong> <a href="biscore.ecschema.md#elementdriveselement">BisCore:ElementDrivesElement</a></p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
-<h4 class="h-source-5">Source<a id="source-5" class="heading-anchor" href="#source-5"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-source-4">Source<a id="source-4" class="heading-anchor" href="#source-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> influences</p>
 <p><strong>multiplicity:</strong> (0..*)</p>
@@ -717,7 +712,7 @@
 <ul>
 <li><a href="grids.ecschema.md#gridsurface">GridSurface</a></li>
 </ul>
-<h4 class="h-target-5">Target<a id="target-5" class="heading-anchor" href="#target-5"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-target-4">Target<a id="target-4" class="heading-anchor" href="#target-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> is influenced by</p>
 <p><strong>multiplicity:</strong> (0..*)</p>
@@ -725,12 +720,34 @@
 <ul>
 <li><a href="grids.ecschema.md#gridcurvebundle">GridCurveBundle</a></li>
 </ul>
+<h3 class="h-gridsurfaceownsgridlabel"><strong>GridSurfaceOwnsGridLabel</strong> <em>Sealed</em><a id="gridsurfaceownsgridlabel" class="heading-anchor" href="#gridsurfaceownsgridlabel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>description:</strong> grid label for a Grid Surface</p>
+<p><strong>baseClass:</strong> <a href="biscore.ecschema.md#elementownschildelements">BisCore:ElementOwnsChildElements</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-5">Source<a id="source-5" class="heading-anchor" href="#source-5"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="grids.ecschema.md#gridsurface">GridSurface</a></li>
+</ul>
+<h4 class="h-target-5">Target<a id="target-5" class="heading-anchor" href="#target-5"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href="grids.ecschema.md#gridlabel">GridLabel</a></li>
+</ul>
 <h2 class="h-mixin">Mixin Classes<a id="mixin" class="heading-anchor" href="#mixin"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <h3 class="h-iplangridsurface"><strong>IPlanGridSurface</strong> (PlanGrid Surface) <em>Abstract</em><a id="iplangridsurface" class="heading-anchor" href="#iplangridsurface"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> Mixin</p>
 <p><strong>description:</strong> An interface that indicates that this Surface is suitable to be placed in a PlanGrid</p>
 <p><strong>appliesTo:</strong> <a href="grids.ecschema.md#gridsurface">GridSurface</a></p>
-<h4 class="h-properties-14">Properties<a id="properties-14" class="heading-anchor" href="#properties-14"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-15">Properties<a id="properties-15" class="heading-anchor" href="#properties-15"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -757,7 +774,7 @@
 </tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -886,6 +903,17 @@
                             <a class='title solo-title menu-text' href="#gridcurvesset">GridCurvesSet</a>
                     </li>
                     <li class='nav-item item '>
+                            <a data-target="#inner-nav-gridlabel" class='title' href="#gridlabel"/>
+                            <b class='dropdown-menu-title menu-text'>GridLabel Sealed</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-gridlabel" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-4">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#gridline">GridLine</a>
                     </li>
                     <li class='nav-item item '>
@@ -904,7 +932,7 @@
                             </a>
                             <ul id="inner-nav-gridsurface" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-4">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-5">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -921,7 +949,7 @@
                             </a>
                             <ul id="inner-nav-orthogonalgrid" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-5">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-6">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -932,7 +960,7 @@
                             </a>
                             <ul id="inner-nav-plancartesiangridsurface" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-6">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-7">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -943,7 +971,7 @@
                             </a>
                             <ul id="inner-nav-plancircumferentialgridsurface" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-7">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-8">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -954,7 +982,7 @@
                             </a>
                             <ul id="inner-nav-plangrid" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-8">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-9">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -974,7 +1002,7 @@
                             </a>
                             <ul id="inner-nav-planradialgridsurface" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-9">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-10">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -988,7 +1016,7 @@
                             </a>
                             <ul id="inner-nav-radialgrid" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-10">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-11">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -999,7 +1027,7 @@
                             </a>
                             <ul id="inner-nav-sketcharcgridsurface" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-11">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-12">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -1013,7 +1041,7 @@
                             </a>
                             <ul id="inner-nav-sketchlinegridsurface" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-12">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-13">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -1024,7 +1052,7 @@
                             </a>
                             <ul id="inner-nav-sketchsplinegridsurface" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-13">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-14">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -1093,11 +1121,11 @@
                             </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a data-target="#inner-nav-gridhasaxes" class='title' href="#gridhasaxes"/>
-                            <b class='dropdown-menu-title menu-text'>GridHasAxes</b>
+                            <a data-target="#inner-nav-gridsurfacedrivesgridcurvebundle" class='title' href="#gridsurfacedrivesgridcurvebundle"/>
+                            <b class='dropdown-menu-title menu-text'>GridSurfaceDrivesGridCurveBundle</b>
                             <i class='nav-list-dropdown icon'></i>
                             </a>
-                            <ul id="inner-nav-gridhasaxes" class='inner-nav'>
+                            <ul id="inner-nav-gridsurfacedrivesgridcurvebundle" class='inner-nav'>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#source-4">Source</a>
                                     </li>
@@ -1107,11 +1135,11 @@
                             </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a data-target="#inner-nav-gridsurfacedrivesgridcurvebundle" class='title' href="#gridsurfacedrivesgridcurvebundle"/>
-                            <b class='dropdown-menu-title menu-text'>GridSurfaceDrivesGridCurveBundle</b>
+                            <a data-target="#inner-nav-gridsurfaceownsgridlabel" class='title' href="#gridsurfaceownsgridlabel"/>
+                            <b class='dropdown-menu-title menu-text'>GridSurfaceOwnsGridLabel Sealed</b>
                             <i class='nav-list-dropdown icon'></i>
                             </a>
-                            <ul id="inner-nav-gridsurfacedrivesgridcurvebundle" class='inner-nav'>
+                            <ul id="inner-nav-gridsurfaceownsgridlabel" class='inner-nav'>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#source-5">Source</a>
                                     </li>
@@ -1135,7 +1163,7 @@
                             </a>
                             <ul id="inner-nav-iplangridsurface" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-14">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-15">Properties</a>
                                     </li>
                             </ul>
                     </li>

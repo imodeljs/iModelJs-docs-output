@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -194,6 +194,10 @@
             
             <h2 class="h-imodeljsonconeprops">IModelJson.ConeProps <span class="badge badge-pill badge-primary badge-interface">Interface</span><a id="imodeljsonconeprops" class="heading-anchor" href="#imodeljsonconeprops"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Interface for Cone value defined by centers, radii, and (optional) vectors for circular section planes.</p>
+<ul>
+<li>VectorX and vectorY are optional.</li>
+<li>If either one is missing, both vectors are constructed perpendicular to the vector from start to end.</li>
+</ul>
 <h3 class="h-extends">Extends<a id="extends" class="heading-anchor" href="#extends"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/serialization/imodeljson/imodeljson.axesprops'>IModelJson.AxesProps</a></li>
@@ -214,37 +218,37 @@
 <tr>
 <td class="h-end"><span class="property-name">end</span><a id="end" class="heading-anchor" href="#end"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyzprops'>XYZProps</a></span></td>
-<td>&#xA0;</td>
+<td>Point on axis at end section</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-endradius"><span class="property-name">endRadius</span><a id="endradius" class="heading-anchor" href="#endradius"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | number</span></td>
-<td>radius at <code>end</code></td>
+<td>radius at <code>end</code> section</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-start"><span class="property-name">start</span><a id="start" class="heading-anchor" href="#start"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyzprops'>XYZProps</a></span></td>
-<td>&#xA0;</td>
+<td>Point on axis at start section.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-startradius"><span class="property-name">startRadius</span><a id="startradius" class="heading-anchor" href="#startradius"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">number</span></td>
-<td>radius at <code>start</code></td>
+<td>radius at <code>start</code> section</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-vectorx"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/serialization/imodeljson/imodeljson.coneprops/vectorx'>vectorX</a></span><a id="vectorx" class="heading-anchor" href="#vectorx"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyzprops'>XYZProps</a></span></td>
-<td>* VectorX and vectorY are optional.</td>
+<td>optional x vector in start section.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-vectory"><span class="property-name">vectorY</span><a id="vectory" class="heading-anchor" href="#vectory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-vectory"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/serialization/imodeljson/imodeljson.coneprops/vectory'>vectorY</a></span><a id="vectory" class="heading-anchor" href="#vectory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyzprops'>XYZProps</a></span></td>
-<td>&#xA0;</td>
+<td>optional y vector in start section.</td>
 <td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-inherited-properties"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited properties<a id="inherited-properties" class="heading-anchor" href="#inherited-properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -278,7 +282,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

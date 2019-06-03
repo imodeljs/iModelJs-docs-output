@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -94,6 +94,8 @@
     <hr>
     <h3 id="versions">Versions</h3>
     <ul>
+    <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/1.0.0" class="table-of-contents-link">1.0.0</a></p>
+    </li>
     <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/0.191.0" class="table-of-contents-link">0.191.0</a></p>
     </li>
     <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/0.189.0" class="table-of-contents-link">0.189.0</a></p>
@@ -143,7 +145,7 @@
 <p>The display system underwent several performance optimizations targeted at increasing framerate and reducing memory consumption. These changes produced significant improvements in both of these metrics, but unfortunately necessitated a change to the way that <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/readpixels'>Viewport.readPixels</a> works. The function no longer <em>returns</em> a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/pixel/pixel.buffer'>Pixel.Buffer</a> object; instead it accepts a <em>callback function</em> to receive the pixel buffer. Once the callback returns, the data in the pixel buffer becomes invalid - so storing a reference to the buffer and attempting to use it outside of the callback will produce unexpected results.</p>
 <p>These changes also enable some enhancements and simplications to the <code>readPixels</code> function:</p>
 <ul>
-<li>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/pixel/pixel.data'>Pixel.Data</a> object now supplies complete information about the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/feature'>Feature</a> which produced the pixel, including element ID, subcategory ID, and GeometryClass. Previously it could only supply the element ID.</li>
+<li>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/pixel/pixel.data'>Pixel.Data</a> object now supplies complete information about the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/feature'>Feature</a> which produced the pixel, including element ID, subcategory ID, and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/geometryclass'>GeometryClass</a>. Previously it could only supply the element ID.</li>
 <li>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/pixel/pixel.selector'>Pixel.Selector</a> enumeration has been simplified to allow the caller to request the geometry and distance fraction of each pixel, the feature of each pixel, or both.</li>
 </ul>
 <p>As an example of how to adjust your code in response to these changes, consider the following example:</p>
@@ -187,7 +189,7 @@ return isInRect;</code></pre><p>  }`</p>
 <p>For example, querying <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/version'>Version</a>s with an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/imodelhubclient'>IModelHubClient</a> object <code>client</code> should be changed from <code>client.Versions().get(alctx, token, imodelId)</code> to <code>client.versions.get(alctx, token, imodelId)</code>.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

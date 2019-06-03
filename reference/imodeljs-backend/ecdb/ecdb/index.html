@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -197,7 +197,6 @@
 <h3 class="h-implements">Implements<a id="implements" class="heading-anchor" href="#implements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/idisposable'>IDisposable</a></li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/pageableecsql'>PageableECSql</a></li>
 </ul>
 <h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -246,13 +245,8 @@
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-query"><span class="method-name"><a href="query">query</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ecsql: string, bindings?: any[] | object, options?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/pageoptions'>PageOptions</a></span><span class="method-parenthesis">):</span><span class="method-output"> AsyncIterableIterator&lt;any&gt;</span><a id="query" class="heading-anchor" href="#query"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Execute a pageable query.</td>
-<td>&#xA0;</td>
-</tr>
-<tr>
-<td class="h-querypage"><span class="method-name"><a href="querypage">queryPage</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ecsql: string, bindings?: any[] | object, options?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/pageoptions'>PageOptions</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;any[]&gt;</span><a id="querypage" class="heading-anchor" href="#querypage"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Execute a query agaisnt this ECDb<br>The result of the query is returned as an array of JavaScript objects where every array element represents an<br><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqlrowformat'>ECSQL row</a>.</td>
+<td class="h-query"><span class="method-name"><a href="query">query</a></span><span class="method-parenthesis">(</span><span class="method-parameters">ecsql: string, bindings?: any[] | object, limitRows?: number, quota?: QueryQuota, priority?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/querypriority'>QueryPriority</a></span><span class="method-parenthesis">):</span><span class="method-output"> AsyncIterableIterator&lt;any&gt;</span><a id="query" class="heading-anchor" href="#query"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Execute a query and stream its results<br>The result of the query is async iterator over the rows.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -289,7 +283,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -378,9 +372,6 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#query">query</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#querypage">queryPage</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#queryrowcount">queryRowCount</a>

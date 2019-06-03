@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -220,13 +220,18 @@ take care of determining the appropriate origin coordinates.</li>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-clonerigid"><span class="method-name"><a href="clonerigid">cloneRigid</a></span><span class="method-parenthesis">(</span><span class="method-parameters">axisOrder: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/axisorder'>AxisOrder</a> = AxisOrder.XYZ</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a> | undefined</span><a id="clonerigid" class="heading-anchor" href="#clonerigid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-clonerigid"><span class="method-name">cloneRigid</span><span class="method-parenthesis">(</span><span class="method-parameters">axisOrder: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/axisorder'>AxisOrder</a> = AxisOrder.XYZ</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a> | undefined</span><a id="clonerigid" class="heading-anchor" href="#clonerigid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Return a copy of this Transform, modified so that its axes are rigid<br><em> The first axis direction named in axisOrder is preserved<br></em> The plane of the first and second directions is preserved, and its vector in the rigid matrix has positive dot product with the corresponding vector if the instance<br>* The third named column is the cross product of the first and second.</td>
 <td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-computecachedinverse"><span class="method-name"><a href="computecachedinverse">computeCachedInverse</a></span><span class="method-parenthesis">(</span><span class="method-parameters">useCached: boolean = true</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="computecachedinverse" class="heading-anchor" href="#computecachedinverse"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>* Compute (if needed) the inverse of the matrix part, thereby ensuring inverse operations can complete.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-freeze"><span class="method-name">freeze</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="freeze" class="heading-anchor" href="#freeze"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>Freeze this instance (and its deep content) so it can be considered read-only</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -271,7 +276,12 @@ take care of determining the appropriate origin coordinates.</li>
 </tr>
 <tr>
 <td class="h-multiplyinversepoint3darrayinplace"><span class="method-name"><a href="multiplyinversepoint3darrayinplace">multiplyInversePoint3dArrayInPlace</a></span><span class="method-parenthesis">(</span><span class="method-parameters">source: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="multiplyinversepoint3darrayinplace" class="heading-anchor" href="#multiplyinversepoint3darrayinplace"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><em>  for each point in source:   multiply    transformInverse </em> point  in place inthe point.</td>
+<td><em> for each point in source: multiply transformInverse </em> point in place in the point.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-multiplyinversexyz"><span class="method-name">multiplyInverseXYZ</span><span class="method-parenthesis">(</span><span class="method-parameters">x: number, y: number, z: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a> | undefined</span><a id="multiplyinversexyz" class="heading-anchor" href="#multiplyinversexyz"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Return product of the transform&apos;s inverse times a point (point given as x,y,z)</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -316,7 +326,7 @@ take care of determining the appropriate origin coordinates.</li>
 </tr>
 <tr>
 <td class="h-multiplytransposexyzw"><span class="method-name"><a href="multiplytransposexyzw">multiplyTransposeXYZW</a></span><span class="method-parenthesis">(</span><span class="method-parameters">x: number, y: number, z: number, w: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/point4d'>Point4d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/point4d'>Point4d</a></span><a id="multiplytransposexyzw" class="heading-anchor" href="#multiplytransposexyzw"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Multiply the tranposed transform (as 4x4 with 0001 row) by Point4d given as xyzw..</td>
+<td>Multiply the transposed transform (as 4x4 with 0001 row) by Point4d given as xyzw..</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -356,7 +366,7 @@ take care of determining the appropriate origin coordinates.</li>
 </tr>
 <tr>
 <td class="h-setfromjson"><span class="method-name">setFromJSON</span><span class="method-parenthesis">(</span><span class="method-parameters">json?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transformprops'>TransformProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="setfromjson" class="heading-anchor" href="#setfromjson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>Set this Transform instance from flexible inputs:<br><em> Any object (such as another Transform) that has <code>origin</code> and <code>matrix</code> members accepted by Point3d.setFromJSON and Matrix3d.setFromJSON<br></em> An array of 3 number arrays, each with 4 entries which are rows in a 3x4 matrix.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -376,7 +386,7 @@ take care of determining the appropriate origin coordinates.</li>
 </tr>
 <tr>
 <td class="h-tojson"><span class="method-name">toJSON</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transformprops'>TransformProps</a></span><a id="tojson" class="heading-anchor" href="#tojson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>Return a 3 by 4 matrix containing the rows of this Transform<br>* This transform&apos;s origin is the [3] entry of the json arrays</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -436,7 +446,7 @@ take care of determining the appropriate origin coordinates.</li>
 </tr>
 <tr>
 <td class="h-fromjson"><span class="method-name">fromJSON</span><span class="method-parenthesis">(</span><span class="method-parameters">json?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transformprops'>TransformProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="fromjson" class="heading-anchor" href="#fromjson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>Return a new Transform initialized by <code>setFromJSON (json)</code></td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -486,7 +496,7 @@ take care of determining the appropriate origin coordinates.</li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -556,6 +566,9 @@ take care of determining the appropriate origin coordinates.</li>
                                             <a class='title solo-title menu-text' href="#clonerigid">cloneRigid</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#computecachedinverse">computeCachedInverse</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#freeze">freeze</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -584,6 +597,9 @@ take care of determining the appropriate origin coordinates.</li>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#multiplyinversepoint3darrayinplace">multiplyInversePoint3dArrayInPlace</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#multiplyinversexyz">multiplyInverseXYZ</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#multiplypoint2d">multiplyPoint2d</a>

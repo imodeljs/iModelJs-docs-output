@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -306,7 +306,7 @@
 </tr>
 <tr>
 <td class="h-classregistry"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/schema/classregistry'>ClassRegistry</a><a id="classregistry" class="heading-anchor" href="#classregistry"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>The mapping between a class name (schema.class) and its constructor function</td>
+<td>The mapping between a BIS class name (in the form &quot;schema:class&quot;) and its JavaScript constructor function</td>
 <td></td>
 </tr>
 <tr>
@@ -550,6 +550,11 @@
 <td></td>
 </tr>
 <tr>
+<td class="h-externalsourceaspect"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elementaspects/externalsourceaspect'>ExternalSourceAspect</a><a id="externalsourceaspect" class="heading-anchor" href="#externalsourceaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>An ElementMultiAspect that stores synchronization information for an Element originating from an external source.</td>
+<td></td>
+</tr>
+<tr>
 <td class="h-functionalbreakdownelement"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/functionalelements/functionalbreakdownelement'>FunctionalBreakdownElement</a><a id="functionalbreakdownelement" class="heading-anchor" href="#functionalbreakdownelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>A FunctionalBreakdownElement is a <em>folder</em> node in the functional hierarchy.</td>
 <td></td>
@@ -766,12 +771,7 @@
 </tr>
 <tr>
 <td class="h-knownlocations"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodelhost/knownlocations'>KnownLocations</a><a id="knownlocations" class="heading-anchor" href="#knownlocations"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Well known directories that may be used by the app.</td>
-<td></td>
-</tr>
-<tr>
-<td class="h-lightlocation"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/viewdefinitions/lightlocation'>LightLocation</a><a id="lightlocation" class="heading-anchor" href="#lightlocation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>The position in space of a Light.</td>
+<td>Well known directories that may be used by the application.</td>
 <td></td>
 </tr>
 <tr>
@@ -1041,7 +1041,7 @@
 </tr>
 <tr>
 <td class="h-texture"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/texture'>Texture</a><a id="texture" class="heading-anchor" href="#texture"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Defines a rendering texture which is associated with a Material and applied to surface geometry.</td>
+<td>Defines a rendering texture that is associated with a Material and applied to surface geometry.</td>
 <td></td>
 </tr>
 <tr>
@@ -1105,11 +1105,6 @@
 <th></th>
 </tr>
 <tr>
-<td class="h-accessmode"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/accessmode'>AccessMode</a><a id="accessmode" class="heading-anchor" href="#accessmode"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Mode to access the IModelDb</td>
-<td></td>
-</tr>
-<tr>
 <td class="h-autopusheventtype"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/autopusheventtype'>AutoPushEventType</a><a id="autopusheventtype" class="heading-anchor" href="#autopusheventtype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Identifies an AutoPush event.</td>
 <td><span class="badge badge-pill badge-primary badge-beta">Beta</span></td>
@@ -1135,13 +1130,18 @@
 <td></td>
 </tr>
 <tr>
-<td class="h-exclusiveaccessoption"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/exclusiveaccessoption'>ExclusiveAccessOption</a><a id="exclusiveaccessoption" class="heading-anchor" href="#exclusiveaccessoption"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Additional options for exclusive access to IModelDb</td>
+<td class="h-keepbriefcase"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/keepbriefcase'>KeepBriefcase</a><a id="keepbriefcase" class="heading-anchor" href="#keepbriefcase"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Option to keep briefcase when the imodel is closed</td>
 <td></td>
 </tr>
 <tr>
-<td class="h-keepbriefcase"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/keepbriefcase'>KeepBriefcase</a><a id="keepbriefcase" class="heading-anchor" href="#keepbriefcase"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Option to keep briefcase when the imodel is closed</td>
+<td class="h-pollstatus"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/concurrentquery/pollstatus'>PollStatus</a><a id="pollstatus" class="heading-anchor" href="#pollstatus"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Poll status for concurrent query manager</td>
+<td></td>
+</tr>
+<tr>
+<td class="h-poststatus"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/concurrentquery/poststatus'>PostStatus</a><a id="poststatus" class="heading-anchor" href="#poststatus"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Post status for concurrent query manager</td>
 <td></td>
 </tr>
 <tr>
@@ -1160,7 +1160,12 @@
 <th></th>
 </tr>
 <tr>
-<td class="h-createnewmodelandcategory"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/changesetperformance.test/createnewmodelandcategory'>createNewModelAndCategory</a><a id="createnewmodelandcategory" class="heading-anchor" href="#createnewmodelandcategory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-createnewmodelandcategory">createNewModelAndCategory<a id="createnewmodelandcategory" class="heading-anchor" href="#createnewmodelandcategory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td class="h-createnewmodelandcategory-1">createNewModelAndCategory<a id="createnewmodelandcategory-1" class="heading-anchor" href="#createnewmodelandcategory-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td></td>
 <td></td>
 </tr>
@@ -1307,12 +1312,12 @@
 </tr>
 <tr>
 <td class="h-txnidstring"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/txnidstring'>TxnIdString</a><a id="txnidstring" class="heading-anchor" href="#txnidstring"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td></td>
+<td>A string that identifies a Txn.</td>
 <td></td>
 </tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -1577,6 +1582,9 @@
                             <a class='title solo-title menu-text' href="#entity">Entity</a>
                     </li>
                     <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#externalsourceaspect">ExternalSourceAspect</a>
+                    </li>
+                    <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#functionalbreakdownelement">FunctionalBreakdownElement</a>
                     </li>
                     <li class='nav-item item '>
@@ -1707,9 +1715,6 @@
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#knownlocations">KnownLocations</a>
-                    </li>
-                    <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#lightlocation">LightLocation</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#linestyle">LineStyle</a>
@@ -1915,9 +1920,6 @@
             </a>
             <ul id="inner-nav-enumerations" class='inner-nav'>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#accessmode">AccessMode</a>
-                    </li>
-                    <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#autopusheventtype">AutoPushEventType</a>
                     </li>
                     <li class='nav-item item '>
@@ -1933,10 +1935,13 @@
                             <a class='title solo-title menu-text' href="#ecdbopenmode">ECDbOpenMode</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#exclusiveaccessoption">ExclusiveAccessOption</a>
+                            <a class='title solo-title menu-text' href="#keepbriefcase">KeepBriefcase</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#keepbriefcase">KeepBriefcase</a>
+                            <a class='title solo-title menu-text' href="#pollstatus">PollStatus</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#poststatus">PostStatus</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#syncmode">SyncMode</a>
@@ -1954,6 +1959,9 @@
             <ul id="inner-nav-global-functions" class='inner-nav'>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#createnewmodelandcategory">createNewModelAndCategory</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#createnewmodelandcategory-1">createNewModelAndCategory</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#initializerpcbackend">initializeRpcBackend</a>

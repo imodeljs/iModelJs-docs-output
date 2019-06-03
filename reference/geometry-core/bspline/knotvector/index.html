@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -196,14 +196,14 @@
 <p>Array of non-decreasing numbers acting as a knot array for bsplines.</p>
 <ul>
 <li>Essential identity: numKnots = numPoles + order = numPoles + degree - 1</li>
-<li>Various bspline libraries have confusion over how many &quot;end knots&quot; are needed. &quot;Many&quot; libraries (including Microstation)
+<li>Various bspline libraries have confusion over how many &quot;end knots&quot; are needed. &quot;Many&quot; libraries (including MicroStation)
   incorrectly demand &quot;order&quot; knots at each end for clamping.   But only &quot;order - 1&quot; are really needed.</li>
 <li>This class uses the &quot;order-1&quot; convention.</li>
 <li>This class provides queries to convert among spanIndex and knotIndex</li>
 <li>A span is a single interval of the knots.</li>
 <li>The left knot of span {k} is knot {k+degree-1}</li>
 <li>This class provides queries to convert among spanFraction, fraction of knot range, and knot</li>
-<li>core computations (evaluateBasisFucntions) have leftKnotIndex and global knot value as inputs.  Caller&apos;s need to
+<li>core computations (evaluateBasisFunctions) have leftKnotIndex and global knot value as inputs.  Caller&apos;s need to
 know their primary values (global knot, spanFraction).</li>
 </ul>
 <h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -234,7 +234,7 @@ know their primary values (global knot, spanFraction).</li>
 </tr>
 <tr>
 <td class="h-evaluatebasisfunctions"><span class="method-name"><a href="evaluatebasisfunctions">evaluateBasisFunctions</a></span><span class="method-parenthesis">(</span><span class="method-parameters">knotIndex0: number, u: number, f: Float64Array</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="evaluatebasisfunctions" class="heading-anchor" href="#evaluatebasisfunctions"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Evaluate basis fucntions f[] at knot value u.</td>
+<td>Evaluate basis functions f[] at knot value u.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -249,7 +249,7 @@ know their primary values (global knot, spanFraction).</li>
 </tr>
 <tr>
 <td class="h-grevilleknot"><span class="method-name">grevilleKnot</span><span class="method-parenthesis">(</span><span class="method-parameters">spanIndex: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="grevilleknot" class="heading-anchor" href="#grevilleknot"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Return the average of degree consecutive knots begining at spanIndex.</td>
+<td>Return the average of degree consecutive knots beginning at spanIndex.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -259,7 +259,7 @@ know their primary values (global knot, spanFraction).</li>
 </tr>
 <tr>
 <td class="h-isindexofrealspan"><span class="method-name"><a href="isindexofrealspan">isIndexOfRealSpan</a></span><span class="method-parenthesis">(</span><span class="method-parameters">spanIndex: number</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="isindexofrealspan" class="heading-anchor" href="#isindexofrealspan"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Given a span index, test if it is withn range and has nonzero length.</td>
+<td>Given a span index, test if it is within range and has nonzero length.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -298,7 +298,7 @@ know their primary values (global knot, spanFraction).</li>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-testclosable"><span class="method-name">testClosable</span><span class="method-parenthesis">(</span><span class="method-parameters">mode?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/bspline/bsplinewrapmode'>BSplineWrapMode</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="testclosable" class="heading-anchor" href="#testclosable"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-testclosable"><span class="method-name"><a href="testclosable">testClosable</a></span><span class="method-parenthesis">(</span><span class="method-parameters">mode?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/bspline/bsplinewrapmode'>BSplineWrapMode</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="testclosable" class="heading-anchor" href="#testclosable"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Returns true if all numeric values have wraparound conditions for &quot;closed&quot; knotVector with specified wrap mode</td>
 <td>&#xA0;</td>
 </tr>
@@ -339,13 +339,13 @@ know their primary values (global knot, spanFraction).</li>
 <tr>
 <td class="h-knots"><span class="property-name">knots</span><a id="knots" class="heading-anchor" href="#knots"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">Float64Array</span></td>
-<td>&#xA0;</td>
+<td>The simple array of knot values.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-knottolerance"><span class="property-name">knotTolerance</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="knottolerance" class="heading-anchor" href="#knottolerance"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">1e-9</span></td>
-<td>&#xA0;</td>
+<td>tolerance for considering two knots to be the same.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -390,7 +390,7 @@ know their primary values (global knot, spanFraction).</li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

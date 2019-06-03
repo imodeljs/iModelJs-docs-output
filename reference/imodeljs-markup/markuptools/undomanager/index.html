@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -202,11 +202,6 @@
 <th></th>
 </tr>
 <tr>
-<td class="h-dogroup"><span class="method-name"><a href="dogroup">doGroup</a></span><span class="method-parenthesis">(</span><span class="method-parameters">fn: VoidFunction</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="dogroup" class="heading-anchor" href="#dogroup"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Perform a series of changes to markup elements that should all be reversed as a single operation.</td>
-<td>&#xA0;</td>
-</tr>
-<tr>
 <td class="h-doredo"><span class="method-name">doRedo</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="doredo" class="heading-anchor" href="#doredo"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>reinstate the most recently reversed operation, if any</td>
 <td>&#xA0;</td>
@@ -218,22 +213,27 @@
 </tr>
 <tr>
 <td class="h-onadded"><span class="method-name">onAdded</span><span class="method-parenthesis">(</span><span class="method-parameters">elem: MarkupElement</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="onadded" class="heading-anchor" href="#onadded"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>call this from within a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-markup/markuptools/undomanager/dogroup'>UndoManager.doGroup</a> function <em>after</em> an element has been added to a markup</td>
+<td>call this from within a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-markup/markuptools/undomanager/performoperation'>UndoManager.performOperation</a> function <em>after</em> an element has been added to a markup</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-ondelete"><span class="method-name">onDelete</span><span class="method-parenthesis">(</span><span class="method-parameters">elem: MarkupElement</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="ondelete" class="heading-anchor" href="#ondelete"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>call this from within a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-markup/markuptools/undomanager/dogroup'>UndoManager.doGroup</a> function <em>before</em> an element is about to be deleted from a markup</td>
+<td>call this from within a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-markup/markuptools/undomanager/performoperation'>UndoManager.performOperation</a> function <em>before</em> an element is about to be deleted from a markup</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-onmodified"><span class="method-name">onModified</span><span class="method-parenthesis">(</span><span class="method-parameters">newElem: MarkupElement, oldElem: MarkupElement</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="onmodified" class="heading-anchor" href="#onmodified"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>call this from within a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-markup/markuptools/undomanager/dogroup'>UndoManager.doGroup</a> function <em>after</em> an element has been modified in a markup</td>
+<td>call this from within a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-markup/markuptools/undomanager/performoperation'>UndoManager.performOperation</a> function <em>after</em> an element has been modified in a markup</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-onrepositioned"><span class="method-name">onRepositioned</span><span class="method-parenthesis">(</span><span class="method-parameters">elem: MarkupElement, oldIndex: number, oldParent: MarkupElement</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="onrepositioned" class="heading-anchor" href="#onrepositioned"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>call this from within a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-markup/markuptools/undomanager/dogroup'>UndoManager.doGroup</a> function <em>after</em> an element has been moved in display order in a markup</td>
+<td>call this from within a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-markup/markuptools/undomanager/performoperation'>UndoManager.performOperation</a> function <em>after</em> an element has been moved in display order in a markup</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-performoperation"><span class="method-name"><a href="performoperation">performOperation</a></span><span class="method-parenthesis">(</span><span class="method-parameters">cmdName: string, fn: VoidFunction</span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="performoperation" class="heading-anchor" href="#performoperation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Perform a series of changes to markup elements that should all be reversed as a single operation.</td>
 <td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -244,9 +244,33 @@
 <th></th>
 </tr>
 <tr>
+<td class="h-redopossible"><span class="property-name">redoPossible</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="redopossible" class="heading-anchor" href="#redopossible"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> boolean</span></td>
+<td>determine whether there are any reversed operations</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-redostring"><span class="property-name">redoString</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="redostring" class="heading-anchor" href="#redostring"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> undefined | string</span></td>
+<td>the name of the operation that can be redone (or undefined)</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-size"><span class="property-name">size</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="size" class="heading-anchor" href="#size"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> number</span></td>
 <td>&#xA0;</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-undopossible"><span class="property-name">undoPossible</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="undopossible" class="heading-anchor" href="#undopossible"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> boolean</span></td>
+<td>determine whether there are any un-reversed operations</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-undostring"><span class="property-name">undoString</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="undostring" class="heading-anchor" href="#undostring"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> undefined | string</span></td>
+<td>the name of the operation that can be undone (or undefined)</td>
 <td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -255,7 +279,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -319,9 +343,6 @@
                             </a>
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#dogroup">doGroup</a>
-                                    </li>
-                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#doredo">doRedo</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -339,6 +360,9 @@
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#onrepositioned">onRepositioned</a>
                                     </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#performoperation">performOperation</a>
+                                    </li>
                             </ul>
                     </li>
                     <li class='nav-item item '>
@@ -348,7 +372,19 @@
                             </a>
                             <ul id="inner-nav-properties" class='inner-nav'>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#redopossible">redoPossible</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#redostring">redoString</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#size">size</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#undopossible">undoPossible</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#undostring">undoString</a>
                                     </li>
                             </ul>
                     </li>

@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -196,6 +196,9 @@
 <p>Shared base class for use by both open and closed paths.</p>
 <ul>
 <li>A <code>CurveChain</code> contains only curvePrimitives.  No other paths, loops, or regions allowed.</li>
+<li>A single entry in the chain can in fact contain multiple curve primitives if the entry itself is (for instance) <code>CurveChainWithDistanceIndex</code>
+which presents itself (through method interface) as a CurvePrimitive with well defined mappings from fraction to xyz, but in fact does all the
+ calculations over multiple primitives.</li>
 <li>The specific derived classes are <code>Path</code> and <code>Loop</code></li>
 <li><code>CurveChain</code> is an intermediate class.   It is not instantiable on its own.</li>
 </ul>
@@ -231,7 +234,7 @@
 </tr>
 <tr>
 <td class="h-extendrange"><span class="method-name">extendRange</span><span class="method-parenthesis">(</span><span class="method-parameters">range: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a>, transform?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="extendrange" class="heading-anchor" href="#extendrange"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>invoke <code>curve.extendRange(range, transfrom)</code> for each child</td>
+<td>invoke <code>curve.extendRange(range, transform)</code> for each child</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -263,7 +266,7 @@
 <tr>
 <td class="h-announcetocurveprocessor"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curvecollection/announcetocurveprocessor'>announceToCurveProcessor</a></span><span class="method-parenthesis">(</span><span class="method-parameters">processor: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/recursivecurveprocessor'>RecursiveCurveProcessor</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="announcetocurveprocessor" class="heading-anchor" href="#announcetocurveprocessor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curvecollection'>CurveCollection</a></span></td>
-<td>Support method for ICurvePrimtive ...</td>
+<td>Support method for ICurvePrimitive ...</td>
 </tr>
 <tr>
 <td class="h-checkfornonlinearprimitives"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curvecollection/#checkfornonlinearprimitives'>checkForNonLinearPrimitives</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="checkfornonlinearprimitives" class="heading-anchor" href="#checkfornonlinearprimitives"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -288,7 +291,7 @@
 <tr>
 <td class="h-dgnboundarytype"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curvecollection/dgnboundarytype'>dgnBoundaryType</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="dgnboundarytype" class="heading-anchor" href="#dgnboundarytype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curvecollection'>CurveCollection</a></span></td>
-<td>Return the boundary type of a corresponding  Microstation CurveVector.</td>
+<td>Return the boundary type of a corresponding  MicroStation CurveVector.</td>
 </tr>
 <tr>
 <td class="h-dispatchtogeometryhandler"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/geometryquery/dispatchtogeometryhandler'>dispatchToGeometryHandler</a></span><span class="method-parenthesis">(</span><span class="method-parameters">handler: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/arraysandinterfaces/geometryhandler'>GeometryHandler</a></span><span class="method-parenthesis">):</span><span class="method-output"> any</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="dispatchtogeometryhandler" class="heading-anchor" href="#dispatchtogeometryhandler"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -308,7 +311,7 @@
 <tr>
 <td class="h-maxgap"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curvecollection/maxgap'>maxGap</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="maxgap" class="heading-anchor" href="#maxgap"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curvecollection'>CurveCollection</a></span></td>
-<td>return the max gap between adjacent primitives in Path and Loop collctions.</td>
+<td>return the max gap between adjacent primitives in Path and Loop collections.</td>
 </tr>
 <tr>
 <td class="h-range"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/geometryquery/#range'>range</a></span><span class="method-parenthesis">(</span><span class="method-parameters">transform?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a>, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d'>Range3d</a></span><a id="range" class="heading-anchor" href="#range"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -340,7 +343,7 @@
 <tr>
 <td class="h-_curves"><span class="property-name">_curves</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="_curves" class="heading-anchor" href="#_curves"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive'>CurvePrimitive</a>[]</span></td>
-<td>&#xA0;</td>
+<td>The curve primitives in the chain.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -386,7 +389,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

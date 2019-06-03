@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -214,7 +214,7 @@
 <p>Nearly all bsplines are &quot;clamped &quot;.</p>
 <ul>
 <li>Clamping make the curve pass through its first and last poles, with tangents directed along the first and last edges of the control polygon.</li>
-<li>The knots for a clampled bspline have <code>degree</code> copies of the lowest knot value and <code>degree</code> copies of the highest knot value.</li>
+<li>The knots for a clamped bspline have <code>degree</code> copies of the lowest knot value and <code>degree</code> copies of the highest knot value.</li>
 <li>For instance, the knot vector `[0,0,0,1,2,3,3,3]<ul>
 <li>can be evaluated from <code>0&lt;=knot&lt;=3</code></li>
 <li>has 3 spans: 0 to 1, 1 to 2, 2 to 3</li>
@@ -224,8 +224,8 @@
 </li>
 <li><p><code>create</code> methods may allow classic convention that has an extra knot at the beginning and end of the knot vector.</p>
 <ul>
-<li>The extra knots (first and last) were never referenced by the bspline recurrance relations.</li>
-<li>When the <code>ceate</code> methods recognize the classic setup (<code>numPoles + order = numKnots</code>), the extra knot is not saved with the BSplineCurve3dBase knots.</li>
+<li>The extra knots (first and last) were never referenced by the bspline recurrence relations.</li>
+<li>When the <code>create</code> methods recognize the classic setup (<code>numPoles + order = numKnots</code>), the extra knot is not saved with the BSplineCurve3dBase knots.</li>
 </ul>
 </li>
 <li><p>The weighted variant has the problem that CurvePrimitive 3d typing does not allow undefined result where Point4d has zero weight.</p>
@@ -234,7 +234,7 @@
 </li>
 <li><p>Note the class relationships:</p>
 <ul>
-<li>BSpline1dNd knows the bspline reucurrance relations for control points (poles) with no physical meaning.</li>
+<li>BSpline1dNd knows the bspline recurrence relations for control points (poles) with no physical meaning.</li>
 <li>BsplineCurve3dBase owns a protected BSpline1dNd</li>
 <li>BsplineCurve3dBase is derived from CurvePrimitive, which creates obligation to act as a 3D curve, such as<ul>
 <li>evaluate fraction to point and derivatives wrt fraction</li>
@@ -300,7 +300,7 @@
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-evaluatepointandtangentinspan"><span class="method-name">evaluatePointAndTangentInSpan</span><span class="method-parenthesis">(</span><span class="method-parameters">spanIndex: number, spanFraction: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/ray3d'>Ray3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/ray3d'>Ray3d</a></span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="evaluatepointandtangentinspan" class="heading-anchor" href="#evaluatepointandtangentinspan"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-evaluatepointandderivativeinspan"><span class="method-name">evaluatePointAndDerivativeInSpan</span><span class="method-parenthesis">(</span><span class="method-parameters">spanIndex: number, spanFraction: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/ray3d'>Ray3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/ray3d'>Ray3d</a></span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="evaluatepointandderivativeinspan" class="heading-anchor" href="#evaluatepointandderivativeinspan"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Evaluate at a position given by fractional position within a span.</td>
 <td>&#xA0;</td>
 </tr>
@@ -311,7 +311,7 @@
 </tr>
 <tr>
 <td class="h-fractiontopoint"><span class="method-name">fractionToPoint</span><span class="method-parenthesis">(</span><span class="method-parameters">fraction: number, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="fractiontopoint" class="heading-anchor" href="#fractiontopoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>Evaluate the curve point at <code>fraction</code></td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -371,7 +371,7 @@
 </tr>
 <tr>
 <td class="h-startpoint"><span class="method-name">startPoint</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a></span><a id="startpoint" class="heading-anchor" href="#startpoint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Return the start point of hte curve.</td>
+<td>Return the start point of the curve.</td>
 <td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-inherited-methods"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited methods<a id="inherited-methods" class="heading-anchor" href="#inherited-methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -428,7 +428,7 @@
 <tr>
 <td class="h-curvelengthwithfixedintervalcountquadrature"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive/curvelengthwithfixedintervalcountquadrature'>curveLengthWithFixedIntervalCountQuadrature</a></span><span class="method-parenthesis">(</span><span class="method-parameters">fraction0: number, fraction1: number, numInterval: number, numGauss: number = 5</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="curvelengthwithfixedintervalcountquadrature" class="heading-anchor" href="#curvelengthwithfixedintervalcountquadrature"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive'>CurvePrimitive</a></span></td>
-<td><em> Run an integration (with a default gaussian quadrature) with a fixed fractional step<br></em> This is typically called by specific curve type implementations of curveLengthBetweenFrations.</td>
+<td><em> Run an integration (with a default gaussian quadrature) with a fixed fractional step<br></em> This is typically called by specific curve type implementations of curveLengthBetweenFractions.</td>
 </tr>
 <tr>
 <td class="h-dispatchtogeometryhandler"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/geometryquery/dispatchtogeometryhandler'>dispatchToGeometryHandler</a></span><span class="method-parenthesis">(</span><span class="method-parameters">handler: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/arraysandinterfaces/geometryhandler'>GeometryHandler</a></span><span class="method-parenthesis">):</span><span class="method-output"> any</span> <span class="badge badge-pill badge-primary badge-abstract">Abstract</span><a id="dispatchtogeometryhandler" class="heading-anchor" href="#dispatchtogeometryhandler"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -530,31 +530,31 @@
 <tr>
 <td class="h-_bcurve"><span class="property-name">_bcurve</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="_bcurve" class="heading-anchor" href="#_bcurve"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/bspline/bspline1dnd'>BSpline1dNd</a></span></td>
-<td>&#xA0;</td>
+<td>The underlying blocked-pole spline, with simple x,y,z poles</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-degree"><span class="property-name">degree</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="degree" class="heading-anchor" href="#degree"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> number</span></td>
-<td>&#xA0;</td>
+<td>Return the degree (one less than the order) of the curve</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-numpoles"><span class="property-name">numPoles</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="numpoles" class="heading-anchor" href="#numpoles"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> number</span></td>
-<td>&#xA0;</td>
+<td>Return the number of poles</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-numspan"><span class="property-name">numSpan</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="numspan" class="heading-anchor" href="#numspan"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-numspan"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/bspline/bsplinecurve3dbase/numspan'>numSpan</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="numspan" class="heading-anchor" href="#numspan"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> number</span></td>
-<td>&#xA0;</td>
+<td>Return the number of bezier spans in the curve.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-order"><span class="property-name">order</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="order" class="heading-anchor" href="#order"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> number</span></td>
-<td>&#xA0;</td>
+<td>Return the order (one more than degree) of the curve</td>
 <td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-inherited-properties"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited properties<a id="inherited-properties" class="heading-anchor" href="#inherited-properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -588,7 +588,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -673,7 +673,7 @@
                                             <a class='title solo-title menu-text' href="#endpoint">endPoint</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#evaluatepointandtangentinspan">evaluatePointAndTangentInSpan</a>
+                                            <a class='title solo-title menu-text' href="#evaluatepointandderivativeinspan">evaluatePointAndDerivativeInSpan</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#evaluatepointinspan">evaluatePointInSpan</a>

@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -194,6 +194,10 @@
             
             <h2 class="h-imodeltoken">IModelToken <span class="badge badge-pill badge-primary badge-class">Class</span><a id="imodeltoken" class="heading-anchor" href="#imodeltoken"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>A token that identifies a specific instance of an iModel to be operated on</p>
+<h3 class="h-implements">Implements<a id="implements" class="heading-anchor" href="#implements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodeltokenprops'>IModelTokenProps</a></li>
+</ul>
 <h3 class="h-methods">Methods<a id="methods" class="heading-anchor" href="#methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
 <th>Name</th>
@@ -201,8 +205,18 @@
 <th></th>
 </tr>
 <tr>
-<td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">key?: string, contextId?: string, iModelId?: string, changeSetId?: string, openMode?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/besqlite/openmode'>OpenMode</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodeltoken'>IModelToken</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-constructor"><span class="method-name">constructor</span><span class="method-parenthesis">(</span><span class="method-parameters">key?: string, contextId?: string, iModelid?: string, changesetId?: string, openMode?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/besqlite/openmode'>OpenMode</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodeltoken'>IModelToken</a></span><a id="constructor" class="heading-anchor" href="#constructor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>Constructor</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-tojson"><span class="method-name">toJSON</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodeltokenprops'>IModelTokenProps</a></span><a id="tojson" class="heading-anchor" href="#tojson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Creates a props object for this IModelToken.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-fromjson"><span class="method-name">fromJSON</span><span class="method-parenthesis">(</span><span class="method-parameters">props: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodeltokenprops'>IModelTokenProps</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodeltoken'>IModelToken</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="fromjson" class="heading-anchor" href="#fromjson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Constructs an IModelToken from a props object.</td>
 <td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -213,31 +227,31 @@
 <th></th>
 </tr>
 <tr>
-<td class="h-changesetid"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodeltoken/changesetid'>changeSetId</a></span> <span class="badge badge-pill badge-primary badge-constructorproperty">ConstructorProperty</span><a id="changesetid" class="heading-anchor" href="#changesetid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-changesetid"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodeltoken/changesetid'>changeSetId</a></span><a id="changesetid" class="heading-anchor" href="#changesetid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | string</span></td>
 <td>Id of the last ChangeSet that was applied to the iModel - must be defined if the iModel exists in the Hub.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-contextid"><span class="property-name">contextId</span> <span class="badge badge-pill badge-primary badge-constructorproperty">ConstructorProperty</span><a id="contextid" class="heading-anchor" href="#contextid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-contextid"><span class="property-name">contextId</span><a id="contextid" class="heading-anchor" href="#contextid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | string</span></td>
 <td>Context (Project, Asset, or other infrastructure) in which the iModel exists - must be defined if the iModel exists in the Hub or in a non-Connect infrastructure.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-imodelid"><span class="property-name">iModelId</span> <span class="badge badge-pill badge-primary badge-constructorproperty">ConstructorProperty</span><a id="imodelid" class="heading-anchor" href="#imodelid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-imodelid"><span class="property-name">iModelId</span><a id="imodelid" class="heading-anchor" href="#imodelid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | string</span></td>
 <td>Guid of the iModel - must be defined if the iModel exists in the Hub</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-key"><span class="property-name">key</span> <span class="badge badge-pill badge-primary badge-constructorproperty">ConstructorProperty</span><a id="key" class="heading-anchor" href="#key"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-key"><span class="property-name">key</span><a id="key" class="heading-anchor" href="#key"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | string</span></td>
 <td>Key used for identifying the iModel on the backend</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-openmode"><span class="property-name">openMode</span> <span class="badge badge-pill badge-primary badge-constructorproperty">ConstructorProperty</span><a id="openmode" class="heading-anchor" href="#openmode"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-openmode"><span class="property-name">openMode</span><a id="openmode" class="heading-anchor" href="#openmode"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/besqlite/openmode'>OpenMode</a></span></td>
 <td>Mode used to open the iModel</td>
 <td>&#xA0;</td>
@@ -248,7 +262,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -303,6 +317,9 @@
             </a>
             <ul id="inner-nav-imodeltoken" class='inner-nav'>
                     <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#implements">Implements</a>
+                    </li>
+                    <li class='nav-item item '>
                             <a data-target="#inner-nav-methods" class='title' href="#methods"/>
                             <b class='dropdown-menu-title menu-text'>Methods</b>
                             <i class='nav-list-dropdown icon'></i>
@@ -310,6 +327,12 @@
                             <ul id="inner-nav-methods" class='inner-nav'>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#constructor">constructor</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#tojson">toJSON</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#fromjson">fromJSON</a>
                                     </li>
                             </ul>
                     </li>

@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -195,7 +195,7 @@
             <h2 class="h-growableblockedarray">GrowableBlockedArray <span class="badge badge-pill badge-primary badge-class">Class</span><a id="growableblockedarray" class="heading-anchor" href="#growableblockedarray"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Array of contiguous doubles, indexed by block number and index within block.</p>
 <ul>
-<li>This is essentially a rectangular matrix, with each block being a row of the matrix.</li>
+<li>This is essentially a rectangular matrix (two dimensional array), with each block being a row of the matrix.</li>
 </ul>
 <h3 class="h-extended-by">Extended by<a id="extended-by" class="heading-anchor" href="#extended-by"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -244,12 +244,12 @@
 </tr>
 <tr>
 <td class="h-distancebetweenblocks"><span class="method-name">distanceBetweenBlocks</span><span class="method-parenthesis">(</span><span class="method-parameters">blockIndexA: number, blockIndexB: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="distancebetweenblocks" class="heading-anchor" href="#distancebetweenblocks"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>Return the distance (hypotenuse=sqrt(summed squares)) between indicated blocks</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-distancebetweensubblocks"><span class="method-name">distanceBetweenSubBlocks</span><span class="method-parenthesis">(</span><span class="method-parameters">blockIndexA: number, blockIndexB: number, iBegin: number, iEnd: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="distancebetweensubblocks" class="heading-anchor" href="#distancebetweensubblocks"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>Return the distance (hypotenuse=sqrt(summed squares)) between block entries <code>iBegin &lt;= i &lt; iEnd</code> of indicated blocks</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -259,7 +259,7 @@
 </tr>
 <tr>
 <td class="h-getwithinblock"><span class="method-name"><a href="getwithinblock">getWithinBlock</a></span><span class="method-parenthesis">(</span><span class="method-parameters">blockIndex: number, indexWithinBlock: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="getwithinblock" class="heading-anchor" href="#getwithinblock"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Return a single value indexed within a blcok</td>
+<td>Return a single value indexed within a block</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -279,7 +279,7 @@
 </tr>
 <tr>
 <td class="h-comparelexicalblock"><span class="method-name"><a href="comparelexicalblock">compareLexicalBlock</a></span><span class="method-parenthesis">(</span><span class="method-parameters">data: Float64Array, blockSize: number, ia: number, ib: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="comparelexicalblock" class="heading-anchor" href="#comparelexicalblock"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>compre two blocks in simple lexical order.</td>
+<td>compare two blocks in simple lexical order.</td>
 <td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -290,21 +290,21 @@
 <th></th>
 </tr>
 <tr>
-<td class="h-_blocksize"><span class="property-name">_blockSize</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="_blocksize" class="heading-anchor" href="#_blocksize"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-_blocksize"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/growableblockedarray/growableblockedarray/_blocksize'>_blockSize</a></span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="_blocksize" class="heading-anchor" href="#_blocksize"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">number</span></td>
-<td>&#xA0;</td>
+<td>number of numbers per block in the array.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-_data"><span class="property-name">_data</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="_data" class="heading-anchor" href="#_data"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">Float64Array</span></td>
-<td>&#xA0;</td>
+<td>underlying contiguous, oversized buffer.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-_inuse"><span class="property-name">_inUse</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="_inuse" class="heading-anchor" href="#_inuse"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">number</span></td>
-<td>&#xA0;</td>
+<td>Number of blocks (matrix rows) in use.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -325,7 +325,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

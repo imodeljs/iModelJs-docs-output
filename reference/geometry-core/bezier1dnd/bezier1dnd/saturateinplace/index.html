@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -193,6 +193,11 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/">geometry-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/bezier1dnd/">Bezier1dNd</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/bezier1dnd/bezier1dnd/">Bezier1dNd</a> > saturateInPlace</div>
             
             <h2 class="h-saturateinplace">saturateInPlace <span class="badge badge-pill badge-primary badge-method">Method</span><a id="saturateinplace" class="heading-anchor" href="#saturateinplace"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Compute new control points to &quot;clamp&quot; bspline unsaturated support to saturated form.</p>
+<ul>
+<li>At input time, the control points are associated with the input knots (unsaturated)</li>
+<li>At output, they control points are modified by repeated knot insertion to be fully clamped.</li>
+</ul>
 <p><span class="method-name">saturateInPlace</span><span class="method-parenthesis">(</span><span class="method-parameters">knots: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/bspline/knotvector'>KnotVector</a>, spanIndex: number</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
@@ -202,12 +207,12 @@
 <tr>
 <td class="h-knots"><span class="parameter-name">knots</span><a id="knots" class="heading-anchor" href="#knots"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/bspline/knotvector'>KnotVector</a></span></td>
-<td>&#xA0;</td>
+<td>knot values for the current (unsaturated) pole set</td>
 </tr>
 <tr>
 <td class="h-spanindex"><span class="parameter-name">spanIndex</span><a id="spanindex" class="heading-anchor" href="#spanindex"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="parameter-type">number</span></td>
-<td>index of span whose (unsaturated) poles are in the bezie.</td>
+<td>index of span whose (unsaturated) poles are in the bezier.</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -215,7 +220,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

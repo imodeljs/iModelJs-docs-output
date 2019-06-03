@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -218,7 +218,7 @@ for parsing clipplanes from the shape later.</p>
 </tr>
 <tr>
 <td class="h-ensureplanesets"><span class="method-name"><a href="ensureplanesets">ensurePlaneSets</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="ensureplanesets" class="heading-anchor" href="#ensureplanesets"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>* If the ClipShape&apos;s associated <code>UnionOfConvexClipPlaneSets</code> is defined, do nohting.</td>
+<td>* If the ClipShape&apos;s associated <code>UnionOfConvexClipPlaneSets</code> is defined, do nothing.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -248,12 +248,12 @@ for parsing clipplanes from the shape later.</p>
 </tr>
 <tr>
 <td class="h-tojson"><span class="method-name">toJSON</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> any</span><a id="tojson" class="heading-anchor" href="#tojson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>emit json object form</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-transforminplace"><span class="method-name">transformInPlace</span><span class="method-parenthesis">(</span><span class="method-parameters">transform: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="transforminplace" class="heading-anchor" href="#transforminplace"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td class="h-transforminplace"><span class="method-name"><a href="transforminplace">transformInPlace</a></span><span class="method-parenthesis">(</span><span class="method-parameters">transform: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="transforminplace" class="heading-anchor" href="#transforminplace"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Apply <code>transform</code> to the local to world (<code>transformFromClip</code>) transform.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -278,7 +278,7 @@ for parsing clipplanes from the shape later.</p>
 </tr>
 <tr>
 <td class="h-fromclipshapejson"><span class="method-name">fromClipShapeJSON</span><span class="method-parenthesis">(</span><span class="method-parameters">json: any, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipshape'>ClipShape</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipshape'>ClipShape</a> | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="fromclipshapejson" class="heading-anchor" href="#fromclipshapejson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>parse <code>json</code> to a clip shape.</td>
 <td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-inherited-methods"><i class="icon collapse-section hidden icon-chevron-right"></i>Inherited methods<a id="inherited-methods" class="heading-anchor" href="#inherited-methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -303,9 +303,9 @@ for parsing clipplanes from the shape later.</p>
 <td>Return true if any plane of the primary clipPlanes has (a) non-zero z component in its normal vector and (b) finite distance from origin.</td>
 </tr>
 <tr>
-<td class="h-fetchclipplanesref"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipprimitive/#fetchclipplanesref'>fetchClipPlanesRef</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/unionofconvexclipplanesets'>UnionOfConvexClipPlaneSets</a> | undefined</span><a id="fetchclipplanesref" class="heading-anchor" href="#fetchclipplanesref"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-fetchclipplanesref"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipprimitive/fetchclipplanesref'>fetchClipPlanesRef</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/unionofconvexclipplanesets'>UnionOfConvexClipPlaneSets</a> | undefined</span><a id="fetchclipplanesref" class="heading-anchor" href="#fetchclipplanesref"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipprimitive'>ClipPrimitive</a></span></td>
-<td>&#xA0;</td>
+<td>Get a reference to the <code>UnionOfConvexClipPlaneSets</code>.</td>
 </tr>
 <tr>
 <td class="h-pointinside"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipprimitive/pointinside'>pointInside</a></span><span class="method-parenthesis">(</span><span class="method-parameters">point: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>, onTolerance: number = Geometry.smallMetricDistanceSquared</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="pointinside" class="heading-anchor" href="#pointinside"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -325,12 +325,12 @@ for parsing clipplanes from the shape later.</p>
 <tr>
 <td class="h-fromjson"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipprimitive/#fromjson'>fromJSON</a></span><span class="method-parenthesis">(</span><span class="method-parameters">json: any</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipprimitive'>ClipPrimitive</a> | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="fromjson" class="heading-anchor" href="#fromjson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipprimitive'>ClipPrimitive</a></span></td>
-<td>&#xA0;</td>
+<td>Promote json object form to class instance<br><em> First try to convert to a ClipShape<br></em> then try as a standalone instance of the base class ClipPrimitive.</td>
 </tr>
 <tr>
 <td class="h-fromjsonclipprimitive"><span class="inherited-method-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipprimitive/#fromjsonclipprimitive'>fromJSONClipPrimitive</a></span><span class="method-parenthesis">(</span><span class="method-parameters">json: any</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipprimitive'>ClipPrimitive</a> | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="fromjsonclipprimitive" class="heading-anchor" href="#fromjsonclipprimitive"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="inherited-from"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipprimitive'>ClipPrimitive</a></span></td>
-<td>&#xA0;</td>
+<td>Specific converter producing the base class ClipPrimitive.</td>
 </tr>
 </tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <table class="table table-responsive"><tbody><tr>
@@ -342,37 +342,37 @@ for parsing clipplanes from the shape later.</p>
 <tr>
 <td class="h-_ismask"><span class="property-name">_isMask</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="_ismask" class="heading-anchor" href="#_ismask"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">boolean</span></td>
-<td>&#xA0;</td>
+<td>true if this is considered a hole (keep geometry outside of the polygon.)</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-_polygon"><span class="property-name">_polygon</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="_polygon" class="heading-anchor" href="#_polygon"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>[]</span></td>
-<td>&#xA0;</td>
+<td>Points of the polygon, in the xy plane of the local coordinate system.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-_transformfromclip"><span class="property-name">_transformFromClip</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="_transformfromclip" class="heading-anchor" href="#_transformfromclip"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span></td>
-<td>&#xA0;</td>
+<td>transform from local to world</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-_transformtoclip"><span class="property-name">_transformToClip</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="_transformtoclip" class="heading-anchor" href="#_transformtoclip"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/transform'>Transform</a></span></td>
-<td>&#xA0;</td>
+<td>Transform from world to local</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-_zhigh"><span class="property-name">_zHigh</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="_zhigh" class="heading-anchor" href="#_zhigh"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | number</span></td>
-<td>&#xA0;</td>
+<td>optional high z (in local coordinates)</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-_zlow"><span class="property-name">_zLow</span> <span class="badge badge-pill badge-primary badge-protected">Protected</span><a id="_zlow" class="heading-anchor" href="#_zlow"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | number</span></td>
-<td>&#xA0;</td>
+<td>optional low z (in local coordinates)</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -394,9 +394,9 @@ for parsing clipplanes from the shape later.</p>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-isxypolygon"><span class="property-name">isXYPolygon</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isxypolygon" class="heading-anchor" href="#isxypolygon"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-isxypolygon"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipshape/isxypolygon'>isXYPolygon</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="isxypolygon" class="heading-anchor" href="#isxypolygon"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> boolean</span></td>
-<td>&#xA0;</td>
+<td>Return true if<br><em> at least one point is defined<br></em> The local to world transform (transformFromClip) either<br>  <em> is undefined<br>  </em> has no xy parts in its column Z (local frame Z is parallel to global Z)</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -414,7 +414,7 @@ for parsing clipplanes from the shape later.</p>
 <tr>
 <td class="h-transformisvalid"><span class="property-name">transformIsValid</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="transformisvalid" class="heading-anchor" href="#transformisvalid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> boolean</span></td>
-<td>&#xA0;</td>
+<td>Return true if this ClipShape has a local to world transform</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -478,7 +478,7 @@ for parsing clipplanes from the shape later.</p>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

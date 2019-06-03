@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -194,7 +194,7 @@
             
             <h2 class="h-clipprimitive">ClipPrimitive <span class="badge badge-pill badge-primary badge-class">Class</span><a id="clipprimitive" class="heading-anchor" href="#clipprimitive"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ul>
-<li>ClipPrimitve is a base class for clipping implementations that use<ul>
+<li>ClipPrimitive is a base class for clipping implementations that use<ul>
 <li>A ClipPlaneSet designated &quot;clipPlanes&quot;</li>
 <li>an &quot;invisible&quot; flag</li>
 </ul>
@@ -203,10 +203,10 @@
 <li>Derived classes (e.g. ClipShape) carry additional data of a swept shape.</li>
 <li>ClipPrimitive can be constructed with no planes.<ul>
 <li>Derived class is responsible for filling the plane sets.</li>
-<li>At discrtionn of derived classes, plane construction can be done at construction time or &quot;on demand when&quot; queries call <code>ensurePlaneSets ()</code></li>
+<li>At discretion of derived classes, plane construction can be done at construction time or &quot;on demand when&quot; queries call <code>ensurePlaneSets ()</code></li>
 </ul>
 </li>
-<li>ClipPrimitive can be constructetd with planes (and no derived class).</li>
+<li>ClipPrimitive can be constructed with planes (and no derived class).</li>
 </ul>
 <h3 class="h-extended-by">Extended by<a id="extended-by" class="heading-anchor" href="#extended-by"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
@@ -235,7 +235,7 @@
 </tr>
 <tr>
 <td class="h-clone"><span class="method-name">clone</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipprimitive'>ClipPrimitive</a></span><a id="clone" class="heading-anchor" href="#clone"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>Return a deep clone</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -249,8 +249,8 @@
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-fetchclipplanesref"><span class="method-name">fetchClipPlanesRef</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/unionofconvexclipplanesets'>UnionOfConvexClipPlaneSets</a> | undefined</span><a id="fetchclipplanesref" class="heading-anchor" href="#fetchclipplanesref"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td class="h-fetchclipplanesref"><span class="method-name"><a href="fetchclipplanesref">fetchClipPlanesRef</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/unionofconvexclipplanesets'>UnionOfConvexClipPlaneSets</a> | undefined</span><a id="fetchclipplanesref" class="heading-anchor" href="#fetchclipplanesref"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Get a reference to the <code>UnionOfConvexClipPlaneSets</code>.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -270,7 +270,7 @@
 </tr>
 <tr>
 <td class="h-tojson"><span class="method-name">toJSON</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> any</span><a id="tojson" class="heading-anchor" href="#tojson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>Emit json form of the clip planes</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -285,12 +285,12 @@
 </tr>
 <tr>
 <td class="h-fromjson"><span class="method-name">fromJSON</span><span class="method-parenthesis">(</span><span class="method-parameters">json: any</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipprimitive'>ClipPrimitive</a> | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="fromjson" class="heading-anchor" href="#fromjson"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>Promote json object form to class instance<br><em> First try to convert to a ClipShape<br></em> then try as a standalone instance of the base class ClipPrimitive.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-fromjsonclipprimitive"><span class="method-name">fromJSONClipPrimitive</span><span class="method-parenthesis">(</span><span class="method-parameters">json: any</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/clipprimitive'>ClipPrimitive</a> | undefined</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="fromjsonclipprimitive" class="heading-anchor" href="#fromjsonclipprimitive"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>Specific converter producing the base class ClipPrimitive.</td>
 <td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -315,7 +315,7 @@
 <tr>
 <td class="h-invisible"><span class="property-name">invisible</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="invisible" class="heading-anchor" href="#invisible"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> boolean</span></td>
-<td>&#xA0;</td>
+<td>Ask if this primitive is a hole.</td>
 <td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -324,7 +324,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

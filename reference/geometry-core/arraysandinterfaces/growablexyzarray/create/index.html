@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -193,8 +193,20 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/">geometry-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/arraysandinterfaces/">ArraysAndInterfaces</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/arraysandinterfaces/growablexyzarray/">GrowableXYZArray</a> > create</div>
             
             <h2 class="h-create">create <span class="badge badge-pill badge-primary badge-method">Method</span><span class="badge badge-pill badge-primary badge-static">Static</span><a id="create" class="heading-anchor" href="#create"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Copy point coordinates from data to a growable array.</p>
-<p><span class="method-name">create</span><span class="method-parenthesis">(</span><span class="method-parameters">data: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>[], result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/arraysandinterfaces/growablexyzarray'>GrowableXYZArray</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/arraysandinterfaces/growablexyzarray'>GrowableXYZArray</a></span></p>
+<p>Create an array from various point data formats.
+Valid inputs are:</p>
+<ul>
+<li>Point2d</li>
+<li>point3d</li>
+<li>An array of 2 doubles</li>
+<li>An array of 3 doubles</li>
+<li>A GrowableXYZArray</li>
+<li>Any json object satisfying Point3d.isXYAndZ</li>
+<li>Any json object satisfying Point3d.isXAndY</li>
+<li>A Float64Array of doubles, interpreted as xyzxyz</li>
+<li>An array of any of the above</li>
+</ul>
+<p><span class="method-name">create</span><span class="method-parenthesis">(</span><span class="method-parameters">data: any, result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/arraysandinterfaces/growablexyzarray'>GrowableXYZArray</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/arraysandinterfaces/growablexyzarray'>GrowableXYZArray</a></span></p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
 <th>Type</th>
@@ -202,7 +214,7 @@
 </tr>
 <tr>
 <td class="h-data"><span class="parameter-name">data</span><a id="data" class="heading-anchor" href="#data"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xyandz'>XYAndZ</a>[]</span></td>
+<td><span class="parameter-type">any</span></td>
 <td>source points.</td>
 </tr>
 <tr>
@@ -216,7 +228,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

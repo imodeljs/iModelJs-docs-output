@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -194,18 +194,8 @@
             
             <h2 class="h-queryentityids">queryEntityIds <span class="badge badge-pill badge-primary badge-method">Method</span><a id="queryentityids" class="heading-anchor" href="#queryentityids"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Query for a set of entity ids, given an EntityQueryParams</p>
-<p><span class="method-name">queryEntityIds</span><span class="method-parenthesis">(</span><span class="method-parameters">params: EntityQueryParams</span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64set'>Id64Set</a></span></p>
-<table class="table table-responsive"><tbody><tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-<tr>
-<td class="h-params"><span class="parameter-name">params</span><a id="params" class="heading-anchor" href="#params"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="parameter-type">EntityQueryParams</span></td>
-<td>the EntityQueryParams for query</td>
-</tr>
-</tbody></table><p><strong>Returns</strong> - an Id64Set with results of query</p>
+<p><span class="method-name">queryEntityIds</span><span class="method-parenthesis">(</span><span class="method-parameters">params: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/entityqueryparams'>EntityQueryParams</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64set'>Id64Set</a></span></p>
+<p><span class="badge badge-pill badge-primary badge-throws">throws</span> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/imodels/imodelerror'>IModelError</a> if the generated statement is invalid or <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/#maxlimit'>IModelDb.maxLimit</a> exceeded when collecting ids.</p>
 <p><em>Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">    // If you are sure that the name of the PhysicalPartition is unique within the
     // iModel or if you have some way of filtering results, you could do a direct query
@@ -213,13 +203,24 @@
     for (const eidStr of iModel.queryEntityIds({ from: PhysicalPartition.classFullName, where: &quot;CodeValue=&apos;Physical&apos;&quot; })) {
       assert.equal(iModel.elements.getElement(eidStr).code.getValue(), &quot;Physical&quot;);
     }</code></pre>
+<table class="table table-responsive"><tbody><tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td class="h-params"><span class="parameter-name">params</span><a id="params" class="heading-anchor" href="#params"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/entityqueryparams'>EntityQueryParams</a></span></td>
+<td>The query parameters. The <code>limit</code> and <code>offset</code> members should be used to page results.</td>
+</tr>
+</tbody></table><p><strong>Returns</strong> - an Id64Set with results of query</p>
 <h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/backend/src/IModelDb.ts">IModelDb.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

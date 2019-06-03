@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -199,7 +199,7 @@ The various CurvePrimitive types are free to announce either single points (anno
 or fractional intervals of the parent curve.</p>
 <ul>
 <li>handler.startCurvePrimitive (cp) -- announce the curve primitive whose strokes will follow.</li>
-<li>announcePointTangent (xyz, fraction, tangent) -- annunce a single point on the curve.</li>
+<li>announcePointTangent (xyz, fraction, tangent) -- announce a single point on the curve.</li>
 <li>announceIntervalForUniformStepStrokes (cp, numStrokes, fraction0, fraction1) -- announce a fraction
 interval in which the curve can be evaluated (e.g. the handler can call cp-&gt;fractionToPointAndDerivative ())</li>
 <li>announceSegmentInterval (cp, point0, point1, numStrokes, fraction0, fraction1) -- announce
@@ -229,8 +229,8 @@ within the linestring.</li>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-announcepointtangent"><span class="method-name">announcePointTangent</span><span class="method-parenthesis">(</span><span class="method-parameters">xyz: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>, fraction: number, tangent: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="announcepointtangent" class="heading-anchor" href="#announcepointtangent"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td class="h-announcepointtangent"><span class="method-name"><a href="announcepointtangent">announcePointTangent</a></span><span class="method-parenthesis">(</span><span class="method-parameters">xyz: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/point3d'>Point3d</a>, fraction: number, tangent: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/point3dvector3d/vector3d'>Vector3d</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="announcepointtangent" class="heading-anchor" href="#announcepointtangent"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>announce a single point with its fraction and tangent.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -240,17 +240,17 @@ within the linestring.</li>
 </tr>
 <tr>
 <td class="h-endcurveprimitive"><span class="method-name">endCurvePrimitive</span><span class="method-parenthesis">(</span><span class="method-parameters">cp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive'>CurvePrimitive</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="endcurveprimitive" class="heading-anchor" href="#endcurveprimitive"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>Announce that all data about <code>cp</code> has been announced.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-endparentcurveprimitive"><span class="method-name">endParentCurvePrimitive</span><span class="method-parenthesis">(</span><span class="method-parameters">cp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive'>CurvePrimitive</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="endparentcurveprimitive" class="heading-anchor" href="#endparentcurveprimitive"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>Announce that all data about the parent primitive has been announced.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-startcurveprimitive"><span class="method-name">startCurvePrimitive</span><span class="method-parenthesis">(</span><span class="method-parameters">cp: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/curveprimitive'>CurvePrimitive</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span><a id="startcurveprimitive" class="heading-anchor" href="#startcurveprimitive"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>Announce the curve primitive that will be described in subsequent calls.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -264,7 +264,7 @@ within the linestring.</li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

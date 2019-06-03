@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -219,11 +219,11 @@
 <li>The angle tolerance has the useful property that its effect is independent of scale of that data.  If data is suddenly scaled into millimeters rather than meters, the facet counts remain the same.</li>
 </ul>
 </li>
-<li>When creating output for devicies such as 3D printing will want a chord tolerance.</li>
+<li>When creating output for devices such as 3D printing will want a chord tolerance.</li>
 <li>For graphics display, use an angle tolerance of around 15 degrees and an chord tolerance which is the size of several pixels.</li>
 <li>Analysis meshes (e.g. Finite Elements) commonly need to apply maxEdgeLength.</li>
 <li><ul>
-<li>Using maxEdgeLength for graphics probably produces too many facets.   For example, it causes long cylinders to get many nearly-square facets instead of the samll number of long quads usually used for graphics.</li>
+<li>Using maxEdgeLength for graphics probably produces too many facets.   For example, it causes long cylinders to get many nearly-square facets instead of the small number of long quads usually used for graphics.</li>
 </ul>
 </li>
 <li>Facet tolerances are, as the Pirates&apos; Code, guidelines, not absolute rules.   Facet and stroke code may ignore tolerances in awkward situations.</li>
@@ -237,12 +237,12 @@
 </tr>
 <tr>
 <td class="h-applyangletol"><span class="method-name">applyAngleTol</span><span class="method-parenthesis">(</span><span class="method-parameters">minCount: number, sweepRadians: number, defaultStepRadians: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="applyangletol" class="heading-anchor" href="#applyangletol"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>return stroke count which is the larger of the existing count or count needed for angle condition for given sweepRadians<br>* defaultStepRadians is assumed to be larger than zero.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-applychordtol"><span class="method-name">applyChordTol</span><span class="method-parenthesis">(</span><span class="method-parameters">minCount: number, radius: number, sweepRadians: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="applychordtol" class="heading-anchor" href="#applychordtol"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>return stroke count which is the larger of existing count or count needed for circular arc chord tolerance condition.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -252,32 +252,32 @@
 </tr>
 <tr>
 <td class="h-applyminstrokesperprimitive"><span class="method-name">applyMinStrokesPerPrimitive</span><span class="method-parenthesis">(</span><span class="method-parameters">minCount: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="applyminstrokesperprimitive" class="heading-anchor" href="#applyminstrokesperprimitive"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>return stroke count which is the larger of existing count or <code>this.minStrokesPerPrimitive</code></td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-applytolerancestoarc"><span class="method-name">applyTolerancesToArc</span><span class="method-parenthesis">(</span><span class="method-parameters">radius: number, sweepRadians: number = Math.PI * 2</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="applytolerancestoarc" class="heading-anchor" href="#applytolerancestoarc"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td class="h-applytolerancestoarc"><span class="method-name"><a href="applytolerancestoarc">applyTolerancesToArc</a></span><span class="method-parenthesis">(</span><span class="method-parameters">radius: number, sweepRadians: number = Math.PI * 2</span><span class="method-parenthesis">):</span><span class="method-output"> number</span><a id="applytolerancestoarc" class="heading-anchor" href="#applytolerancestoarc"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Determine a stroke count for a (partial) circular arc of given radius.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-applyangletol-1"><span class="method-name">applyAngleTol</span><span class="method-parenthesis">(</span><span class="method-parameters">options: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/strokeoptions'>StrokeOptions</a> | undefined, minCount: number, sweepRadians: number, defaultStepRadians?: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="applyangletol-1" class="heading-anchor" href="#applyangletol-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>return stroke count which is the larger of minCount and the count required to turn sweepRadians, using tolerance from the options.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
 <td class="h-applymaxedgelength-1"><span class="method-name"><a href="applymaxedgelength">applyMaxEdgeLength</a></span><span class="method-parenthesis">(</span><span class="method-parameters">options: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/strokeoptions'>StrokeOptions</a> | undefined, minCount: number, edgeLength: number</span><span class="method-parenthesis">):</span><span class="method-output"> number</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="applymaxedgelength-1" class="heading-anchor" href="#applymaxedgelength-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
-<td>&#xA0;</td>
-</tr>
-<tr>
-<td class="h-createforcurves"><span class="method-name">createForCurves</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/strokeoptions'>StrokeOptions</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createforcurves" class="heading-anchor" href="#createforcurves"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>&#xA0;</td>
+<td>Return the number of strokes needed for given edgeLength curve.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-createforfacets"><span class="method-name">createForFacets</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/strokeoptions'>StrokeOptions</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createforfacets" class="heading-anchor" href="#createforfacets"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td class="h-createforcurves"><span class="method-name"><a href="createforcurves">createForCurves</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/strokeoptions'>StrokeOptions</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createforcurves" class="heading-anchor" href="#createforcurves"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>create <code>StrokeOptions</code> with defaults appropriate for curves.</td>
 <td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-createforfacets"><span class="method-name"><a href="createforfacets">createForFacets</a></span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/strokeoptions'>StrokeOptions</a></span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="createforfacets" class="heading-anchor" href="#createforfacets"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>create <code>StrokeOptions</code> with defaults appropriate for surfaces facets<br>* angle tolerance of 22.5 degrees.</td>
 <td>&#xA0;</td>
 </tr>
 </tbody></table><h3 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -290,7 +290,7 @@
 <tr>
 <td class="h-angletol"><span class="property-name">angleTol</span><a id="angletol" class="heading-anchor" href="#angletol"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output">undefined | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/angle/angle'>Angle</a></span></td>
-<td>turning angle betwee strokes.</td>
+<td>turning angle between strokes.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -359,7 +359,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

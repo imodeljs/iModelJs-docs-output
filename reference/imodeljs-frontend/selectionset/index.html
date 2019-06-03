@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -202,11 +202,6 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/
 <th>&#xA0;</th>
 </tr>
 <tr>
-<td class="h-hilitedset"><a href="hilitedset">HilitedSet</a><a id="hilitedset" class="heading-anchor" href="#hilitedset"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>A set of <em>hilited</em> elements for an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection'>IModelConnection</a>, by element id.</td>
-<td>&#xA0;</td>
-</tr>
-<tr>
 <td class="h-selectionset"><a href="selectionset">SelectionSet</a><a id="selectionset" class="heading-anchor" href="#selectionset"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>A set of <em>currently selected</em> elements for an IModelConnection.</td>
 <td>&#xA0;</td>
@@ -223,11 +218,6 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/
 <th>&#xA0;</th>
 </tr>
 <tr>
-<td class="h-selecteventtype"><a href="selecteventtype">SelectEventType</a><a id="selecteventtype" class="heading-anchor" href="#selecteventtype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>event types for SelectionSet.onChanged</td>
-<td>&#xA0;</td>
-</tr>
-<tr>
 <td class="h-selectionmethod"><a href="selectionmethod">SelectionMethod</a><a id="selectionmethod" class="heading-anchor" href="#selectionmethod"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td>The method for choosing elements with the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/selectionset/selectiontool'>SelectionTool</a></td>
 <td>&#xA0;</td>
@@ -242,9 +232,46 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/
 <td>The processing method to use to update the current selection.</td>
 <td>&#xA0;</td>
 </tr>
+<tr>
+<td class="h-selectionseteventtype"><a href="selectionseteventtype">SelectionSetEventType</a><a id="selectionseteventtype" class="heading-anchor" href="#selectionseteventtype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Identifies the type of changes made to the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/selectionset/selectionset'>SelectionSet</a> to produce a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/selectionset/selectionsetevent'>SelectionSetEvent</a>.</td>
+<td>&#xA0;</td>
+</tr>
+</tbody></table><h2 class="h-interfaces">Interfaces<a id="interfaces" class="heading-anchor" href="#interfaces"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Description</th>
+<th>&#xA0;</th>
+</tr>
+<tr>
+<td class="h-selectaddevent"><a href="selectaddevent">SelectAddEvent</a><a id="selectaddevent" class="heading-anchor" href="#selectaddevent"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Passed to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/selectionset/selectionset/#onchanged'>SelectionSet.onChanged</a> event listeners when elements are added to the selection set.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-selectremoveevent"><a href="selectremoveevent">SelectRemoveEvent</a><a id="selectremoveevent" class="heading-anchor" href="#selectremoveevent"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Passed to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/selectionset/selectionset/#onchanged'>SelectionSet.onChanged</a> event listeners when elements are removed from the selection set.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-selectreplaceevent"><a href="selectreplaceevent">SelectReplaceEvent</a><a id="selectreplaceevent" class="heading-anchor" href="#selectreplaceevent"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Passed to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/selectionset/selectionset/#onchanged'>SelectionSet.onChanged</a> event listeners when elements are simultaneously added to and removed from the selection set.</td>
+<td>&#xA0;</td>
+</tr>
+</tbody></table><h2 class="h-type-aliases">Type Aliases<a id="type-aliases" class="heading-anchor" href="#type-aliases"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Description</th>
+<th>&#xA0;</th>
+</tr>
+<tr>
+<td class="h-selectionsetevent"><a href="selectionsetevent">SelectionSetEvent</a><a id="selectionsetevent" class="heading-anchor" href="#selectionsetevent"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Payload sent to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/selectionset/selectionset/#onchanged'>SelectionSet.onChanged</a> event listeners to describe how the contents of the set have changed.</td>
+<td>&#xA0;</td>
+</tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -299,9 +326,6 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/
             </a>
             <ul id="inner-nav-classes" class='inner-nav'>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#hilitedset">HilitedSet</a>
-                    </li>
-                    <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#selectionset">SelectionSet</a>
                     </li>
                     <li class='nav-item item '>
@@ -316,9 +340,6 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/
             </a>
             <ul id="inner-nav-enumerations" class='inner-nav'>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#selecteventtype">SelectEventType</a>
-                    </li>
-                    <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#selectionmethod">SelectionMethod</a>
                     </li>
                     <li class='nav-item item '>
@@ -326,6 +347,37 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#selectionprocessing">SelectionProcessing</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#selectionseteventtype">SelectionSetEventType</a>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-interfaces" class='title' href="#interfaces"/>
+            <b class='dropdown-menu-title menu-text'>Interfaces</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-interfaces" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#selectaddevent">SelectAddEvent</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#selectremoveevent">SelectRemoveEvent</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#selectreplaceevent">SelectReplaceEvent</a>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-type-aliases" class='title' href="#type-aliases"/>
+            <b class='dropdown-menu-title menu-text'>Type Aliases</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-type-aliases" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#selectionsetevent">SelectionSetEvent</a>
                     </li>
             </ul>
     </li>

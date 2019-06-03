@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -226,7 +226,7 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend
 <tr>
 <td class="h-appassetsdir"><span class="property-name">appAssetsDir</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="appassetsdir" class="heading-anchor" href="#appassetsdir"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"> string | undefined</span></td>
-<td>The directory where the app&apos;s assets may be found</td>
+<td>The directory where application assets may be found</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -260,9 +260,21 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend
 <td>&#xA0;</td>
 </tr>
 <tr>
+<td class="h-logtileloadtimethreshold"><span class="property-name">logTileLoadTimeThreshold</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="logtileloadtimethreshold" class="heading-anchor" href="#logtileloadtimethreshold"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> number</span></td>
+<td>The backend will log when a tile took longer to load than this threshold in seconds.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
+<td class="h-logtilesizethreshold"><span class="property-name">logTileSizeThreshold</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="logtilesizethreshold" class="heading-anchor" href="#logtilesizethreshold"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> number</span></td>
+<td>The backend will log when a tile is loaded with a size in bytes above this threshold.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-onafterstartup"><span class="property-name">onAfterStartup</span> <span class="badge badge-pill badge-primary badge-static">Static</span><a id="onafterstartup" class="heading-anchor" href="#onafterstartup"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="method-output"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/events/beevent'>BeEvent</a>&lt;() =&gt; void&gt;</span></td>
-<td>Event raised just after the backend IModelHost was started up</td>
+<td>Event raised just after the backend IModelHost was started</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -277,37 +289,13 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend
 <td>A uniqueId for this backend session</td>
 <td>&#xA0;</td>
 </tr>
-<tr>
-<td class="h-tilecontentrequesttimeout"><span class="property-name">tileContentRequestTimeout</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="tilecontentrequesttimeout" class="heading-anchor" href="#tilecontentrequesttimeout"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> number</span></td>
-<td>The time, in milliseconds, for which <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/imodeltilerpcinterface/#requesttilecontent'>IModelTileRpcInterface.requestTileContent</a> should wait before returning a &quot;pending&quot; status.</td>
-<td>&#xA0;</td>
-</tr>
-<tr>
-<td class="h-tiletreerequesttimeout"><span class="property-name">tileTreeRequestTimeout</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="tiletreerequesttimeout" class="heading-anchor" href="#tiletreerequesttimeout"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> number</span></td>
-<td>The time, in milliseconds, for which <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/imodeltilerpcinterface/#requesttiletreeprops'>IModelTileRpcInterface.requestTileTreeProps</a> should wait before returning a &quot;pending&quot; status.</td>
-<td>&#xA0;</td>
-</tr>
-<tr>
-<td class="h-usetilecontentthreadpool"><span class="property-name">useTileContentThreadPool</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="usetilecontentthreadpool" class="heading-anchor" href="#usetilecontentthreadpool"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> boolean</span></td>
-<td>If true, requests for tile content will execute on a separate thread pool in order to avoid blocking other, less expensive asynchronous requests such as ECSql queries.</td>
-<td>&#xA0;</td>
-</tr>
-<tr>
-<td class="h-usingexternaltilecache"><span class="property-name">usingExternalTileCache</span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span> <span class="badge badge-pill badge-primary badge-static">Static</span><span class="badge badge-pill badge-primary badge-readonly">ReadOnly</span><a id="usingexternaltilecache" class="heading-anchor" href="#usingexternaltilecache"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output"> boolean</span></td>
-<td>Whether external tile caching is active.</td>
-<td>&#xA0;</td>
-</tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/backend/src/IModelHost.ts">IModelHost.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -403,6 +391,12 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend
                                             <a class='title solo-title menu-text' href="#configuration">configuration</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#logtileloadtimethreshold">logTileLoadTimeThreshold</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#logtilesizethreshold">logTileSizeThreshold</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#onafterstartup">onAfterStartup</a>
                                     </li>
                                     <li class='nav-item item '>
@@ -410,18 +404,6 @@ See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#sessionid">sessionId</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#tilecontentrequesttimeout">tileContentRequestTimeout</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#tiletreerequesttimeout">tileTreeRequestTimeout</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#usetilecontentthreadpool">useTileContentThreadPool</a>
-                                    </li>
-                                    <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#usingexternaltilecache">usingExternalTileCache</a>
                                     </li>
                             </ul>
                     </li>

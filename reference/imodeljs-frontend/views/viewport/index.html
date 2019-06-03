@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -250,8 +250,13 @@ triggered only once per frame, just before the Viewport&apos;s contents are rend
 <td>&#xA0;</td>
 </tr>
 <tr>
+<td class="h-changeviewedmodel2d"><span class="method-name"><a href="changeviewedmodel2d">changeViewedModel2d</a></span><span class="method-parenthesis">(</span><span class="method-parameters">baseModelId: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a>, options?: undefined</span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;void&gt;</span><a id="changeviewedmodel2d" class="heading-anchor" href="#changeviewedmodel2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td>Attempt to change the 2d Model this Viewport is displaying, if its ViewState is a ViewState2d.</td>
+<td>&#xA0;</td>
+</tr>
+<tr>
 <td class="h-changeviewedmodels"><span class="method-name"><a href="changeviewedmodels">changeViewedModels</a></span><span class="method-parenthesis">(</span><span class="method-parameters">modelIds: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64arg'>Id64Arg</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="changeviewedmodels" class="heading-anchor" href="#changeviewedmodels"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Attempt to replace the set of models currently viewed by this viewport.</td>
+<td>Attempt to replace the set of models currently viewed by this viewport, if it is displaying a SpatialView</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -331,7 +336,7 @@ triggered only once per frame, just before the Viewport&apos;s contents are rend
 </tr>
 <tr>
 <td class="h-issubcategoryvisible"><span class="method-name"><a href="issubcategoryvisible">isSubCategoryVisible</a></span><span class="method-parenthesis">(</span><span class="method-parameters">id: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/id64string'>Id64String</a></span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span><a id="issubcategoryvisible" class="heading-anchor" href="#issubcategoryvisible"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td>Determine whether geometry belonging to a specific SubCategory is visible in this viewport.</td>
+<td>Determine whether geometry belonging to a specific SubCategory is visible in this viewport, assuming the containing Category is displayed.</td>
 <td>&#xA0;</td>
 </tr>
 <tr>
@@ -547,8 +552,8 @@ triggered only once per frame, just before the Viewport&apos;s contents are rend
 <td>&#xA0;</td>
 </tr>
 <tr>
-<td class="h-hilite"><span class="property-name">hilite</span><a id="hilite" class="heading-anchor" href="#hilite"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="method-output">Settings</span></td>
+<td class="h-hilite"><span class="property-name"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/hilite'>hilite</a></span> <span class="badge badge-pill badge-primary badge-accessor">Accessor</span><a id="hilite" class="heading-anchor" href="#hilite"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="method-output"> Settings</span></td>
 <td>The settings that control how elements are hilited in this Viewport.</td>
 <td>&#xA0;</td>
 </tr>
@@ -726,7 +731,7 @@ triggered only once per frame, just before the Viewport&apos;s contents are rend
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -800,6 +805,9 @@ triggered only once per frame, just before the Viewport&apos;s contents are rend
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#changeview">changeView</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#changeviewedmodel2d">changeViewedModel2d</a>
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#changeviewedmodels">changeViewedModels</a>

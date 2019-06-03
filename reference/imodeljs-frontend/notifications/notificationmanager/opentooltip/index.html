@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v0.191.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -193,8 +193,12 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/">imodeljs-frontend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/notifications/">Notifications</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/notifications/notificationmanager/">NotificationManager</a> > openToolTip</div>
             
             <h2 class="h-opentooltip">openToolTip <span class="badge badge-pill badge-primary badge-method">Method</span><a id="opentooltip" class="heading-anchor" href="#opentooltip"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-"><span class="badge badge-pill badge-primary badge-beta">Beta</span><a id class="heading-anchor" href="#"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>Show a tooltip window. Saves tooltip location for AccuSnap to test if cursor has moved far enough away to close tooltip.</p>
 <p><span class="method-name">openToolTip</span><span class="method-parenthesis">(</span><span class="method-parameters">_htmlElement: HTMLElement, message: HTMLElement | string, location?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/xandy'>XAndY</a>, options?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/notifications/tooltipoptions'>ToolTipOptions</a></span><span class="method-parenthesis">):</span><span class="method-output"> void</span></p>
+<p><span class="badge badge-pill badge-primary badge-note">note</span> If message is an HTMLElement, the notification manager will display the HTMLElement verbatim. This can represent a security
+risk if any part the element is created from user input. Applications should be careful to <em>sanitize</em> any such input before
+creating an HTMLElement to pass to this method.</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
 <th>Type</th>
@@ -208,7 +212,7 @@
 <tr>
 <td class="h-message"><span class="parameter-name">message</span><a id="message" class="heading-anchor" href="#message"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
 <td><span class="parameter-type">HTMLElement | string</span></td>
-<td>What to display inside the ToolTip. String may include HTML.</td>
+<td>What to display inside the ToolTip. May be a string or an HTMLElement.</td>
 </tr>
 <tr>
 <td class="h-location"><span class="parameter-name">location</span><a id="location" class="heading-anchor" href="#location"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
@@ -226,7 +230,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 May, 2019</span>
+                <span class='date-updated'>03 June, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -281,16 +285,24 @@
             </a>
             <ul id="inner-nav-opentooltip" class='inner-nav'>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#_htmlelement">_htmlElement</a>
-                    </li>
-                    <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#message">message</a>
-                    </li>
-                    <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#location">location</a>
-                    </li>
-                    <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#options">options</a>
+                            <a data-target="#inner-nav-" class='title' href="#"/>
+                            <b class='dropdown-menu-title menu-text'></b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#_htmlelement">_htmlElement</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#message">message</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#location">location</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#options">options</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#defined-in">Defined in</a>
