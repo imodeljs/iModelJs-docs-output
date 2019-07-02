@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.1.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -106,7 +106,7 @@
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
-    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">Glossary</a></li>
     </ul>
     </body></html>
             </ul>
@@ -319,7 +319,7 @@ class Corner {
 <li>Prefer <code>async</code>/<code>await</code> over <code>.then()</code> constructs</li>
 </ol>
 <h2 class="h-reference-documentation-comments">Reference Documentation Comments<a id="reference-documentation-comments" class="heading-anchor" href="#reference-documentation-comments"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>We have standardized on <a href="http://typedoc.org/guides/doccomments/">TypeDoc</a> for generating reference documentation.</p>
+<p>We have standardized on <a href="http://typedoc.org/guides/doccomments/" target="_blank">TypeDoc</a> for generating reference documentation.</p>
 <p>TypeDoc runs the TypeScript compiler and extracts type information from the generated compiler symbols. Therefore, TypeScript-specific elements like classes, enumerations, property types, and access modifiers will be automatically detected.
 All comments are parsed as markdown. Additionally, you can link to other classes, members, or functions using double square brackets.</p>
 <p>The following JavaDoc tags are supported by TypeDoc:</p>
@@ -376,7 +376,7 @@ public myMethod2(param1: string): number { /* ... */ }
 <li>saving object state to/from a persistent store, such as a database</li>
 </ul>
 <p>Since JSON strings are often sent over an internet connection, these strings are commonly referred to as &quot;wire formats&quot;.</p>
-<p>This pattern is <em>built-in</em> to JavaScript via <a href="https://www.json.org/">JSON</a>, using the methods <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">JSON.stringify</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse">JSON.parse</a>. However, those methods are defined to take/generate objects of type <code>any</code>. That gives callers no help interpreting the contents of the <code>JSON.parse</code> result or supplying the correct input to <code>JSON.stringify</code>. Fortunately TypeScript has very nice techniques for defining the <em>shape</em> of an object, via <a href="https://www.typescriptlang.org/docs/handbook/interfaces.html">Interfaces</a> and <a href="https://www.typescriptlang.org/docs/handbook/advanced-types.html">Type Aliases</a>.</p>
+<p>This pattern is <em>built-in</em> to JavaScript via <a href="https://www.json.org/" target="_blank">JSON</a>, using the methods <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify" target="_blank">JSON.stringify</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse" target="_blank">JSON.parse</a>. However, those methods are defined to take/generate objects of type <code>any</code>. That gives callers no help interpreting the contents of the <code>JSON.parse</code> result or supplying the correct input to <code>JSON.stringify</code>. Fortunately TypeScript has very nice techniques for defining the <em>shape</em> of an object, via <a href="https://www.typescriptlang.org/docs/handbook/interfaces.html" target="_blank">Interfaces</a> and <a href="https://www.typescriptlang.org/docs/handbook/advanced-types.html" target="_blank">Type Aliases</a>.</p>
 <p>Our convention is to define either a <code>Type Alias</code> or an <code>interface</code> with the suffix <code>Props</code> (for properties) for any information that can be serialized to/from JSON. There will often be an eponymous class without the <code>Props</code> suffice to supply methods for working with instances of that type. A serializeable class <code>Abc</code> will usually implement <code>AbcProps</code>, if it is an <code>interface</code>. Then, either its constructor or a static <code>fomJson</code> method will take an <code>AbcProps</code> as its argument, and it will override the <code>toJSON</code> method to return an <code>AbcProps</code>. Anyone implementing the &quot;other end&quot; of a JSON serialized type will then know what properties to expect/include.</p>
 <p>For example, in <code>@bentley/geometry-core</code> we have a class called <code>Angle</code>. You will find code similar to:</p>
 <pre class="no-line-numbers"><code class="language-typescript">/** The Properties for a JSON representation of an Angle.
@@ -417,10 +417,10 @@ export type XYZProps = { x?: number; y?: number; z?: number } | number[];</code>
 *--------------------------------------------------------------------------------------------*/</code></pre>
 <p>verbatim, with the xx replaced with the current year.</p>
 <h2 class="h-source-code-editor">Source Code Editor<a id="source-code-editor" class="heading-anchor" href="#source-code-editor"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>While not an absolute requirement, we recommend and optimize for <a href="https://code.visualstudio.com/">Visual Studio Code</a>. You will be likely be less productive if you attempt to use anything else. We recommend configuring the <strong>TSLint</strong> extension for Visual Studio Code and using our <strong>tslint.json</strong> to get real-time feedback.</p>
+<p>While not an absolute requirement, we recommend and optimize for <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a>. You will be likely be less productive if you attempt to use anything else. We recommend configuring the <strong>TSLint</strong> extension for Visual Studio Code and using our <strong>tslint.json</strong> to get real-time feedback.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>03 June, 2019</span>
+                <span class='date-updated'>01 July, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

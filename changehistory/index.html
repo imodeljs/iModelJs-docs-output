@@ -9,9 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>1.0.0 Change Notes - iModel.js</title>
-    <meta name="og:title" content="1.0.0 Change Notes - iModel.js">
-    <meta name="twitter:title" content="1.0.0 Change Notes - iModel.js">
+    <title>1.1.0 Change Notes - iModel.js</title>
+    <meta name="og:title" content="1.1.0 Change Notes - iModel.js">
+    <meta name="twitter:title" content="1.1.0 Change Notes - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.1.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -94,6 +94,8 @@
     <hr>
     <h3 id="versions">Versions</h3>
     <ul>
+    <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/1.1.0" class="table-of-contents-link">1.1.0</a></p>
+    </li>
     <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/1.0.0" class="table-of-contents-link">1.0.0</a></p>
     </li>
     <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/0.191.0" class="table-of-contents-link">0.191.0</a></p>
@@ -130,85 +132,80 @@
         <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'>Change History</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/changehistory/index.md">Edit this page</a></div>
-            <h1 id="1.0.0 change notes">1.0.0 Change Notes</h1>
-<h2 class="h-changes-to-selectionset-events-and-hiliteset">Changes to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/selectionset/selectionset'>SelectionSet</a> events and HiliteSet<a id="changes-to-selectionset-events-and-hiliteset" class="heading-anchor" href="#changes-to-selectionset-events-and-hiliteset"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>HilitedSet has been renamed to HiliteSet and marked <code>alpha</code>. It now supports hiliting models and subcategories in addition to elements. By default it continues to be synchronized with the SelectionSet, but this can be overridden (Grigas&apos; presentation viewport component does so, enabling him to control the hilite set independently from the selection set).</p>
-<p>SelectEventType enum has been renamed to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/selectionset/selectionseteventtype'>SelectionSetEventType</a>.</p>
-<p>The argument to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/selectionset/selectionset/#onchanged'>SelectionSet.onChanged</a> has changed to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/selectionset/selectionsetevent'>SelectionSetEvent</a>. You can switch on the <code>type</code> field to access the sets of added and/or removed Ids; or access the current contents directly via the <code>set</code> field.</p>
-<p>SelectionSet methods accepting an optional <code>sendEvent</code> argument have been marked private - it is not appropriate for external callers to suppress event dispatch.</p>
-<h2 class="h-refinements-to-snapshot-imodel-api">Refinements to <em>snapshot</em> iModel API<a id="refinements-to-snapshot-imodel-api" class="heading-anchor" href="#refinements-to-snapshot-imodel-api"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>The <code>IModelDb.createSnapshotFromSeed</code> <strong>static</strong> method has been replaced by the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/createsnapshot'>IModelDb.createSnapshot</a> <strong>instance</strong> method.
-The reason is to make sure that the program/user had permission to open the iModel before making the <em>snapshot</em> copy.
-A related change is that <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/opensnapshot'>IModelDb.openSnapshot</a> will no longer open briefcases.
-Either <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/open'>IModelDb.open</a> should be called to open the iModel or <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/createsnapshot'>IModelDb.createSnapshot</a> should have been called to make the <em>snapshot</em> ahead of time.</p>
-<p>Here is an example of how to adjust your source code:</p>
-<pre class="no-line-numbers"><code class="language-typescript">  const seedDb: IModelDb = IModelDb.openSnapshot(seedFileName); // or IModelDb.open
-  const snapshotDb: IModelDb = seedDb.createSnapshot(snapshotFileName);
-  seedDb.closeSnapshot(); // or IModelDb.close
-  return snapshotDb;</code></pre>
-<h2 class="h-changes-to-imodeldbopen-api">Changes to IModelDb.open API<a id="changes-to-imodeldbopen-api" class="heading-anchor" href="#changes-to-imodeldbopen-api"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Removed the following parameters to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/open'>IModelDb.open</a> to simplify the implementation:</p>
+            <h1 id="1.1.0 change notes">1.1.0 Change Notes</h1>
+<h2 class="h-update-to-typescript-35">Update to TypeScript 3.5<a id="update-to-typescript-35" class="heading-anchor" href="#update-to-typescript-35"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>For the 1.0 release, iModel.js was using TypeScript 3.2. In order to take advantage of recent improvements, iModel.js has moved up to TypeScript 3.5. One of the main features of interest was the incremental build support. TypeScript 3.5 also includes some enhanced error checking over what was available in 3.2. This makes it easier to identify potential problems, but also may mean that source code that successfully compiled using 3.2 may require minor adjustments to compile using 3.5.</p>
+<p>Please see the <a href="https://github.com/Microsoft/TypeScript/wiki/Roadmap" target="_blank">TypeScript Roadmap</a> for more details.</p>
+<h2 class="h-new-frontend-devtools-package">New frontend-devtools package<a id="new-frontend-devtools-package" class="heading-anchor" href="#new-frontend-devtools-package"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The new <code>frontend-devtools</code> package contains a collection of simple UI widgets providing diagnostics and customization related to the display system. These include:</p>
 <ul>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/openparams'>OpenParams</a>.pullOnly(): Use OpenParams.fixedVersion() or OpenParams.pullAndPush()</li>
-<li>AccessMode: Using OpenParams.fixedVersion() always causes the briefcase to be shared, and using OpenParams.pullAndPush() always causes the briefcase to be exclusive.</li>
+<li><code>MemoryTracker</code> - reports on total GPU memory usage, breaking it down by different types of objects like textures and buffers. Memory can be reported for all tile trees in the system or only those currently displayed in the viewport.</li>
+<li><code>FpsTracker</code> - reports average frames-per-second. Note: this forces the scene to be redrawn every frame, which may impact battery life on laptops and mobile devices.</li>
+<li><code>TileStatisticsTracker</code> - reports exhaustive tile request statistics, including the current numbers of active and pending requests, the total number of completed, dispatched, failed, and timed-out requests, and more.</li>
+<li><code>ToolSettingsTracker</code> - allows settings affecting the operation of viewing tools to be customized.</li>
 </ul>
-<h2 class="h-changes-to-oidcagentclient">Changes to OidcAgentClient<a id="changes-to-oidcagentclient" class="heading-anchor" href="#changes-to-oidcagentclient"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>OidcAgentClient now follows the typical OIDC client credentials authorization workflow. This implies the caller need not supply &quot;serviceUserEmail&quot; and &quot;serviceUserPassword&quot; as part of the configuration. For example:</p>
-<pre class="no-line-numbers"><code class="language-typescript">const agentConfiguration:  = {
-      clientId: &quot;some-client-id-obtained-through-registration&quot;,
-      clientSecret: &quot;some-client-secret-obtained-through-registration&quot;,
-      scope: &quot;context-registry-service imodelhub&quot;,
-    };
+<p>These widgets may be used in any combination. Alternatively, <code>DiagnosticsPanel</code> bundles them all together as a set of expandable panels along with a handful of other features like freezing the current scene, controlling display of tile bounding boxes, and hiding particular types of geometry.</p>
+<p><img src="./assets/diagnostics_panel.png" alt="Diagnostics Panel"></p>
+<h2 class="h-display-system-optimizations">Display system optimizations<a id="display-system-optimizations" class="heading-anchor" href="#display-system-optimizations"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Many incremental enhancements contributed to improved performance and quality of the rendering system and decreased memory usage, including:</p>
+<ul>
+<li>Reducing the number of tiles requested and expediently cancelling requests for tiles which are no longer needed.</li>
+<li>Improving culling logic - this particularly improves performance when a clip volume is applied to the view.</li>
+<li>Reclaiming memory from not-recently-drawn tiles.</li>
+<li>Decompressing texture images in the background using web workers.</li>
+<li>Eliminating distortion of text, and of the skybox in orthographic views.</li>
+<li>Enabling tiles to be downloaded without edge data, and optimizing shaders to more efficiently render tiles without edges.</li>
+</ul>
+<h2 class="h-changes-to-handling-of-guid-ecproperties">Changes to handling of GUID ECProperties<a id="changes-to-handling-of-guid-ecproperties" class="heading-anchor" href="#changes-to-handling-of-guid-ecproperties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/ids/guid'>Guid</a> is stored inside an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a> as an ECProperty of <code>binary</code> type (a &quot;blob&quot; of bytes) with <code>extendedTypeName=&quot;BeGuid&quot;</code>, but represented in Typescript as a <code>string</code>. ECSql queries must translate between these two representations. Previously, querying such a property would return a 16-byte <code>Uint8Array</code>; in iModel.js 1.1 it instead returns a <code>string</code>.</p>
+<p>The example below selects a Guid property:</p>
+<pre class="no-line-numbers"><code class="language-typescript">  for await (const row of conn.query(&quot;SELECT FederationGuid FROM bis.Element WHERE FederationGuid IS NOT NULL&quot;)) {
+    // Expect row.federationGuid to be a string of the format &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;
+  }</code></pre>
+<p>When a Guid is bound to an ECSql parameter, either the <code>Uint8Array</code> <strong>or</strong> the <code>string</code> representation can be supplied. In the example below, the <code>string</code> representation is supplied:</p>
+<pre class="no-line-numbers"><code class="language-typescript">  for await (const row of conn.query(&quot;SELECT FederationGuid FROM bis.Element WHERE FederationGuid = ?&quot;, [&quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;])) {
+    // ...
+  }</code></pre>
+<p>Currently, the <code>string</code> representation <strong>cannot</strong> be used directly inside an ECSql statement. This will be fixed in a future version. For now, use the helper functions <code>GuidToStr</code> and <code>StrToGuid</code> to explicitly convert between binary and string:</p>
+<pre class="no-line-numbers"><code class="language-typescript">  // WARNING: The following will not work because no implicit conversion between BINARY and STRING is performed.
+  for await (const row of conn.query(&quot;SELECT FederationGuid FROM bis.Element WHERE FederationGuid = &apos;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&apos;&quot;)) { /* */ }
 
-const agentClient = new OidcAgentClient(agentConfiguration);</code></pre>
-<p>Note that what was OidcAgentClientV2 has now become OidcAgentClient - i.e., the older OidcAgentClient has been entirely replaced.</p>
-<p><strong>Most importantly, it&apos;s required that agent applications re-register and obtain a new configuration - clientId and clientSecret - the older registrations will NOT work anymore.</strong></p>
-<h2 class="h-changes-to-tile-features">Changes to tile features<a id="changes-to-tile-features" class="heading-anchor" href="#changes-to-tile-features"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Removed or modified some properties used to feature-gate various tile-related features.</p>
-<p>Frontend:</p>
+  // This query is logically equivalent to the above, and will work as expected because the string is explicitly converted to a blob.
+  for await (const row of conn.query(&quot;SELECT FederationGuid FROM bis.Element WHERE FederationGuid = StrToGuid(&apos;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&apos;)&quot;)) { /* */ }
+
+  // The inverse conversion can also be useful.
+  for await (const row of conn.query(&quot;SELECT FederationGuid FROM bis.Element WHERE GuidToStr(FederationGuid) = &apos;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&apos;&quot;)) { /* */ }</code></pre>
+<h2 class="h-ecsql-support-for-correlated-subqueries">ECSQL support for correlated subqueries<a id="ecsql-support-for-correlated-subqueries" class="heading-anchor" href="#ecsql-support-for-correlated-subqueries"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>ECSql now supports the following syntax for correlated subqueries</p>
+<pre><code>  [NOT] EXISTS (&lt;subquery&gt;)</code></pre><h3 class="h-example">Example<a id="example" class="heading-anchor" href="#example"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<pre class="no-line-numbers"><code class="language-sql">SELECT ECInstanceId FROM bis.Element E
+  WHERE EXISTS (
+      SELECT 1 FROM meta.ECClassDef C WHERE C.ECInstanceId = E.ECClassId AND C.Name=&apos;Pump&apos;)
+
+SELECT ECInstanceId FROM bis.Element E
+  WHERE NOT EXISTS (
+      SELECT 1 FROM meta.ECClassDef C WHERE C.ECInstanceId = E.ECClassId AND C.Name=&apos;Pump&apos;)
+</code></pre>
+<h2 class="h-ecsql-support-for-bitwise-operators">ECSQL support for bitwise operators<a id="ecsql-support-for-bitwise-operators" class="heading-anchor" href="#ecsql-support-for-bitwise-operators"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>ECSql now supports the following bitwise operators. The operand is treated as a signed 64-bit integer.</p>
 <ul>
-<li>Removed <code>TileAdmin.requestTilesWithoutEdges</code>. Tiles are now always requested without edges if edges are not required.</li>
-<li>Removed <code>TileAdmin.elideEmptyChildContentRequests</code>. Such requests are now always elided.</li>
-<li><code>TileAdmin.enableInstancing</code> now defaults to <code>true</code> instead of <code>false</code>.</li>
-<li>Previously, if <code>TileAdmin.retryInterval</code> was undefined, requests for tile content and tile tree JSON would not be memoized. Now, they are always memoized, and the interval defaults to 1000ms if not explicitly defined.</li>
-<li>Previously, requests for tile content would by default use POST method and responses would not be cacheable. Now by default they use GET and responses are cacheable.</li>
+<li><code>~</code> not</li>
+<li><code>|</code> or</li>
+<li><code>&amp;</code> and</li>
+<li><code>&lt;&lt;</code> left-shift</li>
+<li><code>&gt;&gt;</code> right-shift</li>
 </ul>
-<p>Backend:</p>
-<ul>
-<li>Removed <code>IModelHostConfiguration.useTileContentThreadPool</code>. The thread pool is now always used.</li>
-</ul>
-<h2 class="h-changes-to-rpc-type-marshaling-system">Changes to RPC type marshaling system<a id="changes-to-rpc-type-marshaling-system" class="heading-anchor" href="#changes-to-rpc-type-marshaling-system"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>The iModel.js RPC system now permits only primitive values, &quot;interface&quot; objects that contain only data values, and binary data over the wire. Therefore, all RPC interface methods can only accept and return these types now.</p>
-<p>It is no longer possible to send class instances, maps, sets, or objects with function members between the frontend and backend using the RPC system.</p>
-<p>Binary data transfer is still supported via <code>Uint8Array</code>.</p>
-<p>These new type restrictions are enforced via the <code>require-basic-rpc-values</code> tslint rule. With these new restrictions in place, the RPC system is now compatible with aggressive webpacking policies that mangle class names at build time.</p>
-<h2 class="h-changes-to-ecsql-query-api">Changes to ECSql Query API<a id="changes-to-ecsql-query-api" class="heading-anchor" href="#changes-to-ecsql-query-api"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>This change breaks RPC interface <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/imodelreadrpcinterface'>IModelReadRpcInterface</a>. Both frontend and backend developer must update there packages.</p>
-<p>Backend:</p>
-<ul>
-<li>Renamed <code>IModelDb.queryPage</code> to IModelDb.queryRows. This method is also marked <code>internal</code> and user should not call it directly. Instead user should always use IModelDb.query. This method now also throw exception if query prepare fails.</li>
-<li>Changed methoid signature for <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/query'>IModelDb.query</a>. But first two parameters are same.</li>
-</ul>
-<p>Common:</p>
-<ul>
-<li>Renamed <code>IModelDb.queryPage</code> to IModelDb.queryRows.</li>
-<li>Removed <code>queryRowCount</code>method from <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/imodelreadrpcinterface'>IModelReadRpcInterface</a></li>
-</ul>
-<p>Backend:</p>
-<ul>
-<li>Renamed <code>IModelDb.queryPage</code> to IModelConnection.queryRows. This method is also marked <code>internal</code> and user should not call it directly. Instead user should always use IModelConnection.query. This method now also throw exception if query prepare fails.</li>
-<li>Changed methoid signature for <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/query'>IModelDb.query</a>. But first two parameters are same.</li>
-</ul>
-<h3 class="h-how-can-you-update-code">How can you update code<a id="how-can-you-update-code" class="heading-anchor" href="#how-can-you-update-code"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<pre class="no-line-numbers"><code class="language-typescript">      const rows = await imodel.queryPage(&quot;SELECT ECInstanceId FROM bis.Element LIMIT 1&quot;);</code></pre>
-<p>  can be be changed to following.</p>
-<pre class="no-line-numbers"><code class="language-typescript">      const rows = [];
-      for await (const row of imodel.query(&quot;SELECT ECInstanceId FROM bis.Element LIMIT 1&quot;)) {
-        rows.push(row);
-      }</code></pre>
+<h3 class="h-example-1">Example<a id="example-1" class="heading-anchor" href="#example-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<pre class="no-line-numbers"><code class="language-sql">SELECT 2 &amp; prop FROM test.Foo WHERE prop &amp; 2 = 2
+
+SELECT 2 | prop FROM test.Foo WHERE prop | 2 = 2
+
+SELECT *  FROM test.Foo WHERE (1 &lt;&lt; 2) &amp; prop
+
+SELECT * FROM test.Foo WHERE ~prop &amp; 2;</code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>03 June, 2019</span>
+                <span class='date-updated'>01 July, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -257,31 +254,36 @@ const agentClient = new OidcAgentClient(agentConfiguration);</code></pre>
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
               <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#changes-to-selectionset-events-and-hiliteset">Changes to SelectionSet events and HiliteSet</a>
+            <a class='title solo-title menu-text' href="#update-to-typescript-35">Update to TypeScript 3.5</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#refinements-to-snapshot-imodel-api">Refinements to snapshot iModel API</a>
+            <a class='title solo-title menu-text' href="#new-frontend-devtools-package">New frontend-devtools package</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#changes-to-imodeldbopen-api">Changes to IModelDb.open API</a>
+            <a class='title solo-title menu-text' href="#display-system-optimizations">Display system optimizations</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#changes-to-oidcagentclient">Changes to OidcAgentClient</a>
+            <a class='title solo-title menu-text' href="#changes-to-handling-of-guid-ecproperties">Changes to handling of GUID ECProperties</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#changes-to-tile-features">Changes to tile features</a>
-    </li>
-       <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#changes-to-rpc-type-marshaling-system">Changes to RPC type marshaling system</a>
-    </li>
-       <li class='nav-item item '>
-            <a data-target="#inner-nav-changes-to-ecsql-query-api" class='title' href="#changes-to-ecsql-query-api"/>
-            <b class='dropdown-menu-title menu-text'>Changes to ECSql Query API</b>
+            <a data-target="#inner-nav-ecsql-support-for-correlated-subqueries" class='title' href="#ecsql-support-for-correlated-subqueries"/>
+            <b class='dropdown-menu-title menu-text'>ECSQL support for correlated subqueries</b>
             <i class='nav-list-dropdown icon'></i>
             </a>
-            <ul id="inner-nav-changes-to-ecsql-query-api" class='inner-nav'>
+            <ul id="inner-nav-ecsql-support-for-correlated-subqueries" class='inner-nav'>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#how-can-you-update-code">How can you update code</a>
+                            <a class='title solo-title menu-text' href="#example">Example</a>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-ecsql-support-for-bitwise-operators" class='title' href="#ecsql-support-for-bitwise-operators"/>
+            <b class='dropdown-menu-title menu-text'>ECSQL support for bitwise operators</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-ecsql-support-for-bitwise-operators" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#example-1">Example</a>
                     </li>
             </ul>
     </li>

@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.1.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -106,7 +106,7 @@
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
-    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">Glossary</a></li>
     </ul>
     </body></html>
             </ul>
@@ -226,7 +226,7 @@
 <h3 class="h-locate">Locate<a id="locate" class="heading-anchor" href="#locate"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><img src=".././autolocate.png" alt="locate example" title="Example of AccuSnap with locate enabled"></p>
 <p>A tool that only needs to identify elements and does not use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/bebuttonevent/point'>BeButtonEvent.point</a> should not enable snapping. Instead the tool should call <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/accusnap/#enablelocate'>AccuSnap.enableLocate</a> with true to begin locating elements as the cursor moves over them. Enabling locate for AccuSnap provides the user with feedback regarding the element under the cursor in the form of a tooltip. Element&apos;s will also glow to highlight when they are of the type the tool is looking for.</p>
-<p>When either locate with AccuSnap is enabled, or the tool requests a new locate by calling <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/elementlocatemanager/#dolocate'>ElementLocateManager.doLocate</a> on a button event, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/filterhit'>InteractiveTool.filterHit</a> will be called to give the tool an opportunity to accept or reject the element or pickable decoration identified by a supplied <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/hitdetail'>HitDetail</a>. When overriding filterHit and rejecting a hit, the tool should set <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/locateresponse/#reason'>LocateResponse.reason</a> to explain why the hit is being rejected; this message will be displayed on motion stop in a tooltip when an implementation for <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/notifications/notificationmanager/_showtooltip'>NotificationManager._showToolTip</a> is provided.</p>
+<p>When either locate with AccuSnap is enabled, or the tool requests a new locate by calling <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/elementlocatemanager/#dolocate'>ElementLocateManager.doLocate</a> on a button event, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/filterhit'>InteractiveTool.filterHit</a> will be called to give the tool an opportunity to accept or reject the element or pickable decoration identified by a supplied <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/hitdetail'>HitDetail</a>. When overriding filterHit and rejecting a hit, the tool should set <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/locatingelements/locateresponse/#reason'>LocateResponse.reason</a> to explain why the hit is being rejected; this message will be displayed on motion stop in a tooltip when an implementation for <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/notifications/notificationmanager/#_showtooltip'>NotificationManager._showToolTip</a> is provided.</p>
 <p>A tool can also customize the tooltip for accepted elements in order to include tool specific details by overriding <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/gettooltip'>InteractiveTool.getToolTip</a>.</p>
 <blockquote>
 <p>Unlike snapping, only the tool needs to enable locate to make it active. By giving the user feedback about the element under the cursor <em>before</em> they click on it, tools are able to complete with less clicks as the need for an explicit accept/reject step after identifying the element through a button event is eliminated.</p>
@@ -319,7 +319,7 @@
   public onPostInstall() { super.onPostInstall(); this.setupAndPromptForNextAction(); }</code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>03 June, 2019</span>
+                <span class='date-updated'>01 July, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

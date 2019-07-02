@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.1.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -106,7 +106,7 @@
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
-    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">Glossary</a></li>
     </ul>
     </body></html>
             </ul>
@@ -144,7 +144,7 @@
 <h3 class="h-bundles">Bundles<a id="bundles" class="heading-anchor" href="#bundles"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p> A webpacked application can have multiple bundles that separate its contents into more than one file. That concept is not of interest in our application because the bundles that result from a particular execution of webpack can only be used by other bundles from that particular execution of webpack. Sometimes, when only some of the source files are changed, individual bundles don&apos;t change, and there is a long discussion of how unchanged bundles can be cached, etc., but that is not our only goal - we want modules that can be shared across applications. The discussion of something they call &quot;DllPlugin&quot; is misleading - it doesn&apos;t create shareable modules, it is just about making webpack bundle faster when there are portions of the code that don&apos;t change often.</p>
 <h3 class="h-modules">Modules<a id="modules" class="heading-anchor" href="#modules"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>The discussion in the <a href="https://webpack.js.org/concepts/modules/">Webpack Modules</a> portion of the documentation is highly relevant to our goals. It describes a way to webpack code into a JavaScript module that can be output as a Universal Module Definition (UMD) file, which means that it can be loaded into various JavaScript environments that support different varieties of modules - CommonJs, Asynchronous Module Definition (AMD), and ES2015 modules. This is accomplished by putting a JavaScript header into the bundled file with the appropriate logic for figuring out which module system is trying to load it and responding accordingly.</p>
+<p>The discussion in the <a href="https://webpack.js.org/concepts/modules/" target="_blank">Webpack Modules</a> portion of the documentation is highly relevant to our goals. It describes a way to webpack code into a JavaScript module that can be output as a Universal Module Definition (UMD) file, which means that it can be loaded into various JavaScript environments that support different varieties of modules - CommonJs, Asynchronous Module Definition (AMD), and ES2015 modules. This is accomplished by putting a JavaScript header into the bundled file with the appropriate logic for figuring out which module system is trying to load it and responding accordingly.</p>
 <p>To use separately webpacked modules in a webpacked application (for example, to use our iModel.js modules in our applications), they are specified in the &quot;externals&quot; key of the webpack configuration object.</p>
 <p>Unfortunately, the Webpack Module is not an exact match for our requirements. By default, it is oriented towards small modules that have a shallow dependency tree on other external modules (or are not dependent on any other external modules). That is not the case we have - our modules have a pretty deep dependency stack that looks something like this, with each module possibly dependent on multiple modules above it in this list:</p>
 <pre class="no-line-numbers"><code class="language-javascript">bentleyjs-core
@@ -207,7 +207,7 @@ lodash</code></pre>
   &lt;script type=&quot;text/javascript&quot; src=&quot;runtime.bundle.js&quot;&gt;&lt;/script&gt;
   &lt;script type=&quot;text/javascript&quot; src=&quot;IModelJsLoader.js&quot; data-imjsversions= &apos;&lt;%= htmlWebpackPlugin.options.imjsVersions %&gt;&apos;&gt;&lt;/script&gt;</code></pre>
 <p>The first script tag loads the webpack runtime. This is built by the application (when it follows the webpack guidelines in the <a href="#building-applications-to-use-external-modules">Building Application to Use External Modules</a> section above.</p>
-<p>The <a href="https://www.w3schools.com/tags/att_global_data.asp">HTML data attributes</a> pass arguments to the IModelJsLoader script. The portion enclosed by &lt;% and %&gt; is a lodash template that is filled in by webpack when it is orchestrated by buildIModelJsModule.</p>
+<p>The <a href="https://www.w3schools.com/tags/att_global_data.asp" target="_blank">HTML data attributes</a> pass arguments to the IModelJsLoader script. The portion enclosed by &lt;% and %&gt; is a lodash template that is filled in by webpack when it is orchestrated by buildIModelJsModule.</p>
 <h2 class="h-separating-the-backend-server-and-web-server">Separating the Backend Server and Web Server<a id="separating-the-backend-server-and-web-server" class="heading-anchor" href="#separating-the-backend-server-and-web-server"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>With the modularization changes described above, we can see a clear distinction between two different types of servers needed to support iModel.js.</p>
 <p>The &quot;backend server&quot; needs access to an iModel briefcase, and supports the iModel.js frontend API&apos;s by providing the services through a remote procedure call (RPC) interface. If an application requires particular services, it can develop its own RPC protocol and implement it in the backend, so the backend server might be application specific. Native code is required to perform the services. All that means that an intelligent router is required to instantiate a virtual machine to run the code and instantiate the briefcase for it to use.</p>
@@ -238,7 +238,7 @@ else
 <p>Once the servers are running, you can open a web browser and navigate to localhost:3000 to run the application.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>03 June, 2019</span>
+                <span class='date-updated'>01 July, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

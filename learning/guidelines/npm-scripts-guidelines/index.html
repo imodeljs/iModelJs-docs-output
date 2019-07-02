@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.1.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -106,7 +106,7 @@
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
-    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">Glossary</a></li>
     </ul>
     </body></html>
             </ul>
@@ -117,50 +117,50 @@
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/guidelines/npm-scripts-guidelines.md">Edit this page</a></div>
             <h1 id="bentley npm script guidelines">Bentley npm Script Guidelines</h1>
 <p>This document is intended to provide suggestions for writing your own package&apos;s npm scripts for things such as building, running tests, and adding code coverage. The imodeljs-related repositories have moved away from gulp and gulp plugins to favor a more direct approach of running tasks. This allows us to depend directly on various npm packages instead of relying on gulp &quot;middle-man&quot; plugins that may not see the same update frequency as the npm packages themselves. For examples of npm scripts in use, please look at both the imodeljs-core repository (a multi-package setup) and the geometry-core repository (a single package).</p>
-<p>npm scripts are used by adding properties to the &quot;scripts&quot; object in a package&apos;s package.json file. These properties correspond to names that can be passed to the <code>npm run</code> command to execute the properties&apos; values as shell commands. For more information on creating and running scripts with npm, <a href="https://www.keithcirkel.co.uk/how-to-use-npm-as-a-build-tool/">this article</a> may be helpful to read.</p>
+<p>npm scripts are used by adding properties to the &quot;scripts&quot; object in a package&apos;s package.json file. These properties correspond to names that can be passed to the <code>npm run</code> command to execute the properties&apos; values as shell commands. For more information on creating and running scripts with npm, <a href="https://www.keithcirkel.co.uk/how-to-use-npm-as-a-build-tool/" target="_blank">this article</a> may be helpful to read.</p>
 <p>The bentleyjs-tools repository includes a number of preconfigured node.js scripts to ease the development process. This includes scripts for testing, linting, and basic code coverage numbers. More information about these scripts can be found in the root bentleyjs-tools README.</p>
 <h2 class="h-building">Building<a id="building" class="heading-anchor" href="#building"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Suggested Package:</p>
 <ul>
-<li><a href="https://www.typescriptlang.org/">TypeScript</a></li>
+<li><a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a></li>
 </ul>
-<p>With a properly configured tsconfig.json file, running the TypeScript compiler with <code>tsc</code> should be enough for backend libraries and simple backend agents/services. For more information about tsconfig properties, see the <a href="https://www.typescriptlang.org/docs/handbook/tsconfig-json.html">TypeScript website</a>.  Frontend services or applications may require the use of Webpack or another more involved build solution.</p>
+<p>With a properly configured tsconfig.json file, running the TypeScript compiler with <code>tsc</code> should be enough for backend libraries and simple backend agents/services. For more information about tsconfig properties, see the <a href="https://www.typescriptlang.org/docs/handbook/tsconfig-json.html" target="_blank">TypeScript website</a>.  Frontend services or applications may require the use of Webpack or another more involved build solution.</p>
 <h2 class="h-cleaning-directories">Cleaning Directories<a id="cleaning-directories" class="heading-anchor" href="#cleaning-directories"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Suggested Package:</p>
 <ul>
-<li><a href="https://github.com/isaacs/rimraf">rimraf</a></li>
+<li><a href="https://github.com/isaacs/rimraf" target="_blank">rimraf</a></li>
 </ul>
 <p>Use rimraf as a cross-platform way to remove output folders (For example: rimraf ./lib). This package functions in a similar manner to the <code>rm -rf</code> command in Unix shells.</p>
 <h2 class="h-copying-files">Copying Files<a id="copying-files" class="heading-anchor" href="#copying-files"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Suggested Package:</p>
 <ul>
-<li><a href="https://www.npmjs.com/package/cpx">cpx</a></li>
+<li><a href="https://www.npmjs.com/package/cpx" target="_blank">cpx</a></li>
 </ul>
 <p>cpx is a cross-platform copy utility for copying globs of files from a source to a destination directory. Useful for copying around files such as test files or assets.</p>
 <h2 class="h-testing">Testing<a id="testing" class="heading-anchor" href="#testing"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Suggested Package:</p>
 <ul>
-<li><a href="https://mochajs.org/">mocha</a></li>
+<li><a href="https://mochajs.org/" target="_blank">mocha</a></li>
 </ul>
-<p>Mocha is a flexible javascript test runner that can be used to run TypeScript test code in two ways: by either running the compiled JavaScript output of the TypeScript tests, or by running the TypeScript tests/source code directly using the <a href="https://github.com/TypeStrong/ts-node">ts-node</a>. Running Mocha with ts-node allows us to generate accurate code coverage numbers for the TypeScript source files.</p>
+<p>Mocha is a flexible javascript test runner that can be used to run TypeScript test code in two ways: by either running the compiled JavaScript output of the TypeScript tests, or by running the TypeScript tests/source code directly using the <a href="https://github.com/TypeStrong/ts-node" target="_blank">ts-node</a>. Running Mocha with ts-node allows us to generate accurate code coverage numbers for the TypeScript source files.</p>
 <h2 class="h-code-coverage">Code Coverage<a id="code-coverage" class="heading-anchor" href="#code-coverage"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Suggested Package:</p>
 <ul>
-<li><a href="https://github.com/istanbuljs/nyc">nyc</a> (this is the command line utility for <a href="https://istanbul.js.org/">Istanbul</a>)</li>
+<li><a href="https://github.com/istanbuljs/nyc" target="_blank">nyc</a> (this is the command line utility for <a href="https://istanbul.js.org/" target="_blank">Istanbul</a>)</li>
 </ul>
-<p>Istanbul can be <a href="http://rundef.com/typescript-code-coverage-istanbul-nyc">used together with mocha</a> (in a ts-node configuration) to provide code coverage numbers and reports based on the package&apos;s test suite. This can be accomplished by running a ts-node test command directly with nyc (ex: <code>nyc run npm test:tsnode</code>). Several types of reports are available, such as a summary of coverage in the console window or an html output that shows specifically which statements have been covered.</p>
+<p>Istanbul can be <a href="http://rundef.com/typescript-code-coverage-istanbul-nyc" target="_blank">used together with mocha</a> (in a ts-node configuration) to provide code coverage numbers and reports based on the package&apos;s test suite. This can be accomplished by running a ts-node test command directly with nyc (ex: <code>nyc run npm test:tsnode</code>). Several types of reports are available, such as a summary of coverage in the console window or an html output that shows specifically which statements have been covered.</p>
 <h2 class="h-linting">Linting<a id="linting" class="heading-anchor" href="#linting"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Suggested Package:</p>
 <ul>
-<li><a href="https://palantir.github.io/tslint/">tslint</a></li>
+<li><a href="https://palantir.github.io/tslint/" target="_blank">tslint</a></li>
 </ul>
 <p>TSLint can be run separate from VS Code by using the package&apos;s CLI. This can be useful for verifying code before committing or for testing linting rules as part of a continuous integration process.</p>
 <h2 class="h-other-useful-packages">Other useful packages<a id="other-useful-packages" class="heading-anchor" href="#other-useful-packages"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p><a href="https://github.com/TypeStrong/ts-node">ts-node</a> A typescript execution environment for code. Can be used to run Mocha tests and useful for generating code coverage percentages and reports.</p>
-<p><a href="https://www.npmjs.com/package/tsconfig-paths">tsconfig-paths</a> - This may be necessary in multi-package repositories when dependencies are located using a folder&apos;s tsconfig &quot;baseUrl&quot; and &quot;paths&quot; attributes. This package is most often used with Mocha and ts-node to run tests directly from the TypeScript source files.</p>
+<p><a href="https://github.com/TypeStrong/ts-node" target="_blank">ts-node</a> A typescript execution environment for code. Can be used to run Mocha tests and useful for generating code coverage percentages and reports.</p>
+<p><a href="https://www.npmjs.com/package/tsconfig-paths" target="_blank">tsconfig-paths</a> - This may be necessary in multi-package repositories when dependencies are located using a folder&apos;s tsconfig &quot;baseUrl&quot; and &quot;paths&quot; attributes. This package is most often used with Mocha and ts-node to run tests directly from the TypeScript source files.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>03 June, 2019</span>
+                <span class='date-updated'>01 July, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Accessing iModels with the iModel.js library - iModel.js</title>
+    <meta name="og:title" content="Accessing iModels with the iModel.js library - iModel.js">
+    <meta name="twitter:title" content="Accessing iModels with the iModel.js library - iModel.js">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
+
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
+    <span id="contentLoader">
+        <p>Woah! This page has a great deal of content... Give us a second to load it.</p>
+    </span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+
+
+
+        <header id="main-header">
+            <div class='nav-header-container'>
+                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                    <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo-small" class="site-logo-small" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-icon.svg" style="display:none;"/> 
+                    </a>
+                    <button class="navbar-toggler no-user-select mr-auto" type="button" data-toggle="collapse" data-target="#navbar5">
+                        <span class="navbar-toggler-header"></span>
+                    </button>
+                    <ul class="navbar-nav ml-auto pr-0 nav-search">
+                        <span class='search-bar'>
+                          <li>
+                            <div id='search-container'>
+                            </div>
+                          </li>
+                          <script>
+                            (function() {
+                              var cx = '018053174497532353467:v_gnrjjlqwc';
+                              var gcse = document.createElement('script');
+                              gcse.type = 'text/javascript';
+                              gcse.async = true;
+                              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                              var s = document.getElementsByTagName('script')[0];
+                              s.parentNode.insertBefore(gcse, s);
+                            })();
+                          </script>
+                          <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+                        </span>
+                    </ul>
+                    <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
+                        <ul class="navbar-nav mb-0" id="doc-site-tabs">
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.1.0</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+<div id='main-wrapper'>
+    <nav id='sidebar'>
+        <div id='table-of-contents' class="custom-scrollbar">
+            <div id="dismiss">
+                <i id="dismiss-arrow" class="icon icon-chevron-left no-user-select"></i>
+            </div>
+            <hr id="dismiss-hr" class='sm-only'>
+            <ul id='main-navigation-list'>
+                <html><head></head><body><h3 id="the imodel.js library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModel.js Library</a></h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
+    </ul>
+    <hr>
+    <p>&#xA0;</p>
+    <h3 id="helpful links">Helpful links</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">Glossary</a></li>
+    </ul>
+    </body></html>
+            </ul>
+        </div>
+    </nav>    <div class='documentation-main'>
+        <article id="main" class="main-content">
+            <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/">backend</a> > AccessingIModels</div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/backend/AccessingIModels.md">Edit this page</a></div>
+            <h1 id="accessing imodels with the imodel.js library">Accessing iModels with the iModel.js library</h1>
+<p>iModel.js is an open platform for creating, maintaining, and accessing Infrastructure Digital Twins using iModels. The open source nature of iModel.js promotes an ecosystem of independent innovation using iModels. At the same time, iModel.js strives to provide ways to limit access to your intellectual property stored in iModels to <em>only people and programs that you designate</em>, in real time.</p>
+<p>These two somewhat competing goals are addressed internally by iModel.js by two important details:</p>
+<ol>
+<li><strong>Snapshot</strong> iModels</li>
+<li>The <code>@bentley/imodeljs-native</code> module</li>
+</ol>
+<h2 class="h-snapshot-imodels">Snapshot iModels<a id="snapshot-imodels" class="heading-anchor" href="#snapshot-imodels"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Snapshot iModels are a <strong>static</strong> point-in-time representation of the state of an iModel. Once created, they can not be modified.</p>
+<p>There are two common use cases for Snapshot iModels:</p>
+<ol>
+<li>Export the state of an iModel at a point in time, for archival purposes.</li>
+<li>A static but intelligent format for exchange of Infrastructure Digital Twins.</li>
+</ol>
+<p>When you create a Snapshot iModel, you implicitly <em>opt-out of enforcement</em> of any user or application authentication. <em>Snapshot iModels may be accessed by any iModel.js program</em>, so there is no need or requirement for authentication by iModel.js.</p>
+<blockquote>
+<p>Note: Although not currently supported, all iModels (including Snapshot iModels) are designed for optional encryption or password-protection. These enhancements are on the iModel.js roadmap.</p>
+</blockquote>
+<h3 class="h-creating-snapshot-imodels">Creating Snapshot iModels<a id="creating-snapshot-imodels" class="heading-anchor" href="#creating-snapshot-imodels"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>The iModel.js api has two ways to create a Snapshot iModel. Both are methods on the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a> class:</p>
+<pre class="no-line-numbers"><code class="language-typescript">  public createSnapshot(snapshotFile: string): IModelDb
+  public static createSnapshot(snapshotFile: string, args: CreateIModelProps): IModelDb</code></pre>
+<p>The first method creates a SnapShot iModel from an existing iModel into the supplied filename.  This requires permission from the owner of the original iModel (which obviously must have been previously obtained to open the source iModel.) The Snapshot <code>IModelDb</code> may be used to modify and/or extend the copy of the original iModel, but once closed it becomes immutable.</p>
+<p>The second method creates a <em>blank</em> Snapshot iModel given a filename. This is useful for applications that wish to create static iModels from external data sources. The <code>IModelDb</code> may be used to populate the Snapshot, but once closed it becomes immutable.</p>
+<h3 class="h-important-properties-of-snapshot-imodels">Important properties of Snapshot iModels<a id="important-properties-of-snapshot-imodels" class="heading-anchor" href="#important-properties-of-snapshot-imodels"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<ul>
+<li>They are &quot;real&quot; iModels. There are no limitations on size or content of Snapshot iModels.</li>
+<li>They may be accessed by anyone, and iModel.js does not require authentication (though it may log usage) when it operates on them.</li>
+<li>They cannot be modified and therefore have no timeline. The ability to synchronize non-Snapshot iModels and track and store changes to iModels is a service offered by Bentley (or third parties licensed by Bentley) for a fee. Synchronized iModels can be offline temporarily when a network connection is not available. Being offline via a local briefcase is a different concept than a Snapshot iModel. A local briefcase will eventually be synchronized when online, while a Snapshot iModel is static.</li>
+<li>They are identified by a special value of the &quot;briefcase id&quot; property inside the iModel. Changing the briefcase id of a Snapshot iModel (via subterfuge) violates the spirit and intent of the license agreement. Don&apos;t do this.</li>
+<li>You may use the iModel.js library on Snapshot iModels as outlined in the <a href="https://github.com/imodeljs/imodeljs/blob/master/core/backend/src/imodeljs-native-LICENSE.md" target="_blank">LICENSE.md</a>.</li>
+</ul>
+<h2 class="h-the-bentleyimodeljs-native-module">The <code>@bentley/imodeljs-native</code> module<a id="the-bentleyimodeljs-native-module" class="heading-anchor" href="#the-bentleyimodeljs-native-module"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The <code>@bentley/imodeljs-native</code> module is written in C++, is delivered as a platform-specific binary, and is <em>not</em> open source. It contains the SQLite code that directly accesses iModel files and implements all the low-level APIs upon which <code>@bentley/imodeljs-backend</code> is based. It is always required for all backends.</p>
+<p><code>@bentley/imodeljs-native</code> implements the authentication and access enforcement expressed by iModel owners for (non-Snapshot) iModels. User authentication and access rights are a service of Bentley Systems, as a part of if its iTwin Services offerings. Bentley may also license third parties to supply similar services. <strong>This is Bentley Systems&apos; commercial motivation for creating iModel.js</strong>. Any attempt to circumvent or disrupt this checking is a violation of the <a href="https://github.com/imodeljs/imodeljs/blob/master/core/backend/src/imodeljs-native-LICENSE.md" target="_blank">license agreement</a>.</p>
+<blockquote>
+<p>Note that only the imodeljs-backend module has a dependency on imodeljs-native. Frontend applications do not require a right-to-run (the iModel.js libraries are MIT Licensed), though they always connect to a backend that does.</p>
+</blockquote>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>01 July, 2019</span>
+            </p>
+            <div id="imodeljs-github-comments">
+            </div>
+            
+            <script>
+              $(document).ready(function () {
+                function initializeComments(repo) {
+                  var s = document.createElement('script');
+                  s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
+                  s.setAttribute('repo', repo);
+                  s.setAttribute('issue-term', 'title');
+                  s.setAttribute('crossorigin', 'anonymous');
+                  s.setAttribute('theme', 'github-light');
+                  s.async = true;
+            
+                  document.getElementById("imodeljs-github-comments").appendChild(s);
+                }
+            
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
+              });
+            </script>
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div class="toc-overlay"></div>
+    <div id='inner-table-of-contents'>
+       <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item '>
+            <a data-target="#inner-nav-snapshot-imodels" class='title' href="#snapshot-imodels"/>
+            <b class='dropdown-menu-title menu-text'>Snapshot iModels</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-snapshot-imodels" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#creating-snapshot-imodels">Creating Snapshot iModels</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#important-properties-of-snapshot-imodels">Important properties of Snapshot iModels</a>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#the-bentleyimodeljs-native-module">The @bentley/imodeljs-native module</a>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color pt-1 pb-3">
+  <!-- Footer Links Container -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row d-flex align-items-center mt-2">
+
+      <!-- Grid column -->
+      <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
+
+        <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+        </a>
+        <small style="color: white; margin-right: 7px;"> powered by </small>
+        <a href="https://www.bentley.com">
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
+        </a>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-5 col-lg-4 ml-lg-0">
+
+        <!-- Social buttons -->
+        <div class="text-center text-md-right">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://twitter.com/imodeljs" target="_blank">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://github.com/imodeljs" target="_blank">
+                <i class="fa fa-github"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://stackoverflow.com/tags/imodeljs"
+                target="_blank">
+                <i class="fa fa-stack-overflow"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links Container -->
+
+</footer>
+<!-- Footer -->
+
+</div>
+<a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
+</body>
+
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>getContentSetSize - presentation-backend</title>
+    <meta name="og:title" content="getContentSetSize - presentation-backend">
+    <meta name="twitter:title" content="getContentSetSize - presentation-backend">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
+
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
+    <span id="contentLoader">
+        <p>Woah! This page has a great deal of content... Give us a second to load it.</p>
+    </span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+
+
+
+        <header id="main-header">
+            <div class='nav-header-container'>
+                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                    <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo-small" class="site-logo-small" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-icon.svg" style="display:none;"/> 
+                    </a>
+                    <button class="navbar-toggler no-user-select mr-auto" type="button" data-toggle="collapse" data-target="#navbar5">
+                        <span class="navbar-toggler-header"></span>
+                    </button>
+                    <ul class="navbar-nav ml-auto pr-0 nav-search">
+                        <span class='search-bar'>
+                          <li>
+                            <div id='search-container'>
+                            </div>
+                          </li>
+                          <script>
+                            (function() {
+                              var cx = '018053174497532353467:v_gnrjjlqwc';
+                              var gcse = document.createElement('script');
+                              gcse.type = 'text/javascript';
+                              gcse.async = true;
+                              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                              var s = document.getElementsByTagName('script')[0];
+                              s.parentNode.insertBefore(gcse, s);
+                            })();
+                          </script>
+                          <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+                        </span>
+                    </ul>
+                    <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
+                        <ul class="navbar-nav mb-0" id="doc-site-tabs">
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.1.0</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+<div id='main-wrapper'>
+    <nav id='sidebar'>
+        <div id='table-of-contents' class="custom-scrollbar">
+            <div id="dismiss">
+                <i id="dismiss-arrow" class="icon icon-chevron-left no-user-select"></i>
+            </div>
+            <hr id="dismiss-hr" class='sm-only'>
+            <ul id='main-navigation-list'>
+                <html><head></head><body><div>
+        <div class="accordion" id="accordionCategory"><div class="card">
+                <div class="card-header" id="heading1">
+                    <h3 class="mb-0">
+                    iModel.js Core Packages<button type="button" class="btn no-user-select collapse-arrow icon icon-chevron-down float-right first-header-button" data-toggle="collapse" data-target="#groupcollapse1"></button>									
+                    </h3>
+                </div>
+                <div id="groupcollapse1" class="collapse" aria-labelledby="heading1" data-parent="#accordionCategory">
+                    <div class="card-body"><div>
+                                <div class="accordion" id="accordionPackage1"><div class="card">
+                                <div class="card-header" id="headingimodeljs-frontend">
+                                    <h4 class="card-h4 mb-0">
+                                        <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend" class="table-of-contents-package-link">imodeljs-frontend</a><button type="button" class="btn no-user-select collapse-arrow icon icon-chevron-down float-right" data-toggle="collapse" data-target="#collapseimodeljs-frontend"></button>									
+                                    </h4>
+                                </div>
+                                <div id="collapseimodeljs-frontend" class="collapse" aria-labelledby="headingimodeljs-frontend" data-parent="#accordionPackage1">
+                                    <div class="card-body">
+                                        <ul class="group-list"><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/IModelApp/" class="table-of-contents-link">IModelApp</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/IModelConnection/" class="table-of-contents-link">IModelConnection</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/ElementState/" class="table-of-contents-link">ElementState</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/ModelState/" class="table-of-contents-link">ModelState</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/Tools/" class="table-of-contents-link">Tools</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/Views/" class="table-of-contents-link">Views</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/LocatingElements/" class="table-of-contents-link">LocatingElements</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/AccuDraw/" class="table-of-contents-link">AccuDraw</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/Notifications/" class="table-of-contents-link">Notifications</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/Plugins/" class="table-of-contents-link">Plugins</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/Properties/" class="table-of-contents-link">Properties</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/Rendering/" class="table-of-contents-link">Rendering</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/SelectionSet/" class="table-of-contents-link">SelectionSet</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/Logging/" class="table-of-contents-link">Logging</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/OIDC/" class="table-of-contents-link">OIDC</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/QuantityFormatter/" class="table-of-contents-link">QuantityFormatter</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/SolarCalculate/" class="table-of-contents-link">SolarCalculate</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/SpatialClassification/" class="table-of-contents-link">SpatialClassification</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/TypeConverters/" class="table-of-contents-link">TypeConverters</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/Utils/" class="table-of-contents-link">Utils</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-frontend/All/" class="table-of-contents-link">All</a></li></ul></div></div></div><div class="card">
+                                <div class="card-header" id="headingimodeljs-common">
+                                    <h4 class="card-h4 mb-0">
+                                        <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common" class="table-of-contents-package-link">imodeljs-common</a><button type="button" class="btn no-user-select collapse-arrow icon icon-chevron-down float-right" data-toggle="collapse" data-target="#collapseimodeljs-common"></button>									
+                                    </h4>
+                                </div>
+                                <div id="collapseimodeljs-common" class="collapse" aria-labelledby="headingimodeljs-common" data-parent="#accordionPackage1">
+                                    <div class="card-body">
+                                        <ul class="group-list"><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/WireFormats/" class="table-of-contents-link">WireFormats</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/Codes/" class="table-of-contents-link">Codes</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/Geometry/" class="table-of-contents-link">Geometry</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/Views/" class="table-of-contents-link">Views</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/Rendering/" class="table-of-contents-link">Rendering</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/Symbology/" class="table-of-contents-link">Symbology</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/iModels/" class="table-of-contents-link">iModels</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/RpcInterface/" class="table-of-contents-link">RpcInterface</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/ECSQL/" class="table-of-contents-link">ECSQL</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/ChangedElements/" class="table-of-contents-link">ChangedElements</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/CloudStorage/" class="table-of-contents-link">CloudStorage</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/CloudStorageTileCache/" class="table-of-contents-link">CloudStorageTileCache</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/Logging/" class="table-of-contents-link">Logging</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/MobileRpcManager/" class="table-of-contents-link">MobileRpcManager</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/MobileRpcProtocol/" class="table-of-contents-link">MobileRpcProtocol</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/MobileRpcRequest/" class="table-of-contents-link">MobileRpcRequest</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/RpcMultipartParser/" class="table-of-contents-link">RpcMultipartParser</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/SpatialClassificationProps/" class="table-of-contents-link">SpatialClassificationProps</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-common/All/" class="table-of-contents-link">All</a></li></ul></div></div></div><div class="card">
+                                <div class="card-header" id="headingimodeljs-backend">
+                                    <h4 class="card-h4 mb-0">
+                                        <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend" class="table-of-contents-package-link">imodeljs-backend</a><button type="button" class="btn no-user-select collapse-arrow icon icon-chevron-down float-right" data-toggle="collapse" data-target="#collapseimodeljs-backend"></button>									
+                                    </h4>
+                                </div>
+                                <div id="collapseimodeljs-backend" class="collapse" aria-labelledby="headingimodeljs-backend" data-parent="#accordionPackage1">
+                                    <div class="card-body">
+                                        <ul class="group-list"><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/IModelHost/" class="table-of-contents-link">IModelHost</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/iModels/" class="table-of-contents-link">iModels</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/Schema/" class="table-of-contents-link">Schema</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/Models/" class="table-of-contents-link">Models</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/Elements/" class="table-of-contents-link">Elements</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/Codes/" class="table-of-contents-link">Codes</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/ViewDefinitions/" class="table-of-contents-link">ViewDefinitions</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/Relationships/" class="table-of-contents-link">Relationships</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/ElementAspects/" class="table-of-contents-link">ElementAspects</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/Categories/" class="table-of-contents-link">Categories</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/Symbology/" class="table-of-contents-link">Symbology</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/ECDb/" class="table-of-contents-link">ECDb</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/ECSQL/" class="table-of-contents-link">ECSQL</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/Portability/" class="table-of-contents-link">Portability</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/ChangedElementsDb/" class="table-of-contents-link">ChangedElementsDb</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/ChangedElementsManager/" class="table-of-contents-link">ChangedElementsManager</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/CloudStorageBackend/" class="table-of-contents-link">CloudStorageBackend</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/ConcurrentQuery/" class="table-of-contents-link">ConcurrentQuery</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/FunctionalElements/" class="table-of-contents-link">FunctionalElements</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/GenericElements/" class="table-of-contents-link">GenericElements</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/LinearReferencingElementAspects/" class="table-of-contents-link">LinearReferencingElementAspects</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/LinearReferencingElements/" class="table-of-contents-link">LinearReferencingElements</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/LinearReferencingRelationships/" class="table-of-contents-link">LinearReferencingRelationships</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/Logging/" class="table-of-contents-link">Logging</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/PromiseMemoizer/" class="table-of-contents-link">PromiseMemoizer</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/RpcInterface/" class="table-of-contents-link">RpcInterface</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/Utils/" class="table-of-contents-link">Utils</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-backend/All/" class="table-of-contents-link">All</a></li></ul></div></div></div><div class="card">
+                                <div class="card-header" id="headingimodeljs-clients">
+                                    <h4 class="card-h4 mb-0">
+                                        <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients" class="table-of-contents-package-link">imodeljs-clients</a><button type="button" class="btn no-user-select collapse-arrow icon icon-chevron-down float-right" data-toggle="collapse" data-target="#collapseimodeljs-clients"></button>									
+                                    </h4>
+                                </div>
+                                <div id="collapseimodeljs-clients" class="collapse" aria-labelledby="headingimodeljs-clients" data-parent="#accordionPackage1">
+                                    <div class="card-body">
+                                        <ul class="group-list"><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/Authentication/" class="table-of-contents-link">Authentication</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/BaseClients/" class="table-of-contents-link">BaseClients</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/ConnectServices/" class="table-of-contents-link">ConnectServices</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/iModelHub/" class="table-of-contents-link">iModelHub</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/iModelHubEvents/" class="table-of-contents-link">iModelHubEvents</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/iModelHubGlobalEvents/" class="table-of-contents-link">iModelHubGlobalEvents</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/iModels/" class="table-of-contents-link">iModels</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/Utils/" class="table-of-contents-link">Utils</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/BIMReviewShareClient/" class="table-of-contents-link">BIMReviewShareClient</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/Config/" class="table-of-contents-link">Config</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/iModelBank/" class="table-of-contents-link">iModelBank</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/Logging/" class="table-of-contents-link">Logging</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/OidcClient/" class="table-of-contents-link">OidcClient</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/OidcFrontendClient/" class="table-of-contents-link">OidcFrontendClient</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-clients/All/" class="table-of-contents-link">All</a></li></ul></div></div></div><div class="card">
+                                <div class="card-header" id="headingimodeljs-markup">
+                                    <h4 class="card-h4 mb-0">
+                                        <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-markup" class="table-of-contents-package-link">imodeljs-markup</a><button type="button" class="btn no-user-select collapse-arrow icon icon-chevron-down float-right" data-toggle="collapse" data-target="#collapseimodeljs-markup"></button>									
+                                    </h4>
+                                </div>
+                                <div id="collapseimodeljs-markup" class="collapse" aria-labelledby="headingimodeljs-markup" data-parent="#accordionPackage1">
+                                    <div class="card-body">
+                                        <ul class="group-list"><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-markup/MarkupApp/" class="table-of-contents-link">MarkupApp</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-markup/MarkupTools/" class="table-of-contents-link">MarkupTools</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/imodeljs-markup/All/" class="table-of-contents-link">All</a></li></ul></div></div></div><div class="card">
+                                <div class="card-header" id="headingbentleyjs-core">
+                                    <h4 class="card-h4 mb-0">
+                                        <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/bentleyjs-core" class="table-of-contents-package-link">bentleyjs-core</a><button type="button" class="btn no-user-select collapse-arrow icon icon-chevron-down float-right" data-toggle="collapse" data-target="#collapsebentleyjs-core"></button>									
+                                    </h4>
+                                </div>
+                                <div id="collapsebentleyjs-core" class="collapse" aria-labelledby="headingbentleyjs-core" data-parent="#accordionPackage1">
+                                    <div class="card-body">
+                                        <ul class="group-list"><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/bentleyjs-core/BeSQLite/" class="table-of-contents-link">BeSQLite</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/bentleyjs-core/Errors/" class="table-of-contents-link">Errors</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/bentleyjs-core/Events/" class="table-of-contents-link">Events</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/bentleyjs-core/Ids/" class="table-of-contents-link">Ids</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/bentleyjs-core/Logging/" class="table-of-contents-link">Logging</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/bentleyjs-core/Collections/" class="table-of-contents-link">Collections</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/bentleyjs-core/Utils/" class="table-of-contents-link">Utils</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/bentleyjs-core/All/" class="table-of-contents-link">All</a></li></ul></div></div></div><div class="card">
+                                <div class="card-header" id="headinggeometry-core">
+                                    <h4 class="card-h4 mb-0">
+                                        <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core" class="table-of-contents-package-link">geometry-core</a><button type="button" class="btn no-user-select collapse-arrow icon icon-chevron-down float-right" data-toggle="collapse" data-target="#collapsegeometry-core"></button>									
+                                    </h4>
+                                </div>
+                                <div id="collapsegeometry-core" class="collapse" aria-labelledby="headinggeometry-core" data-parent="#accordionPackage1">
+                                    <div class="card-body">
+                                        <ul class="group-list"><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/CartesianGeometry/" class="table-of-contents-link">CartesianGeometry</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/ArraysAndInterfaces/" class="table-of-contents-link">ArraysAndInterfaces</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/Bspline/" class="table-of-contents-link">Bspline</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/Curve/" class="table-of-contents-link">Curve</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/Numerics/" class="table-of-contents-link">Numerics</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/Polyface/" class="table-of-contents-link">Polyface</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/Serialization/" class="table-of-contents-link">Serialization</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/Solid/" class="table-of-contents-link">Solid</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/Topology/" class="table-of-contents-link">Topology</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/Angle/" class="table-of-contents-link">Angle</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/AngleSweep/" class="table-of-contents-link">AngleSweep</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/Bezier1dNd/" class="table-of-contents-link">Bezier1dNd</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/BezierCurve3d/" class="table-of-contents-link">BezierCurve3d</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/BezierCurve3dH/" class="table-of-contents-link">BezierCurve3dH</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/ClipUtils/" class="table-of-contents-link">ClipUtils</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/CurveExtendMode/" class="table-of-contents-link">CurveExtendMode</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/FacetFaceData/" class="table-of-contents-link">FacetFaceData</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/GrowableBlockedArray/" class="table-of-contents-link">GrowableBlockedArray</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/Map4d/" class="table-of-contents-link">Map4d</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/Matrix3d/" class="table-of-contents-link">Matrix3d</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/Point3dVector3d/" class="table-of-contents-link">Point3dVector3d</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/PolarData/" class="table-of-contents-link">PolarData</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/StrokeCountChain/" class="table-of-contents-link">StrokeCountChain</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/StrokeCountMap/" class="table-of-contents-link">StrokeCountMap</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/All/" class="table-of-contents-link">All</a></li></ul></div></div></div></div></div></div></div><div class="card">
+                <div class="card-header" id="heading2">
+                    <h3 class="mb-0">
+                    iModel.js UI Packages<button type="button" class="btn no-user-select collapse-arrow icon icon-chevron-down float-right first-header-button" data-toggle="collapse" data-target="#groupcollapse2"></button>									
+                    </h3>
+                </div>
+                <div id="groupcollapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordionCategory">
+                    <div class="card-body"><div>
+                                <div class="accordion" id="accordionPackage2"><div class="card">
+                                <div class="card-header" id="headingui-core">
+                                    <h4 class="card-h4 mb-0">
+                                        <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core" class="table-of-contents-package-link">ui-core</a><button type="button" class="btn no-user-select collapse-arrow icon icon-chevron-down float-right" data-toggle="collapse" data-target="#collapseui-core"></button>									
+                                    </h4>
+                                </div>
+                                <div id="collapseui-core" class="collapse" aria-labelledby="headingui-core" data-parent="#accordionPackage2">
+                                    <div class="card-body">
+                                        <ul class="group-list"><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core/Base/" class="table-of-contents-link">Base</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core/Button/" class="table-of-contents-link">Button</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core/CheckListBox/" class="table-of-contents-link">CheckListBox</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core/Common/" class="table-of-contents-link">Common</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core/ContextMenu/" class="table-of-contents-link">ContextMenu</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core/Cube/" class="table-of-contents-link">Cube</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core/Dialog/" class="table-of-contents-link">Dialog</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core/ElementSeparator/" class="table-of-contents-link">ElementSeparator</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core/Expandable/" class="table-of-contents-link">Expandable</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core/Icon/" class="table-of-contents-link">Icon</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core/Inputs/" class="table-of-contents-link">Inputs</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core/Loading/" class="table-of-contents-link">Loading</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core/Popup/" class="table-of-contents-link">Popup</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core/RadialMenu/" class="table-of-contents-link">RadialMenu</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core/SearchBox/" class="table-of-contents-link">SearchBox</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core/SplitButton/" class="table-of-contents-link">SplitButton</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core/Tabs/" class="table-of-contents-link">Tabs</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core/Text/" class="table-of-contents-link">Text</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core/Tree/" class="table-of-contents-link">Tree</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core/UiSettings/" class="table-of-contents-link">UiSettings</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core/Utilities/" class="table-of-contents-link">Utilities</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-core/All/" class="table-of-contents-link">All</a></li></ul></div></div></div><div class="card">
+                                <div class="card-header" id="headingui-components">
+                                    <h4 class="card-h4 mb-0">
+                                        <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-components" class="table-of-contents-package-link">ui-components</a><button type="button" class="btn no-user-select collapse-arrow icon icon-chevron-down float-right" data-toggle="collapse" data-target="#collapseui-components"></button>									
+                                    </h4>
+                                </div>
+                                <div id="collapseui-components" class="collapse" aria-labelledby="headingui-components" data-parent="#accordionPackage2">
+                                    <div class="card-body">
+                                        <ul class="group-list"><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-components/Common/" class="table-of-contents-link">Common</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-components/Breadcrumb/" class="table-of-contents-link">Breadcrumb</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-components/Color/" class="table-of-contents-link">Color</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-components/DragDrop/" class="table-of-contents-link">DragDrop</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-components/Filtering/" class="table-of-contents-link">Filtering</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-components/LineWeight/" class="table-of-contents-link">LineWeight</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-components/OIDC/" class="table-of-contents-link">OIDC</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-components/Properties/" class="table-of-contents-link">Properties</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-components/PropertyEditors/" class="table-of-contents-link">PropertyEditors</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-components/PropertyGrid/" class="table-of-contents-link">PropertyGrid</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-components/Table/" class="table-of-contents-link">Table</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-components/Tree/" class="table-of-contents-link">Tree</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-components/TypeConverters/" class="table-of-contents-link">TypeConverters</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-components/Viewport/" class="table-of-contents-link">Viewport</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-components/All/" class="table-of-contents-link">All</a></li></ul></div></div></div><div class="card">
+                                <div class="card-header" id="headingui-ninezone">
+                                    <h4 class="card-h4 mb-0">
+                                        <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-ninezone" class="table-of-contents-package-link">ui-ninezone</a><button type="button" class="btn no-user-select collapse-arrow icon icon-chevron-down float-right" data-toggle="collapse" data-target="#collapseui-ninezone"></button>									
+                                    </h4>
+                                </div>
+                                <div id="collapseui-ninezone" class="collapse" aria-labelledby="headingui-ninezone" data-parent="#accordionPackage2">
+                                    <div class="card-body">
+                                        <ul class="group-list"><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-ninezone/Backstage/" class="table-of-contents-link">Backstage</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-ninezone/Footer/" class="table-of-contents-link">Footer</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-ninezone/Message/" class="table-of-contents-link">Message</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-ninezone/MessageCenter/" class="table-of-contents-link">MessageCenter</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-ninezone/Popup/" class="table-of-contents-link">Popup</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-ninezone/SnapMode/" class="table-of-contents-link">SnapMode</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-ninezone/StagePanels/" class="table-of-contents-link">StagePanels</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-ninezone/ToolAssistance/" class="table-of-contents-link">ToolAssistance</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-ninezone/Toolbar/" class="table-of-contents-link">Toolbar</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-ninezone/ToolSettings/" class="table-of-contents-link">ToolSettings</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-ninezone/Utilities/" class="table-of-contents-link">Utilities</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-ninezone/Widget/" class="table-of-contents-link">Widget</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-ninezone/Zone/" class="table-of-contents-link">Zone</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-ninezone/All/" class="table-of-contents-link">All</a></li></ul></div></div></div><div class="card">
+                                <div class="card-header" id="headingui-framework">
+                                    <h4 class="card-h4 mb-0">
+                                        <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework" class="table-of-contents-package-link">ui-framework</a><button type="button" class="btn no-user-select collapse-arrow icon icon-chevron-down float-right" data-toggle="collapse" data-target="#collapseui-framework"></button>									
+                                    </h4>
+                                </div>
+                                <div id="collapseui-framework" class="collapse" aria-labelledby="headingui-framework" data-parent="#accordionPackage2">
+                                    <div class="card-body">
+                                        <ul class="group-list"><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/Backstage/" class="table-of-contents-link">Backstage</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/ConfigurableUi/" class="table-of-contents-link">ConfigurableUi</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/ContentView/" class="table-of-contents-link">ContentView</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/Dialog/" class="table-of-contents-link">Dialog</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/DragDrop/" class="table-of-contents-link">DragDrop</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/Frontstage/" class="table-of-contents-link">Frontstage</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/IModelComponents/" class="table-of-contents-link">IModelComponents</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/Item/" class="table-of-contents-link">Item</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/KeyboardShortcut/" class="table-of-contents-link">KeyboardShortcut</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/NavigationAids/" class="table-of-contents-link">NavigationAids</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/Notification/" class="table-of-contents-link">Notification</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/OIDC/" class="table-of-contents-link">OIDC</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/Picker/" class="table-of-contents-link">Picker</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/State/" class="table-of-contents-link">State</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/StatusBar/" class="table-of-contents-link">StatusBar</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/SyncUi/" class="table-of-contents-link">SyncUi</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/WorkflowTask/" class="table-of-contents-link">WorkflowTask</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/Tools/" class="table-of-contents-link">Tools</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/ToolSettings/" class="table-of-contents-link">ToolSettings</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/Utilities/" class="table-of-contents-link">Utilities</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/Widget/" class="table-of-contents-link">Widget</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/Zone/" class="table-of-contents-link">Zone</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/Item/" class="table-of-contents-link">Item</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/ui-framework/All/" class="table-of-contents-link">All</a></li></ul></div></div></div></div></div></div></div><div class="card">
+                <div class="card-header" id="heading3">
+                    <h3 class="mb-0">
+                    iModel.js Presentation Packages<button type="button" class="btn no-user-select collapse-arrow icon icon-chevron-down float-right first-header-button" data-toggle="collapse" data-target="#groupcollapse3"></button>									
+                    </h3>
+                </div>
+                <div id="groupcollapse3" class="collapse show" aria-labelledby="heading3" data-parent="#accordionCategory">
+                    <div class="card-body"><div>
+                                <div class="accordion" id="accordionPackage3"><div class="card">
+                                <div class="card-header" id="headingpresentation-common">
+                                    <h4 class="card-h4 mb-0">
+                                        <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-common" class="table-of-contents-package-link">presentation-common</a><button type="button" class="btn no-user-select collapse-arrow icon icon-chevron-down float-right" data-toggle="collapse" data-target="#collapsepresentation-common"></button>									
+                                    </h4>
+                                </div>
+                                <div id="collapsepresentation-common" class="collapse" aria-labelledby="headingpresentation-common" data-parent="#accordionPackage3">
+                                    <div class="card-body">
+                                        <ul class="group-list"><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-common/Content/" class="table-of-contents-link">Content</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-common/Core/" class="table-of-contents-link">Core</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-common/Hierarchies/" class="table-of-contents-link">Hierarchies</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-common/PresentationRules/" class="table-of-contents-link">PresentationRules</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-common/RPC/" class="table-of-contents-link">RPC</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-common/UnifiedSelection/" class="table-of-contents-link">UnifiedSelection</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-common/All/" class="table-of-contents-link">All</a></li></ul></div></div></div><div class="card">
+                                <div class="card-header" id="headingpresentation-components">
+                                    <h4 class="card-h4 mb-0">
+                                        <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-components" class="table-of-contents-package-link">presentation-components</a><button type="button" class="btn no-user-select collapse-arrow icon icon-chevron-down float-right" data-toggle="collapse" data-target="#collapsepresentation-components"></button>									
+                                    </h4>
+                                </div>
+                                <div id="collapsepresentation-components" class="collapse" aria-labelledby="headingpresentation-components" data-parent="#accordionPackage3">
+                                    <div class="card-body">
+                                        <ul class="group-list"><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-components/Core/" class="table-of-contents-link">Core</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-components/DisplayLabels/" class="table-of-contents-link">DisplayLabels</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-components/PropertyGrid/" class="table-of-contents-link">PropertyGrid</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-components/Table/" class="table-of-contents-link">Table</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-components/Tree/" class="table-of-contents-link">Tree</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-components/Unified/" class="table-of-contents-link">Unified</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-components/UnifiedSelection/" class="table-of-contents-link">UnifiedSelection</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-components/All/" class="table-of-contents-link">All</a></li></ul></div></div></div><div class="card">
+                                <div class="card-header" id="headingpresentation-backend">
+                                    <h4 class="card-h4 mb-0">
+                                        <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-backend" class="table-of-contents-package-link">presentation-backend</a><button type="button" class="btn no-user-select collapse-arrow icon icon-chevron-down float-right" data-toggle="collapse" data-target="#collapsepresentation-backend"></button>									
+                                    </h4>
+                                </div>
+                                <div id="collapsepresentation-backend" class="collapse show" aria-labelledby="headingpresentation-backend" data-parent="#accordionPackage3">
+                                    <div class="card-body">
+                                        <ul class="group-list"><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-backend/Core/" class="table-of-contents-link">Core</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-backend/All/" class="table-of-contents-link">All</a></li></ul></div></div></div><div class="card">
+                                <div class="card-header" id="headingpresentation-frontend">
+                                    <h4 class="card-h4 mb-0">
+                                        <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-frontend" class="table-of-contents-package-link">presentation-frontend</a><button type="button" class="btn no-user-select collapse-arrow icon icon-chevron-down float-right" data-toggle="collapse" data-target="#collapsepresentation-frontend"></button>									
+                                    </h4>
+                                </div>
+                                <div id="collapsepresentation-frontend" class="collapse" aria-labelledby="headingpresentation-frontend" data-parent="#accordionPackage3">
+                                    <div class="card-body">
+                                        <ul class="group-list"><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-frontend/Core/" class="table-of-contents-link">Core</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-frontend/UnifiedSelection/" class="table-of-contents-link">UnifiedSelection</a></li><li><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-frontend/All/" class="table-of-contents-link">All</a></li></ul></div></div></div></div></div></div></div></div></div>
+    </div>
+    </div></div></body></html>
+            </ul>
+        </div>
+    </nav>    <div class='documentation-main'>
+        <article id="main" class="main-content">
+            <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-backend/">presentation-backend</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-backend/core/">Core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/presentation-backend/core/presentationmanager/">PresentationManager</a> > getContentSetSize</div>
+            
+            <h2 class="h-getcontentsetsize">getContentSetSize <span class="badge badge-pill badge-primary badge-method">Method</span><a id="getcontentsetsize" class="heading-anchor" href="#getcontentsetsize"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Retrieves the content set size based on the supplied content descriptor override.</p>
+<p><span class="method-name">getContentSetSize</span><span class="method-parenthesis">(</span><span class="method-parameters">requestContext: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/clientrequestcontext'>ClientRequestContext</a>, requestOptions: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/presentation-common/core/contentrequestoptions'>ContentRequestOptions</a>&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a>&gt;, descriptorOrOverrides: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/presentation-common/content/descriptor'>Descriptor</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/presentation-common/content/descriptoroverrides'>DescriptorOverrides</a>, keys: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/presentation-common/core/keyset'>KeySet</a></span><span class="method-parenthesis">):</span><span class="method-output"> Promise&lt;number&gt;</span></p>
+<table class="table table-responsive"><tbody><tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td class="h-requestcontext"><span class="parameter-name">requestContext</span><a id="requestcontext" class="heading-anchor" href="#requestcontext"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/clientrequestcontext'>ClientRequestContext</a></span></td>
+<td>Client request context</td>
+</tr>
+<tr>
+<td class="h-requestoptions"><span class="parameter-name">requestOptions</span><a id="requestoptions" class="heading-anchor" href="#requestoptions"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/presentation-common/core/contentrequestoptions'>ContentRequestOptions</a>&lt;<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb'>IModelDb</a>&gt;</span></td>
+<td>options for the request</td>
+</tr>
+<tr>
+<td class="h-descriptororoverrides"><span class="parameter-name">descriptorOrOverrides</span><a id="descriptororoverrides" class="heading-anchor" href="#descriptororoverrides"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/presentation-common/content/descriptor'>Descriptor</a> | <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/presentation-common/content/descriptoroverrides'>DescriptorOverrides</a></span></td>
+<td>Content descriptor or its overrides specifying how the content should be customized</td>
+</tr>
+<tr>
+<td class="h-keys"><span class="parameter-name">keys</span><a id="keys" class="heading-anchor" href="#keys"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/presentation-common/core/keyset'>KeySet</a></span></td>
+<td>Keys of ECInstances to get the content for.</td>
+</tr>
+</tbody></table><p><strong>Returns</strong> - A promise object that returns either a number on success or an error string on error.
+Even if concrete implementation returns content in pages, this function returns the total
+number of records in the content set.</p>
+<h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<ul>
+<li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/presentation-backend/src/PresentationManager.ts">PresentationManager.ts</a></span></li>
+</ul>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>01 July, 2019</span>
+            </p>
+            <div id="imodeljs-github-comments">
+            </div>
+            
+            <script>
+              $(document).ready(function () {
+                function initializeComments(repo) {
+                  var s = document.createElement('script');
+                  s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
+                  s.setAttribute('repo', repo);
+                  s.setAttribute('issue-term', 'title');
+                  s.setAttribute('crossorigin', 'anonymous');
+                  s.setAttribute('theme', 'github-light');
+                  s.async = true;
+            
+                  document.getElementById("imodeljs-github-comments").appendChild(s);
+                }
+            
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
+              });
+            </script>
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div class="toc-overlay"></div>
+    <div id='inner-table-of-contents'>
+       <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item active typeDocHeader'>
+            <a data-target="#inner-nav-getcontentsetsize" class='title' href="#getcontentsetsize"/>
+            <b class='dropdown-menu-title menu-text'>getContentSetSize</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-getcontentsetsize" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#requestcontext">requestContext</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#requestoptions">requestOptions</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#descriptororoverrides">descriptorOrOverrides</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#keys">keys</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#defined-in">Defined in</a>
+                    </li>
+            </ul>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color pt-1 pb-3">
+  <!-- Footer Links Container -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row d-flex align-items-center mt-2">
+
+      <!-- Grid column -->
+      <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
+
+        <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+        </a>
+        <small style="color: white; margin-right: 7px;"> powered by </small>
+        <a href="https://www.bentley.com">
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
+        </a>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-5 col-lg-4 ml-lg-0">
+
+        <!-- Social buttons -->
+        <div class="text-center text-md-right">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://twitter.com/imodeljs" target="_blank">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://github.com/imodeljs" target="_blank">
+                <i class="fa fa-github"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://stackoverflow.com/tags/imodeljs"
+                target="_blank">
+                <i class="fa fa-stack-overflow"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links Container -->
+
+</footer>
+<!-- Footer -->
+
+</div>
+<a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
+</body>
+
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

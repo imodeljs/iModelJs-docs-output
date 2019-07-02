@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.0.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.1.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -106,7 +106,7 @@
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
-    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">iModel.js Glossary</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">Glossary</a></li>
     </ul>
     </body></html>
             </ul>
@@ -556,7 +556,7 @@ the count expression though so that the ECSQL would look like this:</p>
 </tr>
 </tbody></table></blockquote>
 <h2 class="h-comparing-to-null">Comparing to NULL<a id="comparing-to-null" class="heading-anchor" href="#comparing-to-null"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>The above example can be used to mention SQLite&apos;s semantics of comparing to NULL (see also <a href="https://www.sqlite.org/nulls.html">https://www.sqlite.org/nulls.html</a> ). The rule in SQLite is:</p>
+<p>The above example can be used to mention SQLite&apos;s semantics of comparing to NULL (see also <a href="https://www.sqlite.org/nulls.html" target="_blank">https://www.sqlite.org/nulls.html</a> ). The rule in SQLite is:</p>
 <blockquote>
 <p>SQLite evaluates the expression <code>myProp = NULL</code> always to <code>false</code>, even if the property is unset.</p>
 </blockquote>
@@ -609,7 +609,7 @@ the count expression though so that the ECSQL would look like this:</p>
 </tr>
 </tbody></table></blockquote>
 <h2 class="h-sql-functions">SQL Functions<a id="sql-functions" class="heading-anchor" href="#sql-functions"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Any SQL function can be used in ECSQL. This includes functions built into SQLite (see <a href="https://www.sqlite.org/lang_corefunc.html">SQLite Functions overview</a>) or functions built into iModel.js, like the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/geometrysqlfuncs'>geometry functions</a> which you can use for <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/spatialqueries'>spatial queries</a>.</p>
+<p>Any SQL function can be used in ECSQL. This includes functions built into SQLite (see <a href="https://www.sqlite.org/lang_corefunc.html" target="_blank">SQLite Functions overview</a>) or functions built into iModel.js, like the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/geometrysqlfuncs'>geometry functions</a> which you can use for <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/spatialqueries'>spatial queries</a>.</p>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
 <p><em>Goal:</em> For all <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a>s whose code contains the string &apos;DEV&apos; return a more human-readable form of the code by replacing &apos;DEV&apos; by &apos;Device&apos;.</p>
@@ -647,8 +647,8 @@ the count expression though so that the ECSQL would look like this:</p>
 <td>Device-A-2-2</td>
 </tr>
 </tbody></table></blockquote>
-<p>The example uses the SQLite functions <a href="https://www.sqlite.org/lang_corefunc.html#replace">replace</a> to replace the substring &apos;DEV&apos; in the code and
-<a href="https://www.sqlite.org/lang_corefunc.html#instr">instr</a> to only do this on rows where the code contains the substring &apos;DEV&apos; at all.</p>
+<p>The example uses the SQLite functions <a href="https://www.sqlite.org/lang_corefunc.html#replace" target="_blank">replace</a> to replace the substring &apos;DEV&apos; in the code and
+<a href="https://www.sqlite.org/lang_corefunc.html#instr" target="_blank">instr</a> to only do this on rows where the code contains the substring &apos;DEV&apos; at all.</p>
 <p>Note, that the <code>instr</code> function can be replaced by using the standard SQL <code>LIKE</code> operator together with the wildcard <code>%</code>.</p>
 <blockquote>
 <p><strong>Try it yourself</strong></p>
@@ -691,7 +691,7 @@ the count expression though so that the ECSQL would look like this:</p>
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/keytoecsql'><strong>&lt; Previous</strong></a>  &#xA0; | &#xA0; <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsqltutorial/ecsqldatatypes'><strong>Next &gt;</strong></a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>03 June, 2019</span>
+                <span class='date-updated'>01 July, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
