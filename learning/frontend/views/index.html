@@ -161,14 +161,12 @@ format for User Interfaces. This can be used to present a list of possible views
 <pre class="no-line-numbers"><code class="language-typescript">  /** Get a list of Spatial views from an iModel. */
   public static async getSpatialViews(): Promise&lt;IModelConnection.ViewSpec[]&gt; {
     return this._iModel.views.getViewList({ from: SpatialViewState.classFullName });
-  }
-</code></pre>
+  }</code></pre>
 <p>To get a list of all drawing views:</p>
 <pre class="no-line-numbers"><code class="language-typescript">  /** Get a list of all Drawing views from an iModel. */
   public static async getDrawingViews(): Promise&lt;IModelConnection.ViewSpec[]&gt; {
     return this._iModel.views.getViewList({ from: DrawingViewState.classFullName });
-  }
-</code></pre>
+  }</code></pre>
 <p>Once a view is selected from the list, it may be loaded with:</p>
 <pre class="no-line-numbers"><code class="language-typescript">  /** Stub for a real UI that would present the user with the list and choose one entry */
   public static async pickView(views: IModelConnection.ViewSpec[]): Promise&lt;string&gt; {
@@ -189,8 +187,7 @@ format for User Interfaces. This can be used to present a list of possible views
 
     // return a promise for the ViewState of the selected view. Note that caller will have to await this method
     return this._iModel.views.load(viewId);
-  }
-</code></pre>
+  }</code></pre>
 <p>Then, you may wish to change one of the existing views to show the contents of the now-loaded view. For example, to switch the
 <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager/#selectedview'>ViewManager.selectedView</a> to show it, use code like:</p>
 <pre class="no-line-numbers"><code class="language-typescript">  /** Show a list of spatial views, allow the user to select one, load its ViewState, and then change the selected ScreenViewport to show it. */
@@ -199,8 +196,7 @@ format for User Interfaces. This can be used to present a list of possible views
     const vp = IModelApp.viewManager.selectedView;
     if (undefined !== vp)
       vp.changeView(viewstate);
-  }
-</code></pre>
+  }</code></pre>
 <blockquote>
 <p>Note that in the examples above, <code>getSpatialViews</code>, <code>loadOneView</code>, and <code>showOneView</code> are <code>async</code>, and you must <code>await</code> them.</p>
 </blockquote>
@@ -215,8 +211,7 @@ be appropriate if you <em>know</em> that a set of 2d Models use a common coordin
     const vp = IModelApp.viewManager.selectedView;
     if (undefined !== vp)
       return vp.changeViewedModel2d(newModelId, { doFit: true });
-  }
-</code></pre>
+  }</code></pre>
 <h2 class="h-viewmanager">ViewManager<a id="viewmanager" class="heading-anchor" href="#viewmanager"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The Viewport class is responsible for displaying a View, as defined by its ViewState. However, typically the objective of showing a View is to allow users
 to modify the View itself, or to interact with its contents.</p>
@@ -226,8 +221,7 @@ to modify the View itself, or to interact with its contents.</p>
     const viewState = await this.loadOneView();
     const viewPort = ScreenViewport.create(viewDiv, viewState);
     IModelApp.viewManager.addViewport(viewPort);
-  }
-</code></pre>
+  }</code></pre>
 <p>After the viewport is added to the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager'>ViewManager</a>, all HTML events for its canvas are directed to the active <code>Tool</code> class by the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/tooladmin'>ToolAdmin</a>.</p>
 <h3 class="h-the-selected-view">The &quot;Selected&quot; View<a id="the-selected-view" class="heading-anchor" href="#the-selected-view"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>It is sometimes necessary to chose a Viewport from inside code that reacts to user input. Absent some other way of determining which Viewport to use, iModel.js applications often default to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager/#selectedview'>ViewManager.selectedView</a>. This will be the last <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport'>ScreenViewport</a> in which the user clicked.  <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager/#selectedview'>ViewManager.selectedView</a> is often the target Viewport for Tools.</p>
@@ -309,7 +303,7 @@ Instead, the lens angle value can be used to reposition <code>{eyePoint}</code> 
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>01 July, 2019</span>
+                <span class='date-updated'>09 July, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

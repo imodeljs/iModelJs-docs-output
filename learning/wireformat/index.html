@@ -165,8 +165,7 @@ class DumpIModel {
     });
     fs.appendFileSync(outputFile, &quot;\n]&quot;);
   }
-}
-</code></pre>
+}</code></pre>
 <hr>
 <p>Below are examples of wire formats for a few interesting iModel.js classes.</p>
 <h2 class="h-root-subject">Root Subject<a id="root-subject" class="heading-anchor" href="#root-subject"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
@@ -174,36 +173,14 @@ class DumpIModel {
 <pre class="no-line-numbers"><code class="language-typescript">    const elementProps = iModel.elements.getElementProps(IModel.rootSubjectId) as ElementProps;
     const json = JSON.stringify(elementProps, undefined, 2);</code></pre>
 <p>Produces the following result:</p>
-<pre class="no-line-numbers"><code class="language-json">{
-  &quot;classFullName&quot;: &quot;BisCore:Subject&quot;,
-  &quot;code&quot;: {
-    &quot;scope&quot;: &quot;0x1&quot;,
-    &quot;spec&quot;: &quot;0x1f&quot;,
-    &quot;value&quot;: &quot;DgnDbTestUtils&quot;
-  },
-  &quot;description&quot;: &quot;&quot;,
-  &quot;id&quot;: &quot;0x1&quot;,
-  &quot;model&quot;: &quot;0x1&quot;
-}</code></pre>
+<pre class="no-line-numbers"><code class="language-json">[[File not found: WireFormat_RootSubject.json]]</code></pre>
 <hr>
 <h2 class="h-repositorymodel">RepositoryModel<a id="repositorymodel" class="heading-anchor" href="#repositorymodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The following code:</p>
 <pre class="no-line-numbers"><code class="language-typescript">    const modelProps = iModel.models.getModel(IModel.repositoryModelId) as ModelProps;
     const json = JSON.stringify(modelProps, undefined, 2);</code></pre>
 <p>Produces the following result:</p>
-<pre class="no-line-numbers"><code class="language-json">{
-  &quot;classFullName&quot;: &quot;BisCore:RepositoryModel&quot;,
-  &quot;id&quot;: &quot;0x1&quot;,
-  &quot;isPrivate&quot;: false,
-  &quot;isTemplate&quot;: false,
-  &quot;jsonProperties&quot;: {},
-  &quot;modeledElement&quot;: {
-    &quot;id&quot;: &quot;0x1&quot;,
-    &quot;relClassName&quot;: &quot;BisCore:ModelModelsElement&quot;
-  },
-  &quot;parentModel&quot;: &quot;0x1&quot;,
-  &quot;name&quot;: &quot;DgnDbTestUtils&quot;
-}</code></pre>
+<pre class="no-line-numbers"><code class="language-json">[[File not found: WireFormat_RepositoryModel.json]]</code></pre>
 <hr>
 <h2 class="h-geometricelement3d">GeometricElement3d<a id="geometricelement3d" class="heading-anchor" href="#geometricelement3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The following code produces JSON at various stages on the way to creating a <code>GeometricElement3d</code>:</p>
@@ -248,176 +225,25 @@ class DumpIModel {
 </code></pre>
 <h3 class="h-arc3d-json">Arc3d JSON<a id="arc3d-json" class="heading-anchor" href="#arc3d-json"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>Below is the JSON from the <code>Arc3d</code>:</p>
-<pre class="no-line-numbers"><code class="language-json">{
-  &quot;center&quot;: [
-    0,
-    0,
-    0
-  ],
-  &quot;sweep&quot;: [
-    90,
-    180
-  ],
-  &quot;vector0&quot;: [
-    1,
-    0,
-    0
-  ],
-  &quot;vector90&quot;: [
-    0,
-    1,
-    0
-  ]
-}</code></pre>
+<pre class="no-line-numbers"><code class="language-json">[[File not found: WireFormat_GeometricElement3d_Arc.json]]</code></pre>
 <h3 class="h-linestring3d-json">LineString3d JSON<a id="linestring3d-json" class="heading-anchor" href="#linestring3d-json"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>Below is the JSON from the <code>LineString3d</code>:</p>
-<pre class="no-line-numbers"><code class="language-json">[
-  [
-    0,
-    0,
-    0
-  ],
-  [
-    1,
-    2,
-    0
-  ],
-  [
-    1,
-    2,
-    4
-  ]
-]</code></pre>
+<pre class="no-line-numbers"><code class="language-json">[[File not found: WireFormat_GeometricElement3d_LineString.json]]</code></pre>
 <h3 class="h-geometrystream-json">GeometryStream JSON<a id="geometrystream-json" class="heading-anchor" href="#geometrystream-json"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>Below is the JSON from the <code>GeometryStream</code> that contains the <code>Arc3d</code> and <code>LineString3d</code> that were previously created.
 This shows that a <code>GeometryStream</code> is just an array of entries:</p>
-<pre class="no-line-numbers"><code class="language-json">[
-  {
-    &quot;arc&quot;: {
-      &quot;center&quot;: [
-        0,
-        0,
-        0
-      ],
-      &quot;vectorX&quot;: [
-        1,
-        0,
-        0
-      ],
-      &quot;vectorY&quot;: [
-        0,
-        1,
-        0
-      ],
-      &quot;sweepStartEnd&quot;: [
-        90,
-        180
-      ]
-    }
-  },
-  {
-    &quot;lineString&quot;: [
-      [
-        0,
-        0,
-        0
-      ],
-      [
-        1,
-        2,
-        0
-      ],
-      [
-        1,
-        2,
-        4
-      ]
-    ]
-  }
-]</code></pre>
+<pre class="no-line-numbers"><code class="language-json">[[File not found: WireFormat_GeometricElement3d_GeometryStream.json]]</code></pre>
 <h3 class="h-placement3d-json">Placement3d JSON<a id="placement3d-json" class="heading-anchor" href="#placement3d-json"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>Below is the JSON from the <code>Placement3d</code> that will be used to place the <code>GeometryStream</code> in world coordinates:</p>
-<pre class="no-line-numbers"><code class="language-json">{
-  &quot;origin&quot;: [
-    100,
-    100,
-    0
-  ],
-  &quot;angles&quot;: {
-    &quot;pitch&quot;: 90
-  }
-}</code></pre>
+<pre class="no-line-numbers"><code class="language-json">[[File not found: WireFormat_GeometricElement3d_Placement.json]]</code></pre>
 <h3 class="h-geometricelement3d-json">GeometricElement3d JSON<a id="geometricelement3d-json" class="heading-anchor" href="#geometricelement3d-json"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>Below is the JSON from the <code>GeometricElement3d</code>.
 This shows that the JSON from the <code>GeometricElement3d</code> contains the JSON from the objects used to create it:</p>
-<pre class="no-line-numbers"><code class="language-json">{
-  &quot;classFullName&quot;: &quot;Generic:PhysicalObject&quot;,
-  &quot;model&quot;: &quot;0&quot;,
-  &quot;code&quot;: {
-    &quot;spec&quot;: &quot;0x1&quot;,
-    &quot;scope&quot;: &quot;0x1&quot;,
-    &quot;value&quot;: &quot;&quot;
-  },
-  &quot;category&quot;: &quot;0&quot;,
-  &quot;placement&quot;: {
-    &quot;origin&quot;: [
-      100,
-      100,
-      0
-    ],
-    &quot;angles&quot;: {
-      &quot;pitch&quot;: 90
-    }
-  },
-  &quot;geom&quot;: [
-    {
-      &quot;arc&quot;: {
-        &quot;center&quot;: [
-          0,
-          0,
-          0
-        ],
-        &quot;vectorX&quot;: [
-          1,
-          0,
-          0
-        ],
-        &quot;vectorY&quot;: [
-          0,
-          1,
-          0
-        ],
-        &quot;sweepStartEnd&quot;: [
-          90,
-          180
-        ]
-      }
-    },
-    {
-      &quot;lineString&quot;: [
-        [
-          0,
-          0,
-          0
-        ],
-        [
-          1,
-          2,
-          0
-        ],
-        [
-          1,
-          2,
-          4
-        ]
-      ]
-    }
-  ]
-}</code></pre>
+<pre class="no-line-numbers"><code class="language-json">[[File not found: WireFormat_GeometricElement3d_Element.json]]</code></pre>
 <hr>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>01 July, 2019</span>
+                <span class='date-updated'>09 July, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
