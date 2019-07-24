@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TopologyElement - iModel.js</title>
+    <meta name="og:title" content="TopologyElement - iModel.js">
+    <meta name="twitter:title" content="TopologyElement - iModel.js">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
+
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
+    <span id="contentLoader">
+        <p>Woah! This page has a great deal of content... Give us a second to load it.</p>
+    </span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+
+
+
+        <header id="main-header">
+            <div class='nav-header-container'>
+                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                    <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo-small" class="site-logo-small" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-icon.svg" style="display:none;"/> 
+                    </a>
+                    <button class="navbar-toggler no-user-select mr-auto" type="button" data-toggle="collapse" data-target="#navbar5">
+                        <span class="navbar-toggler-header"></span>
+                    </button>
+                    <ul class="navbar-nav ml-auto pr-0 nav-search">
+                        <span class='search-bar'>
+                          <li>
+                            <div id='search-container'>
+                            </div>
+                          </li>
+                          <script>
+                            (function() {
+                              var cx = '018053174497532353467:v_gnrjjlqwc';
+                              var gcse = document.createElement('script');
+                              gcse.type = 'text/javascript';
+                              gcse.async = true;
+                              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                              var s = document.getElementsByTagName('script')[0];
+                              s.parentNode.insertBefore(gcse, s);
+                            })();
+                          </script>
+                          <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+                        </span>
+                    </ul>
+                    <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
+                        <ul class="navbar-nav mb-0" id="doc-site-tabs">
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.2.0</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+<div id='main-wrapper'>
+    <nav id='sidebar'>
+        <div id='table-of-contents' class="custom-scrollbar">
+            <div id="dismiss">
+                <i id="dismiss-arrow" class="icon icon-chevron-left no-user-select"></i>
+            </div>
+            <hr id="dismiss-hr" class='sm-only'>
+            <ul id='main-navigation-list'>
+                <html><head></head><body><h3 id="bis">BIS</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/" class="table-of-contents-link">Base Infrastructure Schemas (BIS)</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/federated-digital-twins" class="table-of-contents-link">Federated Digital Twins</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-with-bis" class="table-of-contents-link">Modeling with BIS</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/bis-organization" class="table-of-contents-link">BIS Organization</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/fabric-of-the-universe" class="table-of-contents-link">Fabric of the Universe</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals" class="table-of-contents-link">Element Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/codes" class="table-of-contents-link">Codes</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/elementaspect-fundamentals" class="table-of-contents-link">ElementAspect Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/mixins" class="table-of-contents-link">Mixins</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/model-fundamentals" class="table-of-contents-link">Model Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/relationship-fundamentals" class="table-of-contents-link">Relationship Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schemas-domains" class="table-of-contents-link">Schemas (&#x201C;Domains&#x201D;)</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/information-hierarchy" class="table-of-contents-link">Information Hierarchy</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-perspectives" class="table-of-contents-link">Modeling Perspectives</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/top-of-the-world" class="table-of-contents-link">Top of the World</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/srpp" class="table-of-contents-link">Single Responsible Party Principle</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/organizing-models-and-elements" class="table-of-contents-link">Organizing Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-systems" class="table-of-contents-link">Modeling Systems</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/overlapping-systems" class="table-of-contents-link">Overlapping Systems</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/physical-models-and-elements" class="table-of-contents-link">Physical Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/functional-models-and-elements" class="table-of-contents-link">Functional Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/analysis-models-and-elements" class="table-of-contents-link">Analysis Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/information-models-and-elements" class="table-of-contents-link">Information Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/physical-hierarchy-organization" class="table-of-contents-link">PhysicalModel Hierarchy</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/categories" class="table-of-contents-link">Categories</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-customization" class="table-of-contents-link">Schema Customization</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/appendix-a-data-evolution-across-time" class="table-of-contents-link">Data Evolution Across Time</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-versioning-and-generations" class="table-of-contents-link">Schema Versioning</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-production-status" class="table-of-contents-link">Schema Production Status</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/units" class="table-of-contents-link">BIS Schema Units</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/bis-schema-validation" class="table-of-contents-link">BIS Schema Validation</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/domains/" class="table-of-contents-link">BIS Schema Reference</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary" class="table-of-contents-link">BIS Glossary</a></li>
+    </ul>
+    <!-- TODO: The following are not linked in...?
+    ./intro/appendix-c-bis-domain-design-fundamentals.md
+    -->
+    <p>&#xA0;</p>
+    <h3 id="bis naming guidelines">BIS Naming Guidelines</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/rules-and-recommendations" class="table-of-contents-link">Rules and Recommendations</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/special-terms" class="table-of-contents-link">Special Terms</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/summary-of-exceptions" class="table-of-contents-link">Summary of Exceptions</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/standard-abbreviations-and-acronyms" class="table-of-contents-link">Abbreviations and Acronyms</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/standard-relationship-strengths-names" class="table-of-contents-link">Relationship &#x201C;Strengths&#x201D;</a></li>
+    </ul>
+    <p>&#xA0;</p>
+    <h3 id="ec">EC</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-schema" class="table-of-contents-link">ECSchema</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-class" class="table-of-contents-link">ECClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-entity-class" class="table-of-contents-link">ECEntityClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-mixin-class" class="table-of-contents-link">ECMixinClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-struct-class" class="table-of-contents-link">ECStructClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-custom-attribute-class" class="table-of-contents-link">ECCustomAttributeClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-relationship-class" class="table-of-contents-link">ECRelationshipClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-property" class="table-of-contents-link">ECProperty</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-custom-attributes" class="table-of-contents-link">ECCustomAttributes</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-enumeration" class="table-of-contents-link">ECEnumeration</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/kindofquantity" class="table-of-contents-link">KindOfQuantity</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/property-category" class="table-of-contents-link">PropertyCategory</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/primitive-types" class="table-of-contents-link">PrimitiveTypes</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/customattribute-container-types" class="table-of-contents-link">CustomAttribute Container Types</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-unit" class="table-of-contents-link">Unit</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-constant" class="table-of-contents-link">Constant</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-phenomenon" class="table-of-contents-link">Phenomenon</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-unitsystem" class="table-of-contents-link">UnitSystem</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-format" class="table-of-contents-link">Format</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-name" class="table-of-contents-link">ECName</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/differences-between-ec2-and-ec3" class="table-of-contents-link">Changes Between ECObjects 2 and 3</a></li>
+    </ul>
+    </body></html>
+            </ul>
+        </div>
+    </nav>    <div class='documentation-main'>
+        <article id="main" class="main-content">
+            <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">Base Infrastructure Schema</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/domains/">domains</a> > StructuralAnalysis.remarks</div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/bis/domains/StructuralAnalysis.remarks.md">Edit this page</a></div>
+            <h3 class="h-topologyelement">TopologyElement<a id="topologyelement" class="heading-anchor" href="#topologyelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>All <code>TopologyElement</code>s within a <code>Model</code> have the same <code>Origin</code>, <code>Roll</code>, <code>Pitch</code> and <code>Yaw</code>. This matches the approach of IFC&apos;s <code>IfcStructuralAnalysisDomain</code> and simplifies many calculations within <code>Element</code>s in the <code>Model</code>.</p>
+<h3 class="h-sharedtopologyelement">SharedTopologyElement<a id="sharedtopologyelement" class="heading-anchor" href="#sharedtopologyelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><code>SharedTopologyElement</code>s provide location and connectivity. There is one and only one subclass of <code>SharedTopologyElement</code> for each dimensionality:</p>
+<ul>
+<li><code>Vertex</code> for 0D</li>
+<li><code>Edge</code> for 1D</li>
+<li><code>Face</code> for 2D</li>
+<li><p><code>Region</code> (future) for 3D</p>
+<p>Every subclass must be sealed.</p>
+</li>
+</ul>
+<p><code>SharedTopologyElement</code>s are <code>Model</code>-scope resources that never have a parent <code>DgnElement</code>. The sharing (via referencing relationships) of these <code>DgnElement</code>s provides and defines the location and connectivity of the structural analysis <code>DgnElement</code>s.</p>
+<p> <code>SharedTopologyElement</code>s are generally immutable, except for two use cases:</p>
+<ol>
+<li>Move Model (translate or rotate the entire structural model)</li>
+<li>Stretch Model (stretch a portion of a structural model)</li>
+</ol>
+<p>Stretching is not always possible. Stretching the model is not allowed unless the entire model data can be updated to be valid.</p>
+<p>Instead of being modified, <code>ShareTopologyElement</code>s are typically replaced. For example, an <code>Edge</code> that is split is replaced by two <code>Edge</code>s.</p>
+<h3 class="h-vertex">Vertex<a id="vertex" class="heading-anchor" href="#vertex"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><code>Vertex</code>es provide a point location and connectivity at the point.</p>
+<p> <code>Vertex</code>es are <code>Model</code>-scope shared resources that <strong><em>never</em></strong> have a parent <code>DgnElement</code>.</p>
+<p><em>Parasolid Equivalent: Vertex</em></p>
+<h3 class="h-edge">Edge<a id="edge" class="heading-anchor" href="#edge"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><code>Edge</code>s provide a curve location (between two <code>Vertex</code>es) and connectivity along the curve .</p>
+<p><code>Edge</code>s are <strong><em>only</em></strong> referred to by <code>Path</code>s (through <code>OrientedEdgeAspect</code>s). Any other DgnElement with a relationship to an <code>Edge</code> will not be considered (for updating) in operations that split, merge or delete the <code>Edge</code>.</p>
+<p><code>Edge</code>s are <code>Model</code>-scope shared resources that <strong><em>never</em></strong> have a parent <code>DgnElement</code>.</p>
+<p><em>Parasolid Equivalent: Edge</em></p>
+<h3 class="h-face">Face<a id="face" class="heading-anchor" href="#face"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><code>Face</code>s provide a surface location (bounded by <code>Loop</code>s) and connectivity across that surface.</p>
+<p><code>Face</code>s contain <code>Loop</code>s and <code>Wire</code>s as children. The <code>Loop</code>s represent <code>Face</code> boundaries and the <code>Wire</code>s represent linear connectivity within the <code>Face</code>.</p>
+<p><code>Vertex</code>es that are connected to the <code>Face</code> (and are not part of <code>Loop</code>s or <code>Wire</code>s) are related to the Face with the <code>FaceHasInternalVertices</code> relationship.</p>
+<p><code>Face</code>s are <strong><em>only</em></strong> referred to by <code>FaceSet</code>s (through <code>OrientedFaceAspect</code>s). Any other DgnElement with a relationship to a <code>Face</code> will not be considered in operations that split, merge or delete the <code>Face</code>.</p>
+<p><code>Face</code>s are <code>Model</code>-scope shared resources that <strong><em>never</em></strong> have a parent <code>DgnElement</code>.</p>
+<p><em>Parasolid Equivalent: Face</em></p>
+<h3 class="h-privatetopologyelement">PrivateTopologyElement<a id="privatetopologyelement" class="heading-anchor" href="#privatetopologyelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><code>PrivateTopologyElement</code>s <strong><em>always</em></strong> have a parent <code>DgnElement</code> that owns them; if the parent is deleted, the <code>PrivateTopologyElement</code> is deleted also. The parent DgnElement may be a <code>TopologyElement</code> (such as a <code>Face</code> owning <code>Loop</code>s) or may be a <code>StructuralElement</code> (such as a <code>CurveMember</code> owning a <code>Wire</code>).</p>
+<p>There is one and only one subclass of <code>PrivateTopologyElement</code> for each dimensionality above zero:</p>
+<ul>
+<li><code>Path</code> for 1D (collection of <code>Edge</code>s)</li>
+<li><code>FaceSet</code> for 2D (collection of <code>Face</code>s)</li>
+<li><code>Solid</code> (future) for 3D (collection of <code>Region</code>s)</li>
+</ul>
+<p>(there is no need for a 0D SharedTopologyElement, as there is no strong motivation to manage a collection of <code>Vertex</code>es)</p>
+<h3 class="h-path">Path<a id="path" class="heading-anchor" href="#path"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><code>Path</code> is a sequence of <code>Vertex</code>-connected <code>Edge</code>s.</p>
+<p><code>Path</code> is abstract and only has two subclasses (both sealed):</p>
+<ol>
+<li><code>Loop</code> - a closed <code>Path</code> defining the boundary of a <code>Face</code>.</li>
+<li><code>Wire</code> - an open or closed <code>Path</code> that does not define the boundary of a <code>Face</code>.</li>
+</ol>
+<p>The <code>Edge</code>s of a <code>Path</code> are defined through its ownership of <code>OrientedEdgeAspect</code>s. A valid <code>Path</code> must always have at least one <code>OrientedEdgeAspect</code>.</p>
+<h3 class="h-wire">Wire<a id="wire" class="heading-anchor" href="#wire"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><code>Wire</code> is a <code>Path</code> that does not define the boundary of a <code>Face</code>. <code>Wire</code>s may be open or closed.</p>
+<p>Every Wire has a parent that is one of the following:</p>
+<ul>
+<li>Face</li>
+<li>CurveMember</li>
+<li>CurveSupport</li>
+<li>xxxx</li>
+</ul>
+<p>When a <code>Wire</code>&apos;s parent is a <code>Face</code>, all of the <code>Wire</code>&apos;s <code>Edge</code>s  must reside in the <code>Surface</code> of its <code>Face</code>.</p>
+<p><em>Parasolid Equivalent: Wire Body</em></p>
+<h3 class="h-loop">Loop<a id="loop" class="heading-anchor" href="#loop"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><code>Loop</code> is a <code>Path</code> that defines the boundary of a <code>Face</code> (and is owned by the <code>Face</code>).</p>
+<p>Every <code>Loop</code> has a parent that is a <code>Face</code>.</p>
+<p>All <code>Edge</code>s in a <code>Loop</code> must reside in the <code>Surface</code> of its <code>Face</code>.</p>
+<p><em>Parasolid Equivalent: Loop</em></p>
+<h3 class="h-faceset">FaceSet<a id="faceset" class="heading-anchor" href="#faceset"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><code>FaceSet</code> is a set of <code>Edge</code>-connected <code>Face</code>s with compatible orientations.</p>
+<p>The <code>Face</code>s of a <code>FaceSet</code> are defined through its ownership of <code>OrientedFaceAspect</code>s. A valid <code>FaceSet</code> must always have at least one <code>OrientedFaceAspect</code>.</p>
+<p><code>FaceSet</code> is abstract and only has two subclasses (both sealed):</p>
+<ol>
+<li><code>Shell</code> (Future) - a closed <code>FaceSet</code> defining the boundary of a <code>Region</code> (future).</li>
+<li><code>Sheet</code> - an open or closed <code>FaceSet</code> that does not define the boundary of a <code>Region</code>.</li>
+</ol>
+<h3 class="h-sheet">Sheet<a id="sheet" class="heading-anchor" href="#sheet"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><code>Sheet</code> is a <code>FaceSet</code> that does not define the boundary of a <code>Region</code> (future).</p>
+<p><code>Sheet</code> further constrains the <code>Surface</code> property of its children&apos;s <code>Face</code>s. Every <code>Face</code> in a <code>Sheet</code> must have the same <code>Surface</code> (the motivation for this is to provide a single surface-based coordinate system for <code>SurfaceMember</code>s).</p>
+<p>Every <code>Sheet</code> has a parent that is one of the following:</p>
+<ul>
+<li><code>SurfaceMember</code></li>
+<li><code>SurfaceMemberRegion</code> (and hence <code>SurfaceMemberModifier</code> and <code>SurfaceMemberOpening</code>)</li>
+</ul>
+<p><em>Parasolid Equivalent: Sheet Body</em></p>
+<h3 class="h-orientededgeaspect">OrientedEdgeAspect<a id="orientededgeaspect" class="heading-anchor" href="#orientededgeaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><code>OrientedEdgeAspect</code> shows relationship between a <code>Path</code> and <code>Edge</code>.
+A <code>Path</code> might have multiple <code>Edges</code> one of <code>OrientedEdgeAspect</code> purposes is to define the order of multiple <code>Edge</code>s in a <code>Path</code> by prociding a unique (for that <code>Path</code>) index.
+<code>Edge</code>s in a <code>Path</code> are required to be connecting from one&apos;s start to other&apos;s end. It is posible to have a case where two <code>Edge</code>s are connected by their start points or end points, 
+for this case direction proeprty of <code>OrientedEdgeAspect</code> needs to be configure, so that in a <code>Path</code> all <code>Edge</code>s would have same direction.
+API user does not need to create <code>OrientedEdgeAspect</code>, since it will be auto-created after assigning <code>Edge</code> to a <code>Path</code>.</p>
+<h3 class="h-orientedfaceaspect">OrientedFaceAspect<a id="orientedfaceaspect" class="heading-anchor" href="#orientedfaceaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>24 July, 2019</span>
+            </p>
+            <div id="imodeljs-github-comments">
+            </div>
+            
+            <script>
+              $(document).ready(function () {
+                function initializeComments(repo) {
+                  var s = document.createElement('script');
+                  s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
+                  s.setAttribute('repo', repo);
+                  s.setAttribute('issue-term', 'title');
+                  s.setAttribute('crossorigin', 'anonymous');
+                  s.setAttribute('theme', 'github-light');
+                  s.async = true;
+            
+                  document.getElementById("imodeljs-github-comments").appendChild(s);
+                }
+            
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
+              });
+            </script>
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div class="toc-overlay"></div>
+    <div id='inner-table-of-contents'>
+       <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#topologyelement">TopologyElement</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#sharedtopologyelement">SharedTopologyElement</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#vertex">Vertex</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#edge">Edge</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#face">Face</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#privatetopologyelement">PrivateTopologyElement</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#path">Path</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#wire">Wire</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#loop">Loop</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#faceset">FaceSet</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#sheet">Sheet</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#orientededgeaspect">OrientedEdgeAspect</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#orientedfaceaspect">OrientedFaceAspect</a>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color pt-1 pb-3">
+  <!-- Footer Links Container -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row d-flex align-items-center mt-2">
+
+      <!-- Grid column -->
+      <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
+
+        <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+        </a>
+        <small style="color: white; margin-right: 7px;"> powered by </small>
+        <a href="https://www.bentley.com">
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
+        </a>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-5 col-lg-4 ml-lg-0">
+
+        <!-- Social buttons -->
+        <div class="text-center text-md-right">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://twitter.com/imodeljs" target="_blank">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://github.com/imodeljs" target="_blank">
+                <i class="fa fa-github"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://stackoverflow.com/tags/imodeljs"
+                target="_blank">
+                <i class="fa fa-stack-overflow"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links Container -->
+
+</footer>
+<!-- Footer -->
+
+</div>
+<a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
+</body>
+
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

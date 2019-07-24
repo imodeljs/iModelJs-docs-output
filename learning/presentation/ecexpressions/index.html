@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ECExpressions - iModel.js</title>
+    <meta name="og:title" content="ECExpressions - iModel.js">
+    <meta name="twitter:title" content="ECExpressions - iModel.js">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
+
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
+    <span id="contentLoader">
+        <p>Woah! This page has a great deal of content... Give us a second to load it.</p>
+    </span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+
+
+
+        <header id="main-header">
+            <div class='nav-header-container'>
+                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                    <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo-small" class="site-logo-small" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-icon.svg" style="display:none;"/> 
+                    </a>
+                    <button class="navbar-toggler no-user-select mr-auto" type="button" data-toggle="collapse" data-target="#navbar5">
+                        <span class="navbar-toggler-header"></span>
+                    </button>
+                    <ul class="navbar-nav ml-auto pr-0 nav-search">
+                        <span class='search-bar'>
+                          <li>
+                            <div id='search-container'>
+                            </div>
+                          </li>
+                          <script>
+                            (function() {
+                              var cx = '018053174497532353467:v_gnrjjlqwc';
+                              var gcse = document.createElement('script');
+                              gcse.type = 'text/javascript';
+                              gcse.async = true;
+                              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                              var s = document.getElementsByTagName('script')[0];
+                              s.parentNode.insertBefore(gcse, s);
+                            })();
+                          </script>
+                          <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+                        </span>
+                    </ul>
+                    <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
+                        <ul class="navbar-nav mb-0" id="doc-site-tabs">
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.2.0</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+<div id='main-wrapper'>
+    <nav id='sidebar'>
+        <div id='table-of-contents' class="custom-scrollbar">
+            <div id="dismiss">
+                <i id="dismiss-arrow" class="icon icon-chevron-left no-user-select"></i>
+            </div>
+            <hr id="dismiss-hr" class='sm-only'>
+            <ul id='main-navigation-list'>
+                <html><head></head><body><h3 id="the imodel.js library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModel.js Library</a></h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/presentation/" class="table-of-contents-link">Presentation</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ui/" class="table-of-contents-link">UI</a></li>
+    </ul>
+    <hr>
+    <p>&#xA0;</p>
+    <h3 id="helpful links">Helpful links</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">Glossary</a></li>
+    </ul>
+    </body></html>
+            </ul>
+        </div>
+    </nav>    <div class='documentation-main'>
+        <article id="main" class="main-content">
+            <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/presentation/">presentation</a> > ECExpressions</div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/presentation/ECExpressions.md">Edit this page</a></div>
+            <h1 id="ecexpressions">ECExpressions</h1>
+<p>ECExpressions is a very basic language that allows customizing presentation
+rules&apos; behavior.</p>
+<p>Symbols that can be used depend on current context. Example:</p>
+<pre><code>this.GetContextB().ContextC.DoSomething()</code></pre><p>Here, symbol <code>this</code> returns a context which has a function symbol
+<code>GetContextB()</code>. This function returns a context which has a property
+symbol <code>ContextC</code>. And the property value is a context that contains a
+function symbol <code>DoSomething()</code>. The latter function might return some value
+or return nothing, but instead do some action - it all depends on the symbol.</p>
+<h2 class="h-ecexpression-syntax">ECExpression Syntax<a id="ecexpression-syntax" class="heading-anchor" href="#ecexpression-syntax"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-data-types">Data types<a id="data-types" class="heading-anchor" href="#data-types"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><code>ECExpressions</code> contain values of primitive types or data type of <code>ECClass</code> or <code>ECArray</code>.</p>
+<h4 class="h-primitive-value-types">Primitive value types<a id="primitive-value-types" class="heading-anchor" href="#primitive-value-types"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th>Type</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>Boolean (true/false) value</td>
+<td><code>True</code>, <code>False</code></td>
+</tr>
+<tr>
+<td>DateTime</td>
+<td>Date and time in ticks</td>
+<td><code>@1549278124937</code></td>
+</tr>
+<tr>
+<td>Integer (Long)</td>
+<td>32-bit (64-bit) number</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>Double</td>
+<td>Floating point number</td>
+<td><code>6.84</code></td>
+</tr>
+<tr>
+<td>String</td>
+<td>String of characters</td>
+<td><code>&quot;&quot;</code> ,<code>&quot;Dog and Cat&quot;</code></td>
+</tr>
+<tr>
+<td>Null</td>
+<td>Null value</td>
+<td><code>Null</code></td>
+</tr>
+</tbody></table><h4 class="h-other-primitive-types">Other primitive types<a id="other-primitive-types" class="heading-anchor" href="#other-primitive-types"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>Binary</td>
+<td>Array of bytes</td>
+</tr>
+<tr>
+<td>Point2d</td>
+<td>2D point containing X and Y components as double values</td>
+</tr>
+<tr>
+<td>Point3d</td>
+<td>3D point containing X, Y and Z components as double values</td>
+</tr>
+<tr>
+<td>IGeometry</td>
+<td>A common geometry value of any type</td>
+</tr>
+</tbody></table><h4 class="h-ecclass-data-type">ECClass data type<a id="ecclass-data-type" class="heading-anchor" href="#ecclass-data-type"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><code>ECClass</code> data types define <code>ECInstances</code>. <code>ECClasses</code> contain <code>ECProperties</code> and Methods which can be accessed via dot (<code>.</code>) operator.</p>
+<h4 class="h-ecarray-data-type">ECArray data type<a id="ecarray-data-type" class="heading-anchor" href="#ecarray-data-type"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><code>ECArray</code> data types define arrays of values. Each value can be accessed via <code>[]</code> operator.</p>
+<h3 class="h-expression-components">Expression components<a id="expression-components" class="heading-anchor" href="#expression-components"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>In addition to values of primitive types <code>ECExpressions</code> may contain symbols and operators</p>
+<h4 class="h-symbols">Symbols<a id="symbols" class="heading-anchor" href="#symbols"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>Symbols are used to supply values to expression evaluator. Symbols can be supplied from <code>ECInstance</code> via an access string, from an application defined value or from application defined method.
+Access string is a limited expression that holds no blanks, no operators, and no variable portions. It may contain array indexing and member selection using <code>[]</code> or dot <code>.</code> operators, but no part of the expression can be variable, and the access string cannot contain embedded blanks.</p>
+<h5 id="property symbols">Property symbols</h5>
+<p><code>ECInstance</code> Property symbols supply Property values of some <code>ECInstance</code> when the symbol is being evaluated.</p>
+<pre><code>this.PropertyName
+this.StructPropertyName.PropertyName
+this.StructArray[5].Struct.PropertyName</code></pre><h5 id="value symbols">Value symbols</h5>
+<p>Value symbols supply some named predefined value in a context.</p>
+<pre><code>System.Math.PI</code></pre><h5 id="method symbols">Method symbols</h5>
+<p>Method symbols supply a named method in a context.</p>
+<pre><code>System.Math.Sin(1.57)
+this.IsOfClass(&quot;ClassName&quot;, &quot;SchemaName&quot;)</code></pre><h4 class="h-operators">Operators<a id="operators" class="heading-anchor" href="#operators"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h5 id="parentheses (,)">Parentheses <code>(</code>,<code>)</code></h5>
+<pre><code>(2 * (3 + 4))</code></pre><h5 id="logical operators">Logical operators</h5>
+<table class="table table-responsive"><tbody><tr>
+<th>Description</th>
+<th>Operator</th>
+</tr>
+<tr>
+<td>Conjunction</td>
+<td><code>And</code>*, <code>AndAlso</code></td>
+</tr>
+<tr>
+<td>Disjunction</td>
+<td><code>Or</code>*, <code>OrElse</code></td>
+</tr>
+<tr>
+<td>Exclusive disjunction</td>
+<td><code>Xor</code></td>
+</tr>
+<tr>
+<td>Negation</td>
+<td><code>Not</code></td>
+</tr>
+</tbody></table><p><strong>Note:</strong> *Checks right side of expression even if result value can be deducted from the left side.</p>
+<pre><code>False And True OrElse True</code></pre><h5 id="comparison operators">Comparison operators</h5>
+<table class="table table-responsive"><tbody><tr>
+<th>Description</th>
+<th>Operator</th>
+</tr>
+<tr>
+<td>Less than</td>
+<td><code>&lt;</code></td>
+</tr>
+<tr>
+<td>Less than or equal to</td>
+<td><code>&lt;=</code></td>
+</tr>
+<tr>
+<td>Greater than</td>
+<td><code>&gt;</code></td>
+</tr>
+<tr>
+<td>Greater than or equal to</td>
+<td><code>&gt;=</code></td>
+</tr>
+<tr>
+<td>Equal to</td>
+<td><code>=</code></td>
+</tr>
+<tr>
+<td>Not equal to</td>
+<td><code>&lt;&gt;</code></td>
+</tr>
+</tbody></table><pre><code>20 &lt; 10 ==&gt; False</code></pre><h5 id="arithmetic operators">Arithmetic operators</h5>
+<table class="table table-responsive"><tbody><tr>
+<th>Description</th>
+<th>Operator</th>
+</tr>
+<tr>
+<td>Exponentation</td>
+<td><code>^</code></td>
+</tr>
+<tr>
+<td>Multiplication</td>
+<td><code>*</code></td>
+</tr>
+<tr>
+<td>Double division</td>
+<td><code>/</code></td>
+</tr>
+<tr>
+<td>Integer division</td>
+<td><code>\</code></td>
+</tr>
+<tr>
+<td>Modular division</td>
+<td><code>Mod</code></td>
+</tr>
+<tr>
+<td>Addition</td>
+<td><code>+</code></td>
+</tr>
+<tr>
+<td>Subtraction</td>
+<td><code>-</code></td>
+</tr>
+</tbody></table><pre><code>1 + &quot;4&quot;   ==&gt; 5
+2.2 * 3   ==&gt; 6.6
+12 / 5    ==&gt; 2.4
+12 \ 5    ==&gt; 2
+25 Mod 3  ==&gt; 1</code></pre><h5 id="bit shift operators">Bit Shift operators</h5>
+<table class="table table-responsive"><tbody><tr>
+<th>Description</th>
+<th>Operator</th>
+</tr>
+<tr>
+<td>Signed shift left</td>
+<td><code>&lt;&lt;</code></td>
+</tr>
+<tr>
+<td>Signed shift right</td>
+<td><code>&gt;&gt;</code></td>
+</tr>
+<tr>
+<td>Unsigned shift right</td>
+<td><code>&gt;&gt;&gt;</code></td>
+</tr>
+</tbody></table><pre><code>5 &lt;&lt; 1      ==&gt;  10
+24 &gt;&gt; 2     ==&gt;  6
+-105 &gt;&gt; 1   ==&gt;  -53
+-105 &gt;&gt;&gt; 1  ==&gt;  75</code></pre><h5 id="conditional operator">Conditional operator</h5>
+<pre><code>IIf (condition, true-result, false-result)</code></pre><p>Returns result based on given condition. If condition evaluates to true, returns <code>true-result</code>. Otherwise returns <code>false-result</code>.</p>
+<pre><code>IIf (500&gt;200, &quot;Math ok&quot;, &quot;Math wrong&quot;) ==&gt; &quot;Math ok&quot;
+IIf (500&lt;200, &quot;Math ok&quot;, &quot;Math wrong&quot;) ==&gt; &quot;Math wrong&quot;</code></pre><h5 id="concatenation operator">Concatenation operator</h5>
+<pre><code>&quot;Dog&quot; &amp; &quot; and &quot; &amp; &quot;Cat&quot; ==&gt; &quot;Dog and Cat&quot;
+&quot;1&quot; &amp; 4                 ==&gt; &quot;14&quot;
+1 &amp; &quot;4&quot;                 ==&gt; &quot;14&quot;</code></pre><h5 id="lambda operator">Lambda operator</h5>
+<p>Lambda operator <code>=&gt;</code> creates a callback expression for a given symbol.</p>
+<pre><code>MyArray.Find(item =&gt; item.IntProperty = 5)</code></pre><h3 class="h-combined-expressions">Combined expressions<a id="combined-expressions" class="heading-anchor" href="#combined-expressions"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<pre><code>System.Math.Cos (System.Math.PI * 45.0 / 180.0) ==&gt; 0.707
+System.String.Length (&quot;Dog&quot; &amp; &quot; and &quot; &amp; &quot;Cat&quot;) ==&gt; 11</code></pre><h3 class="h-evaluating-if-property-is-null">Evaluating if property is <code>Null</code><a id="evaluating-if-property-is-null" class="heading-anchor" href="#evaluating-if-property-is-null"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>Method <code>IsNull (value)</code> evaluates if given value is <code>Null</code>.</p>
+<p>Method <code>IfNull (value, value-if-null)</code> evaluates to <code>value</code> if it is not null, otherwise evaluates to  <code>value-if-null</code>.</p>
+<p>In case <code>this.MiddleName</code> is null:</p>
+<pre><code>IfNull (this.MiddleName, &quot;&quot;) ==&gt; &quot;&quot;
+IIf (Not IsNull(this.MiddleName), &quot; &quot; &amp; this.MiddleName &amp; &quot; &quot;, &quot;&quot;) ==&gt; &quot;&quot;</code></pre><p>In case <code>this.MiddleName</code> is set to <code>&quot;Harvey&quot;</code></p>
+<pre><code>IfNull (this.MiddleName, &quot;&quot;) ==&gt; &quot;Harvey&quot;
+IIf (Not IsNull (this.MiddleName), &quot; &quot; &amp; this.MiddleName &amp; &quot; &quot;, &quot;&quot;) ==&gt; &quot; Harvey &quot;</code></pre><p>Checking to see if a <code>this.MiddleName</code> is <code>Null</code> or empty</p>
+<pre><code>IIf (IsNull (this.MiddleName) or this.MiddleName = &quot;&quot;, &quot;Is null or empty&quot;, &quot;Has a value&quot;)</code></pre><h2 class="h-ecexpression-contexts">ECExpression Contexts<a id="ecexpression-contexts" class="heading-anchor" href="#ecexpression-contexts"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-navnode">NavNode<a id="navnode" class="heading-anchor" href="#navnode"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Symbol</th>
+<th>Type</th>
+<th>Value</th>
+</tr>
+<tr>
+<td><code>IsNull</code></td>
+<td>bool</td>
+<td>Is this context null</td>
+</tr>
+<tr>
+<td><code>Type</code></td>
+<td>string</td>
+<td>Type of the node</td>
+</tr>
+<tr>
+<td><code>Label</code></td>
+<td>string</td>
+<td>Node label</td>
+</tr>
+<tr>
+<td><code>Description</code></td>
+<td>string</td>
+<td>Node description</td>
+</tr>
+<tr>
+<td><code>ClassName</code></td>
+<td>string</td>
+<td>ECClass name if its an EC-related node</td>
+</tr>
+<tr>
+<td><code>SchemaName</code></td>
+<td>string</td>
+<td>ECSchema name if its an EC-related node</td>
+</tr>
+<tr>
+<td><code>SchemaMajorVersion</code></td>
+<td>number</td>
+<td>ECSchema major version if its an EC-related node</td>
+</tr>
+<tr>
+<td><code>SchemaMinorVersion</code></td>
+<td>number</td>
+<td>ECSchema minor version if its an EC-related node</td>
+</tr>
+<tr>
+<td><code>InstanceId</code></td>
+<td>number</td>
+<td>ECInstance ID if its an ECInstance node</td>
+</tr>
+<tr>
+<td><code>IsInstanceNode</code></td>
+<td>bool</td>
+<td>Is this an ECInstance node</td>
+</tr>
+<tr>
+<td><code>IsClassGroupingNode</code></td>
+<td>bool</td>
+<td>Is this an ECClass grouping node</td>
+</tr>
+<tr>
+<td><code>IsPropertyGroupingNode</code></td>
+<td>bool</td>
+<td>Is this an ECProperty grouping node</td>
+</tr>
+<tr>
+<td><code>GroupedInstancesCount</code></td>
+<td>number</td>
+<td>Count of grouped ECInstances (only available for ECClass and ECProperty grouping nodes)</td>
+</tr>
+<tr>
+<td><code>ECInstance</code></td>
+<td><a href="#ecinstance">ECInstance context</a></td>
+<td>ECInstance symbol context if its an ECInstance node</td>
+</tr>
+</tbody></table><h3 class="h-ecinstance">ECInstance<a id="ecinstance" class="heading-anchor" href="#ecinstance"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>ECInstance expression context provides access to ECInstance property values.
+Example:</p>
+<pre><code>this.PropertyName
+this.StructPropertyName.PropertyName
+this.StructArray[1].Struct.PropertyName</code></pre><p>Additionally, when evaluating ECInstance contexts, the below symbols are
+available:</p>
+<table class="table table-responsive"><tbody><tr>
+<th>Symbol</th>
+<th>Type</th>
+<th>Value</th>
+</tr>
+<tr>
+<td><code>GetRelatedInstance(&quot;RelationshipName:0|1:RelatedClassName&quot;)</code></td>
+<td><a href="#ecinstance">ECInstance context</a></td>
+<td>Returns related instance context</td>
+</tr>
+<tr>
+<td><code>GetRelatedInstancesCount(&quot;RelationshipSchemaName:RelationshipName&quot;, &quot;Forward|Backward&quot;, &quot;RelatedClassSchemaName:RelatedClassName&quot;)</code></td>
+<td>number</td>
+<td>Number of related instances following the specified relationship</td>
+</tr>
+<tr>
+<td><code>HasRelatedInstance(&quot;RelationshipSchemaName:RelationshipName&quot;, &quot;Forward|Backward&quot;, &quot;RelatedClassSchemaName:RelatedClassName&quot;)</code></td>
+<td>bool</td>
+<td>Does this instance has a related instance following the specified relationship</td>
+</tr>
+<tr>
+<td><code>GetRelatedValue(&quot;RelationshipSchemaName:RelationshipName&quot;, &quot;Forward|Backward&quot;, &quot;RelatedClassSchemaName:RelatedClassName&quot;, &quot;PropertyName&quot;)</code></td>
+<td>any</td>
+<td>Returns property value of the related instance</td>
+</tr>
+</tbody></table><h2 class="h-symbols-in-global-context">Symbols in Global Context<a id="symbols-in-global-context" class="heading-anchor" href="#symbols-in-global-context"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-ruleset-variables-user-settings">Ruleset Variables (User Settings)<a id="ruleset-variables-user-settings" class="heading-anchor" href="#ruleset-variables-user-settings"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>Note:</strong> <em>User Settings</em> is a deprecated name of <em>Ruleset Variables</em> concept.</p>
+<p>Ruleset variable access symbols allow accessing variable values through ECExpressions.</p>
+<table class="table table-responsive"><tbody><tr>
+<th>Symbol</th>
+<th>Deprecated Symbol</th>
+<th>Type</th>
+<th>Value</th>
+</tr>
+<tr>
+<td><code>GetVariableStringValue(&quot;var_id&quot;)</code></td>
+<td><code>GetSettingValue(&quot;var_id&quot;)</code></td>
+<td>string</td>
+<td>Get string value of a variable with the specified ID</td>
+</tr>
+<tr>
+<td><code>GetVariableBoolValue(&quot;var_id&quot;)</code></td>
+<td><code>GetSettingBoolValue(&quot;var_id&quot;)</code></td>
+<td>bool</td>
+<td>Get boolean value of a variable with the specified ID</td>
+</tr>
+<tr>
+<td><code>GetVariableIntValue(&quot;var_id&quot;)</code></td>
+<td><code>GetSettingIntValue(&quot;var_id&quot;)</code></td>
+<td>number</td>
+<td>Get int value of a variable with the specified ID</td>
+</tr>
+<tr>
+<td><code>GetVariableIntValues(&quot;var_id&quot;)</code></td>
+<td><code>GetSettingIntValues(&quot;var_id&quot;)</code></td>
+<td>number[]</td>
+<td>Get int <a href="#value-lists">value list</a> of a variable with the specified ID</td>
+</tr>
+<tr>
+<td><code>HasVariable(&quot;var_id&quot;)</code></td>
+<td><code>HasSetting(&quot;var_id&quot;)</code></td>
+<td>bool</td>
+<td>Does variable with the specified ID exist</td>
+</tr>
+</tbody></table><h3 class="h-other-symbols">Other symbols<a id="other-symbols" class="heading-anchor" href="#other-symbols"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<table class="table table-responsive"><tbody><tr>
+<th>Symbol</th>
+<th>Type</th>
+<th>Value</th>
+</tr>
+<tr>
+<td><code>Set(number1, number2, ..., numberN)</code></td>
+<td>number[]</td>
+<td>Create a <a href="#value-lists">value list</a> of the supplied numbers.</td>
+</tr>
+</tbody></table><h2 class="h-value-lists">Value Lists<a id="value-lists" class="heading-anchor" href="#value-lists"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Value lists in ECExpressions can be handled with lambdas. Currently the
+presentation rules engine supports only a single simple lambda for
+value lists:</p>
+<pre><code>value_list.AnyMatch(x =&gt; x = this.PropertyValue)</code></pre><p>The above expression returns <code>true</code> if <code>value_list</code> contains the value
+of <code>this.PropertyValue</code>.</p>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>24 July, 2019</span>
+            </p>
+            <div id="imodeljs-github-comments">
+            </div>
+            
+            <script>
+              $(document).ready(function () {
+                function initializeComments(repo) {
+                  var s = document.createElement('script');
+                  s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
+                  s.setAttribute('repo', repo);
+                  s.setAttribute('issue-term', 'title');
+                  s.setAttribute('crossorigin', 'anonymous');
+                  s.setAttribute('theme', 'github-light');
+                  s.async = true;
+            
+                  document.getElementById("imodeljs-github-comments").appendChild(s);
+                }
+            
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
+              });
+            </script>
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div class="toc-overlay"></div>
+    <div id='inner-table-of-contents'>
+       <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item '>
+            <a data-target="#inner-nav-ecexpression-syntax" class='title' href="#ecexpression-syntax"/>
+            <b class='dropdown-menu-title menu-text'>ECExpression Syntax</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-ecexpression-syntax" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-data-types" class='title' href="#data-types"/>
+                            <b class='dropdown-menu-title menu-text'>Data types</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-data-types" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#primitive-value-types">Primitive value types</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#other-primitive-types">Other primitive types</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#ecclass-data-type">ECClass data type</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#ecarray-data-type">ECArray data type</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-expression-components" class='title' href="#expression-components"/>
+                            <b class='dropdown-menu-title menu-text'>Expression components</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-expression-components" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#symbols">Symbols</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#operators">Operators</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#combined-expressions">Combined expressions</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#evaluating-if-property-is-null">Evaluating if property is Null</a>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-ecexpression-contexts" class='title' href="#ecexpression-contexts"/>
+            <b class='dropdown-menu-title menu-text'>ECExpression Contexts</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-ecexpression-contexts" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#navnode">NavNode</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#ecinstance">ECInstance</a>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-symbols-in-global-context" class='title' href="#symbols-in-global-context"/>
+            <b class='dropdown-menu-title menu-text'>Symbols in Global Context</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-symbols-in-global-context" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#ruleset-variables-user-settings">Ruleset Variables (User Settings)</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#other-symbols">Other symbols</a>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#value-lists">Value Lists</a>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color pt-1 pb-3">
+  <!-- Footer Links Container -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row d-flex align-items-center mt-2">
+
+      <!-- Grid column -->
+      <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
+
+        <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+        </a>
+        <small style="color: white; margin-right: 7px;"> powered by </small>
+        <a href="https://www.bentley.com">
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
+        </a>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-5 col-lg-4 ml-lg-0">
+
+        <!-- Social buttons -->
+        <div class="text-center text-md-right">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://twitter.com/imodeljs" target="_blank">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://github.com/imodeljs" target="_blank">
+                <i class="fa fa-github"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://stackoverflow.com/tags/imodeljs"
+                target="_blank">
+                <i class="fa fa-stack-overflow"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links Container -->
+
+</footer>
+<!-- Footer -->
+
+</div>
+<a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
+</body>
+
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

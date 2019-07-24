@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>LinearReferencing - iModel.js</title>
+    <meta name="og:title" content="LinearReferencing - iModel.js">
+    <meta name="twitter:title" content="LinearReferencing - iModel.js">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
+
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
+    <span id="contentLoader">
+        <p>Woah! This page has a great deal of content... Give us a second to load it.</p>
+    </span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+
+
+
+        <header id="main-header">
+            <div class='nav-header-container'>
+                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                    <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo-small" class="site-logo-small" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-icon.svg" style="display:none;"/> 
+                    </a>
+                    <button class="navbar-toggler no-user-select mr-auto" type="button" data-toggle="collapse" data-target="#navbar5">
+                        <span class="navbar-toggler-header"></span>
+                    </button>
+                    <ul class="navbar-nav ml-auto pr-0 nav-search">
+                        <span class='search-bar'>
+                          <li>
+                            <div id='search-container'>
+                            </div>
+                          </li>
+                          <script>
+                            (function() {
+                              var cx = '018053174497532353467:v_gnrjjlqwc';
+                              var gcse = document.createElement('script');
+                              gcse.type = 'text/javascript';
+                              gcse.async = true;
+                              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                              var s = document.getElementsByTagName('script')[0];
+                              s.parentNode.insertBefore(gcse, s);
+                            })();
+                          </script>
+                          <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+                        </span>
+                    </ul>
+                    <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
+                        <ul class="navbar-nav mb-0" id="doc-site-tabs">
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.2.0</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+<div id='main-wrapper'>
+    <nav id='sidebar'>
+        <div id='table-of-contents' class="custom-scrollbar">
+            <div id="dismiss">
+                <i id="dismiss-arrow" class="icon icon-chevron-left no-user-select"></i>
+            </div>
+            <hr id="dismiss-hr" class='sm-only'>
+            <ul id='main-navigation-list'>
+                <html><head></head><body><h3 id="bis">BIS</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/" class="table-of-contents-link">Base Infrastructure Schemas (BIS)</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/federated-digital-twins" class="table-of-contents-link">Federated Digital Twins</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-with-bis" class="table-of-contents-link">Modeling with BIS</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/bis-organization" class="table-of-contents-link">BIS Organization</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/fabric-of-the-universe" class="table-of-contents-link">Fabric of the Universe</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals" class="table-of-contents-link">Element Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/codes" class="table-of-contents-link">Codes</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/elementaspect-fundamentals" class="table-of-contents-link">ElementAspect Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/mixins" class="table-of-contents-link">Mixins</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/model-fundamentals" class="table-of-contents-link">Model Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/relationship-fundamentals" class="table-of-contents-link">Relationship Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schemas-domains" class="table-of-contents-link">Schemas (&#x201C;Domains&#x201D;)</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/information-hierarchy" class="table-of-contents-link">Information Hierarchy</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-perspectives" class="table-of-contents-link">Modeling Perspectives</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/top-of-the-world" class="table-of-contents-link">Top of the World</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/srpp" class="table-of-contents-link">Single Responsible Party Principle</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/organizing-models-and-elements" class="table-of-contents-link">Organizing Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-systems" class="table-of-contents-link">Modeling Systems</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/overlapping-systems" class="table-of-contents-link">Overlapping Systems</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/physical-models-and-elements" class="table-of-contents-link">Physical Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/functional-models-and-elements" class="table-of-contents-link">Functional Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/analysis-models-and-elements" class="table-of-contents-link">Analysis Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/information-models-and-elements" class="table-of-contents-link">Information Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/physical-hierarchy-organization" class="table-of-contents-link">PhysicalModel Hierarchy</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/categories" class="table-of-contents-link">Categories</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-customization" class="table-of-contents-link">Schema Customization</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/appendix-a-data-evolution-across-time" class="table-of-contents-link">Data Evolution Across Time</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-versioning-and-generations" class="table-of-contents-link">Schema Versioning</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-production-status" class="table-of-contents-link">Schema Production Status</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/units" class="table-of-contents-link">BIS Schema Units</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/bis-schema-validation" class="table-of-contents-link">BIS Schema Validation</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/domains/" class="table-of-contents-link">BIS Schema Reference</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary" class="table-of-contents-link">BIS Glossary</a></li>
+    </ul>
+    <!-- TODO: The following are not linked in...?
+    ./intro/appendix-c-bis-domain-design-fundamentals.md
+    -->
+    <p>&#xA0;</p>
+    <h3 id="bis naming guidelines">BIS Naming Guidelines</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/rules-and-recommendations" class="table-of-contents-link">Rules and Recommendations</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/special-terms" class="table-of-contents-link">Special Terms</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/summary-of-exceptions" class="table-of-contents-link">Summary of Exceptions</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/standard-abbreviations-and-acronyms" class="table-of-contents-link">Abbreviations and Acronyms</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/standard-relationship-strengths-names" class="table-of-contents-link">Relationship &#x201C;Strengths&#x201D;</a></li>
+    </ul>
+    <p>&#xA0;</p>
+    <h3 id="ec">EC</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-schema" class="table-of-contents-link">ECSchema</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-class" class="table-of-contents-link">ECClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-entity-class" class="table-of-contents-link">ECEntityClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-mixin-class" class="table-of-contents-link">ECMixinClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-struct-class" class="table-of-contents-link">ECStructClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-custom-attribute-class" class="table-of-contents-link">ECCustomAttributeClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-relationship-class" class="table-of-contents-link">ECRelationshipClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-property" class="table-of-contents-link">ECProperty</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-custom-attributes" class="table-of-contents-link">ECCustomAttributes</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-enumeration" class="table-of-contents-link">ECEnumeration</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/kindofquantity" class="table-of-contents-link">KindOfQuantity</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/property-category" class="table-of-contents-link">PropertyCategory</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/primitive-types" class="table-of-contents-link">PrimitiveTypes</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/customattribute-container-types" class="table-of-contents-link">CustomAttribute Container Types</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-unit" class="table-of-contents-link">Unit</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-constant" class="table-of-contents-link">Constant</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-phenomenon" class="table-of-contents-link">Phenomenon</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-unitsystem" class="table-of-contents-link">UnitSystem</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-format" class="table-of-contents-link">Format</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-name" class="table-of-contents-link">ECName</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/differences-between-ec2-and-ec3" class="table-of-contents-link">Changes Between ECObjects 2 and 3</a></li>
+    </ul>
+    </body></html>
+            </ul>
+        </div>
+    </nav>    <div class='documentation-main'>
+        <article id="main" class="main-content">
+            <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">Base Infrastructure Schema</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/domains/">domains</a> > LinearReferencing.ecschema</div>
+            
+            <h1 id="linearreferencing">LinearReferencing</h1>
+<p><strong>alias:</strong> lr</p>
+<p><strong>version:</strong> 2.0.0</p>
+<p>Base schema for Linear Referencing.</p>
+<h2 class="h-entity">Entity Classes<a id="entity" class="heading-anchor" href="#entity"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-linearlocation"><strong>LinearLocation</strong> <em>Sealed</em><a id="linearlocation" class="heading-anchor" href="#linearlocation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>description:</strong> ILinearLocationElement-implementation attaching Linear Referencing Location to a bis:Element not inherently Linearly-Referenced.</p>
+<p><strong>baseClass:</strong> <a href="#linearlocationelement">LinearReferencing:LinearLocationElement</a></p>
+<h3 class="h-linearlocationelement"><strong>LinearLocationElement</strong> <em>Abstract</em><a id="linearlocationelement" class="heading-anchor" href="#linearlocationelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>description:</strong> Base class for ILinearLocationElement-implementations that are subclasses of bis:SpatialLocationElement.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatiallocationelement'>BisCore:SpatialLocationElement</a></p>
+<h3 class="h-linearphysicalelement"><strong>LinearPhysicalElement</strong> <em>Abstract</em><a id="linearphysicalelement" class="heading-anchor" href="#linearphysicalelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>description:</strong> Base class for ILinearLocationElement-implementations that are subclasses of bis:PhysicalElement.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#physicalelement'>BisCore:PhysicalElement</a></p>
+<h3 class="h-linearlylocatedattribution"><strong>LinearlyLocatedAttribution</strong> <em>Abstract</em><a id="linearlylocatedattribution" class="heading-anchor" href="#linearlylocatedattribution"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>description:</strong> Base class for ILinearlyLocatedAttribution-implementations that are Spatial Location Elements.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatiallocationelement'>BisCore:SpatialLocationElement</a></p>
+<h3 class="h-linearlyreferencedatlocation"><strong>LinearlyReferencedAtLocation</strong> <em>Sealed</em><a id="linearlyreferencedatlocation" class="heading-anchor" href="#linearlyreferencedatlocation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>description:</strong> Concrete multi-aspect class carrying &apos;at&apos; linearly-referenced positions along a Linear-Element.</p>
+<p><strong>baseClass:</strong> <a href="#linearlyreferencedlocation">LinearReferencing:LinearlyReferencedLocation</a></p>
+<h4 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">AtPosition</td>
+<td align="left"></td>
+<td align="left">struct</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">FromReferent</td>
+<td align="left"></td>
+<td align="left"><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#linearlyreferencedatpositionreferstoreferent'>navigation</a></td>
+</tr>
+</tbody></table><h3 class="h-linearlyreferencedfromtolocation"><strong>LinearlyReferencedFromToLocation</strong> <em>Sealed</em><a id="linearlyreferencedfromtolocation" class="heading-anchor" href="#linearlyreferencedfromtolocation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>description:</strong> Concrete multi-aspect class carrying &apos;from/to&apos; linearly-referenced positions along a Linear-Element.</p>
+<p><strong>baseClass:</strong> <a href="#linearlyreferencedlocation">LinearReferencing:LinearlyReferencedLocation</a></p>
+<h4 class="h-properties-1">Properties<a id="properties-1" class="heading-anchor" href="#properties-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">FromPosition</td>
+<td align="left"></td>
+<td align="left">struct</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">FromPositionFromReferent</td>
+<td align="left"></td>
+<td align="left"><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#linearlyreferencedfrompositionreferstoreferent'>navigation</a></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">ToPosition</td>
+<td align="left"></td>
+<td align="left">struct</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">ToPositionFromReferent</td>
+<td align="left"></td>
+<td align="left"><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#linearlyreferencedtopositionreferstoreferent'>navigation</a></td>
+</tr>
+</tbody></table><h3 class="h-linearlyreferencedlocation"><strong>LinearlyReferencedLocation</strong> <em>Abstract</em><a id="linearlyreferencedlocation" class="heading-anchor" href="#linearlyreferencedlocation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>description:</strong> Base class for multi-aspects carrying linearly-referenced locations.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#elementmultiaspect'>BisCore:ElementMultiAspect</a></p>
+<h3 class="h-referent"><strong>Referent</strong> <em>Sealed</em><a id="referent" class="heading-anchor" href="#referent"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>description:</strong> IReferent-implementation turning any bis:SpatialElement not inherently Linearly-Referenced into a Referent for Linear-Referencing purposes.</p>
+<p><strong>baseClass:</strong> <a href="#referentelement">LinearReferencing:ReferentElement</a></p>
+<h3 class="h-referentelement"><strong>ReferentElement</strong> <em>Abstract</em><a id="referentelement" class="heading-anchor" href="#referentelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>description:</strong> Base class for IReferent-implementations that are Spatial Location Elements.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatiallocationelement'>BisCore:SpatialLocationElement</a></p>
+<h2 class="h-kind">Kind of Quantity Items<a id="kind" class="heading-anchor" href="#kind"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-length"><strong>LENGTH</strong> (Linear Referencing Length)<a id="length" class="heading-anchor" href="#length"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> KindOfQuantity</p>
+<p><strong>description:</strong> &lt;No description&gt;</p>
+<p><strong>Relative Error:</strong> 0.0001</p>
+<p><strong>Persistence Unit:</strong> M</p>
+<p><strong>Precision:</strong> 2</p>
+<p><strong>Presentation Units</strong></p>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#defaultrealu'>DefaultRealU</a>(2) [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#m'>M</a> ]</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#defaultrealu'>DefaultRealU</a>(2) [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#ft'>FT</a> ]</li>
+</ul>
+<h2 class="h-relationship">Relationship Classes<a id="relationship" class="heading-anchor" href="#relationship"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-ilinearelementprovidedbysource"><strong>ILinearElementProvidedBySource</strong><a id="ilinearelementprovidedbysource" class="heading-anchor" href="#ilinearelementprovidedbysource"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>description:</strong> Relationship associating Linear-Elements with the elements they came from.</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source">Source<a id="source" class="heading-anchor" href="#source"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> provided by</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#ilinearelement'>ILinearElement</a></li>
+</ul>
+<h4 class="h-target">Target<a id="target" class="heading-anchor" href="#target"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> provides</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#ilinearelementsource'>ILinearElementSource</a></li>
+</ul>
+<h3 class="h-ilinearlocationlocateselement"><strong>ILinearLocationLocatesElement</strong><a id="ilinearlocationlocateselement" class="heading-anchor" href="#ilinearlocationlocateselement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>description:</strong> Relationship indicating the bis:Element being linearly-located by a concrete instance mixing-in ILinearLocationElement.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#elementreferstoelements'>BisCore:ElementRefersToElements</a></p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-1">Source<a id="source-1" class="heading-anchor" href="#source-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> linearly-locates</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#ilinearlocationelement'>ILinearLocationElement</a></li>
+</ul>
+<h4 class="h-target-1">Target<a id="target-1" class="heading-anchor" href="#target-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> linearly-located by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a></li>
+</ul>
+<h3 class="h-ilinearlylocatedalongilinearelement"><strong>ILinearlyLocatedAlongILinearElement</strong><a id="ilinearlylocatedalongilinearelement" class="heading-anchor" href="#ilinearlylocatedalongilinearelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>description:</strong> Relationship indicating the Linear-Element along which concrete instances mixing-in ILinearlyLocated are located.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#elementreferstoelements'>BisCore:ElementRefersToElements</a></p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-2">Source<a id="source-2" class="heading-anchor" href="#source-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> along</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#ilinearlylocated'>ILinearlyLocated</a></li>
+</ul>
+<h4 class="h-target-2">Target<a id="target-2" class="heading-anchor" href="#target-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> is linear axis for</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#ilinearelement'>ILinearElement</a></li>
+</ul>
+<h3 class="h-ilinearlylocatedattributeselement"><strong>ILinearlyLocatedAttributesElement</strong><a id="ilinearlylocatedattributeselement" class="heading-anchor" href="#ilinearlylocatedattributeselement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>description:</strong> Relationship indicating the bis:Element being attributed by a concrete instance mixing-in ILinearlyLocatedAttribution.</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-3">Source<a id="source-3" class="heading-anchor" href="#source-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> attributes</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#ilinearlylocatedattribution'>ILinearlyLocatedAttribution</a></li>
+</ul>
+<h4 class="h-target-3">Target<a id="target-3" class="heading-anchor" href="#target-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> is attributed by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#ilinearelementsource'>ILinearElementSource</a></li>
+</ul>
+<h3 class="h-ilinearlylocatedownsatlocations"><strong>ILinearlyLocatedOwnsAtLocations</strong><a id="ilinearlylocatedownsatlocations" class="heading-anchor" href="#ilinearlylocatedownsatlocations"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>description:</strong> Relationship documenting multi-aspect ownership by concrete instances of ILinearlyLocated.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#elementownsmultiaspects'>BisCore:ElementOwnsMultiAspects</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-4">Source<a id="source-4" class="heading-anchor" href="#source-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#ilinearlylocated'>ILinearlyLocated</a></li>
+</ul>
+<h4 class="h-target-4">Target<a id="target-4" class="heading-anchor" href="#target-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#linearlyreferencedatlocation'>LinearlyReferencedAtLocation</a></li>
+</ul>
+<h3 class="h-ilinearlylocatedownsfromtolocations"><strong>ILinearlyLocatedOwnsFromToLocations</strong><a id="ilinearlylocatedownsfromtolocations" class="heading-anchor" href="#ilinearlylocatedownsfromtolocations"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>description:</strong> Relationship documenting multi-aspect ownership by concrete instances of ILinearlyLocated.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#elementownsmultiaspects'>BisCore:ElementOwnsMultiAspects</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-5">Source<a id="source-5" class="heading-anchor" href="#source-5"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#ilinearlylocated'>ILinearlyLocated</a></li>
+</ul>
+<h4 class="h-target-5">Target<a id="target-5" class="heading-anchor" href="#target-5"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#linearlyreferencedfromtolocation'>LinearlyReferencedFromToLocation</a></li>
+</ul>
+<h3 class="h-ireferentreferenceselement"><strong>IReferentReferencesElement</strong><a id="ireferentreferenceselement" class="heading-anchor" href="#ireferentreferenceselement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>description:</strong> Relationship indicating the bis:SpatialElement being used as Referent for Linear Referencing purposes.</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-6">Source<a id="source-6" class="heading-anchor" href="#source-6"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> references</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#ireferent'>IReferent</a></li>
+</ul>
+<h4 class="h-target-6">Target<a id="target-6" class="heading-anchor" href="#target-6"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> is referenced by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a></li>
+</ul>
+<h3 class="h-linearlyreferencedatpositionreferstoreferent"><strong>LinearlyReferencedAtPositionRefersToReferent</strong><a id="linearlyreferencedatpositionreferstoreferent" class="heading-anchor" href="#linearlyreferencedatpositionreferstoreferent"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>description:</strong> Relationship indicating the referent used by a particular linearly-referenced At position.</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-7">Source<a id="source-7" class="heading-anchor" href="#source-7"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> refers to</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#linearlyreferencedatlocation'>LinearlyReferencedAtLocation</a></li>
+</ul>
+<h4 class="h-target-7">Target<a id="target-7" class="heading-anchor" href="#target-7"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> is referenced by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#ireferent'>IReferent</a></li>
+</ul>
+<h3 class="h-linearlyreferencedfrompositionreferstoreferent"><strong>LinearlyReferencedFromPositionRefersToReferent</strong><a id="linearlyreferencedfrompositionreferstoreferent" class="heading-anchor" href="#linearlyreferencedfrompositionreferstoreferent"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>description:</strong> Relationship indicating the referent used by a particular linearly-referenced From position.</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-8">Source<a id="source-8" class="heading-anchor" href="#source-8"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> refers to</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#linearlyreferencedfromtolocation'>LinearlyReferencedFromToLocation</a></li>
+</ul>
+<h4 class="h-target-8">Target<a id="target-8" class="heading-anchor" href="#target-8"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> is referenced by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#ireferent'>IReferent</a></li>
+</ul>
+<h3 class="h-linearlyreferencedtopositionreferstoreferent"><strong>LinearlyReferencedToPositionRefersToReferent</strong><a id="linearlyreferencedtopositionreferstoreferent" class="heading-anchor" href="#linearlyreferencedtopositionreferstoreferent"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>description:</strong> Relationship indicating the referent used by a particular linearly-referenced To position.</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-9">Source<a id="source-9" class="heading-anchor" href="#source-9"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> refers to</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#linearlyreferencedfromtolocation'>LinearlyReferencedFromToLocation</a></li>
+</ul>
+<h4 class="h-target-9">Target<a id="target-9" class="heading-anchor" href="#target-9"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> is referenced by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#ireferent'>IReferent</a></li>
+</ul>
+<h2 class="h-mixin">Mixin Classes<a id="mixin" class="heading-anchor" href="#mixin"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-ilinearelement"><strong>ILinearElement</strong> <em>Abstract</em><a id="ilinearelement" class="heading-anchor" href="#ilinearelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> Mixin</p>
+<p><strong>description:</strong> Mix-in to be supported by Element-subclasses meant to play the role of Linear-Elements.</p>
+<p><strong>appliesTo:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a></p>
+<h4 class="h-properties-2">Properties<a id="properties-2" class="heading-anchor" href="#properties-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Label</th>
+<th align="left">Category</th>
+<th align="left">Read Only</th>
+<th align="left">Priority</th>
+</tr>
+<tr>
+<td align="left">StartValue</td>
+<td align="left">Distance along value at the start of the Linear-Element, measured from an absolute zero.</td>
+<td align="left">Start Value</td>
+<td align="left"></td>
+<td align="left">false</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">LengthValue</td>
+<td align="left">Length measure value for the Linear-Element.</td>
+<td align="left">Length</td>
+<td align="left"></td>
+<td align="left">false</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">LinearElementSource</td>
+<td align="left">Source element providing this Linear-Element.</td>
+<td align="left">Source</td>
+<td align="left"></td>
+<td align="left">false</td>
+<td align="left">0</td>
+</tr>
+</tbody></table><h3 class="h-ilinearelementsource"><strong>ILinearElementSource</strong> <em>Abstract</em><a id="ilinearelementsource" class="heading-anchor" href="#ilinearelementsource"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> Mixin</p>
+<p><strong>description:</strong> Mix-in to be supported by Element-subclasses meant to provide Linear-Elements.</p>
+<p><strong>appliesTo:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a></p>
+<h3 class="h-ilinearlocationelement"><strong>ILinearLocationElement</strong> <em>Abstract</em><a id="ilinearlocationelement" class="heading-anchor" href="#ilinearlocationelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> Mixin</p>
+<p><strong>description:</strong> Mix-in to be supported by Element-subclasses located along a Linear-Element provided by a Linear-Element-Source.</p>
+<p><strong>baseClass:</strong> <a href="#ilinearlylocated">LinearReferencing:ILinearlyLocated</a></p>
+<p><strong>appliesTo:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a></p>
+<h3 class="h-ilinearlylocated"><strong>ILinearlyLocated</strong> <em>Abstract</em><a id="ilinearlylocated" class="heading-anchor" href="#ilinearlylocated"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> Mixin</p>
+<p><strong>description:</strong> Base mix-in for Elements to be linearly-referenced along Linear-Elements.</p>
+<p><strong>appliesTo:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a></p>
+<h3 class="h-ilinearlylocatedattribution"><strong>ILinearlyLocatedAttribution</strong> <em>Abstract</em><a id="ilinearlylocatedattribution" class="heading-anchor" href="#ilinearlylocatedattribution"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> Mixin</p>
+<p><strong>description:</strong> Mix-in to be supported by Element-subclasses representing properties whose value is located along a Linear-Element and only applies to a portion of a Linear-Element-Source.</p>
+<p><strong>baseClass:</strong> <a href="#ilinearlylocated">LinearReferencing:ILinearlyLocated</a></p>
+<p><strong>appliesTo:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a></p>
+<h4 class="h-properties-3">Properties<a id="properties-3" class="heading-anchor" href="#properties-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Label</th>
+<th align="left">Category</th>
+<th align="left">Read Only</th>
+<th align="left">Priority</th>
+</tr>
+<tr>
+<td align="left">AttributedElement</td>
+<td align="left">Element being attributed.</td>
+<td align="left">Attributed Element</td>
+<td align="left"></td>
+<td align="left">false</td>
+<td align="left">0</td>
+</tr>
+</tbody></table><h3 class="h-ireferent"><strong>IReferent</strong> <em>Abstract</em><a id="ireferent" class="heading-anchor" href="#ireferent"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> Mixin</p>
+<p><strong>description:</strong> Mix-in to be supported by Element-subclasses that can play the role of a Referent (known location along a Linear-Element).</p>
+<p><strong>baseClass:</strong> <a href="#ilinearlylocated">LinearReferencing:ILinearlyLocated</a></p>
+<p><strong>appliesTo:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a></p>
+<h4 class="h-properties-4">Properties<a id="properties-4" class="heading-anchor" href="#properties-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Label</th>
+<th align="left">Category</th>
+<th align="left">Read Only</th>
+<th align="left">Priority</th>
+</tr>
+<tr>
+<td align="left">ReferencedElement</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">false</td>
+<td align="left">0</td>
+</tr>
+</tbody></table><h3 class="h-distanceexpression"><strong>DistanceExpression</strong><a id="distanceexpression" class="heading-anchor" href="#distanceexpression"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> StructClass</p>
+<p><strong>description:</strong> Core structure carrying linearly-referenced information.</p>
+<h4 class="h-properties-5">Properties<a id="properties-5" class="heading-anchor" href="#properties-5"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Label</th>
+<th align="left">Category</th>
+<th align="left">Read Only</th>
+<th align="left">Priority</th>
+</tr>
+<tr>
+<td align="left">DistanceAlongFromStart</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">false</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">LateralOffsetFromILinearElement</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">false</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">VerticalOffsetFromILinearElement</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">false</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">DistanceAlongFromReferent</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">false</td>
+<td align="left">0</td>
+</tr>
+</tbody></table>
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>24 July, 2019</span>
+            </p>
+            <div id="imodeljs-github-comments">
+            </div>
+            
+            <script>
+              $(document).ready(function () {
+                function initializeComments(repo) {
+                  var s = document.createElement('script');
+                  s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
+                  s.setAttribute('repo', repo);
+                  s.setAttribute('issue-term', 'title');
+                  s.setAttribute('crossorigin', 'anonymous');
+                  s.setAttribute('theme', 'github-light');
+                  s.async = true;
+            
+                  document.getElementById("imodeljs-github-comments").appendChild(s);
+                }
+            
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
+              });
+            </script>
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div class="toc-overlay"></div>
+    <div id='inner-table-of-contents'>
+       <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item '>
+            <a data-target="#inner-nav-entity" class='title' href="#entity"/>
+            <b class='dropdown-menu-title menu-text'>Entity Classes</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-entity" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#linearlocation">LinearLocation Sealed</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#linearlocationelement">LinearLocationElement Abstract</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#linearphysicalelement">LinearPhysicalElement Abstract</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#linearlylocatedattribution">LinearlyLocatedAttribution Abstract</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-linearlyreferencedatlocation" class='title' href="#linearlyreferencedatlocation"/>
+                            <b class='dropdown-menu-title menu-text'>LinearlyReferencedAtLocation Sealed</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-linearlyreferencedatlocation" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-linearlyreferencedfromtolocation" class='title' href="#linearlyreferencedfromtolocation"/>
+                            <b class='dropdown-menu-title menu-text'>LinearlyReferencedFromToLocation Sealed</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-linearlyreferencedfromtolocation" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-1">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#linearlyreferencedlocation">LinearlyReferencedLocation Abstract</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#referent">Referent Sealed</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#referentelement">ReferentElement Abstract</a>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-kind" class='title' href="#kind"/>
+            <b class='dropdown-menu-title menu-text'>Kind of Quantity Items</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-kind" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#length">LENGTH (Linear Referencing Length)</a>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-relationship" class='title' href="#relationship"/>
+            <b class='dropdown-menu-title menu-text'>Relationship Classes</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-relationship" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-ilinearelementprovidedbysource" class='title' href="#ilinearelementprovidedbysource"/>
+                            <b class='dropdown-menu-title menu-text'>ILinearElementProvidedBySource</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-ilinearelementprovidedbysource" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-ilinearlocationlocateselement" class='title' href="#ilinearlocationlocateselement"/>
+                            <b class='dropdown-menu-title menu-text'>ILinearLocationLocatesElement</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-ilinearlocationlocateselement" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-1">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-1">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-ilinearlylocatedalongilinearelement" class='title' href="#ilinearlylocatedalongilinearelement"/>
+                            <b class='dropdown-menu-title menu-text'>ILinearlyLocatedAlongILinearElement</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-ilinearlylocatedalongilinearelement" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-2">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-2">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-ilinearlylocatedattributeselement" class='title' href="#ilinearlylocatedattributeselement"/>
+                            <b class='dropdown-menu-title menu-text'>ILinearlyLocatedAttributesElement</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-ilinearlylocatedattributeselement" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-3">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-3">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-ilinearlylocatedownsatlocations" class='title' href="#ilinearlylocatedownsatlocations"/>
+                            <b class='dropdown-menu-title menu-text'>ILinearlyLocatedOwnsAtLocations</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-ilinearlylocatedownsatlocations" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-4">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-4">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-ilinearlylocatedownsfromtolocations" class='title' href="#ilinearlylocatedownsfromtolocations"/>
+                            <b class='dropdown-menu-title menu-text'>ILinearlyLocatedOwnsFromToLocations</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-ilinearlylocatedownsfromtolocations" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-5">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-5">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-ireferentreferenceselement" class='title' href="#ireferentreferenceselement"/>
+                            <b class='dropdown-menu-title menu-text'>IReferentReferencesElement</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-ireferentreferenceselement" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-6">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-6">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-linearlyreferencedatpositionreferstoreferent" class='title' href="#linearlyreferencedatpositionreferstoreferent"/>
+                            <b class='dropdown-menu-title menu-text'>LinearlyReferencedAtPositionRefersToReferent</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-linearlyreferencedatpositionreferstoreferent" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-7">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-7">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-linearlyreferencedfrompositionreferstoreferent" class='title' href="#linearlyreferencedfrompositionreferstoreferent"/>
+                            <b class='dropdown-menu-title menu-text'>LinearlyReferencedFromPositionRefersToReferent</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-linearlyreferencedfrompositionreferstoreferent" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-8">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-8">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-linearlyreferencedtopositionreferstoreferent" class='title' href="#linearlyreferencedtopositionreferstoreferent"/>
+                            <b class='dropdown-menu-title menu-text'>LinearlyReferencedToPositionRefersToReferent</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-linearlyreferencedtopositionreferstoreferent" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-9">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-9">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-mixin" class='title' href="#mixin"/>
+            <b class='dropdown-menu-title menu-text'>Mixin Classes</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-mixin" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-ilinearelement" class='title' href="#ilinearelement"/>
+                            <b class='dropdown-menu-title menu-text'>ILinearElement Abstract</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-ilinearelement" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-2">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#ilinearelementsource">ILinearElementSource Abstract</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#ilinearlocationelement">ILinearLocationElement Abstract</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#ilinearlylocated">ILinearlyLocated Abstract</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-ilinearlylocatedattribution" class='title' href="#ilinearlylocatedattribution"/>
+                            <b class='dropdown-menu-title menu-text'>ILinearlyLocatedAttribution Abstract</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-ilinearlylocatedattribution" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-3">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-ireferent" class='title' href="#ireferent"/>
+                            <b class='dropdown-menu-title menu-text'>IReferent Abstract</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-ireferent" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-4">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-distanceexpression" class='title' href="#distanceexpression"/>
+                            <b class='dropdown-menu-title menu-text'>DistanceExpression</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-distanceexpression" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-5">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+            </ul>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color pt-1 pb-3">
+  <!-- Footer Links Container -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row d-flex align-items-center mt-2">
+
+      <!-- Grid column -->
+      <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
+
+        <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+        </a>
+        <small style="color: white; margin-right: 7px;"> powered by </small>
+        <a href="https://www.bentley.com">
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
+        </a>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-5 col-lg-4 ml-lg-0">
+
+        <!-- Social buttons -->
+        <div class="text-center text-md-right">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://twitter.com/imodeljs" target="_blank">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://github.com/imodeljs" target="_blank">
+                <i class="fa fa-github"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://stackoverflow.com/tags/imodeljs"
+                target="_blank">
+                <i class="fa fa-stack-overflow"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links Container -->
+
+</footer>
+<!-- Footer -->
+
+</div>
+<a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
+</body>
+
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

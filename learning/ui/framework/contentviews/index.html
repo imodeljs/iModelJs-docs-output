@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Content Views, Controls, Groups and Layouts - iModel.js</title>
+    <meta name="og:title" content="Content Views, Controls, Groups and Layouts - iModel.js">
+    <meta name="twitter:title" content="Content Views, Controls, Groups and Layouts - iModel.js">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
+
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
+    <span id="contentLoader">
+        <p>Woah! This page has a great deal of content... Give us a second to load it.</p>
+    </span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+
+
+
+        <header id="main-header">
+            <div class='nav-header-container'>
+                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                    <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo-small" class="site-logo-small" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-icon.svg" style="display:none;"/> 
+                    </a>
+                    <button class="navbar-toggler no-user-select mr-auto" type="button" data-toggle="collapse" data-target="#navbar5">
+                        <span class="navbar-toggler-header"></span>
+                    </button>
+                    <ul class="navbar-nav ml-auto pr-0 nav-search">
+                        <span class='search-bar'>
+                          <li>
+                            <div id='search-container'>
+                            </div>
+                          </li>
+                          <script>
+                            (function() {
+                              var cx = '018053174497532353467:v_gnrjjlqwc';
+                              var gcse = document.createElement('script');
+                              gcse.type = 'text/javascript';
+                              gcse.async = true;
+                              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                              var s = document.getElementsByTagName('script')[0];
+                              s.parentNode.insertBefore(gcse, s);
+                            })();
+                          </script>
+                          <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+                        </span>
+                    </ul>
+                    <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
+                        <ul class="navbar-nav mb-0" id="doc-site-tabs">
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.2.0</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+<div id='main-wrapper'>
+    <nav id='sidebar'>
+        <div id='table-of-contents' class="custom-scrollbar">
+            <div id="dismiss">
+                <i id="dismiss-arrow" class="icon icon-chevron-left no-user-select"></i>
+            </div>
+            <hr id="dismiss-hr" class='sm-only'>
+            <ul id='main-navigation-list'>
+                <html><head></head><body><h3 id="the imodel.js library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModel.js Library</a></h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/presentation/" class="table-of-contents-link">Presentation</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ui/" class="table-of-contents-link">UI</a></li>
+    </ul>
+    <hr>
+    <p>&#xA0;</p>
+    <h3 id="helpful links">Helpful links</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">Glossary</a></li>
+    </ul>
+    </body></html>
+            </ul>
+        </div>
+    </nav>    <div class='documentation-main'>
+        <article id="main" class="main-content">
+            <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ui/">ui</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ui/framework/">framework</a> > ContentViews</div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/ui/framework/ContentViews.md">Edit this page</a></div>
+            <h1 id="content views-controls-groups and layouts">Content Views, Controls, Groups and Layouts</h1>
+<p>A <strong>Content&#xA0;View</strong> is a representation of an iModel&apos;s data. It is the main graphics or data view in an iModel.js application.
+There may be multiple Content Views displayed at the same time.
+When more than one Content View is displayed, they are usually separated by splitters, allowing the user to resize the views.
+There are three constructs used to manage and lay out Content Views:</p>
+<table class="table table-responsive"><tbody><tr>
+<th>Construct</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><strong>Content&#xA0;Control</strong></td>
+<td>A class that specifies the React component to display for a Content View</td>
+</tr>
+<tr>
+<td><strong>Content&#xA0;Group</strong></td>
+<td>A collection of Content Controls</td>
+</tr>
+<tr>
+<td><strong>Content&#xA0;Layout</strong></td>
+<td>A layout configuration of Content Views</td>
+</tr>
+</tbody></table><p>Content Groups and Layouts may be defined locally in a Frontstage or they may defined centrally and registered by id with the ConfigurableUiManager.</p>
+<h2 class="h-defining-content-controls">Defining Content Controls<a id="defining-content-controls" class="heading-anchor" href="#defining-content-controls"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>A Content Control will either subclass the <strong>ViewportContentControl</strong> class if the view is a ScreenViewport or the <strong>ContentControl</strong> class if the view is a data view.</p>
+<h3 class="h-subclassing-viewportcontentcontrol">Subclassing ViewportContentControl<a id="subclassing-viewportcontentcontrol" class="heading-anchor" href="#subclassing-viewportcontentcontrol"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>The following shows a sample Viewport content control that subclasses ViewportContentControl. It imports a local <strong>ViewportComponent</strong> implementation and sets <code>this.reactElement</code>. The <code>options</code> parameter to the constructor comes from the <code>applicationData</code> values set in a Content Group.</p>
+<pre class="no-line-numbers"><code class="language-JS">import * as React from &quot;react&quot;;
+
+import {
+  ConfigurableCreateInfo,
+  ViewportContentControl,
+} from &quot;@bentley/ui-framework&quot;;
+
+import { ScreenViewport } from &quot;@bentley/imodeljs-frontend&quot;;
+
+import SimpleViewportComponent from &quot;../components/Viewport&quot;;
+
+/**
+ * iModel Viewport content
+ */
+export class ViewportContent extends ViewportContentControl {
+  constructor(info: ConfigurableCreateInfo, options: any) {
+    super(info, options);
+
+    if (options.iModelConnection &amp;&amp; options.viewId) {
+      this.reactElement = (
+        &lt;SimpleViewportComponent
+          viewportRef={(v: ScreenViewport) =&gt; { this.viewport = v; }}
+          imodel={options.iModelConnection}
+          viewDefinitionId={options.viewId}
+          rulesetId={options.rulesetId} /&gt;
+      );
+    }
+  }
+}</code></pre>
+<p><strong>Note:</strong> It is important to provide a <code>viewportRef</code> Prop to the <strong>ViewportComponent</strong> implementation. The <code>viewportRef</code> function should set <code>this.viewport</code>. This is important in determining when the Frontstage is ready for use.</p>
+<pre class="no-line-numbers"><code class="language-JS">viewportRef={(v: ScreenViewport) =&gt; { this.viewport = v; }}</code></pre>
+<h3 class="h-subclassing-contentcontrol">Subclassing ContentControl<a id="subclassing-contentcontrol" class="heading-anchor" href="#subclassing-contentcontrol"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>The following shows a sample content control that subclasses ContentControl and displays a Table data component.</p>
+<pre class="no-line-numbers"><code class="language-JS">import * as React from &quot;react&quot;;
+
+import {
+  ConfigurableCreateInfo,
+  ContentControl,
+} from &quot;@bentley/ui-framework&quot;;
+
+import SimpleTableComponent from &quot;../components/Table&quot;;
+
+/**
+ * Table content
+ */
+export class TableContent extends ContentControl {
+  constructor(info: ConfigurableCreateInfo, options: any) {
+    super(info, options);
+
+    if (options.iModelConnection) {
+      this.reactElement = &lt;SimpleTableComponent imodel={options.iModelConnection} rulesetId={options.rulesetId} /&gt;;
+    }
+  }
+}</code></pre>
+<h2 class="h-defining-content-groups">Defining Content Groups<a id="defining-content-groups" class="heading-anchor" href="#defining-content-groups"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>When defining Content Groups, the <strong>ContentProps</strong> and <strong>ContentGroupProps</strong> interfaces and <strong>ContentGroup</strong> class are used.</p>
+<p>The following shows a sample Content Group with a single entry that references the ViewportContent defined above. The Content Group is loaded and registered into ConfigurableUiManager and can be referenced by its id by any Frontstage.</p>
+<pre class="no-line-numbers"><code class="language-JS">    const one2dIModelViewport: ContentGroupProps = {
+      id: &quot;one2dIModelViewport&quot;,
+      contents: [
+        {
+          classId: ViewportContent,
+        },
+      ],
+    };
+
+    const contentGroup = new ContentGroup(one2dIModelViewport);
+    ConfigurableUiManager.loadContentGroup(contentGroup);</code></pre>
+<p>The following shows a sample with two entries that reference the ViewportContent and TableContent defined above. <code>applicationData</code> is defined for each content control, which is provided to the ContentControl constructor via the <code>options</code> parameter.</p>
+<pre class="no-line-numbers"><code class="language-JS">    contentGroup = new ContentGroup({
+      contents: [
+        {
+          classId: ViewportContent,
+          applicationData: {
+            viewId: this.viewIds[0],
+            iModelConnection: NineZoneSampleApp.store.getState().sampleAppState!.currentIModelConnection,
+            rulesetId: this._rulesetId,
+          },
+        },
+        {
+          classId: TableContent,
+          applicationData: {
+            iModelConnection: NineZoneSampleApp.store.getState().sampleAppState!.currentIModelConnection,
+            rulesetId: this._rulesetId,
+          },
+        }
+      ],
+    });</code></pre>
+<h2 class="h-defining-content-layouts">Defining Content Layouts<a id="defining-content-layouts" class="heading-anchor" href="#defining-content-layouts"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>When defining Content Layouts, the <strong>ContentLayoutProps</strong> interface and <strong>ContentLayoutDef</strong> class are used. The ContentLayoutDef can be referenced directly by a Frontstage or it may be registered and referenced by id. The Content Layout uses index numbers to reference content within a Content Group. Both the Content Layout and the Content Group are provides as properties to a Frontstage.</p>
+<h3 class="h-a-single-view">A single view<a id="a-single-view" class="heading-anchor" href="#a-single-view"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>The following shows a sample layout with a single piece of content. The Content Layout is loaded and registered into ConfigurableUiManager and can be referenced by its id by any Frontstage.</p>
+<pre class="no-line-numbers"><code class="language-JS">    const singleContent: ContentLayoutProps = {
+      id: &quot;SingleContent&quot;,
+    };
+
+    const contentLayoutDef = new ContentLayoutDef(singleContent);
+    ConfigurableUiManager.loadContentLayout(contentLayoutDef);</code></pre>
+<h3 class="h-two-view-one-beside-the-other">Two view, one beside the other<a id="two-view-one-beside-the-other" class="heading-anchor" href="#two-view-one-beside-the-other"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>The following shows a sample layout with two pieces of content that are side by side, sized evenly and divided by a vertical splitter. The <code>left</code> content references index 0 in the Content Group and the <code>right</code> content references index 1 in the Content Group.</p>
+<pre class="no-line-numbers"><code class="language-JS">    const twoHalvesVertical: ContentLayoutProps = {
+      id: &quot;TwoHalvesVertical&quot;,
+      verticalSplit: { percentage: 0.50, left: 0, right: 1 },
+    };</code></pre>
+<h3 class="h-two-view-one-above-the-other">Two view, one above the other<a id="two-view-one-above-the-other" class="heading-anchor" href="#two-view-one-above-the-other"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>The following shows a sample layout with two pieces of content, one above the other, sized evenly and divided by a horizontal splitter. The <code>top</code> content references index 0 in the Content Group and the <code>bottom</code> content references index 1 in the Content Group.</p>
+<pre class="no-line-numbers"><code class="language-JS">    const twoHalvesHorizontal: ContentLayoutProps = {
+      id: &quot;TwoHalvesHorizontal&quot;,
+      horizontalSplit: { percentage: 0.50, top: 0, bottom: 1 },
+    };</code></pre>
+<h3 class="h-three-views-one-on-the-left-two-stacked-on-the-right">Three views, one on the left, two stacked on the right<a id="three-views-one-on-the-left-two-stacked-on-the-right" class="heading-anchor" href="#three-views-one-on-the-left-two-stacked-on-the-right"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>The following shows a sample layout with three pieces of content. The <code>left</code> side takes up half of the window, and the <code>right</code> side takes up the other half. The right side displays two pieces of content, one above the other and are sized evenly. The <code>left</code> content references index 0 in the Content Group, the <code>top</code> content references index 1, and the <code>bottom</code> content references index 2 in the Content Group.</p>
+<pre class="no-line-numbers"><code class="language-JS">    const threeRightStacked: ContentLayoutProps = {
+      id: &quot;ThreeRightStacked&quot;,
+      verticalSplit: {
+        percentage: 0.50,
+        left: 0,
+        right: { horizontalSplit: { percentage: 0.50, top: 1, bottom: 2 } },
+      },
+    };</code></pre>
+<h3 class="h-four-views-laid-out-in-quadrants">Four views laid out in quadrants<a id="four-views-laid-out-in-quadrants" class="heading-anchor" href="#four-views-laid-out-in-quadrants"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>The following shows a sample layout with four pieces of content. There is a <code>top</code> half and a <code>bottom</code> half. Each of these halves contain two pieces of content that are side by side and sized evenly.</p>
+<pre class="no-line-numbers"><code class="language-JS">    const fourQuadrants: ContentLayoutProps = {
+      id: &quot;FourQuadrants&quot;,
+      horizontalSplit: {
+        percentage: 0.50,
+        top: { verticalSplit: { percentage: 0.50, left: 0, right: 1 } },
+        bottom: { verticalSplit: { percentage: 0.50, left: 2, right: 3 } },
+      },
+    };</code></pre>
+<h2 class="h-api-reference">API Reference<a id="api-reference" class="heading-anchor" href="#api-reference"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-framework/contentview/'>Content Views</a></li>
+</ul>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>24 July, 2019</span>
+            </p>
+            <div id="imodeljs-github-comments">
+            </div>
+            
+            <script>
+              $(document).ready(function () {
+                function initializeComments(repo) {
+                  var s = document.createElement('script');
+                  s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
+                  s.setAttribute('repo', repo);
+                  s.setAttribute('issue-term', 'title');
+                  s.setAttribute('crossorigin', 'anonymous');
+                  s.setAttribute('theme', 'github-light');
+                  s.async = true;
+            
+                  document.getElementById("imodeljs-github-comments").appendChild(s);
+                }
+            
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
+              });
+            </script>
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div class="toc-overlay"></div>
+    <div id='inner-table-of-contents'>
+       <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item '>
+            <a data-target="#inner-nav-defining-content-controls" class='title' href="#defining-content-controls"/>
+            <b class='dropdown-menu-title menu-text'>Defining Content Controls</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-defining-content-controls" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#subclassing-viewportcontentcontrol">Subclassing ViewportContentControl</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#subclassing-contentcontrol">Subclassing ContentControl</a>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#defining-content-groups">Defining Content Groups</a>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-defining-content-layouts" class='title' href="#defining-content-layouts"/>
+            <b class='dropdown-menu-title menu-text'>Defining Content Layouts</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-defining-content-layouts" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#a-single-view">A single view</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#two-view-one-beside-the-other">Two view, one beside the other</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#two-view-one-above-the-other">Two view, one above the other</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#three-views-one-on-the-left-two-stacked-on-the-right">Three views, one on the left, two stacked on the right</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#four-views-laid-out-in-quadrants">Four views laid out in quadrants</a>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#api-reference">API Reference</a>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color pt-1 pb-3">
+  <!-- Footer Links Container -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row d-flex align-items-center mt-2">
+
+      <!-- Grid column -->
+      <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
+
+        <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+        </a>
+        <small style="color: white; margin-right: 7px;"> powered by </small>
+        <a href="https://www.bentley.com">
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
+        </a>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-5 col-lg-4 ml-lg-0">
+
+        <!-- Social buttons -->
+        <div class="text-center text-md-right">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://twitter.com/imodeljs" target="_blank">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://github.com/imodeljs" target="_blank">
+                <i class="fa fa-github"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://stackoverflow.com/tags/imodeljs"
+                target="_blank">
+                <i class="fa fa-stack-overflow"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links Container -->
+
+</footer>
+<!-- Footer -->
+
+</div>
+<a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
+</body>
+
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

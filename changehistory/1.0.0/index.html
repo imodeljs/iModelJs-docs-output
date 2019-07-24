@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.1.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.2.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -92,8 +92,15 @@
             <ul id='main-navigation-list'>
                 <html><head></head><body><h2 id="change history">Change History</h2>
     <hr>
+    <h3 id="roadmap">Roadmap</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/roadmap" class="table-of-contents-link">Big Picture</a></li>
+    </ul>
+    <hr>
     <h3 id="versions">Versions</h3>
     <ul>
+    <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/1.2.0" class="table-of-contents-link">1.2.0</a></p>
+    </li>
     <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/1.1.0" class="table-of-contents-link">1.1.0</a></p>
     </li>
     <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/1.0.0" class="table-of-contents-link">1.0.0</a></p>
@@ -155,7 +162,7 @@ Either <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imo
 <li>AccessMode: Using OpenParams.fixedVersion() always causes the briefcase to be shared, and using OpenParams.pullAndPush() always causes the briefcase to be exclusive.</li>
 </ul>
 <h2 class="h-changes-to-oidcagentclient">Changes to OidcAgentClient<a id="changes-to-oidcagentclient" class="heading-anchor" href="#changes-to-oidcagentclient"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>OidcAgentClient now follows the typical OIDC client credentials authorization workflow. This implies the caller need not supply &quot;serviceUserEmail&quot; and &quot;serviceUserPassword&quot; as part of the configuration. For example:</p>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients-backend/oidcagentclient/oidcagentclient'>OidcAgentClient</a> now follows the typical OIDC client credentials authorization workflow. This implies the caller need not supply &quot;serviceUserEmail&quot; and &quot;serviceUserPassword&quot; as part of the configuration. For example:</p>
 <pre class="no-line-numbers"><code class="language-typescript">const agentConfiguration:  = {
       clientId: &quot;some-client-id-obtained-through-registration&quot;,
       clientSecret: &quot;some-client-secret-obtained-through-registration&quot;,
@@ -163,7 +170,7 @@ Either <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imo
     };
 
 const agentClient = new OidcAgentClient(agentConfiguration);</code></pre>
-<p>Note that what was OidcAgentClientV2 has now become OidcAgentClient - i.e., the older OidcAgentClient has been entirely replaced.</p>
+<p>Note that what was OidcAgentClientV2 has now become <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients-backend/oidcagentclient/oidcagentclient'>OidcAgentClient</a> - i.e., the older OidcAgentClient has been entirely replaced.</p>
 <p><strong>Most importantly, it&apos;s required that agent applications re-register and obtain a new configuration - clientId and clientSecret - the older registrations will NOT work anymore.</strong></p>
 <h2 class="h-changes-to-tile-features">Changes to tile features<a id="changes-to-tile-features" class="heading-anchor" href="#changes-to-tile-features"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Removed or modified some properties used to feature-gate various tile-related features.</p>
@@ -188,29 +195,29 @@ const agentClient = new OidcAgentClient(agentConfiguration);</code></pre>
 <p>This change breaks RPC interface <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/imodelreadrpcinterface'>IModelReadRpcInterface</a>. Both frontend and backend developer must update there packages.</p>
 <p>Backend:</p>
 <ul>
-<li>Renamed <code>IModelDb.queryPage</code> to IModelDb.queryRows. This method is also marked <code>internal</code> and user should not call it directly. Instead user should always use IModelDb.query. This method now also throw exception if query prepare fails.</li>
-<li>Changed methoid signature for <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/query'>IModelDb.query</a>. But first two parameters are same.</li>
+<li>Renamed <code>IModelDb.queryPage</code> to <code>IModelDb.queryRows</code>. This method is also marked <code>internal</code> and user should not call it directly. Instead user should always use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/query'>IModelDb.query</a>. This method now also throw exception if query prepare fails.</li>
+<li>Changed method signature for <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/query'>IModelDb.query</a>. But first two parameters are same.</li>
 </ul>
 <p>Common:</p>
 <ul>
-<li>Renamed <code>IModelDb.queryPage</code> to IModelDb.queryRows.</li>
+<li>Renamed <code>IModelDb.queryPage</code> to <code>IModelDb.queryRows</code>.</li>
 <li>Removed <code>queryRowCount</code>method from <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rpcinterface/imodelreadrpcinterface'>IModelReadRpcInterface</a></li>
 </ul>
-<p>Backend:</p>
+<p>Frontend:</p>
 <ul>
-<li>Renamed <code>IModelDb.queryPage</code> to IModelConnection.queryRows. This method is also marked <code>internal</code> and user should not call it directly. Instead user should always use IModelConnection.query. This method now also throw exception if query prepare fails.</li>
-<li>Changed methoid signature for <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/query'>IModelDb.query</a>. But first two parameters are same.</li>
+<li>Renamed <code>IModelConnection.queryPage</code> to <code>IModelConnection.queryRows</code>. This method is also marked <code>internal</code> and user should not call it directly. Instead user should always use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection/query'>IModelConnection.query</a>. This method now also throw exception if query prepare fails.</li>
+<li>Changed method signature for <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection/query'>IModelConnection.query</a>. But first two parameters are same.</li>
 </ul>
 <h3 class="h-how-can-you-update-code">How can you update code<a id="how-can-you-update-code" class="heading-anchor" href="#how-can-you-update-code"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<pre class="no-line-numbers"><code class="language-typescript">      const rows = await imodel.queryPage(&quot;SELECT ECInstanceId FROM bis.Element LIMIT 1&quot;);</code></pre>
+<pre class="no-line-numbers"><code class="language-typescript">    const rows = await imodel.queryPage(&quot;SELECT ECInstanceId FROM bis.Element LIMIT 1&quot;);</code></pre>
 <p>  can be be changed to following.</p>
-<pre class="no-line-numbers"><code class="language-typescript">      const rows = [];
-      for await (const row of imodel.query(&quot;SELECT ECInstanceId FROM bis.Element LIMIT 1&quot;)) {
-        rows.push(row);
-      }</code></pre>
+<pre class="no-line-numbers"><code class="language-typescript">    const rows = [];
+    for await (const row of imodel.query(&quot;SELECT ECInstanceId FROM bis.Element LIMIT 1&quot;)) {
+      rows.push(row);
+    }</code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>09 July, 2019</span>
+                <span class='date-updated'>24 July, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

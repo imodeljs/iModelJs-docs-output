@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.1.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.2.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -96,6 +96,8 @@
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/presentation/" class="table-of-contents-link">Presentation</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ui/" class="table-of-contents-link">UI</a></li>
     </ul>
     <hr>
     <p>&#xA0;</p>
@@ -118,7 +120,7 @@
             <h1 id="rpcinterface">RpcInterface</h1>
 <p>Table of Contents:</p>
 <ul>
-<li><a href="#Overview">Overview</a></li>
+<li><a href="#overview">Overview</a></li>
 <li>Implementing RpcInterfaces<ul>
 <li><a href="#rpcinterfaces-are-typescript-classes">RpcInterfaces are Typescript Classes</a></li>
 <li><a href="#rpcinterface-performance">RpcInterface Performance</a></li>
@@ -171,7 +173,7 @@
 <pre class="no-line-numbers"><code class="language-typescript">public static readonly interfaceName = &quot;theNameOfThisInterface&quot;; // The immutable name of the interface
 public static interfaceVersion = &quot;1.2.3&quot;; // The API version of the interface</code></pre>
 <p>The <code>interfaceName</code> property specifies the immutable name of the interface. This string, rather than Javascript class name, is used to identify the interface when a request is sent from a frontend to a backend. That makes it safe to apply a tool such as Webpack to the frontend code, which may change the names of Javascript classes.</p>
-<p>See <a href="#rpcinterface-version">below</a> for more on interface versioning.</p>
+<p>See <a href="#rpcinterface-versioning">below</a> for more on interface versioning.</p>
 <p>The definition class must be in a directory or package that is accessible to both frontend and backend code. Note that the RpcInterface base class is defined in <code>@bentley/imodeljs-common</code>.</p>
 <p>A best practice is that an interface definition class should be marked as <code>abstract</code>. That tells the developer of the client that the definition class is never instantiated or used directly. Instead, callers use the <a href="#client-stub">client stub</a> for the interface when making calls.</p>
 <p><em>Example:</em></p>
@@ -199,7 +201,7 @@ export abstract class RobotWorldReadRpcInterface extends RpcInterface {
 <p>Each impl method must return the operation&apos;s result as a Promise.</p>
 <p>The impl method must obtain the ClientRequestContext by calling <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/clientrequestcontext/#current'>ClientRequestContext.current</a>. It must then follow the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/backend/managingclientrequestcontext'>rules of managing the ClientRequestContext</a>.</p>
 <p>The methods in the impl may have to transform certain argument types, such as IModelTokenProps, before they can be used by backend code.</p>
-<p>A best practice is that an impl should be a thin layer on top of normal classes in the server. The impl wrapper should be concerned only with transforming types, not with functionality, while backend operation methods should be concerned only with functionality. Backend operation methods should be static, since a server should be stateless. Preferably, backend operation methods should be <a href="#asynchronous-nature-of-rpcInterfaces">synchronous if possible</a>.</p>
+<p>A best practice is that an impl should be a thin layer on top of normal classes in the server. The impl wrapper should be concerned only with transforming types, not with functionality, while backend operation methods should be concerned only with functionality. Backend operation methods should be static, since a server should be stateless. Preferably, backend operation methods should be <a href="#asynchronous-nature-of-rpcinterfaces">synchronous if possible</a>.</p>
 <p><em>Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">import { RpcInterface, RpcInterfaceDefinition, IModelTokenProps, IModelToken } from &quot;@bentley/imodeljs-common&quot;;
 import { Id64String } from &quot;@bentley/bentleyjs-core&quot;;
@@ -225,7 +227,7 @@ export class RobotWorldReadRpcImpl extends RpcInterface implements RobotWorldRea
   }
 }</code></pre>
 <p>Impls must be registered at runtime, as explained next.</p>
-<h1 id="rpc configuration">RPC Configuration</h1>
+<h2 class="h-rpc-configuration">RPC Configuration<a id="rpc-configuration" class="heading-anchor" href="#rpc-configuration"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/softwarearchitecture/#comparison'>architecture comparison</a> diagram shows the role of RpcInterfaces in supporting portable, resuable app components. A different <em>transport mechanism</em> is used in each configuration. RpcManager is used by clients and servers to apply configurations to RpcInterfaces.</p>
 <h2 class="h-web-rpc-configuration">Web RPC configuration<a id="web-rpc-configuration" class="heading-anchor" href="#web-rpc-configuration"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The Web RPC configuration transforms client calls on an RpcInterface into HTTP requests. Provides endpoint-processing and call dispatching in the server process. The iModel.js cloud RPC configuration is highly parameterized and can be adapted for use in many environments. This configuration is designed to cooperate with routing and authentication infrastructure. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/softwarearchitecture/#web'>Web architecture</a>.</p>
@@ -368,7 +370,7 @@ There are different types of incompatibilities:</p>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>09 July, 2019</span>
+                <span class='date-updated'>24 July, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -436,6 +438,9 @@ There are different types of incompatibilities:</p>
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#server-implementation">Server Implementation</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#rpc-configuration">RPC Configuration</a>
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#web-rpc-configuration">Web RPC configuration</a>

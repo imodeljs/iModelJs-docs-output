@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.1.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.2.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -96,6 +96,8 @@
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/presentation/" class="table-of-contents-link">Presentation</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ui/" class="table-of-contents-link">UI</a></li>
     </ul>
     <hr>
     <p>&#xA0;</p>
@@ -126,9 +128,9 @@
 <p>If no location information is available, we say that such an iModel is <strong>not GeoLocated</strong>, and GeoLocation conversion attempts will fail.</p>
 <p>One simple way to understand the difference between a <em>Linear GeoLocation</em> iModel and a <em>Projected GeoLocation</em> iModel is to examine &quot;what does the z axis mean&quot;?</p>
 <ul>
-<li><p>For iModels of structures such as a Plant, Building, Substation, or even a Campus, the z axis typically means <em>height above the ground floor</em> or some other base point. Then, Z=0 is an infinite plane with no consideration for the curvature of the earth (i.e. lines in the z direction will <em>not</em> necessarily pass through the center of the earth.) Obviously such iModels can only encompass a small area, so that the curvature of the earth doesn&apos;t really matter - generally a few kilometers. The conversion from <a href="https://en.wikipedia.org/wiki/Cartesian_coordinate_system" target="_blank">Cartesian</a> <strong>{x,y,z}</strong> to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/cartographic'>Cartographic</a> <strong>{lat,long,height}</strong> coordinates is accomplished through a <a href="#ecef-transform">linear transform</a> about a single point. Source applications such as Bentley&apos;s Open Building Designer, OpenPlant, and Revit create iModels with Linear GeoLocation.</p>
+<li><p>For iModels of structures such as a Plant, Building, Substation, or even a Campus, the z axis typically means <em>height above the ground floor</em> or some other base point. Then, Z=0 is an infinite plane with no consideration for the curvature of the earth (i.e. lines in the z direction are <em>not</em> necessarily directed towards the center of the earth.) Obviously such iModels can only encompass a small area, so that the curvature of the earth doesn&apos;t really matter - generally a few kilometers. The conversion from <a href="https://en.wikipedia.org/wiki/Cartesian_coordinate_system" target="_blank">Cartesian</a> <strong>{x,y,z}</strong> to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/cartographic'>Cartographic</a> <strong>{lat,long,height}</strong> coordinates is accomplished through a <a href="#ecef-transform">linear transform</a> about a single point. Source applications such as Bentley&apos;s Open Building Designer, OpenPlant, and Revit create iModels with Linear GeoLocation.</p>
 </li>
-<li><p>For iModels that are created from mapping data, the z axis usually means <em>height above the earth&apos;s ellipsoid</em> (e.g. above sea level.) Therefore the Z=0 plane in the iModel <em>projects</em>  the earth&apos;s ellipsoid, and lines in the z-direction <em>will</em> always pass through the center of the earth. Cartesian <strong>{x,y,z}</strong> values are converted to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/cartographic'>Cartographic</a> <strong>{lat,long,height}</strong> coordinates via a non-linear <a href="https://en.wikipedia.org/wiki/Map_projection" target="_blank">map projection</a>, the description of which is stored in the iModel as as <a href="#geographic-coordinate-system">Geographic Coordinate System</a>. Source applications such as Bentley Map, OpenRoads, Civil 3D, GIS applications, etc. create iModels with Projected GeoLocation.</p>
+<li><p>For iModels that are created from mapping data, the z axis usually means some form of <em>height above the earth&apos;s surface</em> (e.g. sea level, terrain, ellipsoid, etc.) Therefore the Z=0 plane in the iModel <em>projects</em>  the earth&apos;s ellipsoid, and lines in the z-direction always point towards the center (elliptical centroid) of the earth. Cartesian <strong>{x,y,z}</strong> values are converted to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/cartographic'>Cartographic</a> <strong>{lat,long,height}</strong> coordinates via a non-linear <a href="https://en.wikipedia.org/wiki/Map_projection" target="_blank">map projection</a>, the description of which is stored in the iModel as as <a href="#the-geographic-coordinate-system">Geographic Coordinate System</a>. Source applications such as Bentley Map, OpenRoads, Civil 3D, GIS applications, etc. create iModels with Projected GeoLocation.</p>
 </li>
 </ul>
 <h2 class="h-the-imodel-class">The IModel class<a id="the-imodel-class" class="heading-anchor" href="#the-imodel-class"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
@@ -174,7 +176,7 @@
 <h3 class="h-the-geographic-coordinate-system">The Geographic Coordinate System<a id="the-geographic-coordinate-system" class="heading-anchor" href="#the-geographic-coordinate-system"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>A projected iModel stores information used to convert its spatial coordinates to/from <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/cartographic'>Cartographic</a> points in a property known as its &quot;GCS&quot; (Geographic Coordinate System). The GCS of a projected iModel describes both its <a href="https://en.wikipedia.org/wiki/Geodetic_datum" target="_blank">Geodetic datum</a> and the <a href="https://en.wikipedia.org/wiki/Map_projection" target="_blank">Map projection</a> system and parameters. The non-linear conversion can only be done on the backend, often with the use of external data tables.</p>
 <blockquote>
-<p>For historical reasons, some applications such as MicroStation store GeoLocation only in modes 1 and 3 above. This means that some iModels that are really linear iModels instead appear as being projected. This does not generally cause problems, since a linear iModel cannot be very large geographically, and hence the projection &quot;warping&quot; throughout the project extents is negligible, if it is ever applied.</p>
+<p>For historical reasons, some applications such as MicroStation store a GCS, even for a Linear GeoLocation. This means that some iModels that are really Linear iModels instead appear as being Projected. This does not generally cause problems, since a Linear iModel cannot be very large geographically, and hence the projection &quot;warping&quot; throughout the project extents is negligible, if it is ever applied.</p>
 </blockquote>
 <h2 class="h-how-geographic-coordinates-are-used-in-imodeljs">How Geographic Coordinates are used in iModel.js<a id="how-geographic-coordinates-are-used-in-imodeljs" class="heading-anchor" href="#how-geographic-coordinates-are-used-in-imodeljs"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>For display purposes, Geographic coordinates are only relevant for Spatial views. They are obviously used for showing Cartographic coordinates to users.</p>
@@ -186,7 +188,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>09 July, 2019</span>
+                <span class='date-updated'>24 July, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

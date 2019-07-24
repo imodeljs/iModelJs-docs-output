@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.1.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.2.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -96,6 +96,8 @@
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/presentation/" class="table-of-contents-link">Presentation</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ui/" class="table-of-contents-link">UI</a></li>
     </ul>
     <hr>
     <p>&#xA0;</p>
@@ -115,13 +117,19 @@
         <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/">frontend</a> > Markers</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/frontend/Markers.md">Edit this page</a></div>
-            <p><img src=".././markers_sample.png" alt="markerset sample" title="Example showing a set of Markers"></p>
-<h1 id="markers">Markers</h1>
-<p>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/marker'>Marker</a> is a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/canvasdecoration'>CanvasDecoration</a>, whose position follows a fixed location in world space. Markers draw on top of all scene graphics, and provide visual cues about locations of interest. The name and the concept derive from the same type in the <a href="https://developers.google.com/maps/documentation/javascript/markers" target="_blank">Google Maps api</a>.</p>
+            <h1 id="markers">Markers</h1>
+<p><img src=".././markers_sample.png" alt="markerset sample" title="Example showing a set of Markers"></p>
+<p>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/marker'>Marker</a> is a visual indicator whose position in a view follows a fixed location in world space. The name and the concept derive from the same type in the <a href="https://developers.google.com/maps/documentation/javascript/markers" target="_blank">Google Maps api</a>. Markers may also provide actions performed when the mouse moves over them, and when the are clicked.</p>
+<p>Markers can display 3 optional parts:</p>
+<ul>
+<li>World decorations that are drawn into the scene with the z-buffer enabled.</li>
+<li>Canvas decorations that are drawn on top scene using CanvasRenderingContext2D calls</li>
+<li>HTML decorations that are HTMLElements on top of the view</li>
+</ul>
 <p>Markers are often used to show locations in physical space where records from an external data source are located. They provide a way for applications to show additional information from the external source as the cursor hovers over them, and  actions to be performed when they are clicked.</p>
 <p>Sometimes Markers are used to show the location of elements within an iModel that are of interest. In that case the location of the Marker can be established from the origin, center, or perhaps other points derived from the element&apos;s properties.</p>
 <h2 class="h-markersets">MarkerSets<a id="markersets" class="heading-anchor" href="#markersets"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Often there will be many Markers relevant to show a group of points of interest. When the set of Markers becomes large, or when the user zooms far away from Marker locations, they tend to overlap one another and create clutter. For this purpose, the class <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/markerset'>MarkerSet</a> provides a way to group sets of related Markers together such that overlapping sets of them form a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/cluster'>Cluster</a>. <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/markerset'>MarkerSet</a> provides techniques for you to supply the graphics to visually indicate the set of Markers it represents.</p>
+<p>Often there will be many Markers relevant to show a group of points of interest. When the set of Markers becomes large, or when the user zooms far away from Marker locations, they tend to overlap one another and create clutter. For this purpose, the class <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/markerset'>MarkerSet</a> provides a way to group sets of related Markers together such that overlapping groups of them form a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/cluster'>Cluster</a>. <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/markerset'>MarkerSet</a> provides techniques for you to supply the graphics to visually indicate the set of Markers it represents.</p>
 <blockquote>
 <p>Note: Only Markers from the same MarkerSet will be clustered. Independent Markers or Markers from different MarkerSets will not cluster.</p>
 </blockquote>
@@ -132,6 +140,11 @@ class IncidentMarker extends Marker {
   private static _imageSize = Point2d.create(40, 40);
   private static _imageOffset = Point2d.create(0, 30);
   private static _amber = new ColorDef(ColorByName.amber);
+  private static _sweep360 = AngleSweep.create360();
+  private _color: ColorDef;
+
+  // uncomment the next line to make the icon only show when the cursor is over an incident marker.
+  // public get wantImage() { return this._isHilited; }
 
   /** Get a color based on severity by interpolating Green(0) -&gt; Amber(15) -&gt; Red(30)  */
   public static makeColor(severity: number): ColorDef {
@@ -139,21 +152,46 @@ class IncidentMarker extends Marker {
       this._amber.lerp(ColorDef.red, (severity - 16) / 14.));
   }
 
+  public onMouseButton(ev: BeButtonEvent): boolean {
+    if (ev.button === BeButton.Data) {
+      if (ev.isDown) {
+        IModelApp.notifications.openMessageBox(MessageBoxType.LargeOk, &quot;severity = &quot; + this.severity, MessageBoxIconType.Information); // tslint:disable-line:no-floating-promises
+      }
+    }
+    return true;
+  }
+
   /** Create a new IncidentMarker */
-  constructor(location: XYAndZ, public severity: number, public id: number, icon: Promise&lt;HTMLImageElement&gt;) {
+  constructor(location: XYAndZ, public severity: number, public id: number, icon: HTMLImageElement) {
     super(location, IncidentMarker._size);
+    this._color = IncidentMarker.makeColor(severity); // color interpolated from severity
     this.setImage(icon); // save icon
     this.imageOffset = IncidentMarker._imageOffset; // move icon up by 30 pixels
     this.imageSize = IncidentMarker._imageSize; // 40x40
-    this.labelFont = &quot;italic 14px san-serif&quot;; // use italic so incidents look different than Clusters
     this.title = &quot;Severity: &quot; + severity + &quot;&lt;br&gt;Id: &quot; + id; // tooltip
     this.setScaleFactor({ low: .2, high: 1.4 }); // make size 20% at back of frustum and 140% at front of frustum (if camera is on)
+
+    // it would be better to use &quot;this.label&quot; here for a pure text string. We&apos;ll do it this way just to show that you can use HTML too
+    this.htmlElement = document.createElement(&quot;div&quot;);
+    this.htmlElement.innerHTML = id.toString(); // just put the id of the incident as text
+  }
+
+  public addMarker(context: DecorateContext) {
+    super.addMarker(context);
+    const builder = context.createGraphicBuilder(GraphicType.WorldDecoration);
+    const ellipse = Arc3d.createScaledXYColumns(this.worldLocation, context.viewport.rotation.transpose(), .2, .2, IncidentMarker._sweep360);
+    builder.setSymbology(ColorDef.white, this._color, 1);
+    builder.addArc(ellipse, false, false);
+    builder.setBlankingFill(this._color);
+    builder.addArc(ellipse, true, true);
+    context.addDecorationFromBuilder(builder);
   }
 }
 
 /** A Marker used to show a cluster of incidents */
 class IncidentClusterMarker extends Marker {
   private _clusterColor: string;
+  // public get wantImage() { return this._isHilited; }
 
   // draw the cluster as a white circle with an outline color based on what&apos;s in the cluster
   public drawFunc(ctx: CanvasRenderingContext2D) {
@@ -209,7 +247,7 @@ class IncidentClusterMarker extends Marker {
 /** A MarkerSet to hold incidents. This class supplies to `getClusterMarker` method to create IncidentClusterMarkers. */
 class IncidentMarkerSet extends MarkerSet&lt;IncidentMarker&gt; {
   protected getClusterMarker(cluster: Cluster&lt;IncidentMarker&gt;): Marker {
-    return IncidentClusterMarker.makeFrom(cluster.markers[0], cluster, IncidentMarkerDemo.warningSign);
+    return IncidentClusterMarker.makeFrom(cluster.markers[0], cluster, IncidentMarkerDemo.decorator!.warningSign);
   }
 }
 
@@ -218,54 +256,94 @@ class IncidentMarkerSet extends MarkerSet&lt;IncidentMarker&gt; {
  * with a random value between 1-30 for &quot;severity&quot;, and one of 5 possible icons.
  */
 export class IncidentMarkerDemo {
-  public static warningSign?: HTMLImageElement;
+  private _awaiting = false;
+  private _loading?: Promise&lt;any&gt;;
+  private _images: Array&lt;HTMLImageElement | undefined&gt; = [];
   private _incidents = new IncidentMarkerSet();
-  private static _decorator?: IncidentMarkerDemo; // static variable just so we can tell if the demo is active.
+  private static _numMarkers = 500;
+  public static decorator?: IncidentMarkerDemo; // static variable so we can tell if the demo is active.
 
-  public constructor(iModel: IModelConnection) {
-    const markerIcons = [
-      imageElementFromUrl(&quot;Hazard_biological.svg&quot;),
-      imageElementFromUrl(&quot;Hazard_electric.svg&quot;),
-      imageElementFromUrl(&quot;Hazard_flammable.svg&quot;),
-      imageElementFromUrl(&quot;Hazard_toxic.svg&quot;),
-      imageElementFromUrl(&quot;Hazard_tripping.svg&quot;),
+  public get warningSign() { return this._images[0]; }
+
+  // Load one image, logging if there was an error
+  private async loadOne(src: string) {
+    try {
+      return await imageElementFromUrl(src); // note: &quot;return await&quot; is necessary inside try/catch
+    } catch (err) {
+      const msg = &quot;Could not load image &quot; + src;
+      Logger.logError(&quot;IncidentDemo&quot;, msg);
+      console.log(msg); // tslint:disable-line: no-console
+    }
+    return undefined;
+  }
+
+  // load all images. After they&apos;re loaded, make the incident markers
+  private async loadAll(extents: AxisAlignedBox3d) {
+    const loads = [
+      this.loadOne(&quot;Warning_sign.svg&quot;), // must be first, see &quot;get warningSign()&quot; above
+      this.loadOne(&quot;Hazard_biological.svg&quot;),
+      this.loadOne(&quot;Hazard_electric.svg&quot;),
+      this.loadOne(&quot;Hazard_flammable.svg&quot;),
+      this.loadOne(&quot;Hazard_toxic.svg&quot;),
+      this.loadOne(&quot;Hazard_tripping.svg&quot;),
     ];
+    await (this._loading = Promise.all(loads)); // this is a member so we can tell if we&apos;re still loading
+    for (const img of loads)
+      this._images.push(await img);
 
-    if (undefined === IncidentMarkerDemo.warningSign)
-      imageElementFromUrl(&quot;Warning_sign.svg&quot;).then((image) =&gt; IncidentMarkerDemo.warningSign = image); // tslint:disable-line:no-floating-promises
-
-    const extents = iModel!.projectExtents;
+    const len = this._images.length;
     const pos = new Point3d();
-    for (let i = 0; i &lt; 500; ++i) {
+    for (let i = 0; i &lt; IncidentMarkerDemo._numMarkers; ++i) {
       pos.x = extents.low.x + (Math.random() * extents.xLength());
       pos.y = extents.low.y + (Math.random() * extents.yLength());
       pos.z = extents.low.z + (Math.random() * extents.zLength());
-      this._incidents.markers.add(new IncidentMarker(pos, 1 + Math.round(Math.random() * 29), i, markerIcons[i % markerIcons.length]));
+      const img = this._images[(i % len) + 1];
+      if (undefined !== img)
+        this._incidents.markers.add(new IncidentMarker(pos, 1 + Math.round(Math.random() * 29), i, img));
     }
+    this._loading = undefined;
+  }
+
+  public constructor(extents: AxisAlignedBox3d) {
+    this.loadAll(extents); // tslint:disable-line: no-floating-promises
   }
 
   /** We added this class as a ViewManager.decorator below. This method is called to ask for our decorations. We add the MarkerSet. */
   public decorate(context: DecorateContext) {
-    if (context.viewport.view.isSpatialView())
+    if (!context.viewport.view.isSpatialView())
+      return;
+
+    if (undefined === this._loading) {
       this._incidents.addDecoration(context);
+      return;
+    }
+
+    // if we&apos;re still loading, just mark this viewport as needing decorations when all loads are complete
+    if (!this._awaiting) {
+      this._awaiting = true;
+      this._loading.then(() =&gt; {
+        context.viewport.invalidateDecorations();
+        this._awaiting = false;
+      }).catch(() =&gt; undefined);
+    }
   }
 
   /** Turn the markers on and off. Each time it runs it creates a new random set of incidents. */
-  public static toggle(iModel: IModelConnection) {
-    if (undefined === IncidentMarkerDemo._decorator) {
-      // start the demo by creating the demo object and adding it as a ViewManager decorator.
-      IncidentMarkerDemo._decorator = new IncidentMarkerDemo(iModel);
-      IModelApp.viewManager.addDecorator(IncidentMarkerDemo._decorator);
+  public static toggle(extents: AxisAlignedBox3d) {
+    if (undefined === IncidentMarkerDemo.decorator) {
+      // start the demo by creating the IncidentMarkerDemo object and adding it as a ViewManager decorator.
+      IncidentMarkerDemo.decorator = new IncidentMarkerDemo(extents);
+      IModelApp.viewManager.addDecorator(IncidentMarkerDemo.decorator);
     } else {
       // stop the demo
-      IModelApp.viewManager.dropDecorator(IncidentMarkerDemo._decorator);
-      IncidentMarkerDemo._decorator = undefined;
+      IModelApp.viewManager.dropDecorator(IncidentMarkerDemo.decorator);
+      IncidentMarkerDemo.decorator = undefined;
     }
   }
 }</code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>09 July, 2019</span>
+                <span class='date-updated'>24 July, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

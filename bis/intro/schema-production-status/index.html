@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.1.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.2.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -123,10 +123,10 @@
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-production-status" class="table-of-contents-link">Schema Production Status</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/units" class="table-of-contents-link">BIS Schema Units</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/bis-schema-validation" class="table-of-contents-link">BIS Schema Validation</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/domains/" class="table-of-contents-link">BIS Schema Reference</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary" class="table-of-contents-link">BIS Glossary</a></li>
     </ul>
     <!-- TODO: The following are not linked in...?
-    ./domains/*
     ./intro/appendix-c-bis-domain-design-fundamentals.md
     -->
     <p>&#xA0;</p>
@@ -229,13 +229,24 @@
 <td><code>Deprecated</code></td>
 <td>(this value should not be used for iModels)</td>
 </tr>
-</tbody></table><p>The iModel&apos;s <code>ProductionStatus</code> setting is stored in the be_prop table as follows:
-| Column | Value |
-|--------|-------|
-| NameSpace |  &quot;dgn_Db&quot; |
-| Name | &quot;ProductionStatus&quot; |
-| StrData | &quot;Production&quot;, &quot;FieldTesting&quot; or &quot;NotForProduction&quot; |</p>
-<p>The <code>ProductionStatus</code> value of the iModel is set when the iModel is created.</p>
+</tbody></table><p>The iModel&apos;s <code>ProductionStatus</code> setting is stored in the be_prop table as follows:</p>
+<table class="table table-responsive"><tbody><tr>
+<th>Column</th>
+<th>Value</th>
+</tr>
+<tr>
+<td>NameSpace</td>
+<td>&quot;dgn_Db&quot;</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>&quot;ProductionStatus&quot;</td>
+</tr>
+<tr>
+<td>StrData</td>
+<td>&quot;Production&quot;, &quot;FieldTesting&quot; or &quot;NotForProduction&quot;</td>
+</tr>
+</tbody></table><p>The <code>ProductionStatus</code> value of the iModel is set when the iModel is created.</p>
 <h3 class="h-compatibility-of-schemas-for-imodels">Compatibility of Schemas for iModels<a id="compatibility-of-schemas-for-imodels" class="heading-anchor" href="#compatibility-of-schemas-for-imodels"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>At schema load time, the iModel technology confirms that the schema&apos;s <code>ProductionStatus</code> is compatible with the iModel&apos;s <code>ProductionStatus</code>. The compatibility of these settings is shown below:</p>
 <table class="table table-responsive"><tbody><tr>
@@ -256,26 +267,48 @@
 </tr>
 </tbody></table><p>The attempted loading of a schema that is not compatible will result in a schema load failure.</p>
 <h3 class="h-changing-of-imodel-productionstatus">Changing of iModel <code>ProductionStatus</code><a id="changing-of-imodel-productionstatus" class="heading-anchor" href="#changing-of-imodel-productionstatus"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>An iModel&apos;s <code>ProductionStatus</code> can conceptually be &quot;downgraded&quot; as follows:
-| iModel <code>ProductionStatus</code> | Compatible Downgraded <code>ProductionStatus</code> |
-|-------------------------|----------------------------------------|
-| <code>Production</code> | <code>FieldTesting</code>, <code>NotForProduction</code> |
-| <code>FieldTesting</code> | <code>NotForProduction</code> |
-| <code>NotForProduction</code> | (no further downgrade is possible) |</p>
-<p>In the future, the ability for a user to downgrade the <code>ProductionStatus</code> of an iModel will be provided.</p>
-<p>An iModel&apos;s <code>ProductionStatus</code> can conceptually be upgraded as follows:
-| Upgraded iModel <code>ProductionStatus</code> | Condition |
-|------------------------------------|-----------|
-| <code>Production</code> | No schemas of <code>ProductionStatus</code> <code>FieldTesting</code> or <code>NotForProduction</code> |
-| <code>FieldTesting</code> | No schemas of <code>ProductionStatus</code> <code>NotForProduction</code> |
-| <code>NotForProduction</code> | (not possible as upgrade) |</p>
-<p>In the future, the ability for a user to upgrade the <code>ProductionStatus</code> of an iModel will be provided.</p>
+<p>An iModel&apos;s <code>ProductionStatus</code> can conceptually be &quot;downgraded&quot; as follows:</p>
+<table class="table table-responsive"><tbody><tr>
+<th>iModel <code>ProductionStatus</code></th>
+<th>Compatible Downgraded <code>ProductionStatus</code></th>
+</tr>
+<tr>
+<td><code>Production</code></td>
+<td><code>FieldTesting</code>, <code>NotForProduction</code></td>
+</tr>
+<tr>
+<td><code>FieldTesting</code></td>
+<td><code>NotForProduction</code></td>
+</tr>
+<tr>
+<td><code>NotForProduction</code></td>
+<td>(no further downgrade is possible)</td>
+</tr>
+</tbody></table><p>In the future, the ability for a user to downgrade the <code>ProductionStatus</code> of an iModel will be provided.</p>
+<p>An iModel&apos;s <code>ProductionStatus</code> can conceptually be upgraded as follows:</p>
+<table class="table table-responsive"><tbody><tr>
+<th>Upgraded iModel <code>ProductionStatus</code></th>
+<th>Condition</th>
+</tr>
+<tr>
+<td><code>Production</code></td>
+<td>No schemas of <code>ProductionStatus</code> <code>FieldTesting</code> or <code>NotForProduction</code></td>
+</tr>
+<tr>
+<td><code>FieldTesting</code></td>
+<td>No schemas of <code>ProductionStatus</code> <code>NotForProduction</code></td>
+</tr>
+<tr>
+<td><code>NotForProduction</code></td>
+<td>(not possible as upgrade)</td>
+</tr>
+</tbody></table><p>In the future, the ability for a user to upgrade the <code>ProductionStatus</code> of an iModel will be provided.</p>
 <blockquote>
 <p>Next: <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/units'>BIS Schema Units</a></p>
 </blockquote>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>09 July, 2019</span>
+                <span class='date-updated'>24 July, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

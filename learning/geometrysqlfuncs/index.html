@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.1.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.2.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -96,6 +96,8 @@
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/presentation/" class="table-of-contents-link">Presentation</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ui/" class="table-of-contents-link">UI</a></li>
     </ul>
     <hr>
     <p>&#xA0;</p>
@@ -132,7 +134,7 @@ You will normally have to convert a returned ArrayBuffer to the appropriate geom
 type before you can work with it in script. See, for example, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range3d/fromarraybuffer'>Range3d.fromArrayBuffer</a>.</p>
 <h3 class="h-imodel_point">iModel_point<a id="imodel_point" class="heading-anchor" href="#imodel_point"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>A point in the iModel&apos;s Cartesian coordinate system. All coordinates are in meters. If the point represents a location in a 2D model, then the z-coordinate will be zero.
-@see <a href="#iModel_point_value">iModel_point_value</a>, <a href="#iModel_point_distance">iModel_point_distance</a>, <a href="#iModel_point_min_distance_to_bbox">iModel_point_min_distance_to_bbox</a></p>
+@see <a href="#imodel_point_value">iModel_point_value</a>, <a href="#imodel_point_distance">iModel_point_distance</a>, <a href="#imodel_point_min_distance_to_bbox">iModel_point_min_distance_to_bbox</a></p>
 <pre class="no-line-numbers"><code class="language-c">struct iModel_point
 {
 double x;   // The x-coordinate
@@ -141,7 +143,7 @@ double z;   // The z-coordinate
 };</code></pre>
 <h3 class="h-imodel_angles">iModel_angles<a id="imodel_angles" class="heading-anchor" href="#imodel_angles"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>An object that contains Yaw, Pitch, and Roll angles in degrees. If this object represents a rotation in a 2D model, then the pitch and roll members will be zero.
-@see <a href="#iModel_angles_value">iModel_angles_value</a>, <a href="#iModel_angles_maxdiff">iModel_angles_maxdiff</a></p>
+@see <a href="#imodel_angles_value">iModel_angles_value</a>, <a href="#imodel_angles_maxdiff">iModel_angles_maxdiff</a></p>
 <pre class="no-line-numbers"><code class="language-c">struct iModel_angles
 {
 double yaw;  // The Yaw angle in degrees
@@ -153,7 +155,7 @@ double roll; // The Yaw angle in degrees
 If the box represents a range in a 3-D model, then the box will have 8 corners and will have width(X), depth(Y), and height(Z).
 If the box represents a range in a 2-D model, then the box will still have 8 corners but the z-coordinates will be all be zero, and the height will be zero.
 All coordinates are in meters.
-@see <a href="#iModel_bbox_value">iModel_bbox_value</a>, <a href="#iModel_bbox_width">iModel_bbox_width</a>, <a href="#iModel_bbox_height">iModel_bbox_height</a>, <a href="#iModel_bbox_depth">iModel_bbox_depth</a>, <a href="#iModel_bbox_volume">iModel_bbox_volume</a>, <a href="#iModel_bbox_areaxy">iModel_bbox_areaxy</a>, <a href="#iModel_bbox_overlaps">iModel_bbox_overlaps</a>, <a href="#iModel_bbox_contains">iModel_bbox_contains</a>, <a href="#iModel_bbox_union">iModel_bbox_union</a>, <a href="#iModel_point_min_distance_to_bbox">iModel_point_min_distance_to_bbox</a></p>
+@see <a href="#imodel_bbox_value">iModel_bbox_value</a>, <a href="#imodel_bbox_width">iModel_bbox_width</a>, <a href="#imodel_bbox_height">iModel_bbox_height</a>, <a href="#imodel_bbox_depth">iModel_bbox_depth</a>, <a href="#imodel_bbox_volume">iModel_bbox_volume</a>, <a href="#imodel_bbox_areaxy">iModel_bbox_areaxy</a>, <a href="#imodel_bbox_overlaps">iModel_bbox_overlaps</a>, <a href="#imodel_bbox_contains">iModel_bbox_contains</a>, <a href="#imodel_bbox_union">iModel_bbox_union</a>, <a href="#imodel_point_min_distance_to_bbox">iModel_point_min_distance_to_bbox</a></p>
 <pre class="no-line-numbers"><code class="language-c">struct iModel_bbox
 {
 double XLow;  // The low X coordinate of the bounding box
@@ -166,7 +168,7 @@ double ZHigh; // The high Z coordinate of the bounding box
 <h3 class="h-imodel_placement">iModel_placement<a id="imodel_placement" class="heading-anchor" href="#imodel_placement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>An object that contains an origin and rotation angles, plus a bounding box.
 You can obtain an element&apos;s placement by selecting the placement column of the ElementGeom table.
-@see <a href="#iModel_placement_origin">iModel_placement_origin</a>, <a href="#iModel_placement_angles">iModel_placement_angles</a>, <a href="#iModel_placement_eabb">iModel_placement_eabb</a>, <a href="#iModel_placement_aabb">iModel_placement_aabb</a></p>
+@see <a href="#imodel_placement_origin">iModel_placement_origin</a>, <a href="#imodel_placement_angles">iModel_placement_angles</a>, <a href="#imodel_placement_eabb">iModel_placement_eabb</a>, <a href="#imodel_placement_aabb">iModel_placement_aabb</a></p>
 <pre class="no-line-numbers"><code class="language-c">struct iModel_placement
 {
 iModel_point origin;   // Origin
@@ -192,7 +194,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 </tr>
 <tr>
 <td>placement</td>
-<td><a href="#iModel_placement">iModel_placement</a></td>
+<td><a href="#imodel_placement">iModel_placement</a></td>
 <td>iModel_placement object to query</td>
 </tr>
 </tbody></table><table class="table table-responsive"><tbody><tr>
@@ -200,7 +202,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 <th>Description</th>
 </tr>
 <tr>
-<td><a href="#iModel_bbox">iModel_bbox</a></td>
+<td><a href="#imodel_bbox">iModel_bbox</a></td>
 <td>the bounding box</td>
 </tr>
 </tbody></table><h3 class="h-imodel_placement_eabb">iModel_placement_eabb<a id="imodel_placement_eabb" class="heading-anchor" href="#imodel_placement_eabb"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -213,7 +215,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 </tr>
 <tr>
 <td>placement</td>
-<td><a href="#iModel_placement">iModel_placement</a></td>
+<td><a href="#imodel_placement">iModel_placement</a></td>
 <td>iModel_placement object to query</td>
 </tr>
 </tbody></table><table class="table table-responsive"><tbody><tr>
@@ -221,7 +223,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 <th>Description</th>
 </tr>
 <tr>
-<td><a href="#iModel_bbox">iModel_bbox</a></td>
+<td><a href="#imodel_bbox">iModel_bbox</a></td>
 <td>the bounding box</td>
 </tr>
 </tbody></table><h3 class="h-imodel_placement_origin">iModel_placement_origin<a id="imodel_placement_origin" class="heading-anchor" href="#imodel_placement_origin"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -234,7 +236,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 </tr>
 <tr>
 <td>placement</td>
-<td><a href="#iModel_placement">iModel_placement</a></td>
+<td><a href="#imodel_placement">iModel_placement</a></td>
 <td>iModel_placement object to query</td>
 </tr>
 </tbody></table><table class="table table-responsive"><tbody><tr>
@@ -242,7 +244,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 <th>Description</th>
 </tr>
 <tr>
-<td><a href="#iModel_point">iModel_point</a></td>
+<td><a href="#imodel_point">iModel_point</a></td>
 <td>the origin in world coordinates</td>
 </tr>
 </tbody></table><h3 class="h-imodel_placement_angles">iModel_placement_angles<a id="imodel_placement_angles" class="heading-anchor" href="#imodel_placement_angles"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -255,7 +257,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 </tr>
 <tr>
 <td>placement</td>
-<td><a href="#iModel_placement">iModel_placement</a></td>
+<td><a href="#imodel_placement">iModel_placement</a></td>
 <td>iModel_placement object to query</td>
 </tr>
 </tbody></table><table class="table table-responsive"><tbody><tr>
@@ -263,7 +265,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 <th>Description</th>
 </tr>
 <tr>
-<td><a href="#iModel_angles">iModel_angles</a></td>
+<td><a href="#imodel_angles">iModel_angles</a></td>
 <td>the placement angles</td>
 </tr>
 </tbody></table><h3 class="h-imodel_angles-1">iModel_angles<a id="imodel_angles-1" class="heading-anchor" href="#imodel_angles-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -294,7 +296,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 <th>Description</th>
 </tr>
 <tr>
-<td><a href="#iModel_angles">iModel_angles</a></td>
+<td><a href="#imodel_angles">iModel_angles</a></td>
 <td>a iModel_angles object</td>
 </tr>
 </tbody></table><p><em>Example:</em></p>
@@ -333,7 +335,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 </tr>
 <tr>
 <td>angles</td>
-<td><a href="#iModel_angles">iModel_angles</a></td>
+<td><a href="#imodel_angles">iModel_angles</a></td>
 <td>iModel_angles object to query</td>
 </tr>
 <tr>
@@ -359,12 +361,12 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 </tr>
 <tr>
 <td>angle1</td>
-<td><a href="#iModel_angles">iModel_angles</a></td>
+<td><a href="#imodel_angles">iModel_angles</a></td>
 <td>iModel_angles object</td>
 </tr>
 <tr>
 <td>angle2</td>
-<td><a href="#iModel_angles">iModel_angles</a></td>
+<td><a href="#imodel_angles">iModel_angles</a></td>
 <td>iModel_angles object</td>
 </tr>
 </tbody></table><table class="table table-responsive"><tbody><tr>
@@ -418,7 +420,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 <th>Description</th>
 </tr>
 <tr>
-<td><a href="#iModel_bbox">iModel_bbox</a></td>
+<td><a href="#imodel_bbox">iModel_bbox</a></td>
 <td>a iModel_bbox object</td>
 </tr>
 </tbody></table><p><em>Example:</em></p>
@@ -457,7 +459,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 </tr>
 <tr>
 <td>bb</td>
-<td><a href="#iModel_bbox">iModel_bbox</a></td>
+<td><a href="#imodel_bbox">iModel_bbox</a></td>
 <td>bounding box</td>
 </tr>
 </tbody></table><table class="table table-responsive"><tbody><tr>
@@ -468,7 +470,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 <td>double</td>
 <td>the difference between the high and low X coordinates of the box, in meters.</td>
 </tr>
-</tbody></table><p>@see  <a href="#iModel_bbox_areaxy">iModel_bbox_areaxy</a></p>
+</tbody></table><p>@see  <a href="#imodel_bbox_areaxy">iModel_bbox_areaxy</a></p>
 <h3 class="h-imodel_bbox_height">iModel_bbox_height<a id="imodel_bbox_height" class="heading-anchor" href="#imodel_bbox_height"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <pre class="no-line-numbers"><code class="language-sql">iModel_bbox_height(bb)</code></pre>
 <p>Compute the &quot;height&quot; of a bounding box</p>
@@ -479,7 +481,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 </tr>
 <tr>
 <td>bb</td>
-<td><a href="#iModel_bbox">iModel_bbox</a></td>
+<td><a href="#imodel_bbox">iModel_bbox</a></td>
 <td>bounding box</td>
 </tr>
 </tbody></table><table class="table table-responsive"><tbody><tr>
@@ -500,7 +502,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 </tr>
 <tr>
 <td>bb</td>
-<td><a href="#iModel_bbox">iModel_bbox</a></td>
+<td><a href="#imodel_bbox">iModel_bbox</a></td>
 <td>bounding box</td>
 </tr>
 </tbody></table><table class="table table-responsive"><tbody><tr>
@@ -511,7 +513,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 <td>double</td>
 <td>the difference between the high and low Y coordinates of the box, in meters.</td>
 </tr>
-</tbody></table><p>@see  <a href="#iModel_bbox_areaxy">iModel_bbox_areaxy</a></p>
+</tbody></table><p>@see  <a href="#imodel_bbox_areaxy">iModel_bbox_areaxy</a></p>
 <h3 class="h-imodel_bbox_volume">iModel_bbox_volume<a id="imodel_bbox_volume" class="heading-anchor" href="#imodel_bbox_volume"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <pre class="no-line-numbers"><code class="language-sql">iModel_bbox_volume(bb)</code></pre>
 <p>Compute the volume of the bounding box</p>
@@ -522,7 +524,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 </tr>
 <tr>
 <td>bb</td>
-<td><a href="#iModel_bbox">iModel_bbox</a></td>
+<td><a href="#imodel_bbox">iModel_bbox</a></td>
 <td>bounding box</td>
 </tr>
 </tbody></table><table class="table table-responsive"><tbody><tr>
@@ -533,7 +535,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 <td>double</td>
 <td>Its volume in cubic meters</td>
 </tr>
-</tbody></table><p>@see  <a href="#iModel_bbox_areaxy">iModel_bbox_areaxy</a></p>
+</tbody></table><p>@see  <a href="#imodel_bbox_areaxy">iModel_bbox_areaxy</a></p>
 <h3 class="h-imodel_bbox_areaxy">iModel_bbox_areaxy<a id="imodel_bbox_areaxy" class="heading-anchor" href="#imodel_bbox_areaxy"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <pre class="no-line-numbers"><code class="language-sql">iModel_bbox_areaxy(bb)</code></pre>
 <p>Compute the depth times the width of a bounding box</p>
@@ -544,7 +546,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 </tr>
 <tr>
 <td>bb</td>
-<td><a href="#iModel_bbox">iModel_bbox</a></td>
+<td><a href="#imodel_bbox">iModel_bbox</a></td>
 <td>bounding box</td>
 </tr>
 </tbody></table><table class="table table-responsive"><tbody><tr>
@@ -555,7 +557,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 <td>double</td>
 <td>the depth of  bb times its width; or, an error if the input object is not a iModel_bbox</td>
 </tr>
-</tbody></table><p>@see  <a href="#iModel_bbox_volume">iModel_bbox_volume</a>,  <a href="#iModel_bbox_depth">iModel_bbox_depth</a>, <a href="#iModel_bbox_width">iModel_bbox_width</a></p>
+</tbody></table><p>@see  <a href="#imodel_bbox_volume">iModel_bbox_volume</a>,  <a href="#imodel_bbox_depth">iModel_bbox_depth</a>, <a href="#imodel_bbox_width">iModel_bbox_width</a></p>
 <p><em>Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">    // Compute the largest element area in the X-Y plane.
     let maxArea: number = 0;
@@ -591,12 +593,12 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 </tr>
 <tr>
 <td>bb1</td>
-<td><a href="#iModel_bbox">iModel_bbox</a></td>
+<td><a href="#imodel_bbox">iModel_bbox</a></td>
 <td>first bounding box</td>
 </tr>
 <tr>
 <td>bb2</td>
-<td><a href="#iModel_bbox">iModel_bbox</a></td>
+<td><a href="#imodel_bbox">iModel_bbox</a></td>
 <td>second bounding box</td>
 </tr>
 </tbody></table><table class="table table-responsive"><tbody><tr>
@@ -607,7 +609,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 <td>int</td>
 <td>1 if the boxes overlap or 0 if not.</td>
 </tr>
-</tbody></table><p>@see  <a href="#iModel_bbox_contains">iModel_bbox_contains</a></p>
+</tbody></table><p>@see  <a href="#imodel_bbox_contains">iModel_bbox_contains</a></p>
 <h3 class="h-imodel_bbox_contains">iModel_bbox_contains<a id="imodel_bbox_contains" class="heading-anchor" href="#imodel_bbox_contains"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <pre class="no-line-numbers"><code class="language-sql">iModel_bbox_contains(bb_outer,bb_inner)</code></pre>
 <p>Determine of the first bounding box contains the second bounding box</p>
@@ -618,12 +620,12 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 </tr>
 <tr>
 <td>bb_outer</td>
-<td><a href="#iModel_bbox">iModel_bbox</a></td>
+<td><a href="#imodel_bbox">iModel_bbox</a></td>
 <td>containing bounding box</td>
 </tr>
 <tr>
 <td>bb_inner</td>
-<td><a href="#iModel_bbox">iModel_bbox</a></td>
+<td><a href="#imodel_bbox">iModel_bbox</a></td>
 <td>contained bounding box</td>
 </tr>
 </tbody></table><table class="table table-responsive"><tbody><tr>
@@ -634,7 +636,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 <td>int</td>
 <td>1 if bb_outer contains bb_inner or 0 if not.</td>
 </tr>
-</tbody></table><p>@see  <a href="#iModel_bbox_overlaps">iModel_bbox_overlaps</a></p>
+</tbody></table><p>@see  <a href="#imodel_bbox_overlaps">iModel_bbox_overlaps</a></p>
 <h3 class="h-imodel_bbox_value">iModel_bbox_value<a id="imodel_bbox_value" class="heading-anchor" href="#imodel_bbox_value"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <pre class="no-line-numbers"><code class="language-sql">iModel_bbox_value(bb,member)</code></pre>
 <p>Get a member of a iModel_bbox object</p>
@@ -645,7 +647,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 </tr>
 <tr>
 <td>bb</td>
-<td><a href="#iModel_bbox">iModel_bbox</a></td>
+<td><a href="#imodel_bbox">iModel_bbox</a></td>
 <td>bounding box</td>
 </tr>
 <tr>
@@ -671,14 +673,14 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 </tr>
 <tr>
 <td>X1</td>
-<td><a href="#iModel_bbox">iModel_bbox</a></td>
+<td><a href="#imodel_bbox">iModel_bbox</a></td>
 </tr>
 </tbody></table><table class="table table-responsive"><tbody><tr>
 <th>Return Type</th>
 <th>Description</th>
 </tr>
 <tr>
-<td><a href="#iModel_bbox">iModel_bbox</a></td>
+<td><a href="#imodel_bbox">iModel_bbox</a></td>
 <td>a bounding box that contains the aggregated range.</td>
 </tr>
 </tbody></table><p><em>Example:</em></p>
@@ -717,12 +719,12 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 </tr>
 <tr>
 <td>point1</td>
-<td><a href="#iModel_point">iModel_point</a></td>
+<td><a href="#imodel_point">iModel_point</a></td>
 <td>point</td>
 </tr>
 <tr>
 <td>point2</td>
-<td><a href="#iModel_point">iModel_point</a></td>
+<td><a href="#imodel_point">iModel_point</a></td>
 <td>second point</td>
 </tr>
 </tbody></table><table class="table table-responsive"><tbody><tr>
@@ -743,12 +745,12 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 </tr>
 <tr>
 <td>point</td>
-<td><a href="#iModel_point">iModel_point</a></td>
+<td><a href="#imodel_point">iModel_point</a></td>
 <td>point</td>
 </tr>
 <tr>
 <td>bbox</td>
-<td><a href="#iModel_bbox">iModel_bbox</a></td>
+<td><a href="#imodel_bbox">iModel_bbox</a></td>
 <td>bounding box</td>
 </tr>
 </tbody></table><table class="table table-responsive"><tbody><tr>
@@ -769,7 +771,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 </tr>
 <tr>
 <td>point</td>
-<td><a href="#iModel_point">iModel_point</a></td>
+<td><a href="#imodel_point">iModel_point</a></td>
 <td>point to query</td>
 </tr>
 <tr>
@@ -795,7 +797,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
 </tr>
 <tr>
 <td>X1</td>
-<td><a href="#iModel_bbox">iModel_bbox</a></td>
+<td><a href="#imodel_bbox">iModel_bbox</a></td>
 </tr>
 </tbody></table><p><em>Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">  public static queryBarriersHitByRobot(iModelDb: IModelDb, rid: Id64String): Id64String[] {
@@ -816,7 +818,7 @@ Also see <a href="https://sqlite.org/lang_aggfunc.html" target="_blank">SQLite A
   }</code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>09 July, 2019</span>
+                <span class='date-updated'>24 July, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

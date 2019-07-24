@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.1.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.2.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -96,6 +96,8 @@
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/presentation/" class="table-of-contents-link">Presentation</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ui/" class="table-of-contents-link">UI</a></li>
     </ul>
     <hr>
     <p>&#xA0;</p>
@@ -137,7 +139,7 @@
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/primitivetool'>PrimitiveTool</a> is used for graphical interactions with an iModel.<ul>
 <li>When invoked, they become the active tool, reacting to user input such as data points, mouse movements, touch, keystrokes, and resets.</li>
 <li>Primitive tools are the most common type of tool implemented by iModel.js applications. Refer <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/frontend/primitivetools'>here</a> for guidelines on writing Primitive tools.</li>
-<li>The frontend package includes a <a href="#select-tool">Select Tool</a> to fill the role of a <em>default</em> Primitive tool.</li>
+<li>The frontend package includes a <a href="#selection-tool">Select Tool</a> to fill the role of a <em>default</em> Primitive tool.</li>
 </ul>
 </li>
 </ul>
@@ -152,7 +154,7 @@
 <li>If the active tool does not handle a particular event, it <em>may</em> be directed to the <a href="#idle-tool">Idle Tool</a>.</li>
 </ul>
 <p>As mentioned above a View tool or Input Collector can temporarily interrupt a Primitive tool. The ToolAdmin handles that sequence transparently such that the Primitive tool does not have to be aware of the interruption.</p>
-<p>A Primitive tool ends when another Primitive tool is run. The ToolAdmin establishes <a href="#select-tool">Select Tool</a> as the <em>default</em> Primitive tool. When a default tool is provided, it becomes the active tool when the iModel.js application starts or a Primitive tool wishes to exit. Having a default tool is optional, an application can instead choose to have the <a href="#idle-tool">Idle Tool</a> handle input that would normally only be directed to the active tool, like data points and resets.</p>
+<p>A Primitive tool ends when another Primitive tool is run. The ToolAdmin establishes <a href="#selection-tool">Select Tool</a> as the <em>default</em> Primitive tool. When a default tool is provided, it becomes the active tool when the iModel.js application starts or a Primitive tool wishes to exit. Having a default tool is optional, an application can instead choose to have the <a href="#idle-tool">Idle Tool</a> handle input that would normally only be directed to the active tool, like data points and resets.</p>
 <h2 class="h-idle-tool">Idle Tool<a id="idle-tool" class="heading-anchor" href="#idle-tool"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The standard iModel.js <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/idletool'>IdleTool</a> is a subclass of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool'>InteractiveTool</a> that looks for inputs that initiate View tools.</p>
 <p>For desktop computers, viewing operations are associated with the middle button, which is not typically handled by the active tool. Additionally, if the application chooses to not have a default tool, when no tool is active, data and reset events will also be directed to the Idle tool. Default mouse event handling is as follows:</p>
@@ -175,7 +177,7 @@
 <p>iModel.js also provides <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/selectionset/selectiontool'>SelectionTool</a>. SelectionTool is a subclass of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/primitivetool'>PrimitiveTool</a> for creating and managing a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/selectionset/selectionset'>SelectionSet</a> from existing elements. A SelectionSet identifies elements of particular interest for examining properties and other interactions.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>09 July, 2019</span>
+                <span class='date-updated'>24 July, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
