@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.2.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.3.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -116,7 +116,7 @@
     </nav>    <div class='documentation-main'>
         <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/">frontend</a> > BuildingIModelJsModules</div>
-            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/frontend/BuildingIModelJsModules.md">Edit this page</a></div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/learning/frontend/BuildingIModelJsModules.md">Edit this page</a></div>
             <h1 id="building imodel.js modules">Building iModel.js Modules</h1>
 <p>This article describes the tools provided by iModel.js to build frontend modules. In this context, frontend modules are JavaScript files (transpiled and webpacked from TypeScript source files) that are intended to run in either a browser or in an Electron application. Some background on iModel.js modules is provided in <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/frontend/modularizingimodeljs'>Modularizing iModel.js</a>.</p>
 <h2 class="h-types-of-modules">Types of Modules<a id="types-of-modules" class="heading-anchor" href="#types-of-modules"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
@@ -128,7 +128,7 @@
 </li>
 <li><p>Plugins. A plugin is a module that is designed to be loaded into an iModel.js application in a browser or Electron application that is already executing. The Plugin registers with the iModel.js system, and then has full access to the iModel.js API. A Plugin can be used in multiple iModel.js applications. See the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/frontend/plugins'>iModel.js Plugins</a> article for more information.</p>
 </li>
-<li><p>Web Workers. <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers" target="_blank">Web Workers</a> are also loaded at runtime, but they run in a separate JavaScript thread in the browser or Electron. Web Workers are used to offload computationally intensive tasks from the main JavaScript thread. They are restricted in the APIs that are available to them, and in particular, they are not allowed access to iModel.js APIs.</p>
+<li><p>Web Workers. <a href="https://developer.mozilla.org/docs/Web/API/Web_Workers_API/Using_web_workers" target="_blank">Web Workers</a> are also loaded at runtime, but they run in a separate JavaScript thread in the browser or Electron. Web Workers are used to offload computationally intensive tasks from the main JavaScript thread. They are restricted in the APIs that are available to them, and in particular, they are not allowed access to iModel.js APIs.</p>
 </li>
 </ol>
 <h2 class="h-copying-vs-symlinking">Copying vs Symlinking<a id="copying-vs-symlinking" class="heading-anchor" href="#copying-vs-symlinking"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
@@ -241,7 +241,14 @@
     ...
     }
    }</code></pre>
-<p>In this case, there are two optional properties.  &quot;styleSheets&quot; is a boolean property that is usable for all module types. If true, it indicates that webpack should add processing for .scss files.  &quot;htmlTemplate&quot; is a property used only by application modules. It must point to the source for an html template file that is processed by webpack to encode the system modules required for the application and their versions (information that is used at runtime to load those system modules). For example, here is a typical index.html file:</p>
+<p>The &quot;styleSheets&quot; property is optional for all module types. It is a boolean that, if true, indicates that webpack should add processing for .scss files</p>
+<p>When building a Plugin module, there is one required property &quot;build&quot;, and one optional property, &quot;sign&quot;. In the application module case, there is an optional property, &quot;htmlTemplate&quot;. These are described below.</p>
+<h4 class="h-the-webpackbuild-property">The &quot;webpack.build&quot;  property<a id="the-webpackbuild-property" class="heading-anchor" href="#the-webpackbuild-property"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>The &quot;webpack.build&quot; property applies only to Plugin modules. Building Plugin modules invokes an extra step that packages all the files required by the Plugin into a <a href="https://en.wikipedia.org/wiki/Tar_(computing" target="_blank">tar file</a>). The files that are to be &quot;tarred&quot; are assembled into the directory specified in the webpack.build property. The output from <a href="#copying-source-resources">copying the source resource files</a> should be put into that directory. The contents of the build directory are tarred into a file with the base name of &quot;webpack.bundleName&quot; and the extension &quot;.plugin.tar&quot;.</p>
+<h4 class="h-the-webpacksign-property">The &quot;webpack.sign&quot;  property<a id="the-webpacksign-property" class="heading-anchor" href="#the-webpacksign-property"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>The &quot;webpack.sign&quot; property applies only to Plugin modules. If present and correct, it directs the script to digitally sign the plugin. The &quot;sign&quot; property contains two required properties, &quot;publicKey&quot; and &quot;privateKey&quot;. The &quot;publicKey&quot; property is set to an environment variable that is a file that contains a public key &quot;.pem&quot; file. Similarly, the &quot;privateKey&quot; property is set to an environment variable that is a file that contains the corresponding private key &quot;.pem&quot; file. The private key is used to sign the file, and the public key is incorporated into the plugin&apos;s tar file and used to verify the signature.</p>
+<h4 class="h-the-webpackhtmltemplate-property">The &quot;webpack.htmlTemplate&quot; property<a id="the-webpackhtmltemplate-property" class="heading-anchor" href="#the-webpackhtmltemplate-property"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>The third optional property, &quot;htmlTemplate&quot; is used only by application modules. It must point to the source for an html template file that is processed by webpack to encode the system modules required for the application and their versions (information that is used at runtime to load those system modules). For example, here is a typical index.html file:</p>
 <pre class="no-line-numbers"><code class="language-html">index.html
 
 &lt;!doctype html&gt;
@@ -288,9 +295,19 @@
 &lt;/html&gt;</code></pre>
 <p>As you can see from the comments in the file, the script tag that invokes IModelJsLoader contains a template that is replaced by webpack with a list of iModel.js system modules that are needed and their versions.</p>
 <h3 class="h-copying-external-modules-to-the-web-resources-directory">Copying External Modules to the Web resources directory<a id="copying-external-modules-to-the-web-resources-directory" class="heading-anchor" href="#copying-external-modules-to-the-web-resources-directory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>For application modules only, buildIModelJsModule copies or symlinks all the external modules that are needed into the &quot;dest&quot; directory of the webpack property. No specific buildModule properties are needed for this step.</p>
+<p>For application modules only, buildIModelJsModule copies or symlinks all the external modules that are needed into the &quot;dest&quot; directory of the webpack property. In some cases, an application itself doesn&apos;t use any exports from certain external modules (e.g., imodeljs-markup), but it might want to allow Plugins to access such modules. Those modules should be specified in an &quot;extraSystemModules&quot; property of iModelJs.buildModule, in the same format as the &quot;dependencies&quot; property:</p>
+<pre class="no-line-numbers"><code class="language-json">   &quot;iModelJs&quot;: {
+    &quot;buildModule&quot;: {
+      &quot;type&quot;: &quot;application&quot;,
+      ...
+      &quot;extraSystemModules&quot;: {
+        &quot;@bentley/imodeljs-markup&quot;: &quot;1.2.0-dev.26&quot;
+      },
+    ...
+    }
+   }</code></pre>
 <h3 class="h-building-submodules-in-the-same-package">Building Submodules in the same package<a id="building-submodules-in-the-same-package" class="heading-anchor" href="#building-submodules-in-the-same-package"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>Sometimes, it might be desirable to put certain submodules, such as Plugins or Webworkers, in the same package as the application itself. The buildImodelJsModule script addresses this requirement through the use of a subModules property. It is an array of objects, each of which has &quot;dest&quot;, &quot;entry&quot;,  and &quot;bundleName&quot; properties. Optionally, there can be a &quot;type&quot; property that can have the value &quot;plugin&quot; (the default), &quot;webworker&quot;, or &quot;system&quot;. Another optional property, &quot;styleSheets&quot;, can appear as in the &quot;webpack&quot; property above. For example, the following plugins property specifies that a MeasurePoints plugin is built alongside the application.</p>
+<p>Sometimes, it might be desirable to put certain submodules, such as Plugins or Webworkers, in the same package as the application itself. The buildImodelJsModule script addresses this requirement through the use of a subModules property. It is an array of objects, each of which has &quot;dest&quot;, &quot;entry&quot;,  and &quot;bundleName&quot; properties. Optionally, there can be a &quot;type&quot; property that can have the value &quot;plugin&quot; (the default), &quot;webworker&quot;, or &quot;system&quot;. Another optional property, &quot;styleSheets&quot;, can appear as in the &quot;webpack&quot; property above. For example, the following plugins property specifies that a MeasurePoints plugin is built alongside the application. There can also be a &quot;sign&quot; property, as documented above in the <a href="#Webpacking">Webpacking</a> section</p>
 <pre class="no-line-numbers"><code class="language-json">  &quot;iModelJs&quot;: {
     &quot;buildModule&quot;: {
       &quot;type&quot;: &quot;application&quot;,
@@ -353,7 +370,7 @@ usage: rush build [-h] [-p COUNT] [-t PROJECT1]
 
 This command is similar to &quot;rush rebuild&quot;, except that &quot;rush build&quot; performs an incremental build. In other words, it only builds projects whose source files have changed since the last successful build. The analysis requires a Git working tree, and only considers source files that are tracked by Git and whose path is under the project folder. (For more details about this algorithm, see the documentation for the &quot;package-deps-hash&quot; NPM package.)
 
-The incremental build state is tracked in a file &quot;package-deps.json&quot; whichshould NOT be added to Git. The build command is tracked by the &quot;arguments&quot; field in this JSON file; a full rebuild is forced whenever the command has changed (e.g. &quot;--production&quot; or not).
+The incremental build state is tracked in a file &quot;package-deps.json&quot; which should NOT be added to Git. The build command is tracked by the &quot;arguments&quot; field in this JSON file; a full rebuild is forced whenever the command has changed (e.g. &quot;--production&quot; or not).
 
 Optional arguments:
   -h, --help            Show this help message and exit.
@@ -386,7 +403,7 @@ Optional arguments:
                         modules. The default value is &quot;0&quot;.</code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>29 July, 2019</span>
+                <span class='date-updated'>13 August, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -462,7 +479,21 @@ Optional arguments:
                             <a class='title solo-title menu-text' href="#copying-source-resources">Copying Source Resources</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#webpacking">Webpacking</a>
+                            <a data-target="#inner-nav-webpacking" class='title' href="#webpacking"/>
+                            <b class='dropdown-menu-title menu-text'>Webpacking</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-webpacking" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#the-webpackbuild-property">The "webpack.build"  property</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#the-webpacksign-property">The "webpack.sign"  property</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#the-webpackhtmltemplate-property">The "webpack.htmlTemplate" property</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#copying-external-modules-to-the-web-resources-directory">Copying External Modules to the Web resources directory</a>

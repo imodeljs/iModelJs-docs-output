@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hosting iModel.js Plugins on an External Web Server - iModel.js</title>
+    <meta name="og:title" content="Hosting iModel.js Plugins on an External Web Server - iModel.js">
+    <meta name="twitter:title" content="Hosting iModel.js Plugins on an External Web Server - iModel.js">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
+
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
+    <span id="contentLoader">
+        <p>Woah! This page has a great deal of content... Give us a second to load it.</p>
+    </span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+
+
+
+        <header id="main-header">
+            <div class='nav-header-container'>
+                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                    <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo-small" class="site-logo-small" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-icon.svg" style="display:none;"/> 
+                    </a>
+                    <button class="navbar-toggler no-user-select mr-auto" type="button" data-toggle="collapse" data-target="#navbar5">
+                        <span class="navbar-toggler-header"></span>
+                    </button>
+                    <ul class="navbar-nav ml-auto pr-0 nav-search">
+                        <span class='search-bar'>
+                          <li>
+                            <div id='search-container'>
+                            </div>
+                          </li>
+                          <script>
+                            (function() {
+                              var cx = '018053174497532353467:v_gnrjjlqwc';
+                              var gcse = document.createElement('script');
+                              gcse.type = 'text/javascript';
+                              gcse.async = true;
+                              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                              var s = document.getElementsByTagName('script')[0];
+                              s.parentNode.insertBefore(gcse, s);
+                            })();
+                          </script>
+                          <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+                        </span>
+                    </ul>
+                    <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
+                        <ul class="navbar-nav mb-0" id="doc-site-tabs">
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.3.0</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+<div id='main-wrapper'>
+    <nav id='sidebar'>
+        <div id='table-of-contents' class="custom-scrollbar">
+            <div id="dismiss">
+                <i id="dismiss-arrow" class="icon icon-chevron-left no-user-select"></i>
+            </div>
+            <hr id="dismiss-hr" class='sm-only'>
+            <ul id='main-navigation-list'>
+                <html><head></head><body><h3 id="the imodel.js library"><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/" class="table-of-contents-link">The iModel.js Library</a></h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/" class="table-of-contents-link">Frontend</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/backend/" class="table-of-contents-link">Backend</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/common/" class="table-of-contents-link">Common</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/geometry/" class="table-of-contents-link">Geometry</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/presentation/" class="table-of-contents-link">Presentation</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ui/" class="table-of-contents-link">UI</a></li>
+    </ul>
+    <hr>
+    <p>&#xA0;</p>
+    <h3 id="helpful links">Helpful links</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./learning/glossary" class="table-of-contents-link">Glossary</a></li>
+    </ul>
+    </body></html>
+            </ul>
+        </div>
+    </nav>    <div class='documentation-main'>
+        <article id="main" class="main-content">
+            <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/">frontend</a> > HostingPlugins</div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/learning/frontend/HostingPlugins.md">Edit this page</a></div>
+            <h1 id="hosting imodel.js plugins on an external web server">Hosting iModel.js Plugins on an External Web Server</h1>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/frontend/plugins'>Plugins</a> can be hosted on the same web server that hosts the iModel.js application, but quite often a user wants to run a plugin in an application hosted by a web server that he or she does not control. In that case, the plugin can be hosted on a different web server (one that the user does control, so the appropriate files can be placed on it). A limitation is that the web server must allow <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing" target="_blank">CORS</a> (Cross Origin Resource Sharing) from the web origin where the iModel.js application is hosted. For example, if a Plugin is to be run in Bentley&apos;s Design Review, the web server hosting the Plugin must allow CORS requests from bentley.com. See <a href="#cors-considerations">CORS considerations</a> for more information.</p>
+<p>A Plugin that is hosted on an external web server may require a few source code modifications. See <a href="#source-code-modifications">Source Code Modifications</a> for details.</p>
+<h2 class="h-hosting-the-plugin">Hosting the Plugin<a id="hosting-the-plugin" class="heading-anchor" href="#hosting-the-plugin"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>As mentioned in <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/frontend/buildingimodeljsmodules'>BuildingIModelJsModules</a>, when a Plugin is built, a directory structure is created that contains the various files associated with the Plugin, and a separate <a href="https://en.wikipedia.org/wiki/Tar_%28computing%29" target="_blank">tar file</a> that packages all plugin resources into one file is also created. Either the build directory or the tar file can be used to install the files on the hosting web server. Below, we discuss a few scenarios that you may encounter.</p>
+<h3 class="h-1--developing-the-plugin">1 - Developing the Plugin<a id="1--developing-the-plugin" class="heading-anchor" href="#1--developing-the-plugin"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h4 class="h-1a--building-the-target-application-locally">1a - Building the Target Application Locally<a id="1a--building-the-target-application-locally" class="heading-anchor" href="#1a--building-the-target-application-locally"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>If you are building the application that is hosting the Plugin, then the easiest way to test a Plugin that is to be hosted on an external web server is to run two instances of an Express web server. An example server is included in the iModelJs source code, and is available from npm as @bentley/imodeljs-webserver. In a typical test setup, you might deliver the application resources from a webserver with address localhost:3000 and the Plugin from a webserver with address localhost:4000.</p>
+<p>To do that, add these two lines to the &quot;scripts&quot; property of your application&apos;s package.json:</p>
+<pre class="no-line-numbers"><code class="language-json">  &quot;scripts&quot;: {
+  ...
+    &quot;start:webserver&quot;: &quot;node ./node_modules/@bentley/imodeljs-webserver/lib/WebServer.js --port=3000 --resources=./lib/webresources/&quot;,
+    &quot;start:pluginserver&quot;: &quot;node ./node_modules/@bentley/imodeljs-webserver/lib/WebServer.js --port=4000 --resources=./lib/pluginserver/&quot;,
+  ...
+  }</code></pre>
+<p>The start:webserver entry starts the web server for the target application, assuming that it is built into the lib/webresources directory by the buildIModelJsModule script. The second line starts the web server for Plugins. The origin of that webserver is the lib/pluginserver directory. In that directory, you must create an imjs_plugins subdirectory. External Plugins are loaded from a directory with a relative path from the web server origin of imjs_plugins/\&lt;pluginName&gt;.</p>
+<p>Now, if you are building a plugin called myPlugin in a directory such as D:\jsprojects\myPlugin, and you configure buildIModelJsModules to build it to ./lib/build, you could symbolically link the build directory of the Plugin to the corresponding directory in the imjs_plugins directory. For example, in Windows:</p>
+<pre><code>cd lib\pluginserver\imjs_plugins
+mklink /d myPlugin d:\jsprojects\myPlugin\lib\build</code></pre><p>Now you can start the two web servers:</p>
+<pre><code>npm run start:webserver
+npm run start:pluginserver</code></pre><p>Open a web browser, navigate to localhost:3000, and once your application is running, you should be able to start your Plugin by calling PluginAdmin(&quot;localhost:4000/myPlugin). If you are running the application built for development, the browser&apos;s debugging tools will find the source map for your application and for your Plugin.</p>
+<p>Since you made a symbolic link to the build directory, there is no need to copy files when you make changes in myPlugin. Simply rebuild it using buildIModelJsModule and the changes will be reflected in the web server. There is no need to restart either web server, simple reload the application from localhost:3000 and load the plugin again.</p>
+<h4 class="h-1b--target-application-on-a-web-server">1b - Target Application on a web server.<a id="1b--target-application-on-a-web-server" class="heading-anchor" href="#1b--target-application-on-a-web-server"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>If you are developing a Plugin for an application that is hosted on the internet, rather than locally, you can still use web server running on your own computer to deliver the Plugin. In that case, you proceed as above, except you add the script to start the web server in the Plugin&apos;s package.json rather than that of the application. Put @bentley/imodeljs-webserver into the &quot;devDependencies&quot; in your Plugin&apos;s package.json, and add this line to your &quot;scripts&quot; property:</p>
+<pre class="no-line-numbers"><code class="language-json">  &quot;scripts&quot;: {
+  ...
+    &quot;start:pluginserver&quot;: &quot;node ./node_modules/@bentley/imodeljs-webserver/lib/WebServer.js --port=4000 --resources=./lib/pluginserver/&quot;,
+  ...
+  }</code></pre>
+<p>Create the lib/pluginserver/imjs_plugins directory, and symbolically link the myPlugin directory to the lib/build directory as before.</p>
+<p>The same call to PluginAdmin as step 1a is used to start the Plugin.</p>
+<p>Note: The technique of running the plugin web server from the Plugin directory (as used in Scenario 1b) can also be used in Scenario 1a, but the technique of running the plugin web server from the application directory (as used in Scenario 1a) allows multiple Plugins to be delivered from the plugin web server.</p>
+<p>Note: If you are using @bentley/imodeljs-webserver to deliver your plugin, you do not have to worry about CORS issues - it is set up to permit CORS requests from any origin.</p>
+<h3 class="h-2--deploying-the-plugin-to-an-internet-web-server">2 - Deploying the Plugin to an internet web server<a id="2--deploying-the-plugin-to-an-internet-web-server" class="heading-anchor" href="#2--deploying-the-plugin-to-an-internet-web-server"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>The mechanics of installing the Plugin to a real internet web server will vary according to the web server in use and the mechanics of administering the web server. Often, you can use the tar file created while building the Plugin to simplify moving the files to the web server.</p>
+<p>The requirements for a Plugin web server are:</p>
+<ul>
+<li>It must have an imjs_plugins directory from its resource root.</li>
+<li>It must allow Cross Origin requests (CORS) from the origin of the web server that delivers the application(s) that are to host the Plugin.</li>
+<li>Each Plugin that it is to deliver is put into a subdirectory of imjs_plugin that has the same name as the Plugin.</li>
+<li>The directory structure and files under the subdirectory structure must mirror the directory structure built by buildIModelJsModule (the directory specified by the <code>iModeljs.buildModule.webpack.build</code> property of package.json). That directory structure will be created if you extract the Plugin tarfile.</li>
+</ul>
+<h2 class="h-cors-considerations">CORS Considerations<a id="cors-considerations" class="heading-anchor" href="#cors-considerations"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>When a Plugin is started by an iModel.js application, resources such as json files, javascript files, localization files, images, etc., get loaded from the web server that hosts the Plugin. When the Plugin is hosted on the same web server as the application itself, that is not a problem because all those resources are coming from the same origin. But when the Plugin is hosted by an external web server, those resource requests are &quot;Cross Origin&quot; resource requests, and therefore the browser requires that the Plugin web server specifically allow such requests.</p>
+<p>The technique for administering a web server to allow CORS requests depends on the particular web server.</p>
+<p>Javascript Express-based web servers are not externally administered. The programmer must install middleware to allow CORS.</p>
+<p>For Apache2 web servers, we have found that creating an .htaccess file in the imjs_plugins directory and putting these lines into it has worked (although there is a lot of variation between Apache2 installations, so your mileage may vary):</p>
+<p>.htaccess contents:</p>
+<pre><code># From https://stackoverflow.com/questions/14467673/enable-cors-in-htaccess
+
+# Enable cross domain access control
+Header always set Access-Control-Allow-Origin &quot;*&quot;
+Header always set Access-Control-Allow-Methods &quot;GET, POST, PUT, DELETE, OPTIONS&quot;
+Header always set Access-Control-Allow-Headers &quot;x-test-header, Origin, X-Requested-With, Content-Type, Accept&quot;
+
+RewriteEngine On
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ blank.php [QSA,L]</code></pre><p>The &quot;*&quot; in the first &quot;Header always&quot; line indicates that CORS requests are permitted from all servers. You can make that less permissive by specifying the web servers that you want to allow.</p>
+<p>Azure Web Servers have an administration page that sets up CORS permissions.</p>
+<h2 class="h-source-code-modifications">Source Code Modifications<a id="source-code-modifications" class="heading-anchor" href="#source-code-modifications"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>There are only a few modifications required to allow a Plugin to run successfully from an external web server, and all of them are concerned with properly requesting resources.</p>
+<p>Localization files, for example, are external resources, so the code within the Plugin must request its resources using an instance of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-i18n/appadministration/i18n'>I18N</a> that is particular to the Plugin. iModelJs configures the I18N instance on behalf of the Plugin and it is accessed as the &quot;i18n&quot; instance property of the Plugin. For example, this code might appear in the Plugin:</p>
+<pre class="no-line-numbers"><code class="language-typescript">  /** Invoked the first time this plugin is loaded. */
+  public onLoad(_args: string[]): void {
+    this._i18NNamespace = this.i18n.registerNamespace(&quot;WmsPlugin&quot;);
+    ...
+  }
+
+  /** Invoked each time this plugin is loaded. */
+  public onExecute(_args: string[]): void {
+    ...
+    // For demonstration purposes, switch the imagery type each time the plugin is executed.
+    this._currentImageryType = (WMSImageryType.Temperature === this._currentImageryType) ? WMSImageryType.Precipitation : WMSImageryType.Temperature;
+
+    // Output a message indicating the current imagery type.
+    const weatherType = (WMSImageryType.Temperature === this._currentImageryType) ? &quot;temperature&quot; : &quot;precipitation&quot;;
+    this._i18NNamespace!.readFinished.then(() =&gt; {
+      const message: string = this.i18n.translate(&quot;WmsPlugin:Messages.DisplayType&quot;, { weatherType });
+      const msgDetails: NotifyMessageDetails = new NotifyMessageDetails(OutputMessagePriority.Info, message);
+      IModelApp.notifications.outputMessage(msgDetails);
+    }).catch(() =&gt; { });
+  }</code></pre>
+<p>In the <code>onLoad</code> method, an i18n Namespace is registered, and in the <code>onExecute</code> method, a string from it is accessed.</p>
+<p>Similarly, a slight code modification is needed for loading other resources from the Plugin&apos;s web server. For example, suppose we want to load an .svg file for use in a Plugin. The following code in <code>onLoad</code> is used:</p>
+<pre class="no-line-numbers"><code class="language-typescript">  /** Invoked the first time this plugin is loaded. */
+  public onLoad(_args: string[]): void {
+    ...
+    this._logoImage = new Image();
+    this._logoImage.src = this.resolveResourceUrl(&quot;wmsPlugin.svg&quot;);
+    this._logoImage.width = this._logoImage.height = 64;
+    ...
+  }</code></pre>
+<p>The <code>resolveResourceUrl</code> method returns a URL that builds the web server address into the relative resource passed as the string argument.</p>
+<p>Note that the code above also works for Plugins hosted directly on the application&apos;s web server. In that case the Plugin&apos;s i18n property is equivalent to iModelApp.i18n, and the resolveResourceUrl method simply returns its argument.</p>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>13 August, 2019</span>
+            </p>
+            <div id="imodeljs-github-comments">
+            </div>
+            
+            <script>
+              $(document).ready(function () {
+                function initializeComments(repo) {
+                  var s = document.createElement('script');
+                  s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
+                  s.setAttribute('repo', repo);
+                  s.setAttribute('issue-term', 'title');
+                  s.setAttribute('crossorigin', 'anonymous');
+                  s.setAttribute('theme', 'github-light');
+                  s.async = true;
+            
+                  document.getElementById("imodeljs-github-comments").appendChild(s);
+                }
+            
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
+              });
+            </script>
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div class="toc-overlay"></div>
+    <div id='inner-table-of-contents'>
+       <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item '>
+            <a data-target="#inner-nav-hosting-the-plugin" class='title' href="#hosting-the-plugin"/>
+            <b class='dropdown-menu-title menu-text'>Hosting the Plugin</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-hosting-the-plugin" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-1--developing-the-plugin" class='title' href="#1--developing-the-plugin"/>
+                            <b class='dropdown-menu-title menu-text'>1 - Developing the Plugin</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-1--developing-the-plugin" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#1a--building-the-target-application-locally">1a - Building the Target Application Locally</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#1b--target-application-on-a-web-server">1b - Target Application on a web server.</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#2--deploying-the-plugin-to-an-internet-web-server">2 - Deploying the Plugin to an internet web server</a>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#cors-considerations">CORS Considerations</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#source-code-modifications">Source Code Modifications</a>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color pt-1 pb-3">
+  <!-- Footer Links Container -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row d-flex align-items-center mt-2">
+
+      <!-- Grid column -->
+      <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
+
+        <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+        </a>
+        <small style="color: white; margin-right: 7px;"> powered by </small>
+        <a href="https://www.bentley.com">
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
+        </a>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-5 col-lg-4 ml-lg-0">
+
+        <!-- Social buttons -->
+        <div class="text-center text-md-right">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://twitter.com/imodeljs" target="_blank">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://github.com/imodeljs" target="_blank">
+                <i class="fa fa-github"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://stackoverflow.com/tags/imodeljs"
+                target="_blank">
+                <i class="fa fa-stack-overflow"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links Container -->
+
+</footer>
+<!-- Footer -->
+
+</div>
+<a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
+</body>
+
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.2.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.3.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -169,7 +169,7 @@
     </nav>    <div class='documentation-main'>
         <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">Base Infrastructure Schema</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/intro/">intro</a> > organizing-models-and-elements</div>
-            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/bis/intro/organizing-models-and-elements.md">Edit this page</a></div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/bis/intro/organizing-models-and-elements.md">Edit this page</a></div>
             <h1 id="organizing models and elements">Organizing Models and Elements</h1>
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/information-hierarchy'>Information Hierarchy</a> explains the mechanics of how <code>Model</code>s, <code>Element</code>s, and parent-child relationships among <code>Element</code>s can be used together to model <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#entity'>Entities</a> in the real-world from various <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-perspectives'>Modeling Perspectives</a> and at various <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#granularity'>Modeling Granularities</a>.</p>
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/top-of-the-world'>Top of the World</a> explains how and why Elements are structured within the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#repositorymodel'>RepositoryModel</a> to describe what the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#bis-repository'>BIS Repository</a> is &#x201C;about&#x201D;. The &#x2018;leaf nodes&#x2019; in the <code>RepositoryModel</code> are <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#informationpartitionelement'>InformationPartitionElements</a> (henceforth &#x201C;partitions&#x201D;) that establish a <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-perspectives'>Modeling Perspective</a> for a given <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary/#subject'>Subject</a>.</p>
@@ -245,12 +245,16 @@
 <li>If some workflows want to deal with the Entity-as-a-whole, but other workflows (e.g. fabrication for construction) need to deal with it as a set of parts, the fabricator would want a <code>Model</code> focused on the parts used to fabricate the whole.</li>
 </ul>
 <p>As a boundary case, if one of the parts is clearly a &#x201C;lead&#x201D; part, e.g. a &#x201C;Beam&#x201D; with specific additions (welded on) or subtractions (cut out) then maybe parent-child is more appropriate. The decision to use parent-child modeling vs sub-modeling can be quite tricky. You should examine schemas from comparable domains and consult experts, if possible.</p>
-<blockquote>
-<p>Next: <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-systems'>Modeling Systems</a></p>
-</blockquote>
-
+<hr>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Next: <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-systems'>Modeling Systems</a></th>
+</tr>
+<tr>
+<td align="left"></td>
+</tr>
+</tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>29 July, 2019</span>
+                <span class='date-updated'>13 August, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

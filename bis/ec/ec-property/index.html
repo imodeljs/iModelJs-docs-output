@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.2.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.3.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -169,12 +169,11 @@
     </nav>    <div class='documentation-main'>
         <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">Base Infrastructure Schema</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/ec/">ec</a> > ec-property</div>
-            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/bis/ec/ec-property.md">Edit this page</a></div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/bis/ec/ec-property.md">Edit this page</a></div>
             <h1 id="ecproperty">ECProperty</h1>
 <p>This section starts by describing the common parts of the 5 property types in ECObjects before going into detail of each individual type. The 5 property types supported in ECObjects are <a href="#ecprimitiveproperty">ECPrimitiveProperty</a>, <a href="#ecstructproperty">ECStructProperty</a>, <a href="#ecprimitivearrayproperty">ECArrayProperty</a>, <a href="#ecstructarrayproperty">ECStructArrayProperty</a> and <a href="#ecnavigationproperty">ECNavigationProperty</a>.</p>
 <p>Each property type models a different type of named value contained within an object.</p>
-<p>ECProperty models properties with a limited set of primitive value types. ECStructProperty models complex properties whose format is defined by an ECStructClass definition. ECArrayProperty models an array of primitive values. ECStructArrayProperty models an array of struct values. ECNavigationProperty is only allowed in an ECEntityClass, which models a reference to an instance of another ECEntityClass.</p>
-<p>All property types may have a single base property determined using the base class traversal algorithm described. A derived property or property override may not change the property type, persistence unit (via KindOfQuantity).  A derived property inherits custom attributes from its base property, a custom attribute applied to the derived property overrides an inherited one of the same class.</p>
+<p>All property types may have a single base property determined using the base class traversal algorithm described. A derived property or property override may not change the property type or persistence unit (via KindOfQuantity).  A derived property inherits custom attributes from its base property, a custom attribute applied to the derived property overrides an inherited one of the same class.</p>
 <h3 class="h-common-attributes">Common Attributes<a id="common-attributes" class="heading-anchor" href="#common-attributes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>name</strong> The name of the property in the class. Must be a valid <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-name'>ECName</a> and unique within the class it exists in.</p>
 <p><strong>typeName</strong> The data type of the property. The valid data types depend on the type of property.</p>
@@ -182,8 +181,8 @@
 <p><strong>displayLabel</strong> a localized display label that will be used instead of the name in the GUI. If not set the name of the property will be used.</p>
 <p><strong>readOnly</strong> If true the property may only ever be initialized to a value, once set it cannot be changed.</p>
 <p><strong>priority</strong> a number value that specifies the importance of this property in relation to other properties defined within the class.</p>
-<p><strong>kindOfQuantity</strong> the name of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/kindofquantity'>KindOfQuantity</a> to associate with this property.</p>
-<p><strong>category</strong> the name of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/property-category'>PropertyCategory</a> to that classify this property.</p>
+<p><strong>kindOfQuantity</strong> the name of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/kindofquantity'>Kind Of Quantity</a> to associate with this property.</p>
+<p><strong>category</strong> the name of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/property-category'>Property Category</a> to that classify this property.</p>
 <h3 class="h-common-sub-elements">Common Sub-Elements<a id="common-sub-elements" class="heading-anchor" href="#common-sub-elements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-custom-attributes'>ECCustomAttributes</a> <em>(0..1)</em></p>
 <h2 class="h-ecprimitiveproperty">ECPrimitiveProperty<a id="ecprimitiveproperty" class="heading-anchor" href="#ecprimitiveproperty"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
@@ -195,22 +194,24 @@
 <p><strong>maximumLength</strong> The minimum valid length. Supported for primitive types, string and binary.</p>
 <p><strong>extendedTypeName</strong> The name of an extended type to associate with this property. See Extended Types section for more info. An extended type is a special, in memory handler for values with the extended type specified. The extended type may not change the storage of the value and the basic type will be used if the extended type cannot be found.</p>
 <h2 class="h-ecprimitivearrayproperty">ECPrimitiveArrayProperty<a id="ecprimitivearrayproperty" class="heading-anchor" href="#ecprimitivearrayproperty"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Represents an array of primitive values of the same type indexed by a 64 bit unsigned integer. The array may have a minimum and maximum number of entries specified and supports sparse indexes. Array properties may have any type that is valid for a primitive property.</p>
+<p>A Primitive Array Property (<code>ECArrayProperty</code>) models an array of primitive values of the same type indexed by a 64 bit unsigned integer. The array may have a minimum and maximum number of entries specified and supports sparse indexes. Array properties may have any type that is valid for a primitive property.</p>
 <h3 class="h-additional-optional-attributes-1">Additional Optional Attributes<a id="additional-optional-attributes-1" class="heading-anchor" href="#additional-optional-attributes-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>minOccurs</strong> defaults to 0. Indicates the minimum number of elements in the array.</p>
 <p><strong>maxOccurs</strong> Indicates the maximum number of elements in an ECArrayProperty. Use &quot;unbounded&quot; for arrays with no upper limit.</p>
 <p><strong>extendedTypeName</strong> The name of an extended type to associate with this property. See Extended Types section for more info.</p>
 <h2 class="h-ecstructproperty">ECStructProperty<a id="ecstructproperty" class="heading-anchor" href="#ecstructproperty"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Represents a property whose value is an embedded instance of an ECStructClass, polymorphism is not supported. The typeName of the property has to be set to an <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-struct-class'>ECStructClass</a>.</p>
+<p>A Struct Property (<code>ECStructProperty</code>) models a complex property whose value is an embedded instance of an <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-struct-class'>ECStructClass</a>, polymorphism is not supported. The typeName of the property has to be set to an <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-struct-class'>ECStructClass</a>.</p>
 <h2 class="h-ecstructarrayproperty">ECStructArrayProperty<a id="ecstructarrayproperty" class="heading-anchor" href="#ecstructarrayproperty"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Represents an array of values of embedded instances of an ECStructClass, polymorphism is not supported. The typeName of the property has to be set to an <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-struct-class'>ECStructClass</a>.</p>
+<p>A Struct Array Property (<code>ECStructArrayProperty</code>) models an array of values of embedded instances of an ECStructClass, polymorphism is not supported. The typeName of the property has to be set to an <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-struct-class'>ECStructClass</a>.</p>
 <h3 class="h-additional-optional-attributes-2">Additional Optional Attributes<a id="additional-optional-attributes-2" class="heading-anchor" href="#additional-optional-attributes-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>minOccurs</strong> defaults to 0. Indicates the minimum number of elements in the array.</p>
 <p><strong>maxOccurs</strong> Indicates the maximum number of elements in an ECArrayProperty. Use &quot;unbounded&quot; for arrays with no upper limit.</p>
 <h2 class="h-ecnavigationproperty">ECNavigationProperty<a id="ecnavigationproperty" class="heading-anchor" href="#ecnavigationproperty"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Represents a property whose value is a reference to an instance related to the current instance. Only valid on classes which can be relationship endpoints: ECEntityClass, ECMixinClass and ECRelationshipClass.</p>
-<p>This reference may be as simple as the Id of the related instance, it may actually point to an in memory copy of the instance, a URL to load the related instance, or a query to select the related instance.</p>
-<p>Rules for using navigation properties:</p>
+<p>A Navigation Property models a reference to another instance, i.e. a related instance.  This reference may be as simple as the Id of the related instance, it may actually point to an in memory copy of the instance, a URL to load the related instance, or a query to select the related instance.</p>
+<blockquote>
+<p>Navigation Properties are only valid on classes which can be relationship endpoints: ECEntityClass, ECMixinClass and ECRelationshipClass.</p>
+</blockquote>
+<p>Addition rules apply to navigation properties:</p>
 <ul>
 <li>May only point to a singular endpoint. That is, it must point to an endpoint whose multiplicity has a max limit of 1.</li>
 <li>Must be added to the most base ECEntityClass supported by the referenced relationship.</li>
@@ -218,11 +219,11 @@
 <li>The referenced relationship may not be overridden by property overrides in derived classes[].</li>
 </ul>
 <h3 class="h-additional-optional-attributes-3">Additional Optional Attributes<a id="additional-optional-attributes-3" class="heading-anchor" href="#additional-optional-attributes-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>relationshipName</strong> The relationship this navigation property traverses</p>
+<p><strong>relationshipName</strong> The relationship this navigation property traverses to the get the related instance.</p>
 <p><strong>direction</strong> The direction to traverse the referenced relationship</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>29 July, 2019</span>
+                <span class='date-updated'>13 August, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.2.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.3.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -116,9 +116,9 @@
     </nav>    <div class='documentation-main'>
         <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/frontend/">frontend</a> > ViewDecorations</div>
-            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/frontend/ViewDecorations.md">Edit this page</a></div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/learning/frontend/ViewDecorations.md">Edit this page</a></div>
             <h1 id="view decorations">View Decorations</h1>
-<p>A View Decoration shows application-generated graphics in a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport'>ScreenViewport</a> <em>in addition to</em> the persistent (i.e. <em>scene</em>) geometry displayed by the Viewport itself. In contrast to the graphics from the persistent geometry (e.g. the Model), View Decorations must be re-evaluated <em>every time</em> a frame is rendered. In this sense, they <em>decorate</em> the frame with graphics that are only valid for a single frame.</p>
+<p>A View Decoration shows application-generated graphics in a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport'>ScreenViewport</a> <em>in addition to</em> the persistent (i.e. <em>scene</em>) geometry displayed by the Viewport itself. In contrast to the graphics from the persistent geometry (e.g. the Models), View Decorations must be re-evaluated <em>every time</em> a frame is rendered. In this sense, they <em>decorate</em> the frame with graphics that are only valid for a single frame.</p>
 <h2 class="h-view-decorators">View Decorators<a id="view-decorators" class="heading-anchor" href="#view-decorators"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The process of creating View Decorations starts by adding an object that implements the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/decorator'>Decorator</a> interface to the <code>ViewManager</code> via the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewmanager/adddecorator'>ViewManager.addDecorator</a> method. The most important part of the <code>Decorate</code> interface is the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/decorator/#decorate'>Decorator.decorate</a> method, which is called every time iModel.js renders a frame <em>for any ScreenViewport</em>. The argument to the <code>decorate</code> method is a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/decoratecontext'>DecorateContext</a> that supplies information about the ScreenViewport being rendered, as well as methods to create and save decoration graphics. The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/decoratecontext/#viewport'>DecorateContext.viewport</a> member holds the target viewport. If you wish to decorate only a single viewport, you must test this member against your intended viewport.</p>
 <p>The job of the <code>decorate</code> method is to supply the graphics (the <em>Decorations</em>) for a single frame of a single ScreenViewport.</p>
@@ -128,7 +128,7 @@
 <p>Sometimes decorations are meant to <em>intersperse</em> with the scene geometry, and sometimes they are meant to display atop of it. For this reason, there are 3 broad categories of View Decorations:</p>
 <ul>
 <li>View Graphic Decorations - are drawn using iModel.js render primitives into the WebGL context.</li>
-<li>Canvas Decoration - are drawn onto the 2d canvas using <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D" target="_blank">CanvasRenderingContext2D</a>. Canvas decorations are always on top of View Graphic Decorations</li>
+<li>Canvas Decoration - are drawn onto the 2d canvas using <a href="https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D" target="_blank">CanvasRenderingContext2D</a>. Canvas decorations are always on top of View Graphic Decorations</li>
 <li>HTML Decorations - are HTMLElements that are added to the DOM. HTML decorations are always on top of Canvas Decorations.</li>
 </ul>
 <blockquote>
@@ -196,7 +196,7 @@ You then add one or more graphics to the <a href='https://imodeljs.github.io/iMo
   /** Return localized tooltip message for the decoration identified by HitDetail.sourceId. */
   public async getDecorationToolTip(_hit: HitDetail): Promise&lt;HTMLElement | string&gt; { return &quot;Project Extents&quot;; }</code></pre>
 <h3 class="h-canvas-decorations">Canvas Decorations<a id="canvas-decorations" class="heading-anchor" href="#canvas-decorations"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/canvasdecoration'>CanvasDecoration</a> is drawn atop the scene using <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D" target="_blank">CanvasRenderingContext2D</a>.
+<p>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/canvasdecoration'>CanvasDecoration</a> is drawn atop the scene using <a href="https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D" target="_blank">CanvasRenderingContext2D</a>.
 To add a CanvasDecoration, call <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/decoratecontext/#addcanvasdecoration'>DecorateContext.addCanvasDecoration</a> from your <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/decorator/#decorate'>Decorator.decorate</a> method.</p>
 <p>CanvasDecorators must implement <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/canvasdecoration/drawdecoration'>CanvasDecoration.drawDecoration</a> to supply visible graphics, by calling methods on CanvasRenderingContext2D.</p>
 <p>CanvasDecorators may optionally include the member <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/canvasdecoration/position'>CanvasDecoration.position</a>, that becomes the 0,0 point for your CanvasRenderingContext2D calls.</p>
@@ -246,8 +246,8 @@ To add a CanvasDecoration, call <a href='https://imodeljs.github.io/iModelJs-doc
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/canvasdecoration/decorationcursor'>CanvasDecoration.decorationCursor</a> - the cursor to be displayed while the pointer is in your decoration</li>
 </ul>
 <h3 class="h-html-decorations">HTML Decorations<a id="html-decorations" class="heading-anchor" href="#html-decorations"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>HTML Decorations are simply <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement" target="_blank">HTMLElements</a> that you add to the DOM on top of your views. In your <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/decorator/#decorate'>Decorator.decorate</a> method, use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/decoratecontext/#addhtmldecoration'>DecorateContext.addHtmlDecoration</a> to add HTML Decorations.</p>
-<p>HTML Decorators are appended to an <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLDivElement" target="_blank">HTMLDivElement</a> called &quot;overlay-decorators&quot; that is created by <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport/create'>ScreenViewport.create</a>.
+<p>HTML Decorations are simply <a href="https://developer.mozilla.org/docs/Web/API/HTMLElement" target="_blank">HTMLElements</a> that you add to the DOM on top of your views. In your <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/decorator/#decorate'>Decorator.decorate</a> method, use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/decoratecontext/#addhtmldecoration'>DecorateContext.addHtmlDecoration</a> to add HTML Decorations.</p>
+<p>HTML Decorators are appended to an <a href="https://developer.mozilla.org/docs/Web/API/HTMLDivElement" target="_blank">HTMLDivElement</a> called &quot;overlay-decorators&quot; that is created by <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport/create'>ScreenViewport.create</a>.
 All children of that Div are removed every frame, so you must re-add your HTML Decorator each time your <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/decorator/#decorate'>Decorator.decorate</a> method is called.</p>
 <p>The &quot;overlay-decorators&quot; Div is stacked on top of the canvas, but behind the &quot;overlay-tooltip&quot; Div (where tooltips are displayed.)</p>
 <h3 class="h-decoration-precedence">Decoration Precedence<a id="decoration-precedence" class="heading-anchor" href="#decoration-precedence"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -263,7 +263,7 @@ All children of that Div are removed every frame, so you must re-add your HTML D
 <p>Within a decoration type, the last decoration drawn is on top of earlier decorations.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>29 July, 2019</span>
+                <span class='date-updated'>13 August, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.2.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.3.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -169,7 +169,7 @@
     </nav>    <div class='documentation-main'>
         <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">Base Infrastructure Schema</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/intro/">intro</a> > fabric-of-the-universe</div>
-            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/bis/intro/fabric-of-the-universe.md">Edit this page</a></div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/bis/intro/fabric-of-the-universe.md">Edit this page</a></div>
             <h1 id="fabric of the universe">Fabric of the Universe</h1>
 <h2 class="h-introduction">Introduction<a id="introduction" class="heading-anchor" href="#introduction"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>This section briefly describes the few core concepts that form the foundation for all of BIS. All information in a BIS Repository is defined using <code>Element</code>s, <code>ElementAspect</code>s, <code>Model</code>s and relationships. We refer to these core concepts a &#x201C;the fabric of the universe&#x201D;.</p>
@@ -182,18 +182,22 @@
 <p>An <code>ElementAspect</code> is a set of ECProperties that &#x201C;belong&#x201D; to a particular Element, but which have an independent lifecycle (they may come and go over the lifetime of the Element). ElementAspect instances are <em>owned</em> by a single Element; ElementAspects are never shared by more than one Element. An ElementAspect is considered part of the Element and therefore can not be the target of any &#x201C;incoming&#x201D; relationships (other than from the single Element that owns it.) There are ElementUniqueAspects that have a maximum of one instance per Element and ElementMultiAspects that may potentially have many instances per Element.</p>
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/elementaspect-fundamentals'>ElementAspect Fundamentals</a> for a more detailed discussion of ElementAspects.</p>
 <h2 class="h-models">Models<a id="models" class="heading-anchor" href="#models"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>A <code>Model</code> is a &#x201C;container&#x201D; of Elements that provides a context (and a Modeling Perspective) for the contained Elements.</p>
+<p>A <code>Model</code> is a <em>container</em> of Elements that provides a context (and a Modeling Perspective) for the contained Elements.</p>
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/model-fundamentals'>Model Fundamentals</a> for a more detailed discussion of Models.</p>
 <h2 class="h-relationships">Relationships<a id="relationships" class="heading-anchor" href="#relationships"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Various ECRelationship classes are defined in BisCore to relate Models, Elements and ElementAspects. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/relationship-fundamentals'>Relationship Fundamentals</a> for a more detailed discussion of Relationships.</p>
 <h2 class="h-no-other-data-types">No other Data Types<a id="no-other-data-types" class="heading-anchor" href="#no-other-data-types"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>All BIS information is defined using the <code>Element</code>, <code>ElementAspect</code>, <code>Model</code> classes or by using relationships. BIS domain schemas (other than <code>BisCore</code>) can only define classes that (directly or indirectly) subclass classes defined in the <code>BisCore</code> domain.</p>
-<blockquote>
-<p>Next: <a href="../element-fundamentals">Element Fundamentals</a></p>
-</blockquote>
-
+<hr>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Next: <a href="../element-fundamentals">Element Fundamentals</a></th>
+</tr>
+<tr>
+<td align="left"></td>
+</tr>
+</tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>29 July, 2019</span>
+                <span class='date-updated'>13 August, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

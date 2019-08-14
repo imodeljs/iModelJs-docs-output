@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.2.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.3.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -169,7 +169,7 @@
     </nav>    <div class='documentation-main'>
         <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">Base Infrastructure Schema</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/ec/">ec</a> > ec-relationship-class</div>
-            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/bis/ec/ec-relationship-class.md">Edit this page</a></div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/bis/ec/ec-relationship-class.md">Edit this page</a></div>
             <h1 id="ecrelationshipclass">ECRelationshipClass</h1>
 <p>This specialization of ECClass has all the same Sub-Elements and attributes as ECClass, as well as additional Sub-Elements to describe relationships among classes. Relationships in ECObjects follow more of a relational paradigm than an OO paradigm, i.e. they are not just simple object references, as in C++ or the .NET Type system. An ECRelationshipClass represents the possibility of (and constraints for) an instance of a relationship between two business object instances. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-relationships'>ECRelationships</a>.</p>
 <p>Relationship inheritance is conceptually similar to regular ECClass inheritance but has additional restrictions. Derived relationship classes represent a specialization of the base relationship, not a new and distinct relationship. As such, the scope of a derived relationship must be equal to, or more restrictive than, the base relationship.</p>
@@ -228,7 +228,7 @@
 <ul>
 <li>This is the label for the role of the ECClass at this end of the relationship, e.g. in a DocumentCreatedByUser relationship, with Document as a source and User as the target, the source&#x2019;s roleLabel is the role of the source class (Document) from the Document&#x2019;s perspective: &#x201C;created by User&#x201D;. The roleLabel for the target end is the relationship from the User perspective &#x201C;created Document&#x201D;. These should include a mention of the ECClass on the other end, to make it possible to internationalize these (the word order may need to change).</li>
 </ul>
-<p><strong>multiplicity</strong> multiplicity at this end of the relationship. It is specified using the UML format (x..y) where x &gt;= 0 and (y &gt;= 1 or y == &#x201C;*&#x201D;) and x &lt;= y. It is typically set to (1..1) or (0..*) if there is no limit.</p>
+<p><strong>multiplicity</strong> multiplicity at this end of the relationship. It is specified using the UML format (x..y) where x &gt;= 0 and (y &gt;= 1 or y == &quot;*&quot;) and x &lt;= y. It is typically set to (1..1) or (0..*) if there is no limit.</p>
 <p><strong>abstractConstraint</strong> an ECClass which all the constraint classes at this end of the relationship must be or derive from. Required in base relationship classes if there is more than one constraint class in this end of the relationship, otherwise is optional.</p>
 <h2 class="h-sub-elements">Sub-Elements<a id="sub-elements" class="heading-anchor" href="#sub-elements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-custom-attributes'>ECCustomAttributes</a> <em>(0..1)</em></p>
@@ -238,7 +238,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>29 July, 2019</span>
+                <span class='date-updated'>13 August, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

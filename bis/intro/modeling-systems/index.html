@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.2.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.3.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -169,7 +169,7 @@
     </nav>    <div class='documentation-main'>
         <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">Base Infrastructure Schema</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/intro/">intro</a> > modeling-systems</div>
-            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/bis/intro/modeling-systems.md">Edit this page</a></div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/bis/intro/modeling-systems.md">Edit this page</a></div>
             <h1 id="modeling systems">Modeling Systems</h1>
 <p>Physical infrastructure exists to implement one-or-more functions. A campus functions to provide learning to people. A building shelters people for work and play. A lock assembly helps provide security for a space. A landscape system may primarily function to provide pleasing aesthetics. Some functions are modeled explicitly (see <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/functional-models-and-elements'>Functional Models and Elements</a>), but even if they are not modeled, the real-world functions are the reason that the physical infrastructure exists.</p>
 <p>A &#x201C;physical system&#x201D; is a physical Entity (or a set of physical Entities) that implements a function. In this topic, <em>&#x201C;System&#x201D;</em> refers to a <code>PhysicalElement</code> that models a physical Entity that implements a function. <em>Systems</em> do not necessarily have &#x201C;system&#x201D; in their name, e.g. by this definition a &#x201C;Facility&#x201D; is a <em>System</em> implementing a high-level function and an &#x201C;Assembly&#x201D; is a <em>System</em> implementing a smaller function.</p>
@@ -181,12 +181,16 @@
 <p>Since load-bearing walls (the responsibility of the structural engineer) are often part of the architecture <em>System</em>, the <code>PhysicalElementIncludesPhysicalElement</code> relationship can be used to &#x201C;include&#x201D; them in the architecture <em>System</em>.</p>
 <p>In different contexts (like different lifecycle phases), responsibilities will change, and domain schemas should have enough flexibility to handle those cases. During design, the architect and structural engineer have legal responsibilities for the system they design. During operations, the architecture and structure are both the responsibility of the facilities manager. Theoretically the architectural and structural Models could be merged into one when transforming a Design Digital Twin into an Operations Digital Twin. In practice, that may be uncommon, because the segregation of the <code>Model</code>s is not a real problem for the facilities manager, and keeping them segregated will make it easier to kick off a new renovation capital project. In any case, <strong>software should not be too &#x201C;rigid&#x201D; in its expectations of how <code>Element</code>s are organized into <code>Model</code>s</strong>.</p>
 <p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/overlapping-systems'>Overlapping Systems</a> for guidance on dealing with <code>PhysicalElement</code>s that are part of two physical systems.</p>
-<blockquote>
-<p>Next: <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/overlapping-systems'>Overlapping Systems</a></p>
-</blockquote>
-
+<hr>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Next: <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/overlapping-systems'>Overlapping Systems</a></th>
+</tr>
+<tr>
+<td align="left"></td>
+</tr>
+</tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>29 July, 2019</span>
+                <span class='date-updated'>13 August, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.2.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.3.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -169,22 +169,24 @@
     </nav>    <div class='documentation-main'>
         <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">Base Infrastructure Schema</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/ec/">ec</a> > primitive-types</div>
-            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/bis/ec/primitive-types.md">Edit this page</a></div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/bis/ec/primitive-types.md">Edit this page</a></div>
             <h1 id="primitive types">Primitive Types</h1>
 <ul>
 <li>binary &#x2013; An array of bytes</li>
 <li>boolean (bool) &#x2013; A boolean value</li>
-<li>dateTime &#x2013; A DateTime value.<ul>
-<li>Can store a Date, a Time, or a Date and Time.  Use the CoreCustomAttribute &apos;DateTimeInfo&apos; to identify which component of time a DateTime the value is storing and if it is in UTC or Local timezone.<pre class="no-line-numbers"><code class="language-xml">      &lt;DateTimeInfo xmlns=&quot;CoreCustomAttributes.01.00.02&quot;&gt;
-        &lt;DateTimeKind&gt;Utc&lt;/DateTimeKind&gt;
-        &lt;DateTimeComponent&gt;Date&lt;/DateTimeComponent&gt;
-      &lt;/DateTimeInfo&gt;</code></pre>
-</li>
+<li><p>dateTime &#x2013; A DateTime value.</p>
+<ul>
+<li>Can store a Date, a Time, or a Date and Time.  Use the CoreCustomAttribute <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/corecustomattributes.ecschema/#datetimeinfo'>DateTimeInfo</a> to identify which component of time a DateTime the value is storing and if it is in UTC or Local timezone.</li>
 </ul>
+<pre class="no-line-numbers"><code class="language-xml">&lt;DateTimeInfo xmlns=&quot;CoreCustomAttributes.01.00.02&quot;&gt;
+  &lt;DateTimeKind&gt;Utc&lt;/DateTimeKind&gt;
+  &lt;DateTimeComponent&gt;Date&lt;/DateTimeComponent&gt;
+&lt;/DateTimeInfo&gt;</code></pre>
 </li>
-<li>double &#x2013; A double precision float value</li>
-<li>int &#x2013; A 32 bit integer value</li>
-<li>long &#x2013; A 64 bit integer value</li>
+<li><p>double &#x2013; A double precision float value</p>
+</li>
+<li>int &#x2013; A 32-bit integer value</li>
+<li>long &#x2013; A 64-bit integer value</li>
 <li>point2d &#x2013; A Point2d contains both X and Y components as double values.</li>
 <li>point3d &#x2013; A Point3d contains X, Y and Z components as double values.</li>
 <li>string &#x2013; A System.String in .NET and a Utf8String or Utf8CP in native</li>
@@ -192,7 +194,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>29 July, 2019</span>
+                <span class='date-updated'>13 August, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

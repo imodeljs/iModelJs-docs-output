@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.2.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.3.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -116,7 +116,7 @@
     </nav>    <div class='documentation-main'>
         <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/guidelines/">guidelines</a> > release-tags-guidelines</div>
-            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/learning/guidelines/release-tags-guidelines.md">Edit this page</a></div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/learning/guidelines/release-tags-guidelines.md">Edit this page</a></div>
             <h1 id="release tags">Release Tags</h1>
 <p>Release tags are used to classify API items according to their intended level of support.
 Release tags are included in standard documentation comments and are processed by tools such as <a href="https://api-extractor.com/" target="_blank">api-extractor</a> to produce an API review file.
@@ -130,9 +130,6 @@ API review files can then be placed under source code control and compared to fu
 <li><code>@internal</code></li>
 <li><code>@deprecated</code></li>
 </ul>
-<blockquote>
-<p>Note: The <code>@hidden</code> release tag is also currently supported, but all uses should transition to <code>@internal</code> or <code>@alpha</code> so that it can be de-supported.</p>
-</blockquote>
 <p>Details about each tag are below.</p>
 <h3 class="h-public">@public<a id="public" class="heading-anchor" href="#public"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>The <code>@public</code> release tag indicates that an API item has been officially released.
@@ -157,15 +154,16 @@ However, <em>internal</em> API items are effectively <em>public</em> from the ma
 <blockquote>
 <p>Note: This definition of <code>@internal</code> requires us to set the <code>--stripInternal</code> <a href="http://www.typescriptlang.org/docs/handbook/compiler-options.html" target="_blank">option of the TypeScript compiler</a> to <code>false</code>.</p>
 </blockquote>
-<h3 class="h-hidden">@hidden<a id="hidden" class="heading-anchor" href="#hidden"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>As mentioned above, all uses of the <code>@hidden</code> tag should transition to either <code>@internal</code> or <code>@alpha</code>.
-Both <code>@internal</code> and <code>@alpha</code> will cause the API item to be hidden from the public SDK documentation.
-The distinction is that <em>internal</em> indicates that the API item is never meant to be public, while <em>alpha</em> API items are not yet ready for public feedback but are intended to be public in the future.</p>
 <h3 class="h-deprecated">@deprecated<a id="deprecated" class="heading-anchor" href="#deprecated"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>The <code>@deprecated</code> release tags is used for API items that were formerly <code>@public</code> but are no longer optimal.
 Third parties should avoid <em>deprecated</em> API items if possible as they will likely be removed in the next major release.
 From the maintainer perspective, <em>deprecated</em> API items follow the same rules as <em>public</em> API items within the current major release.
 <em>Deprecated</em> API items and the comment after the <code>@deprecated</code> tag are included in the public SDK documentation.</p>
+<blockquote>
+<p>Note: The deprecation message is used verbatim by the <code>deprecation</code> lint rule and is also included in the SDK documentation.
+The deprecation message should include the replacement API item linked using the <code>[[replacement]]</code> (double square bracket) link syntax so that the SDK documentation will have a hyperlink and the lint message will mention the replacement item in a readable form.
+More advanced linking syntax should not be used as it would distract in the lint rule case.</p>
+</blockquote>
 <h3 class="h-release-tag-summary">Release Tag Summary<a id="release-tag-summary" class="heading-anchor" href="#release-tag-summary"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>The following table summarizes the affects of each release tag:</p>
 <table class="table table-responsive"><tbody><tr>
@@ -189,7 +187,7 @@ From the maintainer perspective, <em>deprecated</em> API items follow the same r
 <td>No</td>
 </tr>
 <tr>
-<td><code>@internal</code> / <code>@hidden</code></td>
+<td><code>@internal</code></td>
 <td>Yes</td>
 <td>No</td>
 </tr>
@@ -295,7 +293,7 @@ The <em>deprecated</em> API item must be maintained for the current major releas
 <pre class="no-line-numbers"><code class="language-typescript"> /** @alpha Private comment reminding maintainer why API item was marked alpha. */</code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>29 July, 2019</span>
+                <span class='date-updated'>13 August, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -360,9 +358,6 @@ The <em>deprecated</em> API item must be maintained for the current major releas
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#internal">@internal</a>
-                    </li>
-                    <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#hidden">@hidden</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#deprecated">@deprecated</a>

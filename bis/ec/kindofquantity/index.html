@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.2.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.3.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -169,20 +169,110 @@
     </nav>    <div class='documentation-main'>
         <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">Base Infrastructure Schema</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/ec/">ec</a> > kindofquantity</div>
-            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/bis/ec/kindofquantity.md">Edit this page</a></div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/bis/ec/kindofquantity.md">Edit this page</a></div>
             <h1 id="kindofquantity">KindOfQuantity</h1>
-<p>Describes a strongly typed <em>kind</em> for a property. This kind identifies what is being measured and stored in an ECProperty. It is used for grouping like properties, setting units and display formatting, and creating quantity objects in scripts.</p>
+<blockquote>
+<p>Commonly referred to as a <code>KOQ</code>.</p>
+</blockquote>
+<p>Describes a strongly typed <em>kind</em> for a property. This kind identifies what is being measured and stored in an <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-property'>ECProperty</a>. It is used for grouping like properties, setting units and display formatting, and creating quantity objects.</p>
 <h2 class="h-attributes">Attributes<a id="attributes" class="heading-anchor" href="#attributes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p><strong>typeName</strong> Defines the name of this KindOfQuantity. Must be a valid <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-name'>ECName</a> and be unique among all other items in a schema.</p>
 <p><strong>description</strong> A user-facing description of the KindOfQuantity. Localized and may be shown in a UI.</p>
-<p><strong>displayLabel</strong> A localized display label that will be used instead of the name in a GUI. If not set the Type Name of the KindOfQuantity will be used.</p>
+<p><strong>displayLabel</strong> A localized display label that will be used instead of the name in a UI. If not set the Type Name of the KindOfQuantity will be used.</p>
 <p><strong>persistenceUnit</strong> The unit values of this kind will be stored in.</p>
 <p><strong>relativeError</strong> The number of significant digits values of this kind have. Zero means none set.</p>
-<p><strong>defaultPresentationFormat</strong> The <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-format'>Format</a> used when displaying this kind of value in the UI. The persistence unit with a default format is used if not set.</p>
-<p><strong>alternativePresentationFormats</strong> A list of additional formats available to show in the UI.</p>
-
+<p><strong>presentationUnits</strong> A list of <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-format'>Formats</a> or <a href="#format-overrides">format overrides</a> that can be used to display the value in the UI.  The first format in the list is used as the default presentation of the value.</p>
+<p>The first format in the list is considered the default presentation format.  The <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-format'>format</a> used when displaying this kind of value in the UI.</p>
+<h2 class="h-format-overrides">Format Overrides<a id="format-overrides" class="heading-anchor" href="#format-overrides"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-format'>format</a> defines the way a value of a property can be displayed in the UI.  Formats support several numerical and unit based styles and sometimes that is desired is to change a single part of an existing format, defined within the same schema or reference schema.  Instead of copying that format to make the small change, KOQ supports overriding specific portions of the format by using <a href="#format-string">Format Strings</a>.</p>
+<p>Format overrides are currently supported the following modifications to an existing Format,</p>
+<ul>
+<li>Change the precision of the Format</li>
+<li>Add units to a Format that does not already define any</li>
+<li>Change the label of units that already exist in the format</li>
+</ul>
+<h3 class="h-format-string">Format String<a id="format-string" class="heading-anchor" href="#format-string"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>The <strong>Format String</strong> is a short string-based representation of a <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-format'>Format</a>, which allows overriding of certain key properties of a Format.
+Its main purpose is to reduce the need for new formats to be created for minor things such as precision and label changes.</p>
+<p>The below represents the string literal syntax. All italicized values are to be replaced with appropriate values.</p>
+<p><em>formatName</em><code>(</code><em>precision</em><code>)</code> <code>[</code><em>unitName</em><code>|</code><em>unitLabel</em><code>]</code> <code>[</code><em>unitName</em><code>|</code><em>unitLabel</em><code>]</code> <code>[</code><em>unitName</em><code>|</code><em>unitLabel</em><code>]</code> <code>[</code><em>unitName</em><code>|</code><em>unitLabel</em><code>]</code></p>
+<p><em>formatName</em></p>
+<ul>
+<li>Required</li>
+<li>A valid, fully-qualified, ECName referring to a <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-format'>Format</a></li>
+</ul>
+<p><em>precision</em></p>
+<ul>
+<li>Optional</li>
+<li>Integer<ul>
+<li>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-format'>Format</a> for valid options</li>
+</ul>
+</li>
+<li>Overrides the number of decimal digits specified in the Format.</li>
+</ul>
+<p><em>Unit Override</em> = <code>[</code><em>unitName</em><code>|</code><em>unitLabel</em><code>]</code></p>
+<ul>
+<li>Optional</li>
+<li>Adds units to a Format that specifies <strong>none</strong> or overrides unit labels in a Format definition that specifies units.</li>
+<li>Position in format string determines which unit it affects in the Format&apos;s composite<ul>
+<li><code>formatName(precision)[First Unit][Second Unit][Third Unit][Fourth Unit]</code></li>
+</ul>
+</li>
+<li>Overrides may not change units if any are originally defined in the base format, they may only change the display label.</li>
+<li>Up to 4 per format string</li>
+<li>Example<ul>
+<li><code>[u:M|meters]</code></li>
+</ul>
+</li>
+</ul>
+<h4 class="h-parts-of-a-unit-override">Parts of a Unit Override<a id="parts-of-a-unit-override" class="heading-anchor" href="#parts-of-a-unit-override"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><em>unitName</em></p>
+<ul>
+<li>Required</li>
+<li>Name of a unit.<ul>
+<li>The name must be a fully qualified ECName.</li>
+</ul>
+</li>
+</ul>
+<p><em>unitLabel</em></p>
+<ul>
+<li>Optional</li>
+<li>A string that overrides the label of the Unit, in the position specified in this Unit Override<ul>
+<li>For example, the second override listed would affect the label of the second unit</li>
+</ul>
+</li>
+<li>The character <code>]</code> is not allowed, if this character is desired, a new <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-format'>Format</a> is required.</li>
+</ul>
+<h3 class="h-examples">Examples<a id="examples" class="heading-anchor" href="#examples"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<ul>
+<li><p>The format string <code>f:DefaultRealU[u:M][u:CM][u:MM]</code> will override the first unit to be <code>u:M</code>, the second unit to be <code>u:CM</code> and the third unit to be <code>u:MM</code></p>
+</li>
+<li><p>For the format <code>f:AmerFI</code> (which has <code>FT</code> as a first unit and <code>IN</code> as a second unit), valid overrides must specify both units in the correct order:</p>
+</li>
+</ul>
+<table class="table table-responsive"><tbody><tr>
+<th>Intention</th>
+<th>Invalid way</th>
+<th>Valid way</th>
+</tr>
+<tr>
+<td>Override second Label</td>
+<td>f:AmerFI[u:IN|inches]</td>
+<td>f:AmerFI[u:FT][u:IN|inches]</td>
+</tr>
+<tr>
+<td>Override first Label</td>
+<td>f:AmerFI[u:FT|feet]</td>
+<td>f:AmerFI[u:FT|feet][u:IN]</td>
+</tr>
+<tr>
+<td>Change units</td>
+<td>f:AmerFI[u:M|m][u:CM|cm]</td>
+<td>Never Valid</td>
+</tr>
+</tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>29 July, 2019</span>
+                <span class='date-updated'>13 August, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -232,6 +322,28 @@
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
               <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#attributes">Attributes</a>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-format-overrides" class='title' href="#format-overrides"/>
+            <b class='dropdown-menu-title menu-text'>Format Overrides</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-format-overrides" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-format-string" class='title' href="#format-string"/>
+                            <b class='dropdown-menu-title menu-text'>Format String</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-format-string" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#parts-of-a-unit-override">Parts of a Unit Override</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#examples">Examples</a>
+                    </li>
+            </ul>
     </li>
  
       </ul>

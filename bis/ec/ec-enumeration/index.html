@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.2.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.3.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -169,13 +169,13 @@
     </nav>    <div class='documentation-main'>
         <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">Base Infrastructure Schema</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/ec/">ec</a> > ec-enumeration</div>
-            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/core/bis/ec/ec-enumeration.md">Edit this page</a></div>
+            <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/bis/ec/ec-enumeration.md">Edit this page</a></div>
             <h1 id="ecenumeration">ECEnumeration</h1>
 <p>Defines an enumeration and its enumerators with a display label and a persisted value of type int or string. Each enumerator in an enumeration must have a unique value. An enumeration can be used as the type for a primitive ECProperty in any type of ECClass. Enumerations are a different type than the value type. For example, it is not valid to override an int property with an enumeration with values of type int. The same is true for string-backed enumerations.</p>
 <p>ECEnumerations share the same namespace as ECClasses so its type name must be unique in the schema.</p>
 <h2 class="h-attributes">Attributes<a id="attributes" class="heading-anchor" href="#attributes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p><strong>typeName</strong> defines the name of this ECEnumeration. Must be a valid <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-name'>ECName</a> and be unique among all other items in a schema.</p>
-<p><strong>backingTypeName</strong> The type for the value of each enumerator</p>
+<p><strong>typeName</strong> defines the name of this ECEnumeration. Must be a valid <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-name'>ECName</a> and be unique among all other items in a schema.  (Required)</p>
+<p><strong>backingTypeName</strong> The type for the value of each enumerator (Required)</p>
 <ul>
 <li>Valid types are:<ul>
 <li><code>int</code></li>
@@ -183,19 +183,21 @@
 </ul>
 </li>
 </ul>
-<p><strong>description</strong> User facing description of the enumeration. Localized and may be shown in the UI.</p>
-<p><strong>displayLabel</strong> a localized display label that will be used instead of the name in the GUI. If not set the Type Name of the enumeration will be used</p>
-<p><strong>strict</strong> If true only values defined in the enumerators are valid. If false, any value of the backing type is allowed.</p>
+<p><strong>description</strong> User facing description of the enumeration. Localized and may be shown in the UI. (Optional)</p>
+<p><strong>displayLabel</strong> a localized display label that will be used instead of the name in the GUI. If not set the Type Name of the enumeration will be used (Optional)</p>
+<p><strong>strict</strong> If true only values defined in the enumerators are valid. If false, any value of the backing type is allowed. (Optional, default is false)</p>
 <h2 class="h-sub-elements">Sub-Elements<a id="sub-elements" class="heading-anchor" href="#sub-elements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p><a href="#ecenumerator">ECEnumerator</a> <em>(0..*)</em></p>
 <h3 class="h-ecenumerator">ECEnumerator<a id="ecenumerator" class="heading-anchor" href="#ecenumerator"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>Defines an individual Label/Value pair in an ECEnumeration definition</p>
 <h4 class="h-attributes-1">Attributes<a id="attributes-1" class="heading-anchor" href="#attributes-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
-<p><strong>value</strong> The value for this enumerator, must be unique in the context of the ECEnumeration it belongs to.</p>
-<p><strong>displayLabel</strong> a localized display label that will be used instead of the name in the GUI. If not set the Value will be used</p>
+<p><strong>name</strong> Defines the name of this ECEnumerator. Must be a valid <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-name'>ECName</a> and be unique among all other Enumerators in this Enumeration. (Required)</p>
+<p><strong>value</strong> The value for this enumerator, must be unique in the context of the ECEnumeration it belongs to. (Required)</p>
+<p><strong>displayLabel</strong> A localized display label that will be used instead of the name in the GUI. If not set the Value will be used. (Optional)</p>
+<p><strong>description</strong> User facing description of the enumerator. Localized and may be shown in the UI. (Optional)</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>29 July, 2019</span>
+                <span class='date-updated'>13 August, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
