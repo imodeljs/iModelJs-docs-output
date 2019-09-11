@@ -9,9 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>1.3.0 Change Notes - iModel.js</title>
-    <meta name="og:title" content="1.3.0 Change Notes - iModel.js">
-    <meta name="twitter:title" content="1.3.0 Change Notes - iModel.js">
+    <title>1.4.0 Change Notes - iModel.js</title>
+    <meta name="og:title" content="1.4.0 Change Notes - iModel.js">
+    <meta name="twitter:title" content="1.4.0 Change Notes - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.3.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.4.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -99,6 +99,8 @@
     <hr>
     <h3 id="versions">Versions</h3>
     <ul>
+    <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/1.4.0" class="table-of-contents-link">1.4.0</a></p>
+    </li>
     <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/1.3.0" class="table-of-contents-link">1.3.0</a></p>
     </li>
     <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/1.2.0" class="table-of-contents-link">1.2.0</a></p>
@@ -141,198 +143,106 @@
         <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'>Change History</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/changehistory/index.md">Edit this page</a></div>
-            <h1 id="1.3.0 change notes">1.3.0 Change Notes</h1>
-<h2 class="h-display-system-enhancements">Display system enhancements<a id="display-system-enhancements" class="heading-anchor" href="#display-system-enhancements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<h3 class="h-improved-drawing-grid-appearance-and-performance">Improved drawing grid appearance and performance<a id="improved-drawing-grid-appearance-and-performance" class="heading-anchor" href="#improved-drawing-grid-appearance-and-performance"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><img src="./assets/grid.png" alt="grid example" title="Example showing drawing grid"></p>
-<h3 class="h-map-depth-transparency-and-elevation">Map depth, transparency, and elevation<a id="map-depth-transparency-and-elevation" class="heading-anchor" href="#map-depth-transparency-and-elevation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>The background map is typically drawn behind all other geometry. This can be disorienting when viewing geometry that should be located below the ground. Now, the map can be rendered with depth, so that underground geometry is not visible when looking down at the map; or with transparency, so that underground geometry is only partially visible beneath the map. Additionally, the map can be draped onto real-world terrain meshes obtained from the <a href="https://cesium.com/content/" target="_blank">Cesium World Terrain</a> service. All of these settings can be controlled by modifying the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/backgroundmapsettings'>BackgroundMapSettings</a> associated with a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/displaystylestate'>DisplayStyleState</a>.</p>
-<ul>
-<li>Top-left: Ordinary background map</li>
-<li>Top-right: Background map with depth</li>
-<li>Bottom-left: Background map with transparency</li>
-<li>Bottom-right: Background map with terrain</li>
-</ul>
-<p><img src="./assets/map.png" alt="background map" title="Different ways of rendering the background map"></p>
-<h3 class="h-improved-depth-buffer-resolution">Improved depth buffer resolution<a id="improved-depth-buffer-resolution" class="heading-anchor" href="#improved-depth-buffer-resolution"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>When drawing geometry spanning large distances, visual artifacts like <a href="https://en.wikipedia.org/wiki/Z-fighting" target="_blank">z-fighting</a> can occur as a result of the limited number of bits in the graphics driver&apos;s <a href="https://en.wikipedia.org/wiki/Z-buffering" target="_blank">depth buffer</a>. Typically these artifacts are addressed by reducing the maximum viewable distance, but this is not ideal. Instead, when the viewing distance is sufficiently large and the required <a href="https://www.khronos.org/registry/webgl/extensions/EXT_frag_depth/" target="_blank">WebGL extension</a> is available on the client, a <a href="http://tulrich.com/geekstuff/log_depth_buffer.txt" target="_blank">logarithmic depth buffer</a> is used to optimize the resolution of the depth buffer resulting in a larger viewable distance with fewer artifacts.</p>
-<h3 class="h-material-atlases">Material atlases<a id="material-atlases" class="heading-anchor" href="#material-atlases"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/rendermaterial'>RenderMaterial</a> applied to a surface defines how the surface interacts with lighting, its diffuse color and transparency, and so on. This information must be sent to the graphics driver when drawing the surface. Previously, when generating tiles, surfaces with differing materials would not be batched together into larger meshes, resulting in a larger number of draw calls and therefore reduced performance. Now, surfaces using up to 255 different, un-textured materials can be batched into a single mesh. The impact on frames-per-second can be quite significant, particularly for models originating in applications like Revit which use materials extensively. An order-of-magnitude reduction in the number of draw calls, and consequent doubling of frames-per-second, was observed in one such model.</p>
-<h2 class="h-pan-and-rotate-viewing-operations-support-inertia">Pan and Rotate viewing operations support inertia<a id="pan-and-rotate-viewing-operations-support-inertia" class="heading-anchor" href="#pan-and-rotate-viewing-operations-support-inertia"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>The viewing tools Pan and Rotate now optionally support inertia. If the tools are used with a <em>flicking</em> action, they continue briefly with a decaying inertial effect. The behavior of the inertia is controlled by <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/toolsettings/viewinginertia'>ToolSettings.viewingInertia</a>.</p>
-<h2 class="h-shadow-maps">Shadow maps<a id="shadow-maps" class="heading-anchor" href="#shadow-maps"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Shadows can now be displayed in 3d views. The implementation uses exponential variance shadow maps to minimize the visual artifacts associated with traditional shadow maps to the extent possible under the limitations imposed by WebGL 1. To enable shadows for a view, set <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/viewflags/#shadows'>ViewFlags.shadows</a> to <code>true</code>. To change the time of day (and therefore the sun direction from which shadows are cast), use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/displaystyle3dstate/setsuntime'>DisplayStyle3dState.setSunTime</a>.</p>
-<p><img src="./assets/shadows.png" alt="shadow example" title="Shadows"></p>
-<blockquote>
-<p>Note: This feature is currently feature-gated; to enable it, set <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendersystem.options/displaysolarshadows'>RenderSystem.Options.displaySolarShadows</a> to <code>true</code> when initializing your <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp'>IModelApp</a>.</p>
-</blockquote>
-<blockquote>
-<p>Note: This feature requires 2 WebGL extensions: EXT_texture_filter_anisotropic and either of OES_texture_float_linear of OES_texture_half_float_linear. On systems that do not support these extensions, shadows will not be displayed.</p>
-</blockquote>
+            <h1 id="1.4.0 change notes">1.4.0 Change Notes</h1>
 <h2 class="h-geometry">Geometry<a id="geometry" class="heading-anchor" href="#geometry"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-summary">Summary<a id="summary" class="heading-anchor" href="#summary"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
-<li><p>Summary:</p>
+<li>New class <code>CurveFactory</code> to hold future static methods that construct multi-component curves.<ul>
+<li>First method: CurveFactory.createFilletsInLineString</li>
+</ul>
+</li>
+<li><code>PolyfaceBuilder</code> static method to build xy triangulation of array of points.</li>
+<li><code>PolyfaceClip</code> static method to compute cut-fill between 2.5D meshes.<h3 class="h-details">Details<a id="details" class="heading-anchor" href="#details"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+<li><code>Arc3d</code><ul>
+<li>(static) <code>Arc3d.createFilletArc(point0: Point3d, point1: Point3d, point2: Point3d, radius: number): ArcBlendData;</code><ul>
+<li>Create (if possible) a single arc that is a fillet between line segment from <code>point0</code> to <code>point</code> and <code>point1</code> to <code>point</code>.</li>
+<li>Annotated return with fractional position of tangent, fractions from middle point outward along segments.</li>
+<li><code>point1</code> (middle points) is commonly called the PI (point of inflection) for the linestring being filleted.</li>
+<li>See new support interface <code>ArcBlendData</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>CurveFactory</code><ul>
+<li>(static) <code>CurveFactory.createFilletsInLineString(points: LineString3d | IndexedXYZCollection | Point3d[], radius: number, allowBackupAlongEdge?: boolean): Path | undefined;</code><ul>
+<li>Create a path with alternating lines and tangent arcs.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>CurveCollection</code><ul>
+<li>(static) <code>static createCurveLocationDetailOnAnyCurvePrimitive(source: GeometryQuery | undefined, fraction?: number): CurveLocationDetail | undefined;</code><ul>
+<li>Find any curve primitive in the collection.  Evaluate it at a fractional position.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>CurveCurve</code><ul>
+<li>(static) <code>CurveCurve.intersectionXYPairs(geometryA: GeometryQuery, extendA: boolean, geometryB: GeometryQuery, extendB: boolean): CurveLocationDetailPair[]</code><ul>
+<li>Same as existing (deprecated) <code>CurveCurve.intersectionXY</code>, but bundles pairs of <code>CurveLocationDetailPair</code> in single array more useful for processing.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>Point3dArray</code><ul>
+<li>(static) <code>Point3dArray.static computeConvexHullXY(points: Point3d[], hullPoints: Point3d[], insidePoints: Point3d[], addClosurePoint?: boolean): void;</code><ul>
+<li>Return <code>hullPoints</code> in CCW order around the hull</li>
+<li>Return all non-hull points in <code>insidePoints</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>PolyfaceBuilder</code><ul>
+<li>(static) <code>PolyfaceBuilder.pointsToTriangulatedPolyface(points: Point3d[]): IndexedPolyface | undefined;</code><ul>
+<li>Return triangulated mesh within the convex hull around the points.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>PolyfaceClip</code><ul>
+<li>(static)</li>
+</ul>
+</li>
+<li><code>ClipPlane</code> and <code>ConvexClipPlaneSet</code> support<ul>
+<li><code>myClipPlane.convexPolygonSplitInsideOutsideGrowableArrays(xyz: GrowableXYZArray, xyzIn: GrowableXYZArray, xyzOut: GrowableXYZArray, altitudeRange: Range1d): void;</code><ul>
+<li>Split a polygon across a plane; optimized for <code>GrowableXYZArray</code> storage.</li>
+</ul>
+</li>
+<li>(static) <code>ClipPlane.createNormalAndPointXYZXYZ(normalX: number, normalY: number, normalZ: number, originX: number, originY: number, originZ: number, invisible?: boolean, interior?: boolean, result?: ClipPlane): ClipPlane | undefined;</code><ul>
+<li>(preexisting) added optional <code>result</code> parameter</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>Ray3d</code><ul>
+<li><code>interval = myRay.intersectionWithRange3d(range: Range3d, result?: Range1d): Range1d</code><ul>
+<li>return fractions (along the ray <code>myRay</code>) where the <code>myRay</code> enters and exits a <code>Range3d</code>, or null <code>Range1d</code> if no in intersection.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="h-enhancements-to-imodeldbexportgraphics">Enhancements to IModelDb.exportGraphics<a id="enhancements-to-imodeldbexportgraphics" class="heading-anchor" href="#enhancements-to-imodeldbexportgraphics"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ul>
-<li>Triangulate cut faces in polyface clip.</li>
-<li>Variant point data parse.</li>
-<li>Bilinear Patch ray intersection</li>
-<li>polyline small feature filtering</li>
-<li>compute WireMoment on curves</li>
-<li>compute volume moments on meshes.</li>
+<li>IModelDb.exportGraphics and associated functions are now out of beta and tagged as public.</li>
+<li>Added <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/exportgraphicsoptions/minbrepfeaturesize'>ExportGraphicsOptions.minBRepFeatureSize</a> to improve performance when exporting graphics for breps.</li>
 </ul>
-</li>
-<li><p>When clipping a polyface with a plane, new method optionally outputs triangulation of the cut plane face.</p>
+<h2 class="h-authorization-changes">Authorization Changes<a id="authorization-changes" class="heading-anchor" href="#authorization-changes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-changes-to-agent-authorization">Changes to Agent authorization<a id="changes-to-agent-authorization" class="heading-anchor" href="#changes-to-agent-authorization"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients-backend/oidcagentclient/oidcagentclient'>OidcAgentClient</a> now implements <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/iauthorizationclient'>IAuthorizationClient</a>. The following methods are now marked deprecated -</p>
 <ul>
-<li>(static) <code>clipPolyfaceClipPlaneWithClosureFace(polyface: Polyface, clipper: ClipPlane, insideClip?: boolean, buildClosureFace?: boolean): Polyface;</code></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients-backend/oidcagentclient/oidcagentclient/gettoken'>OidcAgentClient.getToken</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients-backend/oidcagentclient/oidcagentclient/refreshtoken'>OidcAgentClient.refreshToken</a></li>
 </ul>
-</li>
-<li>Methods that support points loosely structured as type MultiLineStringDataVariant<ul>
-<li>Many point variants are parsed:<ul>
-<li>point as Point3d</li>
-<li>point as [1,2,3]</li>
-<li>point as {x:1, y:2, z:3}</li>
-<li>Array [] of any of the above</li>
-<li>GrowableXYZArray with points packed (x,y,z,  x,y,z,  x,y,z, ...)</li>
-</ul>
-</li>
-<li>Methods to convert the variant structures to specific preferred types:<ul>
-<li>(static) <code>GrowableXYZArray.createArrayOfGrowableXYZArrayFromVariantData (data: MultiLineStringDataVariant): GrowableXYZArray[];</code><ul>
-<li>Return array of GrowableXYZArray.</li>
-</ul>
-</li>
-<li>(static) <code>LineString3d.createArrayOfLineString3dFromVariantData (data: MultiLineStringDataVariant): LineString3d[];</code></li>
-<li>(static) <code>Range3d.createFromVariantData(data: MultiLineStringDataVariant):Range3d</code></li>
-<li>(static) <code>Point3dArray.convertVariantDataToDeepXYZNumberArrays(data: MultiLineStringDataVariant): any[];</code></li>
-<li>(static) <code>Point3dArray.convertVariantDataToDeepXYZNumberArrays(data: MultiLineStringDataVariant): any[];</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>(static) <code>FrameBuilder.createFrameWithCCWPolygon (points: Point3d[])</code><ul>
-<li>Create a transform in the plane of points.</li>
-<li>flip Z directed so the polygon has CCW orientation.</li>
-</ul>
-</li>
-<li>(static) <code>orientLoopsCCWForOutwardNormalInPlace(loops: GrowableXYZArray | GrowableXYZArray[], outwardNormal: Vector3d): number</code><ul>
-<li>reverse order of loops (individually, no hole analysis) so all are CCW orientation for given outward normal.</li>
-<li>Return number reversed.</li>
-</ul>
-</li>
-<li><code>Arc3d</code> methods<ul>
-<li>(static) <code>Arc3d.cloneAtZ(z?: number): Arc3d</code>
-Return projection to plane at <code>z</code></li>
-<li>(static) <code>Arc3d.createXYZXYZXYZ(cx: number, cy: number, cz: number, ux: number, uy: number, uz: number, vx: number, vy: number, vz: number, sweep?:     * AngleSweep, result?: Arc3d): Arc3d;</code><ul>
-<li>create an arc with center, vector to 0 degree point, and vector to 90 degree point.</li>
-</ul>
-</li>
-<li>(static) <code>Arc3d.fractionAndRadialFractionToPoint(arcFraction: number, radialFraction: number, result?: Point3d): Point3d;</code><ul>
-<li>evaluate a point at fraction position &quot;along&quot; the arc and at multiple of the radius.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><code>GrowableXYZArray</code> instance methods to access individual x,y,z by point index without creating Point3d object:<ul>
-<li><code>myGrowableXYZArray.getXAtUncheckedPointIndex (pointIndex: number) : number;</code></li>
-<li><code>myGrowableXYZArray.getYAtUncheckedPointIndex (pointIndex: number) : number;</code></li>
-<li><code>myGrowableXYZArray.getZAtUncheckedPointIndex (pointIndex: number) : number;</code></li>
-<li><code>myGrowableXYZArray.length</code></li>
-<li><code>GrowableXYZArray.moveIndexToIndex (fromIndex, toIndex)</code></li>
-</ul>
-</li>
-<li><code>ParityRegion</code> methods to facilitate adding or creating with (strongly typed) loop objects<ul>
-<li>For both <code>create</code> or <code>add</code>, data presented as possibly deep arrays of arrays of loops is flattened to the ParityRegion form of a single array of Loops.</li>
-<li><code>(static) createLoops(data?: Loop | Loop[] | Loop[][]): Loop | ParityRegion;</code><ul>
-<li>Note that in the single-loop case this returns a Loop object rather than ParityRegion.</li>
-</ul>
-</li>
-<li><code>myParityRegion.addLoops(data?: Loop | Loop[] | Loop[][]): void;</code></li>
-</ul>
-</li>
-<li><code>BilinearPatch</code> methods<ul>
-<li>Method to compute points of intersection with a ray:<ul>
-<li>intersectRay(ray: Ray3d): CurveAndSurfaceLocationDetail[] | undefined;</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><code>LineString3d</code> methods<ul>
-<li>method to create capture a GrowableXYZArray as the packed points of a LineString3d:<ul>
-<li>(static) <code>createCapture(points: GrowableXYZArray): LineString3d;</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><code>NumberArray</code> methods<ul>
-<li>In existing static method <code>NumberArray.maxAbsDiff</code>, allow both <code>number[]</code> and <code>Float64Array</code>, viz<ul>
-<li>(static) <code>NumberArray.maxAbsDiff(dataA: number[] | Float64Array, dataB: number[] | Float64Array): number;</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><code>PolyfaceBuilder</code> methods<ul>
-<li>convert a single loop polygon to triangulated facets.<ul>
-<li>(static) <code>PolyfaceBuilder.polygonToTriangulatedPolyface(points: Point3d[], localToWorld?: Transform): IndexedPolyface | undefined;</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><code>SweepContour</code> methods<ul>
-<li>(static) <code>SweepContour.createForPolygon(points: MultiLineStringDataVariant, defaultNormal?: Vector3d): SweepContour | undefined;</code></li>
-</ul>
-</li>
-<li><code>Range3d</code> methods<ul>
-<li>Existing methods with input type <code>Point3d[]</code> allow <code>GrowableXYZArray</code> with packed x,y,z content<ul>
-<li>(static) <code>Range3d.createInverseTransformedArray&lt;T extends Range3d&gt;(transform: Transform, points: Point3d[] | GrowableXYZArray): T;</code></li>
-<li>(static) <code>Range3d.createTransformedArray&lt;T extends Range3d&gt;(transform: Transform, points: Point3d[] | GrowableXYZArray): T;</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><code>XYZ</code> methods (become visible in both Point3d and Vector3d)<ul>
-<li>`myPoint.subtractInPlace (vector: XYAndZ);</li>
-</ul>
-</li>
-<li>Numerics<ul>
-<li>Gaussian elimination step for inplace updated of subset of a row <code>rowB[i] += a * rowA[i]</code> for <code>i &gt; pivotIndex</code></li>
-<li>Solve up to 4 roots of a pair of bilinear equations<ul>
-<li>(static) <code>solveBilinearPair(a0: number, b0: number, c0: number, d0: number, a1: number, b1: number, c1: number, d1: number): Point2d[] | undefined;</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><code>PolylineOps</code> new methods<ul>
-<li>(static) <code>PolylineOps.compressByPerpendicularDistance(source: Point3d[], maxDistance: number, numPass?: number): Point3d[]</code></li>
-<li>(static) <code>PolylineOps,compressShortEdges(source: Point3d[], maxEdgeLength: number): Point3d[]]</code></li>
-<li>(static) <code>PolylineOps.compressSmallTriangles(source: Point3d[], maxTriangleArea: number): Point3d[]</code></li>
-</ul>
-</li>
-<li><code>RegionOps</code> new methods<ul>
-<li>(static) <code>RegionOps.computeXYZWireMomentSums(root: AnyCurve): MomentData | undefined</code></li>
-<li>(static) <code>RegionOps.constructCurveXYOffset(curves: Path | Loop, offsetDistanceOrOptions: number | JointOptions): CurveCollection | undefined;</code><ul>
-<li>Create a path or loop offset by distance (positive to left)</li>
-</ul>
-</li>
-<li>(static) <code>RegionOps.createLoopPathOrBagOfCurves(curves: CurvePrimitive[], wrap?: boolean): CurveCollection | undefined;</code><ul>
-<li>Create a curve structure, choosing type <code>Loop</code>, <code>Path</code>, or <code>BagOfCurves</code> appropriate to how the inputs join.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><code>PolyfaceQuery</code> new methods<ul>
-<li>(static) <code>momentData = computePrincipalVolumeMoments(source: Polyface): MomentData | undefined</code><ul>
-<li>Returns momentData structure with centroid, volume, radii of gyration.</li>
-</ul>
-</li>
-<li>(static) <code>static boundaryEdges(source: Polyface, includeDanglers: boolean = true, includeMismatch: boolean = true, includeNull: boolean = true): CurveCollection | undefined</code><ul>
-<li>Within a polyface, find edges that have unusual adjacency and hence qualify as &quot;boundary&quot; edges.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p>The access token is now stored in the client, and can be accessed by calling <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients-backend/oidcagentclient/oidcagentclient/getaccesstoken'>OidcAgentClient.getAccessToken</a>. This method
+validates and refreshes the token as necessary.</p>
+<h3 class="h-swapping-backend-authorization-to-use-agents">Swapping backend authorization to use agents<a id="swapping-backend-authorization-to-use-agents" class="heading-anchor" href="#swapping-backend-authorization-to-use-agents"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>The API now allows swapping the authorization client used for backend operations like downloading a briefcase or change sets of an iModel.
+Set <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodelhost/imodelhost/authorizationclient'>IModelHost.authorizationClient</a> to the required authorization client - e.g., an instance of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients-backend/oidcagentclient/oidcagentclient'>OidcAgentClient</a>.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 August, 2019</span>
+                <span class='date-updated'>10 September, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -381,33 +291,35 @@ Return projection to plane at <code>z</code></li>
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
               <li class='nav-item item '>
-            <a data-target="#inner-nav-display-system-enhancements" class='title' href="#display-system-enhancements"/>
-            <b class='dropdown-menu-title menu-text'>Display system enhancements</b>
+            <a data-target="#inner-nav-geometry" class='title' href="#geometry"/>
+            <b class='dropdown-menu-title menu-text'>Geometry</b>
             <i class='nav-list-dropdown icon'></i>
             </a>
-            <ul id="inner-nav-display-system-enhancements" class='inner-nav'>
+            <ul id="inner-nav-geometry" class='inner-nav'>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#improved-drawing-grid-appearance-and-performance">Improved drawing grid appearance and performance</a>
+                            <a class='title solo-title menu-text' href="#summary">Summary</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#map-depth-transparency-and-elevation">Map depth, transparency, and elevation</a>
-                    </li>
-                    <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#improved-depth-buffer-resolution">Improved depth buffer resolution</a>
-                    </li>
-                    <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#material-atlases">Material atlases</a>
+                            <a class='title solo-title menu-text' href="#details">Details</a>
                     </li>
             </ul>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#pan-and-rotate-viewing-operations-support-inertia">Pan and Rotate viewing operations support inertia</a>
+            <a class='title solo-title menu-text' href="#enhancements-to-imodeldbexportgraphics">Enhancements to IModelDb.exportGraphics</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#shadow-maps">Shadow maps</a>
-    </li>
-       <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#geometry">Geometry</a>
+            <a data-target="#inner-nav-authorization-changes" class='title' href="#authorization-changes"/>
+            <b class='dropdown-menu-title menu-text'>Authorization Changes</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-authorization-changes" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#changes-to-agent-authorization">Changes to Agent authorization</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#swapping-backend-authorization-to-use-agents">Swapping backend authorization to use agents</a>
+                    </li>
+            </ul>
     </li>
  
       </ul>

@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.3.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.4.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -202,11 +202,22 @@
 <h4 class="h-bis-007">BIS-007 <a name="BIS-007"></a><a id="bis-007" class="heading-anchor" href="#bis-007"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p>Classes within the same schema cannot have the same display label.</p>
 <h4 class="h-bis-008">BIS-008 <a name="BIS-008"></a><a id="bis-008" class="heading-anchor" href="#bis-008"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
-<p>Classes may not use custom attributes that are deprecated.</p>
+<p>A schema should not reference a deprecated schema.</p>
 <h4 class="h-bis-009">BIS-009 <a name="BIS-009"></a><a id="bis-009" class="heading-anchor" href="#bis-009"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
-<p>Classes not within the <strong>BisCore</strong>, <strong>Functional</strong>, or <strong>Generic</strong> schema cannot applied <strong>bis:ClassHasHandler</strong>.</p>
-<h4 class="h-bis-010">BIS-010 <a name="BIS-010"></a><a id="bis-010" class="heading-anchor" href="#bis-010"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p>An alias in the schema reference must be the same as the alias defined by the schema.</p>
+<h3 class="h-class-rules">Class Rules<a id="class-rules" class="heading-anchor" href="#class-rules"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h4 class="h-bis-100">BIS-100 <a name="BIS-100"></a><a id="bis-100" class="heading-anchor" href="#bis-100"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>Properties within the same class and category cannot have the same display label.</p>
+<h4 class="h-bis-101">BIS-101 <a name="BIS-101"></a><a id="bis-101" class="heading-anchor" href="#bis-101"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>Classes not within the <strong>BisCore</strong>, <strong>Functional</strong>, or <strong>Generic</strong> schema cannot applied <strong>bis:ClassHasHandler</strong>.</p>
+<h4 class="h-bis-102">BIS-102 <a name="BIS-102"></a><a id="bis-102" class="heading-anchor" href="#bis-102"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>Class should not derive from a deprecated class.</p>
+<h4 class="h-bis-103">BIS-103 <a name="BIS-103"></a><a id="bis-103" class="heading-anchor" href="#bis-103"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>Class should not have deprecated properties.</p>
+<h4 class="h-bis-104">BIS-104 <a name="BIS-104"></a><a id="bis-104" class="heading-anchor" href="#bis-104"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>Class should not have properties which are of deprecated struct types.</p>
+<h4 class="h-bis-105">BIS-105 <a name="BIS-105"></a><a id="bis-105" class="heading-anchor" href="#bis-105"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>Classes should not use custom attributes that are deprecated.</p>
 <h3 class="h-custom-attribute-classes">Custom Attribute Classes<a id="custom-attribute-classes" class="heading-anchor" href="#custom-attribute-classes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <h4 class="h-bis-400">BIS-400 <a name="BIS-400"></a><a id="bis-400" class="heading-anchor" href="#bis-400"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p>Custom Attribute classes must not have base classes.</p>
@@ -251,11 +262,15 @@
 <p>Subclasses of <strong>bis:Model</strong> cannot have additional properties defined outside of <strong>BisCore</strong>.</p>
 <h4 class="h-bis-610">BIS-610 <a name="BIS-610"></a><a id="bis-610" class="heading-anchor" href="#bis-610"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p>Entity classes may not subclass deprecated classes.</p>
+<h4 class="h-bis-611">BIS-611 <a name="BIS-611"></a><a id="bis-611" class="heading-anchor" href="#bis-611"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>Entity classes should not derive from deprecated mixin classes.</p>
 <h3 class="h-kindofquantities">KindOfQuantities<a id="kindofquantities" class="heading-anchor" href="#kindofquantities"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<h4 class="h-bis-700">BIS-700 <a name="BIS-700"></a><a id="bis-700" class="heading-anchor" href="#bis-700"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
-<p>Kind Of Quantities must not use &apos;PERCENTAGE&apos; or other unitless ratios.</p>
 <h4 class="h-bis-1000">BIS-1000 <a name="BIS-1000"></a><a id="bis-1000" class="heading-anchor" href="#bis-1000"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>Kind Of Quantities must not use &apos;PERCENTAGE&apos; or other unitless ratios.</p>
+<h4 class="h-bis-1001">BIS-1001 <a name="BIS-1001"></a><a id="bis-1001" class="heading-anchor" href="#bis-1001"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p>Kind Of Quantities must use an SI Unit for their persistence unit.</p>
+<h4 class="h-bis-1002">BIS-1002 <a name="BIS-1002"></a><a id="bis-1002" class="heading-anchor" href="#bis-1002"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>Kind Of Quantities must not have duplicate presentation format.</p>
 <h3 class="h-mixin-rules">Mixin Rules<a id="mixin-rules" class="heading-anchor" href="#mixin-rules"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <h4 class="h-bis-1100">BIS-1100 <a name="BIS-1100"></a><a id="bis-1100" class="heading-anchor" href="#bis-1100"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p>Mixin classes may not override an inherited property.</p>
@@ -286,6 +301,14 @@
 <p>Relationship classes must not have an <strong>bis:ElementAspect</strong> target constraint (or source constraint if direction is backwards), unless they derive from <strong>bis:ElementOwnsUniqueAspect</strong> or <strong>bis:ElementOwnsMultiAspects</strong>.</p>
 <h4 class="h-bis-1505">BIS-1505 <a name="BIS-1505"></a><a id="bis-1505" class="heading-anchor" href="#bis-1505"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p>Embedding relationships should not have &apos;Has&apos; in the class name.</p>
+<h4 class="h-bis-1506">BIS-1506 <a name="BIS-1506"></a><a id="bis-1506" class="heading-anchor" href="#bis-1506"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>Relationship Constraint should not use a deprecated class or mixin as a constraint class.</p>
+<h4 class="h-bis-1507">BIS-1507 <a name="BIS-1507"></a><a id="bis-1507" class="heading-anchor" href="#bis-1507"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>Relationship Constraint should not use a deprecated class or mixin as an abstract constraint.</p>
+<h4 class="h-bis-1508">BIS-1508 <a name="BIS-1508"></a><a id="bis-1508" class="heading-anchor" href="#bis-1508"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>Relationship Constraint should not use constraint classes which derives from a deprecated base class or deprecated mixin classes.</p>
+<h4 class="h-bis-1509">BIS-1509 <a name="BIS-1509"></a><a id="bis-1509" class="heading-anchor" href="#bis-1509"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>Relationship Constraint should not use abstract constraint which derives from a deprecated base class or deprecated mixin classes.</p>
 <h3 class="h-struct-classes">Struct Classes<a id="struct-classes" class="heading-anchor" href="#struct-classes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <h4 class="h-bis-1700">BIS-1700 <a name="BIS-1700"></a><a id="bis-1700" class="heading-anchor" href="#bis-1700"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p>Struct classes must not have base classes.</p>
@@ -298,7 +321,7 @@
 </tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 August, 2019</span>
+                <span class='date-updated'>10 September, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -388,8 +411,31 @@
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#bis-009">BIS-009</a>
                                     </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-class-rules" class='title' href="#class-rules"/>
+                            <b class='dropdown-menu-title menu-text'>Class Rules</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-class-rules" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#bis-010">BIS-010</a>
+                                            <a class='title solo-title menu-text' href="#bis-100">BIS-100</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#bis-101">BIS-101</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#bis-102">BIS-102</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#bis-103">BIS-103</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#bis-104">BIS-104</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#bis-105">BIS-105</a>
                                     </li>
                             </ul>
                     </li>
@@ -443,6 +489,9 @@
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#bis-610">BIS-610</a>
                                     </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#bis-611">BIS-611</a>
+                                    </li>
                             </ul>
                     </li>
                     <li class='nav-item item '>
@@ -452,10 +501,13 @@
                             </a>
                             <ul id="inner-nav-kindofquantities" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#bis-700">BIS-700</a>
+                                            <a class='title solo-title menu-text' href="#bis-1000">BIS-1000</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#bis-1000">BIS-1000</a>
+                                            <a class='title solo-title menu-text' href="#bis-1001">BIS-1001</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#bis-1002">BIS-1002</a>
                                     </li>
                             </ul>
                     </li>
@@ -513,6 +565,18 @@
                                     </li>
                                     <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#bis-1505">BIS-1505</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#bis-1506">BIS-1506</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#bis-1507">BIS-1507</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#bis-1508">BIS-1508</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#bis-1509">BIS-1509</a>
                                     </li>
                             </ul>
                     </li>

@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.3.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.4.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -172,7 +172,7 @@
             
             <h1 id="corecustomattributes">CoreCustomAttributes</h1>
 <p><strong>alias:</strong> CoreCA</p>
-<p><strong>version:</strong> 1.0.2</p>
+<p><strong>version:</strong> 1.0.3</p>
 <p>Custom attributes to indicate core EC concepts, may include struct classes intended for use in core custom attributes.</p>
 <p><strong>displayLabel:</strong> Core Custom Attributes</p>
 <h2 class="h-enumerations">Enumerations<a id="enumerations" class="heading-anchor" href="#enumerations"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
@@ -217,6 +217,31 @@
 <tr>
 <td align="left"></td>
 <td align="left">Local</td>
+</tr>
+</tbody></table><h3 class="h-productionstatusvalue"><strong>ProductionStatusValue</strong><a id="productionstatusvalue" class="heading-anchor" href="#productionstatusvalue"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> Enumeration</p>
+<p><strong>Backing Type:</strong> string</p>
+<p><strong>description:</strong> Used with ProductionStatus to declare the schema author&apos;s intended and supported workflows for the schema.</p>
+<p><strong>Strict:</strong> true</p>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Label</th>
+<th align="left">Value</th>
+</tr>
+<tr>
+<td align="left">NotForProduction</td>
+<td align="left">NotForProduction</td>
+</tr>
+<tr>
+<td align="left">FieldTesting</td>
+<td align="left">FieldTesting</td>
+</tr>
+<tr>
+<td align="left">Production</td>
+<td align="left">Production</td>
+</tr>
+<tr>
+<td align="left">Deprecated</td>
+<td align="left">Deprecated</td>
 </tr>
 </tbody></table><h2 class="h-custom">Custom Attribute Classes<a id="custom" class="heading-anchor" href="#custom"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <h3 class="h-classhascurrenttimestampproperty"><strong>ClassHasCurrentTimeStampProperty</strong> <em>Sealed</em><a id="classhascurrenttimestampproperty" class="heading-anchor" href="#classhascurrenttimestampproperty"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -429,11 +454,40 @@
 <p><strong>typeName:</strong> CustomAttributeClass</p>
 <p><strong>description:</strong> Identifies a schema file/object that may only contain part of the complete schema.  Like versions of a schema may differ but are guaranteed to merge without conflicts.</p>
 <p><strong>Applies to:</strong> Schema</p>
-<h3 class="h-supplementalprovenance"><strong>SupplementalProvenance</strong> <em>Sealed</em><a id="supplementalprovenance" class="heading-anchor" href="#supplementalprovenance"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h3 class="h-productionstatus"><strong>ProductionStatus</strong> <em>Sealed</em><a id="productionstatus" class="heading-anchor" href="#productionstatus"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> CustomAttributeClass</p>
+<p><strong>description:</strong> Declares the suitability of this schema for use in production and other workflows.</p>
+<p><strong>Applies to:</strong> Schema</p>
+<h4 class="h-properties-9">Properties<a id="properties-9" class="heading-anchor" href="#properties-9"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Label</th>
+<th align="left">Category</th>
+<th align="left">Read Only</th>
+<th align="left">Priority</th>
+</tr>
+<tr>
+<td align="left">SupportedUse</td>
+<td align="left">Indicates the suitability of this schema for production or other usage.</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">false</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">Checksum</td>
+<td align="left">Set when the schema ProductionStatus is set. Used to verify that a validated schema has not been modified after that point.</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">false</td>
+<td align="left">0</td>
+</tr>
+</tbody></table><h3 class="h-supplementalprovenance"><strong>SupplementalProvenance</strong> <em>Sealed</em><a id="supplementalprovenance" class="heading-anchor" href="#supplementalprovenance"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> CustomAttributeClass</p>
 <p><strong>description:</strong> &lt;No description&gt;</p>
 <p><strong>Applies to:</strong> Schema</p>
-<h4 class="h-properties-9">Properties<a id="properties-9" class="heading-anchor" href="#properties-9"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-10">Properties<a id="properties-10" class="heading-anchor" href="#properties-10"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -454,7 +508,7 @@
 <p><strong>typeName:</strong> CustomAttributeClass</p>
 <p><strong>description:</strong> Identifies a schema as a supplemental schema and stores extra metadata necessary for supplemental schemas</p>
 <p><strong>Applies to:</strong> Schema</p>
-<h4 class="h-properties-10">Properties<a id="properties-10" class="heading-anchor" href="#properties-10"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-11">Properties<a id="properties-11" class="heading-anchor" href="#properties-11"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -490,7 +544,7 @@
 </tbody></table><h3 class="h-schemanameandpurpose"><strong>SchemaNameAndPurpose</strong> <em>Sealed</em><a id="schemanameandpurpose" class="heading-anchor" href="#schemanameandpurpose"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> StructClass</p>
 <p><strong>description:</strong> Used to define a supplemental schema and its purpose</p>
-<h4 class="h-properties-11">Properties<a id="properties-11" class="heading-anchor" href="#properties-11"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-12">Properties<a id="properties-12" class="heading-anchor" href="#properties-12"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -518,7 +572,7 @@
 </tbody></table><h3 class="h-schemareference"><strong>SchemaReference</strong> (Schema Reference) <em>Sealed</em><a id="schemareference" class="heading-anchor" href="#schemareference"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> StructClass</p>
 <p><strong>description:</strong> Reference to a schema including name and version</p>
-<h4 class="h-properties-12">Properties<a id="properties-12" class="heading-anchor" href="#properties-12"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-13">Properties<a id="properties-13" class="heading-anchor" href="#properties-13"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -561,7 +615,7 @@
 </tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 August, 2019</span>
+                <span class='date-updated'>10 September, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -620,6 +674,9 @@
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#datetimekind">DateTimeKind</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#productionstatusvalue">ProductionStatusValue</a>
                     </li>
             </ul>
     </li>
@@ -738,13 +795,24 @@
                             <a class='title solo-title menu-text' href="#partialschema">PartialSchema (Partial Schema) Sealed</a>
                     </li>
                     <li class='nav-item item '>
+                            <a data-target="#inner-nav-productionstatus" class='title' href="#productionstatus"/>
+                            <b class='dropdown-menu-title menu-text'>ProductionStatus Sealed</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-productionstatus" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-9">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
                             <a data-target="#inner-nav-supplementalprovenance" class='title' href="#supplementalprovenance"/>
                             <b class='dropdown-menu-title menu-text'>SupplementalProvenance Sealed</b>
                             <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-supplementalprovenance" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-9">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-10">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -755,7 +823,7 @@
                             </a>
                             <ul id="inner-nav-supplementalschema" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-10">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-11">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -766,7 +834,7 @@
                             </a>
                             <ul id="inner-nav-schemanameandpurpose" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-11">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-12">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -777,7 +845,7 @@
                             </a>
                             <ul id="inner-nav-schemareference" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-12">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-13">Properties</a>
                                     </li>
                             </ul>
                     </li>

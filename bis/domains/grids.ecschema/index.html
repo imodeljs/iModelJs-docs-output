@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.3.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.4.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -174,15 +174,59 @@
 <p><strong>alias:</strong> grids</p>
 <p><strong>version:</strong> 1.0.0</p>
 <p>defines elements used as an aid in locating structural and design and/or other elements</p>
+<p>This schema contains class definitions for grids.</p>
+<p>These are used to build structural,spaceplanning and other grids. A <code>Grid</code> is a collection of GridSurfaces. Every <code>GridSurface</code> has a <code>GridAxis</code>, which is currently primarily used for grouping surfaces into subgroups. intersection of GridSurfaces may create a <code>GridCurve</code> (driven by <code>GridCurveBundle</code> element).</p>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECSchema schemaName=&quot;Grids&quot; alias=&quot;grids&quot; version=&quot;01.00&quot; xmlns=&quot;http://www.bentley.com/schemas/Bentley.ECXML.3.1&quot;&gt;
+    &lt;ECSchemaReference name=&quot;BisCore&quot; version=&quot;01.00.00&quot; alias=&quot;bis&quot; /&gt;
+    &lt;ECSchemaReference name=&quot;AecUnits&quot; version=&quot;01.00.00&quot; alias=&quot;AECU&quot; /&gt;</code></pre>
+<p><img src=".././media/grids.png" alt="Grids">
+<img src=".././media/gridsystem_instance.png" alt="Grids"></p>
 <h2 class="h-entity">Entity Classes<a id="entity" class="heading-anchor" href="#entity"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <h3 class="h-circularaxis"><strong>CircularAxis</strong><a id="circularaxis" class="heading-anchor" href="#circularaxis"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> an element which groups all PlanCircumferentialGridSurface elements in a RadialGrid together</p>
 <p><strong>baseClass:</strong> <a href="#gridaxis">Grids:GridAxis</a></p>
+<p>A subcollection of <code>PlanCircumferentialGridSurface</code> in a <code>RadialGrid</code>.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Matches with Circular Axis in <code>AECOsim Building Designer</code></li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;CircularAxis&quot; description=&quot;an element which groups all PlanCircumferentialGridSurface in a RadialGrid together&quot;&gt;
+  &lt;BaseClass&gt;GridAxis&lt;/BaseClass&gt;
+  &lt;ECCustomAttributes&gt;
+    &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot; /&gt;
+  &lt;/ECCustomAttributes&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-elevationgrid"><strong>ElevationGrid</strong><a id="elevationgrid" class="heading-anchor" href="#elevationgrid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> An ElevationGrid contains planar surfaces that are parallel to the local XY plane</p>
 <p><strong>baseClass:</strong> <a href="#grid">Grids:Grid</a></p>
+<p>A collection of ElevationGridSurfaces. has one or more <code>GeneralGridAxis</code>. typically used to slice a building. every surface is positioned across the Z axis of ElevationGrid Placement.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>ElevationGrid because GridSurfaces are positioned based on their .Elevation and grid .Placement properties</li>
+</ol>
+<p><u>Geometry Use:</u></p>
+<ol>
+<li>No geometry</li>
+<li>Local Coordinates : defines the origin and direction for surfaces</li>
+</ol>
+<p><u>Properties:</u></p>
+<ol>
+<li>DefaultElevationIncrement - suggested elevation increment with which a new surface would be inserted (highest elevation surface + .DefaultElevationIncrement)</li>
+<li>DefaultSurface2d - a suggested surface for new ElevationGridSurface, could be null</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;ElevationGrid&quot; description=&quot;An ElevationGrid contains planar surfaces that are parallel to the local XY plane&quot;&gt;
+  &lt;BaseClass&gt;Grid&lt;/BaseClass&gt;
+  &lt;ECCustomAttributes&gt;
+    &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot; /&gt;
+  &lt;/ECCustomAttributes&gt;
+  &lt;ECProperty propertyName=&quot;DefaultElevationIncrement&quot; displayLabel=&quot;DefaultElevationIncrement&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:LENGTH&quot;/&gt;
+  &lt;ECProperty propertyName=&quot;DefaultSurface2d&quot; displayLabel=&quot;DefaultSurface2d&quot; typeName=&quot;Bentley.Geometry.Common.IGeometry&quot;/&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h4 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
@@ -205,6 +249,30 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A PlanarGridSurface that is parallel with its Grid&#x2019;s x-y plane (always contained in an ElevationGrid).</p>
 <p><strong>baseClass:</strong> <a href="#gridplanarsurface">Grids:GridPlanarSurface</a></p>
+<p>A planar <code>GridSurface</code> used in <code>ElevationGrid</code>. this is the only type of <code>GridSurface</code> allowed in an ElevationGrid.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Named by combining <code>ElevationGrid</code> and <code>GridSurface</code></li>
+</ol>
+<p><u>Geometry Use:</u></p>
+<ol>
+<li>A <code>CurveVector</code></li>
+<li>Local Coordinates : grid coordinates + Elevation property in Z axis</li>
+</ol>
+<p><u>Properties:</u></p>
+<ol>
+<li>Elevation - elevation this surface is located at, relative to <code>Grid</code> coordinate system.</li>
+<li>Surface2d - a property for the 2d surface geometry.</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;ElevationGridSurface&quot; description=&quot;A PlanarGridSurface that is parallel with its Grid&#x2019;s x-y plane (always contained in an ElevationGrid).&quot;&gt;
+  &lt;BaseClass&gt;GridPlanarSurface&lt;/BaseClass&gt;
+  &lt;ECCustomAttributes&gt;
+    &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot; /&gt;
+  &lt;/ECCustomAttributes&gt;
+  &lt;ECProperty propertyName=&quot;Elevation&quot; displayLabel=&quot;Elevation&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:LENGTH&quot;/&gt;
+  &lt;ECProperty propertyName=&quot;Surface2d&quot; displayLabel=&quot;Surface2d&quot; typeName=&quot;Bentley.Geometry.Common.IGeometry&quot;/&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h4 class="h-properties-1">Properties<a id="properties-1" class="heading-anchor" href="#properties-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
@@ -227,6 +295,23 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> An FreeGrid contains surfaces that do not need to follow any rules</p>
 <p><strong>baseClass:</strong> <a href="#grid">Grids:Grid</a></p>
+<p>A collection of unconstrained surfaces (<code>FreeGridSurface</code>).</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>FreeGrid because it is not constrained and can contain surfaces of any geometry and orientation</li>
+</ol>
+<p><u>Geometry Use:</u></p>
+<ol>
+<li>No geometry</li>
+<li>Local Coordinates : defines the origin and direction for surfaces</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;FreeGrid&quot; description=&quot;An FreeGrid contains surfaces that do not need to follow any rules&quot;&gt;
+  &lt;BaseClass&gt;Grid&lt;/BaseClass&gt;
+  &lt;ECCustomAttributes&gt;
+    &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot; /&gt;
+  &lt;/ECCustomAttributes&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-freegridsurface"><strong>FreeGridSurface</strong><a id="freegridsurface" class="heading-anchor" href="#freegridsurface"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> a GridSurface of any geometry.</p>
@@ -235,26 +320,107 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> an element which groups GridSurface elements together in other grids</p>
 <p><strong>baseClass:</strong> <a href="#gridaxis">Grids:GridAxis</a></p>
+<p>A subcollection of <code>GridSurface</code> instances in a Grid. Used solely for grouping elements.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Matches with Grid Axis in <code>AECOsim Building Designer</code></li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;GeneralGridAxis&quot; description=&quot;an element which groups GridSurfaces together in other grids&quot;&gt;
+  &lt;BaseClass&gt;GridAxis&lt;/BaseClass&gt;
+  &lt;ECCustomAttributes&gt;
+    &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot; /&gt;
+  &lt;/ECCustomAttributes&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-generalgridcurve"><strong>GeneralGridCurve</strong><a id="generalgridcurve" class="heading-anchor" href="#generalgridcurve"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> a GridCurve that is a result of 2 non-planar surfaces</p>
 <p><strong>baseClass:</strong> <a href="#gridcurve">Grids:GridCurve</a></p>
+<p>GridCurve representing other geometry (typically 3d splines). <code>GeneralGridCurve</code> can be created by intersecting other pairs of <code>GridSurface</code> instances.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Matches with Grid Curve in <code>AECOsim Building Designer</code></li>
+</ol>
+<p><u>Geometry Use:</u></p>
+<ol>
+<li>Open <code>CurveVector</code> with a single curve</li>
+<li>Inherits from baseclass. Local Coordinates : origin at the start of the curve, aligned to creating <code>GridSurface</code>.</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">    &lt;ECEntityClass typeName=&quot;GeneralGridCurve&quot; description=&quot;a gridcurve that is a result of 2 non-planar surfaces&quot;&gt;
+      &lt;BaseClass&gt;GridCurve&lt;/BaseClass&gt;
+      &lt;ECCustomAttributes&gt;
+        &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot; /&gt;
+      &lt;/ECCustomAttributes&gt;
+    &lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-grid"><strong>Grid</strong> <em>Abstract</em><a id="grid" class="heading-anchor" href="#grid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A grid is a collection of gridsurface elements.</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatiallocationelement'>BisCore:SpatialLocationElement</a></p>
+<p>A collection of <code>GridSurface</code> instances.</p>
+<p>Grids known in other products like IAI IfcGrid or Grid in <code>AECOsim Building Designer</code> contain curves, rather than surfaces. However, those curves are later referenced over different elevations, which makes those elements conceptually surfaces intersecting those elevations. in BIS - <code>Grid</code> is a collection of surfaces rather than curves. curves are a result of surfaces intersecting, known as <code>GridCurve</code>. While this approach ensures compatibility with legacy grids it also is more flexible. i.e. by manipulating the .EndElevation properties of individual instances of <code>IPlanGridSurface</code> in a <code>PlanGrid</code> intersecting <code>ElevationGrid</code>, individual <code>GridCurve</code> instances could be made not to appear on higher elevations. curves could be made to appear on certain elevations by using the <code>GridCurveBundle</code> element (i.e. appear on story-1 and story-3, but skip story-2). number of axes is also unlimited in <code>SketchGrid</code>, <code>ElevationGrid</code> and <code>FreeGrid</code>.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Equivalent with IAI IfcGrid</li>
+</ol>
+<p><u>Geometry Use:</u></p>
+<ol>
+<li>No geometry</li>
+<li>Local Coordinates : defines the origin for surfaces</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;Grid&quot; modifier=&quot;Abstract&quot; description=&quot;A grid is a collection of gridsurfaces.&quot;&gt;
+  &lt;BaseClass&gt;bis:SpatialLocationPortion&lt;/BaseClass&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-gridarc"><strong>GridArc</strong><a id="gridarc" class="heading-anchor" href="#gridarc"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> a GridCurve that is a result of a planar and arc surface</p>
 <p><strong>baseClass:</strong> <a href="#gridcurve">Grids:GridCurve</a></p>
+<p>An object representing a grid arc. <code>GridArc</code> can be created by intersecting instances of <code>GridPlanarSurface</code> and <code>GridArcSurface</code> together.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Matches with Grid Arc in <code>AECOsim Building Designer</code></li>
+</ol>
+<p><u>Geometry Use:</u></p>
+<ol>
+<li>Open <code>CurveVector</code> with a single arc</li>
+<li>Inherits from baseclass. Local Coordinates : origin at the start of the curve, aligned to creating <code>GridSurface</code>.</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">    &lt;ECEntityClass typeName=&quot;GridArc&quot; description=&quot;a gridcurve that is a result of a planar and arc surface&quot;&gt;
+      &lt;BaseClass&gt;GridCurve&lt;/BaseClass&gt;
+      &lt;ECCustomAttributes&gt;
+        &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot; /&gt;
+      &lt;/ECCustomAttributes&gt;
+    &lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-gridarcsurface"><strong>GridArcSurface</strong> <em>Abstract</em><a id="gridarcsurface" class="heading-anchor" href="#gridarcsurface"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A GridSurface that is parallel to extruded arc.</p>
 <p><strong>baseClass:</strong> <a href="#gridsurface">Grids:GridSurface</a></p>
+<p>A <code>GridSurface</code> that is parallel to extruded arc.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Named to note that this is an arc <code>GridSurface</code></li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;GridArcSurface&quot; modifier=&quot;Abstract&quot; description=&quot;A grid surface that is parallel to extruded arc.&quot;&gt;
+  &lt;BaseClass&gt;GridSurface&lt;/BaseClass&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-gridaxis"><strong>GridAxis</strong> <em>Abstract</em><a id="gridaxis" class="heading-anchor" href="#gridaxis"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> an element which groups (typically parallel) GridSurface elements</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#groupinformationelement'>BisCore:GroupInformationElement</a></p>
+<p>A subcollection of GridSurfaces in a Grid. Typically used to group parallel surfaces together.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Matches with Grid Axis in <code>AECOsim Building Designer</code></li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;GridAxis&quot; modifier=&quot;Abstract&quot;&gt;
+  &lt;BaseClass&gt;bis:DefinitionElement&lt;/BaseClass&gt;
+  &lt;ECProperty propertyName=&quot;Name&quot; displayLabel=&quot;Name&quot; typeName=&quot;string&quot;/&gt;
+  &lt;ECNavigationProperty propertyName=&quot;Grid&quot; relationshipName=&quot;GridHasAxes&quot; direction=&quot;Backward&quot; description=&quot;Grid this axis belong to&quot; /&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h4 class="h-properties-2">Properties<a id="properties-2" class="heading-anchor" href="#properties-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
@@ -271,10 +437,36 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> an element representing a GridCurve - typically intersection of 2 surfaces</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatiallocationelement'>BisCore:SpatialLocationElement</a></p>
+<p>An object representing a grid curve. <code>GridCurve</code> is similar to <code>IfcGridAxis</code> in that it represents a curve geometry on a (usually planar) surface. it is also similar to Grid Curves as known in <code>AECOsim Building Designer</code>. Gridcurves can be found in submodels of <code>GridCurvesPortion</code> elements.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Matches with Grid Curve in <code>AECOsim Building Designer</code></li>
+</ol>
+<p><u>Geometry Use:</u></p>
+<ol>
+<li>Open <code>CurveVector</code> with a single curve</li>
+<li>Local Coordinates : origin at the start of the curve, aligned to creating <code>GridSurface</code>.</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">    &lt;ECEntityClass typeName=&quot;GridCurve&quot; modifier=&quot;Abstract&quot;&gt;
+      &lt;BaseClass&gt;bis:SpatialLocationElement&lt;/BaseClass&gt;
+    &lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-gridcurvebundle"><strong>GridCurveBundle</strong> (GridCurve bundle)<a id="gridcurvebundle" class="heading-anchor" href="#gridcurvebundle"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> a driver bundle element between surfaces and the GridCurve elements</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#driverbundleelement'>BisCore:DriverBundleElement</a></p>
+<p>A bundle class for <code>GridCurve</code> creation. Drives the creation of GridCurve</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>A bundle for driving <code>GridCurve</code></li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;GridCurveBundle&quot; displayLabel=&quot;GridCurve bundle&quot;&gt;
+  &lt;BaseClass&gt;bis:DriverBundleElement&lt;/BaseClass&gt;
+  &lt;ECCustomAttributes&gt;
+    &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot; /&gt;
+  &lt;/ECCustomAttributes&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h4 class="h-properties-3">Properties<a id="properties-3" class="heading-anchor" href="#properties-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
@@ -317,22 +509,88 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> a GridCurve that is a result of 2 planar surfaces</p>
 <p><strong>baseClass:</strong> <a href="#gridcurve">Grids:GridCurve</a></p>
+<p>An object representing a grid line. <code>GridLine</code> can be created by 2 intersecting instances of <code>GridPlanarSurface</code>.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Matches with Grid Line in <code>AECOsim Building Designer</code></li>
+</ol>
+<p><u>Geometry Use:</u></p>
+<ol>
+<li>Open <code>CurveVector</code> with a single line</li>
+<li>Inherits from baseclass. Local Coordinates : origin at the start of the curve, aligned to creating <code>GridSurface</code>.</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">    &lt;ECEntityClass typeName=&quot;GridLine&quot; description=&quot;a gridcurve that is a result of 2 planar surfaces&quot;&gt;
+      &lt;BaseClass&gt;GridCurve&lt;/BaseClass&gt;
+      &lt;ECCustomAttributes&gt;
+        &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot; /&gt;
+      &lt;/ECCustomAttributes&gt;
+    &lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-gridplanarsurface"><strong>GridPlanarSurface</strong> <em>Abstract</em><a id="gridplanarsurface" class="heading-anchor" href="#gridplanarsurface"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A planar GridSurface element.</p>
 <p><strong>baseClass:</strong> <a href="#gridsurface">Grids:GridSurface</a></p>
+<p>A class for planar <code>GridSurface</code> elements.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Named to note that this is a planar <code>GridSurface</code></li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;GridPlanarSurface&quot; modifier=&quot;Abstract&quot; description=&quot;A planar grid surface element.&quot;&gt;
+  &lt;BaseClass&gt;GridSurface&lt;/BaseClass&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-gridspline"><strong>GridSpline</strong><a id="gridspline" class="heading-anchor" href="#gridspline"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> a GridCurve that is a result of a planar and a spline surface</p>
 <p><strong>baseClass:</strong> <a href="#gridcurve">Grids:GridCurve</a></p>
+<p>An object representing a grid spline. <code>GridSpline</code> can be created by intersecting instances of <code>GridPlanarSurface</code> and <code>GridSplineSurface</code> together.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Matches with Grid Spline in <code>AECOsim Building Designer</code></li>
+</ol>
+<p><u>Geometry Use:</u></p>
+<ol>
+<li>Open <code>CurveVector</code> with a single spline</li>
+<li>Inherits from baseclass. Local Coordinates : origin at the start of the curve, aligned to creating <code>GridSurface</code>.</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">    &lt;ECEntityClass typeName=&quot;GridSpline&quot; description=&quot;a gridcurve that is a result of a planar and a spline surface&quot;&gt;
+      &lt;BaseClass&gt;GridCurve&lt;/BaseClass&gt;
+      &lt;ECCustomAttributes&gt;
+        &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot; /&gt;
+      &lt;/ECCustomAttributes&gt;
+    &lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-gridsplinesurface"><strong>GridSplineSurface</strong> <em>Abstract</em><a id="gridsplinesurface" class="heading-anchor" href="#gridsplinesurface"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A GridSurface that is parallel to an extruded spline.</p>
 <p><strong>baseClass:</strong> <a href="#gridsurface">Grids:GridSurface</a></p>
+<p>A <code>GridSurface</code> that is parallel to an extruded spline.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Named to note that this is a spline <code>GridSurface</code></li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;GridSplineSurface&quot; modifier=&quot;Abstract&quot; description=&quot;A grid surface that is an extruded spline.&quot;&gt;
+  &lt;BaseClass&gt;GridSurface&lt;/BaseClass&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-gridsurface"><strong>GridSurface</strong> <em>Abstract</em><a id="gridsurface" class="heading-anchor" href="#gridsurface"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A GridSurface element.</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatiallocationelement'>BisCore:SpatialLocationElement</a></p>
+<p>An 3dimensional surface contained in a <code>Grid</code>.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Name GridSurface signifies that it is a surface grid element</li>
+</ol>
+<p><u>Properties:</u></p>
+<ol>
+<li>Axis - a <code>GridAxis</code> this surface belongs to.</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;GridSurface&quot; modifier=&quot;Abstract&quot; description=&quot;A grid surface element.&quot;&gt;
+  &lt;BaseClass&gt;bis:SpatialLocationElement&lt;/BaseClass&gt;
+  &lt;ECNavigationProperty propertyName=&quot;Axis&quot; relationshipName=&quot;GridAxisContainsGridSurfaces&quot; direction=&quot;Backward&quot; description=&quot;Axis this gridSurface belong to&quot; /&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h4 class="h-properties-5">Properties<a id="properties-5" class="heading-anchor" href="#properties-5"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
@@ -349,14 +607,70 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> an element which groups all PlanCartesianGridSurface elements in the X direction</p>
 <p><strong>baseClass:</strong> <a href="#gridaxis">Grids:GridAxis</a></p>
+<p>A subcollection of <code>PlanCartesianGridSurface</code> in an <code>OrthogonalGrid</code> X direction.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Named so because it is an X axis in OrthogonalGrid.</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;OrthogonalAxisX&quot; description=&quot;an element which groups all PlanCartesianGridSurface in the X direction&quot;&gt;
+  &lt;BaseClass&gt;GridAxis&lt;/BaseClass&gt;
+  &lt;ECCustomAttributes&gt;
+    &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot; /&gt;
+  &lt;/ECCustomAttributes&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-orthogonalaxisy"><strong>OrthogonalAxisY</strong><a id="orthogonalaxisy" class="heading-anchor" href="#orthogonalaxisy"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> an element which groups all PlanCartesianGridSurface elements in the Y direction</p>
 <p><strong>baseClass:</strong> <a href="#gridaxis">Grids:GridAxis</a></p>
+<p>A subcollection of <code>PlanCartesianGridSurface</code> in an <code>OrthogonalGrid</code> Y direction.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Named so because it is an Y axis in OrthogonalGrid.</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;OrthogonalAxisY&quot; description=&quot;an element which groups all PlanCartesianGridSurface in the Y direction&quot;&gt;
+  &lt;BaseClass&gt;GridAxis&lt;/BaseClass&gt;
+  &lt;ECCustomAttributes&gt;
+    &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot; /&gt;
+  &lt;/ECCustomAttributes&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-orthogonalgrid"><strong>OrthogonalGrid</strong><a id="orthogonalgrid" class="heading-anchor" href="#orthogonalgrid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> And OrthogonalGrid has all of its&apos; surfaces orthogonal in either X or Y direction</p>
 <p><strong>baseClass:</strong> <a href="#plangrid">Grids:PlanGrid</a></p>
+<p>A collection of <code>PlanCartesianGridSurface</code>. has 2 axes - 1 <code>OrthogonalAxisX</code> and 1 <code>OrthogonalAxisY</code>. All surfaces in the X direction belong to <code>OrthogonalAxisX</code>, all those in the Y direction belong to <code>OrthogonalAxisY</code>.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Matches with Orthogonal Grid in <code>AECOsim Building Designer</code></li>
+</ol>
+<p><u>Geometry Use:</u></p>
+<ol>
+<li>No geometry</li>
+<li>Local Coordinates : defines the origin and direction for surfaces</li>
+</ol>
+<p><u>Properties:</u></p>
+<ol>
+<li>DefaultCoordinateIncrementX - suggested coordinate increment in the X direction for new inserted surfaces</li>
+<li>DefaultCoordinateIncrementY - suggested coordinate increment in the Y direction for new inserted surfaces</li>
+<li>DefaultStartExtentX - suggested start extent in the X direction for new inserted surfaces</li>
+<li>DefaultEndExtentX - suggested end extent in the X direction for new inserted surfaces</li>
+<li>DefaultStartExtentY - suggested start extent in the Y direction direction for new inserted surfaces</li>
+<li>DefaultEndExtentY - suggested end extent in the Y direction direction for new inserted surfaces</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;OrthogonalGrid&quot; description=&quot;And OrthogonalGrid has all of its&apos; surfaces orthogonal in either X or Y direction&quot;&gt;
+  &lt;BaseClass&gt;PlanGrid&lt;/BaseClass&gt;
+  &lt;ECCustomAttributes&gt;
+    &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot; /&gt;
+  &lt;/ECCustomAttributes&gt;
+  &lt;ECProperty propertyName=&quot;DefaultCoordinateIncrementX&quot; displayLabel=&quot;DefaultCoordinateIncrementX&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:LENGTH&quot;/&gt;
+  &lt;ECProperty propertyName=&quot;DefaultCoordinateIncrementY&quot; displayLabel=&quot;DefaultCoordinateIncrementY&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:LENGTH&quot;/&gt;
+  &lt;ECProperty propertyName=&quot;DefaultStartExtentX&quot; displayLabel=&quot;DefaultStartExtentX&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:LENGTH&quot;/&gt;
+  &lt;ECProperty propertyName=&quot;DefaultEndExtentX&quot; displayLabel=&quot;DefaultEndExtentX&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:LENGTH&quot;/&gt;
+  &lt;ECProperty propertyName=&quot;DefaultStartExtentY&quot; displayLabel=&quot;DefaultStartExtentY&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:LENGTH&quot;/&gt;
+  &lt;ECProperty propertyName=&quot;DefaultEndExtentY&quot; displayLabel=&quot;DefaultEndExtentY&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:LENGTH&quot;/&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h4 class="h-properties-6">Properties<a id="properties-6" class="heading-anchor" href="#properties-6"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
@@ -403,6 +717,32 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A planar PlanGridSurface that is perpendicular to the grid&#x2019;s x-axis or y-axis.</p>
 <p><strong>baseClass:</strong> <a href="#plangridplanarsurface">Grids:PlanGridPlanarSurface</a></p>
+<p>A class for <code>GridSurface</code> contained in <code>OrthogonalGrid</code></p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Named so because it is a <code>GridSurface</code> defined by cartesian coordinates</li>
+</ol>
+<p><u>Geometry Use:</u></p>
+<ol>
+<li>&quot;inherit from parent&quot; a <code>SolidPrimitive</code> DgnExtrusion containing single line for base, swept from StartElevation to EndElevation</li>
+<li>Local Coordinates : <code>Grid</code> coordinates + Coordinate in X or Y direction depending on the type of axis</li>
+</ol>
+<p><u>Properties:</u></p>
+<ol>
+<li>Coordinate - offset from coordinate system origin. direction defined by the axis</li>
+<li>StartExtent - start extent of the surface</li>
+<li>EndExtent - end extent of the surface</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;PlanCartesianGridSurface&quot; description=&quot;A planar plan grid surface that is perpendicular to the grid&#x2019;s x-axis or y-axis.&quot;&gt;
+  &lt;BaseClass&gt;PlanGridPlanarSurface&lt;/BaseClass&gt;
+  &lt;ECCustomAttributes&gt;
+    &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot; /&gt;
+  &lt;/ECCustomAttributes&gt;
+  &lt;ECProperty propertyName=&quot;Coordinate&quot; displayLabel=&quot;Coordinate&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:LENGTH&quot; description=&quot;Origin of the surface&quot;/&gt;
+  &lt;ECProperty propertyName=&quot;StartExtent&quot; displayLabel=&quot;StartExtent&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:LENGTH&quot;/&gt;
+  &lt;ECProperty propertyName=&quot;EndExtent&quot; displayLabel=&quot;EndExtent&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:LENGTH&quot;/&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h4 class="h-properties-7">Properties<a id="properties-7" class="heading-anchor" href="#properties-7"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
@@ -431,6 +771,32 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> An PlanGridArcSurface that is centered on the Grid&#x2019;s origin.</p>
 <p><strong>baseClass:</strong> <a href="#plangridarcsurface">Grids:PlanGridArcSurface</a></p>
+<p>A class for <code>GridSurface</code> instances of circular radius increments contained in <code>RadialGrid</code></p>
+<p><u>Naming:</u></p>
+<ol>
+<li>named so because it is a <code>GridSurface</code> defined by circumferential parameters</li>
+</ol>
+<p><u>Geometry Use:</u></p>
+<ol>
+<li>&quot;inherit from parent&quot; a <code>SolidPrimitive</code> DgnExtrusion containing single arc for base, swept from StartElevation to EndElevation</li>
+<li>Local Coordinates : <code>Grid</code> coordinates</li>
+</ol>
+<p><u>Properties:</u></p>
+<ol>
+<li>Radius - radius from the <code>Grid</code> origin at which the arc surface is swept.</li>
+<li>StartAngle - start angle of the arc surface</li>
+<li>EndAngle - end angle of the arc surface</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;PlanCircumferentialGridSurface&quot; description=&quot;An PlanGridArcSurface that is centered on the Grid&#x2019;s origin.&quot;&gt;
+  &lt;BaseClass&gt;PlanGridArcSurface&lt;/BaseClass&gt;
+  &lt;ECCustomAttributes&gt;
+    &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot; /&gt;
+  &lt;/ECCustomAttributes&gt;
+  &lt;ECProperty propertyName=&quot;Radius&quot; displayLabel=&quot;Radius&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:LENGTH&quot; description=&quot;Origin of the surface&quot;/&gt;
+  &lt;ECProperty propertyName=&quot;StartAngle&quot; displayLabel=&quot;StartAngle&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:ANGLE&quot;/&gt;
+  &lt;ECProperty propertyName=&quot;EndAngle&quot; displayLabel=&quot;EndAngle&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:ANGLE&quot;/&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h4 class="h-properties-8">Properties<a id="properties-8" class="heading-anchor" href="#properties-8"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
@@ -459,6 +825,27 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> a grid whose surfaces are curves parallel to the local x-y plane extruded along the local z-axis</p>
 <p><strong>baseClass:</strong> <a href="#grid">Grids:Grid</a></p>
+<p>A collection of <code>IPlanGridSurface</code> elements that are single curve extrusions, sharing the extrusion direction. extrusion direction is equal to grid Z orientation.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>PlanGrid because all surfaces could be viewed as curves from a plan view</li>
+</ol>
+<p><u>Geometry Use:</u></p>
+<ol>
+<li>No geometry</li>
+<li>Local Coordinates : defines the origin and direction for surfaces</li>
+</ol>
+<p><u>Properties:</u></p>
+<ol>
+<li>DefaultStartElevation - suggested start elevation for new inserted surfaces</li>
+<li>DefaultEndElevation - suggested end elevation for new inserted surfaces</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;PlanGrid&quot; modifier=&quot;Abstract&quot; description=&quot;a grid whose surfaces are curves parallel to the local x-y plane extruded along the local z-axis&quot;&gt;
+  &lt;BaseClass&gt;Grid&lt;/BaseClass&gt;
+  &lt;ECProperty propertyName=&quot;DefaultStartElevation&quot; displayLabel=&quot;DefaultStartElevation&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:LENGTH&quot;/&gt;
+  &lt;ECProperty propertyName=&quot;DefaultEndElevation&quot; displayLabel=&quot;DefaultEndElevation&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:LENGTH&quot;/&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h4 class="h-properties-9">Properties<a id="properties-9" class="heading-anchor" href="#properties-9"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
@@ -481,18 +868,89 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> An arc PlanGridSurface element.</p>
 <p><strong>baseClass:</strong> <a href="#gridarcsurface">Grids:GridArcSurface</a></p>
+<p>A class for <code>GridArcSurface</code> elements used in <code>PlanGrid</code>.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>named by combining <code>PlanGrid</code> and <code>GridArcSurface</code></li>
+</ol>
+<p><u>Geometry Use:</u></p>
+<ol>
+<li>A <code>SolidPrimitive</code> DgnExtrusion containing single arc for base, swept from StartElevation to EndElevation</li>
+<li>Local Coordinates : defined by subclasses</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;PlanGridArcSurface&quot; modifier=&quot;Abstract&quot; description=&quot;An arc plangrid surface element.&quot;&gt;
+  &lt;BaseClass&gt;GridArcSurface&lt;/BaseClass&gt;
+  &lt;BaseClass&gt;IPlanGridSurface&lt;/BaseClass&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-plangridplanarsurface"><strong>PlanGridPlanarSurface</strong> <em>Abstract</em><a id="plangridplanarsurface" class="heading-anchor" href="#plangridplanarsurface"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A planar PlanGridSurface element.</p>
 <p><strong>baseClass:</strong> <a href="#gridplanarsurface">Grids:GridPlanarSurface</a></p>
+<p>A class for <code>GridPlanarSurface</code> elements used in <code>PlanGrid</code>.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Named by combining <code>PlanGrid</code> and <code>GridPlanarSurface</code></li>
+</ol>
+<p><u>Geometry Use:</u></p>
+<ol>
+<li>A <code>SolidPrimitive</code> DgnExtrusion containing single line for base, swept from StartElevation to EndElevation</li>
+<li>Local Coordinates : defined by subclasses</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;PlanGridPlanarSurface&quot; modifier=&quot;Abstract&quot; description=&quot;A planar plangrid surface element.&quot;&gt;
+  &lt;BaseClass&gt;GridPlanarSurface&lt;/BaseClass&gt;
+  &lt;BaseClass&gt;IPlanGridSurface&lt;/BaseClass&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-plangridsplinesurface"><strong>PlanGridSplineSurface</strong> <em>Abstract</em><a id="plangridsplinesurface" class="heading-anchor" href="#plangridsplinesurface"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A spline PlanGridSurface element.</p>
 <p><strong>baseClass:</strong> <a href="#gridsplinesurface">Grids:GridSplineSurface</a></p>
+<p>A class for <code>GridSplineSurface</code> elements used in <code>PlanGrid</code>.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Named by combining <code>PlanGrid</code> and <code>GridSplineSurface</code></li>
+</ol>
+<p><u>Geometry Use:</u></p>
+<ol>
+<li>A <code>SolidPrimitive</code> DgnExtrusion containing single spline for base, swept from StartElevation to EndElevation</li>
+<li>Local Coordinates : defined by subclasses</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;PlanGridSplineSurface&quot; modifier=&quot;Abstract&quot; description=&quot;An arc plangrid surface element.&quot;&gt;
+  &lt;BaseClass&gt;GridSplineSurface&lt;/BaseClass&gt;
+  &lt;BaseClass&gt;IPlanGridSurface&lt;/BaseClass&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-planradialgridsurface"><strong>PlanRadialGridSurface</strong><a id="planradialgridsurface" class="heading-anchor" href="#planradialgridsurface"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A PlanGridPlanarSurface whose infinite plane contains the PlanGrid&#x2019;s origin.</p>
 <p><strong>baseClass:</strong> <a href="#plangridplanarsurface">Grids:PlanGridPlanarSurface</a></p>
+<p>A class for <code>GridSurface</code> instances of angular increments contained in <code>RadialGrid</code></p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Named so because it is a <code>GridSurface</code> defined by radial parameters</li>
+</ol>
+<p><u>Geometry Use:</u></p>
+<ol>
+<li>&quot;inherit from parent&quot; a <code>SolidPrimitive</code> DgnExtrusion containing single line for base, swept from StartElevation to EndElevation</li>
+<li>Local Coordinates : <code>Grid</code> coordinates rotated by the Angle property from Y direction, clockwise</li>
+</ol>
+<p><u>Properties:</u></p>
+<ol>
+<li>Angle - angle in the clockwise direction from the Y axis of the <code>RadialGrid</code> defining the direction of surface base line.</li>
+<li>StartRadius - start radius of the surface</li>
+<li>EndRadius - end radius of the surface</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;PlanRadialGridSurface&quot; description=&quot;A PlanGridPlanarSurface whose infinite plane contains the PlanGrid&#x2019;s origin.&quot;&gt;
+  &lt;BaseClass&gt;PlanGridPlanarSurface&lt;/BaseClass&gt;
+  &lt;ECCustomAttributes&gt;
+    &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot; /&gt;
+  &lt;/ECCustomAttributes&gt;
+  &lt;ECProperty propertyName=&quot;Angle&quot; displayLabel=&quot;Angle&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:LENGTH&quot; description=&quot;Origin of the surface&quot;/&gt;
+  &lt;ECProperty propertyName=&quot;StartRadius&quot; displayLabel=&quot;StartRadius&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:LENGTH&quot;/&gt;
+  &lt;ECProperty propertyName=&quot;EndRadius&quot; displayLabel=&quot;EndRadius&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:LENGTH&quot;/&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h4 class="h-properties-10">Properties<a id="properties-10" class="heading-anchor" href="#properties-10"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
@@ -521,10 +979,55 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> an element which groups all PlanRadialGridSurface elements in a RadialGrid together</p>
 <p><strong>baseClass:</strong> <a href="#gridaxis">Grids:GridAxis</a></p>
+<p>a subcollection of <code>PlanRadialGridSurface</code> in a <code>RadialGrid</code></p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Named so because it is an Y axis in OrthogonalGrid.</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;RadialAxis&quot; description=&quot;an element which groups all PlanRadialGridSurface in a RadialGrid together&quot;&gt;
+  &lt;BaseClass&gt;GridAxis&lt;/BaseClass&gt;
+  &lt;ECCustomAttributes&gt;
+    &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot; /&gt;
+  &lt;/ECCustomAttributes&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-radialgrid"><strong>RadialGrid</strong><a id="radialgrid" class="heading-anchor" href="#radialgrid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A RadialGrid consists either of arcsurfaces in radial axis or planarsurfaces in circular axis</p>
 <p><strong>baseClass:</strong> <a href="#plangrid">Grids:PlanGrid</a></p>
+<p>A collection of <code>PlanRadialGridSurface</code> and <code>PlanCircumferentialGridSurface</code> elements. Has 2 axes - 1 <code>CircularAxis</code> and 1 <code>RadialAxis</code>. All <code>PlanCircumferentialGridSurface</code> are in the <code>CircularAxis</code>, all <code>PlanRadialGridSurface</code> in the <code>RadialAxis</code>.
+`
+<u>Naming:</u></p>
+<ol>
+<li>matches with Radial Grid in <code>AECOsim Building Designer</code></li>
+</ol>
+<p><u>Geometry Use:</u></p>
+<ol>
+<li>no geometry</li>
+<li>Local Coordinates : defines the origin and direction for surfaces</li>
+</ol>
+<p><u>Properties:</u></p>
+<ol>
+<li>DefaultAngleIncrement - suggested angle increment for new instances of <code>PlanRadialGridSurface</code></li>
+<li>DefaultRadiusIncrement - suggested radius increment for new instances of <code>PlanCircumferentialGridSurface</code></li>
+<li>DefaultStartAngle - suggested start angle for new instances of <code>PlanCircumferentialGridSurface</code></li>
+<li>DefaultEndAngle - suggested end angle for new instances of <code>PlanCircumferentialGridSurface</code></li>
+<li>DefaultStartRadius - suggested start radius for new instances of <code>PlanRadialGridSurface</code></li>
+<li>DefaultEndRadius - suggested end radius for new instances of <code>PlanRadialGridSurface</code></li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;RadialGrid&quot; description=&quot;A RadialGrid consists either of arcsurfaces in radial axis or planarsurfaces in circular axis&quot;&gt;
+  &lt;BaseClass&gt;PlanGrid&lt;/BaseClass&gt;
+  &lt;ECCustomAttributes&gt;
+    &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot; /&gt;
+  &lt;/ECCustomAttributes&gt;
+  &lt;ECProperty propertyName=&quot;DefaultAngleIncrement&quot; displayLabel=&quot;DefaultAngleIncrement&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:ANGLE&quot;/&gt;
+  &lt;ECProperty propertyName=&quot;DefaultRadiusIncrement&quot; displayLabel=&quot;DefaultRadiusIncrement&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:ANGLE&quot;/&gt;
+  &lt;ECProperty propertyName=&quot;DefaultStartAngle&quot; displayLabel=&quot;DefaultStartAngle&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:ANGLE&quot;/&gt;
+  &lt;ECProperty propertyName=&quot;DefaultEndAngle&quot; displayLabel=&quot;DefaultEndAngle&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:ANGLE&quot;/&gt;
+  &lt;ECProperty propertyName=&quot;DefaultStartRadius&quot; displayLabel=&quot;DefaultStartRadius&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:LENGTH&quot;/&gt;
+  &lt;ECProperty propertyName=&quot;DefaultEndRadius&quot; displayLabel=&quot;DefaultEndRadius&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:LENGTH&quot;/&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h4 class="h-properties-11">Properties<a id="properties-11" class="heading-anchor" href="#properties-11"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
@@ -571,6 +1074,28 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> An extruded arc gridsurface element.</p>
 <p><strong>baseClass:</strong> <a href="#plangridarcsurface">Grids:PlanGridArcSurface</a></p>
+<p>A class for <code>GridSurface</code> instances of sketched arc surfaces in <code>SketchGrid</code></p>
+<p><u>Naming:</u></p>
+<ol>
+<li>named so because it is an extruded arc surface in a <code>SketchGrid</code></li>
+</ol>
+<p><u>Geometry Use:</u></p>
+<ol>
+<li>&quot;inherit from parent&quot; a <code>SolidPrimitive</code> DgnExtrusion containing single arc for base, swept from StartElevation to EndElevation</li>
+<li>Local Coordinates : <code>Grid</code> coordinates</li>
+</ol>
+<p><u>Properties:</u></p>
+<ol>
+<li>Arc2d - arc geometry used to extrude the surface - a <code>CurveVector</code> containing a single arc</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;SketchArcGridSurface&quot; description=&quot;An extruded arc gridsurface element.&quot;&gt;
+  &lt;BaseClass&gt;PlanGridArcSurface&lt;/BaseClass&gt;
+  &lt;ECCustomAttributes&gt;
+    &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot; /&gt;
+  &lt;/ECCustomAttributes&gt;
+  &lt;ECProperty propertyName=&quot;Arc2d&quot; displayLabel=&quot;Arc2d&quot; typeName=&quot;Bentley.Geometry.Common.IGeometry&quot;/&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h4 class="h-properties-12">Properties<a id="properties-12" class="heading-anchor" href="#properties-12"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
@@ -587,10 +1112,50 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A SketchGrid contains surfaces whose positions are not constrained (other than being swept to the grid normal)</p>
 <p><strong>baseClass:</strong> <a href="#plangrid">Grids:PlanGrid</a></p>
+<p>A collection of surfaces that are <strong>unconstrained</strong> single curve extrusions, sharing the extrusion direction. extrusion direction is driven by grid Z orientation.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>SketchGrid because all surfaces could be &quot;sketched&quot; from the plan view.</li>
+<li>Matches with Sketch Grid in <code>AECOsim Building Designer</code></li>
+</ol>
+<p><u>Geometry Use:</u></p>
+<ol>
+<li>No geometry</li>
+<li>Local Coordinates : defines the origin and direction for surfaces</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;SketchGrid&quot; description=&quot;A SketchGrid contains surfaces whose positions are not constrained (other than being swept to the grid normal)&quot;&gt;
+  &lt;BaseClass&gt;PlanGrid&lt;/BaseClass&gt;
+  &lt;ECCustomAttributes&gt;
+    &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot; /&gt;
+  &lt;/ECCustomAttributes&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h3 class="h-sketchlinegridsurface"><strong>SketchLineGridSurface</strong><a id="sketchlinegridsurface" class="heading-anchor" href="#sketchlinegridsurface"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> An extruded line gridsurface element.</p>
 <p><strong>baseClass:</strong> <a href="#plangridplanarsurface">Grids:PlanGridPlanarSurface</a></p>
+<p>A class for <code>GridSurface</code> instances of sketched line surfaces in <code>SketchGrid</code></p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Named so because it is an extruded line surface in a <code>SketchGrid</code></li>
+</ol>
+<p><u>Geometry Use:</u></p>
+<ol>
+<li>&quot;inherit from parent&quot; a <code>SolidPrimitive</code> DgnExtrusion containing single line for base, swept from StartElevation to EndElevation</li>
+<li>Local Coordinates : <code>Grid</code> coordinates</li>
+</ol>
+<p><u>Properties:</u></p>
+<ol>
+<li>Line2d - line geometry used to extrude the surface - a <code>CurveVector</code> containing a single line</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;SketchLineGridSurface&quot; description=&quot;An extruded line gridsurface element.&quot;&gt;
+  &lt;BaseClass&gt;PlanGridPlanarSurface&lt;/BaseClass&gt;
+  &lt;ECCustomAttributes&gt;
+    &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot; /&gt;
+  &lt;/ECCustomAttributes&gt;
+  &lt;ECProperty propertyName=&quot;Line2d&quot; displayLabel=&quot;Line2d&quot; typeName=&quot;Bentley.Geometry.Common.IGeometry&quot;/&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h4 class="h-properties-13">Properties<a id="properties-13" class="heading-anchor" href="#properties-13"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
@@ -607,6 +1172,28 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> An extruded spline gridsurface element.</p>
 <p><strong>baseClass:</strong> <a href="#plangridsplinesurface">Grids:PlanGridSplineSurface</a></p>
+<p>A class for <code>GridSurface</code> instances of sketched spline surfaces in <code>SketchGrid</code></p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Named so because it is an extruded spline surface in a <code>SketchGrid</code></li>
+</ol>
+<p><u>Geometry Use:</u></p>
+<ol>
+<li>&quot;inherit from parent&quot; a <code>SolidPrimitive</code> DgnExtrusion containing single spline for base, swept from StartElevation to EndElevation</li>
+<li>Local Coordinates : <code>Grid</code> coordinates</li>
+</ol>
+<p><u>Properties:</u></p>
+<ol>
+<li>Spline2d - spline geometry used to extrude the surface - a <code>CurveVector</code> containing a single spline</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;SketchSplineGridSurface&quot; description=&quot;An extruded spline gridsurface element.&quot;&gt;
+  &lt;BaseClass&gt;PlanGridSplineSurface&lt;/BaseClass&gt;
+  &lt;ECCustomAttributes&gt;
+    &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot; /&gt;
+  &lt;/ECCustomAttributes&gt;
+  &lt;ECProperty propertyName=&quot;Spline2d&quot; displayLabel=&quot;Spline2d&quot; typeName=&quot;Bentley.Geometry.Common.IGeometry&quot;/&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h4 class="h-properties-14">Properties<a id="properties-14" class="heading-anchor" href="#properties-14"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
@@ -625,6 +1212,20 @@
 <p><strong>description:</strong> maps axis to grouped surfaces</p>
 <p><strong>Strength:</strong> Embedding</p>
 <p><strong>strengthDirection:</strong> Forward</p>
+<p>A relationship to map grid to its axes</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Named as per standards - noting that <code>GridAxis</code> contains <code>GridSurface</code> instances.</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECRelationshipClass typeName=&quot;GridAxisContainsGridSurfaces&quot; modifier=&quot;None&quot; strength=&quot;embedding&quot; description=&quot;maps axis to grouped surfaces&quot;&gt;
+  &lt;Source multiplicity=&quot;(1..1)&quot; roleLabel=&quot;contains&quot; polymorphic=&quot;true&quot;&gt;
+    &lt;Class class=&quot;GridAxis&quot;/&gt;
+  &lt;/Source&gt;
+  &lt;Target multiplicity=&quot;(0..*)&quot; roleLabel=&quot;is contained in&quot; polymorphic=&quot;true&quot;&gt;
+    &lt;Class class=&quot;GridSurface&quot;/&gt;
+  &lt;/Target&gt;
+&lt;/ECRelationshipClass&gt;</code></pre>
 <h4 class="h-source">Source<a id="source" class="heading-anchor" href="#source"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> contains</p>
@@ -647,6 +1248,24 @@
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#elementdriveselement'>BisCore:ElementDrivesElement</a></p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
+<p>A driving relationship which tells that gridcurve was created by the mapped GridCurveBundle</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Noting that <code>GridCurveBundle</code> creates <code>GridCurve</code>.</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECRelationshipClass typeName=&quot;GridCurveBundleCreatesGridCurve&quot; modifier=&quot;None&quot; strength=&quot;referencing&quot; description=&quot;a driving relationship which tells that gridcurve was created by the mapped GridCurveBundle&quot;&gt;
+  &lt;BaseClass&gt;bis:ElementDrivesElement&lt;/BaseClass&gt;
+  &lt;ECCustomAttributes&gt;
+    &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot;/&gt;
+  &lt;/ECCustomAttributes&gt;
+  &lt;Source multiplicity=&quot;(1..1)&quot; roleLabel=&quot;creates&quot; polymorphic=&quot;true&quot;&gt;
+    &lt;Class class=&quot;GridCurveBundle&quot;/&gt;
+  &lt;/Source&gt;
+  &lt;Target multiplicity=&quot;(0..1)&quot; roleLabel=&quot;is created by&quot; polymorphic=&quot;true&quot;&gt;
+    &lt;Class class=&quot;GridCurve&quot;/&gt;
+  &lt;/Target&gt;
+&lt;/ECRelationshipClass&gt;</code></pre>
 <h4 class="h-source-1">Source<a id="source-1" class="heading-anchor" href="#source-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> creates</p>
@@ -690,6 +1309,24 @@
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#elementdriveselement'>BisCore:ElementDrivesElement</a></p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
+<p>A driving relationship which tells that a grid is driving a gridsurface.</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Named as per standards - noting that <code>Grid</code> drives <code>GridSurface</code>.</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECRelationshipClass typeName=&quot;GridDrivesGridSurface&quot; modifier=&quot;None&quot; strength=&quot;referencing&quot; description=&quot;a driving relationship which tells that a grid is driving a gridsurface.&quot;&gt;
+  &lt;BaseClass&gt;bis:ElementDrivesElement&lt;/BaseClass&gt;
+  &lt;ECCustomAttributes&gt;
+    &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot;/&gt;
+  &lt;/ECCustomAttributes&gt;
+  &lt;Source multiplicity=&quot;(1..1)&quot; roleLabel=&quot;drives&quot; polymorphic=&quot;true&quot;&gt;
+    &lt;Class class=&quot;Grid&quot;/&gt;
+  &lt;/Source&gt;
+  &lt;Target multiplicity=&quot;(0..*)&quot; roleLabel=&quot;is driven by&quot; polymorphic=&quot;true&quot;&gt;
+    &lt;Class class=&quot;GridSurface&quot;/&gt;
+  &lt;/Target&gt;
+&lt;/ECRelationshipClass&gt;</code></pre>
 <h4 class="h-source-3">Source<a id="source-3" class="heading-anchor" href="#source-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> drives</p>
@@ -712,6 +1349,24 @@
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#elementdriveselement'>BisCore:ElementDrivesElement</a></p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
+<p>A driving relationship which tells that gridsurface influences the creation of GridCurve</p>
+<p><u>Naming:</u></p>
+<ol>
+<li>Noting that <code>GridSurface</code> drives <code>GridCurveBundle</code>.</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECRelationshipClass typeName=&quot;GridSurfaceDrivesGridCurveBundle&quot; modifier=&quot;None&quot; strength=&quot;referencing&quot; description=&quot;a driving relationship which tells that gridsurface influences the creation of GridCurve&quot;&gt;
+  &lt;BaseClass&gt;bis:ElementDrivesElement&lt;/BaseClass&gt;
+  &lt;ECCustomAttributes&gt;
+    &lt;ClassHasHandler xmlns=&quot;BisCore.01.00.00&quot;/&gt;
+  &lt;/ECCustomAttributes&gt;
+  &lt;Source multiplicity=&quot;(0..*)&quot; roleLabel=&quot;influences&quot; polymorphic=&quot;true&quot;&gt;
+    &lt;Class class=&quot;GridSurface&quot;/&gt;
+  &lt;/Source&gt;
+  &lt;Target multiplicity=&quot;(0..*)&quot; roleLabel=&quot;is influenced by&quot; polymorphic=&quot;true&quot;&gt;
+    &lt;Class class=&quot;GridCurveBundle&quot;/&gt;
+  &lt;/Target&gt;
+&lt;/ECRelationshipClass&gt;</code></pre>
 <h4 class="h-source-4">Source<a id="source-4" class="heading-anchor" href="#source-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> influences</p>
@@ -755,6 +1410,27 @@
 <p><strong>typeName:</strong> Mixin</p>
 <p><strong>description:</strong> An interface that indicates that this Surface is suitable to be placed in a PlanGrid</p>
 <p><strong>appliesTo:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/grids.ecschema/#gridsurface'>GridSurface</a></p>
+<p>A mix-in for <code>GridSurface</code> classes contained in a <code>PlanGrid</code></p>
+<p><u>Naming:</u></p>
+<ol>
+<li>named by combining <code>PlanGrid</code> and <code>GridSurface</code></li>
+</ol>
+<p><u>Properties:</u></p>
+<ol>
+<li>StartElevation - start elevation for the extrusion surface</li>
+<li>EndElevation - end elevation for the extrusion surface</li>
+</ol>
+<p><u>Schema:</u></p>
+<pre class="no-line-numbers"><code class="language-xml">&lt;ECEntityClass typeName=&quot;IPlanGridSurface&quot; modifier=&quot;Abstract&quot; displayLabel=&quot;PlanGrid Surface&quot; description=&quot;An interface that indicates that this Surface is suitable to be placed in a PlanGrid&quot; &gt;
+  &lt;ECCustomAttributes&gt;
+    &lt;IsMixin xmlns=&quot;CoreCustomAttributes.01.00.00&quot;&gt;
+      &lt;!-- Only subclasses of grids:GridSurface can implement the IPlanGridSurface interface --&gt;
+      &lt;AppliesToEntityClass&gt;GridSurface&lt;/AppliesToEntityClass&gt;
+    &lt;/IsMixin&gt;
+  &lt;/ECCustomAttributes&gt;
+  &lt;ECProperty propertyName=&quot;StartElevation&quot; displayLabel=&quot;StartElevation&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:LENGTH&quot;/&gt;
+  &lt;ECProperty propertyName=&quot;EndElevation&quot; displayLabel=&quot;EndElevation&quot; typeName=&quot;double&quot; kindOfQuantity=&quot;AECU:LENGTH&quot;/&gt;
+&lt;/ECEntityClass&gt;</code></pre>
 <h4 class="h-properties-15">Properties<a id="properties-15" class="heading-anchor" href="#properties-15"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
@@ -782,7 +1458,7 @@
 </tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 August, 2019</span>
+                <span class='date-updated'>10 September, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
