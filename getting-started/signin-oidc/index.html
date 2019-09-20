@@ -1,25 +1,44 @@
-<script>
-  // Our redirection.
-  var hash = window.location.hash.substr(1);
+<html>
 
-  var result = hash.split('&').reduce(function (result, item) {
-    var parts = item.split('=');
-    result[parts[0]] = parts[1];
-    return result;
-  }, {});
+<head>
+    <title>Redirect</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/oidc-client/1.7.1/oidc-client.min.js"></script>
+    <script>
 
-  function getCookie(name) {
-    const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
-    if (match) return match[2];
-    return;
-  }
+      function getCookie(name) {
+        const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+        if (match) return match[2];
+        return;
+      }
 
-  if (result.access_token !== undefined) {
-    document.cookie = "access_token=" + result.access_token + ";path=/";
-  }
+      var OIDC_REDIRECT_PATH = "/getting-started/signin-oidc";
+      var OIDC_SOURCE = "https://imjsdocumentqaeussa01.z13.web.core.windows.net";
+      var AUTHORITY_SOURCE = "https://qa-imsoidc.bentley.com/";
 
-  // Get last visited auth page.
-  var lastVisited = getCookie("last_visited_auth_page");
+      Oidc.Log.logger = console;
+      Oidc.Log.level = Oidc.Log.DEBUG;
+      var userManager = new Oidc.UserManager({
+        authority: "https://qa-imsoidc.bentley.com/",
+        client_id: "imodeljs-developer-services",
+        redirect_uri: OIDC_SOURCE + OIDC_REDIRECT_PATH,
+        silent_redirect_uri: OIDC_SOURCE + OIDC_REDIRECT_PATH,
+        response_type: "code",
+        query_status_response_type: "code",
+        automaticSilentRenew: true,
+        scope: "openid email profile management:v1.0:apps management:v1.0:apps:modify cloud-orchestration-service-2566",
+      });
 
-  window.location.href = lastVisited;
-</script>
+      userManager.signinRedirectCallback()
+          .then(function (user) {
+            document.cookie = "access_token=" + user.access_token + ";path=/";
+            var lastVisited = getCookie("last_visited_auth_page");
+            window.location.replace(lastVisited)
+          });
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
