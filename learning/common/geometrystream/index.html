@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.4.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.5.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -119,7 +119,7 @@
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/learning/common/GeometryStream.md">Edit this page</a></div>
             <h1 id="geometrystream">GeometryStream</h1>
 <p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/geometrystreamprops'>GeometryStreamProps</a> wire format describes how the graphics and appearance information for <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/geometricelement'>GeometricElement</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/geometrypart'>GeometryPart</a> is serialized to JSON. A GeometryStreamProps is an array of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/geometrystreamentryprops'>GeometryStreamEntryProps</a> entries.</p>
-<p>Appearance related entries are all completely optional. The recommended approach to establish graphical appearance is through <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryappearance'>SubCategoryAppearance</a>. A GeometricElement&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/category'>Category</a> determines the default appearance for any graphics in it&apos;s GeometryStream, which is the SubCategoryAppearance of the default <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/subcategory'>SubCategory</a>, see <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/category/#mydefaultsubcategoryid'>Category.myDefaultSubCategoryId</a>. For a GeometryPart, it inherits the appearance established by the GeometricElement&apos;s GeometryStream through which it is instanced.</p>
+<p>Appearance related entries are all completely optional. The recommended approach to establish graphical appearance is through <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/views/subcategoryappearance'>SubCategoryAppearance</a>. A GeometricElement&apos;s <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/category'>Category</a> determines the default appearance for any graphics in its GeometryStream, which is the SubCategoryAppearance of the default <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/subcategory'>SubCategory</a>, see <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/categories/category/#mydefaultsubcategoryid'>Category.myDefaultSubCategoryId</a>. For a GeometryPart, it inherits the appearance established by the GeometricElement&apos;s GeometryStream through which it is instanced.</p>
 <p>Some appearance entries override the default SubCategoryAppearance, while others are for supplying additional appearance information that is not generally applicable to all geometry types and isn&apos;t represented in SubCategoryAppearance. The following entries are specific to setting the appearance of graphics in the GeometryStream:</p>
 <ul>
 <li><p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/geometryappearanceprops'>GeometryAppearanceProps</a></p>
@@ -166,7 +166,7 @@
 <p>Geometry entries should <em>always</em> be inserted into the GeometryStreamProps array unrotated with a basis point of 0,0,0 (local coordinate frame). The world location and orientation of the geometry is determined by the GeometricElement&apos;s placement origin and angle(s), <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/geometricelement3dprops/#placement'>GeometricElement3dProps.placement</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/geometricelement2dprops/#placement'>GeometricElement2dProps.placement</a>.</p>
 <p><img src=".././placement_good.png" alt="Correct Example" title="Example of correctly defined GeometryStream"></p>
 <blockquote>
-<p>A GeometricElement can be translated and rotated by just updating it&apos;s placement, the geometry is <em>not</em> transformed.</p>
+<p>A GeometricElement can be translated and rotated by just updating its placement, the geometry is <em>not</em> transformed.</p>
 </blockquote>
 <p>The element aligned bounding box that is part of the placement is computed automatically based on the local coordinate geometry. An application should leave <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/placement3dprops/#bbox'>Placement3dProps.bbox</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/wireformats/placement2dprops/#bbox'>Placement2dProps.bbox</a> undefined when inserting a new GeometricElement or updating an existing element&apos;s GeometryStream; any defined value will be ignored.</p>
 <p><img src=".././placement_bad.png" alt="Incorrect Example" title="Example of incorrectly defined GeometryStream"></p>
@@ -181,7 +181,7 @@
 <li>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/geometrypartinstanceprops/origin'>GeometryPartInstanceProps.origin</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/geometrypartinstanceprops/rotation'>GeometryPartInstanceProps.rotation</a> specify the relative location from the basis point (typically 0,0,0) used for the GeometricElement&apos;s geometry.
 <img src=".././part_refs.png" alt="Geometry" title="Example of GeometricElement with GeometryPart references"></li>
 <li>Not valid when creating a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/elements/geometrypart'>GeometryPart</a>, nesting of GeometryParts is not supported.</li>
-<li>As the GeometryPart does not specify a Category, and it&apos;s GeometryStream does not support SubCategory changes; Category and SubCategory is established by the GeometricElement prior to adding a GeometryPartInstanceProps to the GeometryStreamProps array.</li>
+<li>As the GeometryPart does not specify a Category, and its GeometryStream does not support SubCategory changes; Category and SubCategory is established by the GeometricElement prior to adding a GeometryPartInstanceProps to the GeometryStreamProps array.</li>
 </ul>
 </li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/textstringprops'>TextStringProps</a><ul>
@@ -221,7 +221,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>20 September, 2019</span>
+                <span class='date-updated'>01 October, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.4.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.5.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -262,13 +262,13 @@
 <li>Send AccuDraw hint to use polar mode when defining a sweep angle.</li>
 <li>Send AccuDraw hint to set origin to opposite end point of line segment being modified and orient to segment direction, a new line length can be now easily specified.</li>
 </ul>
-<p>Upon installing a new Primitive tool as the active tool, AccuDraw&apos;s default state is initialized to <em>inactive</em>. AccuDraw will upgrade it&apos;s internal state to <em>active</em> automatically if the tool calls <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/begindynamics'>InteractiveTool.beginDynamics</a>. Tools that won&apos;t start dynamics (might only use view decorations) but still wish to support AccuDraw can explicitly enable it using <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/accudraw/accudrawhintbuilder/#activate'>AccuDrawHintBuilder.activate</a> or <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/accudraw/accudrawhintbuilder/sendhints'>AccuDrawHintBuilder.sendHints</a>. Conversely, tools that show dynamics, but do not want AccuDraw, are required to explicitly disable it by calling <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/accudraw/accudrawhintbuilder/#deactivate'>AccuDrawHintBuilder.deactivate</a>.</p>
+<p>Upon installing a new Primitive tool as the active tool, AccuDraw&apos;s default state is initialized to <em>inactive</em>. AccuDraw will upgrade its internal state to <em>active</em> automatically if the tool calls <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/begindynamics'>InteractiveTool.beginDynamics</a>. Tools that won&apos;t start dynamics (might only use view decorations) but still wish to support AccuDraw can explicitly enable it using <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/accudraw/accudrawhintbuilder/#activate'>AccuDrawHintBuilder.activate</a> or <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/accudraw/accudrawhintbuilder/sendhints'>AccuDrawHintBuilder.sendHints</a>. Conversely, tools that show dynamics, but do not want AccuDraw, are required to explicitly disable it by calling <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/accudraw/accudrawhintbuilder/#deactivate'>AccuDrawHintBuilder.deactivate</a>.</p>
 <blockquote>
 <p>Using the example of a tool that places a valve on a pipe again, the tool doesn&apos;t require the user to orient the valve on the closest pipe end point, it can get this information from the pipe element. As AccuDraw doesn&apos;t need to be enabled by the tool in this situation, but the tool does wish to preview the valve placment using dynamics, it should disable AccuDraw&apos;s automatic activation.</p>
 </blockquote>
 <p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/accudraw/accudrawhintbuilder'>AccuDrawHintBuilder</a> is a helper class tools can use to send hints to AccuDraw. A tool will typically send hints from <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/interactivetool/ondatabuttondown'>InteractiveTool.onDataButtonDown</a>, the hints are often accompanied by new tool prompts explaining what input is expected next.</p>
 <blockquote>
-<p>Tools that enable AccuDraw, either through automatic or explicit activation, should still not rely on AccuDraw or it&apos;s hints for point adjustment. The user may choose to disable AccuDraw completely, set a preference to ignore tool hints in favor of manually controlling the AccuDraw compass, or use shortcuts to override the tool&apos;s hints. If for example a tool requires the input point be projected to a particular plane in the view, even after enabling AccuDraw and sending hints to set the compass origin and rotation to define the plane, it must still correct <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/bebuttonevent/point'>BeButtonEvent.point</a> to ensure it lies on the plane for the reasons previously mentioned.</p>
+<p>Tools that enable AccuDraw, either through automatic or explicit activation, should still not rely on AccuDraw or its hints for point adjustment. The user may choose to disable AccuDraw completely, set a preference to ignore tool hints in favor of manually controlling the AccuDraw compass, or use shortcuts to override the tool&apos;s hints. If for example a tool requires the input point be projected to a particular plane in the view, even after enabling AccuDraw and sending hints to set the compass origin and rotation to define the plane, it must still correct <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/tools/bebuttonevent/point'>BeButtonEvent.point</a> to ensure it lies on the plane for the reasons previously mentioned.</p>
 </blockquote>
 <p>Example from a simple sketching tool that uses AccuDrawHintBuilder to facilitate drawing orthogonal segments:</p>
 <pre class="no-line-numbers"><code class="language-typescript">  public readonly points: Point3d[] = [];
@@ -321,7 +321,7 @@
   public onPostInstall() { super.onPostInstall(); this.setupAndPromptForNextAction(); }</code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>20 September, 2019</span>
+                <span class='date-updated'>01 October, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

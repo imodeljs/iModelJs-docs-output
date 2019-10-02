@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.4.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.5.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -172,11 +172,14 @@
             
             <h1 id="biscore">BisCore</h1>
 <p><strong>alias:</strong> bis</p>
-<p><strong>version:</strong> 1.0.4</p>
-<p>The BIS core schema contains classes that all other domain schemas extend.</p>
+<p><strong>version:</strong> 1.0.7</p>
+<p>The BisCore schema defines the fundamental constructs of BIS. Other domain schemas must extend BisCore classes.</p>
 <p><strong>displayLabel:</strong> BIS Core</p>
-<p>Contains the core classes which define the base classes used by all BIS Domain schemas.</p>
-<p>The BisCore schema also defines the database structure for an iModel.  Other schemas may not add to the db schema without explicit permission from BisCore.</p>
+<p>BisCore contains the core classes that define the <a href="https://imodeljs.github.io/iModelJs-docs-output/bis/intro/fabric-of-the-universe/" target="_blank">fundamental building-blocks of BIS</a> (e.g. Models, Elements, and ElementAspects) and which specialize them to establish domain-neutral base-classes for modeling the real world from multiple Modeling Perspectives.</p>
+<p>BisCore also contains some less-fundamental classes related to infrastructure engineering visualization and documentation in general, such as drawings, views, etc.</p>
+<p>The core classes are decorated by ECCustomAttributes that effectively define the database schema mapping for an iModel, but which can be ignored for other kinds of BIS Repositories.  Other schemas cannot alter the underlying database schema mapping without explicit permission from BisCore.</p>
+<p>The classes of BisCore are used as base classes for all classes in other BIS Domain schemas.</p>
+<p>See <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/" target="_blank">Base Infrastructure Schemas</a></p>
 <h2 class="h-entity">Entity Classes<a id="entity" class="heading-anchor" href="#entity"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <h3 class="h-annotationelement2d"><strong>AnnotationElement2d</strong> (2D Annotation Element)<a id="annotationelement2d" class="heading-anchor" href="#annotationelement2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
@@ -334,6 +337,10 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A bis:Category categorizes a bis:GeometricElement and its geometry. Every bis:GeometricElement is in one and only one bis:Category. The visibility (on/off) of a bis:Category may be controlled per-view. Categories are similar to levels in DGN, layers in DWG, and categories in RVT.</p>
 <p><strong>baseClass:</strong> <a href="#definitionelement">BisCore:DefinitionElement</a></p>
+<p>Categories should be standardized by domain groups where possible. They generally correlate with groups of BIS Element classes, or a single base class.</p>
+<p>See <a href="https://imodeljs.github.io/iModelJs-docs-output/bis/intro/categories/" target="_blank">Categories Introduction</a>.</p>
+<p>Also see the <a href="https://imodeljs.github.io/iModelJs-docs-output/bis/domains/classificationsystems.ecschema/" target="_blank">ClassificationSystems</a> domain schema.
+In retrospect, the complexity added by introducing a distinct &apos;Spatial Location&apos; perspective may have not been worth the benefit. Our current recommendation is to not instantiate a SpatialLocationPartition, but instead to organize spatial locations in the context of the PhysicalModel hierarchy.</p>
 <h4 class="h-properties-6">Properties<a id="properties-6" class="heading-anchor" href="#properties-6"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
@@ -416,11 +423,12 @@
 <p><strong>baseClass:</strong> <a href="#informationmodel">BisCore:InformationModel</a></p>
 <h3 class="h-definitionpartition"><strong>DefinitionPartition</strong> (Definition Partition) <em>Sealed</em><a id="definitionpartition" class="heading-anchor" href="#definitionpartition"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A bis:DefinitionPartition element indicates that there is a definition-related modeling perspective within the overall information hierarchy. A bis:DefinitionPartition is always parented to a bis:Subject and broken down by a bis:DefinitionModel.</p>
+<p><strong>description:</strong> A bis:DefinitionPartition element establishes a &apos;Definition&apos; Modeling Perspective for its parent bis:Subject. A bis:DefinitionPartition is always sub-modeled by a bis:DefinitionModel.</p>
 <p><strong>baseClass:</strong> <a href="#informationpartitionelement">BisCore:InformationPartitionElement</a></p>
+<p>The &apos;Definition&apos; Modeling Perspective is for modeling definitions of things that are shared by multiple particular Entities.</p>
 <h3 class="h-dictionarymodel"><strong>DictionaryModel</strong> (Dictionary Model) <em>Sealed</em><a id="dictionarymodel" class="heading-anchor" href="#dictionarymodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> The singleton container for repository-specific bis:DefinitionElement instances.</p>
+<p><strong>description:</strong> The singleton container for repository-global bis:DefinitionElement instances.</p>
 <p><strong>baseClass:</strong> <a href="#definitionmodel">BisCore:DefinitionModel</a></p>
 <h3 class="h-displaystyle"><strong>DisplayStyle</strong> (Display Style) <em>Abstract</em><a id="displaystyle" class="heading-anchor" href="#displaystyle"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
@@ -449,8 +457,9 @@
 <p><strong>baseClass:</strong> <a href="#informationmodel">BisCore:InformationModel</a></p>
 <h3 class="h-documentpartition"><strong>DocumentPartition</strong> (Document Partition) <em>Sealed</em><a id="documentpartition" class="heading-anchor" href="#documentpartition"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A bis:DocumentPartition element indicates that there is a document-related modeling perspective within the overall information hierarchy. A bis:DocumentPartition is always parented to a bis:Subject and broken down by a bis:DocumentListModel.</p>
+<p><strong>description:</strong> A bis:DocumentPartition element establishes a &apos;Document&apos; Modeling Perspective for its parent bis:Subject. A bis:DocumentPartition is always sub-modeled by a bis:DocumentListModel.</p>
 <p><strong>baseClass:</strong> <a href="#informationpartitionelement">BisCore:InformationPartitionElement</a></p>
+<p>The &apos;Document&apos; Modeling Perspective is a subset of the &apos;Information&apos; Modeling Perspective. It holds Elements which describes Entities using Documents and is used to create primary documents such as Drawings.</p>
 <h3 class="h-drawing"><strong>Drawing</strong><a id="drawing" class="heading-anchor" href="#drawing"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A bis:Drawing is a bis:Document of a 2D drawing.</p>
@@ -465,7 +474,7 @@
 <p><strong>baseClass:</strong> <a href="#graphicalelement2d">BisCore:GraphicalElement2d</a></p>
 <h3 class="h-drawingmodel"><strong>DrawingModel</strong> (Drawing Model)<a id="drawingmodel" class="heading-anchor" href="#drawingmodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A container for persisting bis:DrawingGraphic elements.</p>
+<p><strong>description:</strong> A container for persisting bis:DrawingGraphic elements. </p>
 <p><strong>baseClass:</strong> <a href="#graphicalmodel2d">BisCore:GraphicalModel2d</a></p>
 <h3 class="h-drawingviewdefinition"><strong>DrawingViewDefinition</strong> (Drawing View Definition)<a id="drawingviewdefinition" class="heading-anchor" href="#drawingviewdefinition"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
@@ -475,9 +484,12 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A bis:DriverBundleElement is used in conjunction with bis:ElementDrivesElement relationships to bundle multiple inputs before driving the output bis:Element.</p>
 <p><strong>baseClass:</strong> <a href="#informationcontentelement">BisCore:InformationContentElement</a></p>
+<p>Used when multiple inputs for a &quot;driving&quot; relationship cannot be considered in isolation.</p>
+<p>See <a href="#elementdriveselement">ElementDrivesElement</a>.</p>
 <h3 class="h-element"><strong>Element</strong> <em>Abstract</em><a id="element" class="heading-anchor" href="#element"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A bis:Element is the smallest individually identifiable building block for modeling the real world. Each bis:Element represents an entity in the real world. Sets of bis:Elements (contained in bis:Models) are used to model other bis:Elements that represent larger scale real world entities. Using this recursive modeling strategy, bis:Elements can represent entities at any scale. Elements can represent physical things, abstract concepts or simply be information records.</p>
+<p><strong>description:</strong> A bis:Element is the smallest individually identifiable building block for modeling the real world. Each bis:Element represents an Entity in the real world. Sets of bis:Elements (contained in bis:Models) are used to sub-model other bis:Elements that represent larger scale real world Entities. Using this recursive modeling strategy, bis:Elements can represent Entities at any scale. Elements can represent physical things, abstract concepts or simply be information records.</p>
+<p>See <a href="https://imodeljs.github.io/iModelJs-docs-output/bis/intro/element-fundamentals/" target="_blank">Element Fundamentals</a>.</p>
 <h4 class="h-properties-10">Properties<a id="properties-10" class="heading-anchor" href="#properties-10"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
@@ -598,7 +610,7 @@
 </tr>
 </tbody></table><h3 class="h-externalsourceaspect"><strong>ExternalSourceAspect</strong> (External Source Aspect)<a id="externalsourceaspect" class="heading-anchor" href="#externalsourceaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A bis:ElementMultiAspect that stores syncrhonization information for a bis:Element originating from an external source.</p>
+<p><strong>description:</strong> A bis:ElementMultiAspect that stores synchronization information for a bis:Element originating from an external source.</p>
 <p><strong>baseClass:</strong> <a href="#elementmultiaspect">BisCore:ElementMultiAspect</a></p>
 <h4 class="h-properties-14">Properties<a id="properties-14" class="heading-anchor" href="#properties-14"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
@@ -609,7 +621,7 @@
 </tr>
 <tr>
 <td align="left">Scope</td>
-<td align="left">The context in which the combination of (Kind, Identifier) identifies the object uniquely within the source repository. Scope is the Id of a bis:Element in the iModel (not the source) that corresponds to the scope or container in the source that owns, contains, or qualifies the identity of the source object.</td>
+<td align="left">The context in which the combination of (Kind, Identifier) identifies the object uniquely within the source repository. Scope is the Id of a bis:Element in the iModel (not the source) that corresponds to the scope or container in the source that owns, contains, or qualifies the idEntity of the source object.</td>
 <td align="left"><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#elementscopesexternalsourceidentifier'>navigation</a></td>
 <td align="left"></td>
 </tr>
@@ -627,7 +639,7 @@
 </tr>
 <tr>
 <td align="left">Version</td>
-<td align="left">An optional value that is typically a version number or a psuedo version number like last modified time. It will be used by the synchronization process to detect that a source object is unchanged so that computing a cryptographic hash can be avoided. If present, this value must be guaranteed to change when any of the source object&apos;s content changes.</td>
+<td align="left">An optional value that is typically a version number or a pseudo version number like last modified time. It will be used by the synchronization process to detect that a source object is unchanged so that computing a cryptographic hash can be avoided. If present, this value must be guaranteed to change when any of the source object&apos;s content changes.</td>
 <td align="left">string</td>
 <td align="left"></td>
 </tr>
@@ -645,11 +657,11 @@
 </tr>
 </tbody></table><h3 class="h-geometricelement"><strong>GeometricElement</strong> (Geometric Element) <em>Abstract</em><a id="geometricelement" class="heading-anchor" href="#geometricelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> bis:GeometricElement ia an abstract base class used to model real world entities that intrinsically have geometry.</p>
+<p><strong>description:</strong> bis:GeometricElement ia an abstract base class used to model real world Entities that intrinsically have geometry.</p>
 <p><strong>baseClass:</strong> <a href="#element">BisCore:Element</a></p>
 <h3 class="h-geometricelement2d"><strong>GeometricElement2d</strong> (2D Geometric Element) <em>Abstract</em><a id="geometricelement2d" class="heading-anchor" href="#geometricelement2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> bis:GeometricElement2d is an abstract base class used to model information entities that intrinsicly have 2D geometry.</p>
+<p><strong>description:</strong> bis:GeometricElement2d is an abstract base class used to model information Entities that intrinsically have 2D geometry.</p>
 <p><strong>baseClass:</strong> <a href="#geometricelement">BisCore:GeometricElement</a></p>
 <h4 class="h-properties-15">Properties<a id="properties-15" class="heading-anchor" href="#properties-15"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
@@ -701,7 +713,7 @@
 </tr>
 </tbody></table><h3 class="h-geometricelement3d"><strong>GeometricElement3d</strong> (3D Geometric Element) <em>Abstract</em><a id="geometricelement3d" class="heading-anchor" href="#geometricelement3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> bis:GeometricElement3d is an abstract base class used to model real world entities that intrinsically have 3D geometry.</p>
+<p><strong>description:</strong> bis:GeometricElement3d is an abstract base class used to model real world Entities that intrinsically have 3D geometry.</p>
 <p><strong>baseClass:</strong> <a href="#geometricelement">BisCore:GeometricElement</a></p>
 <h4 class="h-properties-16">Properties<a id="properties-16" class="heading-anchor" href="#properties-16"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
@@ -773,10 +785,6 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A container for persisting bis:GeometricElement instances.</p>
 <p><strong>baseClass:</strong> <a href="#model">BisCore:Model</a></p>
-<h3 class="h-geometricmodel2d"><strong>GeometricModel2d</strong> (2D Geometric Model) <em>Abstract</em><a id="geometricmodel2d" class="heading-anchor" href="#geometricmodel2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A container for persisting bis:GeometricElement2d instances.</p>
-<p><strong>baseClass:</strong> <a href="#geometricmodel">BisCore:GeometricModel</a></p>
 <h4 class="h-properties-17">Properties<a id="properties-17" class="heading-anchor" href="#properties-17"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
@@ -785,19 +793,36 @@
 <th align="left">Extended Type</th>
 </tr>
 <tr>
+<td align="left">GeometryGuid</td>
+<td align="left">A GUID that changes whenever any element in this GeometricModel has a change to its geometry.</td>
+<td align="left">binary</td>
+<td align="left">BeGuid</td>
+</tr>
+</tbody></table><h3 class="h-geometricmodel2d"><strong>GeometricModel2d</strong> (2D Geometric Model) <em>Abstract</em><a id="geometricmodel2d" class="heading-anchor" href="#geometricmodel2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>description:</strong> A container for persisting bis:GeometricElement2d instances.</p>
+<p><strong>baseClass:</strong> <a href="#geometricmodel">BisCore:GeometricModel</a></p>
+<h4 class="h-properties-18">Properties<a id="properties-18" class="heading-anchor" href="#properties-18"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
 <td align="left">GlobalOrigin</td>
-<td align="left">The actual coordinates of (0,0) in modeling coordinates. An offest applied to all modeling coordinates.</td>
+<td align="left">The actual coordinates of (0,0) in modeling coordinates. An offset applied to all modeling coordinates.</td>
 <td align="left">point2d</td>
 </tr>
 </tbody></table><h3 class="h-geometricmodel3d"><strong>GeometricModel3d</strong> (3D Geometric Model) <em>Abstract</em><a id="geometricmodel3d" class="heading-anchor" href="#geometricmodel3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A container for persisting bis:GeometricElement3d instances.</p>
+<p><strong>description:</strong> A container for persisting bis:GeometricElement3d instances, which are considered to be in the iModel&apos;s real-world coordinate system unless their InSpatialIndex property has been set to &apos;false&apos;.</p>
 <p><strong>baseClass:</strong> <a href="#geometricmodel">BisCore:GeometricModel</a></p>
 <h3 class="h-geometrypart"><strong>GeometryPart</strong> (Geometry Part)<a id="geometrypart" class="heading-anchor" href="#geometrypart"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A bis:DefinitionElement that specifies a collection of geometry that is meant to be reused across bis:GeometricElement instances. Leveraging bis:GeometryParts can help reduce file size and improve display performance.</p>
 <p><strong>baseClass:</strong> <a href="#definitionelement">BisCore:DefinitionElement</a></p>
-<h4 class="h-properties-18">Properties<a id="properties-18" class="heading-anchor" href="#properties-18"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-19">Properties<a id="properties-19" class="heading-anchor" href="#properties-19"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -827,7 +852,7 @@
 <p><strong>baseClass:</strong> <a href="#geometricelement2d">BisCore:GeometricElement2d</a></p>
 <h3 class="h-graphicalelement3d"><strong>GraphicalElement3d</strong> (3D Graphical Element) <em>Abstract</em><a id="graphicalelement3d" class="heading-anchor" href="#graphicalelement3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A bis:GrapicalElement3d element conveys information within 3D graphical presentations.</p>
+<p><strong>description:</strong> A bis:GraphicalElement3d element conveys information within 3D graphical presentations.</p>
 <p><strong>baseClass:</strong> <a href="#geometricelement3d">BisCore:GeometricElement3d</a></p>
 <h3 class="h-graphicalmodel2d"><strong>GraphicalModel2d</strong> (2D Graphical Model) <em>Abstract</em><a id="graphicalmodel2d" class="heading-anchor" href="#graphicalmodel2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
@@ -839,7 +864,7 @@
 <p><strong>baseClass:</strong> <a href="#typedefinitionelement">BisCore:TypeDefinitionElement</a></p>
 <h3 class="h-groupinformationelement"><strong>GroupInformationElement</strong> (Group Information) <em>Abstract</em><a id="groupinformationelement" class="heading-anchor" href="#groupinformationelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> bis:GroupInformationElement is an abstract base class used for modeling entities whose main purpose is to group related elements.</p>
+<p><strong>description:</strong> bis:GroupInformationElement is an abstract base class used for modeling Entities whose main purpose is to group related elements.</p>
 <p><strong>baseClass:</strong> <a href="#informationreferenceelement">BisCore:InformationReferenceElement</a></p>
 <h3 class="h-groupinformationmodel"><strong>GroupInformationModel</strong> (Group Information Model) <em>Abstract</em><a id="groupinformationmodel" class="heading-anchor" href="#groupinformationmodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
@@ -847,8 +872,9 @@
 <p><strong>baseClass:</strong> <a href="#informationmodel">BisCore:InformationModel</a></p>
 <h3 class="h-groupinformationpartition"><strong>GroupInformationPartition</strong> (Group Information Partition) <em>Sealed</em><a id="groupinformationpartition" class="heading-anchor" href="#groupinformationpartition"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A bis:GroupInformationPartition element indicates that there is a group-information-related modeling perspective within the overall information hierarchy. A bis:GroupInformationPartition is always parented to a bis:Subject and broken down by a bis:GroupInformationModel.</p>
+<p><strong>description:</strong> A bis:GroupInformationPartition element establishes a &apos;Group Information&apos; Modeling Perspective for its parent bis:Subject. A bis:GroupInformationPartition is always sub-modeled by a bis:GroupInformationModel.</p>
 <p><strong>baseClass:</strong> <a href="#informationpartitionelement">BisCore:InformationPartitionElement</a></p>
+<p>The &apos;GroupInformation&apos; Modeling Perspective is a subset of the &apos;Information&apos; Modeling Perspective. It is used primarily to hold <code>generic:Group</code> Elements generated from DgnV8 &apos;Named Groups&apos;.</p>
 <h3 class="h-informationcarrierelement"><strong>InformationCarrierElement</strong> (Information Carrier) <em>Abstract</em> <span class="badge badge-pill badge-warning badge-deprecated">Deprecated</span><a id="informationcarrierelement" class="heading-anchor" href="#informationcarrierelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><div class="alert alert-warning" role="alert">BisCore will focus on the information itself and not how it is carried. Thus, the InformationCarrierElement class was deprecated.</div></p>
 <p><strong>typeName:</strong> EntityClass</p>
@@ -856,7 +882,7 @@
 <p><strong>baseClass:</strong> <a href="#element">BisCore:Element</a></p>
 <h3 class="h-informationcontentelement"><strong>InformationContentElement</strong> (Information Content Element) <em>Abstract</em><a id="informationcontentelement" class="heading-anchor" href="#informationcontentelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> bis:InformationContentElement is an abstract base class for modeling pure information entities. Only the core framework should directly subclass from bis:InformationContentElement. Domain and application developers should start with the most appropriate subclass of bis:InformationContentElement.</p>
+<p><strong>description:</strong> bis:InformationContentElement is an abstract base class for modeling pure information Entities. Only the core framework should directly subclass from bis:InformationContentElement. Domain and application developers should start with the most appropriate subclass of bis:InformationContentElement.</p>
 <p><strong>baseClass:</strong> <a href="#element">BisCore:Element</a></p>
 <h3 class="h-informationmodel"><strong>InformationModel</strong> (Information Model) <em>Abstract</em><a id="informationmodel" class="heading-anchor" href="#informationmodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
@@ -864,9 +890,12 @@
 <p><strong>baseClass:</strong> <a href="#model">BisCore:Model</a></p>
 <h3 class="h-informationpartitionelement"><strong>InformationPartitionElement</strong> (Information Partition) <em>Abstract</em><a id="informationpartitionelement" class="heading-anchor" href="#informationpartitionelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> Instances of bis:InformationPartitionElement ared used to indicate that there is a new modeling perspective within the overall information hierarchy. A bis:InformationPartitionElement is always parented to a bis:Subject and broken down by a bis:Model.</p>
+<p><strong>description:</strong> An instance of a specialization of bis:InformationPartitionElement establishes a particular Modeling Perspective for its parent bis:Subject. Instances are always sub-modeled by a specialization of bis:Model of the appropriate Modeling Perspective.</p>
 <p><strong>baseClass:</strong> <a href="#informationcontentelement">BisCore:InformationContentElement</a></p>
-<h4 class="h-properties-19">Properties<a id="properties-19" class="heading-anchor" href="#properties-19"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>An InformationPartitionElement partitions the information in a BIS Repository into non-overlapping hierarchies of Models and Elements, each with a distinct Modeling Perspective. In some cases it further-partitions information into distinct subsets within a Modeling Perspective, based on a specific domain.</p>
+<p>A bis:Subject mentions a real-world Object. BIS <em>sees</em> the Object as one-or-more Entities, where each Entity considers the Object from a particular Modeling Perspective. A specialization of a bis:InformationPartitionElement establishes a Perspective for modeling the Object to which the Subject refers. The top-Model sub-models the Partition. The actual modeling of the Entity with one-or-more Elements of the appropriate Modeling Perspective begins in the top-Model.</p>
+<p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/top-of-the-world'>Top of the World</a></p>
+<h4 class="h-properties-20">Properties<a id="properties-20" class="heading-anchor" href="#properties-20"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -888,17 +917,18 @@
 <p><strong>baseClass:</strong> <a href="#informationmodel">BisCore:InformationModel</a></p>
 <h3 class="h-informationrecordpartition"><strong>InformationRecordPartition</strong> (Information Record Partition) <em>Sealed</em><a id="informationrecordpartition" class="heading-anchor" href="#informationrecordpartition"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A bis:InformationRecordPartition element indicates that there is an information-record-related modeling perspective within the overall information hierarchy. A bis:InformationRecordPartition is always parented to a bis:Subject and broken down by a bis:InformationRecordModel.</p>
+<p><strong>description:</strong> A bis:InformationRecordPartition element establishes a &apos;Information Record&apos; Modeling Perspective for its parent bis:Subject. A bis:InformationRecordPartition is always sub-modeled by a bis:InformationRecordModel.</p>
 <p><strong>baseClass:</strong> <a href="#informationpartitionelement">BisCore:InformationPartitionElement</a></p>
+<p>The &apos;InformationRecord&apos; Modeling Perspective is a subset of the &apos;Information&apos; Modeling Perspective. It can hold a broad array of information records describing Entities.</p>
 <h3 class="h-informationreferenceelement"><strong>InformationReferenceElement</strong> (Information Reference) <em>Abstract</em><a id="informationreferenceelement" class="heading-anchor" href="#informationreferenceelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> bis:InformationReferenceElement is an abstract base class used for modeling entities whose main purpose is to reference something else.</p>
+<p><strong>description:</strong> bis:InformationReferenceElement is an abstract base class used for modeling Entities whose main purpose is to reference something else.</p>
 <p><strong>baseClass:</strong> <a href="#informationcontentelement">BisCore:InformationContentElement</a></p>
 <h3 class="h-lightlocation"><strong>LightLocation</strong> (Light Location) <em>Sealed</em><a id="lightlocation" class="heading-anchor" href="#lightlocation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> The spatial location of a light source</p>
 <p><strong>baseClass:</strong> <a href="#spatiallocationelement">BisCore:SpatialLocationElement</a></p>
-<h4 class="h-properties-20">Properties<a id="properties-20" class="heading-anchor" href="#properties-20"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-21">Properties<a id="properties-21" class="heading-anchor" href="#properties-21"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -914,7 +944,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> &lt;No description&gt;</p>
 <p><strong>baseClass:</strong> <a href="#definitionelement">BisCore:DefinitionElement</a></p>
-<h4 class="h-properties-21">Properties<a id="properties-21" class="heading-anchor" href="#properties-21"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-22">Properties<a id="properties-22" class="heading-anchor" href="#properties-22"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -935,20 +965,23 @@
 </tr>
 </tbody></table><h3 class="h-linkelement"><strong>LinkElement</strong> (Link) <em>Abstract</em><a id="linkelement" class="heading-anchor" href="#linkelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A bis:LinkElement is a bis:InformationReferenceElement that specifies a link.</p>
+<p><strong>description:</strong> A bis:LinkElement is a bis:InformationReferenceElement that specifies a link to some resource that is not modeled with BIS.</p>
 <p><strong>baseClass:</strong> <a href="#informationreferenceelement">BisCore:InformationReferenceElement</a></p>
+<p>The link is generally to some resource, e.g. the subclass <code>UrlLink</code> points to an external resource while <code>EmbeddedFileLink</code> points to files embedded in an iModel.</p>
 <h3 class="h-linkmodel"><strong>LinkModel</strong> (Link Model)<a id="linkmodel" class="heading-anchor" href="#linkmodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A container for persisting bis:LinkElement instances.</p>
 <p><strong>baseClass:</strong> <a href="#informationmodel">BisCore:InformationModel</a></p>
 <h3 class="h-linkpartition"><strong>LinkPartition</strong> (Link Partition) <em>Sealed</em><a id="linkpartition" class="heading-anchor" href="#linkpartition"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A bis:LinkPartition element indicates that there is a link-related modeling perspective within the overall information hierarchy. A bis:LinkPartition is always parented to a bis:Subject and broken down by a bis:LinkModel.</p>
+<p><strong>description:</strong> A bis:LinkPartition element establishes a &apos;Link&apos; Modeling Perspective for its parent bis:Subject. A bis:LinkPartition is always sub-modeled by a bis:LinkModel.</p>
 <p><strong>baseClass:</strong> <a href="#informationpartitionelement">BisCore:InformationPartitionElement</a></p>
+<p>The &apos;Link&apos; Modeling Perspective is a subset of the &apos;Information&apos; Modeling Perspective. It is used to hold links to external repositories, e.g. in the form of <code>bis:RepositoryLink</code> elements.</p>
 <h3 class="h-model"><strong>Model</strong> <em>Abstract</em><a id="model" class="heading-anchor" href="#model"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A bis:Model is a container for persisting a collection of related elements.</p>
-<h4 class="h-properties-22">Properties<a id="properties-22" class="heading-anchor" href="#properties-22"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>See <a href="https://imodeljs.github.io/iModelJs-docs-output/bis/intro/model-fundamentals/" target="_blank">Model Fundamentals</a>.</p>
+<h4 class="h-properties-23">Properties<a id="properties-23" class="heading-anchor" href="#properties-23"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -957,13 +990,13 @@
 </tr>
 <tr>
 <td align="left">ParentModel</td>
-<td align="left">The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.</td>
+<td align="left">The parent bis:Model contains the bis:Element that this bis:Model is sub-modeling.</td>
 <td align="left"><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#modelownssubmodel'>navigation</a></td>
 <td align="left"></td>
 </tr>
 <tr>
 <td align="left">ModeledElement</td>
-<td align="left">The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.</td>
+<td align="left">The bis:Element that this bis:Model is sub-modeling. This bis:Model models the same Entity as the sub-Modeled bis:Element, but at a finer granularity.</td>
 <td align="left"><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#modelmodelselement'>navigation</a></td>
 <td align="left"></td>
 </tr>
@@ -985,6 +1018,11 @@
 <td align="left">string</td>
 <td align="left">Json</td>
 </tr>
+<tr>
+<td align="left">LastMod</td>
+<td align="left">The last time any element in this Model was modified.</td>
+<td align="left">dateTime</td>
+</tr>
 </tbody></table><h3 class="h-modelselector"><strong>ModelSelector</strong> (Model Selector)<a id="modelselector" class="heading-anchor" href="#modelselector"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> &lt;No description&gt;</p>
@@ -1003,20 +1041,21 @@
 <p><strong>baseClass:</strong> <a href="#definitionelement">BisCore:DefinitionElement</a></p>
 <h3 class="h-physicalmodel"><strong>PhysicalModel</strong> (Physical Model)<a id="physicalmodel" class="heading-anchor" href="#physicalmodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A container for persisting bis:PhysicalElement and bis:SpatialLocationElement instances used to model physical space.</p>
+<p><strong>description:</strong> A container for persisting bis:PhysicalElement and bis:SpatialLocationElement instances used to model real physical space. Also allows bis:GraphicalElement3d and bis:InformationContentElement.</p>
 <p><strong>baseClass:</strong> <a href="#spatialmodel">BisCore:SpatialModel</a></p>
 <h3 class="h-physicalpartition"><strong>PhysicalPartition</strong> (Physical Partition) <em>Sealed</em><a id="physicalpartition" class="heading-anchor" href="#physicalpartition"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A bis:PhysicalPartition element indicates that there is a physical modeling perspective within the overall information hierarchy. A bis:PhysicalPartition is always parented to a bis:Subject and broken down by a bis:PhysicalModel.</p>
+<p><strong>description:</strong> A bis:PhysicalPartition element establishes a &apos;Physical&apos; Modeling Perspective for its parent bis:Subject. A bis:PhysicalPartition is always sub-modeled by a bis:PhysicalModel.</p>
 <p><strong>baseClass:</strong> <a href="#informationpartitionelement">BisCore:InformationPartitionElement</a></p>
+<p>The &apos;Physical&apos; Perspective is for modeling physical Entities (which have mass) and for spatial location Entities (which are generally either defined-by physical Entities or are used-to-define physical Entities).</p>
 <h3 class="h-physicalportion"><strong>PhysicalPortion</strong> (Physical Portion) <em>Abstract</em> <span class="badge badge-pill badge-warning badge-deprecated">Deprecated</span><a id="physicalportion" class="heading-anchor" href="#physicalportion"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><div class="alert alert-warning" role="alert">The best practice is now to inherit from a PhysicalElement subclass and mix in ISubModeledElement when a breakdown concept is needed.</div></p>
+<p><div class="alert alert-warning" role="alert">The best practice is now to inherit from a PhysicalElement subclass and mix-in ISubModeledElement directly.</div></p>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> DEPRECATED: A Physical Portion represents an arbitrary portion of a larger Physical Element that will be broken down in more detail in a separate (sub) Physical Model.</p>
+<p><strong>description:</strong> DEPRECATED: A Physical Portion represents an arbitrary portion of a larger Physical Element that will be sub-modeled by a Physical Model.</p>
 <p><strong>baseClass:</strong> <a href="#physicalelement">BisCore:PhysicalElement</a></p>
 <h3 class="h-physicaltype"><strong>PhysicalType</strong> (Physical Type) <em>Abstract</em><a id="physicaltype" class="heading-anchor" href="#physicaltype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> Defines a shared set of properties (the &apos;type&apos;) that can be associated with a bis:PhysicalElement. A bis:PhysicalType has a strong correlation with something that can be ordered from a catalog since all instances share a common set of properties.</p>
+<p><strong>description:</strong> Defines a shared set of properties whose values vary per-type of a bis:PhysicalElement rather than per-instance. Intended for modeling Entities such as catalog entries, that typically define property values that are common among all instances associated with a given catalog entry.</p>
 <p><strong>baseClass:</strong> <a href="#typedefinitionelement">BisCore:TypeDefinitionElement</a></p>
 <h3 class="h-recipedefinitionelement"><strong>RecipeDefinitionElement</strong> (Recipe Definition) <em>Abstract</em><a id="recipedefinitionelement" class="heading-anchor" href="#recipedefinitionelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
@@ -1024,9 +1063,9 @@
 <p><strong>baseClass:</strong> <a href="#definitionelement">BisCore:DefinitionElement</a></p>
 <h3 class="h-rendermaterial"><strong>RenderMaterial</strong> (Render Material) <em>Sealed</em><a id="rendermaterial" class="heading-anchor" href="#rendermaterial"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A bis:RenderMaterial defines the rendering properties of materials for display.</p>
+<p><strong>description:</strong> A bis:RenderMaterial defines the rendering properties of materials for display. Not to be confused with a bis:PhysicalMaterial.</p>
 <p><strong>baseClass:</strong> <a href="#definitionelement">BisCore:DefinitionElement</a></p>
-<h4 class="h-properties-23">Properties<a id="properties-23" class="heading-anchor" href="#properties-23"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-24">Properties<a id="properties-24" class="heading-anchor" href="#properties-24"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -1046,9 +1085,9 @@
 </tr>
 </tbody></table><h3 class="h-repositorylink"><strong>RepositoryLink</strong> (Repository Link) <em>Sealed</em><a id="repositorylink" class="heading-anchor" href="#repositorylink"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A bis:RepositoryLink is a bis:UrlLink element that links to a repository.</p>
+<p><strong>description:</strong> A bis:RepositoryLink is a bis:UrlLink element that links to an external repository. It implements ISubModeledElement only so that a sub-Model could be used to cache information from the external repository.</p>
 <p><strong>baseClass:</strong> <a href="#urllink">BisCore:UrlLink</a></p>
-<h4 class="h-properties-24">Properties<a id="properties-24" class="heading-anchor" href="#properties-24"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-25">Properties<a id="properties-25" class="heading-anchor" href="#properties-25"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -1063,11 +1102,11 @@
 </tr>
 </tbody></table><h3 class="h-repositorymodel"><strong>RepositoryModel</strong> (Repository Model) <em>Sealed</em><a id="repositorymodel" class="heading-anchor" href="#repositorymodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> The singleton container of repository-related information elements.</p>
+<p><strong>description:</strong> The singleton Model at the root of a BIS repository. Contains a hierarchy of bis:Subject elements that declare what the repository is modeling and child bis:InformationPartitionElement instances that establish Modeling Perspectives. Serves as a high-level table-of-contents for the BIS repository.</p>
 <p><strong>baseClass:</strong> <a href="#definitionmodel">BisCore:DefinitionModel</a></p>
 <h3 class="h-roleelement"><strong>RoleElement</strong> (Role Element) <em>Abstract</em><a id="roleelement" class="heading-anchor" href="#roleelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A real world entity is modeled as a bis:RoleElement when a set of external circumstances define an important role (one that is worth tracking) that is not intrinsic to the entity playing the role. For example, a person can play the role of a teacher or a rock can play the role of a boundary marker.</p>
+<p><strong>description:</strong> A real world Entity is modeled as a bis:RoleElement when a set of external circumstances define an important role (one that is worth tracking) that is not intrinsic to the Entity playing the role. For example, a person can play the role of a teacher or a rock can play the role of a boundary marker.</p>
 <p><strong>baseClass:</strong> <a href="#element">BisCore:Element</a></p>
 <h3 class="h-rolemodel"><strong>RoleModel</strong> (Role Model)<a id="rolemodel" class="heading-anchor" href="#rolemodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
@@ -1079,13 +1118,47 @@
 <p><strong>baseClass:</strong> <a href="#drawing">BisCore:Drawing</a></p>
 <h3 class="h-sectiondrawingmodel"><strong>SectionDrawingModel</strong> (Section Drawing Model)<a id="sectiondrawingmodel" class="heading-anchor" href="#sectiondrawingmodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A container for persisting section bis:DrawingGraphic elements.</p>
+<p><strong>description:</strong> A container for persisting section bis:DrawingGraphic elements representing a cross-section of a PhysicalModel. Generally at the same scale as the sectioned geometry to allow it to be display in situ at the location of the sectioning.</p>
 <p><strong>baseClass:</strong> <a href="#drawingmodel">BisCore:DrawingModel</a></p>
-<h3 class="h-sheet"><strong>Sheet</strong><a id="sheet" class="heading-anchor" href="#sheet"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h3 class="h-sectionlocation"><strong>SectionLocation</strong> (Section Location Element)<a id="sectionlocation" class="heading-anchor" href="#sectionlocation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> EntityClass</p>
+<p><strong>description:</strong> The section location defines how a section drawing should be generated in a 3d view.</p>
+<p><strong>baseClass:</strong> <a href="#spatiallocationelement">BisCore:SpatialLocationElement</a></p>
+<h4 class="h-properties-26">Properties<a id="properties-26" class="heading-anchor" href="#properties-26"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">SectionType</td>
+<td align="left">Type of the section: e.g. Section, Plan, Elevation, Detail.</td>
+<td align="left">SectionType</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">ClipGeometry</td>
+<td align="left">Details on how this section was clipped.</td>
+<td align="left">string</td>
+<td align="left">Json</td>
+</tr>
+<tr>
+<td align="left">ModelSelector</td>
+<td align="left">Describes the models relevant for this section location display.</td>
+<td align="left"><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#sectionlocationusesmodelselector'>navigation</a></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">CategorySelector</td>
+<td align="left">Describes the categories relevant for this section location display.</td>
+<td align="left"><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#sectionlocationusescategoryselector'>navigation</a></td>
+</tr>
+</tbody></table><h3 class="h-sheet"><strong>Sheet</strong><a id="sheet" class="heading-anchor" href="#sheet"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A bis:Sheet is a bis:Document of a 2D sheet.</p>
 <p><strong>baseClass:</strong> <a href="#document">BisCore:Document</a></p>
-<h4 class="h-properties-25">Properties<a id="properties-25" class="heading-anchor" href="#properties-25"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-27">Properties<a id="properties-27" class="heading-anchor" href="#properties-27"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -1119,7 +1192,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> &lt;No description&gt;</p>
 <p><strong>baseClass:</strong> <a href="#drawinggraphic">BisCore:DrawingGraphic</a></p>
-<h4 class="h-properties-26">Properties<a id="properties-26" class="heading-anchor" href="#properties-26"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-28">Properties<a id="properties-28" class="heading-anchor" href="#properties-28"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -1135,7 +1208,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> &lt;No description&gt;</p>
 <p><strong>baseClass:</strong> <a href="#document">BisCore:Document</a></p>
-<h4 class="h-properties-27">Properties<a id="properties-27" class="heading-anchor" href="#properties-27"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-29">Properties<a id="properties-29" class="heading-anchor" href="#properties-29"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -1161,7 +1234,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> &lt;No description&gt;</p>
 <p><strong>baseClass:</strong> <a href="#document">BisCore:Document</a></p>
-<h4 class="h-properties-28">Properties<a id="properties-28" class="heading-anchor" href="#properties-28"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-30">Properties<a id="properties-30" class="heading-anchor" href="#properties-30"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -1200,7 +1273,7 @@
 <h3 class="h-spatialindex"><strong>SpatialIndex</strong> (Spatial Index) <em>Sealed</em><a id="spatialindex" class="heading-anchor" href="#spatialindex"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> The Spatial Index contains information used to optimize spatial queries. Like other database indices, it is automatically maintained by the system.</p>
-<h4 class="h-properties-29">Properties<a id="properties-29" class="heading-anchor" href="#properties-29"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-31">Properties<a id="properties-31" class="heading-anchor" href="#properties-31"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -1248,30 +1321,38 @@
 <p><strong>baseClass:</strong> <a href="#spatialelement">BisCore:SpatialElement</a></p>
 <h3 class="h-spatiallocationmodel"><strong>SpatialLocationModel</strong> (Spatial Location Model)<a id="spatiallocationmodel" class="heading-anchor" href="#spatiallocationmodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A container for persisting bis:SpatialLocationElement instances.</p>
+<p><strong>description:</strong> A container for persisting bis:SpatialLocationElement instances. Also allows bis:GraphicalElement3d and bis:InformationContentElement.</p>
 <p><strong>baseClass:</strong> <a href="#spatialmodel">BisCore:SpatialModel</a></p>
 <h3 class="h-spatiallocationpartition"><strong>SpatialLocationPartition</strong> (Spatial Location Partition) <em>Sealed</em><a id="spatiallocationpartition" class="heading-anchor" href="#spatiallocationpartition"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A bis:SpatialLocationPartition element indicates that there is a spatial-location-related modeling perspective within the overall information hierarchy. A bis:SpatialLocationPartition is always parented to a bis:Subject and broken down by a bis:SpatialLocationModel.</p>
+<p><strong>description:</strong> A bis:SpatialLocationPartition element establishes a &apos;SpatialLocation&apos; Modeling Perspective for its parent bis:Subject. A bis:SpatialLocationPartition is always sub-modeled by a bis:SpatialLocationModel.</p>
 <p><strong>baseClass:</strong> <a href="#informationpartitionelement">BisCore:InformationPartitionElement</a></p>
+<p>The &#x201C;Spatial Location&#x201D; perspective is a strict subset of the &#x201C;Physical&#x201D; perspective. Spatial locations are massless, but they manifest in the real physical world:</p>
+<ul>
+<li>They may be defined in relation to physical entities, e.g. the air gap between two conductors, the space around an access panel, the volume occupied by a physical Entity, or a surface demarcating a region on the surface of a physical entity.</li>
+<li>They may be used to guide positioning of physical Entities, e.g. grid lines that may be manifested physically on a construction site via chalk lines or laser beams.</li>
+<li>They may be abstractions of physical consequence, like property or political boundaries that are often demarcated in the physical world via markers, signs, or natural boundaries.</li>
+</ul>
+<p>The &apos;Spatial Location&apos; perspective is used by SpatialLocationModel and SpatialLocationElement in order to segregate certain kinds of elements.</p>
+<p>In retrospect, the complexity added by introducing a distinct &quot;Spatial Location&quot; perspective may have not been worth the benefit. Our current recommendation is to not instantiate a SpatialLocationPartition, but instead organize spatial locations in the context of the &apos;physical backbone&apos;, i.e. the Physical model hierarchy.</p>
 <h3 class="h-spatiallocationportion"><strong>SpatialLocationPortion</strong> (Spatial Location Portion) <em>Abstract</em> <span class="badge badge-pill badge-warning badge-deprecated">Deprecated</span><a id="spatiallocationportion" class="heading-anchor" href="#spatiallocationportion"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><div class="alert alert-warning" role="alert">The best practice is now to inherit from a SpatialLocationElement subclass and mix in ISubModeledElement when a breakdown concept is needed.</div></p>
+<p><div class="alert alert-warning" role="alert">The best practice is now to inherit from a SpatialLocationElement subclass and mix-in ISubModeledElement directly.</div></p>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> DEPRECATED: A Spatial Location Portion represents an arbitrary portion of a larger Spatial Location Element that will be broken down in more detail in a separate (sub) Spatial Location Model.</p>
+<p><strong>description:</strong> DEPRECATED: A Spatial Location Portion represents an arbitrary portion of a larger Spatial Location Element that will be sub-modeled by a Spatial Location Model.</p>
 <p><strong>baseClass:</strong> <a href="#spatiallocationelement">BisCore:SpatialLocationElement</a></p>
 <h3 class="h-spatiallocationtype"><strong>SpatialLocationType</strong> (Spatial Location Type) <em>Abstract</em><a id="spatiallocationtype" class="heading-anchor" href="#spatiallocationtype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> Defines a shared set of properties (the &apos;type&apos;) that can be associated with a bis:SpatialLocationElement instance.</p>
+<p><strong>description:</strong> Defines a shared set of properties whose values vary per-type of a bis:SpatialLocationElement rather than per-instance.</p>
 <p><strong>baseClass:</strong> <a href="#typedefinitionelement">BisCore:TypeDefinitionElement</a></p>
 <h3 class="h-spatialmodel"><strong>SpatialModel</strong> (Spatial Model) <em>Abstract</em><a id="spatialmodel" class="heading-anchor" href="#spatialmodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A container for persisting bis:GeometricElement3d instances that are spatially located.</p>
+<p><strong>description:</strong> An abstract base class for bis:PhysicalModel and bis:SpatialLocationModel--the only two types of model for real physical space. Other GeometricModel3d specializations use the real-world coordinate system, but are considered as informational or mathematical abstractions.</p>
 <p><strong>baseClass:</strong> <a href="#geometricmodel3d">BisCore:GeometricModel3d</a></p>
 <h3 class="h-spatialviewdefinition"><strong>SpatialViewDefinition</strong> (Spatial View Definition)<a id="spatialviewdefinition" class="heading-anchor" href="#spatialviewdefinition"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A view of a spatially located volume.</p>
 <p><strong>baseClass:</strong> <a href="#viewdefinition3d">BisCore:ViewDefinition3d</a></p>
-<h4 class="h-properties-30">Properties<a id="properties-30" class="heading-anchor" href="#properties-30"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-32">Properties<a id="properties-32" class="heading-anchor" href="#properties-32"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -1287,7 +1368,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A bis:SubCategory is a subdivision of a bis:Category. SubCategories allow GeometricElements to have multiple pieces of Geometry that can be independently visible and styled (color, linesStyle, transparency, etc.). It is important to understand that a bis:SubCategory is not a bis:Category (i.e. Categories do not nest). bis:GeometricElements are always related to a bis:Category, not a bis:SubCategory.</p>
 <p><strong>baseClass:</strong> <a href="#definitionelement">BisCore:DefinitionElement</a></p>
-<h4 class="h-properties-31">Properties<a id="properties-31" class="heading-anchor" href="#properties-31"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-33">Properties<a id="properties-33" class="heading-anchor" href="#properties-33"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -1308,9 +1389,11 @@
 </tr>
 </tbody></table><h3 class="h-subject"><strong>Subject</strong> <em>Sealed</em><a id="subject" class="heading-anchor" href="#subject"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A bis:Subject is an information element that describes what this repository (or part thereof) is about.</p>
+<p><strong>description:</strong> A bis:Subject is an information element that references (by name) some real-world Object that will be modeled in this BIS repository.</p>
 <p><strong>baseClass:</strong> <a href="#informationreferenceelement">BisCore:InformationReferenceElement</a></p>
-<h4 class="h-properties-32">Properties<a id="properties-32" class="heading-anchor" href="#properties-32"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><code>Subject</code> elements only exist in the <a href="#repositorymodel">RepositoryModel</a> singleton at the root of a BIS Repository. There will be one &quot;root&quot; instance of <code>Subject</code> that does not have a parent <code>Subject</code>. Child <code>Subject</code> elements reference &quot;parts&quot; of the real-world Object referenced by their parent <code>Subject</code> element.</p>
+<p>The hierarchy of <code>Subject</code>s is not meant to model the root Object&apos;s structure, but is a way to express high-level structure that has not been modeled explicitly. <code>Subjects</code> do not &quot;model&quot; or &quot;represent&quot; or &quot;describe&quot; the Object that they reference. All modeling happens using Elements in the other bis:Models in the BIS Repository.</p>
+<h4 class="h-properties-34">Properties<a id="properties-34" class="heading-anchor" href="#properties-34"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -1350,7 +1433,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> The aspect used to store text annotation data for bis:TextAnnotation2d an bis:TextAnnotation3d elements.</p>
 <p><strong>baseClass:</strong> <a href="#elementuniqueaspect">BisCore:ElementUniqueAspect</a></p>
-<h4 class="h-properties-33">Properties<a id="properties-33" class="heading-anchor" href="#properties-33"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-35">Properties<a id="properties-35" class="heading-anchor" href="#properties-35"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -1366,7 +1449,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> &lt;No description&gt;</p>
 <p><strong>baseClass:</strong> <a href="#definitionelement">BisCore:DefinitionElement</a></p>
-<h4 class="h-properties-34">Properties<a id="properties-34" class="heading-anchor" href="#properties-34"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-36">Properties<a id="properties-36" class="heading-anchor" href="#properties-36"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -1388,7 +1471,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A bis:Texture represents a named texture used for rendering purposes. The texture data is stored as a binary blob interpreted according to the specified texture format.</p>
 <p><strong>baseClass:</strong> <a href="#definitionelement">BisCore:DefinitionElement</a></p>
-<h4 class="h-properties-35">Properties<a id="properties-35" class="heading-anchor" href="#properties-35"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-37">Properties<a id="properties-37" class="heading-anchor" href="#properties-37"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -1434,7 +1517,8 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> Defines a shared set of properties (the &apos;type&apos;) that can be associated with a bis:Element.</p>
 <p><strong>baseClass:</strong> <a href="#definitionelement">BisCore:DefinitionElement</a></p>
-<h4 class="h-properties-36">Properties<a id="properties-36" class="heading-anchor" href="#properties-36"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>See relationships such as <a href="#physicalelementisoftype">PhysicalElementIsOfType</a>.</p>
+<h4 class="h-properties-38">Properties<a id="properties-38" class="heading-anchor" href="#properties-38"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -1450,7 +1534,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A bis:UrlLink is a bis:LinkElement that specifies a URL link.</p>
 <p><strong>baseClass:</strong> <a href="#linkelement">BisCore:LinkElement</a></p>
-<h4 class="h-properties-37">Properties<a id="properties-37" class="heading-anchor" href="#properties-37"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-39">Properties<a id="properties-39" class="heading-anchor" href="#properties-39"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -1472,7 +1556,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> &lt;No description&gt;</p>
 <p><strong>baseClass:</strong> <a href="#graphicalelement2d">BisCore:GraphicalElement2d</a></p>
-<h4 class="h-properties-38">Properties<a id="properties-38" class="heading-anchor" href="#properties-38"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-40">Properties<a id="properties-40" class="heading-anchor" href="#properties-40"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -1488,7 +1572,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A bis:ViewDefinition specifies the area/volume that is viewed, and refers to a bis:DisplayStyle and a bis:CategorySelector to be used. Subclasses of bis:ViewDefinition determine which model(s) are viewed.</p>
 <p><strong>baseClass:</strong> <a href="#definitionelement">BisCore:DefinitionElement</a></p>
-<h4 class="h-properties-39">Properties<a id="properties-39" class="heading-anchor" href="#properties-39"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-41">Properties<a id="properties-41" class="heading-anchor" href="#properties-41"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -1516,7 +1600,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A view of a 2D model that has its own local coordinate system.</p>
 <p><strong>baseClass:</strong> <a href="#viewdefinition">BisCore:ViewDefinition</a></p>
-<h4 class="h-properties-40">Properties<a id="properties-40" class="heading-anchor" href="#properties-40"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-42">Properties<a id="properties-42" class="heading-anchor" href="#properties-42"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -1550,7 +1634,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A bis:ViewDefinition3d specifies the volume that is viewed on referenced 3D bis:Models. It refers to a bis:DisplayStyle3d and a bis:CategorySelector to be used.</p>
 <p><strong>baseClass:</strong> <a href="#viewdefinition">BisCore:ViewDefinition</a></p>
-<h4 class="h-properties-41">Properties<a id="properties-41" class="heading-anchor" href="#properties-41"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-43">Properties<a id="properties-43" class="heading-anchor" href="#properties-43"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -1614,9 +1698,10 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A bis:VolumeElement is a bis:SpatialLocationElement that is restricted to defining a volume.</p>
 <p><strong>baseClass:</strong> <a href="#spatiallocationelement">BisCore:SpatialLocationElement</a></p>
-<h3 class="h-webmercatormodel"><strong>WebMercatorModel</strong> (Web Mercator Model)<a id="webmercatormodel" class="heading-anchor" href="#webmercatormodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h3 class="h-webmercatormodel"><strong>WebMercatorModel</strong> (Web Mercator Model) <span class="badge badge-pill badge-warning badge-deprecated">Deprecated</span><a id="webmercatormodel" class="heading-anchor" href="#webmercatormodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div class="alert alert-warning" role="alert">Instances of WebMercatorModel are no longer created.</div></p>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> &lt;No description&gt;</p>
+<p><strong>description:</strong> DEPRECATED. Not used.</p>
 <p><strong>baseClass:</strong> <a href="#spatialmodel">BisCore:SpatialModel</a></p>
 <h2 class="h-relationship">Relationship Classes<a id="relationship" class="heading-anchor" href="#relationship"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <h3 class="h-basemodelforview2d"><strong>BaseModelForView2d</strong> <em>Sealed</em><a id="basemodelforview2d" class="heading-anchor" href="#basemodelforview2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -1727,15 +1812,16 @@
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a></li>
 </ul>
-<h3 class="h-drawingmodelbreaksdowndrawing"><strong>DrawingModelBreaksDownDrawing</strong><a id="drawingmodelbreaksdowndrawing" class="heading-anchor" href="#drawingmodelbreaksdowndrawing"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h3 class="h-drawingmodelbreaksdowndrawing"><strong>DrawingModelBreaksDownDrawing</strong> (DrawingModel Sub-Models Drawing)<a id="drawingmodelbreaksdowndrawing" class="heading-anchor" href="#drawingmodelbreaksdowndrawing"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> RelationshipClass</p>
 <p><strong>description:</strong> &lt;No description&gt;</p>
 <p><strong>baseClass:</strong> <a href="#modelmodelselement">BisCore:ModelModelsElement</a></p>
 <p><strong>Strength:</strong> Embedding</p>
 <p><strong>strengthDirection:</strong> Backward</p>
+<p>A more consistent name for this relationship would have been &apos;DrawingModelSubModelsDrawing&apos;, but the existing name cannot be changed in this generation of BIS. At times, we use &quot;breaks down&quot; as a synonym for &quot;sub-models&quot;, but we are standardizing on &quot;sub-models&quot;, reserving &quot;breakdown&quot; for use with various engineering breakdown structures.</p>
 <h4 class="h-source-5">Source<a id="source-5" class="heading-anchor" href="#source-5"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
-<p><strong>roleLabel:</strong> breaks down</p>
+<p><strong>roleLabel:</strong> sub-models</p>
 <p><strong>multiplicity:</strong> (0..1)</p>
 <h5 id="constraint classes">Constraint Classes</h5>
 <ul>
@@ -1743,7 +1829,7 @@
 </ul>
 <h4 class="h-target-5">Target<a id="target-5" class="heading-anchor" href="#target-5"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
-<p><strong>roleLabel:</strong> is broken down by</p>
+<p><strong>roleLabel:</strong> is sub-modeled by</p>
 <p><strong>multiplicity:</strong> (1..1)</p>
 <h5 id="constraint classes">Constraint Classes</h5>
 <ul>
@@ -1751,9 +1837,11 @@
 </ul>
 <h3 class="h-elementdriveselement"><strong>ElementDrivesElement</strong><a id="elementdriveselement" class="heading-anchor" href="#elementdriveselement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> RelationshipClass</p>
-<p><strong>description:</strong> &lt;No description&gt;</p>
+<p><strong>description:</strong> A relationship that indicates that the source Element drives (controls the lifecycle or structure of) a dependent target Element.</p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
+<p>In iModels, a change-propagation system calls handlers that allow the driven Element to be affected by the driving Element.
+See <a href="#driverbundleelement">DriverBundleElement</a>.</p>
 <h4 class="h-source-6">Source<a id="source-6" class="heading-anchor" href="#source-6"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> drives</p>
@@ -1838,7 +1926,7 @@
 </ul>
 <h3 class="h-elementownschildelements"><strong>ElementOwnsChildElements</strong><a id="elementownschildelements" class="heading-anchor" href="#elementownschildelements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> RelationshipClass</p>
-<p><strong>description:</strong> Relates a bis:Element to child bis:Elements which represent parts of the entity modeled by the parent bis:Element.</p>
+<p><strong>description:</strong> Relates a bis:Element to child bis:Elements which represent parts of the Entity modeled by the parent bis:Element.</p>
 <p><strong>Strength:</strong> Embedding</p>
 <p><strong>strengthDirection:</strong> Forward</p>
 <h4 class="h-source-10">Source<a id="source-10" class="heading-anchor" href="#source-10"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
@@ -2161,6 +2249,7 @@
 <p><strong>description:</strong> The relationship that enforces that each bis:Element belongs to exactly one bis:Model.</p>
 <p><strong>Strength:</strong> Embedding</p>
 <p><strong>strengthDirection:</strong> Forward</p>
+<p>See <a href="#element">Element.Model</a> ECNavigationProperty.</p>
 <h4 class="h-source-25">Source<a id="source-25" class="heading-anchor" href="#source-25"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> contains</p>
@@ -2177,11 +2266,13 @@
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a></li>
 </ul>
-<h3 class="h-modelmodelselement"><strong>ModelModelsElement</strong><a id="modelmodelselement" class="heading-anchor" href="#modelmodelselement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h3 class="h-modelmodelselement"><strong>ModelModelsElement</strong> (Model Sub-Models Element)<a id="modelmodelselement" class="heading-anchor" href="#modelmodelselement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> RelationshipClass</p>
-<p><strong>description:</strong> Relates a bis:Model to the bis:Element that it describes or breaks down into more detail.</p>
+<p><strong>description:</strong> Relates a bis:Model to the bis:Element that it sub-models. The sub-Model models the same Entity as the sub-modeled Element, but at a finer granularity.</p>
 <p><strong>Strength:</strong> Embedding</p>
 <p><strong>strengthDirection:</strong> Backward</p>
+<p>See <a href="#model">Model.ModeledElement</a> ECNavigationProperty.</p>
+<p>A more accurate name for this relationship would have been &apos;ModelSubModelsElement&apos;, but the existing name cannot be changed in this generation of BIS.</p>
 <h4 class="h-source-26">Source<a id="source-26" class="heading-anchor" href="#source-26"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> models</p>
@@ -2200,9 +2291,10 @@
 </ul>
 <h3 class="h-modelownssubmodel"><strong>ModelOwnsSubModel</strong> <em>Sealed</em><a id="modelownssubmodel" class="heading-anchor" href="#modelownssubmodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> RelationshipClass</p>
-<p><strong>description:</strong> The relationship that is used to build a model hierarchy index. This is done for performance reasons, rather than data modeling reasons.</p>
+<p><strong>description:</strong> This relationship is essentially redundant with the combination of bis:ModelModelsElement and bis:ModelContainsElements. This &apos;shortcut&apos; exists to support a model hierarchy index for performance reasons.</p>
 <p><strong>Strength:</strong> Embedding</p>
 <p><strong>strengthDirection:</strong> Forward</p>
+<p>See <a href="#model">Model.ParentModel</a> ECNavigationProperty.</p>
 <h4 class="h-source-27">Source<a id="source-27" class="heading-anchor" href="#source-27"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> owns sub</p>
@@ -2240,9 +2332,10 @@
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#model'>Model</a></li>
 </ul>
-<h3 class="h-partitionoriginatesfromrepository"><strong>PartitionOriginatesFromRepository</strong> <em>Sealed</em><a id="partitionoriginatesfromrepository" class="heading-anchor" href="#partitionoriginatesfromrepository"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h3 class="h-partitionoriginatesfromrepository"><strong>PartitionOriginatesFromRepository</strong> <em>Sealed</em> <span class="badge badge-pill badge-warning badge-deprecated">Deprecated</span><a id="partitionoriginatesfromrepository" class="heading-anchor" href="#partitionoriginatesfromrepository"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div class="alert alert-warning" role="alert">Use ElementHasLinks.</div></p>
 <p><strong>typeName:</strong> RelationshipClass</p>
-<p><strong>description:</strong> DEPRECATED</p>
+<p><strong>description:</strong> DEPRECATED: Use ElementHasLinks</p>
 <p><strong>baseClass:</strong> <a href="#elementreferstoelements">BisCore:ElementRefersToElements</a></p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
@@ -2323,7 +2416,7 @@
 </ul>
 <h4 class="h-target-32">Target<a id="target-32" class="heading-anchor" href="#target-32"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
-<p><strong>roleLabel:</strong> is broken down by</p>
+<p><strong>roleLabel:</strong> is sub-modeled by</p>
 <p><strong>multiplicity:</strong> (0..1)</p>
 <h5 id="constraint classes">Constraint Classes</h5>
 <ul>
@@ -2373,12 +2466,54 @@
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#rendermaterial'>RenderMaterial</a></li>
 </ul>
+<h3 class="h-sectionlocationusescategoryselector"><strong>SectionLocationUsesCategorySelector</strong> <em>Sealed</em><a id="sectionlocationusescategoryselector" class="heading-anchor" href="#sectionlocationusescategoryselector"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>description:</strong> Relates a section location to the categories relevant for this section location display.</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-35">Source<a id="source-35" class="heading-anchor" href="#source-35"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> uses</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#sectionlocation'>SectionLocation</a></li>
+</ul>
+<h4 class="h-target-35">Target<a id="target-35" class="heading-anchor" href="#target-35"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> is used by</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#categoryselector'>CategorySelector</a></li>
+</ul>
+<h3 class="h-sectionlocationusesmodelselector"><strong>SectionLocationUsesModelSelector</strong> <em>Sealed</em><a id="sectionlocationusesmodelselector" class="heading-anchor" href="#sectionlocationusesmodelselector"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> RelationshipClass</p>
+<p><strong>description:</strong> Relates a section location to the models relevant for this section location display.</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-36">Source<a id="source-36" class="heading-anchor" href="#source-36"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> uses</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#sectionlocation'>SectionLocation</a></li>
+</ul>
+<h4 class="h-target-36">Target<a id="target-36" class="heading-anchor" href="#target-36"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> is used by</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h5 id="constraint classes">Constraint Classes</h5>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#modelselector'>ModelSelector</a></li>
+</ul>
 <h3 class="h-sheetborderhassheetbordertemplate"><strong>SheetBorderHasSheetBorderTemplate</strong> <em>Sealed</em><a id="sheetborderhassheetbordertemplate" class="heading-anchor" href="#sheetborderhassheetbordertemplate"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> RelationshipClass</p>
 <p><strong>description:</strong> &lt;No description&gt;</p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
-<h4 class="h-source-35">Source<a id="source-35" class="heading-anchor" href="#source-35"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-source-37">Source<a id="source-37" class="heading-anchor" href="#source-37"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> has</p>
 <p><strong>multiplicity:</strong> (0..*)</p>
@@ -2386,7 +2521,7 @@
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#sheetborder'>SheetBorder</a></li>
 </ul>
-<h4 class="h-target-35">Target<a id="target-35" class="heading-anchor" href="#target-35"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-target-37">Target<a id="target-37" class="heading-anchor" href="#target-37"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> defines</p>
 <p><strong>multiplicity:</strong> (0..1)</p>
@@ -2399,7 +2534,7 @@
 <p><strong>description:</strong> &lt;No description&gt;</p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
-<h4 class="h-source-36">Source<a id="source-36" class="heading-anchor" href="#source-36"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-source-38">Source<a id="source-38" class="heading-anchor" href="#source-38"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> has</p>
 <p><strong>multiplicity:</strong> (0..*)</p>
@@ -2407,7 +2542,7 @@
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#sheet'>Sheet</a></li>
 </ul>
-<h4 class="h-target-36">Target<a id="target-36" class="heading-anchor" href="#target-36"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-target-38">Target<a id="target-38" class="heading-anchor" href="#target-38"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> defines</p>
 <p><strong>multiplicity:</strong> (0..1)</p>
@@ -2415,23 +2550,24 @@
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#sheettemplate'>SheetTemplate</a></li>
 </ul>
-<h3 class="h-sheetmodelbreaksdownsheet"><strong>SheetModelBreaksDownSheet</strong><a id="sheetmodelbreaksdownsheet" class="heading-anchor" href="#sheetmodelbreaksdownsheet"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<h3 class="h-sheetmodelbreaksdownsheet"><strong>SheetModelBreaksDownSheet</strong> (SheetModel Sub-Models Sheet)<a id="sheetmodelbreaksdownsheet" class="heading-anchor" href="#sheetmodelbreaksdownsheet"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> RelationshipClass</p>
 <p><strong>description:</strong> &lt;No description&gt;</p>
 <p><strong>baseClass:</strong> <a href="#modelmodelselement">BisCore:ModelModelsElement</a></p>
 <p><strong>Strength:</strong> Embedding</p>
 <p><strong>strengthDirection:</strong> Backward</p>
-<h4 class="h-source-37">Source<a id="source-37" class="heading-anchor" href="#source-37"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>A more consistent name for this relationship would have been &apos;SheetModelSubModelsSheet&apos;, but the existing name cannot be changed in this generation of BIS. At times, we use &quot;breaks down&quot; as a synonym for &quot;sub-models&quot;, but we are standardizing on &quot;sub-models&quot;, reserving &quot;breakdown&quot; for use with various engineering breakdown structures.</p>
+<h4 class="h-source-39">Source<a id="source-39" class="heading-anchor" href="#source-39"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
-<p><strong>roleLabel:</strong> breaks down</p>
+<p><strong>roleLabel:</strong> sub-models</p>
 <p><strong>multiplicity:</strong> (0..1)</p>
 <h5 id="constraint classes">Constraint Classes</h5>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#sheetmodel'>SheetModel</a></li>
 </ul>
-<h4 class="h-target-37">Target<a id="target-37" class="heading-anchor" href="#target-37"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-target-39">Target<a id="target-39" class="heading-anchor" href="#target-39"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
-<p><strong>roleLabel:</strong> is broken down by</p>
+<p><strong>roleLabel:</strong> is sub-modeled by</p>
 <p><strong>multiplicity:</strong> (1..1)</p>
 <h5 id="constraint classes">Constraint Classes</h5>
 <ul>
@@ -2442,7 +2578,7 @@
 <p><strong>description:</strong> &lt;No description&gt;</p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
-<h4 class="h-source-38">Source<a id="source-38" class="heading-anchor" href="#source-38"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-source-40">Source<a id="source-40" class="heading-anchor" href="#source-40"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> has</p>
 <p><strong>multiplicity:</strong> (0..*)</p>
@@ -2450,7 +2586,7 @@
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#sheettemplate'>SheetTemplate</a></li>
 </ul>
-<h4 class="h-target-38">Target<a id="target-38" class="heading-anchor" href="#target-38"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-target-40">Target<a id="target-40" class="heading-anchor" href="#target-40"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> is referenced by</p>
 <p><strong>multiplicity:</strong> (0..1)</p>
@@ -2464,7 +2600,7 @@
 <p><strong>baseClass:</strong> <a href="#geometricelement3dhastypedefinition">BisCore:GeometricElement3dHasTypeDefinition</a></p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
-<h4 class="h-source-39">Source<a id="source-39" class="heading-anchor" href="#source-39"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-source-41">Source<a id="source-41" class="heading-anchor" href="#source-41"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> is of</p>
 <p><strong>multiplicity:</strong> (0..*)</p>
@@ -2472,7 +2608,7 @@
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatiallocationelement'>SpatialLocationElement</a></li>
 </ul>
-<h4 class="h-target-39">Target<a id="target-39" class="heading-anchor" href="#target-39"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-target-41">Target<a id="target-41" class="heading-anchor" href="#target-41"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> classifies</p>
 <p><strong>multiplicity:</strong> (0..1)</p>
@@ -2485,7 +2621,7 @@
 <p><strong>description:</strong> &lt;No description&gt;</p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
-<h4 class="h-source-40">Source<a id="source-40" class="heading-anchor" href="#source-40"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-source-42">Source<a id="source-42" class="heading-anchor" href="#source-42"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> uses</p>
 <p><strong>multiplicity:</strong> (0..*)</p>
@@ -2493,7 +2629,7 @@
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialviewdefinition'>SpatialViewDefinition</a></li>
 </ul>
-<h4 class="h-target-40">Target<a id="target-40" class="heading-anchor" href="#target-40"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-target-42">Target<a id="target-42" class="heading-anchor" href="#target-42"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> is used by</p>
 <p><strong>multiplicity:</strong> (1..1)</p>
@@ -2507,7 +2643,7 @@
 <p><strong>baseClass:</strong> <a href="#elementownschildelements">BisCore:ElementOwnsChildElements</a></p>
 <p><strong>Strength:</strong> Embedding</p>
 <p><strong>strengthDirection:</strong> Forward</p>
-<h4 class="h-source-41">Source<a id="source-41" class="heading-anchor" href="#source-41"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-source-43">Source<a id="source-43" class="heading-anchor" href="#source-43"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> false</p>
 <p><strong>roleLabel:</strong> owns</p>
 <p><strong>multiplicity:</strong> (0..1)</p>
@@ -2515,7 +2651,7 @@
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#subject'>Subject</a></li>
 </ul>
-<h4 class="h-target-41">Target<a id="target-41" class="heading-anchor" href="#target-41"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-target-43">Target<a id="target-43" class="heading-anchor" href="#target-43"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> is owned by</p>
 <p><strong>multiplicity:</strong> (0..*)</p>
@@ -2529,7 +2665,7 @@
 <p><strong>baseClass:</strong> <a href="#elementownschildelements">BisCore:ElementOwnsChildElements</a></p>
 <p><strong>Strength:</strong> Embedding</p>
 <p><strong>strengthDirection:</strong> Forward</p>
-<h4 class="h-source-42">Source<a id="source-42" class="heading-anchor" href="#source-42"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-source-44">Source<a id="source-44" class="heading-anchor" href="#source-44"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> false</p>
 <p><strong>roleLabel:</strong> owns child</p>
 <p><strong>multiplicity:</strong> (0..1)</p>
@@ -2537,7 +2673,7 @@
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#subject'>Subject</a></li>
 </ul>
-<h4 class="h-target-42">Target<a id="target-42" class="heading-anchor" href="#target-42"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-target-44">Target<a id="target-44" class="heading-anchor" href="#target-44"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> false</p>
 <p><strong>roleLabel:</strong> is owned by parent</p>
 <p><strong>multiplicity:</strong> (0..*)</p>
@@ -2551,7 +2687,7 @@
 <p><strong>baseClass:</strong> <a href="#elementownsuniqueaspect">BisCore:ElementOwnsUniqueAspect</a></p>
 <p><strong>Strength:</strong> Embedding</p>
 <p><strong>strengthDirection:</strong> Forward</p>
-<h4 class="h-source-43">Source<a id="source-43" class="heading-anchor" href="#source-43"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-source-45">Source<a id="source-45" class="heading-anchor" href="#source-45"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> owns</p>
 <p><strong>multiplicity:</strong> (1..1)</p>
@@ -2559,7 +2695,7 @@
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#textannotation2d'>TextAnnotation2d</a></li>
 </ul>
-<h4 class="h-target-43">Target<a id="target-43" class="heading-anchor" href="#target-43"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-target-45">Target<a id="target-45" class="heading-anchor" href="#target-45"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> false</p>
 <p><strong>roleLabel:</strong> is owned by</p>
 <p><strong>multiplicity:</strong> (0..1)</p>
@@ -2573,7 +2709,7 @@
 <p><strong>baseClass:</strong> <a href="#elementownsuniqueaspect">BisCore:ElementOwnsUniqueAspect</a></p>
 <p><strong>Strength:</strong> Embedding</p>
 <p><strong>strengthDirection:</strong> Forward</p>
-<h4 class="h-source-44">Source<a id="source-44" class="heading-anchor" href="#source-44"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-source-46">Source<a id="source-46" class="heading-anchor" href="#source-46"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> owns</p>
 <p><strong>multiplicity:</strong> (1..1)</p>
@@ -2581,7 +2717,7 @@
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#textannotation3d'>TextAnnotation3d</a></li>
 </ul>
-<h4 class="h-target-44">Target<a id="target-44" class="heading-anchor" href="#target-44"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-target-46">Target<a id="target-46" class="heading-anchor" href="#target-46"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> false</p>
 <p><strong>roleLabel:</strong> is owned by</p>
 <p><strong>multiplicity:</strong> (0..1)</p>
@@ -2594,7 +2730,7 @@
 <p><strong>description:</strong> &lt;No description&gt;</p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
-<h4 class="h-source-45">Source<a id="source-45" class="heading-anchor" href="#source-45"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-source-47">Source<a id="source-47" class="heading-anchor" href="#source-47"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> has</p>
 <p><strong>multiplicity:</strong> (0..*)</p>
@@ -2602,7 +2738,7 @@
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#typedefinitionelement'>TypeDefinitionElement</a></li>
 </ul>
-<h4 class="h-target-45">Target<a id="target-45" class="heading-anchor" href="#target-45"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-target-47">Target<a id="target-47" class="heading-anchor" href="#target-47"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> is referenced by</p>
 <p><strong>multiplicity:</strong> (0..1)</p>
@@ -2615,7 +2751,7 @@
 <p><strong>description:</strong> &lt;No description&gt;</p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
-<h4 class="h-source-46">Source<a id="source-46" class="heading-anchor" href="#source-46"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-source-48">Source<a id="source-48" class="heading-anchor" href="#source-48"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> uses</p>
 <p><strong>multiplicity:</strong> (0..*)</p>
@@ -2623,7 +2759,7 @@
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#viewdefinition'>ViewDefinition</a></li>
 </ul>
-<h4 class="h-target-46">Target<a id="target-46" class="heading-anchor" href="#target-46"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-target-48">Target<a id="target-48" class="heading-anchor" href="#target-48"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> false</p>
 <p><strong>roleLabel:</strong> is used by</p>
 <p><strong>multiplicity:</strong> (1..1)</p>
@@ -2636,7 +2772,7 @@
 <p><strong>description:</strong> &lt;No description&gt;</p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
-<h4 class="h-source-47">Source<a id="source-47" class="heading-anchor" href="#source-47"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-source-49">Source<a id="source-49" class="heading-anchor" href="#source-49"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> uses</p>
 <p><strong>multiplicity:</strong> (0..*)</p>
@@ -2644,7 +2780,7 @@
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#viewdefinition'>ViewDefinition</a></li>
 </ul>
-<h4 class="h-target-47">Target<a id="target-47" class="heading-anchor" href="#target-47"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-target-49">Target<a id="target-49" class="heading-anchor" href="#target-49"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> is used by</p>
 <p><strong>multiplicity:</strong> (1..1)</p>
@@ -2657,7 +2793,7 @@
 <p><strong>description:</strong> &lt;No description&gt;</p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
-<h4 class="h-source-48">Source<a id="source-48" class="heading-anchor" href="#source-48"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-source-50">Source<a id="source-50" class="heading-anchor" href="#source-50"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> owns</p>
 <p><strong>multiplicity:</strong> (1..1)</p>
@@ -2665,7 +2801,7 @@
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#viewdefinition'>ViewDefinition</a></li>
 </ul>
-<h4 class="h-target-48">Target<a id="target-48" class="heading-anchor" href="#target-48"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-target-50">Target<a id="target-50" class="heading-anchor" href="#target-50"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> is owned by</p>
 <p><strong>multiplicity:</strong> (0..*)</p>
@@ -2735,21 +2871,49 @@
 <td>Update</td>
 <td>7</td>
 </tr>
+</tbody></table><h3 class="h-sectiontype"><strong>SectionType</strong><a id="sectiontype" class="heading-anchor" href="#sectiontype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> Enumeration</p>
+<p><strong>Backing Type:</strong> int</p>
+<p><strong>description:</strong> &lt;No description&gt;</p>
+<p><strong>Strict:</strong> false</p>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Label</th>
+<th align="left">Value</th>
+</tr>
+<tr>
+<td align="left">Section</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">Detail</td>
+<td align="left">4</td>
+</tr>
+<tr>
+<td align="left">Elevation</td>
+<td align="left">5</td>
+</tr>
+<tr>
+<td align="left">Plan</td>
+<td align="left">6</td>
+</tr>
 </tbody></table><h2 class="h-mixin">Mixin Classes<a id="mixin" class="heading-anchor" href="#mixin"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <h3 class="h-iparentelement"><strong>IParentElement</strong> (Parent Element) <em>Abstract</em><a id="iparentelement" class="heading-anchor" href="#iparentelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> Mixin</p>
-<p><strong>description:</strong> An interface that indicates that this class of bis:Element is capable of being a parent (owning child Elements). This interface is mutually exclusive with bis:ISubModeledElement.</p>
+<p><strong>description:</strong> An interface that can be mixed-into a bis:Element to indicate that it can be a parent (own child Elements). This interface is mutually exclusive with bis:ISubModeledElement.</p>
 <p><strong>appliesTo:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a></p>
+<p>Parent-child modeling differs from sub-modeling in that the parent Element and child Elements are to be considered together in the context of a single Model, whereas a sub-modeled Element is considered independently of its sub-Model. For example, and application would view a parent Element and its child Elements together, but would <em>either</em> view a sub-modeled Element <em>or</em> exclude that Element and instead view the Elements of its sub-Model.
+See also <a href="#isubmodeledelement">ISubModeledElement</a>.</p>
 <h3 class="h-isubmodeledelement"><strong>ISubModeledElement</strong> (Sub-Modeled Element) <em>Abstract</em><a id="isubmodeledelement" class="heading-anchor" href="#isubmodeledelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> Mixin</p>
-<p><strong>description:</strong> An interface that indicates that a bis:Element can be broken down or described by a (sub) bis:Model. This interface is mutually exclusive with bis:IParentElement.</p>
+<p><strong>description:</strong> An interface that can be mixed-into a bis:Element to indicate that it can be sub-modeled by a finer-grained bis:Model. This interface is mutually exclusive with bis:IParentElement.</p>
 <p><strong>appliesTo:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a></p>
+<p>Sub-modeling is also sometimes described as &quot;breaking down&quot;, i.e. a sub-modeled Element can be &quot;broken down into&quot; a finer-grained (sub) Model.<br>See also <a href="#iparentelement">IParentElement</a>.</p>
 <h2 class="h-custom">Custom Attribute Classes<a id="custom" class="heading-anchor" href="#custom"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <h3 class="h-autohandledproperty"><strong>AutoHandledProperty</strong><a id="autohandledproperty" class="heading-anchor" href="#autohandledproperty"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> CustomAttributeClass</p>
 <p><strong>description:</strong> Applied to an element&apos;s property to indicate that select, update, and insert of the property&apos;s value are handled automatically by the platform.</p>
 <p><strong>Applies to:</strong> AnyProperty</p>
-<h4 class="h-properties-42">Properties<a id="properties-42" class="heading-anchor" href="#properties-42"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-44">Properties<a id="properties-44" class="heading-anchor" href="#properties-44"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -2770,7 +2934,8 @@
 <p><strong>typeName:</strong> CustomAttributeClass</p>
 <p><strong>description:</strong> Applied to an ECClass to indicate that a C++ subclass of DgnDomain::Handler will supply behavior for it at run-time. This custom attribute may only be used by BisCore or other core schemas.</p>
 <p><strong>Applies to:</strong> Any</p>
-<h4 class="h-properties-43">Properties<a id="properties-43" class="heading-anchor" href="#properties-43"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p>Applied to an ECClass to indicate that a C++ subclass of DgnDomain::Handler will supply behavior for it at run-time.</p>
+<h4 class="h-properties-45">Properties<a id="properties-45" class="heading-anchor" href="#properties-45"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -2791,7 +2956,7 @@
 <p><strong>typeName:</strong> CustomAttributeClass</p>
 <p><strong>description:</strong> Applied to an element&apos;s property to indicate that the property&apos;s value is handled specially by a C++ class.</p>
 <p><strong>Applies to:</strong> AnyProperty</p>
-<h4 class="h-properties-44">Properties<a id="properties-44" class="heading-anchor" href="#properties-44"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-46">Properties<a id="properties-46" class="heading-anchor" href="#properties-46"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -2808,11 +2973,32 @@
 <td align="left">false</td>
 <td align="left">0</td>
 </tr>
+</tbody></table><h3 class="h-reservedpropertynames"><strong>ReservedPropertyNames</strong> <em>Sealed</em><a id="reservedpropertynames" class="heading-anchor" href="#reservedpropertynames"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><strong>typeName:</strong> CustomAttributeClass</p>
+<p><strong>description:</strong> Declare a list of properties as reserved. The property name listed would be forbidden from use in that class context.</p>
+<p><strong>Applies to:</strong> EntityClass, RelationshipClass</p>
+<h4 class="h-properties-47">Properties<a id="properties-47" class="heading-anchor" href="#properties-47"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Label</th>
+<th align="left">Category</th>
+<th align="left">Read Only</th>
+<th align="left">Priority</th>
+</tr>
+<tr>
+<td align="left">PropertyNames</td>
+<td align="left">Name of the property. System will do case insensitive comparison.</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">false</td>
+<td align="left">0</td>
+</tr>
 </tbody></table><h3 class="h-schemahasbehavior"><strong>SchemaHasBehavior</strong><a id="schemahasbehavior" class="heading-anchor" href="#schemahasbehavior"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> CustomAttributeClass</p>
 <p><strong>description:</strong> Applied to an ECSchema to indicate that there is an associated JavaScript library that will provide run-time behavior.</p>
 <p><strong>Applies to:</strong> Schema</p>
-<h4 class="h-properties-45">Properties<a id="properties-45" class="heading-anchor" href="#properties-45"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<h4 class="h-properties-48">Properties<a id="properties-48" class="heading-anchor" href="#properties-48"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
 <th align="left">Description</th>
@@ -2831,7 +3017,7 @@
 </tr>
 </tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>20 September, 2019</span>
+                <span class='date-updated'>01 October, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -3136,7 +3322,15 @@
                             </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#geometricmodel">GeometricModel (Geometric Model) Abstract</a>
+                            <a data-target="#inner-nav-geometricmodel" class='title' href="#geometricmodel"/>
+                            <b class='dropdown-menu-title menu-text'>GeometricModel (Geometric Model) Abstract</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-geometricmodel" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-17">Properties</a>
+                                    </li>
+                            </ul>
                     </li>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-geometricmodel2d" class='title' href="#geometricmodel2d"/>
@@ -3145,7 +3339,7 @@
                             </a>
                             <ul id="inner-nav-geometricmodel2d" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-17">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-18">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3159,7 +3353,7 @@
                             </a>
                             <ul id="inner-nav-geometrypart" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-18">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-19">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3200,7 +3394,7 @@
                             </a>
                             <ul id="inner-nav-informationpartitionelement" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-19">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-20">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3223,7 +3417,7 @@
                             </a>
                             <ul id="inner-nav-lightlocation" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-20">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-21">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3234,7 +3428,7 @@
                             </a>
                             <ul id="inner-nav-linestyle" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-21">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-22">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3254,7 +3448,7 @@
                             </a>
                             <ul id="inner-nav-model" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-22">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-23">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3292,7 +3486,7 @@
                             </a>
                             <ul id="inner-nav-rendermaterial" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-23">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-24">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3303,7 +3497,7 @@
                             </a>
                             <ul id="inner-nav-repositorylink" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-24">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-25">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3323,13 +3517,24 @@
                             <a class='title solo-title menu-text' href="#sectiondrawingmodel">SectionDrawingModel (Section Drawing Model)</a>
                     </li>
                     <li class='nav-item item '>
+                            <a data-target="#inner-nav-sectionlocation" class='title' href="#sectionlocation"/>
+                            <b class='dropdown-menu-title menu-text'>SectionLocation (Section Location Element)</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-sectionlocation" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-26">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
                             <a data-target="#inner-nav-sheet" class='title' href="#sheet"/>
                             <b class='dropdown-menu-title menu-text'>Sheet</b>
                             <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-sheet" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-25">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-27">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3340,7 +3545,7 @@
                             </a>
                             <ul id="inner-nav-sheetborder" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-26">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-28">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3351,7 +3556,7 @@
                             </a>
                             <ul id="inner-nav-sheetbordertemplate" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-27">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-29">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3365,7 +3570,7 @@
                             </a>
                             <ul id="inner-nav-sheettemplate" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-28">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-30">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3385,7 +3590,7 @@
                             </a>
                             <ul id="inner-nav-spatialindex" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-29">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-31">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3414,7 +3619,7 @@
                             </a>
                             <ul id="inner-nav-spatialviewdefinition" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-30">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-32">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3425,7 +3630,7 @@
                             </a>
                             <ul id="inner-nav-subcategory" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-31">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-33">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3436,7 +3641,7 @@
                             </a>
                             <ul id="inner-nav-subject" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-32">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-34">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3465,7 +3670,7 @@
                             </a>
                             <ul id="inner-nav-textannotationdata" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-33">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-35">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3476,7 +3681,7 @@
                             </a>
                             <ul id="inner-nav-textannotationseed" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-34">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-36">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3487,7 +3692,7 @@
                             </a>
                             <ul id="inner-nav-texture" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-35">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-37">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3498,7 +3703,7 @@
                             </a>
                             <ul id="inner-nav-typedefinitionelement" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-36">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-38">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3509,7 +3714,7 @@
                             </a>
                             <ul id="inner-nav-urllink" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-37">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-39">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3520,7 +3725,7 @@
                             </a>
                             <ul id="inner-nav-viewattachment" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-38">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-40">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3531,7 +3736,7 @@
                             </a>
                             <ul id="inner-nav-viewdefinition" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-39">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-41">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3542,7 +3747,7 @@
                             </a>
                             <ul id="inner-nav-viewdefinition2d" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-40">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-42">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3553,7 +3758,7 @@
                             </a>
                             <ul id="inner-nav-viewdefinition3d" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-41">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-43">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -3643,7 +3848,7 @@
                     </li>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-drawingmodelbreaksdowndrawing" class='title' href="#drawingmodelbreaksdowndrawing"/>
-                            <b class='dropdown-menu-title menu-text'>DrawingModelBreaksDownDrawing</b>
+                            <b class='dropdown-menu-title menu-text'>DrawingModelBreaksDownDrawing (DrawingModel Sub-Models Drawing)</b>
                             <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-drawingmodelbreaksdowndrawing" class='inner-nav'>
@@ -3937,7 +4142,7 @@
                     </li>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-modelmodelselement" class='title' href="#modelmodelselement"/>
-                            <b class='dropdown-menu-title menu-text'>ModelModelsElement</b>
+                            <b class='dropdown-menu-title menu-text'>ModelModelsElement (Model Sub-Models Element)</b>
                             <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-modelmodelselement" class='inner-nav'>
@@ -4062,16 +4267,44 @@
                             </ul>
                     </li>
                     <li class='nav-item item '>
+                            <a data-target="#inner-nav-sectionlocationusescategoryselector" class='title' href="#sectionlocationusescategoryselector"/>
+                            <b class='dropdown-menu-title menu-text'>SectionLocationUsesCategorySelector Sealed</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-sectionlocationusescategoryselector" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-35">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-35">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-sectionlocationusesmodelselector" class='title' href="#sectionlocationusesmodelselector"/>
+                            <b class='dropdown-menu-title menu-text'>SectionLocationUsesModelSelector Sealed</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-sectionlocationusesmodelselector" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-36">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-36">Target</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
                             <a data-target="#inner-nav-sheetborderhassheetbordertemplate" class='title' href="#sheetborderhassheetbordertemplate"/>
                             <b class='dropdown-menu-title menu-text'>SheetBorderHasSheetBorderTemplate Sealed</b>
                             <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-sheetborderhassheetbordertemplate" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#source-35">Source</a>
+                                            <a class='title solo-title menu-text' href="#source-37">Source</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#target-35">Target</a>
+                                            <a class='title solo-title menu-text' href="#target-37">Target</a>
                                     </li>
                             </ul>
                     </li>
@@ -4082,24 +4315,24 @@
                             </a>
                             <ul id="inner-nav-sheethassheettemplate" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#source-36">Source</a>
+                                            <a class='title solo-title menu-text' href="#source-38">Source</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#target-36">Target</a>
+                                            <a class='title solo-title menu-text' href="#target-38">Target</a>
                                     </li>
                             </ul>
                     </li>
                     <li class='nav-item item '>
                             <a data-target="#inner-nav-sheetmodelbreaksdownsheet" class='title' href="#sheetmodelbreaksdownsheet"/>
-                            <b class='dropdown-menu-title menu-text'>SheetModelBreaksDownSheet</b>
+                            <b class='dropdown-menu-title menu-text'>SheetModelBreaksDownSheet (SheetModel Sub-Models Sheet)</b>
                             <i class='nav-list-dropdown icon'></i>
                             </a>
                             <ul id="inner-nav-sheetmodelbreaksdownsheet" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#source-37">Source</a>
+                                            <a class='title solo-title menu-text' href="#source-39">Source</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#target-37">Target</a>
+                                            <a class='title solo-title menu-text' href="#target-39">Target</a>
                                     </li>
                             </ul>
                     </li>
@@ -4110,10 +4343,10 @@
                             </a>
                             <ul id="inner-nav-sheettemplatehassheetborder" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#source-38">Source</a>
+                                            <a class='title solo-title menu-text' href="#source-40">Source</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#target-38">Target</a>
+                                            <a class='title solo-title menu-text' href="#target-40">Target</a>
                                     </li>
                             </ul>
                     </li>
@@ -4124,10 +4357,10 @@
                             </a>
                             <ul id="inner-nav-spatiallocationisoftype" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#source-39">Source</a>
+                                            <a class='title solo-title menu-text' href="#source-41">Source</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#target-39">Target</a>
+                                            <a class='title solo-title menu-text' href="#target-41">Target</a>
                                     </li>
                             </ul>
                     </li>
@@ -4138,10 +4371,10 @@
                             </a>
                             <ul id="inner-nav-spatialviewdefinitionusesmodelselector" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#source-40">Source</a>
+                                            <a class='title solo-title menu-text' href="#source-42">Source</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#target-40">Target</a>
+                                            <a class='title solo-title menu-text' href="#target-42">Target</a>
                                     </li>
                             </ul>
                     </li>
@@ -4152,10 +4385,10 @@
                             </a>
                             <ul id="inner-nav-subjectownspartitionelements" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#source-41">Source</a>
+                                            <a class='title solo-title menu-text' href="#source-43">Source</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#target-41">Target</a>
+                                            <a class='title solo-title menu-text' href="#target-43">Target</a>
                                     </li>
                             </ul>
                     </li>
@@ -4166,10 +4399,10 @@
                             </a>
                             <ul id="inner-nav-subjectownssubjects" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#source-42">Source</a>
+                                            <a class='title solo-title menu-text' href="#source-44">Source</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#target-42">Target</a>
+                                            <a class='title solo-title menu-text' href="#target-44">Target</a>
                                     </li>
                             </ul>
                     </li>
@@ -4180,10 +4413,10 @@
                             </a>
                             <ul id="inner-nav-textannotation2downstextannotationdata" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#source-43">Source</a>
+                                            <a class='title solo-title menu-text' href="#source-45">Source</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#target-43">Target</a>
+                                            <a class='title solo-title menu-text' href="#target-45">Target</a>
                                     </li>
                             </ul>
                     </li>
@@ -4194,10 +4427,10 @@
                             </a>
                             <ul id="inner-nav-textannotation3downstextannotationdata" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#source-44">Source</a>
+                                            <a class='title solo-title menu-text' href="#source-46">Source</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#target-44">Target</a>
+                                            <a class='title solo-title menu-text' href="#target-46">Target</a>
                                     </li>
                             </ul>
                     </li>
@@ -4208,10 +4441,10 @@
                             </a>
                             <ul id="inner-nav-typedefinitionhasrecipe" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#source-45">Source</a>
+                                            <a class='title solo-title menu-text' href="#source-47">Source</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#target-45">Target</a>
+                                            <a class='title solo-title menu-text' href="#target-47">Target</a>
                                     </li>
                             </ul>
                     </li>
@@ -4222,10 +4455,10 @@
                             </a>
                             <ul id="inner-nav-viewdefinitionusescategoryselector" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#source-46">Source</a>
+                                            <a class='title solo-title menu-text' href="#source-48">Source</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#target-46">Target</a>
+                                            <a class='title solo-title menu-text' href="#target-48">Target</a>
                                     </li>
                             </ul>
                     </li>
@@ -4236,10 +4469,10 @@
                             </a>
                             <ul id="inner-nav-viewdefinitionusesdisplaystyle" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#source-47">Source</a>
+                                            <a class='title solo-title menu-text' href="#source-49">Source</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#target-47">Target</a>
+                                            <a class='title solo-title menu-text' href="#target-49">Target</a>
                                     </li>
                             </ul>
                     </li>
@@ -4250,10 +4483,10 @@
                             </a>
                             <ul id="inner-nav-viewisattached" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#source-48">Source</a>
+                                            <a class='title solo-title menu-text' href="#source-50">Source</a>
                                     </li>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#target-48">Target</a>
+                                            <a class='title solo-title menu-text' href="#target-50">Target</a>
                                     </li>
                             </ul>
                     </li>
@@ -4270,6 +4503,9 @@
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#customhandledpropertystatementtype">CustomHandledPropertyStatementType</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#sectiontype">SectionType</a>
                     </li>
             </ul>
     </li>
@@ -4300,7 +4536,7 @@
                             </a>
                             <ul id="inner-nav-autohandledproperty" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-42">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-44">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -4311,7 +4547,7 @@
                             </a>
                             <ul id="inner-nav-classhashandler" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-43">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-45">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -4322,7 +4558,18 @@
                             </a>
                             <ul id="inner-nav-customhandledproperty" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-44">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-46">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-reservedpropertynames" class='title' href="#reservedpropertynames"/>
+                            <b class='dropdown-menu-title menu-text'>ReservedPropertyNames Sealed</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-reservedpropertynames" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-47">Properties</a>
                                     </li>
                             </ul>
                     </li>
@@ -4333,7 +4580,7 @@
                             </a>
                             <ul id="inner-nav-schemahasbehavior" class='inner-nav'>
                                     <li class='nav-item item '>
-                                            <a class='title solo-title menu-text' href="#properties-45">Properties</a>
+                                            <a class='title solo-title menu-text' href="#properties-48">Properties</a>
                                     </li>
                             </ul>
                     </li>

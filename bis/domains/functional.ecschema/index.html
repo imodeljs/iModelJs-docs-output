@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.4.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.5.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -172,25 +172,33 @@
             
             <h1 id="functional">Functional</h1>
 <p><strong>alias:</strong> func</p>
-<p><strong>version:</strong> 1.0.1</p>
+<p><strong>version:</strong> 1.0.3</p>
 <p>The Functional schema defines common base classes to be used by discipline-specific functional domains.</p>
+<p>The Functional domain schema contains the core classes that define the &quot;Functional&quot; Modeling Perspective.</p>
+<p>The &quot;Functional&quot; perspective <em>sees</em> an Object not as a physical Entity with form and mass, but as a functional Entity that will perform some activity when in use.</p>
+<p>They say &quot;form follows function&quot;. Separating the &quot;Functional&quot; perspective from the &quot;Physical&quot; perspective allows independent modeling of &quot;form&quot; and &quot;function&quot;. Functional modeling/planning can occur first and be handled by a different responsible party than physical modeling. There is generally more than one physical Entity that could fulfill a given function. The particular physical Entity may be refined throughout the design process and may be changed over the lifetime of the operation of the Object.</p>
+<p>The Functional Modeling Perspective is abstract. Domain authors are expected to specialize <a href="#functionalpartition">FunctionalPartition</a>, <a href="#functionalmodel">FunctionalModel</a>, and one or more of the subclasses of <a href="#functionalelement">FunctionalElement</a> to express their discipline&apos;s particular needs for functional modeling, e.g. architectural functional programming or plant process modeling.</p>
 <h2 class="h-entity">Entity Classes<a id="entity" class="heading-anchor" href="#entity"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <h3 class="h-functionalbreakdownelement"><strong>FunctionalBreakdownElement</strong> (Functional Breakdown) <em>Abstract</em><a id="functionalbreakdownelement" class="heading-anchor" href="#functionalbreakdownelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A func:FunctionalBreakdownElement is a &apos;folder&apos; node in the functional hierarchy.</p>
+<p><strong>description:</strong> A func:FunctionalBreakdownElement models an aggregate functional Entity with child func:FunctionalElements modeling its parts.</p>
 <p><strong>baseClass:</strong> <a href="#functionalelement">Functional:FunctionalElement</a></p>
+<p>FunctionalBreakdownElement and <a href="#functionalcomponentelement">FunctionalComponentElement</a> are intended for use together, in a style of functional modeling that does not use sub-models. If you using sub-modeling, then specialize <code>FunctionalElement</code> directly.</p>
 <h3 class="h-functionalcomponentelement"><strong>FunctionalComponentElement</strong> (Functional Component) <em>Abstract</em><a id="functionalcomponentelement" class="heading-anchor" href="#functionalcomponentelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A func:FunctionalComponentElement is a &apos;leaf&apos; node in the functional hierarchy.</p>
+<p><strong>description:</strong> A func:FunctionalComponentElement models an &apos;atomic&apos; functional Entity which will not be sub-modeled at a finer granularity and does not have &apos;child&apos; parts.</p>
 <p><strong>baseClass:</strong> <a href="#functionalelement">Functional:FunctionalElement</a></p>
-<h3 class="h-functionalcomposite"><strong>FunctionalComposite</strong> (Functional Composite)<a id="functionalcomposite" class="heading-anchor" href="#functionalcomposite"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>FunctionalComponentElement and <a href="#functionalbreakdownelement">FunctionalBreakdownElement</a> are intended for use together, in a style of functional modeling that does not use sub-models. If you using sub-modeling, then specialize <code>FunctionalElement</code> directly.</p>
+<h3 class="h-functionalcomposite"><strong>FunctionalComposite</strong> (Functional Composite) <span class="badge badge-pill badge-warning badge-deprecated">Deprecated</span><a id="functionalcomposite" class="heading-anchor" href="#functionalcomposite"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div class="alert alert-warning" role="alert">The best practice is now to inherit from a FunctionalBreakdownElement instead.</div></p>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A func:FunctionalComposite is a func:FunctionalElement composed of several other func:FunctionalElement instances.</p>
+<p><strong>description:</strong> DEPRECATED: Inherit from FunctionalBreakdownElement instead.</p>
 <p><strong>baseClass:</strong> <a href="#functionalbreakdownelement">Functional:FunctionalBreakdownElement</a></p>
 <h3 class="h-functionalelement"><strong>FunctionalElement</strong> (Functional Element) <em>Abstract</em><a id="functionalelement" class="heading-anchor" href="#functionalelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A func:FunctionalElement captures functional requirements that will ultimately be fulfilled by a bis:PhysicalElement.</p>
+<p><strong>description:</strong> A func:FunctionalElement models required functionality that will ultimately be fulfilled by a physical Entity.</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#roleelement'>BisCore:RoleElement</a></p>
+<p>Models a particular functional Entity--something that will perform a particular activity when in use. Functional Entities are non-geometric in nature, and are considered to be &apos;roles&apos; played by an Object.</p>
 <h4 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <table class="table table-responsive"><tbody><tr>
 <th align="left">Name</th>
@@ -207,10 +215,13 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> A container for persisting func:FunctionalElement instances.</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#rolemodel'>BisCore:RoleModel</a></p>
-<h3 class="h-functionalpartition"><strong>FunctionalPartition</strong> (Functional Partition) <em>Sealed</em><a id="functionalpartition" class="heading-anchor" href="#functionalpartition"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>Should be considered abstract. It should be specialized to hold discipline-specific functional Elements.</p>
+<h3 class="h-functionalpartition"><strong>FunctionalPartition</strong> (Functional Partition)<a id="functionalpartition" class="heading-anchor" href="#functionalpartition"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> EntityClass</p>
-<p><strong>description:</strong> A func:FunctionalPartition element is a key part of the information hierarchy that is always parented to a bis:Subject and broken down by a func:FunctionalModel.</p>
+<p><strong>description:</strong> A func:FunctionalPartition element establishes a &apos;Functional&apos; Modeling Perspective for its parent bis:Subject. It is intended to be specialized, and should be considered &apos;abstract&apos;.</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#informationpartitionelement'>BisCore:InformationPartitionElement</a></p>
+<p>A func:FunctionalPartition element establishes a &apos;Functional&apos; Modeling Perspective for its parent bis:Subject. It is intended to be specialized, and should be considered &apos;abstract&apos;.</p>
+<p>See <a href="#functional">Functional</a> for a definition of the &quot;Functional&quot; Modeling Perspective.</p>
 <h3 class="h-functionalportion"><strong>FunctionalPortion</strong> (Functional Portion) <span class="badge badge-pill badge-warning badge-deprecated">Deprecated</span><a id="functionalportion" class="heading-anchor" href="#functionalportion"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><div class="alert alert-warning" role="alert">The best practice is now to inherit from a FunctionalComponentElement subclass and mix in ISubModeledElement when a breakdown concept is needed.</div></p>
 <p><strong>typeName:</strong> EntityClass</p>
@@ -220,6 +231,7 @@
 <p><strong>typeName:</strong> EntityClass</p>
 <p><strong>description:</strong> Defines a shared set of properties (the &apos;type&apos;) that can be associated with a func:FunctionalElement.</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#typedefinitionelement'>BisCore:TypeDefinitionElement</a></p>
+<p>The <code>FunctionalType</code> of a <code>FunctionalElement</code> is distinct from the <code>PhysicalType</code> of the <code>PhysicalElement</code> that may be used to fulfill the function.</p>
 <h2 class="h-relationship">Relationship Classes<a id="relationship" class="heading-anchor" href="#relationship"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <h3 class="h-drawinggraphicrepresentsfunctionalelement"><strong>DrawingGraphicRepresentsFunctionalElement</strong><a id="drawinggraphicrepresentsfunctionalelement" class="heading-anchor" href="#drawinggraphicrepresentsfunctionalelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> RelationshipClass</p>
@@ -227,6 +239,7 @@
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#drawinggraphicrepresentselement'>BisCore:DrawingGraphicRepresentsElement</a></p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
+<p>Used to relate schematic drawings to <code>FunctionalElement</code>s.</p>
 <h4 class="h-source">Source<a id="source" class="heading-anchor" href="#source"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> represents</p>
@@ -266,10 +279,11 @@
 </ul>
 <h3 class="h-physicalelementfulfillsfunction"><strong>PhysicalElementFulfillsFunction</strong><a id="physicalelementfulfillsfunction" class="heading-anchor" href="#physicalelementfulfillsfunction"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p><strong>typeName:</strong> RelationshipClass</p>
-<p><strong>description:</strong> Relates func:FunctionalElement instances which define requirements to the bis:PhysicalElement instances that fulfill those requirements.</p>
+<p><strong>description:</strong> Relates func:FunctionalElement instances (which model a required function) to the bis:PhysicalElement instances that model the physical Entity that fulfills the function.</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#elementreferstoelements'>BisCore:ElementRefersToElements</a></p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
+<p>There may be other relationships (defined elsewhere) to indicate a <code>PhysicalType</code> for <code>PhysicalElement</code>s that may potentially be used to fulfill the function.</p>
 <h4 class="h-source-2">Source<a id="source-2" class="heading-anchor" href="#source-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> fulfills</p>
@@ -288,7 +302,7 @@
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>20 September, 2019</span>
+                <span class='date-updated'>01 October, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -366,7 +380,7 @@
                             <a class='title solo-title menu-text' href="#functionalmodel">FunctionalModel (Functional Model)</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#functionalpartition">FunctionalPartition (Functional Partition) Sealed</a>
+                            <a class='title solo-title menu-text' href="#functionalpartition">FunctionalPartition (Functional Partition)</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#functionalportion">FunctionalPortion (Functional Portion)</a>

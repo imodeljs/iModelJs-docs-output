@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.4.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.5.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -161,9 +161,23 @@ main();</code></pre>
   }
 }</code></pre>
 <p>The Plugin subclass&apos; onExecute method is called immediately after the call to <code>onLoad</code>. The difference between <code>onLoad</code> and <code>onExecute</code> is that <code>onExecute</code> is called each time <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/pluginadmin'>PluginAdmin</a>.loadPlugin is called for the same plugin. Therefore, anything that need be done only once (such as registering a Tool), should go into the <code>onLoad</code> method and everything that should be done each time the Plugin is loaded (in this case, starting the registered Tool), should be done in the <code>onExecute</code> method.</p>
+<h2 class="h-loading-plugins-on-application-startup">Loading Plugins on Application Startup<a id="loading-plugins-on-application-startup" class="heading-anchor" href="#loading-plugins-on-application-startup"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>When an application opens the first view of an iModel, the Plugin Administrator examines user settings, application settings, and the application&apos;s Config.App to assemble a list of plugins that should be loaded automatically. The plugin lists from user and application settings are retrieved by the SettingsAdmin. The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/plugins/pluginadmin'>PluginAdmin</a> class includes two methods, <code>addSavedPlugins</code> and <code>removeSavedPlugins</code> to manipulate that list for either the user or the application settings. The methods should be called with the <code>settingName</code> argument of &quot;StartViewPlugins&quot; to manipulate the startup plugins. Any user can save plugin specifications for his or her personal use, but saving plugin specifications to be processed for all users of the application requires administrative privileges.</p>
+<p>In addition to plugin lists stored in <code>SettingsAdmin</code> settings, the application&apos;s configuration can specify such a list. The <code>PluginAdmin</code> calls <code>Config.App.get(&quot;SavedPlugins.StartViewPlugins&quot;)</code>, and if it returns a string, it is interpreted as a list of plugins separated by semicolons. To pass arguments  to the plugins as they are loaded, separate the arguments from the plugin name and each other using the pipe &quot;|&quot; character. For example, the following entry in the applications config.json file starts the &quot;safety&quot; plugin with arguments &quot;zone1&quot; and &quot;zone2&quot;, and the &quot;visualize&quot; plugin with no arguments:</p>
+<pre class="no-line-numbers"><code class="language-json">config.json
+{
+    &quot;imjs_oidc_redirecturi&quot;: &quot;/signin-oidc&quot;,
+    &quot;imjs_oidc_responsetype&quot;: &quot;id_token token&quot;,
+    &quot;imjs_oidc_scope&quot;: &quot;openid email profile organization feature_tracking imodelhub context-registry-service imodeljs-router reality-data:read product-settings-service&quot;,
+    ...
+    &quot;SavedPlugins&quot;: {
+      &quot;StartViewPlugins&quot;: &quot;safety|zone1|zone2;visualize&quot;
+    }
+}</code></pre>
+<p>PluginAdmin attempts to load all plugins in the union of the three plugin lists. Successful and failed loads are reported through the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/notifications/notificationmanager'>NotificationManager</a>.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>20 September, 2019</span>
+                <span class='date-updated'>01 October, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -219,6 +233,9 @@ main();</code></pre>
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#plugin-startup">Plugin startup</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#loading-plugins-on-application-startup">Loading Plugins on Application Startup</a>
     </li>
  
       </ul>

@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.4.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.5.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -182,6 +182,9 @@ RewriteRule ^(.*)$ blank.php [QSA,L]</code></pre><p>The &quot;*&quot; in the fir
 <pre class="no-line-numbers"><code class="language-typescript">  /** Invoked the first time this plugin is loaded. */
   public onLoad(_args: string[]): void {
     this._i18NNamespace = this.i18n.registerNamespace(&quot;WmsPlugin&quot;);
+    this._i18NNamespace!.readFinished.then(() =&gt; {
+      IModelApp.tools.register(OurFirstTool, this._i18NNamespace, this.i18n);
+      IModelApp.tools.register(OurSecondTool, this._i18NNamespace, this.i18n);
     ...
   }
 
@@ -199,7 +202,7 @@ RewriteRule ^(.*)$ blank.php [QSA,L]</code></pre><p>The &quot;*&quot; in the fir
       IModelApp.notifications.outputMessage(msgDetails);
     }).catch(() =&gt; { });
   }</code></pre>
-<p>In the <code>onLoad</code> method, an i18n Namespace is registered, and in the <code>onExecute</code> method, a string from it is accessed.</p>
+<p>In the <code>onLoad</code> method, an i18n Namespace is registered, and tools that are implemented in the plugin are registered with the optional third argument (this.i18n). In the <code>onExecute</code> method, a string from the plugin&apos;s internationalization object and namespace is accessed.</p>
 <p>Similarly, a slight code modification is needed for loading other resources from the Plugin&apos;s web server. For example, suppose we want to load an .svg file for use in a Plugin. The following code in <code>onLoad</code> is used:</p>
 <pre class="no-line-numbers"><code class="language-typescript">  /** Invoked the first time this plugin is loaded. */
   public onLoad(_args: string[]): void {
@@ -213,7 +216,7 @@ RewriteRule ^(.*)$ blank.php [QSA,L]</code></pre><p>The &quot;*&quot; in the fir
 <p>Note that the code above also works for Plugins hosted directly on the application&apos;s web server. In that case the Plugin&apos;s i18n property is equivalent to iModelApp.i18n, and the resolveResourceUrl method simply returns its argument.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>20 September, 2019</span>
+                <span class='date-updated'>01 October, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
