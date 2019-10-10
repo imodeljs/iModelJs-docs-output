@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.5.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.6.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -247,17 +247,29 @@
             <h2 class="h-createinverse">createInverse <span class="badge badge-pill badge-primary badge-method">Method</span><a id="createinverse" class="heading-anchor" href="#createinverse"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Compute an inverse matrix.</p>
 <ul>
-<li>This uses simple Gauss-Jordan elimination -- no pivot.</li>
+<li>This uses direct formulas with various determinants.</li>
+<li>If result is given, it is ALWAYS filled with values &quot;prior to dividing by the determinant&quot;.
+*</li>
 </ul>
-<p><span class="method-name">createInverse</span><span class="method-parenthesis">(</span><span class="method-parameters"></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/matrix4d'>Matrix4d</a> | undefined</span></p>
-<p><strong>Returns</strong> - undefined if 1/pivot becomes too large. (i.e. apparent 0 pivot)</p>
+<p><span class="method-name">createInverse</span><span class="method-parenthesis">(</span><span class="method-parameters">result?: <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/matrix4d'>Matrix4d</a></span><span class="method-parenthesis">):</span><span class="method-output"> <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/matrix4d'>Matrix4d</a> | undefined</span></p>
+<table class="table table-responsive"><tbody><tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td class="h-result"><span class="parameter-name">result</span><a id="result" class="heading-anchor" href="#result"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
+<td><span class="parameter-type"><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/numerics/matrix4d'>Matrix4d</a></span></td>
+<td>&#xA0;</td>
+</tr>
+</tbody></table><p><strong>Returns</strong> - undefined if dividing by the determinant looks unsafe.</p>
 <h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/geometry/src/geometry4d/Matrix4d.ts">geometry4d/Matrix4d.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>01 October, 2019</span>
+                <span class='date-updated'>09 October, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -311,6 +323,9 @@
             <i class='nav-list-dropdown icon'></i>
             </a>
             <ul id="inner-nav-createinverse" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#result">result</a>
+                    </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#defined-in">Defined in</a>
                     </li>
