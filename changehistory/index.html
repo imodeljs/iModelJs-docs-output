@@ -9,9 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>1.6.0 Change Notes - iModel.js</title>
-    <meta name="og:title" content="1.6.0 Change Notes - iModel.js">
-    <meta name="twitter:title" content="1.6.0 Change Notes - iModel.js">
+    <title>1.7.0 Change Notes - iModel.js</title>
+    <meta name="og:title" content="1.7.0 Change Notes - iModel.js">
+    <meta name="twitter:title" content="1.7.0 Change Notes - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.6.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.7.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -99,6 +99,8 @@
     <hr>
     <h3 id="versions">Versions</h3>
     <ul>
+    <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/1.7.0" class="table-of-contents-link">1.7.0</a></p>
+    </li>
     <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/1.6.0" class="table-of-contents-link">1.6.0</a></p>
     </li>
     <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/1.5.0" class="table-of-contents-link">1.5.0</a></p>
@@ -147,19 +149,61 @@
         <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'>Change History</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/changehistory/index.md">Edit this page</a></div>
-            <h1 id="1.6.0 change notes">1.6.0 Change Notes</h1>
-<h2 class="h-silhouettes-for-emphasis">Silhouettes for emphasis<a id="silhouettes-for-emphasis" class="heading-anchor" href="#silhouettes-for-emphasis"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/hilite'>Hilite</a> effect can now be applied to individual features (elements, models, subcategories, etc) using <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.overrides'>FeatureSymbology.Overrides</a>. The color, color ratios, and silhouette width can all be customized using <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/emphasissettings'>Viewport.emphasisSettings</a> - the default settings apply a thick black silhouette to emphasized features with no effect on the features&apos; own colors. If you are using <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/emphasizeelements'>EmphasizeElements</a>, set its <code>wantEmphasis</code> property to control whether or not the emphasis settings are applied. Otherwise, have your <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/featureoverrideprovider'>FeatureOverrideProvider</a> specify which features are emphasized using <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/featuresymbology/featuresymbology.appearance/#emphasized'>FeatureSymbology.Appearance.emphasized</a> and optionally override <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/emphasissettings'>Viewport.emphasisSettings</a>.</p>
-<p><img src="./assets/emphasized_elements.png" alt="emphasis example" title="Example showing default emphasis settings"></p>
+            <h1 id="1.7.0 change notes">1.7.0 Change Notes</h1>
+<h2 class="h-improvements-to-solar-shadows">Improvements to solar shadows<a id="improvements-to-solar-shadows" class="heading-anchor" href="#improvements-to-solar-shadows"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Several enhancements were made to the display of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/solarshadows'>SolarShadows</a>:</p>
+<ul>
+<li>The shadow map now continuously refines as new geometry is loaded.</li>
+<li>The position of the solar light is now synchronized with sun direction. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/displaystyle3dstate/sundirection'>DisplayStyle3dState.sunDirection</a>.</li>
+<li>World decorations no longer receive shadows.</li>
+<li>A display style can now configure whether or not transparent surfaces cast shadows. Any surface whose transparency is greater than the transparency threshold defined by the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/displaystyle3dstate'>DisplayStyle3dState</a> will not cast shadows. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/rendering/hiddenline/hiddenline.settings/transparencythreshold'>HiddenLine.Settings.transparencyThreshold</a>.</li>
+</ul>
+<p><img src="./assets/shadows_transparency.png" alt="shadows transparency" title="Using transparency threshold to control how solar shadows interact with transparent surfaces."></p>
+<p align="center">Solar shadows interacting with transparent surfaces</p>
+
+<h2 class="h-reusable-decoration-graphics">Reusable decoration graphics<a id="reusable-decoration-graphics" class="heading-anchor" href="#reusable-decoration-graphics"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>All <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphic'>RenderGraphic</a>s created as decorations are automatically disposed to ensure any WebGL resources are freed. This has the unfortunate side effect of preventing such graphics from being reused from one frame to another. If your decorations are expensive to create and/or change infrequently, you can now prevent automatic disposal by wrapping them in a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendergraphicowner'>RenderGraphicOwner</a>. By doing so you assume responsibility for properly disposing of them when they are no longer needed. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendersystem/creategraphicowner'>RenderSystem.createGraphicOwner</a>.</p>
+<h2 class="h-spatial-classification-improvements">Spatial classification improvements<a id="spatial-classification-improvements" class="heading-anchor" href="#spatial-classification-improvements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<ul>
+<li>Volume classification is now fully supported.</li>
+<li>Flash and hilite effects are now applied correctly.</li>
+<li>Planar classifiers now support transparency; the classified geometry will use the transparency specified by the classifier geometry.</li>
+<li>Classification of point clouds now works properly.</li>
+<li>Classification now works correctly in perspective views.</li>
+</ul>
+<h2 class="h-display-system-startup-options">Display system startup options<a id="display-system-startup-options" class="heading-anchor" href="#display-system-startup-options"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The following changes have been made to the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendersystem.options'>RenderSystem.Options</a> used to initialize the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/rendering/rendersystem'>RenderSystem</a> when invoking <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/startup'>IModelApp.startup</a>:</p>
+<ul>
+<li><code>displaySolarShadows</code> now defaults to <code>true</code> if not defined, instead of false.</li>
+<li><code>directScreenRendering</code> has been deprecated; it no longer has any effect.</li>
+</ul>
+<h2 class="h-improvements-to-ambient-occlusion">Improvements to ambient occlusion<a id="improvements-to-ambient-occlusion" class="heading-anchor" href="#improvements-to-ambient-occlusion"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The default settings for ambient occlusion have been changed to make the effect more subtle, and an option has been added to limit the distance at which the effect will be applied.</p>
 <h2 class="h-geometry">Geometry<a id="geometry" class="heading-anchor" href="#geometry"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyfacebuilder/addgreedytriangulationbetweenlinestrings'>PolyfaceBuilder.addGreedyTriangulationBetweenLineStrings</a> method to build triangles &quot;between&quot; loosely related linestrings.</li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/regionops/consolidateadjacentprimitives'>RegionOps.consolidateAdjacentPrimitives</a> method to consolidate adjacent lines and linestrings, and adjacent arcs of the same underlying circle or ellipse.</li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/curve/regionops/rectangleedgetransform'>RegionOps.rectangleEdgeTransform</a> method to decide if a Loop object or point array is a simple rectangle.</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/cartesiangeometry/range2d/corners3d'>Range2d.corners3d</a> method to get a <code>Point3d[]</code> containing the range corners.</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/arraysandinterfaces/growablexyarray/length'>GrowableXYArray.length</a> property is writable (e.g. to trim the array)</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/arraysandinterfaces/indexedxyzcollection/#getrange'>IndexedXYZCollection.getRange</a> -- return the range of data in the collection.</li>
+<li>Support methods for using <code>PolyfaceVisitor</code> as staging area for new facets to be given to a <code>PolyfaceBuilder</code><ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyfacevisitor/cleararrays'>PolyfaceVisitor.clearArrays</a> -- empty all arrays</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyfacevisitor/#pushdatafrom'>PolyfaceVisitor.pushDataFrom</a> -- add new point, param, normal, color from indexed position in another <code>PolyfaceVisitor</code></li>
 </ul>
+</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyfacevisitor/pushinterpolateddatafrom'>PolyfaceVisitor.pushInterpolatedDataFrom</a> -- add new point, param, normal, color interpolated between two indexed positions in another <code>PolyfaceVisitor</code></li>
+<li>`<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyfacequery/#clonewithtvertexfixup'>PolyfaceQuery.cloneWithTVertexFixup</a> -- clone a polyface, inserting vertices within edges that are incident to points on other facets.</li>
+<li>`<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/geometry-core/polyface/polyfacequery/#clonewithcolinearedgefixup'>PolyfaceQuery.cloneWithColinearEdgeFixup</a> -- clone a polyface, removing mid-edge vertices that are interior to adjacent colinear edges and are <em>not</em> used as non-colinear vertex on any other facet.</li>
+</ul>
+<h2 class="h-presentation">Presentation<a id="presentation" class="heading-anchor" href="#presentation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-read-only-mode">Read-only mode<a id="read-only-mode" class="heading-anchor" href="#read-only-mode"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p>Added a flag <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/presentation-backend/core/presentationmanagerprops/mode'>PresentationManagerProps.mode</a> to indicate that the backend always opens iModels in read-only mode and presentation manager
+can make some optimizations related to reacting to changes in iModels. This is an optional property that defaults to previous behavior (read-write), but it&apos;s
+strongly encouraged to set it to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/presentation-backend/core/presentationmanagermode/#readonly'>PresentationManagerMode.ReadOnly</a> on read-only backends.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 October, 2019</span>
+                <span class='date-updated'>01 November, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -208,10 +252,33 @@
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
               <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#silhouettes-for-emphasis">Silhouettes for emphasis</a>
+            <a class='title solo-title menu-text' href="#improvements-to-solar-shadows">Improvements to solar shadows</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#reusable-decoration-graphics">Reusable decoration graphics</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#spatial-classification-improvements">Spatial classification improvements</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#display-system-startup-options">Display system startup options</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#improvements-to-ambient-occlusion">Improvements to ambient occlusion</a>
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#geometry">Geometry</a>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-presentation" class='title' href="#presentation"/>
+            <b class='dropdown-menu-title menu-text'>Presentation</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-presentation" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#read-only-mode">Read-only mode</a>
+                    </li>
+            </ul>
     </li>
  
       </ul>
@@ -245,6 +312,9 @@
         </a>
       </div>
       <!-- Grid column -->
+
+      <!-- TOS/Legals footer placeholder -->
+      <div id="HFRootHeader"></div>
 
       <!-- Grid column -->
       <div class="col-md-5 col-lg-4 ml-lg-0">

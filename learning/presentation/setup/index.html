@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.6.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.7.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -124,13 +124,14 @@ consumers must do before the library can be used.</p>
 <ol>
 <li><p>Initialize the library:</p>
 <p><code>`</code>typescript
-import { Presentation } from &quot;@bentley/presentation-backend&quot;;</p>
+import { Presentation, PresentationManagerMode } from &quot;@bentley/presentation-backend&quot;;</p>
 </li>
 </ol>
 <p>// initialize presentation-backend
 Presentation.initialize({
   rulesetDirectories: [path.join(&quot;assets&quot;, &quot;presentation_rules&quot;)],
   localeDirectories: [path.join(&quot;assets&quot;, &quot;locales&quot;)],
+  mode: PresentationManagerMode.ReadOnly,
 });</p>
 <pre><code>
 2. Register `PresentationRpcInterface` (amongst other RPC interfaces):
@@ -141,7 +142,10 @@ Presentation.initialize({
 <h2 class="h-frontend">Frontend<a id="frontend" class="heading-anchor" href="#frontend"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ol>
 <li><p>Initialize the library:</p>
-<pre class="no-line-numbers"><code class="language-typescript">import { Presentation } from &quot;@bentley/presentation-frontend&quot;;</code></pre>
+<pre class="no-line-numbers"><code class="language-typescript">import {
+Presentation, FavoritePropertiesManager,
+IFavoritePropertiesStorage, FavoriteProperties,
+} from &quot;@bentley/presentation-frontend&quot;;</code></pre>
 <pre class="no-line-numbers"><code class="language-typescript">   Presentation.initialize({
    // specify `clientId` so Presentation framework can share caches
    // between sessions for the same clients
@@ -159,7 +163,7 @@ Presentation.initialize({
 </ol>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 October, 2019</span>
+                <span class='date-updated'>01 November, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -245,6 +249,9 @@ Presentation.initialize({
         </a>
       </div>
       <!-- Grid column -->
+
+      <!-- TOS/Legals footer placeholder -->
+      <div id="HFRootHeader"></div>
 
       <!-- Grid column -->
       <div class="col-md-5 col-lg-4 ml-lg-0">

@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.6.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.7.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -126,13 +126,14 @@
 <p>If you&apos;re working on a backend and require downloading and uploading files, you have to specify an implementation of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/filehandler'>FileHandler</a>. For iModelHub that should be AzureFileHandler</p>
 <p>Example:</p>
 <pre class="no-line-numbers"><code class="language-typescript">import { IModelHubClient } from &quot;@bentley/imodeljs-clients&quot;;
-import { AzureFileHandler } from &quot;@bentley/imodeljs-clients-backend&quot;;
+import { AzureFileHandler, IOSAzureFileHandler } from &quot;@bentley/imodeljs-clients-backend&quot;;
+import { MobileRpcConfiguration } from &quot;@bentley/imodeljs-common&quot;;
 
-const imodelHubClient = new IModelHubClient(new AzureFileHandler());
+const imodelHubClient = new IModelHubClient(MobileRpcConfiguration.isMobileBackend ? new IOSAzureFileHandler() : new AzureFileHandler());
 </code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>13 October, 2019</span>
+                <span class='date-updated'>01 November, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -215,6 +216,9 @@ const imodelHubClient = new IModelHubClient(new AzureFileHandler());
         </a>
       </div>
       <!-- Grid column -->
+
+      <!-- TOS/Legals footer placeholder -->
+      <div id="HFRootHeader"></div>
 
       <!-- Grid column -->
       <div class="col-md-5 col-lg-4 ml-lg-0">
