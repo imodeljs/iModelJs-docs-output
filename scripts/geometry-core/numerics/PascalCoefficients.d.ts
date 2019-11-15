@@ -1,6 +1,6 @@
 /**
  * PascalCoeffients class has static methods which return rows of the PascalTriangle.
- *
+ * @internal
  */
 export declare class PascalCoefficients {
     private static _allRows;

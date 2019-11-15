@@ -1,6 +1,6 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -9,12 +9,10 @@ const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
 const Point4d_1 = require("../geometry4d/Point4d");
 const Ray3d_1 = require("../geometry3d/Ray3d");
 const Plane3dByOriginAndVectors_1 = require("../geometry3d/Plane3dByOriginAndVectors");
-const StrokeOptions_1 = require("../curve/StrokeOptions");
-const Geometry_1 = require("../Geometry");
-const Angle_1 = require("../geometry3d/Angle");
 const LineString3d_1 = require("../curve/LineString3d");
 const BezierCurveBase_1 = require("./BezierCurveBase");
 const BezierPolynomials_1 = require("../numerics/BezierPolynomials");
+/** @module Bspline */
 // ================================================================================================================
 // ================================================================================================================
 // ================================================================================================================
@@ -22,9 +20,21 @@ const BezierPolynomials_1 = require("../numerics/BezierPolynomials");
 /** 3d Bezier curve class.
  * * Use BezierCurve3dH if the curve has weights.
  * * The control points (xyz) are managed as the _packedData buffer in the _polygon member of BezierCurveBase.
+ * @public
  */
 class BezierCurve3d extends BezierCurveBase_1.BezierCurveBase {
+    /**
+     * Capture a polygon as the data for a new `BezierCurve3d`
+     * @param polygon complete packed data and order.
+     */
+    constructor(polygon) {
+        super(3, polygon);
+        this._workRay0 = Ray3d_1.Ray3d.createXAxis();
+        this._workRay1 = Ray3d_1.Ray3d.createXAxis();
+    }
+    /** test if `other` is also a BezierCurve3d. */
     isSameGeometryClass(other) { return other instanceof BezierCurve3d; }
+    /** apply the transform to the control points. */
     tryTransformInPlace(transform) {
         const data = this._workData0;
         for (let i = 0; i < this._polygon.order; i++) {
@@ -47,15 +57,6 @@ class BezierCurve3d extends BezierCurveBase_1.BezierCurveBase {
         if (data)
             return Point4d_1.Point4d.create(data[0], data[1], data[2], 1.0, result);
         return undefined;
-    }
-    /**
-     * Capture a polygon as the data for a new `BezierCurve3d`
-     * @param polygon complete packed data and order.
-     */
-    constructor(polygon) {
-        super(3, polygon);
-        this._workRay0 = Ray3d_1.Ray3d.createXAxis();
-        this._workRay1 = Ray3d_1.Ray3d.createXAxis();
     }
     /** Return poles as a linestring */
     copyPointsAsLineString() {
@@ -102,9 +103,11 @@ class BezierCurve3d extends BezierCurveBase_1.BezierCurveBase {
     loadSpanPoles(data, spanIndex) {
         this._polygon.loadSpanPoles(data, spanIndex);
     }
+    /** Clone as a bezier 3d. */
     clone() {
         return new BezierCurve3d(this._polygon.clonePolygon());
     }
+    /** Clone the interval from f0 to f1. */
     clonePartialCurve(f0, f1) {
         const partialCurve = new BezierCurve3d(this._polygon.clonePolygon());
         partialCurve._polygon.subdivideToIntervalInPlace(f0, f1);
@@ -118,7 +121,7 @@ class BezierCurve3d extends BezierCurveBase_1.BezierCurveBase {
         curve1.tryTransformInPlace(transform);
         return curve1;
     }
-    /** Return a (deweighted) point on the curve. If deweight fails, returns 000 */
+    /** Return a (de-weighted) point on the curve. If de-weight fails, returns 000 */
     fractionToPoint(fraction, result) {
         this._polygon.evaluate(fraction, this._workData0);
         return Point3dVector3d_1.Point3d.create(this._workData0[0], this._workData0[1], this._workData0[2], result);
@@ -148,47 +151,21 @@ class BezierCurve3d extends BezierCurveBase_1.BezierCurveBase {
         Point3dVector3d_1.Vector3d.createAdd2Scaled(ray0.direction, -a, ray1.direction, a, result.vectorV);
         return result;
     }
+    /** Near-equality test on poles. */
     isAlmostEqual(other) {
         if (other instanceof BezierCurve3d) {
             return this._polygon.isAlmostEqual(other._polygon);
         }
         return false;
     }
-    /**
-     * Assess legnth and turn to determine a stroke count.
-     * @param options stroke options structure.
-     */
-    strokeCount(options) {
-        const data = this._polygon.packedData;
-        let dx0 = data[3] - data[0];
-        let dy0 = data[4] - data[1];
-        let dz0 = data[5] - data[2];
-        let dx1, dy1, dz1; // first differences of leading edge
-        // let ex, ey, ez; // second differences.
-        let sweepRadians = 0.0;
-        let sumLength = Geometry_1.Geometry.hypotenuseXYZ(dx0, dy0, dz0);
-        const n = data.length;
-        for (let i = 6; i + 2 < n; i += 3) {
-            dx1 = data[i] - data[i - 3];
-            dy1 = data[i + 1] - data[i - 2];
-            dz1 = data[i + 2] - data[i - 1];
-            //        ex = dx1 - dx0; ey = dy1 - dy0; ez = dz1 - dz0;
-            sweepRadians += Angle_1.Angle.radiansBetweenVectorsXYZ(dx0, dy0, dz0, dx1, dy1, dz1);
-            sumLength += Geometry_1.Geometry.hypotenuseXYZ(dx1, dy1, dz1);
-            dx0 = dx1;
-            dy0 = dy1;
-            dz0 = dz1;
-        }
-        const numPerSpan = StrokeOptions_1.StrokeOptions.applyAngleTol(options, StrokeOptions_1.StrokeOptions.applyMaxEdgeLength(options, 1, sumLength), sweepRadians, 0.2);
-        return numPerSpan;
-    }
-    /**
-     * convert to bspline curve and dispatch to handler
-     * @param handler handelr to receive strongly typed geometry
-     */
+    /** Second step of double dispatch:  call `handler.handleBezierCurve3d(this)` */
     dispatchToGeometryHandler(handler) {
         return handler.handleBezierCurve3d(this);
     }
+    /** Extend `rangeToExtend`, using candidate extrema at
+     * * both end points
+     * * any internal extrema in x,y,z
+     */
     extendRange(rangeToExtend, transform) {
         const order = this.order;
         if (!transform) {

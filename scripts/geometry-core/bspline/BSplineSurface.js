@@ -1,6 +1,6 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -18,12 +18,24 @@ const Point4d_1 = require("../geometry4d/Point4d");
 const GeometryQuery_1 = require("../curve/GeometryQuery");
 /**
  * UVSelect is an integer indicating uDirection (0) or vDirection (1) in a bspline surface parameterization.
+ * @public
  */
 var UVSelect;
 (function (UVSelect) {
+    /** index of u direction */
     UVSelect[UVSelect["uDirection"] = 0] = "uDirection";
+    /** index of v direction */
     UVSelect[UVSelect["VDirection"] = 1] = "VDirection";
 })(UVSelect = exports.UVSelect || (exports.UVSelect = {}));
+/**
+ * Enumeration of how weights are carried
+ * * UnWeighted (0) -- there are no weights
+ * * WeightsAlreadyAppliedToCoordinates (1) -- for real point (x,y,z) the homogeneous point has weight applied throughout as (wx,wy,wz,w)
+ * * WeightsSeparateFromCoordinates (2) -- for real point (x,y,z) the homogeneous point is (x,y,z,w)
+ *   * Note that "internal" computations never use WeightsSeparateFromCoordinates.
+ *   * WeightsSeparateFromCoordinates is only useful as input or output state in serializers.
+ * @public
+ */
 var WeightStyle;
 (function (WeightStyle) {
     /** There are no weights. */
@@ -41,14 +53,40 @@ var WeightStyle;
 })(WeightStyle = exports.WeightStyle || (exports.WeightStyle = {}));
 /** Bspline knots and poles for 2d-to-Nd.
  * * This abstract class in not independently instantiable -- GeometryQuery methods must be implemented by derived classes.
+ * @public
  */
 class BSpline2dNd extends GeometryQuery_1.GeometryQuery {
+    /**
+     * initialize arrays for given spline dimensions.
+     */
+    constructor(numPolesU, numPolesV, poleLength, knotsU, knotsV) {
+        super();
+        /** String name for schema properties */
+        this.geometryCategory = "bsurf";
+        const orderU = knotsU.degree + 1;
+        const orderV = knotsV.degree + 1;
+        this.knots = [knotsU, knotsV];
+        this.coffs = new Float64Array(numPolesU * numPolesV * poleLength);
+        this.poleDimension = poleLength;
+        this._basisBufferUV = [new Float64Array(orderU), new Float64Array(orderV)];
+        this._basisBuffer1UV = [new Float64Array(orderU), new Float64Array(orderV)];
+        this._numPoles = [numPolesU, numPolesV];
+        this._poleBuffer = new Float64Array(poleLength);
+        this._poleBuffer1UV = [new Float64Array(poleLength), new Float64Array(poleLength)];
+    }
+    /** Return the degree (one less than order) for the `select` direction (0 or 1) */
     degreeUV(select) { return this.knots[select].degree; }
+    /** Return the order (one more than degree) for the `select` direction (0 or 1) */
     orderUV(select) { return this.knots[select].degree + 1; }
+    /** Return the number of spans (INCLUDING NULL SPANS) for the `select` direction (0 or 1) */
     numSpanUV(select) { return this._numPoles[select] - this.knots[select].degree; }
+    /** Return the total number of poles (product of x and y pole counts) */
     numPolesTotal() { return this.coffs.length / this.poleDimension; }
+    /** Return the number of poles for the `select` direction (0 or 1) */
     numPolesUV(select) { return this._numPoles[select]; }
+    /** Return the step between adjacent poles for the `select` direction (0 or 1) */
     poleStepUV(select) { return select === 0 ? 1 : this._numPoles[0]; }
+    /** Confirm that order and pole counts agree for both u and v directions */
     static validOrderAndPoleCounts(orderU, numPolesU, orderV, numPolesV, numUV) {
         if (orderU < 2 || numPolesU < orderU)
             return false;
@@ -58,16 +96,21 @@ class BSpline2dNd extends GeometryQuery_1.GeometryQuery {
             return false;
         return true;
     }
+    /** Get the Point3d by row and column.
+     * * (IMPORTANT) This assumes this is an xyz surface.  Data will be incorrect if this is an xyzw surface.
+     */
     getPoint3dPole(i, j, result) {
         return Point3dVector3d_1.Point3d.createFromPacked(this.coffs, i + j * this._numPoles[0], result);
     }
-    // Get a pole (from i,j indices) as Point3d, assuming data is stored xyzw
+    /** Get the Point3d by row and column, projecting the weight away to get to xyz
+     * * (IMPORTANT) This assumes this is an xyzw surface.  Data will be incorrect if this is an xyz surface.
+     */
     getPoint3dPoleXYZW(i, j, result) {
         return Point3dVector3d_1.Point3d.createFromPackedXYZW(this.coffs, i + j * this._numPoles[0], result);
     }
     /**
+     * Return 0 for 0 input, 1 for any nonzero input.
      * @param value numeric value to convert to strict 0 or 1.
-     * @returns Return 0 for 0 input, 1 for any nonzero input.
      */
     numberToUVSelect(value) { return value === 0 ? 0 : 1; }
     /** extend a range, treating each block as simple XYZ */
@@ -111,39 +154,23 @@ class BSpline2dNd extends GeometryQuery_1.GeometryQuery {
         }
     }
     /**
-       * evaluate the surface at u and v fractions. Return a (squared, right handed) coordinate frame at that point on the surface.
-       * @param fractionU u parameter
-       * @param fractionV v parameter
-       * @param result undefined if surface derivatives are parallel (or either alone is zero)
-       */
+     * evaluate the surface at u and v fractions. Return a (squared, right handed) coordinate frame at that point on the surface.
+     * @param fractionU u parameter
+     * @param fractionV v parameter
+     * @param result undefined if surface derivatives are parallel (or either alone is zero)
+     */
     fractionToRigidFrame(fractionU, fractionV, result) {
         const skewVectors = this.fractionToPointAndDerivatives(fractionU, fractionV);
         if (!skewVectors)
             return undefined;
-        const axes = Matrix3d_1.Matrix3d.createColumnsInAxisOrder(0 /* XYZ */, skewVectors.vectorU, skewVectors.vectorV, undefined);
-        const axes1 = Matrix3d_1.Matrix3d.createRigidFromMatrix3d(axes, 0 /* XYZ */, axes);
+        const axes = Matrix3d_1.Matrix3d.createColumnsInAxisOrder(Geometry_1.AxisOrder.XYZ, skewVectors.vectorU, skewVectors.vectorV, undefined);
+        const axes1 = Matrix3d_1.Matrix3d.createRigidFromMatrix3d(axes, Geometry_1.AxisOrder.XYZ, axes);
         if (axes1)
             result = Transform_1.Transform.createOriginAndMatrix(skewVectors.origin, axes1, result);
         return result;
     }
     /**
-     * initialize arrays for given spline dimensions.
-     */
-    constructor(numPolesU, numPolesV, poleLength, knotsU, knotsV) {
-        super();
-        const orderU = knotsU.degree + 1;
-        const orderV = knotsV.degree + 1;
-        this.knots = [knotsU, knotsV];
-        this.coffs = new Float64Array(numPolesU * numPolesV * poleLength);
-        this.poleDimension = poleLength;
-        this._basisBufferUV = [new Float64Array(orderU), new Float64Array(orderV)];
-        this._basisBuffer1UV = [new Float64Array(orderU), new Float64Array(orderV)];
-        this._numPoles = [numPolesU, numPolesV];
-        this._poleBuffer = new Float64Array(poleLength);
-        this._poleBuffer1UV = [new Float64Array(poleLength), new Float64Array(poleLength)];
-    }
-    /**
-     * Map a position, specified as (uv direction, bezier span, fraction within the bezier), to an overal knot value.
+     * Map a position, specified as (uv direction, bezier span, fraction within the bezier), to an overall knot value.
      * @param select selector indicating U or V direction.
      * @param span index of bezier span
      * @param localFraction fractional coordinate within the bezier span
@@ -151,7 +178,11 @@ class BSpline2dNd extends GeometryQuery_1.GeometryQuery {
     spanFractionToKnot(select, span, localFraction) {
         return this.knots[select].spanFractionToKnot(span, localFraction);
     }
-    // ASSUME f is sized for {order} basis funtions !!!
+    /** Evaluate basis functions given
+     * * choice of u or v
+     * * span index
+     * * local fraction within the span.
+     */
     spanFractionsToBasisFunctions(select, spanIndex, spanFraction, f, df) {
         spanIndex = Geometry_1.Geometry.clampToStartEnd(spanIndex, 0, this.numSpanUV(select));
         const knotIndex0 = spanIndex + this.degreeUV(select) - 1;
@@ -214,6 +245,13 @@ class BSpline2dNd extends GeometryQuery_1.GeometryQuery {
             kU += stepV;
         }
     }
+    /**
+     * Evaluate the _basisBuffer, _poleBuffer and (optionally) _basisBuffer1 and _poleBuffer1 arrays at given knot.
+     *
+     * @param u u knot value
+     * @param v v not value
+     * @param numDerivative number of derivatives needed
+     */
     evaluateBuffersAtKnot(u, v, numDerivative = 0) {
         const knotIndex0U = this.knots[0].knotToLeftKnotIndex(u);
         const knotIndex0V = this.knots[1].knotToLeftKnotIndex(v);
@@ -273,12 +311,12 @@ class BSpline2dNd extends GeometryQuery_1.GeometryQuery {
         this.knots[select].wrappable = value;
     }
     /**
-     * Test if `degree` leading and trailing (one of U or V) blocks match, as if the data is an unwrapped closed spline in the slected direction.
+     * Test if `degree` leading and trailing (one of U or V) blocks match, as if the data is an unwrapped closed spline in the selected direction.
      * @param select select U or V direction
      * @returns true if coordinates matched.
      */
     isClosable(select) {
-        if (!this.knots[select].wrappable)
+        if (this.knots[select].wrappable === KnotVector_1.BSplineWrapMode.None)
             return false;
         if (!this.knots[select].testClosable())
             return false;
@@ -320,10 +358,14 @@ exports.BSpline2dNd = BSpline2dNd;
  * | Method | control point array | counts |
  * | create | flat array of [x,y,z] | arguments numPolesU, numPolesV |
  * | createGrid | array of array of [x,y,z ] | There are no `numPolesU` or `numPolesV` args. The counts are conveyed by the deep arrays |
+ * @public
  */
 class BSplineSurface3d extends BSpline2dNd {
+    /** Test if `other` is an instance of `BSplineSurface3d */
     isSameGeometryClass(other) { return other instanceof BSplineSurface3d; }
+    /** Apply the transform to the poles */
     tryTransformInPlace(transform) { PointHelpers_1.Point3dArray.multiplyInPlace(transform, this.coffs); return true; }
+    /** Return a pole by u and v indices */
     getPole(i, j, result) {
         return this.getPoint3dPole(i, j, result);
     }
@@ -334,7 +376,6 @@ class BSplineSurface3d extends BSpline2dNd {
      * Return control points json arrays.
      * * if `flatArray===true`, each point appears as an array [x,y,z] in row-major order of a containing array.
      * * if `flatArray===false` each row of points is an an array of [x,y,z] in an array.  Each of these row arrays is in the result array.
-     * @param flatArray if true, retur
      */
     getPointArray(flatArray = true) {
         if (flatArray)
@@ -365,7 +406,7 @@ class BSplineSurface3d extends BSpline2dNd {
      * * This `create` variant takes control points in a "flattened" array, with
      *  points from succeeding U rows packed together in one array.  Use `createGrid` if the points are in
      *  a row-by-row grid structure
-     * * knotArrayU and knotArrayV are optional -- uniform knots are implied if they are omited (undefined).
+     * * knotArrayU and knotArrayV are optional -- uniform knots are implied if they are omitted (undefined).
      * *  When knots are given, two knot count conditions are recognized:
      * * + If poleArray.length + order == knotArray.length, the first and last are assumed to be the
      *      extraneous knots of classic clamping.
@@ -434,7 +475,7 @@ class BSplineSurface3d extends BSpline2dNd {
         const numPolesV = points.length;
         const numPolesU = points[0].length;
         const numPoles = numPolesU * numPolesV;
-        // shift knots-of-interest limits for overclampled case ...
+        // shift knots-of-interest limits for overclamped case ...
         const numKnotsU = knotArrayU ? knotArrayU.length : numPolesU + orderU - 2;
         const numKnotsV = knotArrayV ? knotArrayV.length : numPolesV + orderV - 2;
         const skipFirstAndLastU = (numPolesU + orderU === numKnotsU);
@@ -459,7 +500,7 @@ class BSplineSurface3d extends BSpline2dNd {
         return surface;
     }
     /**
-     * @returns Return a complete copy of the bspline surface.
+     * Return a complete copy of the bspline surface.
      */
     clone() {
         const knotVector1U = this.knots[0].clone();
@@ -491,7 +532,7 @@ class BSplineSurface3d extends BSpline2dNd {
         this.evaluateBuffersAtKnot(u, v, 1);
         return Plane3dByOriginAndVectors_1.Plane3dByOriginAndVectors.createOriginAndVectorsArrays(this._poleBuffer, this._poleBuffer1UV[0], this._poleBuffer1UV[1], result);
     }
-    /** Evalute at a position given by fractional coordinte in each direction.
+    /** Evaluate at a position given by fractional coordinate in each direction.
        * @param fractionU u coordinate, as a fraction of the knot range.
        * @param fractionV v coordinate, as a fraction of the knot range.
      * @returns Return the xyz coordinates on the surface.
@@ -512,6 +553,7 @@ class BSplineSurface3d extends BSpline2dNd {
         const knotV = this.knots[1].fractionToKnot(fractionV);
         return this.knotToPointAndDerivatives(knotU, knotV, result);
     }
+    /** test for identical counts and near-equal coordinates */
     isAlmostEqual(other) {
         if (other instanceof BSplineSurface3d) {
             return this.knots[0].isAlmostEqual(other.knots[0])
@@ -520,24 +562,34 @@ class BSplineSurface3d extends BSpline2dNd {
         }
         return false;
     }
+    /** Test if all poles are in a plane */
     isInPlane(plane) {
         return PointHelpers_1.Point3dArray.isCloseToPlane(this.coffs, plane);
     }
+    /** Second step of double dispatch:  call `handler.handleBSplineSurface3d(this)` */
     dispatchToGeometryHandler(handler) {
         return handler.handleBSplineSurface3d(this);
     }
+    /** Extend the range to include all poles
+     * * This is not a tight range.
+     */
     extendRange(rangeToExtend, transform) {
         this.extendRangeXYZ(rangeToExtend, transform);
     }
 }
 exports.BSplineSurface3d = BSplineSurface3d;
-/**  BsplinceCurve in xyzw homogeneous space */
+/**  BsplinceCurve in xyzw homogeneous space
+ * @public
+ */
 class BSplineSurface3dH extends BSpline2dNd {
+    /** Test if `other` is an instance of `BSplineSurface3dH */
     isSameGeometryClass(other) { return other instanceof BSplineSurface3dH; }
+    /** Apply the transform to the poles */
     tryTransformInPlace(transform) {
         PointHelpers_1.Point4dArray.multiplyInPlace(transform, this.coffs);
         return true;
     }
+    /** Return a pole by u and v indices */
     getPole(i, j, result) {
         return this.getPoint3dPoleXYZW(i, j, result);
     }
@@ -559,7 +611,7 @@ class BSplineSurface3dH extends BSpline2dNd {
      * * This `create` variant takes control points in a "flattened" array, with
      *  points from succeeding U rows packed together in one array.  Use `createGrid` if the points are in
      *  a deeper grid array structure.
-     * * knotArrayU and knotArrayV are optional -- uniform knots are implied if they are omited (undefined).
+     * * knotArrayU and knotArrayV are optional -- uniform knots are implied if they are omitted (undefined).
      * *  When knots are given, two knot count conditions are recognized:
      * * * If poleArray.length + order == knotArray.length, the first and last are assumed to be the
      *      extraneous knots of classic clamping.
@@ -610,7 +662,7 @@ class BSplineSurface3dH extends BSpline2dNd {
         if (!this.validOrderAndPoleCounts(orderU, numPolesU, orderV, numPolesV, numPoles))
             return undefined;
         // const numPoles = numPolesU * numPolesV;
-        // shift knots-of-interest limits for overclampled case ...
+        // shift knots-of-interest limits for overclamped case ...
         const numKnotsU = knotArrayU.length;
         const numKnotsV = knotArrayV.length;
         const skipFirstAndLastU = (numPolesU + orderU === numKnotsU);
@@ -644,6 +696,7 @@ class BSplineSurface3dH extends BSpline2dNd {
         }
         return surface;
     }
+    /** Return a deep clone */
     clone() {
         const knotVector1U = this.knots[0].clone();
         const knotVector1V = this.knots[1].clone();
@@ -651,6 +704,7 @@ class BSplineSurface3dH extends BSpline2dNd {
         surface1.coffs = this.coffs.slice();
         return surface1;
     }
+    /** Return a transformed clone */
     cloneTransformed(transform) {
         const surface1 = this.clone();
         surface1.tryTransformInPlace(transform);
@@ -679,6 +733,7 @@ class BSplineSurface3dH extends BSpline2dNd {
         this.evaluateBuffersAtKnot(u, v, 1);
         return Plane3dByOriginAndVectors_1.Plane3dByOriginAndVectors.createOriginAndVectorsWeightedArrays(this._poleBuffer, this._poleBuffer1UV[0], this._poleBuffer1UV[1], result);
     }
+    /** Evaluate the Point4d (leaving weights in the point) at given fractional coordinates. */
     fractionToPoint4d(fractionU, fractionV) {
         return this.knotToPoint4d(this.knots[0].fractionToKnot(fractionU), this.knots[1].fractionToKnot(fractionV));
     }
@@ -717,6 +772,7 @@ class BSplineSurface3dH extends BSpline2dNd {
         const knotV = this.knots[1].fractionToKnot(fractionV);
         return this.knotToPointAndDerivatives(knotU, knotV, result);
     }
+    /** test for identical counts and near-equal coordinates */
     isAlmostEqual(other) {
         if (other instanceof BSplineSurface3dH) {
             return this.knots[0].isAlmostEqual(other.knots[0])
@@ -725,19 +781,17 @@ class BSplineSurface3dH extends BSpline2dNd {
         }
         return false;
     }
+    /** Test if all poles are in a plane */
     isInPlane(plane) {
         return PointHelpers_1.Point4dArray.isCloseToPlane(this.coffs, plane);
     }
-    /**
-     * Pass `this` (strongly typed) to `handler.handleBsplineSurface3dH(this)`.
-     * @param handler double dispatch handler.
-     */
+    /** Second step of double dispatch:  call `handler.handleBSplineSurface3dH(this)` */
     dispatchToGeometryHandler(handler) {
         return handler.handleBSplineSurface3dH(this);
     }
     /**
      * extend a range to include the (optionally transformed) points of this surface
-     * @param rangeToExtend range that is updaatd to include this surface range
+     * @param rangeToExtend range that is updated to include this surface range
      * @param transform transform to apply to the surface points
      */
     extendRange(rangeToExtend, transform) {

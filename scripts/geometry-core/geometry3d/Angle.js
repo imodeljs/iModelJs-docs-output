@@ -1,18 +1,26 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 const Geometry_1 = require("../Geometry");
+/** @module CartesianGeometry */
 /**
- * Carries the numeric value of an angle.
+ * An `Angle` carries the numeric value of an angle, with methods to allow (require!) callers to be clear about whether their angle is degrees or radians.
  * * The numeric value is private, and callers should not know or care whether it is in degrees or radians.
  * * The various access method are named so that callers can specify whether untyped numbers passed in or out are degrees or radians.
+ * @public
  */
 class Angle {
-    constructor(radians = 0, degrees) { this._radians = radians; this._degrees = degrees; }
+    constructor(radians = 0, degrees) {
+        this._radians = radians;
+        this._degrees = degrees;
+    }
+    /** Return a new angle with the same content. */
     clone() { return new Angle(this._radians, this._degrees); }
+    /** Freeze this instance so it can be considered read-only */
+    freeze() { Object.freeze(this); }
     /**
      * Return a new Angle object for angle given in degrees.
      * @param degrees angle in degrees
@@ -23,6 +31,11 @@ class Angle {
      * @param radians angle in radians
      */
     static createRadians(radians) { return new Angle(radians); }
+    /**
+     * Return a (new) Angle object, with angle scaled from existing angle.
+     * @param scale scale factor to apply to angle.
+     */
+    cloneScaled(scale) { return new Angle(this.radians * scale); }
     /**
      * Set this angle to a value given in radians.
      * @param radians angle given in radians
@@ -88,10 +101,11 @@ class Angle {
     }
     /** Convert an Angle to a JSON object as a number in degrees */
     toJSON() { return this.degrees; }
+    /** Return a json object with radians keyword, e.g. `{ radians: 0.10}` */
     toJSONRadians() { return { radians: this.radians }; }
-    /** @returns Return the angle measured in radians. */
+    /**  Return the angle measured in radians. */
     get radians() { return this._radians; }
-    /** @returns Return the angle measured in degrees. */
+    /**  Return the angle measured in degrees. */
     get degrees() { return this._degrees !== undefined ? this._degrees : Angle.radiansToDegrees(this._radians); }
     /**
      * Convert an angle in degrees to radians.
@@ -120,19 +134,25 @@ class Angle {
         return 360.0 + 180 * ((radians - 2.0 * pi) / pi);
     }
     /**
-     * @returns Return the cosine of this Angle object's angle.
+     * Return the cosine of this Angle object's angle.
      */
     cos() { return Math.cos(this._radians); }
     /**
-     * @returns Return the sine of this Angle object's angle.
+     * Return the sine of this Angle object's angle.
      */
     sin() { return Math.sin(this._radians); }
     /**
-     * @returns Return the tangent of this Angle object's angle.
+     * Return the tangent of this Angle object's angle.
      */
     tan() { return Math.tan(this._radians); }
+    /** Test if a radians value is nearly 2PI or larger (!) */
     static isFullCircleRadians(radians) { return Math.abs(radians) >= Geometry_1.Geometry.fullCircleRadiansMinusSmallAngle; }
+    /** Test if the radians value  is a complete circle */
+    static isHalfCircleRadians(radians) { return (Math.abs(Math.abs(radians)) - Math.PI) <= Geometry_1.Geometry.smallAngleRadians; }
+    /** test if the angle is aa full circle */
     get isFullCircle() { return Angle.isFullCircleRadians(this._radians); }
+    /** test if the angle is a half circle (in either direction) */
+    get isHalfCircle() { return Angle.isHalfCircleRadians(this._radians); }
     /** Adjust a radians value so it is positive in 0..360 */
     static adjustDegrees0To360(degrees) {
         if (degrees >= 0) {
@@ -183,8 +203,11 @@ class Angle {
         // negative angle ...
         return -Angle.adjustRadiansMinusPiPlusPi(-radians);
     }
+    /** return a (newly allocated) Angle object with value 0 radians */
     static zero() { return new Angle(0); }
+    /** Test if the angle is exactly zero. */
     get isExactZero() { return this.radians === 0; }
+    /** Test if the angle is almost zero (within tolerance `Geometry.smallAngleRadians`) */
     get isAlmostZero() { return Math.abs(this.radians) < Geometry_1.Geometry.smallAngleRadians; }
     /** Create an angle object with degrees adjusted into 0..360. */
     static createDegreesAdjustPositive(degrees) { return Angle.createDegrees(Angle.adjustDegrees0To360(degrees)); }
@@ -296,15 +319,16 @@ class Angle {
      * @param dotUV dot product of vectorU with vectorV
      */
     static dotProductsToHalfAngleTrigValues(dotUU, dotVV, dotUV, favorZero = true) {
-        const rcos = dotUU - dotVV;
-        const rsin = 2.0 * dotUV;
-        if (favorZero && Math.abs(rsin) < Geometry_1.Geometry.smallAngleRadians * (Math.abs(dotUU) + Math.abs(dotVV)))
+        const rCos = dotUU - dotVV;
+        const rSin = 2.0 * dotUV;
+        if (favorZero && Math.abs(rSin) < Geometry_1.Geometry.smallAngleRadians * (Math.abs(dotUU) + Math.abs(dotVV)))
             return { c: 1.0, s: 0.0, radians: 0.0 };
-        return Angle.trigValuesToHalfAngleTrigValues(rcos, rsin);
+        return Angle.trigValuesToHalfAngleTrigValues(rCos, rSin);
     }
     /**
+     * * Returns the angle between two vectors, with the vectors given as xyz components
      * * The returned angle is between 0 and PI
-     * @return the angle between two vectors, with the vectors given as xyz components
+     *
      * @param ux x component of vector u
      * @param uy y component of vector u
      * @param uz z component of vector u
@@ -318,13 +342,33 @@ class Angle {
         //    const vv = vx * vx + vy * vy + vz * vz;
         return Math.atan2(Geometry_1.Geometry.crossProductMagnitude(ux, uy, uz, vx, vy, vz), uDotV);
     }
+    /**
+     * Add a multiple of a full circle angle (360 degrees, 2PI) in place.
+     * @param multiple multiplier factor
+     */
+    addMultipleOf2PiInPlace(multiple) {
+        if (this._degrees !== undefined) {
+            this._degrees += multiple * 360.0;
+            this._radians = Angle.degreesToRadians(this._degrees);
+        }
+        else {
+            this._radians += multiple * Angle.pi2Radians;
+        }
+    }
 }
-Angle.piOver4Radians = 7.85398163397448280000e-001;
-Angle.piOver2Radians = 1.57079632679489660000e+000;
-Angle.piRadians = 3.14159265358979310000e+000;
-Angle.pi2Radians = 6.28318530717958620000e+000;
-Angle.degreesPerRadian = (45.0 / Angle.piOver4Radians);
-Angle.radiansPerDegree = (Angle.piOver4Radians / 45.0);
-Angle.piOver12Radians = 0.26179938779914943653855361527329;
 exports.Angle = Angle;
+/** maximal accuracy value of pi/4 ( 45 degrees), in radians */
+Angle.piOver4Radians = 7.85398163397448280000e-001;
+/** maximal accuracy value of pi/2 ( 90 degrees), in radians */
+Angle.piOver2Radians = 1.57079632679489660000e+000;
+/** maximal accuracy value of pi ( 180 degrees), in radians */
+Angle.piRadians = 3.14159265358979310000e+000;
+/** maximal accuracy value of 2*pi (360 degrees), in radians */
+Angle.pi2Radians = 6.28318530717958620000e+000;
+/** scale factor for converting degrees to radians */
+Angle.degreesPerRadian = (45.0 / Angle.piOver4Radians);
+/** scale factor for converting radians to degrees */
+Angle.radiansPerDegree = (Angle.piOver4Radians / 45.0);
+/** maximal accuracy value of pi/12 ( 15 degrees), in radians */
+Angle.piOver12Radians = 0.26179938779914943653855361527329;
 //# sourceMappingURL=Angle.js.map

@@ -1,6 +1,6 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -9,24 +9,33 @@ const Point3dVector3d_1 = require("./Point3dVector3d");
 const Transform_1 = require("./Transform");
 const Matrix3d_1 = require("./Matrix3d");
 const Geometry_1 = require("../Geometry");
+const CurveLocationDetail_1 = require("../curve/CurveLocationDetail");
+const Polynomials_1 = require("../numerics/Polynomials");
+const Point2dVector2d_1 = require("./Point2dVector2d");
+const Range_1 = require("./Range");
 /** A Ray3d contains
  * * an origin point.
  * * a direction vector.  The vector is NOT required to be normalized.
  *  * an optional weight (number).
- *
+ * @public
  */
 class Ray3d {
     // constructor captures references !!!
     constructor(origin, direction) {
         this.origin = origin;
         this.direction = direction;
+        this.a = undefined;
     }
     static _create(x, y, z, u, v, w) {
         return new Ray3d(Point3dVector3d_1.Point3d.create(x, y, z), Point3dVector3d_1.Vector3d.create(u, v, w));
     }
+    /** Create a ray on the x axis. */
     static createXAxis() { return Ray3d._create(0, 0, 0, 1, 0, 0); }
+    /** Create a ray on the y axis. */
     static createYAxis() { return Ray3d._create(0, 0, 0, 0, 1, 0); }
+    /** Create a ray on the z axis. */
     static createZAxis() { return Ray3d._create(0, 0, 0, 0, 0, 1); }
+    /** Create a ray with all zeros. */
     static createZero(result) {
         if (result) {
             result.origin.setZero();
@@ -35,9 +44,11 @@ class Ray3d {
         }
         return new Ray3d(Point3dVector3d_1.Point3d.createZero(), Point3dVector3d_1.Vector3d.createZero());
     }
+    /** Test for nearly equal rays. */
     isAlmostEqual(other) {
         return this.origin.isAlmostEqual(other.origin) && this.direction.isAlmostEqual(other.direction);
     }
+    /** Create a ray from origin and direction. */
     static create(origin, direction, result) {
         if (result) {
             result.set(origin, direction);
@@ -100,9 +111,9 @@ class Ray3d {
         }
         return new Ray3d(origin, Point3dVector3d_1.Vector3d.createStartEnd(origin, target));
     }
-    /** @returns Return a reference to the ray's origin. */
+    /** Return a reference to the ray's origin. */
     getOriginRef() { return this.origin; }
-    /** @returns Return a reference to the ray's direction vector. */
+    /** Return a reference to the ray's direction vector. */
     getDirectionRef() { return this.direction; }
     /** copy coordinates from origin and direction. */
     set(origin, direction) {
@@ -112,7 +123,7 @@ class Ray3d {
     /** Clone the ray. */
     clone(result) {
         if (result) {
-            result.set(this.origin, this.direction);
+            result.set(this.origin.clone(), this.direction.clone());
             return result;
         }
         return new Ray3d(this.origin.clone(), this.direction.clone());
@@ -133,17 +144,17 @@ class Ray3d {
      * @returns Return a point at fractional position along the ray.
      */
     fractionToPoint(fraction) { return this.origin.plusScaled(this.direction, fraction); }
-    /** @returns Return the dot product of the ray's direction vector with a vector from the ray origin to the space point. */
+    /** Return the dot product of the ray's direction vector with a vector from the ray origin to the space point. */
     dotProductToPoint(spacePoint) { return this.direction.dotProductStartEnd(this.origin, spacePoint); }
     /**
-     * @returns Return the fractional coordinate (along the direction vector) of the spacePoint projected to the ray.
+     * Return the fractional coordinate (along the direction vector) of the spacePoint projected to the ray.
      */
     pointToFraction(spacePoint) {
         return Geometry_1.Geometry.safeDivideFraction(this.direction.dotProductStartEnd(this.origin, spacePoint), this.direction.magnitudeSquared(), 0);
     }
     /**
      *
-     * @returns Return the spacePoint projected onto the ray.
+     * Return the spacePoint projected onto the ray.
      */
     projectPointToRay(spacePoint) {
         return this.origin.plusScaled(this.direction, this.pointToFraction(spacePoint));
@@ -152,7 +163,7 @@ class Ray3d {
      * at ray origin with z in ray direction.  If the direction vector is zero, axes default to identity (from createHeadsUpTriad)
      */
     toRigidZFrame() {
-        const axes = Matrix3d_1.Matrix3d.createRigidHeadsUp(this.direction, 2 /* ZXY */);
+        const axes = Matrix3d_1.Matrix3d.createRigidHeadsUp(this.direction, Geometry_1.AxisOrder.ZXY);
         return Transform_1.Transform.createOriginAndMatrix(this.origin, axes);
     }
     /**
@@ -180,6 +191,15 @@ class Ray3d {
         this.a = 0.0;
         return false;
     }
+    /**
+     * If parameter `a` is clearly nonzero and the direction vector can be normalized,
+     * * save the parameter `a` as the optional `a` member of the ray.
+     * * normalize the ray's direction vector
+     * If parameter `a` is nearly zero,
+     * * Set the `a` member to zero
+     * * Set the ray's direction vector to zero.
+     * @param a area to be saved.
+     */
     // input a ray and "a" understood as an area.
     // if a is clearly nonzero metric squared and the vector can be normalized, install those and return true.
     // otherwise set ray.z to zero and zero the vector of the ray and return false.
@@ -197,12 +217,13 @@ class Ray3d {
      * @return {*} [origin,normal]
      */
     toJSON() { return { origin: this.origin.toJSON(), direction: this.direction.toJSON() }; }
+    /** Create a new ray from json object.  See `setFromJSON` for json structure; */
     static fromJSON(json) {
         const result = Ray3d.createXAxis();
         result.setFromJSON(json);
         return result;
     }
-    /** return distance to point in space */
+    /** return distance from the ray to point in space */
     distance(spacePoint) {
         const uu = this.direction.magnitudeSquared();
         const uv = this.dotProductToPoint(spacePoint);
@@ -229,6 +250,64 @@ class Ray3d {
             this.origin.plusScaled(this.direction, division, result);
         }
         return division;
+    }
+    /**
+     * * Find intersection of the ray with a Range3d.
+     * * return the range of fractions (on the ray) which are "inside" the range.
+     * * Note that a range is always returned;  if there is no intersection it is indicated by the test `result.sNull`
+     */
+    intersectionWithRange3d(range, result) {
+        if (range.isNull)
+            return Range_1.Range1d.createNull(result);
+        const interval = Range_1.Range1d.createXX(-Geometry_1.Geometry.largeCoordinateResult, Geometry_1.Geometry.largeCoordinateResult, result);
+        if (interval.clipLinearMapToInterval(this.origin.x, this.direction.x, range.low.x, range.high.x)
+            && interval.clipLinearMapToInterval(this.origin.y, this.direction.y, range.low.y, range.high.y)
+            && interval.clipLinearMapToInterval(this.origin.z, this.direction.z, range.low.z, range.high.z))
+            return interval;
+        return interval;
+    }
+    /** Construct a vector from `ray.origin` to target point.
+     * * return the part of the vector that is perpendicular to `ray.direction`.
+     *  * i.e. return the shortest vector from the ray to the point.
+     */
+    perpendicularPartOfVectorToTarget(targetPoint, result) {
+        const vectorV = Point3dVector3d_1.Vector3d.createStartEnd(this.origin, targetPoint);
+        const uu = this.direction.magnitudeSquared();
+        const uv = this.direction.dotProductStartEnd(this.origin, targetPoint);
+        const fraction = Geometry_1.Geometry.safeDivideFraction(uv, uu, 0.0);
+        return vectorV.plusScaled(this.direction, -fraction, result);
+    }
+    /** Determine if two rays intersect, are fully overlapped, parallel but no coincident, or skew
+     * * Return a CurveLocationDetailPair which
+     * * contains fraction and point on each ray.
+     * * has (in the CurveLocationDetailPair structure, as member approachType) annotation indicating one of these relationships
+     *   * CurveCurveApproachType.Intersection -- the rays have a simple intersection, at fractions indicated in detailA and detailB
+     *   * CurveCurveApproachType.PerpendicularChord -- there is pair of where the rays have closest approach.  The rays are skew in space.
+     *   * CurveCurveApproachType.CoincidentGeometry -- the rays are the same unbounded line in space. The fractions and points are a representative single common point.
+     *   * CurveCurveApproachType.Parallel -- the rays are parallel (and not coincident).   The two points are at the minimum distance
+     */
+    static closestApproachRay3dRay3d(rayA, rayB) {
+        const intersectionFractions = Point2dVector2d_1.Vector2d.create();
+        let fractionA, fractionB;
+        let pointA, pointB;
+        let pairType;
+        if (Polynomials_1.SmallSystem.ray3dXYZUVWClosestApproachUnbounded(rayA.origin.x, rayA.origin.y, rayA.origin.z, rayA.direction.x, rayA.direction.y, rayA.direction.z, rayB.origin.x, rayB.origin.y, rayB.origin.z, rayB.direction.x, rayB.direction.y, rayB.direction.z, intersectionFractions)) {
+            fractionA = intersectionFractions.x;
+            fractionB = intersectionFractions.y;
+            pointA = rayA.fractionToPoint(fractionA);
+            pointB = rayB.fractionToPoint(fractionB);
+            pairType = pointA.isAlmostEqualMetric(pointB) ? CurveLocationDetail_1.CurveCurveApproachType.Intersection : CurveLocationDetail_1.CurveCurveApproachType.PerpendicularChord;
+        }
+        else {
+            fractionB = 0.0;
+            fractionA = rayA.pointToFraction(rayB.origin);
+            pointA = rayA.fractionToPoint(fractionA);
+            pointB = rayB.fractionToPoint(fractionB);
+            pairType = pointA.isAlmostEqualMetric(pointB) ? CurveLocationDetail_1.CurveCurveApproachType.CoincidentGeometry : CurveLocationDetail_1.CurveCurveApproachType.ParallelGeometry;
+        }
+        const pair = CurveLocationDetail_1.CurveLocationDetailPair.createCapture(CurveLocationDetail_1.CurveLocationDetail.createRayFractionPoint(rayA, fractionA, rayA.fractionToPoint(fractionA)), CurveLocationDetail_1.CurveLocationDetail.createRayFractionPoint(rayB, fractionB, rayB.fractionToPoint(fractionB)));
+        pair.approachType = pairType;
+        return pair;
     }
 }
 exports.Ray3d = Ray3d;

@@ -1,75 +1,86 @@
 import { LineSegment3d } from "../curve/LineSegment3d";
-import { HalfEdgeGraph } from "./Graph";
-export declare class Merger {
-    /** Compare function for sorting X, Y, and theta componenets stored in a Point3d, useful for forming a graph from an array of segments */
-    private static XYThetaCompare;
-    /** Compare function for sorting the "event queue" when searching for crossings of line segments in an array of segments (x increasing) */
-    private static eventCompareCrossings;
-    /** Compare function for sorting the "event queue" when sweeping a polygon forming trapezoid sections (y increasing) */
-    private static eventCompareTrapezoidation;
-    /** Returns the greatest y-value of a segment */
-    private static getHighValueOfSegment;
-    /** Returns the lowest y-value of a segment */
-    private static getLowValueOfSegment;
-    /** Returns the lowest x-value of a segment */
-    private static getLeftValueOfSegment;
-    /** Returns the greatest x-value of a segment */
-    private static getRightValueOfSegment;
-    /** Returns a reference to the point of a segment that lies farther left along the x-axis (if same x, use smaller y value) */
-    private static getLeftmostPointOfSegment;
-    /** Returns a reference to the point of a segment that lies farther right along the x-axis (if same x, use greater y value) */
-    private static getRightmostPointOfSegment;
-    /** Returns an array of a Point3d holding x, y, and theta values for a point, and a corresponding node. Useful for organizing/sorting nodes */
-    private static segmentsToXYThetaNode;
-    /** Given two segments, uses the equations of the two representative lines and the determinant to give a point of intersection;
-     *  Note that when point is found, it may fall outside bounds of segments. Therefore, extra check for in bounds is necessary.
+import { HalfEdge, HalfEdgeGraph, HalfEdgeMask } from "./Graph";
+import { Range3d } from "../geometry3d/Range";
+import { MultiLineStringDataVariant } from "./Triangulation";
+export declare class GraphSplitData {
+    numUpEdge: number;
+    numIntersectionTest: number;
+    numSplit: number;
+    numPopOut: number;
+    numA0B0: number;
+    numA0B1: number;
+    constructor();
+}
+/**
+ * * Assorted methods used in algorithms on HalfEdgeGraph.
+ * @internal
+ */
+export declare class HalfEdgeGraphOps {
+    /** Compare function for sorting with primary y compare, secondary  x compare. */
+    static compareNodesYXUp(a: HalfEdge, b: HalfEdge): 1 | 0 | -1;
+    /** Return true if nodeB (a) is lower than both its neighbors and (b) inflects as a downward peak (rather than an upward trough) */
+    static isDownPeak(nodeB: HalfEdge): boolean;
+    /** return the cross product of vectors from base to targetA and base to targetB
+     * @param base base vertex of both vectors.
+     * @param targetA target vertex of first vector
+     * @param targetB target vertex of second vector
      */
-    private static getIntersectionOfSegments;
+    static crossProductToTargets(base: HalfEdge, targetA: HalfEdge, targetB: HalfEdge): number;
+    static graphRange(graph: HalfEdgeGraph): Range3d;
+    /** Returns an array of a all nodes (both ends) of edges created from segments. */
+    static segmentArrayToGraphEdges(segments: LineSegment3d[], returnGraph: HalfEdgeGraph, mask: HalfEdgeMask): HalfEdge[];
     /**
-     * sorts a number array and filters out 0's, 1's, and duplicates...
-     * useful when trying to simplify the found intersections of each segment in an array
-     */
-    private static sortAndFilterCrossings;
-    /**
-     * Returns an array for each index of the segments array given, which holds the fractional moments of intersection along that segment
+     * * For each face with positive area . . . add edges as needed so that each face has one definitely lower node and one definite upper node.
+     * * Hence tracing edges from the low node, there is a sequence of upward edges, reaching the upper,  then a sequence of downward edges reaching the low node.
+     * * This is an essential step for subsequent triangulation.
      *
-     * *  Creates a queue array of left-most segment points, paired with a link back to its original index into the segment array given
-     * *  For each 'event' in the queue, check its corresponding segment for intersections with segments whose left-most points
-     *      appear before this event's right-most point
+     * @param graph
      */
-    private static findCrossings;
+    static formMonotoneFaces(graph: HalfEdgeGraph): void;
+    /**
+     * * Visit all nodes in `graph`.
+     * * invoke `pinch(node, vertexPredecessor)`
+     * * this leaves the graph as isolated edges.
+     * @param graph graph to modify
+     */
+    static isolateAllEdges(graph: HalfEdgeGraph): void;
+}
+/**
+ * @internal
+ */
+export declare class HalfEdgeGraphMerge {
+    /** Simplest merge algorithm:
+     * * collect array of (x,y,theta) at all nodes
+     * * lexical sort of the array.
+     * * twist all vertices together.
+     * * This effectively creates valid face loops for a planar subdivision if there are no edge crossings.
+     * * If there are edge crossings, the graph can be a (highly complicated) Klein bottle topology.
+     * * Mask.NULL_FACE is cleared throughout and applied within null faces.
+     */
+    static clusterAndMergeXYTheta(graph: HalfEdgeGraph): void;
+    private static buildVerticalSweepPriorityQueue;
+    private static computeIntersectionFractionsOnEdges;
+    /**
+     * Split edges at intersections.
+     * * This is a large operation.
+     * @param graph
+     */
+    static splitIntersectingEdges(graph: HalfEdgeGraph): GraphSplitData;
     /**
      * Returns a graph structure formed from the given LineSegment array
      *
-     * *  Find all intersections of each segment, and split them if necessary
+     * *  Find all intersections among segments, and split them if necessary
      * *  Record endpoints of every segment in the form X, Y, Theta; This information is stored as a new node and sorted to match up
      *      vertices.
      * *  For vertices that match up, pinch the nodes to create vertex loops, which in closed objects, will also eventually form face
      *      loops
      */
     static formGraphFromSegments(lineSegments: LineSegment3d[]): HalfEdgeGraph;
-    /** For every event, pair it with other events of the closest segments that this event's horizontal would hit on the left and right */
-    private static setQueuePairings;
     /**
-     * Form a new connection between two nodes, patching up pointers in the creation of new face loops
-     * * !! mark both new half edges visited!!! (This is strange)
+     * * Input is random linestrings, not necessarily loops
+     * * Graph gets full splitEdges, regularize, and triangulate.
+     * @returns triangulated graph, or undefined if bad data.
      */
-    private static join;
-    private static getNodeToJoin;
-    /** Check a variety of cases by which adding a diagonal is allowed. If one is found, link nodes and return. */
-    private static checkAndAddDiagonal;
-    /** Sweep over an event queue, adding new diagonal segments where possible in the formation of monotone faces */
-    private static sweepDownUp;
-    static formMonotoneFaces(graph: HalfEdgeGraph): void;
-}
-export declare class GraphMerge {
-    /** Simplest merge algorithm:
-     * * collect array of (x,y,theta) at all nodes
-     * * lexical sort of the array.
-     * * twist all vertices together.
-     * * This effectively creates valid face loops for a planar subdivision if there are no edge crossings.
-     * * If there are edge crossings, the graph can be a (highly complicated) Klein bottle topoogy.
-     */
-    static clusterAndMergeXYTheta(graph: HalfEdgeGraph): void;
+    static formGraphFromChains(chains: MultiLineStringDataVariant, regularize?: boolean, mask?: HalfEdgeMask): HalfEdgeGraph | undefined;
 }
 //# sourceMappingURL=Merging.d.ts.map

@@ -1,24 +1,33 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module CartesianGeometry */
 const ClipPrimitive_1 = require("./ClipPrimitive");
+const ClipUtils_1 = require("./ClipUtils");
 const Range_1 = require("../geometry3d/Range");
 const Transform_1 = require("../geometry3d/Transform");
 const Geometry_1 = require("../Geometry");
 const LineSegment3d_1 = require("../curve/LineSegment3d");
-/** Class holding an array structure of shapes defined by clip plane sets */
+/** Class holding an array structure of shapes defined by `ClipPrimitive`
+ * * The `ClipVector` defines an intersection of the member `ClipPrimitive` regions.
+ * * In the most common usage, one of the `ClipPrimitive` will be an outer region, and all others are holes with marker flag indicating that they outside of each hole is live.
+ * @public
+ */
 class ClipVector {
     constructor(clips) {
+        /** range acting as first filter.
+         * * This is understood as overall range limit, not as precise planes.
+         * * applying any rotation to the whole ClipVector generally expands this range, rather than exactly transforming its planes.
+         */
         this.boundingRange = Range_1.Range3d.createNull();
         this._clips = clips ? clips : [];
     }
     /** Returns a reference to the array of ClipShapes. */
     get clips() { return this._clips; }
-    /** Returns true if this ClipVector contains a ClipShape. */
+    /** Returns true if this ClipVector contains a ClipPrimitive. */
     get isValid() { return this._clips.length > 0; }
     /** Create a ClipVector with an empty set of ClipShapes. */
     static createEmpty(result) {
@@ -28,29 +37,29 @@ class ClipVector {
         }
         return new ClipVector();
     }
-    /** Create a ClipVector from an array of ClipShapes */
-    static createClipShapeRefs(clips, result) {
+    /** Create a ClipVector from an array of ClipPrimitives (or derived classes) (capture the pointers) */
+    static createCapture(clips, result) {
         if (result) {
             result._clips = clips;
             return result;
         }
         return new ClipVector(clips);
     }
-    /** Create a ClipVector from an array of ClipShapes, each one becoming a deep copy. */
-    static createClipShapeClones(clips, result) {
+    /** Create a ClipVector from (clones of) an array of ClipPrimitives */
+    static create(clips, result) {
         const clipClones = [];
         for (const clip of clips)
             clipClones.push(clip.clone());
-        return ClipVector.createClipShapeRefs(clipClones, result);
+        return ClipVector.createCapture(clipClones, result);
     }
     /** Create a deep copy of another ClipVector */
-    static createFrom(donor, result) {
+    clone(result) {
         const retVal = result ? result : new ClipVector();
         retVal._clips.length = 0;
-        for (const clip of donor._clips) {
+        for (const clip of this._clips) {
             retVal._clips.push(clip.clone());
         }
-        retVal.boundingRange.setFrom(donor.boundingRange);
+        retVal.boundingRange.setFrom(this.boundingRange);
         return retVal;
     }
     /** Parse this ClipVector into a JSON object. */
@@ -68,7 +77,7 @@ class ClipVector {
         result.clear();
         try {
             for (const clip of json) {
-                const clipPrim = ClipPrimitive_1.ClipShape.fromJSON(clip);
+                const clipPrim = ClipPrimitive_1.ClipPrimitive.fromJSON(clip);
                 if (clipPrim)
                     result._clips.push(clipPrim);
             }
@@ -78,19 +87,15 @@ class ClipVector {
         }
         return result;
     }
-    /** Returns a deep copy of this ClipVector (optionally stores it in the result param rather than create using new()) */
-    clone(result) {
-        return ClipVector.createFrom(this, result);
-    }
     /** Empties out the array of ClipShapes. */
     clear() {
         this._clips.length = 0;
     }
-    /** Append a deep copy of the given ClipShape to this ClipVector. */
+    /** Append a deep copy of the given ClipPrimitive to this ClipVector. */
     appendClone(clip) {
         this._clips.push(clip.clone());
     }
-    /** Append a reference of the given ClipShape to this ClipVector. */
+    /** Append a reference of the given ClipPrimitive to this ClipVector. */
     appendReference(clip) {
         this._clips.push(clip);
     }
@@ -102,32 +107,20 @@ class ClipVector {
         this._clips.push(clip);
         return true;
     }
-    /** Returns the three-dimensional range that this ClipVector spans, which may be null. */
-    getRange(transform, result) {
-        const range = Range_1.Range3d.createNull(result);
-        for (const shape of this._clips) {
-            const thisRange = shape.getRange(false, transform);
-            if (thisRange !== undefined) {
-                if (range.isNull)
-                    range.setFrom(thisRange);
-                else
-                    range.intersect(thisRange, range);
-            }
-        }
-        if (!this.boundingRange.isNull)
-            range.intersect(this.boundingRange, range);
-        return range;
-    }
     /** Returns true if the given point lies inside all of this ClipVector's ClipShapes (by rule of intersection). */
     pointInside(point, onTolerance = Geometry_1.Geometry.smallMetricDistanceSquared) {
         if (!this.boundingRange.isNull && !this.boundingRange.containsPoint(point))
             return false;
-        for (const clip of this._clips)
+        for (const clip of this._clips) {
             if (!clip.pointInside(point, onTolerance))
                 return false;
+        }
         return true;
     }
-    /** Transforms this ClipVector to a new coordinate-system. Returns true if successful. */
+    /** Transforms this ClipVector to a new coordinate-system.
+     * Note that if the transform has rotate and scale the boundingRange member expands.
+     * Returns true if successful.
+     */
     transformInPlace(transform) {
         for (const clip of this._clips)
             if (clip.transformInPlace(transform) === false)
@@ -138,56 +131,63 @@ class ClipVector {
     }
     /**
      * A simple way of packaging this ClipVector's ClipShape points into a multidimensional array, while also
-     * taking into account each ClipShape's individual transforms.
+     * taking into account each ClipPrimitive's individual transforms.
+     *
+     * ClipPrimitives OTHER THAN ClipShape are ignored.
      *
      * Information out:
      *  - All of the loop points are stored in the multidimensional Point3d array given (will return unchanged upon failure)
-     *  - If given a transform, will be set from the transformFromClip of the first ClipShape
-     *  - The ClipMask of the final ClipShape is stored in the returned array at index 0
+     *  - If given a transform, will be set from the transformFromClip of the first ClipPrimitive
+     *  - The ClipMask of the final ClipPrimitive is stored in the returned array at index 0
      *  - The last valid zLow found is stored in the returned array at index 1
      *  - The last valid zHigh found is stored in the returned array at index 2
      */
     extractBoundaryLoops(loopPoints, transform) {
-        let clipM = 0 /* None */;
+        let clipM = ClipPrimitive_1.ClipMaskXYZRangePlanes.None;
         let zBack = -Number.MAX_VALUE;
         let zFront = Number.MAX_VALUE;
         const retVal = [];
         let nLoops = 0;
         if (this._clips.length === 0)
             return retVal;
+        let firstClipShape;
         const deltaTrans = Transform_1.Transform.createIdentity();
         for (const clip of this._clips) {
-            if (clip !== this._clips[0]) { // Is not the first iteration
-                let fwdTrans = Transform_1.Transform.createIdentity();
-                let invTrans = Transform_1.Transform.createIdentity();
-                if (this._clips[0].transformValid && clip.transformValid) {
-                    fwdTrans = clip.transformFromClip.clone();
-                    invTrans = this._clips[0].transformToClip.clone();
+            if (clip instanceof ClipPrimitive_1.ClipShape) {
+                if (firstClipShape !== undefined && clip !== firstClipShape) { // Is not the first iteration
+                    let fwdTrans = Transform_1.Transform.createIdentity();
+                    let invTrans = Transform_1.Transform.createIdentity();
+                    if (firstClipShape.transformValid && clip.transformValid) {
+                        fwdTrans = clip.transformFromClip.clone();
+                        invTrans = firstClipShape.transformToClip.clone();
+                    }
+                    deltaTrans.setFrom(invTrans.multiplyTransformTransform(fwdTrans));
                 }
-                deltaTrans.setFrom(invTrans.multiplyTransformTransform(fwdTrans));
-            }
-            loopPoints[nLoops] = [];
-            if (clip.polygon !== undefined) {
-                clipM = 15 /* XAndY */;
-                if (clip.zHighValid) {
-                    clipM = clipM | 32 /* ZHigh */;
-                    zFront = clip.zHigh;
+                if (!firstClipShape)
+                    firstClipShape = clip;
+                loopPoints[nLoops] = [];
+                if (clip.polygon !== undefined) {
+                    clipM = ClipPrimitive_1.ClipMaskXYZRangePlanes.XAndY;
+                    if (clip.zHighValid) {
+                        clipM = clipM | ClipPrimitive_1.ClipMaskXYZRangePlanes.ZHigh;
+                        zFront = clip.zHigh;
+                    }
+                    if (clip.zLowValid) {
+                        clipM = clipM | ClipPrimitive_1.ClipMaskXYZRangePlanes.ZLow;
+                        zBack = clip.zLow;
+                    }
+                    for (const point of clip.polygon)
+                        loopPoints[nLoops].push(point.clone());
+                    deltaTrans.multiplyPoint3dArray(loopPoints[nLoops], loopPoints[nLoops]);
+                    nLoops++;
                 }
-                if (clip.zLowValid) {
-                    clipM = clipM | 16 /* ZLow */;
-                    zBack = clip.zLow;
-                }
-                for (const point of clip.polygon)
-                    loopPoints[nLoops].push(point.clone());
-                deltaTrans.multiplyPoint3dArray(loopPoints[nLoops], loopPoints[nLoops]);
-                nLoops++;
             }
         }
         retVal.push(clipM);
         retVal.push(zBack);
         retVal.push(zFront);
-        if (transform)
-            transform.setFrom(this._clips[0].transformFromClip);
+        if (transform && firstClipShape)
+            transform.setFrom(firstClipShape.transformFromClip);
         return retVal;
     }
     /** Sets this ClipVector and all of its members to the visibility specified. */
@@ -200,28 +200,43 @@ class ClipVector {
         for (const clip of this._clips)
             clip.fetchClipPlanesRef();
     }
-    /** Returns true if able to successfully multiply all member ClipShape planes by the matrix given. */
-    multiplyPlanesTimesMatrix(matrix) {
-        let numErrors = 0;
+    /**
+     * Multiply all ClipPlanes DPoint4d by matrix.
+     * @param matrix matrix to apply.
+     * @param invert if true, use in verse of the matrix.
+     * @param transpose if true, use the transpose of the matrix (or inverse, per invert parameter)
+     * * Note that if matrixA is applied to all of space, the matrix to send to this method to get a corresponding effect on the plane is the inverse transpose of matrixA
+     * * Callers that will apply the same matrix to many planes should pre-invert the matrix for efficiency.
+     * * Both params default to true to get the full effect of transforming space.
+     * @param matrix matrix to apply
+     * @returns false if matrix inversion fails.
+     */
+    multiplyPlanesByMatrix4d(matrix, invert = true, transpose = true) {
+        if (invert) { // form inverse once here, reuse for all planes
+            const inverse = matrix.createInverse();
+            if (!inverse)
+                return false;
+            return this.multiplyPlanesByMatrix4d(inverse, false, transpose);
+        }
+        // no inverse necessary -- lower level cannot fail.
         for (const clip of this._clips)
-            if (clip.multiplyPlanesTimesMatrix(matrix) === false)
-                numErrors++;
-        return numErrors === 0 ? true : false;
+            clip.multiplyPlanesByMatrix4d(matrix, false, transpose);
+        return true;
     }
     /**
      * Determines whether the given points fall inside or outside this set of ClipShapes. If any set is defined by masking planes,
      * checks the mask planes only, provided that ignoreMasks is false. Otherwise, checks the _clipplanes member.
      */
     classifyPointContainment(points, ignoreMasks = false) {
-        let currentContainment = 2 /* Ambiguous */;
+        let currentContainment = ClipUtils_1.ClipPlaneContainment.Ambiguous;
         for (const primitive of this._clips) {
             const thisContainment = primitive.classifyPointContainment(points, ignoreMasks);
-            if (2 /* Ambiguous */ === thisContainment)
-                return 2 /* Ambiguous */;
-            if (2 /* Ambiguous */ === currentContainment)
+            if (ClipUtils_1.ClipPlaneContainment.Ambiguous === thisContainment)
+                return ClipUtils_1.ClipPlaneContainment.Ambiguous;
+            if (ClipUtils_1.ClipPlaneContainment.Ambiguous === currentContainment)
                 currentContainment = thisContainment;
             else if (currentContainment !== thisContainment)
-                return 2 /* Ambiguous */;
+                return ClipUtils_1.ClipPlaneContainment.Ambiguous;
         }
         return currentContainment;
     }
@@ -240,10 +255,12 @@ class ClipVector {
     isAnyLineStringPointInside(points) {
         for (const clip of this._clips) {
             const clipPlaneSet = clip.fetchClipPlanesRef();
-            for (let i = 0; i + 1 < points.length; i++) {
-                const segment = LineSegment3d_1.LineSegment3d.create(points[i], points[i + 1]);
-                if (clipPlaneSet.isAnyPointInOrOnFromSegment(segment))
-                    return true;
+            if (clipPlaneSet !== undefined) {
+                for (let i = 0; i + 1 < points.length; i++) {
+                    const segment = LineSegment3d_1.LineSegment3d.create(points[i], points[i + 1]);
+                    if (clipPlaneSet.isAnyPointInOrOnFromSegment(segment))
+                        return true;
+                }
             }
         }
         return false;
@@ -267,13 +284,15 @@ class ClipVector {
             let index0 = 0;
             for (const clip of this._clips) {
                 const clipPlaneSet = clip.fetchClipPlanesRef();
-                clipPlaneSet.appendIntervalsFromSegment(segment, clipIntervals);
-                const index1 = clipIntervals.length;
-                fractionSum += this.sumSizes(clipIntervals, index0, index1);
-                index0 = index1;
-                // ASSUME primitives are non-overlapping...
-                if (fractionSum >= ClipVector._TARGET_FRACTION_SUM)
-                    break;
+                if (clipPlaneSet !== undefined) {
+                    clipPlaneSet.appendIntervalsFromSegment(segment, clipIntervals);
+                    const index1 = clipIntervals.length;
+                    fractionSum += this.sumSizes(clipIntervals, index0, index1);
+                    index0 = index1;
+                    // ASSUME primitives are non-overlapping...
+                    if (fractionSum >= ClipVector._TARGET_FRACTION_SUM)
+                        break;
+                }
             }
             if (fractionSum < ClipVector._TARGET_FRACTION_SUM)
                 return false;
@@ -281,6 +300,6 @@ class ClipVector {
         return true;
     }
 }
-ClipVector._TARGET_FRACTION_SUM = 0.99999999;
 exports.ClipVector = ClipVector;
+ClipVector._TARGET_FRACTION_SUM = 0.99999999;
 //# sourceMappingURL=ClipVector.js.map

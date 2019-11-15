@@ -6,8 +6,10 @@ import { BagOfCurves, CurveCollection } from "./CurveCollection";
 import { ParityRegion } from "./ParityRegion";
 import { Loop } from "./Loop";
 import { Path } from "./Path";
-/** base class for detailed traversal of curve artifacts.  This recurses to children in the quickest way (no records of path)
- * Use the RecursiveCurveProcessorWithStack to record the path along the visit.
+/** base class for detailed traversal of curve artifacts.
+ * * This recurses to children in the quickest way (no records of path)
+ * * Use the RecursiveCurveProcessorWithStack to record the path along the visit.
+ * @public
  */
 export declare abstract class RecursiveCurveProcessor {
     protected constructor();
@@ -19,19 +21,33 @@ export declare abstract class RecursiveCurveProcessor {
     announcePath(data: Path, _indexInParent?: number): void;
     /** announce a loop (recurse to children) */
     announceLoop(data: Loop, _indexInParent?: number): void;
-    /** annouce beginning or end of loops in a parity region */
+    /** announce beginning or end of loops in a parity region */
     announceParityRegion(data: ParityRegion, _indexInParent?: number): void;
-    /** annouce beginning or end of a parity region */
+    /** announce beginning or end of a parity region */
     announceUnionRegion(data: UnionRegion, _indexInParent?: number): void;
+    /** announce a bag of curves.
+     * * The default implementation visits each child and calls the appropriate dispatch to
+     * * `this.announceCurvePrimitive(child)`
+     * * `child.announceToCurveProcessor(this)`
+     */
     announceBagOfCurves(data: BagOfCurves, _indexInParent?: number): void;
 }
-/** base class for detailed traversal of curve artifacts, maintaining a stack that shows complete path to each artifact.
- * Use the QuickRecursiveCurveProcessor to visit without recording the path.
+/** base class for detailed traversal of curve artifacts
+ * * During recursion,  maintains a stack that shows complete path to each artifact.
+ * * Use the QuickRecursiveCurveProcessor to visit without recording the path.
+ * @public
  */
 export declare abstract class RecursiveCurveProcessorWithStack extends RecursiveCurveProcessor {
+    /** Stack of curve collections that are "up the tree" from the current point of the traversal. */
     protected _stack: CurveCollection[];
     protected constructor();
+    /** Push `data` onto the stack so its status is available during processing of children.
+     * * Called when `data` is coming into scope.
+     */
     enter(data: CurveCollection): void;
+    /** Pop the stack
+     * * called when the top of the stack goes out of scope
+     */
     leave(): CurveCollection | undefined;
     /** process error content */
     announceUnexpected(_data: AnyCurve, _indexInParent: number): void;
@@ -41,10 +57,18 @@ export declare abstract class RecursiveCurveProcessorWithStack extends Recursive
     announcePath(data: Path, indexInParent?: number): void;
     /** announce a loop (recurse to children) */
     announceLoop(data: Loop, indexInParent?: number): void;
-    /** annouce beginning or end of loops in a parity region */
+    /** announce beginning or end of loops in a parity region */
     announceParityRegion(data: ParityRegion, _indexInParent?: number): void;
-    /** annouce beginning or end of a parity region */
+    /** announce beginning or end of a parity region */
     announceUnionRegion(data: UnionRegion, indexInParent?: number): void;
+    /**
+     * Announce members of an unstructured collection.
+     * * push the collection reference on the stack
+     * * announce children
+     * * pop the stack
+     * @param data the collection
+     * @param _indexInParent index where the collection appears in its parent.
+     */
     announceBagOfCurves(data: BagOfCurves, _indexInParent?: number): void;
 }
 //# sourceMappingURL=CurveProcessor.d.ts.map

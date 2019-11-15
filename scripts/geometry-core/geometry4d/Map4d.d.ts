@@ -2,15 +2,17 @@ import { BeJSONFunctions } from "../Geometry";
 import { Point3d, Vector3d } from "../geometry3d/Point3dVector3d";
 import { Transform } from "../geometry3d/Transform";
 import { Matrix4d } from "./Matrix4d";
+/** @module Numerics */
 /** Map4 carries two Matrix4d which are inverses of each other.
+ * @public
  */
 export declare class Map4d implements BeJSONFunctions {
     private _matrix0;
     private _matrix1;
     private constructor();
-    /** @returns Return a reference to (not copy of) the "forward" Matrix4d */
+    /** Return a reference to (not copy of) the "forward" Matrix4d */
     readonly transform0: Matrix4d;
-    /** @returns Return a reference to (not copy of) the "reverse" Matrix4d */
+    /** Return a reference to (not copy of) the "reverse" Matrix4d */
     readonly transform1: Matrix4d;
     /** Create a Map4d, capturing the references to the two matrices. */
     static createRefs(matrix0: Matrix4d, matrix1: Matrix4d): Map4d;
@@ -30,7 +32,7 @@ export declare class Map4d implements BeJSONFunctions {
     static createBoxMap(lowA: Point3d, highA: Point3d, lowB: Point3d, highB: Point3d, result?: Map4d): Map4d | undefined;
     /** Copy contents from another Map4d */
     setFrom(other: Map4d): void;
-    /** @returns Return a clone of this Map4d */
+    /** Return a clone of this Map4d */
     clone(): Map4d;
     /** Reinitialize this Map4d as an identity. */
     setIdentity(): void;
@@ -38,8 +40,9 @@ export declare class Map4d implements BeJSONFunctions {
     setFromJSON(json: any): void;
     /** Create a map4d from a json object that the two Matrix4d values as properties named matrix0 and matrix1 */
     static fromJSON(json?: any): Map4d;
-    /** @returns a json object `{matrix0: value0, matrix1: value1}` */
+    /** Return a json object `{matrix0: value0, matrix1: value1}` */
     toJSON(): any;
+    /** Test if both matrices are almost equal to those */
     isAlmostEqual(other: Map4d): boolean;
     /** Create a map between a frustum and world coordinates.
      * @param origin lower left of frustum
@@ -49,7 +52,12 @@ export declare class Map4d implements BeJSONFunctions {
      * @param fraction front size divided by rear size.
      */
     static createVectorFrustum(origin: Point3d, uVector: Vector3d, vVector: Vector3d, wVector: Vector3d, fraction: number): Map4d | undefined;
+    /** multiply this*other. The output matrices are
+     * * output matrix0 = `this.matrix0 * other.matrix0`
+     * * output matrix1 = 'other.matrix1 * this.matrix1`
+     */
     multiplyMapMap(other: Map4d): Map4d;
+    /** Exchange the two matrices of the map. */
     reverseInPlace(): void;
     /** return a Map4d whose transform0 is
      * other.transform0 * this.transform0 * other.transform1

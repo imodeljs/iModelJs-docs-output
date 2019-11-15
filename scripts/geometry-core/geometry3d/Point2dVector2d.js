@@ -1,19 +1,27 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module CartesianGeometry */
+// cspell:word JSONXY
+// cspell:word CWXY
 const Geometry_1 = require("../Geometry");
 const Angle_1 = require("./Angle");
-/** Minimal object containing x,y and operations that are meaningful without change in both point and vector. */
+/** Minimal object containing x,y and operations that are meaningful without change in both point and vector.
+ *  * `XY` is not instantiable.
+ *  * The derived (instantiable) classes are
+ *    * `Point2d`
+ *    * `Vector2d`
+ * @public
+ */
 class XY {
+    constructor(x = 0, y = 0) { this.x = x; this.y = y; }
     /** Set both x and y. */
     set(x = 0, y = 0) { this.x = x; this.y = y; }
     /** Set both x and y to zero */
     setZero() { this.x = 0; this.y = 0; }
-    constructor(x = 0, y = 0) { this.x = x; this.y = y; }
     /** Set both x and y from other. */
     setFrom(other) {
         if (other) {
@@ -25,12 +33,17 @@ class XY {
             this.y = 0;
         }
     }
+    /** Freeze this instance (and its deep content) so it can be considered read-only */
+    freeze() { Object.freeze(this); }
     /** Returns true if this and other have equal x,y parts within Geometry.smallMetricDistance. */
     isAlmostEqual(other, tol) { return Geometry_1.Geometry.isSameCoordinate(this.x, other.x, tol) && Geometry_1.Geometry.isSameCoordinate(this.y, other.y, tol); }
-    /** return a json array or object with the [x,y] data.  */
+    /** Returns true if this and other have equal x,y parts within Geometry.smallMetricDistance. */
+    isAlmostEqualXY(x, y, tol) { return Geometry_1.Geometry.isSameCoordinate(this.x, x, tol) && Geometry_1.Geometry.isSameCoordinate(this.y, y, tol); }
+    /** return a json array  `[x,y]`   */
     toJSON() { return [this.x, this.y]; }
+    /** return a json object `{x: 1, y:2}`  */
     toJSONXY() { return { x: this.x, y: this.y }; }
-    /** Set x and y from a JSON source */
+    /** Set x and y from a JSON source such as `[1,2]` or `{x:1, y:2}` */
     setFromJSON(json) {
         if (Array.isArray(json)) {
             this.set(json[0] || 0, json[1] || 0);
@@ -58,7 +71,7 @@ class XY {
     maxDiff(other) {
         return Math.max(Math.abs(this.x - other.x), Math.abs(this.y - other.y));
     }
-    /** @returns true if the x,y components are both small by metric metric tolerance */
+    /** returns true if the x,y components are both small by metric metric tolerance */
     get isAlmostZero() {
         return Geometry_1.Geometry.isSmallMetricDistance(this.x) && Geometry_1.Geometry.isSmallMetricDistance(this.y);
     }
@@ -68,8 +81,9 @@ class XY {
     magnitude() { return Math.sqrt(this.x * this.x + this.y * this.y); }
     /** Return the squared magnitude of the vector.  */
     magnitudeSquared() { return this.x * this.x + this.y * this.y; }
-    /** @returns true if the x,y components are exactly equal. */
+    /** returns true if the x,y components are exactly equal. */
     isExactEqual(other) { return this.x === other.x && this.y === other.y; }
+    /** returns true if x,y match `other` within metric tolerance */
     isAlmostEqualMetric(other) { return this.maxDiff(other) <= Geometry_1.Geometry.smallMetricDistance; }
     /** Return a (full length) vector from this point to other */
     vectorTo(other, result) {
@@ -79,11 +93,19 @@ class XY {
     unitVectorTo(target, result) {
         return this.vectorTo(target, result).normalize(result);
     }
+    /** cross product of vectors from origin to targets */
+    static crossProductToPoints(origin, targetA, targetB) {
+        return Geometry_1.Geometry.crossProductXYXY(targetA.x - origin.x, targetA.y - origin.y, targetB.x - origin.x, targetB.y - origin.y);
+    }
 }
 exports.XY = XY;
+/** 2D point with `x`,`y` as properties
+ * @public
+ */
 class Point2d extends XY {
     /** Constructor for Point2d */
     constructor(x = 0, y = 0) { super(x, y); }
+    /** return a new Point2d with x,y coordinates from this. */
     clone() { return new Point2d(this.x, this.y); }
     /**
      * Return a point (newly created unless result provided) with given x,y coordinates
@@ -99,18 +121,29 @@ class Point2d extends XY {
         }
         return new Point2d(x, y);
     }
+    /** Convert JSON `[1,2]` or `{x:1, y:2}` to a Point2d instance */
     static fromJSON(json) { const val = new Point2d(); val.setFromJSON(json); return val; }
+    /** Create (or optionally reuse) a Point2d from another object with fields x and y */
     static createFrom(xy, result) {
         if (xy)
             return Point2d.create(xy.x, xy.y, result);
         return Point2d.create(0, 0, result);
     }
+    /** Create a Point2d with both coordinates zero. */
     static createZero(result) { return Point2d.create(0, 0, result); }
+    /** Starting at this point, move along vector by tangentFraction of the vector length, and to the left by leftFraction of
+     * the perpendicular vector length.
+     * @param tangentFraction distance to move along the vector, as a fraction of vector
+     * @param leftFraction distance to move perpendicular to the vector, as a fraction of the rotated vector
+     */
     addForwardLeft(tangentFraction, leftFraction, vector) {
         const dx = vector.x;
         const dy = vector.y;
         return Point2d.create(this.x + tangentFraction * dx - leftFraction * dy, this.y + tangentFraction * dy + leftFraction * dx);
     }
+    /** Interpolate at tangentFraction between this instance and point.   Move by leftFraction along the xy perpendicular
+     * of the vector between the points.
+     */
     forwardLeftInterpolate(tangentFraction, leftFraction, point) {
         const dx = point.x - this.x;
         const dy = point.y - this.y;
@@ -127,7 +160,7 @@ class Point2d extends XY {
     interpolateXY(fractionX, fractionY, other, result) {
         return Point2d.create(Geometry_1.Geometry.interpolate(this.x, fractionX, other.x), Geometry_1.Geometry.interpolate(this.y, fractionY, other.y), result);
     }
-    /** Return point minus vector */
+    /** Return this point minus vector */
     minus(vector, result) {
         return Point2d.create(this.x - vector.x, this.y - vector.y, result);
     }
@@ -152,7 +185,7 @@ class Point2d extends XY {
         return Point2d.create(this.x + vectorA.x * scalarA + vectorB.x * scalarB + vectorC.x * scalarC, this.y + vectorA.y * scalarA + vectorB.y * scalarB + vectorC.y * scalarC, result);
     }
     /**
-     * @returns dot product of vector from this to targetA and vector from this to targetB
+     * Return the dot product of vector from this to targetA and vector from this to targetB
      * @param targetA target of first vector
      * @param targetB target of second vector
      */
@@ -168,6 +201,11 @@ class Point2d extends XY {
         const y2 = target2.y - this.y;
         return x1 * y2 - y1 * x2;
     }
+    /** Return the fractional coordinate of the projection of this instance x,y onto the line from startPoint to endPoint.
+     * @param startPoint start point of line
+     * @param endPoint end point of line
+     * @param defaultFraction fraction to return if startPoint and endPoint are equal.
+     */
     fractionOfProjectionToLine(startPoint, endPoint, defaultFraction) {
         const denominator = startPoint.distanceSquared(endPoint);
         if (denominator < Geometry_1.Geometry.smallMetricDistanceSquared)
@@ -176,10 +214,14 @@ class Point2d extends XY {
     }
 }
 exports.Point2d = Point2d;
-/** 3D vector with x,y properties */
+/** 2D vector with `x`,`y` as properties
+ * @public
+ */
 class Vector2d extends XY {
     constructor(x = 0, y = 0) { super(x, y); }
+    /** Return a new Vector2d with the same x,y */
     clone() { return new Vector2d(this.x, this.y); }
+    /** Return a new Vector2d with given x and y */
     static create(x = 0, y = 0, result) {
         if (result) {
             result.x = x;
@@ -188,13 +230,13 @@ class Vector2d extends XY {
         }
         return new Vector2d(x, y);
     }
-    // unit X vector
+    /** Return a (new) Vector2d with components 1,0 */
     static unitX(scale = 1) { return new Vector2d(scale, 0); }
-    // unit Y vector
+    /** Return a (new) Vector2d with components 0,1 */
     static unitY(scale = 1) { return new Vector2d(0, scale); }
-    // zero vector
+    /** Return a Vector2d with components 0,0 */
     static createZero(result) { return Vector2d.create(0, 0, result); }
-    /** copy contents from another Point3d, Point2d, Vector2d, or Vector3d */
+    /** copy contents from another Point3d, Point2d, Vector2d, or Vector3d, or leading entries of Float64Array */
     static createFrom(data, result) {
         if (data instanceof Float64Array) {
             if (data.length >= 2)
@@ -205,16 +247,15 @@ class Vector2d extends XY {
         }
         return Vector2d.create(data.x, data.y, result);
     }
+    /** Return a new Vector2d from json structured as `[1,2]` or `{x:1,y:2}` */
     static fromJSON(json) { const val = new Vector2d(); val.setFromJSON(json); return val; }
+    /** Return a new Vector2d from polar coordinates for radius and Angle from x axis */
     static createPolar(r, theta) {
-        return Vector2d.create(r * theta.cos());
+        return Vector2d.create(r * theta.cos(), r * theta.sin());
     }
+    /** Return a new Vector2d extending from point0 to point1 */
     static createStartEnd(point0, point1, result) {
-        if (result) {
-            result.set(point1.x - point0.x, point1.y - point0.y);
-            return result;
-        }
-        return new Vector2d(point1.x - point0.x, point1.y - point0.y);
+        return Vector2d.create(point1.x - point0.x, point1.y - point0.y, result);
     }
     /**
      * Return a vector that bisects the angle between two normals and extends to the intersection of two offset lines
@@ -231,13 +272,16 @@ class Vector2d extends XY {
         }
         return undefined;
     }
-    // Divide by denominator, but return undefined if denominator is zero.
+    /** Return a (new or optionally reused) vector which is `this` divided by denominator
+     * * return undefined if denominator is zero.
+     */
     safeDivideOrNull(denominator, result) {
         if (denominator !== 0.0) {
             return this.scale(1.0 / denominator, result);
         }
         return undefined;
     }
+    /** Return a unit vector in direction of this instance (undefined if this instance has near zero length) */
     normalize(result) {
         const mag = Geometry_1.Geometry.correctSmallMetricDistance(this.magnitude());
         result = result ? result : new Vector2d();
@@ -251,14 +295,14 @@ class Vector2d extends XY {
             return defaultFraction ? defaultFraction : 0;
         return numerator / denominator;
     }
-    /** Negate components */
+    /** Return a new vector with components negated from this instance. */
     negate(result) {
         result = result ? result : new Vector2d();
         result.x = -this.x;
         result.y = -this.y;
         return result;
     }
-    // return a vector same length as this but rotate 90 degrees CCW
+    /** Return a vector same length as this but rotated 90 degrees counter clockwise */
     rotate90CCWXY(result) {
         result = result ? result : new Vector2d();
         // save x,y to allow aliasing ..
@@ -268,7 +312,7 @@ class Vector2d extends XY {
         result.y = xx;
         return result;
     }
-    // return a vector same length as this but rotate 90 degrees CW
+    /** Return a vector same length as this but rotated 90 degrees clockwise */
     rotate90CWXY(result) {
         result = result ? result : new Vector2d();
         // save x,y to allow aliasing ..
@@ -278,6 +322,7 @@ class Vector2d extends XY {
         result.y = -xx;
         return result;
     }
+    /** Return a unit vector perpendicular to this instance. */
     unitPerpendicularXY(result) {
         result = result ? result : new Vector2d();
         const xx = this.x;
@@ -292,6 +337,7 @@ class Vector2d extends XY {
         }
         return result;
     }
+    /** return a new Vector2d rotated CCW by given angle */
     rotateXY(angle, result) {
         const s = angle.sin();
         const c = angle.cos();
@@ -363,7 +409,7 @@ class Vector2d extends XY {
     scaleToLength(length, result) {
         const mag = Geometry_1.Geometry.correctSmallMetricDistance(this.magnitude());
         if (mag === 0)
-            return new Vector2d();
+            return undefined;
         return this.scale(length / mag, result);
     }
     /** return the dot product of this with vectorB */
@@ -386,6 +432,11 @@ class Vector2d extends XY {
       isInSmallerSector(vectorA: Vector2d, vectorB: Vector2d): boolean { }
       isInCCWSector(vectorA: Vector2d, vectorB: Vector2d, upVector: Vector2d): boolean { }
       */
+    /**
+     * Test if `this` and `other` area parallel, with angle tolerance `Geometry.smallAngleRadiansSquared`.
+     * @param other second vector for comparison.
+     * @param oppositeIsParallel if true, treat vectors 180 opposite as parallel.  If false, treat those as non-parallel.
+     */
     isParallelTo(other, oppositeIsParallel = false) {
         const a2 = this.magnitudeSquared();
         const b2 = other.magnitudeSquared();
@@ -402,7 +453,7 @@ class Vector2d extends XY {
         return cross * cross <= Geometry_1.Geometry.smallAngleRadiansSquared * a2 * b2;
     }
     /**
-     * @returns `true` if `this` vector is perpendicular to `other`.
+     * Returns `true` if `this` vector is perpendicular to `other`.
      * @param other second vector.
      */
     isPerpendicularTo(other) {

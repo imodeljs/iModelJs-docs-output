@@ -1,6 +1,6 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -9,15 +9,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Geometry_1 = require("../Geometry");
 const Point2dVector2d_1 = require("./Point2dVector2d");
 const Point3dVector3d_1 = require("./Point3dVector3d");
-const Matrix4d_1 = require("../geometry4d/Matrix4d");
+const Transform_1 = require("./Transform");
 const Point4d_1 = require("../geometry4d/Point4d");
-const Ray3d_1 = require("./Ray3d");
 const IndexedXYZCollection_1 = require("./IndexedXYZCollection");
+const PointStreaming_1 = require("./PointStreaming");
+const Range_1 = require("./Range");
+/**
+ * The `NumberArray` class contains static methods that act on arrays of numbers.
+ * @public
+ */
 class NumberArray {
     /** return the sum of values in an array,   The summation is done with correction terms which
      * improves last-bit numeric accuracy.
      */
-    static PreciseSum(data) {
+    static preciseSum(data) {
         const n = data.length;
         if (n === 0)
             return 0.0;
@@ -43,7 +48,7 @@ class NumberArray {
                     return false;
             return true;
         }
-        return (!dataA && !dataB);
+        return (dataA === undefined && dataB === undefined);
     }
     /** Return true if arrays have identical counts and entries equal within tolerance */
     static isAlmostEqual(dataA, dataB, tolerance) {
@@ -55,7 +60,7 @@ class NumberArray {
                     return false;
             return true;
         }
-        return (!dataA && !dataB);
+        return (dataA === undefined && dataB === undefined);
     }
     /** return the sum of numbers in an array.  Note that "PreciseSum" may be more accurate. */
     static sum(data) {
@@ -65,6 +70,7 @@ class NumberArray {
         }
         return sum;
     }
+    /** test if coordinate x appears (to tolerance by `Geometry.isSameCoordinate`) in this array of numbers */
     static isCoordinateInArray(x, data) {
         if (data) {
             for (const y of data) {
@@ -74,7 +80,8 @@ class NumberArray {
         }
         return false;
     }
-    static MaxAbsArray(values) {
+    /** Return the max absolute value in a array of numbers. */
+    static maxAbsArray(values) {
         const arrLen = values.length;
         if (arrLen === 0) {
             return 0.0;
@@ -88,11 +95,15 @@ class NumberArray {
         }
         return a;
     }
-    static MaxAbsTwo(a1, a2) {
+    /** return the max absolute value of a pair of numbers */
+    static maxAbsTwo(a1, a2) {
         a1 = Math.abs(a1);
         a2 = Math.abs(a2);
         return (a1 > a2) ? a1 : a2;
     }
+    /** Return the max absolute difference between corresponding entries in two arrays of numbers
+     * * If sizes are mismatched, only the smaller length is tested.
+     */
     static maxAbsDiff(dataA, dataB) {
         let a = 0.0;
         const n = Math.min(dataA.length, dataB.length);
@@ -101,6 +112,9 @@ class NumberArray {
         }
         return a;
     }
+    /** Return the max absolute difference between corresponding entries in two Float64Array
+     * * If sizes are mismatched, only the smaller length is tested.
+     */
     static maxAbsDiffFloat64(dataA, dataB) {
         let a = 0.0;
         const n = Math.min(dataA.length, dataB.length);
@@ -111,7 +125,12 @@ class NumberArray {
     }
 }
 exports.NumberArray = NumberArray;
+/**
+ * The `Point2dArray` class contains static methods that act on arrays of 2d points.
+ * @public
+ */
 class Point2dArray {
+    /** Return true if arrays have same length and matching coordinates. */
     static isAlmostEqual(dataA, dataB) {
         if (dataA && dataB) {
             if (dataA.length !== dataB.length)
@@ -122,10 +141,10 @@ class Point2dArray {
             }
             return true;
         }
-        return (!dataA && !dataB);
+        return (dataA === undefined && dataB === undefined);
     }
     /**
-     * @returns return an array containing clones of the Point3d data[]
+     * Return an array containing clones of the Point3d data[]
      * @param data source data
      */
     static clonePoint2dArray(data) {
@@ -150,7 +169,12 @@ class Point2dArray {
     }
 }
 exports.Point2dArray = Point2dArray;
+/**
+ * The `Vector3ddArray` class contains static methods that act on arrays of 2d vectors.
+ * @public
+ */
 class Vector3dArray {
+    /** Return true if arrays have same length and matching coordinates. */
     static isAlmostEqual(dataA, dataB) {
         if (dataA && dataB) {
             if (dataA.length !== dataB.length)
@@ -160,10 +184,10 @@ class Vector3dArray {
                     return false;
             return true;
         }
-        return (!dataA && !dataB);
+        return (dataA === undefined && dataB === undefined);
     }
     /**
-     * @returns return an array containing clones of the Vector3d data[]
+     * Return an array containing clones of the Vector3d data[]
      * @param data source data
      */
     static cloneVector3dArray(data) {
@@ -171,8 +195,12 @@ class Vector3dArray {
     }
 }
 exports.Vector3dArray = Vector3dArray;
+/**
+ * The `Point4dArray` class contains static methods that act on arrays of 4d points.
+ * @public
+ */
 class Point4dArray {
-    /** pack each point and its corresponding weight into a buffer of xyzwxyzw... */
+    /** pack each point and its corresponding weight into a buffer of xyzw xyzw ... */
     static packPointsAndWeightsToFloat64Array(points, weights, result) {
         result = result ? result : new Float64Array(4 * points.length);
         let i = 0;
@@ -185,6 +213,7 @@ class Point4dArray {
         }
         return result;
     }
+    /** pack x,y,z,w in Float64Array. */
     static packToFloat64Array(data, result) {
         result = result ? result : new Float64Array(4 * data.length);
         let i = 0;
@@ -196,7 +225,7 @@ class Point4dArray {
         }
         return result;
     }
-    /** unpack from xyzwxyzw... to array of Point4d */
+    /** unpack from  ... to array of Point4d */
     static unpackToPoint4dArray(data) {
         const result = [];
         for (let i = 0; i + 3 < data.length; i += 4) {
@@ -204,7 +233,7 @@ class Point4dArray {
         }
         return result;
     }
-    /** unpack from xyzwxyzw... array to array of Point3d and array of weight.
+    /** unpack from xyzw xyzw... array to array of Point3d and array of weight.
      */
     static unpackFloat64ArrayToPointsAndWeights(data, points, weights, pointFormatter = Point3dVector3d_1.Point3d.create) {
         points.length = 0;
@@ -230,6 +259,7 @@ class Point4dArray {
             xyzw[i + 3] = xyzw1.w;
         }
     }
+    /** test for near equality of all corresponding numeric values, treated as coordinates. */
     static isAlmostEqual(dataA, dataB) {
         if (dataA && dataB) {
             if (dataA.length !== dataB.length)
@@ -247,7 +277,7 @@ class Point4dArray {
             return true;
         }
         // if both are null it is equal, otherwise unequal
-        return (!dataA && !dataB);
+        return (dataA === undefined && dataB === undefined);
     }
     /** return true iff all xyzw points' altitudes are within tolerance of the plane.*/
     static isCloseToPlane(data, plane, tolerance = Geometry_1.Geometry.smallMetricDistance) {
@@ -267,9 +297,14 @@ class Point4dArray {
         return true;
     }
 }
-Point4dArray._workPoint4d = Point4d_1.Point4d.create();
 exports.Point4dArray = Point4dArray;
+Point4dArray._workPoint4d = Point4d_1.Point4d.create();
+/**
+ * The `Point3dArray` class contains static methods that act on arrays of 3d points.
+ * @public
+ */
 class Point3dArray {
+    /** pack x,y,z to `Float64Array` */
     static packToFloat64Array(data) {
         const result = new Float64Array(3 * data.length);
         let i = 0;
@@ -280,6 +315,102 @@ class Point3dArray {
         }
         return result;
     }
+    /**
+     * Compute the 8 weights of trilinear mapping
+     * By appropriate choice of weights, this can be used for both point and derivative mappings.
+     * @param weights preallocated array to receive weights.
+     * @param u0 low u weight
+     * @param u1 high u weight
+     * @param v0 low v weight
+     * @param v1 high v weight
+     * @param w0 low w weight
+     * @param w1 high w weight
+     */
+    static evaluateTrilinearWeights(weights, u0, u1, v0, v1, w0, w1) {
+        weights[0] = u0 * v0 * w0;
+        weights[1] = u1 * v0 * w0;
+        weights[2] = u0 * v1 * w0;
+        weights[3] = u1 * v1 * w0;
+        weights[4] = u0 * v0 * w1;
+        weights[5] = u1 * v0 * w1;
+        weights[6] = u0 * v1 * w1;
+        weights[7] = u1 * v1 * w1;
+    }
+    /**
+     * sum the weighted x components from a point array.
+     * * weights.length is the number of summed terms
+     * * points must have at least that length
+     * @param weights
+     * @param points
+     */
+    static sumWeightedX(weights, points) {
+        let sum = 0.0;
+        const n = weights.length;
+        for (let i = 0; i < n; i++)
+            sum += weights[i] * points[i].x;
+        return sum;
+    }
+    /**
+     * sum the weighted x components from a point array.
+     * * weights.length is the number of summed terms
+     * * points must have at least that length
+     * @param weights
+     * @param points
+     */
+    static sumWeightedY(weights, points) {
+        let sum = 0.0;
+        const n = weights.length;
+        for (let i = 0; i < n; i++)
+            sum += weights[i] * points[i].y;
+        return sum;
+    }
+    /**
+     * sum the weighted x components from a point array.
+     * * weights.length is the number of summed terms
+     * * points must have at least that length
+     * @param weights
+     * @param points
+     */
+    static sumWeightedZ(weights, points) {
+        let sum = 0.0;
+        const n = weights.length;
+        for (let i = 0; i < n; i++)
+            sum += weights[i] * points[i].z;
+        return sum;
+    }
+    /**
+     * Compute a point by trilinear mapping.
+     * @param points array of 8 points at corners, with x index varying fastest.
+     * @param result optional result point
+     */
+    static evaluateTrilinearPoint(points, u, v, w, result) {
+        if (!result)
+            result = Point3dVector3d_1.Point3d.create(0, 0, 0);
+        this.evaluateTrilinearWeights(this._weightUVW, 1 - u, u, 1 - v, v, 1 - w, w);
+        let a;
+        for (let i = 0; i < 8; i++) {
+            a = this._weightUVW[i];
+            result.x += a * points[i].x;
+            result.y += a * points[i].y;
+            result.z += a * points[i].z;
+        }
+        return result;
+    }
+    /**
+     * Compute a point and derivatives wrt uvw by trilinear mapping.
+     * * evaluated point is the point part of the transform
+     * * u,v,w derivatives are the respective columns of the matrix part of the transform.
+     * @param points array of 8 points at corners, with x index varying fastest.
+     * @param result optional result transform
+     */
+    static evaluateTrilinearDerivativeTransform(points, u, v, w, result) {
+        this.evaluateTrilinearWeights(this._weightUVW, 1 - u, u, 1 - v, v, 1 - w, w);
+        this.evaluateTrilinearWeights(this._weightDU, -1, 1, 1 - v, v, 1 - w, w);
+        this.evaluateTrilinearWeights(this._weightDV, 1 - u, u, -1, 1, 1 - w, w);
+        this.evaluateTrilinearWeights(this._weightDW, 1 - u, u, 1 - v, v, -1, 1);
+        return Transform_1.Transform.createRowValues(this.sumWeightedX(this._weightDU, points), this.sumWeightedX(this._weightDV, points), this.sumWeightedX(this._weightDW, points), this.sumWeightedX(this._weightUVW, points), this.sumWeightedY(this._weightDU, points), this.sumWeightedY(this._weightDV, points), this.sumWeightedY(this._weightDW, points), this.sumWeightedY(this._weightUVW, points), this.sumWeightedZ(this._weightDU, points), this.sumWeightedZ(this._weightDV, points), this.sumWeightedZ(this._weightDW, points), this.sumWeightedZ(this._weightUVW, points), result);
+    }
+    /** unpack from a number array or Float64Array to an array of `Point3d` */
     static unpackNumbersToPoint3dArray(data) {
         const result = [];
         for (let i = 0; i + 2 < data.length; i += 3) {
@@ -338,6 +469,7 @@ class Point3dArray {
         }
         return result;
     }
+    /**  multiply a transform times each x,y,z triple and replace the x,y,z in the packed array */
     static multiplyInPlace(transform, xyz) {
         const xyz1 = Point3dVector3d_1.Point3d.create();
         const numXYZ = xyz.length;
@@ -348,6 +480,7 @@ class Point3dArray {
             xyz[i + 2] = xyz1.z;
         }
     }
+    /** Apply Geometry.isAlmostEqual to corresponding coordinates */
     static isAlmostEqual(dataA, dataB) {
         if (dataA && dataB) {
             if (dataA.length !== dataB.length)
@@ -365,7 +498,7 @@ class Point3dArray {
             return true;
         }
         // if both are null it is equal, otherwise unequal
-        return (!dataA && !dataB);
+        return (dataA === undefined && dataB === undefined);
     }
     /** return simple average of all coordinates.   (000 if empty array) */
     static centroid(points, result) {
@@ -373,7 +506,7 @@ class Point3dArray {
         const p = Point3dVector3d_1.Point3d.create();
         if (points.length > 0) {
             for (let i = 0; i < points.length; i++) {
-                points.atPoint3dIndex(i, p);
+                points.getPoint3dAtCheckedPointIndex(i, p);
                 result.x += p.x;
                 result.y += p.y;
                 result.z += p.z;
@@ -479,518 +612,262 @@ class Point3dArray {
         return sum;
     }
     /**
-     * @returns return an array containing clones of the Point3d data[]
+     * Return an array containing clones of the Point3d data[]
      * @param data source data
      */
     static clonePoint3dArray(data) {
         return data.map((p) => Point3dVector3d_1.Point3d.create(p.x, p.y, p.z));
     }
     /**
-     * @returns return an array containing Point2d with xy parts of each Point3d
+     * Return an array containing Point2d with xy parts of each Point3d
      * @param data source data
      */
     static clonePoint2dArray(data) {
         return data.map((p) => Point2dVector2d_1.Point2d.create(p.x, p.y));
     }
+    /**
+     * clone points in the input array, inserting points within each edge to limit edge length.
+     * @param points array of points
+     * @param maxEdgeLength max length of an edge
+     */
+    static cloneWithMaxEdgeLength(points, maxEdgeLength) {
+        if (points.length === 0)
+            return [];
+        const result = [points[0]];
+        for (let i = 1; i < points.length; i++) {
+            const a = points[i - 1].distance(points[i]);
+            const n = Geometry_1.Geometry.stepCount(maxEdgeLength, a, 1);
+            for (let k = 1; k < n; k++)
+                result.push(points[i - 1].interpolate(k / n, points[i]));
+            result.push(points[i]);
+        }
+        return result;
+    }
+    /** Pack isolated x,y,z args as a json `[x,y,z]` */
+    static xyzToArray(x, y, z) { return [x, y, z]; }
+    /**
+     * return similarly-structured array, array of arrays, etc, with the lowest level point data specifically structured as arrays of 3 numbers `[1,2,3]`
+     * @param data point data with various leaf forms such as `[1,2,3]`, `{x:1,y:2,z:3}`, `Point3d`
+     */
+    static cloneDeepJSONNumberArrays(data) {
+        const collector = new PointStreaming_1.PointStringDeepXYZArrayCollector(this.xyzToArray);
+        PointStreaming_1.VariantPointDataStream.streamXYZ(data, collector);
+        return collector.claimResult();
+    }
+    /**
+     * return similarly-structured array, array of arrays, etc, with the lowest level point data specifically structured as `Point3d`.
+     * @param data point data with various leaf forms such as `[1,2,3]`, `{x:1,y:2,z:3}`, `Point3d`
+     */
+    static cloneDeepXYZPoint3dArrays(data) {
+        const collector = new PointStreaming_1.PointStringDeepXYZArrayCollector(Point3dVector3d_1.Point3d.create);
+        PointStreaming_1.VariantPointDataStream.streamXYZ(data, collector);
+        return collector.claimResult();
+    }
+    /**
+     * `Point3dArray.createRange(data)` is deprecated.  Used `Range3d.createFromVariantData(data: MultiLineStringDataVariant): Range3d`
+     * @deprecated Use Range3d.createFromVariantData (data)
+     * @param data
+     */
+    static createRange(data) { return Range_1.Range3d.createFromVariantData(data); }
+    /**
+     * `Point3dArray.streamXYZ` is deprecated -- use `VariantPointStream.streamXYZ (handler)`
+     * @deprecated - use VariantPointStream.streamXYZ (handler)
+     * Invoke a callback with each x,y,z from an array of points in variant forms.
+     * @param startChainCallback called to announce the beginning of points (or recursion)
+     * @param pointCallback (index, x,y,z) = function to receive point coordinates one by one
+     * @param endChainCallback called to announce the end of handling of an array.
+     */
+    static streamXYZ(data, startChainCallback, pointCallback, endChainCallback) {
+        let numPoint = 0;
+        if (Array.isArray(data)) {
+            // If the first entry is a point, expect the entire array to be points.
+            // otherwise recurse to each member of this array.
+            if (data.length > 0 && Point3dVector3d_1.Point3d.isAnyImmediatePointType(data[0])) {
+                if (startChainCallback)
+                    startChainCallback(data, true);
+                for (const p of data) {
+                    const x = Point3dVector3d_1.Point3d.accessX(p);
+                    const y = Point3dVector3d_1.Point3d.accessY(p);
+                    const z = Point3dVector3d_1.Point3d.accessZ(p, 0);
+                    if (x !== undefined && y !== undefined)
+                        pointCallback(x, y, z);
+                    numPoint++;
+                }
+                if (endChainCallback)
+                    endChainCallback(data, true);
+            }
+            else {
+                // This is an array that does not immediately have points.
+                if (startChainCallback)
+                    startChainCallback(data, false);
+                for (const child of data) {
+                    // tslint:disable-next-line: deprecation
+                    numPoint += this.streamXYZ(child, startChainCallback, pointCallback, endChainCallback);
+                }
+                if (endChainCallback)
+                    endChainCallback(data, false);
+            }
+        }
+        else if (data instanceof IndexedXYZCollection_1.IndexedXYZCollection) {
+            if (startChainCallback)
+                startChainCallback(data, true);
+            const q = Point3dArray._workPoint = Point3dVector3d_1.Point3d.create(0, 0, 0, Point3dArray._workPoint);
+            for (let i = 0; i < data.length; i++) {
+                data.getPoint3dAtCheckedPointIndex(i, q);
+                numPoint++;
+                pointCallback(q.x, q.y, q.z);
+            }
+            if (endChainCallback)
+                endChainCallback(data, true);
+        }
+        return numPoint;
+    }
+    /**
+       * `Point3dArray.streamXYZXYZ` is deprecated -- use `VariantPointStream.streamXYZXYZ (handler)`
+     * @deprecated - use VariantPointStream.streamXYZXYZ (handler)
+     * Invoke a callback with each x,y,z from an array of points in variant forms.
+     * @param startChainCallback callback of the form `startChainCallback (source, isLeaf)` to be called with the source array at each level.
+     * @param segmentCallback callback of the form `segmentCallback (index0, x0,y0,z0, index1, x1,y1,z1)`
+     * @param endChainCallback callback of the form `endChainCallback (source, isLeaf)` to be called with the source array at each level.
+    */
+    static streamXYZXYZ(data, startChainCallback, segmentCallback, endChainCallback) {
+        let x0 = 0, y0 = 0, z0 = 0, x1, y1, z1;
+        let point0Known = false;
+        let numSegment = 0;
+        if (Array.isArray(data)) {
+            if (data.length > 0 && Point3dVector3d_1.Point3d.isAnyImmediatePointType(data[0])) {
+                if (startChainCallback)
+                    startChainCallback(data, true);
+                for (const p of data) {
+                    x1 = Point3dVector3d_1.Point3d.accessX(p);
+                    y1 = Point3dVector3d_1.Point3d.accessY(p);
+                    z1 = Point3dVector3d_1.Point3d.accessZ(p, 0);
+                    if (x1 !== undefined && y1 !== undefined) {
+                        if (point0Known) {
+                            segmentCallback(x0, y0, z0, x1, y1, z1);
+                            numSegment++;
+                        }
+                        point0Known = true;
+                        x0 = x1;
+                        y0 = y1;
+                        z0 = z1;
+                    }
+                }
+                if (endChainCallback)
+                    endChainCallback(data, true);
+            }
+            else {
+                // This is an array that does not immediately have points.
+                if (startChainCallback)
+                    startChainCallback(data, false);
+                for (const child of data) {
+                    // tslint:disable-next-line: deprecation
+                    numSegment += this.streamXYZXYZ(child, startChainCallback, segmentCallback, endChainCallback);
+                }
+                if (endChainCallback)
+                    endChainCallback(data, false);
+            }
+        }
+        else if (data instanceof IndexedXYZCollection_1.IndexedXYZCollection) {
+            if (startChainCallback)
+                startChainCallback(data, true);
+            const q = Point3dArray._workPoint = Point3dVector3d_1.Point3d.create(0, 0, 0, Point3dArray._workPoint);
+            for (let i = 0; i < data.length; i++) {
+                data.getPoint3dAtCheckedPointIndex(i, q);
+                if (i > 0) {
+                    numSegment++;
+                    segmentCallback(x0, y0, z0, q.x, q.y, q.z);
+                }
+                x0 = q.x;
+                y0 = q.y;
+                z0 = q.z;
+            }
+            if (endChainCallback)
+                endChainCallback(data, true);
+        }
+        return numSegment;
+    }
+    /** Computes the hull of the XY projection of points.
+     * * Returns the hull as an array of Point3d
+     * * Optionally returns non-hull points in `insidePoints[]`
+     * * If both arrays empty if less than 3 points.
+     * *
+     */
+    static computeConvexHullXY(points, hullPoints, insidePoints, addClosurePoint = false) {
+        hullPoints.length = 0;
+        insidePoints.length = 0;
+        let n = points.length;
+        // Get deep copy
+        const xy1 = points.slice(0, n);
+        xy1.sort(Geometry_1.Geometry.lexicalXYLessThan);
+        if (n < 3) {
+            for (const p of xy1)
+                hullPoints.push(p);
+            if (addClosurePoint && xy1.length > 0)
+                hullPoints.push(xy1[0]);
+            return;
+        }
+        hullPoints.push(xy1[0]); // This is sure to stay
+        hullPoints.push(xy1[1]); // This one can be removed in loop.
+        let numInside = 0;
+        // First sweep creates upper hull
+        for (let i = 2; i < n; i++) {
+            const candidate = xy1[i];
+            let top = hullPoints.length - 1;
+            while (top >= 1 && hullPoints[top - 1].crossProductToPointsXY(hullPoints[top], candidate) <= 0.0) {
+                xy1[numInside++] = hullPoints[top];
+                top--;
+                hullPoints.pop();
+            }
+            hullPoints.push(candidate);
+        }
+        const i0 = hullPoints.length - 1;
+        xy1.length = numInside;
+        xy1.push(hullPoints[0]); // force first point to be reconsidered as final hull point.
+        xy1.sort(Geometry_1.Geometry.lexicalXYLessThan);
+        n = xy1.length;
+        // xy1.back () is already on stack.
+        hullPoints.push(xy1[n - 1]);
+        for (let i = n - 1; i-- > 0;) {
+            const candidate = xy1[i];
+            let top = hullPoints.length - 1;
+            while (top > i0 && hullPoints[top - 1].crossProductToPointsXY(hullPoints[top], candidate) <= 0.0) {
+                insidePoints.push(hullPoints[top]);
+                top--;
+                hullPoints.pop();
+            }
+            if (i > 0) // don't replicate start !!!
+                hullPoints.push(candidate);
+        }
+        if (addClosurePoint)
+            hullPoints.push(hullPoints[0]);
+    }
+    /**
+     * Return (clones of) points in data[] with min and max x and y parts.
+     * @param data array to examine.
+     */
+    static minMaxPoints(data) {
+        if (data.length === 0)
+            return undefined;
+        const result = { minXPoint: data[0].clone(), maxXPoint: data[0].clone(), minYPoint: data[0].clone(), maxYPoint: data[0].clone() };
+        let q;
+        for (let i = 1; i < data.length; i++) {
+            q = data[i];
+            if (q.x < result.minXPoint.x)
+                result.minXPoint.setFromPoint3d(q);
+            if (q.x > result.maxXPoint.x)
+                result.maxXPoint.setFromPoint3d(q);
+            if (q.y < result.minYPoint.y)
+                result.minYPoint.setFromPoint3d(q);
+            if (q.y > result.maxYPoint.y)
+                result.maxYPoint.setFromPoint3d(q);
+        }
+        return result;
+    }
 }
 exports.Point3dArray = Point3dArray;
-/** Static class for operations that treat an array of points as a polygon (with area!) */
-class PolygonOps {
-    /** Sum areas of triangles from points[0] to each far edge.
-    * * Consider triangles from points[0] to each edge.
-    * * Sum the areas(absolute, without regard to orientation) all these triangles.
-    * @returns sum of absolute triangle areas.
-    */
-    static sumTriangleAreas(points) {
-        let s = 0.0;
-        const n = points.length;
-        if (n >= 3) {
-            const origin = points[0];
-            const vector0 = origin.vectorTo(points[1]);
-            let vector1 = Point3dVector3d_1.Vector3d.create();
-            // This will work with or without closure edge.  If closure is given, the last vector is 000.
-            for (let i = 2; i < n; i++) {
-                vector1 = origin.vectorTo(points[i], vector1);
-                s += vector0.crossProductMagnitude(vector1);
-                vector0.setFrom(vector1);
-            }
-        }
-        s *= 0.5;
-        // console.log ("polygon area ", s, points);
-        return s;
-    }
-    /** Sum areas of triangles from points[0] to each far edge.
-    * * Consider triangles from points[0] to each edge.
-    * * Sum the areas(absolute, without regard to orientation) all these triangles.
-    * @returns sum of absolute triangle areas.
-    */
-    static sumTriangleAreasXY(points) {
-        let s = 0.0;
-        const n = points.length;
-        if (n >= 3) {
-            const origin = points[0];
-            const vector0 = origin.vectorTo(points[1]);
-            let vector1 = Point3dVector3d_1.Vector3d.create();
-            // This will work with or without closure edge.  If closure is given, the last vector is 000.
-            for (let i = 2; i < n; i++) {
-                vector1 = origin.vectorTo(points[i], vector1);
-                s += vector0.crossProductXY(vector1);
-                vector0.setFrom(vector1);
-            }
-        }
-        s *= 0.5;
-        // console.log ("polygon area ", s, points);
-        return s;
-    }
-    /** return a vector which is perpendicular to the polygon and has magnitude equal to the polygon area. */
-    static areaNormalGo(points, result) {
-        if (!result)
-            result = new Point3dVector3d_1.Vector3d();
-        const n = points.length;
-        if (n === 3) {
-            points.crossProductIndexIndexIndex(0, 1, 2, result);
-        }
-        else if (n >= 3) {
-            result.setZero();
-            // This will work with or without closure edge.  If closure is given, the last vector is 000.
-            for (let i = 2; i < n; i++) {
-                points.accumulateCrossProductIndexIndexIndex(0, i - 1, i, result);
-            }
-        }
-        // ALL BRANCHES SUM FULL CROSS PRODUCTS AND EXPECT SCALE HERE
-        result.scaleInPlace(0.5);
-        return result;
-    }
-    static areaNormal(points, result) {
-        if (!result)
-            result = Point3dVector3d_1.Vector3d.create();
-        PolygonOps.areaNormalGo(new Point3dArrayCarrier(points), result);
-        return result;
-    }
-    /** return the area of the polygon (assuming planar) */
-    static area(points) {
-        return PolygonOps.areaNormal(points).magnitude();
-    }
-    /** return the projected XY area of the polygon (assuming planar) */
-    static areaXY(points) {
-        let area = 0.0;
-        for (let i = 1; i + 1 < points.length; i++)
-            area += points[0].crossProductToPointsXY(points[i], points[i + 1]);
-        return 0.5 * area;
-    }
-    static centroidAreaNormal(points) {
-        const n = points.length;
-        if (n === 3) {
-            const normal = points[0].crossProductToPoints(points[1], points[2]);
-            const a = 0.5 * normal.magnitude();
-            const result = Ray3d_1.Ray3d.createCapture(Point3dArray.centroid(new Point3dArrayCarrier(points)), normal);
-            if (result.tryNormalizeInPlaceWithAreaWeight(a))
-                return result;
-            return undefined;
-        }
-        if (n >= 3) {
-            const origin = points[0];
-            const vector0 = origin.vectorTo(points[1]);
-            let vector1 = Point3dVector3d_1.Vector3d.create();
-            let cross = Point3dVector3d_1.Vector3d.create();
-            const centroidSum = Point3dVector3d_1.Vector3d.createZero();
-            const normalSum = Point3dVector3d_1.Vector3d.createZero();
-            // This will work with or without closure edge.  If closure is given, the last vector is 000.
-            for (let i = 2; i < n; i++) {
-                vector1 = origin.vectorTo(points[i], vector1);
-                cross = vector0.crossProduct(vector1, cross);
-                normalSum.addInPlace(cross); // this grows to twice the area
-                const b = cross.magnitude() / 6.0;
-                centroidSum.plus2Scaled(vector0, b, vector1, b, centroidSum);
-                vector0.setFrom(vector1);
-            }
-            const area = 0.5 * normalSum.magnitude();
-            const inverseArea = Geometry_1.Geometry.conditionalDivideFraction(1, area);
-            if (inverseArea !== undefined) {
-                const result = Ray3d_1.Ray3d.createCapture(origin.plusScaled(centroidSum, inverseArea, origin), normalSum);
-                result.tryNormalizeInPlaceWithAreaWeight(area);
-                return result;
-            }
-        }
-        return undefined;
-    }
-    // Has the potential to be combined with centroidAreaNormal for point3d array and Ray3d return listed above...
-    // Returns undefined if given point array less than 3 or if not safe to divide at any point
-    static centroidAndAreaXY(points, centroid) {
-        let area = 0.0;
-        centroid.set(0, 0);
-        if (points.length < 3)
-            return undefined;
-        const origin = points[0];
-        let vectorSum = Point2dVector2d_1.Vector2d.create(0, 0); // == sum ((U+V)/3) * (U CROSS V)/2 -- but leave out divisions
-        let areaSum = 0.0; // == sum (U CROSS V) / 2 -- but leave out divisions
-        for (let i = 1; i + 1 < points.length; i++) {
-            const vector0 = origin.vectorTo(points[i]);
-            const vector1 = origin.vectorTo(points[i + 1]);
-            const tempArea = vector0.crossProduct(vector1);
-            vectorSum = vectorSum.plus(vector0.plus(vector1).scale(tempArea));
-            areaSum += tempArea;
-        }
-        area = areaSum * 0.5;
-        const a = Geometry_1.Geometry.conditionalDivideFraction(1.0, 6.0 * area);
-        if (a === undefined) {
-            centroid.setFrom(origin);
-            return undefined;
-        }
-        centroid.setFrom(origin.plusScaled(vectorSum, a));
-        return area;
-    }
-    /**
-     *
-     * @param points array of points around the polygon.  This is assumed to NOT have closure edge.
-     * @param result caller-allocated result vector.
-     */
-    static unitNormal(points, result) {
-        const n = points.length;
-        if (n === 3) {
-            points.crossProductIndexIndexIndex(0, 1, 2, result);
-            return result.normalizeInPlace();
-        }
-        if (n === 4) {
-            // cross product of diagonals is more stable than from single of the points . . .
-            points.vectorIndexIndex(0, 2, PolygonOps._vector0);
-            points.vectorIndexIndex(1, 3, PolygonOps._vector1);
-            PolygonOps._vector0.crossProduct(PolygonOps._vector1, result);
-            return result.normalizeInPlace();
-        }
-        // more than 4 points  ... no shortcuts ...
-        PolygonOps.areaNormalGo(points, result);
-        return result.normalizeInPlace();
-    }
-    /** Return the matrix of area products of a polygon with respect to an origin.
-     * The polygon is assumed to be planar and non-self-intersecting.
-     */
-    static addSecondMomentAreaProducts(points, origin, moments) {
-        const unitNormal = PolygonOps._normal;
-        if (PolygonOps.unitNormal(points, unitNormal)) {
-            // The direction of the normal makes the various detJ values positive or negative so that non-convex polygons
-            // sum correctly.
-            const vector01 = PolygonOps._vector0;
-            const vector02 = PolygonOps._vector1;
-            const placement = PolygonOps._matrixA;
-            const matrixAB = PolygonOps._matrixB;
-            const matrixABC = PolygonOps._matrixC;
-            const vectorOrigin = points.vectorXYAndZIndex(origin, 0, PolygonOps._vectorOrigin);
-            const numPoints = points.length;
-            let detJ = 0;
-            for (let i2 = 2; i2 < numPoints; i2++) {
-                points.vectorIndexIndex(0, i2 - 1, vector01);
-                points.vectorIndexIndex(0, i2, vector02);
-                detJ = unitNormal.tripleProduct(vector01, vector02);
-                placement.setOriginAndVectors(vectorOrigin, vector01, vector02, unitNormal);
-                placement.multiplyMatrixMatrix(PolygonOps._triangleMomentWeights, matrixAB);
-                matrixAB.multiplyMatrixMatrixTranspose(placement, matrixABC);
-                moments.addScaledInPlace(matrixABC, detJ);
-            }
-        }
-    }
-    /** Test the direction of turn at the vertices of the polygon, ignoring z-coordinates.
-     *
-     * *  For a polygon without self intersections, this is a convexity and orientation test: all positive is convex and counterclockwise,
-     * all negative is convex and clockwise
-     * *  Beware that a polygon which turns through more than a full turn can cross itself and close, but is not convex
-     * *  Returns 1 if all turns are to the left, -1 if all to the right, and 0 if there are any zero turns
-     */
-    static testXYPolygonTurningDirections(pPointArray) {
-        // Reduce count by trailing duplicates; leaves iLast at final index
-        let numPoint = pPointArray.length;
-        let iLast = numPoint - 1;
-        while (iLast > 1 && pPointArray[iLast].x === pPointArray[0].x && pPointArray[iLast].y === pPointArray[0].y) {
-            numPoint = iLast--;
-        }
-        if (numPoint > 2) {
-            let vector0 = Point2dVector2d_1.Point2d.create(pPointArray[iLast].x - pPointArray[iLast - 1].x, pPointArray[iLast].y - pPointArray[iLast - 1].y);
-            const vector1 = Point2dVector2d_1.Point2d.create(pPointArray[0].x - pPointArray[iLast].x, pPointArray[0].y - pPointArray[iLast].y);
-            const baseArea = vector0.x * vector1.y - vector0.y * vector1.x;
-            // In a convex polygon, all successive-vector cross products will
-            // have the same sign as the base area, hence all products will be
-            // positive.
-            for (let i1 = 1; i1 < numPoint; i1++) {
-                vector0 = vector1.clone();
-                Point2dVector2d_1.Point2d.create(pPointArray[i1].x - pPointArray[i1 - 1].x, pPointArray[i1].y - pPointArray[i1 - 1].y, vector1);
-                const currArea = vector0.x * vector1.y - vector0.y * vector1.x;
-                if (currArea * baseArea <= 0.0)
-                    return 0;
-            }
-            // Fall out with all signs same as base area
-            return baseArea > 0.0 ? 1 : -1;
-        }
-        return 0;
-    }
-    /**
-     * Classify a point with respect to a polygon.
-     * Returns 1 if point is "in" by parity, 0 if "on", -1 if "out", -2 if nothing worked.
-     */
-    static parity(pPoint, pPointArray, tol = 0.0) {
-        let parity;
-        const x = pPoint.x;
-        const y = pPoint.y;
-        const numPoint = pPointArray.length;
-        if (numPoint < 2)
-            return (Math.abs(x - pPointArray[0].x) <= tol && Math.abs(y - pPointArray[0].y) <= tol) ? 0 : -1;
-        // Try really easy ways first...
-        parity = PolygonOps.parityYTest(pPoint, pPointArray, tol);
-        if (parity !== undefined)
-            return parity;
-        parity = PolygonOps.parityXTest(pPoint, pPointArray, tol);
-        if (parity !== undefined)
-            return parity;
-        // Is test point within tol of one of the polygon points in x and y?
-        for (let i = 0; i < numPoint; i++)
-            if (Math.abs(x - pPointArray[i].x) <= tol && Math.abs(y - pPointArray[i].y) <= tol)
-                return 0;
-        // Nothing easy worked. Try some ray casts
-        const maxTheta = 10.0;
-        let theta = 0.276234342921378;
-        const dTheta = theta;
-        while (theta < maxTheta) {
-            parity = PolygonOps.parityVectorTest(pPoint, theta, pPointArray, tol);
-            if (parity !== undefined)
-                return parity;
-            theta += dTheta;
-        }
-        return -2;
-    }
-    /**
-     * Classify a point with respect to a polygon defined by the xy parts of the points, using only the y
-     * coordinate for the tests.
-     *
-     * *  Return undefined (failure, could not determine answer) if any polygon point has the same y-coord as test point
-     * *  Goal is to execute the simplest cases as fast as possible, and fail promptly for others
-     */
-    static parityYTest(pPoint, pPointArray, tol) {
-        // Var names h, crossing to allow closest code correspondence between x,y code
-        const numPoint = pPointArray.length;
-        const crossing0 = pPoint.x;
-        const h = pPoint.y;
-        let h0 = h - pPointArray[numPoint - 1].y;
-        let h1;
-        let crossing;
-        let s;
-        let numLeft = 0;
-        if (Math.abs(h0) <= tol)
-            return undefined;
-        let i0;
-        for (let i = 0; i < numPoint; i++, h0 = h1) { // <-- h0 won't be assigned to h1 until after first iteration
-            h1 = h - pPointArray[i].y;
-            if (Math.abs(h1) <= tol)
-                return undefined;
-            if (h0 * h1 < 0.0) {
-                s = -h0 / (h1 - h0);
-                i0 = i - 1;
-                if (i0 < 0)
-                    i0 = numPoint - 1;
-                crossing = pPointArray[i0].x + s * (pPointArray[i].x - pPointArray[i0].x);
-                if (Math.abs(crossing - crossing0) <= tol)
-                    return 0;
-                else if (crossing < crossing0)
-                    numLeft++;
-            }
-        }
-        return (numLeft & 0x01) ? 1 : -1;
-    }
-    /**
-     * Classify a point with respect to a polygon defined by the xy parts of the points, using only the x
-     * coordinate for the tests.
-     *
-     * *  Return undefined (failure, could not determine answer) if any polygon point has the same x coordinate as the test point
-     * *  Goal is to execute the simplest cases as fast as possible, and fail promptly for others
-     */
-    static parityXTest(pPoint, pPointArray, tol) {
-        // Var names h, crossing to allow closest code correspondence between x,y code
-        const numPoint = pPointArray.length;
-        const crossing0 = pPoint.y;
-        const h = pPoint.x;
-        let h0 = h - pPointArray[numPoint - 1].x;
-        let h1;
-        let crossing;
-        let s;
-        let numLeft = 0;
-        if (Math.abs(h0) <= tol)
-            return undefined;
-        let i0;
-        for (let i = 0; i < numPoint; i++, h0 = h1) { // <-- h0 won't be assigned to h1 until after first iteration
-            h1 = h - pPointArray[i].x;
-            if (Math.abs(h1) <= tol)
-                return undefined;
-            if (h0 * h1 < 0.0) {
-                s = -h0 / (h1 - h0);
-                i0 = i - 1;
-                if (i0 < 0)
-                    i0 = numPoint - 1;
-                crossing = pPointArray[i0].y + s * (pPointArray[i].y - pPointArray[i0].y);
-                if (Math.abs(crossing - crossing0) <= tol)
-                    return 0;
-                else if (crossing < crossing0)
-                    numLeft++;
-            }
-        }
-        return (numLeft & 0x01) ? 1 : -1;
-    }
-    /**
-     * Classify a point with respect to a polygon defined by the xy parts of the points, using a given ray cast
-     * direction.
-     *
-     * *  Return false (failure, could not determine answer) if any polygon point is on the ray
-     */
-    static parityVectorTest(pPoint, theta, pPointArray, tol) {
-        const numPoint = pPointArray.length;
-        let v1;
-        let u0;
-        let u1;
-        let u;
-        let s;
-        let numLeft = 0;
-        const tangent = Point2dVector2d_1.Vector2d.create(Math.cos(theta), Math.sin(theta));
-        const normal = Point2dVector2d_1.Vector2d.create(-tangent.y, tangent.x);
-        let v0 = normal.dotProductStartEnd(pPoint, pPointArray[numPoint - 1]);
-        if (Math.abs(v0) <= tol)
-            return undefined;
-        let i0;
-        for (let i = 0; i < numPoint; i++, v0 = v1) { // <-- v0 won't be assigned to v1 until after first iteration
-            v1 = normal.dotProductStartEnd(pPoint, pPointArray[i]);
-            if (Math.abs(v1) <= tol)
-                return undefined;
-            if (v0 * v1 < 0.0) {
-                s = -v0 / (v1 - v0);
-                i0 = i - 1;
-                if (i0 < 0)
-                    i0 = numPoint - 1;
-                u0 = tangent.dotProductStartEnd(pPoint, pPointArray[i0]);
-                u1 = tangent.dotProductStartEnd(pPoint, pPointArray[i]);
-                u = u0 + s * (u1 - u0);
-                if (Math.abs(u) <= tol)
-                    return 0;
-                else if (u < 0.0)
-                    numLeft++;
-            }
-        }
-        return (numLeft & 0x01) ? 1 : -1;
-    }
-}
-/** These values are the integrated area moment products [xx,xy,xz, x]
- * for a right triangle in the first quadrant at the origin -- (0,0),(1,0),(0,1)
- */
-PolygonOps._triangleMomentWeights = Matrix4d_1.Matrix4d.createRowValues(2.0 / 24.0, 1.0 / 24.0, 0, 4.0 / 24.0, 1.0 / 24.0, 2.0 / 24.0, 0, 4.0 / 24.0, 0, 0, 0, 0, 4.0 / 24.0, 4.0 / 24.0, 0, 12.0 / 24.0);
-// statics for shared reuse.
-// many methods use these.
-// only use them in "leaf" methods that are certain not to call other users . . .
-PolygonOps._vector0 = Point3dVector3d_1.Vector3d.create();
-PolygonOps._vector1 = Point3dVector3d_1.Vector3d.create();
-PolygonOps._vectorOrigin = Point3dVector3d_1.Vector3d.create();
-PolygonOps._normal = Point3dVector3d_1.Vector3d.create();
-PolygonOps._matrixA = Matrix4d_1.Matrix4d.createIdentity();
-PolygonOps._matrixB = Matrix4d_1.Matrix4d.createIdentity();
-PolygonOps._matrixC = Matrix4d_1.Matrix4d.createIdentity();
-exports.PolygonOps = PolygonOps;
-/**
- * Helper object to access members of a Point3d[] in geometric calculations.
- * * The collection holds only a reference to the actual array.
- * * The actual array may be replaced by the user as needed.
- * * When replaced, there is no cached data to be updated.
-*/
-class Point3dArrayCarrier extends IndexedXYZCollection_1.IndexedXYZCollection {
-    /** CAPTURE caller supplied array ... */
-    constructor(data) {
-        super();
-        this.data = data;
-    }
-    isValidIndex(index) {
-        return index >= 0 && index < this.data.length;
-    }
-    /**
-     * @param index index of point within the array
-     * @param result caller-allocated destination
-     * @returns undefined if the index is out of bounds
-     */
-    atPoint3dIndex(index, result) {
-        if (this.isValidIndex(index)) {
-            const source = this.data[index];
-            return Point3dVector3d_1.Point3d.create(source.x, source.y, source.z, result);
-        }
-        return undefined;
-    }
-    /**
-     * @param index index of point within the array
-     * @param result caller-allocated destination
-     * @returns undefined if the index is out of bounds
-     */
-    atVector3dIndex(index, result) {
-        if (this.isValidIndex(index)) {
-            const source = this.data[index];
-            return Point3dVector3d_1.Vector3d.create(source.x, source.y, source.z, result);
-        }
-        return undefined;
-    }
-    /**
-     * @param indexA index of point within the array
-     * @param indexB index of point within the array
-     * @param result caller-allocated vector.
-     * @returns undefined if either index is out of bounds
-     */
-    vectorIndexIndex(indexA, indexB, result) {
-        if (this.isValidIndex(indexA) && this.isValidIndex(indexB))
-            return Point3dVector3d_1.Vector3d.createStartEnd(this.data[indexA], this.data[indexB], result);
-        return undefined;
-    }
-    /**
-     * @param origin origin for vector
-     * @param indexB index of point within the array
-     * @param result caller-allocated vector.
-     * @returns undefined if index is out of bounds
-     */
-    vectorXYAndZIndex(origin, indexB, result) {
-        if (this.isValidIndex(indexB))
-            return Point3dVector3d_1.Vector3d.createStartEnd(origin, this.data[indexB], result);
-        return undefined;
-    }
-    /**
-     * @param origin origin for vector
-     * @param indexA index of first target within the array
-     * @param indexB index of second target within the array
-     * @param result caller-allocated vector.
-     * @returns undefined if either index is out of bounds
-     */
-    crossProductXYAndZIndexIndex(origin, indexA, indexB, result) {
-        if (this.isValidIndex(indexA) && this.isValidIndex(indexB))
-            return Point3dVector3d_1.Vector3d.createCrossProductToPoints(origin, this.data[indexA], this.data[indexB], result);
-        return undefined;
-    }
-    /**
-   * @param originIndex index of origin
-   * @param indexA index of first target within the array
-   * @param indexB index of second target within the array
-   * @param result caller-allocated vector.
-   * @returns return true if indexA, indexB both valid
-   */
-    crossProductIndexIndexIndex(originIndex, indexA, indexB, result) {
-        if (this.isValidIndex(originIndex) && this.isValidIndex(indexA) && this.isValidIndex(indexB))
-            return Point3dVector3d_1.Vector3d.createCrossProductToPoints(this.data[originIndex], this.data[indexA], this.data[indexB], result);
-        return undefined;
-    }
-    /**
-     * @param origin index of origin
-     * @param indexA index of first target within the array
-     * @param indexB index of second target within the array
-     * @param result caller-allocated vector.
-     * @returns return true if indexA, indexB both valid
-     */
-    accumulateCrossProductIndexIndexIndex(originIndex, indexA, indexB, result) {
-        const data = this.data;
-        if (this.isValidIndex(originIndex) && this.isValidIndex(indexA) && this.isValidIndex(indexB))
-            result.addCrossProductToTargetsInPlace(data[originIndex].x, data[originIndex].y, data[originIndex].z, data[indexA].x, data[indexA].y, data[indexA].z, data[indexB].x, data[indexB].y, data[indexB].z);
-    }
-    /**
-     * read-only property for number of XYZ in the collection.
-     */
-    get length() {
-        return this.data.length;
-    }
-}
-exports.Point3dArrayCarrier = Point3dArrayCarrier;
+Point3dArray._weightUVW = new Float64Array(8);
+Point3dArray._weightDU = new Float64Array(8);
+Point3dArray._weightDV = new Float64Array(8);
+Point3dArray._weightDW = new Float64Array(8);
 //# sourceMappingURL=PointHelpers.js.map

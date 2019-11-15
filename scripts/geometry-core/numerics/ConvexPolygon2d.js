@@ -1,6 +1,6 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -8,21 +8,32 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Point2dVector2d_1 = require("../geometry3d/Point2dVector2d");
 const Range_1 = require("../geometry3d/Range");
 const Geometry_1 = require("../Geometry");
+/**
+ * Ray with xy origin and direction
+ * @internal
+ */
 class Ray2d {
     constructor(origin, direction) {
         this._origin = origin;
         this._direction = direction;
     }
+    /** Create from 2d `origin` and `target`.
+     * * `target - origin` is the direction vector.
+     */
     static createOriginAndTarget(origin, target) {
         return new Ray2d(origin.clone(), origin.vectorTo(target));
     }
+    /** Create from (clones of) `origin` point and `direction` vector */
     static createOriginAndDirection(origin, direction) {
         return new Ray2d(origin.clone(), direction.clone());
     }
+    /** Capture `origin` and `direction` as ray member variables. */
     static createOriginAndDirectionCapture(origin, direction) {
         return new Ray2d(origin, direction);
     }
+    /** Get the (REFERENCE TO) the ray origin. */
     get origin() { return this._origin; }
+    /** Get the (REFERENCE TO) the ray direction. */
     get direction() { return this._direction; }
     /**
      *  Return a ray that is parallel at distance to the left, specified as fraction of the ray's direction vector.
@@ -30,12 +41,15 @@ class Ray2d {
     parallelRay(leftFraction) {
         return new Ray2d(this._origin.addForwardLeft(0.0, leftFraction, this._direction), this._direction);
     }
-    CCWPerpendicularRay() {
+    /** Return a ray with same origin, direction rotated 90 degrees counterclockwise */
+    ccwPerpendicularRay() {
         return new Ray2d(this._origin, this._direction.rotate90CCWXY());
     }
-    CWPerpendicularRay() {
+    /** Return a ray with same origin, direction rotated 90 degrees clockwise */
+    cwPerpendicularRay() {
         return new Ray2d(this._origin, this._direction.rotate90CWXY());
     }
+    /** Normalize the direction vector in place. */
     normalizeDirectionInPlace() {
         if (this._direction.normalize(this._direction)) {
             return true;
@@ -50,16 +64,16 @@ class Ray2d {
     /**
      * Intersect this ray (ASSUMED NORMALIZED) with unbounded line defined by points.
      *  (The normalization assumption affects test for parallel vectors.)
-     *  Fraction and dhds passed as number[] to use by reference... Sticking to return of true and false in the case fraction is zero after
+     *  Fraction and dHds passed as number[] to use by reference... Sticking to return of true and false in the case fraction is zero after
      *  a true safe divide
      */
-    intersectUnboundedLine(linePointA, linePointB, fraction, dhds) {
+    intersectUnboundedLine(linePointA, linePointB, fraction, dHds) {
         const lineDirection = linePointA.vectorTo(linePointB);
         const vector0 = linePointA.vectorTo(this._origin);
         const h0 = vector0.crossProduct(lineDirection);
-        dhds[0] = this._direction.crossProduct(lineDirection);
+        dHds[0] = this._direction.crossProduct(lineDirection);
         // h = h0 + s * dh
-        const ff = Geometry_1.Geometry.conditionalDivideFraction(-h0, dhds[0]);
+        const ff = Geometry_1.Geometry.conditionalDivideFraction(-h0, dHds[0]);
         if (ff !== undefined) {
             fraction[0] = ff;
             return true;
@@ -86,6 +100,10 @@ class Ray2d {
     }
 }
 exports.Ray2d = Ray2d;
+/**
+ * Convex hull of points in 2d.
+ * @internal
+ */
 class ConvexPolygon2d {
     constructor(points) {
         this._hullPoints = [];
@@ -197,7 +215,7 @@ class ConvexPolygon2d {
     }
     /**
      * Return 2 distances bounding the intersection of the ray with a convex hull.
-     * ASSUME (for tolerancing) the ray has normalized direction vector.
+     * ASSUME (for tolerance) the ray has normalized direction vector.
      * Both negative and positive distances along the ray are possible.
      * Returns range with extremities if less than 3 points, distanceA > distanceB, or if cross product < 0
      */
@@ -210,9 +228,9 @@ class ConvexPolygon2d {
         let xy0 = this._hullPoints[n - 1];
         for (const xy1 of this._hullPoints) {
             const distance = [];
-            const dhds = [];
-            if (ray.intersectUnboundedLine(xy0, xy1, distance, dhds)) {
-                if (dhds[0] > 0.0) {
+            const dHds = [];
+            if (ray.intersectUnboundedLine(xy0, xy1, distance, dHds)) {
+                if (dHds[0] > 0.0) {
                     if (distance[0] < distanceB)
                         distanceB = distance[0];
                 }
@@ -237,14 +255,14 @@ class ConvexPolygon2d {
         range.extendX(distanceB);
         return range;
     }
-    /** Return the range of (fractional) ray postions for projections of all points from the arrays. */
+    /** Return the range of (fractional) ray positions for projections of all points from the arrays. */
     rangeAlongRay(ray) {
         const range = Range_1.Range1d.createNull();
         for (const xy1 of this._hullPoints)
             range.extendX(ray.projectionFraction(xy1));
         return range;
     }
-    /** Return the range of (fractional) ray postions for projections of all points from the arrays. */
+    /** Return the range of (fractional) ray positions for projections of all points from the arrays. */
     rangePerpendicularToRay(ray) {
         const range = Range_1.Range1d.createNull();
         for (const xy1 of this._hullPoints)

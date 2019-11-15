@@ -1,22 +1,39 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+/*---------------------------------------------------------------------------------------------
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
+/** @module Curve */
+const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
 const Range_1 = require("../geometry3d/Range");
 const GeometryQuery_1 = require("./GeometryQuery");
-/** A Coordinate is a persistable Point3d */
+/** A Coordinate is a Point3d with supporting methods from the GeometryQuery abstraction.
+ * @public
+ */
 class CoordinateXYZ extends GeometryQuery_1.GeometryQuery {
-    get point() { return this._xyz; }
     /**
      * @param xyz point to be CAPTURED.
      */
     constructor(xyz) {
         super();
+        /** String name for interface properties */
+        this.geometryCategory = "point";
         this._xyz = xyz;
     }
+    /** Return a (REFERENCE TO) the coordinate data. */
+    get point() { return this._xyz; }
+    /** Create a new CoordinateXYZ containing a CLONE of point */
     static create(point) {
         return new CoordinateXYZ(point.clone());
     }
+    /** Create a new CoordinateXYZ */
+    static createXYZ(x = 0, y = 0, z = 0) {
+        return new CoordinateXYZ(Point3dVector3d_1.Point3d.create(x, y, z));
+    }
     /** return the range of the point */
     range() { return Range_1.Range3d.create(this._xyz); }
+    /** extend `rangeToExtend` to include this point (optionally transformed) */
     extendRange(rangeToExtend, transform) {
         if (transform)
             rangeToExtend.extendTransformedXYZ(transform, this._xyz.x, this._xyz.y, this._xyz.z);
@@ -57,6 +74,7 @@ class CoordinateXYZ extends GeometryQuery_1.GeometryQuery {
     isAlmostEqual(other) {
         return (other instanceof CoordinateXYZ) && this._xyz.isAlmostEqual(other._xyz);
     }
+    /** Second step of double dispatch:  call `handler.handleCoordinateXYZ(this)` */
     dispatchToGeometryHandler(handler) {
         return handler.handleCoordinateXYZ(this);
     }

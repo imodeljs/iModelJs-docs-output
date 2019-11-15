@@ -1,6 +1,6 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -14,24 +14,30 @@ const Point4d_1 = require("./Point4d");
  * * A Matrix4d is a matrix with 4 rows and 4 columns.
  * * The 4 rows may be described as the x,y,z,w rows.
  * * The 4 columns may be described as the x,y,z,w columns.
- * * The matrix is physically stored as a FLoat64Array with 16 numbers.
+ * * The matrix is physically stored as a Float64Array with 16 numbers.
  * * The layout in the Float64Array is "by row"
- * * * indices 0,1,2,3 are the "x row".   They may be called the xx,xy,xz,xw entries
- * * * indices 4,5,6,7 are the "y row"    They may be called the yx,yy,yz,yw entries
- * * * indices 8,9,10,11 are the "z row"  They may be called the zx,zy,zz,zw entries
- * * * indices 12,13,14,15 are the "w row".  They may be called the wx,wy,wz,ww entries
+ *   * indices 0,1,2,3 are the "x row".   They may be called the xx,xy,xz,xw entries
+ *   * indices 4,5,6,7 are the "y row"    They may be called the yx,yy,yz,yw entries
+ *   * indices 8,9,10,11 are the "z row"  They may be called the zx,zy,zz,zw entries
+ *   * indices 12,13,14,15 are the "w row".  They may be called the wx,wy,wz,ww entries
  * * If "w row" contains numeric values 0,0,0,1, the Matrix4d is equivalent to a Transform with
- * * * The upper right 3x3 matrix (entries 0,1,2,4,5,6,8,9,10) are the 3x3 matrix part of the transform
- * * * The far right column entries xw,yw,zw are the "origin" (sometimes called "translation") part of the transform.
+ *  * The upper right 3x3 matrix (entries 0,1,2,4,5,6,8,9,10) are the 3x3 matrix part of the transform
+ *  * The far right column entries xw,yw,zw are the "origin" (sometimes called "translation") part of the transform.
+ * @public
  */
 class Matrix4d {
     constructor() { this._coffs = new Float64Array(16); }
+    /** Copy matrix entries from `other` */
     setFrom(other) {
         for (let i = 0; i < 16; i++)
             this._coffs[i] = other._coffs[i];
     }
-    clone() {
-        const result = new Matrix4d();
+    /** Return a deep clone. */
+    clone(result) {
+        if (result === this)
+            return this;
+        if (result === undefined)
+            result = new Matrix4d();
         for (let i = 0; i < 16; i++)
             result._coffs[i] = this._coffs[i];
         return result;
@@ -89,6 +95,10 @@ class Matrix4d {
         result._coffs[15] = cww;
         return result;
     }
+    /** Create a `Matrix4d` from 16 values appearing as `Point4d` for each row. */
+    static createRows(rowX, rowY, rowZ, rowW, result) {
+        return this.createRowValues(rowX.x, rowX.y, rowX.z, rowX.w, rowY.x, rowY.y, rowY.z, rowY.w, rowZ.x, rowZ.y, rowZ.z, rowZ.w, rowW.x, rowW.y, rowW.z, rowW.w, result);
+    }
     /** directly set columns from typical 3d data:
      *
      * * vectorX, vectorY, vectorZ as columns 0,1,2, with weight0.
@@ -139,6 +149,17 @@ class Matrix4d {
         result._coffs[11] = z;
         return result;
     }
+    /** return this matrix plus scale times matrixB. */
+    plusScaled(matrixB, scale, result) {
+        // If result is undefined, a real clone is created.
+        // If result is "this" we get the pointer to this right back.
+        // If result is other, "this" coffs are copied.
+        // Then we can add matrixB.  (Which we assume is different from this?)
+        result = this.clone(result);
+        for (let i = 0; i < 16; i++)
+            result._coffs[i] += scale * matrixB._coffs[i];
+        return result;
+    }
     /**
      * Create a Matrix4d with translation and scaling values directly inserted (along with 1 as final diagonal entry)
      * @param tx x entry for translation column
@@ -174,6 +195,7 @@ class Matrix4d {
         }
         return undefined;
     }
+    /** Set from nested array json e.g. `[[1,2,3,4],[0,1,2,4],[0,2,5,1],[0,0,1,2]]` */
     setFromJSON(json) {
         if (Geometry_1.Geometry.isArrayOfNumberArray(json, 4, 4))
             for (let i = 0; i < 4; ++i) {
@@ -202,6 +224,7 @@ class Matrix4d {
             a = Math.max(a, Math.abs(this._coffs[i]));
         return a;
     }
+    /** Test for near-equality with `other` */
     isAlmostEqual(other) {
         return Geometry_1.Geometry.isSmallMetricDistance(this.maxDiff(other));
     }
@@ -216,6 +239,7 @@ class Matrix4d {
         }
         return value;
     }
+    /** Create from nested array json e.g. `[[1,2,3,4],[0,1,2,4],[0,2,5,1],[0,0,1,2]]` */
     static fromJSON(json) {
         const result = new Matrix4d();
         result.setFromJSON(json);
@@ -236,24 +260,24 @@ class Matrix4d {
     getSteppedPoint(i0, step, result) {
         return Point4d_1.Point4d.create(this._coffs[i0], this._coffs[i0 + step], this._coffs[i0 + 2 * step], this._coffs[i0 + 3 * step], result);
     }
-    /** @returns Return column 0 as Point4d. */
+    /** Return column 0 as Point4d. */
     columnX() { return this.getSteppedPoint(0, 4); }
-    /** @returns Return column 1 as Point4d. */
+    /** Return column 1 as Point4d. */
     columnY() { return this.getSteppedPoint(1, 4); }
-    /** @returns Return column 2 as Point4d. */
+    /** Return column 2 as Point4d. */
     columnZ() { return this.getSteppedPoint(2, 4); }
-    /** @returns Return column 3 as Point4d. */
+    /** Return column 3 as Point4d. */
     columnW() { return this.getSteppedPoint(3, 4); }
-    /** @returns Return row 0 as Point4d. */
+    /** Return row 0 as Point4d. */
     rowX() { return this.getSteppedPoint(0, 1); }
-    /** @returns Return row 1 as Point4d. */
+    /** Return row 1 as Point4d. */
     rowY() { return this.getSteppedPoint(4, 1); }
-    /** @returns Return row 2 as Point4d. */
+    /** Return row 2 as Point4d. */
     rowZ() { return this.getSteppedPoint(8, 1); }
-    /** @returns Return row 3 as Point4d. */
+    /** Return row 3 as Point4d. */
     rowW() { return this.getSteppedPoint(12, 1); }
     /**
-     * @returns true if the 2 row has content other than [0,0,0,1]
+     * Returns true if the w row has content other than [0,0,0,1]
      */
     get hasPerspective() {
         return this._coffs[12] !== 0.0
@@ -360,7 +384,7 @@ class Matrix4d {
         result = result ? result : Point4d_1.Point4d.createZero();
         return result.set(this._coffs[0] * x + this._coffs[4] * y + this._coffs[8] * z + this._coffs[12] * w, this._coffs[1] * x + this._coffs[5] * y + this._coffs[9] * z + this._coffs[13] * w, this._coffs[2] * x + this._coffs[6] * y + this._coffs[10] * z + this._coffs[14] * w, this._coffs[3] * x + this._coffs[7] * y + this._coffs[11] * z + this._coffs[15] * w);
     }
-    /** @returns dot product of row rowIndex of this with column columnIndex of other.
+    /** Returns dot product of row rowIndex of this with column columnIndex of other.
      */
     rowDotColumn(rowIndex, other, columnIndex) {
         const i = rowIndex * 4;
@@ -370,7 +394,7 @@ class Matrix4d {
             + this._coffs[i + 2] * other._coffs[j + 8]
             + this._coffs[i + 3] * other._coffs[j + 12];
     }
-    /** @returns dot product of row rowIndexThis of this with row rowIndexOther of other.
+    /** Returns dot product of row rowIndexThis of this with row rowIndexOther of other.
      */
     rowDotRow(rowIndexThis, other, rowIndexOther) {
         const i = rowIndexThis * 4;
@@ -380,7 +404,7 @@ class Matrix4d {
             + this._coffs[i + 2] * other._coffs[j + 2]
             + this._coffs[i + 3] * other._coffs[j + 3];
     }
-    /** @returns dot product of row rowIndexThis of this with row rowIndexOther of other.
+    /** Returns dot product of row rowIndexThis of this with row rowIndexOther of other.
      */
     columnDotColumn(columnIndexThis, other, columnIndexOther) {
         const i = columnIndexThis;
@@ -390,7 +414,7 @@ class Matrix4d {
             + this._coffs[i + 8] * other._coffs[j + 8]
             + this._coffs[i + 12] * other._coffs[j + 12];
     }
-    /** @returns dot product of column columnIndexThis of this with row rowIndexOther other.
+    /** Returns dot product of column columnIndexThis of this with row rowIndexOther other.
      */
     columnDotRow(columnIndexThis, other, rowIndexOther) {
         const i = columnIndexThis;
@@ -400,10 +424,15 @@ class Matrix4d {
             + this._coffs[i + 8] * other._coffs[j + 2]
             + this._coffs[i + 12] * other._coffs[j + 3];
     }
-    /** @returns return a matrix entry by row and column index.
+    /** Return a matrix entry by row and column index.
      */
     atIJ(rowIndex, columnIndex) {
         return this._coffs[rowIndex * 4 + columnIndex];
+    }
+    /** Set a matrix entry by row and column index.
+     */
+    setAtIJ(rowIndex, columnIndex, value) {
+        this._coffs[rowIndex * 4 + columnIndex] = value;
     }
     /** multiply matrix * [x,y,z,w]. immediately renormalize to return in a Point3d.
      * If zero weight appears in the result (i.e. input is on eyeplane) leave the mapped xyz untouched.
@@ -412,11 +441,13 @@ class Matrix4d {
         result = result ? result : Point3dVector3d_1.Point3d.createZero();
         result.set(this._coffs[0] * x + this._coffs[1] * y + this._coffs[2] * z + this._coffs[3] * w, this._coffs[4] * x + this._coffs[5] * y + this._coffs[6] * z + this._coffs[7] * w, this._coffs[8] * x + this._coffs[9] * y + this._coffs[10] * z + this._coffs[11] * w);
         const w1 = this._coffs[12] * x + this._coffs[13] * y + this._coffs[14] * z + this._coffs[15] * w;
-        if (!Geometry_1.Geometry.isSmallMetricDistance(w1)) {
-            const a = 1.0 / w1;
-            result.x *= a;
-            result.y *= a;
-            result.z *= a;
+        const qx = Geometry_1.Geometry.conditionalDivideCoordinate(result.x, w1);
+        const qy = Geometry_1.Geometry.conditionalDivideCoordinate(result.y, w1);
+        const qz = Geometry_1.Geometry.conditionalDivideCoordinate(result.z, w1);
+        if (qx !== undefined && qy !== undefined && qz !== undefined) {
+            result.x = qx;
+            result.y = qy;
+            result.z = qz;
         }
         return result;
     }
@@ -491,61 +522,63 @@ class Matrix4d {
         for (let i = firstColumnIndex; i < 4; i++, iA++, iB++)
             this._coffs[iB] += scale * this._coffs[iA];
     }
-    /** Compute an inverse matrix.
-     * * This uses simple Bauss-Jordan elimination -- no pivot.
-     * @returns undefined if 1/pivot becomes too large. (i.e. apparent 0 pivot)
-     */
-    createInverse() {
-        const work = this.clone();
-        const inverse = Matrix4d.createIdentity();
-        // console.log(work.rowArrays());
-        // console.log(inverse.rowArrays());
-        let pivotIndex;
-        let pivotRow;
-        let pivotValue;
-        let divPivot;
-        // Downward gaussian elimination, no pivoting:
-        for (pivotRow = 0; pivotRow < 3; pivotRow++) {
-            pivotIndex = pivotRow * 5;
-            pivotValue = work._coffs[pivotIndex];
-            // console.log("** pivot row " + pivotRow + " pivotvalue " + pivotValue);
-            divPivot = Geometry_1.Geometry.conditionalDivideFraction(1.0, pivotValue);
-            if (divPivot === undefined)
-                return undefined;
-            let indexB = pivotIndex + 4;
-            for (let rowB = pivotRow + 1; rowB < 4; rowB++, indexB += 4) {
-                const scale = -work._coffs[indexB] * divPivot;
-                work.rowOperation(pivotRow, rowB, pivotRow, scale);
-                inverse.rowOperation(pivotRow, rowB, 0, scale);
-                // console.log(work.rowArrays());
-                // console.log(inverse.rowArrays());
-            }
-        }
-        // console.log("\n**********************Backsub\n");
-        // upward gaussian elimination ...
-        for (pivotRow = 1; pivotRow < 4; pivotRow++) {
-            pivotIndex = pivotRow * 5;
-            pivotValue = work._coffs[pivotIndex];
-            // console.log("** pivot row " + pivotRow + " pivotvalue " + pivotValue);
-            divPivot = Geometry_1.Geometry.conditionalDivideFraction(1.0, pivotValue);
-            if (divPivot === undefined)
-                return undefined;
-            let indexB = pivotRow;
-            for (let rowB = 0; rowB < pivotRow; rowB++, indexB += 4) {
-                const scale = -work._coffs[indexB] * divPivot;
-                work.rowOperation(pivotRow, rowB, pivotRow, scale);
-                inverse.rowOperation(pivotRow, rowB, 0, scale);
-                // console.log("Eliminate Row " + rowB + " from pivot " + pivotRow);
-                // console.log(work.rowArrays());
-                // console.log(inverse.rowArrays());
-            }
-        }
-        // divide through by pivots (all have  beeen confirmed nonzero)
-        inverse.scaleRowsInPlace(1.0 / work._coffs[0], 1.0 / work._coffs[5], 1.0 / work._coffs[10], 1.0 / work._coffs[15]);
-        // console.log("descaled", inverse.rowArrays());
-        return inverse;
+    /** Return the determinant of the matrix. */
+    determinant() {
+        const c = this._coffs;
+        return Geometry_1.Geometry.determinant4x4(c[0], c[1], c[2], c[3], c[4], c[5], c[6], c[7], c[8], c[9], c[10], c[11], c[12], c[13], c[14], c[15]);
     }
-    /** @returns Restructure the matrix rows as separate arrays. (Useful for printing)
+    /** Compute an inverse matrix.
+     * * This uses direct formulas with various determinants.
+     * * If result is given, it is ALWAYS filled with values "prior to dividing by the determinant".
+     * *
+     * @returns undefined if dividing by the determinant looks unsafe.
+     */
+    createInverse(result) {
+        const maxAbs0 = this.maxAbs();
+        if (maxAbs0 === 0.0)
+            return undefined;
+        const divMaxAbs = 1.0 / maxAbs0;
+        const columnA = this.columnX();
+        const columnB = this.columnY();
+        const columnC = this.columnZ();
+        const columnD = this.columnW();
+        columnA.scale(divMaxAbs, columnA);
+        columnB.scale(divMaxAbs, columnB);
+        columnC.scale(divMaxAbs, columnC);
+        columnD.scale(divMaxAbs, columnD);
+        const rowBCD = Point4d_1.Point4d.perpendicularPoint4dPlane(columnB, columnC, columnD);
+        const rowCDA = Point4d_1.Point4d.perpendicularPoint4dPlane(columnA, columnD, columnC); // order for negation !
+        const rowDAB = Point4d_1.Point4d.perpendicularPoint4dPlane(columnD, columnA, columnB);
+        const rowABC = Point4d_1.Point4d.perpendicularPoint4dPlane(columnC, columnB, columnA); // order for negation !
+        // The matrix is singular if the determinant is zero.
+        // But what is the proper tolerance for zero?
+        // The row values are generally cubes of entries. And the typical perspective matrix
+        //    has very different magnitudes in various parts.  So a typical cube size is really hard.
+        // Compute 4 different determinants.  They should match.
+        // If they are near zero, maybe a sign change is a red flag for singular case.
+        // (And there's a lot less work to do that than was done to make the rows)
+        result = Matrix4d.createRows(rowBCD, rowCDA, rowDAB, rowABC, result);
+        const determinantA = rowBCD.dotProduct(columnA);
+        const determinantB = rowCDA.dotProduct(columnB);
+        const determinantC = rowDAB.dotProduct(columnC);
+        const determinantD = rowABC.dotProduct(columnD);
+        const maxAbs1 = result.maxAbs();
+        if (determinantA * determinantB > 0.0
+            && determinantA * determinantC > 0.0
+            && determinantA * determinantD > 0.0) {
+            const divisionTest = Geometry_1.Geometry.conditionalDivideCoordinate(maxAbs1, determinantA);
+            if (divisionTest !== undefined) {
+                const b = divMaxAbs / determinantA;
+                result.scaleRowsInPlace(b, b, b, b);
+                return result;
+            }
+        }
+        else {
+            return undefined; // this is a useful spot to break to see if the 4 determinant test is effective.
+        }
+        return undefined;
+    }
+    /** Returns an array-of-arrays of the matrix rows, optionally passing each value through a function.
      * @param f optional function to provide alternate values for each entry (e.g. force fuzz to zero.)
      */
     rowArrays(f) {
@@ -580,6 +613,116 @@ class Matrix4d {
             this._coffs[i] *= az;
         for (let i = 12; i < 16; i++)
             this._coffs[i] *= aw;
+    }
+    /**
+     * add an outer product (single column times single row times scale factor) to this matrix.
+     * @param vectorU column vector
+     * @param vectorV row vector
+     * @param scale scale factor
+     */
+    addScaledOuterProductInPlace(vectorU, vectorV, scale) {
+        let a = vectorU.x * scale;
+        this._coffs[0] += a * vectorV.x;
+        this._coffs[1] += a * vectorV.y;
+        this._coffs[2] += a * vectorV.z;
+        this._coffs[3] += a * vectorV.w;
+        a = vectorU.y * scale;
+        this._coffs[4] += a * vectorV.x;
+        this._coffs[5] += a * vectorV.y;
+        this._coffs[6] += a * vectorV.z;
+        this._coffs[7] += a * vectorV.w;
+        a = vectorU.z * scale;
+        this._coffs[8] += a * vectorV.x;
+        this._coffs[9] += a * vectorV.y;
+        this._coffs[10] += a * vectorV.z;
+        this._coffs[11] += a * vectorV.w;
+        a = vectorU.w * scale;
+        this._coffs[12] += a * vectorV.x;
+        this._coffs[13] += a * vectorV.y;
+        this._coffs[14] += a * vectorV.z;
+        this._coffs[15] += a * vectorV.w;
+    }
+    /**
+     * ADD (n place) scale*A*B*AT where
+     * * A is a pure translation with final column [x,y,z,1]
+     * * B is the given `matrixB`
+     * * AT is the transpose of A.
+     * * scale is a multiplier.
+     * @param matrixB the middle matrix.
+     * @param ax x part of translation
+     * @param ay y part of translation
+     * @param az z part of translation
+     * @param scale scale factor for entire product
+     */
+    addTranslationSandwichInPlace(matrixB, ax, ay, az, scale) {
+        const bx = matrixB._coffs[3];
+        const by = matrixB._coffs[7];
+        const bz = matrixB._coffs[11];
+        // matrixB can be non-symmetric!!
+        const cx = matrixB._coffs[12];
+        const cy = matrixB._coffs[13];
+        const cz = matrixB._coffs[14];
+        const beta = matrixB._coffs[15];
+        const axBeta = ax * beta;
+        const ayBeta = ay * beta;
+        const azBeta = az * beta;
+        this._coffs[0] += scale * (matrixB._coffs[0] + ax * bx + cx * ax + ax * axBeta);
+        this._coffs[1] += scale * (matrixB._coffs[1] + ay * bx + cy * ax + ax * ayBeta);
+        this._coffs[2] += scale * (matrixB._coffs[2] + az * bx + cz * ax + ax * azBeta);
+        this._coffs[3] += scale * (bx + axBeta);
+        this._coffs[4] += scale * (matrixB._coffs[4] + ax * by + cx * ay + ay * axBeta);
+        this._coffs[5] += scale * (matrixB._coffs[5] + ay * by + cy * ay + ay * ayBeta);
+        this._coffs[6] += scale * (matrixB._coffs[6] + az * by + cz * ay + ay * azBeta);
+        this._coffs[7] += scale * (by + ayBeta);
+        this._coffs[8] += scale * (matrixB._coffs[8] + ax * bz + cx * az + az * axBeta);
+        this._coffs[9] += scale * (matrixB._coffs[9] + ay * bz + cy * az + az * ayBeta);
+        this._coffs[10] += scale * (matrixB._coffs[10] + az * bz + cz * az + az * azBeta);
+        this._coffs[11] += scale * (bz + azBeta);
+        this._coffs[12] += scale * (cx + axBeta);
+        this._coffs[13] += scale * (cy + ayBeta);
+        this._coffs[14] += scale * (cz + azBeta);
+        this._coffs[15] += scale * beta;
+    }
+    /**
+     * Multiply and replace contents of this matrix by A*this*AT where
+     * * A is a pure translation with final column [x,y,z,1]
+     * * this is this matrix.
+     * * AT is the transpose of A.
+     * * scale is a multiplier.
+     * @param matrixB the middle matrix.
+     * @param ax x part of translation
+     * @param ay y part of translation
+     * @param az z part of translation
+     * @param scale scale factor for entire product
+     */
+    multiplyTranslationSandwichInPlace(ax, ay, az) {
+        const bx = this._coffs[3];
+        const by = this._coffs[7];
+        const bz = this._coffs[11];
+        // matrixB can be non-symmetric!!
+        const cx = this._coffs[12];
+        const cy = this._coffs[13];
+        const cz = this._coffs[14];
+        const beta = this._coffs[15];
+        const axBeta = ax * beta;
+        const ayBeta = ay * beta;
+        const azBeta = az * beta;
+        this._coffs[0] += (ax * bx + cx * ax + ax * axBeta);
+        this._coffs[1] += (ay * bx + cy * ax + ax * ayBeta);
+        this._coffs[2] += (az * bx + cz * ax + ax * azBeta);
+        this._coffs[3] += axBeta;
+        this._coffs[4] += (ax * by + cx * ay + ay * axBeta);
+        this._coffs[5] += (ay * by + cy * ay + ay * ayBeta);
+        this._coffs[6] += (az * by + cz * ay + ay * azBeta);
+        this._coffs[7] += ayBeta;
+        this._coffs[8] += (ax * bz + cx * az + az * axBeta);
+        this._coffs[9] += (ay * bz + cy * az + az * ayBeta);
+        this._coffs[10] += (az * bz + cz * az + az * azBeta);
+        this._coffs[11] += azBeta;
+        this._coffs[12] += axBeta;
+        this._coffs[13] += ayBeta;
+        this._coffs[14] += azBeta;
+        // coffs[15] is unchanged !!!
     }
 }
 exports.Matrix4d = Matrix4d;

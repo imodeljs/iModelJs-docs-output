@@ -6,12 +6,17 @@ import { Transform } from "../geometry3d/Transform";
 import { Ray3d } from "../geometry3d/Ray3d";
 import { Plane3dByOriginAndVectors } from "../geometry3d/Plane3dByOriginAndVectors";
 import { CurveLocationDetail } from "../curve/CurveLocationDetail";
-import { StrokeOptions } from "../curve/StrokeOptions";
 import { GeometryHandler } from "../geometry3d/GeometryHandler";
 import { BezierCurveBase } from "./BezierCurveBase";
 import { Range3d } from "../geometry3d/Range";
-/** 3d curve with homogeneous weights. */
+/** @module Bspline */
+/** 3d curve with homogeneous weights.
+ * * A control point with weight w and cartesian (projected) coordinates x,y,z has the weight multiplied into the coordinates,
+ *    hence the control point as stored is (xw, yw, zw, w).
+ * @public
+ */
 export declare class BezierCurve3dH extends BezierCurveBase {
+    /** test if `other` is also a BezierCurve3dH. */
     isSameGeometryClass(other: any): boolean;
     /**
      * Apply (multiply by) an affine transform
@@ -31,7 +36,7 @@ export declare class BezierCurve3dH extends BezierCurveBase {
      */
     getPolePoint3d(i: number, result?: Point3d): Point3d | undefined;
     /**
-     * @returns true if all weights are within tolerance of 1.0
+     * Returns true if all weights are within tolerance of 1.0
      */
     isUnitWeight(tolerance?: number): boolean;
     /**
@@ -51,6 +56,7 @@ export declare class BezierCurve3dH extends BezierCurveBase {
     loadSpan3dPolesWithWeight(data: Float64Array, spanIndex: number, weight: number): void;
     /** Load order * 4 doubles from data[3 * spanIndex] as poles (with added weight) */
     loadSpan4dPoles(data: Float64Array, spanIndex: number): void;
+    /** Clone the entire curve. */
     clone(): BezierCurve3dH;
     /**
      * Return a curve after transform.
@@ -69,12 +75,9 @@ export declare class BezierCurve3dH extends BezierCurveBase {
      * If the arc is circular, the second derivative is directly towards the center
      */
     fractionToPointAnd2Derivatives(fraction: number, result?: Plane3dByOriginAndVectors): Plane3dByOriginAndVectors;
+    /** test for nearly equal control points */
     isAlmostEqual(other: any): boolean;
-    /**
-     * Assess legnth and turn to determine a stroke count.
-     * @param options stroke options structure.
-     */
-    strokeCount(options?: StrokeOptions): number;
+    /** Second step of double dispatch:  call `handler.handleBezierCurve3dH(this)` */
     dispatchToGeometryHandler(handler: GeometryHandler): any;
     /**
      * Form dot products of each pole with given coefficients. Return as entries in products array.
@@ -90,9 +93,13 @@ export declare class BezierCurve3dH extends BezierCurveBase {
      * * This assumes this bezier is saturated.
      * @param spacePoint point being projected
      * @param detail pre-allocated detail to record (evolving) closest point.
-     * @returns true if an updated occured, false if either (a) no perpendicular projections or (b) perpendiculars were not closer.
+     * @returns true if an updated occurred, false if either (a) no perpendicular projections or (b) perpendiculars were not closer.
      */
     updateClosestPointByTruePerpendicular(spacePoint: Point3d, detail: CurveLocationDetail): boolean;
+    /** Extend `rangeToExtend`, using candidate extrema at
+     * * both end points
+     * * any internal extrema in x,y,z
+     */
     extendRange(rangeToExtend: Range3d, transform?: Transform): void;
 }
 //# sourceMappingURL=BezierCurve3dH.d.ts.map

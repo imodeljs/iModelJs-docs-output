@@ -1,6 +1,6 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -12,17 +12,22 @@ const GeometryQuery_1 = require("./GeometryQuery");
 /* tslint:disable:variable-name no-empty*/
 /**
  * A PointString3d is an array of points.
- * * PointString3D is first class (displayable) geometry derived from the GeometryQuery base class.
- * * The varous points in the PointString3d are NOT connected by line segments for display or other calculations.
+ * * PointString3D is first class (persistible, displayable) geometry derived from the GeometryQuery base class.
+ * * The various points in the PointString3d are NOT connected by line segments for display or other calculations.
+ * @public
  */
 class PointString3d extends GeometryQuery_1.GeometryQuery {
-    isSameGeometryClass(other) { return other instanceof PointString3d; }
-    /** return the points array (cloned). */
-    get points() { return this._points; }
     constructor() {
         super();
+        /** String name for schema properties */
+        this.geometryCategory = "pointCollection";
         this._points = [];
     }
+    /** Test if `other` is a PointString3d */
+    isSameGeometryClass(other) { return other instanceof PointString3d; }
+    /** return a clone of the points array. */
+    get points() { return this._points; }
+    /** Clone and apply a transform. */
     cloneTransformed(transform) {
         const c = this.clone();
         c.tryTransformInPlace(transform);
@@ -47,7 +52,7 @@ class PointString3d extends GeometryQuery_1.GeometryQuery {
                 this._points.push(p);
         }
     }
-    /** Add a single point to the PoinstString3d */
+    /** Add a single point to the PointString3d */
     addPoint(point) {
         this._points.push(point);
     }
@@ -55,6 +60,7 @@ class PointString3d extends GeometryQuery_1.GeometryQuery {
     popPoint() {
         this._points.pop();
     }
+    /** Replace this PointString3d's point array by a clone of the array in `other` */
     setFrom(other) {
         this._points = PointHelpers_1.Point3dArray.clonePoint3dArray(other._points);
     }
@@ -71,11 +77,13 @@ class PointString3d extends GeometryQuery_1.GeometryQuery {
             ps._points.push(Point3dVector3d_1.Point3d.create(xyzData[i], xyzData[i + 1], xyzData[i + 2]));
         return ps;
     }
+    /** Return a deep clone. */
     clone() {
         const retVal = new PointString3d();
         retVal.setFrom(this);
         return retVal;
     }
+    /** Replace this instance's points by those from a json array, e.g. `[[1,2,3], [4,2,2]]` */
     setFromJSON(json) {
         this._points.length = 0;
         if (Array.isArray(json)) {
@@ -94,6 +102,7 @@ class PointString3d extends GeometryQuery_1.GeometryQuery {
             value.push(p.toJSON());
         return value;
     }
+    /** Create a PointString3d from a json array, e.g. `[[1,2,3], [4,2,2]]` */
     static fromJSON(json) {
         const ps = new PointString3d();
         ps.setFromJSON(json);
@@ -157,7 +166,7 @@ class PointString3d extends GeometryQuery_1.GeometryQuery {
     }
     /** Reduce to empty set of points. */
     clear() { this._points.length = 0; }
-    /** Pass this PointString3d to the handler's `handlePointString` method. */
+    /** Second step of double dispatch:  call `handler.handlePointString(this)` */
     dispatchToGeometryHandler(handler) {
         return handler.handlePointString3d(this);
     }

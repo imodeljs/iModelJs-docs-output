@@ -1,6 +1,6 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -24,6 +24,7 @@ const ParityRegion_1 = require("../curve/ParityRegion");
 const Loop_1 = require("../curve/Loop");
 const Path_1 = require("../curve/Path");
 const Polyface_1 = require("../polyface/Polyface");
+const AuxData_1 = require("../polyface/AuxData");
 const BSplineCurve_1 = require("../bspline/BSplineCurve");
 const BSplineSurface_1 = require("../bspline/BSplineSurface");
 const Sphere_1 = require("../solid/Sphere");
@@ -41,12 +42,18 @@ const Arc3d_1 = require("../curve/Arc3d");
 const LineSegment3d_1 = require("../curve/LineSegment3d");
 const BSplineCurve3dH_1 = require("../bspline/BSplineCurve3dH");
 const Point4d_1 = require("../geometry4d/Point4d");
+const KnotVector_1 = require("../bspline/KnotVector");
 /* tslint:disable: object-literal-key-quotes no-console*/
+/**
+ * `ImodelJson` namespace has classes for serializing and deserialization json objects
+ * @public
+ */
 var IModelJson;
 (function (IModelJson) {
-    /** parser servoces for "iModelJson" schema
+    /** parser services for "iModelJson" schema
      * * 1: create a reader with `new ImodelJsonReader`
      * * 2: parse json fragment to strongly typed geometry: `const g = reader.parse (fragment)`
+     * @public
      */
     class Reader {
         constructor() {
@@ -149,7 +156,7 @@ var IModelJson;
             }
             return undefined;
         }
-        static parseYawPitchRollAngles(json) {
+        static parseYawPitchRollAnglesToMatrix3d(json) {
             const ypr = YawPitchRollAngles_1.YawPitchRollAngles.fromJSON(json);
             return ypr.toMatrix3d();
         }
@@ -184,13 +191,13 @@ var IModelJson;
          */
         static parseOrientation(json, createDefaultIdentity) {
             if (json.yawPitchRollAngles) {
-                return Reader.parseYawPitchRollAngles(json.yawPitchRollAngles);
+                return Reader.parseYawPitchRollAnglesToMatrix3d(json.yawPitchRollAngles);
             }
             else if (json.xyVectors) {
-                return Reader.parseAxesFromVectors(json.xyVectors, 0 /* XYZ */, createDefaultIdentity);
+                return Reader.parseAxesFromVectors(json.xyVectors, Geometry_1.AxisOrder.XYZ, createDefaultIdentity);
             }
             else if (json.zxVectors) {
-                return Reader.parseAxesFromVectors(json.zxVectors, 2 /* ZXY */, createDefaultIdentity);
+                return Reader.parseAxesFromVectors(json.zxVectors, Geometry_1.AxisOrder.ZXY, createDefaultIdentity);
             }
             if (createDefaultIdentity)
                 return Matrix3d_1.Matrix3d.createIdentity();
@@ -223,12 +230,16 @@ var IModelJson;
             arc = Reader.parseArcBy3Points(data);
             return arc; // possibly undefined.
         }
+        /** Parse point content (right side) `[1,2,3]` to a CoordinateXYZ object. */
         static parseCoordinate(data) {
             const point = Point3dVector3d_1.Point3d.fromJSON(data);
             if (point)
                 return CoordinateXYZ_1.CoordinateXYZ.create(point);
             return undefined;
         }
+        /** Parse TransitionSpiral content (right side) to TransitionSpiral3d
+         * @alpha
+         */
         static parseTransitionSpiral(data) {
             const axes = Reader.parseOrientation(data, true);
             const origin = Reader.parsePoint3dProperty(data, "origin");
@@ -244,25 +255,68 @@ var IModelJson;
                 return TransitionSpiral_1.TransitionSpiral3d.create(spiralType, startRadius, endRadius, startBearing, endBearing, length, interval, Transform_1.Transform.createOriginAndMatrix(origin, axes));
             return undefined;
         }
+        /**
+         * Special closed case if the input was forced to bezier . . . (e.g. arc)
+         *       (b-1) 0 0 0  a . . . b 111 (a+1)
+         *       with {order} clamp-like values .. no pole duplication needed, but throw out 2 knots at each end . ..
+         * @param numPoles number of poles
+         * @param knots knot vector
+         * @param order curve order
+         * @param newKnots array to receive new knots.
+         * @returns true if this is a closed-but-clamped case and corrected knots are filled in.
+         */
+        static getCorrectedKnotsForClosedClamped(numPoles, knots, order, newKnots) {
+            const numKnots = knots.length;
+            if (numPoles + 2 * order - 1 === numKnots
+                && knots[0] < knots[1]
+                && knots[numKnots - 2] < knots[numKnots - 1]) {
+                const a0 = knots[1];
+                const a1 = knots[numKnots - 2];
+                for (let i = 2; i <= order; i++) {
+                    if (knots[i] !== a0)
+                        return false;
+                    if (knots[numKnots - 1 - i] !== a1)
+                        return false;
+                }
+                // copy only the "minimal" set - without the typical extra knots from microstation and psd.
+                for (let i = 2; i + 2 < numKnots; i++)
+                    newKnots.push(knots[i]);
+                return true;
+            }
+            return false;
+        }
+        /** Parse `bcurve` content (right side)to  BSplineCurve3d or BSplineCurve3dH object. */
         static parseBcurve(data) {
+            if (data === undefined)
+                return undefined;
             if (Array.isArray(data.points) && Array.isArray(data.knots) && Number.isFinite(data.order) && data.closed !== undefined) {
                 if (data.points[0].length === 4) {
                     const hPoles = [];
                     for (const p of data.points)
                         hPoles.push(Point4d_1.Point4d.fromJSON(p));
                     const knots = [];
-                    for (const knot of data.knots)
-                        knots.push(knot);
-                    // TODO -- wrap poles and knots for closed case !!
-                    if (data.closed) {
+                    let wrapMode = KnotVector_1.BSplineWrapMode.None;
+                    if (data.closed && this.getCorrectedKnotsForClosedClamped(data.points.length, data.knots, data.order, knots)) {
+                        // leave the poles alone -- knots are fixed.
+                        wrapMode = KnotVector_1.BSplineWrapMode.OpenByRemovingKnots;
+                    }
+                    else if (data.closed) {
+                        for (const knot of data.knots)
+                            knots.push(knot);
                         for (let i = 0; i + 1 < data.order; i++) {
                             hPoles.push(hPoles[i].clone());
                         }
+                        wrapMode = KnotVector_1.BSplineWrapMode.OpenByAddingControlPoints;
+                    }
+                    else {
+                        // simple case .. just copy
+                        for (const knot of data.knots)
+                            knots.push(knot);
                     }
                     const newCurve = BSplineCurve3dH_1.BSplineCurve3dH.create(hPoles, knots, data.order);
                     if (newCurve) {
                         if (data.closed === true)
-                            newCurve.setWrappable(true);
+                            newCurve.setWrappable(wrapMode);
                         return newCurve;
                     }
                 }
@@ -271,24 +325,35 @@ var IModelJson;
                     for (const p of data.points)
                         poles.push(Point3dVector3d_1.Point3d.fromJSON(p));
                     const knots = [];
-                    for (const knot of data.knots)
-                        knots.push(knot);
-                    // TODO -- wrap poles and knots for closed case !!
-                    if (data.closed) {
+                    let wrapMode = KnotVector_1.BSplineWrapMode.None;
+                    if (data.closed && this.getCorrectedKnotsForClosedClamped(data.points.length, data.knots, data.order, knots)) {
+                        wrapMode = KnotVector_1.BSplineWrapMode.OpenByRemovingKnots;
+                        // leave the poles alone -- knots are fixed.
+                    }
+                    else if (data.closed) {
+                        for (const knot of data.knots)
+                            knots.push(knot);
                         for (let i = 0; i + 1 < data.order; i++) {
                             poles.push(poles[i].clone());
                         }
+                        wrapMode = KnotVector_1.BSplineWrapMode.OpenByAddingControlPoints;
+                    }
+                    else {
+                        // simple case .. just copy
+                        for (const knot of data.knots)
+                            knots.push(knot);
                     }
                     const newCurve = BSplineCurve_1.BSplineCurve3d.create(poles, knots, data.order);
                     if (newCurve) {
                         if (data.closed === true)
-                            newCurve.setWrappable(true);
+                            newCurve.setWrappable(wrapMode);
                         return newCurve;
                     }
                 }
             }
             return undefined;
         }
+        /** Parse array of json objects to array of instances. */
         static parseArray(data) {
             if (Array.isArray(data)) {
                 const myArray = [];
@@ -311,6 +376,7 @@ var IModelJson;
                 }
             }
         }
+        /** parse polyface aux data content to PolyfaceAuxData instance */
         static parsePolyfaceAuxData(data) {
             if (!Array.isArray(data.channels) || !Array.isArray(data.indices))
                 return undefined;
@@ -320,17 +386,18 @@ var IModelJson;
                     const outChannelData = [];
                     for (const inChannelData of inChannel.data) {
                         if (inChannelData.hasOwnProperty("input") && Array.isArray(inChannelData.values))
-                            outChannelData.push(new Polyface_1.AuxChannelData(inChannelData.input, inChannelData.values));
+                            outChannelData.push(new AuxData_1.AuxChannelData(inChannelData.input, inChannelData.values));
                     }
-                    outChannels.push(new Polyface_1.AuxChannel(outChannelData, inChannel.dataType, inChannel.name, inChannel.inputName));
+                    outChannels.push(new AuxData_1.AuxChannel(outChannelData, inChannel.dataType, inChannel.name, inChannel.inputName));
                 }
             }
-            const auxData = new Polyface_1.PolyfaceAuxData(outChannels, []);
+            const auxData = new AuxData_1.PolyfaceAuxData(outChannels, []);
             Reader.addZeroBasedIndicesFromSignedOneBased(data.indices, (x) => { auxData.indices.push(x); });
             return auxData;
         }
+        /** parse indexed mesh content to an IndexedPolyface instance */
         static parseIndexedMesh(data) {
-            // {Coord:[[x,y,z],. . . ],   -- simple xyz for each ponit
+            // {Coord:[[x,y,z],. . . ],   -- simple xyz for each point
             // CoordIndex[1,2,3,0]    -- zero-terminated, one based !!!
             if (data.hasOwnProperty("point") && Array.isArray(data.point)
                 && data.hasOwnProperty("pointIndex") && Array.isArray(data.pointIndex)) {
@@ -377,17 +444,19 @@ var IModelJson;
             }
             return undefined;
         }
+        /** parse contents of a curve collection to a CurveCollection instance */
         static parseCurveCollectionMembers(result, data) {
             if (data && Array.isArray(data)) {
                 for (const c of data) {
                     const g = Reader.parse(c);
-                    if (g !== undefined)
+                    if (g instanceof GeometryQuery_1.GeometryQuery && ("curveCollection" === g.geometryCategory || "curvePrimitive" === g.geometryCategory))
                         result.tryAddChild(g);
                 }
                 return result;
             }
             return undefined;
         }
+        /** Parse content of `bsurf` to BSplineSurface3d or BSplineSurface3dH */
         static parseBsurf(data) {
             if (data.hasOwnProperty("uKnots") && Array.isArray(data.uKnots)
                 && data.hasOwnProperty("vKnots") && Array.isArray(data.vKnots)
@@ -410,9 +479,7 @@ var IModelJson;
             }
             return undefined;
         }
-        /**
-         * Create a cone with data from a `ConeByCCRRV`.
-         */
+        /** Parse `cone` contents to `Cone` instance  */
         static parseConeProps(json) {
             const axes = Reader.parseOrientation(json, false);
             const start = Reader.parsePoint3dProperty(json, "start");
@@ -426,7 +493,7 @@ var IModelJson;
                 && endRadius !== undefined) {
                 if (axes === undefined) {
                     const axisVector = Point3dVector3d_1.Vector3d.createStartEnd(start, end);
-                    const frame = Matrix3d_1.Matrix3d.createRigidHeadsUp(axisVector, 2 /* ZXY */);
+                    const frame = Matrix3d_1.Matrix3d.createRigidHeadsUp(axisVector, Geometry_1.AxisOrder.ZXY);
                     const vectorX = frame.columnX();
                     const vectorY = frame.columnY();
                     return Cone_1.Cone.createBaseAndTarget(start, end, vectorX, vectorY, startRadius, endRadius, capped);
@@ -437,9 +504,7 @@ var IModelJson;
             }
             return undefined;
         }
-        /**
-         * Create a cylinder.
-         */
+        /** Parse `cylinder` content to `Cone` instance */
         static parseCylinderProps(json) {
             const start = Reader.parsePoint3dProperty(json, "start");
             const end = Reader.parsePoint3dProperty(json, "end");
@@ -452,28 +517,37 @@ var IModelJson;
             }
             return undefined;
         }
+        /** Parse line segment (array of 2 points) properties to `LineSegment3d` instance */
         static parseLineSegmentProps(value) {
             if (Array.isArray(value) && value.length > 1)
                 return LineSegment3d_1.LineSegment3d.create(Point3dVector3d_1.Point3d.fromJSON(value[0]), Point3dVector3d_1.Point3d.fromJSON(value[1]));
+            else
+                return undefined;
         }
+        /** Parse linear sweep content to `LinearSweep` instance. */
         static parseLinearSweep(json) {
             const contour = Reader.parse(json.contour);
             const capped = Reader.parseBooleanProperty(json, "capped");
             const extrusionVector = Reader.parseVector3dProperty(json, "vector");
-            if (contour
+            if (contour instanceof GeometryQuery_1.GeometryQuery
+                && "curveCollection" === contour.geometryCategory
                 && capped !== undefined
                 && extrusionVector) {
                 return LinearSweep_1.LinearSweep.create(contour, extrusionVector, capped);
             }
             return undefined;
         }
+        /** Parse rotational sweep contents to `RotationalSweep` instance */
         static parseRotationalSweep(json) {
+            if (json === undefined)
+                return undefined;
             const contour = Reader.parse(json.contour);
             const capped = Reader.parseBooleanProperty(json, "capped");
             const axisVector = Reader.parseVector3dProperty(json, "axis");
             const center = Reader.parsePoint3dProperty(json, "center");
             const sweepDegrees = Reader.parseNumberProperty(json, "sweepAngle");
-            if (contour
+            if (contour instanceof GeometryQuery_1.GeometryQuery
+                && "curveCollection" === contour.geometryCategory
                 && sweepDegrees !== undefined
                 && capped !== undefined
                 && axisVector
@@ -482,6 +556,7 @@ var IModelJson;
             }
             return undefined;
         }
+        /** Parse box contents to `Box` instance */
         static parseBox(json) {
             const capped = Reader.parseBooleanProperty(json, "capped", false);
             const baseOrigin = Reader.parsePoint3dProperty(json, "baseOrigin");
@@ -493,7 +568,7 @@ var IModelJson;
             const height = Reader.parseNumberProperty(json, "height", baseX);
             const axes = Reader.parseOrientation(json, true);
             if (baseOrigin && !topOrigin)
-                topOrigin = Matrix3d_1.Matrix3d.XYZMinusMatrixTimesXYZ(baseOrigin, axes, Point3dVector3d_1.Vector3d.create(0, 0, height));
+                topOrigin = Matrix3d_1.Matrix3d.xyzMinusMatrixTimesXYZ(baseOrigin, axes, Point3dVector3d_1.Vector3d.create(0, 0, height));
             if (capped !== undefined
                 && baseX !== undefined
                 && baseY !== undefined
@@ -506,6 +581,7 @@ var IModelJson;
             }
             return undefined;
         }
+        /** Parse `SphereProps` to `Sphere` instance. */
         static parseSphere(json) {
             const center = Reader.parsePoint3dProperty(json, "center");
             // optional unqualified radius . . .
@@ -515,7 +591,7 @@ var IModelJson;
             // missing Y and Z both pick up radiusX  (which may have already been defaulted from unqualified radius)
             const radiusY = Reader.parseNumberProperty(json, "radiusX", radiusX);
             const radiusZ = Reader.parseNumberProperty(json, "radiusX", radiusX);
-            const latitudeStartEnd = Reader.parseAngleSweepProps(json, "latitudeStartEnd"); // this may be undfined!!
+            const latitudeStartEnd = Reader.parseAngleSweepProps(json, "latitudeStartEnd"); // this may be undefined!!
             const axes = Reader.parseOrientation(json, true);
             const capped = Reader.parseBooleanProperty(json, "capped", false);
             if (center !== undefined
@@ -527,6 +603,7 @@ var IModelJson;
             }
             return undefined;
         }
+        /** Parse RuledSweepProps to RuledSweep instance. */
         static parseRuledSweep(json) {
             const capped = Reader.parseBooleanProperty(json, "capped", false);
             const contours = this.loadContourArray(json, "contour");
@@ -536,6 +613,7 @@ var IModelJson;
             }
             return undefined;
         }
+        /** Parse TorusPipe props to TorusPipe instance. */
         static parseTorusPipe(json) {
             const axes = Reader.parseOrientation(json, true);
             const center = Reader.parsePoint3dProperty(json, "center");
@@ -550,6 +628,7 @@ var IModelJson;
             }
             return undefined;
         }
+        /** Parse an array object to array of Point3d instances. */
         static parsePointArray(json) {
             const points = [];
             if (json && Array.isArray(json)) {
@@ -564,6 +643,7 @@ var IModelJson;
             }
             return points;
         }
+        /** Deserialize `json` to `GeometryQuery` instances. */
         static parse(json) {
             if (json !== undefined && json) {
                 if (json.lineSegment !== undefined) {
@@ -644,13 +724,20 @@ var IModelJson;
     // ISSUE: is arc clear?
     // ISSUE: label center, vectorX, vector90 on arc?
     // ISSUE: sweep data on arc -- serialize as AngleSweep?
+    /**
+     * Class to deserialize json objects into GeometryQuery objects
+     * @public
+     */
     class Writer extends GeometryHandler_1.GeometryHandler {
+        /** Convert strongly typed instance to tagged json */
         handleLineSegment3d(data) {
             return { "lineSegment": [data.point0Ref.toJSON(), data.point1Ref.toJSON()] };
         }
+        /** Convert strongly typed instance to tagged json */
         handleCoordinateXYZ(data) {
             return { "point": data.point.toJSON() };
         }
+        /** Convert strongly typed instance to tagged json */
         handleArc3d(data) {
             return {
                 "arc": {
@@ -708,9 +795,13 @@ var IModelJson;
             }
             data.xyVectors = [vectorU.toJSON(), vectorV.toJSON()];
         }
+        /**
+         * parse properties of a TransitionSpiral.
+         * @alpha
+         */
         handleTransitionSpiral(data) {
             // TODO: HANDLE NONRIGID TRANSFORM !!
-            // the spiral may have indication of how it was defined.  If so, use defined/undefined state of the orignial data
+            // the spiral may have indication of how it was defined.  If so, use defined/undefined state of the original data
             // as indication of what current data to use.  (Current data may have changed due to transforms.)
             const originalProperties = data.originalProperties;
             const value = {
@@ -745,6 +836,7 @@ var IModelJson;
             }
             return { "transitionSpiral": value };
         }
+        /** Convert strongly typed instance to tagged json */
         handleCone(data) {
             const radiusA = data.getRadiusA();
             const radiusB = data.getRadiusB();
@@ -779,6 +871,7 @@ var IModelJson;
                 return { "cone": coneProps };
             }
         }
+        /** Convert strongly typed instance to tagged json */
         handleSphere(data) {
             const xData = data.cloneVectorX().normalizeWithLength();
             const yData = data.cloneVectorY().normalizeWithLength();
@@ -809,6 +902,7 @@ var IModelJson;
             }
             return undefined;
         }
+        /** Convert strongly typed instance to tagged json */
         handleTorusPipe(data) {
             const vectorX = data.cloneVectorX();
             const vectorY = data.cloneVectorY();
@@ -831,6 +925,7 @@ var IModelJson;
             }
             return { "torusPipe": value };
         }
+        /** Convert strongly typed instance to tagged json */
         handleLineString3d(data) {
             const pointsA = data.points;
             const pointsB = [];
@@ -839,6 +934,7 @@ var IModelJson;
                     pointsB.push(p.toJSON());
             return { "lineString": pointsB };
         }
+        /** Convert strongly typed instance to tagged json */
         handlePointString3d(data) {
             const pointsA = data.points;
             const pointsB = [];
@@ -847,18 +943,23 @@ var IModelJson;
                     pointsB.push(p.toJSON());
             return { "pointString": pointsB };
         }
+        /** Convert strongly typed instance to tagged json */
         handlePath(data) {
             return { "path": this.collectChildren(data) };
         }
+        /** Convert strongly typed instance to tagged json */
         handleLoop(data) {
             return { "loop": this.collectChildren(data) };
         }
+        /** Convert strongly typed instance to tagged json */
         handleParityRegion(data) {
             return { "parityRegion": this.collectChildren(data) };
         }
+        /** Convert strongly typed instance to tagged json */
         handleUnionRegion(data) {
             return { "unionRegion": this.collectChildren(data) };
         }
+        /** Convert strongly typed instance to tagged json */
         handleBagOfCurves(data) {
             return { "bagOfCurves": this.collectChildren(data) };
         }
@@ -873,6 +974,7 @@ var IModelJson;
             }
             return children;
         }
+        /** Convert strongly typed instance to tagged json */
         handleLinearSweep(data) {
             const extrusionVector = data.cloneSweepVector();
             const curves = data.getCurvesRef();
@@ -890,6 +992,7 @@ var IModelJson;
             }
             return undefined;
         }
+        /** Convert strongly typed instance to tagged json */
         handleRuledSweep(data) {
             const contours = data.cloneContours();
             const capped = data.capped;
@@ -909,6 +1012,7 @@ var IModelJson;
             }
             return undefined;
         }
+        /** Convert strongly typed instance to tagged json */
         handleRotationalSweep(data) {
             const axisRay = data.cloneAxisRay();
             const curves = data.getCurves();
@@ -924,6 +1028,7 @@ var IModelJson;
                 },
             };
         }
+        /** Convert strongly typed instance to tagged json */
         handleBox(box) {
             const out = {
                 "box": {
@@ -970,22 +1075,30 @@ var IModelJson;
             }
             return contents;
         }
+        /** Convert strongly typed instance to tagged json */
         handleIndexedPolyface(pf) {
             const points = [];
             const pointIndex = [];
             const normals = [];
             const params = [];
             const colors = [];
-            const p = Point3dVector3d_1.Point3d.create();
-            for (let i = 0; pf.data.point.atPoint3dIndex(i, p); i++)
-                points.push(p.toJSON());
+            {
+                const p = Point3dVector3d_1.Point3d.create();
+                for (let i = 0; pf.data.point.getPoint3dAtCheckedPointIndex(i, p); i++)
+                    points.push(p.toJSON());
+            }
             if (pf.data.normal) {
-                for (const value of pf.data.normal)
-                    normals.push(value.toJSON());
+                const numNormal = pf.data.normal.length;
+                const normal = Point3dVector3d_1.Vector3d.create();
+                for (let i = 0; i < numNormal; i++) {
+                    pf.data.normal.getVector3dAtCheckedVectorIndex(i, normal);
+                    normals.push(normal.toJSON());
+                }
             }
             if (pf.data.param) {
-                for (const value of pf.data.param)
-                    params.push(value.toJSON());
+                const uv = Point2dVector2d_1.Point2d.create();
+                for (let i = 0; pf.data.param.getPoint2dAtCheckedPointIndex(i, uv); i++)
+                    params.push(uv.toJSON());
             }
             if (pf.data.color) {
                 for (const value of pf.data.color)
@@ -1025,6 +1138,8 @@ var IModelJson;
             }
             // assemble the contents in alphabetical order.
             const contents = {};
+            if (pf.twoSided)
+                contents.twoSided = true;
             if (pf.data.auxData)
                 contents.auxData = this.handlePolyfaceAuxData(pf.data.auxData, pf);
             if (pf.data.color)
@@ -1043,10 +1158,12 @@ var IModelJson;
             contents.pointIndex = pointIndex;
             return { "indexedMesh": contents };
         }
+        /** Convert strongly typed instance to tagged json */
         handleBSplineCurve3d(curve) {
             // ASSUME -- if the curve originated "closed" the knot and pole replication are unchanged,
             // so first and last knots can be re-assigned, and last (degree - 1) poles can be deleted.
-            if (curve.isClosable) {
+            const wrapMode = curve.isClosable;
+            if (wrapMode === KnotVector_1.BSplineWrapMode.OpenByAddingControlPoints) {
                 const knots = curve.copyKnots(true);
                 const poles = curve.copyPoints();
                 const degree = curve.degree;
@@ -1067,6 +1184,35 @@ var IModelJson;
                     },
                 };
             }
+            else if (curve.isClosable === KnotVector_1.BSplineWrapMode.OpenByRemovingKnots) {
+                // special case to re-close the case that originated as :    a a0 a0 .. a0 knot0 knot1 knot2 ... b1 b1 .. b1 b
+                // with (order) copies of a0 and b1 (usually 0 and 1)
+                // and a,b are related to the interior knots
+                // (This is the "bezier saturated arc")
+                const rawKnots = curve.copyKnots(false); // unchanged knots . . .
+                const poles = curve.copyPoints();
+                const degree = curve.degree;
+                const leftIndex = degree - 1;
+                const rightIndex = rawKnots.length - degree;
+                const leftKnot = rawKnots[leftIndex];
+                const rightKnot = rawKnots[rightIndex];
+                const knotPeriod = rightKnot - leftKnot;
+                const knots = [];
+                knots.push(rawKnots[rightIndex - 1] - knotPeriod);
+                knots.push(leftKnot);
+                for (const k of rawKnots)
+                    knots.push(k);
+                knots.push(rightKnot);
+                knots.push(rawKnots[leftIndex + 1] + knotPeriod);
+                return {
+                    "bcurve": {
+                        "points": poles,
+                        "knots": knots,
+                        "closed": true,
+                        "order": curve.order,
+                    },
+                };
+            }
             else {
                 return {
                     "bcurve": {
@@ -1078,6 +1224,7 @@ var IModelJson;
                 };
             }
         }
+        /** Convert strongly typed instance to tagged json */
         handleBezierCurve3d(curve) {
             const knots = [];
             const order = curve.order;
@@ -1094,6 +1241,7 @@ var IModelJson;
                 },
             };
         }
+        /** Convert strongly typed instance to tagged json */
         handleBSplineCurve3dH(curve) {
             // ASSUME -- if the curve originated "closed" the knot and pole replication are unchanged,
             // so first and last knots can be re-assigned, and last (degree - 1) poles can be deleted.
@@ -1129,6 +1277,7 @@ var IModelJson;
                 };
             }
         }
+        /** Convert strongly typed instance to tagged json */
         handleBSplineSurface3d(surface) {
             // ASSUME -- if the curve originated "closed" the knot and pole replication are unchanged,
             // so first and last knots can be re-assigned, and last (degree - 1) poles can be deleted.
@@ -1175,6 +1324,7 @@ var IModelJson;
                 };
             }
         }
+        /** Convert strongly typed instance to tagged json */
         handleBezierCurve3dH(curve) {
             const knots = [];
             const order = curve.order;
@@ -1191,6 +1341,7 @@ var IModelJson;
                 },
             };
         }
+        /** Convert strongly typed instance to tagged json */
         handleBSplineSurface3dH(surface) {
             const data = surface.getPointGridJSON();
             return {
@@ -1203,6 +1354,7 @@ var IModelJson;
                 },
             };
         }
+        /** Convert an array of strongly typed instances to an array of tagged json */
         emitArray(data) {
             const members = [];
             for (const c of data) {
@@ -1211,6 +1363,7 @@ var IModelJson;
             }
             return members;
         }
+        /** Convert GeometryQuery data (array or single instance) to instance to tagged json */
         emit(data) {
             if (Array.isArray(data))
                 return this.emitArray(data);

@@ -2,32 +2,50 @@ import { Point2d } from "./Point2dVector2d";
 import { XYAndZ, XAndY } from "./XYZProps";
 import { Point3d, Vector3d, XYZ } from "./Point3dVector3d";
 import { Transform } from "./Transform";
-import { Matrix4d } from "../geometry4d/Matrix4d";
+import { MultiLineStringDataVariant } from "../topology/Triangulation";
 import { Point4d } from "../geometry4d/Point4d";
 import { Plane3dByOriginAndUnitNormal } from "./Plane3dByOriginAndUnitNormal";
-import { Ray3d } from "./Ray3d";
 import { IndexedXYZCollection } from "./IndexedXYZCollection";
+import { Range3d } from "./Range";
+/**
+ * The `NumberArray` class contains static methods that act on arrays of numbers.
+ * @public
+ */
 export declare class NumberArray {
     /** return the sum of values in an array,   The summation is done with correction terms which
      * improves last-bit numeric accuracy.
      */
-    static PreciseSum(data: number[]): number;
+    static preciseSum(data: number[]): number;
     /** Return true if arrays have identical counts and equal entries (using `!==` comparison) */
     static isExactEqual(dataA: any[] | Float64Array | undefined, dataB: any[] | Float64Array | undefined): boolean;
     /** Return true if arrays have identical counts and entries equal within tolerance */
     static isAlmostEqual(dataA: number[] | Float64Array | undefined, dataB: number[] | Float64Array | undefined, tolerance: number): boolean;
     /** return the sum of numbers in an array.  Note that "PreciseSum" may be more accurate. */
     static sum(data: number[] | Float64Array): number;
+    /** test if coordinate x appears (to tolerance by `Geometry.isSameCoordinate`) in this array of numbers */
     static isCoordinateInArray(x: number, data: number[] | undefined): boolean;
-    static MaxAbsArray(values: number[]): number;
-    static MaxAbsTwo(a1: number, a2: number): number;
-    static maxAbsDiff(dataA: number[], dataB: number[]): number;
+    /** Return the max absolute value in a array of numbers. */
+    static maxAbsArray(values: number[]): number;
+    /** return the max absolute value of a pair of numbers */
+    static maxAbsTwo(a1: number, a2: number): number;
+    /** Return the max absolute difference between corresponding entries in two arrays of numbers
+     * * If sizes are mismatched, only the smaller length is tested.
+     */
+    static maxAbsDiff(dataA: number[] | Float64Array, dataB: number[] | Float64Array): number;
+    /** Return the max absolute difference between corresponding entries in two Float64Array
+     * * If sizes are mismatched, only the smaller length is tested.
+     */
     static maxAbsDiffFloat64(dataA: Float64Array, dataB: Float64Array): number;
 }
+/**
+ * The `Point2dArray` class contains static methods that act on arrays of 2d points.
+ * @public
+ */
 export declare class Point2dArray {
+    /** Return true if arrays have same length and matching coordinates. */
     static isAlmostEqual(dataA: undefined | Point2d[], dataB: undefined | Point2d[]): boolean;
     /**
-     * @returns return an array containing clones of the Point3d data[]
+     * Return an array containing clones of the Point3d data[]
      * @param data source data
      */
     static clonePoint2dArray(data: Point2d[]): Point2d[];
@@ -37,21 +55,31 @@ export declare class Point2dArray {
      */
     static pointCountExcludingTrailingWraparound(data: XAndY[]): number;
 }
+/**
+ * The `Vector3ddArray` class contains static methods that act on arrays of 2d vectors.
+ * @public
+ */
 export declare class Vector3dArray {
+    /** Return true if arrays have same length and matching coordinates. */
     static isAlmostEqual(dataA: undefined | Vector3d[], dataB: undefined | Vector3d[]): boolean;
     /**
-     * @returns return an array containing clones of the Vector3d data[]
+     * Return an array containing clones of the Vector3d data[]
      * @param data source data
      */
     static cloneVector3dArray(data: XYAndZ[]): Vector3d[];
 }
+/**
+ * The `Point4dArray` class contains static methods that act on arrays of 4d points.
+ * @public
+ */
 export declare class Point4dArray {
-    /** pack each point and its corresponding weight into a buffer of xyzwxyzw... */
+    /** pack each point and its corresponding weight into a buffer of xyzw xyzw ... */
     static packPointsAndWeightsToFloat64Array(points: Point3d[], weights: number[], result?: Float64Array): Float64Array;
+    /** pack x,y,z,w in Float64Array. */
     static packToFloat64Array(data: Point4d[], result?: Float64Array): Float64Array;
-    /** unpack from xyzwxyzw... to array of Point4d */
+    /** unpack from  ... to array of Point4d */
     static unpackToPoint4dArray(data: Float64Array): Point4d[];
-    /** unpack from xyzwxyzw... array to array of Point3d and array of weight.
+    /** unpack from xyzw xyzw... array to array of Point3d and array of weight.
      */
     static unpackFloat64ArrayToPointsAndWeights(data: Float64Array, points: Point3d[], weights: number[], pointFormatter?: (x: number, y: number, z: number) => any): void;
     private static _workPoint4d;
@@ -61,12 +89,73 @@ export declare class Point4dArray {
      * @param xyzw array of x,y,z,w points.
      */
     static multiplyInPlace(transform: Transform, xyzw: Float64Array): void;
+    /** test for near equality of all corresponding numeric values, treated as coordinates. */
     static isAlmostEqual(dataA: Point4d[] | Float64Array | undefined, dataB: Point4d[] | Float64Array | undefined): boolean;
     /** return true iff all xyzw points' altitudes are within tolerance of the plane.*/
     static isCloseToPlane(data: Point4d[] | Float64Array, plane: Plane3dByOriginAndUnitNormal, tolerance?: number): boolean;
 }
+/**
+ * The `Point3dArray` class contains static methods that act on arrays of 3d points.
+ * @public
+ */
 export declare class Point3dArray {
+    /** pack x,y,z to `Float64Array` */
     static packToFloat64Array(data: Point3d[]): Float64Array;
+    /**
+     * Compute the 8 weights of trilinear mapping
+     * By appropriate choice of weights, this can be used for both point and derivative mappings.
+     * @param weights preallocated array to receive weights.
+     * @param u0 low u weight
+     * @param u1 high u weight
+     * @param v0 low v weight
+     * @param v1 high v weight
+     * @param w0 low w weight
+     * @param w1 high w weight
+     */
+    static evaluateTrilinearWeights(weights: Float64Array, u0: number, u1: number, v0: number, v1: number, w0: number, w1: number): void;
+    /**
+     * sum the weighted x components from a point array.
+     * * weights.length is the number of summed terms
+     * * points must have at least that length
+     * @param weights
+     * @param points
+     */
+    static sumWeightedX(weights: Float64Array, points: Point3d[]): number;
+    /**
+     * sum the weighted x components from a point array.
+     * * weights.length is the number of summed terms
+     * * points must have at least that length
+     * @param weights
+     * @param points
+     */
+    static sumWeightedY(weights: Float64Array, points: Point3d[]): number;
+    /**
+     * sum the weighted x components from a point array.
+     * * weights.length is the number of summed terms
+     * * points must have at least that length
+     * @param weights
+     * @param points
+     */
+    static sumWeightedZ(weights: Float64Array, points: Point3d[]): number;
+    private static _weightUVW;
+    private static _weightDU;
+    private static _weightDV;
+    private static _weightDW;
+    /**
+     * Compute a point by trilinear mapping.
+     * @param points array of 8 points at corners, with x index varying fastest.
+     * @param result optional result point
+     */
+    static evaluateTrilinearPoint(points: Point3d[], u: number, v: number, w: number, result?: Point3d): Point3d;
+    /**
+     * Compute a point and derivatives wrt uvw by trilinear mapping.
+     * * evaluated point is the point part of the transform
+     * * u,v,w derivatives are the respective columns of the matrix part of the transform.
+     * @param points array of 8 points at corners, with x index varying fastest.
+     * @param result optional result transform
+     */
+    static evaluateTrilinearDerivativeTransform(points: Point3d[], u: number, v: number, w: number, result?: Transform): Transform;
+    /** unpack from a number array or Float64Array to an array of `Point3d` */
     static unpackNumbersToPoint3dArray(data: Float64Array | number[]): Point3d[];
     /**
      * return an 2-dimensional array containing all the values of `data` in arrays of numPerBlock
@@ -80,7 +169,9 @@ export declare class Point3dArray {
      * @param numPerBlock number of values in each block at first level down
      */
     static unpackNumbersToNestedArraysIJK(data: Float64Array, numPerBlock: number, numPerRow: number): any[];
+    /**  multiply a transform times each x,y,z triple and replace the x,y,z in the packed array */
     static multiplyInPlace(transform: Transform, xyz: Float64Array): void;
+    /** Apply Geometry.isAlmostEqual to corresponding coordinates */
     static isAlmostEqual(dataA: Point3d[] | Float64Array | undefined, dataB: Point3d[] | Float64Array | undefined): boolean;
     /** return simple average of all coordinates.   (000 if empty array) */
     static centroid(points: IndexedXYZCollection, result?: Point3d): Point3d;
@@ -98,161 +189,74 @@ export declare class Point3dArray {
      */
     static sumEdgeLengths(data: Point3d[] | Float64Array, addClosureEdge?: boolean): number;
     /**
-     * @returns return an array containing clones of the Point3d data[]
+     * Return an array containing clones of the Point3d data[]
      * @param data source data
      */
     static clonePoint3dArray(data: XYAndZ[]): Point3d[];
     /**
-     * @returns return an array containing Point2d with xy parts of each Point3d
+     * Return an array containing Point2d with xy parts of each Point3d
      * @param data source data
      */
     static clonePoint2dArray(data: XYAndZ[]): Point2d[];
-}
-/** Static class for operations that treat an array of points as a polygon (with area!) */
-export declare class PolygonOps {
-    /** Sum areas of triangles from points[0] to each far edge.
-    * * Consider triangles from points[0] to each edge.
-    * * Sum the areas(absolute, without regard to orientation) all these triangles.
-    * @returns sum of absolute triangle areas.
+    /**
+     * clone points in the input array, inserting points within each edge to limit edge length.
+     * @param points array of points
+     * @param maxEdgeLength max length of an edge
+     */
+    static cloneWithMaxEdgeLength(points: Point3d[], maxEdgeLength: number): Point3d[];
+    /** Pack isolated x,y,z args as a json `[x,y,z]` */
+    private static xyzToArray;
+    /**
+     * return similarly-structured array, array of arrays, etc, with the lowest level point data specifically structured as arrays of 3 numbers `[1,2,3]`
+     * @param data point data with various leaf forms such as `[1,2,3]`, `{x:1,y:2,z:3}`, `Point3d`
+     */
+    static cloneDeepJSONNumberArrays(data: MultiLineStringDataVariant): any[];
+    /**
+     * return similarly-structured array, array of arrays, etc, with the lowest level point data specifically structured as `Point3d`.
+     * @param data point data with various leaf forms such as `[1,2,3]`, `{x:1,y:2,z:3}`, `Point3d`
+     */
+    static cloneDeepXYZPoint3dArrays(data: MultiLineStringDataVariant): any[];
+    /**
+     * `Point3dArray.createRange(data)` is deprecated.  Used `Range3d.createFromVariantData(data: MultiLineStringDataVariant): Range3d`
+     * @deprecated Use Range3d.createFromVariantData (data)
+     * @param data
+     */
+    static createRange(data: MultiLineStringDataVariant): Range3d;
+    private static _workPoint?;
+    /**
+     * `Point3dArray.streamXYZ` is deprecated -- use `VariantPointStream.streamXYZ (handler)`
+     * @deprecated - use VariantPointStream.streamXYZ (handler)
+     * Invoke a callback with each x,y,z from an array of points in variant forms.
+     * @param startChainCallback called to announce the beginning of points (or recursion)
+     * @param pointCallback (index, x,y,z) = function to receive point coordinates one by one
+     * @param endChainCallback called to announce the end of handling of an array.
+     */
+    static streamXYZ(data: MultiLineStringDataVariant, startChainCallback: ((chainData: MultiLineStringDataVariant, isLeaf: boolean) => void) | undefined, pointCallback: (x: number, y: number, z: number) => void, endChainCallback: ((chainData: MultiLineStringDataVariant, isLeaf: boolean) => void) | undefined): number;
+    /**
+       * `Point3dArray.streamXYZXYZ` is deprecated -- use `VariantPointStream.streamXYZXYZ (handler)`
+     * @deprecated - use VariantPointStream.streamXYZXYZ (handler)
+     * Invoke a callback with each x,y,z from an array of points in variant forms.
+     * @param startChainCallback callback of the form `startChainCallback (source, isLeaf)` to be called with the source array at each level.
+     * @param segmentCallback callback of the form `segmentCallback (index0, x0,y0,z0, index1, x1,y1,z1)`
+     * @param endChainCallback callback of the form `endChainCallback (source, isLeaf)` to be called with the source array at each level.
     */
-    static sumTriangleAreas(points: Point3d[]): number;
-    /** Sum areas of triangles from points[0] to each far edge.
-    * * Consider triangles from points[0] to each edge.
-    * * Sum the areas(absolute, without regard to orientation) all these triangles.
-    * @returns sum of absolute triangle areas.
-    */
-    static sumTriangleAreasXY(points: Point3d[]): number;
-    /** These values are the integrated area moment products [xx,xy,xz, x]
-     * for a right triangle in the first quadrant at the origin -- (0,0),(1,0),(0,1)
+    static streamXYZXYZ(data: MultiLineStringDataVariant, startChainCallback: ((chainData: MultiLineStringDataVariant, isLeaf: boolean) => void) | undefined, segmentCallback: (x0: number, y0: number, z0: number, x1: number, y1: number, z1: number) => void, endChainCallback: ((chainData: MultiLineStringDataVariant, isLeaf: boolean) => void) | undefined): number;
+    /** Computes the hull of the XY projection of points.
+     * * Returns the hull as an array of Point3d
+     * * Optionally returns non-hull points in `insidePoints[]`
+     * * If both arrays empty if less than 3 points.
+     * *
      */
-    private static readonly _triangleMomentWeights;
-    private static _vector0;
-    private static _vector1;
-    private static _vectorOrigin;
-    private static _normal;
-    private static _matrixA;
-    private static _matrixB;
-    private static _matrixC;
-    /** return a vector which is perpendicular to the polygon and has magnitude equal to the polygon area. */
-    static areaNormalGo(points: IndexedXYZCollection, result?: Vector3d): Vector3d | undefined;
-    static areaNormal(points: Point3d[], result?: Vector3d): Vector3d;
-    /** return the area of the polygon (assuming planar) */
-    static area(points: Point3d[]): number;
-    /** return the projected XY area of the polygon (assuming planar) */
-    static areaXY(points: Point3d[]): number;
-    static centroidAreaNormal(points: Point3d[]): Ray3d | undefined;
-    static centroidAndAreaXY(points: Point2d[], centroid: Point2d): number | undefined;
+    static computeConvexHullXY(points: Point3d[], hullPoints: Point3d[], insidePoints: Point3d[], addClosurePoint?: boolean): void;
     /**
-     *
-     * @param points array of points around the polygon.  This is assumed to NOT have closure edge.
-     * @param result caller-allocated result vector.
+     * Return (clones of) points in data[] with min and max x and y parts.
+     * @param data array to examine.
      */
-    static unitNormal(points: IndexedXYZCollection, result: Vector3d): boolean;
-    /** Return the matrix of area products of a polygon with respect to an origin.
-     * The polygon is assumed to be planar and non-self-intersecting.
-     */
-    static addSecondMomentAreaProducts(points: IndexedXYZCollection, origin: Point3d, moments: Matrix4d): void;
-    /** Test the direction of turn at the vertices of the polygon, ignoring z-coordinates.
-     *
-     * *  For a polygon without self intersections, this is a convexity and orientation test: all positive is convex and counterclockwise,
-     * all negative is convex and clockwise
-     * *  Beware that a polygon which turns through more than a full turn can cross itself and close, but is not convex
-     * *  Returns 1 if all turns are to the left, -1 if all to the right, and 0 if there are any zero turns
-     */
-    static testXYPolygonTurningDirections(pPointArray: Point2d[] | Point3d[]): number;
-    /**
-     * Classify a point with respect to a polygon.
-     * Returns 1 if point is "in" by parity, 0 if "on", -1 if "out", -2 if nothing worked.
-     */
-    static parity(pPoint: Point2d, pPointArray: Point2d[] | Point3d[], tol?: number): number;
-    /**
-     * Classify a point with respect to a polygon defined by the xy parts of the points, using only the y
-     * coordinate for the tests.
-     *
-     * *  Return undefined (failure, could not determine answer) if any polygon point has the same y-coord as test point
-     * *  Goal is to execute the simplest cases as fast as possible, and fail promptly for others
-     */
-    static parityYTest(pPoint: Point2d, pPointArray: Point2d[] | Point3d[], tol: number): number | undefined;
-    /**
-     * Classify a point with respect to a polygon defined by the xy parts of the points, using only the x
-     * coordinate for the tests.
-     *
-     * *  Return undefined (failure, could not determine answer) if any polygon point has the same x coordinate as the test point
-     * *  Goal is to execute the simplest cases as fast as possible, and fail promptly for others
-     */
-    static parityXTest(pPoint: Point2d, pPointArray: Point2d[] | Point3d[], tol: number): number | undefined;
-    /**
-     * Classify a point with respect to a polygon defined by the xy parts of the points, using a given ray cast
-     * direction.
-     *
-     * *  Return false (failure, could not determine answer) if any polygon point is on the ray
-     */
-    static parityVectorTest(pPoint: Point2d, theta: number, pPointArray: Point2d[] | Point3d[], tol: number): number | undefined;
-}
-/**
- * Helper object to access members of a Point3d[] in geometric calculations.
- * * The collection holds only a reference to the actual array.
- * * The actual array may be replaced by the user as needed.
- * * When replaced, there is no cached data to be updated.
-*/
-export declare class Point3dArrayCarrier extends IndexedXYZCollection {
-    data: Point3d[];
-    /** CAPTURE caller supplied array ... */
-    constructor(data: Point3d[]);
-    isValidIndex(index: number): boolean;
-    /**
-     * @param index index of point within the array
-     * @param result caller-allocated destination
-     * @returns undefined if the index is out of bounds
-     */
-    atPoint3dIndex(index: number, result?: Point3d): Point3d | undefined;
-    /**
-     * @param index index of point within the array
-     * @param result caller-allocated destination
-     * @returns undefined if the index is out of bounds
-     */
-    atVector3dIndex(index: number, result?: Vector3d): Vector3d | undefined;
-    /**
-     * @param indexA index of point within the array
-     * @param indexB index of point within the array
-     * @param result caller-allocated vector.
-     * @returns undefined if either index is out of bounds
-     */
-    vectorIndexIndex(indexA: number, indexB: number, result?: Vector3d): Vector3d | undefined;
-    /**
-     * @param origin origin for vector
-     * @param indexB index of point within the array
-     * @param result caller-allocated vector.
-     * @returns undefined if index is out of bounds
-     */
-    vectorXYAndZIndex(origin: XYAndZ, indexB: number, result?: Vector3d): Vector3d | undefined;
-    /**
-     * @param origin origin for vector
-     * @param indexA index of first target within the array
-     * @param indexB index of second target within the array
-     * @param result caller-allocated vector.
-     * @returns undefined if either index is out of bounds
-     */
-    crossProductXYAndZIndexIndex(origin: XYAndZ, indexA: number, indexB: number, result?: Vector3d): Vector3d | undefined;
-    /**
-   * @param originIndex index of origin
-   * @param indexA index of first target within the array
-   * @param indexB index of second target within the array
-   * @param result caller-allocated vector.
-   * @returns return true if indexA, indexB both valid
-   */
-    crossProductIndexIndexIndex(originIndex: number, indexA: number, indexB: number, result?: Vector3d): Vector3d | undefined;
-    /**
-     * @param origin index of origin
-     * @param indexA index of first target within the array
-     * @param indexB index of second target within the array
-     * @param result caller-allocated vector.
-     * @returns return true if indexA, indexB both valid
-     */
-    accumulateCrossProductIndexIndexIndex(originIndex: number, indexA: number, indexB: number, result: Vector3d): void;
-    /**
-     * read-only property for number of XYZ in the collection.
-     */
-    readonly length: number;
+    static minMaxPoints(data: Point3d[]): {
+        minXPoint: Point3d;
+        maxXPoint: Point3d;
+        minYPoint: Point3d;
+        maxYPoint: Point3d;
+    } | undefined;
 }
 //# sourceMappingURL=PointHelpers.d.ts.map

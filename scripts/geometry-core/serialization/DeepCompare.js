@@ -1,15 +1,18 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Serialization */
 /* tslint:disable: object-literal-key-quotes */
-/** Comparison utilities */
+/**
+ * Utilities to compare json objects by search through properties.
+ * @internal
+ */
 class DeepCompare {
     constructor(numberRelTol = 1.0e-12) {
-        this.numberRelTol = numberRelTol;
+        /** Statistical accumulations during searchers. */
         this.typeCounts = {
             "numbers": 0,
             "arrays": 0,
@@ -19,10 +22,15 @@ class DeepCompare {
             "booleans": 0,
             "undefined": 0,
         };
+        /** Counts of property names encountered during various searches. */
         this.propertyCounts = {};
+        /** Array of error descriptions. */
         this.errorTracker = [];
+        this.numberRelTol = numberRelTol;
     }
-    // Function specifying the way two numbers will be compared (may be changed by user)
+    /** test if _a and _b are within tolerance.
+     * * If not, push error message to errorTracker.
+     */
     compareNumber(_a, _b) {
         if (Math.abs(_b - _a) < this.numberRelTol * (1 + Math.abs(_a) + Math.abs(_b))) {
             return this.announce(true);
@@ -122,7 +130,9 @@ class DeepCompare {
             return true;
         return false;
     }
-    // Clears out the member objects, then calls the recursive compare function
+    /** Main entry for comparing deep json objects.
+     * * errorTracker, typeCounts, and propertyCounts are cleared.
+     */
     compare(a, b, tolerance) {
         if (tolerance !== undefined)
             this.numberRelTol = tolerance;

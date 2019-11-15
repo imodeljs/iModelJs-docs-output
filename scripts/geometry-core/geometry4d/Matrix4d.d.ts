@@ -5,26 +5,33 @@ import { Point3d, Vector3d, XYZ } from "../geometry3d/Point3dVector3d";
 import { Transform } from "../geometry3d/Transform";
 import { Matrix3d } from "../geometry3d/Matrix3d";
 import { Point4d, Point4dProps } from "./Point4d";
+/**
+ * Coordinate data with `Point4d` numeric data as an array `[x,y,z,w]`
+ * @public
+ */
 export declare type Matrix4dProps = Point4dProps[];
 /**
  * * A Matrix4d is a matrix with 4 rows and 4 columns.
  * * The 4 rows may be described as the x,y,z,w rows.
  * * The 4 columns may be described as the x,y,z,w columns.
- * * The matrix is physically stored as a FLoat64Array with 16 numbers.
+ * * The matrix is physically stored as a Float64Array with 16 numbers.
  * * The layout in the Float64Array is "by row"
- * * * indices 0,1,2,3 are the "x row".   They may be called the xx,xy,xz,xw entries
- * * * indices 4,5,6,7 are the "y row"    They may be called the yx,yy,yz,yw entries
- * * * indices 8,9,10,11 are the "z row"  They may be called the zx,zy,zz,zw entries
- * * * indices 12,13,14,15 are the "w row".  They may be called the wx,wy,wz,ww entries
+ *   * indices 0,1,2,3 are the "x row".   They may be called the xx,xy,xz,xw entries
+ *   * indices 4,5,6,7 are the "y row"    They may be called the yx,yy,yz,yw entries
+ *   * indices 8,9,10,11 are the "z row"  They may be called the zx,zy,zz,zw entries
+ *   * indices 12,13,14,15 are the "w row".  They may be called the wx,wy,wz,ww entries
  * * If "w row" contains numeric values 0,0,0,1, the Matrix4d is equivalent to a Transform with
- * * * The upper right 3x3 matrix (entries 0,1,2,4,5,6,8,9,10) are the 3x3 matrix part of the transform
- * * * The far right column entries xw,yw,zw are the "origin" (sometimes called "translation") part of the transform.
+ *  * The upper right 3x3 matrix (entries 0,1,2,4,5,6,8,9,10) are the 3x3 matrix part of the transform
+ *  * The far right column entries xw,yw,zw are the "origin" (sometimes called "translation") part of the transform.
+ * @public
  */
 export declare class Matrix4d implements BeJSONFunctions {
     private _coffs;
     private constructor();
+    /** Copy matrix entries from `other` */
     setFrom(other: Matrix4d): void;
-    clone(): Matrix4d;
+    /** Return a deep clone. */
+    clone(result?: Matrix4d): Matrix4d;
     /** zero this matrix4d in place. */
     setZero(): void;
     /** set to identity. */
@@ -36,6 +43,8 @@ export declare class Matrix4d implements BeJSONFunctions {
     static createZero(result?: Matrix4d): Matrix4d;
     /** create a Matrix4d with values supplied "across the rows" */
     static createRowValues(cxx: number, cxy: number, cxz: number, cxw: number, cyx: number, cyy: number, cyz: number, cyw: number, czx: number, czy: number, czz: number, czw: number, cwx: number, cwy: number, cwz: number, cww: number, result?: Matrix4d): Matrix4d;
+    /** Create a `Matrix4d` from 16 values appearing as `Point4d` for each row. */
+    static createRows(rowX: Point4d, rowY: Point4d, rowZ: Point4d, rowW: Point4d, result?: Matrix4d): Matrix4d;
     /** directly set columns from typical 3d data:
      *
      * * vectorX, vectorY, vectorZ as columns 0,1,2, with weight0.
@@ -48,6 +57,8 @@ export declare class Matrix4d implements BeJSONFunctions {
     static createIdentity(result?: Matrix4d): Matrix4d;
     /** return matrix with translation directly inserted (along with 1 on diagonal) */
     static createTranslationXYZ(x: number, y: number, z: number, result?: Matrix4d): Matrix4d;
+    /** return this matrix plus scale times matrixB. */
+    plusScaled(matrixB: Matrix4d, scale: number, result?: Matrix4d): Matrix4d;
     /**
      * Create a Matrix4d with translation and scaling values directly inserted (along with 1 as final diagonal entry)
      * @param tx x entry for translation column
@@ -67,6 +78,7 @@ export declare class Matrix4d implements BeJSONFunctions {
      * @param highB high point of box B
      */
     static createBoxToBox(lowA: Point3d, highA: Point3d, lowB: Point3d, highB: Point3d, result?: Matrix4d): Matrix4d | undefined;
+    /** Set from nested array json e.g. `[[1,2,3,4],[0,1,2,4],[0,2,5,1],[0,0,1,2]]` */
     setFromJSON(json?: Matrix4dProps): void;
     /**
      * Return the largest (absolute) difference between this and other Matrix4d.
@@ -77,11 +89,13 @@ export declare class Matrix4d implements BeJSONFunctions {
      * Return the largest absolute value in the Matrix4d
      */
     maxAbs(): number;
+    /** Test for near-equality with `other` */
     isAlmostEqual(other: Matrix4d): boolean;
     /**
      * Convert an Matrix4d to a Matrix4dProps.
      */
     toJSON(): Matrix4dProps;
+    /** Create from nested array json e.g. `[[1,2,3,4],[0,1,2,4],[0,2,5,1],[0,0,1,2]]` */
     static fromJSON(json?: Matrix4dProps): Matrix4d;
     /**
      * Return a point with entries from positions [i0, i0+step, i0+2*step, i0+3*step].
@@ -96,24 +110,24 @@ export declare class Matrix4d implements BeJSONFunctions {
      * @param result optional preallocated point.
      */
     getSteppedPoint(i0: number, step: number, result?: Point4d): Point4d;
-    /** @returns Return column 0 as Point4d. */
+    /** Return column 0 as Point4d. */
     columnX(): Point4d;
-    /** @returns Return column 1 as Point4d. */
+    /** Return column 1 as Point4d. */
     columnY(): Point4d;
-    /** @returns Return column 2 as Point4d. */
+    /** Return column 2 as Point4d. */
     columnZ(): Point4d;
-    /** @returns Return column 3 as Point4d. */
+    /** Return column 3 as Point4d. */
     columnW(): Point4d;
-    /** @returns Return row 0 as Point4d. */
+    /** Return row 0 as Point4d. */
     rowX(): Point4d;
-    /** @returns Return row 1 as Point4d. */
+    /** Return row 1 as Point4d. */
     rowY(): Point4d;
-    /** @returns Return row 2 as Point4d. */
+    /** Return row 2 as Point4d. */
     rowZ(): Point4d;
-    /** @returns Return row 3 as Point4d. */
+    /** Return row 3 as Point4d. */
     rowW(): Point4d;
     /**
-     * @returns true if the 2 row has content other than [0,0,0,1]
+     * Returns true if the w row has content other than [0,0,0,1]
      */
     readonly hasPerspective: boolean;
     /**
@@ -149,21 +163,24 @@ export declare class Matrix4d implements BeJSONFunctions {
     multiplyPoint3dArray(pts: XYAndZ[], results: Point4d[], w?: number): void;
     /** multiply [x,y,z,w] times matrix.  return as Point4d.   (And the returned value is NOT normalized down to unit w) */
     multiplyTransposeXYZW(x: number, y: number, z: number, w: number, result?: Point4d): Point4d;
-    /** @returns dot product of row rowIndex of this with column columnIndex of other.
+    /** Returns dot product of row rowIndex of this with column columnIndex of other.
      */
     rowDotColumn(rowIndex: number, other: Matrix4d, columnIndex: number): number;
-    /** @returns dot product of row rowIndexThis of this with row rowIndexOther of other.
+    /** Returns dot product of row rowIndexThis of this with row rowIndexOther of other.
      */
     rowDotRow(rowIndexThis: number, other: Matrix4d, rowIndexOther: number): number;
-    /** @returns dot product of row rowIndexThis of this with row rowIndexOther of other.
+    /** Returns dot product of row rowIndexThis of this with row rowIndexOther of other.
      */
     columnDotColumn(columnIndexThis: number, other: Matrix4d, columnIndexOther: number): number;
-    /** @returns dot product of column columnIndexThis of this with row rowIndexOther other.
+    /** Returns dot product of column columnIndexThis of this with row rowIndexOther other.
      */
     columnDotRow(columnIndexThis: number, other: Matrix4d, rowIndexOther: number): number;
-    /** @returns return a matrix entry by row and column index.
+    /** Return a matrix entry by row and column index.
      */
     atIJ(rowIndex: number, columnIndex: number): number;
+    /** Set a matrix entry by row and column index.
+     */
+    setAtIJ(rowIndex: number, columnIndex: number, value: number): void;
     /** multiply matrix * [x,y,z,w]. immediately renormalize to return in a Point3d.
      * If zero weight appears in the result (i.e. input is on eyeplane) leave the mapped xyz untouched.
      */
@@ -202,12 +219,16 @@ export declare class Matrix4d implements BeJSONFunctions {
      * @param scale scale
      */
     rowOperation(rowIndexA: number, rowIndexB: number, firstColumnIndex: number, scale: number): void;
+    /** Return the determinant of the matrix. */
+    determinant(): number;
     /** Compute an inverse matrix.
-     * * This uses simple Bauss-Jordan elimination -- no pivot.
-     * @returns undefined if 1/pivot becomes too large. (i.e. apparent 0 pivot)
+     * * This uses direct formulas with various determinants.
+     * * If result is given, it is ALWAYS filled with values "prior to dividing by the determinant".
+     * *
+     * @returns undefined if dividing by the determinant looks unsafe.
      */
-    createInverse(): Matrix4d | undefined;
-    /** @returns Restructure the matrix rows as separate arrays. (Useful for printing)
+    createInverse(result?: Matrix4d): Matrix4d | undefined;
+    /** Returns an array-of-arrays of the matrix rows, optionally passing each value through a function.
      * @param f optional function to provide alternate values for each entry (e.g. force fuzz to zero.)
      */
     rowArrays(f?: (value: number) => any): any;
@@ -219,5 +240,38 @@ export declare class Matrix4d implements BeJSONFunctions {
      * @param aw scale factor for row 3
      */
     scaleRowsInPlace(ax: number, ay: number, az: number, aw: number): void;
+    /**
+     * add an outer product (single column times single row times scale factor) to this matrix.
+     * @param vectorU column vector
+     * @param vectorV row vector
+     * @param scale scale factor
+     */
+    addScaledOuterProductInPlace(vectorU: Point4d, vectorV: Point4d, scale: number): void;
+    /**
+     * ADD (n place) scale*A*B*AT where
+     * * A is a pure translation with final column [x,y,z,1]
+     * * B is the given `matrixB`
+     * * AT is the transpose of A.
+     * * scale is a multiplier.
+     * @param matrixB the middle matrix.
+     * @param ax x part of translation
+     * @param ay y part of translation
+     * @param az z part of translation
+     * @param scale scale factor for entire product
+     */
+    addTranslationSandwichInPlace(matrixB: Matrix4d, ax: number, ay: number, az: number, scale: number): void;
+    /**
+     * Multiply and replace contents of this matrix by A*this*AT where
+     * * A is a pure translation with final column [x,y,z,1]
+     * * this is this matrix.
+     * * AT is the transpose of A.
+     * * scale is a multiplier.
+     * @param matrixB the middle matrix.
+     * @param ax x part of translation
+     * @param ay y part of translation
+     * @param az z part of translation
+     * @param scale scale factor for entire product
+     */
+    multiplyTranslationSandwichInPlace(ax: number, ay: number, az: number): void;
 }
 //# sourceMappingURL=Matrix4d.d.ts.map

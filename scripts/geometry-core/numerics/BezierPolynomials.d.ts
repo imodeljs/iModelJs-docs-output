@@ -7,6 +7,7 @@ import { Degree3PowerPolynomial, Degree4PowerPolynomial } from "./Polynomials";
  * * The family of derived classes is starts with low order (at least linear through cubic) with highly optimized calculations.
  * * The general degree Bezier class also uses this as its base class.
  * * The length of the coefficient array is NOT always the bezier order.   Use the `order` property to access the order.
+ * @internal
  */
 export declare abstract class BezierCoffs {
     /** Array of coefficients.
@@ -25,13 +26,13 @@ export declare abstract class BezierCoffs {
      * @param order required order
      */
     protected allocateToOrder(order: number): void;
-    /** evaluate the basis fucntions at specified u.
+    /** evaluate the basis functions at specified u.
      * @param u bezier parameter for evaluation.
      * @param buffer optional destination for values.   ASSUMED large enough for order.
      * @returns Return a (newly allocated) array of basis function values.
      */
     abstract basisFunctions(u: number, result?: Float64Array): Float64Array;
-    /** evaluate the basis fucntions at specified u.   Sum multidimensional control points with basis weights.
+    /** evaluate the basis functions at specified u.   Sum multidimensional control points with basis weights.
      * @param u bezier parameter for evaluation.
      * @param n dimension of control points.
      * @param polygon packed multidimensional control points.   ASSUMED contains `n*order` values.
@@ -47,7 +48,7 @@ export declare abstract class BezierCoffs {
      * @returns Return a (newly allocated) array of basis function values.
      */
     abstract sumBasisFunctionDerivatives(u: number, polygon: Float64Array, n: number, result?: Float64Array): Float64Array;
-    /** @returns Return a clone of this bezier. */
+    /** Return a deep clone of this bezier. */
     abstract clone(): BezierCoffs;
     /**
      * create an object of same order with zero coefficients.
@@ -82,6 +83,7 @@ export declare abstract class BezierCoffs {
      *     If true, filtering is done and values are returned, possibly in a new array and possibly in the original.
      */
     filter01(roots: number[] | undefined, restrictTo01?: boolean): number[] | undefined;
+    /** zero out all coefficients. */
     zero(): void;
     /** Subdivide -- write results into caller-supplied bezier coffs (which must be of the same order) */
     subdivide(u: number, left: BezierCoffs, right: BezierCoffs): boolean;
@@ -89,13 +91,14 @@ export declare abstract class BezierCoffs {
     static maxAbsDiff(dataA: BezierCoffs, dataB: BezierCoffs): number | undefined;
 }
 /**
- * Static methods to operate on univariate beizer polynomials, with coefficients in simple Float64Array or as components of blocked arrays.
+ * Static methods to operate on univariate bezier polynomials, with coefficients in simple Float64Array or as components of blocked arrays.
+ * @internal
  */
 export declare class BezierPolynomialAlgebra {
     /**
      * * Univariate bezierA has its coefficients at offset indexA in each block within the array of blocks.
      * * Symbolically:   `product(s) += scale * (constA - polynomialA(s)) *polynomialB(s)`
-     * * Where coefficients of polynomialA(s) are in column indexA and coefficients of polynominalB(s) are differences within column indexB.
+     * * Where coefficients of polynomialA(s) are in column indexA and coefficients of polynomialB(s) are differences within column indexB.
      * * Treating data as 2-dimensional array:   `product = sum (iA) sum (iB)    (constA - basisFunction[iA} data[indexA][iA]) * basisFunction[iB] * (dataOrder-1)(data[iB + 1][indexB] - data[iB][indexB])`
      * * Take no action if product length is other than `dataOrder + dataOrder - 2`
      */
@@ -103,9 +106,9 @@ export declare class BezierPolynomialAlgebra {
     /**
      * * Univariate bezierA has its coefficients at offset indexA in each block within the array of blocks.
      * * Univariate bezierB has its coefficients at offset indexB in each block within the array of blocks.
-     * * return the sum coefficients for `constA * polynominalA + constB * polynomialB`
-     * * Symbolically:   `product(s) = (constA * polynomialA(s) + constB * polynominalB(s)`
-     * * The two polyomials are the same order, so this just direct sum of scaled coefficients.
+     * * return the sum coefficients for `constA * polynomialA + constB * polynomialB`
+     * * Symbolically:   `product(s) = (constA * polynomialA(s) + constB * polynomialB(s)`
+     * * The two polynomials are the same order, so this just direct sum of scaled coefficients.
      *
      * * Take no action if product length is other than `dataOrder + dataOrder - 2`
      */
@@ -120,20 +123,20 @@ export declare class BezierPolynomialAlgebra {
     /**
      * * Univariate bezierA has its coefficients in dataA[i]
      * * Univariate bezierB has its coefficients in dataB[i]
-     * * return the product coefficients for polynominalA(s) * polynomialB(s) * scale
+     * * return the product coefficients for polynomialA(s) * polynomialB(s) * scale
      * * Take no action if product length is other than `orderA + orderB - 1`
      */
     static accumulateProduct(product: Float64Array, dataA: Float64Array, dataB: Float64Array, scale?: number): void;
     /**
      * * Univariate bezierA has its coefficients in dataA[i]
      * * Univariate bezierB has its coefficients in dataB[i]
-     * * return the product coefficients for polynominalADifferencs(s) * polynomialB(s) * scale
+     * * return the product coefficients for polynomialADifferences(s) * polynomialB(s) * scale
      * * Take no action if product length is other than `orderA + orderB - 2`
      */
     static accumulateProductWithDifferences(product: Float64Array, dataA: Float64Array, dataB: Float64Array, scale?: number): void;
     /**
      * * Univariate bezier has its coefficients in data[i]
-     * * return the diference data[i+1]-data[i] in difference.
+     * * return the difference data[i+1]-data[i] in difference.
      * * Take no action if product length is other than `orderA + orderB - 1`
      */
     static univariateDifference(data: Float64Array, difference: Float64Array): void;
@@ -152,12 +155,14 @@ export declare class BezierPolynomialAlgebra {
  *     generate higher order one-dimensional bezier polynomials with order that is a small multiple of the
  *     curve order.   Hence those polynomials commonly reach degree 8 to 12.
  * * Higher order bezier polynomials are possible, but performance and accuracy issues become significant.
- * * Some machine-level constraints apply for curves of extrmely high order, e.g. 70.   For instance, at that level use of
+ * * Some machine-level constraints apply for curves of extremely high order, e.g. 70.   For instance, at that level use of
  *     Pascal triangle coefficients becomes inaccurate because IEEE doubles cannot represent integers that
  *     large.
+ * @internal
  */
 export declare class UnivariateBezier extends BezierCoffs {
     private _order;
+    /** Query the order of this bezier. */
     readonly order: number;
     constructor(data: number | Float64Array | number[]);
     /** (Re) initialize with given order (and all coffs zero) */
@@ -193,14 +198,16 @@ export declare class UnivariateBezier extends BezierCoffs {
      */
     static createProduct(bezierA: BezierCoffs, bezierB: BezierCoffs): UnivariateBezier;
     /**
-     * Add a sqaured bezier polynomial (given as simple coffs)
+     * Add a squared bezier polynomial (given as simple coffs)
      * @param coffA coefficients of bezier to square
      * @param scale scale factor
      * @return false if order mismatch -- must have `2 * bezierA.length  === this.order + 1`
      */
     addSquaredSquaredBezier(coffA: Float64Array, scale: number): boolean;
+    /** Add a constant to each coefficient */
+    addConstant(a: number): void;
     private _basisValues?;
-    /** evaluate the basis fucntions at specified u.
+    /** evaluate the basis functions at specified u.
      * @param u bezier parameter for evaluation.
      * @returns Return a (newly allocated) array of basis function values.
      */
@@ -214,7 +221,7 @@ export declare class UnivariateBezier extends BezierCoffs {
      */
     private static sumWeightedBlocks;
     /**
-     * Given (multidimensional) control points, sum the control points weighted by the basis fucntion values at parameter u.
+     * Given (multidimensional) control points, sum the control points weighted by the basis function values at parameter u.
      * @param u bezier parameter
      * @param polygon Array with coefficients in blocks.
      * @param blockSize size of blocks
@@ -230,7 +237,7 @@ export declare class UnivariateBezier extends BezierCoffs {
      */
     sumBasisFunctionDerivatives(u: number, polygon: Float64Array, blockSize: number, result?: Float64Array): Float64Array;
     /**
-     * Evaluate the bezier function at a parameter value.  (i.e. summ the basis functions times coefficients)
+     * Evaluate the bezier function at a parameter value.  (i.e. sum the basis functions times coefficients)
      * @param u parameter for evaluation
      */
     evaluate(u: number): number;
@@ -246,8 +253,9 @@ export declare class UnivariateBezier extends BezierCoffs {
      */
     deflateRight(): void;
     /**
-     * divide the polynomial by `(x-root)`.
-     * * If `root` is truly a root.
+     * * divide the polynomial by `(x-root)`.
+     * * return the remainder
+     * * If `root` truly is a root, the return is zero.
      * @param root root to remove
      */
     deflateRoot(root: number): number;
@@ -263,9 +271,16 @@ export declare class UnivariateBezier extends BezierCoffs {
      * @returns final fraction of iteration if converged.  undefined if iteration failed to converge.
      */
     runNewton(startFraction: number, tolerance?: number): number | undefined;
+    /** Find roots of a bezier polynomial
+     * * Only look for roots in 0..1
+     * * As roots are found, deflate the polynomial.
+     * * bezier coffs are changed (and order reduced) at each step.
+     */
     static deflateRoots01(bezier: UnivariateBezier): number[] | undefined;
 }
-/** Bezier polynomial specialized to order 2 (2 coefficients, straight line function) */
+/** Bezier polynomial specialized to order 2 (2 coefficients, straight line function)\
+ * @internal
+ */
 export declare class Order2Bezier extends BezierCoffs {
     constructor(f0?: number, f1?: number);
     /** return an Order2Bezier (linear) with the two coefficients from this Order2Bezier */
@@ -274,12 +289,12 @@ export declare class Order2Bezier extends BezierCoffs {
      * but if the fraction would exceed Geometry.largeFractionResult, return undefined.
      */
     static solveCoffs(a0: number, a1: number): number | undefined;
-    /** evaluate the basis fucntions at specified u.
+    /** evaluate the basis functions at specified u.
      * @param u bezier parameter for evaluation.
      * @returns Return a (newly allocated) array of basis function values.
      */
     basisFunctions(u: number, result?: Float64Array): Float64Array;
-    /** evaluate the basis fucntions at specified u.   Sum multidimensional control points with basis weights.
+    /** evaluate the basis functions at specified u.   Sum multidimensional control points with basis weights.
      * @param u bezier parameter for evaluation.
      * @param n dimension of control points.
      * @param polygon packed multidimensional control points.   ASSUMED contains `n*order` values.
@@ -296,10 +311,11 @@ export declare class Order2Bezier extends BezierCoffs {
      */
     sumBasisFunctionDerivatives(_u: number, polygon: Float64Array, n: number, result?: Float64Array): Float64Array;
     /**
-     * Evaluate the bezier function at a parameter value.  (i.e. summ the basis functions times coefficients)
+     * Evaluate the bezier function at a parameter value.  (i.e. sum the basis functions times coefficients)
      * @param u parameter for evaluation
      */
     evaluate(u: number): number;
+    /** Same as `roots` method but returns single numeric value instead of array. */
     solve(rightHandSide: number): number | undefined;
     /**
      * Concrete implementation of the abstract roots method
@@ -309,16 +325,19 @@ export declare class Order2Bezier extends BezierCoffs {
      */
     roots(targetValue: number, restrictTo01: boolean): number[] | undefined;
 }
-/** Bezier polynomial specialized to order 3 (3 coefficients, paraboloa  function) */
+/** Bezier polynomial specialized to order 3 (3 coefficients, parabola  function)
+ * @internal
+ */
 export declare class Order3Bezier extends BezierCoffs {
     constructor(f0?: number, f1?: number, f2?: number);
+    /** Return a deep copy. */
     clone(): Order3Bezier;
-    /** evaluate the basis fucntions at specified u.
+    /** evaluate the basis functions at specified u.
      * @param u bezier parameter for evaluation.
      * @returns Return a (newly allocated) array of basis function values.
      */
     basisFunctions(u: number, result?: Float64Array): Float64Array;
-    /** evaluate the basis fucntions at specified u.   Sum multidimensional control points with basis weights.
+    /** evaluate the basis functions at specified u.   Sum multidimensional control points with basis weights.
      * @param u bezier parameter for evaluation.
      * @param n dimension of control points.
      * @param polygon packed multidimensional control points.   ASSUMED contains `n*order` values.
@@ -341,24 +360,34 @@ export declare class Order3Bezier extends BezierCoffs {
      * @param a  scale factor.
      */
     addSquareLinear(f0: number, f1: number, a: number): void;
+    /**
+     * Concrete implementation of the abstract roots method
+     * @param targetValue target function value.
+     * @param restrictTo01 flag for optional second step to eliminate root outside 0..1.
+     * @returns If no roots, return undefined.  If roots exist, return as numeric array.
+     */
     roots(targetValue: number, restrictTo01: boolean): number[] | undefined;
     /**
-     * Evaluate the bezier function at a parameter value.  (i.e. summ the basis functions times coefficients)
+     * Evaluate the bezier function at a parameter value.  (i.e. sum the basis functions times coefficients)
      * @param u parameter for evaluation
      */
     evaluate(u: number): number;
 }
-/** Bezier polynomial specialized to order 4 (4 coefficients, cubic  function) */
+/** Bezier polynomial specialized to order 4 (4 coefficients, cubic  function)
+ * @internal
+ */
 export declare class Order4Bezier extends BezierCoffs {
     constructor(f0?: number, f1?: number, f2?: number, f3?: number);
+    /** return a deep copy */
     clone(): Order4Bezier;
+    /** Create a product of a quadratic and a cubic. */
     static createProductOrder3Order2(factorA: Order3Bezier, factorB: Order2Bezier): Order4Bezier;
-    /** evaluate the basis fucntions at specified u.
+    /** evaluate the basis functions at specified u.
      * @param u bezier parameter for evaluation.
      * @returns Return a (newly allocated) array of basis function values.
      */
     basisFunctions(u: number, result?: Float64Array): Float64Array;
-    /** evaluate the basis fucntions at specified u.   Sum multidimensional control points with basis weights.
+    /** evaluate the basis functions at specified u.   Sum multidimensional control points with basis weights.
      * @param u bezier parameter for evaluation.
      * @param n dimension of control points.
      * @param polygon packed multidimensional control points.   ASSUMED contains `n*order` values.
@@ -375,7 +404,7 @@ export declare class Order4Bezier extends BezierCoffs {
      */
     sumBasisFunctionDerivatives(u: number, polygon: Float64Array, n: number, result?: Float64Array): Float64Array;
     /**
-     * Evaluate the bezier function at a parameter value.  (i.e. summ the basis functions times coefficients)
+     * Evaluate the bezier function at a parameter value.  (i.e. sum the basis functions times coefficients)
      * @param u parameter for evaluation
      */
     evaluate(u: number): number;
@@ -383,25 +412,26 @@ export declare class Order4Bezier extends BezierCoffs {
      * convert a power polynomial to bezier
      */
     static createFromDegree3PowerPolynomial(source: Degree3PowerPolynomial): Order4Bezier;
+    /** Find real roots, return in caller-allocated array. */
     realRoots(e: number, restrictTo01: boolean, roots: GrowableFloat64Array): undefined;
 }
-/** Bezier polynomial specialized to order 5 (5 coefficients, quartic  function) */
+/** Bezier polynomial specialized to order 5 (5 coefficients, quartic  function)
+ * @internal
+ */
 export declare class Order5Bezier extends BezierCoffs {
     constructor(f0?: number, f1?: number, f2?: number, f3?: number, f4?: number);
-    /**
-     * @returns Return a clone of this bezier.
-     */
+    /** Return a deep copy */
     clone(): Order5Bezier;
     /**
      * convert a power polynomial to bezier
      */
     static createFromDegree4PowerPolynomial(source: Degree4PowerPolynomial): Order5Bezier;
-    /** evaluate the basis fucntions at specified u.
+    /** evaluate the basis functions at specified u.
      * @param u bezier parameter for evaluation.
      * @returns Return a (newly allocated) array of basis function values.
      */
     basisFunctions(u: number, result?: Float64Array): Float64Array;
-    /** evaluate the basis fucntions at specified u.   Sum multidimensional control points with basis weights.
+    /** evaluate the basis functions at specified u.   Sum multidimensional control points with basis weights.
      * @param u bezier parameter for evaluation.
      * @param n dimension of control points.
      * @param polygon packed multidimensional control points.   ASSUMED contains `n*order` values.
@@ -418,12 +448,15 @@ export declare class Order5Bezier extends BezierCoffs {
      */
     sumBasisFunctionDerivatives(u: number, polygon: Float64Array, n: number, result?: Float64Array): Float64Array;
     /**
-     * Evaluate the bezier function at a parameter value.  (i.e. summ the basis functions times coefficients)
+     * Evaluate the bezier function at a parameter value.  (i.e. sum the basis functions times coefficients)
      * @param u parameter for evaluation
      */
     evaluate(u: number): number;
-    addProduct(f: Order3Bezier, g: Order3Bezier, a: number): void;
+    /** Add the product of a pair of Order3Bezier to this one. */
+    addProductOrder3BezierOrder3Bezier(f: Order3Bezier, g: Order3Bezier, a: number): void;
+    /** Add a constant to all coefficients (thereby adding the constant to the evaluated bezier) */
     addConstant(a: number): void;
+    /** Find real roots, return in caller-allocated array. */
     realRoots(e: number, restrictTo01: boolean, roots: GrowableFloat64Array): void;
 }
 //# sourceMappingURL=BezierPolynomials.d.ts.map

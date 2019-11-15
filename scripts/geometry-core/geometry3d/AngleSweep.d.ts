@@ -1,8 +1,9 @@
 import { GrowableFloat64Array } from "./GrowableFloat64Array";
 import { Angle } from "./Angle";
 import { BeJSONFunctions, AngleSweepProps } from "../Geometry";
+/** @module CartesianGeometry */
 /**
- * An AngleSweep is a pair of angles at start and end of an interval.
+ * An `AngleSweep` is a pair of angles at start and end of an interval.
  *
  * *  For stroking purposes, the "included interval" is all angles numerically reached by theta = start + f*(end-start), where f is between 0 and 1.
  * *  This stroking formula is simple numbers -- 2PI shifts are not involved.
@@ -10,9 +11,9 @@ import { BeJSONFunctions, AngleSweepProps } from "../Geometry";
  * *  If (start < end) the angle proceeds CCW around the unit circle.
  * *  If (end < start) the angle proceeds CW around the unit circle.
  * *  Angles beyond 360 are fine as endpoints.
- *
- * **  (350,370) covers the same unit angles as (-10,10).
- * **  (370,350) covers the same unit angles as (10,-10).
+ *   *  (350,370) covers the same unit angles as (-10,10).
+ *   *  (370,350) covers the same unit angles as (10,-10).
+ * @public
  */
 export declare class AngleSweep implements BeJSONFunctions {
     private _radians0;
@@ -54,7 +55,7 @@ export declare class AngleSweep implements BeJSONFunctions {
     static createStartEnd(startAngle: Angle, endAngle: Angle, result?: AngleSweep): AngleSweep;
     /** Create an angle sweep with limits given as (strongly typed) angles for start and sweep */
     static createStartSweep(startAngle: Angle, sweepAngle: Angle, result?: AngleSweep): AngleSweep;
-    /** @returns Return a sweep with limits interpolated between this and other. */
+    /** Return a sweep with limits interpolated between this and other. */
     interpolate(fraction: number, other: AngleSweep): AngleSweep;
     /** create an AngleSweep from start and end angles given in radians. */
     static createStartSweepRadians(startRadians?: number, sweepRadians?: number, result?: AngleSweep): AngleSweep;
@@ -90,7 +91,7 @@ export declare class AngleSweep implements BeJSONFunctions {
      * This is the number of fractional intervals required to cover a whole circle.
      */
     fractionPeriod(): number;
-    /** return the fractional ized position of the angle,
+    /** return the fractionalized position of the angle,
      * computed without consideration of 2PI period.
      * That is, an angle that is numerically much beyond than the end angle
      * will produce a large fraction and an angle much beyond the start angle
@@ -112,6 +113,10 @@ export declare class AngleSweep implements BeJSONFunctions {
      * @param data array that is input as radians, output as fractions
      */
     radiansArraytoPositivePeriodicFractions(data: GrowableFloat64Array): void;
+    /**
+     * Convert a radians value to a fraction that is always positive and can wrap.  See `angleToPositivePeriodicFraction` for detailed description.
+     * @param radians
+     */
     radiansToPositivePeriodicFraction(radians: number): number;
     /** map an angle to a fractional coordinate which is:
      *
@@ -123,6 +128,9 @@ export declare class AngleSweep implements BeJSONFunctions {
      * *  the periodic jump is at the middle of the "outside" interval
      */
     angleToSignedPeriodicFraction(theta: Angle): number;
+    /**
+     * Convert a radians value to a fraction, allowing wraparound.  See `angleToSignedPeriodicFraction` for detailed description.
+     */
     radiansToSignedPeriodicFraction(radians: number): number;
     /** test if an angle is within the sweep */
     isAngleInSweep(angle: Angle): boolean;

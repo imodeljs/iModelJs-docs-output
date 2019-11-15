@@ -2,11 +2,17 @@ import { BlockComparisonFunction } from "./GrowableFloat64Array";
 /** @module ArraysAndInterfaces */
 /**
  * Array of contiguous doubles, indexed by block number and index within block.
- * * This is essentially a rectangular matrix, with each block being a row of the matrix.
+ * * This is essentially a rectangular matrix (two dimensional array), with each block being a row of the matrix.
+ * @public
  */
 export declare class GrowableBlockedArray {
+    /** underlying contiguous, oversized buffer. */
     protected _data: Float64Array;
+    /** Number of blocks (matrix rows) in use. */
     protected _inUse: number;
+    /** number of numbers per block in the array.
+     * * If viewing the array as a two dimensional array, this is the row size.
+     */
     protected _blockSize: number;
     constructor(blockSize: number, initialBlocks?: number);
     /** computed property: length (in blocks, not doubles) */
@@ -14,7 +20,7 @@ export declare class GrowableBlockedArray {
     /** property: number of data values per block */
     readonly numPerBlock: number;
     /**
-     * Return a single value indexed within a blcok
+     * Return a single value indexed within a block
      * @param blockIndex index of block to read
      * @param indexInBlock  offset within the block
      */
@@ -46,7 +52,7 @@ export declare class GrowableBlockedArray {
     checkedComponent(blockIndex: number, componentIndex: number): number | undefined;
     /** Access a single double at offset within a block.  This has no index checking. */
     component(blockIndex: number, componentIndex: number): number;
-    /** compre two blocks in simple lexical order.
+    /** compare two blocks in simple lexical order.
      * @param data data array
      * @param blockSize number of items to compare
      * @param ia raw index (not block index) of first block
@@ -55,7 +61,9 @@ export declare class GrowableBlockedArray {
     static compareLexicalBlock(data: Float64Array, blockSize: number, ia: number, ib: number): number;
     /** Return an array of block indices sorted per compareLexicalBlock function */
     sortIndicesLexical(compareBlocks?: BlockComparisonFunction): Uint32Array;
+    /** Return the distance (hypotenuse=sqrt(summed squares)) between indicated blocks */
     distanceBetweenBlocks(blockIndexA: number, blockIndexB: number): number;
+    /** Return the distance (hypotenuse=sqrt(summed squares)) between block entries `iBegin <= i < iEnd` of indicated blocks */
     distanceBetweenSubBlocks(blockIndexA: number, blockIndexB: number, iBegin: number, iEnd: number): number;
 }
 //# sourceMappingURL=GrowableBlockedArray.d.ts.map

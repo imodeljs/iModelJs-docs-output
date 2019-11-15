@@ -16,6 +16,7 @@ import { Matrix3d } from "./Matrix3d";
  * when describing the transform is NOT the "origin" stored in the transform.
  * Setup methods (e.g createFixedPointAndMatrix, createScaleAboutPoint)
  * take care of determining the appropriate origin coordinates.
+ * @public
  */
 export declare class Transform implements BeJSONFunctions {
     private static _scratchPoint;
@@ -25,10 +26,20 @@ export declare class Transform implements BeJSONFunctions {
     private static _identity?;
     /** The identity Transform. Value is frozen and cannot be modified. */
     static readonly identity: Transform;
+    /** Freeze this instance (and its deep content) so it can be considered read-only */
     freeze(): void;
+    /**
+     * Copy contents from other Transform into this Transform
+     * @param other source transform
+     */
     setFrom(other: Transform): void;
     /** Set this Transform to be an identity. */
     setIdentity(): void;
+    /** Set this Transform instance from flexible inputs:
+     * * Any object (such as another Transform) that has `origin` and `matrix` members accepted by Point3d.setFromJSON and Matrix3d.setFromJSON
+     * * An array of 3 number arrays, each with 4 entries which are rows in a 3x4 matrix.
+     * * An array of 12 numbers, each block of 4 entries as a row 3x4 matrix.
+     */
     setFromJSON(json?: TransformProps): void;
     /**
      * Test for near equality with other Transform.  Comparison uses the isAlmostEqual methods on
@@ -36,17 +47,27 @@ export declare class Transform implements BeJSONFunctions {
      * @param other Transform to compare to.
      */
     isAlmostEqual(other: Transform): boolean;
+    /** Return a 3 by 4 matrix containing the rows of this Transform
+     * * This transform's origin is the [3] entry of the json arrays
+     */
     toJSON(): TransformProps;
+    /** Return a new Transform initialized by `setFromJSON (json)` */
     static fromJSON(json?: TransformProps): Transform;
     /** Copy the contents of this transform into a new Transform (or to the result, if specified). */
     clone(result?: Transform): Transform;
-    /** @returns Return a copy of this Transform, modified so that its axes are rigid
+    /** Return a copy of this Transform, modified so that its axes are rigid
+     * * The first axis direction named in axisOrder is preserved
+     * * The plane of the first and second directions is preserved, and its vector in the rigid matrix has positive dot product with the corresponding vector if the instance
+     * * The third named column is the cross product of the first and second.
      */
     cloneRigid(axisOrder?: AxisOrder): Transform | undefined;
     /** Create a copy with the given origin and matrix captured as the Transform origin and Matrix3d. */
     static createRefs(origin: XYZ, matrix: Matrix3d, result?: Transform): Transform;
     /** Create a transform with complete contents given */
     static createRowValues(qxx: number, qxy: number, qxz: number, ax: number, qyx: number, qyy: number, qyz: number, ay: number, qzx: number, qzy: number, qzz: number, az: number, result?: Transform): Transform;
+    /** Create a transform with all zeros.
+     */
+    static createZero(result?: Transform): Transform;
     /**
      * create a Transform with translation provided by x,y,z parts.
      * @param x x part of translation
@@ -83,11 +104,16 @@ export declare class Transform implements BeJSONFunctions {
     static createOriginAndMatrixColumns(origin: XYZ, vectorX: Vector3d, vectorY: Vector3d, vectorZ: Vector3d, result?: Transform): Transform;
     /** Reinitialize by directly installing origin and columns of the matrix
      */
-    setOriginAndMatrixColumns(origin: XYZ, vectorX: Vector3d, vectorY: Vector3d, vectorZ: Vector3d): void;
+    setOriginAndMatrixColumns(origin: XYZ | undefined, vectorX: Vector3d | undefined, vectorY: Vector3d | undefined, vectorZ: Vector3d | undefined): void;
     /** Create a transform with the specified matrix. Compute an origin (different from the given fixedPoint)
      * so that the fixedPoint maps back to itself.
      */
-    static createFixedPointAndMatrix(fixedPoint: Point3d, matrix: Matrix3d, result?: Transform): Transform;
+    static createFixedPointAndMatrix(fixedPoint: XYAndZ, matrix: Matrix3d, result?: Transform): Transform;
+    /** Create a transform with the specified matrix, acting on any `pointX `via
+     * `pointY = matrix * (pointX - pointA) + pointB`
+     * so that the fixedPoint maps back to itself.
+     */
+    static createMatrixPickupPutdown(matrix: Matrix3d, pointA: Point3d, pointB: Point3d, result?: Transform): Transform;
     /** Create a Transform which leaves the fixedPoint unchanged and
      * scales everything else around it by a single scale factor.
      */
@@ -96,10 +122,12 @@ export declare class Transform implements BeJSONFunctions {
     multiplyPoint2d(source: XAndY, result?: Point2d): Point2d;
     /** Transform the input 3d point.  Return as a new point or in the pre-allocated result (if result is given) */
     multiplyPoint3d(point: XYAndZ, result?: Point3d): Point3d;
+    /** Transform the input object with x,y,z members */
+    multiplyXYAndZInPlace(point: XYAndZ): void;
     /** Transform the input point.  Return as a new point or in the pre-allocated result (if result is given) */
-    multiplyXYZ(x: number, y: number, z: number, result?: Point3d): Point3d;
+    multiplyXYZ(x: number, y: number, z?: number, result?: Point3d): Point3d;
     /** Multiply a specific row of the transform times xyz. Return the (number). */
-    multiplyComponentXYZ(componentIndex: number, x: number, y: number, z: number): number;
+    multiplyComponentXYZ(componentIndex: number, x: number, y: number, z?: number): number;
     /** Multiply a specific row of the transform times (weighted!) xyzw. Return the (number). */
     multiplyComponentXYZW(componentIndex: number, x: number, y: number, z: number, w: number): number;
     /** Transform the input homogeneous point.  Return as a new point or in the pre-allocated result (if result is given) */
@@ -108,12 +136,16 @@ export declare class Transform implements BeJSONFunctions {
     multiplyXYZWToFloat64Array(x: number, y: number, z: number, w: number, result?: Float64Array): Float64Array;
     /** Transform the input homogeneous point.  Return as a new point or in the pre-allocated result (if result is given) */
     multiplyXYZToFloat64Array(x: number, y: number, z: number, result?: Float64Array): Float64Array;
-    /** Multiply the tranposed transform (as 4x4 with 0001 row) by Point4d given as xyzw..  Return as a new point or in the pre-allocated result (if result is given) */
+    /** Multiply the transposed transform (as 4x4 with 0001 row) by Point4d given as xyzw..  Return as a new point or in the pre-allocated result (if result is given) */
     multiplyTransposeXYZW(x: number, y: number, z: number, w: number, result?: Point4d): Point4d;
     /** for each point:  replace point by Transform*point */
     multiplyPoint3dArrayInPlace(points: Point3d[]): void;
-    /** @returns Return product of the transform's inverse times a point. */
+    /** for each point:  replace point by Transform*point */
+    multiplyPoint3dArrayArrayInPlace(chains: Point3d[][]): void;
+    /** Return product of the transform's inverse times a point. */
     multiplyInversePoint3d(point: XYAndZ, result?: Point3d): Point3d | undefined;
+    /** Return product of the transform's inverse times a point (point given as x,y,z) */
+    multiplyInverseXYZ(x: number, y: number, z: number, result?: Point3d): Point3d | undefined;
     /**
      * *  for each point:   multiply    transform * point
      * *  if result is given, resize to match source and replace each corresponding pi
@@ -121,10 +153,23 @@ export declare class Transform implements BeJSONFunctions {
      */
     multiplyInversePoint3dArray(source: Point3d[], result?: Point3d[]): Point3d[] | undefined;
     /**
-     * *  for each point in source:   multiply    transformInverse * point  in place inthe point.
+     * * for each point in source: multiply transformInverse * point in place in the point.
      * * return false if not invertible.
      */
     multiplyInversePoint3dArrayInPlace(source: Point3d[]): boolean;
+    /**
+     * * Compute (if needed) the inverse of the matrix part, thereby ensuring inverse operations can complete.
+     * * Return true if matrix inverse completes.
+     * @param useCached If true, accept prior cached inverse if available.
+     */
+    computeCachedInverse(useCached?: boolean): boolean;
+    /**
+     * * If destination has more values than source, remove the extras.
+     * * If destination has fewer values, use the constructionFunction to create new ones.
+     * @param source array
+     * @param dest destination array, to  be modified to match source length
+     * @param constructionFunction function to call to create new entries.
+     */
     static matchArrayLengths(source: any[], dest: any[], constructionFunction: () => any): number;
     /**
      * *  for each point:   multiply    transform * point
@@ -166,10 +211,11 @@ export declare class Transform implements BeJSONFunctions {
      * @param result optional preallocated result to reuse.
      */
     multiplyTransformMatrix3d(other: Matrix3d, result?: Transform): Transform;
-    /** transform each of the 8 corners of a range. Return the range of the transformed corers */
+    /** transform each of the 8 corners of a range. Return the range of the transformed corners */
     multiplyRange(range: Range3d, result?: Range3d): Range3d;
     /**
-     * @returns Return a Transform which is the inverse of this transform. Return undefined if this Transform's matrix is singular.
+     * * Return a Transform which is the inverse of this transform.
+     * * Return undefined if this Transform's matrix is singular.
      */
     inverse(): Transform | undefined;
     /** Initialize transforms that map each direction of a box (axis aligned) to `[0,1]`.

@@ -1,6 +1,6 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -21,6 +21,7 @@ const Matrix3d_1 = require("./Matrix3d");
  * when describing the transform is NOT the "origin" stored in the transform.
  * Setup methods (e.g createFixedPointAndMatrix, createScaleAboutPoint)
  * take care of determining the appropriate origin coordinates.
+ * @public
  */
 class Transform {
     // Constructor accepts and uses POINTER to content .. no copy here.
@@ -33,10 +34,20 @@ class Transform {
         }
         return this._identity;
     }
+    /** Freeze this instance (and its deep content) so it can be considered read-only */
     freeze() { Object.freeze(this); Object.freeze(this._origin); this._matrix.freeze(); }
+    /**
+     * Copy contents from other Transform into this Transform
+     * @param other source transform
+     */
     setFrom(other) { this._origin.setFrom(other._origin), this._matrix.setFrom(other._matrix); }
     /** Set this Transform to be an identity. */
     setIdentity() { this._origin.setZero(); this._matrix.setIdentity(); }
+    /** Set this Transform instance from flexible inputs:
+     * * Any object (such as another Transform) that has `origin` and `matrix` members accepted by Point3d.setFromJSON and Matrix3d.setFromJSON
+     * * An array of 3 number arrays, each with 4 entries which are rows in a 3x4 matrix.
+     * * An array of 12 numbers, each block of 4 entries as a row 3x4 matrix.
+     */
     setFromJSON(json) {
         if (json) {
             if (json instanceof Object && json.origin && json.matrix) {
@@ -50,6 +61,12 @@ class Transform {
                 this._origin.set(data[0][3], data[1][3], data[2][3]);
                 return;
             }
+            if (Geometry_1.Geometry.isNumberArray(json, 12)) {
+                const data = json;
+                this._matrix.setRowValues(data[0], data[1], data[2], data[4], data[5], data[6], data[8], data[9], data[10]);
+                this._origin.set(data[3], data[7], data[11]);
+                return;
+            }
         }
         this.setIdentity();
     }
@@ -59,6 +76,9 @@ class Transform {
      * @param other Transform to compare to.
      */
     isAlmostEqual(other) { return this._origin.isAlmostEqual(other._origin) && this._matrix.isAlmostEqual(other._matrix); }
+    /** Return a 3 by 4 matrix containing the rows of this Transform
+     * * This transform's origin is the [3] entry of the json arrays
+     */
     toJSON() {
         // return { origin: this._origin.toJSON(), matrix: this._matrix.toJSON() };
         return [
@@ -67,6 +87,7 @@ class Transform {
             [this._matrix.coffs[6], this._matrix.coffs[7], this._matrix.coffs[8], this._origin.z],
         ];
     }
+    /** Return a new Transform initialized by `setFromJSON (json)` */
     static fromJSON(json) {
         const result = Transform.createIdentity();
         result.setFromJSON(json);
@@ -81,9 +102,12 @@ class Transform {
         }
         return new Transform(Point3dVector3d_1.Point3d.createFrom(this._origin), this._matrix.clone());
     }
-    /** @returns Return a copy of this Transform, modified so that its axes are rigid
+    /** Return a copy of this Transform, modified so that its axes are rigid
+     * * The first axis direction named in axisOrder is preserved
+     * * The plane of the first and second directions is preserved, and its vector in the rigid matrix has positive dot product with the corresponding vector if the instance
+     * * The third named column is the cross product of the first and second.
      */
-    cloneRigid(axisOrder = 0 /* XYZ */) {
+    cloneRigid(axisOrder = Geometry_1.AxisOrder.XYZ) {
         const axes0 = Matrix3d_1.Matrix3d.createRigidFromMatrix3d(this.matrix, axisOrder);
         if (!axes0)
             return undefined;
@@ -106,6 +130,11 @@ class Transform {
             return result;
         }
         return new Transform(Point3dVector3d_1.Point3d.create(ax, ay, az), Matrix3d_1.Matrix3d.createRowValues(qxx, qxy, qxz, qyx, qyy, qyz, qzx, qzy, qzz));
+    }
+    /** Create a transform with all zeros.
+     */
+    static createZero(result) {
+        return Transform.createRowValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, result);
     }
     /**
      * create a Transform with translation provided by x,y,z parts.
@@ -165,14 +194,23 @@ class Transform {
     /** Reinitialize by directly installing origin and columns of the matrix
      */
     setOriginAndMatrixColumns(origin, vectorX, vectorY, vectorZ) {
-        this._origin.setFrom(origin);
+        if (origin !== undefined)
+            this._origin.setFrom(origin);
         this._matrix.setColumns(vectorX, vectorY, vectorZ);
     }
     /** Create a transform with the specified matrix. Compute an origin (different from the given fixedPoint)
      * so that the fixedPoint maps back to itself.
      */
     static createFixedPointAndMatrix(fixedPoint, matrix, result) {
-        const origin = Matrix3d_1.Matrix3d.XYZMinusMatrixTimesXYZ(fixedPoint, matrix, fixedPoint);
+        const origin = Matrix3d_1.Matrix3d.xyzMinusMatrixTimesXYZ(fixedPoint, matrix, fixedPoint);
+        return Transform.createRefs(origin, matrix.clone(), result);
+    }
+    /** Create a transform with the specified matrix, acting on any `pointX `via
+     * `pointY = matrix * (pointX - pointA) + pointB`
+     * so that the fixedPoint maps back to itself.
+     */
+    static createMatrixPickupPutdown(matrix, pointA, pointB, result) {
+        const origin = Matrix3d_1.Matrix3d.xyzMinusMatrixTimesXYZ(pointB, matrix, pointA);
         return Transform.createRefs(origin, matrix.clone(), result);
     }
     /** Create a Transform which leaves the fixedPoint unchanged and
@@ -180,23 +218,27 @@ class Transform {
      */
     static createScaleAboutPoint(fixedPoint, scale, result) {
         const matrix = Matrix3d_1.Matrix3d.createScale(scale, scale, scale);
-        const origin = Matrix3d_1.Matrix3d.XYZMinusMatrixTimesXYZ(fixedPoint, matrix, fixedPoint);
+        const origin = Matrix3d_1.Matrix3d.xyzMinusMatrixTimesXYZ(fixedPoint, matrix, fixedPoint);
         return Transform.createRefs(origin, matrix, result);
     }
     /** Transform the input 2d point.  Return as a new point or in the pre-allocated result (if result is given) */
     multiplyPoint2d(source, result) {
-        return Matrix3d_1.Matrix3d.XYPlusMatrixTimesXY(this._origin, this._matrix, source, result);
+        return Matrix3d_1.Matrix3d.xyPlusMatrixTimesXY(this._origin, this._matrix, source, result);
     }
     /** Transform the input 3d point.  Return as a new point or in the pre-allocated result (if result is given) */
     multiplyPoint3d(point, result) {
-        return Matrix3d_1.Matrix3d.XYZPlusMatrixTimesXYZ(this._origin, this._matrix, point, result);
+        return Matrix3d_1.Matrix3d.xyzPlusMatrixTimesXYZ(this._origin, this._matrix, point, result);
+    }
+    /** Transform the input object with x,y,z members */
+    multiplyXYAndZInPlace(point) {
+        return Matrix3d_1.Matrix3d.xyzPlusMatrixTimesXYZInPlace(this._origin, this._matrix, point);
     }
     /** Transform the input point.  Return as a new point or in the pre-allocated result (if result is given) */
-    multiplyXYZ(x, y, z, result) {
-        return Matrix3d_1.Matrix3d.XYZPlusMatrixTimesCoordinates(this._origin, this._matrix, x, y, z, result);
+    multiplyXYZ(x, y, z = 0, result) {
+        return Matrix3d_1.Matrix3d.xyzPlusMatrixTimesCoordinates(this._origin, this._matrix, x, y, z, result);
     }
     /** Multiply a specific row of the transform times xyz. Return the (number). */
-    multiplyComponentXYZ(componentIndex, x, y, z) {
+    multiplyComponentXYZ(componentIndex, x, y, z = 0) {
         const coffs = this._matrix.coffs;
         const i0 = 3 * componentIndex;
         return this.origin.at(componentIndex) + coffs[i0] * x + coffs[i0 + 1] * y + coffs[i0 + 2] * z;
@@ -210,17 +252,17 @@ class Transform {
     }
     /** Transform the input homogeneous point.  Return as a new point or in the pre-allocated result (if result is given) */
     multiplyXYZW(x, y, z, w, result) {
-        return Matrix3d_1.Matrix3d.XYZPlusMatrixTimesWeightedCoordinates(this._origin, this._matrix, x, y, z, w, result);
+        return Matrix3d_1.Matrix3d.xyzPlusMatrixTimesWeightedCoordinates(this._origin, this._matrix, x, y, z, w, result);
     }
     /** Transform the input homogeneous point.  Return as a new point or in the pre-allocated result (if result is given) */
     multiplyXYZWToFloat64Array(x, y, z, w, result) {
-        return Matrix3d_1.Matrix3d.XYZPlusMatrixTimesWeightedCoordinatesToFloat64Array(this._origin, this._matrix, x, y, z, w, result);
+        return Matrix3d_1.Matrix3d.xyzPlusMatrixTimesWeightedCoordinatesToFloat64Array(this._origin, this._matrix, x, y, z, w, result);
     }
     /** Transform the input homogeneous point.  Return as a new point or in the pre-allocated result (if result is given) */
     multiplyXYZToFloat64Array(x, y, z, result) {
-        return Matrix3d_1.Matrix3d.XYZPlusMatrixTimesCoordinatesToFloat64Array(this._origin, this._matrix, x, y, z, result);
+        return Matrix3d_1.Matrix3d.xyzPlusMatrixTimesCoordinatesToFloat64Array(this._origin, this._matrix, x, y, z, result);
     }
-    /** Multiply the tranposed transform (as 4x4 with 0001 row) by Point4d given as xyzw..  Return as a new point or in the pre-allocated result (if result is given) */
+    /** Multiply the transposed transform (as 4x4 with 0001 row) by Point4d given as xyzw..  Return as a new point or in the pre-allocated result (if result is given) */
     multiplyTransposeXYZW(x, y, z, w, result) {
         const coffs = this._matrix.coffs;
         const origin = this._origin;
@@ -230,11 +272,20 @@ class Transform {
     multiplyPoint3dArrayInPlace(points) {
         let point;
         for (point of points)
-            Matrix3d_1.Matrix3d.XYZPlusMatrixTimesXYZ(this._origin, this._matrix, point, point);
+            Matrix3d_1.Matrix3d.xyzPlusMatrixTimesXYZ(this._origin, this._matrix, point, point);
     }
-    /** @returns Return product of the transform's inverse times a point. */
+    /** for each point:  replace point by Transform*point */
+    multiplyPoint3dArrayArrayInPlace(chains) {
+        for (const chain of chains)
+            this.multiplyPoint3dArrayInPlace(chain);
+    }
+    /** Return product of the transform's inverse times a point. */
     multiplyInversePoint3d(point, result) {
         return this._matrix.multiplyInverseXYZAsPoint3d(point.x - this._origin.x, point.y - this._origin.y, point.z - this._origin.z, result);
+    }
+    /** Return product of the transform's inverse times a point (point given as x,y,z) */
+    multiplyInverseXYZ(x, y, z, result) {
+        return this._matrix.multiplyInverseXYZAsPoint3d(x - this._origin.x, y - this._origin.y, z - this._origin.z, result);
     }
     /**
      * *  for each point:   multiply    transform * point
@@ -258,7 +309,7 @@ class Transform {
         return result;
     }
     /**
-     * *  for each point in source:   multiply    transformInverse * point  in place inthe point.
+     * * for each point in source: multiply transformInverse * point in place in the point.
      * * return false if not invertible.
      */
     multiplyInversePoint3dArrayInPlace(source) {
@@ -272,6 +323,21 @@ class Transform {
             this._matrix.multiplyInverseXYZAsPoint3d(source[i].x - originX, source[i].y - originY, source[i].z - originZ, source[i]);
         return true;
     }
+    /**
+     * * Compute (if needed) the inverse of the matrix part, thereby ensuring inverse operations can complete.
+     * * Return true if matrix inverse completes.
+     * @param useCached If true, accept prior cached inverse if available.
+     */
+    computeCachedInverse(useCached = true) {
+        return this._matrix.computeCachedInverse(useCached);
+    }
+    /**
+     * * If destination has more values than source, remove the extras.
+     * * If destination has fewer values, use the constructionFunction to create new ones.
+     * @param source array
+     * @param dest destination array, to  be modified to match source length
+     * @param constructionFunction function to call to create new entries.
+     */
     // modify destination so it has non-null points for the same length as the source.
     // (ASSUME existing elements of dest are non-null, and that parameters are given as either Point2d or Point3d arrays)
     static matchArrayLengths(source, dest, constructionFunction) {
@@ -296,12 +362,12 @@ class Transform {
         if (result) {
             const n = Transform.matchArrayLengths(source, result, Point2dVector2d_1.Point2d.createZero);
             for (let i = 0; i < n; i++)
-                Matrix3d_1.Matrix3d.XYPlusMatrixTimesXY(this._origin, this._matrix, source[i], result[i]);
+                Matrix3d_1.Matrix3d.xyPlusMatrixTimesXY(this._origin, this._matrix, source[i], result[i]);
             return result;
         }
         result = [];
         for (const p of source)
-            result.push(Matrix3d_1.Matrix3d.XYPlusMatrixTimesXY(this._origin, this._matrix, p));
+            result.push(Matrix3d_1.Matrix3d.xyPlusMatrixTimesXY(this._origin, this._matrix, p));
         return result;
     }
     /**
@@ -313,12 +379,12 @@ class Transform {
         if (result) {
             const n = Transform.matchArrayLengths(source, result, Point3dVector3d_1.Point3d.createZero);
             for (let i = 0; i < n; i++)
-                Matrix3d_1.Matrix3d.XYZPlusMatrixTimesXYZ(this._origin, this._matrix, source[i], result[i]);
+                Matrix3d_1.Matrix3d.xyzPlusMatrixTimesXYZ(this._origin, this._matrix, source[i], result[i]);
             return result;
         }
         result = [];
         for (const p of source)
-            result.push(Matrix3d_1.Matrix3d.XYZPlusMatrixTimesXYZ(this._origin, this._matrix, p));
+            result.push(Matrix3d_1.Matrix3d.xyzPlusMatrixTimesXYZ(this._origin, this._matrix, p));
         return result;
     }
     /** Multiply the vector by the Matrix3d part of the transform.
@@ -343,7 +409,7 @@ class Transform {
      */
     multiplyTransformTransform(other, result) {
         if (!result)
-            return Transform.createRefs(Matrix3d_1.Matrix3d.XYZPlusMatrixTimesXYZ(this._origin, this._matrix, other._origin), this._matrix.multiplyMatrixMatrix(other._matrix));
+            return Transform.createRefs(Matrix3d_1.Matrix3d.xyzPlusMatrixTimesXYZ(this._origin, this._matrix, other._origin), this._matrix.multiplyMatrixMatrix(other._matrix));
         result.setMultiplyTransformTransform(this, other);
         return result;
     }
@@ -355,7 +421,7 @@ class Transform {
     setMultiplyTransformTransform(transformA, transformB) {
         if (Transform._scratchPoint === undefined)
             Transform._scratchPoint = Point3dVector3d_1.Point3d.create();
-        Matrix3d_1.Matrix3d.XYZPlusMatrixTimesXYZ(transformA._origin, transformA._matrix, transformB._origin, Transform._scratchPoint);
+        Matrix3d_1.Matrix3d.xyzPlusMatrixTimesXYZ(transformA._origin, transformA._matrix, transformB._origin, Transform._scratchPoint);
         this._origin.setFrom(Transform._scratchPoint);
         transformA._matrix.multiplyMatrixMatrix(transformB._matrix, this._matrix);
     }
@@ -372,28 +438,31 @@ class Transform {
         result._origin.setFrom(this._origin);
         return result;
     }
-    /** transform each of the 8 corners of a range. Return the range of the transformed corers */
+    /** transform each of the 8 corners of a range. Return the range of the transformed corners */
     multiplyRange(range, result) {
+        if (range.isNull)
+            return range.clone(result);
         // snag current values to allow aliasing.
-        const lowx = range.low.x;
-        const lowy = range.low.y;
-        const lowz = range.low.z;
-        const highx = range.high.x;
-        const highy = range.high.y;
-        const highz = range.high.z;
+        const lowX = range.low.x;
+        const lowY = range.low.y;
+        const lowZ = range.low.z;
+        const highX = range.high.x;
+        const highY = range.high.y;
+        const highZ = range.high.z;
         result = Range_1.Range3d.createNull(result);
-        result.extendTransformedXYZ(this, lowx, lowy, lowz);
-        result.extendTransformedXYZ(this, highx, lowy, lowz);
-        result.extendTransformedXYZ(this, lowx, highy, lowz);
-        result.extendTransformedXYZ(this, highx, highy, lowz);
-        result.extendTransformedXYZ(this, lowx, lowy, highz);
-        result.extendTransformedXYZ(this, highx, lowy, highz);
-        result.extendTransformedXYZ(this, lowx, highy, highz);
-        result.extendTransformedXYZ(this, highx, highy, highz);
+        result.extendTransformedXYZ(this, lowX, lowY, lowZ);
+        result.extendTransformedXYZ(this, highX, lowY, lowZ);
+        result.extendTransformedXYZ(this, lowX, highY, lowZ);
+        result.extendTransformedXYZ(this, highX, highY, lowZ);
+        result.extendTransformedXYZ(this, lowX, lowY, highZ);
+        result.extendTransformedXYZ(this, highX, lowY, highZ);
+        result.extendTransformedXYZ(this, lowX, highY, highZ);
+        result.extendTransformedXYZ(this, highX, highY, highZ);
         return result;
     }
     /**
-     * @returns Return a Transform which is the inverse of this transform. Return undefined if this Transform's matrix is singular.
+     * * Return a Transform which is the inverse of this transform.
+     * * Return undefined if this Transform's matrix is singular.
      */
     inverse() {
         const matrixInverse = this._matrix.inverse();

@@ -3,7 +3,13 @@ import { Point2d, Vector2d } from "../geometry3d/Point2dVector2d";
 import { Point3d, Vector3d } from "../geometry3d/Point3dVector3d";
 import { OptionalGrowableFloat64Array, GrowableFloat64Array } from "../geometry3d/GrowableFloat64Array";
 import { Point4d } from "../geometry4d/Point4d";
+import { XAndY } from "../geometry3d/XYZProps";
+/**
+ * degree 2 (quadratic) polynomial in for y = c0 + c1*x + c2*x^2
+ * @internal
+ */
 export declare class Degree2PowerPolynomial {
+    /** The three coefficients for the quartic */
     coffs: number[];
     constructor(c0?: number, c1?: number, c2?: number);
     /**
@@ -11,29 +17,39 @@ export declare class Degree2PowerPolynomial {
      * @returns 0, 1, or 2 solutions of the usual quadratic (a*x*x + b * x + c = 0)
      */
     static solveQuadratic(a: number, b: number, c: number): number[] | undefined;
+    /** Add `a` to the constant term. */
     addConstant(a: number): void;
+    /** Add  `s * (a + b*x)^2` to the quadratic coefficients */
     addSquaredLinearTerm(a: number, b: number, s?: number): void;
+    /** Return the real roots of this polynomial */
     realRoots(): number[] | undefined;
-    /**
-     * Evaluate the quadratic at x.
-     */
+    /** Evaluate the quadratic at x. */
     evaluate(x: number): number;
     /**
-     * Evaluate the bezier function at a parameter value.  (i.e. summ the basis functions times coefficients)
+     * Evaluate the bezier function at a parameter value.  (i.e. sum the basis functions times coefficients)
      * @param u parameter for evaluation
      */
     evaluateDerivative(x: number): number;
+    /** Factor the polynomial in to the form `y0 + c * (x-x0)^2)`, i.e. complete the square. */
     tryGetVertexFactorization(): {
         x0: number;
         y0: number;
         c: number;
     } | undefined;
+    /** Construct a quadratic from input form `c2 * (x-root0) * (x-root1)` */
     static fromRootsAndC2(root0: number, root1: number, c2?: number): Degree2PowerPolynomial;
 }
+/**
+ * degree 3 (cubic) polynomial in for y = c0 + c1*x + c2*x^2 + c3*x^3
+ * @internal
+ */
 export declare class Degree3PowerPolynomial {
+    /** polynomial coefficients, index corresponds to power */
     coffs: number[];
     constructor(c0?: number, c1?: number, c2?: number, c3?: number);
+    /** Add `a` to the constant term. */
     addConstant(a: number): void;
+    /** Add `s * (a + b*x)^2` to the cubic */
     addSquaredLinearTerm(a: number, b: number, s?: number): void;
     /**
      * Evaluate the polynomial at x
@@ -45,11 +61,18 @@ export declare class Degree3PowerPolynomial {
      * @param u parameter for evaluation
      */
     evaluateDerivative(x: number): number;
+    /** Construct a cubic from the form `c3 * (x-root0) * (x - root1) * (x- root2)` */
     static fromRootsAndC3(root0: number, root1: number, root2: number, c3?: number): Degree3PowerPolynomial;
 }
+/**
+ * degree 4 (quartic) polynomial in for y = c0 + c1*x + c2*x^2 + c4*x^4
+ * @internal
+ */
 export declare class Degree4PowerPolynomial {
+    /** polynomial coefficients, index corresponds to power */
     coffs: number[];
     constructor(c0?: number, c1?: number, c2?: number, c3?: number, c4?: number);
+    /** Add `a` to the constant term. */
     addConstant(a: number): void;
     /**
      * Evaluate the polynomial
@@ -61,21 +84,44 @@ export declare class Degree4PowerPolynomial {
      * @param x x coordinate for evaluation
      */
     evaluateDerivative(x: number): number;
+    /** Construct a quartic from the form `c3 * (x-root0) * (x - root1) * (x- root2) * (x-root3)` */
     static fromRootsAndC4(root0: number, root1: number, root2: number, root3: number, c4?: number): Degree4PowerPolynomial;
 }
+/**
+ * polynomial services for an implicit torus with
+ * * z axis is "through the donut hole"
+ * * `majorRadius` is the radius of the circle "around the z axis"
+ * * `minorRadius` is the radius of circles around the major circle
+ * * for simple xyz the implicit form is
+ *   * `(x^2+y^2+z^2+(R^2-r^2))^2 = 4 R^2(x^2+y^2)`
+ * * In weighted form
+ *   * `(x^2+y^2+z^2+(R^2-r^2)w^2)^2 = 4 R^2 w^2 (x^2+y^2)`
+ * @internal
+ */
 export declare class TorusImplicit {
+    /** major (xy plane) radius */
     majorRadius: number;
+    /** hoop (perpendicular to major circle) radius */
     minorRadius: number;
-    constructor(majorRadiusR: number, minorRadiusr: number);
+    constructor(majorRadius: number, minorRadius: number);
+    /** Return sum of (absolute) major and minor radii, which is (half) the box size in x and y directions */
     boxSize(): number;
-    /** @returns a scale factor appropriate to control the magnitude of the implicit function. */
+    /** Return scale factor appropriate to control the magnitude of the implicit function. */
     implicitFunctionScale(): number;
+    /**
+     * At space point (x,y,z) evaluate the implicit form of the torus (See `ImplicitTorus`)
+     */
     evaluateImplicitFunctionXYZ(x: number, y: number, z: number): number;
+    /** Evaluate the implicit function at a point. */
     evaluateImplicitFunctionPoint(xyz: Point3d): number;
+    /** Evaluate the implicit function at homogeneous coordinates */
     evaluateImplicitFunctionXYZW(x: number, y: number, z: number, w: number): number;
-    evaluateThetaPhi(theta: number, phi: number): Point3d;
-    evaluateDerivativesThetaPhi(theta: number, phi: number, dxdTheta: Vector3d, dxdPhi: Vector3d): void;
-    evaluateThetaPhiDistance(theta: number, phi: number, distance: number): Point3d;
+    /** Evaluate the surface point at angles (in radians) on the major and minor circles. */
+    evaluateThetaPhi(thetaRadians: number, phiRadians: number): Point3d;
+    /** Evaluate partial derivatives at angles (int radians) on major and minor circles. */
+    evaluateDerivativesThetaPhi(thetaRadians: number, phiRadians: number, dxdTheta: Vector3d, dxdPhi: Vector3d): void;
+    /** Evaluate space point at major and minor angles (in radians) and distance from major hoop. */
+    evaluateThetaPhiDistance(thetaRadians: number, phiRadians: number, distance: number): Point3d;
     /** Given an xyz coordinate in the local system of the toroid, compute the torus parametrization
      * * theta = angular coordinate in xy plane
      * * phi = angular coordinate in minor circle.
@@ -84,7 +130,7 @@ export declare class TorusImplicit {
      * @param xyz space point in local coordinates.
      * @return object with properties theta, phi, distance, rho
      */
-    XYZToThetaPhiDistance(xyz: Point3d): {
+    xyzToThetaPhiDistance(xyz: Point3d): {
         theta: number;
         phi: number;
         distance: number;
@@ -93,39 +139,59 @@ export declare class TorusImplicit {
     };
 }
 /**
- * evaluation methods for an implicit sphere `x*x + y*y + z*z - r*r = 0`.
+ * evaluation methods for an implicit sphere
+ * * xyz function `x*x + y*y + z*z - r*r = 0`.
+ * * xyzw function `x*x + y*y + z*z - r*r*w*w = 0`.
+ * @internal
  */
 export declare class SphereImplicit {
+    /** Radius of sphere. */
     radius: number;
     constructor(r: number);
+    /** Evaluate the implicit function at coordinates x,y,z */
     evaluateImplicitFunction(x: number, y: number, z: number): number;
+    /** Evaluate the implicit function at homogeneous coordinates x,y,z,w */
     evaluateImplicitFunctionXYZW(wx: number, wy: number, wz: number, w: number): number;
-    XYZToThetaPhiR(xyz: Point3d): {
-        theta: number;
-        phi: number;
+    /** Given an xyz coordinate in the local system of the toroid, compute the sphere parametrization
+     * * theta = angular coordinate in xy plane
+     * * phi = rotation from xy plane towards z axis.
+     * @param xyz space point in local coordinates.
+     * @return object with properties thetaRadians, phi, r
+     */
+    xyzToThetaPhiR(xyz: Point3d): {
+        thetaRadians: number;
+        phiRadians: number;
         r: number;
         valid: boolean;
     };
+    /** Compute the point on a sphere at angular coordinates.
+     * @param thetaRadians latitude angle
+     * @param phiRadians longitude angle
+     */
     evaluateThetaPhi(thetaRadians: number, phiRadians: number): Point3d;
-    evaluateDerivativesThetaPhi(theta: number, phi: number, dxdTheta: Vector3d, dxdPhi: Vector3d): void;
+    /** Compute the derivatives with respect to spherical angles.
+     * @param thetaRadians latitude angle
+     * @param phiRadians longitude angle
+     */
+    evaluateDerivativesThetaPhi(thetaRadians: number, phiRadians: number, dxdTheta: Vector3d, dxdPhi: Vector3d): void;
 }
 /** AnalyticRoots has static methods for solving quadratic, cubic, and quartic equations.
+ * @internal
  *
  */
 export declare class AnalyticRoots {
-    static readonly EQN_EPS = 1e-9;
-    static readonly s_safeDivideFactor = 1e-14;
-    static readonly s_quadricRelTol = 1e-14;
-    static readonly sTestWindow = 0.000001;
+    private static readonly _EQN_EPS;
+    private static readonly _safeDivideFactor;
     /** Absolute zero test with a tolerance that has worked well for the analytic root use case . . . */
-    static IsZero(x: number): boolean;
+    private static isZero;
     /** Without actually doing a division, test if (x/y) is small.
      * @param x numerator
      * @param y denominator
-     * @param abstol absolute tolerance
-     * @param reltol relative tolerance
+     * @param absTol absolute tolerance
+     * @param relTol relative tolerance
      */
-    static isSmallRatio(x: number, y: number, abstol?: number, reltol?: number): boolean;
+    private static isSmallRatio;
+    /** Return the (real, signed) principal cube root of x */
     static cbrt(x: number): number;
     /**
      * Try to divide `numerator/denominator` and place the result (or defaultValue) in `values[offset]`
@@ -135,14 +201,14 @@ export declare class AnalyticRoots {
      * @param defaultValue value to save if denominator is too small to divide.
      * @param offset index of value to replace.
      */
-    static SafeDivide(values: Float64Array, numerator: number, denominator: number, defaultValue: number | undefined, offset: number): boolean;
+    private static safeDivide;
     private static checkRootProximity;
-    private static NewtonMethodAdjustment;
-    private static improveSortedRoots;
+    private static newtonMethodAdjustment;
+    private static improveRoots;
     /**
      * Append (if defined) value to results.
      * @param value optional value to append
-     * @param results growning array
+     * @param results growing array
      */
     private static appendSolution;
     /**
@@ -153,12 +219,16 @@ export declare class AnalyticRoots {
      */
     private static append2Solutions;
     /**
-     * If `co/c1` is a safed division, append it to the values array.
+     * If `co/c1` is a safe division, append it to the values array.
      * @param c0 numerator
-     * @param c1 denominaotr
+     * @param c1 denominator
      * @param values array to expand
      */
     static appendLinearRoot(c0: number, c1: number, values: GrowableFloat64Array): void;
+    /**
+     * * Compute the mean of all the entries in `data`
+     * * Return the data value that is farthest away
+     */
     static mostDistantFromMean(data: GrowableFloat64Array | undefined): number;
     /**
      * Append 0, 1, or 2 solutions of a quadratic to the values array.
@@ -166,41 +236,155 @@ export declare class AnalyticRoots {
      * @param values array to be expanded.
      */
     static appendQuadraticRoots(c: Float64Array | number[], values: GrowableFloat64Array): void;
+    /** Add `a` to the constant term. */
     private static addConstant;
     /** return roots of a cubic c0 + c1 *x + c2 * x^2 + c2 * x3.
      * In the usual case where c0 is non-zero, there are either 1 or 3 roots.
      * But if c0 is zero the (0, 1, or 2) roots of the lower order equation
      */
     private static appendCubicRootsUnsorted;
+    /** Compute roots of cubic 'c[0] + c[1] * x + c[2] * x^2 + c[3] * x^3 */
     static appendCubicRoots(c: Float64Array | number[], results: GrowableFloat64Array): void;
+    /** Compute roots of quartic 'c[0] + c[1] * x + c[2] * x^2 + c[3] * x^3 + c[4] * x^4 */
     static appendQuarticRoots(c: Float64Array | number[], results: GrowableFloat64Array): void;
     private static appendCosSinRadians;
-    static appendImplicitLineUnitCircleIntersections(alpha: number, beta: number, gamma: number, cosValues: OptionalGrowableFloat64Array, sinValues: OptionalGrowableFloat64Array, radiansValues: OptionalGrowableFloat64Array, reltol?: number): number;
+    /**
+     * * Solve the simultaneous equations in variables`c` and`s`:
+     *   * A line: `alpha + beta*c + gamma*s = 0`
+     *   * The unit circle 'c*c + s*s = 1`
+     * * Solution values are returned as 0, 1, or 2(c, s) pairs
+     * * Return value indicates one of these solution states:
+     *   * -2 -- all coefficients identically 0.   The entire c, s plane-- and therefore the entire unit circle-- is a solution.
+     *   * -1 -- beta, gamma are zero, alpha is not.There is no line defined.There are no solutions.
+     *   * 0 -- the line is well defined, but passes completely outside the unit circle.
+     *     * In this case, (c1, s1) is the circle point closest to the line and(c2, s2) is the line point closest to the circle.
+     * * 1 -- the line is tangent to the unit circle.
+     *   * Tangency is determined by tolerances, which calls a "close approach" point a tangency.
+     *    * (c1, s1) is the closest circle point
+     *    * (c2, s2) is the line point.
+     * * 2 -- two simple intersections.
+     * @param alpha constant coefficient on line
+     * @param beta x cosine coefficient on line
+     * @param gamma y sine coefficient on line
+     * @param relTol relative tolerance for tangencies
+     * @param cosValues (caller allocated) array to receive solution `c` values
+     * @param sinValues (caller allocated) array to receive solution `s` values
+     * @param radiansValues (caller allocated) array to receive solution radians values.
+     */
+    static appendImplicitLineUnitCircleIntersections(alpha: number, beta: number, gamma: number, cosValues: OptionalGrowableFloat64Array, sinValues: OptionalGrowableFloat64Array, radiansValues: OptionalGrowableFloat64Array, relTol?: number): number;
 }
+/**
+ * manipulations of polynomials with where `coff[i]` multiplies x^i
+ * @internal
+ */
 export declare class PowerPolynomial {
+    /** Evaluate a standard basis polynomial at `x`, with `degree` possibly less than `coff.length` */
     static degreeKnownEvaluate(coff: Float64Array, degree: number, x: number): number;
-    static Evaluate(coff: Float64Array, x: number): number;
-    static Accumulate(coffP: Float64Array, coffQ: Float64Array, scaleQ: number): number;
-    static Zero(coff: Float64Array): void;
+    /** Evaluate the standard basis polynomial of degree `coff.length` at `x` */
+    static evaluate(coff: Float64Array, x: number): number;
+    /**
+     * * Accumulate Q*scale into P.Both are treated as full degree.
+     * * (Expect Address exceptions if P is smaller than Q)
+     * * Returns degree of result as determined by comparing trailing coefficients to zero
+     */
+    static accumulate(coffP: Float64Array, coffQ: Float64Array, scaleQ: number): number;
+    /** Zero all coefficients */
+    static zero(coff: Float64Array): void;
 }
+/**
+ * manipulation of polynomials with powers of sine and cosine
+ * @internal
+ */
 export declare class TrigPolynomial {
-    static readonly SmallAngle: number;
+    private static readonly _smallAngle;
+    /** Standard Basis coefficients for rational sine numerator. */
     static readonly S: Float64Array;
+    /** Standard Basis coefficients for rational cosine numerator. */
     static readonly C: Float64Array;
+    /** Standard Basis coefficients for rational denominator. */
     static readonly W: Float64Array;
+    /** Standard Basis coefficients for cosine*weight numerator */
     static readonly CW: Float64Array;
+    /** Standard Basis coefficients for sine*weight numerator */
     static readonly SW: Float64Array;
+    /** Standard Basis coefficients for sine*cosine numerator */
     static readonly SC: Float64Array;
+    /** Standard Basis coefficients for sine^2 numerator */
     static readonly SS: Float64Array;
+    /** Standard Basis coefficients for cosine^2 numerator */
     static readonly CC: Float64Array;
+    /** Standard Basis coefficients for weight^2 */
     static readonly WW: Float64Array;
+    /** Standard Basis coefficients for (Math.Cos^2 - sine^2) numerator */
     static readonly CCminusSS: Float64Array;
-    static SolveAngles(coff: Float64Array, nominalDegree: number, referenceCoefficient: number, radians: number[]): boolean;
-    static readonly coeffientRelTol = 1e-12;
-    static SolveUnitCircleImplicitQuadricIntersection(axx: number, axy: number, ayy: number, ax: number, ay: number, a1: number, radians: number[]): boolean;
-    static SolveUnitCircleEllipseIntersection(cx: number, cy: number, ux: number, uy: number, vx: number, vy: number, ellipseRadians: number[], circleRadians: number[]): boolean;
-    static SolveUnitCircleHomogeneousEllipseIntersection(cx: number, cy: number, cw: number, ux: number, uy: number, uw: number, vx: number, vy: number, vw: number, ellipseRadians: number[], circleRadians: number[]): boolean;
+    /**
+     *  Solve a polynomial created from trigonometric condition using
+     * Trig.S, Trig.C, Trig.W.  Solution logic includes inferring angular roots
+     * corresponding zero leading coefficients (roots at infinity)
+     * @param coff Coefficients
+     * @param nominalDegree degree of the polynomial under most complex
+     *     root case.  If there are any zero coefficients up to this degree, a single root
+     *     "at infinity" is recorded as its corresponding angular parameter at negative pi/2
+     * @param referenceCoefficient A number which represents the size of coefficients
+     *     at various stages of computation.  A small fraction of this will be used as a zero
+     *     tolerance
+     * @param angles Roots are placed here. Assumed preallocated with adequate size.
+     * @param numRoots Number of roots  .  Zero roots is possible. (Passed as array of size
+     * one to pass-by-reference)
+     * Returns false if equation is all zeros.   This usually means any angle is a solution.
+     */
+    static solveAngles(coff: Float64Array, nominalDegree: number, referenceCoefficient: number, radians: number[]): boolean;
+    private static readonly _coefficientRelTol;
+    /**
+     * Compute intersections of unit circle `x ^ 2 + y 2 = 1` with general quadric
+     * `axx * x ^ 2 + axy * x * y + ayy * y ^ 2 + ax * x + ay * y + a1 = 0`
+     * Solutions are returned as angles.Sine and Cosine of the angles are the x, y results.
+     * @param axx  Coefficient of x ^ 2
+     * @param axy  Coefficient of xy
+     * @param ayy  Coefficient of y ^ 2
+     * @param ax  Coefficient of x
+     * @param ay  Coefficient of y
+     * @param a1  Constant coefficient
+     * @param angles  solution angles
+     * @param numAngle  number of solution angles(Passed as array to make changes to reference)
+     */
+    static solveUnitCircleImplicitQuadricIntersection(axx: number, axy: number, ayy: number, ax: number, ay: number, a1: number, radians: number[]): boolean;
+    /**
+     * Compute intersections of unit circle x^2 + y 2 = 1 with the ellipse
+     *         (x,y) = (cx + ux Math.Cos + vx sin, cy + uy Math.Cos + vy sin)
+     * Solutions are returned as angles in the ellipse space.
+     * @param cx center x
+     * @param cy center y
+     * @param ux 0 degree vector x
+     * @param uy 0 degree vector y
+     * @param vx 90 degree vector x
+     * @param vy 90 degree vector y
+     * @param ellipseRadians solution angles in ellipse parameter space
+     * @param circleRadians solution angles in circle parameter space
+     */
+    static solveUnitCircleEllipseIntersection(cx: number, cy: number, ux: number, uy: number, vx: number, vy: number, ellipseRadians: number[], circleRadians: number[]): boolean;
+    /**
+     * Compute intersections of unit circle x^2 + y 2 = w^2 with the ellipse
+     *         (x,y) = (cx + ux Math.Cos + vx sin, cy + uy Math.Cos + vy sin)/ (cw + uw Math.Cos + vw * Math.Sin)
+     * Solutions are returned as angles in the ellipse space.
+     * @param cx center x
+     * @param cy center y
+     * @param cw center w
+     * @param ux 0 degree vector x
+     * @param uy 0 degree vector y
+     * @param uw 0 degree vector w
+     * @param vx 90 degree vector x
+     * @param vy 90 degree vector y
+     * @param vw 90 degree vector w
+     * @param ellipseRadians solution angles in ellipse parameter space
+     * @param circleRadians solution angles in circle parameter space
+     */
+    static solveUnitCircleHomogeneousEllipseIntersection(cx: number, cy: number, cw: number, ux: number, uy: number, uw: number, vx: number, vy: number, vw: number, ellipseRadians: number[], circleRadians: number[]): boolean;
 }
+/**
+ * static methods for commonly appearing sets of equations in 2 or 3 variables
+ * @public
+ */
 export declare class SmallSystem {
     /**
      * Return true if lines (a0,a1) to (b0, b1) have a simple intersection.
@@ -212,6 +396,14 @@ export declare class SmallSystem {
      * @param result point to receive fractional coordinates of intersection.   result.x is fraction on line a. result.y is fraction on line b.
      */
     static lineSegment2dXYTransverseIntersectionUnbounded(a0: Point2d, a1: Point2d, b0: Point2d, b1: Point2d, result: Vector2d): boolean;
+    /**
+     * * (ax0,ay0) to (ax0+ux,ay0+uy) are line A.
+     * * (bx0,by0) to (bx0+vx,by0+vy) are lineB.
+     * * Return true if the lines have a simple intersection.
+     * * Return the fractional (not xy) coordinates in result.x, result.y
+     * @param result point to receive fractional coordinates of intersection.   result.x is fraction on line a. result.y is fraction on line b.
+     */
+    static lineSegmentXYUVTransverseIntersectionUnbounded(ax0: number, ay0: number, ux: number, uy: number, bx0: number, by0: number, vx: number, vy: number, result: Vector2d): boolean;
     /**
      * Return true if lines (a0,a1) to (b0, b1) have a simple intersection using only xy parts
      * Return the fractional (not xy) coordinates in result.x, result.y
@@ -245,7 +437,14 @@ export declare class SmallSystem {
      * @param pointA1 end point
      * @param spacePoint homogeneous point in space
      */
-    static lineSegment3dXYClosestPointUnbounded(pointA0: Point3d, pointA1: Point3d, spacePoint: Point3d): number | undefined;
+    static lineSegment3dXYClosestPointUnbounded(pointA0: XAndY, pointA1: XAndY, spacePoint: XAndY): number | undefined;
+    /**
+     * Return the line fraction at which the line is closest to a space point
+     * @param pointA0 start point
+     * @param pointA1 end point
+     * @param spacePoint homogeneous point in space
+     */
+    static lineSegment3dClosestPointUnbounded(pointA0: Point3d, pointA1: Point3d, spacePoint: Point3d): number | undefined;
     /**
      * Return true if lines (a0,a1) to (b0, b1) have closest approach (go by each other) in 3d
      * Return the fractional (not xy) coordinates in result.x, result.y
@@ -256,6 +455,24 @@ export declare class SmallSystem {
      * @param result point to receive fractional coordinates of intersection.   result.x is fraction on line a. result.y is fraction on line b.
      */
     static lineSegment3dClosestApproachUnbounded(a0: Point3d, a1: Point3d, b0: Point3d, b1: Point3d, result: Vector2d): boolean;
+    /**
+     * Return true if lines (a0,a1) to (b0, b1) have closest approach (go by each other) in 3d
+     * Return the fractional (not xy) coordinates as x and y parts of a Point2d.
+     * @param result point to receive fractional coordinates of intersection.   result.x is fraction on line a. result.y is fraction on line b.
+     */
+    static ray3dXYZUVWClosestApproachUnbounded(ax: number, ay: number, az: number, au: number, av: number, aw: number, bx: number, by: number, bz: number, bu: number, bv: number, bw: number, result: Vector2d): boolean;
+    /**
+     * Solve the pair of linear equations
+     * * `ux * x + vx + y = cx`
+     * * `uy * x + vy * y = cy`
+     * @param ux xx coefficient
+     * @param vx xy coefficient
+     * @param uy yx coefficient
+     * @param vy yy coefficient
+     * @param cx x right hand side
+     * @param cy y right hand side
+     * @param result (x,y) solution.  (MUST be preallocated by caller)
+     */
     static linearSystem2d(ux: number, vx: number, // first row of matrix
     uy: number, vy: number, // second row of matrix
     cx: number, cy: number, // right side
@@ -276,7 +493,7 @@ export declare class SmallSystem {
      * @param azz row 2, column 2 coefficient
      * @param cx right hand side row 0 coefficient
      * @param cy right hand side row 1 coefficient
-     * @param cz right hand side row 2 coeficient
+     * @param cz right hand side row 2 coefficient
      * @param result optional result.
      */
     static linearSystem3d(axx: number, axy: number, axz: number, // first row of matrix
@@ -284,5 +501,58 @@ export declare class SmallSystem {
     azx: number, azy: number, azz: number, // second row of matrix
     cx: number, cy: number, cz: number, // right side
     result?: Vector3d): Vector3d | undefined;
+    /**
+     * * in rowB, replace `rowB[j] += a * rowB[pivot] * rowA[j] / rowA[pivot]` for `j>pivot`
+     * @param rowA row that does not change
+     * @param pivotIndex index of pivot (divisor) in rowA.
+     * @param rowB row where elimination occurs.
+     */
+    static eliminateFromPivot(rowA: Float64Array, pivotIndex: number, rowB: Float64Array, a: number): boolean;
+    /**
+     * Solve a pair of bilinear equations
+     * * First equation: `a0 + b0 * u + c0 * v + d0 * u * v = 0`
+     * * Second equation: `a0 + b0 * u + c0 * v + d0 * u * v = 0`
+     */
+    static solveBilinearPair(a0: number, b0: number, c0: number, d0: number, a1: number, b1: number, c1: number, d1: number): Point2d[] | undefined;
+}
+/**
+ * * bilinear expression
+ * * `f(u,v) = a + b * u * c * v + d * u * v`
+ * @internal
+ */
+export declare class BilinearPolynomial {
+    /** constant coefficient */
+    a: number;
+    /** u coefficient */
+    b: number;
+    /** v coefficient */
+    c: number;
+    /** uv coefficient */
+    d: number;
+    /**
+     *
+     * @param a constant coefficient
+     * @param b `u` coefficient
+     * @param c `v` coefficient
+     * @param d `u*v` coefficient
+     */
+    constructor(a: number, b: number, c: number, d: number);
+    /**
+     * Evaluate the bilinear expression at u,v
+     */
+    evaluate(u: number, v: number): number;
+    /** Create a bilinear polynomial z=f(u,v) given z values at 00, 10, 01, 11.
+     */
+    static createUnitSquareValues(f00: number, f10: number, f01: number, f11: number): BilinearPolynomial;
+    /**
+     * Solve the simultaneous equations
+     * * `p(u,v) = pValue`
+     * * `q(u,v) = qValue`
+     * @param p
+     * @param pValue
+     * @param q
+     * @param qValue
+     */
+    static solvePair(p: BilinearPolynomial, pValue: number, q: BilinearPolynomial, qValue: number): Point2d[] | undefined;
 }
 //# sourceMappingURL=Polynomials.d.ts.map

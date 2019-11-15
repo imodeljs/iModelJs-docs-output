@@ -1,6 +1,6 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -9,7 +9,11 @@ const Point3dVector3d_1 = require("./Point3dVector3d");
 const Geometry_1 = require("../Geometry");
 /**
  * A Point3dVector3dVector3d is an origin and a pair of vectors.
- * This defines a plane with (possibly skewed) uv coordinates
+ * This defines a plane with a (possibly skewed) uv coordinate grid
+ * * The grid directions (`vectorU` and `vectorV`)
+ *   * are NOT required to be unit vectors.
+ *   * are NOT required to be perpendicular vectors.
+ * @public
  */
 class Plane3dByOriginAndVectors {
     constructor(origin, vectorU, vectorV) {
@@ -17,6 +21,7 @@ class Plane3dByOriginAndVectors {
         this.vectorU = vectorU;
         this.vectorV = vectorV;
     }
+    /** create a new plane from origin and vectors. */
     static createOriginAndVectors(origin, vectorU, vectorV, result) {
         if (result) {
             result.origin.setFrom(origin);
@@ -28,10 +33,10 @@ class Plane3dByOriginAndVectors {
     }
     /**
      * Return a Plane3dByOriginAndVectors, with
-     * * irigin is the translation (aka origin) from the Transform
+     * * origin is the translation (aka origin) from the Transform
      * * vectorU is the X column of the transform
      * * vectorV is the Y column of the transform.
-     * @param transform source trnasform
+     * @param transform source transform
      * @param xLength optional length to impose on vectorU.
      * @param yLength optional length to impose on vectorV.
      * @param result optional preexisting result
@@ -51,7 +56,7 @@ class Plane3dByOriginAndVectors {
             result.vectorV.scaleToLength(yLength, result.vectorV);
         return result;
     }
-    /** Capture origin and directions in a new planed. */
+    /** Capture origin and directions in a new plane. */
     static createCapture(origin, vectorU, vectorV, result) {
         if (!result)
             return new Plane3dByOriginAndVectors(origin, vectorU, vectorV);
@@ -60,18 +65,23 @@ class Plane3dByOriginAndVectors {
         result.vectorV = vectorV;
         return result;
     }
+    /** Set all origin and both vectors from direct numeric parameters */
     setOriginAndVectorsXYZ(x0, y0, z0, ux, uy, uz, vx, vy, vz) {
         this.origin.set(x0, y0, z0);
         this.vectorU.set(ux, uy, uz);
         this.vectorV.set(vx, vy, vz);
         return this;
     }
+    /** Set all origin and both vectors from coordinates in given origin and vectors.
+     * * Note that coordinates are copied out of the parameters -- the given parameters are NOT retained by reference.
+     */
     setOriginAndVectors(origin, vectorU, vectorV) {
         this.origin.setFrom(origin);
         this.vectorU.setFrom(vectorU);
         this.vectorV.setFrom(vectorV);
         return this;
     }
+    /** Create a new plane from direct numeric parameters */
     static createOriginAndVectorsXYZ(x0, y0, z0, ux, uy, uz, vx, vy, vz, result) {
         if (result)
             return result.setOriginAndVectorsXYZ(x0, y0, z0, ux, uy, uz, vx, vy, vz);
@@ -86,8 +96,7 @@ class Plane3dByOriginAndVectors {
     static createOriginAndTargets(origin, targetU, targetV, result) {
         return Plane3dByOriginAndVectors.createOriginAndVectorsXYZ(origin.x, origin.y, origin.z, targetU.x - origin.x, targetU.y - origin.y, targetU.z - origin.z, targetV.x - origin.x, targetV.y - origin.y, targetV.z - origin.z, result);
     }
-    /** Create a plane with origin at 000, unit vectorU in x direction, and unit vectorV in the y direction.
-     */
+    /** Create a plane with origin at 000, unit vectorU in x direction, and unit vectorV in the y direction. */
     static createXYPlane(result) {
         return Plane3dByOriginAndVectors.createOriginAndVectorsXYZ(0, 0, 0, 1, 0, 0, 0, 1, 0, result);
     }
@@ -104,8 +113,8 @@ class Plane3dByOriginAndVectors {
      * @param vectorU x,y,z,w of vectorU
      * @param vectorV x,y,z,w of vectorV
      */
-    static createOriginAndVectorsWeightedArrays(originw, vectorUw, vectorVw, result) {
-        const w = originw[3];
+    static createOriginAndVectorsWeightedArrays(originW, vectorUw, vectorVw, result) {
+        const w = originW[3];
         result = Plane3dByOriginAndVectors.createXYPlane(result);
         if (Geometry_1.Geometry.isSmallMetricDistance(w))
             return result;
@@ -119,9 +128,9 @@ class Plane3dByOriginAndVectors {
         //        = X'/w  - X w'/w^2)
         // The w parts of the formal xyzw sums are identically 0.
         // Here the X' and its w' are taken from each vectorUw and vectorVw
-        result.origin.set(originw[0] * dw, originw[1] * dw, originw[2] * dw);
-        Point3dVector3d_1.Vector3d.createAdd2ScaledXYZ(vectorUw[0], vectorUw[1], vectorUw[2], dw, originw[0], originw[1], originw[2], -au, result.vectorU);
-        Point3dVector3d_1.Vector3d.createAdd2ScaledXYZ(vectorVw[0], vectorVw[1], vectorVw[2], dw, originw[0], originw[1], originw[2], -av, result.vectorV);
+        result.origin.set(originW[0] * dw, originW[1] * dw, originW[2] * dw);
+        Point3dVector3d_1.Vector3d.createAdd2ScaledXYZ(vectorUw[0], vectorUw[1], vectorUw[2], dw, originW[0], originW[1], originW[2], -au, result.vectorU);
+        Point3dVector3d_1.Vector3d.createAdd2ScaledXYZ(vectorVw[0], vectorVw[1], vectorVw[2], dw, originW[0], originW[1], originW[2], -av, result.vectorV);
         return result;
     }
     /**
@@ -135,9 +144,11 @@ class Plane3dByOriginAndVectors {
     fractionToPoint(u, v, result) {
         return this.origin.plus2Scaled(this.vectorU, u, this.vectorV, v, result);
     }
+    /** Return the vector from the plane origin to parametric coordinate (u.v) */
     fractionToVector(u, v, result) {
         return Point3dVector3d_1.Vector3d.createAdd2Scaled(this.vectorU, u, this.vectorV, v, result);
     }
+    /** Set coordinates from a json object such as `{origin: [1,2,3], vectorU:[4,5,6], vectorV[3,2,1]}` */
     setFromJSON(json) {
         if (!json || !json.origin || !json.vectorV) {
             this.origin.set(0, 0, 0);
@@ -161,11 +172,13 @@ class Plane3dByOriginAndVectors {
             vectorV: this.vectorV.toJSON(),
         };
     }
+    /** create a new plane.   See `setFromJSON` for layout example. */
     static fromJSON(json) {
         const result = Plane3dByOriginAndVectors.createXYPlane();
         result.setFromJSON(json);
         return result;
     }
+    /** Test origin and vectors for isAlmostEqual with `other` */
     isAlmostEqual(other) {
         return this.origin.isAlmostEqual(other.origin)
             && this.vectorU.isAlmostEqual(other.vectorU)

@@ -1,6 +1,6 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -9,15 +9,26 @@ const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
 const Point4d_1 = require("../geometry4d/Point4d");
 const Ray3d_1 = require("../geometry3d/Ray3d");
 const Plane3dByOriginAndVectors_1 = require("../geometry3d/Plane3dByOriginAndVectors");
-const StrokeOptions_1 = require("../curve/StrokeOptions");
 const Geometry_1 = require("../Geometry");
-const Angle_1 = require("../geometry3d/Angle");
 const BezierPolynomials_1 = require("../numerics/BezierPolynomials");
 const BezierCurveBase_1 = require("./BezierCurveBase");
-// ================================================================================================================
-// ================================================================================================================
-/** 3d curve with homogeneous weights. */
+/** @module Bspline */
+/** 3d curve with homogeneous weights.
+ * * A control point with weight w and cartesian (projected) coordinates x,y,z has the weight multiplied into the coordinates,
+ *    hence the control point as stored is (xw, yw, zw, w).
+ * @public
+ */
 class BezierCurve3dH extends BezierCurveBase_1.BezierCurveBase {
+    /**
+     * Capture a polygon as the data for a new `BezierCurve3dH`
+     * @param polygon complete packed data and order.
+     */
+    constructor(polygon) {
+        super(4, polygon);
+        this._workRay0 = Ray3d_1.Ray3d.createXAxis();
+        this._workRay1 = Ray3d_1.Ray3d.createXAxis();
+    }
+    /** test if `other` is also a BezierCurve3dH. */
     isSameGeometryClass(other) { return other instanceof BezierCurve3dH; }
     /**
      * Apply (multiply by) an affine transform
@@ -55,7 +66,7 @@ class BezierCurve3dH extends BezierCurveBase_1.BezierCurveBase {
         return undefined;
     }
     /**
-     * @returns true if all weights are within tolerance of 1.0
+     * Returns true if all weights are within tolerance of 1.0
      */
     isUnitWeight(tolerance) {
         if (tolerance === undefined)
@@ -71,15 +82,6 @@ class BezierCurve3dH extends BezierCurveBase_1.BezierCurveBase {
                 return false;
         }
         return true;
-    }
-    /**
-     * Capture a polygon as the data for a new `BezierCurve3dH`
-     * @param polygon complete packed data and order.
-     */
-    constructor(polygon) {
-        super(4, polygon);
-        this._workRay0 = Ray3d_1.Ray3d.createXAxis();
-        this._workRay1 = Ray3d_1.Ray3d.createXAxis();
     }
     /** Create a curve with given points.
      * * If input is `Point2d[]`, the points are promoted with `z=0` and `w=1`
@@ -135,6 +137,7 @@ class BezierCurve3dH extends BezierCurveBase_1.BezierCurveBase {
     loadSpan4dPoles(data, spanIndex) {
         this._polygon.loadSpanPoles(data, spanIndex);
     }
+    /** Clone the entire curve. */
     clone() {
         return new BezierCurve3dH(this._polygon.clonePolygon());
     }
@@ -164,7 +167,7 @@ class BezierCurve3dH extends BezierCurveBase_1.BezierCurveBase {
         result = Ray3d_1.Ray3d.createWeightedDerivative(this._workData0, this._workData1, result);
         if (result)
             return result;
-        // Bad. Very Bad.  Return origin and x axis.   Should be undefined, but usual cartesian typs do not allow that
+        // Bad. Very Bad.  Return origin and x axis.   Should be undefined, but usual cartesian types do not allow that
         return Ray3d_1.Ray3d.createXAxis();
     }
     /** Construct a plane with
@@ -186,59 +189,14 @@ class BezierCurve3dH extends BezierCurveBase_1.BezierCurveBase {
         Point3dVector3d_1.Vector3d.createAdd2Scaled(ray0.direction, -a, ray1.direction, a, result.vectorV);
         return result;
     }
+    /** test for nearly equal control points */
     isAlmostEqual(other) {
         if (other instanceof BezierCurve3dH) {
             return this._polygon.isAlmostEqual(other._polygon);
         }
         return false;
     }
-    /**
-     * Assess legnth and turn to determine a stroke count.
-     * @param options stroke options structure.
-     */
-    strokeCount(options) {
-        // ugh.   for pure 3d case, local dx,dy,dz vars worked efficiently.
-        // managing the weights is tricky, so just do the easy code with temporary point vars.
-        this.getPolePoint3d(0, this._workPoint0);
-        this.getPolePoint3d(1, this._workPoint1);
-        let numStrokes = 1;
-        if (this._workPoint0 && this._workPoint1) {
-            let dx0 = this._workPoint1.x - this._workPoint0.x;
-            let dy0 = this._workPoint1.y - this._workPoint0.y;
-            let dz0 = this._workPoint1.z - this._workPoint0.z;
-            let dx1, dy1, dz1; // first differences of leading edge
-            let sumRadians = 0.0;
-            let thisLength = Geometry_1.Geometry.hypotenuseXYZ(dx0, dy0, dz0);
-            this._workPoint1.setFromPoint3d(this._workPoint0);
-            let sumLength = thisLength;
-            let maxLength = thisLength;
-            let maxRadians = 0.0;
-            let thisRadians;
-            for (let i = 2; this.getPolePoint3d(i, this._workPoint1); i++) {
-                dx1 = this._workPoint1.x - this._workPoint0.x;
-                dy1 = this._workPoint1.y - this._workPoint0.y;
-                dz1 = this._workPoint1.z - this._workPoint0.z;
-                thisRadians = Angle_1.Angle.radiansBetweenVectorsXYZ(dx0, dy0, dz0, dx1, dy1, dz1);
-                sumRadians += thisRadians;
-                maxRadians = Geometry_1.Geometry.maxAbsXY(thisRadians, maxRadians);
-                thisLength = Geometry_1.Geometry.hypotenuseXYZ(dx1, dy1, dz1);
-                sumLength += thisLength;
-                maxLength = Geometry_1.Geometry.maxXY(maxLength, thisLength);
-                dx0 = dx1;
-                dy0 = dy1;
-                dz0 = dz1;
-                this._workPoint0.setFrom(this._workPoint1);
-            }
-            const length1 = maxLength * this.degree; // This may be larger than sumLength
-            const length2 = Math.sqrt(length1 * sumLength); // This is in between
-            let radians1 = maxRadians * (this.degree - 1); // As if worst case keeps happening.
-            if (this.degree < 3)
-                radians1 *= 3; // so quadratics aren't understroked
-            const radians2 = Math.sqrt(radians1 * sumRadians);
-            numStrokes = StrokeOptions_1.StrokeOptions.applyAngleTol(options, StrokeOptions_1.StrokeOptions.applyMaxEdgeLength(options, this.degree, length2), radians2, 0.1);
-        }
-        return numStrokes;
-    }
+    /** Second step of double dispatch:  call `handler.handleBezierCurve3dH(this)` */
     dispatchToGeometryHandler(handler) {
         return handler.handleBezierCurve3dH(this);
     }
@@ -261,7 +219,7 @@ class BezierCurve3dH extends BezierCurveBase_1.BezierCurveBase {
      * * This assumes this bezier is saturated.
      * @param spacePoint point being projected
      * @param detail pre-allocated detail to record (evolving) closest point.
-     * @returns true if an updated occured, false if either (a) no perpendicular projections or (b) perpendiculars were not closer.
+     * @returns true if an updated occurred, false if either (a) no perpendicular projections or (b) perpendiculars were not closer.
      */
     updateClosestPointByTruePerpendicular(spacePoint, detail) {
         let numUpdates = 0;
@@ -273,7 +231,7 @@ class BezierCurve3dH extends BezierCurveBase_1.BezierCurveBase {
             const bezier = this._workBezier;
             // closestPoint condition is:
             //   (spacePoint - curvePoint) DOT curveTangent = 0;
-            // Each product (x,y,z) of the DOT is the product of two bezier polynonmials
+            // Each product (x,y,z) of the DOT is the product of two bezier polynomials
             BezierPolynomials_1.BezierPolynomialAlgebra.accumulateScaledShiftedComponentTimesComponentDelta(bezier.coffs, this._polygon.packedData, 4, this.order, 1.0, 0, -spacePoint.x, 0);
             BezierPolynomials_1.BezierPolynomialAlgebra.accumulateScaledShiftedComponentTimesComponentDelta(bezier.coffs, this._polygon.packedData, 4, this.order, 1.0, 1, -spacePoint.y, 1);
             BezierPolynomials_1.BezierPolynomialAlgebra.accumulateScaledShiftedComponentTimesComponentDelta(bezier.coffs, this._polygon.packedData, 4, this.order, 1.0, 2, -spacePoint.z, 2);
@@ -313,6 +271,10 @@ class BezierCurve3dH extends BezierCurveBase_1.BezierCurveBase {
         }
         return numUpdates > 0;
     }
+    /** Extend `rangeToExtend`, using candidate extrema at
+     * * both end points
+     * * any internal extrema in x,y,z
+     */
     extendRange(rangeToExtend, transform) {
         const order = this.order;
         if (!transform) {

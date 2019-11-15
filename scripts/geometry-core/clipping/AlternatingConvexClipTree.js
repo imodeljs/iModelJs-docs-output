@@ -1,6 +1,6 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -10,7 +10,7 @@ const Range_1 = require("../geometry3d/Range");
 const Angle_1 = require("../geometry3d/Angle");
 const ClipPlane_1 = require("./ClipPlane");
 const ConvexClipPlaneSet_1 = require("./ConvexClipPlaneSet");
-const PointHelpers_1 = require("../geometry3d/PointHelpers");
+const PolygonOps_1 = require("../geometry3d/PolygonOps");
 const CurvePrimitive_1 = require("../curve/CurvePrimitive");
 const CurveLocationDetail_1 = require("../curve/CurveLocationDetail");
 const CurveCollection_1 = require("../curve/CurveCollection");
@@ -23,7 +23,7 @@ const Range1dArray_1 = require("../numerics/Range1dArray");
  * An AlternatingConvexClipTreeNode is a node in a tree structure in which
  *   <ul>
  *   <li>Each node contains a ConvexClipPlaneSet
- *   <li>Each node contains an array of children which are also AlternativingConvexClipTreeNode.
+ *   <li>Each node contains an array of children which are also AlternatingConvexClipTreeNode.
  *   <li>The rule for an in/out decision is that a point is IN the subtree under a node if
  *   <ul>
  *   <li>It is IN the node's ConvexClipPlaneSet.
@@ -35,7 +35,7 @@ const Range1dArray_1 = require("../numerics/Range1dArray");
  *   <li>It is possible for the root clip plane set to be empty.  An empty clip plane set returns "true"
  *         for all point tests, so the meaning is just that holes are to be subtracted from the rest
  *         of space.
- *   <li>Althogh the interpretation of in/out alternates with tree levels, the ConvexClipPlaneSets
+ *   <li>Although the interpretation of in/out alternates with tree levels, the ConvexClipPlaneSets
  *         at each level are all "enclosing" planes in the usual way.
  *   </ul>
  */
@@ -143,7 +143,7 @@ class AlternatingCCTreeBuilder {
     static createPointsRef(points, result) {
         result = result ? result : new AlternatingCCTreeBuilder();
         result._points = points;
-        if (PointHelpers_1.PolygonOps.areaXY(points) < 0.0)
+        if (PolygonOps_1.PolygonOps.areaXY(points) < 0.0)
             result._points.reverse();
         return result;
     }
@@ -257,7 +257,7 @@ class AlternatingCCTreeBuilder {
      * <li> Build the hull for that data range
      * <li> Store the hull points in the root
      * <li> Add children with start and count data
-     * <li> Recursivly move to children
+     * <li> Recursively move to children
      * </ul>
      */
     buildHullTree(root) {
@@ -379,7 +379,7 @@ class AlternatingCCTreeNodeCurveClipper {
         }
     }
     /**
-     * Modifies the insideIntervvals array given in place.
+     * Modifies the insideIntervals array given in place.
      * Note: curve given is passed by reference and stored.
      */
     appendSingleClipPrimitive(root, curve, insideIntervals, _outsideIntervals) {
@@ -394,12 +394,12 @@ class AlternatingCCTreeNodeCurveClipper {
             const f1 = interval.high;
             const xyz0 = curve.fractionToPoint(f0);
             const xyz1 = curve.fractionToPoint(f1);
-            insideIntervals.push(CurveLocationDetail_1.CurveLocationDetailPair.createDetailRef(CurveLocationDetail_1.CurveLocationDetail.createCurveFractionPoint(curve, f0, xyz0), CurveLocationDetail_1.CurveLocationDetail.createCurveFractionPoint(curve, f1, xyz1)));
+            insideIntervals.push(CurveLocationDetail_1.CurveLocationDetailPair.createCapture(CurveLocationDetail_1.CurveLocationDetail.createCurveFractionPoint(curve, f0, xyz0), CurveLocationDetail_1.CurveLocationDetail.createCurveFractionPoint(curve, f1, xyz1)));
         }
         this.popSegmentFrame();
     }
     /**
-     * Modifies the insideIntervvals array given in place.
+     * Modifies the insideIntervals array given in place.
      * Note: curve given is passed by reference and stored.
      */
     appendCurveCollectionClip(root, curve, insideIntervals, outsideIntervals) {
@@ -411,7 +411,7 @@ class AlternatingCCTreeNodeCurveClipper {
         }
     }
 }
+exports.AlternatingCCTreeNodeCurveClipper = AlternatingCCTreeNodeCurveClipper;
 // Is re-used by method calls
 AlternatingCCTreeNodeCurveClipper._fractionIntervals = [];
-exports.AlternatingCCTreeNodeCurveClipper = AlternatingCCTreeNodeCurveClipper;
 //# sourceMappingURL=AlternatingConvexClipTree.js.map

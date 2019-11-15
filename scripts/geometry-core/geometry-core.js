@@ -1,6 +1,6 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 function __export(m) {
@@ -16,42 +16,44 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // for and display them when the mouse hovers over the class name.
 /**
  * @docs-package-description
- * The geometry-core package contains classes for working with CAD geometry:  points, vectors, curves, surfaces, and analytic solids
+ * The geometry-core package contains classes for working with geometry:  points, vectors, curves, surfaces, and analytic solids
  */
 /**
  * @docs-group-description CartesianGeometry
  * Points, Vectors, Planes, and Transformations for x,y,z geometry.
  * * Fundamental cartesian geometry objects:
- * * * Point2d, Point3d -- points with x,y,z coordinates
- * * * Vector2d, Vector3d -- vectors with x,y,z coordinates
- * * * Matrix3d -- 3x3 matrix
- * * * * commonly used for pure rotations
- * * * * scale and skew entries are also allowed.
- * * * Transform -- an origin and axes.
- * * * Range1d, Range2d, Range3d -- subsets of 1d, 2d, and 3d space bounded by low and high values.
- * * * Ray3d -- a ray defined by origin and direction vector
- * * * Plane3dByOriginAndUnitNormal -- a plane defined by an origin and a single vector which is perpendicular to the plane
- * * * plane3dByOriginAndVectors -- a plane defined by an origin and two vectors in the plane.
+ *   * Point2d, Point3d -- points with x,y,z coordinates
+ *   * Vector2d, Vector3d -- vectors with x,y,z coordinates
+ *   * Matrix3d -- 3x3 matrix
+ *   * * commonly used for pure rotations
+ *   * * scale and skew entries are also allowed.
+ *   * Transform -- an origin and axes.
+ *   * Range1d, Range2d, Range3d -- subsets of 1d, 2d, and 3d space bounded by low and high values.
+ *   * Ray3d -- a ray defined by origin and direction vector
+ *   * Plane3dByOriginAndUnitNormal -- a plane defined by an origin and a single vector which is perpendicular to the plane
+ *   * plane3dByOriginAndVectors -- a plane defined by an origin and two vectors in the plane.
  * * Angles
- * * * Angle -- a strongly typed angle object whose method names make it clear whether input and outputs are degrees or radians.
- * * * AngleSweep -- an angular interval
- * * * YawPitchAndRollAngles -- 3 angles that define a rotated coordinate system.
+ *   * Angle -- a strongly typed angle object whose method names make it clear whether input and outputs are degrees or radians.
+ *   * AngleSweep -- an angular interval
+ *   * YawPitchAndRollAngles -- 3 angles that define a rotated coordinate system.
  * * Utility classes
- * * * FrameBuilder -- construction of coordinate frames from mixed data sources.
- * * * ClipPlane -- a single plane
- * * * ConvexClipPlaneSet -- an array of planes bounding a convex volume
- * * * ClipPlaneSet -- an array of ConvexClipPlaneSet, defining the union of their volumes
- * * * Constant -- various numeric values exported as readonly constants
+ *   * FrameBuilder -- construction of coordinate frames from mixed data sources.
+ *   * ClipPlane -- a single plane
+ *   * ConvexClipPlaneSet -- an array of planes bounding a convex volume
+ *   * ClipPlaneSet -- an array of ConvexClipPlaneSet, defining the union of their volumes
+ *   * BilinearPatch -- twisted quadrilateral defined by 4 points
+ *   * BarycentricTriangle -- triangle defined by 3 points.
+ *   * Constant -- various numeric values exported as readonly constants
  */
 // doc:export class CartesianGeometryDoc { }
 /**
  * @docs-group-description ArraysAndInterfaces
  * These classes support array operations and inheritance-based algorithms.
  * * Arrays
- * * * GrowableArray -- A carrier for a Float64Array, with methods that hide reallocation of the underlying array as contents are added.
- * * * Point2dArray, Point3dArray, Point4dArray, Vector3dArray -- miscellaneous operations on arrays of 2d and 3d points.
+ *   * GrowableArray -- A carrier for a Float64Array, with methods that hide reallocation of the underlying array as contents are added.
+ *   * Point2dArray, Point3dArray, Point4dArray, Vector3dArray -- miscellaneous operations on arrays of 2d and 3d points.
  * * Interfaces
- * * * GeometryHandler -- a double-dispatch protocol used for efficient implementation of algorithms that work on many geometry types.
+ *   * GeometryHandler -- a double-dispatch protocol used for efficient implementation of algorithms that work on many geometry types.
  *
  */
 // doc:export class ArraysAndInterfacesDoc { }
@@ -68,10 +70,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @docs-group-description Curve
  * Curves in the GeometryQuery hierarchy: LineSegment3d, LineString3d, Arc3d, TransitionSpiral3d
  * * CurvePrimitive -- base class for parametric curves
- * * * LineSegment3d -- a (bounded) portion of an unbounded line
- * * * Arc3d -- a circular or elliptic arc
- * * * LineString3d -- a sequence of points joined by line segments
- * * * TransitionSpiral -- controlled transition between curvatures
+ *   * LineSegment3d -- a (bounded) portion of an unbounded line
+ *   * Arc3d -- a circular or elliptic arc
+ *   * LineString3d -- a sequence of points joined by line segments
+ *   * TransitionSpiral -- controlled transition between curvatures
  * * Support classes
  * * PointString3d -- a sequence of isolated points
  * * StrokeOptions -- tolerances to describe stroking accuracy
@@ -107,37 +109,41 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 // doc:export class SolidDOc { }
 /**
- * @docs-group-description Utility
- * These modules and classes are outside the geometric structure
- * * geometry-core.ts -- gathers and exports class, so callers can import from geometry-core without knowning which classes
- *        are in which files.
- */
-// doc:export class Utility { }
-/**
  * @docs-group-description Topology
  * The Topology classes provide adjacency structures used in triangulations.
  */
 // doc:export class TopologyDoc { }
+__export(require("./geometry3d/Angle"));
+__export(require("./geometry3d/AngleSweep"));
+__export(require("./geometry3d/BarycentricTriangle"));
+__export(require("./geometry3d/BilinearPatch"));
+__export(require("./geometry3d/FrameBuilder"));
+__export(require("./geometry3d/FrustumAnimation"));
+__export(require("./geometry3d/GeometryHandler"));
+__export(require("./geometry3d/GrowableBlockedArray"));
+__export(require("./geometry3d/GrowableFloat64Array"));
+__export(require("./geometry3d/GrowableXYArray"));
+__export(require("./geometry3d/GrowableXYZArray"));
+__export(require("./geometry3d/IndexedCollectionInterval"));
+__export(require("./geometry3d/IndexedXYCollection"));
+__export(require("./geometry3d/IndexedXYZCollection"));
+__export(require("./geometry3d/Matrix3d"));
+__export(require("./geometry3d/OrderedRotationAngles"));
+__export(require("./geometry3d/Plane3dByOriginAndUnitNormal"));
+__export(require("./geometry3d/Plane3dByOriginAndVectors"));
+__export(require("./geometry3d/Point2dArrayCarrier"));
 __export(require("./geometry3d/Point2dVector2d"));
 __export(require("./geometry3d/Point3dVector3d"));
 __export(require("./geometry3d/PointHelpers"));
-__export(require("./geometry3d/Transform"));
-__export(require("./geometry3d/Matrix3d"));
+__export(require("./geometry3d/Point3dArrayCarrier"));
+__export(require("./geometry3d/PolylineOps"));
+__export(require("./geometry3d/PolygonOps"));
 __export(require("./geometry3d/Range"));
-__export(require("./geometry3d/GrowableFloat64Array"));
-__export(require("./geometry3d/GrowableXYZArray"));
-__export(require("./geometry3d/GrowableBlockedArray"));
-__export(require("./geometry3d/FrameBuilder"));
-__export(require("./geometry3d/GeometryHandler"));
-__export(require("./geometry3d/IndexedXYZCollection"));
-__export(require("./geometry3d/OrderedRotationAngles"));
 __export(require("./geometry3d/Ray3d"));
-__export(require("./geometry3d/Plane3dByOriginAndUnitNormal"));
-__export(require("./geometry3d/Plane3dByOriginAndVectors"));
-__export(require("./Geometry"));
-__export(require("./geometry3d/Angle"));
+__export(require("./geometry3d/Segment1d"));
+__export(require("./geometry3d/Transform"));
 __export(require("./geometry3d/YawPitchRollAngles"));
-__export(require("./geometry3d/AngleSweep"));
+__export(require("./Geometry"));
 __export(require("./Constant"));
 __export(require("./clipping/ClipPlane"));
 __export(require("./clipping/ConvexClipPlaneSet"));
@@ -152,30 +158,43 @@ __export(require("./geometry4d/Matrix4d"));
 __export(require("./geometry4d/Map4d"));
 __export(require("./geometry4d/MomentData"));
 __export(require("./numerics/BezierPolynomials"));
+__export(require("./numerics/ClusterableArray"));
 __export(require("./numerics/Newton"));
 __export(require("./numerics/Complex"));
+__export(require("./numerics/ConvexPolygon2d"));
+__export(require("./numerics/Newton"));
+__export(require("./numerics/PascalCoefficients"));
 __export(require("./numerics/Polynomials"));
 __export(require("./numerics/Quadrature"));
 __export(require("./numerics/Range1dArray"));
 __export(require("./numerics/TriDiagonalSystem"));
 __export(require("./curve/Arc3d"));
 __export(require("./curve/ConstructCurveBetweenCurves"));
+__export(require("./curve/CoordinateXYZ"));
+__export(require("./curve/CurveChainWithDistanceIndex"));
+__export(require("./curve/CurveExtendMode"));
 __export(require("./curve/CurveCollection"));
+__export(require("./curve/CurveCurve"));
+__export(require("./curve/CurveCurveIntersectXY"));
+__export(require("./curve/CurveCurveIntersectXYZ"));
+__export(require("./curve/CurveLocationDetail"));
+__export(require("./curve/CurveFactory"));
+__export(require("./curve/CurvePrimitive"));
+__export(require("./curve/CurveProcessor"));
+__export(require("./curve/GeometryQuery"));
+__export(require("./curve/LineSegment3d"));
+__export(require("./curve/LineString3d"));
 __export(require("./curve/Loop"));
 __export(require("./curve/ParityRegion"));
 __export(require("./curve/Path"));
-__export(require("./curve/UnionRegion"));
-__export(require("./curve/CurveCurveIntersectXY"));
-__export(require("./curve/CurvePrimitive"));
-__export(require("./curve/CurveLocationDetail"));
-__export(require("./curve/CoordinateXYZ"));
-__export(require("./curve/GeometryQuery"));
-__export(require("./curve/CurveProcessor"));
-__export(require("./curve/LineSegment3d"));
-__export(require("./curve/LineString3d"));
+__export(require("./curve/RegionMomentsXY"));
+__export(require("./curve/RegionOps"));
+__export(require("./curve/PolygonOffsetContext"));
 __export(require("./curve/PointString3d"));
 __export(require("./curve/StrokeOptions"));
 __export(require("./curve/TransitionSpiral"));
+__export(require("./curve/UnionRegion"));
+__export(require("./curve/Query/StrokeCountMap"));
 __export(require("./solid/Box"));
 __export(require("./solid/Cone"));
 __export(require("./solid/LinearSweep"));
@@ -194,13 +213,22 @@ __export(require("./bspline/BSpline1dNd"));
 __export(require("./bspline/BSplineCurve3dH"));
 __export(require("./bspline/BSplineSurface"));
 __export(require("./bspline/KnotVector"));
+__export(require("./polyface/AuxData"));
 __export(require("./polyface/BoxTopology"));
-__export(require("./polyface/PolyfaceData"));
+__export(require("./polyface/FacetFaceData"));
 __export(require("./polyface/Polyface"));
 __export(require("./polyface/PolyfaceBuilder"));
+__export(require("./polyface/PolyfaceData"));
 __export(require("./polyface/PolyfaceQuery"));
+__export(require("./polyface/PolyfaceClip"));
 __export(require("./topology/Graph"));
 __export(require("./topology/Triangulation"));
 __export(require("./serialization/IModelJsonSchema"));
 __export(require("./serialization/DeepCompare"));
+__export(require("./serialization/GeometrySamples"));
+if ((typeof (BUILD_SEMVER) !== "undefined") && (typeof window !== "undefined") && window) {
+    if (!window.iModelJsVersions)
+        window.iModelJsVersions = new Map();
+    window.iModelJsVersions.set("geometry-core", BUILD_SEMVER);
+}
 //# sourceMappingURL=geometry-core.js.map

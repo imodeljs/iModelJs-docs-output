@@ -1,6 +1,6 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -10,6 +10,11 @@ const Point2dVector2d_1 = require("../geometry3d/Point2dVector2d");
 const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
 const GrowableBlockedArray_1 = require("../geometry3d/GrowableBlockedArray");
 const GrowableXYZArray_1 = require("../geometry3d/GrowableXYZArray");
+/**
+ * Blocked array with operations to sort and cluster with a tolerance.
+ * * Primary sorting is along an "arbitrary" sort vector.
+ * @internal
+ */
 class ClusterableArray extends GrowableBlockedArray_1.GrowableBlockedArray {
     /**
      * @param numCoordinatePerPoint number of coordinates per point
@@ -21,6 +26,7 @@ class ClusterableArray extends GrowableBlockedArray_1.GrowableBlockedArray {
         this._numExtraDataPerPoint = numExtraDataPerPoint;
         this._numCoordinatePerPoint = numCoordinatePerPoint;
     }
+    /** Return a component of the sort vector. */
     static sortVectorComponent(index) {
         let c = 1.0;
         for (let i = 1; i < index; i++)
@@ -50,7 +56,7 @@ class ClusterableArray extends GrowableBlockedArray_1.GrowableBlockedArray {
         if (x4 !== undefined)
             this._data[i0 + 5] = x4;
     }
-    /** add a block with directly from a Point2d with 0 to 3 extras
+    /** add a block directly from a Point2d with 0 to 3 extras
      * This assumes numDataPerPoint is sufficient for the parameters provided.
      */
     addPoint2d(xy, a, b, c) {
@@ -79,10 +85,12 @@ class ClusterableArray extends GrowableBlockedArray_1.GrowableBlockedArray {
         if (c !== undefined)
             this._data[i0 + 6] = c;
     }
+    /** Get the xy coordinates by point index. */
     getPoint2d(blockIndex, result) {
         const i0 = this.blockIndexToDoubleIndex(blockIndex);
         return Point2dVector2d_1.Point2d.create(this._data[i0 + 1], this._data[i0 + 2], result);
     }
+    /** Get the xyZ coordinates by point index. */
     getPoint3d(blockIndex, result) {
         const i0 = this.blockIndexToDoubleIndex(blockIndex);
         return Point3dVector3d_1.Point3d.create(this._data[i0 + 1], this._data[i0 + 2], this._data[i0 + 3], result);
@@ -102,6 +110,7 @@ class ClusterableArray extends GrowableBlockedArray_1.GrowableBlockedArray {
         const i0 = this.blockIndexToDoubleIndex(blockIndex);
         this._data[i0 + 1 + this._numCoordinatePerPoint + i] = value;
     }
+    /** Test if `x` is the cluster terminator value. */
     static isClusterTerminator(x) { return x === ClusterableArray.clusterTerminator; }
     /** Return an array giving clusters of blocks with similar coordinates.
      *
@@ -176,7 +185,10 @@ class ClusterableArray extends GrowableBlockedArray_1.GrowableBlockedArray {
             data[k] = dot;
         }
     }
-    ToJSON() {
+    /** Convert the cluster data to an array of tuples with point i in the form
+     * `[i, primarySortCoordinate, [x,y,..], [extraData0, extraData1, ...]]`
+     */
+    toJSON() {
         const result = [];
         for (let b = 0; b < this.numBlocks; b++) {
             let i = this.blockIndexToDoubleIndex(b);
@@ -192,10 +204,10 @@ class ClusterableArray extends GrowableBlockedArray_1.GrowableBlockedArray {
         return result;
     }
     /**
-     * @returns Return an array of indices from block index to cluster index.
+     * Return an array of indices from block index to cluster index.
      * @param clusteredBlocks clusters of block indices followed by separators.
      */
-    createIndex_blockToClusterIndex(clusteredBlocks) {
+    createIndexBlockToClusterIndex(clusteredBlocks) {
         const numBlocks = this.numBlocks;
         const blockToCluster = new Uint32Array(numBlocks);
         blockToCluster.fill(ClusterableArray.clusterTerminator);
@@ -211,10 +223,10 @@ class ClusterableArray extends GrowableBlockedArray_1.GrowableBlockedArray {
         return blockToCluster;
     }
     /**
-     * @returns Return an array of indices from block index to index of its cluster's start in the cluster index array.
+     * Return an array of indices from block index to index of its cluster's start in the cluster index array.
      * @param clusteredBlocks clusters of block indices followed by separators.
      */
-    createIndex_blockToClusterStart(clusteredBlocks) {
+    createIndexBlockToClusterStart(clusteredBlocks) {
         const n = clusteredBlocks.length;
         const numBlocks = this.numBlocks;
         const blockToClusterStart = new Uint32Array(numBlocks);
@@ -245,7 +257,7 @@ class ClusterableArray extends GrowableBlockedArray_1.GrowableBlockedArray {
     /** create a reverse index: given a cluster index k, clusterToClusterStart[k] is the place
      * the cluster's block indices appear in clusterBlocks
      */
-    createIndex_clusterToClusterStart(clusteredBlocks) {
+    createIndexClusterToClusterStart(clusteredBlocks) {
         let numCluster = this.countClusters(clusteredBlocks);
         const clusterToClusterStart = new Uint32Array(numCluster);
         const terminator = ClusterableArray.clusterTerminator;
@@ -295,7 +307,7 @@ class ClusterableArray extends GrowableBlockedArray_1.GrowableBlockedArray {
         }
     }
     /**
-     * @returns packed points with indices mapping old to new.
+     * Returns packed points with indices mapping old to new.
      * @param data points to cluster.
      */
     static clusterPoint3dArray(data, tolerance = Geometry_1.Geometry.smallMetricDistance) {
@@ -322,7 +334,7 @@ class ClusterableArray extends GrowableBlockedArray_1.GrowableBlockedArray {
         return result;
     }
     /**
-     * @returns packed points with indices mapping old to new.
+     * Returns packed points with indices mapping old to new.
      * @param data points to cluster.
      */
     static clusterGrowablePoint3dArray(source, tolerance = Geometry_1.Geometry.smallMetricDistance) {
@@ -330,7 +342,7 @@ class ClusterableArray extends GrowableBlockedArray_1.GrowableBlockedArray {
         const p = Point3dVector3d_1.Point3d.create();
         const numSourcePoint = source.length;
         for (let i = 0; i < numSourcePoint; i++) {
-            source.getPoint3dAt(i, p);
+            source.getPoint3dAtUncheckedPointIndex(i, p);
             clusterArray.addDirect(p.x, p.y, p.z);
         }
         const order = clusterArray.clusterIndicesLexical(tolerance);
@@ -354,14 +366,19 @@ class ClusterableArray extends GrowableBlockedArray_1.GrowableBlockedArray {
         return result;
     }
 }
+exports.ClusterableArray = ClusterableArray;
+//  (This is pretty strange)
+// The sort vector is (1,c, c*c, ...)
+// Settint c = 1 makes it 1,1,1 which may be useful for visual scans during debug.
+// c wuith some inobvious digits makes it unlikley tha there will be multiple points on a perpendicular to the sort vector.
 ClusterableArray._vectorFactor = 0.8732; // use 1.0 to rig easy tests.
 /** this value is used as cluster terminator in the Uint232rray of indcies. */
 ClusterableArray.clusterTerminator = 0xFFffFFff;
-exports.ClusterableArray = ClusterableArray;
 /**
  * Data carrier class for
  * * packedPoints = an array of Point3d
  * * oldToNew = array of indices from some prior Point3d[] to the packed points.
+ * @internal
  */
 class PackedPointsWithIndex {
     /** construct a PackedPoints object with
@@ -392,6 +409,6 @@ class PackedPointsWithIndex {
         return numErrors === 0;
     }
 }
+/** integer value for unknown index. */
 PackedPointsWithIndex.invalidIndex = 0xFFFFffff;
-exports.PackedPointsWithIndex = PackedPointsWithIndex;
 //# sourceMappingURL=ClusterableArray.js.map

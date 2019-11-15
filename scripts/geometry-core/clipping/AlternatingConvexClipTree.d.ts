@@ -9,7 +9,7 @@ import { CurveCollection } from "../curve/CurveCollection";
  * An AlternatingConvexClipTreeNode is a node in a tree structure in which
  *   <ul>
  *   <li>Each node contains a ConvexClipPlaneSet
- *   <li>Each node contains an array of children which are also AlternativingConvexClipTreeNode.
+ *   <li>Each node contains an array of children which are also AlternatingConvexClipTreeNode.
  *   <li>The rule for an in/out decision is that a point is IN the subtree under a node if
  *   <ul>
  *   <li>It is IN the node's ConvexClipPlaneSet.
@@ -21,7 +21,7 @@ import { CurveCollection } from "../curve/CurveCollection";
  *   <li>It is possible for the root clip plane set to be empty.  An empty clip plane set returns "true"
  *         for all point tests, so the meaning is just that holes are to be subtracted from the rest
  *         of space.
- *   <li>Althogh the interpretation of in/out alternates with tree levels, the ConvexClipPlaneSets
+ *   <li>Although the interpretation of in/out alternates with tree levels, the ConvexClipPlaneSets
  *         at each level are all "enclosing" planes in the usual way.
  *   </ul>
  */
@@ -90,7 +90,7 @@ export declare class AlternatingCCTreeBuilder {
      * <li> Build the hull for that data range
      * <li> Store the hull points in the root
      * <li> Add children with start and count data
-     * <li> Recursivly move to children
+     * <li> Recursively move to children
      * </ul>
      */
     buildHullTree(root: AlternatingCCTreeNode): boolean;
@@ -116,12 +116,12 @@ export declare class AlternatingCCTreeNodeCurveClipper {
      */
     private recurse;
     /**
-     * Modifies the insideIntervvals array given in place.
+     * Modifies the insideIntervals array given in place.
      * Note: curve given is passed by reference and stored.
      */
     appendSingleClipPrimitive(root: AlternatingCCTreeNode, curve: CurvePrimitive, insideIntervals: CurveLocationDetailPair[], _outsideIntervals: CurveLocationDetailPair[]): void;
     /**
-     * Modifies the insideIntervvals array given in place.
+     * Modifies the insideIntervals array given in place.
      * Note: curve given is passed by reference and stored.
      */
     appendCurveCollectionClip(root: AlternatingCCTreeNode, curve: CurveCollection, insideIntervals: CurveLocationDetailPair[], outsideIntervals: CurveLocationDetailPair[]): void;

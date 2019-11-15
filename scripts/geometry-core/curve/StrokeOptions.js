@@ -1,6 +1,6 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -21,37 +21,52 @@ const Angle_1 = require("../geometry3d/Angle");
  * * * For facets, 22.5 degrees is typical.
  * * * Halving the angle tolerance will (roughly) make curves get twice as many strokes, and surfaces get 4 times as many facets.
  * * * The angle tolerance has the useful property that its effect is independent of scale of that data.  If data is suddenly scaled into millimeters rather than meters, the facet counts remain the same.
- * * When creating output for devicies such as 3D printing will want a chord tolerance.
+ * * When creating output for devices such as 3D printing will want a chord tolerance.
  * * For graphics display, use an angle tolerance of around 15 degrees and an chord tolerance which is the size of several pixels.
  * * Analysis meshes (e.g. Finite Elements) commonly need to apply maxEdgeLength.
- * * * Using maxEdgeLength for graphics probably produces too many facets.   For example, it causes long cylinders to get many nearly-square facets instead of the samll number of long quads usually used for graphics.
+ * * * Using maxEdgeLength for graphics probably produces too many facets.   For example, it causes long cylinders to get many nearly-square facets instead of the small number of long quads usually used for graphics.
  * * Facet tolerances are, as the Pirates' Code, guidelines, not absolute rules.   Facet and stroke code may ignore tolerances in awkward situations.
  * * If multiple tolerances are in effect, the actual count will usually be based on the one that demands the most strokes or facets, unless it is so high that it violates some upper limit on the number of facets on an arc or a section of a curve.
- *
+ * @public
  */
 class StrokeOptions {
     constructor() {
         /** whether or not to triangulate each added facet */
         this.shouldTriangulate = false;
+        /** default number of strokes for a circle. */
         this.defaultCircleStrokes = 16;
     }
+    /** ask if params are requested. */
     get needParams() { return this._needParams !== undefined ? this._needParams : false; }
+    /** set the params request flag */
     set needParams(value) { this._needParams = value; }
+    /** ask if normals are requested */
     get needNormals() { return this._needNormals !== undefined ? this._needNormals : false; }
+    /** set the normals request flag */
     set needNormals(value) { this._needNormals = value; }
+    /** set request for two-sided facets. */
+    set needTwoSided(value) { this._needTwoSided = value; }
+    /** ask if twoSided is requested. */
+    get needTwoSided() { return this._needTwoSided !== undefined ? this._needTwoSided : false; }
+    /** ask if maxEdgeLength is specified */
     get hasMaxEdgeLength() { return this.maxEdgeLength !== undefined && this.maxEdgeLength > 0.0; }
-    // return stroke count which is the larger of the minCount or count needed for edge length condition.
+    /** return stroke count which is the larger of the minCount or count needed for edge length condition. */
     applyMaxEdgeLength(minCount, totalLength) {
         if (this.maxEdgeLength && this.maxEdgeLength > 0.0 && minCount * this.maxEdgeLength < totalLength) {
             minCount = Geometry_1.Geometry.stepCount(this.maxEdgeLength, totalLength, minCount);
         }
         return minCount;
     }
-    // return stroke count which is the larger of the existing count or count needed for angle condition for given sweepRadians
-    // defaultStepRadians is assumed to be larger than zero.
+    /**
+     * return stroke count which is the larger of the existing count or count needed for angle condition for given sweepRadians
+     * * defaultStepRadians is assumed to be larger than zero.
+     */
     applyAngleTol(minCount, sweepRadians, defaultStepRadians) {
         return StrokeOptions.applyAngleTol(this, minCount, sweepRadians, defaultStepRadians);
     }
+    /**
+     * return stroke count which is the larger of minCount and the count required to turn sweepRadians, using tolerance from the options.
+     */
     static applyAngleTol(options, minCount, sweepRadians, defaultStepRadians) {
         sweepRadians = Math.abs(sweepRadians);
         let stepRadians = defaultStepRadians ? defaultStepRadians : Math.PI / 8.0;
@@ -62,7 +77,7 @@ class StrokeOptions {
         return minCount;
     }
     /**
-     *
+     * Return the number of strokes needed for given edgeLength curve.
      * @param options
      * @param minCount smallest allowed count
      * @param edgeLength
@@ -73,10 +88,13 @@ class StrokeOptions {
         if (minCount < 1)
             minCount = 1;
         if (options && options.maxEdgeLength && options.maxEdgeLength * minCount < edgeLength) {
-            minCount = Math.ceil(edgeLength / options.maxEdgeLength + 0.99999);
+            minCount = Geometry_1.Geometry.stepCount(options.maxEdgeLength, edgeLength, minCount);
         }
         return minCount;
     }
+    /**
+     * Determine a stroke count for a (partial) circular arc of given radius. This considers angle, maxEdgeLength, chord, and minimum stroke.
+     */
     applyTolerancesToArc(radius, sweepRadians = Math.PI * 2) {
         let numStrokes = 1;
         numStrokes = this.applyAngleTol(numStrokes, sweepRadians, Math.PI * 0.25);
@@ -85,7 +103,7 @@ class StrokeOptions {
         numStrokes = this.applyMinStrokesPerPrimitive(numStrokes);
         return numStrokes;
     }
-    // return stroke count which is the larger of existing count or count needed for circular arc chord tolerance condition.
+    /** return stroke count which is the larger of existing count or count needed for circular arc chord tolerance condition. */
     applyChordTol(minCount, radius, sweepRadians) {
         if (this.chordTol && this.chordTol > 0.0 && this.chordTol < radius) {
             const a = this.chordTol;
@@ -94,17 +112,36 @@ class StrokeOptions {
         }
         return minCount;
     }
+    /** return stroke count which is the larger of existing count or count needed for circular arc chord tol with given arc length and radians
+     */
+    applyChordTolToLengthAndRadians(minCount, length, sweepRadians) {
+        if (this.chordTol && this.chordTol > 0.0) {
+            const radius = Geometry_1.Geometry.conditionalDivideFraction(length, sweepRadians);
+            if (radius !== undefined)
+                return this.applyChordTol(minCount, radius, sweepRadians);
+        }
+        return minCount;
+    }
+    /** return stroke count which is the larger of existing count or `this.minStrokesPerPrimitive` */
     applyMinStrokesPerPrimitive(minCount) {
         if (this.minStrokesPerPrimitive !== undefined && Number.isFinite(this.minStrokesPerPrimitive)
             && this.minStrokesPerPrimitive > minCount)
             minCount = this.minStrokesPerPrimitive;
         return minCount;
     }
+    /** create `StrokeOptions` with defaults appropriate for curves.
+     * * angle tolerance of 15 degrees.
+     * * all others inactive.
+     */
     static createForCurves() {
         const options = new StrokeOptions();
         options.angleTol = Angle_1.Angle.createDegrees(15.0);
         return options;
     }
+    /** create `StrokeOptions` with defaults appropriate for surfaces facets
+     * * angle tolerance of 22.5 degrees.
+     * * all others inactive.
+     */
     static createForFacets() {
         const options = new StrokeOptions();
         options.angleTol = Angle_1.Angle.createDegrees(22.5);

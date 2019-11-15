@@ -5,17 +5,19 @@ import { Transform } from "../geometry3d/Transform";
 import { Ray3d } from "../geometry3d/Ray3d";
 import { Plane3dByOriginAndVectors } from "../geometry3d/Plane3dByOriginAndVectors";
 import { CurvePrimitive } from "../curve/CurvePrimitive";
+import { StrokeCountMap } from "../curve/Query/StrokeCountMap";
 import { CurveLocationDetail } from "../curve/CurveLocationDetail";
 import { StrokeOptions } from "../curve/StrokeOptions";
 import { PlaneAltitudeEvaluator } from "../Geometry";
 import { Plane3dByOriginAndUnitNormal } from "../geometry3d/Plane3dByOriginAndUnitNormal";
 import { GeometryHandler, IStrokeHandler } from "../geometry3d/GeometryHandler";
-import { KnotVector } from "./KnotVector";
+import { KnotVector, BSplineWrapMode } from "./KnotVector";
 import { LineString3d } from "../curve/LineString3d";
 import { BezierCurveBase } from "./BezierCurveBase";
 import { BezierCurve3dH } from "./BezierCurve3dH";
 import { BSpline1dNd } from "./BSpline1dNd";
 import { Point4d } from "../geometry4d/Point4d";
+import { GrowableXYZArray } from "../geometry3d/GrowableXYZArray";
 /**
  * Base class for BSplineCurve3d and BSplineCurve3dH.
  * * A bspline curve consists of a set of knots and a set of poles.
@@ -27,45 +29,53 @@ import { Point4d } from "../geometry4d/Point4d";
  * * The is a strict relationship between knot and poles counts:  `numPoles + order = numKnots + 2'
  * * The number of spans is `numSpan = numPoles - degree`
  * * For a given `spanIndex`:
- * * * The `order` poles begin at index `spanIndex`.
- * * * The `2*order` knots begin as span index
- * * * The knot interval for this span is from `knot[degree+span-1] to knot[degree+span]`
+ *   * The `order` poles begin at index `spanIndex`.
+ *   * The `2*order` knots begin as span index
+ *   * The knot interval for this span is from `knot[degree+span-1] to knot[degree+span]`
  * * The active part of the knot axis is `knot[degree-1] < knot < knot[degree-1 + numSpan]` i.e. `knot[degree-1] < knot < knot[numPoles]
  *
  * Nearly all bsplines are "clamped ".
  * * Clamping make the curve pass through its first and last poles, with tangents directed along the first and last edges of the control polygon.
- * * The knots for a clampled bspline have `degree` copies of the lowest knot value and `degree` copies of the highest knot value.
+ * * The knots for a clamped bspline have `degree` copies of the lowest knot value and `degree` copies of the highest knot value.
  * * For instance, the knot vector `[0,0,0,1,2,3,3,3]
- * * * can be evaluated from `0<=knot<=3`
- * * * has 3 spans: 0 to 1, 1 to 2, 2 to 3
- * * * has 6 poles
- * * * passes through its first and last poles.
+ *   * can be evaluated from `0<=knot<=3`
+ *   * has 3 spans: 0 to 1, 1 to 2, 2 to 3
+ *   * has 6 poles
+ *   * passes through its first and last poles.
  * * `create` methods may allow classic convention that has an extra knot at the beginning and end of the knot vector.
- * * * The extra knots (first and last) were never referenced by the bspline recurrance relations.
- * * * When the `ceate` methods recognize the classic setup (`numPoles + order = numKnots`), the extra knot is not saved with the BSplineCurve3dBase knots.
+ *   * The extra knots (first and last) were never referenced by the bspline recurrence relations.
+ *   * When the `create` methods recognize the classic setup (`numPoles + order = numKnots`), the extra knot is not saved with the BSplineCurve3dBase knots.
  *
  * * The weighted variant has the problem that CurvePrimitive 3d typing does not allow undefined result where Point4d has zero weight.
  * * The convention for these is to return 000 in such places.
  *
  * * Note the class relationships:
- * * * BSpline1dNd knows the bspline reucurrance relations for control points (poles) with no physical meaning.
- * * * BsplineCurve3dBase owns a protected BSpline1dNd
- * * * BsplineCurve3dBase is derived from CurvePrimitive, which creates obligation to act as a 3D curve, such as
- * * * * evaluate fraction to point and derivatives wrt fraction
- * * * * compute intersection with plane
- * * * BSplineCurve3d and BSplineCurve3dH have variant logic driven by whether or not there are "weights" on the poles.
- * * * * For `BSplineCurve3d`, the xyz value of pole calculations are "final" values for 3d evaluation
- * * * * For `BSplineCurve3dH`, various `BSpline1dNd` results with xyzw have to be normalized back to xyz.
+ *   * BSpline1dNd knows the bspline recurrence relations for control points (poles) with no physical meaning.
+ *   * BsplineCurve3dBase owns a protected BSpline1dNd
+ *   * BsplineCurve3dBase is derived from CurvePrimitive, which creates obligation to act as a 3D curve, such as
+ *     * evaluate fraction to point and derivatives wrt fraction
+ *     * compute intersection with plane
+ *   * BSplineCurve3d and BSplineCurve3dH have variant logic driven by whether or not there are "weights" on the poles.
+ *     * For `BSplineCurve3d`, the xyz value of pole calculations are "final" values for 3d evaluation
+ *     * For `BSplineCurve3dH`, various `BSpline1dNd` results with xyzw have to be normalized back to xyz.
  *
  * * These classes do not support "periodic" variants.
- * * * Periodic curves need to have certain leading knots and poles replicated at the end
+ *   * Periodic curves need to have certain leading knots and poles replicated at the end
+ * @public
  */
 export declare abstract class BSplineCurve3dBase extends CurvePrimitive {
+    /** String name for schema properties */
+    readonly curvePrimitiveType = "bsplineCurve";
+    /** The underlying blocked-pole spline, with simple x,y,z poles */
     protected _bcurve: BSpline1dNd;
     protected constructor(poleDimension: number, numPoles: number, order: number, knots: KnotVector);
+    /** Return the degree (one less than the order) of the curve */
     readonly degree: number;
+    /** Return the order (one more than degree) of the curve */
     readonly order: number;
+    /** Return the number of bezier spans in the curve.  Note that this number includes the number of null spans at repeated knows */
     readonly numSpan: number;
+    /** Return the number of poles */
     readonly numPoles: number;
     /**
    * return a simple array form of the knots.  optionally replicate the first and last
@@ -75,17 +85,18 @@ export declare abstract class BSplineCurve3dBase extends CurvePrimitive {
     /**
    * Set the flag indicating the bspline might be suitable for having wrapped "closed" interpretation.
    */
-    setWrappable(value: boolean): void;
+    setWrappable(value: BSplineWrapMode): void;
     /** Evaluate at a position given by fractional position within a span. */
     abstract evaluatePointInSpan(spanIndex: number, spanFraction: number, result?: Point3d): Point3d;
     /** Evaluate at a position given by fractional position within a span. */
-    abstract evaluatePointAndTangentInSpan(spanIndex: number, spanFraction: number, result?: Ray3d): Ray3d;
+    abstract evaluatePointAndDerivativeInSpan(spanIndex: number, spanFraction: number, result?: Ray3d): Ray3d;
     /** Evaluate xyz at a position given by knot. */
     abstract knotToPoint(knot: number, result?: Point3d): Point3d;
     /** Evaluate xyz and derivative at position given by a knot value.  */
     abstract knotToPointAndDerivative(knot: number, result?: Ray3d): Ray3d;
     /** Evaluate xyz and 2 derivatives at position given by a knot value.  */
     abstract knotToPointAnd2Derivatives(knot: number, result?: Plane3dByOriginAndVectors): Plane3dByOriginAndVectors;
+    /** Evaluate the curve point at `fraction` */
     fractionToPoint(fraction: number, result?: Point3d): Point3d;
     /** Construct a ray with
      * * origin at the fractional position along the arc
@@ -99,7 +110,7 @@ export declare abstract class BSplineCurve3dBase extends CurvePrimitive {
      */
     fractionToPointAnd2Derivatives(fraction: number, result?: Plane3dByOriginAndVectors): Plane3dByOriginAndVectors;
     /**
-     * Return the start point of hte curve.
+     * Return the start point of the curve.
      */
     startPoint(): Point3d;
     /**
@@ -116,7 +127,7 @@ export declare abstract class BSplineCurve3dBase extends CurvePrimitive {
      */
     collectBezierSpans(prefer3dH: boolean): BezierCurveBase[];
     /**
-      * Return a BezierCurveBase for this curve.  The concrete return type may be BezierCuve3d or BezierCurve3dH according to the instance type and the prefer3dH parameter.
+      * Return a BezierCurveBase for this curve.  The concrete return type may be BezierCurve3d or BezierCurve3dH according to the instance type and the prefer3dH parameter.
       * @param spanIndex
       * @param prefer3dH true to force promotion to homogeneous.
       * @param result optional reusable curve.  This will only be reused if it is a BezierCurve3d with matching order.
@@ -155,14 +166,20 @@ export declare abstract class BSplineCurve3dBase extends CurvePrimitive {
 /**
  * A BSplineCurve3d is a bspline curve whose poles are Point3d.
  * See BSplineCurve3dBase for description of knots, order, degree.
+ * @public
  */
 export declare class BSplineCurve3d extends BSplineCurve3dBase {
     private _workBezier?;
     private initializeWorkBezier;
+    /** test of `other` is an instance of BSplineCurve3d */
     isSameGeometryClass(other: any): boolean;
+    /** Apply `transform` to the poles. */
     tryTransformInPlace(transform: Transform): boolean;
+    /** Get a pole as simple Point3d. */
     getPolePoint3d(poleIndex: number, result?: Point3d): Point3d | undefined;
+    /** Get a pole as Point4d with weight 1 */
     getPolePoint4d(poleIndex: number, result?: Point4d): Point4d | undefined;
+    /** Convert  `spanIndex` and `localFraction` to a knot. */
     spanFractionToKnot(span: number, localFraction: number): number;
     private constructor();
     /** Return a simple array of arrays with the control points as `[[x,y,z],[x,y,z],..]` */
@@ -175,7 +192,7 @@ export declare class BSplineCurve3d extends BSplineCurve3dBase {
      */
     copyKnots(includeExtraEndKnot: boolean): number[];
     /** Create a bspline with uniform knots. */
-    static createUniformKnots(poles: Point3d[] | Float64Array, order: number): BSplineCurve3d | undefined;
+    static createUniformKnots(poles: Point3d[] | Float64Array | GrowableXYZArray, order: number): BSplineCurve3d | undefined;
     /** Create a bspline with given knots.
      *
      * *  Two count conditions are recognized:
@@ -186,18 +203,25 @@ export declare class BSplineCurve3d extends BSplineCurve3dBase {
      *
      */
     static create(poleArray: Float64Array | Point3d[], knotArray: Float64Array | number[], order: number): BSplineCurve3d | undefined;
+    /** Return a deep clone */
     clone(): BSplineCurve3d;
+    /** Return a transformed deep clone. */
     cloneTransformed(transform: Transform): BSplineCurve3d;
     /** Evaluate at a position given by fractional position within a span. */
     evaluatePointInSpan(spanIndex: number, spanFraction: number): Point3d;
-    evaluatePointAndTangentInSpan(spanIndex: number, spanFraction: number): Ray3d;
-    /** Evaluate at a positioni given by a knot value.  */
+    /** Evaluate point and derivative vector at a position given by fractional position within a span.
+     * * The derivative is with respect to the span fraction (NOT scaled to either global fraction or knot)
+     */
+    evaluatePointAndDerivativeInSpan(spanIndex: number, spanFraction: number): Ray3d;
+    /** Evaluate at a position given by a knot value.  */
     knotToPoint(u: number, result?: Point3d): Point3d;
     /** Evaluate at a position given by a knot value.  */
     knotToPointAndDerivative(u: number, result?: Ray3d): Ray3d;
     /** Evaluate at a position given by a knot value.  Return point with 2 derivatives. */
     knotToPointAnd2Derivatives(u: number, result?: Plane3dByOriginAndVectors): Plane3dByOriginAndVectors;
+    /** Evaluate the curve point at a fractional of the entire knot range. */
     fractionToPoint(fraction: number, result?: Point3d): Point3d;
+    /** Evaluate the curve point at a fractional of the entire knot range. */
     fractionToPointAndDerivative(fraction: number, result?: Ray3d): Ray3d;
     /** Construct a plane with
      * * origin at the fractional position along the arc
@@ -206,19 +230,36 @@ export declare class BSplineCurve3d extends BSplineCurve3dBase {
      * If the arc is circular, the second derivative is directly towards the center
      */
     fractionToPointAnd2Derivatives(fraction: number, result?: Plane3dByOriginAndVectors): Plane3dByOriginAndVectors;
+    /** test if almost the same curve as `other` */
     isAlmostEqual(other: any): boolean;
+    /** test if this curve is entirely within plane. */
     isInPlane(plane: Plane3dByOriginAndUnitNormal): boolean;
+    /** Return the control polygon length as approximation (always overestimate) of the curve length. */
     quickLength(): number;
+    /** Emit beziers or strokes (selected by the stroke options) to the handler. */
     emitStrokableParts(handler: IStrokeHandler, options?: StrokeOptions): void;
+    /**
+     * Assess length and turn to determine a stroke count.
+     * @param options stroke options structure.
+     */
+    computeStrokeCountForOptions(options?: StrokeOptions): number;
+    /**
+     * Compute individual segment stroke counts.  Attach in a StrokeCountMap.
+     * @param options StrokeOptions that determine count
+     * @param parentStrokeMap evolving parent map.
+     * @alpha
+     */
+    computeAndAttachRecursiveStrokeCounts(options?: StrokeOptions, parentStrokeMap?: StrokeCountMap): void;
+    /** Append strokes to a linestring. */
     emitStrokes(dest: LineString3d, options?: StrokeOptions): void;
     /**
-     * return true if the spline is (a) unclamped with (degree-1) matching knot intervals,
-     * (b) (degree-1) wrapped points,
-     * (c) marked wrappable from construction time.
+     * Test knots, control points, and wrappable flag to see if all agree for a possible wrapping.
+     * @returns the manner of closing.   Se BSplineWrapMode for particulars of each mode.
+     *
      */
-    readonly isClosable: boolean;
+    readonly isClosable: BSplineWrapMode;
     /**
-     * Return a BezierCurveBase for this curve.  The concrete return type may be BezierCuve3d or BezierCurve3dH according to this type.
+     * Return a BezierCurveBase for this curve.  The concrete return type may be BezierCurve3d or BezierCurve3dH according to this type.
      * @param spanIndex
      * @param result optional reusable curve.  This will only be reused if it is a BezierCurve3d with matching order.
      */
@@ -238,8 +279,15 @@ export declare class BSplineCurve3d extends BSplineCurve3dBase {
     /**
      * Set the flag indicating the bspline might be suitable for having wrapped "closed" interpretation.
      */
-    setWrappable(value: boolean): void;
+    setWrappable(value: BSplineWrapMode): void;
+    /** Second step of double dispatch:  call `handler.handleBSplineCurve3d(this)` */
     dispatchToGeometryHandler(handler: GeometryHandler): any;
+    /**
+     * Extend a range so in includes the range of this curve
+     * * REMARK: this is based on the poles, not the exact curve.  This is generally larger than the true curve range.
+     * @param rangeToExtend
+     * @param transform transform to apply to points as they are entered into the range.
+     */
     extendRange(rangeToExtend: Range3d, transform?: Transform): void;
 }
 //# sourceMappingURL=BSplineCurve.d.ts.map

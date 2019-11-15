@@ -2,8 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Angle_1 = require("./Angle");
 const Geometry_1 = require("../Geometry");
+/** @module CartesianGeometry */
 /**
- * An AngleSweep is a pair of angles at start and end of an interval.
+ * An `AngleSweep` is a pair of angles at start and end of an interval.
  *
  * *  For stroking purposes, the "included interval" is all angles numerically reached by theta = start + f*(end-start), where f is between 0 and 1.
  * *  This stroking formula is simple numbers -- 2PI shifts are not involved.
@@ -11,11 +12,22 @@ const Geometry_1 = require("../Geometry");
  * *  If (start < end) the angle proceeds CCW around the unit circle.
  * *  If (end < start) the angle proceeds CW around the unit circle.
  * *  Angles beyond 360 are fine as endpoints.
- *
- * **  (350,370) covers the same unit angles as (-10,10).
- * **  (370,350) covers the same unit angles as (10,-10).
+ *   *  (350,370) covers the same unit angles as (-10,10).
+ *   *  (370,350) covers the same unit angles as (10,-10).
+ * @public
  */
 class AngleSweep {
+    /** (private) constructor with start and end angles in radians.
+     *  * Use explicitly named static methods to clarify intent and units of inputs:
+     *
+     * * createStartEndRadians (startRadians:number, endRadians:number)
+     * * createStartEndDegrees (startDegrees:number, endDegrees:number)
+     * * createStartEnd (startAngle:Angle, endAngle:Angle)
+     * * createStartSweepRadians (startRadians:number, sweepRadians:number)
+     * * createStartSweepDegrees (startDegrees:number, sweepDegrees:number)
+     * * createStartSweep (startAngle:Angle, sweepAngle:Angle)
+     */
+    constructor(startRadians = 0, endRadians = 0) { this._radians0 = startRadians; this._radians1 = endRadians; }
     /** Read-property for degrees at the start of this AngleSweep. */
     get startDegrees() { return Angle_1.Angle.radiansToDegrees(this._radians0); }
     /** Read-property for degrees at the end of this AngleSweep. */
@@ -32,17 +44,6 @@ class AngleSweep {
     get startAngle() { return Angle_1.Angle.createRadians(this._radians0); }
     /** Return the (strongly typed) end angle */
     get endAngle() { return Angle_1.Angle.createRadians(this._radians1); }
-    /** (private) constructor with start and end angles in radians.
-     *  * Use explicitly named static methods to clarify intent and units of inputs:
-     *
-     * * createStartEndRadians (startRadians:number, endRadians:number)
-     * * createStartEndDegrees (startDegrees:number, endDegrees:number)
-     * * createStartEnd (startAngle:Angle, endAngle:Angle)
-     * * createStartSweepRadians (startRadians:number, sweepRadians:number)
-     * * createStartSweepDegrees (startDegrees:number, sweepDegrees:number)
-     * * createStartSweep (startAngle:Angle, sweepAngle:Angle)
-     */
-    constructor(startRadians = 0, endRadians = 0) { this._radians0 = startRadians; this._radians1 = endRadians; }
     /** create an AngleSweep from start and end angles given in radians. */
     static createStartEndRadians(startRadians = 0, endRadians = 2.0 * Math.PI, result) {
         result = result ? result : new AngleSweep();
@@ -65,7 +66,7 @@ class AngleSweep {
     static createStartSweep(startAngle, sweepAngle, result) {
         return AngleSweep.createStartSweepRadians(startAngle.radians, sweepAngle.radians, result);
     }
-    /** @returns Return a sweep with limits interpolated between this and other. */
+    /** Return a sweep with limits interpolated between this and other. */
     interpolate(fraction, other) {
         return new AngleSweep(Geometry_1.Geometry.interpolate(this._radians0, fraction, other._radians0), Geometry_1.Geometry.interpolate(this._radians1, fraction, other._radians1));
     }
@@ -137,7 +138,7 @@ class AngleSweep {
     fractionPeriod() {
         return Geometry_1.Geometry.safeDivideFraction(Math.PI * 2.0, Math.abs(this._radians1 - this._radians0), 1.0);
     }
-    /** return the fractional ized position of the angle,
+    /** return the fractionalized position of the angle,
      * computed without consideration of 2PI period.
      * That is, an angle that is numerically much beyond than the end angle
      * will produce a large fraction and an angle much beyond the start angle
@@ -163,9 +164,13 @@ class AngleSweep {
     radiansArraytoPositivePeriodicFractions(data) {
         const n = data.length;
         for (let i = 0; i < n; i++) {
-            data.reassign(i, this.radiansToPositivePeriodicFraction(data.at(i)));
+            data.reassign(i, this.radiansToPositivePeriodicFraction(data.atUncheckedIndex(i)));
         }
     }
+    /**
+     * Convert a radians value to a fraction that is always positive and can wrap.  See `angleToPositivePeriodicFraction` for detailed description.
+     * @param radians
+     */
     radiansToPositivePeriodicFraction(radians) {
         if (Angle_1.Angle.isAlmostEqualRadiansAllowPeriodShift(radians, this._radians0))
             return 0.0;
@@ -194,6 +199,9 @@ class AngleSweep {
     angleToSignedPeriodicFraction(theta) {
         return this.radiansToSignedPeriodicFraction(theta.radians);
     }
+    /**
+     * Convert a radians value to a fraction, allowing wraparound.  See `angleToSignedPeriodicFraction` for detailed description.
+     */
     radiansToSignedPeriodicFraction(radians) {
         if (Angle_1.Angle.isAlmostEqualRadiansAllowPeriodShift(radians, this._radians0))
             return 0.0;

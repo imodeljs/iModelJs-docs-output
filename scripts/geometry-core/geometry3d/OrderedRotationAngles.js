@@ -1,12 +1,21 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
+/** @module CartesianGeometry */
+const Geometry_1 = require("../Geometry");
 const Angle_1 = require("./Angle");
 const Matrix3d_1 = require("./Matrix3d");
-/** OrderedRotationAngles represents a non-trivial rotation using three simple axis rotation angles, and an order in which to apply them. */
+/**
+ * * OrderedRotationAngles represents a non-trivial rotation using three simple axis rotation angles, and an order in which to apply them.
+ * * This class accommodates application-specific interpretation of "Multiplying 3 rotation matrices" with regard to
+ *   * Whether a "vector" is a "row" or a "column"
+ *   * The order in which the X,Y, Z rotations are applied.
+ * * Within the imodel geometry library, the preferred rotation order is encapsulated in `YawPitchRollAngles`.
+ * @alpha
+ */
 class OrderedRotationAngles {
     constructor(x, y, z, axisOrder) {
         this._x = x;
@@ -14,18 +23,29 @@ class OrderedRotationAngles {
         this._z = z;
         this._order = axisOrder;
     }
-    // Getters and setters
+    /** (Property accessor) Return the `AxisOrder` controlling matrix multiplication order. */
     get order() { return this._order; }
+    /** (Property accessor) Return the strongly typed angle of rotation around x. */
     get xAngle() { return this._x.clone(); }
+    /** (Property accessor) Return the strongly typed angle of rotation around y. */
     get yAngle() { return this._y.clone(); }
+    /** (Property accessor) Return the strongly typed angle of rotation around z. */
     get zAngle() { return this._z.clone(); }
+    /** (Property accessor) Return the angle of rotation around x, in degrees */
     get xDegrees() { return this._x.degrees; }
+    /** (Property accessor) Return the angle of rotation around y, in degrees */
     get xRadians() { return this._x.radians; }
+    /** (Property accessor) Return the angle of rotation around z, in degrees */
     get yDegrees() { return this._y.degrees; }
+    /** (Property accessor) Return the angle of rotation around x, in radians */
     get yRadians() { return this._y.radians; }
+    /** (Property accessor) Return the angle of rotation around y, in radians */
     get zDegrees() { return this._z.degrees; }
+    /** (Property accessor) Return the angle of rotation around z, in radians */
     get zRadians() { return this._z.radians; }
+    /** (Property accessor) flag controlling whether vectors are treated as rows or as columns */
     static get treatVectorsAsColumns() { return OrderedRotationAngles._sTreatVectorsAsColumns; }
+    /** (Property set) flag controlling whether vectors are treated as rows or as columns */
     static set treatVectorsAsColumns(value) { OrderedRotationAngles._sTreatVectorsAsColumns = value; }
     /** Create an OrderedRotationAngles from three angles and an ordering in which to apply them when rotating.
      * @param xRotation rotation around x
@@ -80,7 +100,7 @@ class OrderedRotationAngles {
         let yRad;
         let zRad;
         switch (order) {
-            case 0 /* XYZ */: {
+            case Geometry_1.AxisOrder.XYZ: {
                 yRad = Math.asin(Math.max(-1, Math.min(1, m13)));
                 if (Math.abs(m13) < 0.99999) {
                     xRad = Math.atan2(-m23, m33);
@@ -92,7 +112,7 @@ class OrderedRotationAngles {
                 }
                 break;
             }
-            case 5 /* YXZ */: {
+            case Geometry_1.AxisOrder.YXZ: {
                 xRad = Math.asin(-Math.max(-1, Math.min(1, m23)));
                 if (Math.abs(m23) < 0.99999) {
                     yRad = Math.atan2(m13, m33);
@@ -104,7 +124,7 @@ class OrderedRotationAngles {
                 }
                 break;
             }
-            case 2 /* ZXY */: {
+            case Geometry_1.AxisOrder.ZXY: {
                 xRad = Math.asin(Math.max(-1, Math.min(1, m32)));
                 if (Math.abs(m32) < 0.99999) {
                     yRad = Math.atan2(-m31, m33);
@@ -116,7 +136,7 @@ class OrderedRotationAngles {
                 }
                 break;
             }
-            case 6 /* ZYX */: {
+            case Geometry_1.AxisOrder.ZYX: {
                 yRad = -Math.asin(Math.max(-1, Math.min(1, m31)));
                 if (Math.abs(m31) < 0.99999) {
                     xRad = Math.atan2(m32, m33);
@@ -128,7 +148,7 @@ class OrderedRotationAngles {
                 }
                 break;
             }
-            case 1 /* YZX */: {
+            case Geometry_1.AxisOrder.YZX: {
                 zRad = Math.asin(Math.max(-1, Math.min(1, m21)));
                 if (Math.abs(m21) < 0.99999) {
                     xRad = Math.atan2(-m23, m22);
@@ -140,7 +160,7 @@ class OrderedRotationAngles {
                 }
                 break;
             }
-            case 4 /* XZY */: {
+            case Geometry_1.AxisOrder.XZY: {
                 zRad = -Math.asin(Math.max(-1, Math.min(1, m12)));
                 if (Math.abs(m12) < 0.99999) {
                     xRad = Math.atan2(m32, m22);
@@ -176,27 +196,27 @@ class OrderedRotationAngles {
             d = -d;
             f = -f;
         }
-        if (axisOrder === 0 /* XYZ */) {
+        if (axisOrder === Geometry_1.AxisOrder.XYZ) {
             const ae = a * e, af = a * f, be = b * e, bf = b * f;
             rot.setRowValues(c * e, af + be * d, bf - ae * d, -c * f, ae - bf * d, be + af * d, d, -b * c, a * c);
         }
-        else if (axisOrder === 5 /* YXZ */) {
+        else if (axisOrder === Geometry_1.AxisOrder.YXZ) {
             const ce = c * e, cf = c * f, de = d * e, df = d * f;
             rot.setRowValues(ce + df * b, a * f, cf * b - de, de * b - cf, a * e, df + ce * b, a * d, -b, a * c);
         }
-        else if (axisOrder === 2 /* ZXY */) {
+        else if (axisOrder === Geometry_1.AxisOrder.ZXY) {
             const ce = c * e, cf = c * f, de = d * e, df = d * f;
             rot.setRowValues(ce - df * b, cf + de * b, -a * d, -a * f, a * e, b, de + cf * b, df - ce * b, a * c);
         }
-        else if (axisOrder === 6 /* ZYX */) {
+        else if (axisOrder === Geometry_1.AxisOrder.ZYX) {
             const ae = a * e, af = a * f, be = b * e, bf = b * f;
             rot.setRowValues(c * e, c * f, -d, be * d - af, bf * d + ae, b * c, ae * d + bf, af * d - be, a * c);
         }
-        else if (axisOrder === 1 /* YZX */) {
+        else if (axisOrder === Geometry_1.AxisOrder.YZX) {
             const ac = a * c, ad = a * d, bc = b * c, bd = b * d;
             rot.setRowValues(c * e, f, -d * e, bd - ac * f, a * e, ad * f + bc, bc * f + ad, -b * e, ac - bd * f);
         }
-        else if (axisOrder === 4 /* XZY */) {
+        else if (axisOrder === Geometry_1.AxisOrder.XZY) {
             const ac = a * c, ad = a * d, bc = b * c, bd = b * d;
             rot.setRowValues(c * e, ac * f + bd, bc * f - ad, -f, a * e, b * e, d * e, ad * f - bc, bd * f + ac);
         }
@@ -205,6 +225,6 @@ class OrderedRotationAngles {
         return rot;
     }
 }
-OrderedRotationAngles._sTreatVectorsAsColumns = false;
 exports.OrderedRotationAngles = OrderedRotationAngles;
+OrderedRotationAngles._sTreatVectorsAsColumns = false;
 //# sourceMappingURL=OrderedRotationAngles.js.map

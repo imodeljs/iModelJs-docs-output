@@ -1,14 +1,22 @@
 /** @module ArraysAndInterfaces */
+/**
+ * Type for a OptionalGrowableFloat64Array or undefined.
+ * @public
+ */
 export declare type OptionalGrowableFloat64Array = GrowableFloat64Array | undefined;
+/**
+ * Signature for a function which does lexical comparison of `blockSize` consecutive values as 2 starting indices.
+ * @public
+ */
 export declare type BlockComparisonFunction = (data: Float64Array, blockSize: number, index0: number, index1: number) => number;
 /**
  * A `GrowableFloat64Array` is Float64Array accompanied by a count of how many of the array's entries are considered in use.
  * * In C++ terms, this is like an std::vector
- * * As entries are added to the array, the buffer is reallocated as needed to accomodate.
+ * * As entries are added to the array, the buffer is reallocated as needed to accommodate.
  * * The reallocations leave unused space to accept further additional entries without reallocation.
  * * The `length` property returns the number of entries in use.
- * * the `capacity` property returns the (usually larger) length of the (overallocated) Float64Array.
- *
+ * * the `capacity` property returns the (usually larger) length of the (over-allocated) Float64Array.
+ * @public
  */
 export declare class GrowableFloat64Array {
     private _data;
@@ -19,6 +27,12 @@ export declare class GrowableFloat64Array {
      * @param contents data to copy into the array
      */
     static create(contents: Float64Array | number[]): GrowableFloat64Array;
+    /** sort-compatible comparison.
+     * * Returns `(a-b)` which is
+     *   * negative if `a<b`
+     *   * zero if `a === b` (with exact equality)
+     *   * positive if `a>b`
+     */
     static compare(a: any, b: any): number;
     /** Return a new array with
      * * All active entries copied from this instance
@@ -26,7 +40,8 @@ export declare class GrowableFloat64Array {
      */
     clone(maintainExcessCapacity?: boolean): GrowableFloat64Array;
     /**
-     * @returns the number of entries in use.
+     * Returns the number of entries in use.
+     * * Note that this is typically smaller than the length of the length of the supporting `Float64Array`
      */
     readonly length: number;
     /**
@@ -34,7 +49,7 @@ export declare class GrowableFloat64Array {
      * @param index index of entry to set
      * @param value value to set
      */
-    setAt(index: number, value: number): void;
+    setAtUncheckedIndex(index: number, value: number): void;
     /**
      * Move the value at index i to index j.
      * @param i source index
@@ -57,7 +72,8 @@ export declare class GrowableFloat64Array {
     /** Clear the array to 0 length.  The underlying memory remains allocated for reuse. */
     clear(): void;
     /**
-     * @returns the number of entries in the supporting Float64Array buffer.   This number is always at least as large as the `length` property.
+     * Returns the number of entries in the supporting Float64Array buffer.
+     * * This number can be larger than the `length` property.
      */
     capacity(): number;
     /**
@@ -76,12 +92,16 @@ export declare class GrowableFloat64Array {
     /**
      * * Reduce the length by one.
      * * Note that there is no method return value -- use `back` to get that value before `pop()`
-     * * (As with std::vector, seprating the `pop` from the value access elmiinates error testing from `pop` call)
+     * * (As with std::vector, separating the `pop` from the value access eliminates error testing from `pop` call)
      */
     pop(): void;
-    at(index: number): number;
+    /** Access by index, without bounds check */
+    atUncheckedIndex(index: number): number;
+    /** Access the 0-index member, without bounds check */
     front(): number;
+    /** Access the final member, without bounds check */
     back(): number;
+    /** set a value by index */
     reassign(index: number, value: number): void;
     /**
      * * Sort the array entries.
@@ -100,6 +120,6 @@ export declare class GrowableFloat64Array {
      * * compress out multiple copies of values.
      * * this is done in the current order of the array.
      */
-    compressAdjcentDuplicates(tolerance?: number): void;
+    compressAdjacentDuplicates(tolerance?: number): void;
 }
 //# sourceMappingURL=GrowableFloat64Array.d.ts.map

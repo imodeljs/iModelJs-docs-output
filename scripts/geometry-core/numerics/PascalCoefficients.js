@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 /**
  * PascalCoeffients class has static methods which return rows of the PascalTriangle.
- *
+ * @internal
  */
 class PascalCoefficients {
     /**
@@ -89,6 +89,6 @@ class PascalCoefficients {
         return result;
     }
 }
-PascalCoefficients._allRows = [];
 exports.PascalCoefficients = PascalCoefficients;
+PascalCoefficients._allRows = [];
 //# sourceMappingURL=PascalCoefficients.js.map

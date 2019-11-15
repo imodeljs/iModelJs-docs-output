@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 /** @module Curve */
@@ -9,6 +9,7 @@ const Point3dVector3d_1 = require("../geometry3d/Point3dVector3d");
 const Geometry_1 = require("../Geometry");
 /**
  * An enumeration of special conditions being described by a CurveLocationDetail.
+ * @public
  */
 var CurveIntervalRole;
 (function (CurveIntervalRole) {
@@ -25,6 +26,7 @@ var CurveIntervalRole;
 })(CurveIntervalRole = exports.CurveIntervalRole || (exports.CurveIntervalRole = {}));
 /**
  * Return code for CurvePrimitive method `moveSignedDistanceFromFraction`
+ * @public
  */
 var CurveSearchStatus;
 (function (CurveSearchStatus) {
@@ -50,6 +52,9 @@ function optionalVectorUpdate(source, result) {
 }
 /**
  * CurveLocationDetail carries point and paramter data about a point evaluated on a curve.
+ * * These are returned by a variety of queries.
+ * * Particular contents can vary among the queries.
+ * @public
  */
 class CurveLocationDetail {
     constructor() {
@@ -87,7 +92,7 @@ class CurveLocationDetail {
     /**
      * Updated in this instance.
      * * Note that if caller omits `vector` and `a`, those fields are updated to the call-list defaults (NOT left as-is)
-     * * point and vector updates are by data copy (not capture of arglist pointers)
+     * * point and vector updates are by data copy (not capture of pointers)
      * @param fraction (required) fraction to install
      * @param point  (required) point to install
      * @param vector (optional) vector to install.
@@ -102,7 +107,7 @@ class CurveLocationDetail {
     /**
      * Updated in this instance.
      * * Note that if caller omits a`, that field is updated to the call-list default (NOT left as-is)
-     * * point and vector updates are by data copy (not capture of arglist data.
+     * * point and vector updates are by data copy (not capture of the ray members)
      * @param fraction (required) fraction to install
      * @param ray  (required) point and vector to install
      * @param a (optional) numeric value to install.
@@ -136,6 +141,16 @@ class CurveLocationDetail {
         result.curveSearchStatus = undefined;
         return result;
     }
+    /**
+     * Create a new detail with only ray, fraction, and point.
+     */
+    static createRayFractionPoint(ray, fraction, point, result) {
+        result = result ? result : new CurveLocationDetail();
+        result.fraction = fraction;
+        result.ray = ray;
+        result.point.setFromPoint3d(point);
+        return result;
+    }
     /** create with CurvePrimitive pointer, fraction, and point coordinates
      */
     static createCurveFractionPointDistanceCurveSearchStatus(curve, fraction, point, distance, status, result) {
@@ -155,7 +170,7 @@ class CurveLocationDetail {
         let a = requestedSignedDistance;
         let status = CurveSearchStatus.success;
         if (!allowExtension && !Geometry_1.Geometry.isIn01(endFraction)) {
-            // cap the movement at the endponit
+            // cap the movement at the endpoint
             if (endFraction < 0.0) {
                 a = -curve.curveLengthBetweenFractions(startFraction, 0.0);
                 endFraction = 0.0;
@@ -215,14 +230,30 @@ class CurveLocationDetail {
     }
 }
 exports.CurveLocationDetail = CurveLocationDetail;
-/** A pair of CurveLocationDetail. */
+/** Enumeration of configurations for intersections and min/max distance-between-curve
+ * @public
+ */
+var CurveCurveApproachType;
+(function (CurveCurveApproachType) {
+    /** Intersection at a single point */
+    CurveCurveApproachType[CurveCurveApproachType["Intersection"] = 0] = "Intersection";
+    /** Distinct points on the two curves, with each curve's tangent perpendicular to the chord between the points */
+    CurveCurveApproachType[CurveCurveApproachType["PerpendicularChord"] = 1] = "PerpendicularChord";
+    /** Completely coincident geometry */
+    CurveCurveApproachType[CurveCurveApproachType["CoincidentGeometry"] = 2] = "CoincidentGeometry";
+    /** Completely parallel geometry. */
+    CurveCurveApproachType[CurveCurveApproachType["ParallelGeometry"] = 3] = "ParallelGeometry";
+})(CurveCurveApproachType = exports.CurveCurveApproachType || (exports.CurveCurveApproachType = {}));
+/** A pair of CurveLocationDetail.
+ * @public
+ */
 class CurveLocationDetailPair {
-    constructor() {
-        this.detailA = new CurveLocationDetail();
-        this.detailB = new CurveLocationDetail();
+    constructor(detailA, detailB) {
+        this.detailA = detailA ? detailA : new CurveLocationDetail();
+        this.detailB = detailB ? detailB : new CurveLocationDetail();
     }
     /** Create a curve detail pair using references to two CurveLocationDetails */
-    static createDetailRef(detailA, detailB, result) {
+    static createCapture(detailA, detailB, result) {
         result = result ? result : new CurveLocationDetailPair();
         result.detailA = detailA;
         result.detailB = detailB;
@@ -233,6 +264,7 @@ class CurveLocationDetailPair {
         result = result ? result : new CurveLocationDetailPair();
         result.detailA = this.detailA.clone();
         result.detailB = this.detailB.clone();
+        result.approachType = this.approachType;
         return result;
     }
 }

@@ -1,6 +1,6 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -14,6 +14,10 @@ var DataState;
     DataState[DataState["FactorOK"] = 1] = "FactorOK";
     DataState[DataState["FactorFailed"] = 2] = "FactorFailed";
 })(DataState || (DataState = {}));
+/**
+ * Linear system operations on a matrix with data only on the diagonal and its immediate left and right neighbors
+ * @internal
+ */
 class TriDiagonalSystem {
     constructor(n) {
         this._aLeft = new Float64Array(n);
@@ -21,54 +25,54 @@ class TriDiagonalSystem {
         this._aRight = new Float64Array(n);
         this._b = new Float64Array(n);
         this._x = new Float64Array(n);
-        this.Reset();
+        this.reset();
     }
-    // Reset to RawMatrix state with all coefficients zero
-    Reset() {
+    /** Reset to RawMatrix state with all coefficients zero */
+    reset() {
         this._dataState = DataState.RawMatrix;
         const n = this._aDiag.length;
         for (let i = 0; i < n; i++) {
             this._aLeft[i] = this._aRight[i] = this._aDiag[i] = this._b[i] = this._x[i] = 0.0;
         }
     }
-    // Install data in a row of the matrix
-    SetRow(row, left, diag, right) {
+    /** Install data in a row of the matrix */
+    setRow(row, left, diag, right) {
         this._aLeft[row] = left;
         this._aDiag[row] = diag;
         this._aRight[row] = right;
     }
-    // Add to row of matrix
-    AddToRow(row, left, diag, right) {
+    /** Add to row of matrix */
+    addToRow(row, left, diag, right) {
         this._aLeft[row] += left;
         this._aDiag[row] += diag;
         this._aRight[row] += right;
     }
-    // Install data in the right side (B) vector
-    SetB(row, bb) {
+    /** Install data in the right side (B) vector */
+    setB(row, bb) {
         this._b[row] = bb;
     }
-    // Add to an entry in the right side (B) vector
-    AddToB(row, bb) {
+    /** Add to an entry in the right side (B) vector */
+    addToB(row, bb) {
         this._b[row] += bb;
     }
-    // Access data from the right side (B) vector
-    GetB(row) {
+    /** Access data from the right side (B) vector */
+    getB(row) {
         return this._b[row];
     }
-    // Install data in the solution (X) vector
-    SetX(row, xx) {
+    /** Install data in the solution (X) vector */
+    setX(row, xx) {
         this._x[row] = xx;
     }
-    // Access data frin the solution (X) vector
-    GetX(row) {
+    /** Access data frin the solution (X) vector */
+    getX(row) {
         return this._x[row];
     }
-    // Get method for matrix and vector order
-    Order() {
+    /** Get method for matrix and vector order */
+    order() {
         return this._aDiag.length;
     }
-    // Compute product of AX and save as B
-    MultiplyAX() {
+    /** Compute product of AX and save as B */
+    multiplyAX() {
         if (this._dataState === DataState.FactorFailed) {
             return false;
         }
@@ -96,8 +100,8 @@ class TriDiagonalSystem {
             return true;
         }
     }
-    // Compute product of AX and save as B
-    MultiplyAXPoints(pointX, pointB) {
+    /** Compute product of AX and save as B */
+    multiplyAXPoints(pointX, pointB) {
         pointB.length = 0;
         while (pointB.length < pointX.length)
             pointB.push(Point3dVector3d_1.Point3d.create());
@@ -129,8 +133,8 @@ class TriDiagonalSystem {
             return true;
         }
     }
-    // Multiply the stored factors together to return to plain matrix form
-    Defactor() {
+    /** Multiply the stored factors together to return to plain matrix form */
+    defactor() {
         if (this._dataState === DataState.RawMatrix) {
             return true;
         }
@@ -146,8 +150,8 @@ class TriDiagonalSystem {
         this._dataState = DataState.RawMatrix;
         return true;
     }
-    // Factor the tridiagonal matrix to LU parts. b, x, not altered
-    Factor() {
+    /** Factor the tridiagonal matrix to LU parts. b, x, not altered */
+    factor() {
         if (this._dataState === DataState.FactorOK) {
             return true;
         }
@@ -167,11 +171,11 @@ class TriDiagonalSystem {
         this._dataState = DataState.FactorOK;
         return true;
     }
-    // Solve AX=B. A is left in factored state. B unchanged.
-    FactorAndBackSubstitute() {
+    /** Solve AX=B. A is left in factored state. B unchanged. */
+    factorAndBackSubstitute() {
         const n = this._aDiag.length;
         const n1 = n - 1;
-        if (!this.Factor())
+        if (!this.factor())
             return false;
         // Apply Linv to B, same sequence as was done to A:
         for (let i = 0; i < n; i++) {
@@ -189,8 +193,8 @@ class TriDiagonalSystem {
         }
         return true;
     }
-    // Solve AX=B. A is left in factored state. B unchanged. vectorB and vectorX may be the same array
-    FactorAndBackSubstitutePointArrays(vectorB, vectorX) {
+    /** Solve AX=B. A is left in factored state. B unchanged. vectorB and vectorX may be the same array */
+    factorAndBackSubstitutePointArrays(vectorB, vectorX) {
         const n = this._aDiag.length;
         if (vectorB.length < n)
             return false;
@@ -198,7 +202,7 @@ class TriDiagonalSystem {
             vectorX.push(Point3dVector3d_1.Point3d.create(0, 0, 0));
         vectorX.length = n;
         const n1 = n - 1;
-        if (!this.Factor())
+        if (!this.factor())
             return false;
         // Apply Linv to B, same sequence as was done to A:
         if (vectorB !== vectorX) {
@@ -230,8 +234,8 @@ class TriDiagonalSystem {
         }
         return true;
     }
-    // Allocate a complete copy
-    Copy() {
+    /** Allocate a complete copy */
+    copy() {
         const n = this._aDiag.length;
         const B = new TriDiagonalSystem(n);
         for (let i = 0; i < n; i++) {
@@ -244,7 +248,7 @@ class TriDiagonalSystem {
         B._dataState = this._dataState;
         return B;
     }
-    // return an array form that may be useful for display ...
+    /** return an array form that may be useful for display ... */
     flatten() {
         const n = this._aDiag.length;
         const data = [];
@@ -253,7 +257,7 @@ class TriDiagonalSystem {
         }
         return data;
     }
-    // return an array form that may be useful for display ...
+    /** return an array form that may be useful for display ... */
     flattenWithPoints(xyzB) {
         const n = this._aDiag.length;
         const data = [];

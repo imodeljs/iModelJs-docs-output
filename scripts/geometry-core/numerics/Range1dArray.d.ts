@@ -3,6 +3,7 @@ import { Range1d } from "../geometry3d/Range";
 import { GrowableFloat64Array } from "../geometry3d/GrowableFloat64Array";
 /**
  * A Range1d array is a set of intervals, such as occur when a line is clipped to a (nonconvex) polygon
+ * @internal
  */
 export declare class Range1dArray {
     /** Internal step: Caller supplies rangeA = interval from left operand of set difference {A - B}
@@ -18,17 +19,21 @@ export declare class Range1dArray {
      *  Returns true or false to indicate whether the value associated with rangeA or rangeB should be incremented after this function returns
      */
     private static advanceIntervalIntersection;
+    /** Boolean intersection among the (presorted) input ranges */
     static intersectSorted(dataA: Range1d[], dataB: Range1d[]): Range1d[];
     /** Internal step: Read an interval from the array.
-     *  If it overlaps the work interval, advance the work interval, and return true to notify caller to increment readindex.
+     *  If it overlaps the work interval, advance the work interval, and return true to notify caller to increment read index.
      */
     private static advanceIntervalUnion;
+    /** Boolean union among the (presorted) input ranges */
     static unionSorted(dataA: Range1d[], dataB: Range1d[]): Range1d[];
+    /** Boolean parity among the (presorted) input ranges */
     static paritySorted(dataA: Range1d[], dataB: Range1d[]): Range1d[];
-    /** Uses the Range1d specific compare function for sorting the array of ranges */
+    /** Uses the Range1d specific compare function `compareRange1dLexicalLowHigh` for sorting the array of ranges */
     static sort(data: Range1d[]): void;
     /** Cleans up the array, compressing any overlapping ranges. If removeZeroLengthRanges is set to true, will also remove any Ranges in the form (x, x) */
     static simplifySortUnion(data: Range1d[], removeZeroLengthRanges?: boolean): void;
+    /** Apply parity logic among ranges which are not pre-sorted. */
     static simplifySortParity(data: Range1d[], removeZeroLengthRanges?: boolean): void;
     /** test if value is "in" by union rules.
      * * This considers all intervals-- i.e. does not expect or take advantage of sorting.
@@ -46,7 +51,20 @@ export declare class Range1dArray {
      * @param sort optionally request immediate sort.
      * @param compress optionally request removal of duplicates.
      */
-    static getBreaks(data: Range1d[], result?: GrowableFloat64Array, sort?: boolean, compress?: boolean): GrowableFloat64Array;
+    static getBreaks(data: Range1d[], result?: GrowableFloat64Array, sort?: boolean, compress?: boolean, clear?: boolean): GrowableFloat64Array;
+    /**  evaluate a point at an array of given fraction values
+     * @param data array of ranges.
+     * @param initialRangeFraction fraction coordinate applied only to first range. (typically negative)
+     * @param rangeFraction fraction within each range.
+     * @param includeDegenerateRange if false, skip rangeFraction for 0-length ranges.
+     * @param gapFraction fraction within interval from each range high to successor low
+     * @param includeDegenerateGap if false, skip rangeFraction for 0-length gaps.
+     * @param finalRangeFraction fraction coordinate applied only to last range (typically an extrapolation above)
+     * @param result array to receive values
+     */
+    static appendFractionalPoints(data: Range1d[], initialRangeFraction: number | undefined, rangeFraction: number | undefined, includeDegenerateRange: boolean, gapFraction: number | undefined, includeDegenerateGap: boolean, finalRangeFraction: number | undefined, result: GrowableFloat64Array | number[]): GrowableFloat64Array | number[];
+    /** Return a single range constructed with the low of range 0 and high of final range in the set.  */
+    static firstLowToLastHigh(data: Range1d[]): Range1d;
     /** sum the lengths of all ranges */
     static sumLengths(data: Range1d[]): number;
     /**
@@ -56,6 +74,8 @@ export declare class Range1dArray {
      */
     static isSorted(data: Range1d[], strict?: boolean): boolean;
 }
-/** Checks low's first, then high's */
+/** Checks low's first, then high's
+ * @internal
+ */
 export declare function compareRange1dLexicalLowHigh(a: Range1d, b: Range1d): number;
 //# sourceMappingURL=Range1dArray.d.ts.map

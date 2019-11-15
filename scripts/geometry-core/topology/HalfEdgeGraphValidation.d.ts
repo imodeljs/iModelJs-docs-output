@@ -1,7 +1,7 @@
 /** @module Topology */
 import { HalfEdge, HalfEdgeGraph, HalfEdgeMask } from "./Graph";
 /** HalfEdgePointerInspector has methods to check HalfEdge objects for pointer errors.
- * * For a one-step test of the whole grpah,
+ * * For a one-step test of the whole graph,
  */
 export declare class HalfEdgePointerInspector {
     numUndefinedEdgeMate: number;
@@ -21,8 +21,8 @@ export declare class HalfEdgePointerInspector {
      * * For each he:  `he.facePredecessor.faceSuccessor !== he`
      */
     readonly isValidClosedHalfEdgeGraph: boolean;
-    /** Return true if all counts are correct for a half edge graph that is complete except for unmated boundaries:
-     * * For each he:  `he.edgeMate.edgeMate === he` except where `he.edgeMate === undefined`
+    /** Return true if all counts are correct for a half edge graph that has complete pairings:
+     * * For each he:  `he.edgeMate.edgeMate === he`
      * * For each he:  `he.faceSuccessor.facePredecessor !== he`
      * * For each he:  `he.facePredecessor.faceSuccessor !== he`
      */
@@ -37,7 +37,7 @@ export declare class HalfEdgePointerInspector {
      */
     static inspectGraph(graph: HalfEdgeGraph, expectAllMates: boolean): boolean;
 }
-/** static methods to inpsect mask consistency properties in HalfEdgeGraph. */
+/** static methods to inspect mask consistency properties in HalfEdgeGraph. */
 export declare class HalfEdgeMaskValidation {
     /**
      * Test if a mask is used consistently around faces.

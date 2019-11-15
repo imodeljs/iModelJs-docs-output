@@ -6,17 +6,28 @@
  * allocation.
  * For methods names setupGauss<N> (where N is a smallish integer), the CALLER creates arrays xMapped and wMapped
  * The method installs particular x and weight values.
+ * @internal
  */
 export declare class Quadrature {
+    /** x value for 1 point gauss rule in 0..1 interval */
     static readonly gaussX1Interval01: Float64Array;
+    /** weight for 1 point gauss rule in 0..1 interval */
     static readonly gaussW1Interval01: Float64Array;
+    /** x value for 2 point gauss rule in 0..1 interval */
     static readonly gaussX2Interval01: Float64Array;
+    /** weight for 2 point gauss rule in 0..1 interval */
     static readonly gaussW2Interval01: Float64Array;
+    /** x value for 3 point gauss rule in 0..1 interval */
     static readonly gaussX3Interval01: Float64Array;
+    /** weight for 3 point gauss rule in 0..1 interval */
     static readonly gaussW3Interval01: Float64Array;
+    /** x value for 4 point gauss rule in 0..1 interval */
     static readonly gaussX4Interval01: Float64Array;
+    /** weight for 4 point gauss rule in 0..1 interval */
     static readonly gaussW4Interval01: Float64Array;
+    /** x value for 5 point gauss rule in 0..1 interval */
     static readonly gaussX5Interval01: Float64Array;
+    /** weight for 5 point gauss rule in 0..1 interval */
     static readonly gaussW5Interval01: Float64Array;
     /**
      * Given points and weights in a reference interval (usually 0 to 1):
@@ -33,15 +44,37 @@ export declare class Quadrature {
      * @param wMapped weights for evaluated integrands
      */
     static mapWeights(xA: number, h: number, xRef: Float64Array, wRef: Float64Array, xMapped: Float64Array, wMapped: Float64Array): number;
+    /** Install 1 (ONE) x and weight values for quadrature from xA to xB. */
     static setupGauss1(xA: number, xB: number, xMapped: Float64Array, wMapped: Float64Array): number;
+    /** Install 2 (TWO) x and weight values for quadrature from xA to xB. */
     static setupGauss2(xA: number, xB: number, xMapped: Float64Array, wMapped: Float64Array): number;
+    /** Install 3 (THREE) x and weight values for quadrature from xA to xB. */
     static setupGauss3(xA: number, xB: number, xMapped: Float64Array, wMapped: Float64Array): number;
-    /** Caller allocates and passes Float6dArray of length
-     * These are filled with x and weight for quadrature between xA and xB
-     */
+    /** Install 5 (FIVE) x and weight values for quadrature from xA to xB. */
     static setupGauss5(xA: number, xB: number, xMapped: Float64Array, wMapped: Float64Array): number;
+    /** Install 4 (FOUR) x and weight values for quadrature from xA to xB. */
     static setupGauss4(xA: number, xB: number, xMapped: Float64Array, wMapped: Float64Array): number;
-    /** Sum function values with given weghts and x values. */
+    /** Sum function values with given weights and x values. */
     static sum1(xx: Float64Array, ww: Float64Array, n: number, f: (x: number) => number): number;
+}
+/**
+ * This class carries public members as needed for users to have gauss points that are used
+ * in the callers loops.
+ * @internal
+ */
+export declare class GaussMapper {
+    /** x values for integration */
+    gaussX: Float64Array;
+    /** weights for integration */
+    gaussW: Float64Array;
+    /** function to be called (at each interval) to map integration values */
+    mapXAndWFunction: (xA: number, xB: number, xx: Float64Array, ww: Float64Array) => number;
+    /** Execute the mapXAndWFunction to set up arrays for integration from xA to xB */
+    mapXAndW(xA: number, xB: number): number;
+    /** setup gauss arrays.
+     * * Number of gauss points must be 1 to 5 (inclusive)
+     * @param numGauss requested number of gauss points.
+     */
+    constructor(numGaussPoints: number);
 }
 //# sourceMappingURL=Quadrature.d.ts.map

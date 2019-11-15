@@ -4,6 +4,7 @@ import { Ray3d } from "../geometry3d/Ray3d";
 import { CurvePrimitive } from "./CurvePrimitive";
 /**
  * An enumeration of special conditions being described by a CurveLocationDetail.
+ * @public
  */
 export declare enum CurveIntervalRole {
     /** This point is an isolated point NOT at a primary vertex. */
@@ -19,6 +20,7 @@ export declare enum CurveIntervalRole {
 }
 /**
  * Return code for CurvePrimitive method `moveSignedDistanceFromFraction`
+ * @public
  */
 export declare enum CurveSearchStatus {
     /** unimplemented or zero length curve  */
@@ -30,13 +32,18 @@ export declare enum CurveSearchStatus {
 }
 /**
  * CurveLocationDetail carries point and paramter data about a point evaluated on a curve.
+ * * These are returned by a variety of queries.
+ * * Particular contents can vary among the queries.
+ * @public
  */
 export declare class CurveLocationDetail {
     /** The curve being evaluated */
     curve?: CurvePrimitive;
+    /** optional ray */
+    ray?: Ray3d;
     /** The fractional position along the curve */
     fraction: number;
-    /** Deail condition of the role this point has in some context */
+    /** Detail condition of the role this point has in some context */
     intervalRole?: CurveIntervalRole;
     /** The point on the curve */
     point: Point3d;
@@ -53,7 +60,7 @@ export declare class CurveLocationDetail {
      * * e.g. CurvePrimitive.moveSignedDistanceFromFraction
      */
     curveSearchStatus?: CurveSearchStatus;
-    /** A context-specific addtional point */
+    /** A context-specific additional point */
     pointQ: Point3d;
     constructor();
     /** Set the (optional) intervalRole field */
@@ -68,7 +75,7 @@ export declare class CurveLocationDetail {
     /**
      * Updated in this instance.
      * * Note that if caller omits `vector` and `a`, those fields are updated to the call-list defaults (NOT left as-is)
-     * * point and vector updates are by data copy (not capture of arglist pointers)
+     * * point and vector updates are by data copy (not capture of pointers)
      * @param fraction (required) fraction to install
      * @param point  (required) point to install
      * @param vector (optional) vector to install.
@@ -78,7 +85,7 @@ export declare class CurveLocationDetail {
     /**
      * Updated in this instance.
      * * Note that if caller omits a`, that field is updated to the call-list default (NOT left as-is)
-     * * point and vector updates are by data copy (not capture of arglist data.
+     * * point and vector updates are by data copy (not capture of the ray members)
      * @param fraction (required) fraction to install
      * @param ray  (required) point and vector to install
      * @param a (optional) numeric value to install.
@@ -95,6 +102,10 @@ export declare class CurveLocationDetail {
     /** create with CurvePrimitive pointer, fraction, and point coordinates.
      */
     static createCurveFractionPoint(curve: CurvePrimitive, fraction: number, point: Point3d, result?: CurveLocationDetail): CurveLocationDetail;
+    /**
+     * Create a new detail with only ray, fraction, and point.
+     */
+    static createRayFractionPoint(ray: Ray3d, fraction: number, point: Point3d, result?: CurveLocationDetail): CurveLocationDetail;
     /** create with CurvePrimitive pointer, fraction, and point coordinates
      */
     static createCurveFractionPointDistanceCurveSearchStatus(curve: CurvePrimitive, fraction: number, point: Point3d, distance: number, status: CurveSearchStatus, result?: CurveLocationDetail): CurveLocationDetail;
@@ -117,13 +128,34 @@ export declare class CurveLocationDetail {
      */
     updateIfCloserCurveFractionPointDistance(curve: CurvePrimitive, fraction: number, point: Point3d, a: number): boolean;
 }
-/** A pair of CurveLocationDetail. */
+/** Enumeration of configurations for intersections and min/max distance-between-curve
+ * @public
+ */
+export declare enum CurveCurveApproachType {
+    /** Intersection at a single point */
+    Intersection = 0,
+    /** Distinct points on the two curves, with each curve's tangent perpendicular to the chord between the points */
+    PerpendicularChord = 1,
+    /** Completely coincident geometry */
+    CoincidentGeometry = 2,
+    /** Completely parallel geometry. */
+    ParallelGeometry = 3
+}
+/** A pair of CurveLocationDetail.
+ * @public
+ */
 export declare class CurveLocationDetailPair {
+    /** The first of the two details ... */
     detailA: CurveLocationDetail;
+    /** The second of the two details ... */
     detailB: CurveLocationDetail;
-    constructor();
+    /** enumeration of how the detail pairs relate.
+     * * This is set only by certain closeApproach calculations.
+     */
+    approachType?: CurveCurveApproachType;
+    constructor(detailA?: CurveLocationDetail, detailB?: CurveLocationDetail);
     /** Create a curve detail pair using references to two CurveLocationDetails */
-    static createDetailRef(detailA: CurveLocationDetail, detailB: CurveLocationDetail, result?: CurveLocationDetailPair): CurveLocationDetailPair;
+    static createCapture(detailA: CurveLocationDetail, detailB: CurveLocationDetail, result?: CurveLocationDetailPair): CurveLocationDetailPair;
     /** Make a deep copy of this CurveLocationDetailPair */
     clone(result?: CurveLocationDetailPair): CurveLocationDetailPair;
 }

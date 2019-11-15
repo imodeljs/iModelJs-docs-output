@@ -1,6 +1,6 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -9,7 +9,26 @@ const Geometry_1 = require("../Geometry");
 const Angle_1 = require("./Angle");
 const Matrix3d_1 = require("./Matrix3d");
 const Point3dVector3d_1 = require("./Point3dVector3d");
-/** Three angles that determine the orientation of an object in space. Sometimes referred to as [Tait–Bryan angles](https://en.wikipedia.org/wiki/Euler_angles). */
+// cspell:word Tait
+/** Three angles that determine the orientation of an object in space. Sometimes referred to as [Tait–Bryan angles](https://en.wikipedia.org/wiki/Euler_angles).
+ * * The matrix construction can be replicated by this logic:
+ * * xyz coordinates have
+ *   * x forward
+ *   * y to left
+ *   * z up
+ *   * Note that this is a right handed coordinate system.
+ *   * yaw is a rotation of x towards y, i.e. around positive z:
+ *     * `yawMatrix = Matrix3d.createRotationAroundAxisIndex(2, Angle.createDegrees(yawDegrees));`
+ *   * pitch is a rotation that raises x towards z, i.e. rotation around negative y:
+ *     * `pitchMatrix = Matrix3d.createRotationAroundAxisIndex(1, Angle.createDegrees(-pitchDegrees));`
+ *   * roll is rotation of y towards z, i.e. rotation around positive x:
+ *     * `rollMatrix = Matrix3d.createRotationAroundAxisIndex(0, Angle.createDegrees(rollDegrees));`
+ *   * The YPR matrix is the product
+ *     * `result = yawMatrix.multiplyMatrixMatrix(pitchMatrix.multiplyMatrixMatrix(rollMatrix));`
+ *   * Note that this is for "column based" matrix, with vectors appearing to the right
+ *     * Hence a vector is first rotated by roll, then the pitch, finally yaw.
+ * @public
+ */
 class YawPitchRollAngles {
     constructor(yaw = Angle_1.Angle.zero(), pitch = Angle_1.Angle.zero(), roll = Angle_1.Angle.zero()) {
         this.yaw = yaw;
@@ -26,10 +45,12 @@ class YawPitchRollAngles {
     static createRadians(yawRadians, pitchRadians, rollRadians) {
         return new YawPitchRollAngles(Angle_1.Angle.createRadians(yawRadians), Angle_1.Angle.createRadians(pitchRadians), Angle_1.Angle.createRadians(rollRadians));
     }
+    /** construct a `YawPitchRoll` object from an object with 3 named angles */
     static fromJSON(json) {
         json = json ? json : {};
         return new YawPitchRollAngles(Angle_1.Angle.fromJSON(json.yaw), Angle_1.Angle.fromJSON(json.pitch), Angle_1.Angle.fromJSON(json.roll));
     }
+    /** populate yaw, pitch and roll fields using `Angle.fromJSON` */
     setFromJSON(json) {
         json = json ? json : {};
         this.yaw = Angle_1.Angle.fromJSON(json.yaw);
@@ -86,7 +107,7 @@ class YawPitchRollAngles {
         const s2 = Math.sin(this.roll.radians);
         return Matrix3d_1.Matrix3d.createRowValues(c0 * c1, -(s0 * c2 + c0 * s1 * s2), (s0 * s2 - c0 * s1 * c2), s0 * c1, (c0 * c2 - s0 * s1 * s2), -(c0 * s2 + s0 * s1 * c2), s1, c1 * s2, c1 * c2, result);
     }
-    /** @returns Return the largest angle in radians */
+    /** Return the largest angle in radians */
     maxAbsRadians() {
         return Geometry_1.Geometry.maxAbsXYZ(this.yaw.radians, this.pitch.radians, this.roll.radians);
     }
@@ -94,7 +115,10 @@ class YawPitchRollAngles {
     sumSquaredRadians() {
         return Geometry_1.Geometry.hypotenuseSquaredXYZ(this.yaw.radians, this.pitch.radians, this.roll.radians);
     }
-    /** @returns true if the rotation is 0 */
+    /** Returns true if this rotation does nothing.
+     * * If allowPeriodShift is false, any nonzero angle is considered a non-identity
+     * * If allowPeriodShift is true, all angles are individually allowed to be any multiple of 360 degrees.
+     */
     isIdentity(allowPeriodShift = true) {
         if (allowPeriodShift)
             return Angle_1.Angle.isAlmostEqualRadiansAllowPeriodShift(0.0, this.yaw.radians)

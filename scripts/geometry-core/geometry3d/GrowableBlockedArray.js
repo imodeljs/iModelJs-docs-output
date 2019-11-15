@@ -3,10 +3,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /** @module ArraysAndInterfaces */
 /**
  * Array of contiguous doubles, indexed by block number and index within block.
- * * This is essentially a rectangular matrix, with each block being a row of the matrix.
+ * * This is essentially a rectangular matrix (two dimensional array), with each block being a row of the matrix.
+ * @public
  */
 class GrowableBlockedArray {
     constructor(blockSize, initialBlocks = 8) {
+        /** array contents in blocked (row-major) order, possibly with extra capacity
+         * Total capacity is `this._data.length`
+         * Actual in-use count is `this._inUse * this._blockSize`
+         */
         this._data = new Float64Array(initialBlocks * blockSize);
         this._inUse = 0;
         this._blockSize = blockSize;
@@ -16,7 +21,7 @@ class GrowableBlockedArray {
     /** property: number of data values per block */
     get numPerBlock() { return this._blockSize; }
     /**
-     * Return a single value indexed within a blcok
+     * Return a single value indexed within a block
      * @param blockIndex index of block to read
      * @param indexInBlock  offset within the block
      */
@@ -61,7 +66,7 @@ class GrowableBlockedArray {
     newBlockIndex() {
         const index = this._blockSize * this._inUse;
         if ((index + 1) > this._data.length)
-            this.ensureBlockCapacity(2 * this._inUse);
+            this.ensureBlockCapacity(1 + 2 * this._inUse);
         this._inUse++;
         for (let i = index; i < index + this._blockSize; i++)
             this._data[i] = 0.0;
@@ -84,7 +89,7 @@ class GrowableBlockedArray {
     component(blockIndex, componentIndex) {
         return this._data[this._blockSize * blockIndex + componentIndex];
     }
-    /** compre two blocks in simple lexical order.
+    /** compare two blocks in simple lexical order.
      * @param data data array
      * @param blockSize number of items to compare
      * @param ia raw index (not block index) of first block
@@ -119,6 +124,7 @@ class GrowableBlockedArray {
         // console.log (n, numCompare);
         return result;
     }
+    /** Return the distance (hypotenuse=sqrt(summed squares)) between indicated blocks */
     distanceBetweenBlocks(blockIndexA, blockIndexB) {
         let dd = 0.0;
         let iA = this.blockIndexToDoubleIndex(blockIndexA);
@@ -131,6 +137,7 @@ class GrowableBlockedArray {
         }
         return Math.sqrt(dd);
     }
+    /** Return the distance (hypotenuse=sqrt(summed squares)) between block entries `iBegin <= i < iEnd` of indicated blocks */
     distanceBetweenSubBlocks(blockIndexA, blockIndexB, iBegin, iEnd) {
         let dd = 0.0;
         const iA = this.blockIndexToDoubleIndex(blockIndexA);

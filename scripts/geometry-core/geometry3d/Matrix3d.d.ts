@@ -2,17 +2,27 @@ import { AxisOrder, AxisIndex, BeJSONFunctions, StandardViewIndex } from "../Geo
 import { Angle } from "./Angle";
 import { Point4d } from "../geometry4d/Point4d";
 import { Point2d } from "./Point2dVector2d";
-import { XYAndZ, XAndY, Matrix3dProps } from "./XYZProps";
+import { XYAndZ, XAndY, Matrix3dProps, WritableXYAndZ } from "./XYZProps";
 import { XYZ, Point3d, Vector3d } from "./Point3dVector3d";
 import { Transform } from "./Transform";
 /** A Matrix3d is tagged indicating one of the following states:
  * * unknown: it is not know if the matrix is invertible.
  * * inverseStored: the matrix has its inverse stored
  * * singular: the matrix is known to be singular.
+ * @public
  */
 export declare enum InverseMatrixState {
+    /**
+     * * The invertibility of the  `coffs` array has not been determined.
+     * * Any `inverseCoffs` contents are random.
+     */
     unknown = 0,
+    /** An inverse was computed and stored as the `inverseCoffs` */
     inverseStored = 1,
+    /**
+     * * The `coffs` array is known to be singular.
+     * * Any `inverseCoffs` contents are random.
+     */
     singular = 2
 }
 /** A Matrix3d is a 3x3 matrix.
@@ -29,13 +39,25 @@ export declare enum InverseMatrixState {
  * * Most matrix queries are present with both "column" and "row" variants.
  * * Usage elsewhere in the library is typically "column" based.  For example, in a Transform
  *     that carries a coordinate frame the matrix columns are the unit vectors for the axes.
+ * @public
  */
 export declare class Matrix3d implements BeJSONFunctions {
+    /** Control flag for whether this class uses cached inverse of matrices. */
     static useCachedInverse: boolean;
+    /** total number of times a cached inverse was used to avoid recompute */
     static numUseCache: number;
+    /** total number of times a cached inverse was computed. */
     static numComputeCache: number;
+    /** Matrix contents as a flat array of numbers in row-major order.
+     * * DO NOT directly modify this array.  It will destroy safety of the cached inverse state.
+     */
     coffs: Float64Array;
+    /** matrix inverse contents.
+     * * DO NOT directly modify this array.  It will destroy integrity of the cached inverse state.
+     *
+     */
     inverseCoffs: Float64Array | undefined;
+    /** indicates if inverse is unknown, available, or known singular */
     inverseState: InverseMatrixState;
     private static _identity;
     /** The identity Matrix3d. Value is frozen and cannot be modified. */
@@ -51,8 +73,13 @@ export declare class Matrix3d implements BeJSONFunctions {
      * `[ [1, 2, 3],[ 4, 5, 6], [7, 8, 9] ]`
      */
     toJSON(): Matrix3dProps;
+    /** copy data from various input forms to this matrix:
+     * * Another `Matrix3d`
+     * * An array of 3 arrays, each of which has the 3 numbers for a row of the matrix.
+     * * An array of 9 numbers in row major order.
+     */
     setFromJSON(json?: Matrix3dProps): void;
-    /** @returns Return a new Matrix3d constructed from contents of the json value. */
+    /** Return a new Matrix3d constructed from contents of the json value. Se `setFromJSON` for layout rules */
     static fromJSON(json?: Matrix3dProps): Matrix3d;
     /** Test if this Matrix3d and other are within tolerance in all numeric entries.
      * @param tol optional tolerance for comparisons by Geometry.isDistanceWithinTol
@@ -63,7 +90,7 @@ export declare class Matrix3d implements BeJSONFunctions {
     /** test if all entries in the z row and column are exact 001, i.e. the matrix only acts in 2d */
     readonly isXY: boolean;
     private static _create;
-    /** @returns a Matrix3d populated by numeric values given in row-major order.
+    /** Returns a Matrix3d populated by numeric values given in row-major order.
      *  set all entries in the matrix from call parameters appearing in row - major order.
      * @param axx Row x, column x(0, 0) entry
      * @param axy Row x, column y(0, 1) entry
@@ -85,6 +112,14 @@ export declare class Matrix3d implements BeJSONFunctions {
      * @returns a Matrix3d populated by a coffs array.
      */
     static createCapture(coffs: Float64Array, inverseCoffs?: Float64Array): Matrix3d;
+    /**
+     * create a matrix by distributing vectors to columns in one of 6 orders.
+     * @param axisOrder identifies where the columns are placed.
+     * @param columnA vector to place in the first column named by the axis order.
+     * @param columnB vector to place in the second column named by the axis order.
+     * @param columnC vector to place in the third column named by the axis order.
+     * @param result
+     */
     static createColumnsInAxisOrder(axisOrder: AxisOrder, columnA: Vector3d, columnB: Vector3d, columnC: Vector3d | undefined, result?: Matrix3d): Matrix3d;
     /**
      *  set all entries in the matrix from call parameters appearing in row-major order.
@@ -99,11 +134,29 @@ export declare class Matrix3d implements BeJSONFunctions {
      * @param azz row z, column z (2,3) entry
      */
     setRowValues(axx: number, axy: number, axz: number, ayx: number, ayy: number, ayz: number, azx: number, azy: number, azz: number): void;
+    /** Set the matrix to an identity. */
     setIdentity(): void;
+    /** Set the matrix to all zeros. */
     setZero(): void;
+    /** copy contents from another matrix. */
     setFrom(other: Matrix3d): void;
+    /** return a clone of this matrix.
+     * * coefficients are copied.
+     * * inverse coefficients are NOT copied.
+     * * inverse status is set to unknown
+     */
     clone(result?: Matrix3d): Matrix3d;
+    /** create a matrix with all zeros.
+     * * Note that for geometry transformations "all zeros" is not a useful default state.
+     * * Hence almost always use `createIdentity` for graphics transformations.
+     * * "all zeros" is appropriate for summing moment data.
+     */
     static createZero(): Matrix3d;
+    /** create an identity matrix
+     * * all diagonal entries (xx,yy,zz) are one
+     * * all others are zero.
+     * * This (rather than all zeros) is the useful state for most graphics transformations.
+     */
     static createIdentity(result?: Matrix3d): Matrix3d;
     /** Create a matrix with uniform scale factors */
     static createUniformScale(scaleFactor: number): Matrix3d;
@@ -132,9 +185,9 @@ export declare class Matrix3d implements BeJSONFunctions {
     static createPerpendicularVectorFavorPlaneContainingZ(vector: Vector3d, result?: Vector3d): Vector3d;
     /** Create a matrix with distinct x,y,z diagonal (scale) entries */
     static createScale(scaleFactorX: number, scaleFactorY: number, scaleFactorZ: number, result?: Matrix3d): Matrix3d;
-    /** @returns return a rotation of specified angle around an axis */
+    /** return a rotation of specified angle around an axis */
     static createRotationAroundVector(axis: Vector3d, angle: Angle, result?: Matrix3d): Matrix3d | undefined;
-    /** @returns return a rotation of specified angle around an axis
+    /** Returns a rotation of specified angle around an axis
      * @param axisIndex index of axis (AxisIndex.X, AxisIndex.Y, AxisIndex.Z) kept fixed by the rotation.
      * @param angle angle of rotation
      * @param result optional result matrix.
@@ -144,7 +197,7 @@ export declare class Matrix3d implements BeJSONFunctions {
      * * ColumnX points in the rightVector direction
      * * ColumnY points in in the upVectorDirection
      * * ColumnZ is a unit cross product.
-     * Optinoally rotate the standard cube by 45 to bring its left or right vertical edge to center
+     * Optionally rotate the standard cube by 45 to bring its left or right vertical edge to center
      * * leftNoneRight = [-1,0,1] respectively for left edge, no rotation, or right edge
      * * bottomNoneTop = [-1,0,1] respectively for isometric rotation to view the bottom, no isometric rotation, and isometric rotation to view the top
      * This is expected to be used with various principal unit vectors that are perpendicular to each other.
@@ -155,15 +208,15 @@ export declare class Matrix3d implements BeJSONFunctions {
      *  * STANDARD LEFT VIEW: (Vector3d.UnitY (-1), Vector3d.UnitZ (), 0, 0)
      *  * STANDARD BOTTOM VIEW: (Vector3d.UnitX (1), Vector3d.UnitY (-1), 0, 0)
      * @param leftNoneRight Normally one of {-1,0,1}, where (-1) indicates the left vertical is rotated to center and (1) for right.  Other numbers are used as multiplier for this 45 degree rotation
-     * @returns undefined if columNX, columnY are coplanar.
+     * @returns undefined if columnX, columnY are coplanar.
      */
     static createViewedAxes(rightVector: Vector3d, upVector: Vector3d, leftNoneRight?: number, topNoneBottom?: number): Matrix3d | undefined;
     /**
      * Create a rotation matrix for one of the 8 standard views.
      * * With `invert === false` the return is such that `matrix.multiply(worldVector)` returns the vector as seen in the xy (projected) coordinates of the view.
-     * * With invert === true the matrix is transposed so that `matrix.mutiply(viewVector` maps the "in view" vector to a world vector.
+     * * With invert === true the matrix is transposed so that `matrix.multiply(viewVector` maps the "in view" vector to a world vector.
      *
-     * @param index standard veiw index `StandardViewIndex.Top, Bottom, LEft, Right, Front, Back, Iso, LeftIso`
+     * @param index standard view index `StandardViewIndex.Top, Bottom, LEft, Right, Front, Back, Iso, LeftIso`
      * @param invert if false (default), the returned Matrix3d "projects" world vectors into XY view vectors.  If true, it is inverted to map view vectors to world.
      * @param result optional result.
      */
@@ -178,7 +231,7 @@ export declare class Matrix3d implements BeJSONFunctions {
         ok: boolean;
     };
     /**
-     * @returns return a matrix that rotates from vectorA to vectorB.
+     * Returns a matrix that rotates from vectorA to vectorB.
      */
     static createRotationVectorToVector(vectorA: Vector3d, vectorB: Vector3d, result?: Matrix3d): Matrix3d | undefined;
     /**
@@ -191,34 +244,34 @@ export declare class Matrix3d implements BeJSONFunctions {
     static createPartialRotationVectorToVector(vectorA: Vector3d, fraction: number, vectorB: Vector3d, result?: Matrix3d): Matrix3d | undefined;
     /** Create a 90 degree rotation around a principal axis */
     static create90DegreeRotationAroundAxis(axisIndex: number): Matrix3d;
-    /** @returns Return (a copy of) the X column */
+    /** Return (a copy of) the X column */
     columnX(result?: Vector3d): Vector3d;
-    /** @returns Return (a copy of)the Y column */
+    /** Return (a copy of)the Y column */
     columnY(result?: Vector3d): Vector3d;
-    /** @returns Return (a copy of)the Z column */
+    /** Return (a copy of)the Z column */
     columnZ(result?: Vector3d): Vector3d;
-    /** @returns Return the X column magnitude squared */
+    /** Return the X column magnitude squared */
     columnXMagnitudeSquared(): number;
-    /** @returns Return the Y column magnitude squared */
+    /** Return the Y column magnitude squared */
     columnYMagnitudeSquared(): number;
-    /** @returns Return the Z column magnitude squared */
+    /** Return the Z column magnitude squared */
     columnZMagnitudeSquared(): number;
-    /** @returns Return the X column magnitude */
+    /** Return the X column magnitude */
     columnXMagnitude(): number;
-    /** @returns Return the Y column magnitude */
+    /** Return the Y column magnitude */
     columnYMagnitude(): number;
-    /** @returns Return the Z column magnitude */
+    /** Return the Z column magnitude */
     columnZMagnitude(): number;
-    /** @returns Return magntiude of columnX cross columnY. */
+    /** Return magnitude of columnX cross columnY. */
     columnXYCrossProductMagnitude(): number;
-    /** @returns Return the X row magnitude d */
+    /** Return the X row magnitude d */
     rowXMagnitude(): number;
-    /** @returns Return the Y row magnitude  */
+    /** Return the Y row magnitude  */
     rowYMagnitude(): number;
-    /** @returns Return the Z row magnitude  */
+    /** Return the Z row magnitude  */
     rowZMagnitude(): number;
-    /** @returns the dot product of column X with column Y */
-    /** @returns the dot product of column X with column Y */
+    /** Return the dot product of column X with column Y */
+    /** Return the dot product of column X with column Y */
     columnXDotColumnY(): number;
     /** Return (a copy of) the X row */
     rowX(result?: Vector3d): Vector3d;
@@ -226,25 +279,25 @@ export declare class Matrix3d implements BeJSONFunctions {
     rowY(result?: Vector3d): Vector3d;
     /** Return (a copy of) the Z row */
     rowZ(result?: Vector3d): Vector3d;
-    /** @returns Return the dot product of the vector parameter with the X column. */
+    /** Return the dot product of the vector parameter with the X column. */
     dotColumnX(vector: XYZ): number;
-    /** @returns Return the dot product of the vector parameter with the Y column. */
+    /** Return the dot product of the vector parameter with the Y column. */
     dotColumnY(vector: XYZ): number;
-    /** @returns Return the dot product of the vector parameter with the Z column. */
+    /** Return the dot product of the vector parameter with the Z column. */
     dotColumnZ(vector: XYZ): number;
-    /** @returns Return the dot product of the vector parameter with the X row. */
+    /** Return the dot product of the vector parameter with the X row. */
     dotRowX(vector: XYZ): number;
-    /** @returns Return the dot product of the vector parameter with the Y row. */
+    /** Return the dot product of the vector parameter with the Y row. */
     dotRowY(vector: XYZ): number;
-    /** @returns Return the dot product of the vector parameter with the Z row. */
+    /** Return the dot product of the vector parameter with the Z row. */
     dotRowZ(vector: XYZ): number;
-    /** @returns Return the dot product of the x,y,z with the X row. */
+    /** Return the dot product of the x,y,z with the X row. */
     dotRowXXYZ(x: number, y: number, z: number): number;
-    /** @returns Return the dot product of the x,y,z with the Y row. */
+    /** Return the dot product of the x,y,z with the Y row. */
     dotRowYXYZ(x: number, y: number, z: number): number;
-    /** @returns Return the dot product of the x,y,z with the Z row. */
+    /** Return the dot product of the x,y,z with the Z row. */
     dotRowZXYZ(x: number, y: number, z: number): number;
-    /** @returns Return the (vector) cross product of the Z column with the vector parameter. */
+    /** Return the (vector) cross product of the Z column with the vector parameter. */
     columnZCrossVector(vector: XYZ, result?: Vector3d): Vector3d;
     /**
      * Replace current rows Ui Uj with (c*Ui - s*Uj) and (c*Uj + s*Ui)
@@ -322,13 +375,18 @@ export declare class Matrix3d implements BeJSONFunctions {
     setColumn(columnIndex: number, value: Vector3d | undefined): void;
     /** Set all columns of the matrix. Any undefined vector is zeros. */
     setColumns(vectorX: Vector3d | undefined, vectorY: Vector3d | undefined, vectorZ?: Vector3d | undefined): void;
-    setRow(columnIndex: number, value: Vector3d): void;
+    /**
+     * set entries in one row of the matrix.
+     * @param rowIndex row index. this is interpreted cyclically.
+     * @param value x,yz, values for row.  If undefined, zeros are installed.
+     */
+    setRow(rowIndex: number, value: Vector3d): void;
     /** Return a (copy of) a column of the matrix.
-     * @param i column index.  Thnis is corrected to 012 by Geoemtry.cyclic3dAxis.
+     * @param i column index.  This is corrected to 012 by Geometry.cyclic3dAxis.
      */
     getColumn(columnIndex: number, result?: Vector3d): Vector3d;
     /** Return a (copy of) a row of the matrix.
-     * @param i row index.  Thnis is corrected to 012 by Geoemtry.cyclic3dAxis.
+     * @param i row index.  This is corrected to 012 by Geometry.cyclic3dAxis.
      */
     getRow(columnIndex: number, result?: Vector3d): Vector3d;
     /** Create a matrix from column vectors, shuffled into place per AxisTriple */
@@ -345,10 +403,16 @@ export declare class Matrix3d implements BeJSONFunctions {
      * @return the vector result
      */
     multiplyVectorArrayInPlace(data: XYZ[]): void;
-    static XYZMinusMatrixTimesXYZ(origin: XYZ, matrix: Matrix3d, vector: XYZ, result?: Point3d): Point3d;
-    static XYPlusMatrixTimesXY(origin: XAndY, matrix: Matrix3d, vector: XAndY, result?: Point2d): Point2d;
-    static XYZPlusMatrixTimesXYZ(origin: XYZ, matrix: Matrix3d, vector: XYAndZ, result?: Point3d): Point3d;
-    static XYZPlusMatrixTimesCoordinates(origin: XYZ, matrix: Matrix3d, x: number, y: number, z: number, result?: Point3d): Point3d;
+    /** compute `origin - matrix * vector` */
+    static xyzMinusMatrixTimesXYZ(origin: XYAndZ, matrix: Matrix3d, vector: XYAndZ, result?: Point3d): Point3d;
+    /** compute  `origin + matrix * vector`  using only the xy parts of the inputs. */
+    static xyPlusMatrixTimesXY(origin: XAndY, matrix: Matrix3d, vector: XAndY, result?: Point2d): Point2d;
+    /** compute  `origin + matrix * vector`  using all xyz parts of the inputs. */
+    static xyzPlusMatrixTimesXYZ(origin: XYZ, matrix: Matrix3d, vector: XYAndZ, result?: Point3d): Point3d;
+    /** compute  `origin + matrix * vector`  using all xyz parts of the inputs. */
+    static xyzPlusMatrixTimesXYZInPlace(origin: XYZ, matrix: Matrix3d, vector: WritableXYAndZ): void;
+    /** compute `origin + matrix * vector` where the final vector is given as direct x,y,z coordinates */
+    static xyzPlusMatrixTimesCoordinates(origin: XYZ, matrix: Matrix3d, x: number, y: number, z: number, result?: Point3d): Point3d;
     /**
      * Treat the 3x3 matrix and origin as upper 3x4 part of a 4x4 matrix, with 0001 as the final row.
      * Multiply times point with coordinates `[x,y,z,w]`
@@ -360,7 +424,7 @@ export declare class Matrix3d implements BeJSONFunctions {
      * @param w w part of multiplied point
      * @param result optional result.
      */
-    static XYZPlusMatrixTimesWeightedCoordinates(origin: XYZ, matrix: Matrix3d, x: number, y: number, z: number, w: number, result?: Point4d): Point4d;
+    static xyzPlusMatrixTimesWeightedCoordinates(origin: XYZ, matrix: Matrix3d, x: number, y: number, z: number, w: number, result?: Point4d): Point4d;
     /**
      * Treat the 3x3 matrix and origin as upper 3x4 part of a 4x4 matrix, with 0001 as the final row.
      * Multiply times point with coordinates `[x,y,z,w]`
@@ -372,7 +436,7 @@ export declare class Matrix3d implements BeJSONFunctions {
      * @param w w part of multiplied point
      * @param result optional result.
      */
-    static XYZPlusMatrixTimesWeightedCoordinatesToFloat64Array(origin: XYZ, matrix: Matrix3d, x: number, y: number, z: number, w: number, result?: Float64Array): Float64Array;
+    static xyzPlusMatrixTimesWeightedCoordinatesToFloat64Array(origin: XYZ, matrix: Matrix3d, x: number, y: number, z: number, w: number, result?: Float64Array): Float64Array;
     /**
      * Treat the 3x3 matrix and origin as upper 3x4 part of a 4x4 matrix, with 0001 as the final row.
      * Multiply times point with coordinates `[x,y,z,w]`
@@ -384,7 +448,8 @@ export declare class Matrix3d implements BeJSONFunctions {
      * @param w w part of multiplied point
      * @param result optional result.
      */
-    static XYZPlusMatrixTimesCoordinatesToFloat64Array(origin: XYZ, matrix: Matrix3d, x: number, y: number, z: number, result?: Float64Array): Float64Array;
+    static xyzPlusMatrixTimesCoordinatesToFloat64Array(origin: XYZ, matrix: Matrix3d, x: number, y: number, z: number, result?: Float64Array): Float64Array;
+    /** Multiply transpose of this matrix times a vector. */
     multiplyTransposeVector(vector: Vector3d, result?: Vector3d): Vector3d;
     /** Multiply the matrix * (x,y,z), i.e. the vector (x,y,z) is a column vector on the right.
      * @return the vector result
@@ -399,6 +464,7 @@ export declare class Matrix3d implements BeJSONFunctions {
      *   @return the vector result
      */
     multiplyXY(x: number, y: number, result?: Vector3d): Vector3d;
+    /** compute `origin + this*[x,y,0]`  */
     originPlusMatrixTimesXY(origin: XYZ, x: number, y: number, result?: Point3d): Point3d;
     /** Multiply matrix * (x, y, z) using any 3d object given containing those members */
     multiplyVectorInPlace(xyzData: XYZ): void;
@@ -430,6 +496,10 @@ export declare class Matrix3d implements BeJSONFunctions {
      *   @return the matrix result
      */
     multiplyMatrixMatrix(other: Matrix3d, result?: Matrix3d): Matrix3d;
+    /** Multiply this matrix times inverse of other
+     *   @return the matrix result
+     */
+    multiplyMatrixMatrixInverse(other: Matrix3d, result?: Matrix3d): Matrix3d | undefined;
     /** Matrix multiplication `this * otherTranspose`
      * @return the matrix result
      */
@@ -462,7 +532,7 @@ export declare class Matrix3d implements BeJSONFunctions {
      * This means that in the final matrix:
      * * column A is strictly parallel to original column A
      * * column B is linear combination of only original A and B
-     * * column C is perpenedicular to A and B of both the original and final.
+     * * column C is perpendicular to A and B of both the original and final.
      * * original column C does not participate in the result.
      */
     axisOrderCrossProductsInPlace(axisOrder: AxisOrder): void;
@@ -475,10 +545,19 @@ export declare class Matrix3d implements BeJSONFunctions {
     /** Normalize each row in place */
     normalizeRowsInPlace(originalMagnitudes?: Vector3d): boolean;
     private static rowColumnDot;
+    /**
+     * Returns true if the matrix is singular (i.e. collapses data to a plane, line, or point)
+     */
+    isSingular(): boolean;
+    /**
+     * Mark this matrix as singular.
+     */
+    markSingular(): void;
     /** compute the inverse of this Matrix3d. The inverse is stored for later use.
      * @returns Return true if the inverse computed.  (False if the columns collapse to a point, line or plane.)
      */
     computeCachedInverse(useCacheIfAvailable: boolean): boolean;
+    /** convert a (row,column) index pair to the single index within flattened array of 9 numbers in row-major-order  */
     static flatIndexOf(row: number, column: number): number;
     /** Get a column by index (0,1,2), packaged as a Point4d with given weight.   Out of range index is interpreted cyclically.  */
     indexedColumnWithWeight(index: number, weight: number, result?: Point4d): Point4d;
@@ -513,6 +592,12 @@ export declare class Matrix3d implements BeJSONFunctions {
      * @param scale scale factor to apply to th eadded values.
      */
     addScaledInPlace(other: Matrix3d, scale: number): void;
+    /**
+     * add scaled values from other Matrix3d to this Matrix3d
+     * @param other Matrix3d with values to be added
+     * @param scale scale factor to apply to th eadded values.
+     */
+    addScaledOuterProductInPlace(vectorU: Vector3d, vectorV: Vector3d, scale: number): void;
     /** create a Matrix3d whose values are uniformly scaled from this.
      * @param scale scale factor to apply.
      * @param result optional result.
@@ -569,5 +654,17 @@ export declare class Matrix3d implements BeJSONFunctions {
      * columns are taken from the source Matrix3d in order indicated by the axis order.
      */
     static createRigidFromMatrix3d(source: Matrix3d, axisOrder?: AxisOrder, result?: Matrix3d): Matrix3d | undefined;
+    private static computeQuatTerm;
+    /** create a matrix from a quaternion.
+     * WARNING: There is frequent confusion over whether a "from quaternion" matrix is organized by rows and columns.
+     * WARNING: If you find that the matrix seems to rotate by the opposite angle expect it, transpose it.
+     */
+    static createFromQuaternion(quat: Point4d): Matrix3d;
+    /** convert the matrix to a quaternion.
+     * @note This calculation requires the matrix to have unit length rows and columns.
+     * WARNING: There is frequent confusion over whether a "from quaternion" matrix is organized by rows and columns.
+     * WARNING: If you find that the matrix seems to rotate by the opposite angle expect it, transpose it.
+     */
+    toQuaternion(): Point4d;
 }
 //# sourceMappingURL=Matrix3d.d.ts.map

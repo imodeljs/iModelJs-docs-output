@@ -2,7 +2,8 @@ import { Point3d } from "../geometry3d/Point3dVector3d";
 import { Transform } from "../geometry3d/Transform";
 import { IStrokeHandler, GeometryHandler } from "../geometry3d/GeometryHandler";
 import { StrokeOptions } from "./StrokeOptions";
-import { CurvePrimitive } from "./CurvePrimitive";
+import { CurvePrimitive } from "../curve/CurvePrimitive";
+import { StrokeCountMap } from "../curve/Query/StrokeCountMap";
 import { GeometryQuery } from "./GeometryQuery";
 import { CurveChain } from "./CurveCollection";
 import { Plane3dByOriginAndUnitNormal } from "../geometry3d/Plane3dByOriginAndUnitNormal";
@@ -11,26 +12,34 @@ import { Range3d } from "../geometry3d/Range";
 import { Ray3d } from "../geometry3d/Ray3d";
 import { Plane3dByOriginAndVectors } from "../geometry3d/Plane3dByOriginAndVectors";
 import { CurveLocationDetail } from "./CurveLocationDetail";
+import { VariantCurveExtendParameter } from "./CurveExtendMode";
 /**
  * * Annotation of an interval of a curve.
  * * The interval is marked with two pairs of numbers:
  * * * fraction0, fraction1 = fraction parameters along the child curve
  * * * distance0,distance1 = distances within containing CurveChainWithDistanceIndex
+ * @public
  */
-declare class PathFragment {
+export declare class PathFragment {
+    /** distance along parent to this fragment start */
     chainDistance0: number;
+    /** distance along parent to this fragment end */
     chainDistance1: number;
+    /** Fractional position of this fragment start within its curve primitive. */
     childFraction0: number;
+    /** Fractional position of this fragment end within its curve primitive.. */
     childFraction1: number;
+    /** Curve primitive of this fragment */
     childCurve: CurvePrimitive;
+    /** Create a fragment with complete fraction, distance and child data. */
     constructor(childFraction0: number, childFraction1: number, distance0: number, distance1: number, childCurve: CurvePrimitive);
     /**
-     * @returns true if the distance is within the distance limits of this fragment.
+     * Return true if the distance is within the distance limits of this fragment.
      * @param distance
      */
     containsChainDistance(distance: number): boolean;
     /**
-     * @returns true if this fragment addresses `curve` and brackets `fraction`
+     * Return true if this fragment addresses `curve` and brackets `fraction`
      * @param distance
      */
     containsChildCurveAndChildFraction(curve: CurvePrimitive, fraction: number): boolean;
@@ -45,9 +54,14 @@ declare class PathFragment {
      * @param globalDistance total length of the global curve.
      */
     fractionScaleFactor(globalDistance: number): number;
+    /** Reverse the fraction and distance data.
+     * * each child fraction `f` is replaced by `1-f`
+     * * each `chainDistance` is replaced by `totalDistance-chainDistance`
+     */
     reverseFractionsAndDistances(totalDistance: number): void;
     /**
      * convert a fractional position on the childCurve to distance in the chain space.
+     * * Return value is SIGNED -- will be negative when fraction < this.childFraction0.
      * @param fraction fraction along the curve within this fragment
      */
     childFractionTChainDistance(fraction: number): number;
@@ -57,11 +71,15 @@ declare class PathFragment {
  * distance along a CurveChain.
  * * The curve chain can be any type derived from CurveChain.
  * * * i.e. either a `Path` or a `Loop`
+ * @public
  */
 export declare class CurveChainWithDistanceIndex extends CurvePrimitive {
+    /** String name for schema properties */
+    readonly curvePrimitiveType = "curveChainWithDistanceIndex";
     private _path;
     private _fragments;
     private _totalLength;
+    /** Test if other is a `CurveChainWithDistanceIndex` */
     isSameGeometryClass(other: GeometryQuery): boolean;
     private constructor();
     /**
@@ -69,6 +87,11 @@ export declare class CurveChainWithDistanceIndex extends CurvePrimitive {
      * @param transform transform to apply in the clone.
      */
     cloneTransformed(transform: Transform): CurvePrimitive | undefined;
+    /** Reference to the contained path.
+     * * Do not modify the path.  The distance index will be wrong.
+     */
+    readonly path: CurveChain;
+    /** Return a deep clone */
     clone(): CurvePrimitive | undefined;
     /** Ask if the curve is within tolerance of a plane.
      * @returns Returns true if the curve is completely within tolerance of the plane.
@@ -76,7 +99,7 @@ export declare class CurveChainWithDistanceIndex extends CurvePrimitive {
     isInPlane(plane: Plane3dByOriginAndUnitNormal): boolean;
     /** return the start point of the primitive.  The default implementation returns fractionToPoint (0.0) */
     startPoint(result?: Point3d): Point3d;
-    /** @returns return the end point of the primitive. The default implementation returns fractionToPoint(1.0) */
+    /** Return the end point of the primitive. The default implementation returns fractionToPoint(1.0) */
     endPoint(result?: Point3d): Point3d;
     /** Add strokes to caller-supplied linestring */
     emitStrokes(dest: LineString3d, options?: StrokeOptions): void;
@@ -84,7 +107,20 @@ export declare class CurveChainWithDistanceIndex extends CurvePrimitive {
      * See IStrokeHandler for description of the sequence of the method calls.
      */
     emitStrokableParts(dest: IStrokeHandler, options?: StrokeOptions): void;
-    /** dispatch the path to the handler */
+    /**
+     * return the stroke count required for given options.
+     * @param options StrokeOptions that determine count
+     */
+    computeStrokeCountForOptions(options?: StrokeOptions): number;
+    /**
+     * construct StrokeCountMap for each child, accumulating data to stroke count map for this primitive.
+     * @param options StrokeOptions that determine count
+     * @param parentStrokeMap evolving parent map.
+     */
+    computeAndAttachRecursiveStrokeCounts(options?: StrokeOptions, parentStrokeMap?: StrokeCountMap): void;
+    /** Second step of double dispatch:  call `this._path.dispatchToGeometryHandler (handler)`
+     * * Note that this exposes the children individually to the handler.
+     */
     dispatchToGeometryHandler(handler: GeometryHandler): any;
     /** Extend (increase) `rangeToExtend` as needed to include these curves (optionally transformed)
      */
@@ -97,10 +133,10 @@ export declare class CurveChainWithDistanceIndex extends CurvePrimitive {
      */
     curveLengthBetweenFractions(fraction0: number, fraction1: number): number;
     /**
-     *
+     * Capture (not clone) a path into a new `CurveChainWithDistanceIndex`
      * @param primitives primitive array to be CAPTURED (not cloned)
      */
-    static createCapture(path: CurveChain, options?: StrokeOptions): CurveChainWithDistanceIndex;
+    static createCapture(path: CurveChain, options?: StrokeOptions): CurveChainWithDistanceIndex | undefined;
     /**
      * Resolve a fraction of the CurveChain to a PathFragment
      * @param distance
@@ -119,14 +155,16 @@ export declare class CurveChainWithDistanceIndex extends CurvePrimitive {
      */
     protected curveAndChildFractionToFragment(curve: CurvePrimitive, fraction: number): PathFragment | undefined;
     /**
-     * @returns the total length of curves.
+     * Returns the total length of curves.
      */
     curveLength(): number;
     /**
-     * @returns the total length of curves.
+     * Returns the total length of the path.
+     * * This is exact (and simple property lookup) because the true lengths were summed at construction time.
      */
     quickLength(): number;
-    /** Return the point (x,y,z) on the curve at fractional position along the chain.
+    /**
+     * Return the point (x,y,z) on the curve at fractional position along the chain.
      * @param fraction fractional position along the geometry.
      * @returns Returns a point on the curve.
      */
@@ -141,10 +179,10 @@ export declare class CurveChainWithDistanceIndex extends CurvePrimitive {
      */
     fractionToPointAndDerivative(fraction: number, result?: Ray3d): Ray3d;
     /**
-     *
+     * Returns a ray whose origin is the curve point and direction is the unit tangent.
      * @param fraction fractional position on the curve
      * @param result optional receiver for the result.
-     * @returns Returns a ray whose origin is the curve point and direction is the unit tangent.
+     * Returns a ray whose origin is the curve point and direction is the unit tangent.
      */
     fractionToPointAndUnitTangent(fraction: number, result?: Ray3d): Ray3d;
     /** Return a plane with
@@ -180,7 +218,6 @@ export declare class CurveChainWithDistanceIndex extends CurvePrimitive {
      * @param extend true to extend the curve (NOT USED)
      * @returns Returns a CurveLocationDetail structure that holds the details of the close point.
      */
-    closestPoint(spacePoint: Point3d, _extend: boolean): CurveLocationDetail | undefined;
+    closestPoint(spacePoint: Point3d, extend: VariantCurveExtendParameter): CurveLocationDetail | undefined;
 }
-export {};
 //# sourceMappingURL=CurveChainWithDistanceIndex.d.ts.map

@@ -5,44 +5,53 @@ import { Point3d, Vector3d } from "../geometry3d/Point3dVector3d";
 import { Ray3d } from "../geometry3d/Ray3d";
 import { Plane3dByOriginAndVectors } from "../geometry3d/Plane3dByOriginAndVectors";
 import { Plane3dByOriginAndUnitNormal } from "../geometry3d/Plane3dByOriginAndUnitNormal";
-export declare type Point4dProps = number[];
 /**
- *
- * @param ddg numerator second derivative
- * @param dh denominator derivative
- * @param ddh denominator second derivative
- * @param f primary function (g/h)
- * @param df derivative of (g/h)
- * @param divh = (1/h)
- * @param dgdivh previously computed first derivative of (g/h)
+ * 4d point packed in an array of 4 numbers.
+ * @public
  */
-export declare function quotientDerivative2(ddg: number, dh: number, ddh: number, f: number, df: number, divh: number): number;
+export declare type Point4dProps = number[];
 /** 4 Dimensional point (x,y,z,w) used in perspective calculations.
  * * the coordinates are stored in a Float64Array of length 4.
  * * properties `x`, `y`, `z`, `w` access array members.
  * *
- * * The coordinates are physically stored as a single FLoat64Array with 4 entries. (w last)
+ * * The coordinates are physically stored as a single Float64Array with 4 entries. (w last)
  * *
+ * @public
  */
 export declare class Point4d implements BeJSONFunctions {
+    /** x,y,z,w are packed into a Float64Array */
     xyzw: Float64Array;
     /** Set x,y,z,w of this point.  */
     set(x?: number, y?: number, z?: number, w?: number): Point4d;
-    /** @returns Return the x component of this point. */
+    /** Set a component by index.
+     * * No change if index is out of range.
+     */
+    setComponent(index: number, value: number): void;
+    /** Return the x component. */
+    /** Set the x component. */
     x: number;
-    /** @returns Return the y component of this point. */
+    /** Return the y component. */
+    /** Set the y component. */
     y: number;
-    /** @returns Return the z component of this point. */
+    /** Return the z component. */
+    /** Set the z component. */
     z: number;
-    /** @returns Return the w component of this point. */
+    /** Return the w component of this point. */
+    /** Set the w component. */
     w: number;
+    /** Construct from coordinates. */
     protected constructor(x?: number, y?: number, z?: number, w?: number);
-    /** @returns Return a Point4d with specified x,y,z,w */
+    /** Return a Point4d with specified x,y,z,w */
     static create(x?: number, y?: number, z?: number, w?: number, result?: Point4d): Point4d;
+    /** Copy coordinates from `other`. */
     setFrom(other: Point4d): Point4d;
+    /** Clone this point */
     clone(result?: Point4d): Point4d;
+    /** Set this point's xyzw from a json array `[x,y,z,w]` */
     setFromJSON(json?: Point4dProps): void;
+    /** Create a new point with coordinates from a json array `[x,y,z,w]` */
     static fromJSON(json?: Point4dProps): Point4d;
+    /** Near-equality test, using `Geometry.isSameCoordinate` on all 4 x,y,z,w */
     isAlmostEqual(other: Point4d): boolean;
     /**
      * Test for same coordinate by direct x,y,z,w args
@@ -54,7 +63,7 @@ export declare class Point4d implements BeJSONFunctions {
     isAlmostEqualXYZW(x: number, y: number, z: number, w: number): boolean;
     /**
      * Convert an Angle to a JSON object.
-     * @return {*} [[x,y,z,w]
+     * @return {*} [x,y,z,w]
      */
     toJSON(): Point4dProps;
     /** Return the 4d distance from this point to other, with all 4 components squared into the hypotenuse.
@@ -72,19 +81,21 @@ export declare class Point4d implements BeJSONFunctions {
      * * x,y,z,w all participate without normalization.
      */
     maxDiff(other: Point4d): number;
-    /** @returns Return the largest absolute entry of all 4 components x,y,z,w */
+    /** Return the largest absolute entry of all 4 components x,y,z,w */
     maxAbs(): number;
-    /**  @returns Returns the magnitude including all 4 components x,y,z,w */
+    /** Returns the magnitude including all 4 components x,y,z,w */
     magnitudeXYZW(): number;
-    /**  @returns Returns the magnitude of the leading xyz components */
+    /** Returns the magnitude of the leading xyz components.  w is ignored.  (i.e. the leading xyz are NOT divided by w.) */
     magnitudeSquaredXYZ(): number;
-    /** @returns Return the difference (this-other) using all 4 components x,y,z,w */
+    /** Return the difference (this-other) using all 4 components x,y,z,w */
     minus(other: Point4d, result?: Point4d): Point4d;
-    /** @returns Return `((other.w * this) -  (this.w * other))` */
+    /** Return `((other.w * this) -  (this.w * other))` */
     crossWeightedMinus(other: Point4d, result?: Vector3d): Vector3d;
-    /** @returns Return the sum of this and other, using all 4 components x,y,z,w */
+    /** Return the sum of this and other, using all 4 components x,y,z,w */
     plus(other: Point4d, result?: Point4d): Point4d;
+    /** Test if all components are nearly zero. */
     readonly isAlmostZero: boolean;
+    /** Create a point with zero in all coordinates. */
     static createZero(): Point4d;
     /**
      * Create plane coefficients for the plane containing pointA, pointB, and 0010.
@@ -98,6 +109,7 @@ export declare class Point4d implements BeJSONFunctions {
      * @param xIndex first index for x,y,z,w sequence
      */
     static createFromPackedXYZW(data: Float64Array, xIndex?: number, result?: Point4d): Point4d;
+    /** Create a `Point4d` with x,y,z from an `XYAndZ` input, and w from a separate number. */
     static createFromPointAndWeight(xyz: XYAndZ, w: number): Point4d;
     /** Return `point + vector * scalar` */
     plusScaled(vector: Point4d, scaleFactor: number, result?: Point4d): Point4d;
@@ -112,7 +124,7 @@ export declare class Point4d implements BeJSONFunctions {
     static createAdd2Scaled(vectorA: Point4d, scalarA: number, vectorB: Point4d, scalarB: number, result?: Point4d): Point4d;
     /** Return `point + vectorA \ scalarA + vectorB * scalarB + vectorC * scalarC` */
     static createAdd3Scaled(vectorA: Point4d, scalarA: number, vectorB: Point4d, scalarB: number, vectorC: Point4d, scalarC: number, result?: Point4d): Point4d;
-    /** Return dot produt of (4d) vectors from the instance to targetA and targetB */
+    /** Return dot product of (4d) vectors from the instance to targetA and targetB */
     dotVectorsToTargets(targetA: Point4d, targetB: Point4d): number;
     /** return (4d) dot product of the instance and other point. */
     dotProduct(other: Point4d): number;
@@ -120,7 +132,9 @@ export declare class Point4d implements BeJSONFunctions {
     dotProductXYZW(x: number, y: number, z: number, w: number): number;
     /** dotProduct with (point.x, point.y, point.z, 1) Used in PlaneAltitudeEvaluator interface */
     altitude(point: Point3d): number;
-    /** dotProduct with (point.x, point.y, point.z, 1) Used in PlaneAltitudeEvaluator interface */
+    /** dotProduct with (x, y, z, 1) Used in PlaneAltitudeEvaluator interface */
+    altitudeXYZ(x: number, y: number, z: number): number;
+    /** dotProduct with (point.x, point.y, point.z, point.w) Used in PlaneAltitudeEvaluator interface */
     weightedAltitude(point: Point4d): number;
     /** dotProduct with (vector.x, vector.y, vector.z, 0).  Used in PlaneAltitudeEvaluator interface */
     velocity(vector: Vector3d): number;
@@ -134,6 +148,7 @@ export declare class Point4d implements BeJSONFunctions {
     static unitZ(): Point4d;
     /** unit W vector */
     static unitW(): Point4d;
+    /** Divide by denominator, but return undefined if denominator is zero. */
     safeDivideOrNull(denominator: number, result?: Point4d): Point4d | undefined;
     /** scale all components (including w!!) */
     scale(scale: number, result?: Point4d): Point4d;
@@ -162,7 +177,7 @@ export declare class Point4d implements BeJSONFunctions {
      */
     static createRealPoint3dDefault000(x: number, y: number, z: number, w: number, result?: Point3d): Point3d;
     /**
-     * * If w is nonzero, return Vector3d which is the derivative of the projecte xyz with given w and 4d derivatives.
+     * * If w is nonzero, return Vector3d which is the derivative of the projected xyz with given w and 4d derivatives.
      * * If w is zero, return 000
      * @param x x coordinate
      * @param y y coordinate
@@ -176,7 +191,7 @@ export declare class Point4d implements BeJSONFunctions {
      */
     static createRealDerivativeRay3dDefault000(x: number, y: number, z: number, w: number, dx: number, dy: number, dz: number, dw: number, result?: Ray3d): Ray3d;
     /**
-     * * If w is nonzero, return Vector3d which is the derivative of the projecte xyz with given w and 4d derivatives.
+     * * If w is nonzero, return Vector3d which is the derivative of the projected xyz with given w and 4d derivatives.
      * * If w is zero, return 000
      * @param x x coordinate
      * @param y y coordinate
@@ -211,6 +226,15 @@ export declare class Point4d implements BeJSONFunctions {
      * @param pointC third point
      */
     static perpendicularPoint4dPlane(pointA: Point4d, pointB: Point4d, pointC: Point4d): Point4d;
+    /** Treating this Point4d as plane coefficients, convert to origin and normal form. */
     toPlane3dByOriginAndUnitNormal(result?: Plane3dByOriginAndUnitNormal): Plane3dByOriginAndUnitNormal | undefined;
+    /** Normalize so sum of squares of all 4 coordinates is 1. */
+    normalizeQuaternion(): number;
+    /** Return a (normalized) quaternion interpolated between two quaternions. */
+    static interpolateQuaternions(quaternion0: Point4d, fractionParameter: number, quaternion1: Point4d, result?: Point4d): Point4d;
+    /** Measure the "angle" between two points, using all 4 components in the dot product that
+     * gives the cosine of the angle.
+     */
+    radiansToPoint4dXYZW(other: Point4d): number | undefined;
 }
 //# sourceMappingURL=Point4d.d.ts.map

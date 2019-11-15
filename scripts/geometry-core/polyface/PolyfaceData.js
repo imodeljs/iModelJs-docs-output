@@ -1,6 +1,6 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -11,41 +11,53 @@ const Range_1 = require("../geometry3d/Range");
 const PointHelpers_1 = require("../geometry3d/PointHelpers");
 const GrowableXYZArray_1 = require("../geometry3d/GrowableXYZArray");
 const ClusterableArray_1 = require("../numerics/ClusterableArray");
+const AuxData_1 = require("./AuxData");
+const GrowableXYArray_1 = require("../geometry3d/GrowableXYArray");
+const Geometry_1 = require("../Geometry");
 /**
  * PolyfaceData carries data arrays for point, normal, param, color and their indices.
  *
  * * IndexedPolyface carries a PolyfaceData as a member. (NOT as a base class -- it already has GeometryQuery as base)
  * * IndexedPolyfaceVisitor uses PolyfaceData as a base class.
+ * @public
  */
 class PolyfaceData {
-    constructor(needNormals = false, needParams = false, needColors = false) {
+    /** Constructor for facets.  The various params control whether respective arrays are to be allocated. */
+    constructor(needNormals = false, needParams = false, needColors = false, twoSided = false) {
         this.point = new GrowableXYZArray_1.GrowableXYZArray();
         this.pointIndex = [];
         this.edgeVisible = [];
         this.face = [];
         if (needNormals) {
-            this.normal = [];
+            this.normal = new GrowableXYZArray_1.GrowableXYZArray();
             this.normalIndex = [];
         }
         if (needParams) {
-            this.param = [];
+            this.param = new GrowableXYArray_1.GrowableXYArray();
             this.paramIndex = [];
         }
         if (needColors) {
             this.color = [];
             this.colorIndex = [];
         }
+        this._twoSided = twoSided;
     }
+    /** boolean tag indicating if the facets are viewable from the back */
+    get twoSided() { return this._twoSided; }
+    /** boolean tag indicating if the facets are viewable from the back */
+    set twoSided(value) { this._twoSided = value; }
+    /** Return a depp clone. */
     clone() {
         const result = new PolyfaceData();
         result.point = this.point.clone();
         result.pointIndex = this.pointIndex.slice();
         result.edgeVisible = this.edgeVisible.slice();
         result.face = this.face.slice();
+        result.twoSided = this.twoSided;
         if (this.normal)
-            result.normal = PointHelpers_1.Vector3dArray.cloneVector3dArray(this.normal);
+            result.normal = this.normal.clone();
         if (this.param)
-            result.param = PointHelpers_1.Point2dArray.clonePoint2dArray(this.param);
+            result.param = this.param.clone();
         if (this.color)
             result.color = this.color.slice();
         if (this.normalIndex)
@@ -58,16 +70,17 @@ class PolyfaceData {
             result.auxData = this.auxData.clone();
         return result;
     }
+    /** Test for equal indices and nearly equal coordinates */
     isAlmostEqual(other) {
         if (!GrowableXYZArray_1.GrowableXYZArray.isAlmostEqual(this.point, other.point))
             return false;
         if (!PointHelpers_1.NumberArray.isExactEqual(this.pointIndex, other.pointIndex))
             return false;
-        if (!PointHelpers_1.Vector3dArray.isAlmostEqual(this.normal, other.normal))
+        if (!GrowableXYZArray_1.GrowableXYZArray.isAlmostEqual(this.normal, other.normal))
             return false;
         if (!PointHelpers_1.NumberArray.isExactEqual(this.normalIndex, other.normalIndex))
             return false;
-        if (!PointHelpers_1.Point2dArray.isAlmostEqual(this.param, other.param))
+        if (!GrowableXYArray_1.GrowableXYArray.isAlmostEqual(this.param, other.param))
             return false;
         if (!PointHelpers_1.NumberArray.isExactEqual(this.paramIndex, other.paramIndex))
             return false;
@@ -77,37 +90,55 @@ class PolyfaceData {
             return false;
         if (!PointHelpers_1.NumberArray.isExactEqual(this.edgeVisible, other.edgeVisible))
             return false;
+        if (!AuxData_1.PolyfaceAuxData.isAlmostEqual(this.auxData, other.auxData))
+            return false;
         return true;
     }
+    /** Ask if normals are required in this mesh. */
     get requireNormals() { return undefined !== this.normal; }
+    /** Get the point count */
     get pointCount() { return this.point.length; }
+    /** Get the normal count */
     get normalCount() { return this.normal ? this.normal.length : 0; }
+    /** Get the param count */
     get paramCount() { return this.param ? this.param.length : 0; }
+    /** Get the color count */
     get colorCount() { return this.color ? this.color.length : 0; }
+    /** Get the index count.  Note that there is one count, and all index arrays (point, normal, param, color) must match */
     get indexCount() { return this.pointIndex.length; } // ALWAYS INDEXED ... all index vectors must have same length.
-    /** Will return 0 if no faces were specified during construction. */
+    /** Get the number of faces.
+     * * Note that a "face" is not a facet.
+     * * A "face" is a subset of facets grouped for application purposes.
+     */
     get faceCount() { return this.face.length; }
     /** return indexed point. This is a copy of the coordinates, not a reference. */
-    getPoint(i) { return this.point.getPoint3dAt(i); }
-    /** return indexed normal. This is the REFERENCE to the normal, not a copy. */
-    getNormal(i) { return this.normal ? this.normal[i] : Point3dVector3d_1.Vector3d.create(); }
-    /** return indexed param. This is the REFERENCE to the param, not a copy. */
-    getParam(i) { return this.param ? this.param[i] : Point2dVector2d_1.Point2d.create(); }
+    getPoint(i) { return this.point.getPoint3dAtCheckedPointIndex(i); }
+    /** return indexed normal. This is the COPY to the normal, not a reference. */
+    getNormal(i) { return this.normal ? this.normal.getVector3dAtCheckedVectorIndex(i) : undefined; }
+    /** return indexed param. This is the COPY of the coordinates, not a reference. */
+    getParam(i) { return this.param ? this.param.getPoint2dAtCheckedPointIndex(i) : undefined; }
     /** return indexed color */
     getColor(i) { return this.color ? this.color[i] : 0; }
     /** return indexed visibility */
     getEdgeVisible(i) { return this.edgeVisible[i]; }
     /** Copy the contents (not pointer) of point[i] into dest. */
-    copyPointTo(i, dest) { this.point.getPoint3dAt(i, dest); }
+    copyPointTo(i, dest) { this.point.getPoint3dAtUncheckedPointIndex(i, dest); }
     /** Copy the contents (not pointer) of normal[i] into dest. */
     copyNormalTo(i, dest) { if (this.normal)
-        dest.setFrom(this.normal[i]); }
+        this.normal.getVector3dAtCheckedVectorIndex(i, dest); }
     /** Copy the contents (not pointer) of param[i] into dest. */
     copyParamTo(i, dest) { if (this.param)
-        dest.setFrom(this.param[i]); }
+        this.param.getPoint2dAtCheckedPointIndex(i, dest); }
+    /** test if normal at a specified index matches uv */
+    isAlmostEqualParamIndexUV(index, u, v) {
+        if (this.param !== undefined && index >= 0 && index < this.param.length)
+            return Geometry_1.Geometry.isSameCoordinate(u, this.param.getXAtUncheckedPointIndex(index))
+                && Geometry_1.Geometry.isSameCoordinate(v, this.param.getYAtUncheckedPointIndex(index));
+        return false;
+    }
     /**
      * * Copy data from other to this.
-     * * This is the essense of transfering coordinates spread throughout a large polyface into a visitor's single facet.
+     * * This is the essence of transferring coordinates spread throughout a large polyface into a visitor's single facet.
      * * "other" is the large polyface
      * * "this" is the visitor
      * * does NOT copy face data - visitors reference the FacetFaceData array for the whole polyface!!
@@ -137,9 +168,9 @@ class PolyfaceData {
             this.edgeVisible[numEdge + i] = this.edgeVisible[i];
         if (this.normal && this.normalIndex && other.normal && other.normalIndex) {
             for (let i = 0; i < numEdge; i++)
-                this.normal[i].setFrom(other.normal[other.normalIndex[index0 + i]]);
+                this.normal.transferFromGrowableXYZArray(i, other.normal, other.normalIndex[index0 + i]);
             for (let i = 0; i < numWrap; i++)
-                this.normal[numEdge + i].setFrom(this.normal[i]);
+                this.normal.transferFromGrowableXYZArray(numEdge + i, this.normal, i);
             for (let i = 0; i < numEdge; i++)
                 this.normalIndex[i] = other.normalIndex[index0 + i];
             for (let i = 0; i < numWrap; i++)
@@ -147,9 +178,9 @@ class PolyfaceData {
         }
         if (this.param && this.paramIndex && other.param && other.paramIndex) {
             for (let i = 0; i < numEdge; i++)
-                this.param[i].setFrom(other.param[other.paramIndex[index0 + i]]);
+                this.param.transferFromGrowableXYArray(i, other.param, other.paramIndex[index0 + i]);
             for (let i = 0; i < numWrap; i++)
-                this.param[numEdge + i].setFrom(this.param[i]);
+                this.param.transferFromGrowableXYArray(numEdge + i, this.param, i);
             for (let i = 0; i < numEdge; i++)
                 this.paramIndex[i] = other.paramIndex[index0 + i];
             for (let i = 0; i < numWrap; i++)
@@ -157,7 +188,7 @@ class PolyfaceData {
         }
         if (this.color && this.colorIndex && other.color && other.colorIndex) {
             for (let i = 0; i < numEdge; i++)
-                this.color[i] = other.color[this.colorIndex[index0 + i]];
+                this.color[i] = other.color[other.colorIndex[index0 + i]];
             for (let i = 0; i < numWrap; i++)
                 this.color[numEdge + i] = this.color[i];
             for (let i = 0; i < numEdge; i++)
@@ -189,6 +220,9 @@ class PolyfaceData {
     }
     static trimArray(data, length) { if (data && length < data.length)
         data.length = length; }
+    /** Trim all index arrays to stated length.
+     * * This is called by PolyfaceBuilder to clean up after an aborted construction sequence.
+     */
     trimAllIndexArrays(length) {
         PolyfaceData.trimArray(this.pointIndex, length);
         PolyfaceData.trimArray(this.paramIndex, length);
@@ -203,6 +237,7 @@ class PolyfaceData {
             }
         }
     }
+    /** Resize all data arrays to specified length */
     resizeAllDataArrays(length) {
         if (length > this.point.length) {
             while (this.point.length < length)
@@ -234,9 +269,9 @@ class PolyfaceData {
             this.edgeVisible.length = length;
             this.pointIndex.length = length;
             if (this.normal)
-                this.normal.length = length;
+                this.normal.resize(length);
             if (this.param)
-                this.param.length = length;
+                this.param.resize(length);
             if (this.color)
                 this.color.length = length;
             if (this.auxData) {
@@ -248,6 +283,7 @@ class PolyfaceData {
             }
         }
     }
+    /** Return the range of the point array (optionally transformed) */
     range(result, transform) {
         result = result ? result : Range_1.Range3d.createNull();
         result.extendArray(this.point, transform);
@@ -269,25 +305,26 @@ class PolyfaceData {
             PolyfaceData.reverseIndices(facetStartIndex, this.edgeVisible, false);
         }
     }
+    /** Scale all the normals by -1 */
     reverseNormals() {
         if (this.normal)
-            for (const normal of this.normal)
-                normal.scaleInPlace(-1.0);
+            this.normal.scaleInPlace(-1.0);
     }
-    // This base class is just a data carrier.  It does not know if the index order and normal directions have special meaning.
-    // 1) Caller must reverse normals if semanitically needed.
-    // 2) Caller must reverse indices if semantically needed.
+    /** Apply `transform` to point and normal arrays.
+     * * IMPORTANT This base class is just a data carrier.  It does not know if the index order and normal directions have special meaning.
+     * * i.e. caller must separately reverse index order and normal direction if needed.
+     */
     tryTransformInPlace(transform) {
-        const inverseTranspose = transform.matrix.inverse();
-        this.point.transformInPlace(transform);
-        if (inverseTranspose) {
-            // apply simple Matrix3d to normals ...
-            if (this.normal) {
-                inverseTranspose.multiplyVectorArrayInPlace(this.normal);
-            }
-        }
+        this.point.multiplyTransformInPlace(transform);
+        if (this.normal && !transform.matrix.isIdentity)
+            this.normal.multiplyAndRenormalizeMatrix3dInverseTransposeInPlace(transform.matrix);
         return true;
     }
+    /**
+     * * Search for duplication of coordinates within points, normals, and params.
+     * * compress the coordinate arrays.
+     * * revise all indexing for the relocated coordinates
+     */
     compress() {
         const packedData = ClusterableArray_1.ClusterableArray.clusterGrowablePoint3dArray(this.point);
         this.point = packedData.growablePackedPoints;
@@ -312,6 +349,9 @@ class PolyfaceData {
                 return false;
         return true;
     }
+    /** Reverse data in facet indexing arrays.
+     * * parameterized over type T so non-number data -- e.g. boolean visibility flags -- can be reversed.
+     */
     static reverseIndices(facetStartIndex, indices, preserveStart) {
         if (!indices || indices.length === 0)
             return true; // empty case
@@ -347,6 +387,7 @@ class PolyfaceData {
         return false;
     }
 }
+exports.PolyfaceData = PolyfaceData;
 // <ul
 // <li>optional arrays (normal, uv, color) must be indicated at constructor time.
 // <li>all arrays are (independently) indexed.
@@ -356,6 +397,8 @@ class PolyfaceData {
 // <li> EXCEPT -- for optional arrays, the return 000.
 // <li>copyX methods move data to caller-supplied result..
 // </ul>
+/** Relative tolerance used in tests for planar facets
+ * @internal
+ */
 PolyfaceData.planarityLocalRelTol = 1.0e-13;
-exports.PolyfaceData = PolyfaceData;
 //# sourceMappingURL=PolyfaceData.js.map

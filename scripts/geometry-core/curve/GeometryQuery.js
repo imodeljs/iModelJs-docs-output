@@ -1,13 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 /** @module Curve */
 const Range_1 = require("../geometry3d/Range");
 const Transform_1 = require("../geometry3d/Transform");
 /** Queries to be supported by Curve, Surface, and Solid objects */
+/**
+ * * `GeometryQuery` is an abstract base class with (abstract) methods for querying curve, solid primitive, mesh, and bspline surfaces
+ * @public
+ */
 class GeometryQuery {
     /** return the range of the entire (tree) GeometryQuery */
     range(transform, result) {
@@ -46,7 +50,7 @@ class GeometryQuery {
                 }
                 return true;
             }
-            else if (childrenA || childrenB) {
+            else if (childrenA || childrenB) { // CurveCollections start with empty arrays for children.  So these null pointer cases are never reached.
                 return false; // plainly different .
             }
             else {

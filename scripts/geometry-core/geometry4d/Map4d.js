@@ -3,16 +3,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Transform_1 = require("../geometry3d/Transform");
 const Matrix3d_1 = require("../geometry3d/Matrix3d");
 const Matrix4d_1 = require("./Matrix4d");
+/** @module Numerics */
 /** Map4 carries two Matrix4d which are inverses of each other.
+ * @public
  */
 class Map4d {
     constructor(matrix0, matrix1) {
         this._matrix0 = matrix0;
         this._matrix1 = matrix1;
     }
-    /** @returns Return a reference to (not copy of) the "forward" Matrix4d */
+    /** Return a reference to (not copy of) the "forward" Matrix4d */
     get transform0() { return this._matrix0; }
-    /** @returns Return a reference to (not copy of) the "reverse" Matrix4d */
+    /** Return a reference to (not copy of) the "reverse" Matrix4d */
     get transform1() { return this._matrix1; }
     /** Create a Map4d, capturing the references to the two matrices. */
     static createRefs(matrix0, matrix1) {
@@ -55,7 +57,7 @@ class Map4d {
     }
     /** Copy contents from another Map4d */
     setFrom(other) { this._matrix0.setFrom(other._matrix0), this._matrix1.setFrom(other._matrix1); }
-    /** @returns Return a clone of this Map4d */
+    /** Return a clone of this Map4d */
     clone() { return new Map4d(this._matrix0.clone(), this._matrix1.clone()); }
     /** Reinitialize this Map4d as an identity. */
     setIdentity() { this._matrix0.setIdentity(); this._matrix1.setIdentity(); }
@@ -74,8 +76,9 @@ class Map4d {
         result.setFromJSON(json);
         return result;
     }
-    /** @returns a json object `{matrix0: value0, matrix1: value1}` */
+    /** Return a json object `{matrix0: value0, matrix1: value1}` */
     toJSON() { return { matrix0: this._matrix0.toJSON(), matrix1: this._matrix1.toJSON() }; }
+    /** Test if both matrices are almost equal to those */
     isAlmostEqual(other) {
         return this._matrix0.isAlmostEqual(other._matrix0) && this._matrix1.isAlmostEqual(other._matrix1);
     }
@@ -111,9 +114,14 @@ class Map4d {
           */
         return result;
     }
+    /** multiply this*other. The output matrices are
+     * * output matrix0 = `this.matrix0 * other.matrix0`
+     * * output matrix1 = 'other.matrix1 * this.matrix1`
+     */
     multiplyMapMap(other) {
         return new Map4d(this._matrix0.multiplyMatrixMatrix(other._matrix0), other._matrix1.multiplyMatrixMatrix(this._matrix1));
     }
+    /** Exchange the two matrices of the map. */
     reverseInPlace() {
         const temp = this._matrix0;
         this._matrix0 = this._matrix1;

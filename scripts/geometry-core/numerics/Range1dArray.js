@@ -1,14 +1,16 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module Numerics */
 const Range_1 = require("../geometry3d/Range");
 const GrowableFloat64Array_1 = require("../geometry3d/GrowableFloat64Array");
+const Geometry_1 = require("../Geometry");
 /**
  * A Range1d array is a set of intervals, such as occur when a line is clipped to a (nonconvex) polygon
+ * @internal
  */
 class Range1dArray {
     /** Internal step: Caller supplies rangeA = interval from left operand of set difference {A - B}
@@ -69,6 +71,7 @@ class Range1dArray {
             return false;
         }
     }
+    /** Boolean intersection among the (presorted) input ranges */
     static intersectSorted(dataA, dataB) {
         let iA = 0;
         let iB = 0;
@@ -94,7 +97,7 @@ class Range1dArray {
         return retVal;
     }
     /** Internal step: Read an interval from the array.
-     *  If it overlaps the work interval, advance the work interval, and return true to notify caller to increment readindex.
+     *  If it overlaps the work interval, advance the work interval, and return true to notify caller to increment read index.
      */
     static advanceIntervalUnion(workRange, source, readIndex) {
         if (readIndex >= source.length)
@@ -106,6 +109,7 @@ class Range1dArray {
             workRange.high = candidate.high;
         return true;
     }
+    /** Boolean union among the (presorted) input ranges */
     static unionSorted(dataA, dataB) {
         const nA = dataA.length;
         const nB = dataB.length;
@@ -144,6 +148,7 @@ class Range1dArray {
             retVal.push(dataB[iB++]);
         return retVal;
     }
+    /** Boolean parity among the (presorted) input ranges */
     static paritySorted(dataA, dataB) {
         // Combine the two arrays, and then perform a simplification using simplifySortParity function
         const retVal = [];
@@ -156,7 +161,7 @@ class Range1dArray {
         Range1dArray.simplifySortParity(retVal, true);
         return retVal;
     }
-    /** Uses the Range1d specific compare function for sorting the array of ranges */
+    /** Uses the Range1d specific compare function `compareRange1dLexicalLowHigh` for sorting the array of ranges */
     static sort(data) {
         data.sort(compareRange1dLexicalLowHigh);
     }
@@ -188,6 +193,7 @@ class Range1dArray {
         }
         data.length = currIdx;
     }
+    /** Apply parity logic among ranges which are not pre-sorted. */
     static simplifySortParity(data, removeZeroLengthRanges = false) {
         const numData = [];
         for (const range of data) {
@@ -257,10 +263,11 @@ class Range1dArray {
      * @param sort optionally request immediate sort.
      * @param compress optionally request removal of duplicates.
      */
-    static getBreaks(data, result, sort = false, compress = false) {
+    static getBreaks(data, result, sort = false, compress = false, clear = true) {
         if (!result)
             result = new GrowableFloat64Array_1.GrowableFloat64Array(2 * data.length);
-        result.clear();
+        if (clear)
+            result.clear();
         for (const range of data) {
             result.push(range.low);
             result.push(range.high);
@@ -268,8 +275,40 @@ class Range1dArray {
         if (sort)
             result.sort();
         if (compress)
-            result.compressAdjcentDuplicates();
+            result.compressAdjacentDuplicates();
         return result;
+    }
+    /**  evaluate a point at an array of given fraction values
+     * @param data array of ranges.
+     * @param initialRangeFraction fraction coordinate applied only to first range. (typically negative)
+     * @param rangeFraction fraction within each range.
+     * @param includeDegenerateRange if false, skip rangeFraction for 0-length ranges.
+     * @param gapFraction fraction within interval from each range high to successor low
+     * @param includeDegenerateGap if false, skip rangeFraction for 0-length gaps.
+     * @param finalRangeFraction fraction coordinate applied only to last range (typically an extrapolation above)
+     * @param result array to receive values
+     */
+    static appendFractionalPoints(data, initialRangeFraction, rangeFraction, includeDegenerateRange, gapFraction, includeDegenerateGap, finalRangeFraction, result) {
+        const numRange = data.length;
+        if (numRange > 0) {
+            if (undefined !== initialRangeFraction)
+                result.push(data[0].fractionToPoint(initialRangeFraction));
+            for (let i = 0; i < numRange; i++) {
+                if (rangeFraction !== undefined && (includeDegenerateRange || data[i].low !== data[i].high))
+                    result.push(data[i].fractionToPoint(rangeFraction));
+                if (i > 1 && gapFraction !== undefined && (includeDegenerateGap || data[i].low !== data[i].high))
+                    result.push(Geometry_1.Geometry.interpolate(data[i - 1].high, gapFraction, data[i].low));
+            }
+            if (undefined !== finalRangeFraction)
+                result.push(data[numRange - 1].fractionToPoint(finalRangeFraction));
+        }
+        return result;
+    }
+    /** Return a single range constructed with the low of range 0 and high of final range in the set.  */
+    static firstLowToLastHigh(data) {
+        if (data.length === 0)
+            return Range_1.Range1d.createNull();
+        return Range_1.Range1d.createXX(data[0].low, data[data.length - 1].high);
     }
     /** sum the lengths of all ranges */
     static sumLengths(data) {
@@ -302,7 +341,9 @@ class Range1dArray {
     }
 }
 exports.Range1dArray = Range1dArray;
-/** Checks low's first, then high's */
+/** Checks low's first, then high's
+ * @internal
+ */
 function compareRange1dLexicalLowHigh(a, b) {
     if (a.low < b.low)
         return -1;

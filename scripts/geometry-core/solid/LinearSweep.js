@@ -1,6 +1,6 @@
 "use strict";
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -9,21 +9,30 @@ const Transform_1 = require("../geometry3d/Transform");
 const Loop_1 = require("../curve/Loop");
 const Path_1 = require("../curve/Path");
 const LineString3d_1 = require("../curve/LineString3d");
-const PointHelpers_1 = require("../geometry3d/PointHelpers");
+const PolygonOps_1 = require("../geometry3d/PolygonOps");
 const SweepContour_1 = require("./SweepContour");
 const SolidPrimitive_1 = require("./SolidPrimitive");
 /**
- * A LinearSweep is
- *
- * * A planar contour (any Loop, Path, or parityRegion)
+ * A LinearSweep is a `SolidPrimitive` defined by
+ * * A set of curves (any Loop, Path, or parityRegion)
  * * A sweep vector
+ * If the object is "capped", the curves must be planar.
+ * @public
  */
 class LinearSweep extends SolidPrimitive_1.SolidPrimitive {
     constructor(contour, direction, capped) {
         super(capped);
+        /** String name for schema properties */
+        this.solidPrimitiveType = "linearSweep";
         this._contour = contour;
         this._direction = direction;
     }
+    /**
+     * Create a sweep of a starting contour.
+     * @param contour contour to be swept
+     * @param direction sweep vector.  The contour is swept the full length of the vector.
+     * @param capped true to include end caps
+     */
     static create(contour, direction, capped) {
         const sweepable = SweepContour_1.SweepContour.createForLinearSweep(contour, direction);
         if (!sweepable)
@@ -44,39 +53,51 @@ class LinearSweep extends SolidPrimitive_1.SolidPrimitive {
     static createZSweep(xyPoints, z, zSweep, capped) {
         const xyz = LineString3d_1.LineString3d.createXY(xyPoints, z, capped);
         if (capped) {
-            const area = PointHelpers_1.PolygonOps.areaXY(xyz.points);
+            xyz.addClosurePoint();
+            const area = PolygonOps_1.PolygonOps.areaXY(xyz.points);
             if (area * zSweep < 0.0)
                 xyz.points.reverse();
         }
         const contour = capped ? Loop_1.Loop.create(xyz) : Path_1.Path.create(xyz);
         return LinearSweep.create(contour, Point3dVector3d_1.Vector3d.create(0, 0, zSweep), capped);
     }
+    /** get a reference to the swept curves */
     getCurvesRef() { return this._contour.curves; }
+    /** Get a reference to the `SweepContour` carrying the plane of the curves */
     getSweepContourRef() { return this._contour; }
+    /** return a clone of the sweep vector */
     cloneSweepVector() { return this._direction.clone(); }
+    /** Test if `other` is also an instance of `LinearSweep` */
     isSameGeometryClass(other) { return other instanceof LinearSweep; }
+    /** Return a deep clone */
     clone() {
         return new LinearSweep(this._contour.clone(), this._direction.clone(), this.capped);
     }
+    /** apply a transform to the curves and sweep vector */
     tryTransformInPlace(transform) {
+        if (transform.matrix.isSingular())
+            return false;
         if (this._contour.tryTransformInPlace(transform)) {
             transform.multiplyVector(this._direction, this._direction);
+            return true;
         }
         return false;
     }
     /** Return a coordinate frame (right handed unit vectors)
      * * origin on base contour
      * * x, y directions from base contour.
-     * * z direction perpenedicular
+     * * z direction perpendicular
      */
     getConstructiveFrame() {
         return this._contour.localToWorld.cloneRigid();
     }
+    /** Return a transformed clone */
     cloneTransformed(transform) {
         const result = this.clone();
         result.tryTransformInPlace(transform);
         return result;
     }
+    /** Test for near-equality of coordinates in `other` */
     isAlmostEqual(other) {
         if (other instanceof LinearSweep) {
             return this._contour.isAlmostEqual(other._contour)
@@ -85,11 +106,12 @@ class LinearSweep extends SolidPrimitive_1.SolidPrimitive {
         }
         return false;
     }
+    /** Invoke strongly typed `handler.handleLinearSweep(this)` */
     dispatchToGeometryHandler(handler) {
         return handler.handleLinearSweep(this);
     }
     /**
-     * @returns Return the curves of a constant-v section of the solid.
+     * Return the curves at a fraction along the sweep direction.
      * @param vFraction fractional position along the sweep direction
      */
     constantVSection(vFraction) {
@@ -98,9 +120,10 @@ class LinearSweep extends SolidPrimitive_1.SolidPrimitive {
             section.tryTransformInPlace(Transform_1.Transform.createTranslation(this._direction.scale(vFraction)));
         return section;
     }
-    extendRange(range, transform) {
+    /** Extend `rangeToExtend` to include this geometry. */
+    extendRange(rangeToExtend, transform) {
         const contourRange = this._contour.curves.range(transform);
-        range.extendRange(contourRange);
+        rangeToExtend.extendRange(contourRange);
         if (transform) {
             const transformedDirection = transform.multiplyVector(this._direction);
             contourRange.low.addInPlace(transformedDirection);
@@ -110,7 +133,13 @@ class LinearSweep extends SolidPrimitive_1.SolidPrimitive {
             contourRange.low.addInPlace(this._direction);
             contourRange.high.addInPlace(this._direction);
         }
-        range.extendRange(contourRange);
+        rangeToExtend.extendRange(contourRange);
+    }
+    /**
+     * @return true if this is a closed volume.
+     */
+    get isClosedVolume() {
+        return this.capped && this._contour.curves.isAnyRegionType;
     }
 }
 exports.LinearSweep = LinearSweep;

@@ -2,8 +2,14 @@ import { Point2d } from "../geometry3d/Point2dVector2d";
 import { Point3d } from "../geometry3d/Point3dVector3d";
 import { GrowableBlockedArray } from "../geometry3d/GrowableBlockedArray";
 import { GrowableXYZArray } from "../geometry3d/GrowableXYZArray";
+/**
+ * Blocked array with operations to sort and cluster with a tolerance.
+ * * Primary sorting is along an "arbitrary" sort vector.
+ * @internal
+ */
 export declare class ClusterableArray extends GrowableBlockedArray {
     private static readonly _vectorFactor;
+    /** Return a component of the sort vector. */
     static sortVectorComponent(index: number): number;
     private _numCoordinatePerPoint;
     private _numExtraDataPerPoint;
@@ -21,7 +27,7 @@ export declare class ClusterableArray extends GrowableBlockedArray {
      * This assumes numDataPerPoint is sufficient for the parameters provided.
      */
     addDirect(x0: number, x1: number, x2?: number, x3?: number, x4?: number): void;
-    /** add a block with directly from a Point2d with 0 to 3 extras
+    /** add a block directly from a Point2d with 0 to 3 extras
      * This assumes numDataPerPoint is sufficient for the parameters provided.
      */
     addPoint2d(xy: Point2d, a?: number, b?: number, c?: number): void;
@@ -29,7 +35,9 @@ export declare class ClusterableArray extends GrowableBlockedArray {
      * This assumes numDataPerPoint is sufficient for the parameters provided.
      */
     addPoint3d(xyz: Point3d, a?: number, b?: number, c?: number): void;
+    /** Get the xy coordinates by point index. */
     getPoint2d(blockIndex: number, result?: Point2d): Point2d;
+    /** Get the xyZ coordinates by point index. */
     getPoint3d(blockIndex: number, result?: Point3d): Point3d;
     /** Return a single extra data value */
     getExtraData(blockIndex: number, i: number): number;
@@ -39,6 +47,7 @@ export declare class ClusterableArray extends GrowableBlockedArray {
     setExtraData(blockIndex: number, i: number, value: number): void;
     /** this value is used as cluster terminator in the Uint232rray of indcies. */
     static readonly clusterTerminator = 4294967295;
+    /** Test if `x` is the cluster terminator value. */
     static isClusterTerminator(x: number): boolean;
     /** Return an array giving clusters of blocks with similar coordinates.
      *
@@ -57,23 +66,26 @@ export declare class ClusterableArray extends GrowableBlockedArray {
      * This is normally called before clusterIndicesLexical.
      */
     setupPrimaryClusterSort(): void;
-    ToJSON(): any[];
+    /** Convert the cluster data to an array of tuples with point i in the form
+     * `[i, primarySortCoordinate, [x,y,..], [extraData0, extraData1, ...]]`
+     */
+    toJSON(): any[];
     /**
-     * @returns Return an array of indices from block index to cluster index.
+     * Return an array of indices from block index to cluster index.
      * @param clusteredBlocks clusters of block indices followed by separators.
      */
-    createIndex_blockToClusterIndex(clusteredBlocks: Uint32Array): Uint32Array;
+    createIndexBlockToClusterIndex(clusteredBlocks: Uint32Array): Uint32Array;
     /**
-     * @returns Return an array of indices from block index to index of its cluster's start in the cluster index array.
+     * Return an array of indices from block index to index of its cluster's start in the cluster index array.
      * @param clusteredBlocks clusters of block indices followed by separators.
      */
-    createIndex_blockToClusterStart(clusteredBlocks: Uint32Array): Uint32Array;
+    createIndexBlockToClusterStart(clusteredBlocks: Uint32Array): Uint32Array;
     /** count the clusters in the clusteredBlocks array. */
     countClusters(clusteredBlocks: Uint32Array): number;
     /** create a reverse index: given a cluster index k, clusterToClusterStart[k] is the place
      * the cluster's block indices appear in clusterBlocks
      */
-    createIndex_clusterToClusterStart(clusteredBlocks: Uint32Array): Uint32Array;
+    createIndexClusterToClusterStart(clusteredBlocks: Uint32Array): Uint32Array;
     /**
      * Sort terminator-delimited subsets of an array of indices into the table, using a single extraData index as sort key.
      * @param blockedIndices [in] indices, organized as blocks of good indices terminated by the clusterTerminator.
@@ -81,12 +93,12 @@ export declare class ClusterableArray extends GrowableBlockedArray {
      */
     sortSubsetsBySingleKey(blockedIndices: Uint32Array, dataIndex: number): void;
     /**
-     * @returns packed points with indices mapping old to new.
+     * Returns packed points with indices mapping old to new.
      * @param data points to cluster.
      */
     static clusterPoint3dArray(data: Point3d[], tolerance?: number): PackedPointsWithIndex;
     /**
-     * @returns packed points with indices mapping old to new.
+     * Returns packed points with indices mapping old to new.
      * @param data points to cluster.
      */
     static clusterGrowablePoint3dArray(source: GrowableXYZArray, tolerance?: number): PackedPointsWithIndex;
@@ -95,12 +107,17 @@ export declare class ClusterableArray extends GrowableBlockedArray {
  * Data carrier class for
  * * packedPoints = an array of Point3d
  * * oldToNew = array of indices from some prior Point3d[] to the packed points.
+ * @internal
  */
-export declare class PackedPointsWithIndex {
+declare class PackedPointsWithIndex {
+    /** Array of Point3d */
     packedPoints: Point3d[];
+    /** array of coordinates packed in GrowableXYZArray  */
     growablePackedPoints: GrowableXYZArray | undefined;
+    /** mapping from old point index to new ponit index. */
     oldToNew: Uint32Array;
-    static invalidIndex: number;
+    /** integer value for unknown index. */
+    static readonly invalidIndex = 4294967295;
     /** construct a PackedPoints object with
      * * empty packedPoints array
      * * oldToNew indices all initialized to PackedPoints.invalidIndex
@@ -113,4 +130,5 @@ export declare class PackedPointsWithIndex {
      */
     updateIndices(indices: number[]): boolean;
 }
+export {};
 //# sourceMappingURL=ClusterableArray.d.ts.map

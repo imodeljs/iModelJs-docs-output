@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2018 Bentley Systems, Incorporated. All rights reserved.
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 const Geometry_1 = require("../Geometry");
@@ -10,6 +10,8 @@ const Point4d_1 = require("../geometry4d/Point4d");
 const Point2dVector2d_1 = require("./Point2dVector2d");
 const Point3dVector3d_1 = require("./Point3dVector3d");
 const Transform_1 = require("./Transform");
+/** @module CartesianGeometry */
+/* tslint:disable:prefer-get */
 /**
  * PackedMatrix3dOps contains static methods for matrix operations where the matrix is a Float64Array.
  * * The Float64Array contains the matrix entries in row-major order
@@ -109,11 +111,21 @@ class PackedMatrix3dOps {
  * * unknown: it is not know if the matrix is invertible.
  * * inverseStored: the matrix has its inverse stored
  * * singular: the matrix is known to be singular.
+ * @public
  */
 var InverseMatrixState;
 (function (InverseMatrixState) {
+    /**
+     * * The invertibility of the  `coffs` array has not been determined.
+     * * Any `inverseCoffs` contents are random.
+     */
     InverseMatrixState[InverseMatrixState["unknown"] = 0] = "unknown";
+    /** An inverse was computed and stored as the `inverseCoffs` */
     InverseMatrixState[InverseMatrixState["inverseStored"] = 1] = "inverseStored";
+    /**
+     * * The `coffs` array is known to be singular.
+     * * Any `inverseCoffs` contents are random.
+     */
     InverseMatrixState[InverseMatrixState["singular"] = 2] = "singular";
 })(InverseMatrixState = exports.InverseMatrixState || (exports.InverseMatrixState = {}));
 /** A Matrix3d is a 3x3 matrix.
@@ -130,6 +142,7 @@ var InverseMatrixState;
  * * Most matrix queries are present with both "column" and "row" variants.
  * * Usage elsewhere in the library is typically "column" based.  For example, in a Transform
  *     that carries a coordinate frame the matrix columns are the unit vectors for the axes.
+ * @public
  */
 class Matrix3d {
     /**
@@ -167,6 +180,11 @@ class Matrix3d {
             [this.coffs[3], this.coffs[4], this.coffs[5]],
             [this.coffs[6], this.coffs[7], this.coffs[8]]];
     }
+    /** copy data from various input forms to this matrix:
+     * * Another `Matrix3d`
+     * * An array of 3 arrays, each of which has the 3 numbers for a row of the matrix.
+     * * An array of 9 numbers in row major order.
+     */
     setFromJSON(json) {
         this.inverseCoffs = undefined;
         if (!json) {
@@ -192,7 +210,7 @@ class Matrix3d {
             this.setRowValues(data[0], data[1], 0, data[2], data[3], 0, 0, 0, 1);
         }
     }
-    /** @returns Return a new Matrix3d constructed from contents of the json value. */
+    /** Return a new Matrix3d constructed from contents of the json value. Se `setFromJSON` for layout rules */
     static fromJSON(json) { const result = Matrix3d.createIdentity(); result.setFromJSON(json); return result; }
     /** Test if this Matrix3d and other are within tolerance in all numeric entries.
      * @param tol optional tolerance for comparisons by Geometry.isDistanceWithinTol
@@ -214,7 +232,7 @@ class Matrix3d {
     }
     // !! does not clear supplied result !!
     static _create(result) { return result ? result : new Matrix3d(); }
-    /** @returns a Matrix3d populated by numeric values given in row-major order.
+    /** Returns a Matrix3d populated by numeric values given in row-major order.
      *  set all entries in the matrix from call parameters appearing in row - major order.
      * @param axx Row x, column x(0, 0) entry
      * @param axy Row x, column y(0, 1) entry
@@ -259,23 +277,30 @@ class Matrix3d {
         }
         return result;
     }
-    // install all matrix entries.
+    /**
+     * create a matrix by distributing vectors to columns in one of 6 orders.
+     * @param axisOrder identifies where the columns are placed.
+     * @param columnA vector to place in the first column named by the axis order.
+     * @param columnB vector to place in the second column named by the axis order.
+     * @param columnC vector to place in the third column named by the axis order.
+     * @param result
+     */
     static createColumnsInAxisOrder(axisOrder, columnA, columnB, columnC, result) {
         if (!result)
             result = new Matrix3d();
-        if (axisOrder === 1 /* YZX */) {
+        if (axisOrder === Geometry_1.AxisOrder.YZX) {
             result.setColumns(columnC, columnA, columnB);
         }
-        else if (axisOrder === 2 /* ZXY */) {
+        else if (axisOrder === Geometry_1.AxisOrder.ZXY) {
             result.setColumns(columnB, columnC, columnA);
         }
-        else if (axisOrder === 4 /* XZY */) {
+        else if (axisOrder === Geometry_1.AxisOrder.XZY) {
             result.setColumns(columnA, columnC, columnB);
         }
-        else if (axisOrder === 5 /* YXZ */) {
+        else if (axisOrder === Geometry_1.AxisOrder.YXZ) {
             result.setColumns(columnB, columnA, columnC);
         }
-        else if (axisOrder === 6 /* ZYX */) {
+        else if (axisOrder === Geometry_1.AxisOrder.ZYX) {
             result.setColumns(columnC, columnB, columnA);
         }
         else { // fallthrough should only happen for AxisOrder.XYZ
@@ -307,23 +332,41 @@ class Matrix3d {
         this.coffs[8] = azz;
         this.inverseState = InverseMatrixState.unknown;
     }
+    /** Set the matrix to an identity. */
     setIdentity() { this.setRowValues(1, 0, 0, 0, 1, 0, 0, 0, 1); this.setupInverseTranspose(); }
+    /** Set the matrix to all zeros. */
     setZero() { this.setRowValues(0, 0, 0, 0, 0, 0, 0, 0, 0); this.inverseState = InverseMatrixState.singular; }
+    /** copy contents from another matrix. */
     setFrom(other) {
         for (let i = 0; i < 9; i++)
             this.coffs[i] = other.coffs[i];
         this.inverseState = InverseMatrixState.unknown; // we don't trust the other .. . .
     }
+    /** return a clone of this matrix.
+     * * coefficients are copied.
+     * * inverse coefficients are NOT copied.
+     * * inverse status is set to unknown
+     */
     clone(result) {
         result = result ? result : new Matrix3d();
         result.setFrom(this);
         return result;
     }
+    /** create a matrix with all zeros.
+     * * Note that for geometry transformations "all zeros" is not a useful default state.
+     * * Hence almost always use `createIdentity` for graphics transformations.
+     * * "all zeros" is appropriate for summing moment data.
+     */
     static createZero() {
         const retVal = new Matrix3d();
         retVal.inverseState = InverseMatrixState.singular;
         return retVal;
     }
+    /** create an identity matrix
+     * * all diagonal entries (xx,yy,zz) are one
+     * * all others are zero.
+     * * This (rather than all zeros) is the useful state for most graphics transformations.
+     */
     static createIdentity(result) {
         result = result ? result : new Matrix3d();
         result.setIdentity();
@@ -338,7 +381,7 @@ class Matrix3d {
      * *  use createHeadsUpPerpendicular to generate a vectorV perpendicular to vectorA
      * *  construct a frame using createRigidFromColumns (vectorA, vectorB, axisOrder)
      */
-    static createRigidHeadsUp(vectorA, axisOrder = 2 /* ZXY */, result) {
+    static createRigidHeadsUp(vectorA, axisOrder = Geometry_1.AxisOrder.ZXY, result) {
         const vectorB = Matrix3d.createPerpendicularVectorFavorXYPlane(vectorA);
         const matrix = Matrix3d.createRigidFromColumns(vectorA, vectorB, axisOrder, result);
         if (matrix) {
@@ -394,7 +437,7 @@ class Matrix3d {
         }
         return result;
     }
-    /** @returns return a rotation of specified angle around an axis */
+    /** return a rotation of specified angle around an axis */
     static createRotationAroundVector(axis, angle, result) {
         const c = angle.cos();
         const s = angle.sin();
@@ -407,7 +450,7 @@ class Matrix3d {
         }
         return undefined;
     }
-    /** @returns return a rotation of specified angle around an axis
+    /** Returns a rotation of specified angle around an axis
      * @param axisIndex index of axis (AxisIndex.X, AxisIndex.Y, AxisIndex.Z) kept fixed by the rotation.
      * @param angle angle of rotation
      * @param result optional result matrix.
@@ -416,10 +459,10 @@ class Matrix3d {
         const c = angle.cos();
         const s = angle.sin();
         let myResult;
-        if (axisIndex === 0 /* X */) {
+        if (axisIndex === Geometry_1.AxisIndex.X) {
             myResult = Matrix3d.createRowValues(1, 0, 0, 0, c, -s, 0, s, c, result);
         }
-        else if (axisIndex === 1 /* Y */) {
+        else if (axisIndex === Geometry_1.AxisIndex.Y) {
             myResult = Matrix3d.createRowValues(c, 0, s, 0, 1, 0, -s, 0, c, result);
         }
         else {
@@ -432,7 +475,7 @@ class Matrix3d {
      * * ColumnX points in the rightVector direction
      * * ColumnY points in in the upVectorDirection
      * * ColumnZ is a unit cross product.
-     * Optinoally rotate the standard cube by 45 to bring its left or right vertical edge to center
+     * Optionally rotate the standard cube by 45 to bring its left or right vertical edge to center
      * * leftNoneRight = [-1,0,1] respectively for left edge, no rotation, or right edge
      * * bottomNoneTop = [-1,0,1] respectively for isometric rotation to view the bottom, no isometric rotation, and isometric rotation to view the top
      * This is expected to be used with various principal unit vectors that are perpendicular to each other.
@@ -443,7 +486,7 @@ class Matrix3d {
      *  * STANDARD LEFT VIEW: (Vector3d.UnitY (-1), Vector3d.UnitZ (), 0, 0)
      *  * STANDARD BOTTOM VIEW: (Vector3d.UnitX (1), Vector3d.UnitY (-1), 0, 0)
      * @param leftNoneRight Normally one of {-1,0,1}, where (-1) indicates the left vertical is rotated to center and (1) for right.  Other numbers are used as multiplier for this 45 degree rotation
-     * @returns undefined if columNX, columnY are coplanar.
+     * @returns undefined if columnX, columnY are coplanar.
      */
     static createViewedAxes(rightVector, upVector, leftNoneRight = 0, topNoneBottom = 0) {
         const columnZ = rightVector.crossProduct(upVector);
@@ -472,36 +515,36 @@ class Matrix3d {
     /**
      * Create a rotation matrix for one of the 8 standard views.
      * * With `invert === false` the return is such that `matrix.multiply(worldVector)` returns the vector as seen in the xy (projected) coordinates of the view.
-     * * With invert === true the matrix is transposed so that `matrix.mutiply(viewVector` maps the "in view" vector to a world vector.
+     * * With invert === true the matrix is transposed so that `matrix.multiply(viewVector` maps the "in view" vector to a world vector.
      *
-     * @param index standard veiw index `StandardViewIndex.Top, Bottom, LEft, Right, Front, Back, Iso, LeftIso`
+     * @param index standard view index `StandardViewIndex.Top, Bottom, LEft, Right, Front, Back, Iso, LeftIso`
      * @param invert if false (default), the returned Matrix3d "projects" world vectors into XY view vectors.  If true, it is inverted to map view vectors to world.
      * @param result optional result.
      */
     static createStandardWorldToView(index, invert = false, result) {
         switch (index) {
-            case 2 /* Bottom */:
+            case Geometry_1.StandardViewIndex.Bottom:
                 result = Matrix3d.createRowValues(1, 0, 0, 0, -1, 0, 0, 0, -1);
                 break;
-            case 3 /* Left */:
+            case Geometry_1.StandardViewIndex.Left:
                 result = Matrix3d.createRowValues(0, -1, 0, 0, 0, 1, -1, 0, 0);
                 break;
-            case 4 /* Right */:
+            case Geometry_1.StandardViewIndex.Right:
                 result = Matrix3d.createRowValues(0, 1, 0, 0, 0, 1, 1, 0, 0);
                 break;
-            case 5 /* Front */: // 0-based 4
+            case Geometry_1.StandardViewIndex.Front: // 0-based 4
                 result = Matrix3d.createRowValues(1, 0, 0, 0, 0, 1, 0, -1, 0);
                 break;
-            case 6 /* Back */: // 0-based 5
+            case Geometry_1.StandardViewIndex.Back: // 0-based 5
                 result = Matrix3d.createRowValues(-1, 0, 0, 0, 0, 1, 0, 1, 0);
                 break;
-            case 7 /* Iso */:
+            case Geometry_1.StandardViewIndex.Iso:
                 result = Matrix3d.createRowValues(0.707106781186548, -0.70710678118654757, 0.00000000000000000, 0.408248290463863, 0.40824829046386302, 0.81649658092772603, -0.577350269189626, -0.57735026918962573, 0.57735026918962573);
                 break;
-            case 8 /* RightIso */:
+            case Geometry_1.StandardViewIndex.RightIso:
                 result = Matrix3d.createRowValues(0.707106781186548, 0.70710678118654757, 0.00000000000000000, -0.408248290463863, 0.40824829046386302, 0.81649658092772603, 0.577350269189626, -0.57735026918962573, 0.57735026918962573);
                 break;
-            case 1 /* Top */:
+            case Geometry_1.StandardViewIndex.Top:
             default:
                 result = Matrix3d.createIdentity(result);
         }
@@ -514,22 +557,22 @@ class Matrix3d {
     public getAxisAndAngleOfRotation(): { axis: Vector3d, angle: Angle, error: boolean } {
   
       const result = { axis: Vector3d.unitZ(), angle: Angle.createRadians(0), error: true };
-      if (this.isIdentity()) {
+      if (this.isIdentity) {
         result.error = false;
         return result;
       }
       if (!this.isRigid())
         return result;
-      const QminusI = this.clone();
-      QminusI.coffs[0] -= 1.0;
-      QminusI.coffs[4] -= 1.0;
-      QminusI.coffs[8] -= 1.0;
+      const QMinusI = this.clone();
+      QMinusI.coffs[0] -= 1.0;
+      QMinusI.coffs[4] -= 1.0;
+      QMinusI.coffs[8] -= 1.0;
       // Each column of (Q - I) is the motion of the corresponding axis vector
       // during the rotation.
       // Only one of the three axes can really be close to the rotation axis.
-      const delta0 = QminusI.columnX();
-      const delta1 = QminusI.columnY();
-      const delta2 = QminusI.columnZ();
+      const delta0 = QMinusI.columnX();
+      const delta1 = QMinusI.columnY();
+      const delta2 = QMinusI.columnZ();
       const cross01 = delta0.crossProduct(delta1);
       const cross12 = delta1.crossProduct(delta2);
       const cross20 = delta2.crossProduct(delta0);
@@ -573,7 +616,7 @@ class Matrix3d {
       result.angle.setRadians(Math.atan2(sine, cosine));
       result.axis.setFrom(cross);
       result.error = !result.axis.tryNormalizeInPlace();
-      return result;
+      return result
     }
   */
     /**
@@ -640,7 +683,7 @@ class Matrix3d {
         return result;
     }
     /**
-     * @returns return a matrix that rotates from vectorA to vectorB.
+     * Returns a matrix that rotates from vectorA to vectorB.
      */
     static createRotationVectorToVector(vectorA, vectorB, result) {
         return this.createPartialRotationVectorToVector(vectorA, 1.0, vectorB, result);
@@ -687,36 +730,36 @@ class Matrix3d {
             return retVal;
         }
     }
-    /** @returns Return (a copy of) the X column */
+    /** Return (a copy of) the X column */
     columnX(result) { return Point3dVector3d_1.Vector3d.create(this.coffs[0], this.coffs[3], this.coffs[6], result); }
-    /** @returns Return (a copy of)the Y column */
+    /** Return (a copy of)the Y column */
     columnY(result) { return Point3dVector3d_1.Vector3d.create(this.coffs[1], this.coffs[4], this.coffs[7], result); }
-    /** @returns Return (a copy of)the Z column */
+    /** Return (a copy of)the Z column */
     columnZ(result) { return Point3dVector3d_1.Vector3d.create(this.coffs[2], this.coffs[5], this.coffs[8], result); }
-    /** @returns Return the X column magnitude squared */
+    /** Return the X column magnitude squared */
     columnXMagnitudeSquared() { return Geometry_1.Geometry.hypotenuseSquaredXYZ(this.coffs[0], this.coffs[3], this.coffs[6]); }
-    /** @returns Return the Y column magnitude squared */
+    /** Return the Y column magnitude squared */
     columnYMagnitudeSquared() { return Geometry_1.Geometry.hypotenuseSquaredXYZ(this.coffs[1], this.coffs[4], this.coffs[7]); }
-    /** @returns Return the Z column magnitude squared */
+    /** Return the Z column magnitude squared */
     columnZMagnitudeSquared() { return Geometry_1.Geometry.hypotenuseSquaredXYZ(this.coffs[2], this.coffs[5], this.coffs[8]); }
-    /** @returns Return the X column magnitude */
-    columnXMagnitude() { return Math.hypot(this.coffs[0], this.coffs[3], this.coffs[6]); }
-    /** @returns Return the Y column magnitude */
-    columnYMagnitude() { return Math.hypot(this.coffs[1], this.coffs[4], this.coffs[7]); }
-    /** @returns Return the Z column magnitude */
-    columnZMagnitude() { return Math.hypot(this.coffs[2], this.coffs[5], this.coffs[8]); }
-    /** @returns Return magntiude of columnX cross columnY. */
+    /** Return the X column magnitude */
+    columnXMagnitude() { return Geometry_1.Geometry.hypotenuseXYZ(this.coffs[0], this.coffs[3], this.coffs[6]); }
+    /** Return the Y column magnitude */
+    columnYMagnitude() { return Geometry_1.Geometry.hypotenuseXYZ(this.coffs[1], this.coffs[4], this.coffs[7]); }
+    /** Return the Z column magnitude */
+    columnZMagnitude() { return Geometry_1.Geometry.hypotenuseXYZ(this.coffs[2], this.coffs[5], this.coffs[8]); }
+    /** Return magnitude of columnX cross columnY. */
     columnXYCrossProductMagnitude() {
         return Geometry_1.Geometry.crossProductMagnitude(this.coffs[0], this.coffs[3], this.coffs[6], this.coffs[1], this.coffs[4], this.coffs[7]);
     }
-    /** @returns Return the X row magnitude d */
-    rowXMagnitude() { return Math.hypot(this.coffs[0], this.coffs[1], this.coffs[2]); }
-    /** @returns Return the Y row magnitude  */
-    rowYMagnitude() { return Math.hypot(this.coffs[3], this.coffs[4], this.coffs[5]); }
-    /** @returns Return the Z row magnitude  */
-    rowZMagnitude() { return Math.hypot(this.coffs[6], this.coffs[7], this.coffs[8]); }
-    /** @returns the dot product of column X with column Y */
-    /** @returns the dot product of column X with column Y */
+    /** Return the X row magnitude d */
+    rowXMagnitude() { return Geometry_1.Geometry.hypotenuseXYZ(this.coffs[0], this.coffs[1], this.coffs[2]); }
+    /** Return the Y row magnitude  */
+    rowYMagnitude() { return Geometry_1.Geometry.hypotenuseXYZ(this.coffs[3], this.coffs[4], this.coffs[5]); }
+    /** Return the Z row magnitude  */
+    rowZMagnitude() { return Geometry_1.Geometry.hypotenuseXYZ(this.coffs[6], this.coffs[7], this.coffs[8]); }
+    /** Return the dot product of column X with column Y */
+    /** Return the dot product of column X with column Y */
     columnXDotColumnY() {
         return this.coffs[0] * this.coffs[1]
             + this.coffs[3] * this.coffs[4]
@@ -728,25 +771,26 @@ class Matrix3d {
     rowY(result) { return Point3dVector3d_1.Vector3d.create(this.coffs[3], this.coffs[4], this.coffs[5], result); }
     /** Return (a copy of) the Z row */
     rowZ(result) { return Point3dVector3d_1.Vector3d.create(this.coffs[6], this.coffs[7], this.coffs[8], result); }
-    /** @returns Return the dot product of the vector parameter with the X column. */
+    /** Return the dot product of the vector parameter with the X column. */
     dotColumnX(vector) { return vector.x * this.coffs[0] + vector.y * this.coffs[3] + vector.z * this.coffs[6]; }
-    /** @returns Return the dot product of the vector parameter with the Y column. */
+    /** Return the dot product of the vector parameter with the Y column. */
     dotColumnY(vector) { return vector.x * this.coffs[1] + vector.y * this.coffs[4] + vector.z * this.coffs[7]; }
-    /** @returns Return the dot product of the vector parameter with the Z column. */
+    /** Return the dot product of the vector parameter with the Z column. */
     dotColumnZ(vector) { return vector.x * this.coffs[2] + vector.y * this.coffs[5] + vector.z * this.coffs[8]; }
-    /** @returns Return the dot product of the vector parameter with the X row. */
+    /** Return the dot product of the vector parameter with the X row. */
     dotRowX(vector) { return vector.x * this.coffs[0] + vector.y * this.coffs[1] + vector.z * this.coffs[2]; }
-    /** @returns Return the dot product of the vector parameter with the Y row. */
+    /** Return the dot product of the vector parameter with the Y row. */
     dotRowY(vector) { return vector.x * this.coffs[3] + vector.y * this.coffs[4] + vector.z * this.coffs[5]; }
-    /** @returns Return the dot product of the vector parameter with the Z row. */
+    /** Return the dot product of the vector parameter with the Z row. */
     dotRowZ(vector) { return vector.x * this.coffs[6] + vector.y * this.coffs[7] + vector.z * this.coffs[8]; }
-    /** @returns Return the dot product of the x,y,z with the X row. */
+    // cSpell:words XXYZ YXYZ ZXYZ XYZAs Eigen
+    /** Return the dot product of the x,y,z with the X row. */
     dotRowXXYZ(x, y, z) { return x * this.coffs[0] + y * this.coffs[1] + z * this.coffs[2]; }
-    /** @returns Return the dot product of the x,y,z with the Y row. */
+    /** Return the dot product of the x,y,z with the Y row. */
     dotRowYXYZ(x, y, z) { return x * this.coffs[3] + y * this.coffs[4] + z * this.coffs[5]; }
-    /** @returns Return the dot product of the x,y,z with the Z row. */
+    /** Return the dot product of the x,y,z with the Z row. */
     dotRowZXYZ(x, y, z) { return x * this.coffs[6] + y * this.coffs[7] + z * this.coffs[8]; }
-    /** @returns Return the (vector) cross product of the Z column with the vector parameter. */
+    /** Return the (vector) cross product of the Z column with the vector parameter. */
     columnZCrossVector(vector, result) {
         return Geometry_1.Geometry.crossProductXYZXYZ(this.coffs[2], this.coffs[5], this.coffs[8], vector.x, vector.y, vector.z, result);
     }
@@ -990,6 +1034,7 @@ class Matrix3d {
     }
     /** Install data from xyz parts of Point4d  (w part of Point4d ignored) */
     setColumnsPoint4dXYZ(vectorU, vectorV, vectorW) {
+        this.inverseState = InverseMatrixState.unknown;
         this.setRowValues(vectorU.x, vectorV.x, vectorW.x, vectorU.y, vectorV.y, vectorW.y, vectorU.z, vectorV.z, vectorW.z);
     }
     /**
@@ -999,6 +1044,7 @@ class Matrix3d {
      */
     setColumn(columnIndex, value) {
         const index = Geometry_1.Geometry.cyclic3dAxis(columnIndex);
+        this.inverseState = InverseMatrixState.unknown;
         if (value) {
             this.coffs[index] = value.x;
             this.coffs[index + 3] = value.y;
@@ -1016,22 +1062,27 @@ class Matrix3d {
         this.setColumn(1, vectorY);
         this.setColumn(2, vectorZ);
     }
-    setRow(columnIndex, value) {
-        const index = 3 * Geometry_1.Geometry.cyclic3dAxis(columnIndex);
+    /**
+     * set entries in one row of the matrix.
+     * @param rowIndex row index. this is interpreted cyclically.
+     * @param value x,yz, values for row.  If undefined, zeros are installed.
+     */
+    setRow(rowIndex, value) {
+        const index = 3 * Geometry_1.Geometry.cyclic3dAxis(rowIndex);
         this.coffs[index] = value.x;
         this.coffs[index + 1] = value.y;
         this.coffs[index + 2] = value.z;
         this.inverseState = InverseMatrixState.unknown;
     }
     /** Return a (copy of) a column of the matrix.
-     * @param i column index.  Thnis is corrected to 012 by Geoemtry.cyclic3dAxis.
+     * @param i column index.  This is corrected to 012 by Geometry.cyclic3dAxis.
      */
     getColumn(columnIndex, result) {
         const index = Geometry_1.Geometry.cyclic3dAxis(columnIndex);
         return Point3dVector3d_1.Vector3d.create(this.coffs[index], this.coffs[index + 3], this.coffs[index + 6], result);
     }
     /** Return a (copy of) a row of the matrix.
-     * @param i row index.  Thnis is corrected to 012 by Geoemtry.cyclic3dAxis.
+     * @param i row index.  This is corrected to 012 by Geometry.cyclic3dAxis.
      */
     getRow(columnIndex, result) {
         const index = 3 * Geometry_1.Geometry.cyclic3dAxis(columnIndex);
@@ -1084,24 +1135,37 @@ class Matrix3d {
         for (const v of data)
             v.set((this.coffs[0] * v.x + this.coffs[1] * v.y + this.coffs[2] * v.z), (this.coffs[3] * v.x + this.coffs[4] * v.y + this.coffs[5] * v.z), (this.coffs[6] * v.x + this.coffs[7] * v.y + this.coffs[8] * v.z));
     }
-    static XYZMinusMatrixTimesXYZ(origin, matrix, vector, result) {
+    /** compute `origin - matrix * vector` */
+    static xyzMinusMatrixTimesXYZ(origin, matrix, vector, result) {
         const x = vector.x;
         const y = vector.y;
         const z = vector.z;
         return Point3dVector3d_1.Point3d.create(origin.x - (matrix.coffs[0] * x + matrix.coffs[1] * y + matrix.coffs[2] * z), origin.y - (matrix.coffs[3] * x + matrix.coffs[4] * y + matrix.coffs[5] * z), origin.z - (matrix.coffs[6] * x + matrix.coffs[7] * y + matrix.coffs[8] * z), result);
     }
-    static XYPlusMatrixTimesXY(origin, matrix, vector, result) {
+    /** compute  `origin + matrix * vector`  using only the xy parts of the inputs. */
+    static xyPlusMatrixTimesXY(origin, matrix, vector, result) {
         const x = vector.x;
         const y = vector.y;
         return Point2dVector2d_1.Point2d.create(origin.x + matrix.coffs[0] * x + matrix.coffs[1] * y, origin.y + matrix.coffs[3] * x + matrix.coffs[4] * y, result);
     }
-    static XYZPlusMatrixTimesXYZ(origin, matrix, vector, result) {
+    /** compute  `origin + matrix * vector`  using all xyz parts of the inputs. */
+    static xyzPlusMatrixTimesXYZ(origin, matrix, vector, result) {
         const x = vector.x;
         const y = vector.y;
         const z = vector.z;
         return Point3dVector3d_1.Point3d.create(origin.x + matrix.coffs[0] * x + matrix.coffs[1] * y + matrix.coffs[2] * z, origin.y + matrix.coffs[3] * x + matrix.coffs[4] * y + matrix.coffs[5] * z, origin.z + matrix.coffs[6] * x + matrix.coffs[7] * y + matrix.coffs[8] * z, result);
     }
-    static XYZPlusMatrixTimesCoordinates(origin, matrix, x, y, z, result) {
+    /** compute  `origin + matrix * vector`  using all xyz parts of the inputs. */
+    static xyzPlusMatrixTimesXYZInPlace(origin, matrix, vector) {
+        const x = vector.x;
+        const y = vector.y;
+        const z = vector.z;
+        vector.x = origin.x + matrix.coffs[0] * x + matrix.coffs[1] * y + matrix.coffs[2] * z;
+        vector.y = origin.y + matrix.coffs[3] * x + matrix.coffs[4] * y + matrix.coffs[5] * z;
+        vector.z = origin.z + matrix.coffs[6] * x + matrix.coffs[7] * y + matrix.coffs[8] * z;
+    }
+    /** compute `origin + matrix * vector` where the final vector is given as direct x,y,z coordinates */
+    static xyzPlusMatrixTimesCoordinates(origin, matrix, x, y, z, result) {
         return Point3dVector3d_1.Point3d.create(origin.x + matrix.coffs[0] * x + matrix.coffs[1] * y + matrix.coffs[2] * z, origin.y + matrix.coffs[3] * x + matrix.coffs[4] * y + matrix.coffs[5] * z, origin.z + matrix.coffs[6] * x + matrix.coffs[7] * y + matrix.coffs[8] * z, result);
     }
     /**
@@ -1115,7 +1179,7 @@ class Matrix3d {
      * @param w w part of multiplied point
      * @param result optional result.
      */
-    static XYZPlusMatrixTimesWeightedCoordinates(origin, matrix, x, y, z, w, result) {
+    static xyzPlusMatrixTimesWeightedCoordinates(origin, matrix, x, y, z, w, result) {
         return Point4d_1.Point4d.create(w * origin.x + matrix.coffs[0] * x + matrix.coffs[1] * y + matrix.coffs[2] * z, w * origin.y + matrix.coffs[3] * x + matrix.coffs[4] * y + matrix.coffs[5] * z, w * origin.z + matrix.coffs[6] * x + matrix.coffs[7] * y + matrix.coffs[8] * z, w, result);
     }
     /**
@@ -1129,7 +1193,7 @@ class Matrix3d {
      * @param w w part of multiplied point
      * @param result optional result.
      */
-    static XYZPlusMatrixTimesWeightedCoordinatesToFloat64Array(origin, matrix, x, y, z, w, result) {
+    static xyzPlusMatrixTimesWeightedCoordinatesToFloat64Array(origin, matrix, x, y, z, w, result) {
         if (!result)
             result = new Float64Array(4);
         result[0] = w * origin.x + matrix.coffs[0] * x + matrix.coffs[1] * y + matrix.coffs[2] * z;
@@ -1149,7 +1213,7 @@ class Matrix3d {
      * @param w w part of multiplied point
      * @param result optional result.
      */
-    static XYZPlusMatrixTimesCoordinatesToFloat64Array(origin, matrix, x, y, z, result) {
+    static xyzPlusMatrixTimesCoordinatesToFloat64Array(origin, matrix, x, y, z, result) {
         if (!result)
             result = new Float64Array(3);
         result[0] = origin.x + matrix.coffs[0] * x + matrix.coffs[1] * y + matrix.coffs[2] * z;
@@ -1157,6 +1221,7 @@ class Matrix3d {
         result[2] = origin.z + matrix.coffs[6] * x + matrix.coffs[7] * y + matrix.coffs[8] * z;
         return result;
     }
+    /** Multiply transpose of this matrix times a vector. */
     multiplyTransposeVector(vector, result) {
         result = result ? result : new Point3dVector3d_1.Vector3d();
         const x = vector.x;
@@ -1200,7 +1265,7 @@ class Matrix3d {
         result.z = (this.coffs[6] * x + this.coffs[7] * y);
         return result;
     }
-    // origin + this*[x,y,0].  (no nulls allowed !!)
+    /** compute `origin + this*[x,y,0]`  */
     originPlusMatrixTimesXY(origin, x, y, result) {
         return Point3dVector3d_1.Point3d.create(origin.x + this.coffs[0] * x + this.coffs[1] * y, origin.y + this.coffs[3] * x + this.coffs[4] * y, origin.z + this.coffs[6] * x + this.coffs[7] * y, result);
     }
@@ -1290,6 +1355,16 @@ class Matrix3d {
         PackedMatrix3dOps.multiplyMatrixMatrix(this.coffs, other.coffs, result.coffs);
         return result;
     }
+    /** Multiply this matrix times inverse of other
+     *   @return the matrix result
+     */
+    multiplyMatrixMatrixInverse(other, result) {
+        if (!other.computeCachedInverse(true))
+            return undefined;
+        result = result ? result : new Matrix3d();
+        PackedMatrix3dOps.multiplyMatrixMatrix(this.coffs, other.inverseCoffs, result.coffs);
+        return result;
+    }
     /** Matrix multiplication `this * otherTranspose`
      * @return the matrix result
      */
@@ -1315,7 +1390,7 @@ class Matrix3d {
     multiplyMatrixTransform(other, result) {
         if (!result)
             return Transform_1.Transform.createRefs(this.multiplyXYZ(other.origin.x, other.origin.y, other.origin.z), this.multiplyMatrixMatrix(other.matrix));
-        // be sure to do the point mulitplication first before aliasing changes the matrix ..
+        // be sure to do the point multiplication first before aliasing changes the matrix ..
         this.multiplyXYZtoXYZ(other.origin, result.origin);
         this.multiplyMatrixMatrix(other.matrix, result.matrix);
         return result;
@@ -1383,37 +1458,37 @@ class Matrix3d {
      * This means that in the final matrix:
      * * column A is strictly parallel to original column A
      * * column B is linear combination of only original A and B
-     * * column C is perpenedicular to A and B of both the original and final.
+     * * column C is perpendicular to A and B of both the original and final.
      * * original column C does not participate in the result.
      */
     axisOrderCrossProductsInPlace(axisOrder) {
         switch (axisOrder) {
-            case 0 /* XYZ */: {
+            case Geometry_1.AxisOrder.XYZ: {
                 this.indexedColumnCrossProductInPlace(0, 1, 2);
                 this.indexedColumnCrossProductInPlace(2, 0, 1);
                 break;
             }
-            case 1 /* YZX */: {
+            case Geometry_1.AxisOrder.YZX: {
                 this.indexedColumnCrossProductInPlace(1, 2, 0);
                 this.indexedColumnCrossProductInPlace(0, 1, 2);
                 break;
             }
-            case 2 /* ZXY */: {
+            case Geometry_1.AxisOrder.ZXY: {
                 this.indexedColumnCrossProductInPlace(2, 0, 1);
                 this.indexedColumnCrossProductInPlace(1, 2, 0);
                 break;
             }
-            case 4 /* XZY */: {
+            case Geometry_1.AxisOrder.XZY: {
                 this.indexedColumnCrossProductInPlace(0, 2, 1);
                 this.indexedColumnCrossProductInPlace(1, 0, 2);
                 break;
             }
-            case 5 /* YXZ */: {
+            case Geometry_1.AxisOrder.YXZ: {
                 this.indexedColumnCrossProductInPlace(1, 0, 2);
                 this.indexedColumnCrossProductInPlace(2, 1, 0);
                 break;
             }
-            case 6 /* ZYX */: {
+            case Geometry_1.AxisOrder.ZYX: {
                 this.indexedColumnCrossProductInPlace(2, 1, 0);
                 this.indexedColumnCrossProductInPlace(0, 2, 1);
                 break;
@@ -1452,6 +1527,18 @@ class Matrix3d {
     // store as a column of dest.
     static rowColumnDot(coffA, rowStartA, coffB, columnStartB) {
         return coffA[rowStartA] * coffB[columnStartB] + coffA[rowStartA + 1] * coffB[columnStartB + 3] + coffA[rowStartA + 2] * coffB[columnStartB + 6];
+    }
+    /**
+     * Returns true if the matrix is singular (i.e. collapses data to a plane, line, or point)
+     */
+    isSingular() {
+        return !this.computeCachedInverse(true);
+    }
+    /**
+     * Mark this matrix as singular.
+     */
+    markSingular() {
+        this.inverseState = InverseMatrixState.singular;
     }
     /** compute the inverse of this Matrix3d. The inverse is stored for later use.
      * @returns Return true if the inverse computed.  (False if the columns collapse to a point, line or plane.)
@@ -1521,6 +1608,7 @@ class Matrix3d {
         return true;
       }
     */
+    /** convert a (row,column) index pair to the single index within flattened array of 9 numbers in row-major-order  */
     static flatIndexOf(row, column) {
         return 3 * Geometry_1.Geometry.cyclic3dAxis(row) + Geometry_1.Geometry.cyclic3dAxis(column);
     }
@@ -1600,6 +1688,23 @@ class Matrix3d {
     addScaledInPlace(other, scale) {
         for (let i = 0; i < 9; i++)
             this.coffs[i] += scale * other.coffs[i];
+        this.inverseState = InverseMatrixState.unknown;
+    }
+    /**
+     * add scaled values from other Matrix3d to this Matrix3d
+     * @param other Matrix3d with values to be added
+     * @param scale scale factor to apply to th eadded values.
+     */
+    addScaledOuterProductInPlace(vectorU, vectorV, scale) {
+        this.coffs[0] += scale * vectorU.x * vectorV.x;
+        this.coffs[1] += scale * vectorU.x * vectorV.y;
+        this.coffs[2] += scale * vectorU.x * vectorV.z;
+        this.coffs[3] += scale * vectorU.y * vectorV.x;
+        this.coffs[4] += scale * vectorU.y * vectorV.y;
+        this.coffs[5] += scale * vectorU.y * vectorV.z;
+        this.coffs[6] += scale * vectorU.z * vectorV.x;
+        this.coffs[7] += scale * vectorU.z * vectorV.y;
+        this.coffs[8] += scale * vectorU.z * vectorV.z;
         this.inverseState = InverseMatrixState.unknown;
     }
     /** create a Matrix3d whose values are uniformly scaled from this.
@@ -1769,16 +1874,105 @@ class Matrix3d {
     /** create a new orthogonal matrix (perpendicular columns, unit length, transpose is inverse)
      * columns are taken from the source Matrix3d in order indicated by the axis order.
      */
-    static createRigidFromMatrix3d(source, axisOrder = 0 /* XYZ */, result) {
+    static createRigidFromMatrix3d(source, axisOrder = Geometry_1.AxisOrder.XYZ, result) {
         result = source.clone(result);
         result.axisOrderCrossProductsInPlace(axisOrder);
         if (result.normalizeColumnsInPlace())
             return result;
         return undefined;
     }
+    static computeQuatTerm(numerator, denomCoff, reciprocal, diagSum) {
+        let coff;
+        const diagTol = 0.500;
+        if (diagSum > diagTol) {
+            coff = Math.sqrt(diagSum) * 0.5;
+            if (denomCoff * numerator < 0.0)
+                coff = -coff;
+        }
+        else {
+            coff = numerator * reciprocal;
+        }
+        return coff;
+    }
+    /** create a matrix from a quaternion.
+     * WARNING: There is frequent confusion over whether a "from quaternion" matrix is organized by rows and columns.
+     * WARNING: If you find that the matrix seems to rotate by the opposite angle expect it, transpose it.
+     */
+    static createFromQuaternion(quat) {
+        const qqx = quat.x * quat.x;
+        const qqy = quat.y * quat.y;
+        const qqz = quat.z * quat.z;
+        const qqw = quat.w * quat.w;
+        const mag2 = qqx + qqy + qqz + qqw;
+        if (mag2 === 0.0) {
+            return Matrix3d.createIdentity();
+        }
+        else {
+            const a = 1.0 / mag2;
+            const matrix = Matrix3d.createRowValues(a * (qqw + qqx - qqy - qqz), 2.0 * a * (quat.w * quat.z + quat.x * quat.y), 2.0 * a * (quat.x * quat.z - quat.w * quat.y), 2.0 * a * (quat.x * quat.y - quat.w * quat.z), a * (qqw - qqx + qqy - qqz), 2.0 * a * (quat.w * quat.x + quat.y * quat.z), 2.0 * a * (quat.x * quat.z + quat.w * quat.y), 2.0 * a * (quat.y * quat.z - quat.w * quat.x), a * (qqw - qqx - qqy + qqz));
+            return matrix;
+        }
+    }
+    /** convert the matrix to a quaternion.
+     * @note This calculation requires the matrix to have unit length rows and columns.
+     * WARNING: There is frequent confusion over whether a "from quaternion" matrix is organized by rows and columns.
+     * WARNING: If you find that the matrix seems to rotate by the opposite angle expect it, transpose it.
+     */
+    toQuaternion() {
+        const result = Point4d_1.Point4d.createZero();
+        const props = [[this.coffs[0], this.coffs[3], this.coffs[6]],
+            [this.coffs[1], this.coffs[4], this.coffs[7]],
+            [this.coffs[2], this.coffs[5], this.coffs[8]]];
+        const xx = props[0][0];
+        const yy = props[1][1];
+        const zz = props[2][2];
+        const dSum = [];
+        let denom, maxIndex, i;
+        dSum[0] = 1.0 + xx - yy - zz;
+        dSum[1] = 1.0 - xx + yy - zz;
+        dSum[2] = 1.0 - xx - yy + zz;
+        dSum[3] = 1.0 + xx + yy + zz;
+        maxIndex = 0;
+        for (i = 1; i < 4; i++) {
+            if (dSum[i] > dSum[maxIndex])
+                maxIndex = i;
+        }
+        if (maxIndex === 0) {
+            result.x = 0.5 * Math.sqrt(dSum[0]);
+            denom = 1.0 / (4.0 * result.x);
+            result.y = Matrix3d.computeQuatTerm(props[0][1] + props[1][0], result.x, denom, dSum[1]);
+            result.z = Matrix3d.computeQuatTerm(props[0][2] + props[2][0], result.x, denom, dSum[2]);
+            result.w = Matrix3d.computeQuatTerm(props[2][1] - props[1][2], result.x, denom, dSum[3]);
+        }
+        else if (maxIndex === 1) {
+            result.y = 0.5 * Math.sqrt(dSum[1]);
+            denom = 1.0 / (4.0 * result.y);
+            result.x = Matrix3d.computeQuatTerm(props[0][1] + props[1][0], result.y, denom, dSum[0]);
+            result.z = Matrix3d.computeQuatTerm(props[1][2] + props[2][1], result.y, denom, dSum[2]);
+            result.w = Matrix3d.computeQuatTerm(props[0][2] - props[2][0], result.y, denom, dSum[3]);
+        }
+        else if (maxIndex === 2) {
+            result.z = 0.5 * Math.sqrt(dSum[2]);
+            denom = 1.0 / (4.0 * result.z);
+            result.x = Matrix3d.computeQuatTerm(props[0][2] + props[2][0], result.z, denom, dSum[0]);
+            result.y = Matrix3d.computeQuatTerm(props[1][2] + props[2][1], result.z, denom, dSum[1]);
+            result.w = Matrix3d.computeQuatTerm(props[1][0] - props[0][1], result.z, denom, dSum[3]);
+        }
+        else {
+            result.w = 0.5 * Math.sqrt(dSum[3]);
+            denom = 1.0 / (4.0 * result.w);
+            result.x = Matrix3d.computeQuatTerm(props[2][1] - props[1][2], result.w, denom, dSum[0]);
+            result.y = Matrix3d.computeQuatTerm(props[0][2] - props[2][0], result.w, denom, dSum[1]);
+            result.z = Matrix3d.computeQuatTerm(props[1][0] - props[0][1], result.w, denom, dSum[2]);
+        }
+        return result;
+    }
 }
-Matrix3d.useCachedInverse = true; // cached inverse can be suppressed for testing.
-Matrix3d.numUseCache = 0;
-Matrix3d.numComputeCache = 0;
 exports.Matrix3d = Matrix3d;
+/** Control flag for whether this class uses cached inverse of matrices. */
+Matrix3d.useCachedInverse = true; // cached inverse can be suppressed for testing.
+/** total number of times a cached inverse was used to avoid recompute */
+Matrix3d.numUseCache = 0;
+/** total number of times a cached inverse was computed. */
+Matrix3d.numComputeCache = 0;
 //# sourceMappingURL=Matrix3d.js.map
