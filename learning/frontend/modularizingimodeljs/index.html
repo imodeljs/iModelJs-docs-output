@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.7.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -125,8 +125,6 @@
 <h2 class="h-advantages-to-modularizing">Advantages to Modularizing<a id="advantages-to-modularizing" class="heading-anchor" href="#advantages-to-modularizing"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>There are a number of advantages to creating a separately loadable module for each of our packages:</p>
 <ol>
-<li><p>We (and our users and third-party developers) will have many iModel.js applications. The system iModel.js modules can be shared by multiple such applications. They can be delivered to the browser by a simple web server or by a content delivery network (CDN). They can also be loaded directly from the browser cache if they have been previously downloaded.</p>
-</li>
 <li><p>We (and our users and third-party developers) can develop plugins for our applications that can be loaded dynamically. Such plugins are webpacked as external modules, using the exact same method that we use to webpack our packages as modules, and then loaded into the browser or Electron environment that already has the iModel.js modules loaded. The plugins can be very small if they add only simple functionality, or quite large if necessary.</p>
 </li>
 <li><p>Faster startup time during development. Our previous development environment used the webpack development server for most of our test programs (e.g. ui-test-app). In that case, each time a browser application is started, it is webpacked into memory from the ground up, a process that can take several minutes. With the application and our packages modularized and webpacked to disk, startup is very fast.</p>
@@ -151,11 +149,11 @@
 <p>Unfortunately, the Webpack Module is not an exact match for our requirements. By default, it is oriented towards small modules that have a shallow dependency tree on other external modules (or are not dependent on any other external modules). That is not the case we have - our modules have a pretty deep dependency stack that looks something like this, with each module possibly dependent on multiple modules above it in this list:</p>
 <pre class="no-line-numbers"><code class="language-javascript">bentleyjs-core
 geometry-core
-iModel.js-i18n
-iModel.js-clients
-iModel.js-common
-iModel.js-quantity
-iModel.js-frontend
+imodeljs-i18n
+imodeljs-clients
+imodeljs-common
+imodeljs-quantity
+imodeljs-frontend
 ui-abstract
 ui-core
 ui-components
@@ -175,10 +173,10 @@ presentation-frontend</code></pre>
 <p> In the past, we have sometimes omitted particular exports out of the barrel file if they are only meant for our internal use. For example, we might have a class in imodeljs-clients that we want to use from imodeljs-frontend, but we don&apos;t want to expose that class for general use. Previously, we could export the class in imodeljs-clients but keep it out of the barrel file, and then import that class where it was needed in the imodeljs-frontend package by specifying the full path to the transpiled file.  That can no longer be allowed - see Rule 2.</p>
 </li>
 <li><p>Import classes, functions, etc., from other packages using the barrel file exclusively. In other words, use:</p>
-<p><code>import { IModelApp } from &quot;@bentley/iModel.js-frontend&quot;;</code></p>
+<p><code>import { IModelApp } from &quot;@bentley/imodeljs-frontend&quot;;</code></p>
 <p> rather than the previously-possible</p>
-<p><code>import { IModelApp } from &quot;@bentley/iModel.js-frontend/lib/IModelApp&quot;;</code></p>
-<p> The reason for this is that webpack detects that you are intending to import the class or function from an external module by matching up the &quot;@bentley/iModel.js-frontend&quot; with the list of externals in the webpack configuration. If you specify the entire file, webpack doesn&apos;t interpret that as an external reference, and thus includes that (transpiled from TypeScript) JavaScript file into the current webpack. That would be bad enough, but it also doesn&apos;t recognize the imported file&apos;s imports from its home package (all of which will have the relative file name), and thus includes those, and recursively their imports, etc., until pretty soon all the source that we are trying to keep external from that module is pulled into its webpack.</p>
+<p><code>import { IModelApp } from &quot;@bentley/imodeljs-frontend/lib/IModelApp&quot;;</code></p>
+<p> The reason for this is that webpack detects that you are intending to import the class or function from an external module by matching up the &quot;@bentley/imodeljs-frontend&quot; with the list of externals in the webpack configuration. If you specify the entire file, webpack doesn&apos;t interpret that as an external reference, and thus includes that (transpiled from TypeScript) JavaScript file into the current webpack. That would be bad enough, but it also doesn&apos;t recognize the imported file&apos;s imports from its home package (all of which will have the relative file name), and thus includes those, and recursively their imports, etc., until pretty soon all the source that we are trying to keep external from that module is pulled into its webpack.</p>
 </li>
 <li><p>Refrain from default exports. They cannot be imported from barrel files, so they can only be used from within the same package. Simply don&apos;t use them and import everything using the usual syntax.</p>
 </li>
@@ -197,12 +195,11 @@ react-redux
 redux
 inspire-tree
 lodash</code></pre>
-<p>I have written a tool that analyzes the JSON output of our webpacked modules to determine what modules to specify as external. There is no point in making a module external if it used by only one of our packages, or if it is small. The list of potential modules was smaller than I expected it to be. So far, these are the only ones that merit treatment as external.</p>
-<h2 class="h-building-the-imodeljs-external-modules">Building the IModel.js External Modules<a id="building-the-imodeljs-external-modules" class="heading-anchor" href="#building-the-imodeljs-external-modules"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h2 class="h-building-the-imodeljs-external-modules">Building the iModel.js External Modules<a id="building-the-imodeljs-external-modules" class="heading-anchor" href="#building-the-imodeljs-external-modules"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The &quot;rush build&quot; command now builds each system module in the iModel.js repository using the buildIModelJsModule script, which sequences the transpilation and webpacking steps. Separate system modules are built for development and production purposes. For efficiency during development, &quot;rush build&quot; creates only the development version. To build the the production version of the modules, add the --production argument (&quot;rush build --production&quot;). For a complete discussion of building modules, including the additional steps needed to build application modules, please see the <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/frontend/buildingimodeljsmodules'>BuildingIModelJsModules</a> documentation.</p>
-<h2 class="h-gathering-external-modules-for-an-imodeljs-application">Gathering External Modules for an IModel.js Application<a id="gathering-external-modules-for-an-imodeljs-application" class="heading-anchor" href="#gathering-external-modules-for-an-imodeljs-application"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h2 class="h-gathering-external-modules-for-an-imodeljs-application">Gathering External Modules for an iModel.js Application<a id="gathering-external-modules-for-an-imodeljs-application" class="heading-anchor" href="#gathering-external-modules-for-an-imodeljs-application"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>For a browser application, the module files must be available to be delivered by a web server. When building an application module, the buildIModelJsModule script analyzes those external modules by examining the dependencies in package.json. The IModel.js modules are symlinked or copied to a subdirectory of the form <code>v&lt;version&gt;</code>, where version is read from the corresponding package.json. The other (non-iModel.js) external modules are symlinked or copied into the origin directory of the webserver.</p>
-<h2 class="h-building-applications-to-use-external-modules">Building Applications to Use External Modules&gt;<a id="building-applications-to-use-external-modules" class="heading-anchor" href="#building-applications-to-use-external-modules"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h2 class="h-building-applications-to-use-external-modules">Building Applications to Use External Modules<a id="building-applications-to-use-external-modules" class="heading-anchor" href="#building-applications-to-use-external-modules"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>An application that uses the IModel.js external module system should be built in the same way as the IModel.js external modules, so it has the correct webpack runtime. The buildIModelJsModule script ensures that.</p>
 <h2 class="h-loading-modules-at-runtime">Loading Modules at Runtime<a id="loading-modules-at-runtime" class="heading-anchor" href="#loading-modules-at-runtime"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>When a browser application relies on external modules, they must be loaded prior to the application module. A typical way to do that for single page applications (like most IModel.js applications) is to add script tags in the application&apos;s HTML template. The script tags have to be added in the correct order, because all of the dependents of a particular module must be loaded before it is loaded (hence the necessity of an acyclic dependency graph). Loading modules through script tags in that manner would require every application to put script tags for the entire set of modules in the correct sequence, and would require revision to each template HTML file whenever there was a change to the set of external modules, so instead there is an IModelJsLoader module that supervises the loading of all the other external modules. To use that loader, the application inserts two script tags into the <code>&lt;head&gt;</code> section of its HTML template:</p>
@@ -241,7 +238,7 @@ else
 <p>Once the servers are running, you can open a web browser and navigate to localhost:3000 to run the application.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 November, 2019</span>
+                <span class='date-updated'>22 November, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -316,13 +313,13 @@ else
             <a class='title solo-title menu-text' href="#using-open-source-libraries-as-external-modules">Using Open Source Libraries as External Modules</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#building-the-imodeljs-external-modules">Building the IModel.js External Modules</a>
+            <a class='title solo-title menu-text' href="#building-the-imodeljs-external-modules">Building the iModel.js External Modules</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#gathering-external-modules-for-an-imodeljs-application">Gathering External Modules for an IModel.js Application</a>
+            <a class='title solo-title menu-text' href="#gathering-external-modules-for-an-imodeljs-application">Gathering External Modules for an iModel.js Application</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#building-applications-to-use-external-modules">Building Applications to Use External Modules&gt;</a>
+            <a class='title solo-title menu-text' href="#building-applications-to-use-external-modules">Building Applications to Use External Modules</a>
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#loading-modules-at-runtime">Loading Modules at Runtime</a>

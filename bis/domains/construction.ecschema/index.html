@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Construction - iModel.js</title>
+    <meta name="og:title" content="Construction - iModel.js">
+    <meta name="twitter:title" content="Construction - iModel.js">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
+
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
+    <span id="contentLoader">
+        <p>Woah! This page has a great deal of content... Give us a second to load it.</p>
+    </span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+
+
+
+        <header id="main-header">
+            <div class='nav-header-container'>
+                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                    <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo-small" class="site-logo-small" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-icon.svg" style="display:none;"/> 
+                    </a>
+                    <button class="navbar-toggler no-user-select mr-auto" type="button" data-toggle="collapse" data-target="#navbar5">
+                        <span class="navbar-toggler-header"></span>
+                    </button>
+                    <ul class="navbar-nav ml-auto pr-0 nav-search">
+                        <span class='search-bar'>
+                          <li>
+                            <div id='search-container'>
+                            </div>
+                          </li>
+                          <script>
+                            (function() {
+                              var cx = '018053174497532353467:v_gnrjjlqwc';
+                              var gcse = document.createElement('script');
+                              gcse.type = 'text/javascript';
+                              gcse.async = true;
+                              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                              var s = document.getElementsByTagName('script')[0];
+                              s.parentNode.insertBefore(gcse, s);
+                            })();
+                          </script>
+                          <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+                        </span>
+                    </ul>
+                    <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
+                        <ul class="navbar-nav mb-0" id="doc-site-tabs">
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+<div id='main-wrapper'>
+    <nav id='sidebar'>
+        <div id='table-of-contents' class="custom-scrollbar">
+            <div id="dismiss">
+                <i id="dismiss-arrow" class="icon icon-chevron-left no-user-select"></i>
+            </div>
+            <hr id="dismiss-hr" class='sm-only'>
+            <ul id='main-navigation-list'>
+                <html><head></head><body><h3 id="bis">BIS</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/" class="table-of-contents-link">Base Infrastructure Schemas (BIS)</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/federated-digital-twins" class="table-of-contents-link">Federated Digital Twins</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-with-bis" class="table-of-contents-link">Modeling with BIS</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/bis-organization" class="table-of-contents-link">BIS Organization</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/fabric-of-the-universe" class="table-of-contents-link">Fabric of the Universe</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals" class="table-of-contents-link">Element Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/codes" class="table-of-contents-link">Codes</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/elementaspect-fundamentals" class="table-of-contents-link">ElementAspect Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/mixins" class="table-of-contents-link">Mixins</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/model-fundamentals" class="table-of-contents-link">Model Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/relationship-fundamentals" class="table-of-contents-link">Relationship Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schemas-domains" class="table-of-contents-link">Schemas (&#x201C;Domains&#x201D;)</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/information-hierarchy" class="table-of-contents-link">Information Hierarchy</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-perspectives" class="table-of-contents-link">Modeling Perspectives</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/top-of-the-world" class="table-of-contents-link">Top of the World</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/srpp" class="table-of-contents-link">Single Responsible Party Principle</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/organizing-models-and-elements" class="table-of-contents-link">Organizing Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-systems" class="table-of-contents-link">Modeling Systems</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/overlapping-systems" class="table-of-contents-link">Overlapping Systems</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/3d-guidance" class="table-of-contents-link">3D Guidance</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/physical-models-and-elements" class="table-of-contents-link">Physical Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/functional-models-and-elements" class="table-of-contents-link">Functional Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/analysis-models-and-elements" class="table-of-contents-link">Analysis Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/information-models-and-elements" class="table-of-contents-link">Information Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/physical-hierarchy-organization" class="table-of-contents-link">PhysicalModel Hierarchy</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/categories" class="table-of-contents-link">Categories</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-customization" class="table-of-contents-link">Schema Customization</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/appendix-a-data-evolution-across-time" class="table-of-contents-link">Data Evolution Across Time</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-versioning-and-generations" class="table-of-contents-link">Schema Versioning</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-production-status" class="table-of-contents-link">Schema Production Status</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/units" class="table-of-contents-link">BIS Schema Units</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/bis-schema-validation" class="table-of-contents-link">BIS Schema Validation</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/domains/" class="table-of-contents-link">BIS Schema Reference</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary" class="table-of-contents-link">BIS Glossary</a></li>
+    </ul>
+    <!-- TODO: The following are not linked in...?
+    ./intro/appendix-c-bis-domain-design-fundamentals.md
+    -->
+    <p>&#xA0;</p>
+    <h3 id="bis naming guidelines">BIS Naming Guidelines</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/rules-and-recommendations" class="table-of-contents-link">Rules and Recommendations</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/special-terms" class="table-of-contents-link">Special Terms</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/summary-of-exceptions" class="table-of-contents-link">Summary of Exceptions</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/standard-abbreviations-and-acronyms" class="table-of-contents-link">Abbreviations and Acronyms</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/standard-relationship-strengths-names" class="table-of-contents-link">Relationship &#x201C;Strengths&#x201D;</a></li>
+    </ul>
+    <p>&#xA0;</p>
+    <h3 id="ec">EC</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-schema" class="table-of-contents-link">ECSchema</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-class" class="table-of-contents-link">ECClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-entity-class" class="table-of-contents-link">ECEntityClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-mixin-class" class="table-of-contents-link">ECMixinClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-struct-class" class="table-of-contents-link">ECStructClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-custom-attribute-class" class="table-of-contents-link">ECCustomAttributeClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-relationship-class" class="table-of-contents-link">ECRelationshipClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-property" class="table-of-contents-link">ECProperty</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-custom-attributes" class="table-of-contents-link">ECCustomAttributes</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-enumeration" class="table-of-contents-link">ECEnumeration</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/kindofquantity" class="table-of-contents-link">KindOfQuantity</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/property-category" class="table-of-contents-link">PropertyCategory</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/primitive-types" class="table-of-contents-link">PrimitiveTypes</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/customattribute-container-types" class="table-of-contents-link">CustomAttribute Container Types</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-unit" class="table-of-contents-link">Unit</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-constant" class="table-of-contents-link">Constant</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-phenomenon" class="table-of-contents-link">Phenomenon</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-unitsystem" class="table-of-contents-link">UnitSystem</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-format" class="table-of-contents-link">Format</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-name" class="table-of-contents-link">ECName</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/differences-between-ec2-and-ec3" class="table-of-contents-link">Changes Between ECObjects 2 and 3</a></li>
+    </ul>
+    </body></html>
+            </ul>
+        </div>
+    </nav>    <div class='documentation-main'>
+        <article id="main" class="main-content">
+            <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">Base Infrastructure Schema</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/domains/">domains</a> > Construction.ecschema</div>
+            
+            <h1 id="construction">Construction</h1>
+<p><strong>alias:</strong> constr</p>
+<p><strong>version:</strong> 1.0.0</p>
+<p>Base schema for the Construction domain.</p>
+<p>This schema contains classes that are used to model the real-world entities from the construction perspective. Supported workflows:</p>
+<ul>
+<li>construction modeling - splitting up design data into the smaller pieces suitable for construction;</li>
+<li>classification - cost codes assignment to the constructible components;</li>
+<li>quantity takeoff - work steps quantities calculation.</li>
+</ul>
+<h2 class="h-entity">Entity Classes<a id="entity" class="heading-anchor" href="#entity"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-constructiondetailingelement"><strong>ConstructionDetailingElement</strong> (Construction Detailing Element) <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="constructiondetailingelement" class="heading-anchor" href="#constructiondetailingelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> Identifies a portion of real-world physical object that is suitable for construction.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatiallocationelement'>BisCore:SpatialLocationElement</a></p>
+<h4 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">SurfaceArea</td>
+<td align="left">Total surface area.</td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Volume</td>
+<td align="left">Volume of the element.</td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">StationRange</td>
+<td align="left">Well-known location of the element defined by the station range.</td>
+<td align="left">struct</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-constructioninformationmodel"><strong>ConstructionInformationModel</strong> (Construction Information Model) <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="constructioninformationmodel" class="heading-anchor" href="#constructioninformationmodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> A container for persisting constr:ConstructionItem instances.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#informationmodel'>BisCore:InformationModel</a></p>
+<p></div></p>
+<h3 class="h-constructioninformationpartition"><strong>ConstructionInformationPartition</strong> (Construction Information Partition) <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="constructioninformationpartition" class="heading-anchor" href="#constructioninformationpartition"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> A constr:ConstructionInformationPartition element indicates that there is a construction modeling perspective within the overall information hierarchy. A constr:ConstructionInformationPartition is always parented to a bis:Subject and broken down by a constr:ConstructionInformationModel.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#informationpartitionelement'>BisCore:InformationPartitionElement</a></p>
+<p></div></p>
+<h3 class="h-constructionitem"><strong>ConstructionItem</strong> (Construction Item) <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="constructionitem" class="heading-anchor" href="#constructionitem"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> Defines a constructible component which may or may not be modeled in the 3D model.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#informationrecordelement'>BisCore:InformationRecordElement</a></p>
+<p></div></p>
+<h3 class="h-constructionquantity"><strong>ConstructionQuantity</strong> (Construction Quantity) <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="constructionquantity" class="heading-anchor" href="#constructionquantity"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> The aspect used to store construction quantity data for constr:ConstructionItem elements.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#elementmultiaspect'>BisCore:ElementMultiAspect</a></p>
+<h4 class="h-properties-1">Properties<a id="properties-1" class="heading-anchor" href="#properties-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">CostCodeId</td>
+<td align="left">The Id of the Cost Code in Construction QTO service.</td>
+<td align="left">string</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">WorkStepCode</td>
+<td align="left">Work Step Code for which the value is calculated.</td>
+<td align="left">string</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Quantity</td>
+<td align="left">Calculated quantity value.</td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">QuantityUnitName</td>
+<td align="left">The fully qualified unit name (if it exists) used to persist the quantity value.</td>
+<td align="left">string</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">QuantityUnitLabel</td>
+<td align="left">The unit display label to use when showing the quantity value.</td>
+<td align="left">string</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">JsonProperties</td>
+<td align="left">A string property that users and/or applications can use to persist ad hoc JSON values.</td>
+<td align="left">string</td>
+<td align="left">Json</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-costcode"><strong>CostCode</strong> (Cost Code) <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="costcode" class="heading-anchor" href="#costcode"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> The aspect used to store Cost Code assignments to constr:ConstructionItem elements.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#elementmultiaspect'>BisCore:ElementMultiAspect</a></p>
+<h4 class="h-properties-2">Properties<a id="properties-2" class="heading-anchor" href="#properties-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">CodeId</td>
+<td align="left">The Id of the Cost Code in Construction QTO service.</td>
+<td align="left">string</td>
+</tr>
+</tbody></table><p></div></p>
+<h2 class="h-kind">Kind of Quantity Items<a id="kind" class="heading-anchor" href="#kind"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-area"><strong>AREA</strong> (Area) <span class="badge badge-pill badge-info badge-kindofquantity">KindOfQuantity</span><a id="area" class="heading-anchor" href="#area"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> &lt;No description&gt;</p>
+<p><strong>Relative Error:</strong> 0.0001</p>
+<p><strong>Persistence Unit:</strong> SQ_M</p>
+<p><strong>Presentation Formats</strong></p>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#defaultrealu'>DefaultRealU</a>(2) [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#sq_m'>SQ_M</a> ]</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#defaultrealu'>DefaultRealU</a>(2) [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#sq_ft'>SQ_FT</a> ]</li>
+</ul>
+<p></div></p>
+<h3 class="h-station"><strong>STATION</strong> (Station) <span class="badge badge-pill badge-info badge-kindofquantity">KindOfQuantity</span><a id="station" class="heading-anchor" href="#station"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> &lt;No description&gt;</p>
+<p><strong>Relative Error:</strong> 0.0001</p>
+<p><strong>Persistence Unit:</strong> M</p>
+<p><strong>Presentation Formats</strong></p>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#stationz_1000_3'>StationZ_1000_3</a> [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#m'>M</a> ]</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#stationz_100_2'>StationZ_100_2</a> [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#ft'>FT</a> ]</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#defaultrealu'>DefaultRealU</a>(2) [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#m'>M</a> ]</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#defaultrealu'>DefaultRealU</a>(2) [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#ft'>FT</a> ]</li>
+</ul>
+<p></div></p>
+<h3 class="h-volume"><strong>VOLUME</strong> (Volume) <span class="badge badge-pill badge-info badge-kindofquantity">KindOfQuantity</span><a id="volume" class="heading-anchor" href="#volume"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> &lt;No description&gt;</p>
+<p><strong>Relative Error:</strong> 0.0001</p>
+<p><strong>Persistence Unit:</strong> CUB_M</p>
+<p><strong>Presentation Formats</strong></p>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#defaultrealu'>DefaultRealU</a>(2) [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#cub_m'>CUB_M</a> ]</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#defaultrealu'>DefaultRealU</a>(2) [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#cub_ft'>CUB_FT</a> ]</li>
+</ul>
+<p></div></p>
+<h2 class="h-relationship">Relationship Classes<a id="relationship" class="heading-anchor" href="#relationship"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-constructiondetailingelementsplitsgeometricelement3d"><strong>ConstructionDetailingElementSplitsGeometricElement3d</strong> <em>Sealed</em> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="constructiondetailingelementsplitsgeometricelement3d" class="heading-anchor" href="#constructiondetailingelementsplitsgeometricelement3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> Relationship enabling splitup of bis:GeometricElement3d elements into the smaller pieces.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#elementreferstoelements'>BisCore:ElementRefersToElements</a></p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source">Source<a id="source" class="heading-anchor" href="#source"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> splits up</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h4 class="h-constraint">Constraint Classes:<a id="constraint" class="heading-anchor" href="#constraint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/construction.ecschema/#constructiondetailingelement'>ConstructionDetailingElement</a>
+</div><h4 class="h-target">Target<a id="target" class="heading-anchor" href="#target"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> is split into</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-1">Constraint Classes:<a id="constraint-1" class="heading-anchor" href="#constraint-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#geometricelement3d'>GeometricElement3d</a>
+</div>
+</div><h3 class="h-constructionitemconstructsgeometricelement3d"><strong>ConstructionItemConstructsGeometricElement3d</strong> <em>Sealed</em> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="constructionitemconstructsgeometricelement3d" class="heading-anchor" href="#constructionitemconstructsgeometricelement3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> Relates constr:ConstructionItem to the real world entities (or their split up pieces modeled as constr:ConstructionDetailingElement elements) it constructs.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#elementreferstoelements'>BisCore:ElementRefersToElements</a></p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-1">Source<a id="source-1" class="heading-anchor" href="#source-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> constructs</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h4 class="h-constraint-2">Constraint Classes:<a id="constraint-2" class="heading-anchor" href="#constraint-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/construction.ecschema/#constructionitem'>ConstructionItem</a>
+</div><h4 class="h-target-1">Target<a id="target-1" class="heading-anchor" href="#target-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> is constructed by</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h4 class="h-constraint-3">Constraint Classes:<a id="constraint-3" class="heading-anchor" href="#constraint-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#geometricelement3d'>GeometricElement3d</a>
+</div>
+</div><h3 class="h-constructionitemownsconstuctionquantities"><strong>ConstructionItemOwnsConstuctionQuantities</strong> <em>Sealed</em> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="constructionitemownsconstuctionquantities" class="heading-anchor" href="#constructionitemownsconstuctionquantities"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> Defines aspect&apos;s ownership.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#elementownsmultiaspects'>BisCore:ElementOwnsMultiAspects</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-2">Source<a id="source-2" class="heading-anchor" href="#source-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint-4">Constraint Classes:<a id="constraint-4" class="heading-anchor" href="#constraint-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/construction.ecschema/#constructionitem'>ConstructionItem</a>
+</div><h4 class="h-target-2">Target<a id="target-2" class="heading-anchor" href="#target-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h4 class="h-constraint-5">Constraint Classes:<a id="constraint-5" class="heading-anchor" href="#constraint-5"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/construction.ecschema/#constructionquantity'>ConstructionQuantity</a>
+</div>
+</div><h3 class="h-constructionitemownscostcodes"><strong>ConstructionItemOwnsCostCodes</strong> <em>Sealed</em> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="constructionitemownscostcodes" class="heading-anchor" href="#constructionitemownscostcodes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> Defines aspect&apos;s ownership.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#elementownsmultiaspects'>BisCore:ElementOwnsMultiAspects</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-3">Source<a id="source-3" class="heading-anchor" href="#source-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint-6">Constraint Classes:<a id="constraint-6" class="heading-anchor" href="#constraint-6"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/construction.ecschema/#constructionitem'>ConstructionItem</a>
+</div><h4 class="h-target-3">Target<a id="target-3" class="heading-anchor" href="#target-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h4 class="h-constraint-7">Constraint Classes:<a id="constraint-7" class="heading-anchor" href="#constraint-7"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/construction.ecschema/#costcode'>CostCode</a>
+</div>
+</div><h3 class="h-stationrange"><strong>StationRange</strong> (Station Range) <span class="badge badge-pill badge-info badge-structclass">StructClass</span><a id="stationrange" class="heading-anchor" href="#stationrange"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> Struct to define a station range.</p>
+<h4 class="h-properties-3">Properties<a id="properties-3" class="heading-anchor" href="#properties-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Label</th>
+<th align="left">Category</th>
+<th align="left">Read Only</th>
+<th align="left">Priority</th>
+</tr>
+<tr>
+<td align="left">StartStation</td>
+<td align="left">Station start point.</td>
+<td align="left">Start Station</td>
+<td align="left"></td>
+<td align="left">false</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">EndStation</td>
+<td align="left">Station end point.</td>
+<td align="left">End Station</td>
+<td align="left"></td>
+<td align="left">false</td>
+<td align="left">0</td>
+</tr>
+</tbody></table><p></div></p>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>22 November, 2019</span>
+            </p>
+            <div id="imodeljs-github-comments">
+            </div>
+            
+            <script>
+              $(document).ready(function () {
+                function initializeComments(repo) {
+                  var s = document.createElement('script');
+                  s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
+                  s.setAttribute('repo', repo);
+                  s.setAttribute('issue-term', 'title');
+                  s.setAttribute('crossorigin', 'anonymous');
+                  s.setAttribute('theme', 'github-light');
+                  s.async = true;
+            
+                  document.getElementById("imodeljs-github-comments").appendChild(s);
+                }
+            
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
+              });
+            </script>
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div class="toc-overlay"></div>
+    <div id='inner-table-of-contents'>
+       <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item '>
+            <a data-target="#inner-nav-entity" class='title' href="#entity"/>
+            <b class='dropdown-menu-title menu-text'>Entity Classes</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-entity" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-constructiondetailingelement" class='title' href="#constructiondetailingelement"/>
+                            <b class='dropdown-menu-title menu-text'>ConstructionDetailingElement (Construction Detailing Element) Sealed</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-constructiondetailingelement" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#constructioninformationmodel">ConstructionInformationModel (Construction Information Model)</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#constructioninformationpartition">ConstructionInformationPartition (Construction Information Partition) Sealed</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#constructionitem">ConstructionItem (Construction Item) Sealed</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-constructionquantity" class='title' href="#constructionquantity"/>
+                            <b class='dropdown-menu-title menu-text'>ConstructionQuantity (Construction Quantity) Sealed</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-constructionquantity" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-1">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-costcode" class='title' href="#costcode"/>
+                            <b class='dropdown-menu-title menu-text'>CostCode (Cost Code) Sealed</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-costcode" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-2">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-kind" class='title' href="#kind"/>
+            <b class='dropdown-menu-title menu-text'>Kind of Quantity Items</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-kind" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#area">AREA (Area)</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#station">STATION (Station)</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#volume">VOLUME (Volume)</a>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-relationship" class='title' href="#relationship"/>
+            <b class='dropdown-menu-title menu-text'>Relationship Classes</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-relationship" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-constructiondetailingelementsplitsgeometricelement3d" class='title' href="#constructiondetailingelementsplitsgeometricelement3d"/>
+                            <b class='dropdown-menu-title menu-text'>ConstructionDetailingElementSplitsGeometricElement3d Sealed</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-constructiondetailingelementsplitsgeometricelement3d" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-1">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-constructionitemconstructsgeometricelement3d" class='title' href="#constructionitemconstructsgeometricelement3d"/>
+                            <b class='dropdown-menu-title menu-text'>ConstructionItemConstructsGeometricElement3d Sealed</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-constructionitemconstructsgeometricelement3d" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-1">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-2">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-1">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-3">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-constructionitemownsconstuctionquantities" class='title' href="#constructionitemownsconstuctionquantities"/>
+                            <b class='dropdown-menu-title menu-text'>ConstructionItemOwnsConstuctionQuantities Sealed</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-constructionitemownsconstuctionquantities" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-2">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-4">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-2">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-5">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-constructionitemownscostcodes" class='title' href="#constructionitemownscostcodes"/>
+                            <b class='dropdown-menu-title menu-text'>ConstructionItemOwnsCostCodes Sealed</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-constructionitemownscostcodes" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-3">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-6">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-3">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-7">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-stationrange" class='title' href="#stationrange"/>
+                            <b class='dropdown-menu-title menu-text'>StationRange (Station Range)</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-stationrange" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-3">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+            </ul>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color pt-1 pb-3">
+  <!-- Footer Links Container -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row d-flex align-items-center mt-2">
+
+      <!-- Grid column -->
+      <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
+
+        <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+        </a>
+        <small style="color: white; margin-right: 7px;"> powered by </small>
+        <a href="https://www.bentley.com">
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
+        </a>
+      </div>
+      <!-- Grid column -->
+
+      <!-- TOS/Legals footer placeholder -->
+      <div id="HFRootHeader"></div>
+
+      <!-- Grid column -->
+      <div class="col-md-5 col-lg-4 ml-lg-0">
+
+        <!-- Social buttons -->
+        <div class="text-center text-md-right">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://twitter.com/imodeljs" target="_blank">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://github.com/imodeljs" target="_blank">
+                <i class="fa fa-github"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://stackoverflow.com/tags/imodeljs"
+                target="_blank">
+                <i class="fa fa-stack-overflow"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links Container -->
+
+</footer>
+<!-- Footer -->
+
+</div>
+<a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
+</body>
+
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

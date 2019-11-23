@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.7.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -137,49 +137,49 @@
 <h2 class="h-example">Example<a id="example" class="heading-anchor" href="#example"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>To open a new blank connection, you can do something like this:</p>
 <pre class="no-line-numbers"><code class="language-typescript">
-  // create a new blank connection centered on Exton PA
-  public openBlankConnection() {
-    const exton = IModelConnection.createBlank({
-      // call this connection &quot;Exton PA&quot;
-      name: &quot;Exton PA&quot;,
-      // put the center of the connection near Exton, Pennsylvania (Bentley&apos;s HQ)
-      location: Cartographic.fromDegrees(-75.686694, 40.065757, 0),
-      // create the area-of-interest to be 2000 x 2000 x 200 meters, centered around 0,0.0
-      extents: new Range3d(-1000, -1000, -100, 1000, 1000, 100),
-    });
-    return exton;
-  }
+    // create a new blank connection centered on Exton PA
+    public openBlankConnection() {
+      const exton = IModelConnection.createBlank({
+        // call this connection &quot;Exton PA&quot;
+        name: &quot;Exton PA&quot;,
+        // put the center of the connection near Exton, Pennsylvania (Bentley&apos;s HQ)
+        location: Cartographic.fromDegrees(-75.686694, 40.065757, 0),
+        // create the area-of-interest to be 2000 x 2000 x 200 meters, centered around 0,0.0
+        extents: new Range3d(-1000, -1000, -100, 1000, 1000, 100),
+      });
+      return exton;
+    }
 </code></pre>
 <p>then, to create a blank spatial view to show data from sources other than iModels, do something like this:</p>
 <pre class="no-line-numbers"><code class="language-typescript">
-  // create a new spatial view initialized to show the project extents from top view. Model and
-  // category selectors are empty, so this is useful for showing backgroundMaps, reality models, terrain, etc.
-  public createBlankView(iModel: IModelConnection): SpatialViewState {
-    const ext = iModel.projectExtents;
+    // create a new spatial view initialized to show the project extents from top view. Model and
+    // category selectors are empty, so this is useful for showing backgroundMaps, reality models, terrain, etc.
+    public createBlankView(iModel: IModelConnection): SpatialViewState {
+      const ext = iModel.projectExtents;
 
-    // start with a new &quot;blank&quot; spatial view to show the extents of the project, from top view
-    const blankView = SpatialViewState.createBlank(iModel, ext.low, ext.high.minus(ext.low));
+      // start with a new &quot;blank&quot; spatial view to show the extents of the project, from top view
+      const blankView = SpatialViewState.createBlank(iModel, ext.low, ext.high.minus(ext.low));
 
-    // turn on the background map
-    const style = blankView.displayStyle as DisplayStyle3dState;
-    const viewFlags = style.viewFlags;
-    viewFlags.backgroundMap = true;
-    style.viewFlags = viewFlags; // call to accessor to get the json properties to reflect the changes to ViewFlags
+      // turn on the background map
+      const style = blankView.displayStyle as DisplayStyle3dState;
+      const viewFlags = style.viewFlags;
+      viewFlags.backgroundMap = true;
+      style.viewFlags = viewFlags; // call to accessor to get the json properties to reflect the changes to ViewFlags
 
-    style.backgroundColor = ColorDef.white;
+      style.backgroundColor = ColorDef.white;
 
-    // turn on the ground and skybox in the environment
-    const env = style.environment;
-    env.ground.display = true;
-    env.sky.display = true;
-    style.environment = env; // call to accessor to get the json properties to reflect the changes
+      // turn on the ground and skybox in the environment
+      const env = style.environment;
+      env.ground.display = true;
+      env.sky.display = true;
+      style.environment = env; // call to accessor to get the json properties to reflect the changes
 
-    return blankView;
-  }
+      return blankView;
+    }
 </code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 November, 2019</span>
+                <span class='date-updated'>22 November, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

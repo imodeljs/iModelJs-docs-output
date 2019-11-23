@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.7.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -123,37 +123,36 @@ consumers must do before the library can be used.</p>
 <h2 class="h-backend">Backend<a id="backend" class="heading-anchor" href="#backend"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ol>
 <li><p>Initialize the library:</p>
-<p><code>`</code>typescript
-import { Presentation, PresentationManagerMode } from &quot;@bentley/presentation-backend&quot;;</p>
+<pre class="no-line-numbers"><code class="language-typescript">import { Presentation, PresentationManagerMode } from &quot;@bentley/presentation-backend&quot;;
+
+// initialize presentation-backend
+Presentation.initialize({
+ rulesetDirectories: [path.join(&quot;assets&quot;, &quot;presentation_rules&quot;)],
+ localeDirectories: [path.join(&quot;assets&quot;, &quot;locales&quot;)],
+ mode: PresentationManagerMode.ReadOnly,
+});</code></pre>
+</li>
+<li><p>Register <code>PresentationRpcInterface</code> (amongst other RPC interfaces):</p>
+<pre class="no-line-numbers"><code class="language-typescript">import { PresentationRpcInterface } from &quot;@bentley/presentation-common&quot;;</code></pre>
+<pre class="no-line-numbers"><code class="language-typescript">const rpcs = [...otherRpcInterfaces, PresentationRpcInterface];</code></pre>
+<pre class="no-line-numbers"><code class="language-typescript"> ElectronRpcManager.initializeImpl({}, rpcs);</code></pre>
 </li>
 </ol>
-<p>// initialize presentation-backend
-Presentation.initialize({
-  rulesetDirectories: [path.join(&quot;assets&quot;, &quot;presentation_rules&quot;)],
-  localeDirectories: [path.join(&quot;assets&quot;, &quot;locales&quot;)],
-  mode: PresentationManagerMode.ReadOnly,
-});</p>
-<pre><code>
-2. Register `PresentationRpcInterface` (amongst other RPC interfaces):
-
-  ```typescript
-  import { PresentationRpcInterface } from &quot;@bentley/presentation-common&quot;;</code></pre><pre class="no-line-numbers"><code class="language-typescript">  const rpcs = [...otherRpcInterfaces, PresentationRpcInterface];</code></pre>
-<pre class="no-line-numbers"><code class="language-typescript">    ElectronRpcManager.initializeImpl({}, rpcs);</code></pre>
 <h2 class="h-frontend">Frontend<a id="frontend" class="heading-anchor" href="#frontend"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ol>
 <li><p>Initialize the library:</p>
 <pre class="no-line-numbers"><code class="language-typescript">import {
-Presentation, FavoritePropertiesManager,
-IFavoritePropertiesStorage, FavoriteProperties,
+ Presentation, FavoritePropertiesManager,
+ IFavoritePropertiesStorage, FavoriteProperties,
 } from &quot;@bentley/presentation-frontend&quot;;</code></pre>
 <pre class="no-line-numbers"><code class="language-typescript">   Presentation.initialize({
-   // specify `clientId` so Presentation framework can share caches
-   // between sessions for the same clients
-   clientId: MyAppFrontend.getClientId(),
+     // specify `clientId` so Presentation framework can share caches
+     // between sessions for the same clients
+     clientId: MyAppFrontend.getClientId(),
 
-   // specify locale for localizing presentation data
-   activeLocale: IModelApp.i18n.languageList()[0],
- });</code></pre>
+     // specify locale for localizing presentation data
+     activeLocale: IModelApp.i18n.languageList()[0],
+   });</code></pre>
 </li>
 <li><p>Register <code>PresentationRpcInterface</code> (amongst other RPC interfaces):</p>
 <pre class="no-line-numbers"><code class="language-typescript">import { PresentationRpcInterface } from &quot;@bentley/presentation-common&quot;;</code></pre>
@@ -163,7 +162,7 @@ IFavoritePropertiesStorage, FavoriteProperties,
 </ol>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 November, 2019</span>
+                <span class='date-updated'>22 November, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

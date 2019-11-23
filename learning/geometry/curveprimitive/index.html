@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.7.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -151,7 +151,7 @@
 <li>A line segment is a portion of an infinite line.</li>
 <li>Json Fragment: <code>[{&quot;lineSegment&quot;:[[0,0,0], [3,0,0]]}</code></li>
 <li><p>typescript object:</p>
-<pre><code>      const myLineSegment = LineSegment.create (Point3d.create (1,2,3), Point3d.create(6,4,2));</code></pre><p><img src=".././figs/CurvePrimitives/LineSegment.png" alt="&gt;"></p>
+<pre><code>const myLineSegment = LineSegment.create (Point3d.create (1,2,3), Point3d.create(6,4,2));</code></pre><p><img src=".././figs/CurvePrimitives/LineSegment.png" alt="&gt;"></p>
 <ul>
 <li>Fractional Parameterization:<pre><code>A = start point
 B = end point
@@ -166,12 +166,11 @@ Point X(f) at fractional position f along the lineSegment is
 <li>A LineString is an array of points that are to be connected by straight lines.</li>
 <li>Json Fragment:
 <img src=".././figs/CurvePrimitives/LineString.png" alt="&gt;"></li>
-<li>Typescript object:<pre><code>      const myLineString = LineString.create ([point0, point1, point2 ....]);</code></pre></li>
+<li>Typescript object:<pre><code>const myLineString = LineString.create ([point0, point1, point2 ....]);</code></pre></li>
 <li>Fractional Parameterization</li>
 </ul>
 <p>Having both individual line segments and the composite linestring complicates parameterization.</p>
 <ul>
-<li><ul>
 <li>As with all CurvePrimitives, the fractional parameterization for the complete linestring must have <code>fraction=0</code> at the start and <code>fraction=1</code> at the end.</li>
 <li>The fractional positions of each inerior vertex are then defined at <em>equal intervals in the fraction space</em>.</li>
 <li><img src=".././figs/CurvePrimitives/LineStringFractions.png" alt="&gt;"></li>
@@ -179,17 +178,15 @@ Point X(f) at fractional position f along the lineSegment is
 <li>Within each segment, the fraction interval is mapped as if it were a line segment.</li>
 <li>Note that having uniform vertex-to-vertex fraction means that the distance-along-the-linestring is <em>not proportional to fraction-along-entire-linestring</em>.   Fraction and distance changes are only proportional within individual segments.</li>
 </ul>
-</li>
-</ul>
 <h2 class="h-arcs-circular-and-elliptic">arcs (circular and elliptic)<a id="arcs-circular-and-elliptic" class="heading-anchor" href="#arcs-circular-and-elliptic"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>An arc primitive is a portion of a circular or ellipticla arc.   The equations for a complete elliptic arc require a center point and two vectors.   The start and end of a partial arc are controlled by two angles.</p>
 <p>The equational forms for circular and elliptic cases are identical.  Telling whether a given arc is true circular requires examination of the vector coordinates.</p>
 <p>The stroking equation that maps  an angle to a coordinates to points around a (full) elliptic (or circular) arc is</p>
-<pre><code>    C = center point
-    U = vector from center point to 0-degere point
-    V = vector from center point to 90-degree point.
-    theta = angle
-    X(theta) = C + cos (theta * U + sin(theta) * V</code></pre><h3 class="h-true-circles">True Circles<a id="true-circles" class="heading-anchor" href="#true-circles"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<pre><code>C = center point
+U = vector from center point to 0-degere point
+V = vector from center point to 90-degree point.
+theta = angle
+X(theta) = C + cos (theta * U + sin(theta) * V</code></pre><h3 class="h-true-circles">True Circles<a id="true-circles" class="heading-anchor" href="#true-circles"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li>If the <code>U</code> and <code>V</code> vectors are (both) <em>perpendicular</em> and <em>the same length</em>, this is a true circle.</li>
 <li>In the both circles below, the <code>U</code> and <code>V</code>  are identical length and perpendicular to each other.</li>
@@ -203,13 +200,13 @@ Point X(f) at fractional position f along the lineSegment is
 <p>If <code>U</code> and <code>V</code> are perpendicular, their lengths correspond to the common usage of &quot;major&quot; and &quot;minor&quot; axis lengths.   But the perpendicular condition is not required -- non-perpendicular vectors occur due to transformation and construction history.</p>
 <h3 class="h-angular-limits">Angular limits<a id="angular-limits" class="heading-anchor" href="#angular-limits"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>To draw an arc that is not the complete circle or ellipse, simply limit the theta range to something other than 0 to 360 degrees.</p>
-<pre><code>    theta0 = angular start point
-    theta1 = angular and point
-    f = fraction varying from 0 to 1
-    theta(f) = (1-f) * theta0 + f * theta1
-        Point X(f) at fractional position f along the arc is
+<pre><code>theta0 = angular start point
+theta1 = angular and point
+f = fraction varying from 0 to 1
+theta(f) = (1-f) * theta0 + f * theta1
+    Point X(f) at fractional position f along the arc is
 
-    X(f) = C + cos (theta(f)) * U + sin(theta(f)) * V</code></pre><ul>
+X(f) = C + cos (theta(f)) * U + sin(theta(f)) * V</code></pre><ul>
 <li>Angles theta0 and theta1 can be negative and can be outside of 360 degrees.</li>
 <li>Anlge theta1 can be less than theta0</li>
 </ul>
@@ -406,7 +403,7 @@ to extract knots.  The caller can indicate if they prefer overlcamped knots by p
 <p><img src=".././figs/BCurves/order5.png" alt="&gt;"></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 November, 2019</span>
+                <span class='date-updated'>22 November, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

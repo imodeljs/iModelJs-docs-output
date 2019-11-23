@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.7.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -239,9 +239,60 @@
 <li>test name: &quot;cloneWithColinearEdgeFixup&quot;</li>
 <li>output: imodeljs/core/geometry/src/test/output/PolyfaceQuery/cloneWithColinearEdgeFixup.imjs</li>
 </ul>
+<h2 class="h-mark-edge-visibility">Mark Edge Visibility<a id="mark-edge-visibility" class="heading-anchor" href="#mark-edge-visibility"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Each edge of each facet in a polyface has a visibility indicator.  This tells display engines whether that edge should be highlighted with a drawn line as the facet it displayed.
+(Some display engines may choose to ignore this an always display just the shaded facet body.)</p>
+<p>During default construction by a <code>PolyfaceBuilder</code> all edges are marked visible by default.</p>
+<table class="table table-responsive"><tbody><tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+<tr>
+<td></td>
+<td>A (partial, capped) TorusPope with all edges visible</td>
+<td><img src="./figs/PolyfaceQuery\EdgeVisibility\TorusPipeAllEdgesVisible.png" alt="&gt;"></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Apply <code>PolyfaceQuery.markAllEdgeVisibility (mesh, false);</code> <br> this hides all edges.  <br> (The display engine has added some linework by silhouette rules)</td>
+<td><img src="./figs/PolyfaceQuery\EdgeVisibility\TorusPipeAllEdgesNotVisible.png" alt="&gt;"></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Apply <code>PolyfaceQuery.markPairedEdgesInvisible(mesh, Angle.createDegrees (0.1)));</code> <br> this hides edges with adjacent facet angle less than 0.1 degrees.  <br> (Hence only the edges within the flat caps are hidden)</td>
+<td><img src="./figs/PolyfaceQuery\EdgeVisibility\TorusPipeHideInPlane.png" alt="&gt;"></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Apply <code>PolyfaceQuery.markPairedEdgesInvisible(mesh, Angle.createDegrees (15)));</code> <br> this hides edges with adjacent facet angle less than 15 degrees.  <br> (Edges within the flat caps are hidden.   Visibility in the torus body varies.)</td>
+<td><img src="./figs/PolyfaceQuery\EdgeVisibility\TorusPipeHide15.png" alt="&gt;"></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Apply <code>PolyfaceQuery.markPairedEdgesInvisible(mesh, Angle.createDegrees (30)));</code> <br> this hides edges with adjacent facet angle less than 30 degrees.  <br> (Edges within the flat caps are hidden.   Visibility in the torus body varies.)</td>
+<td><img src="./figs/PolyfaceQuery\EdgeVisibility\TorusPipeHide30.png" alt="&gt;"></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Apply <code>PolyfaceQuery.markPairedEdgesInvisible(mesh, Angle.createDegrees (50)));</code> <br> this hides edges with adjacent facet angle less than 50 degrees.  <br> (Edges within the flat caps are hidden.   The only visible edges are at the 90 degree angles around the caps)</td>
+<td><img src="./figs/PolyfaceQuery\EdgeVisibility\TorusPipeHide50.png" alt="&gt;"></td>
+<td></td>
+</tr>
+</tbody></table><p>Unit Test</p>
+<ul>
+<li>source: imodeljs/core/geometry/src/test/clipping/Polyface.test.ts</li>
+<li>test name: &quot;SolidPrimitiveBoundary&quot;</li>
+<li>output: imodeljs/core/geometry/src/test/output/Polyface\SolidPrimitiveBoundary.imjs</li>
+</ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 November, 2019</span>
+                <span class='date-updated'>22 November, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -297,6 +348,9 @@
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#fixup-colinear-edges">Fixup Colinear Edges</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#mark-edge-visibility">Mark Edge Visibility</a>
     </li>
  
       </ul>

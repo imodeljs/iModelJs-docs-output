@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.7.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -118,16 +118,16 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/imodelhub/">imodelhub</a> > Events</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/learning/iModelHub/Events.md">Edit this page</a></div>
             <h1 id="events">Events</h1>
-<p>iModelHub sends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/imodelhubevent'>IModelHubEvent</a>s for operations that occur on a particular iModel.</p>
+<p>iModelHub sends <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/imodelhubevent'>IModelHubEvent</a>s for operations that occur on a particular iModel.</p>
 <p>To receive events, the user has to:</p>
 <ol>
 <li><a href="#creating-events-subscription">Subscribe to events</a> from a single iModel, specifying <a href="#event-types">types of events</a> they want to receive.</li>
-<li>Get an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/eventsas'>EventSAS</a> token, that is used to authenticate to Events service. See <a href="#getting-events">getting events</a>.</li>
+<li>Get an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/eventsas'>EventSAS</a> token, that is used to authenticate to Events service. See <a href="#getting-events">getting events</a>.</li>
 <li>Send a request to get and delete the first event from that subscription&apos;s queue. See <a href="#getting-events">getting events</a>.</li>
 </ol>
 <p>Instead of repeating steps 2 and 3, it&apos;s possible to <a href="#creating-events-listener">create a listener</a> that continuously receives events from a subscription.</p>
 <h2 class="h-event-types">Event Types<a id="event-types" class="heading-anchor" href="#event-types"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>When a user <a href="#creating-events-subscription">subscribes to events</a>, they have to provide <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/eventtype'>EventType</a>s of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/imodelhubevent'>IModelHubEvent</a>s they want to receive. iModelHub sends these events:</p>
+<p>When a user <a href="#creating-events-subscription">subscribes to events</a>, they have to provide <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/eventtype'>EventType</a>s of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/imodelhubevent'>IModelHubEvent</a>s they want to receive. iModelHub sends these events:</p>
 <table class="table table-responsive"><tbody><tr>
 <th>Type</th>
 <th>Description</th>
@@ -145,19 +145,19 @@
 <td>A Briefcase was deleted.</td>
 </tr>
 <tr>
-<td><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/changesetpostpushevent'>ChangeSetPostPushEvent</a></td>
-<td>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a> was successfully pushed.</td>
+<td><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/changesetpostpushevent'>ChangeSetPostPushEvent</a></td>
+<td>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/changeset'>ChangeSet</a> was successfully pushed.</td>
 </tr>
 <tr>
-<td><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/changesetprepushevent'>ChangeSetPrePushEvent</a></td>
-<td>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/changeset'>ChangeSet</a> push has started.</td>
+<td><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/changesetprepushevent'>ChangeSetPrePushEvent</a></td>
+<td>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/changeset'>ChangeSet</a> push has started.</td>
 </tr>
 <tr>
 <td>CodeEvent</td>
 <td>One or more HubCodes were updated.</td>
 </tr>
 <tr>
-<td><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/imodeldeletedevent'>IModelDeletedEvent</a></td>
+<td><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/imodeldeletedevent'>IModelDeletedEvent</a></td>
 <td>An iModel was deleted.</td>
 </tr>
 <tr>
@@ -165,14 +165,14 @@
 <td>One or more Locks were updated.</td>
 </tr>
 <tr>
-<td><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/versionevent'>VersionEvent</a></td>
-<td>A new named <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhub/version'>Version</a> was created.</td>
+<td><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/versionevent'>VersionEvent</a></td>
+<td>A new named <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/version'>Version</a> was created.</td>
 </tr>
 </tbody></table><blockquote>
 <p>CodeEvent and LockEvent includes every updated HubCode or Lock value, so it tends to be quite chatty. It&apos;s recommended to not subscribe to these events, unless they are necessary for your workflow.</p>
 </blockquote>
 <h2 class="h-creating-events-subscription">Creating Events Subscription<a id="creating-events-subscription" class="heading-anchor" href="#creating-events-subscription"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>To receive <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/imodelhubevent'>IModelHubEvent</a>s, user has to create an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/eventsubscription'>EventSubscription</a>. Creating a subscription requires the user to specify an array of <a href="#event-types">event types</a> they want to receive.</p>
+<p>To receive <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/imodelhubevent'>IModelHubEvent</a>s, user has to create an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/eventsubscription'>EventSubscription</a>. Creating a subscription requires the user to specify an array of <a href="#event-types">event types</a> they want to receive.</p>
 <p>Creating subscription requires user to have an <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/common/accesstoken'>access token</a> and have a valid <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/imodelhub/imodels/getimodel'>iModel id</a>.</p>
 <p>Example:</p>
 <pre class="no-line-numbers"><code class="language-typescript">  const subscription: EventSubscription = await imodelHubClient.events
@@ -181,17 +181,17 @@
 <p>After creating the subscription, <code>subscription.wsgId</code> can be used when subscription id is requested.</p>
 <p>Each subscription contains its own queue of events. Subscriptions expire after an hour of inactivity.</p>
 <h2 class="h-getting-events">Getting events<a id="getting-events" class="heading-anchor" href="#getting-events"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>First user has to get an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/eventsas'>EventSAS</a> token.</p>
+<p>First user has to get an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/eventsas'>EventSAS</a> token.</p>
 <pre class="no-line-numbers"><code class="language-typescript">  const sasToken: EventSAS = await imodelHubClient.events.getSASToken(authorizedRequestContext, imodelId);
 </code></pre>
 <p>Then they can get the first event from their subscription&apos;s queue. This will immediately delete the event from the queue.</p>
 <pre class="no-line-numbers"><code class="language-typescript">  const event: IModelHubEvent | undefined = await imodelHubClient.events
     .getEvent(requestContext, sasToken.sasToken!, sasToken.baseAddress!, subscription.wsgId, 60);
 </code></pre>
-<p>If <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/eventhandler/getevent'>EventHandler.getEvent</a> is called with a timeout duration specified, this request will perform long polling. If this request didn&apos;t find an event on the queue, it would wait until one is available or the timeout expires. This way the event reaches the client faster and less requests are sent between the client and the service.</p>
-<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/eventhandler/getevent'>EventHandler.getEvent</a> can fail because <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/eventsas'>EventSAS</a> has expired. It can also return undefined if no events have been found.</p>
+<p>If <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/eventhandler/getevent'>EventHandler.getEvent</a> is called with a timeout duration specified, this request will perform long polling. If this request didn&apos;t find an event on the queue, it would wait until one is available or the timeout expires. This way the event reaches the client faster and less requests are sent between the client and the service.</p>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/eventhandler/getevent'>EventHandler.getEvent</a> can fail because <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/eventsas'>EventSAS</a> has expired. It can also return undefined if no events have been found.</p>
 <h2 class="h-creating-events-listener">Creating Events Listener<a id="creating-events-listener" class="heading-anchor" href="#creating-events-listener"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/eventhandler/createlistener'>EventHandler.createListener</a> can be used to handle repeated calls to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/eventhandler/getevent'>EventHandler.getEvent</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/eventhandler/getsastoken'>EventHandler.getSASToken</a>.</p>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/eventhandler/createlistener'>EventHandler.createListener</a> can be used to handle repeated calls to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/eventhandler/getevent'>EventHandler.getEvent</a> and <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/eventhandler/getsastoken'>EventHandler.getSASToken</a>.</p>
 <p>Authentication callback example, similar to <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/common/accesstoken'>getting access token</a>. AuthorizationToken could be retrieved from credentials stored somewhere else or refreshed before it expires.</p>
 <pre class="no-line-numbers"><code class="language-typescript">async function authenticate(): Promise&lt;AccessToken&gt; {
   const requestContext = new ClientRequestContext();
@@ -200,7 +200,7 @@
   return imodelHubClient.getAccessToken(requestContext, authorizationToken);
 }
 </code></pre>
-<p>Listener callback example. This callback just logs the type of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/imodelhubevent'>IModelHubEvent</a> received.</p>
+<p>Listener callback example. This callback just logs the type of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/imodelhubevent'>IModelHubEvent</a> received.</p>
 <pre class="no-line-numbers"><code class="language-typescript">function processEvent(event: IModelHubEvent): void {
   Logger.logInfo(&quot;example&quot;, `Event of the type ${typeof event} received.`);
 }
@@ -212,12 +212,12 @@
 <p>Deleting the listener after it&apos;s no longer necessary is just calling the callback received when creating it.</p>
 <pre class="no-line-numbers"><code class="language-typescript">  deleteCallback();
 </code></pre>
-<p>Event listener will work in the background, continuously getting events for a specific <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/eventsubscription'>EventSubscription</a>. Once an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/imodelhubevent'>IModelHubEvent</a> is received, all registered listener callbacks for that subscription are called. If <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/eventsas'>EventSAS</a> expires, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubevents/eventhandler/getsastoken'>EventHandler.getSASToken</a> will be called automatically. If <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a> expires, authentication callback will be called to refresh that token.</p>
+<p>Event listener will work in the background, continuously getting events for a specific <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/eventsubscription'>EventSubscription</a>. Once an <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/imodelhubevent'>IModelHubEvent</a> is received, all registered listener callbacks for that subscription are called. If <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/eventsas'>EventSAS</a> expires, <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/imodelhubclient/eventhandler/getsastoken'>EventHandler.getSASToken</a> will be called automatically. If <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a> expires, authentication callback will be called to refresh that token.</p>
 <p>Event listener will stop if there&apos;s an error getting events for that subscription or when all listeners for it are deleted. In the latter case, any outstanding long polling requests could still complete.</p>
 <p>Listeners for the same subscription will only make a single event request at a time. Listeners for different subscriptions work independently.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 November, 2019</span>
+                <span class='date-updated'>22 November, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

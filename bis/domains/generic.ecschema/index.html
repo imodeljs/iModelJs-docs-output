@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.7.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -111,6 +111,7 @@
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/organizing-models-and-elements" class="table-of-contents-link">Organizing Models and Elements</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-systems" class="table-of-contents-link">Modeling Systems</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/overlapping-systems" class="table-of-contents-link">Overlapping Systems</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/3d-guidance" class="table-of-contents-link">3D Guidance</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/physical-models-and-elements" class="table-of-contents-link">Physical Models and Elements</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/functional-models-and-elements" class="table-of-contents-link">Functional Models and Elements</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/analysis-models-and-elements" class="table-of-contents-link">Analysis Models and Elements</a></li>
@@ -172,11 +173,11 @@
             
             <h1 id="generic">Generic</h1>
 <p><strong>alias:</strong> generic</p>
-<p><strong>version:</strong> 1.0.2</p>
+<p><strong>version:</strong> 1.0.3</p>
 <p>This schema contains classes that are completely generic. These classes should only be used when there is not enough context to pick something more specific.</p>
 <h2 class="h-entity">Entity Classes<a id="entity" class="heading-anchor" href="#entity"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<h3 class="h-callout"><strong>Callout</strong> <em>Abstract</em><a id="callout" class="heading-anchor" href="#callout"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<h3 class="h-callout"><strong>Callout</strong> <em>Abstract</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="callout" class="heading-anchor" href="#callout"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> A generic:DetailingSymbol that calls out a reference to another bis:Drawing.</p>
 <p><strong>baseClass:</strong> <a href="#detailingsymbol">Generic:DetailingSymbol</a></p>
 <h4 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
@@ -191,72 +192,89 @@
 <td align="left"></td>
 <td align="left"><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/generic.ecschema/#calloutreferstodrawingmodel'>navigation</a></td>
 </tr>
-</tbody></table><h3 class="h-detailcallout"><strong>DetailCallout</strong> (Detail Callout) <em>Sealed</em><a id="detailcallout" class="heading-anchor" href="#detailcallout"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+</tbody></table><p></div></p>
+<h3 class="h-detailcallout"><strong>DetailCallout</strong> (Detail Callout) <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="detailcallout" class="heading-anchor" href="#detailcallout"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> A generic:Callout that calls out a reference to a detail drawing.</p>
 <p><strong>baseClass:</strong> <a href="#callout">Generic:Callout</a></p>
-<h3 class="h-detailingsymbol"><strong>DetailingSymbol</strong> (Detailing Symbol) <em>Abstract</em><a id="detailingsymbol" class="heading-anchor" href="#detailingsymbol"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<p></div></p>
+<h3 class="h-detailingsymbol"><strong>DetailingSymbol</strong> (Detailing Symbol) <em>Abstract</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="detailingsymbol" class="heading-anchor" href="#detailingsymbol"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> A graphical detailing symbol that is placed on a bis:Drawing or bis:Sheet.</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#graphicalelement2d'>BisCore:GraphicalElement2d</a></p>
-<h3 class="h-document"><strong>Document</strong> <em>Sealed</em><a id="document" class="heading-anchor" href="#document"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<p></div></p>
+<h3 class="h-document"><strong>Document</strong> <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="document" class="heading-anchor" href="#document"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> The generic:Document class is used for bis:Document elements which cannot be further classified. More-specific bis:Document subclasses should be used wherever possible.</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#document'>BisCore:Document</a></p>
-<h3 class="h-elevationcallout"><strong>ElevationCallout</strong> (Elevation Callout) <em>Sealed</em><a id="elevationcallout" class="heading-anchor" href="#elevationcallout"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<p></div></p>
+<h3 class="h-elevationcallout"><strong>ElevationCallout</strong> (Elevation Callout) <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="elevationcallout" class="heading-anchor" href="#elevationcallout"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> A generic:Callout that calls out a reference to an elevation drawing.</p>
 <p><strong>baseClass:</strong> <a href="#callout">Generic:Callout</a></p>
-<h3 class="h-graphic3d"><strong>Graphic3d</strong> (3D Graphic) <em>Sealed</em><a id="graphic3d" class="heading-anchor" href="#graphic3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<p></div></p>
+<h3 class="h-graphic3d"><strong>Graphic3d</strong> (3D Graphic) <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="graphic3d" class="heading-anchor" href="#graphic3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> The generic:Graphic3d class is a concrete subclass of bis:GraphicalElement3d that can be used for generic 3D graphics which cannot be further classified. More-specific bis:GraphicalElement3d subclasses should be used wherever possible.</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#graphicalelement3d'>BisCore:GraphicalElement3d</a></p>
-<h3 class="h-graphicalmodel3d"><strong>GraphicalModel3d</strong> (3D Graphical Model) <em>Sealed</em><a id="graphicalmodel3d" class="heading-anchor" href="#graphicalmodel3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<p></div></p>
+<h3 class="h-graphicalmodel3d"><strong>GraphicalModel3d</strong> (3D Graphical Model) <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="graphicalmodel3d" class="heading-anchor" href="#graphicalmodel3d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> A container for persisting bis:GraphicalElement3d instances.</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#graphicalmodel3d'>BisCore:GraphicalModel3d</a></p>
-<h3 class="h-graphicaltype2d"><strong>GraphicalType2d</strong> (2D Graphical Type) <em>Sealed</em><a id="graphicaltype2d" class="heading-anchor" href="#graphicaltype2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<p></div></p>
+<h3 class="h-graphicaltype2d"><strong>GraphicalType2d</strong> (2D Graphical Type) <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="graphicaltype2d" class="heading-anchor" href="#graphicaltype2d"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> The generic:GraphicalType2d class is used for bis:GraphicalType2d elements which cannot be further classified. More-specific bis:GraphicalType2d subclasses should be used wherever possible.</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#graphicaltype2d'>BisCore:GraphicalType2d</a></p>
-<h3 class="h-group"><strong>Group</strong> <em>Sealed</em><a id="group" class="heading-anchor" href="#group"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<p></div></p>
+<h3 class="h-group"><strong>Group</strong> <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="group" class="heading-anchor" href="#group"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> &lt;No description&gt;</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#groupinformationelement'>BisCore:GroupInformationElement</a></p>
-<h3 class="h-groupmodel"><strong>GroupModel</strong> (Group Model) <em>Sealed</em><a id="groupmodel" class="heading-anchor" href="#groupmodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<p></div></p>
+<h3 class="h-groupmodel"><strong>GroupModel</strong> (Group Model) <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="groupmodel" class="heading-anchor" href="#groupmodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> &lt;No description&gt;</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#groupinformationmodel'>BisCore:GroupInformationModel</a></p>
-<h3 class="h-physicalmaterial"><strong>PhysicalMaterial</strong> (Physical Material) <em>Sealed</em><a id="physicalmaterial" class="heading-anchor" href="#physicalmaterial"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<p></div></p>
+<h3 class="h-physicalmaterial"><strong>PhysicalMaterial</strong> (Physical Material) <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="physicalmaterial" class="heading-anchor" href="#physicalmaterial"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> The generic:PhysicalMaterial class is used for bis:PhysicalMaterial elements which cannot be further classified. More-specific bis:PhysicalMaterial subclasses should be used wherever possible.</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#physicalmaterial'>BisCore:PhysicalMaterial</a></p>
-<h3 class="h-physicalobject"><strong>PhysicalObject</strong> (Physical Object) <em>Sealed</em><a id="physicalobject" class="heading-anchor" href="#physicalobject"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<p></div></p>
+<h3 class="h-physicalobject"><strong>PhysicalObject</strong> (Physical Object) <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="physicalobject" class="heading-anchor" href="#physicalobject"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> The generic:PhysicalObject class is used for bis:PhysicalElements which cannot be further classified. More-specific bis:PhysicalElement subclasses should be used wherever possible.</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#physicalelement'>BisCore:PhysicalElement</a></p>
-<h3 class="h-physicaltype"><strong>PhysicalType</strong> (Physical Type) <em>Sealed</em><a id="physicaltype" class="heading-anchor" href="#physicaltype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<p></div></p>
+<h3 class="h-physicaltype"><strong>PhysicalType</strong> (Physical Type) <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="physicaltype" class="heading-anchor" href="#physicaltype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> The generic:PhysicalType class is used for bis:PhysicalType elements which cannot be further classified. More-specific bis:PhysicalType subclasses should be used wherever possible.</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#physicaltype'>BisCore:PhysicalType</a></p>
-<h3 class="h-plancallout"><strong>PlanCallout</strong> (Plan Callout) <em>Sealed</em><a id="plancallout" class="heading-anchor" href="#plancallout"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<p></div></p>
+<h3 class="h-plancallout"><strong>PlanCallout</strong> (Plan Callout) <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="plancallout" class="heading-anchor" href="#plancallout"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> A generic:Callout that calls out a reference to a plan drawing.</p>
 <p><strong>baseClass:</strong> <a href="#callout">Generic:Callout</a></p>
-<h3 class="h-sectioncallout"><strong>SectionCallout</strong> (Section Callout) <em>Sealed</em><a id="sectioncallout" class="heading-anchor" href="#sectioncallout"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<p></div></p>
+<h3 class="h-sectioncallout"><strong>SectionCallout</strong> (Section Callout) <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="sectioncallout" class="heading-anchor" href="#sectioncallout"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> A generic:Callout that calls out a reference to a section drawing.</p>
 <p><strong>baseClass:</strong> <a href="#callout">Generic:Callout</a></p>
-<h3 class="h-spatiallocation"><strong>SpatialLocation</strong> (Spatial Location) <em>Sealed</em><a id="spatiallocation" class="heading-anchor" href="#spatiallocation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<p></div></p>
+<h3 class="h-spatiallocation"><strong>SpatialLocation</strong> (Spatial Location) <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="spatiallocation" class="heading-anchor" href="#spatiallocation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> The generic:SpatialLocation class is used for bis:SpatialLocationElements which cannot be further classified. More-specific bis:SpatialLocationElement subclasses should be used wherever possible.</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatiallocationelement'>BisCore:SpatialLocationElement</a></p>
-<h3 class="h-titletext"><strong>TitleText</strong> (Title Text) <em>Sealed</em><a id="titletext" class="heading-anchor" href="#titletext"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<p></div></p>
+<h3 class="h-titletext"><strong>TitleText</strong> (Title Text) <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="titletext" class="heading-anchor" href="#titletext"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> A generic:DetailingSymbol that contains title text.</p>
 <p><strong>baseClass:</strong> <a href="#detailingsymbol">Generic:DetailingSymbol</a></p>
-<h3 class="h-viewattachmentlabel"><strong>ViewAttachmentLabel</strong> (View Attachment Label) <em>Sealed</em><a id="viewattachmentlabel" class="heading-anchor" href="#viewattachmentlabel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<p></div></p>
+<h3 class="h-viewattachmentlabel"><strong>ViewAttachmentLabel</strong> (View Attachment Label) <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="viewattachmentlabel" class="heading-anchor" href="#viewattachmentlabel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> A generic:DetailingSymbol that contains a view attachment label.</p>
 <p><strong>baseClass:</strong> <a href="#detailingsymbol">Generic:DetailingSymbol</a></p>
 <h4 class="h-properties-1">Properties<a id="properties-1" class="heading-anchor" href="#properties-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
@@ -270,53 +288,69 @@
 <td align="left">ViewAttachment</td>
 <td align="left"></td>
 <td align="left"><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/generic.ecschema/#viewattachmentlabelannotatesviewattachment'>navigation</a></td>
+<td align="left"></td>
 </tr>
-</tbody></table><h2 class="h-relationship">Relationship Classes<a id="relationship" class="heading-anchor" href="#relationship"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<h3 class="h-calloutreferstodrawingmodel"><strong>CalloutRefersToDrawingModel</strong> <em>Sealed</em><a id="calloutreferstodrawingmodel" class="heading-anchor" href="#calloutreferstodrawingmodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> RelationshipClass</p>
+<tr>
+<td align="left">ClipGeometry</td>
+<td align="left">Defines the area on the sheet that contains annotations relevant to the View Attachment.</td>
+<td align="left">string</td>
+<td align="left">Json</td>
+</tr>
+</tbody></table><p></div></p>
+<h2 class="h-relationship">Relationship Classes<a id="relationship" class="heading-anchor" href="#relationship"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-calloutreferstodrawingmodel"><strong>CalloutRefersToDrawingModel</strong> <em>Sealed</em> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="calloutreferstodrawingmodel" class="heading-anchor" href="#calloutreferstodrawingmodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> &lt;No description&gt;</p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Backward</p>
 <h4 class="h-source">Source<a id="source" class="heading-anchor" href="#source"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> refers to</p>
 <p><strong>multiplicity:</strong> (0..*)</p>
-<h5 id="constraint classes">Constraint Classes</h5>
+<h4 class="h-constraint">Constraint Classes:<a id="constraint" class="heading-anchor" href="#constraint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <ul>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/generic.ecschema/#callout'>Callout</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/generic.ecschema/#callout'>Callout</a>
+</div><h4 class="h-target">Target<a id="target" class="heading-anchor" href="#target"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
 </ul>
-<h4 class="h-target">Target<a id="target" class="heading-anchor" href="#target"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> is referenced by</p>
 <p><strong>multiplicity:</strong> (0..1)</p>
-<h5 id="constraint classes">Constraint Classes</h5>
+<h4 class="h-constraint-1">Constraint Classes:<a id="constraint-1" class="heading-anchor" href="#constraint-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <ul>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#drawingmodel'>DrawingModel</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#drawingmodel'>DrawingModel</a>
+</div>
+</div><h3 class="h-viewattachmentlabelannotatesviewattachment"><strong>ViewAttachmentLabelAnnotatesViewAttachment</strong> <em>Sealed</em> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="viewattachmentlabelannotatesviewattachment" class="heading-anchor" href="#viewattachmentlabelannotatesviewattachment"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
 </ul>
-<h3 class="h-viewattachmentlabelannotatesviewattachment"><strong>ViewAttachmentLabelAnnotatesViewAttachment</strong> <em>Sealed</em><a id="viewattachmentlabelannotatesviewattachment" class="heading-anchor" href="#viewattachmentlabelannotatesviewattachment"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> RelationshipClass</p>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> &lt;No description&gt;</p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Backward</p>
 <h4 class="h-source-1">Source<a id="source-1" class="heading-anchor" href="#source-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> annotates</p>
 <p><strong>multiplicity:</strong> (0..1)</p>
-<h5 id="constraint classes">Constraint Classes</h5>
+<h4 class="h-constraint-2">Constraint Classes:<a id="constraint-2" class="heading-anchor" href="#constraint-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <ul>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/generic.ecschema/#viewattachmentlabel'>ViewAttachmentLabel</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/generic.ecschema/#viewattachmentlabel'>ViewAttachmentLabel</a>
+</div><h4 class="h-target-1">Target<a id="target-1" class="heading-anchor" href="#target-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
 </ul>
-<h4 class="h-target-1">Target<a id="target-1" class="heading-anchor" href="#target-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> is annotated by</p>
 <p><strong>multiplicity:</strong> (0..1)</p>
-<h5 id="constraint classes">Constraint Classes</h5>
+<h4 class="h-constraint-3">Constraint Classes:<a id="constraint-3" class="heading-anchor" href="#constraint-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <ul>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#viewattachment'>ViewAttachment</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#viewattachment'>ViewAttachment</a>
+</div>
+</div></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 November, 2019</span>
+                <span class='date-updated'>22 November, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -458,7 +492,13 @@
                                             <a class='title solo-title menu-text' href="#source">Source</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#target">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-1">Constraint Classes:</a>
                                     </li>
                             </ul>
                     </li>
@@ -472,7 +512,13 @@
                                             <a class='title solo-title menu-text' href="#source-1">Source</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-2">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#target-1">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-3">Constraint Classes:</a>
                                     </li>
                             </ul>
                     </li>

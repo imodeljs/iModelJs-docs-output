@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RoadRailAlignment - iModel.js</title>
+    <meta name="og:title" content="RoadRailAlignment - iModel.js">
+    <meta name="twitter:title" content="RoadRailAlignment - iModel.js">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
+
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
+    <span id="contentLoader">
+        <p>Woah! This page has a great deal of content... Give us a second to load it.</p>
+    </span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+
+
+
+        <header id="main-header">
+            <div class='nav-header-container'>
+                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                    <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo-small" class="site-logo-small" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-icon.svg" style="display:none;"/> 
+                    </a>
+                    <button class="navbar-toggler no-user-select mr-auto" type="button" data-toggle="collapse" data-target="#navbar5">
+                        <span class="navbar-toggler-header"></span>
+                    </button>
+                    <ul class="navbar-nav ml-auto pr-0 nav-search">
+                        <span class='search-bar'>
+                          <li>
+                            <div id='search-container'>
+                            </div>
+                          </li>
+                          <script>
+                            (function() {
+                              var cx = '018053174497532353467:v_gnrjjlqwc';
+                              var gcse = document.createElement('script');
+                              gcse.type = 'text/javascript';
+                              gcse.async = true;
+                              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                              var s = document.getElementsByTagName('script')[0];
+                              s.parentNode.insertBefore(gcse, s);
+                            })();
+                          </script>
+                          <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+                        </span>
+                    </ul>
+                    <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
+                        <ul class="navbar-nav mb-0" id="doc-site-tabs">
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+<div id='main-wrapper'>
+    <nav id='sidebar'>
+        <div id='table-of-contents' class="custom-scrollbar">
+            <div id="dismiss">
+                <i id="dismiss-arrow" class="icon icon-chevron-left no-user-select"></i>
+            </div>
+            <hr id="dismiss-hr" class='sm-only'>
+            <ul id='main-navigation-list'>
+                <html><head></head><body><h3 id="bis">BIS</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/" class="table-of-contents-link">Base Infrastructure Schemas (BIS)</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/federated-digital-twins" class="table-of-contents-link">Federated Digital Twins</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-with-bis" class="table-of-contents-link">Modeling with BIS</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/bis-organization" class="table-of-contents-link">BIS Organization</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/fabric-of-the-universe" class="table-of-contents-link">Fabric of the Universe</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals" class="table-of-contents-link">Element Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/codes" class="table-of-contents-link">Codes</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/elementaspect-fundamentals" class="table-of-contents-link">ElementAspect Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/mixins" class="table-of-contents-link">Mixins</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/model-fundamentals" class="table-of-contents-link">Model Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/relationship-fundamentals" class="table-of-contents-link">Relationship Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schemas-domains" class="table-of-contents-link">Schemas (&#x201C;Domains&#x201D;)</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/information-hierarchy" class="table-of-contents-link">Information Hierarchy</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-perspectives" class="table-of-contents-link">Modeling Perspectives</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/top-of-the-world" class="table-of-contents-link">Top of the World</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/srpp" class="table-of-contents-link">Single Responsible Party Principle</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/organizing-models-and-elements" class="table-of-contents-link">Organizing Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-systems" class="table-of-contents-link">Modeling Systems</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/overlapping-systems" class="table-of-contents-link">Overlapping Systems</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/3d-guidance" class="table-of-contents-link">3D Guidance</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/physical-models-and-elements" class="table-of-contents-link">Physical Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/functional-models-and-elements" class="table-of-contents-link">Functional Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/analysis-models-and-elements" class="table-of-contents-link">Analysis Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/information-models-and-elements" class="table-of-contents-link">Information Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/physical-hierarchy-organization" class="table-of-contents-link">PhysicalModel Hierarchy</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/categories" class="table-of-contents-link">Categories</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-customization" class="table-of-contents-link">Schema Customization</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/appendix-a-data-evolution-across-time" class="table-of-contents-link">Data Evolution Across Time</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-versioning-and-generations" class="table-of-contents-link">Schema Versioning</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-production-status" class="table-of-contents-link">Schema Production Status</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/units" class="table-of-contents-link">BIS Schema Units</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/bis-schema-validation" class="table-of-contents-link">BIS Schema Validation</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/domains/" class="table-of-contents-link">BIS Schema Reference</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary" class="table-of-contents-link">BIS Glossary</a></li>
+    </ul>
+    <!-- TODO: The following are not linked in...?
+    ./intro/appendix-c-bis-domain-design-fundamentals.md
+    -->
+    <p>&#xA0;</p>
+    <h3 id="bis naming guidelines">BIS Naming Guidelines</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/rules-and-recommendations" class="table-of-contents-link">Rules and Recommendations</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/special-terms" class="table-of-contents-link">Special Terms</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/summary-of-exceptions" class="table-of-contents-link">Summary of Exceptions</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/standard-abbreviations-and-acronyms" class="table-of-contents-link">Abbreviations and Acronyms</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/standard-relationship-strengths-names" class="table-of-contents-link">Relationship &#x201C;Strengths&#x201D;</a></li>
+    </ul>
+    <p>&#xA0;</p>
+    <h3 id="ec">EC</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-schema" class="table-of-contents-link">ECSchema</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-class" class="table-of-contents-link">ECClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-entity-class" class="table-of-contents-link">ECEntityClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-mixin-class" class="table-of-contents-link">ECMixinClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-struct-class" class="table-of-contents-link">ECStructClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-custom-attribute-class" class="table-of-contents-link">ECCustomAttributeClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-relationship-class" class="table-of-contents-link">ECRelationshipClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-property" class="table-of-contents-link">ECProperty</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-custom-attributes" class="table-of-contents-link">ECCustomAttributes</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-enumeration" class="table-of-contents-link">ECEnumeration</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/kindofquantity" class="table-of-contents-link">KindOfQuantity</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/property-category" class="table-of-contents-link">PropertyCategory</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/primitive-types" class="table-of-contents-link">PrimitiveTypes</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/customattribute-container-types" class="table-of-contents-link">CustomAttribute Container Types</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-unit" class="table-of-contents-link">Unit</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-constant" class="table-of-contents-link">Constant</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-phenomenon" class="table-of-contents-link">Phenomenon</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-unitsystem" class="table-of-contents-link">UnitSystem</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-format" class="table-of-contents-link">Format</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-name" class="table-of-contents-link">ECName</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/differences-between-ec2-and-ec3" class="table-of-contents-link">Changes Between ECObjects 2 and 3</a></li>
+    </ul>
+    </body></html>
+            </ul>
+        </div>
+    </nav>    <div class='documentation-main'>
+        <article id="main" class="main-content">
+            <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">Base Infrastructure Schema</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/domains/">domains</a> > RoadRailAlignment.ecschema</div>
+            
+            <h1 id="roadrailalignment">RoadRailAlignment</h1>
+<p><strong>alias:</strong> rralign</p>
+<p><strong>version:</strong> 2.0.1</p>
+<p>Base schema for the Alignment domain in light of Road and Rail applications.</p>
+<h2 class="h-entity">Entity Classes<a id="entity" class="heading-anchor" href="#entity"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-alignment"><strong>Alignment</strong> (Alignment) <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="alignment" class="heading-anchor" href="#alignment"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> Reference system to position elements mainly for linear construction works. Provides concrete implementation of an ILinearElement mix-in in the context of Road and Rail disciplines.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatiallocationelement'>BisCore:SpatialLocationElement</a></p>
+<h4 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">StartStation</td>
+<td align="left"></td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">StartValue</td>
+<td align="left"></td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Horizontal</td>
+<td align="left"></td>
+<td align="left"><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/roadrailalignment.ecschema/#alignmentreferstohorizontal'>navigation</a></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">MainVertical</td>
+<td align="left"></td>
+<td align="left"><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/roadrailalignment.ecschema/#alignmentreferstomainvertical'>navigation</a></td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-alignmentstation"><strong>AlignmentStation</strong> <em>Sealed</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="alignmentstation" class="heading-anchor" href="#alignmentstation"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> Well-known location along a Linear-Element, with a specific Station value assigned to it.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#referentelement'>LinearReferencing:ReferentElement</a></p>
+<h4 class="h-properties-1">Properties<a id="properties-1" class="heading-anchor" href="#properties-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">Station</td>
+<td align="left"></td>
+<td align="left">double</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-designalignments"><strong>DesignAlignments</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="designalignments" class="heading-anchor" href="#designalignments"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> Entry-point element into an AlignmentModel containing Alignments used for design purposes in given Spatial Model.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatiallocationelement'>BisCore:SpatialLocationElement</a></p>
+<p></div></p>
+<h3 class="h-horizontalalignment"><strong>HorizontalAlignment</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="horizontalalignment" class="heading-anchor" href="#horizontalalignment"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> Detailing of an Alignment horizontally (Top/Plan view).</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatiallocationelement'>BisCore:SpatialLocationElement</a></p>
+<h4 class="h-properties-2">Properties<a id="properties-2" class="heading-anchor" href="#properties-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">HorizontalGeometry</td>
+<td align="left"></td>
+<td align="left">Bentley.Geometry.Common.IGeometry</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-horizontalalignments"><strong>HorizontalAlignments</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="horizontalalignments" class="heading-anchor" href="#horizontalalignments"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> Horizontal/Top perspective on Alignments in an AlignmentModel that will be broken down in more detail in a separate HorizontalAlignmentModel.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatiallocationelement'>BisCore:SpatialLocationElement</a></p>
+<p></div></p>
+<h3 class="h-verticalalignment"><strong>VerticalAlignment</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="verticalalignment" class="heading-anchor" href="#verticalalignment"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> Detailing of a Alignment or a portion of it, vertically along its path.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#geometricelement2d'>BisCore:GeometricElement2d</a></p>
+<h4 class="h-properties-3">Properties<a id="properties-3" class="heading-anchor" href="#properties-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">VerticalGeometry</td>
+<td align="left">Geometry primitives accurately describing the vertical alignment. X-values mean distance-along the HorizontalAlignment; Y-values are always zero; Z-values provide elevation information.</td>
+<td align="left">Bentley.Geometry.Common.IGeometry</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-verticalalignmentmodel"><strong>VerticalAlignmentModel</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="verticalalignmentmodel" class="heading-anchor" href="#verticalalignmentmodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> Container for all Vertical Alignments breaking down an Alignment.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#geometricmodel2d'>BisCore:GeometricModel2d</a></p>
+<p></div></p>
+<h2 class="h-kind">Kind of Quantity Items<a id="kind" class="heading-anchor" href="#kind"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-angle"><strong>ANGLE</strong> (Road &amp; Rail Angle) <span class="badge badge-pill badge-info badge-kindofquantity">KindOfQuantity</span><a id="angle" class="heading-anchor" href="#angle"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> DEPRECATED: Refer to KindOfQuantities defined in the new RoadRailUnits schema instead</p>
+<p><strong>Relative Error:</strong> 0.0001</p>
+<p><strong>Persistence Unit:</strong> RAD</p>
+<p><strong>Presentation Formats</strong></p>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#defaultrealu'>DefaultRealU</a>(2) [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#arc_deg'>ARC_DEG</a> ]</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#angledms'>AngleDMS</a></li>
+</ul>
+<p></div></p>
+<h3 class="h-area"><strong>AREA</strong> (Road &amp; Rail Area) <span class="badge badge-pill badge-info badge-kindofquantity">KindOfQuantity</span><a id="area" class="heading-anchor" href="#area"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> DEPRECATED: Refer to KindOfQuantities defined in the new RoadRailUnits schema instead</p>
+<p><strong>Relative Error:</strong> 0.0001</p>
+<p><strong>Persistence Unit:</strong> SQ_M</p>
+<p><strong>Presentation Formats</strong></p>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#defaultrealu'>DefaultRealU</a>(2) [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#sq_m'>SQ_M</a> ]</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#defaultrealu'>DefaultRealU</a>(2) [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#sq_ft'>SQ_FT</a> ]</li>
+</ul>
+<p></div></p>
+<h3 class="h-bearing"><strong>BEARING</strong> (Road &amp; Rail Bearing) <span class="badge badge-pill badge-info badge-kindofquantity">KindOfQuantity</span><a id="bearing" class="heading-anchor" href="#bearing"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> DEPRECATED: Refer to KindOfQuantities defined in the new RoadRailUnits schema instead</p>
+<p><strong>Relative Error:</strong> 0.0001</p>
+<p><strong>Persistence Unit:</strong> RAD</p>
+<p><strong>Presentation Formats</strong></p>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#angledms'>AngleDMS</a></li>
+</ul>
+<p></div></p>
+<h3 class="h-length"><strong>LENGTH</strong> (Road &amp; Rail Alignment Length) <span class="badge badge-pill badge-info badge-kindofquantity">KindOfQuantity</span><a id="length" class="heading-anchor" href="#length"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> DEPRECATED: Refer to KindOfQuantities defined in the new RoadRailUnits schema instead</p>
+<p><strong>Relative Error:</strong> 0.0001</p>
+<p><strong>Persistence Unit:</strong> M</p>
+<p><strong>Presentation Formats</strong></p>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#defaultrealu'>DefaultRealU</a>(2) [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#m'>M</a> ]</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#defaultrealu'>DefaultRealU</a>(2) [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#ft'>FT</a> ]</li>
+</ul>
+<p></div></p>
+<h3 class="h-slope"><strong>SLOPE</strong> (Road &amp; Rail Slope) <span class="badge badge-pill badge-info badge-kindofquantity">KindOfQuantity</span><a id="slope" class="heading-anchor" href="#slope"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> DEPRECATED: Refer to KindOfQuantities defined in the new RoadRailUnits schema instead</p>
+<p><strong>Relative Error:</strong> 0.0001</p>
+<p><strong>Persistence Unit:</strong> M_PER_M</p>
+<p><strong>Presentation Formats</strong></p>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#defaultrealu'>DefaultRealU</a>(2) [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#m_per_m'>M_PER_M</a> ]</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#defaultrealu'>DefaultRealU</a>(2) [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#ft_per_ft'>FT_PER_FT</a> ]</li>
+</ul>
+<p></div></p>
+<h3 class="h-station"><strong>STATION</strong> (Road &amp; Rail Station) <span class="badge badge-pill badge-info badge-kindofquantity">KindOfQuantity</span><a id="station" class="heading-anchor" href="#station"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> DEPRECATED: Refer to KindOfQuantities defined in the new RoadRailUnits schema instead</p>
+<p><strong>Relative Error:</strong> 0.0001</p>
+<p><strong>Persistence Unit:</strong> M</p>
+<p><strong>Presentation Formats</strong></p>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#stationz_1000_3'>StationZ_1000_3</a> [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#m'>M</a> ]</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#stationz_100_2'>StationZ_100_2</a> [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#ft'>FT</a> ]</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#defaultrealu'>DefaultRealU</a>(2) [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#m'>M</a> ]</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#defaultrealu'>DefaultRealU</a>(2) [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#ft'>FT</a> ]</li>
+</ul>
+<p></div></p>
+<h3 class="h-velocity"><strong>VELOCITY</strong> (Road &amp; Rail Velocity) <span class="badge badge-pill badge-info badge-kindofquantity">KindOfQuantity</span><a id="velocity" class="heading-anchor" href="#velocity"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> DEPRECATED: Refer to KindOfQuantities defined in the new RoadRailUnits schema instead</p>
+<p><strong>Relative Error:</strong> 0.0001</p>
+<p><strong>Persistence Unit:</strong> M_PER_SEC</p>
+<p><strong>Presentation Formats</strong></p>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#defaultrealu'>DefaultRealU</a>(2) [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#km_per_hr'>KM_PER_HR</a> ]</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/formats.ecschema/#defaultrealu'>DefaultRealU</a>(2) [ <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/units.ecschema/#mph'>MPH</a> ]</li>
+</ul>
+<p></div></p>
+<h2 class="h-relationship">Relationship Classes<a id="relationship" class="heading-anchor" href="#relationship"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-alignmentownsreferents"><strong>AlignmentOwnsReferents</strong> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="alignmentownsreferents" class="heading-anchor" href="#alignmentownsreferents"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> Relationship definitiong ownership from an Alignment to its child Referents.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#elementownschildelements'>BisCore:ElementOwnsChildElements</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source">Source<a id="source" class="heading-anchor" href="#source"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint">Constraint Classes:<a id="constraint" class="heading-anchor" href="#constraint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/roadrailalignment.ecschema/#alignment'>Alignment</a>
+</div><h4 class="h-target">Target<a id="target" class="heading-anchor" href="#target"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h4 class="h-constraint-1">Constraint Classes:<a id="constraint-1" class="heading-anchor" href="#constraint-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/linearreferencing.ecschema/#referentelement'>ReferentElement</a>
+</div>
+</div><h3 class="h-alignmentreferstohorizontal"><strong>AlignmentRefersToHorizontal</strong> <em>Sealed</em> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="alignmentreferstohorizontal" class="heading-anchor" href="#alignmentreferstohorizontal"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> Relationship enabling an Alignment to refer to its Horizontal alignment.</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-1">Source<a id="source-1" class="heading-anchor" href="#source-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> refers to</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h4 class="h-constraint-2">Constraint Classes:<a id="constraint-2" class="heading-anchor" href="#constraint-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/roadrailalignment.ecschema/#alignment'>Alignment</a>
+</div><h4 class="h-target-1">Target<a id="target-1" class="heading-anchor" href="#target-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is referenced by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-3">Constraint Classes:<a id="constraint-3" class="heading-anchor" href="#constraint-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/roadrailalignment.ecschema/#horizontalalignment'>HorizontalAlignment</a>
+</div>
+</div><h3 class="h-alignmentreferstomainvertical"><strong>AlignmentRefersToMainVertical</strong> <em>Sealed</em> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="alignmentreferstomainvertical" class="heading-anchor" href="#alignmentreferstomainvertical"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> Relationship enabling an Alignment to refer to its main Vertical alignment.</p>
+<p><strong>Strength:</strong> Referencing</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-2">Source<a id="source-2" class="heading-anchor" href="#source-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> refers to main</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h4 class="h-constraint-4">Constraint Classes:<a id="constraint-4" class="heading-anchor" href="#constraint-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/roadrailalignment.ecschema/#alignment'>Alignment</a>
+</div><h4 class="h-target-2">Target<a id="target-2" class="heading-anchor" href="#target-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> main is referenced by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-5">Constraint Classes:<a id="constraint-5" class="heading-anchor" href="#constraint-5"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/roadrailalignment.ecschema/#verticalalignment'>VerticalAlignment</a>
+</div>
+</div><h3 class="h-horizontalmodelbreaksdownalignments"><strong>HorizontalModelBreaksDownAlignments</strong> <em>Sealed</em> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="horizontalmodelbreaksdownalignments" class="heading-anchor" href="#horizontalmodelbreaksdownalignments"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> Relationship enabling break-down of an AlignmentModel (3d) into a 2d model focusing on Horizontal/Plan-view of them.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#modelmodelselement'>BisCore:ModelModelsElement</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Backward</p>
+<h4 class="h-source-3">Source<a id="source-3" class="heading-anchor" href="#source-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> breaks down</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-6">Constraint Classes:<a id="constraint-6" class="heading-anchor" href="#constraint-6"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatiallocationmodel'>SpatialLocationModel</a>
+</div><h4 class="h-target-3">Target<a id="target-3" class="heading-anchor" href="#target-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is broken down by</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint-7">Constraint Classes:<a id="constraint-7" class="heading-anchor" href="#constraint-7"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/roadrailalignment.ecschema/#horizontalalignments'>HorizontalAlignments</a>
+</div>
+</div><h3 class="h-verticalmodelbreaksdownalignment"><strong>VerticalModelBreaksDownAlignment</strong> <em>Sealed</em> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="verticalmodelbreaksdownalignment" class="heading-anchor" href="#verticalmodelbreaksdownalignment"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> Relationship enabling break-downs of an Alignment into Vertical-Alignments.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#modelmodelselement'>BisCore:ModelModelsElement</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Backward</p>
+<h4 class="h-source-4">Source<a id="source-4" class="heading-anchor" href="#source-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> breaks down</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-8">Constraint Classes:<a id="constraint-8" class="heading-anchor" href="#constraint-8"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/roadrailalignment.ecschema/#verticalalignmentmodel'>VerticalAlignmentModel</a>
+</div><h4 class="h-target-4">Target<a id="target-4" class="heading-anchor" href="#target-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is broken down by</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint-9">Constraint Classes:<a id="constraint-9" class="heading-anchor" href="#constraint-9"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/roadrailalignment.ecschema/#alignment'>Alignment</a>
+</div>
+</div></li>
+</ul>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>22 November, 2019</span>
+            </p>
+            <div id="imodeljs-github-comments">
+            </div>
+            
+            <script>
+              $(document).ready(function () {
+                function initializeComments(repo) {
+                  var s = document.createElement('script');
+                  s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
+                  s.setAttribute('repo', repo);
+                  s.setAttribute('issue-term', 'title');
+                  s.setAttribute('crossorigin', 'anonymous');
+                  s.setAttribute('theme', 'github-light');
+                  s.async = true;
+            
+                  document.getElementById("imodeljs-github-comments").appendChild(s);
+                }
+            
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
+              });
+            </script>
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div class="toc-overlay"></div>
+    <div id='inner-table-of-contents'>
+       <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item '>
+            <a data-target="#inner-nav-entity" class='title' href="#entity"/>
+            <b class='dropdown-menu-title menu-text'>Entity Classes</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-entity" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-alignment" class='title' href="#alignment"/>
+                            <b class='dropdown-menu-title menu-text'>Alignment (Alignment) Sealed</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-alignment" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-alignmentstation" class='title' href="#alignmentstation"/>
+                            <b class='dropdown-menu-title menu-text'>AlignmentStation Sealed</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-alignmentstation" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-1">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#designalignments">DesignAlignments</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-horizontalalignment" class='title' href="#horizontalalignment"/>
+                            <b class='dropdown-menu-title menu-text'>HorizontalAlignment</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-horizontalalignment" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-2">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#horizontalalignments">HorizontalAlignments</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-verticalalignment" class='title' href="#verticalalignment"/>
+                            <b class='dropdown-menu-title menu-text'>VerticalAlignment</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-verticalalignment" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-3">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#verticalalignmentmodel">VerticalAlignmentModel</a>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-kind" class='title' href="#kind"/>
+            <b class='dropdown-menu-title menu-text'>Kind of Quantity Items</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-kind" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#angle">ANGLE (Road &amp; Rail Angle)</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#area">AREA (Road &amp; Rail Area)</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#bearing">BEARING (Road &amp; Rail Bearing)</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#length">LENGTH (Road &amp; Rail Alignment Length)</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#slope">SLOPE (Road &amp; Rail Slope)</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#station">STATION (Road &amp; Rail Station)</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#velocity">VELOCITY (Road &amp; Rail Velocity)</a>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-relationship" class='title' href="#relationship"/>
+            <b class='dropdown-menu-title menu-text'>Relationship Classes</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-relationship" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-alignmentownsreferents" class='title' href="#alignmentownsreferents"/>
+                            <b class='dropdown-menu-title menu-text'>AlignmentOwnsReferents</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-alignmentownsreferents" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-1">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-alignmentreferstohorizontal" class='title' href="#alignmentreferstohorizontal"/>
+                            <b class='dropdown-menu-title menu-text'>AlignmentRefersToHorizontal Sealed</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-alignmentreferstohorizontal" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-1">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-2">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-1">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-3">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-alignmentreferstomainvertical" class='title' href="#alignmentreferstomainvertical"/>
+                            <b class='dropdown-menu-title menu-text'>AlignmentRefersToMainVertical Sealed</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-alignmentreferstomainvertical" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-2">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-4">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-2">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-5">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-horizontalmodelbreaksdownalignments" class='title' href="#horizontalmodelbreaksdownalignments"/>
+                            <b class='dropdown-menu-title menu-text'>HorizontalModelBreaksDownAlignments Sealed</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-horizontalmodelbreaksdownalignments" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-3">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-6">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-3">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-7">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-verticalmodelbreaksdownalignment" class='title' href="#verticalmodelbreaksdownalignment"/>
+                            <b class='dropdown-menu-title menu-text'>VerticalModelBreaksDownAlignment Sealed</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-verticalmodelbreaksdownalignment" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-4">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-8">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-4">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-9">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+            </ul>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color pt-1 pb-3">
+  <!-- Footer Links Container -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row d-flex align-items-center mt-2">
+
+      <!-- Grid column -->
+      <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
+
+        <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+        </a>
+        <small style="color: white; margin-right: 7px;"> powered by </small>
+        <a href="https://www.bentley.com">
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
+        </a>
+      </div>
+      <!-- Grid column -->
+
+      <!-- TOS/Legals footer placeholder -->
+      <div id="HFRootHeader"></div>
+
+      <!-- Grid column -->
+      <div class="col-md-5 col-lg-4 ml-lg-0">
+
+        <!-- Social buttons -->
+        <div class="text-center text-md-right">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://twitter.com/imodeljs" target="_blank">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://github.com/imodeljs" target="_blank">
+                <i class="fa fa-github"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://stackoverflow.com/tags/imodeljs"
+                target="_blank">
+                <i class="fa fa-stack-overflow"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links Container -->
+
+</footer>
+<!-- Footer -->
+
+</div>
+<a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
+</body>
+
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>

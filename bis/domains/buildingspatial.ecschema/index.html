@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.7.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -111,6 +111,7 @@
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/organizing-models-and-elements" class="table-of-contents-link">Organizing Models and Elements</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-systems" class="table-of-contents-link">Modeling Systems</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/overlapping-systems" class="table-of-contents-link">Overlapping Systems</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/3d-guidance" class="table-of-contents-link">3D Guidance</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/physical-models-and-elements" class="table-of-contents-link">Physical Models and Elements</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/functional-models-and-elements" class="table-of-contents-link">Functional Models and Elements</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/analysis-models-and-elements" class="table-of-contents-link">Analysis Models and Elements</a></li>
@@ -177,29 +178,34 @@
 <p>This schema contains the concrete classes that are used to model the spatial structure of a building.That spatial structure is often used to provide a project structure to organize a building project.</p>
 <p>Due to the importance of IFC in coordinating spatial structure, the classes in the schema are intended to have a 1:1 instance mapping (not <em>class</em> mapping!) with IFC that will work for transformations in either direction.  It is expected that round-trip transformations may result in changes that provide an <em>equivalent</em>, but not <em>identical</em> model.</p>
 <h2 class="h-entity">Entity Classes<a id="entity" class="heading-anchor" href="#entity"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<h3 class="h-building"><strong>Building</strong><a id="building" class="heading-anchor" href="#building"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<h3 class="h-building"><strong>Building</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="building" class="heading-anchor" href="#building"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> an element modeling the spatial perspective of a building</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/spatialcomposition.ecschema/#compositeelement'>SpatialComposition:CompositeElement</a></p>
-<h3 class="h-elevationstory"><strong>ElevationStory</strong> <em>Abstract</em><a id="elevationstory" class="heading-anchor" href="#elevationstory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<p></div></p>
+<h3 class="h-elevationstory"><strong>ElevationStory</strong> <em>Abstract</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="elevationstory" class="heading-anchor" href="#elevationstory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> represents a (nearly) horizontal aggregation of spaces that are vertically bound</p>
 <p><strong>baseClass:</strong> <a href="#story">BuildingSpatial:Story</a></p>
-<h3 class="h-regularstory"><strong>RegularStory</strong><a id="regularstory" class="heading-anchor" href="#regularstory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<p></div></p>
+<h3 class="h-regularstory"><strong>RegularStory</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="regularstory" class="heading-anchor" href="#regularstory"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> A building Story is delimited by 2 elevations from top and bottom and represents a horizontal aggregation of spaces that are vertically bound</p>
 <p><strong>baseClass:</strong> <a href="#elevationstory">BuildingSpatial:ElevationStory</a></p>
-<h3 class="h-space"><strong>Space</strong><a id="space" class="heading-anchor" href="#space"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<p></div></p>
+<h3 class="h-space"><strong>Space</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="space" class="heading-anchor" href="#space"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> an element modeling a space</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/spatialcomposition.ecschema/#compositeelement'>SpatialComposition:CompositeElement</a></p>
-<h3 class="h-story"><strong>Story</strong> <em>Abstract</em><a id="story" class="heading-anchor" href="#story"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<p></div></p>
+<h3 class="h-story"><strong>Story</strong> <em>Abstract</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="story" class="heading-anchor" href="#story"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> A building Story that is an aggregation of spaces that are vertically bound</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/spatialcomposition.ecschema/#compositeelement'>SpatialComposition:CompositeElement</a></p>
+<p></div></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 November, 2019</span>
+                <span class='date-updated'>22 November, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

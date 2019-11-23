@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.7.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -133,8 +133,8 @@
 <p>If a category name has a &quot;.&quot; in it, then the part to the left is interpreted as the parent category and the part to the right is the child. If you pass a parent category to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/logger/setlevel'>Logger.setLevel</a>, then the specified level filter will be applied to all children of that level. If you call <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/logger/setlevel'>Logger.setLevel</a> on a specific child category, then the level you specify will apply to that child, while the parent&apos;s level will apply to all other children. Children can be nested.</p>
 <h2 class="h-controlling-the-destination-of-logging-messages">Controlling the Destination of Logging Messages<a id="controlling-the-destination-of-logging-messages" class="heading-anchor" href="#controlling-the-destination-of-logging-messages"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The app controls how to handle log messages by supplying to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/logger/initialize'>Logger.initialize</a> the functions that handle messages for each log level. These functions are called &quot;streams&quot;. See the convenience method <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/logger/initializetoconsole'>Logger.initializeToConsole</a> for a simple way to direct logging output to the console.
-BunyanLoggerConfig will direct logging to the Bunyan logging system.
-SeqLoggerConfig will direct logging to the seq logging server. FluentdBunyanLoggerConfig will direct loging to fluentd.</p>
+<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/logger-config/logging/bunyanloggerconfig'>BunyanLoggerConfig</a> will direct logging to the Bunyan logging system.
+<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/logger-config/logging/seqloggerconfig'>SeqLoggerConfig</a> will direct logging to the seq logging server. <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/logger-config/logging/fluentdbunyanloggerconfig'>FluentdBunyanLoggerConfig</a> will direct loging to fluentd.</p>
 <h2 class="h-controlling-what-is-logged">Controlling What is Logged<a id="controlling-what-is-logged" class="heading-anchor" href="#controlling-what-is-logged"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The app that produces logging output can apply filters at runtime to control which messages are actually sent to the destination.</p>
 <p>The simplest way to turn off logging at a particular log level is for the app simply not to supply a stream for that level. Or, the app can supply a stream that does its own internal filtering.</p>
@@ -153,7 +153,7 @@ Logger.setLevel(&quot;Diagnostics&quot;, LogLevel.None);</code></pre><p>This app
 <pre><code>Logger.initializeToConsole();
 Logger.setLevel(&quot;MyCategory&quot;, LogLevel.Info);</code></pre><p>This approach is useful when you want to monitor the activity in a small number of known modules, where you already know the names of the categories that they use.</p>
 <h2 class="h-configuration-files">Configuration Files<a id="configuration-files" class="heading-anchor" href="#configuration-files"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>A service typically initializes and configures logging in its startup logic. Configuration can be based on the configuration parameters of the service, which may be set by the deployment mechanism. The simplest way to do this is to use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/loggerlevelsconfig'>LoggerLevelsConfig</a>. This is normally used in conjunction with a stream config, for example, a SeqConfig. Both are normally stored in a config file that is deployed with the service. Finally, some specific configuration parameters are normally set at runtime, based on deployment parameters using EnvMacroSubst to do macro substitution.</p>
+<p>A service typically initializes and configures logging in its startup logic. Configuration can be based on the configuration parameters of the service, which may be set by the deployment mechanism. The simplest way to do this is to use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/logging/loggerlevelsconfig'>LoggerLevelsConfig</a>. This is normally used in conjunction with a stream config, for example, a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/logger-config/logging/seqconfig'>SeqConfig</a>. Both are normally stored in a config file that is deployed with the service. Finally, some specific configuration parameters are normally set at runtime, based on deployment parameters using EnvMacroSubst to do macro substitution.</p>
 <p><em>Example:</em></p>
 <pre class="no-line-numbers"><code class="language-typescript">import { Logger, LoggerLevelsConfig, EnvMacroSubst, BentleyError, IModelStatus } from &quot;@bentley/bentleyjs-core&quot;;
 import { BunyanLoggerConfig, SeqConfig, SeqLoggerConfig } from &quot;@bentley/logger-config&quot;;
@@ -211,7 +211,7 @@ export function initializeLogging(): void {
 <p>Backend code must cooperate with iModel.js to <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/rpcinterface/#logging-and-activityids'>manage the ClientRequestContext</a></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 November, 2019</span>
+                <span class='date-updated'>22 November, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

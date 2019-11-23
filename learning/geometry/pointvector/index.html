@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.7.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -711,14 +711,38 @@
 <td>dot product of vectors from instance to 2 targets</td>
 <td>a = basePoint.dotVectorsToTargets (pointA, pointB)</td>
 <td></td>
-<td>a = basePoint.dotVectorsToTargets (pointA,</td>
+<td>a = basePoint.dotVectorsToTargets (pointA, pointB)</td>
+<td></td>
 </tr>
-</tbody></table><p>pointB) | |
-| dot product of instance vector with vector from startPoint to endPoint.  | | a = vector.dotProductStartEnd (startPoint, endPoint)  : number| | a = vector.dotProductStartEnd (startPoint, endPoint)  : number |</p>
-<p>| dot product of instance vector with vector from startPoint to endPoint.  endPoint given as x,y,z,w to be unweighted. returns zero if weighth is zero.| | a = vector.dotProductStartEndXYZW (startPoint, x,y,x,z)  : number| | | |
-| squared magnitude of cross product | | value = vectorA.crossProductMagnitudeSquared (vectorB) | | |
-| magnitude of cross product | | value = vectorA.crossProductMagnitude (vectorB) | | |</p>
-<h2 class="h-angles-between-vectors">Angles between vectors<a id="angles-between-vectors" class="heading-anchor" href="#angles-between-vectors"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<tr>
+<td>dot product of instance vector with vector from startPoint to endPoint.</td>
+<td></td>
+<td>a = vector.dotProductStartEnd (startPoint, endPoint)  : number</td>
+<td></td>
+<td>a = vector.dotProductStartEnd (startPoint, endPoint) : number</td>
+</tr>
+<tr>
+<td>dot product of instance vector with vector from startPoint to endPoint.  endPoint given as x,y,z,w to be unweighted. returns zero if weighth is zero.</td>
+<td></td>
+<td>a = vector.dotProductStartEndXYZW (startPoint, x,y,x,z)  : number</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>squared magnitude of cross product</td>
+<td></td>
+<td>value = vectorA.crossProductMagnitudeSquared (vectorB)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>magnitude of cross product</td>
+<td></td>
+<td>value = vectorA.crossProductMagnitude (vectorB)</td>
+<td></td>
+</tr>
+</tbody></table><h2 class="h-angles-between-vectors">Angles between vectors<a id="angles-between-vectors" class="heading-anchor" href="#angles-between-vectors"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ul>
 <li>Methods that return bare radians have <em>radians</em> in the method name.</li>
 <li>Methods without specific <em>radians</em> indication return a (strongly typed) <code>Angle</code> object that can be queried for <code>degrees</code> or <code>radians</code>.</li>
@@ -900,7 +924,7 @@
 <td>has x, y and z properties (z not tested)</td>
 <td>XYZ.isXYAndZ (anyObject)</td>
 </tr>
-</tbody></table><h2 class="h-binary-queriesinstance-methods">binary queries(instance methods)<a id="binary-queriesinstance-methods" class="heading-anchor" href="#binary-queriesinstance-methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+</tbody></table><h2 class="h-binary-queries-instance-methods">binary queries (instance methods)<a id="binary-queries-instance-methods" class="heading-anchor" href="#binary-queries-instance-methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>(methods that take the &quot;other&quot; point or vector as direct numbers in the call list are considered &quot;binary&quot; for this table.)
 | category | Point3d | Vector3d | Point2d | Vector2d |
 |---|---|---|---|---|
@@ -915,7 +939,7 @@
 | max component difference | p.maxDiff (otherXYAndZ) | v.maxDiff (otherXYAndZ) | p.maxDiff (otherXAndY) | v.maxDiff (otherXAndY) |</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 November, 2019</span>
+                <span class='date-updated'>22 November, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -991,7 +1015,7 @@
             <a class='title solo-title menu-text' href="#property-verification">property verification</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#binary-queriesinstance-methods">binary queries(instance methods)</a>
+            <a class='title solo-title menu-text' href="#binary-queries-instance-methods">binary queries (instance methods)</a>
     </li>
  
       </ul>

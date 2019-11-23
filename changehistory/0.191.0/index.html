@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.7.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -99,6 +99,8 @@
     <hr>
     <h3 id="versions">Versions</h3>
     <ul>
+    <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/1.8.0" class="table-of-contents-link">1.8.0</a></p>
+    </li>
     <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/1.7.0" class="table-of-contents-link">1.7.0</a></p>
     </li>
     <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/1.6.0" class="table-of-contents-link">1.6.0</a></p>
@@ -246,7 +248,7 @@ All uses of the following <em>standalone</em> iModel functions must be migrated:
 </li>
 <li><p>The base class <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/clientrequestcontext'>ClientRequestContext</a> includes information on the <em><code>session</code></em>, <em><code>application</code></em> and <em><code>activity</code></em> for logging and usage metrics. Note that this replaces the use of <code>ActivityLoggingContext</code> in previous versions.</p>
 </li>
-<li><p>The sub class <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/authorizedclientrequestcontext'>AuthorizedClientRequestContext</a> includes the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a> that carries the information on <em><code>authorization</code></em>. Note that this replaces the use of <code>ActivityLoggingContext</code> and <code>AccessToken</code> as parameters in various method calls. For example,</p>
+<li><p>The sub class <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/authorizedclientrequestcontext'>AuthorizedClientRequestContext</a> includes the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/accesstoken'>AccessToken</a> that carries the information on <em><code>authorization</code></em>. Note that this replaces the use of <code>ActivityLoggingContext</code> and <code>AccessToken</code> as parameters in various method calls. For example,</p>
 <pre class="no-line-numbers"><code class="language-typescript">function updateVersion(actx: ActivityLoggingContext, accessToken: AccessToken) {
   const version: Version = await iModelClient.versions.update(actx, accessToken, imodelId, version);
   ...
@@ -268,7 +270,7 @@ All uses of the following <em>standalone</em> iModel functions must be migrated:
 <ul>
 <li><p>It is important for logging purposes that different frontend calls are tracked with a unique <code>activityId</code>. The system tries to ensure this by setting it up as a new Guid after every RPC request by default.</p>
 </li>
-<li><p>Any frontend methods that contact multiple services (and not just the backend through RPC) need to explicitly create the context at the top level, and manage the context through multiple service calls. Right before the RPC request is made, call  <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/clientrequestcontext/usecontextforrpc'>ClientRequestContext.useContextForRpc</a> or <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/authorizedclientrequestcontext/#usecontextforrpc'>AuthorizedClientRequestContext.useContextForRpc</a> to setup the use of that context (and the contained <code>activityId</code>) for the subsequent RPC request.</p>
+<li><p>Any frontend methods that contact multiple services (and not just the backend through RPC) need to explicitly create the context at the top level, and manage the context through multiple service calls. Right before the RPC request is made, call  <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/bentleyjs-core/utils/clientrequestcontext/usecontextforrpc'>ClientRequestContext.useContextForRpc</a> or <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/authorizedclientrequestcontext/#usecontextforrpc'>AuthorizedClientRequestContext.useContextForRpc</a> to setup the use of that context (and the contained <code>activityId</code>) for the subsequent RPC request.</p>
 </li>
 </ul>
 <h3 class="h-changes-to-authorization-for-single-page-applications">Changes to authorization for Single Page Applications<a id="changes-to-authorization-for-single-page-applications" class="heading-anchor" href="#changes-to-authorization-for-single-page-applications"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -289,10 +291,10 @@ All uses of the following <em>standalone</em> iModel functions must be migrated:
 </ul>
 </li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection/opensnapshot'>IModelConnection.openSnapshot</a> throws an exception if <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/startup'>IModelApp.startup</a> has not been called.</li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/#onopened'>IModelDb.onOpened</a> takes a callback with a different signature -  <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/utils/authorizedclientrequestcontext'>AuthorizedClientRequestContext</a> is now passed as the first argument.</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/#onopened'>IModelDb.onOpened</a> takes a callback with a different signature -  <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/authorizedclientrequestcontext'>AuthorizedClientRequestContext</a> is now passed as the first argument.</li>
 <li>ImsActiveSecureTokenClient takes <code>ImsCredentials</code> as a single argument instead of separate email and password fields.</li>
 <li>Deleted agent-test-app from the repository.</li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/baseclients/requestglobaloptions/timeout'>RequestGlobalOptions.timeout</a> is now available to control global timeouts for requests to various Bentley services.</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/itwinserviceclients/requestglobaloptions/timeout'>RequestGlobalOptions.timeout</a> is now available to control global timeouts for requests to various Bentley services.</li>
 </ul>
 <h2 class="h-breaking-changes-to-imodelservicesopenimodel">Breaking changes to ImodelServices.openIModel<a id="breaking-changes-to-imodelservicesopenimodel" class="heading-anchor" href="#breaking-changes-to-imodelservicesopenimodel"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ul>
@@ -314,7 +316,7 @@ All uses of the following <em>standalone</em> iModel functions must be migrated:
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 November, 2019</span>
+                <span class='date-updated'>22 November, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

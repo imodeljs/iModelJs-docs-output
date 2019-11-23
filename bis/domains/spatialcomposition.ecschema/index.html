@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css"> 
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
     
-    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css">  
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
         <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
         <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
         <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
@@ -76,7 +76,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.7.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -111,6 +111,7 @@
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/organizing-models-and-elements" class="table-of-contents-link">Organizing Models and Elements</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-systems" class="table-of-contents-link">Modeling Systems</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/overlapping-systems" class="table-of-contents-link">Overlapping Systems</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/3d-guidance" class="table-of-contents-link">3D Guidance</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/physical-models-and-elements" class="table-of-contents-link">Physical Models and Elements</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/functional-models-and-elements" class="table-of-contents-link">Functional Models and Elements</a></li>
     <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/analysis-models-and-elements" class="table-of-contents-link">Analysis Models and Elements</a></li>
@@ -178,8 +179,8 @@
 <p>A spatial project structure might define as many levels of decomposition as necessary for the building project. </p>
 <p>Due to the importance of IFC in coordinating physical infrastructure, the classes in the schema are intended to have a 1:1 instance mapping (not <em>class</em> mapping!) with IFC that will work for transformations in either direction.  It is expected that round-trip transformations may result in changes that provide an <em>equivalent</em>, but not <em>identical</em> model.</p>
 <h2 class="h-entity">Entity Classes<a id="entity" class="heading-anchor" href="#entity"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<h3 class="h-compositeelement"><strong>CompositeElement</strong> <em>Abstract</em><a id="compositeelement" class="heading-anchor" href="#compositeelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> EntityClass</p>
+<h3 class="h-compositeelement"><strong>CompositeElement</strong> <em>Abstract</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="compositeelement" class="heading-anchor" href="#compositeelement"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> a spatial element that may be Composite of other CompositeElements</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatiallocationelement'>BisCore:SpatialLocationElement</a></p>
 <h4 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
@@ -200,62 +201,73 @@
 <td align="left"></td>
 <td align="left">double</td>
 </tr>
-</tbody></table><h2 class="h-relationship">Relationship Classes<a id="relationship" class="heading-anchor" href="#relationship"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<h3 class="h-compositecomposessubcomposites"><strong>CompositeComposesSubComposites</strong><a id="compositecomposessubcomposites" class="heading-anchor" href="#compositecomposessubcomposites"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> RelationshipClass</p>
+</tbody></table><p></div></p>
+<h2 class="h-relationship">Relationship Classes<a id="relationship" class="heading-anchor" href="#relationship"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-compositecomposessubcomposites"><strong>CompositeComposesSubComposites</strong> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="compositecomposessubcomposites" class="heading-anchor" href="#compositecomposessubcomposites"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> relates the Composer with its&apos; composees</p>
 <p><strong>Strength:</strong> Embedding</p>
 <p><strong>strengthDirection:</strong> Forward</p>
 <h4 class="h-source">Source<a id="source" class="heading-anchor" href="#source"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> is composed by</p>
 <p><strong>multiplicity:</strong> (0..1)</p>
-<h5 id="constraint classes">Constraint Classes</h5>
+<h4 class="h-constraint">Constraint Classes:<a id="constraint" class="heading-anchor" href="#constraint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <ul>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/spatialcomposition.ecschema/#compositeelement'>CompositeElement</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/spatialcomposition.ecschema/#compositeelement'>CompositeElement</a>
+</div><h4 class="h-target">Target<a id="target" class="heading-anchor" href="#target"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
 </ul>
-<h4 class="h-target">Target<a id="target" class="heading-anchor" href="#target"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> composes</p>
 <p><strong>multiplicity:</strong> (0..*)</p>
-<h5 id="constraint classes">Constraint Classes</h5>
+<h4 class="h-constraint-1">Constraint Classes:<a id="constraint-1" class="heading-anchor" href="#constraint-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <ul>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/spatialcomposition.ecschema/#compositeelement'>CompositeElement</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/spatialcomposition.ecschema/#compositeelement'>CompositeElement</a>
+</div>
+</div><h3 class="h-compositeoverlapsspatialelements"><strong>CompositeOverlapsSpatialElements</strong> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="compositeoverlapsspatialelements" class="heading-anchor" href="#compositeoverlapsspatialelements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
 </ul>
-<h3 class="h-compositeoverlapsspatialelements"><strong>CompositeOverlapsSpatialElements</strong><a id="compositeoverlapsspatialelements" class="heading-anchor" href="#compositeoverlapsspatialelements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> RelationshipClass</p>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> a relationship to mark that an element is at least partially contained within the CompositeElement</p>
 <p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#elementreferstoelements'>BisCore:ElementRefersToElements</a></p>
 <p><strong>Strength:</strong> Referencing</p>
 <p><strong>strengthDirection:</strong> Forward</p>
 <h4 class="h-source-1">Source<a id="source-1" class="heading-anchor" href="#source-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> overlaps</p>
 <p><strong>multiplicity:</strong> (0..*)</p>
-<h5 id="constraint classes">Constraint Classes</h5>
+<h4 class="h-constraint-2">Constraint Classes:<a id="constraint-2" class="heading-anchor" href="#constraint-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <ul>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/spatialcomposition.ecschema/#compositeelement'>CompositeElement</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/spatialcomposition.ecschema/#compositeelement'>CompositeElement</a>
+</div><h4 class="h-target-1">Target<a id="target-1" class="heading-anchor" href="#target-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
 </ul>
-<h4 class="h-target-1">Target<a id="target-1" class="heading-anchor" href="#target-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <p><strong>isPolymorphic:</strong> true</p>
 <p><strong>roleLabel:</strong> is overlaped by</p>
 <p><strong>multiplicity:</strong> (0..*)</p>
-<h5 id="constraint classes">Constraint Classes</h5>
+<h4 class="h-constraint-3">Constraint Classes:<a id="constraint-3" class="heading-anchor" href="#constraint-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
 <ul>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#spatialelement'>SpatialElement</a>
+</div>
+</div><h2 class="h-mixin">Mixin Classes<a id="mixin" class="heading-anchor" href="#mixin"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+</li>
 </ul>
-<h2 class="h-mixin">Mixin Classes<a id="mixin" class="heading-anchor" href="#mixin"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<h3 class="h-icompositeboundary"><strong>ICompositeBoundary</strong> <em>Abstract</em><a id="icompositeboundary" class="heading-anchor" href="#icompositeboundary"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> Mixin</p>
+<h3 class="h-icompositeboundary"><strong>ICompositeBoundary</strong> <em>Abstract</em> <span class="badge badge-pill badge-info badge-mixin">Mixin</span><a id="icompositeboundary" class="heading-anchor" href="#icompositeboundary"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> An interface that indicates that the CompositeElement is delimited by a curve</p>
 <p><strong>appliesTo:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/spatialcomposition.ecschema/#compositeelement'>CompositeElement</a></p>
-<h3 class="h-icompositevolume"><strong>ICompositeVolume</strong> <em>Abstract</em><a id="icompositevolume" class="heading-anchor" href="#icompositevolume"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p><strong>typeName:</strong> Mixin</p>
+<p></div></p>
+<h3 class="h-icompositevolume"><strong>ICompositeVolume</strong> <em>Abstract</em> <span class="badge badge-pill badge-info badge-mixin">Mixin</span><a id="icompositevolume" class="heading-anchor" href="#icompositevolume"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
 <p><strong>description:</strong> An interface that indicates that the CompositeElement is delimited by a volume</p>
 <p><strong>appliesTo:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/spatialcomposition.ecschema/#compositeelement'>CompositeElement</a></p>
+<p></div></p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>14 November, 2019</span>
+                <span class='date-updated'>22 November, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -338,7 +350,13 @@
                                             <a class='title solo-title menu-text' href="#source">Source</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#target">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-1">Constraint Classes:</a>
                                     </li>
                             </ul>
                     </li>
@@ -352,7 +370,13 @@
                                             <a class='title solo-title menu-text' href="#source-1">Source</a>
                                     </li>
                                     <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-2">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
                                             <a class='title solo-title menu-text' href="#target-1">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-3">Constraint Classes:</a>
                                     </li>
                             </ul>
                     </li>

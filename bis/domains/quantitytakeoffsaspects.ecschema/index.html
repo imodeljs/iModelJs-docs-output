@@ -1,0 +1,2132 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>QuantityTakeoffsAspects - iModel.js</title>
+    <meta name="og:title" content="QuantityTakeoffsAspects - iModel.js">
+    <meta name="twitter:title" content="QuantityTakeoffsAspects - iModel.js">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
+
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/devRegistration.css"> 
+    
+    <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/landingPage.css">  
+        <link rel='shortcut icon' type='image/x-icon' href='https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/twitter-share.png">
+        <meta />
+</head>
+
+<body data-site-root=https://imodeljs.github.io/iModelJs-docs-output// class='layout-index '>
+    <span id="contentLoader">
+        <p>Woah! This page has a great deal of content... Give us a second to load it.</p>
+    </span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+
+
+
+        <header id="main-header">
+            <div class='nav-header-container'>
+                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                    <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+                            <img id="site-logo" class="site-logo" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo-small" class="site-logo-small" src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-icon.svg" style="display:none;"/> 
+                    </a>
+                    <button class="navbar-toggler no-user-select mr-auto" type="button" data-toggle="collapse" data-target="#navbar5">
+                        <span class="navbar-toggler-header"></span>
+                    </button>
+                    <ul class="navbar-nav ml-auto pr-0 nav-search">
+                        <span class='search-bar'>
+                          <li>
+                            <div id='search-container'>
+                            </div>
+                          </li>
+                          <script>
+                            (function() {
+                              var cx = '018053174497532353467:v_gnrjjlqwc';
+                              var gcse = document.createElement('script');
+                              gcse.type = 'text/javascript';
+                              gcse.async = true;
+                              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                              var s = document.getElementsByTagName('script')[0];
+                              s.parentNode.insertBefore(gcse, s);
+                            })();
+                          </script>
+                          <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+                        </span>
+                    </ul>
+                    <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
+                        <ul class="navbar-nav mb-0" id="doc-site-tabs">
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+<div id='main-wrapper'>
+    <nav id='sidebar'>
+        <div id='table-of-contents' class="custom-scrollbar">
+            <div id="dismiss">
+                <i id="dismiss-arrow" class="icon icon-chevron-left no-user-select"></i>
+            </div>
+            <hr id="dismiss-hr" class='sm-only'>
+            <ul id='main-navigation-list'>
+                <html><head></head><body><h3 id="bis">BIS</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/" class="table-of-contents-link">Base Infrastructure Schemas (BIS)</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/federated-digital-twins" class="table-of-contents-link">Federated Digital Twins</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-with-bis" class="table-of-contents-link">Modeling with BIS</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/bis-organization" class="table-of-contents-link">BIS Organization</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/fabric-of-the-universe" class="table-of-contents-link">Fabric of the Universe</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/element-fundamentals" class="table-of-contents-link">Element Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/codes" class="table-of-contents-link">Codes</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/elementaspect-fundamentals" class="table-of-contents-link">ElementAspect Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/mixins" class="table-of-contents-link">Mixins</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/model-fundamentals" class="table-of-contents-link">Model Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/relationship-fundamentals" class="table-of-contents-link">Relationship Fundamentals</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schemas-domains" class="table-of-contents-link">Schemas (&#x201C;Domains&#x201D;)</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/information-hierarchy" class="table-of-contents-link">Information Hierarchy</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-perspectives" class="table-of-contents-link">Modeling Perspectives</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/top-of-the-world" class="table-of-contents-link">Top of the World</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/srpp" class="table-of-contents-link">Single Responsible Party Principle</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/organizing-models-and-elements" class="table-of-contents-link">Organizing Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/modeling-systems" class="table-of-contents-link">Modeling Systems</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/overlapping-systems" class="table-of-contents-link">Overlapping Systems</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/3d-guidance" class="table-of-contents-link">3D Guidance</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/physical-models-and-elements" class="table-of-contents-link">Physical Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/functional-models-and-elements" class="table-of-contents-link">Functional Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/analysis-models-and-elements" class="table-of-contents-link">Analysis Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/information-models-and-elements" class="table-of-contents-link">Information Models and Elements</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/physical-hierarchy-organization" class="table-of-contents-link">PhysicalModel Hierarchy</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/categories" class="table-of-contents-link">Categories</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-customization" class="table-of-contents-link">Schema Customization</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/appendix-a-data-evolution-across-time" class="table-of-contents-link">Data Evolution Across Time</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-versioning-and-generations" class="table-of-contents-link">Schema Versioning</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/schema-production-status" class="table-of-contents-link">Schema Production Status</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/units" class="table-of-contents-link">BIS Schema Units</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/bis-schema-validation" class="table-of-contents-link">BIS Schema Validation</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/domains/" class="table-of-contents-link">BIS Schema Reference</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/intro/glossary" class="table-of-contents-link">BIS Glossary</a></li>
+    </ul>
+    <!-- TODO: The following are not linked in...?
+    ./intro/appendix-c-bis-domain-design-fundamentals.md
+    -->
+    <p>&#xA0;</p>
+    <h3 id="bis naming guidelines">BIS Naming Guidelines</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/rules-and-recommendations" class="table-of-contents-link">Rules and Recommendations</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/special-terms" class="table-of-contents-link">Special Terms</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/summary-of-exceptions" class="table-of-contents-link">Summary of Exceptions</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/standard-abbreviations-and-acronyms" class="table-of-contents-link">Abbreviations and Acronyms</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/naming-guidelines/standard-relationship-strengths-names" class="table-of-contents-link">Relationship &#x201C;Strengths&#x201D;</a></li>
+    </ul>
+    <p>&#xA0;</p>
+    <h3 id="ec">EC</h3>
+    <ul>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-schema" class="table-of-contents-link">ECSchema</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-class" class="table-of-contents-link">ECClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-entity-class" class="table-of-contents-link">ECEntityClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-mixin-class" class="table-of-contents-link">ECMixinClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-struct-class" class="table-of-contents-link">ECStructClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-custom-attribute-class" class="table-of-contents-link">ECCustomAttributeClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-relationship-class" class="table-of-contents-link">ECRelationshipClass</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-property" class="table-of-contents-link">ECProperty</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-custom-attributes" class="table-of-contents-link">ECCustomAttributes</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-enumeration" class="table-of-contents-link">ECEnumeration</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/kindofquantity" class="table-of-contents-link">KindOfQuantity</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/property-category" class="table-of-contents-link">PropertyCategory</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/primitive-types" class="table-of-contents-link">PrimitiveTypes</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/customattribute-container-types" class="table-of-contents-link">CustomAttribute Container Types</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-unit" class="table-of-contents-link">Unit</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-constant" class="table-of-contents-link">Constant</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-phenomenon" class="table-of-contents-link">Phenomenon</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-unitsystem" class="table-of-contents-link">UnitSystem</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-format" class="table-of-contents-link">Format</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/ec-name" class="table-of-contents-link">ECName</a></li>
+    <li><a href="https://imodeljs.github.io/iModelJs-docs-output//./bis/ec/differences-between-ec2-and-ec3" class="table-of-contents-link">Changes Between ECObjects 2 and 3</a></li>
+    </ul>
+    </body></html>
+            </ul>
+        </div>
+    </nav>    <div class='documentation-main'>
+        <article id="main" class="main-content">
+            <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//bis/">Base Infrastructure Schema</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//bis/domains/">domains</a> > QuantityTakeoffsAspects.ecschema</div>
+            
+            <h1 id="quantitytakeoffsaspects">QuantityTakeoffsAspects</h1>
+<p><strong>alias:</strong> qto</p>
+<p><strong>version:</strong> 1.0.1</p>
+<h2 class="h-entity">Entity Classes<a id="entity" class="heading-anchor" href="#entity"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-dimensionsaspect"><strong>DimensionsAspect</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="dimensionsaspect" class="heading-anchor" href="#dimensionsaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> An aspect that defines basic object measurements: height, length width.</p>
+<p><strong>baseClass:</strong> <a href="#quantitytakeoffaspect">QuantityTakeoffsAspects:QuantityTakeoffAspect</a></p>
+<h4 class="h-properties">Properties<a id="properties" class="heading-anchor" href="#properties"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">Height</td>
+<td align="left">Object&apos;s height/depth in meters.</td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Length</td>
+<td align="left">Object&apos;s length in meters.</td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Width</td>
+<td align="left">Object&apos;s width/thickness in meters.</td>
+<td align="left">double</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-dooraspect"><strong>DoorAspect</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="dooraspect" class="heading-anchor" href="#dooraspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> An aspect that describes the door type.</p>
+<p><strong>baseClass:</strong> <a href="#quantitytakeoffaspect">QuantityTakeoffsAspects:QuantityTakeoffAspect</a></p>
+<h4 class="h-properties-1">Properties<a id="properties-1" class="heading-anchor" href="#properties-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">Type</td>
+<td align="left">Type of a door.</td>
+<td align="left">DoorType</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-energyperformanceaspect"><strong>EnergyPerformanceAspect</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="energyperformanceaspect" class="heading-anchor" href="#energyperformanceaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> An aspect that defines the overall energy efficiency rating of a building.</p>
+<p><strong>baseClass:</strong> <a href="#quantitytakeoffaspect">QuantityTakeoffsAspects:QuantityTakeoffAspect</a></p>
+<h4 class="h-properties-2">Properties<a id="properties-2" class="heading-anchor" href="#properties-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">Rating</td>
+<td align="left">Energy performance rating defined as a number from 0 to 100.</td>
+<td align="left">double</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-foundationaspect"><strong>FoundationAspect</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="foundationaspect" class="heading-anchor" href="#foundationaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> An aspect that describes the type of structural foundation.</p>
+<p><strong>baseClass:</strong> <a href="#quantitytakeoffaspect">QuantityTakeoffsAspects:QuantityTakeoffAspect</a></p>
+<h4 class="h-properties-3">Properties<a id="properties-3" class="heading-anchor" href="#properties-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">Type</td>
+<td align="left">Type of a structural foundation.</td>
+<td align="left">FoundationType</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-materialaspect"><strong>MaterialAspect</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="materialaspect" class="heading-anchor" href="#materialaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> An aspect that defines the basic properties of a material.</p>
+<p><strong>baseClass:</strong> <a href="#quantitytakeoffaspect">QuantityTakeoffsAspects:QuantityTakeoffAspect</a></p>
+<h4 class="h-properties-4">Properties<a id="properties-4" class="heading-anchor" href="#properties-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">Material</td>
+<td align="left">Material name.</td>
+<td align="left">string</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">MaterialDensity</td>
+<td align="left">Material density described as kilogram per meter cubed.</td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Weight</td>
+<td align="left">Material weight in kilograms.</td>
+<td align="left">double</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-perimeteraspect"><strong>PerimeterAspect</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="perimeteraspect" class="heading-anchor" href="#perimeteraspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> An aspect that defines the length of the outline of a shape - perimeter.</p>
+<p><strong>baseClass:</strong> <a href="#quantitytakeoffaspect">QuantityTakeoffsAspects:QuantityTakeoffAspect</a></p>
+<h4 class="h-properties-5">Properties<a id="properties-5" class="heading-anchor" href="#properties-5"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">Perimeter</td>
+<td align="left">Perimeter of the shape in meters.</td>
+<td align="left">double</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-pileaspect"><strong>PileAspect</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="pileaspect" class="heading-anchor" href="#pileaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> An aspect that defines the depth of a vertical structural element of a deep foundation - pile.</p>
+<p><strong>baseClass:</strong> <a href="#quantitytakeoffaspect">QuantityTakeoffsAspects:QuantityTakeoffAspect</a></p>
+<h4 class="h-properties-6">Properties<a id="properties-6" class="heading-anchor" href="#properties-6"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">EmbedmentDepth</td>
+<td align="left">Describes how deep a pile is embedded in meters.</td>
+<td align="left">double</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-pipeaspect"><strong>PipeAspect</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="pipeaspect" class="heading-anchor" href="#pipeaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> An aspect that defines the basic measurements of a pipe.</p>
+<p><strong>baseClass:</strong> <a href="#quantitytakeoffaspect">QuantityTakeoffsAspects:QuantityTakeoffAspect</a></p>
+<h4 class="h-properties-7">Properties<a id="properties-7" class="heading-anchor" href="#properties-7"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">Diameter</td>
+<td align="left">Diameter of a pipe in meters.</td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Length</td>
+<td align="left">Length of a pipe in meters.</td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Schedule</td>
+<td align="left">Schedule of a pipe. The schedule number on a pipe relates to the thickness of the wall on the pipe.</td>
+<td align="left">string</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Thickness</td>
+<td align="left">Thickness of a pipe in meters.</td>
+<td align="left">double</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-quantitytakeoffaspect"><strong>QuantityTakeoffAspect</strong> <em>Abstract</em> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="quantitytakeoffaspect" class="heading-anchor" href="#quantitytakeoffaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> An abstract aspect that contains detailed measurement of materials and labor needed to complete a construction project.</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#elementuniqueaspect'>BisCore:ElementUniqueAspect</a></p>
+<p></div></p>
+<h3 class="h-sideareasaspect"><strong>SideAreasAspect</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="sideareasaspect" class="heading-anchor" href="#sideareasaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> An aspect that defines the area measurements for the different sides of a three dimensional object.</p>
+<p><strong>baseClass:</strong> <a href="#quantitytakeoffaspect">QuantityTakeoffsAspects:QuantityTakeoffAspect</a></p>
+<h4 class="h-properties-8">Properties<a id="properties-8" class="heading-anchor" href="#properties-8"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">BottomGrossArea</td>
+<td align="left">Total surface area of the bottom side.</td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">BottomNetArea</td>
+<td align="left">Usable surface area of the bottom side.</td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">LeftSideGrossArea</td>
+<td align="left">Total surface area of the left side.</td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">LeftSideNetArea</td>
+<td align="left">Usable surface area of the left side.</td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">RightSideGrossArea</td>
+<td align="left">Total surface area of the right side.</td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">RightSideNetArea</td>
+<td align="left">Usable surface area of the right side.</td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">TopGrossArea</td>
+<td align="left">Total surface area of the top side.</td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">TopNetArea</td>
+<td align="left">Usable surface area of the top side.</td>
+<td align="left">double</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-slabaspect"><strong>SlabAspect</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="slabaspect" class="heading-anchor" href="#slabaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> An aspect that describes the properties of a large, flat piece of concrete or stone - slab.</p>
+<p><strong>baseClass:</strong> <a href="#quantitytakeoffaspect">QuantityTakeoffsAspects:QuantityTakeoffAspect</a></p>
+<h4 class="h-properties-9">Properties<a id="properties-9" class="heading-anchor" href="#properties-9"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">SlabDirection</td>
+<td align="left">Describes in which direction is a slab supported.</td>
+<td align="left">SlabDirectionType</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Type</td>
+<td align="left">Type of a slab.</td>
+<td align="left">SlabType</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-slopeaspect"><strong>SlopeAspect</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="slopeaspect" class="heading-anchor" href="#slopeaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> An aspect that defines the angle of a slope.</p>
+<p><strong>baseClass:</strong> <a href="#quantitytakeoffaspect">QuantityTakeoffsAspects:QuantityTakeoffAspect</a></p>
+<h4 class="h-properties-10">Properties<a id="properties-10" class="heading-anchor" href="#properties-10"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">Slope</td>
+<td align="left">Angle of a slope in radians.</td>
+<td align="left">double</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-stairsaspect"><strong>StairsAspect</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="stairsaspect" class="heading-anchor" href="#stairsaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> An aspect that describes properties of stairs.</p>
+<p><strong>baseClass:</strong> <a href="#quantitytakeoffaspect">QuantityTakeoffsAspects:QuantityTakeoffAspect</a></p>
+<h4 class="h-properties-11">Properties<a id="properties-11" class="heading-anchor" href="#properties-11"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">NumberOfRisers</td>
+<td align="left">Number of steps/risers in the stairs.</td>
+<td align="left">int</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">RiserHeight</td>
+<td align="left">Height of a riser, distance between steps.</td>
+<td align="left">double</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-structurallinearmemberaspect"><strong>StructuralLinearMemberAspect</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="structurallinearmemberaspect" class="heading-anchor" href="#structurallinearmemberaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> An aspect that describes a straight structural member.</p>
+<p><strong>baseClass:</strong> <a href="#quantitytakeoffaspect">QuantityTakeoffsAspects:QuantityTakeoffAspect</a></p>
+<h4 class="h-properties-12">Properties<a id="properties-12" class="heading-anchor" href="#properties-12"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">CrossSectionalArea</td>
+<td align="left">Cross-Sectional area of a structural member.</td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">SectionName</td>
+<td align="left">Name of a structural member.</td>
+<td align="left">string</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Type</td>
+<td align="left">Type of a structural member.</td>
+<td align="left">StructuralFramingType</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-surfaceareaaspect"><strong>SurfaceAreaAspect</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="surfaceareaaspect" class="heading-anchor" href="#surfaceareaaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> An aspect that defines gross and net surface area measurements.</p>
+<p><strong>baseClass:</strong> <a href="#quantitytakeoffaspect">QuantityTakeoffsAspects:QuantityTakeoffAspect</a></p>
+<h4 class="h-properties-13">Properties<a id="properties-13" class="heading-anchor" href="#properties-13"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">GrossSurfaceArea</td>
+<td align="left">Total surface area.</td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">NetSurfaceArea</td>
+<td align="left">Usable surface area.</td>
+<td align="left">double</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-thicknessaspect"><strong>ThicknessAspect</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="thicknessaspect" class="heading-anchor" href="#thicknessaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> An aspect that defines object&apos;s thickness.</p>
+<p><strong>baseClass:</strong> <a href="#quantitytakeoffaspect">QuantityTakeoffsAspects:QuantityTakeoffAspect</a></p>
+<h4 class="h-properties-14">Properties<a id="properties-14" class="heading-anchor" href="#properties-14"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">Thickness</td>
+<td align="left">Thickness of an object in meters.</td>
+<td align="left">double</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-volumeaspect"><strong>VolumeAspect</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="volumeaspect" class="heading-anchor" href="#volumeaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> An aspect that defines gross and net volumes of an object.</p>
+<p><strong>baseClass:</strong> <a href="#quantitytakeoffaspect">QuantityTakeoffsAspects:QuantityTakeoffAspect</a></p>
+<h4 class="h-properties-15">Properties<a id="properties-15" class="heading-anchor" href="#properties-15"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">GrossVolume</td>
+<td align="left">Total volume of an object with packaging.</td>
+<td align="left">double</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">NetVolume</td>
+<td align="left">Volume of an object alone.</td>
+<td align="left">double</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-wallaspect"><strong>WallAspect</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="wallaspect" class="heading-anchor" href="#wallaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> An aspect that describes the wall type.</p>
+<p><strong>baseClass:</strong> <a href="#quantitytakeoffaspect">QuantityTakeoffsAspects:QuantityTakeoffAspect</a></p>
+<h4 class="h-properties-16">Properties<a id="properties-16" class="heading-anchor" href="#properties-16"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">Type</td>
+<td align="left">Type of a wall.</td>
+<td align="left">WallType</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-windowaspect"><strong>WindowAspect</strong> <span class="badge badge-pill badge-info badge-entityclass">EntityClass</span><a id="windowaspect" class="heading-anchor" href="#windowaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> An aspect that describes the window type.</p>
+<p><strong>baseClass:</strong> <a href="#quantitytakeoffaspect">QuantityTakeoffsAspects:QuantityTakeoffAspect</a></p>
+<h4 class="h-properties-17">Properties<a id="properties-17" class="heading-anchor" href="#properties-17"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+<th align="left">Extended Type</th>
+</tr>
+<tr>
+<td align="left">Type</td>
+<td align="left">Type of a window.</td>
+<td align="left">WindowType</td>
+</tr>
+</tbody></table><p></div></p>
+<h2 class="h-relationship">Relationship Classes<a id="relationship" class="heading-anchor" href="#relationship"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-elementownsdimensionsaspect"><strong>ElementOwnsDimensionsAspect</strong> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="elementownsdimensionsaspect" class="heading-anchor" href="#elementownsdimensionsaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> A relationship tieing the specialized quantity takeoff aspect with an element</p>
+<p><strong>baseClass:</strong> <a href="#elementownsquantitytakeoffaspect">QuantityTakeoffsAspects:ElementOwnsQuantityTakeOffAspect</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source">Source<a id="source" class="heading-anchor" href="#source"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint">Constraint Classes:<a id="constraint" class="heading-anchor" href="#constraint"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a>
+</div><h4 class="h-target">Target<a id="target" class="heading-anchor" href="#target"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-1">Constraint Classes:<a id="constraint-1" class="heading-anchor" href="#constraint-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/quantitytakeoffsaspects.ecschema/#dimensionsaspect'>DimensionsAspect</a>
+</div>
+</div><h3 class="h-elementownsdooraspect"><strong>ElementOwnsDoorAspect</strong> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="elementownsdooraspect" class="heading-anchor" href="#elementownsdooraspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> A relationship tieing the specialized quantity takeoff aspect with an element</p>
+<p><strong>baseClass:</strong> <a href="#elementownsquantitytakeoffaspect">QuantityTakeoffsAspects:ElementOwnsQuantityTakeOffAspect</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-1">Source<a id="source-1" class="heading-anchor" href="#source-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint-2">Constraint Classes:<a id="constraint-2" class="heading-anchor" href="#constraint-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a>
+</div><h4 class="h-target-1">Target<a id="target-1" class="heading-anchor" href="#target-1"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-3">Constraint Classes:<a id="constraint-3" class="heading-anchor" href="#constraint-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/quantitytakeoffsaspects.ecschema/#dooraspect'>DoorAspect</a>
+</div>
+</div><h3 class="h-elementownsenergyperformanceaspect"><strong>ElementOwnsEnergyPerformanceAspect</strong> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="elementownsenergyperformanceaspect" class="heading-anchor" href="#elementownsenergyperformanceaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> A relationship tieing the specialized quantity takeoff aspect with an element</p>
+<p><strong>baseClass:</strong> <a href="#elementownsquantitytakeoffaspect">QuantityTakeoffsAspects:ElementOwnsQuantityTakeOffAspect</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-2">Source<a id="source-2" class="heading-anchor" href="#source-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint-4">Constraint Classes:<a id="constraint-4" class="heading-anchor" href="#constraint-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a>
+</div><h4 class="h-target-2">Target<a id="target-2" class="heading-anchor" href="#target-2"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-5">Constraint Classes:<a id="constraint-5" class="heading-anchor" href="#constraint-5"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/quantitytakeoffsaspects.ecschema/#energyperformanceaspect'>EnergyPerformanceAspect</a>
+</div>
+</div><h3 class="h-elementownsfoundationaspect"><strong>ElementOwnsFoundationAspect</strong> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="elementownsfoundationaspect" class="heading-anchor" href="#elementownsfoundationaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> A relationship tieing the specialized quantity takeoff aspect with an element</p>
+<p><strong>baseClass:</strong> <a href="#elementownsquantitytakeoffaspect">QuantityTakeoffsAspects:ElementOwnsQuantityTakeOffAspect</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-3">Source<a id="source-3" class="heading-anchor" href="#source-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint-6">Constraint Classes:<a id="constraint-6" class="heading-anchor" href="#constraint-6"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a>
+</div><h4 class="h-target-3">Target<a id="target-3" class="heading-anchor" href="#target-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-7">Constraint Classes:<a id="constraint-7" class="heading-anchor" href="#constraint-7"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/quantitytakeoffsaspects.ecschema/#foundationaspect'>FoundationAspect</a>
+</div>
+</div><h3 class="h-elementownsmaterialaspect"><strong>ElementOwnsMaterialAspect</strong> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="elementownsmaterialaspect" class="heading-anchor" href="#elementownsmaterialaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> A relationship tieing the specialized quantity takeoff aspect with an element</p>
+<p><strong>baseClass:</strong> <a href="#elementownsquantitytakeoffaspect">QuantityTakeoffsAspects:ElementOwnsQuantityTakeOffAspect</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-4">Source<a id="source-4" class="heading-anchor" href="#source-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint-8">Constraint Classes:<a id="constraint-8" class="heading-anchor" href="#constraint-8"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a>
+</div><h4 class="h-target-4">Target<a id="target-4" class="heading-anchor" href="#target-4"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-9">Constraint Classes:<a id="constraint-9" class="heading-anchor" href="#constraint-9"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/quantitytakeoffsaspects.ecschema/#materialaspect'>MaterialAspect</a>
+</div>
+</div><h3 class="h-elementownsperimeteraspect"><strong>ElementOwnsPerimeterAspect</strong> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="elementownsperimeteraspect" class="heading-anchor" href="#elementownsperimeteraspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> A relationship tieing the specialized quantity takeoff aspect with an element</p>
+<p><strong>baseClass:</strong> <a href="#elementownsquantitytakeoffaspect">QuantityTakeoffsAspects:ElementOwnsQuantityTakeOffAspect</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-5">Source<a id="source-5" class="heading-anchor" href="#source-5"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint-10">Constraint Classes:<a id="constraint-10" class="heading-anchor" href="#constraint-10"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a>
+</div><h4 class="h-target-5">Target<a id="target-5" class="heading-anchor" href="#target-5"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-11">Constraint Classes:<a id="constraint-11" class="heading-anchor" href="#constraint-11"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/quantitytakeoffsaspects.ecschema/#perimeteraspect'>PerimeterAspect</a>
+</div>
+</div><h3 class="h-elementownspileaspect"><strong>ElementOwnsPileAspect</strong> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="elementownspileaspect" class="heading-anchor" href="#elementownspileaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> A relationship tieing the specialized quantity takeoff aspect with an element</p>
+<p><strong>baseClass:</strong> <a href="#elementownsquantitytakeoffaspect">QuantityTakeoffsAspects:ElementOwnsQuantityTakeOffAspect</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-6">Source<a id="source-6" class="heading-anchor" href="#source-6"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint-12">Constraint Classes:<a id="constraint-12" class="heading-anchor" href="#constraint-12"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a>
+</div><h4 class="h-target-6">Target<a id="target-6" class="heading-anchor" href="#target-6"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-13">Constraint Classes:<a id="constraint-13" class="heading-anchor" href="#constraint-13"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/quantitytakeoffsaspects.ecschema/#pileaspect'>PileAspect</a>
+</div>
+</div><h3 class="h-elementownspipeaspect"><strong>ElementOwnsPipeAspect</strong> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="elementownspipeaspect" class="heading-anchor" href="#elementownspipeaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> A relationship tieing the specialized quantity takeoff aspect with an element</p>
+<p><strong>baseClass:</strong> <a href="#elementownsquantitytakeoffaspect">QuantityTakeoffsAspects:ElementOwnsQuantityTakeOffAspect</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-7">Source<a id="source-7" class="heading-anchor" href="#source-7"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint-14">Constraint Classes:<a id="constraint-14" class="heading-anchor" href="#constraint-14"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a>
+</div><h4 class="h-target-7">Target<a id="target-7" class="heading-anchor" href="#target-7"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-15">Constraint Classes:<a id="constraint-15" class="heading-anchor" href="#constraint-15"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/quantitytakeoffsaspects.ecschema/#pipeaspect'>PipeAspect</a>
+</div>
+</div><h3 class="h-elementownsquantitytakeoffaspect"><strong>ElementOwnsQuantityTakeOffAspect</strong> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="elementownsquantitytakeoffaspect" class="heading-anchor" href="#elementownsquantitytakeoffaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> Element may own one or more quantitytakeoffaspects</p>
+<p><strong>baseClass:</strong> <a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#elementownsuniqueaspect'>BisCore:ElementOwnsUniqueAspect</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-8">Source<a id="source-8" class="heading-anchor" href="#source-8"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint-16">Constraint Classes:<a id="constraint-16" class="heading-anchor" href="#constraint-16"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a>
+</div><h4 class="h-target-8">Target<a id="target-8" class="heading-anchor" href="#target-8"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..*)</p>
+<h4 class="h-constraint-17">Constraint Classes:<a id="constraint-17" class="heading-anchor" href="#constraint-17"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/quantitytakeoffsaspects.ecschema/#quantitytakeoffaspect'>QuantityTakeoffAspect</a>
+</div>
+</div><h3 class="h-elementownssideareasaspect"><strong>ElementOwnsSideAreasAspect</strong> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="elementownssideareasaspect" class="heading-anchor" href="#elementownssideareasaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> A relationship tieing the specialized quantity takeoff aspect with an element</p>
+<p><strong>baseClass:</strong> <a href="#elementownsquantitytakeoffaspect">QuantityTakeoffsAspects:ElementOwnsQuantityTakeOffAspect</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-9">Source<a id="source-9" class="heading-anchor" href="#source-9"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint-18">Constraint Classes:<a id="constraint-18" class="heading-anchor" href="#constraint-18"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a>
+</div><h4 class="h-target-9">Target<a id="target-9" class="heading-anchor" href="#target-9"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-19">Constraint Classes:<a id="constraint-19" class="heading-anchor" href="#constraint-19"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/quantitytakeoffsaspects.ecschema/#sideareasaspect'>SideAreasAspect</a>
+</div>
+</div><h3 class="h-elementownsslabaspect"><strong>ElementOwnsSlabAspect</strong> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="elementownsslabaspect" class="heading-anchor" href="#elementownsslabaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> A relationship tieing the specialized quantity takeoff aspect with an element</p>
+<p><strong>baseClass:</strong> <a href="#elementownsquantitytakeoffaspect">QuantityTakeoffsAspects:ElementOwnsQuantityTakeOffAspect</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-10">Source<a id="source-10" class="heading-anchor" href="#source-10"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint-20">Constraint Classes:<a id="constraint-20" class="heading-anchor" href="#constraint-20"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a>
+</div><h4 class="h-target-10">Target<a id="target-10" class="heading-anchor" href="#target-10"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-21">Constraint Classes:<a id="constraint-21" class="heading-anchor" href="#constraint-21"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/quantitytakeoffsaspects.ecschema/#slabaspect'>SlabAspect</a>
+</div>
+</div><h3 class="h-elementownsslopeaspect"><strong>ElementOwnsSlopeAspect</strong> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="elementownsslopeaspect" class="heading-anchor" href="#elementownsslopeaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> A relationship tieing the specialized quantity takeoff aspect with an element</p>
+<p><strong>baseClass:</strong> <a href="#elementownsquantitytakeoffaspect">QuantityTakeoffsAspects:ElementOwnsQuantityTakeOffAspect</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-11">Source<a id="source-11" class="heading-anchor" href="#source-11"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint-22">Constraint Classes:<a id="constraint-22" class="heading-anchor" href="#constraint-22"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a>
+</div><h4 class="h-target-11">Target<a id="target-11" class="heading-anchor" href="#target-11"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-23">Constraint Classes:<a id="constraint-23" class="heading-anchor" href="#constraint-23"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/quantitytakeoffsaspects.ecschema/#slopeaspect'>SlopeAspect</a>
+</div>
+</div><h3 class="h-elementownsstairsaspect"><strong>ElementOwnsStairsAspect</strong> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="elementownsstairsaspect" class="heading-anchor" href="#elementownsstairsaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> A relationship tieing the specialized quantity takeoff aspect with an element</p>
+<p><strong>baseClass:</strong> <a href="#elementownsquantitytakeoffaspect">QuantityTakeoffsAspects:ElementOwnsQuantityTakeOffAspect</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-12">Source<a id="source-12" class="heading-anchor" href="#source-12"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint-24">Constraint Classes:<a id="constraint-24" class="heading-anchor" href="#constraint-24"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a>
+</div><h4 class="h-target-12">Target<a id="target-12" class="heading-anchor" href="#target-12"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-25">Constraint Classes:<a id="constraint-25" class="heading-anchor" href="#constraint-25"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/quantitytakeoffsaspects.ecschema/#stairsaspect'>StairsAspect</a>
+</div>
+</div><h3 class="h-elementownsstructurallinearmemberaspect"><strong>ElementOwnsStructuralLinearMemberAspect</strong> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="elementownsstructurallinearmemberaspect" class="heading-anchor" href="#elementownsstructurallinearmemberaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> A relationship tieing the specialized quantity takeoff aspect with an element</p>
+<p><strong>baseClass:</strong> <a href="#elementownsquantitytakeoffaspect">QuantityTakeoffsAspects:ElementOwnsQuantityTakeOffAspect</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-13">Source<a id="source-13" class="heading-anchor" href="#source-13"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint-26">Constraint Classes:<a id="constraint-26" class="heading-anchor" href="#constraint-26"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a>
+</div><h4 class="h-target-13">Target<a id="target-13" class="heading-anchor" href="#target-13"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-27">Constraint Classes:<a id="constraint-27" class="heading-anchor" href="#constraint-27"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/quantitytakeoffsaspects.ecschema/#structurallinearmemberaspect'>StructuralLinearMemberAspect</a>
+</div>
+</div><h3 class="h-elementownssurfaceareaaspect"><strong>ElementOwnsSurfaceAreaAspect</strong> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="elementownssurfaceareaaspect" class="heading-anchor" href="#elementownssurfaceareaaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> A relationship tieing the specialized quantity takeoff aspect with an element</p>
+<p><strong>baseClass:</strong> <a href="#elementownsquantitytakeoffaspect">QuantityTakeoffsAspects:ElementOwnsQuantityTakeOffAspect</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-14">Source<a id="source-14" class="heading-anchor" href="#source-14"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint-28">Constraint Classes:<a id="constraint-28" class="heading-anchor" href="#constraint-28"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a>
+</div><h4 class="h-target-14">Target<a id="target-14" class="heading-anchor" href="#target-14"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-29">Constraint Classes:<a id="constraint-29" class="heading-anchor" href="#constraint-29"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/quantitytakeoffsaspects.ecschema/#surfaceareaaspect'>SurfaceAreaAspect</a>
+</div>
+</div><h3 class="h-elementownsthicknessaspect"><strong>ElementOwnsThicknessAspect</strong> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="elementownsthicknessaspect" class="heading-anchor" href="#elementownsthicknessaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> A relationship tieing the specialized quantity takeoff aspect with an element</p>
+<p><strong>baseClass:</strong> <a href="#elementownsquantitytakeoffaspect">QuantityTakeoffsAspects:ElementOwnsQuantityTakeOffAspect</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-15">Source<a id="source-15" class="heading-anchor" href="#source-15"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint-30">Constraint Classes:<a id="constraint-30" class="heading-anchor" href="#constraint-30"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a>
+</div><h4 class="h-target-15">Target<a id="target-15" class="heading-anchor" href="#target-15"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-31">Constraint Classes:<a id="constraint-31" class="heading-anchor" href="#constraint-31"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/quantitytakeoffsaspects.ecschema/#thicknessaspect'>ThicknessAspect</a>
+</div>
+</div><h3 class="h-elementownsvolumeaspect"><strong>ElementOwnsVolumeAspect</strong> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="elementownsvolumeaspect" class="heading-anchor" href="#elementownsvolumeaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> A relationship tieing the specialized quantity takeoff aspect with an element</p>
+<p><strong>baseClass:</strong> <a href="#elementownsquantitytakeoffaspect">QuantityTakeoffsAspects:ElementOwnsQuantityTakeOffAspect</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-16">Source<a id="source-16" class="heading-anchor" href="#source-16"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint-32">Constraint Classes:<a id="constraint-32" class="heading-anchor" href="#constraint-32"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a>
+</div><h4 class="h-target-16">Target<a id="target-16" class="heading-anchor" href="#target-16"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-33">Constraint Classes:<a id="constraint-33" class="heading-anchor" href="#constraint-33"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/quantitytakeoffsaspects.ecschema/#volumeaspect'>VolumeAspect</a>
+</div>
+</div><h3 class="h-elementownswallaspect"><strong>ElementOwnsWallAspect</strong> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="elementownswallaspect" class="heading-anchor" href="#elementownswallaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> A relationship tieing the specialized quantity takeoff aspect with an element</p>
+<p><strong>baseClass:</strong> <a href="#elementownsquantitytakeoffaspect">QuantityTakeoffsAspects:ElementOwnsQuantityTakeOffAspect</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-17">Source<a id="source-17" class="heading-anchor" href="#source-17"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint-34">Constraint Classes:<a id="constraint-34" class="heading-anchor" href="#constraint-34"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a>
+</div><h4 class="h-target-17">Target<a id="target-17" class="heading-anchor" href="#target-17"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-35">Constraint Classes:<a id="constraint-35" class="heading-anchor" href="#constraint-35"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/quantitytakeoffsaspects.ecschema/#wallaspect'>WallAspect</a>
+</div>
+</div><h3 class="h-elementownswindowaspect"><strong>ElementOwnsWindowAspect</strong> <span class="badge badge-pill badge-info badge-relationshipclass">RelationshipClass</span><a id="elementownswindowaspect" class="heading-anchor" href="#elementownswindowaspect"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+</li>
+</ul>
+<p><div style="margin-left: 2em"></p>
+<p><strong>description:</strong> A relationship tieing the specialized quantity takeoff aspect with an element</p>
+<p><strong>baseClass:</strong> <a href="#elementownsquantitytakeoffaspect">QuantityTakeoffsAspects:ElementOwnsQuantityTakeOffAspect</a></p>
+<p><strong>Strength:</strong> Embedding</p>
+<p><strong>strengthDirection:</strong> Forward</p>
+<h4 class="h-source-18">Source<a id="source-18" class="heading-anchor" href="#source-18"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<p><div style="margin-left: 2em"></p>
+<p><strong>isPolymorphic:</strong> true</p>
+<p><strong>roleLabel:</strong> owns</p>
+<p><strong>multiplicity:</strong> (1..1)</p>
+<h4 class="h-constraint-36">Constraint Classes:<a id="constraint-36" class="heading-anchor" href="#constraint-36"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/biscore.ecschema/#element'>Element</a>
+</div><h4 class="h-target-18">Target<a id="target-18" class="heading-anchor" href="#target-18"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<div style="margin-left: 2em"></li>
+</ul>
+<p><strong>isPolymorphic:</strong> false</p>
+<p><strong>roleLabel:</strong> is owned by</p>
+<p><strong>multiplicity:</strong> (0..1)</p>
+<h4 class="h-constraint-37">Constraint Classes:<a id="constraint-37" class="heading-anchor" href="#constraint-37"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<ul>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./bis/domains/quantitytakeoffsaspects.ecschema/#windowaspect'>WindowAspect</a>
+</div>
+</div><h2 class="h-enumerations">Enumerations<a id="enumerations" class="heading-anchor" href="#enumerations"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+</li>
+</ul>
+<h3 class="h-doortype"><strong>DoorType</strong> <span class="badge badge-pill badge-info badge-enumeration">Enumeration</span><a id="doortype" class="heading-anchor" href="#doortype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>Backing Type:</strong> int</p>
+<p><strong>description:</strong> &lt;No description&gt;</p>
+<p><strong>Strict:</strong> true</p>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Label</th>
+<th align="left">Value</th>
+</tr>
+<tr>
+<td align="left">Flush</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">Full Glass</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">Half Glass</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">2 Lite</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">Narrow View</td>
+<td align="left">4</td>
+</tr>
+<tr>
+<td align="left">View</td>
+<td align="left">5</td>
+</tr>
+<tr>
+<td align="left">Louver - Full</td>
+<td align="left">6</td>
+</tr>
+<tr>
+<td align="left">Louver - Bottom</td>
+<td align="left">7</td>
+</tr>
+<tr>
+<td align="left">Louver - Top</td>
+<td align="left">8</td>
+</tr>
+<tr>
+<td align="left">Half Glass w/ Louver</td>
+<td align="left">9</td>
+</tr>
+<tr>
+<td align="left">Narrow View w/ Louver</td>
+<td align="left">10</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-foundationtype"><strong>FoundationType</strong> <span class="badge badge-pill badge-info badge-enumeration">Enumeration</span><a id="foundationtype" class="heading-anchor" href="#foundationtype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>Backing Type:</strong> int</p>
+<p><strong>description:</strong> &lt;No description&gt;</p>
+<p><strong>Strict:</strong> true</p>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Label</th>
+<th align="left">Value</th>
+</tr>
+<tr>
+<td align="left">Mat Foundation</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">Pile</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">Pile Cap</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">Spread Footing</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">Strip Footing</td>
+<td align="left">4</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-slabdirectiontype"><strong>SlabDirectionType</strong> <span class="badge badge-pill badge-info badge-enumeration">Enumeration</span><a id="slabdirectiontype" class="heading-anchor" href="#slabdirectiontype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>Backing Type:</strong> int</p>
+<p><strong>description:</strong> &lt;No description&gt;</p>
+<p><strong>Strict:</strong> true</p>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Label</th>
+<th align="left">Value</th>
+</tr>
+<tr>
+<td align="left">Unknown</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">One Way</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">Two Way</td>
+<td align="left">2</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-slabtype"><strong>SlabType</strong> <span class="badge badge-pill badge-info badge-enumeration">Enumeration</span><a id="slabtype" class="heading-anchor" href="#slabtype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>Backing Type:</strong> int</p>
+<p><strong>description:</strong> &lt;No description&gt;</p>
+<p><strong>Strict:</strong> true</p>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Label</th>
+<th align="left">Value</th>
+</tr>
+<tr>
+<td align="left">Floor</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">Roof</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">Landing</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">Base Slab</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">User Defined</td>
+<td align="left">4</td>
+</tr>
+<tr>
+<td align="left">Not Defined</td>
+<td align="left">5</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-structuralframingtype"><strong>StructuralFramingType</strong> <span class="badge badge-pill badge-info badge-enumeration">Enumeration</span><a id="structuralframingtype" class="heading-anchor" href="#structuralframingtype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>Backing Type:</strong> int</p>
+<p><strong>description:</strong> &lt;No description&gt;</p>
+<p><strong>Strict:</strong> true</p>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Label</th>
+<th align="left">Value</th>
+</tr>
+<tr>
+<td align="left">Beam</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">Column</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">Vertical Brace</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">Horizontal Brace</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">Pier</td>
+<td align="left">4</td>
+</tr>
+<tr>
+<td align="left">Pile</td>
+<td align="left">5</td>
+</tr>
+<tr>
+<td align="left">Purlin</td>
+<td align="left">6</td>
+</tr>
+<tr>
+<td align="left">Cladding</td>
+<td align="left">7</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-walltype"><strong>WallType</strong> <span class="badge badge-pill badge-info badge-enumeration">Enumeration</span><a id="walltype" class="heading-anchor" href="#walltype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>Backing Type:</strong> int</p>
+<p><strong>description:</strong> &lt;No description&gt;</p>
+<p><strong>Strict:</strong> true</p>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Label</th>
+<th align="left">Value</th>
+</tr>
+<tr>
+<td align="left">Movable</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">Parapet</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">Partitioning</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">Plumbing Wall</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">Shear</td>
+<td align="left">4</td>
+</tr>
+<tr>
+<td align="left">Solid Wall</td>
+<td align="left">5</td>
+</tr>
+<tr>
+<td align="left">Standard</td>
+<td align="left">6</td>
+</tr>
+<tr>
+<td align="left">Polygonal</td>
+<td align="left">7</td>
+</tr>
+<tr>
+<td align="left">Elemented Wall</td>
+<td align="left">8</td>
+</tr>
+<tr>
+<td align="left">User Defined</td>
+<td align="left">9</td>
+</tr>
+<tr>
+<td align="left">Not Defined</td>
+<td align="left">10</td>
+</tr>
+</tbody></table><p></div></p>
+<h3 class="h-windowtype"><strong>WindowType</strong> <span class="badge badge-pill badge-info badge-enumeration">Enumeration</span><a id="windowtype" class="heading-anchor" href="#windowtype"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<p><div style="margin-left: 2em"></p>
+<p><strong>Backing Type:</strong> int</p>
+<p><strong>description:</strong> &lt;No description&gt;</p>
+<p><strong>Strict:</strong> true</p>
+<table class="table table-responsive"><tbody><tr>
+<th align="left">Label</th>
+<th align="left">Value</th>
+</tr>
+<tr>
+<td align="left">Casement</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">Single Hung</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">Double Hung</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">Awning</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">Hopper</td>
+<td align="left">4</td>
+</tr>
+<tr>
+<td align="left">Sliding</td>
+<td align="left">5</td>
+</tr>
+</tbody></table><p></div></p>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>22 November, 2019</span>
+            </p>
+            <div id="imodeljs-github-comments">
+            </div>
+            
+            <script>
+              $(document).ready(function () {
+                function initializeComments(repo) {
+                  var s = document.createElement('script');
+                  s.src = "https://imodeljs.github.io/iModelJs-docs-output//scripts/utterances/client.js";
+                  s.setAttribute('repo', repo);
+                  s.setAttribute('issue-term', 'title');
+                  s.setAttribute('crossorigin', 'anonymous');
+                  s.setAttribute('theme', 'github-light');
+                  s.async = true;
+            
+                  document.getElementById("imodeljs-github-comments").appendChild(s);
+                }
+            
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
+              });
+            </script>
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div class="toc-overlay"></div>
+    <div id='inner-table-of-contents'>
+       <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item '>
+            <a data-target="#inner-nav-entity" class='title' href="#entity"/>
+            <b class='dropdown-menu-title menu-text'>Entity Classes</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-entity" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-dimensionsaspect" class='title' href="#dimensionsaspect"/>
+                            <b class='dropdown-menu-title menu-text'>DimensionsAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-dimensionsaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-dooraspect" class='title' href="#dooraspect"/>
+                            <b class='dropdown-menu-title menu-text'>DoorAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-dooraspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-1">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-energyperformanceaspect" class='title' href="#energyperformanceaspect"/>
+                            <b class='dropdown-menu-title menu-text'>EnergyPerformanceAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-energyperformanceaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-2">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-foundationaspect" class='title' href="#foundationaspect"/>
+                            <b class='dropdown-menu-title menu-text'>FoundationAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-foundationaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-3">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-materialaspect" class='title' href="#materialaspect"/>
+                            <b class='dropdown-menu-title menu-text'>MaterialAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-materialaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-4">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-perimeteraspect" class='title' href="#perimeteraspect"/>
+                            <b class='dropdown-menu-title menu-text'>PerimeterAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-perimeteraspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-5">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-pileaspect" class='title' href="#pileaspect"/>
+                            <b class='dropdown-menu-title menu-text'>PileAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-pileaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-6">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-pipeaspect" class='title' href="#pipeaspect"/>
+                            <b class='dropdown-menu-title menu-text'>PipeAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-pipeaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-7">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#quantitytakeoffaspect">QuantityTakeoffAspect Abstract</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-sideareasaspect" class='title' href="#sideareasaspect"/>
+                            <b class='dropdown-menu-title menu-text'>SideAreasAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-sideareasaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-8">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-slabaspect" class='title' href="#slabaspect"/>
+                            <b class='dropdown-menu-title menu-text'>SlabAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-slabaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-9">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-slopeaspect" class='title' href="#slopeaspect"/>
+                            <b class='dropdown-menu-title menu-text'>SlopeAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-slopeaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-10">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-stairsaspect" class='title' href="#stairsaspect"/>
+                            <b class='dropdown-menu-title menu-text'>StairsAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-stairsaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-11">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-structurallinearmemberaspect" class='title' href="#structurallinearmemberaspect"/>
+                            <b class='dropdown-menu-title menu-text'>StructuralLinearMemberAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-structurallinearmemberaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-12">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-surfaceareaaspect" class='title' href="#surfaceareaaspect"/>
+                            <b class='dropdown-menu-title menu-text'>SurfaceAreaAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-surfaceareaaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-13">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-thicknessaspect" class='title' href="#thicknessaspect"/>
+                            <b class='dropdown-menu-title menu-text'>ThicknessAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-thicknessaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-14">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-volumeaspect" class='title' href="#volumeaspect"/>
+                            <b class='dropdown-menu-title menu-text'>VolumeAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-volumeaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-15">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-wallaspect" class='title' href="#wallaspect"/>
+                            <b class='dropdown-menu-title menu-text'>WallAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-wallaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-16">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-windowaspect" class='title' href="#windowaspect"/>
+                            <b class='dropdown-menu-title menu-text'>WindowAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-windowaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#properties-17">Properties</a>
+                                    </li>
+                            </ul>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-relationship" class='title' href="#relationship"/>
+            <b class='dropdown-menu-title menu-text'>Relationship Classes</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-relationship" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-elementownsdimensionsaspect" class='title' href="#elementownsdimensionsaspect"/>
+                            <b class='dropdown-menu-title menu-text'>ElementOwnsDimensionsAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-elementownsdimensionsaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-1">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-elementownsdooraspect" class='title' href="#elementownsdooraspect"/>
+                            <b class='dropdown-menu-title menu-text'>ElementOwnsDoorAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-elementownsdooraspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-1">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-2">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-1">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-3">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-elementownsenergyperformanceaspect" class='title' href="#elementownsenergyperformanceaspect"/>
+                            <b class='dropdown-menu-title menu-text'>ElementOwnsEnergyPerformanceAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-elementownsenergyperformanceaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-2">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-4">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-2">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-5">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-elementownsfoundationaspect" class='title' href="#elementownsfoundationaspect"/>
+                            <b class='dropdown-menu-title menu-text'>ElementOwnsFoundationAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-elementownsfoundationaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-3">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-6">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-3">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-7">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-elementownsmaterialaspect" class='title' href="#elementownsmaterialaspect"/>
+                            <b class='dropdown-menu-title menu-text'>ElementOwnsMaterialAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-elementownsmaterialaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-4">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-8">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-4">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-9">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-elementownsperimeteraspect" class='title' href="#elementownsperimeteraspect"/>
+                            <b class='dropdown-menu-title menu-text'>ElementOwnsPerimeterAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-elementownsperimeteraspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-5">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-10">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-5">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-11">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-elementownspileaspect" class='title' href="#elementownspileaspect"/>
+                            <b class='dropdown-menu-title menu-text'>ElementOwnsPileAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-elementownspileaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-6">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-12">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-6">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-13">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-elementownspipeaspect" class='title' href="#elementownspipeaspect"/>
+                            <b class='dropdown-menu-title menu-text'>ElementOwnsPipeAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-elementownspipeaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-7">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-14">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-7">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-15">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-elementownsquantitytakeoffaspect" class='title' href="#elementownsquantitytakeoffaspect"/>
+                            <b class='dropdown-menu-title menu-text'>ElementOwnsQuantityTakeOffAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-elementownsquantitytakeoffaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-8">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-16">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-8">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-17">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-elementownssideareasaspect" class='title' href="#elementownssideareasaspect"/>
+                            <b class='dropdown-menu-title menu-text'>ElementOwnsSideAreasAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-elementownssideareasaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-9">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-18">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-9">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-19">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-elementownsslabaspect" class='title' href="#elementownsslabaspect"/>
+                            <b class='dropdown-menu-title menu-text'>ElementOwnsSlabAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-elementownsslabaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-10">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-20">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-10">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-21">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-elementownsslopeaspect" class='title' href="#elementownsslopeaspect"/>
+                            <b class='dropdown-menu-title menu-text'>ElementOwnsSlopeAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-elementownsslopeaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-11">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-22">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-11">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-23">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-elementownsstairsaspect" class='title' href="#elementownsstairsaspect"/>
+                            <b class='dropdown-menu-title menu-text'>ElementOwnsStairsAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-elementownsstairsaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-12">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-24">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-12">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-25">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-elementownsstructurallinearmemberaspect" class='title' href="#elementownsstructurallinearmemberaspect"/>
+                            <b class='dropdown-menu-title menu-text'>ElementOwnsStructuralLinearMemberAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-elementownsstructurallinearmemberaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-13">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-26">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-13">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-27">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-elementownssurfaceareaaspect" class='title' href="#elementownssurfaceareaaspect"/>
+                            <b class='dropdown-menu-title menu-text'>ElementOwnsSurfaceAreaAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-elementownssurfaceareaaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-14">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-28">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-14">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-29">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-elementownsthicknessaspect" class='title' href="#elementownsthicknessaspect"/>
+                            <b class='dropdown-menu-title menu-text'>ElementOwnsThicknessAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-elementownsthicknessaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-15">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-30">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-15">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-31">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-elementownsvolumeaspect" class='title' href="#elementownsvolumeaspect"/>
+                            <b class='dropdown-menu-title menu-text'>ElementOwnsVolumeAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-elementownsvolumeaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-16">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-32">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-16">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-33">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-elementownswallaspect" class='title' href="#elementownswallaspect"/>
+                            <b class='dropdown-menu-title menu-text'>ElementOwnsWallAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-elementownswallaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-17">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-34">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-17">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-35">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li class='nav-item item '>
+                            <a data-target="#inner-nav-elementownswindowaspect" class='title' href="#elementownswindowaspect"/>
+                            <b class='dropdown-menu-title menu-text'>ElementOwnsWindowAspect</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-elementownswindowaspect" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#source-18">Source</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-36">Constraint Classes:</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#target-18">Target</a>
+                                    </li>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#constraint-37">Constraint Classes:</a>
+                                    </li>
+                            </ul>
+                    </li>
+            </ul>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-enumerations" class='title' href="#enumerations"/>
+            <b class='dropdown-menu-title menu-text'>Enumerations</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-enumerations" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#doortype">DoorType</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#foundationtype">FoundationType</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#slabdirectiontype">SlabDirectionType</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#slabtype">SlabType</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#structuralframingtype">StructuralFramingType</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#walltype">WallType</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#windowtype">WindowType</a>
+                    </li>
+            </ul>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color pt-1 pb-3">
+  <!-- Footer Links Container -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row d-flex align-items-center mt-2">
+
+      <!-- Grid column -->
+      <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
+
+        <a href="https://imodeljs.github.io/iModelJs-docs-output//" class="navbar-brand">
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/imodeljs-logo.svg" />
+        </a>
+        <small style="color: white; margin-right: 7px;"> powered by </small>
+        <a href="https://www.bentley.com">
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
+            src="https://imodeljs.github.io/iModelJs-docs-output//landing-page/assets/bentley.svg" />
+        </a>
+      </div>
+      <!-- Grid column -->
+
+      <!-- TOS/Legals footer placeholder -->
+      <div id="HFRootHeader"></div>
+
+      <!-- Grid column -->
+      <div class="col-md-5 col-lg-4 ml-lg-0">
+
+        <!-- Social buttons -->
+        <div class="text-center text-md-right">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://twitter.com/imodeljs" target="_blank">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://github.com/imodeljs" target="_blank">
+                <i class="fa fa-github"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://stackoverflow.com/tags/imodeljs"
+                target="_blank">
+                <i class="fa fa-stack-overflow"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links Container -->
+
+</footer>
+<!-- Footer -->
+
+</div>
+<a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/bundle.js"></script>
+</body>
+
+</html>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/monaco-editor/min/vs/loader.js"></script>
+<script src="https://imodeljs.github.io/iModelJs-docs-output//scripts/ts-playground.js"></script>
