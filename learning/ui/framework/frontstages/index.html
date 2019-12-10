@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.9.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -137,8 +137,8 @@
 <td>is accessed from another frontstage or the Backstage. It may contain any content along with a Back button. It does not use zones or stage panels. It is useful for application settings and data management user interfaces.</td>
 </tr>
 </tbody></table><h2 class="h-configuring-a-frontstage">Configuring a Frontstage<a id="configuring-a-frontstage" class="heading-anchor" href="#configuring-a-frontstage"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>A frontstage is configured in a class subclassing the <strong>FrontstageProvider</strong> abstract class.
-The FrontstageProvider contains an abstract <code>frontstage</code> field containing a <strong>Frontstage</strong> React component.
+<p>A frontstage is configured in a class subclassing the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-framework/frontstage/frontstageprovider'>FrontstageProvider</a> abstract class.
+The FrontstageProvider contains an abstract <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-framework/frontstage/frontstageprovider/#frontstage'>FrontstageProvider.frontstage</a> field containing a <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-framework/frontstage/frontstage'>Frontstage</a> React component.
 The Frontstage React component has props for the default tool, Content Layout, Content Group, a Footer mode flag and application data.
 It also has props for the Zones that are specified by their position in the 9-zone grid.</p>
 <h3 class="h-zone-descriptions">Zone Descriptions<a id="zone-descriptions" class="heading-anchor" href="#zone-descriptions"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
@@ -181,7 +181,7 @@ It also has props for the Zones that are specified by their position in the 9-zo
 </tr>
 </tbody></table><h3 class="h-basic-sample">Basic Sample<a id="basic-sample" class="heading-anchor" href="#basic-sample"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>The following is a sample of a very basic FrontstageProvider definition with zones containing a Tool Widget, Tool Settings, Navigation Widget, Status Bar and Property Grid.</p>
-<pre class="no-line-numbers"><code class="language-TSX">export class SampleFrontstage extends FrontstageProvider {
+<pre class="no-line-numbers"><code class="language-typescriptx">export class SampleFrontstage extends FrontstageProvider {
 
   public get frontstage(): React.ReactElement&lt;FrontstageProps&gt; {
     return (
@@ -233,7 +233,7 @@ It also has props for the Zones that are specified by their position in the 9-zo
   }
 }
 </code></pre>
-<p>The <code>defaultTool</code> prop specifies a tool or command. See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ui/framework/toolscommands'>Tools and Commands</a> for more details.
+<p>The <code>defaultTool</code> prop specifies a tool or command.
 <code>defaultLayout</code> specifies a registered Content Layout and <code>contentGroup</code> specifies a registered Content Group.
 Note that these two props can reference a ContentLayoutDef and ContentGroup directly instead of specifying an Id.
 See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ui/framework/contentviews'>Content Views and Layouts</a> for more details.
@@ -247,34 +247,30 @@ The <code>allowsMerging</code> prop indicates if other zones may be merged with 
 Zones can be merged together by default using the <code>mergeWithZone</code> prop, which indicates another zone to merge with.
 The <code>applicationData</code> prop specifies JSON data attached to the Zone and ZoneDef.</p>
 <h2 class="h-setting-a-frontstage-active">Setting a Frontstage active<a id="setting-a-frontstage-active" class="heading-anchor" href="#setting-a-frontstage-active"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<pre class="no-line-numbers"><code class="language-TSX">    // Create a Frontstage.
-    const frontstageProvider = new SampleFrontstage();
-    // Add the provider to FrontstageManager
-    FrontstageManager.addFrontstageProvider(frontstageProvider);
+<pre class="no-line-numbers"><code class="language-typescriptx">// Create a Frontstage.
+const frontstageProvider = new SampleFrontstage();
+// Add the provider to FrontstageManager
+FrontstageManager.addFrontstageProvider(frontstageProvider);
 
-    // Set the Frontstage active
-    FrontstageManager.setActiveFrontstageDef(frontstageProvider.frontstageDef).then(() =&gt; {
-      // Frontstage is ready
-    });</code></pre>
+// Set the Frontstage active
+FrontstageManager.setActiveFrontstageDef(frontstageProvider.frontstageDef).then(() =&gt; {
+  // Frontstage is ready
+});</code></pre>
 <h2 class="h-related-learning-topics">Related Learning Topics<a id="related-learning-topics" class="heading-anchor" href="#related-learning-topics"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ui/framework/contentviews'>Content Views and Layouts</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ui/framework/widgets'>Widgets</a></li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ui/framework/toolbars'>Toolbars</a></li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ui/framework/toolscommands'>Tools and Commands</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ui/framework/statusbar'>Status Bar and Fields</a></li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ui/framework/navigationaids'>Navigation Aids</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ui/framework/toolsettings'>Tool Settings</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ui/framework/stagepanels'>Stage Panels</a></li>
 </ul>
 <h2 class="h-api-reference">API Reference<a id="api-reference" class="heading-anchor" href="#api-reference"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ul>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-framework/frontstage/'>Frontstage</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-framework/zone/'>Zone</a></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>05 December, 2019</span>
+                <span class='date-updated'>10 December, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -379,7 +375,7 @@ The <code>applicationData</code> prop specifies JSON data attached to the Zone a
       <!-- Grid column -->
 
       <!-- TOS/Legals footer placeholder -->
-      <div id="HFRootHeader"></div>
+      <div id="GlobalFooter"></div>
 
       <!-- Grid column -->
       <div class="col-md-5 col-lg-4 ml-lg-0">

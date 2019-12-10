@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.9.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -325,13 +325,23 @@ to do that.</p>
 <td>Value that defines the range end (inclusive)</td>
 </tr>
 </tbody></table><h3 class="h-same-label-instance-grouping">Same Label Instance Grouping<a id="same-label-instance-grouping" class="heading-anchor" href="#same-label-instance-grouping"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
-<p>Allows grouping multiple instances with the same label into one ECInstance node.
-It can be used in cases when these instances represent the same object for the user.</p>
-<p>When multiple instances are grouped, an ECInstance node is created instead of a
-grouping node and the ECInstance key for the node is assigned to key of one of grouped
-instances.</p>
-<p>The rule does not have any attributes - it&apos;s applied to all nodes which match grouping rule&apos;s criteria.</p>
-<h2 class="h-example">Example<a id="example" class="heading-anchor" href="#example"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>Allows grouping multiple instances with the same label into one ECInstance node. Similar to display label grouping, but instead of showing a grouping node with multiple grouped nodes, it shows a single ECInstances node which represents multiple ECInstances.</p>
+<h4 class="h-attributes-3">Attributes<a id="attributes-3" class="heading-anchor" href="#attributes-3"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h4>
+<table class="table table-responsive"><tbody><tr>
+<th>Name</th>
+<th>Required?</th>
+<th>Type</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+<tr>
+<td><code>applicationStage</code></td>
+<td>No</td>
+<td><code>SameLabelInstanceGroupApplicationStage</code></td>
+<td><code>&quot;Query&quot;</code></td>
+<td>Stage of hierarchy creation at which the rule is applied.</td>
+</tr>
+</tbody></table><h2 class="h-example">Example<a id="example" class="heading-anchor" href="#example"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <pre class="no-line-numbers"><code class="language-JSON">{
   &quot;ruleType&quot;: &quot;Grouping&quot;,
   &quot;priority&quot;: 999,
@@ -346,7 +356,7 @@ instances.</p>
 }</code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>05 December, 2019</span>
+                <span class='date-updated'>10 December, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -429,7 +439,15 @@ instances.</p>
                             </ul>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#same-label-instance-grouping">Same Label Instance Grouping</a>
+                            <a data-target="#inner-nav-same-label-instance-grouping" class='title' href="#same-label-instance-grouping"/>
+                            <b class='dropdown-menu-title menu-text'>Same Label Instance Grouping</b>
+                            <i class='nav-list-dropdown icon'></i>
+                            </a>
+                            <ul id="inner-nav-same-label-instance-grouping" class='inner-nav'>
+                                    <li class='nav-item item '>
+                                            <a class='title solo-title menu-text' href="#attributes-3">Attributes</a>
+                                    </li>
+                            </ul>
                     </li>
             </ul>
     </li>
@@ -470,7 +488,7 @@ instances.</p>
       <!-- Grid column -->
 
       <!-- TOS/Legals footer placeholder -->
-      <div id="HFRootHeader"></div>
+      <div id="GlobalFooter"></div>
 
       <!-- Grid column -->
       <div class="col-md-5 col-lg-4 ml-lg-0">

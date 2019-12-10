@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.9.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -119,48 +119,44 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ui/">ui</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ui/framework/">framework</a> > SyncUi</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/learning/ui/framework/SyncUi.md">Edit this page</a></div>
             <h1 id="syncui">SyncUi</h1>
-<p>&apos;SyncUi&apos; refers to an API that is used to send one or more eventIds to registered listeners. These listeners are typically UI Components that listen for specific events which may require the display of the component to be refreshed.</p>
+<p><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-framework/syncui/'>SyncUi</a> is used to send one or more eventIds to registered listeners. These listeners are typically UI Components that listen for specific events which may require the display of the component to be refreshed.</p>
 <h2 class="h-syncui-dispatcher">SyncUi Dispatcher<a id="syncui-dispatcher" class="heading-anchor" href="#syncui-dispatcher"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>The SyncUiDispatcher is called to dispatch syncEventIds to register listeners.  The caller can choose to dispatch the syncEventId immediately (<code>dispatchImmediateSyncUiEvent</code>) or the default way (<code>dispatchSyncUiEvent</code>), which uses a timer. Most of the time using the timer version is preferable so multiple refreshes of the same component can be avoided. The timer version of dispatching will attempt to wait until no new syncEventIds have been dispatched before calling the registered listeners.</p>
-<h2 class="h-synceventid">SyncEventId<a id="synceventid" class="heading-anchor" href="#synceventid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-framework/syncui/syncuieventdispatcher'>SyncUiEventDispatcher</a> is called to dispatch syncEventIds to register listeners.  The caller can choose to dispatch the syncEventId immediately (<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-framework/syncui/syncuieventdispatcher/#dispatchimmediatesyncuievent'>SyncUiEventDispatcher.dispatchImmediateSyncUiEvent</a>) or the default way (<a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-framework/syncui/syncuieventdispatcher/#dispatchsyncuievent'>SyncUiEventDispatcher.dispatchSyncUiEvent</a>), which uses a timer. Most of the time using the timer version is preferable so multiple refreshes of the same component can be avoided. The timer version of dispatching will attempt to wait until no new syncEventIds have been dispatched before calling the registered listeners.</p>
+<h2 class="h-sync-eventid">Sync EventId<a id="sync-eventid" class="heading-anchor" href="#sync-eventid"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>A SyncEventId is just a unique string that represents an action that may require the listener to refresh its display. The string should be in lower-case so the comparison of Ids can be as quick as possible. Typically an enum is used to define all the supported SyncEventIds for a sub-system.</p>
 <h2 class="h-syncui-listener">SyncUi Listener<a id="syncui-listener" class="heading-anchor" href="#syncui-listener"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>A listener may be registered by calling <code>SyncUiEventDispatcher.onSyncUiEvent.addListener</code>. This listener will be called with a Set of SyncEventId strings each time the SyncUiDispatcher has events to dispatch.  The listener must determine if they are interested in any of the dispatched event Ids. This is commonly done by calling <code>mySyncIds.some((value: string): boolean =&gt; args.eventIds.has(value));</code> where <code>mySyncIds</code> is any array of one or more strings that specify the event ids of interest. Many of the ConfigurableUi components provided in the UiFramework package allow an array of SyncUIEvent Ids to be defined. These components also typically contain the definition of a <code>stateFunc</code> which is run when an eventId of interest is encountered. These &apos;state&apos; functions generate a new state for the component and if the new state is different from the current state the component is refreshed.</p>
+<p>A listener may be registered by adding a listener to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-framework/syncui/syncuieventdispatcher/#onsyncuievent'>SyncUiEventDispatcher.onSyncUiEvent</a>. This listener will be called with a Set of SyncEventId strings each time the SyncUiDispatcher has events to dispatch.  The listener must determine if they are interested in any of the dispatched event Ids. This is commonly done by calling <code>mySyncIds.some((value: string): boolean =&gt; args.eventIds.has(value));</code> where <code>mySyncIds</code> is any array of one or more strings that specify the event ids of interest. Many of the ConfigurableUi components provided in the UiFramework package allow an array of SyncUIEvent Ids to be defined. These components also typically contain the definition of a <code>stateFunc</code> which is run when an eventId of interest is encountered. These &apos;state&apos; functions generate a new state for the component and if the new state is different from the current state the component is refreshed.</p>
 <h2 class="h-redux-and-syncui">Redux and SyncUi<a id="redux-and-syncui" class="heading-anchor" href="#redux-and-syncui"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The method <code>UiFramework.dispatchActionToStore</code> is available to both dispatch an action on the Redux store and to call <code>dispatchSyncUiEvent</code> with the same action string. This allows the Redux store to be updated allowing the SyncUiEvent listener to query the new value from it. To be consistent with the SyncUiEventIds, the action strings should be lower-cased.</p>
 <h2 class="h-example-of-opening-or-closing-a-widget">Example of Opening or Closing a Widget<a id="example-of-opening-or-closing-a-widget" class="heading-anchor" href="#example-of-opening-or-closing-a-widget"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The following is an example of a Widget that is open or closed when the selection set changes.
 In this example, the bottom-right zone in a frontstage contains a Widget component with a <code>syncEventIds</code> prop containing <code>SyncUiEventId.SelectionSetChanged</code> and a <code>stateFunc</code> that references the <code>_determineWidgetStateForSelectionSet</code> function listed below.</p>
-<pre class="no-line-numbers"><code class="language-TSX">        bottomRight={
-          &lt;Zone defaultState={ZoneState.Open} allowsMerging={true}
-            widgets={[
-              &lt;Widget id=&quot;Properties&quot; control={PropertyGridWidget} defaultState={WidgetState.Closed} fillZone={true}
-                iconSpec=&quot;icon-properties-list&quot; labelKey=&quot;NineZoneSample:components.properties&quot;
-                applicationData={{
-                  iModelConnection: NineZoneSampleApp.store.getState().sampleAppState!.currentIModelConnection,
-                  rulesetId: this._rulesetId,
-                }}
-                syncEventIds={[SyncUiEventId.SelectionSetChanged]}
-                stateFunc={this._determineWidgetStateForSelectionSet}
-              /&gt;,
-            ]}
-          /&gt;
-        }</code></pre>
+<pre class="no-line-numbers"><code class="language-typescriptx">bottomRight={
+  &lt;Zone defaultState={ZoneState.Open} allowsMerging={true}
+    widgets={[
+      &lt;Widget id=&quot;Properties&quot; control={PropertyGridWidget} defaultState={WidgetState.Closed} fillZone={true}
+        iconSpec=&quot;icon-properties-list&quot; labelKey=&quot;NineZoneSample:components.properties&quot;
+        applicationData={{
+          iModelConnection: NineZoneSampleApp.store.getState().sampleAppState!.currentIModelConnection,
+          rulesetId: this._rulesetId,
+        }}
+        syncEventIds={[SyncUiEventId.SelectionSetChanged]}
+        stateFunc={this._determineWidgetStateForSelectionSet}
+      /&gt;,
+    ]}
+  /&gt;
+}</code></pre>
 <p>The <code>_determineWidgetStateForSelectionSet</code> function checks the selection set and returns <code>WidgetState.Open</code> when there is a selection set or <code>WidgetState.Closed</code> when there is none. This effectively opens or closes the widget based on the selection set.</p>
-<pre class="no-line-numbers"><code class="language-TS">  /** Determine the WidgetState based on the Selection Set */
-  private _determineWidgetStateForSelectionSet = (): WidgetState =&gt; {
-    const activeContentControl = ContentViewManager.getActiveContentControl();
-    if (activeContentControl &amp;&amp; activeContentControl.viewport &amp;&amp; (activeContentControl.viewport.view.iModel.selectionSet.size &gt; 0))
-      return WidgetState.Open;
-    return WidgetState.Closed;
-  }</code></pre>
-<h2 class="h-api-reference">API Reference<a id="api-reference" class="heading-anchor" href="#api-reference"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<ul>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-framework/syncui/'>SyncUi</a></li>
-</ul>
+<pre class="no-line-numbers"><code class="language-typescript">/** Determine the WidgetState based on the Selection Set */
+private _determineWidgetStateForSelectionSet = (): WidgetState =&gt; {
+  const activeContentControl = ContentViewManager.getActiveContentControl();
+  if (activeContentControl &amp;&amp; activeContentControl.viewport &amp;&amp; (activeContentControl.viewport.view.iModel.selectionSet.size &gt; 0))
+    return WidgetState.Open;
+  return WidgetState.Closed;
+}</code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>05 December, 2019</span>
+                <span class='date-updated'>10 December, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -212,7 +208,7 @@ In this example, the bottom-right zone in a frontstage contains a Widget compone
             <a class='title solo-title menu-text' href="#syncui-dispatcher">SyncUi Dispatcher</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#synceventid">SyncEventId</a>
+            <a class='title solo-title menu-text' href="#sync-eventid">Sync EventId</a>
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#syncui-listener">SyncUi Listener</a>
@@ -222,9 +218,6 @@ In this example, the bottom-right zone in a frontstage contains a Widget compone
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#example-of-opening-or-closing-a-widget">Example of Opening or Closing a Widget</a>
-    </li>
-       <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#api-reference">API Reference</a>
     </li>
  
       </ul>
@@ -260,7 +253,7 @@ In this example, the bottom-right zone in a frontstage contains a Widget compone
       <!-- Grid column -->
 
       <!-- TOS/Legals footer placeholder -->
-      <div id="HFRootHeader"></div>
+      <div id="GlobalFooter"></div>
 
       <!-- Grid column -->
       <div class="col-md-5 col-lg-4 ml-lg-0">

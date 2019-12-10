@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.9.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -251,14 +251,14 @@
 </tr>
 <tr>
 <td>create from variant sources</td>
-<td>`Point3d.createFrom (other: Float64Array</td>
-<td>XAndY</td>
+<td>`Point3d.createFrom (other: Float64Array \</td>
+<td>XAndY \</td>
 <td>XAndYAndZ)`</td>
-<td>`Vector3d.createFrom (other: Float64Array</td>
-<td>XAndY</td>
+<td>`Vector3d.createFrom (other: Float64Array \</td>
+<td>XAndY \</td>
 <td>XAndYAndZ)`</td>
 <td><code>Point2d.createFrom (other: XAndY)</code></td>
-<td>`Vector2d.createFrom (other: XAndY</td>
+<td>`Vector2d.createFrom (other: XAndY \</td>
 <td>Float64Array)`</td>
 </tr>
 <tr>
@@ -418,10 +418,10 @@
 <tr>
 <td>return normalized vector</td>
 <td></td>
-<td>`newVector = oldVector.normalize () : Vector3d</td>
+<td>`newVector = oldVector.normalize () : Vector3d \</td>
 <td>undefined`</td>
 <td></td>
-<td>`newVector = oldVector.normalize () : Vector2d</td>
+<td>`newVector = oldVector.normalize () : Vector2d \</td>
 <td>undefined`</td>
 </tr>
 <tr>
@@ -485,7 +485,7 @@
 <td></td>
 <td></td>
 <td></td>
-<td>`vector = Vector2d.createOffsetBisector (unitPerpendicularA, unitPerpendicularB, offsetDistance) :Vector2d</td>
+<td>`vector = Vector2d.createOffsetBisector (unitPerpendicularA, unitPerpendicularB, offsetDistance) :Vector2d \</td>
 <td>undefined`</td>
 </tr>
 </tbody></table><h2 class="h-create-by-interpolation-and-addition">create by Interpolation and addition<a id="create-by-interpolation-and-addition" class="heading-anchor" href="#create-by-interpolation-and-addition"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
@@ -633,7 +633,7 @@
 <tr>
 <td>normalized cross product (or undefined if vectorA and vectorB are parallel)</td>
 <td></td>
-<td>`newVector = vectorA.unitCrossProduct (vectorB) : Vector3d</td>
+<td>`newVector = vectorA.unitCrossProduct (vectorB) : Vector3d \</td>
 <td>undefined`</td>
 <td></td>
 <td></td>
@@ -641,7 +641,7 @@
 <tr>
 <td>cross product scaled to given length (undefined if vectorA and vectorB are parallel)</td>
 <td></td>
-<td>`newVector = vectorA.sizedCrossProduct (vectorB, length) : Vector3d</td>
+<td>`newVector = vectorA.sizedCrossProduct (vectorB, length) : Vector3d \</td>
 <td>undefined`</td>
 <td></td>
 <td></td>
@@ -843,11 +843,11 @@
 </tr>
 <tr>
 <td>set coordinates from other objects</td>
-<td>`p.setFrom (other: Float64Array</td>
-<td>XAndY</td>
+<td>`p.setFrom (other: Float64Array \</td>
+<td>XAndY \</td>
 <td>XAndYAndZ)`</td>
-<td>`v.setFrom (other: Float64Array</td>
-<td>XAndY</td>
+<td>`v.setFrom (other: Float64Array \</td>
+<td>XAndY \</td>
 <td>XAndYAndZ)`</td>
 <td>p.setFrom (other?: XAndY)</td>
 <td>v.setFrom (other?: XAndY)</td>
@@ -926,21 +926,76 @@
 <td>XYZ.isXYAndZ (anyObject)</td>
 </tr>
 </tbody></table><h2 class="h-binary-queries-instance-methods">binary queries (instance methods)<a id="binary-queries-instance-methods" class="heading-anchor" href="#binary-queries-instance-methods"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>(methods that take the &quot;other&quot; point or vector as direct numbers in the call list are considered &quot;binary&quot; for this table.)
-| category | Point3d | Vector3d | Point2d | Vector2d |
-|---|---|---|---|---|
-| near equality with metric tolerance | p.isExactEqual (otherXYAndZ) | v.isExactEqual (otherXYAndZ) | p.isExactEqual (otherXAndY) | v.isExactEqual (otherXAndY) |
-| near equality with metric tolerance, unrolled xyz inputs | p.isAlmostEqualXYZ (x,y,z) | v.isAlmostEqual (x,y,z) |  | |
-| near equality with metric tolerance, unrolled xy inputs | p.isAlmostEqualXYZ (x,y) | v.isAlmostEqual (x,y) |  | |
-| exact equality | p.isAlmostEqual (otherXYAndZ) | v.isAlmostEqual (otherXYAndZ) | p.isAlmostEqual (otherXAndY) | v.isAlmostEqual (otherXAndY) |
-| distance between | p.distance (otherXYAndZ) | v.distance (otherXYAndZ) | p.distance (otherXAndY) | v.distance (otherXAndY) |
-| squared distance between | p.distanceSquared (otherXYAndZ) | v.distanceSquared (otherXYAndZ) | p.distanceSquared (otherXAndY) | v.distanceSquared (otherXAndY) |
-| distance between, ignore z | p.distanceXY (otherXYAndZ) | v.distanceXY (otherXYAndZ) |
-| squared distance between, ignore z | p.distanceSquaredXY (otherXYAndZ) | v.distanceSquaredXY (otherXYAndZ) |
-| max component difference | p.maxDiff (otherXYAndZ) | v.maxDiff (otherXYAndZ) | p.maxDiff (otherXAndY) | v.maxDiff (otherXAndY) |</p>
-
+<p>(methods that take the &quot;other&quot; point or vector as direct numbers in the call list are considered &quot;binary&quot; for this table.)</p>
+<table class="table table-responsive"><tbody><tr>
+<th>category</th>
+<th>Point3d</th>
+<th>Vector3d</th>
+<th>Point2d</th>
+<th>Vector2d</th>
+</tr>
+<tr>
+<td>near equality with metric tolerance</td>
+<td>p.isExactEqual (otherXYAndZ)</td>
+<td>v.isExactEqual (otherXYAndZ)</td>
+<td>p.isExactEqual (otherXAndY)</td>
+<td>v.isExactEqual (otherXAndY)</td>
+</tr>
+<tr>
+<td>near equality with metric tolerance, unrolled xyz inputs</td>
+<td>p.isAlmostEqualXYZ (x,y,z)</td>
+<td>v.isAlmostEqual (x,y,z)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>near equality with metric tolerance, unrolled xy inputs</td>
+<td>p.isAlmostEqualXYZ (x,y)</td>
+<td>v.isAlmostEqual (x,y)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>exact equality</td>
+<td>p.isAlmostEqual (otherXYAndZ)</td>
+<td>v.isAlmostEqual (otherXYAndZ)</td>
+<td>p.isAlmostEqual (otherXAndY)</td>
+<td>v.isAlmostEqual (otherXAndY)</td>
+</tr>
+<tr>
+<td>distance between</td>
+<td>p.distance (otherXYAndZ)</td>
+<td>v.distance (otherXYAndZ)</td>
+<td>p.distance (otherXAndY)</td>
+<td>v.distance (otherXAndY)</td>
+</tr>
+<tr>
+<td>squared distance between</td>
+<td>p.distanceSquared (otherXYAndZ)</td>
+<td>v.distanceSquared (otherXYAndZ)</td>
+<td>p.distanceSquared (otherXAndY)</td>
+<td>v.distanceSquared (otherXAndY)</td>
+</tr>
+<tr>
+<td>distance between, ignore z</td>
+<td>p.distanceXY (otherXYAndZ)</td>
+<td>v.distanceXY (otherXYAndZ)</td>
+</tr>
+<tr>
+<td>squared distance between, ignore z</td>
+<td>p.distanceSquaredXY (otherXYAndZ)</td>
+<td>v.distanceSquaredXY (otherXYAndZ)</td>
+</tr>
+<tr>
+<td>max component difference</td>
+<td>p.maxDiff (otherXYAndZ)</td>
+<td>v.maxDiff (otherXYAndZ)</td>
+<td>p.maxDiff (otherXAndY)</td>
+<td>v.maxDiff (otherXAndY)</td>
+</tr>
+</tbody></table>
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>05 December, 2019</span>
+                <span class='date-updated'>10 December, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -1052,7 +1107,7 @@
       <!-- Grid column -->
 
       <!-- TOS/Legals footer placeholder -->
-      <div id="HFRootHeader"></div>
+      <div id="GlobalFooter"></div>
 
       <!-- Grid column -->
       <div class="col-md-5 col-lg-4 ml-lg-0">

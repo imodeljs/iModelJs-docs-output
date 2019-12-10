@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.9.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -119,31 +119,24 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ui/">ui</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ui/framework/">framework</a> > NestedFrontstage</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/learning/ui/framework/NestedFrontstage.md">Edit this page</a></div>
             <h1 id="nested frontstages">Nested Frontstages</h1>
-<p>A <strong>Nested Frontstage</strong> is accessed from a primary frontstage. It may use all zones and panels, but instead of the App button, the Tool Widget contains a Back button to return to the primary frontstage.</p>
+<p>A <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-framework/frontstage/nestedfrontstage'>NestedFrontstage</a> is accessed from a primary <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/ui/framework/frontstages'>Frontstage</a>. It may use all zones and panels, but instead of the App button, the Tool Widget contains a Back button to return to the primary Frontstage.</p>
 <h2 class="h-definition-of-nested-frontstage">Definition of Nested Frontstage<a id="definition-of-nested-frontstage" class="heading-anchor" href="#definition-of-nested-frontstage"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The definition of a nested frontstage is no different from a primary frontstage with one exception:
 the <code>appButton</code> prop of the ToolWidget component specifies <code>{NestedFrontstage.backToPreviousFrontstageCommand}</code>,
 which will return to the previous frontstage when clicked/pressed.</p>
-<pre class="no-line-numbers"><code class="language-TSX">      &lt;ToolWidget
-        appButton={NestedFrontstage.backToPreviousFrontstageCommand}
-        horizontalToolbar={this._horizontalToolbar}
-        verticalToolbar={this._verticalToolbar}
-      /&gt;</code></pre>
+<pre class="no-line-numbers"><code class="language-typescriptx">&lt;ToolWidget
+  appButton={NestedFrontstage.backToPreviousFrontstageCommand}
+  horizontalToolbar={this._horizontalToolbar}
+  verticalToolbar={this._verticalToolbar}
+/&gt;</code></pre>
 <h2 class="h-code-to-open-nested-frontstage">Code to Open Nested Frontstage<a id="code-to-open-nested-frontstage" class="heading-anchor" href="#code-to-open-nested-frontstage"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>The following code that instantiates a nested frontstage,
-initializes the FrontstageDef, and calls <code>FrontstageManager.openNestedFrontstage</code> to open the nested frontstage.</p>
-<pre class="no-line-numbers"><code class="language-TS">      const frontstageProvider = new NestedFrontstage1();
-      const frontstageDef = frontstageProvider.initializeDef();
-      await FrontstageManager.openNestedFrontstage(frontstageDef);</code></pre>
-<h2 class="h-api-reference">API Reference<a id="api-reference" class="heading-anchor" href="#api-reference"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<ul>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-framework/frontstage/nestedfrontstage'>NestedFrontstage</a></li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-framework/frontstage/frontstagemanager'>FrontstageManager</a></li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-framework/frontstage/'>Frontstage</a></li>
-</ul>
+<p>The following code that instantiates a nested frontstage, initializes the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-framework/frontstage/frontstagedef'>FrontstageDef</a>, and calls <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-framework/frontstage/frontstagemanager/opennestedfrontstage'>FrontstageManager.openNestedFrontstage</a> to open the nested frontstage.</p>
+<pre class="no-line-numbers"><code class="language-typescript">const frontstageProvider = new NestedFrontstage();
+const frontstageDef = frontstageProvider.initializeDef();
+await FrontstageManager.openNestedFrontstage(frontstageDef);</code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>05 December, 2019</span>
+                <span class='date-updated'>10 December, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -197,9 +190,6 @@ initializes the FrontstageDef, and calls <code>FrontstageManager.openNestedFront
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#code-to-open-nested-frontstage">Code to Open Nested Frontstage</a>
     </li>
-       <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#api-reference">API Reference</a>
-    </li>
  
       </ul>
     </div>
@@ -234,7 +224,7 @@ initializes the FrontstageDef, and calls <code>FrontstageManager.openNestedFront
       <!-- Grid column -->
 
       <!-- TOS/Legals footer placeholder -->
-      <div id="HFRootHeader"></div>
+      <div id="GlobalFooter"></div>
 
       <!-- Grid column -->
       <div class="col-md-5 col-lg-4 ml-lg-0">

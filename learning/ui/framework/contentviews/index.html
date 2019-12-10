@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.9.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -119,7 +119,7 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//learning/">Learning</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ui/">ui</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//learning/ui/framework/">framework</a> > ContentViews</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/learning/ui/framework/ContentViews.md">Edit this page</a></div>
             <h1 id="content views-controls-groups and layouts">Content Views, Controls, Groups and Layouts</h1>
-<p>A <strong>Content&#xA0;View</strong> is a representation of an iModel&apos;s data. It is the main graphics or data view in an iModel.js application.
+<p>A <strong>Content View</strong> is a representation of an iModel&apos;s data. It is the main graphics or data view in an iModel.js application.
 There may be multiple Content Views displayed at the same time.
 When more than one Content View is displayed, they are usually separated by splitters, allowing the user to resize the views.
 There are three constructs used to manage and lay out Content Views:</p>
@@ -128,23 +128,23 @@ There are three constructs used to manage and lay out Content Views:</p>
 <th>Description</th>
 </tr>
 <tr>
-<td><strong>Content&#xA0;Control</strong></td>
+<td><strong>Content Control</strong></td>
 <td>A class that specifies the React component to display for a Content View</td>
 </tr>
 <tr>
-<td><strong>Content&#xA0;Group</strong></td>
+<td><strong>Content Group</strong></td>
 <td>A collection of Content Controls</td>
 </tr>
 <tr>
-<td><strong>Content&#xA0;Layout</strong></td>
+<td><strong>Content Layout</strong></td>
 <td>A layout configuration of Content Views</td>
 </tr>
-</tbody></table><p>Content Groups and Layouts may be defined locally in a Frontstage or they may defined centrally and registered by id with the ConfigurableUiManager.</p>
+</tbody></table><p>Content Groups and Layouts may be defined locally in a Frontstage or they may be defined centrally and registered by id with the ConfigurableUiManager.</p>
 <h2 class="h-defining-content-controls">Defining Content Controls<a id="defining-content-controls" class="heading-anchor" href="#defining-content-controls"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>A Content Control will either subclass the <strong>ViewportContentControl</strong> class if the view is a ScreenViewport or the <strong>ContentControl</strong> class if the view is a data view.</p>
+<p>A Content Control will either subclass <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-framework/contentview/viewportcontentcontrol'>ViewportContentControl</a> if the view is a ScreenViewport or <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-framework/contentview/contentcontrol'>ContentControl</a> if the view is a data view.</p>
 <h3 class="h-subclassing-viewportcontentcontrol">Subclassing ViewportContentControl<a id="subclassing-viewportcontentcontrol" class="heading-anchor" href="#subclassing-viewportcontentcontrol"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>The following shows a sample Viewport content control that subclasses ViewportContentControl. It imports a local <strong>ViewportComponent</strong> implementation and sets <code>this.reactElement</code>. The <code>options</code> parameter to the constructor comes from the <code>applicationData</code> values set in a Content Group.</p>
-<pre class="no-line-numbers"><code class="language-JS">import * as React from &quot;react&quot;;
+<pre class="no-line-numbers"><code class="language-typescript">import * as React from &quot;react&quot;;
 
 import {
   ConfigurableCreateInfo,
@@ -174,10 +174,10 @@ export class ViewportContent extends ViewportContentControl {
   }
 }</code></pre>
 <p><strong>Note:</strong> It is important to provide a <code>viewportRef</code> Prop to the <strong>ViewportComponent</strong> implementation. The <code>viewportRef</code> function should set <code>this.viewport</code>. This is important in determining when the Frontstage is ready for use.</p>
-<pre class="no-line-numbers"><code class="language-JS">viewportRef={(v: ScreenViewport) =&gt; { this.viewport = v; }}</code></pre>
+<pre class="no-line-numbers"><code class="language-js">viewportRef={(v: ScreenViewport) =&gt; { this.viewport = v; }}</code></pre>
 <h3 class="h-subclassing-contentcontrol">Subclassing ContentControl<a id="subclassing-contentcontrol" class="heading-anchor" href="#subclassing-contentcontrol"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>The following shows a sample content control that subclasses ContentControl and displays a Table data component.</p>
-<pre class="no-line-numbers"><code class="language-JS">import * as React from &quot;react&quot;;
+<pre class="no-line-numbers"><code class="language-typescript">import * as React from &quot;react&quot;;
 
 import {
   ConfigurableCreateInfo,
@@ -201,86 +201,86 @@ export class TableContent extends ContentControl {
 <h2 class="h-defining-content-groups">Defining Content Groups<a id="defining-content-groups" class="heading-anchor" href="#defining-content-groups"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>When defining Content Groups, the <strong>ContentProps</strong> and <strong>ContentGroupProps</strong> interfaces and <strong>ContentGroup</strong> class are used.</p>
 <p>The following shows a sample Content Group with a single entry that references the ViewportContent defined above. The Content Group is loaded and registered into ConfigurableUiManager and can be referenced by its id by any Frontstage.</p>
-<pre class="no-line-numbers"><code class="language-JS">    const one2dIModelViewport: ContentGroupProps = {
-      id: &quot;one2dIModelViewport&quot;,
-      contents: [
-        {
-          classId: ViewportContent,
-        },
-      ],
-    };
+<pre class="no-line-numbers"><code class="language-typescript">const one2dIModelViewport: ContentGroupProps = {
+  id: &quot;one2dIModelViewport&quot;,
+  contents: [
+    {
+      classId: ViewportContent,
+    },
+  ],
+};
 
-    const contentGroup = new ContentGroup(one2dIModelViewport);
-    ConfigurableUiManager.loadContentGroup(contentGroup);</code></pre>
+const contentGroup = new ContentGroup(one2dIModelViewport);
+ConfigurableUiManager.loadContentGroup(contentGroup);</code></pre>
 <p>The following shows a sample with two entries that reference the ViewportContent and TableContent defined above. <code>applicationData</code> is defined for each content control, which is provided to the ContentControl constructor via the <code>options</code> parameter.</p>
-<pre class="no-line-numbers"><code class="language-JS">    contentGroup = new ContentGroup({
-      contents: [
-        {
-          classId: ViewportContent,
-          applicationData: {
-            viewId: this.viewIds[0],
-            iModelConnection: NineZoneSampleApp.store.getState().sampleAppState!.currentIModelConnection,
-            rulesetId: this._rulesetId,
-          },
-        },
-        {
-          classId: TableContent,
-          applicationData: {
-            iModelConnection: NineZoneSampleApp.store.getState().sampleAppState!.currentIModelConnection,
-            rulesetId: this._rulesetId,
-          },
-        }
-      ],
-    });</code></pre>
+<pre class="no-line-numbers"><code class="language-typescript">contentGroup = new ContentGroup({
+  contents: [
+    {
+      classId: ViewportContent,
+      applicationData: {
+        viewId: this.viewIds[0],
+        iModelConnection: NineZoneSampleApp.store.getState().sampleAppState!.currentIModelConnection,
+        rulesetId: this._rulesetId,
+      },
+    },
+    {
+      classId: TableContent,
+      applicationData: {
+        iModelConnection: NineZoneSampleApp.store.getState().sampleAppState!.currentIModelConnection,
+        rulesetId: this._rulesetId,
+      },
+    }
+  ],
+});</code></pre>
 <h2 class="h-defining-content-layouts">Defining Content Layouts<a id="defining-content-layouts" class="heading-anchor" href="#defining-content-layouts"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>When defining Content Layouts, the <strong>ContentLayoutProps</strong> interface and <strong>ContentLayoutDef</strong> class are used. The ContentLayoutDef can be referenced directly by a Frontstage or it may be registered and referenced by id. The Content Layout uses index numbers to reference content within a Content Group. Both the Content Layout and the Content Group are provides as properties to a Frontstage.</p>
+<p>When defining Content Layouts, the <strong>ContentLayoutProps</strong> interface and <strong>ContentLayoutDef</strong> class are used. The ContentLayoutDef can be referenced directly by a Frontstage or it may be registered and referenced by id. The Content Layout uses index numbers to reference content within a Content Group. Both the Content Layout and the Content Group are provided as properties to a Frontstage.</p>
 <h3 class="h-a-single-view">A single view<a id="a-single-view" class="heading-anchor" href="#a-single-view"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>The following shows a sample layout with a single piece of content. The Content Layout is loaded and registered into ConfigurableUiManager and can be referenced by its id by any Frontstage.</p>
-<pre class="no-line-numbers"><code class="language-JS">    const singleContent: ContentLayoutProps = {
-      id: &quot;SingleContent&quot;,
-    };
+<pre class="no-line-numbers"><code class="language-typescript">const singleContent: ContentLayoutProps = {
+  id: &quot;SingleContent&quot;,
+};
 
-    const contentLayoutDef = new ContentLayoutDef(singleContent);
-    ConfigurableUiManager.loadContentLayout(contentLayoutDef);</code></pre>
-<h3 class="h-two-view-one-beside-the-other">Two view, one beside the other<a id="two-view-one-beside-the-other" class="heading-anchor" href="#two-view-one-beside-the-other"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+const contentLayoutDef = new ContentLayoutDef(singleContent);
+ConfigurableUiManager.loadContentLayout(contentLayoutDef);</code></pre>
+<h3 class="h-two-views-one-beside-the-other">Two views, one beside the other<a id="two-views-one-beside-the-other" class="heading-anchor" href="#two-views-one-beside-the-other"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>The following shows a sample layout with two pieces of content that are side by side, sized evenly and divided by a vertical splitter. The <code>left</code> content references index 0 in the Content Group and the <code>right</code> content references index 1 in the Content Group.</p>
-<pre class="no-line-numbers"><code class="language-JS">    const twoHalvesVertical: ContentLayoutProps = {
-      id: &quot;TwoHalvesVertical&quot;,
-      verticalSplit: { percentage: 0.50, left: 0, right: 1 },
-    };</code></pre>
-<h3 class="h-two-view-one-above-the-other">Two view, one above the other<a id="two-view-one-above-the-other" class="heading-anchor" href="#two-view-one-above-the-other"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<pre class="no-line-numbers"><code class="language-typescript">const twoHalvesVertical: ContentLayoutProps = {
+  id: &quot;TwoHalvesVertical&quot;,
+  verticalSplit: { percentage: 0.50, left: 0, right: 1 },
+};</code></pre>
+<h3 class="h-two-views-one-above-the-other">Two views, one above the other<a id="two-views-one-above-the-other" class="heading-anchor" href="#two-views-one-above-the-other"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>The following shows a sample layout with two pieces of content, one above the other, sized evenly and divided by a horizontal splitter. The <code>top</code> content references index 0 in the Content Group and the <code>bottom</code> content references index 1 in the Content Group.</p>
-<pre class="no-line-numbers"><code class="language-JS">    const twoHalvesHorizontal: ContentLayoutProps = {
-      id: &quot;TwoHalvesHorizontal&quot;,
-      horizontalSplit: { percentage: 0.50, top: 0, bottom: 1 },
-    };</code></pre>
+<pre class="no-line-numbers"><code class="language-typescript">const twoHalvesHorizontal: ContentLayoutProps = {
+  id: &quot;TwoHalvesHorizontal&quot;,
+  horizontalSplit: { percentage: 0.50, top: 0, bottom: 1 },
+};</code></pre>
 <h3 class="h-three-views-one-on-the-left-two-stacked-on-the-right">Three views, one on the left, two stacked on the right<a id="three-views-one-on-the-left-two-stacked-on-the-right" class="heading-anchor" href="#three-views-one-on-the-left-two-stacked-on-the-right"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>The following shows a sample layout with three pieces of content. The <code>left</code> side takes up half of the window, and the <code>right</code> side takes up the other half. The right side displays two pieces of content, one above the other and are sized evenly. The <code>left</code> content references index 0 in the Content Group, the <code>top</code> content references index 1, and the <code>bottom</code> content references index 2 in the Content Group.</p>
-<pre class="no-line-numbers"><code class="language-JS">    const threeRightStacked: ContentLayoutProps = {
-      id: &quot;ThreeRightStacked&quot;,
-      verticalSplit: {
-        percentage: 0.50,
-        left: 0,
-        right: { horizontalSplit: { percentage: 0.50, top: 1, bottom: 2 } },
-      },
-    };</code></pre>
+<pre class="no-line-numbers"><code class="language-typescript">const threeRightStacked: ContentLayoutProps = {
+  id: &quot;ThreeRightStacked&quot;,
+  verticalSplit: {
+    percentage: 0.50,
+    left: 0,
+    right: { horizontalSplit: { percentage: 0.50, top: 1, bottom: 2 } },
+  },
+};</code></pre>
 <h3 class="h-four-views-laid-out-in-quadrants">Four views laid out in quadrants<a id="four-views-laid-out-in-quadrants" class="heading-anchor" href="#four-views-laid-out-in-quadrants"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <p>The following shows a sample layout with four pieces of content. There is a <code>top</code> half and a <code>bottom</code> half. Each of these halves contain two pieces of content that are side by side and sized evenly.</p>
-<pre class="no-line-numbers"><code class="language-JS">    const fourQuadrants: ContentLayoutProps = {
-      id: &quot;FourQuadrants&quot;,
-      horizontalSplit: {
-        percentage: 0.50,
-        top: { verticalSplit: { percentage: 0.50, left: 0, right: 1 } },
-        bottom: { verticalSplit: { percentage: 0.50, left: 2, right: 3 } },
-      },
-    };</code></pre>
+<pre class="no-line-numbers"><code class="language-typescript">const fourQuadrants: ContentLayoutProps = {
+  id: &quot;FourQuadrants&quot;,
+  horizontalSplit: {
+    percentage: 0.50,
+    top: { verticalSplit: { percentage: 0.50, left: 0, right: 1 } },
+    bottom: { verticalSplit: { percentage: 0.50, left: 2, right: 3 } },
+  },
+};</code></pre>
 <h2 class="h-api-reference">API Reference<a id="api-reference" class="heading-anchor" href="#api-reference"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-framework/contentview/'>Content Views</a></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>05 December, 2019</span>
+                <span class='date-updated'>10 December, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -355,10 +355,10 @@ export class TableContent extends ContentControl {
                             <a class='title solo-title menu-text' href="#a-single-view">A single view</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#two-view-one-beside-the-other">Two view, one beside the other</a>
+                            <a class='title solo-title menu-text' href="#two-views-one-beside-the-other">Two views, one beside the other</a>
                     </li>
                     <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#two-view-one-above-the-other">Two view, one above the other</a>
+                            <a class='title solo-title menu-text' href="#two-views-one-above-the-other">Two views, one above the other</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#three-views-one-on-the-left-two-stacked-on-the-right">Three views, one on the left, two stacked on the right</a>
@@ -405,7 +405,7 @@ export class TableContent extends ContentControl {
       <!-- Grid column -->
 
       <!-- TOS/Legals footer placeholder -->
-      <div id="HFRootHeader"></div>
+      <div id="GlobalFooter"></div>
 
       <!-- Grid column -->
       <div class="col-md-5 col-lg-4 ml-lg-0">

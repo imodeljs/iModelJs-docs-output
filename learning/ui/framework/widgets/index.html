@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.9.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -142,23 +142,23 @@ An icon and label are specified.
 The widget is to fill the available space in the zone.
 The content of the widget comes from a <strong>TreeWidget</strong> class that subclasses WidgetControl.
 <code>applicationData</code> is defined, which is provided to the WidgetControl constructor via the <code>options</code> parameter.</p>
-<pre class="no-line-numbers"><code class="language-TSX">        centerRight={
-          &lt;Zone defaultState={ZoneState.Minimized} allowsMerging={true}
-            widgets={[
-              &lt;Widget iconSpec=&quot;icon-tree&quot; labelKey=&quot;NineZoneSample:components.tree&quot; fillZone={true}
-                control={TreeWidget}
-                applicationData={{
-                  iModelConnection: NineZoneSampleApp.store.getState().sampleAppState!.currentIModelConnection,
-                  rulesetId: this._rulesetId,
-                }}
-              /&gt;,
-            ]}
-          /&gt;</code></pre>
+<pre class="no-line-numbers"><code class="language-typescriptx">centerRight={
+  &lt;Zone defaultState={ZoneState.Minimized} allowsMerging={true}
+    widgets={[
+      &lt;Widget iconSpec=&quot;icon-tree&quot; labelKey=&quot;NineZoneSample:components.tree&quot; fillZone={true}
+        control={TreeWidget}
+        applicationData={{
+          iModelConnection: NineZoneSampleApp.store.getState().sampleAppState!.currentIModelConnection,
+          rulesetId: this._rulesetId,
+        }}
+      /&gt;,
+    ]}
+  /&gt;</code></pre>
 <h2 class="h-widgetcontrols">WidgetControls<a id="widgetcontrols" class="heading-anchor" href="#widgetcontrols"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>A subclass of <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/ui-framework/widget/widgetcontrol'>WidgetControl</a> may be used to populate a widget. The <code>reactElement</code> property specifies the React component.
 The <code>options</code> parameter in the constructor contains the <code>applicationData</code> from the Widget component.
-The <code>setWidgetState</code> method may called to set the state of the widget.</p>
-<pre class="no-line-numbers"><code class="language-TSX">import * as React from &quot;react&quot;;
+The <code>setWidgetState</code> method may be called to set the state of the widget.</p>
+<pre class="no-line-numbers"><code class="language-typescriptx">import * as React from &quot;react&quot;;
 
 import {
   WidgetControl,
@@ -193,7 +193,7 @@ export class TreeWidget extends WidgetControl {
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>05 December, 2019</span>
+                <span class='date-updated'>10 December, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -287,7 +287,7 @@ export class TreeWidget extends WidgetControl {
       <!-- Grid column -->
 
       <!-- TOS/Legals footer placeholder -->
-      <div id="HFRootHeader"></div>
+      <div id="GlobalFooter"></div>
 
       <!-- Grid column -->
       <div class="col-md-5 col-lg-4 ml-lg-0">

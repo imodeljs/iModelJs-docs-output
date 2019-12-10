@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.9.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -120,51 +120,42 @@
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/learning/frontend/LogoCards.md">Edit this page</a></div>
             <h1 id="logo cards">Logo Cards</h1>
 <p>To provide credit notifications for software or data authors from within an iModel.js application, iModel.js displays its icon in the lower left corner of viewports.</p>
-<p><img src=".././imodeljs_icon.png" alt="iModel.js icon"></p>
-<p>When the cursor moves over the icon, a set of <em>Logo Cards</em> with notices and logos for the content of the view appears. Applications may also add their own Logo Card to display information about their authors, versions, status, etc.</p>
-<p><img src=".././logo-cards.png" alt="logo cards"></p>
-<p>If the user clicks or taps on the iModel.js logo, a modal dialog opens showing the logo cards.</p>
+<p><img src=".././imodeljs_icon.jpg" alt="iModel.js icon"></p>
+<p>When the user clicks or taps on the icon, a set of <em>Logo Cards</em> with notices and logos for the content of the view is displayed. Applications may also add their own Logo Card to display information about their authors, versions, status, etc.</p>
+<p><img src=".././logo-cards.jpg" alt="logo cards"></p>
 <h2 class="h-creating-an-application-logo-card">Creating an Application Logo Card<a id="creating-an-application-logo-card" class="heading-anchor" href="#creating-an-application-logo-card"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Applications can supply their own Logo Card by implementing <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/#applicationlogocard'>IModelApp.applicationLogoCard</a>.</p>
 <p>E.g.:</p>
 <pre class="no-line-numbers"><code class="language-typescript">
 IModelApp.applicationLogoCard = () =&gt; {
-  const div = document.createElement(&quot;div&quot;);
-  const image = document.createElement(&quot;img&quot;);
-  image.src = &quot;MyApp.png&quot;;
-  image.width = 300;
-  div.appendChild(image);
-
-  const attr = document.createElement(&quot;p&quot;);
-  attr.style.textAlign = &quot;center&quot;;
-  attr.style.fontStyle = &quot;italic&quot;;
-  attr.style.fontWeight = &quot;bold&quot;;
-  attr.innerHTML = &quot;My Great Application&quot;;
-  div.appendChild(attr);
-  return IModelApp.makeLogoCard(div, &quot;my-app-name&quot;);
+  return IModelApp.makeLogoCard({ iconSrc: &quot;MyApp.png&quot;, heading: &quot;My Great Application&quot;, notice: &quot;Example Application&lt;br&gt;Version 2.0&quot; });
 };
 </code></pre>
 <h2 class="h-customizing-logo-card-appearance">Customizing Logo Card Appearance<a id="customizing-logo-card-appearance" class="heading-anchor" href="#customizing-logo-card-appearance"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>Applications can customize the appearance of Logo Cards in .css files.</p>
-<p>Logo Cards use the following css classes for the <code>HTMLDivElements</code> it uses:</p>
+<p>Logo Cards use the following css classes for the <code>HTMLElement</code>s it uses:</p>
 <table class="table table-responsive"><tbody><tr>
 <th>class</th>
-<th>div usage</th>
+<th>usage</th>
 </tr>
 <tr>
-<td><code>logo-cards-div</code></td>
-<td>the entire group of Logo Cards</td>
+<td><code>logo-cards</code></td>
+<td>Div to position the logo dialog in the center of the screen</td>
 </tr>
 <tr>
-<td><code>logo-card</code></td>
-<td>one for each Logo Card</td>
+<td><code>logo-card h2</code></td>
+<td>The style for the heading on each card</td>
 </tr>
 <tr>
-<td><code>logo-cards-container</code></td>
-<td>the container for sliding cards up from the bottom</td>
+<td><code>logo-card-message p</code></td>
+<td>The style for the notice on each card</td>
+</tr>
+<tr>
+<td><code>logo-card-logo</code></td>
+<td>The style for the logo image on each card</td>
 </tr>
 </tbody></table><h2 class="h-customizing-the-imodeljs-icon-in-viewports">Customizing the iModel.js icon in Viewports<a id="customizing-the-imodeljs-icon-in-viewports" class="heading-anchor" href="#customizing-the-imodeljs-icon-in-viewports"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>By default the iModel.js icon is displayed as an <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement" target="_blank">HTMLImageElement</a> in the lower left corner of all <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport'>ScreenViewport</a>s. The logo uses the <code>imodeljs-logo</code> css selector class, so its appearance may be customized via application-supplied css.</p>
+<p>By default the iModel.js icon is displayed as an <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement" target="_blank">HTMLImageElement</a> in the lower left corner of all <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport'>ScreenViewport</a>s. The logo uses the <code>imodeljs-icon</code> css selector class, so its appearance may be customized via application-supplied css.</p>
 <p>If you wish to customize the logo in <em>just a single viewport</em>, it may be accessed by the member <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/screenviewport/logo'>ScreenViewport.logo</a>, and modified with inline styling. e.g.:</p>
 <pre class="no-line-numbers"><code class="language-typescript">  vp.logo.style.width = &quot;40px&quot;;</code></pre>
 <p>Sometimes it may be desirable to hide the logo in specialized viewports, particularly when multiple viewports are visible. That can be accomplished via:</p>
@@ -172,12 +163,12 @@ IModelApp.applicationLogoCard = () =&gt; {
 <p>Please keep in mind:</p>
 <ul>
 <li>The icon may not be replaced with anything other than the iModel.js logo. Place your logo on a Logo Card.</li>
-<li>The icon may be positioned anywhere in the view where it is least obtrusive, but the opacity should not be set below 50% and its size should not be smaller than 24 pixels.</li>
+<li>The icon may be positioned anywhere in the view where it is least obtrusive, but the opacity should not be set below 40% and its size should not be smaller than 24 pixels.</li>
 <li>The icon <strong>may not</strong> be removed entirely in views that may show maps, terrain, point clouds, or other copyrighted material, since it is required to show the copyright attribution of data suppliers.</li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>05 December, 2019</span>
+                <span class='date-updated'>10 December, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -268,7 +259,7 @@ IModelApp.applicationLogoCard = () =&gt; {
       <!-- Grid column -->
 
       <!-- TOS/Legals footer placeholder -->
-      <div id="HFRootHeader"></div>
+      <div id="GlobalFooter"></div>
 
       <!-- Grid column -->
       <div class="col-md-5 col-lg-4 ml-lg-0">

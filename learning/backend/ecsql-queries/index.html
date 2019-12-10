@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.9.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -163,13 +163,13 @@
       where
         partition.codevalue=:partitionName and partition.parent.id = parent.ecinstanceid;
     `, (stmt: ECSqlStatement) =&gt; {
-        stmt.bindValue(&quot;parentName&quot;, &quot;Subject1&quot;);
-        stmt.bindValue(&quot;partitionName&quot;, &quot;Physical&quot;);
-        const ids: Id64Set = new Set&lt;Id64String&gt;();
-        while (stmt.step() === DbResult.BE_SQLITE_ROW)
-          ids.add(stmt.getValue(0).getId());
-        return ids;
-      });
+      stmt.bindValue(&quot;parentName&quot;, &quot;Subject1&quot;);
+      stmt.bindValue(&quot;partitionName&quot;, &quot;Physical&quot;);
+      const ids: Id64Set = new Set&lt;Id64String&gt;();
+      while (stmt.step() === DbResult.BE_SQLITE_ROW)
+        ids.add(stmt.getValue(0).getId());
+      return ids;
+    });
 
     assert.isNotEmpty(partitionIds);
     assert.equal(partitionIds.size, 1);
@@ -179,7 +179,7 @@
 <p>As an alternative, you can use the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/queryentityids'>IModelDb.queryEntityIds</a> convenience method for simple cases.</p>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>05 December, 2019</span>
+                <span class='date-updated'>10 December, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -273,7 +273,7 @@
       <!-- Grid column -->
 
       <!-- TOS/Legals footer placeholder -->
-      <div id="HFRootHeader"></div>
+      <div id="GlobalFooter"></div>
 
       <!-- Grid column -->
       <div class="col-md-5 col-lg-4 ml-lg-0">

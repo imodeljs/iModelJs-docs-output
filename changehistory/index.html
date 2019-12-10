@@ -9,10 +9,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>1.8.0 Change Notes - iModel.js</title>
+    <title>1.9.0 Change Notes - iModel.js</title>
     <meta name="BeMetalsmithVersion" content="v3.3.6">
-    <meta name="og:title" content="1.8.0 Change Notes - iModel.js">
-    <meta name="twitter:title" content="1.8.0 Change Notes - iModel.js">
+    <meta name="og:title" content="1.9.0 Change Notes - iModel.js">
+    <meta name="twitter:title" content="1.9.0 Change Notes - iModel.js">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="https://imodeljs.github.io/iModelJs-docs-output//styles/bundle.css">
@@ -77,7 +77,7 @@
                     </ul>
                     <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
                         <ul class="navbar-nav mb-0" id="doc-site-tabs">
-                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.8.0</a></li>
+                                <li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//bis">BIS</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//reference">API Reference</a></li><li class="nav-item change-history-tab active"><a class="nav-link" href="https://imodeljs.github.io/iModelJs-docs-output//changehistory">v1.9.0</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -100,6 +100,8 @@
     <hr>
     <h3 id="versions">Versions</h3>
     <ul>
+    <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/1.9.0" class="table-of-contents-link">1.9.0</a></p>
+    </li>
     <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/1.8.0" class="table-of-contents-link">1.8.0</a></p>
     </li>
     <li><p><a href="https://imodeljs.github.io/iModelJs-docs-output//./changehistory/1.7.0" class="table-of-contents-link">1.7.0</a></p>
@@ -152,78 +154,18 @@
         <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'>Change History</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/changehistory/index.md">Edit this page</a></div>
-            <h1 id="1.8.0 change notes">1.8.0 Change Notes</h1>
-<h2 class="h-node-12-support">Node 12 Support<a id="node-12-support" class="heading-anchor" href="#node-12-support"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>iModel.js now officially supports Node 12 starting with LTS version of 12.13.0.  Node 12 support is in addition to Node 10, not a replacement.</p>
-<h2 class="h-logo-cards">Logo Cards<a id="logo-cards" class="heading-anchor" href="#logo-cards"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>iModel.js now displays an icon in the lower left corner of viewports to provide credit attribution for software or data authors.</p>
-<p><img src="../learning/frontend/imodeljs_icon.png" alt="iModel.js icon" title="Example showing iModel.js icon"></p>
-<p>When the cursor moves over the icon, a set of <em>Logo Cards</em> with notices and logos for the content of the view appears. Applications may also add their own Logo Card to display information about their authors, versions, status, etc.</p>
-<p><img src="../learning/frontend/logo-cards.png" alt="logo cards" title="Example logo cards"></p>
-<p>If the user clicks or taps on the iModel.js icon, a modal dialog opens showing the logo cards.</p>
-<p>See <a href='https://imodeljs.github.io/iModelJs-docs-output//./learning/frontend/logocards'>Logo Cards</a> for more information.</p>
-<h2 class="h-view-independent-geometry">View-independent Geometry<a id="view-independent-geometry" class="heading-anchor" href="#view-independent-geometry"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Spatial elements now support &quot;view-independent&quot; geometry - that is, geometry that is always displayed facing toward the viewer, regardless of the orientation of the view. Such geometry is considered by the display system to exist at a single point. As the view orientation changes, the geometry rotates about that point. If the point falls outside of the view frustum, the geometry stops drawing as well.</p>
-<p>Use <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-common/geometry/geometrystreambuilder/isviewindependent'>GeometryStreamBuilder.isViewIndependent</a> to configure this behavior for an element. The element&apos;s placement origin will be used as the rotation point.</p>
-<p><img src="./assets/view_independent.png" alt="view independent geometry" title="The same marker viewed from two different angles"></p>
-<p align="center">The same marker viewed from two different angles.</p>
-
-<h2 class="h-viewing-tool-improvements">Viewing Tool Improvements<a id="viewing-tool-improvements" class="heading-anchor" href="#viewing-tool-improvements"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Added new view cursors for rotate, look, walk, and zoom view tools.</p>
-<p>Viewing tools that require identification of an object to define the point the tool will operate about now provide better feedback for the current cursor location.</p>
+            <h1 id="1.9.0 change notes">1.9.0 Change Notes</h1>
+<h2 class="h-upgrade-to-electron-615">Upgrade to Electron 6.1.5<a id="upgrade-to-electron-615" class="heading-anchor" href="#upgrade-to-electron-615"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ul>
-<li>The 3d rotate view tool now shows a preview of the point it will rotate about.</li>
-<li>Pan, zoom, and scroll view tools now show a preview of the depth point used when the camera is on.</li>
+<li>iModel.js has moved up to Electron version 6.1.5 from the previous version of 4.1.0.</li>
 </ul>
-<p><img src="./assets/depth_point_preview.png" alt="depth point preview" title="Rotate point preview: 1) Cursor over sky 2) Cursor over element 3) Cursor over terrain"></p>
-<p align="center">Rotate view tool showing rotate point used for various cursor locations</p>
-
-<p>1) Current cursor location doesn&apos;t identify anything. Uses default rotate point, which may not be meaningful.
-2) Current cursor location identifies a valid depth point on an element.
-3) Current cursor location identifies a valid depth point on terrain or background map.</p>
-<h2 class="h-removal-of-entityprops-string-indexer">Removal of <code>EntityProps</code> String Indexer<a id="removal-of-entityprops-string-indexer" class="heading-anchor" href="#removal-of-entityprops-string-indexer"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>In prior releases, the <code>EntityProps</code> interface implemented by most types that represent data inside an iModel exposed an <a href="https://basarat.gitbooks.io/typescript/docs/types/index-signatures.html" target="_blank">indexer</a> declared as follows:</p>
-<pre class="no-line-numbers"><code class="language-typescript">export interface EntityProps {
-  [propName: string]: any;
-}</code></pre>
-<p>The dubious motivation was to enable access to arbitrary properties known to exist on some sub-type of <code>EntityProps</code> without requiring a cast. This was problematic for a number of reasons:</p>
+<h2 class="h-added-tween-library">Added Tween library<a id="added-tween-library" class="heading-anchor" href="#added-tween-library"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <ul>
-<li>If the object was <em>not</em> in fact of the expected sub-type, the property might not exist.</li>
-<li>Even if the expected property did in fact exist, the compiler could not catch typos in the property name.</li>
-<li>It disabled <em>all</em> type-checking on <em>all</em> properties of <em>all</em> sub-types of <code>EntityProps</code> - even those explicitly defined.</li>
-</ul>
-<p>That final problem defeats the entire purpose of using TypeScript instead of JavaScript - it essentially forces the compiler to accept any expression <code>myEntity.anythingAtAll</code> and to consider it to have any type at all.</p>
-<p>To prevent bugs resulting from this complete lack of type-safety, the indexer has been removed (and as a result, several existing bugs were exposed). The onus is now on the user of <code>EntityProps</code> to accomodate the type checker. Required changes may involve, in order of preference:</p>
-<ul>
-<li>Using explicit types such that no casts are required; or</li>
-<li>Casting to a known type that defines the properties of interest (e.g., <code>myEntity as ElementProps</code>); or</li>
-<li>Casting to <code>any</code> to bypass the type system entirely.</li>
-</ul>
-<h2 class="h-geometry">Geometry<a id="geometry" class="heading-anchor" href="#geometry"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>PolyfaceQuery methods to support edge visibility markup.</p>
-<ul>
-<li>PolyfaceQuery.setSingleEdgeVisibility (polyface, facetIndex, vertexIndex, value)<ul>
-<li>within indicated facet, mark visibility of edge that starts with indicated vertexIndex</li>
-</ul>
-</li>
-<li>PolyfaceQuery.markPairedEdgesInvisible (polyface, sharpEdgeAngle?)<ul>
-<li>Mark all unpaired edges visible</li>
-<li>Also marked paired edges with large angle across the edge visible.</li>
-<li>mark all other paired edges invisible</li>
-</ul>
-</li>
-<li>PolyfaceQuery.computeFacetUnitNormal (visitor, facetIndex, result?): Vector3d | undefined<ul>
-<li>move the visitor to the indicated facet and compute a unit normal with <code>PolygonOps.unitNormal</code></li>
-</ul>
-</li>
-<li>PolyfaceQuery.markAllEdgeVisibility (mesh, value : boolean)<ul>
-<li>mark all edges of all facets visible (true) or invisible (false)</li>
-</ul>
-</li>
+<li>iModel.js now incorporates (a copy of) the tweening library from <a href="https://github.com/tweenjs/tween.js" target="_blank">tween.js</a>.</li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>05 December, 2019</span>
+                <span class='date-updated'>10 December, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -272,22 +214,10 @@
     <div id="overview-container" class="clusterize-scroll">
       <ul id='nav' class='right-nav nav flex-column clusterize-content'>
               <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#node-12-support">Node 12 Support</a>
+            <a class='title solo-title menu-text' href="#upgrade-to-electron-615">Upgrade to Electron 6.1.5</a>
     </li>
        <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#logo-cards">Logo Cards</a>
-    </li>
-       <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#view-independent-geometry">View-independent Geometry</a>
-    </li>
-       <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#viewing-tool-improvements">Viewing Tool Improvements</a>
-    </li>
-       <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#removal-of-entityprops-string-indexer">Removal of EntityProps String Indexer</a>
-    </li>
-       <li class='nav-item item '>
-            <a class='title solo-title menu-text' href="#geometry">Geometry</a>
+            <a class='title solo-title menu-text' href="#added-tween-library">Added Tween library</a>
     </li>
  
       </ul>
@@ -323,7 +253,7 @@
       <!-- Grid column -->
 
       <!-- TOS/Legals footer placeholder -->
-      <div id="HFRootHeader"></div>
+      <div id="GlobalFooter"></div>
 
       <!-- Grid column -->
       <div class="col-md-5 col-lg-4 ml-lg-0">
