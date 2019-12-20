@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>reverseIndices - geometry-core</title>
-    <meta name="BeMetalsmithVersion" content="v3.3.6">
+    <meta name="BeMetalsmithVersion" content="v3.3.10">
     <meta name="og:title" content="reverseIndices - geometry-core">
     <meta name="twitter:title" content="reverseIndices - geometry-core">
     <meta name="description" content="">
@@ -285,12 +285,15 @@
         <article id="main" class="main-content">
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//reference/">API Reference</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/">geometry-core</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/polyface/">Polyface</a> > <a href="https://imodeljs.github.io/iModelJs-docs-output//reference/geometry-core/polyface/polyfacedata/">PolyfaceData</a> > reverseIndices</div>
             
-            <h2 class="h-reverseindices">reverseIndices <span class="badge badge-pill badge-primary badge-method">Method</span><span class="badge badge-pill badge-primary badge-static">Static</span><a id="reverseindices" class="heading-anchor" href="#reverseindices"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Reverse data in facet indexing arrays.</p>
+            <h2 class="h-reverseindices">reverseIndices <span class="badge badge-pill badge-primary badge-method">Method</span><a id="reverseindices" class="heading-anchor" href="#reverseindices"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>reverse indices facet-by-facet, with the given facetStartIndex array delimiting faces.</p>
 <ul>
-<li>parameterized over type T so non-number data -- e.g. boolean visibility flags -- can be reversed.</li>
+<li>facetStartIndex[0] == 0 always -- start of facet zero.</li>
+<li>facet k has indices from facetStartIndex[k] &lt;= i &lt; facetStartIndex[k+1]</li>
+<li>hence for &quot;internal&quot; k, facetStartIndex[k] is both the upper limit of facet k-1 and the start of facet k.
+*</li>
 </ul>
-<p><span class="method-name">reverseIndices</span><span class="type-parameter-bracket">&lt;</span><span class="type-parameters">T</span><span class="type-parameter-bracket">&gt;</span><span class="method-parenthesis">(</span><span class="method-parameters">facetStartIndex: number[], indices: T[] | undefined, preserveStart: boolean</span><span class="method-parenthesis">):</span><span class="method-output"> boolean</span></p>
+<p><span class="method-name">reverseIndices</span><span class="method-parenthesis">(</span><span class="method-parameters">facetStartIndex?: number[]</span><span class="method-parenthesis">):</span><span class="method-output"> void</span></p>
 <table class="table table-responsive"><tbody><tr>
 <th>Parameter</th>
 <th>Type</th>
@@ -301,23 +304,13 @@
 <td><span class="parameter-type">number[]</span></td>
 <td>&#xA0;</td>
 </tr>
-<tr>
-<td class="h-indices"><span class="parameter-name">indices</span><a id="indices" class="heading-anchor" href="#indices"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="parameter-type">T[] | undefined</span></td>
-<td>&#xA0;</td>
-</tr>
-<tr>
-<td class="h-preservestart"><span class="parameter-name">preserveStart</span><a id="preservestart" class="heading-anchor" href="#preservestart"><span><i class="fa fa-link fa-rotate-90"></i></span></a></td>
-<td><span class="parameter-type">boolean</span></td>
-<td>&#xA0;</td>
-</tr>
 </tbody></table><h3 class="h-defined-in">Defined in<a id="defined-in" class="heading-anchor" href="#defined-in"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
 <ul>
 <li><span class="defined-in"><a href="https://github.com/imodeljs/imodeljs/tree/master/core/geometry/src/polyface/PolyfaceData.ts">polyface/PolyfaceData.ts</a></span></li>
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 December, 2019</span>
+                <span class='date-updated'>19 December, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -373,12 +366,6 @@
             <ul id="inner-nav-reverseindices" class='inner-nav'>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#facetstartindex">facetStartIndex</a>
-                    </li>
-                    <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#indices">indices</a>
-                    </li>
-                    <li class='nav-item item '>
-                            <a class='title solo-title menu-text' href="#preservestart">preserveStart</a>
                     </li>
                     <li class='nav-item item '>
                             <a class='title solo-title menu-text' href="#defined-in">Defined in</a>

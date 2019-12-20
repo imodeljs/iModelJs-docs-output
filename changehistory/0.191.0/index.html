@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>0.191.0 Change Notes - iModel.js</title>
-    <meta name="BeMetalsmithVersion" content="v3.3.6">
+    <meta name="BeMetalsmithVersion" content="v3.3.10">
     <meta name="og:title" content="0.191.0 Change Notes - iModel.js">
     <meta name="twitter:title" content="0.191.0 Change Notes - iModel.js">
     <meta name="description" content="">
@@ -155,10 +155,10 @@
             <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="https://imodeljs.github.io/iModelJs-docs-output//changehistory/">Change History</a> > 0.191.0</div>
             <div class="edit-link"><a href="https://github.com/imodeljs/imodeljs/tree/master/docs/changehistory/0.191.0.md">Edit this page</a></div>
             <h1 id="0.191.0 change notes">0.191.0 Change Notes</h1>
-<h2 class="h-changes-to-imodelappstartup">Changes to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/startup'>IModelApp.startup</a><a id="changes-to-imodelappstartup" class="heading-anchor" href="#changes-to-imodelappstartup"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h2 class="h-changes-to-imodelappstartup">Changes to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/#startup'>IModelApp.startup</a><a id="changes-to-imodelappstartup" class="heading-anchor" href="#changes-to-imodelappstartup"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>In previous versions of the <code>@bentley/imodeljs-frontend</code> package, the recommendation was to create a subclass of <code>IModelApp</code> to customize frontend behavior.</p>
 <p>This proved problematic, since all of the members of <code>IModelApp</code> are static, and <code>IModelApp</code> itself is intended to be a singleton. This works at cross-purposes with JavaScript subclassing with static members, since each subclass creates a separate object (you can either have subclassing or a singleton, not both.)</p>
-<p>To resolve this issue, it is now <strong>illegal</strong> to subclass from IModelApp, and instead all options for customization are supplied by the new <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelappoptions'>IModelAppOptions</a> argument to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/startup'>IModelApp.startup</a>.</p>
+<p>To resolve this issue, it is now <strong>illegal</strong> to subclass from IModelApp, and instead all options for customization are supplied by the new <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelappoptions'>IModelAppOptions</a> argument to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/#startup'>IModelApp.startup</a>.</p>
 <p>In addition, the static methods:</p>
 <ul>
 <li><code>onStartup</code></li>
@@ -166,7 +166,7 @@
 <li><code>supplyI18NOptions</code></li>
 </ul>
 <p>on <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp'>IModelApp</a> have been removed, since their only purpose was to allow customization via subclasses. The latter two are replaced by members of the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelappoptions'>IModelAppOptions</a> argument.</p>
-<p>The <code>onStartup</code> method was previously called on the subclass inside <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/startup'>IModelApp.startup</a>. A typical pattern was:</p>
+<p>The <code>onStartup</code> method was previously called on the subclass inside <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/#startup'>IModelApp.startup</a>. A typical pattern was:</p>
 <pre class="no-line-numbers"><code class="language-typescript">  class MyApp extends IModelApp {
     public static appData: MyAppData;
     protected static onStartup() {
@@ -203,14 +203,14 @@ All uses of the following <em>standalone</em> iModel functions must be migrated:
 </ul>
 <p>Change history is essential for editing scenarios, so should use iModels managed by iModelHub. See:</p>
 <ul>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/open'>IModelDb.open</a></li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection/open'>IModelConnection.open</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/#open'>IModelDb.open</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection/#open'>IModelConnection.open</a></li>
 </ul>
 <p>Archival scenarios can use <em>snapshot</em> iModels. Once created, a <em>snapshot</em> iModel is read-only. See:</p>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/createsnapshot'>IModelDb.createSnapshot</a></li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/opensnapshot'>IModelDb.openSnapshot</a></li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection/opensnapshot'>IModelConnection.openSnapshot</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/#opensnapshot'>IModelDb.openSnapshot</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection/#opensnapshot'>IModelConnection.openSnapshot</a></li>
 </ul>
 <h2 class="h-node-10153">Node 10.15.3<a id="node-10153" class="heading-anchor" href="#node-10153"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The iModel.js backend now requires <a href="https://nodejs.org" target="_blank">Node version 10.15.3</a> or later.</p>
@@ -232,7 +232,7 @@ All uses of the following <em>standalone</em> iModel functions must be migrated:
 </ul>
 </li>
 <li>Frontend methods that require authorization do not require the accessToken to be passed in anymore -<ul>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection/open'>IModelConnection.open</a></li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection/#open'>IModelConnection.open</a></li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection/#close'>IModelConnection.close</a></li>
 </ul>
 </li>
@@ -293,7 +293,7 @@ All uses of the following <em>standalone</em> iModel functions must be migrated:
 <li>This package has a dependency on express, so the first constructor argument to <code>IModelJsExpressServer</code> has been removed.</li>
 </ul>
 </li>
-<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection/opensnapshot'>IModelConnection.openSnapshot</a> throws an exception if <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/startup'>IModelApp.startup</a> has not been called.</li>
+<li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelconnection/imodelconnection/#opensnapshot'>IModelConnection.openSnapshot</a> throws an exception if <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp/#startup'>IModelApp.startup</a> has not been called.</li>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/#onopened'>IModelDb.onOpened</a> takes a callback with a different signature -  <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-clients/authentication/authorizedclientrequestcontext'>AuthorizedClientRequestContext</a> is now passed as the first argument.</li>
 <li>ImsActiveSecureTokenClient takes <code>ImsCredentials</code> as a single argument instead of separate email and password fields.</li>
 <li>Deleted agent-test-app from the repository.</li>
@@ -319,7 +319,7 @@ All uses of the following <em>standalone</em> iModel functions must be migrated:
 </ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 December, 2019</span>
+                <span class='date-updated'>19 December, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>

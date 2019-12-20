@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>1.9.0 Change Notes - iModel.js</title>
-    <meta name="BeMetalsmithVersion" content="v3.3.6">
+    <meta name="BeMetalsmithVersion" content="v3.3.10">
     <meta name="og:title" content="1.9.0 Change Notes - iModel.js">
     <meta name="twitter:title" content="1.9.0 Change Notes - iModel.js">
     <meta name="description" content="">
@@ -163,9 +163,89 @@
 <ul>
 <li>iModel.js now incorporates (a copy of) the tweening library from <a href="https://github.com/tweenjs/tween.js" target="_blank">tween.js</a>.</li>
 </ul>
+<h2 class="h-high-dpi-display-support">High-DPI display support<a id="high-dpi-display-support" class="heading-anchor" href="#high-dpi-display-support"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The renderer now takes into account the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio" target="_blank">device pixel ratio</a> (&quot;DPI&quot;) of the display by adjusting <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport'>Viewport</a> resolution to match screen resolution, including any scaling applied by the operating system or browser. This corrects issues like blurriness on high-DPI retina displays. This behavior is enabled by default; to disable it, set RenderSystem.Options.dpiAwareViewports to <code>false</code> when initializing the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/imodelapp/imodelapp'>IModelApp</a>.</p>
+<p>All APIs continue to specify pixel-valued <em>inputs</em> as CSS pixels. However, APIs that read and <strong>return</strong> pixel values now do so in <strong>device</strong> pixels. The following new APIs can help when dealing with this discrepancy:</p>
+<ul>
+<li>queryDevicePixelRatio to obtain the device pixel ratio; and</li>
+<li>cssPixelsToDevicePixels to convert from CSS pixels to device pixels.</li>
+</ul>
+<p>The primary affected API is <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-frontend/views/viewport/readpixels'>Viewport.readPixels</a>. Below is an example of how to correctly account for DPI scale when using that function:</p>
+<pre class="no-line-numbers"><code class="language-typescript">/** Returns true if the specified element was drawn inside the specified region of the viewport. */
+function isElementDrawnInRect(vp: Viewport, rect: ViewRect, elementId: Id64String): boolean {
+  let elementFound = false;
+  vp.readPixels(rect, Pixel.Selector.Feature, (pixels) =&gt; {
+  if (undefined === pixels)
+    return;
+
+  // Input rect is specified in CSS pixels - convert to device pixels.
+  const deviceRect = new ViewRect(cssPixelsToDevicePixels(rect.left), cssPixelsToDevicePixels(rect.top),
+    cssPixelsToDevicePixels(rect.right), cssPixelsToDevicePixels(rect.bottom));
+
+  for (let x = deviceRect.left; x &lt; deviceRect.right; x++) {
+    for (let y = deviceRect.top; y &lt; deviceRect.bottom; y++) {
+    const pixel = pixels.getPixel(x, y);
+    if (undefined !== pixel.feature &amp;&amp; pixel.feature.elementId === elementId) {
+      elementFound = true;
+      return;
+    }
+  });
+
+  return elementFound;
+}</code></pre>
+<h2 class="h-geometry">Geometry<a id="geometry" class="heading-anchor" href="#geometry"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<h3 class="h-ellipsoid-and-ellipsoidpatch-classes"><code>Ellipsoid</code> and <code>EllipsoidPatch</code> classes<a id="ellipsoid-and-ellipsoidpatch-classes" class="heading-anchor" href="#ellipsoid-and-ellipsoidpatch-classes"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<ul>
+<li>Range, ray intersection, and project-point-to-surface for Ellipsoid with patch limits</li>
+<li><code>LongitudeLatitudeNumber</code> class to carry position and altitude</li>
+</ul>
+<h3 class="h-miscellaneous">Miscellaneous<a id="miscellaneous" class="heading-anchor" href="#miscellaneous"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h3>
+<ul>
+<li><code>AngleSweep</code> class options for considering period shifts, added as optional args in<ul>
+<li>static <code>AngleSweep.isRadiansInStartEnd(radians: number, radians0: number, radians1: number, allowPeriodShift?: boolean): boolean;</code></li>
+<li>instance method <code>mySweep.isRadiansInSweep</code> optional arg for periodic shift.</li>
+</ul>
+</li>
+<li><code>Angle</code> instance property <code>isNorthOrSouthPole</code></li>
+<li>static <code>NumberArray.createArrayWithMaxStepSize(low: number, high: number, step: number): number[];</code><ul>
+<li>new method, returns array of numbers with (max) step size between low and high</li>
+</ul>
+</li>
+<li><code>Plane3dByOriginAndVectors</code> instance methods for extracting normalized directions<ul>
+<li>instance method <code>myPlane.normalizeInPlace (): boolean</code> to normalize the vectors.</li>
+<li>instance method <code>myPlane.toRigidFrame</code> to extract local normalized frame</li>
+<li>instance method <code>myPlane.unitNormal</code> to extract unit normal</li>
+<li>instance method <code>myPlane.unitNormalRay</code> to extract perpendicular ray<ul>
+<li>apply <code>Vector3d</code> instance method <code>normalizeInPlace()</code> to both <code>vectorU</code> and <code>vectorV</code> of the plane</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>Range3d</code> class methods<ul>
+<li>instance method <code>myRange.extendSingleAxis(a: number, axisIndex: AxisIndex): void;</code><ul>
+<li>branch to one of <code>extendXOnly</code>, <code>extendYOnly</code>, <code>extendZOnly</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>Ray3d</code> class methods<ul>
+<li>instance method <code>myRay.cloneInverseTransformed(transform: Transform): Ray3d | undefined;</code><ul>
+<li>multiply by inverse of a transform and return the modified ray</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>Transform</code> class methods<ul>
+<li>static `createRigidFromOriginAndColumns(origin: XYZ | undefined, vectorX: Vector3d, vectorY: Vector3d, axisOrder: AxisOrder, result?: Transform): Transform | undefined;<ul>
+<li>Careful logic to avoid object allocation when reusing result.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 December, 2019</span>
+                <span class='date-updated'>19 December, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
@@ -218,6 +298,23 @@
     </li>
        <li class='nav-item item '>
             <a class='title solo-title menu-text' href="#added-tween-library">Added Tween library</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#high-dpi-display-support">High-DPI display support</a>
+    </li>
+       <li class='nav-item item '>
+            <a data-target="#inner-nav-geometry" class='title' href="#geometry"/>
+            <b class='dropdown-menu-title menu-text'>Geometry</b>
+            <i class='nav-list-dropdown icon'></i>
+            </a>
+            <ul id="inner-nav-geometry" class='inner-nav'>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#ellipsoid-and-ellipsoidpatch-classes">Ellipsoid and EllipsoidPatch classes</a>
+                    </li>
+                    <li class='nav-item item '>
+                            <a class='title solo-title menu-text' href="#miscellaneous">Miscellaneous</a>
+                    </li>
+            </ul>
     </li>
  
       </ul>

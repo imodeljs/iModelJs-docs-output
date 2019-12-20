@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>1.0.0 Change Notes - iModel.js</title>
-    <meta name="BeMetalsmithVersion" content="v3.3.6">
+    <meta name="BeMetalsmithVersion" content="v3.3.10">
     <meta name="og:title" content="1.0.0 Change Notes - iModel.js">
     <meta name="twitter:title" content="1.0.0 Change Notes - iModel.js">
     <meta name="description" content="">
@@ -163,15 +163,15 @@
 <h2 class="h-refinements-to-snapshot-imodel-api">Refinements to <em>snapshot</em> iModel API<a id="refinements-to-snapshot-imodel-api" class="heading-anchor" href="#refinements-to-snapshot-imodel-api"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
 <p>The <code>IModelDb.createSnapshotFromSeed</code> <strong>static</strong> method has been replaced by the <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/createsnapshot'>IModelDb.createSnapshot</a> <strong>instance</strong> method.
 The reason is to make sure that the program/user had permission to open the iModel before making the <em>snapshot</em> copy.
-A related change is that <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/opensnapshot'>IModelDb.openSnapshot</a> will no longer open briefcases.
-Either <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/open'>IModelDb.open</a> should be called to open the iModel or <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/createsnapshot'>IModelDb.createSnapshot</a> should have been called to make the <em>snapshot</em> ahead of time.</p>
+A related change is that <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/#opensnapshot'>IModelDb.openSnapshot</a> will no longer open briefcases.
+Either <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/#open'>IModelDb.open</a> should be called to open the iModel or <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/createsnapshot'>IModelDb.createSnapshot</a> should have been called to make the <em>snapshot</em> ahead of time.</p>
 <p>Here is an example of how to adjust your source code:</p>
 <pre class="no-line-numbers"><code class="language-typescript">  const seedDb: IModelDb = IModelDb.openSnapshot(seedFileName); // or IModelDb.open
   const snapshotDb: IModelDb = seedDb.createSnapshot(snapshotFileName);
   seedDb.closeSnapshot(); // or IModelDb.close
   return snapshotDb;</code></pre>
 <h2 class="h-changes-to-imodeldbopen-api">Changes to IModelDb.open API<a id="changes-to-imodeldbopen-api" class="heading-anchor" href="#changes-to-imodeldbopen-api"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
-<p>Removed the following parameters to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/open'>IModelDb.open</a> to simplify the implementation:</p>
+<p>Removed the following parameters to <a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/imodeldb/#open'>IModelDb.open</a> to simplify the implementation:</p>
 <ul>
 <li><a href='https://imodeljs.github.io/iModelJs-docs-output//./reference/imodeljs-backend/imodels/openparams'>OpenParams</a>.pullOnly(): Use OpenParams.fixedVersion() or OpenParams.pullAndPush()</li>
 <li>AccessMode: Using OpenParams.fixedVersion() always causes the briefcase to be shared, and using OpenParams.pullAndPush() always causes the briefcase to be exclusive.</li>
@@ -232,7 +232,7 @@ const agentClient = new OidcAgentClient(agentConfiguration);</code></pre>
     }</code></pre>
 
             <p class='last-updated'>Last Updated:
-                <span class='date-updated'>10 December, 2019</span>
+                <span class='date-updated'>19 December, 2019</span>
             </p>
             <div id="imodeljs-github-comments">
             </div>
