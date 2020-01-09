@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <script>
+      var redirect = "https://www.imodeljs.org" + location.pathname.substring(location.pathname.indexOf('/', 1)) + location.search + location.hash;
+      window.location = redirect;
+    </script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>iModel Transformation and Data Exchange - iModel.js</title>
+    <meta name="BeMetalsmithVersion" content="v3.3.10-7">
+    <meta name="og:title" content="iModel Transformation and Data Exchange - iModel.js">
+    <meta name="twitter:title" content="iModel Transformation and Data Exchange - iModel.js">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/builds/4338/Docs_Output/styles/bundle.css">
+
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">  
+        <link rel='shortcut icon' type='image/x-icon' href='http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/builds/4338/Docs_Output/landing-page/assets/imodeljs_favicon_16.png' /> 
+        <meta property="og:description" content="Create Immersive Connections with your Infrastructure Digital Twin."><meta property="og:url" content="imodeljs.org"><meta name="twitter:card" content="summary_large_image">
+        <meta property="og:image" content="http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/builds/4338/Docs_Output/landing-page/assets/twitter-share.png">
+        <meta />
+</head>
+
+<body data-site-root=http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/builds/4338/Docs_Output/ class='layout-index '>
+    <span id="contentLoader">
+        <p>Woah! This page has a great deal of content... Give us a second to load it.</p>
+    </span>
+    <span id="contentLoaderBackground"></span>
+    <div id="flex-wrapper">
+
+
+
+        <header id="main-header">
+            <div class='nav-header-container'>
+                <nav class="navbar nav-main-header navbar-expand-md fixed-top navbar-light pb-0">
+                    <a href="http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/builds/4338/Docs_Output/" class="navbar-brand">
+                            <img id="site-logo" class="site-logo" src="http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/builds/4338/Docs_Output/landing-page/assets/imodeljs-logo.svg" /> 
+                            <img id="site-logo-small" class="site-logo-small" src="http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/builds/4338/Docs_Output/landing-page/assets/imodeljs-icon.svg" style="display:none;"/> 
+                    </a>
+                    <button class="navbar-toggler no-user-select mr-auto" type="button" data-toggle="collapse" data-target="#navbar5">
+                        <span class="navbar-toggler-header"></span>
+                    </button>
+                    <ul class="navbar-nav ml-auto pr-0 nav-search">
+                        <span class='search-bar'>
+                          <li>
+                            <div id='search-container'>
+                            </div>
+                          </li>
+                          <script>
+                            (function() {
+                              var cx = '018053174497532353467:v_gnrjjlqwc';
+                              var gcse = document.createElement('script');
+                              gcse.type = 'text/javascript';
+                              gcse.async = true;
+                              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                              var s = document.getElementsByTagName('script')[0];
+                              s.parentNode.insertBefore(gcse, s);
+                            })();
+                          </script>
+                          <gcse:searchresults-only gname="sitesearch" resultSetSize="7"></gcse:search>
+                        </span>
+                    </ul>
+                    <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
+                        <ul class="navbar-nav mb-0" id="doc-site-tabs">
+                                <li class="nav-item "><a class="nav-link" href="http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/builds/4338/Docs_Output/getting-started">Getting Started</a></li><li class="nav-item "><a class="nav-link" href="http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/builds/4338/Docs_Output/bis">BIS</a></li><li class="nav-item active"><a class="nav-link" href="http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/builds/4338/Docs_Output/learning">Learning</a></li><li class="nav-item "><a class="nav-link" href="http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/builds/4338/Docs_Output/reference">API Reference</a></li><li class="nav-item change-history-tab "><a class="nav-link" href="http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/builds/4338/Docs_Output/changehistory">v1.10.0</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+<div id='main-wrapper'>
+    <nav id='sidebar'>
+        <div id='table-of-contents' class="custom-scrollbar">
+            <div id="dismiss">
+                <i id="dismiss-arrow" class="icon icon-chevron-left no-user-select"></i>
+            </div>
+            <hr id="dismiss-hr" class='sm-only'>
+            <ul id='main-navigation-list'>
+                <html><head></head><body><h3 id="the imodel.js library"><a href="http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/learning/" class="table-of-contents-link">The iModel.js Library</a></h3>
+    <ul>
+    <li><a href="http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/learning/frontend/" class="table-of-contents-link">Frontend</a></li>
+    <li><a href="http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/learning/backend/" class="table-of-contents-link">Backend</a></li>
+    <li><a href="http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/learning/common/" class="table-of-contents-link">Common</a></li>
+    <li><a href="http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/learning/geometry/" class="table-of-contents-link">Geometry</a></li>
+    <li><a href="http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/learning/presentation/" class="table-of-contents-link">Presentation</a></li>
+    <li><a href="http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/learning/ui/" class="table-of-contents-link">UI</a></li>
+    </ul>
+    <hr>
+    <p>&#xA0;</p>
+    <h3 id="helpful links">Helpful links</h3>
+    <ul>
+    <li><a href="http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./learning/ecsql" class="table-of-contents-link">ECSQL</a></li>
+    <li><a href="http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/learning/imodelhub/" class="table-of-contents-link">iModelHub</a></li>
+    <li><a href="http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./learning/wireformat" class="table-of-contents-link">Wire Format</a></li>
+    <li><a href="http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./learning/faq" class="table-of-contents-link">Frequently Asked Questions</a></li>
+    <li><a href="http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/learning/guidelines/" class="table-of-contents-link">Guidelines and Tips</a></li>
+    <li><a href="http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./learning/glossary" class="table-of-contents-link">Glossary</a></li>
+    </ul>
+    </body></html>
+            </ul>
+        </div>
+    </nav>    <div class='documentation-main'>
+        <article id="main" class="main-content">
+            <button type="button" id="sidebarCollapse" class="no-user-select"> <i class="bread-crumb-label bread-crumb-expand-leftnav icon icon-chevron-right no-user-select" id="expand-leftnav"></i></button><div class='bread-crumb-label'><a href="http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/builds/4338/Docs_Output/learning/">Learning</a> > <a href="http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/builds/4338/Docs_Output/learning/backend/">backend</a> > IModelTransformation</div>
+            <div class="edit-link"><a href="https://bentleycs.visualstudio.com/iModelTechnologies/iModelTechnologies/_git/imodeljs?path=/docs/learning%2Fbackend%2FIModelTransformation.md" target="_blank">Edit this page</a></div>
+            <h1 id="imodel transformation and data exchange">iModel Transformation and Data Exchange</h1>
+<p>The <code>@bentley/imodeljs-backend</code> package provides some classes that implement <a href="https://en.wikipedia.org/wiki/Extract,_transform,_load" target="_blank">Extract, Transform, and Load</a> (ETL) functionality:</p>
+<ul>
+<li><a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodelexporter'>IModelExporter</a> and <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodelexporthandler'>IModelExportHandler</a> are the base classes that implement the <em>extract</em> (or <em>export</em>) part of ETL functionality.</li>
+<li><a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodeltransformer'>IModelTransformer</a> is the base class that implements the <em>transform</em> part of ETL functionality.</li>
+<li><a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodelimporter'>IModelImporter</a> is the base class that implements the <em>load</em> (or <em>import</em>) part of ETL functionality.</li>
+</ul>
+<p>The above classes contain the lower-level functionality required to implement transformation and data exchange services.
+These classes should be considered a framework and not confused with the actual packaged and deployed services that use the framework.</p>
+<h2 class="h-imodelexporter">IModelExporter<a id="imodelexporter" class="heading-anchor" href="#imodelexporter"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodelexporter'>IModelExporter</a> and <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodelexporthandler'>IModelExportHandler</a> base classes are used when the <strong>source</strong> data in an ETL workflow is contained within an iModel.</p>
+<p>While it is possible to export data from an iModel using the standard [IModelDb] API, the <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodelexporter'>IModelExporter</a> and <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodelexporthandler'>IModelExportHandler</a> base classes offer the following capabilities:</p>
+<ul>
+<li>An implementation of a <a href="https://en.wikipedia.org/wiki/Visitor_pattern" target="_blank">visitor</a> pattern that makes it easy to iterate the iModel in a prescribed order that attempts to visit dependencies/prerequisites before dependents.</li>
+<li>Visit the entire iModel using <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodelexporter/#exportall'>IModelExporter.exportAll</a></li>
+<li>Visit only changed entities using <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodelexporter/exportchanges'>IModelExporter.exportChanges</a></li>
+<li>Visit a subset of the iModel using <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodelexporter/exportmodel'>IModelExporter.exportModel</a>, <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodelexporter/exportmodelcontents'>IModelExporter.exportModelContents</a>, or <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodelexporter/exportelement'>IModelExporter.exportElement</a></li>
+<li>Easily exclude certain entity types to filter the export content using <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodelexporter/#excludeelementcategory'>IModelExporter.excludeElementCategory</a>, <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodelexporter/#excludeelementclass'>IModelExporter.excludeElementClass</a>, or <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodelexporter/#excludeelementaspectclass'>IModelExporter.excludeElementAspectClass</a></li>
+<li>Integration with <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodeltransformer'>IModelTransformer</a></li>
+</ul>
+<p>Below is an example of using <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodelexporter'>IModelExporter</a> and <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodelexporthandler'>IModelExportHandler</a> to export all <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-common/codes/code'>Code</a> values from an iModel:</p>
+<pre class="no-line-numbers"><code class="language-typescript">import { CodeSpec } from &quot;@bentley/imodeljs-common&quot;;
+import { Element, IModelDb, IModelExporter, IModelExportHandler, IModelJsFs as fs } from &quot;@bentley/imodeljs-backend&quot;;
+
+/** CodeExporter creates a CSV output file containing all Codes from the specified iModel. */
+class CodeExporter extends IModelExportHandler {
+  public outputFileName: string;
+
+  /** Initiate the export of codes. */
+  public static exportCodes(iModelDb: IModelDb, outputFileName: string): void {
+    const exporter = new IModelExporter(iModelDb);
+    const exportHandler = new CodeExporter(outputFileName);
+    exporter.registerHandler(exportHandler);
+    exporter.exportAll();
+  }
+
+  /** Construct a new CodeExporter */
+  private constructor(outputFileName: string) {
+    super();
+    this.outputFileName = outputFileName;
+  }
+
+  /** Override of IModelExportHandler.onExportElement that outputs a line of a CSV file when the Element has a Code. */
+  protected onExportElement(element: Element, isUpdate: boolean | undefined): void {
+    const codeValue: string = element.code.getValue();
+    if (&quot;&quot; !== codeValue) { // only output when Element has a Code
+      const codeSpec: CodeSpec = element.iModel.codeSpecs.getById(element.code.spec);
+      fs.appendFileSync(this.outputFileName, `${element.id}, ${codeSpec.name}, ${codeValue}\n`);
+    }
+    super.onExportElement(element, isUpdate);
+  }
+}
+</code></pre>
+<h2 class="h-imodelimporter">IModelImporter<a id="imodelimporter" class="heading-anchor" href="#imodelimporter"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodelimporter'>IModelImporter</a> base class is used when the <strong>target</strong> in an ETL workflow is an iModel.</p>
+<p>While it is possible to import data into an iModel using the standard [IModelDb] API, the <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodelimporter'>IModelImporter</a> class offers the following capabilities:</p>
+<ul>
+<li>Callbacks whenever IModelImporter is used to insert, update, or delete entities. Simply override one of the protected <code>onInsert*</code>, <code>onUpdate*</code>, or <code>onDelete*</code> methods.</li>
+<li>Optionally auto-extend <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-common/imodels/imodel/projectextents'>IModel.projectExtents</a> during import</li>
+<li>Integration with <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodeltransformer'>IModelTransformer</a></li>
+</ul>
+<h2 class="h-imodelclonecontext">IModelCloneContext<a id="imodelclonecontext" class="heading-anchor" href="#imodelclonecontext"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodelclonecontext'>IModelCloneContext</a> class provides the core <em>cloning</em> capability required for iModel transformation.
+It also maintains the <strong>sourceId --&gt; targetId</strong> mapping which is required to successfully <em>clone</em> <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/schema/entity'>Entity</a> instances from the source iModel into the target iModel.
+iModel entities are highly related to each other. Therefore, <em>cloning</em> an entity means copying a <em>graph</em> of objects and remapping their source references (Ids) to other target entities.</p>
+<h2 class="h-imodeltransformer">IModelTransformer<a id="imodeltransformer" class="heading-anchor" href="#imodeltransformer"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>The <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/imodels/imodeltransformer'>IModelTransformer</a> base class is used when the <strong>source</strong> and <strong>target</strong> in an ETL workflow are both/different iModels and some sort of data transformation is needed in the middle.
+An instance of <code>IModelTransformer</code> holds instances of <code>IModelExporter</code>, <code>IModelImporter</code>, and <code>IModelCloneContext</code>.
+This means that customization is possible at the export stage, the transformation stage, and the import stage of the overall ETL process.</p>
+<p>Potential transformations include:</p>
+<ul>
+<li>Cloning - copying an entity from the source and remapping its internal Ids for the target</li>
+<li>Filtering - excluding data from the target that is contained in the source</li>
+<li>Augmenting - generating data during transformation for the target that is not part of the source</li>
+<li>Schema Mapping - mapping classes and properties to a new schema during transformation</li>
+<li>Change Squashing - each iModel has its own change timeline, so multiple changesets to the source could be <em>squashed</em> into a single changeset to the target</li>
+</ul>
+<h2 class="h-logging">Logging<a id="logging" class="heading-anchor" href="#logging"><span><i class="fa fa-link fa-rotate-90"></i></span></a></h2>
+<p>With batch processes like iModel transformation and data exchange, logging is often the only way to figure out what is actually happening.
+The following logger categories are provided for use with the <a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/bentleyjs-core/logging/logger'>Logger</a>:</p>
+<ul>
+<li><a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/logging/backendloggercategory/#imodelexporter'>BackendLoggerCategory.IModelExporter</a></li>
+<li><a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/logging/backendloggercategory/#imodeltransformer'>BackendLoggerCategory.IModelTransformer</a></li>
+<li><a href='http://builds.bentley.com/prgbuilds/azurebuilds/imodeljsdocs/builds/4338/docs_output/./reference/imodeljs-backend/logging/backendloggercategory/#imodelimporter'>BackendLoggerCategory.IModelImporter</a></li>
+</ul>
+
+            <p class='last-updated'>Last Updated:
+                <span class='date-updated'>08 January, 2020</span>
+            </p>
+            <div id="imodeljs-github-comments">
+            </div>
+            
+            <script>
+              $(document).ready(function () {
+                function initializeComments(repo) {
+                  var s = document.createElement('script');
+                  s.src = "http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/builds/4338/Docs_Output/scripts/utterances/client.js";
+                  s.setAttribute('repo', repo);
+                  s.setAttribute('issue-term', 'title');
+                  s.setAttribute('crossorigin', 'anonymous');
+                  s.setAttribute('theme', 'github-light');
+                  s.async = true;
+            
+                  document.getElementById("imodeljs-github-comments").appendChild(s);
+                }
+            
+                var shouldShow = ldclient.variation(featureFlags.GithubIssuesFeedback);
+            
+                // shouldShow is undefined when ldclient has not emitted 'ready'.
+                if (shouldShow === undefined) {
+                  ldclient.on('ready', function () {
+                    var gitIssueFlag = ldclient.variation(featureFlags.GithubIssuesFeedback);
+                    var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                    if (gitIssueFlag) {
+                      initializeComments(gitRepo);
+                    }
+                  });
+                }
+                else if (shouldShow) {
+                  var gitRepo = ldclient.variation(featureFlags.GitRepo);
+                  initializeComments(gitRepo);
+                }
+              });
+            </script>
+            
+            <script type="text/javascript">
+            
+            </script>        </article>
+    </div>
+    <div class="toc-overlay"></div>
+    <div id='inner-table-of-contents'>
+       <!-- <div id='sticky-container' style="top: 76px; position: fixed;">
+  <h4 class='heading'>On this page</h4>
+    <div id="overview-container" class="clusterize-scroll">
+      <ul id='nav' class='right-nav nav flex-column clusterize-content'>
+              <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#imodelexporter">IModelExporter</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#imodelimporter">IModelImporter</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#imodelclonecontext">IModelCloneContext</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#imodeltransformer">IModelTransformer</a>
+    </li>
+       <li class='nav-item item '>
+            <a class='title solo-title menu-text' href="#logging">Logging</a>
+    </li>
+ 
+      </ul>
+    </div>
+  </div>
+
+ -->
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color pt-1 pb-3">
+  <!-- Footer Links Container -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row d-flex align-items-center mt-2">
+
+      <!-- Grid column -->
+      <div class="col-md-7 col-lg-8 align-top d-none d-md-block">
+
+        <a href="http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/builds/4338/Docs_Output/" class="navbar-brand">
+          <img id="site-logo" class="site-logo" style="zoom:75%;"
+            src="http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/builds/4338/Docs_Output/landing-page/assets/imodeljs-logo.svg" />
+        </a>
+        <small style="color: white; margin-right: 7px;"> powered by </small>
+        <a href="https://www.bentley.com">
+          <img href="https://www.bentley.com" id="sponsored-by-logo" class="sponsored-by-logo"
+            style="zoom:75%; width: 162px; height: 37px;"
+            src="http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/builds/4338/Docs_Output/landing-page/assets/bentley.svg" />
+        </a>
+      </div>
+      <!-- Grid column -->
+
+      <!-- TOS/Legals footer placeholder -->
+      <div id="GlobalFooter"></div>
+
+      <!-- Grid column -->
+      <div class="col-md-5 col-lg-4 ml-lg-0">
+
+        <!-- Social buttons -->
+        <div class="text-center text-md-right">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://twitter.com/imodeljs" target="_blank">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://github.com/imodeljs" target="_blank">
+                <i class="fa fa-github"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1" href="https://stackoverflow.com/tags/imodeljs"
+                target="_blank">
+                <i class="fa fa-stack-overflow"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links Container -->
+
+</footer>
+<!-- Footer -->
+
+</div>
+<a href="javascript:" id="return-to-top"><i class="icon icon-chevron-up"></i></a>
+<script src="http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/builds/4338/Docs_Output/scripts/bundle.js"></script>
+</body>
+
+</html>
+<script src="http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/builds/4338/Docs_Output/scripts/monaco-editor/min/vs/loader.js"></script>
+<script src="http://builds.bentley.com/prgbuilds/AzureBuilds/iModelJsDocs/builds/4338/Docs_Output/scripts/ts-playground.js"></script>
